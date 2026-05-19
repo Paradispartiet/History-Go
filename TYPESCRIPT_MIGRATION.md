@@ -295,3 +295,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Kept all changes file-local and runtime-neutral: no globals were added, and `schemas/civication-globals.d.ts` was not changed.
 - No runtime logic/flow changes were made to event-flow, inbox-flow, jobmail/private-message flow, or choice/effect semantics; localStorage keys, UI/DOM/layout/CSS/text, and `weekKey` runtime expression are unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`; baseline moved from 1942 to 1929 total diagnostics and `civicationEventEngine.js` from 47 to 34, with protected metrics preserved (`CivicationUI.js` 107, `CivicationMiniSectionsUI.js` 22, `civicationEconomyEngine.js` 0, `TS2551` 124, `TS2322` 20, `js/ui/**` 481, `js/ui/place-card.js` 125).
+
+## Phase 33: final local JSDoc cleanup in Civication event engine before globals
+
+- Added one last file-local, JSDoc/typecheck-only pass in `js/Civication/core/civicationEventEngine.js` after Phase 32, focused on safe local diagnostics only.
+- Applied narrow local casts/annotations for existing runtime-shaped objects (`getState`/`getInbox` returns, obligation evaluate result, `HG_CAREERS.global_rules` lookup chain, enqueue inbox item shape, and active position access in system-effects block).
+- Kept changes runtime-neutral and local to Event Engine: no globals were added, and `schemas/civication-globals.d.ts` was not changed.
+- Runtime/event/inbox/jobmail/private-message/choice/effect behavior is unchanged; no flow, branching, localStorage keys, UI/DOM/layout/CSS/text, or data contract changes were made.
+- Regenerated `reports/typecheck-baseline-report.md`; baseline moved from 1929 to 1919 total diagnostics and `civicationEventEngine.js` from 34 to 24, while protected metrics remained non-regressive (`CivicationUI.js` 107, `CivicationMiniSectionsUI.js` 22, `civicationEconomyEngine.js` 0, `TS2551` 124, `TS2322` 19, `js/ui/**` 481, `js/ui/place-card.js` 125).

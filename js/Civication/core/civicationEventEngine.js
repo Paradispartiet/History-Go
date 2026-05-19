@@ -17,6 +17,7 @@ function slugify(str) {
 }
 
 function weekKey(d) {
+  /** @type {Date} */
   const base = d || new Date();
 
   const date = new Date(
@@ -38,7 +39,7 @@ function weekKey(d) {
   );
 
   const weekNo = Math.ceil(
-    (((date - yearStart) / 86400000) + 1) / 7
+    (((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7
   );
 
   return (
@@ -115,7 +116,7 @@ class CivicationEventEngine {
 
   /** @returns {CiviEventEngineState} */
   getState() {
-    return window.CivicationState.getState();
+    return /** @type {CiviEventEngineState} */ (window.CivicationState.getState());
   }
 
   /** @param {CiviEventEngineRecord} patch */
@@ -157,9 +158,9 @@ resetForNewJob(role_key) {
   /** @returns {CiviEventEngineInboxItem[]} */
   getInbox() {
     if (window.CivicationMailEngine?.getInbox) {
-      return window.CivicationMailEngine.getInbox();
+      return /** @type {CiviEventEngineInboxItem[]} */ (window.CivicationMailEngine.getInbox());
     }
-    return window.CivicationState.getInbox();
+    return /** @type {CiviEventEngineInboxItem[]} */ (window.CivicationState.getInbox());
   }
 
   /** @param {CiviEventEngineInboxItem[]} arr */
@@ -1161,6 +1162,7 @@ async ensureConflictState(active) {
 
     const role_key = this.ensureRoleKeySynced();
 
+    /** @type {CiviEventEngineRecord} */
     let obligationEval = { ok: false, reason: "not_checked" };
 
     try {
@@ -1249,12 +1251,22 @@ async ensureConflictState(active) {
       const st = this.getState();
       const now = new Date();
 
+      /** @type {CiviEventEngineRecord} */
+      const careers = (window.HG_CAREERS && typeof window.HG_CAREERS === "object")
+        ? /** @type {CiviEventEngineRecord} */ (window.HG_CAREERS)
+        : {};
+      /** @type {CiviEventEngineRecord} */
+      const globalRules = (careers.global_rules && typeof careers.global_rules === "object")
+        ? /** @type {CiviEventEngineRecord} */ (careers.global_rules)
+        : {};
+      /** @type {CiviEventEngineRecord} */
+      const unemploymentRules = (globalRules.unemployment && typeof globalRules.unemployment === "object")
+        ? /** @type {CiviEventEngineRecord} */ (globalRules.unemployment)
+        : {};
+
       const navAfterWeeks =
         Number(
-          (window.HG_CAREERS &&
-           window.HG_CAREERS.global_rules &&
-           window.HG_CAREERS.global_rules.unemployment &&
-           window.HG_CAREERS.global_rules.unemployment.nav_after_weeks) || 0
+          unemploymentRules.nav_after_weeks || 0
         );
 
       const nowW = weekKey(now);
@@ -1530,6 +1542,7 @@ registerChosenMail(eventObj) {
     }
     /** @type {CiviEventEngineInboxItem[]} */
     const inbox = this.getInbox();
+    /** @type {CiviEventEngineInboxItem} */
     const item = { status: "pending", enqueued_at: new Date().toISOString(), event: normalizedEvent };
     this.setInbox(
       /** @type {CiviEventEngineInboxItem[]} */
@@ -1792,6 +1805,7 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
     (function applySystemEffects() {
       if (!chosenTags.length) return;
 
+      /** @type {CiviEventEngineRecord|null} */
       const active = window.CivicationState.getActivePosition();
       const careerId = String(active?.career_id || "").trim();
 
