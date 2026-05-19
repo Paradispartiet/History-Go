@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-19T12:37:18.028Z
+Generated: 2026-05-19T13:13:48.290Z
 
 ## Total summary
 - Places: **444**
-- Files checked: **168**
+- Files checked: **170**
 - Hard errors: **0**
-- Warnings: **3182**
+- Warnings: **3179**
 
 ## Not configured
 - none
@@ -14,9 +14,6 @@ Generated: 2026-05-19T12:37:18.028Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| okern | 10 | 10 | 0 |
-| skoyen | 10 | 10 | 0 |
-| torshov | 10 | 10 | 0 |
 | grorud | 10 | 10 | 0 |
 | gamlebyen | 10 | 10 | 0 |
 | frognerparken | 10 | 10 | 0 |
@@ -34,6 +31,9 @@ Generated: 2026-05-19T12:37:18.028Z
 | alnaparken | 10 | 10 | 0 |
 | groruddammen | 10 | 10 | 0 |
 | alna_smalvoll | 10 | 10 | 0 |
+| alna_bryn | 10 | 10 | 0 |
+| svartdalen | 10 | 10 | 0 |
+| kvaernerbyen_alna | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -242,7 +242,7 @@ Count: 405
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 267
+Count: 264
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -626,23 +626,23 @@ Count: 203
 
 
 ## Recommended next batch order
-1. `okern`
-2. `skoyen`
-3. `torshov`
-4. `grorud`
-5. `gamlebyen`
-6. `frognerparken`
-7. `kampen_park`
-8. `sagene_film`
-9. `kampen_film`
-10. `good_game_redaksjon`
-11. `alnaelvstien`
-12. `loelva_historisk`
-13. `trosterud_friomrade`
-14. `furuset_haugerud_skogbelte`
-15. `hellerud_gard`
-16. `alnabru_jernbane_og_logistikk`
-17. `alnsjoen_alna_kilde`
-18. `alnaparken`
-19. `groruddammen`
-20. `alna_smalvoll`
+1. `grorud`
+2. `gamlebyen`
+3. `frognerparken`
+4. `kampen_park`
+5. `sagene_film`
+6. `kampen_film`
+7. `good_game_redaksjon`
+8. `alnaelvstien`
+9. `loelva_historisk`
+10. `trosterud_friomrade`
+11. `furuset_haugerud_skogbelte`
+12. `hellerud_gard`
+13. `alnabru_jernbane_og_logistikk`
+14. `alnsjoen_alna_kilde`
+15. `alnaparken`
+16. `groruddammen`
+17. `alna_smalvoll`
+18. `alna_bryn`
+19. `svartdalen`
+20. `kvaernerbyen_alna`
