@@ -1954,9 +1954,7 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
       const currentState = this.getState();
       /** @type {CiviEventEngineRecord} */
       const currentCareerState =
-        (currentState && currentState.career && typeof currentState.career === "object")
-          ? /** @type {CiviEventEngineRecord} */ (currentState.career)
-          : {};
+        /** @type {CiviEventEngineRecord} */ (currentState.career || {});
       const firedRoleKey = currentState.active_role_key;
 
       if (prev &&
@@ -2005,19 +2003,13 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
       const activeNow = window.CivicationState.getActivePosition();
       /** @type {CiviEventEngineRecord} */
       const currentCareer =
-        (currentState && currentState.career && typeof currentState.career === "object")
-          ? /** @type {CiviEventEngineRecord} */ (currentState.career)
-          : {};
+        /** @type {CiviEventEngineRecord} */ (currentState?.career || {});
       /** @type {CiviEventEngineRecord} */
       const progress =
-        (currentCareer.progress && typeof currentCareer.progress === "object")
-          ? /** @type {CiviEventEngineRecord} */ (currentCareer.progress)
-          : {};
+        /** @type {CiviEventEngineRecord} */ (currentCareer.progress || {});
       /** @type {CiviEventEngineRecord} */
       const contract =
-        (currentCareer.contract && typeof currentCareer.contract === "object")
-          ? /** @type {CiviEventEngineRecord} */ (currentCareer.contract)
-          : {};
+        /** @type {CiviEventEngineRecord} */ (currentCareer.contract || {});
 
       const warningEv = this.makeWarningEvent({
         role_key:
