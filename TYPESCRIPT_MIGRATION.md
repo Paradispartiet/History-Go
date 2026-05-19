@@ -270,3 +270,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Did **not** add any global declaration for `getQuizCountLastWeek`; `schemas/civication-globals.d.ts` remains honest about available globals.
 - Applied a local typed-state access adjustment for `capitalState` (`stateView?.economy?.capital`) to remove the remaining unknown-state property access in this file without changing runtime behavior.
 - This is a minimal runtime/architecture clarification only; economy behavior (salary, expense, strikes/stability flow, layoff/capital flow) is otherwise unchanged.
+
+## Phase 30: focused JSDoc pass for Civication event engine
+
+- Added a focused, JSDoc/typecheck-only pass in `js/Civication/core/civicationEventEngine.js` with minimal local casts/annotations on existing dynamic values (`active position`, `inbox`, `event`, and autonomy return value) plus a numeric-safe date diff expression in `weekKey`.
+- Added declaration-only Civication globals in `schemas/civication-globals.d.ts` for runtime symbols actually mounted elsewhere in Civication (`CivicationMailEngine`, `CivicationMailRuntime`, `CivicationCalendar`, `CivicationTaskEngine`, `CiviStoryResolver`, `CivicationConflicts`, `CivicationEventChannels`, `CiviRoleStoryletBridge`, `HG_STATE`).
+- Runtime verification for those globals was done by checking their window assignments/usages in existing Civication runtime files (for example `js/Civication/systems/civicationMailEngine.js`, `js/Civication/systems/civicationMailRuntime.js`, `js/Civication/core/civicationCalendar.js`, `js/Civication/core/civicationTaskEngine.js`, `js/Civication/utils/storyResolver.js`, `js/Civication/utils/conflictLoader.js`, `js/Civication/systems/civicationEventChannels.js`, `js/Civication/roleStoryletBridge.js`).
+- No runtime/event-flow/inbox-flow/jobmail/private-message-flow changes were made, and no data/UI/DOM/CSS/layout/text/localStorage contract changes were made.
+- Regenerated `reports/typecheck-baseline-report.md`; baseline stayed non-regressive overall with lower total diagnostics and a sizable reduction in `civicationEventEngine.js` diagnostics.
