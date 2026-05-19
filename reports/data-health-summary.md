@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-19T10:20:00.108Z
+Generated: 2026-05-19T11:35:31.535Z
 
 ## Total summary
 - Places: **444**
-- Files checked: **166**
+- Files checked: **168**
 - Hard errors: **0**
-- Warnings: **3185**
+- Warnings: **3182**
 
 ## Not configured
 - none
@@ -14,9 +14,6 @@ Generated: 2026-05-19T10:20:00.108Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| schous_plass | 10 | 10 | 0 |
-| vaterland | 10 | 10 | 0 |
-| tullin | 10 | 10 | 0 |
 | okern | 10 | 10 | 0 |
 | skoyen | 10 | 10 | 0 |
 | torshov | 10 | 10 | 0 |
@@ -34,6 +31,9 @@ Generated: 2026-05-19T10:20:00.108Z
 | hellerud_gard | 10 | 10 | 0 |
 | alnabru_jernbane_og_logistikk | 10 | 10 | 0 |
 | alnsjoen_alna_kilde | 10 | 10 | 0 |
+| alnaparken | 10 | 10 | 0 |
+| groruddammen | 10 | 10 | 0 |
+| alna_smalvoll | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -242,7 +242,7 @@ Count: 405
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 269
+Count: 267
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -571,7 +571,7 @@ Count: 441
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 204
+Count: 203
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -626,23 +626,23 @@ Count: 204
 
 
 ## Recommended next batch order
-1. `schous_plass`
-2. `vaterland`
-3. `tullin`
-4. `okern`
-5. `skoyen`
-6. `torshov`
-7. `grorud`
-8. `gamlebyen`
-9. `frognerparken`
-10. `kampen_park`
-11. `sagene_film`
-12. `kampen_film`
-13. `good_game_redaksjon`
-14. `alnaelvstien`
-15. `loelva_historisk`
-16. `trosterud_friomrade`
-17. `furuset_haugerud_skogbelte`
-18. `hellerud_gard`
-19. `alnabru_jernbane_og_logistikk`
-20. `alnsjoen_alna_kilde`
+1. `okern`
+2. `skoyen`
+3. `torshov`
+4. `grorud`
+5. `gamlebyen`
+6. `frognerparken`
+7. `kampen_park`
+8. `sagene_film`
+9. `kampen_film`
+10. `good_game_redaksjon`
+11. `alnaelvstien`
+12. `loelva_historisk`
+13. `trosterud_friomrade`
+14. `furuset_haugerud_skogbelte`
+15. `hellerud_gard`
+16. `alnabru_jernbane_og_logistikk`
+17. `alnsjoen_alna_kilde`
+18. `alnaparken`
+19. `groruddammen`
+20. `alna_smalvoll`
