@@ -236,6 +236,7 @@
 
   const TREASURE_SECTIONS = [
     ["treasureTitle", "Skatten"],
+    ["treasureScope", "Skattetype"],
     ["cabinetCategory", "Kategori"],
     ["treasureType", "Type"],
     ["curiosity", "Hva er forunderlig?"],
@@ -249,15 +250,28 @@
     ["sourceNote", "Grunnlag"]
   ];
 
+  const TREASURE_SCOPE_LABELS = {
+    actual_site_treasure: "Faktisk stedsskatt",
+    category_object: "Typisk kategoriobjekt"
+  };
+
+  function treasureFieldDisplay(key, value) {
+    if (key === "treasureScope") {
+      return TREASURE_SCOPE_LABELS[value] || value;
+    }
+    return value;
+  }
+
   function treasureSectionsHtml(entry) {
     return TREASURE_SECTIONS
       .map(([key, label]) => {
         const value = norm(entry?.[key]);
         if (!value) return "";
+        const display = treasureFieldDisplay(key, value);
         return `
           <section class="wk-entry-section wk-entry-section--treasure" data-wk-field="${esc(key)}">
             <h3>${esc(label)}</h3>
-            <p>${esc(value)}</p>
+            <p>${esc(display)}</p>
           </section>
         `;
       })

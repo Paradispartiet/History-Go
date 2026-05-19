@@ -20,6 +20,62 @@ Denne mappa inneholder data som leses inn i `window.WONDERKAMMER` ved boot via m
 
 ---
 
+## Stedsskatt eller kategoriobjekt
+
+Wonderkammer skal først og fremst handle om konkrete faktiske ting som finnes på akkurat dette stedet. Generelle ting som pleier å finnes på en type sted kan brukes som støtte, men bare når de er tydelig merket som typiske kategoriobjekter.
+
+### `actual_site_treasure`
+
+En konkret, faktisk skatt knyttet til akkurat dette stedet. Dette er hovedtypen i Wonderkammer.
+
+Eksempler:
+- en navngitt port
+- en bestemt mur
+- et konkret skilt
+- en plakett
+- en statue
+- en bestemt løpebane slik den finnes på dette stadionet
+- en faktisk rampe i et skateanlegg
+- en bestemt foss
+- et synlig vannløp
+- en konkret fasadedetalj
+- en faktisk dør, klokke, benk, trapp, tribuneseksjon, stein, bro eller bygning
+
+### `category_object`
+
+Et objekt som er typisk for en stedstype, men ikke i seg selv unikt for dette stedet.
+
+Eksempler:
+- en løpebane på en friidrettsarena
+- en tribune på et stadion
+- en sklie på en lekeplass
+- en huske på en lekeplass
+- en rampe i en skatehall
+- en scene i et kulturhus
+- en sti i en park
+- en port i en festning
+
+### Presiseringer
+
+- Wonderkammer skal først og fremst bestå av `actual_site_treasure`.
+- `category_object` kan brukes som støtte, men skal ikke dominere et sted.
+- Nye Wonderkammer-batcher bør som hovedregel ha minst 70–80 % `actual_site_treasure`.
+- Maks 20–30 % bør være `category_object`.
+- Et `category_object` må alltid knyttes til hvordan objektet faktisk fremstår på dette stedet.
+- Hvis en entry kunne vært flyttet til et hvilket som helst tilsvarende sted uten endring, er den for generisk.
+
+### Eksempel: Bislett
+
+For generisk:
+
+> Skatten er løpebanen. En løpebane brukes til sprint og langdistanseløp.
+
+Bedre:
+
+> Skatten er den røde løpebanen på Bislett Stadion. Den er ikke bare en standard friidrettsbane, men en konkret norsk rekordflate knyttet til Bislett Games, publikumslyd, tidtaking og internasjonal friidrettshistorie.
+
+---
+
 ## Presiseringer
 
 - Filosofiske/sanselige smartfelt er tillatt, men de skal springe ut fra en konkret ting.
@@ -71,6 +127,7 @@ Fjern ikke gamle felt. Disse feltene er tillegg og rendres kun hvis de finnes:
 
 - `treasureTitle`
 - `treasureType`
+- `treasureScope`
 - `cabinetCategory`
 - `curiosity`
 - `whereToFind`
@@ -81,6 +138,19 @@ Fjern ikke gamle felt. Disse feltene er tillegg og rendres kun hvis de finnes:
 - `collectible`
 - `collectionNote`
 - `sourceNote`
+
+`treasureScope` skiller faktiske stedsskatter fra typiske kategoriobjekter.
+
+Tillatte verdier:
+
+- `actual_site_treasure`: faktisk stedsspesifikk skatt, førsteprioritet.
+- `category_object`: typisk objekt for stedstypen, bare støtte.
+
+Presiseringer:
+
+- Nye entries bør bruke `treasureScope`.
+- Gamle entries uten feltet skal fortsatt fungere.
+- `sourceNote` skal fortsatt brukes for å forklare grunnlag.
 
 `sourceNote` skal angi grunnlaget for tingen, med verdier som:
 
