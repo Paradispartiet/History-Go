@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "kind": "history_go_psychology_tests",
+  "safety_note": "Dette er selvrefleksjon og psykoedukasjon. Det er ikke behandling, helsehjelp eller diagnose.",
+  "tests": [
+    {
+      "id": "stressprofil_kort_v1",
+      "title": "Stressprofil",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort refleksjonstest om press, uro og mental belastning.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "stress",
+          "label": "Stress"
+        },
+        {
+          "id": "ansvarstrykk",
+          "label": "Ansvarstrykk"
+        },
+        {
+          "id": "restitusjon",
+          "label": "Restitusjon"
+        }
+      ],
+      "questions": [
+        {
+          "id": "stress_01",
+          "text": "Jeg kjenner ofte at kroppen er i beredskap selv når ingenting akutt skjer.",
+          "dimension": "stress"
+        },
+        {
+          "id": "stress_02",
+          "text": "Jeg har mange åpne oppgaver i hodet samtidig.",
+          "dimension": "stress"
+        },
+        {
+          "id": "stress_03",
+          "text": "Jeg føler ansvar for ting jeg egentlig ikke kan kontrollere.",
+          "dimension": "ansvarstrykk"
+        },
+        {
+          "id": "stress_04",
+          "text": "Det er vanskelig å legge bort kravene fra dagen når jeg skal hvile.",
+          "dimension": "restitusjon"
+        },
+        {
+          "id": "stress_05",
+          "text": "Når jeg får en pause, klarer jeg faktisk å lande litt.",
+          "dimension": "restitusjon",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "stress",
+          "min": 70,
+          "title": "Høyt mentalt trykk",
+          "text": "Svarene dine peker mot mye indre aktivering akkurat nå. Det betyr ikke en diagnose, men det kan være nyttig å redusere antall åpne oppgaver og skille mellom faktisk ansvar og følt ansvar.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        },
+        {
+          "dimension": "ansvarstrykk",
+          "min": 65,
+          "title": "Mye følt ansvar",
+          "text": "Du ser ut til å bære mye ansvar mentalt. Neste steg er å skille mellom det du faktisk kan handle på og det du bare prøver å holde fast i.",
+          "recommended_exercise_id": "ansvarskart_v1"
+        },
+        {
+          "dimension": "restitusjon",
+          "min": 65,
+          "title": "Hvilen blir forstyrret",
+          "text": "Svarene dine tyder på at pauser ikke alltid gir ordentlig restitusjon. En kort, konkret øvelse kan hjelpe deg å skape en tydeligere overgang fra press til hvile.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        }
+      ]
+    },
+    {
+      "id": "grublingsprofil_kort_v1",
+      "title": "Grublingsprofil",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort refleksjonstest om overtenking, gjentatte tanker og mental låsing.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "grubling",
+          "label": "Grubling"
+        },
+        {
+          "id": "selvkritikk",
+          "label": "Selvkritikk"
+        },
+        {
+          "id": "perspektivskifte",
+          "label": "Perspektivskifte"
+        }
+      ],
+      "questions": [
+        {
+          "id": "grubling_01",
+          "text": "Jeg blir ofte sittende fast i samme tanke flere ganger.",
+          "dimension": "grubling"
+        },
+        {
+          "id": "grubling_02",
+          "text": "Jeg prøver å tenke meg frem til full kontroll før jeg handler.",
+          "dimension": "grubling"
+        },
+        {
+          "id": "grubling_03",
+          "text": "Når noe går galt, retter jeg raskt kritikken mot meg selv.",
+          "dimension": "selvkritikk"
+        },
+        {
+          "id": "grubling_04",
+          "text": "Jeg klarer ofte å se en vanskelig tanke fra mer enn én vinkel.",
+          "dimension": "perspektivskifte",
+          "reverse": true
+        },
+        {
+          "id": "grubling_05",
+          "text": "Jeg merker forskjell på en tanke og et faktum.",
+          "dimension": "perspektivskifte",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "grubling",
+          "min": 70,
+          "title": "Tanker som går i ring",
+          "text": "Svarene dine peker mot mye repetitiv tenkning. Det kan hjelpe å skrive tanken ned, skille fakta fra tolkning og velge én konkret handling.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        },
+        {
+          "dimension": "selvkritikk",
+          "min": 65,
+          "title": "Streng indre stemme",
+          "text": "Du ser ut til å ha en tydelig selvkritisk kanal. Neste øvelse bør ikke være å tenke mer, men å formulere samme situasjon slik du ville sagt den til en venn.",
+          "recommended_exercise_id": "venneblikk_v1"
+        },
+        {
+          "dimension": "perspektivskifte",
+          "min": 65,
+          "title": "Behov for mer avstand til tanken",
+          "text": "Det kan være nyttig å trene på å se tanken som en hendelse i hodet, ikke som en endelig beskrivelse av virkeligheten.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        }
+      ]
+    },
+    {
+      "id": "sosial_energi_kort_v1",
+      "title": "Sosial energi",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort refleksjonstest om sosial energi, grenser og behovet for kontakt eller ro.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "sosial_energi",
+          "label": "Sosial energi"
+        },
+        {
+          "id": "grenser",
+          "label": "Grenser"
+        },
+        {
+          "id": "tilhorighet",
+          "label": "Tilhørighet"
+        }
+      ],
+      "questions": [
+        {
+          "id": "sosial_01",
+          "text": "Jeg får ofte energi av å være sammen med andre.",
+          "dimension": "sosial_energi"
+        },
+        {
+          "id": "sosial_02",
+          "text": "Etter mye sosial kontakt trenger jeg tydelig tid alene.",
+          "dimension": "grenser"
+        },
+        {
+          "id": "sosial_03",
+          "text": "Jeg sier ja til mer sosialt enn jeg egentlig har kapasitet til.",
+          "dimension": "grenser"
+        },
+        {
+          "id": "sosial_04",
+          "text": "Jeg opplever at jeg har mennesker jeg kan være meg selv med.",
+          "dimension": "tilhorighet",
+          "reverse": true
+        },
+        {
+          "id": "sosial_05",
+          "text": "Jeg kan føle meg alene selv når jeg er rundt mennesker.",
+          "dimension": "tilhorighet"
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "sosial_energi",
+          "min": 70,
+          "title": "Høy sosial drivkraft",
+          "text": "Du ser ut til å få mye energi fra kontakt med andre. Det kan være en styrke, særlig hvis du samtidig følger med på egne grenser.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "grenser",
+          "min": 65,
+          "title": "Grenser trenger tydeligere form",
+          "text": "Svarene dine peker mot at sosial kapasitet og forventninger ikke alltid går opp. Neste øvelse bør handle om hva du faktisk trenger før du sier ja.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "tilhorighet",
+          "min": 65,
+          "title": "Tilhørighet krever presisjon",
+          "text": "Dette peker ikke nødvendigvis mot mangel på folk, men kan bety at du trenger kontakt som treffer mer presist: færre roller, mer ærlighet.",
+          "recommended_exercise_id": "venneblikk_v1"
+        }
+      ]
+    }
+  ]
+}
