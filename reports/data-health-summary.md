@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-19T05:49:21.519Z
+Generated: 2026-05-19T10:20:00.108Z
 
 ## Total summary
 - Places: **444**
-- Files checked: **164**
+- Files checked: **166**
 - Hard errors: **0**
-- Warnings: **3191**
+- Warnings: **3185**
 
 ## Not configured
 - none
@@ -14,7 +14,6 @@ Generated: 2026-05-19T05:49:21.519Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| cinemateket_oslo | 11 | 11 | 0 |
 | schous_plass | 10 | 10 | 0 |
 | vaterland | 10 | 10 | 0 |
 | tullin | 10 | 10 | 0 |
@@ -34,6 +33,7 @@ Generated: 2026-05-19T05:49:21.519Z
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
 | hellerud_gard | 10 | 10 | 0 |
 | alnabru_jernbane_og_logistikk | 10 | 10 | 0 |
+| alnsjoen_alna_kilde | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -242,7 +242,7 @@ Count: 405
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 272
+Count: 269
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -261,11 +261,8 @@ Count: 272
 - `botsfengselet`
 - `bryn_industriomrade`
 - `camilla_collett_statue`
-- `chateau_neuf`
 - `christiania_seildugsfabrik`
-- `cinemateket_oslo`
 - `colosseum_kino`
-- `daelenenga_idrettspark`
 - `deichman_grunerlokka`
 - `det_norske_teatret`
 - `eidsvolls_plass`
@@ -294,6 +291,9 @@ Count: 272
 - `grotta`
 - `grunerlokka_bakgardsvegger`
 - `grunnlovsbygget_bankplassen`
+- `hausmania`
+- `hausmannsgate_aksen`
+- `havnelageret`
 
 ### missing_links
 Count: 444
@@ -571,7 +571,7 @@ Count: 441
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 207
+Count: 204
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -609,10 +609,7 @@ Count: 207
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
 - `camilla_collett_statue`
-- `chateau_neuf`
 - `christiania_seildugsfabrik`
-- `cinemateket_oslo`
-- `daelenenga_idrettspark`
 - `damstredet_telthusbakken`
 - `det_norske_teatret`
 - `eidsvolls_plass`
@@ -623,26 +620,29 @@ Count: 207
 - `folketeateret`
 - `fornebu_teknologipark`
 - `fossveien_elvestrekning`
+- `frogner_stadion`
+- `frognerstranda_pop`
+- `frysja_industriomrade`
 
 
 ## Recommended next batch order
-1. `cinemateket_oslo`
-2. `schous_plass`
-3. `vaterland`
-4. `tullin`
-5. `okern`
-6. `skoyen`
-7. `torshov`
-8. `grorud`
-9. `gamlebyen`
-10. `frognerparken`
-11. `kampen_park`
-12. `sagene_film`
-13. `kampen_film`
-14. `good_game_redaksjon`
-15. `alnaelvstien`
-16. `loelva_historisk`
-17. `trosterud_friomrade`
-18. `furuset_haugerud_skogbelte`
-19. `hellerud_gard`
-20. `alnabru_jernbane_og_logistikk`
+1. `schous_plass`
+2. `vaterland`
+3. `tullin`
+4. `okern`
+5. `skoyen`
+6. `torshov`
+7. `grorud`
+8. `gamlebyen`
+9. `frognerparken`
+10. `kampen_park`
+11. `sagene_film`
+12. `kampen_film`
+13. `good_game_redaksjon`
+14. `alnaelvstien`
+15. `loelva_historisk`
+16. `trosterud_friomrade`
+17. `furuset_haugerud_skogbelte`
+18. `hellerud_gard`
+19. `alnabru_jernbane_og_logistikk`
+20. `alnsjoen_alna_kilde`
