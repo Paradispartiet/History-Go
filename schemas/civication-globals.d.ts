@@ -111,6 +111,7 @@ declare global {
     CivicationHome?: CiviMethodBag;
     CivicationJobs?: CiviMethodBag;
     CivicationState?: CiviMethodBag;
+    CivicationPsyche?: CiviMethodBag;
 
     HG_CiviEngine?: CiviEngineLike;
     CivicationEconomyEngine?: CiviMethodBag;
