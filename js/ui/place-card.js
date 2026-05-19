@@ -177,6 +177,15 @@ if (!card.dataset.pcIconsBound) {
       p => String(p?.id || "").trim() === currentPlaceId
     ) || place;
 
+    if (kind === "leksikon") {
+      if (currentPlaceId && typeof window.HGLeksikon?.openPlace === "function") {
+        void window.HGLeksikon.openPlace(currentPlaceId);
+      } else {
+        window.showToast?.("Leksikon er ikke lastet ennå");
+      }
+      return;
+    }
+
     const html = (listEl && listEl.innerHTML && listEl.innerHTML.trim())
       ? listEl.innerHTML
       : `<div class="pc-empty">Ingen innhold ennå</div>`;
