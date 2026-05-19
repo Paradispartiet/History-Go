@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-19T04:44:55.643Z
+Generated: 2026-05-19T05:49:21.519Z
 
 ## Total summary
 - Places: **444**
-- Files checked: **163**
+- Files checked: **164**
 - Hard errors: **0**
-- Warnings: **3196**
+- Warnings: **3191**
 
 ## Not configured
 - none
@@ -15,7 +15,6 @@ Generated: 2026-05-19T04:44:55.643Z
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
 | cinemateket_oslo | 11 | 11 | 0 |
-| colosseum_kino | 11 | 11 | 0 |
 | schous_plass | 10 | 10 | 0 |
 | vaterland | 10 | 10 | 0 |
 | tullin | 10 | 10 | 0 |
@@ -34,6 +33,7 @@ Generated: 2026-05-19T04:44:55.643Z
 | trosterud_friomrade | 10 | 10 | 0 |
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
 | hellerud_gard | 10 | 10 | 0 |
+| alnabru_jernbane_og_logistikk | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -571,11 +571,10 @@ Count: 441
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 212
+Count: 207
 
 - `abelhaugen`
 - `aker_brygge_pop`
-- `akerhus_slott`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
 - `akershus_energi`
@@ -586,7 +585,6 @@ Count: 212
 - `alna_smalvoll`
 - `alna_utlop_bjorvika`
 - `alnabru_jernbane_og_logistikk`
-- `alnaelva`
 - `alnaelva_hovedsteder`
 - `alnaelvstien`
 - `alnaparken`
@@ -594,14 +592,12 @@ Count: 212
 - `ankerbrua`
 - `barcode_pop`
 - `beierbrua`
-- `bislett_stadion`
 - `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjørvika_pop`
 - `blaa`
 - `bogerudmyra`
-- `bogstad_gard`
 - `bogstadveien`
 - `botsfengselet`
 - `bryn_industriomrade`
@@ -616,33 +612,37 @@ Count: 212
 - `chateau_neuf`
 - `christiania_seildugsfabrik`
 - `cinemateket_oslo`
-- `colosseum_kino`
 - `daelenenga_idrettspark`
 - `damstredet_telthusbakken`
 - `det_norske_teatret`
 - `eidsvolls_plass`
 - `eidsvollsbygningen`
 - `ekebergsletta`
+- `eldorado_bokhandel`
+- `elvestrekning_bla_brenneriveien`
+- `folketeateret`
+- `fornebu_teknologipark`
+- `fossveien_elvestrekning`
 
 
 ## Recommended next batch order
 1. `cinemateket_oslo`
-2. `colosseum_kino`
-3. `schous_plass`
-4. `vaterland`
-5. `tullin`
-6. `okern`
-7. `skoyen`
-8. `torshov`
-9. `grorud`
-10. `gamlebyen`
-11. `frognerparken`
-12. `kampen_park`
-13. `sagene_film`
-14. `kampen_film`
-15. `good_game_redaksjon`
-16. `alnaelvstien`
-17. `loelva_historisk`
-18. `trosterud_friomrade`
-19. `furuset_haugerud_skogbelte`
-20. `hellerud_gard`
+2. `schous_plass`
+3. `vaterland`
+4. `tullin`
+5. `okern`
+6. `skoyen`
+7. `torshov`
+8. `grorud`
+9. `gamlebyen`
+10. `frognerparken`
+11. `kampen_park`
+12. `sagene_film`
+13. `kampen_film`
+14. `good_game_redaksjon`
+15. `alnaelvstien`
+16. `loelva_historisk`
+17. `trosterud_friomrade`
+18. `furuset_haugerud_skogbelte`
+19. `hellerud_gard`
+20. `alnabru_jernbane_og_logistikk`
