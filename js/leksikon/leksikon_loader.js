@@ -584,9 +584,9 @@
 
     return `
       <div class="pc-leksikon-list">
-        <button class="pc-leksikon-entry" type="button" data-leksikon-open-hub data-leksikon-place="${esc(norm(placeId))}">
+        <button class="pc-leksikon-entry" type="button" data-leksikon-place="${esc(norm(placeId))}" data-leksikon-index="0">
           <span class="pc-leksikon-entry-title">Leksikon</span>
-          <span class="pc-leksikon-entry-meta">Åpne leksikon for dette stedet</span>
+          <span class="pc-leksikon-entry-meta">Åpne leksikonhub for dette stedet</span>
         </button>
       </div>
     `;
@@ -629,6 +629,8 @@
           listEl.innerHTML = renderPlaceList(place.id);
         }
         if (iconEl && articles.length) {
+          iconEl.dataset.leksikonPlace = norm(place?.id);
+          iconEl.dataset.leksikonIndex = "0";
           iconEl.innerHTML = `
             <div class="pc-round-label">
               <span class="pc-round-emoji">📚</span>
