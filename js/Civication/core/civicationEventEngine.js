@@ -39,7 +39,7 @@ function weekKey(d) {
   );
 
   const weekNo = Math.ceil(
-    (((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7
+    (((date - yearStart) / 86400000) + 1) / 7
   );
 
   return (
@@ -1252,17 +1252,14 @@ async ensureConflictState(active) {
       const now = new Date();
 
       /** @type {CiviEventEngineRecord} */
-      const careers = (window.HG_CAREERS && typeof window.HG_CAREERS === "object")
-        ? /** @type {CiviEventEngineRecord} */ (window.HG_CAREERS)
-        : {};
+      const careers =
+        /** @type {CiviEventEngineRecord} */ (window.HG_CAREERS || {});
       /** @type {CiviEventEngineRecord} */
-      const globalRules = (careers.global_rules && typeof careers.global_rules === "object")
-        ? /** @type {CiviEventEngineRecord} */ (careers.global_rules)
-        : {};
+      const globalRules =
+        /** @type {CiviEventEngineRecord} */ (careers.global_rules || {});
       /** @type {CiviEventEngineRecord} */
-      const unemploymentRules = (globalRules.unemployment && typeof globalRules.unemployment === "object")
-        ? /** @type {CiviEventEngineRecord} */ (globalRules.unemployment)
-        : {};
+      const unemploymentRules =
+        /** @type {CiviEventEngineRecord} */ (globalRules.unemployment || {});
 
       const navAfterWeeks =
         Number(
