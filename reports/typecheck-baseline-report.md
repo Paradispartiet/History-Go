@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-19T10:33:12.359Z
+- Generated at (UTC): 2026-05-19T15:56:25.300Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1942
+- Total diagnostic lines found: 1929
 - Files with diagnostics: 193
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 80 | 618 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
+| js/Civication/** | 80 | 605 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 481 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -32,13 +32,13 @@
 | js/ui/popup-utils.js | 80 | js/ui/** |
 | js/profile.js | 79 | js/profile.js |
 | js/boot.js | 75 | js/boot.js |
-| js/Civication/core/civicationEventEngine.js | 47 | js/Civication/** |
 | js/routes.js | 47 | other |
 | js/ui/left-panel.js | 47 | js/ui/** |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
 | js/ui/lists.js | 37 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
+| js/Civication/core/civicationEventEngine.js | 34 | js/Civication/** |
 | js/Civication/systems/day/dayPatches.js | 30 | js/Civication/** |
 | js/quizzes.js | 30 | other |
 | js/nextUpRuntime.js | 29 | other |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1609 |
+| TS2339 | 1597 |
 | TS2551 | 124 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -68,14 +68,14 @@
 | TS2740 | 3 |
 | TS2739 | 3 |
 | TS2769 | 3 |
-| TS2698 | 2 |
 | TS2554 | 2 |
+| TS2698 | 1 |
 | TS2488 | 1 |
 | TS2353 | 1 |
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (618 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (605 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (125), `js/Civication/ui/CivicationUI.js` (107), `js/ui/popup-utils.js` (80), `js/profile.js` (79), `js/boot.js` (75).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -145,21 +145,21 @@ js/Civication/core/civicationEventEngine.js(1536,22): error TS2769: No overload 
 js/Civication/core/civicationEventEngine.js(1796,39): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(1927,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
 js/Civication/core/civicationEventEngine.js(1946,12): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1957,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1960,55): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1973,11): error TS2698: Spread types may only be created from object types.
-js/Civication/core/civicationEventEngine.js(1984,24): error TS2339: Property 'title' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1984,39): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1985,30): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1999,46): error TS2339: Property 'progress' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2000,46): error TS2339: Property 'contract' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2005,22): error TS2339: Property 'role_key' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2006,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2008,27): error TS2339: Property 'title' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2008,47): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2009,33): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2045,8): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
+js/Civication/core/civicationEventEngine.js(2057,8): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
 js/Civication/core/civicationJobs.js(171,33): error TS2339: Property 'flags' does not exist on type 'unknown'.
 js/Civication/core/civicationJobs.js(171,49): error TS2339: Property 'flags' does not exist on type 'unknown'.
 js/Civication/core/civicationJobs.js(318,42): error TS2339: Property 'map' does not exist on type 'unknown'.
+js/Civication/core/civicationJobs.js(322,15): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(...items: ConcatArray<{ status: string; createdAt: number; event: any; }>[]): { status: string; createdAt: number; event: any; }[]', gave the following error.
+    Argument of type 'unknown' is not assignable to parameter of type 'ConcatArray<{ status: string; createdAt: number; event: any; }>'.
+      Type '{}' is missing the following properties from type 'ConcatArray<{ status: string; createdAt: number; event: any; }>': length, join, slice
+  Overload 2 of 2, '(...items: ({ status: string; createdAt: number; event: any; } | ConcatArray<{ status: string; createdAt: number; event: any; }>)[]): { status: string; createdAt: number; event: any; }[]', gave the following error.
+    Argument of type 'unknown' is not assignable to parameter of type '{ status: string; createdAt: number; event: any; } | ConcatArray<{ status: string; createdAt: number; event: any; }>'.
+js/Civication/core/civicationJobs.js(428,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
+  Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
+js/Civication/core/civicationJobs.js(447,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
+  Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
+js/Civication/core/civicationJobs.js(570,30): error TS2339: Property 'career' does not exist on type 'unknown'.
+js/Civication/core/civicationJobs.js(729,14): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationJobs.js(795,10): error TS2339: Property 'hgGetJobOffers' does not exist on type 'Window & typeof globalThis'.
 ```

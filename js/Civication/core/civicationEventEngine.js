@@ -1949,8 +1949,12 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
   }
     
     if (stability === "FIRED") {
+      /** @type {CiviEventEngineRecord|null} */
       const prev = window.CivicationState.getActivePosition();
       const currentState = this.getState();
+      /** @type {CiviEventEngineRecord} */
+      const currentCareerState =
+        /** @type {CiviEventEngineRecord} */ (currentState.career || {});
       const firedRoleKey = currentState.active_role_key;
 
       if (prev &&
@@ -1970,7 +1974,7 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
         unemployed_since_week: weekKey(new Date()),
         active_role_key: null,
         career: {
-          ...(currentState.career || {}),
+          ...currentCareerState,
           activeJob: null,
           obligations: [],
           contract: null,
@@ -1995,9 +1999,17 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
              window.CivicationState.getActivePosition()) {
 
       const currentState = this.getState();
+      /** @type {CiviEventEngineRecord|null} */
       const activeNow = window.CivicationState.getActivePosition();
-      const progress = currentState?.career?.progress || {};
-      const contract = currentState?.career?.contract || {};
+      /** @type {CiviEventEngineRecord} */
+      const currentCareer =
+        /** @type {CiviEventEngineRecord} */ (currentState?.career || {});
+      /** @type {CiviEventEngineRecord} */
+      const progress =
+        /** @type {CiviEventEngineRecord} */ (currentCareer.progress || {});
+      /** @type {CiviEventEngineRecord} */
+      const contract =
+        /** @type {CiviEventEngineRecord} */ (currentCareer.contract || {});
 
       const warningEv = this.makeWarningEvent({
         role_key:

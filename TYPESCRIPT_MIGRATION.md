@@ -287,3 +287,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - No runtime logic or behavior was changed in event-flow, inbox-flow, jobmail/private-message flow, choice/effect semantics, localStorage keys/contracts, UI/DOM/layout/CSS/text, or Civication data contracts.
 - Regenerated `reports/typecheck-baseline-report.md`; current baseline is 1942 total diagnostics and `civicationEventEngine.js` at 47, while preserving non-regression for `CivicationUI.js` (107), `CivicationMiniSectionsUI.js` (22), `TS2551` (124), and `TS2322` (20).
 - `js/ui/**` (481) and `js/ui/place-card.js` (125) are above the post-Phase-30 reference values; this pass did not modify `js/ui/**` files, so that drift should be treated as baseline/report drift outside the Event Engine scope.
+
+
+## Phase 32: continue safe local JSDoc cleanup in Civication event engine
+
+- Added a small, controlled JSDoc/typecheck-only pass in `js/Civication/core/civicationEventEngine.js` focused on local `unknown`-to-record casts around fired/warning-state handling (`active`, `career`, `progress`, `contract`) and a local spread-safe cast source.
+- Kept all changes file-local and runtime-neutral: no globals were added, and `schemas/civication-globals.d.ts` was not changed.
+- No runtime logic/flow changes were made to event-flow, inbox-flow, jobmail/private-message flow, or choice/effect semantics; localStorage keys, UI/DOM/layout/CSS/text, and `weekKey` runtime expression are unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`; baseline moved from 1942 to 1929 total diagnostics and `civicationEventEngine.js` from 47 to 34, with protected metrics preserved (`CivicationUI.js` 107, `CivicationMiniSectionsUI.js` 22, `civicationEconomyEngine.js` 0, `TS2551` 124, `TS2322` 20, `js/ui/**` 481, `js/ui/place-card.js` 125).
