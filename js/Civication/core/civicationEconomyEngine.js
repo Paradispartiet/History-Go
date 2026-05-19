@@ -298,8 +298,11 @@ function tickPCIncomeWeekly() {
 
   if (minQuiz > 0) {
 
+    /** @type {number} */
     const done =
-      getQuizCountLastWeek(active.career_id);
+      Number(
+        window.CivicationObligationEngine?.getQuizCountLastWeek?.(active.career_id) ?? 0
+      );
 
     if (done < minQuiz) {
 
@@ -351,7 +354,7 @@ function tickPCIncomeWeekly() {
   // 5️⃣ Capital
 
   const capitalState =
-    state?.economy?.capital || {};
+    stateView?.economy?.capital || {};
 
   if (window.CAPITAL_ENGINE?.applyCareerCapital) {
 
