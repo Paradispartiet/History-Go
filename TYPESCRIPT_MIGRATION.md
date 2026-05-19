@@ -262,3 +262,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime behavior is unchanged: no economy logic, wallet/balance/salary/weekly tick/career/progression/badge/tier behavior, localStorage keys, dispatch/updateProfile flow, UI/layout, or data contracts were changed.
 - Regenerated `reports/typecheck-baseline-report.md` and retained it with non-regressive baseline trend.
 
+
+## Phase 29: Economy maintenance quiz count routed via obligation engine API
+
+- Replaced the bare/global `getQuizCountLastWeek(active.career_id)` usage in `js/Civication/core/civicationEconomyEngine.js` with the existing runtime API call `window.CivicationObligationEngine?.getQuizCountLastWeek?.(active.career_id)`.
+- Kept the call defensive with a numeric fallback (`0`) so weekly maintenance evaluation remains safe if the obligation engine is not yet available at runtime.
+- Did **not** add any global declaration for `getQuizCountLastWeek`; `schemas/civication-globals.d.ts` remains honest about available globals.
+- Applied a local typed-state access adjustment for `capitalState` (`stateView?.economy?.capital`) to remove the remaining unknown-state property access in this file without changing runtime behavior.
+- This is a minimal runtime/architecture clarification only; economy behavior (salary, expense, strikes/stability flow, layoff/capital flow) is otherwise unchanged.
