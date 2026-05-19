@@ -281,7 +281,9 @@ This supports gradual migration with no framework, bundler, or architecture chan
 
 ## Phase 31: continue local JSDoc cleanup in Civication event engine
 
-- Added a small, focused JSDoc/typecheck-only pass in `js/Civication/core/civicationEventEngine.js` targeting safe local diagnostics only (date arithmetic typing, local pulse-state casts, and narrow local callback/record annotations).
+- Added a small, focused JSDoc/typecheck-only pass in `js/Civication/core/civicationEventEngine.js` targeting safe local diagnostics only (local pulse-state casts and narrow local callback/record annotations).
 - Kept the pass file-local and runtime-neutral: no globals declarations were added, and `schemas/civication-globals.d.ts` was not changed.
+- Reverted the temporary `weekKey` arithmetic expression change so runtime expression remains unchanged (`date - yearStart`), keeping this phase annotation-focused.
 - No runtime logic or behavior was changed in event-flow, inbox-flow, jobmail/private-message flow, choice/effect semantics, localStorage keys/contracts, UI/DOM/layout/CSS/text, or Civication data contracts.
-- Regenerated `reports/typecheck-baseline-report.md`; baseline improved from 1946 to 1940 total diagnostics and `civicationEventEngine.js` improved from 53 to 45 while preserving non-regression for `CivicationUI.js` (107), `CivicationMiniSectionsUI.js` (22), `TS2551` (124), and `TS2322` (20).
+- Regenerated `reports/typecheck-baseline-report.md`; current baseline is 1942 total diagnostics and `civicationEventEngine.js` at 47, while preserving non-regression for `CivicationUI.js` (107), `CivicationMiniSectionsUI.js` (22), `TS2551` (124), and `TS2322` (20).
+- `js/ui/**` (481) and `js/ui/place-card.js` (125) are above the post-Phase-30 reference values; this pass did not modify `js/ui/**` files, so that drift should be treated as baseline/report drift outside the Event Engine scope.

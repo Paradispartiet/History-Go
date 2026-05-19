@@ -17,8 +17,7 @@ function slugify(str) {
 }
 
 function weekKey(d) {
-  /** @type {Date} */
-  const base = /** @type {Date} */ (d || new Date());
+  const base = d || new Date();
 
   const date = new Date(
     Date.UTC(
@@ -39,7 +38,7 @@ function weekKey(d) {
   );
 
   const weekNo = Math.ceil(
-    (((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7
+    (((date - yearStart) / 86400000) + 1) / 7
   );
 
   return (
