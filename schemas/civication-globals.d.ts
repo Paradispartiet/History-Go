@@ -131,7 +131,6 @@ declare global {
     ensureCiviCareerRulesLoaded?: CiviFn;
     checkTierUpgrades?: CiviFn;
     calculateWeeklySalary?: CiviFn;
-    getQuizCountLastWeek?: CiviFn;
 
     HGLearningLog?: {
       add?: CiviLearningLogFn;
@@ -150,7 +149,6 @@ declare global {
   const CIVI_SYNERGIES: unknown[];
   const CAREERS: unknown[];
   const LIFESTYLES: unknown[];
-  const getQuizCountLastWeek: CiviFn;
 }
 
 export {};

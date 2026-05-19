@@ -1,7 +1,7 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-18T20:08:00.591Z
+- Generated at (UTC): 2026-05-19T04:16:51.793Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
 - Total diagnostic lines found: 1962
@@ -53,7 +53,7 @@
 | --- | ---: |
 | TS2339 | 1626 |
 | TS2551 | 124 |
-| TS2304 | 70 |
+| TS2304 | 71 |
 | TS2307 | 36 |
 | TS2322 | 21 |
 | TS2580 | 13 |
@@ -70,7 +70,6 @@
 | TS2739 | 3 |
 | TS2769 | 3 |
 | TS2554 | 2 |
-| TS2365 | 1 |
 | TS2488 | 1 |
 | TS2353 | 1 |
 | TS2741 | 1 |
@@ -96,7 +95,7 @@ js/Civication/civicationCommercial.js(230,47): error TS2339: Property 'map' does
 js/Civication/civicationCommercial.js(231,52): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(259,52): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/core/civicationCalendar.js(169,10): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEconomyEngine.js(304,9): error TS2365: Operator '<' cannot be applied to types 'unknown' and 'number'.
+js/Civication/core/civicationEconomyEngine.js(302,7): error TS2304: Cannot find name 'getQuizCountLastWeek'.
 js/Civication/core/civicationEconomyEngine.js(354,12): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(41,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationEventEngine.js(41,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
