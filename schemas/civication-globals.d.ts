@@ -112,15 +112,6 @@ declare global {
     CivicationJobs?: CiviMethodBag;
     CivicationState?: CiviMethodBag;
     CivicationPsyche?: CiviMethodBag;
-    CivicationMailEngine?: CiviMethodBag;
-    CivicationMailRuntime?: CiviMethodBag;
-    CivicationCalendar?: CiviMethodBag;
-    CivicationTaskEngine?: CiviMethodBag;
-    CiviStoryResolver?: CiviMethodBag;
-    CivicationConflicts?: CiviMethodBag;
-    CivicationEventChannels?: CiviMethodBag;
-    CiviRoleStoryletBridge?: CiviMethodBag;
-    HG_STATE?: CiviRecord;
 
     HG_CiviEngine?: CiviEngineLike;
     CivicationEconomyEngine?: CiviMethodBag;
