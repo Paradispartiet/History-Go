@@ -30,9 +30,24 @@ const SMART_FIELDS = [
   "collectibleHint"
 ];
 const SHORT_DESCRIPTION_LIMIT = 40;
-const TREASURE_FIELDS = ["treasureTitle","treasureType","cabinetCategory","curiosity","whereToFind","whatToDo","whatToNotice","material","rarity","collectible","collectionNote","sourceNote"];
+const TREASURE_FIELDS = ["treasureTitle","treasureType","treasureScope","cabinetCategory","curiosity","whereToFind","whatToDo","whatToNotice","material","rarity","collectible","collectionNote","sourceNote"];
 const CABINET_CATEGORIES = new Set(["naturalia","artificialia","scientifica","mirabilia","memorabilia","urbania","sonica","lingua","relic"]);
 const RARITY_VALUES = new Set(["vanlig","uvanlig","sjelden","skjult","legendarisk","mytisk"]);
+const TREASURE_SCOPE_VALUES = new Set(["actual_site_treasure","category_object"]);
+const CATEGORY_OBJECT_GROUNDING_FIELDS = ["placeSpecificDetail","whereToFind","sourceNote","historyLayer","materialLayer"];
+const CATEGORY_OBJECT_GENERIC_PATTERNS = [
+  /^en\s+løpebane\.?$/i,
+  /^en\s+tribune\.?$/i,
+  /^en\s+huske\.?$/i,
+  /^en\s+sklie\.?$/i,
+  /^en\s+rampe\.?$/i,
+  /^en\s+benk\.?$/i,
+  /^en\s+sti\.?$/i,
+  /^en\s+port\.?$/i,
+  /^en\s+scene\.?$/i,
+  /^en\s+målstripe\.?$/i
+];
+const CATEGORY_OBJECT_MAX_RATIO = 0.3;
 const HYPOTHETICAL_PATTERNS=[/\bkan finnes\b/i,/\bkan være\b/i,/\btypisk\b/i,/\bmulig spor\b/i,/\bantatt\b/i];
 const GENERIC_ACTIVITY_PATTERNS = [
   /^se etter\b/i,
@@ -253,6 +268,40 @@ function validateEntry(entry, location) {
     warnings.push(`${location}: rarity utenfor tillatte verdier`);
   }
 
+  const hasTreasureTitle = typeof entry.treasureTitle === "string" && entry.treasureTitle.trim();
+  const rawTreasureScope = typeof entry.treasureScope === "string" ? entry.treasureScope.trim() : "";
+
+  if (hasTreasureTitle && !rawTreasureScope) {
+    warnings.push(`${location}: har treasureTitle, men mangler treasureScope`);
+  }
+
+  if (rawTreasureScope && !TREASURE_SCOPE_VALUES.has(rawTreasureScope)) {
+    warnings.push(`${location}: treasureScope utenfor tillatte verdier ("${rawTreasureScope}")`);
+  }
+
+  if (rawTreasureScope === "category_object") {
+    const hasGrounding = CATEGORY_OBJECT_GROUNDING_FIELDS.some(key => {
+      const value = entry?.[key];
+      return typeof value === "string" && value.trim().length > 0;
+    });
+    if (!hasGrounding) {
+      warnings.push(
+        `${location}: treasureScope er category_object, men mangler placeSpecificDetail, whereToFind, sourceNote eller annen konkret stedlig forankring`
+      );
+    }
+
+    const candidateTexts = [entry?.treasureTitle, entry?.description]
+      .filter(v => typeof v === "string")
+      .map(v => v.trim())
+      .filter(Boolean);
+    const looksGeneric = candidateTexts.some(text => CATEGORY_OBJECT_GENERIC_PATTERNS.some(rx => rx.test(text)));
+    if (looksGeneric && !hasGrounding) {
+      warnings.push(
+        `${location}: treasureScope er category_object og teksten virker helt generisk uten stedsspesifikk detalj`
+      );
+    }
+  }
+
   if (containsHypotheticalLanguage(entry) && !(typeof entry.sourceNote === "string" && entry.sourceNote.trim())) {
     warnings.push(`${location}: hypotetisk formulering uten sourceNote`);
   }
@@ -293,6 +342,35 @@ function validatePlaceBlock(block, file, index, validPlaceIds) {
   block.chambers.forEach((chamber, chamberIndex) => {
     validateEntry(chamber, `${location}.chambers[${chamberIndex}]`);
   });
+
+  checkTreasureScopeBalance(block.chambers, location);
+}
+
+function collectTreasureScopes(entries, scopes) {
+  if (!Array.isArray(entries)) return;
+  for (const entry of entries) {
+    if (!entry || typeof entry !== "object") continue;
+    const scope = typeof entry.treasureScope === "string" ? entry.treasureScope.trim() : "";
+    if (scope) scopes.push(scope);
+    if (Array.isArray(entry.items)) {
+      collectTreasureScopes(entry.items, scopes);
+    }
+  }
+}
+
+function checkTreasureScopeBalance(chambers, location) {
+  const scopes = [];
+  collectTreasureScopes(chambers, scopes);
+  if (scopes.length < 2) return;
+
+  const categoryCount = scopes.filter(s => s === "category_object").length;
+  const ratio = categoryCount / scopes.length;
+  if (ratio > CATEGORY_OBJECT_MAX_RATIO) {
+    warnings.push(
+      `${location}: for mange kategoriobjekter – Wonderkammer bør domineres av faktiske stedsskatter ` +
+      `(${categoryCount}/${scopes.length} entries med treasureScope er category_object)`
+    );
+  }
 }
 
 function validatePersonBlock(block, file, index, validPersonIds) {
