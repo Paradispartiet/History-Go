@@ -17,7 +17,8 @@ function slugify(str) {
 }
 
 function weekKey(d) {
-  const base = d || new Date();
+  /** @type {Date} */
+  const base = /** @type {Date} */ (d || new Date());
 
   const date = new Date(
     Date.UTC(
@@ -38,7 +39,7 @@ function weekKey(d) {
   );
 
   const weekNo = Math.ceil(
-    (((date - yearStart) / 86400000) + 1) / 7
+    (((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7
   );
 
   return (
@@ -251,6 +252,7 @@ resetForNewJob(role_key) {
 
     const badge =
       window.BADGES?.find(
+        /** @param {CiviEventEngineRecord} b */
         b => b.id === active.career_id
       );
 
@@ -279,6 +281,7 @@ ensureRoleKeySynced() {
     return null;
   }
 
+  /** @type {CiviEventEngineRecord|null} */
   const resolver = window.CivicationCareerRoleResolver;
   const resolved = typeof resolver?.resolveCareerRole === "function"
     ? resolver.resolveCareerRole(active)
@@ -332,7 +335,8 @@ ensureRoleKeySynced() {
   canPulseNow() {
     const slot = this.getPulseSlot();
     const t = this.todayKey();
-    const p = window.CivicationState.getPulse();
+    /** @type {CiviEventEngineRecord} */
+    const p = /** @type {CiviEventEngineRecord} */ (window.CivicationState.getPulse() || {});
 
     if (!p || p.date !== t) {
       window.CivicationState.setPulse({ date: t, seen: {} });
@@ -346,7 +350,8 @@ ensureRoleKeySynced() {
   markPulseUsed() {
     const slot = this.getPulseSlot();
     const t = this.todayKey();
-    const p = window.CivicationState.getPulse();
+    /** @type {CiviEventEngineRecord} */
+    const p = /** @type {CiviEventEngineRecord} */ (window.CivicationState.getPulse() || {});
 
     const seen = p.seen || {};
     seen[slot] = true;
