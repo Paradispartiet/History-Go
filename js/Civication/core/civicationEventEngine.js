@@ -1672,7 +1672,9 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
   let autonomy = 50;
   if (window.CivicationPsyche &&
       typeof window.CivicationPsyche.getAutonomy === "function") {
-	    autonomy = Number(window.CivicationPsyche.getAutonomy(state.active_role_key) || 50);
+	    autonomy = /** @type {number} */ (
+      window.CivicationPsyche.getAutonomy(state.active_role_key)
+    );
   }
 
   if (baseEffect < 0 && autonomy < 30) {

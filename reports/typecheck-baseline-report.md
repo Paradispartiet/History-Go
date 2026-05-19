@@ -1,7 +1,7 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-19T06:12:35.743Z
+- Generated at (UTC): 2026-05-19T06:17:48.770Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
 - Total diagnostic lines found: 1946
@@ -148,18 +148,18 @@ js/Civication/core/civicationEventEngine.js(1532,22): error TS2769: No overload 
           Type 'CiviEventEngineInboxItem[]' is not assignable to type '{ status: string; enqueued_at: string; event: CiviEventEngineEvent; }[]'.
             Type 'CiviEventEngineInboxItem' is not assignable to type '{ status: string; enqueued_at: string; event: CiviEventEngineEvent; }'.
               Property 'status' is optional in type 'CiviEventEngineInboxItem' but required in type '{ status: string; enqueued_at: string; event: CiviEventEngineEvent; }'.
-js/Civication/core/civicationEventEngine.js(1790,39): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1921,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1940,12): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1951,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1954,55): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1967,11): error TS2698: Spread types may only be created from object types.
-js/Civication/core/civicationEventEngine.js(1978,24): error TS2339: Property 'title' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1978,39): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1979,30): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1993,46): error TS2339: Property 'progress' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1994,46): error TS2339: Property 'contract' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(1999,22): error TS2339: Property 'role_key' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2000,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEventEngine.js(2002,27): error TS2339: Property 'title' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1792,39): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1923,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1942,12): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1953,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1956,55): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1969,11): error TS2698: Spread types may only be created from object types.
+js/Civication/core/civicationEventEngine.js(1980,24): error TS2339: Property 'title' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1980,39): error TS2339: Property 'career_name' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1981,30): error TS2339: Property 'career_name' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1995,46): error TS2339: Property 'progress' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(1996,46): error TS2339: Property 'contract' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(2001,22): error TS2339: Property 'role_key' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(2002,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(2004,27): error TS2339: Property 'title' does not exist on type 'unknown'.
 ```
