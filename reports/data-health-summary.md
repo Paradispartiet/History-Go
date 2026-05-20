@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T16:57:49.522Z
+Generated: 2026-05-20T17:24:51.389Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **175**
+- Files checked: **177**
 - Hard errors: **0**
-- Warnings: **3189**
+- Warnings: **3187**
 
 ## Not configured
 - none
@@ -16,7 +16,6 @@ Generated: 2026-05-20T16:57:49.522Z
 |---|---:|---:|---:|
 | sagene | 11 | 11 | 0 |
 | kampen | 11 | 11 | 0 |
-| psykologisk_institutt_uio | 11 | 11 | 0 |
 | kampen_park | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
 | alnaelvstien | 10 | 10 | 0 |
@@ -34,6 +33,7 @@ Generated: 2026-05-20T16:57:49.522Z
 | kvaernerbyen_alna | 10 | 10 | 0 |
 | alna_utlop_bjorvika | 10 | 10 | 0 |
 | bygdoy_kongeskogen | 10 | 10 | 0 |
+| bygdoy_dronningberget | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -263,7 +263,7 @@ Count: 406
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 260
+Count: 259
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 202
+Count: 201
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -649,21 +649,21 @@ Count: 202
 ## Recommended next batch order
 1. `sagene`
 2. `kampen`
-3. `psykologisk_institutt_uio`
-4. `kampen_park`
-5. `good_game_redaksjon`
-6. `alnaelvstien`
-7. `loelva_historisk`
-8. `trosterud_friomrade`
-9. `furuset_haugerud_skogbelte`
-10. `hellerud_gard`
-11. `alnabru_jernbane_og_logistikk`
-12. `alnsjoen_alna_kilde`
-13. `alnaparken`
-14. `groruddammen`
-15. `alna_smalvoll`
-16. `alna_bryn`
-17. `svartdalen`
-18. `kvaernerbyen_alna`
-19. `alna_utlop_bjorvika`
-20. `bygdoy_kongeskogen`
+3. `kampen_park`
+4. `good_game_redaksjon`
+5. `alnaelvstien`
+6. `loelva_historisk`
+7. `trosterud_friomrade`
+8. `furuset_haugerud_skogbelte`
+9. `hellerud_gard`
+10. `alnabru_jernbane_og_logistikk`
+11. `alnsjoen_alna_kilde`
+12. `alnaparken`
+13. `groruddammen`
+14. `alna_smalvoll`
+15. `alna_bryn`
+16. `svartdalen`
+17. `kvaernerbyen_alna`
+18. `alna_utlop_bjorvika`
+19. `bygdoy_kongeskogen`
+20. `bygdoy_dronningberget`
