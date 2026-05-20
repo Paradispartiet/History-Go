@@ -1,7 +1,7 @@
 // js/psychologyRoom.js
 // ------------------------------------------------------
 // PSYKOLOGROMMET V1
-// Spillifisert selvrefleksjon. Ikke helsehjelp eller diagnose.
+// Spillifisert screening og selvinnsikt.
 // ------------------------------------------------------
 
 (function () {
@@ -41,7 +41,8 @@
     return {
       insight_points: Number(profile.insight_points || 0),
       completed_sessions: Number(profile.completed_sessions || 0),
-      last_session_at: profile.last_session_at || null
+      last_session_at: profile.last_session_at || null,
+      screening: profile.screening && typeof profile.screening === "object" ? profile.screening : {}
     };
   }
 
@@ -134,7 +135,7 @@
       <header class="psychology-room-header">
         <div class="psychology-room-kicker">Psykologi</div>
         <h2 id="psychologyRoomTitle">Psykologrommet</h2>
-        <p>Et refleksjonsrom for tanker, følelser, vaner og reaksjonsmønstre. Dette er spillifisert selvrefleksjon, ikke diagnose eller behandling.</p>
+        <p>Et refleksjonsrom for screening, fagbegreper og selvinnsikt. Resultatene viser mulige mønstre og bør forstås som et øyeblikksbilde.</p>
       </header>
       ${body}
     `;
@@ -146,6 +147,64 @@
 
   function bindBack() {
     document.querySelector("[data-psych-back]")?.addEventListener("click", renderHome);
+  }
+
+  function formatDimension(key) {
+    return String(key || "")
+      .replace(/_/g, " ")
+      .replace(/\b\w/g, letter => letter.toUpperCase());
+  }
+
+  function normalizeScore(value, min, max) {
+    const n = Number(value);
+    if (!Number.isFinite(n) || max <= min) return 0;
+    return Math.round(Math.max(0, Math.min(100, ((n - min) / (max - min)) * 100)));
+  }
+
+  function scoreTest(test, answers) {
+    const min = Number(test?.scale?.min || 1);
+    const max = Number(test?.scale?.max || 5);
+    const groups = {};
+
+    for (const q of test.questions || []) {
+      const raw = Number(answers[q.id] || 0);
+      if (!raw) continue;
+      const adjusted = q.reverse ? (max - raw + min) : raw;
+      const key = String(q.dimension || "screening").trim();
+      groups[key] = groups[key] || [];
+      groups[key].push(normalizeScore(adjusted, min, max));
+    }
+
+    const dimensions = {};
+    for (const key of Object.keys(groups)) {
+      const values = groups[key];
+      dimensions[key] = Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
+    }
+
+    const top = Object.entries(dimensions).sort((a, b) => b[1] - a[1])[0] || ["screening", 0];
+    const rule = (test.result_rules || [])
+      .filter(item => String(item.dimension || "") === String(top[0]) && Number(top[1]) >= Number(item.min || 0))
+      .sort((a, b) => Number(b.min || 0) - Number(a.min || 0))[0] || null;
+
+    return {
+      dimensions,
+      top_dimension: top[0],
+      top_score: top[1],
+      rule
+    };
+  }
+
+  function mergeScreening(profile, dimensions) {
+    const current = profile.screening && typeof profile.screening === "object" ? profile.screening : {};
+    const next = { ...current };
+
+    for (const [key, value] of Object.entries(dimensions || {})) {
+      const oldValue = Number(next[key]);
+      const newValue = Number(value);
+      next[key] = Number.isFinite(oldValue) ? Math.round((oldValue * 0.6) + (newValue * 0.4)) : newValue;
+    }
+
+    return next;
   }
 
   function renderHome() {
@@ -163,7 +222,7 @@
       </section>
 
       <section class="psychology-room-actions">
-        <button type="button" data-psych-action="tests">Ta en kort test</button>
+        <button type="button" data-psych-action="tests">Ta en kort screening</button>
         <button type="button" data-psych-action="exercises">Gjør en øvelse</button>
         <button type="button" data-psych-action="journal">Skriv refleksjon</button>
         <button type="button" data-psych-action="profile">Se innsiktslogg</button>
@@ -218,15 +277,57 @@
             </div>
           </fieldset>
         `).join("")}
-        <button class="psychology-room-primary" type="submit">Lagre test</button>
+        <button class="psychology-room-primary" type="submit">Se screeningresultat</button>
       </form>
     `));
 
     bindBack();
     document.getElementById("psychologyRoomTestForm")?.addEventListener("submit", event => {
       event.preventDefault();
-      completeSession("test", test.id, test.title, 10);
+      const answers = {};
+      for (const q of test.questions || []) {
+        answers[q.id] = Number(event.currentTarget.elements[q.id]?.value || 0);
+      }
+      completeTest(test, answers);
     });
+  }
+
+  function completeTest(test, answers) {
+    const result = scoreTest(test, answers);
+    const title = result.rule?.title || `${formatDimension(result.top_dimension)}: screening`;
+    const text = result.rule?.text || "Resultatet er lagret som et screeningmønster i innsiktsprofilen.";
+    const reflection = `${title}. ${text}`;
+
+    completeSession("screening", test.id, test.title, 10, reflection, {
+      answers,
+      dimensions: result.dimensions,
+      top_dimension: result.top_dimension,
+      top_score: result.top_score
+    }, false);
+
+    renderTestResult(test, result, title, text);
+  }
+
+  function renderTestResult(test, result, title, text) {
+    const rows = Object.entries(result.dimensions || {})
+      .sort((a, b) => Number(b[1]) - Number(a[1]))
+      .map(([key, value]) => `
+        <article class="psychology-room-insight">
+          <strong>${escapeHtml(formatDimension(key))}: ${Number(value)}</strong>
+        </article>
+      `).join("");
+
+    setContent(shell(`
+      ${backButton()}
+      <section class="psychology-room-section">
+        <h3>${escapeHtml(title)}</h3>
+        <p>${escapeHtml(text)}</p>
+        <p class="psychology-room-muted">Screening fra ${escapeHtml(test.title)}. Bruk dette som faglig selvinnsikt, ikke som endelig fasit.</p>
+        ${rows}
+      </section>
+    `));
+
+    bindBack();
   }
 
   function renderExerciseList() {
@@ -274,6 +375,7 @@
       event.preventDefault();
       const reflection = String(event.currentTarget.elements.reflection?.value || "").trim();
       completeSession("exercise", exercise.id, exercise.title, Number(exercise.reward?.insight_points || 5), reflection);
+      renderHome();
     });
   }
 
@@ -295,10 +397,11 @@
       event.preventDefault();
       const reflection = String(event.currentTarget.elements.reflection?.value || "").trim();
       completeSession("journal", "reflection_room", "Refleksjonsrom", 4, reflection);
+      renderHome();
     });
   }
 
-  function completeSession(type, sourceId, title, points, reflection = "") {
+  function completeSession(type, sourceId, title, points, reflection = "", meta = null, showHome = true) {
     const now = new Date().toISOString();
     const entry = {
       id: `psych_${type}_${Date.now()}`,
@@ -307,6 +410,7 @@
       title,
       reflection,
       insight_points: points,
+      screening: meta || null,
       created_at: now
     };
 
@@ -317,15 +421,23 @@
     profile.insight_points += points;
     profile.completed_sessions += 1;
     profile.last_session_at = now;
+    profile.screening = mergeScreening(profile, meta?.dimensions || null);
     saveProfile(profile);
 
     window.showToast?.(`Psykologrommet: +${points} innsikt 🧠`);
-    renderHome();
+    if (showHome) renderHome();
   }
 
   function renderProfile() {
     const profile = getProfile();
     const insights = readJson(STORAGE_KEYS.insights, []);
+    const screeningRows = Object.entries(profile.screening || {})
+      .sort((a, b) => Number(b[1]) - Number(a[1]))
+      .map(([key, value]) => `
+        <article class="psychology-room-insight">
+          <strong>${escapeHtml(formatDimension(key))}: ${Number(value)}</strong>
+        </article>
+      `).join("");
 
     setContent(shell(`
       ${backButton()}
@@ -338,6 +450,10 @@
           <span>Økter</span>
           <strong>${profile.completed_sessions}</strong>
         </div>
+      </section>
+      <section class="psychology-room-section">
+        <h3>Screeningprofil</h3>
+        ${screeningRows || `<p class="psychology-room-muted">Ingen screeningresultater lagret ennå.</p>`}
       </section>
       <section class="psychology-room-section">
         <h3>Siste refleksjoner</h3>
