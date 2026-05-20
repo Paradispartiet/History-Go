@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T05:58:11.512Z
+Generated: 2026-05-20T09:50:10.011Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **173**
+- Files checked: **175**
 - Hard errors: **0**
-- Warnings: **3193**
+- Warnings: **3189**
 
 ## Not configured
 - none
@@ -14,8 +14,8 @@ Generated: 2026-05-20T05:58:11.512Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| sagene | 13 | 13 | 0 |
-| kampen | 13 | 13 | 0 |
+| sagene | 11 | 11 | 0 |
+| kampen | 11 | 11 | 0 |
 | psykologisk_institutt_uio | 11 | 11 | 0 |
 | kampen_park | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
@@ -263,7 +263,7 @@ Count: 406
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 262
+Count: 260
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 204
+Count: 202
 
 - `abelhaugen`
 - `aker_brygge_pop`
