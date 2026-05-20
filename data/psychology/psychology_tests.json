@@ -252,6 +252,570 @@
           "recommended_exercise_id": "venneblikk_v1"
         }
       ]
+    },
+    {
+      "id": "angstpreg_kort_v1",
+      "title": "Angstpreg",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort screening om uro, kroppslig aktivering, unngåelse og bekymring.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "uro",
+          "label": "Uro"
+        },
+        {
+          "id": "kroppslig_aktivering",
+          "label": "Kroppslig aktivering"
+        },
+        {
+          "id": "unngaelse",
+          "label": "Unngåelse"
+        },
+        {
+          "id": "bekymring",
+          "label": "Bekymring"
+        }
+      ],
+      "questions": [
+        {
+          "id": "angstpreg_01",
+          "text": "Jeg kjenner uro i kroppen selv i situasjoner som vanligvis er trygge.",
+          "dimension": "uro"
+        },
+        {
+          "id": "angstpreg_02",
+          "text": "Jeg merker hjertebank, spenning eller rastløshet når jeg tenker på hverdagsoppgaver.",
+          "dimension": "kroppslig_aktivering"
+        },
+        {
+          "id": "angstpreg_03",
+          "text": "Jeg unngår situasjoner fordi jeg er redd for å miste kontroll eller bli overveldet.",
+          "dimension": "unngaelse"
+        },
+        {
+          "id": "angstpreg_04",
+          "text": "Jeg bruker mye tid på å forutse hva som kan gå galt.",
+          "dimension": "bekymring"
+        },
+        {
+          "id": "angstpreg_05",
+          "text": "Når uro kommer, klarer jeg ofte å roe meg uten å trekke meg unna.",
+          "dimension": "unngaelse",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "uro",
+          "min": 70,
+          "title": "Uro preger hverdagen",
+          "text": "Svarene dine kan ligne et angstpreget mønster med vedvarende uro. Dette kan være tegn på at uro og beredskap tar mye plass akkurat nå.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "kroppslig_aktivering",
+          "min": 70,
+          "title": "Høy kroppslig beredskap",
+          "text": "Svarene dine kan ligne et angstpreget mønster med tydelig kroppslig aktivering. Dette kan være tegn på at nervesystemet står i beredskap over tid.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "unngaelse",
+          "min": 65,
+          "title": "Unngåelse som mestring",
+          "text": "Svarene dine kan ligne et angstpreget mønster der unngåelse brukes for å dempe ubehag. Dette kan være tegn på at kortsiktig lettelse gjør det vanskeligere å bygge trygghet over tid.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        },
+        {
+          "dimension": "bekymring",
+          "min": 65,
+          "title": "Vedvarende bekymringsspor",
+          "text": "Svarene dine kan ligne et angstpreget mønster med mye bekymring. Dette kan være tegn på at mental beredskap tar mye kapasitet i hverdagen.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        }
+      ]
+    },
+    {
+      "id": "depressivt_preg_kort_v1",
+      "title": "Depressivt preg",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort screening om energi, mening, initiativ og selvkritiske tankemønstre.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "energi",
+          "label": "Energi"
+        },
+        {
+          "id": "initiativ",
+          "label": "Initiativ"
+        },
+        {
+          "id": "mening",
+          "label": "Mening"
+        },
+        {
+          "id": "selvkritikk",
+          "label": "Selvkritikk"
+        }
+      ],
+      "questions": [
+        {
+          "id": "depressiv_01",
+          "text": "Jeg kjenner meg ofte tappet for energi, selv når dagen er lite krevende.",
+          "dimension": "energi"
+        },
+        {
+          "id": "depressiv_02",
+          "text": "Det er vanskelig å komme i gang med små oppgaver som vanligvis er enkle.",
+          "dimension": "initiativ"
+        },
+        {
+          "id": "depressiv_03",
+          "text": "Jeg opplever at ting jeg gjør har mindre mening enn før.",
+          "dimension": "mening"
+        },
+        {
+          "id": "depressiv_04",
+          "text": "Jeg møter meg selv med en hard og kritisk indre stemme.",
+          "dimension": "selvkritikk"
+        },
+        {
+          "id": "depressiv_05",
+          "text": "Jeg kjenner fortsatt glimt av interesse og engasjement i løpet av dagen.",
+          "dimension": "energi",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "energi",
+          "min": 70,
+          "title": "Lav energitilgang",
+          "text": "Svarene dine kan ligne et depressivt preget mønster med redusert energitilgang. Dette peker mot lavere energi og redusert initiativ i hverdagen.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "initiativ",
+          "min": 65,
+          "title": "Treg oppgavestart",
+          "text": "Svarene dine kan ligne et depressivt preget mønster der oppstart av oppgaver blir tungt. Dette peker mot lavere energi og redusert initiativ akkurat nå.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "mening",
+          "min": 65,
+          "title": "Redusert opplevelse av mening",
+          "text": "Svarene dine kan ligne et depressivt preget mønster med lavere opplevelse av mening. Dette peker mot at motivasjon og retning kan være svekket for tiden.",
+          "recommended_exercise_id": "venneblikk_v1"
+        },
+        {
+          "dimension": "selvkritikk",
+          "min": 65,
+          "title": "Selvkritisk tankestil",
+          "text": "Svarene dine kan ligne et depressivt preget mønster med sterk selvkritikk. Dette peker mot en indre dialog som kan forsterke nedstemthet og passivitet.",
+          "recommended_exercise_id": "venneblikk_v1"
+        }
+      ]
+    },
+    {
+      "id": "sovnrytme_kort_v1",
+      "title": "Søvnrytme",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort screening om søvn, uro før leggetid, døgnrytme og restitusjon.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "innsovning",
+          "label": "Innsovning"
+        },
+        {
+          "id": "nattlig_uro",
+          "label": "Nattlig uro"
+        },
+        {
+          "id": "dognrytme",
+          "label": "Døgnrytme"
+        },
+        {
+          "id": "restitusjon",
+          "label": "Restitusjon"
+        }
+      ],
+      "questions": [
+        {
+          "id": "sovn_01",
+          "text": "Det tar ofte lang tid før jeg sovner etter at jeg har lagt meg.",
+          "dimension": "innsovning"
+        },
+        {
+          "id": "sovn_02",
+          "text": "Jeg våkner flere ganger eller sover urolig gjennom natten.",
+          "dimension": "nattlig_uro"
+        },
+        {
+          "id": "sovn_03",
+          "text": "Legge- og stå-opp-tid varierer mye fra dag til dag.",
+          "dimension": "dognrytme"
+        },
+        {
+          "id": "sovn_04",
+          "text": "Jeg føler meg lite restituert når dagen starter.",
+          "dimension": "restitusjon"
+        },
+        {
+          "id": "sovn_05",
+          "text": "Jeg finner ro i kroppen før leggetid uten større vansker.",
+          "dimension": "innsovning",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "innsovning",
+          "min": 65,
+          "title": "Belastet innsovning",
+          "text": "Dette kan være tegn på at søvnrytmen er belastet, særlig i overgangen til søvn. Dette bør følges over tid dersom det påvirker energi, konsentrasjon eller hverdagsfunksjon.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "nattlig_uro",
+          "min": 65,
+          "title": "Nattlig uro påvirker søvnen",
+          "text": "Dette kan være tegn på at søvnrytmen er belastet av nattlig uro og oppvåkninger. Dette bør følges over tid dersom det påvirker energi, konsentrasjon eller hverdagsfunksjon.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "dognrytme",
+          "min": 65,
+          "title": "Ustabil døgnrytme",
+          "text": "Dette kan være tegn på at søvnrytmen er belastet av ujevn døgnstruktur. Dette bør følges over tid dersom det påvirker energi, konsentrasjon eller hverdagsfunksjon.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "restitusjon",
+          "min": 65,
+          "title": "Lav nattlig restitusjon",
+          "text": "Dette kan være tegn på at søvnrytmen er belastet og gir begrenset restitusjon. Dette bør følges over tid dersom det påvirker energi, konsentrasjon eller hverdagsfunksjon.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        }
+      ]
+    },
+    {
+      "id": "oppmerksomhetsvansker_kort_v1",
+      "title": "Oppmerksomhetsvansker",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort screening om konsentrasjon, avbrytelser, indre uro og oppgavestart.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "konsentrasjon",
+          "label": "Konsentrasjon"
+        },
+        {
+          "id": "oppgavestart",
+          "label": "Oppgavestart"
+        },
+        {
+          "id": "avbrytbarhet",
+          "label": "Avbrytbarhet"
+        },
+        {
+          "id": "indre_uro",
+          "label": "Indre uro"
+        }
+      ],
+      "questions": [
+        {
+          "id": "oppmerksomhet_01",
+          "text": "Jeg mister ofte tråden når jeg prøver å holde fokus over tid.",
+          "dimension": "konsentrasjon"
+        },
+        {
+          "id": "oppmerksomhet_02",
+          "text": "Det er vanskelig å starte på oppgaver selv når jeg vet hva som skal gjøres.",
+          "dimension": "oppgavestart"
+        },
+        {
+          "id": "oppmerksomhet_03",
+          "text": "Små lyder, varsler eller tanker avbryter meg lett.",
+          "dimension": "avbrytbarhet"
+        },
+        {
+          "id": "oppmerksomhet_04",
+          "text": "Jeg kjenner en indre rastløshet når jeg skal jobbe med én ting av gangen.",
+          "dimension": "indre_uro"
+        },
+        {
+          "id": "oppmerksomhet_05",
+          "text": "Jeg klarer ofte å fullføre en oppgave før jeg hopper til neste.",
+          "dimension": "konsentrasjon",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "konsentrasjon",
+          "min": 65,
+          "title": "Ustabilt fokus",
+          "text": "Svarene dine kan ligne et mønster med oppmerksomhetsvansker i konsentrasjonsspennet. Dette er ikke en diagnose, men kan gi nyttig selvinnsikt om hvordan oppmerksomheten fungerer akkurat nå.",
+          "recommended_exercise_id": "ansvarskart_v1"
+        },
+        {
+          "dimension": "oppgavestart",
+          "min": 65,
+          "title": "Vanskelig oppstart",
+          "text": "Svarene dine kan ligne et mønster med oppmerksomhetsvansker knyttet til oppgavestart. Dette er ikke en diagnose, men kan gi nyttig selvinnsikt om hvordan oppmerksomheten fungerer akkurat nå.",
+          "recommended_exercise_id": "ansvarskart_v1"
+        },
+        {
+          "dimension": "avbrytbarhet",
+          "min": 65,
+          "title": "Lett avbrytbar oppmerksomhet",
+          "text": "Svarene dine kan ligne et mønster med oppmerksomhetsvansker der ytre og indre avbrytelser tar mye plass. Dette er ikke en diagnose, men kan gi nyttig selvinnsikt om hvordan oppmerksomheten fungerer akkurat nå.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        },
+        {
+          "dimension": "indre_uro",
+          "min": 65,
+          "title": "Indre uro forstyrrer fokus",
+          "text": "Svarene dine kan ligne et mønster med oppmerksomhetsvansker der indre uro svekker arbeidsro. Dette er ikke en diagnose, men kan gi nyttig selvinnsikt om hvordan oppmerksomheten fungerer akkurat nå.",
+          "recommended_exercise_id": "skill_tanke_fra_fakta_v1"
+        }
+      ]
+    },
+    {
+      "id": "affektregulering_kort_v1",
+      "title": "Affektregulering",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort screening om følelsesstyrke, reaksjonstid, impulser og evnen til å lande igjen.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "folelsesstyrke",
+          "label": "Følelsesstyrke"
+        },
+        {
+          "id": "impuls",
+          "label": "Impuls"
+        },
+        {
+          "id": "nedregulering",
+          "label": "Nedregulering"
+        },
+        {
+          "id": "etterreaksjon",
+          "label": "Etterreaksjon"
+        }
+      ],
+      "questions": [
+        {
+          "id": "affekt_01",
+          "text": "Følelser kan bli svært sterke på kort tid i krevende situasjoner.",
+          "dimension": "folelsesstyrke"
+        },
+        {
+          "id": "affekt_02",
+          "text": "Jeg handler eller sier ting raskt når jeg blir følelsesmessig aktivert.",
+          "dimension": "impuls"
+        },
+        {
+          "id": "affekt_03",
+          "text": "Det tar lang tid før kroppen og tankene roer seg etter en reaksjon.",
+          "dimension": "nedregulering"
+        },
+        {
+          "id": "affekt_04",
+          "text": "Jeg blir gående lenge med etterreaksjoner etter konflikter eller belastning.",
+          "dimension": "etterreaksjon"
+        },
+        {
+          "id": "affekt_05",
+          "text": "Jeg merker tidlige signaler og klarer ofte å bremse før reaksjonen blir sterk.",
+          "dimension": "impuls",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "folelsesstyrke",
+          "min": 65,
+          "title": "Sterke affekter",
+          "text": "Dette peker mot et mønster der følelsene kan bli sterke og vanskelige å regulere i øyeblikket. Det kan være nyttig å følge med på hva som skjer rett før reaksjonen kommer.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "impuls",
+          "min": 65,
+          "title": "Impulsdrevet respons",
+          "text": "Dette peker mot et mønster der følelsene kan bli sterke og vanskelige å regulere før handling. Det kan være nyttig å følge med på hva som skjer rett før reaksjonen kommer.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "nedregulering",
+          "min": 65,
+          "title": "Treg nedregulering",
+          "text": "Dette peker mot et mønster der følelsene kan bli sterke og vanskelige å regulere over tid. Det kan være nyttig å følge med på hva som skjer rett før reaksjonen kommer.",
+          "recommended_exercise_id": "tre_minutters_pust_v1"
+        },
+        {
+          "dimension": "etterreaksjon",
+          "min": 65,
+          "title": "Lang etterreaksjon",
+          "text": "Dette peker mot et mønster der følelsene kan bli sterke og vanskelige å regulere også etter hendelsen. Det kan være nyttig å følge med på hva som skjer rett før reaksjonen kommer.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        }
+      ]
+    },
+    {
+      "id": "relasjonsmonster_kort_v1",
+      "title": "Relasjonsmønster",
+      "type": "self_reflection_test",
+      "category": "psykologi",
+      "description": "En kort screening om grenser, trygghet, tilhørighet og konfliktmønstre.",
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "Stemmer ikke",
+          "2": "Stemmer litt",
+          "3": "Stemmer delvis",
+          "4": "Stemmer godt",
+          "5": "Stemmer svært godt"
+        }
+      },
+      "dimensions": [
+        {
+          "id": "grenser",
+          "label": "Grenser"
+        },
+        {
+          "id": "trygghet",
+          "label": "Trygghet"
+        },
+        {
+          "id": "konflikt",
+          "label": "Konflikt"
+        },
+        {
+          "id": "tilhorighet",
+          "label": "Tilhørighet"
+        }
+      ],
+      "questions": [
+        {
+          "id": "relasjon_01",
+          "text": "Jeg sier ofte ja når jeg egentlig trenger å sette en grense.",
+          "dimension": "grenser"
+        },
+        {
+          "id": "relasjon_02",
+          "text": "Jeg kjenner meg usikker på om jeg blir tatt imot når jeg viser sårbarhet.",
+          "dimension": "trygghet"
+        },
+        {
+          "id": "relasjon_03",
+          "text": "Små misforståelser utvikler seg lett til fastlåste konflikter.",
+          "dimension": "konflikt"
+        },
+        {
+          "id": "relasjon_04",
+          "text": "Jeg kan føle meg utenfor selv i relasjoner som betyr mye for meg.",
+          "dimension": "tilhorighet"
+        },
+        {
+          "id": "relasjon_05",
+          "text": "Jeg klarer å uttrykke behov rolig uten å trekke meg unna eller gå i angrep.",
+          "dimension": "grenser",
+          "reverse": true
+        }
+      ],
+      "result_rules": [
+        {
+          "dimension": "grenser",
+          "min": 65,
+          "title": "Utydelige grenser",
+          "text": "Dette peker mot et relasjonelt mønster som kan være nyttig å undersøke nærmere i hvordan du setter grenser. Resultatet handler om mønstre i kontakt, ikke om hvem som har skyld.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "trygghet",
+          "min": 65,
+          "title": "Sårbar trygghet i relasjoner",
+          "text": "Dette peker mot et relasjonelt mønster som kan være nyttig å undersøke nærmere i opplevelsen av trygghet. Resultatet handler om mønstre i kontakt, ikke om hvem som har skyld.",
+          "recommended_exercise_id": "venneblikk_v1"
+        },
+        {
+          "dimension": "konflikt",
+          "min": 65,
+          "title": "Konfliktmønster under press",
+          "text": "Dette peker mot et relasjonelt mønster som kan være nyttig å undersøke nærmere i konfliktsituasjoner. Resultatet handler om mønstre i kontakt, ikke om hvem som har skyld.",
+          "recommended_exercise_id": "dagens_behov_v1"
+        },
+        {
+          "dimension": "tilhorighet",
+          "min": 65,
+          "title": "Sårbar tilhørighet",
+          "text": "Dette peker mot et relasjonelt mønster som kan være nyttig å undersøke nærmere i behovet for tilhørighet. Resultatet handler om mønstre i kontakt, ikke om hvem som har skyld.",
+          "recommended_exercise_id": "venneblikk_v1"
+        }
+      ]
     }
   ]
 }
