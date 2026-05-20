@@ -40,6 +40,7 @@ Dette dokumentet er skrevet for **daglig drift**: “hva gjør jeg når X skjer?
 Kjør i konsoll:
 ```js
 DomainHealthReport.run({ toast: true });
+```
 
 ---
 
