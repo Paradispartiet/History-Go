@@ -40,3 +40,44 @@ Dette dokumentet er skrevet for **daglig drift**: “hva gjør jeg når X skjer?
 Kjør i konsoll:
 ```js
 DomainHealthReport.run({ toast: true });
+
+---
+
+## Codex/GitHub: verifiser at `origin` faktisk fungerer
+Noen runner-miljøer kan starte med en minimal `.git/config` uten `origin`.
+Da feiler alt som avhenger av `origin/main`.
+
+### Hurtigsjekk
+```bash
+git remote get-url origin
+git ls-remote origin HEAD
+git fetch origin main --prune
+git rev-parse --verify origin/main
+```
+
+### Repo-script (anbefalt)
+```bash
+./scripts/verify-git-origin.sh
+```
+
+Scriptet stopper med feilkode hvis:
+- `origin` mangler
+- `origin` ikke kan nås
+- `origin/main` ikke kan verifiseres
+
+Valgfrie argumenter:
+```bash
+./scripts/verify-git-origin.sh <remote> <branch>
+```
+Eksempel:
+```bash
+./scripts/verify-git-origin.sh upstream main
+```
+
+### Hvis `origin` mangler
+```bash
+git remote add origin https://github.com/Paradispartiet/History-Go.git
+```
+
+Hvis `git fetch` etterpå feiler med `CONNECT tunnel failed, response 403`,
+er dette normalt et nett/proxy/autentiseringsproblem i runner-miljøet (ikke i repo-koden).
