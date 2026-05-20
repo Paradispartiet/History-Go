@@ -1,25 +1,43 @@
 {
   "summary": {
-    "totalPlaces": 444,
+    "totalPlaces": 447,
     "filesChecked": 172,
     "hardErrors": 0,
-    "warnings": 3176,
+    "warnings": 3215,
     "notConfigured": [],
     "topMissingPlaces": [
       {
+        "id": "sagene",
+        "issues": 13,
+        "warnings": 13,
+        "errors": 0
+      },
+      {
+        "id": "kampen",
+        "issues": 13,
+        "warnings": 13,
+        "errors": 0
+      },
+      {
+        "id": "psykologisk_institutt_uio",
+        "issues": 11,
+        "warnings": 11,
+        "errors": 0
+      },
+      {
+        "id": "harald_schjelderups_hus",
+        "issues": 11,
+        "warnings": 11,
+        "errors": 0
+      },
+      {
+        "id": "gaustad_sykehus",
+        "issues": 11,
+        "warnings": 11,
+        "errors": 0
+      },
+      {
         "id": "kampen_park",
-        "issues": 10,
-        "warnings": 10,
-        "errors": 0
-      },
-      {
-        "id": "sagene_film",
-        "issues": 10,
-        "warnings": 10,
-        "errors": 0
-      },
-      {
-        "id": "kampen_film",
         "issues": 10,
         "warnings": 10,
         "errors": 0
@@ -104,24 +122,6 @@
       },
       {
         "id": "kvaernerbyen_alna",
-        "issues": 10,
-        "warnings": 10,
-        "errors": 0
-      },
-      {
-        "id": "alna_utlop_bjorvika",
-        "issues": 10,
-        "warnings": 10,
-        "errors": 0
-      },
-      {
-        "id": "bygdoy_kongeskogen",
-        "issues": 10,
-        "warnings": 10,
-        "errors": 0
-      },
-      {
-        "id": "bygdoy_dronningberget",
         "issues": 10,
         "warnings": 10,
         "errors": 0
@@ -1302,10 +1302,9 @@
       "coverageScore": 60
     },
     {
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json",
       "missing": [
-        "year",
         "popupDesc",
         "image",
         "cardImage",
@@ -1320,17 +1319,19 @@
         "missing_people_linkage",
         "missing_leksikon",
         "missing_spraakleksikon",
+        "missing_i18n_en",
+        "missing_i18n_pt",
+        "missing_i18n_es",
         "missing_wonderkammer",
         "missing_groundhopper"
       ],
       "errors": [],
-      "coverageScore": 60
+      "coverageScore": 48
     },
     {
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json",
       "missing": [
-        "year",
         "popupDesc",
         "image",
         "cardImage",
@@ -1345,11 +1346,14 @@
         "missing_people_linkage",
         "missing_leksikon",
         "missing_spraakleksikon",
+        "missing_i18n_en",
+        "missing_i18n_pt",
+        "missing_i18n_es",
         "missing_wonderkammer",
         "missing_groundhopper"
       ],
       "errors": [],
-      "coverageScore": 60
+      "coverageScore": 48
     },
     {
       "id": "middelalder_oslo",
@@ -5959,6 +5963,75 @@
       "coverageScore": 84
     },
     {
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+      "missing": [
+        "image",
+        "cardImage"
+      ],
+      "warnings": [
+        "missing_image",
+        "missing_cardImage",
+        "missing_links",
+        "missing_people_linkage",
+        "missing_leksikon",
+        "missing_spraakleksikon",
+        "missing_i18n_en",
+        "missing_i18n_pt",
+        "missing_i18n_es",
+        "missing_wonderkammer",
+        "missing_groundhopper"
+      ],
+      "errors": [],
+      "coverageScore": 56
+    },
+    {
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+      "missing": [
+        "image",
+        "cardImage"
+      ],
+      "warnings": [
+        "missing_image",
+        "missing_cardImage",
+        "missing_links",
+        "missing_people_linkage",
+        "missing_leksikon",
+        "missing_spraakleksikon",
+        "missing_i18n_en",
+        "missing_i18n_pt",
+        "missing_i18n_es",
+        "missing_wonderkammer",
+        "missing_groundhopper"
+      ],
+      "errors": [],
+      "coverageScore": 56
+    },
+    {
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+      "missing": [
+        "image",
+        "cardImage"
+      ],
+      "warnings": [
+        "missing_image",
+        "missing_cardImage",
+        "missing_links",
+        "missing_people_linkage",
+        "missing_leksikon",
+        "missing_spraakleksikon",
+        "missing_i18n_en",
+        "missing_i18n_pt",
+        "missing_i18n_es",
+        "missing_wonderkammer",
+        "missing_groundhopper"
+      ],
+      "errors": [],
+      "coverageScore": 56
+    },
+    {
       "id": "lisbon_city",
       "file": "data/places/by/europe/portugal/lisbon/places_lisbon_by.json",
       "missing": [
@@ -8854,6 +8927,7 @@
       "gamlebyen",
       "gamlebyen_gravlund",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -8872,6 +8946,7 @@
       "grunerlokka_bakgardsvegger",
       "grunerlokka_helgesens_tm",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmania",
       "hausmannsbrua",
       "hausmannsgate_aksen",
@@ -8889,7 +8964,7 @@
       "jernbanetorget_trafikknutepunkt",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "kampen_park",
       "karl_johan",
@@ -9112,6 +9187,7 @@
       "ostensjovannet_sor",
       "ovre_foss",
       "prinds_christian_augusts_minde",
+      "psykologisk_institutt_uio",
       "radhusplassen",
       "radhusplassen_pop",
       "regjeringskvartalet",
@@ -9120,7 +9196,7 @@
       "rockefeller",
       "rodelokka",
       "romsaås",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "salt",
       "schous_bryggeri",
@@ -9262,6 +9338,7 @@
       "gamlebyen",
       "gamlebyen_gravlund",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -9280,6 +9357,7 @@
       "grunerlokka_bakgardsvegger",
       "grunerlokka_helgesens_tm",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmannsbrua",
       "hausmannsgate_aksen",
       "hausmannsomradet_elvelop",
@@ -9296,7 +9374,7 @@
       "jernbanetorget_trafikknutepunkt",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "kampen_park",
       "karl_johan",
@@ -9519,6 +9597,7 @@
       "ostensjovannet_sor",
       "ovre_foss",
       "prinds_christian_augusts_minde",
+      "psykologisk_institutt_uio",
       "radhusplassen",
       "radhusplassen_pop",
       "regjeringskvartalet",
@@ -9528,7 +9607,7 @@
       "rodelokka",
       "romsaås",
       "ruth_maier_minne",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "salt",
       "schous_bryggeri",
@@ -9680,6 +9759,7 @@
       "gamlebyen",
       "gamlebyen_gravlund",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -9699,6 +9779,7 @@
       "grunerlokka_bakgardsvegger",
       "grunerlokka_helgesens_tm",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmania",
       "hausmannsbrua",
       "hausmannsgate_aksen",
@@ -9719,7 +9800,7 @@
       "jernbaneverkstedet_lodalen",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "kampen_park",
       "karl_johan",
@@ -9955,6 +10036,7 @@
       "ovre_foss",
       "prinds_christian_augusts_minde",
       "proysenhuset_rudshogda",
+      "psykologisk_institutt_uio",
       "radhusplassen",
       "radhusplassen_pop",
       "regjeringskvartalet",
@@ -9964,7 +10046,7 @@
       "rodelokka",
       "romsaås",
       "ruth_maier_minne",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "salt",
       "schous_bryggeri",
@@ -10107,6 +10189,7 @@
       "gamlebyen",
       "gamlebyen_gravlund",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -10124,6 +10207,7 @@
       "grunerlokka_bakgardsvegger",
       "grunerlokka_helgesens_tm",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmania",
       "hausmannsbrua",
       "hausmannsgate_aksen",
@@ -10142,7 +10226,7 @@
       "jernbaneverkstedet_lodalen",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "kampen_park",
       "kfum_arena",
@@ -10358,6 +10442,7 @@
       "ovre_foss",
       "prinds_christian_augusts_minde",
       "proysenhuset_rudshogda",
+      "psykologisk_institutt_uio",
       "radhusplassen",
       "radhusplassen_pop",
       "regjeringskvartalet",
@@ -10366,7 +10451,7 @@
       "rockefeller",
       "rodelokka",
       "romsaås",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "schous_bryggeri",
       "schous_plass",
@@ -10503,6 +10588,7 @@
       "gamlebyen",
       "gamlebyen_gravlund",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -10521,6 +10607,7 @@
       "grunerlokka_bakgardsvegger",
       "grunerlokka_helgesens_tm",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmania",
       "hausmannsbrua",
       "hausmannsgate_aksen",
@@ -10541,7 +10628,7 @@
       "jernbaneverkstedet_lodalen",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "kampen_park",
       "kfum_arena",
@@ -10776,6 +10863,7 @@
       "ovre_foss",
       "prinds_christian_augusts_minde",
       "proysenhuset_rudshogda",
+      "psykologisk_institutt_uio",
       "radhusplassen",
       "radhusplassen_pop",
       "regjeringskvartalet",
@@ -10785,7 +10873,7 @@
       "rodelokka",
       "romsaås",
       "ruth_maier_minne",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "salt",
       "schous_bryggeri",
@@ -10947,6 +11035,7 @@
       "gamlebyen",
       "gamlebyen_gravlund",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -10966,6 +11055,7 @@
       "grunerlokka_bakgardsvegger",
       "grunerlokka_helgesens_tm",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmania",
       "hausmannsbrua",
       "hausmannsgate_aksen",
@@ -10986,7 +11076,7 @@
       "jernbaneverkstedet_lodalen",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "kampen_park",
       "karl_johan",
@@ -11222,6 +11312,7 @@
       "ovre_foss",
       "prinds_christian_augusts_minde",
       "proysenhuset_rudshogda",
+      "psykologisk_institutt_uio",
       "radhusplassen",
       "radhusplassen_pop",
       "regjeringskvartalet",
@@ -11231,7 +11322,7 @@
       "rodelokka",
       "romsaås",
       "ruth_maier_minne",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "salt",
       "schous_bryggeri",
@@ -11365,6 +11456,7 @@
       "gamle_deichman",
       "gamle_radhus",
       "gamle_trikkestallen",
+      "gaustad_sykehus",
       "glads_molle",
       "good_game_redaksjon",
       "grand_hotel_pop",
@@ -11382,6 +11474,7 @@
       "grotta",
       "grunerlokka_bakgardsvegger",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmannsbrua",
       "hausmannsgate_aksen",
       "hausmannsomradet_elvelop",
@@ -11399,7 +11492,7 @@
       "jernbaneverkstedet_lodalen",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_kirke",
       "karl_johan",
       "kfum_arena",
@@ -11459,13 +11552,14 @@
       "ovre_foss",
       "prinds_christian_augusts_minde",
       "proysenhuset_rudshogda",
+      "psykologisk_institutt_uio",
       "radhusplassen_pop",
       "regjeringskvartalet",
       "ringnes_bryggeri",
       "rockefeller",
       "romsaås",
       "ruth_maier_minne",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "schous_bryggeri",
       "schweigaards_gate_lodalen",
@@ -11544,7 +11638,7 @@
       "groruddammen",
       "hellerud_gard",
       "house_of_nerds",
-      "kampen_film",
+      "kampen",
       "kampen_park",
       "kvaernerbyen_alna",
       "latter",
@@ -11563,7 +11657,7 @@
       "ostensjovannet_sivbelte",
       "ostensjovannet_sor",
       "radhusplassen_pop",
-      "sagene_film",
+      "sagene",
       "schous_plass",
       "skoyen",
       "skraperudtjern",
@@ -11657,7 +11751,7 @@
       "hausmannsgate_aksen",
       "hellerud_gard",
       "house_of_nerds",
-      "kampen_film",
+      "kampen",
       "kampen_park",
       "kolstadgata_toyen_vegger",
       "kuba_akselpassasjer",
@@ -11689,7 +11783,7 @@
       "ostensjovannet_sivbelte",
       "ostensjovannet_sor",
       "radhusplassen_pop",
-      "sagene_film",
+      "sagene",
       "schous_plass",
       "schweigaards_gate_lodalen",
       "skoyen",
@@ -11745,6 +11839,7 @@
       "gamle_deichman",
       "gamle_radhus",
       "gamlebyen_skole",
+      "gaustad_sykehus",
       "good_game_redaksjon",
       "grand_hotel_pop",
       "grensen_kjopesenter",
@@ -11755,6 +11850,7 @@
       "grotta",
       "grunerlokka_bakgardsvegger",
       "grunnlovsbygget_bankplassen",
+      "harald_schjelderups_hus",
       "hausmania",
       "hausmannsgate_aksen",
       "havnelageret",
@@ -11768,7 +11864,7 @@
       "jernbaneverkstedet_lodalen",
       "john_dee",
       "jordal_amfi",
-      "kampen_film",
+      "kampen",
       "kampen_park",
       "kfum_arena",
       "kolstadgata_toyen_vegger",
@@ -11930,12 +12026,13 @@
       "ovre_foss",
       "prinds_christian_augusts_minde",
       "proysenhuset_rudshogda",
+      "psykologisk_institutt_uio",
       "radhusplassen_pop",
       "regjeringskvartalet",
       "ringnes_bryggeri",
       "rockefeller",
       "ruth_maier_minne",
-      "sagene_film",
+      "sagene",
       "sagene_kvernhus",
       "salt",
       "schous_bryggeri",
@@ -11972,6 +12069,27 @@
       "vulkan_murvegger",
       "youngstorget",
       "youngstorget_pop"
+    ],
+    "missing_i18n_en": [
+      "gaustad_sykehus",
+      "harald_schjelderups_hus",
+      "kampen",
+      "psykologisk_institutt_uio",
+      "sagene"
+    ],
+    "missing_i18n_pt": [
+      "gaustad_sykehus",
+      "harald_schjelderups_hus",
+      "kampen",
+      "psykologisk_institutt_uio",
+      "sagene"
+    ],
+    "missing_i18n_es": [
+      "gaustad_sykehus",
+      "harald_schjelderups_hus",
+      "kampen",
+      "psykologisk_institutt_uio",
+      "sagene"
     ],
     "missing_popupImage": [
       "vinmonopolet_lager"
@@ -14387,123 +14505,159 @@
     },
     {
       "type": "missing_popupDesc",
-      "message": "sagene_film: missing_popupDesc",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_popupDesc",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_image",
-      "message": "sagene_film: missing_image",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_image",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_cardImage",
-      "message": "sagene_film: missing_cardImage",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_cardImage",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_quiz_profile",
-      "message": "sagene_film: missing_quiz_profile",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_quiz_profile",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_links",
-      "message": "sagene_film: missing_links",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_links",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_people_linkage",
-      "message": "sagene_film: missing_people_linkage",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_people_linkage",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_leksikon",
-      "message": "sagene_film: missing_leksikon",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_leksikon",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_spraakleksikon",
-      "message": "sagene_film: missing_spraakleksikon",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_spraakleksikon",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
+    },
+    {
+      "type": "missing_i18n_en",
+      "message": "sagene: missing_i18n_en",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
+    },
+    {
+      "type": "missing_i18n_pt",
+      "message": "sagene: missing_i18n_pt",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
+    },
+    {
+      "type": "missing_i18n_es",
+      "message": "sagene: missing_i18n_es",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_wonderkammer",
-      "message": "sagene_film: missing_wonderkammer",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_wonderkammer",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_groundhopper",
-      "message": "sagene_film: missing_groundhopper",
-      "id": "sagene_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "sagene: missing_groundhopper",
+      "id": "sagene",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_popupDesc",
-      "message": "kampen_film: missing_popupDesc",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_popupDesc",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_image",
-      "message": "kampen_film: missing_image",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_image",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_cardImage",
-      "message": "kampen_film: missing_cardImage",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_cardImage",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_quiz_profile",
-      "message": "kampen_film: missing_quiz_profile",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_quiz_profile",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_links",
-      "message": "kampen_film: missing_links",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_links",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_people_linkage",
-      "message": "kampen_film: missing_people_linkage",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_people_linkage",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_leksikon",
-      "message": "kampen_film: missing_leksikon",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_leksikon",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_spraakleksikon",
-      "message": "kampen_film: missing_spraakleksikon",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_spraakleksikon",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
+    },
+    {
+      "type": "missing_i18n_en",
+      "message": "kampen: missing_i18n_en",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
+    },
+    {
+      "type": "missing_i18n_pt",
+      "message": "kampen: missing_i18n_pt",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
+    },
+    {
+      "type": "missing_i18n_es",
+      "message": "kampen: missing_i18n_es",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_wonderkammer",
-      "message": "kampen_film: missing_wonderkammer",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_wonderkammer",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_groundhopper",
-      "message": "kampen_film: missing_groundhopper",
-      "id": "kampen_film",
-      "file": "data/places/film/oslo/places_oslo_film.json"
+      "message": "kampen: missing_groundhopper",
+      "id": "kampen",
+      "file": "data/places/by/oslo/places_by.json"
     },
     {
       "type": "missing_links",
@@ -24941,6 +25095,204 @@
     },
     {
       "type": "missing_image",
+      "message": "psykologisk_institutt_uio: missing_image",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_cardImage",
+      "message": "psykologisk_institutt_uio: missing_cardImage",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_links",
+      "message": "psykologisk_institutt_uio: missing_links",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_people_linkage",
+      "message": "psykologisk_institutt_uio: missing_people_linkage",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_leksikon",
+      "message": "psykologisk_institutt_uio: missing_leksikon",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_spraakleksikon",
+      "message": "psykologisk_institutt_uio: missing_spraakleksikon",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_en",
+      "message": "psykologisk_institutt_uio: missing_i18n_en",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_pt",
+      "message": "psykologisk_institutt_uio: missing_i18n_pt",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_es",
+      "message": "psykologisk_institutt_uio: missing_i18n_es",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_wonderkammer",
+      "message": "psykologisk_institutt_uio: missing_wonderkammer",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_groundhopper",
+      "message": "psykologisk_institutt_uio: missing_groundhopper",
+      "id": "psykologisk_institutt_uio",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_image",
+      "message": "harald_schjelderups_hus: missing_image",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_cardImage",
+      "message": "harald_schjelderups_hus: missing_cardImage",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_links",
+      "message": "harald_schjelderups_hus: missing_links",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_people_linkage",
+      "message": "harald_schjelderups_hus: missing_people_linkage",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_leksikon",
+      "message": "harald_schjelderups_hus: missing_leksikon",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_spraakleksikon",
+      "message": "harald_schjelderups_hus: missing_spraakleksikon",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_en",
+      "message": "harald_schjelderups_hus: missing_i18n_en",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_pt",
+      "message": "harald_schjelderups_hus: missing_i18n_pt",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_es",
+      "message": "harald_schjelderups_hus: missing_i18n_es",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_wonderkammer",
+      "message": "harald_schjelderups_hus: missing_wonderkammer",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_groundhopper",
+      "message": "harald_schjelderups_hus: missing_groundhopper",
+      "id": "harald_schjelderups_hus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_image",
+      "message": "gaustad_sykehus: missing_image",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_cardImage",
+      "message": "gaustad_sykehus: missing_cardImage",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_links",
+      "message": "gaustad_sykehus: missing_links",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_people_linkage",
+      "message": "gaustad_sykehus: missing_people_linkage",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_leksikon",
+      "message": "gaustad_sykehus: missing_leksikon",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_spraakleksikon",
+      "message": "gaustad_sykehus: missing_spraakleksikon",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_en",
+      "message": "gaustad_sykehus: missing_i18n_en",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_pt",
+      "message": "gaustad_sykehus: missing_i18n_pt",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_i18n_es",
+      "message": "gaustad_sykehus: missing_i18n_es",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_wonderkammer",
+      "message": "gaustad_sykehus: missing_wonderkammer",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_groundhopper",
+      "message": "gaustad_sykehus: missing_groundhopper",
+      "id": "gaustad_sykehus",
+      "file": "data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json"
+    },
+    {
+      "type": "missing_image",
       "message": "lisbon_city: missing_image",
       "id": "lisbon_city",
       "file": "data/places/by/europe/portugal/lisbon/places_lisbon_by.json"
@@ -31036,7 +31388,7 @@
       "file": "data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json"
     }
   ],
-  "generatedAt": "2026-05-19T20:46:06.467Z",
+  "generatedAt": "2026-05-20T05:31:09.789Z",
   "sourceManifests": [
     "data/leksikon/manifest.json",
     "data/leksikon/sprak/manifest.json",
