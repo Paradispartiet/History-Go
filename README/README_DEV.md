@@ -40,3 +40,45 @@ Dette dokumentet er skrevet for **daglig drift**: “hva gjør jeg når X skjer?
 Kjør i konsoll:
 ```js
 DomainHealthReport.run({ toast: true });
+
+---
+
+## Codex/GitHub: verifiser at `origin` faktisk fungerer
+I Codex-runner skal tasken normalt provisioneres via GitHub-integrasjonen, og `origin` skal da eksistere automatisk.
+Hvis `origin` mangler, behandle det som et provisioning/integration-problem (ikke som vanlig repo-feil).
+
+### Hurtigsjekk
+```bash
+git remote get-url origin
+git ls-remote origin HEAD
+git fetch origin main --prune
+git rev-parse --verify origin/main
+```
+
+### Repo-script (anbefalt)
+```bash
+./scripts/verify-git-origin.sh
+```
+
+Scriptet stopper med feilkode hvis:
+- `origin` mangler
+- `origin` ikke kan nås
+- `origin/main` ikke kan verifiseres
+
+Valgfrie argumenter:
+```bash
+./scripts/verify-git-origin.sh <remote> <branch>
+```
+Eksempel:
+```bash
+./scripts/verify-git-origin.sh upstream main
+```
+
+### Operativ regel før migrering (TypeScript/JSDoc)
+- Hvis scriptet feiler på **remote missing**: stopp migreringsarbeid og løs runner-provisioning/GitHub-integrasjon først.
+- Hvis scriptet feiler med **`CONNECT tunnel failed, response 403`**: stopp migreringsarbeid og behandle det som runner/proxy/GitHub-integrasjon-problem.
+- Ikke start TypeScript/JSDoc-migrering før scriptet passerer.
+
+### Om manuell `git remote add origin ...`
+Manuell `git remote add origin https://github.com/Paradispartiet/History-Go.git` kan brukes lokalt eller diagnostisk,
+men er ikke en fullverdig løsning i Codex-runner hvis proxy/auth fortsatt blokkerer `fetch`.
