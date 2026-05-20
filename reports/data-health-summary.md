@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T19:52:38.470Z
+Generated: 2026-05-20T19:59:00.453Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **178**
+- Files checked: **179**
 - Hard errors: **0**
-- Warnings: **3170**
+- Warnings: **3163**
 
 ## Not configured
 - none
@@ -23,17 +23,17 @@ Generated: 2026-05-20T19:52:38.470Z
 | trosterud_friomrade | 10 | 10 | 0 |
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
 | hellerud_gard | 10 | 10 | 0 |
-| bygdoy_kongeskogen | 10 | 10 | 0 |
-| bygdoy_dronningberget | 10 | 10 | 0 |
-| bygdoy_huk | 10 | 10 | 0 |
-| bygdoy_paradisbukta | 10 | 10 | 0 |
-| bygdoy_bygdoynes | 10 | 10 | 0 |
-| bygdoy_roykenvika | 10 | 10 | 0 |
 | colosseum_kino | 10 | 10 | 0 |
 | house_of_nerds | 10 | 10 | 0 |
 | folketeateret | 10 | 10 | 0 |
 | latter | 10 | 10 | 0 |
 | aker_brygge_pop | 10 | 10 | 0 |
+| frognerstranda_pop | 10 | 10 | 0 |
+| majorstuen_krysset_pop | 10 | 10 | 0 |
+| grand_hotel_pop | 10 | 10 | 0 |
+| vaterland_pop | 10 | 10 | 0 |
+| gronlandsleiret_pop | 10 | 10 | 0 |
+| toyen_torg_pop | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 184
+Count: 177
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -615,13 +615,6 @@ Count: 184
 - `bogstadveien`
 - `botsfengselet`
 - `bryn_industriomrade`
-- `bygdoy_bygdoynes`
-- `bygdoy_dronningberget`
-- `bygdoy_huk`
-- `bygdoy_kongeskogen`
-- `bygdoy_natur`
-- `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
 - `camilla_collett_statue`
 - `christiania_seildugsfabrik`
 - `damstredet_telthusbakken`
@@ -644,6 +637,13 @@ Count: 184
 - `gamle_aker_kirke`
 - `gamle_deichman`
 - `gamle_radhus`
+- `gamle_trikkestallen`
+- `glads_molle`
+- `good_game_redaksjon`
+- `grand_hotel_pop`
+- `grensen_kjopesenter`
+- `gressbanen`
+- `gressholmen`
 
 
 ## Recommended next batch order
@@ -656,14 +656,14 @@ Count: 184
 7. `trosterud_friomrade`
 8. `furuset_haugerud_skogbelte`
 9. `hellerud_gard`
-10. `bygdoy_kongeskogen`
-11. `bygdoy_dronningberget`
-12. `bygdoy_huk`
-13. `bygdoy_paradisbukta`
-14. `bygdoy_bygdoynes`
-15. `bygdoy_roykenvika`
-16. `colosseum_kino`
-17. `house_of_nerds`
-18. `folketeateret`
-19. `latter`
-20. `aker_brygge_pop`
+10. `colosseum_kino`
+11. `house_of_nerds`
+12. `folketeateret`
+13. `latter`
+14. `aker_brygge_pop`
+15. `frognerstranda_pop`
+16. `majorstuen_krysset_pop`
+17. `grand_hotel_pop`
+18. `vaterland_pop`
+19. `gronlandsleiret_pop`
+20. `toyen_torg_pop`
