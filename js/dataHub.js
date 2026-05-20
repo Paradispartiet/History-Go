@@ -19,7 +19,7 @@ const APP_BASE_PATH = (function () {
 })();
 
 const DATA_BASE = APP_BASE_PATH + "data";
-const EMNER_BASE = APP_BASE_PATH + "emner";
+const EMNERS_BASE = APP_BASE_PATH + "emner";
 
   // 🔒 SW/GitHub Pages-safe base: alltid prosjekt-root (…/History-Go/)
 const PROJECT_BASE = (function () {
@@ -137,19 +137,36 @@ const DEFAULTS = {
     return fetchJSON(pData("tags.json"), opts);
   }
 async function loadPlacesBase(opts = {}) {
+  const places = [];
+  const seen = new Set();
+
+  function addPlaces(data) {
+    const list = Array.isArray(data) ? data : (Array.isArray(data?.places) ? data.places : []);
+    for (const place of list) {
+      const id = String(place?.id || "").trim();
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      places.push(place);
+    }
+  }
+
   try {
     const index = await fetchJSON(pData("places/places_index.json"), opts);
-    if (Array.isArray(index) && index.length) return index;
+    addPlaces(index);
   } catch {}
 
-  const manifest = await fetchJSON(pData("places/manifest.json"), opts);
-  const places = [];
+  try {
+    const manifest = await fetchJSON(pData("places/manifest.json"), opts);
+    const files = Array.isArray(manifest?.files) ? manifest.files : [];
 
-  for (const file of manifest.files) {
-    const data = await fetchJSON(pData(file), opts);
-    if (Array.isArray(data)) places.push(...data);
-    else if (Array.isArray(data?.places)) places.push(...data.places);
+    for (const file of files) {
+      const data = await fetchJSON(pData(file), opts);
+      addPlaces(data);
+    }
+  } catch (e) {
+    if (!places.length) throw e;
   }
+
   return places;
 }
 
@@ -345,11 +362,11 @@ async function loadPlacesBase(opts = {}) {
   }
 
   function loadFagkart(opts = {}) {
-    return fetchJSON(pEmner("fagkart.json"), opts).catch(() => null);
+    return fetchJSON(pEmners("fagkart.json"), opts).catch(() => null);
   }
 
   function loadFagkartMap(opts = {}) {
-    return fetchJSON(pEmner("fagkart_map.json"), opts).catch(() => null);
+    return fetchJSON(pEmners("fagkart_map.json"), opts).catch(() => null);
   }
 
 
