@@ -44,8 +44,8 @@ DomainHealthReport.run({ toast: true });
 ---
 
 ## Codex/GitHub: verifiser at `origin` faktisk fungerer
-Noen runner-miljøer kan starte med en minimal `.git/config` uten `origin`.
-Da feiler alt som avhenger av `origin/main`.
+I Codex-runner skal tasken normalt provisioneres via GitHub-integrasjonen, og `origin` skal da eksistere automatisk.
+Hvis `origin` mangler, behandle det som et provisioning/integration-problem (ikke som vanlig repo-feil).
 
 ### Hurtigsjekk
 ```bash
@@ -74,10 +74,11 @@ Eksempel:
 ./scripts/verify-git-origin.sh upstream main
 ```
 
-### Hvis `origin` mangler
-```bash
-git remote add origin https://github.com/Paradispartiet/History-Go.git
-```
+### Operativ regel før migrering (TypeScript/JSDoc)
+- Hvis scriptet feiler på **remote missing**: stopp migreringsarbeid og løs runner-provisioning/GitHub-integrasjon først.
+- Hvis scriptet feiler med **`CONNECT tunnel failed, response 403`**: stopp migreringsarbeid og behandle det som runner/proxy/GitHub-integrasjon-problem.
+- Ikke start TypeScript/JSDoc-migrering før scriptet passerer.
 
-Hvis `git fetch` etterpå feiler med `CONNECT tunnel failed, response 403`,
-er dette normalt et nett/proxy/autentiseringsproblem i runner-miljøet (ikke i repo-koden).
+### Om manuell `git remote add origin ...`
+Manuell `git remote add origin https://github.com/Paradispartiet/History-Go.git` kan brukes lokalt eller diagnostisk,
+men er ikke en fullverdig løsning i Codex-runner hvis proxy/auth fortsatt blokkerer `fetch`.
