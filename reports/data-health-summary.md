@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T04:55:10.299Z
+Generated: 2026-05-19T20:46:06.467Z
 
 ## Total summary
-- Places: **445**
-- Files checked: **173**
-- Hard errors: **1**
-- Warnings: **3196**
+- Places: **444**
+- Files checked: **172**
+- Hard errors: **0**
+- Warnings: **3176**
 
 ## Not configured
 - none
@@ -14,10 +14,9 @@ Generated: 2026-05-20T04:55:10.299Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| psykologirommet_oslo | 15 | 14 | 1 |
-| sagene | 13 | 13 | 0 |
-| kampen | 13 | 13 | 0 |
 | kampen_park | 10 | 10 | 0 |
+| sagene_film | 10 | 10 | 0 |
+| kampen_film | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
 | alnaelvstien | 10 | 10 | 0 |
 | loelva_historisk | 10 | 10 | 0 |
@@ -34,10 +33,11 @@ Generated: 2026-05-20T04:55:10.299Z
 | kvaernerbyen_alna | 10 | 10 | 0 |
 | alna_utlop_bjorvika | 10 | 10 | 0 |
 | bygdoy_kongeskogen | 10 | 10 | 0 |
+| bygdoy_dronningberget | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
-Count: 409
+Count: 408
 
 - `aker_brygge`
 - `aker_brygge_pop`
@@ -91,7 +91,7 @@ Count: 409
 - `chateau_neuf`
 
 ### missing_emne_ids
-Count: 40
+Count: 39
 
 - `alna_bryn`
 - `alna_smalvoll`
@@ -124,7 +124,6 @@ Count: 40
 - `loelva_historisk`
 - `noklevann_ljanselva_start`
 - `okern`
-- `psykologirommet_oslo`
 - `schous_plass`
 - `skoyen`
 - `skraperudtjern`
@@ -135,7 +134,7 @@ Count: 40
 - `vaterland`
 
 ### missing_groundhopper
-Count: 445
+Count: 444
 
 - `abelhaugen`
 - `aker_brygge`
@@ -188,29 +187,8 @@ Count: 445
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
 
-### missing_i18n_en
-Count: 3
-
-- `kampen`
-- `psykologirommet_oslo`
-- `sagene`
-
-### missing_i18n_es
-Count: 3
-
-- `kampen`
-- `psykologirommet_oslo`
-- `sagene`
-
-### missing_i18n_pt
-Count: 3
-
-- `kampen`
-- `psykologirommet_oslo`
-- `sagene`
-
 ### missing_image
-Count: 406
+Count: 405
 
 - `aker_brygge`
 - `aker_brygge_pop`
@@ -264,7 +242,7 @@ Count: 406
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 262
+Count: 261
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -318,7 +296,7 @@ Count: 262
 - `house_of_nerds`
 
 ### missing_links
-Count: 445
+Count: 444
 
 - `abelhaugen`
 - `aker_brygge`
@@ -372,7 +350,7 @@ Count: 445
 - `bygdoy_roykenvika`
 
 ### missing_people_linkage
-Count: 377
+Count: 376
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -426,7 +404,7 @@ Count: 377
 - `elvestrekning_bla_brenneriveien`
 
 ### missing_popupDesc
-Count: 66
+Count: 65
 
 - `aker_brygge_pop`
 - `alna_bryn`
@@ -460,7 +438,7 @@ Count: 66
 - `groruddammen`
 - `hellerud_gard`
 - `house_of_nerds`
-- `kampen`
+- `kampen_film`
 - `kampen_park`
 - `kvaernerbyen_alna`
 - `latter`
@@ -485,7 +463,7 @@ Count: 1
 - `vinmonopolet_lager`
 
 ### missing_quiz_profile
-Count: 90
+Count: 89
 
 - `aker_brygge_pop`
 - `aktivitet_rudolf_nilsens_plass`
@@ -524,7 +502,7 @@ Count: 90
 - `hausmannsgate_aksen`
 - `hellerud_gard`
 - `house_of_nerds`
-- `kampen`
+- `kampen_film`
 - `kampen_park`
 - `kolstadgata_toyen_vegger`
 - `kuba_akselpassasjer`
@@ -539,7 +517,7 @@ Count: 90
 - `lekeplass_snippen`
 
 ### missing_spraakleksikon
-Count: 442
+Count: 441
 
 - `abelhaugen`
 - `aker_brygge`
@@ -593,7 +571,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 204
+Count: 203
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -648,23 +626,23 @@ Count: 204
 
 
 ## Recommended next batch order
-1. `psykologirommet_oslo`
-2. `sagene`
-3. `kampen`
-4. `kampen_park`
-5. `good_game_redaksjon`
-6. `alnaelvstien`
-7. `loelva_historisk`
-8. `trosterud_friomrade`
-9. `furuset_haugerud_skogbelte`
-10. `hellerud_gard`
-11. `alnabru_jernbane_og_logistikk`
-12. `alnsjoen_alna_kilde`
-13. `alnaparken`
-14. `groruddammen`
-15. `alna_smalvoll`
-16. `alna_bryn`
-17. `svartdalen`
-18. `kvaernerbyen_alna`
-19. `alna_utlop_bjorvika`
-20. `bygdoy_kongeskogen`
+1. `kampen_park`
+2. `sagene_film`
+3. `kampen_film`
+4. `good_game_redaksjon`
+5. `alnaelvstien`
+6. `loelva_historisk`
+7. `trosterud_friomrade`
+8. `furuset_haugerud_skogbelte`
+9. `hellerud_gard`
+10. `alnabru_jernbane_og_logistikk`
+11. `alnsjoen_alna_kilde`
+12. `alnaparken`
+13. `groruddammen`
+14. `alna_smalvoll`
+15. `alna_bryn`
+16. `svartdalen`
+17. `kvaernerbyen_alna`
+18. `alna_utlop_bjorvika`
+19. `bygdoy_kongeskogen`
+20. `bygdoy_dronningberget`
