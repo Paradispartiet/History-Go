@@ -92,7 +92,7 @@
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
-      .replace(/\"/g, "&quot;")
+      .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
 
@@ -115,6 +115,15 @@
   function shell(body) { return `<header class="psychology-room-header"><div class="psychology-room-kicker">Psykologi</div><h2 id="psychologyRoomTitle">Psykologrommet</h2><p>Et refleksjonsrom for tanker, følelser, vaner og reaksjonsmønstre. Dette er spillifisert selvrefleksjon, ikke diagnose eller behandling.</p></header>${body}`; }
   function backButton() { return `<button class="psychology-room-back" type="button" data-psych-back>← Tilbake</button>`; }
   function bindBack() { document.querySelector("[data-psych-back]")?.addEventListener("click", renderHome); }
+  function getTextConfig() { return dataCache?.textConfig || {}; }
+  function getScreeningTerms() {
+    const config = getTextConfig();
+    return Array.isArray(config.terms) ? config.terms : [];
+  }
+  function getFollowUpText() {
+    const config = getTextConfig();
+    return String(config.follow_up || "").trim();
+  }
 
   function mergeScreening(oldScreening, newDimensions) {
     const merged = { ...(oldScreening || {}) };
@@ -156,7 +165,10 @@
       .sort((a, b) => Number(b.min || 0) - Number(a.min || 0));
 
     const bestRule = matchingRules[0] || null;
-    const defaultText = "Svarene dine er lagret som et screeningmønster. Bruk dette som et øyeblikksbilde av hvordan du svarer akkurat nå.";
+    const resultLanguage = String(getTextConfig().result_language || "").trim();
+    const defaultText = resultLanguage === "faglig_screening"
+      ? `Dette er et screeningmønster knyttet til ${topDimension || "dette området"}. Bruk resultatet som et øyeblikksbilde av hvordan du svarer akkurat nå.`
+      : "Svarene dine er lagret som et screeningmønster. Bruk dette som et øyeblikksbilde av hvordan du svarer akkurat nå.";
 
     return {
       answers,
@@ -194,7 +206,9 @@
   function renderScreeningResult(test, result) {
     const exercise = (dataCache?.exercises || []).find((item) => item.id === result.recommended_exercise_id);
     const highGuidance = Number(result.top_score) >= 70;
-    setContent(shell(`${backButton()}<section class="psychology-room-result"><h3>${escapeHtml(test.title)}</h3><p class="psychology-room-kicker">${escapeHtml(result.result_title)}</p><p>${escapeHtml(result.result_text)}</p><p class="psychology-room-muted">Svarene dine kan ligne et mønster av symptomer og stressreaksjon. Dette peker mot et symptombilde preget av ${escapeHtml(result.top_dimension)} og bør følges over tid dersom det påvirker hverdagen.</p><p class="psychology-room-guidance">Dette er screening og selvinnsikt, ikke en endelig klinisk vurdering.</p>${highGuidance ? `<p class="psychology-room-guidance">Dersom dette varer over tid eller gir tydelig funksjonsfall, bør du vurdere å kontakte fastlege, psykolog eller annet relevant fagtilbud.</p>` : ""}<section class="psychology-room-section"><h4>Dimensjonsscorer</h4>${Object.entries(result.dimensions || {}).map(([dim, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dim)}</span><strong>${escapeHtml(score)}</strong></div>`).join("")}</section>${exercise ? `<button class="psychology-room-primary" type="button" data-open-exercise="${escapeHtml(exercise.id)}">Anbefalt øvelse: ${escapeHtml(exercise.title)}</button>` : ""}</section>`));
+    const followUpText = getFollowUpText();
+    const terms = getScreeningTerms();
+    setContent(shell(`${backButton()}<section class="psychology-room-result"><h3>${escapeHtml(test.title)}</h3><p class="psychology-room-kicker">${escapeHtml(result.result_title)}</p><p>${escapeHtml(result.result_text)}</p>${terms.length ? `<p class="psychology-room-muted"><strong>Faglige nøkkelord:</strong> ${escapeHtml(terms.join(", "))}</p>` : ""}<p class="psychology-room-guidance">Dette er screening og selvinnsikt, ikke en endelig klinisk vurdering.</p>${highGuidance && followUpText ? `<p class="psychology-room-guidance">${escapeHtml(followUpText)}</p>` : ""}<section class="psychology-room-section"><h4>Dimensjonsscorer</h4>${Object.entries(result.dimensions || {}).map(([dim, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dim)}</span><strong>${escapeHtml(score)}</strong></div>`).join("")}</section>${exercise ? `<button class="psychology-room-primary" type="button" data-open-exercise="${escapeHtml(exercise.id)}">Anbefalt øvelse: ${escapeHtml(exercise.title)}</button>` : ""}</section>`));
     bindBack();
     document.querySelector("[data-open-exercise]")?.addEventListener("click", () => { if (exercise) renderExercise(exercise); });
   }
