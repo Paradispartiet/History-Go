@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T16:57:49.522Z
+Generated: 2026-05-20T18:35:58.321Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **175**
+- Files checked: **177**
 - Hard errors: **0**
-- Warnings: **3189**
+- Warnings: **3178**
 
 ## Not configured
 - none
@@ -19,21 +19,21 @@ Generated: 2026-05-20T16:57:49.522Z
 | psykologisk_institutt_uio | 11 | 11 | 0 |
 | kampen_park | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
-| alnaelvstien | 10 | 10 | 0 |
 | loelva_historisk | 10 | 10 | 0 |
 | trosterud_friomrade | 10 | 10 | 0 |
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
 | hellerud_gard | 10 | 10 | 0 |
-| alnabru_jernbane_og_logistikk | 10 | 10 | 0 |
-| alnsjoen_alna_kilde | 10 | 10 | 0 |
-| alnaparken | 10 | 10 | 0 |
-| groruddammen | 10 | 10 | 0 |
-| alna_smalvoll | 10 | 10 | 0 |
-| alna_bryn | 10 | 10 | 0 |
-| svartdalen | 10 | 10 | 0 |
-| kvaernerbyen_alna | 10 | 10 | 0 |
-| alna_utlop_bjorvika | 10 | 10 | 0 |
 | bygdoy_kongeskogen | 10 | 10 | 0 |
+| bygdoy_dronningberget | 10 | 10 | 0 |
+| bygdoy_huk | 10 | 10 | 0 |
+| bygdoy_paradisbukta | 10 | 10 | 0 |
+| bygdoy_bygdoynes | 10 | 10 | 0 |
+| bygdoy_roykenvika | 10 | 10 | 0 |
+| noklevann_ljanselva_start | 10 | 10 | 0 |
+| skraperudtjern | 10 | 10 | 0 |
+| ljanselva_skullerud | 10 | 10 | 0 |
+| ljanselva_hauketo | 10 | 10 | 0 |
+| ljanselva_ljan | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -263,7 +263,7 @@ Count: 406
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 260
+Count: 259
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -274,7 +274,6 @@ Count: 260
 - `aktivitet_rudolf_nilsens_plass`
 - `alexander_kiellands_plass`
 - `alf_proysen_statue_nittedal`
-- `alnaelva_hovedsteder`
 - `barcode_pop`
 - `bjørvika_pop`
 - `bla`
@@ -315,6 +314,7 @@ Count: 260
 - `henrik_wergeland_statue`
 - `holmenkollen_nasjonalanlegg`
 - `house_of_nerds`
+- `ibsen_quotes`
 
 ### missing_links
 Count: 445
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 202
+Count: 192
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -602,14 +602,7 @@ Count: 202
 - `akershus_kaier`
 - `akershus_slott_bakeriet`
 - `alf_proysen_statue_nittedal`
-- `alna_bryn`
-- `alna_smalvoll`
-- `alna_utlop_bjorvika`
-- `alnabru_jernbane_og_logistikk`
 - `alnaelva_hovedsteder`
-- `alnaelvstien`
-- `alnaparken`
-- `alnsjoen_alna_kilde`
 - `ankerbrua`
 - `barcode_pop`
 - `beierbrua`
@@ -644,6 +637,13 @@ Count: 202
 - `frogner_stadion`
 - `frognerstranda_pop`
 - `frysja_industriomrade`
+- `frysjadammen`
+- `furuset_forum`
+- `furuset_haugerud_skogbelte`
+- `galgeberg`
+- `gamle_aker_kirke`
+- `gamle_deichman`
+- `gamle_radhus`
 
 
 ## Recommended next batch order
@@ -652,18 +652,18 @@ Count: 202
 3. `psykologisk_institutt_uio`
 4. `kampen_park`
 5. `good_game_redaksjon`
-6. `alnaelvstien`
-7. `loelva_historisk`
-8. `trosterud_friomrade`
-9. `furuset_haugerud_skogbelte`
-10. `hellerud_gard`
-11. `alnabru_jernbane_og_logistikk`
-12. `alnsjoen_alna_kilde`
-13. `alnaparken`
-14. `groruddammen`
-15. `alna_smalvoll`
-16. `alna_bryn`
-17. `svartdalen`
-18. `kvaernerbyen_alna`
-19. `alna_utlop_bjorvika`
-20. `bygdoy_kongeskogen`
+6. `loelva_historisk`
+7. `trosterud_friomrade`
+8. `furuset_haugerud_skogbelte`
+9. `hellerud_gard`
+10. `bygdoy_kongeskogen`
+11. `bygdoy_dronningberget`
+12. `bygdoy_huk`
+13. `bygdoy_paradisbukta`
+14. `bygdoy_bygdoynes`
+15. `bygdoy_roykenvika`
+16. `noklevann_ljanselva_start`
+17. `skraperudtjern`
+18. `ljanselva_skullerud`
+19. `ljanselva_hauketo`
+20. `ljanselva_ljan`
