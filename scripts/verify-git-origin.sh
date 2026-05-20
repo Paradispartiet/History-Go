@@ -22,9 +22,9 @@ echo "Checking remote HEAD..."
 git ls-remote "$REMOTE_NAME" HEAD >/dev/null
 
 echo "Fetching $REMOTE_NAME/$MAIN_BRANCH..."
-git fetch "$REMOTE_NAME" "$MAIN_BRANCH:refs/remotes/$REMOTE_NAME/$MAIN_BRANCH" --prune
+git fetch "$REMOTE_NAME" "+refs/heads/$MAIN_BRANCH:refs/remotes/$REMOTE_NAME/$MAIN_BRANCH" --prune
 
 echo "Verifying remote tracking ref..."
-git rev-parse --verify "$REMOTE_NAME/$MAIN_BRANCH" >/dev/null
+git rev-parse --verify "refs/remotes/$REMOTE_NAME/$MAIN_BRANCH" >/dev/null
 
 echo "OK: $REMOTE_NAME/$MAIN_BRANCH is reachable and verified."

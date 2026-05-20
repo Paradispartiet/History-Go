@@ -51,9 +51,9 @@ Hvis `origin` mangler, behandle det som et provisioning/integration-problem (ikk
 ### Hurtigsjekk
 ```bash
 git remote get-url origin
-git ls-remote origin HEAD
-git fetch origin main --prune
-git rev-parse --verify origin/main
+git ls-remote --heads origin main
+git fetch origin "+refs/heads/main:refs/remotes/origin/main" --prune
+git rev-parse --verify refs/remotes/origin/main
 ```
 
 ### Repo-script (anbefalt)
