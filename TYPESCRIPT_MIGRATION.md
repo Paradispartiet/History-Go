@@ -303,3 +303,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Kept changes runtime-neutral and local to Event Engine: no globals were added, and `schemas/civication-globals.d.ts` was not changed.
 - Runtime/event/inbox/jobmail/private-message/choice/effect behavior is unchanged; no flow, branching, localStorage keys, UI/DOM/layout/CSS/text, or data contract changes were made.
 - Regenerated `reports/typecheck-baseline-report.md`; after reverting the temporary `weekKey` arithmetic edit and keeping pure local-cast semantics for `HG_CAREERS` fallbacks, baseline settled at 1921 total diagnostics and `civicationEventEngine.js` at 26, while protected metrics remained non-regressive (`CivicationUI.js` 107, `CivicationMiniSectionsUI.js` 22, `civicationEconomyEngine.js` 0, `TS2551` 124, `TS2322` 19, `js/ui/**` 481, `js/ui/place-card.js` 125).
+
+## Phase 34: Verified Civication globals (declaration-only batch)
+
+- Added a small declaration-only batch in `schemas/civication-globals.d.ts` for verified runtime symbols: `hgGetJobOffers` and `hgSetJobOffers`.
+- Runtime verification was done against direct assignments in `js/Civication/core/civicationJobs.js`.
+- No runtime logic was changed; this phase only adds global declarations.
+- No Event Engine runtime code, UI files, data/CSS/layout, or flow semantics were changed.

@@ -129,6 +129,8 @@ declare global {
     getPCWallet?: CiviFn;
     savePCWallet?: CiviFn;
     ensureCiviCareerRulesLoaded?: CiviFn;
+    hgGetJobOffers?: CiviFn;
+    hgSetJobOffers?: CiviFn;
     checkTierUpgrades?: CiviFn;
     calculateWeeklySalary?: CiviFn;
 
