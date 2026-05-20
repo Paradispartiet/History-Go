@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-19T20:46:06.467Z
+Generated: 2026-05-20T05:58:11.512Z
 
 ## Total summary
-- Places: **444**
-- Files checked: **172**
+- Places: **445**
+- Files checked: **173**
 - Hard errors: **0**
-- Warnings: **3176**
+- Warnings: **3193**
 
 ## Not configured
 - none
@@ -14,9 +14,10 @@ Generated: 2026-05-19T20:46:06.467Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
+| sagene | 13 | 13 | 0 |
+| kampen | 13 | 13 | 0 |
+| psykologisk_institutt_uio | 11 | 11 | 0 |
 | kampen_park | 10 | 10 | 0 |
-| sagene_film | 10 | 10 | 0 |
-| kampen_film | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
 | alnaelvstien | 10 | 10 | 0 |
 | loelva_historisk | 10 | 10 | 0 |
@@ -33,11 +34,10 @@ Generated: 2026-05-19T20:46:06.467Z
 | kvaernerbyen_alna | 10 | 10 | 0 |
 | alna_utlop_bjorvika | 10 | 10 | 0 |
 | bygdoy_kongeskogen | 10 | 10 | 0 |
-| bygdoy_dronningberget | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
-Count: 408
+Count: 409
 
 - `aker_brygge`
 - `aker_brygge_pop`
@@ -134,7 +134,7 @@ Count: 39
 - `vaterland`
 
 ### missing_groundhopper
-Count: 444
+Count: 445
 
 - `abelhaugen`
 - `aker_brygge`
@@ -187,8 +187,29 @@ Count: 444
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
 
+### missing_i18n_en
+Count: 3
+
+- `kampen`
+- `psykologisk_institutt_uio`
+- `sagene`
+
+### missing_i18n_es
+Count: 3
+
+- `kampen`
+- `psykologisk_institutt_uio`
+- `sagene`
+
+### missing_i18n_pt
+Count: 3
+
+- `kampen`
+- `psykologisk_institutt_uio`
+- `sagene`
+
 ### missing_image
-Count: 405
+Count: 406
 
 - `aker_brygge`
 - `aker_brygge_pop`
@@ -242,7 +263,7 @@ Count: 405
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 261
+Count: 262
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -296,7 +317,7 @@ Count: 261
 - `house_of_nerds`
 
 ### missing_links
-Count: 444
+Count: 445
 
 - `abelhaugen`
 - `aker_brygge`
@@ -350,7 +371,7 @@ Count: 444
 - `bygdoy_roykenvika`
 
 ### missing_people_linkage
-Count: 376
+Count: 377
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -438,7 +459,7 @@ Count: 65
 - `groruddammen`
 - `hellerud_gard`
 - `house_of_nerds`
-- `kampen_film`
+- `kampen`
 - `kampen_park`
 - `kvaernerbyen_alna`
 - `latter`
@@ -502,7 +523,7 @@ Count: 89
 - `hausmannsgate_aksen`
 - `hellerud_gard`
 - `house_of_nerds`
-- `kampen_film`
+- `kampen`
 - `kampen_park`
 - `kolstadgata_toyen_vegger`
 - `kuba_akselpassasjer`
@@ -517,7 +538,7 @@ Count: 89
 - `lekeplass_snippen`
 
 ### missing_spraakleksikon
-Count: 441
+Count: 442
 
 - `abelhaugen`
 - `aker_brygge`
@@ -571,7 +592,7 @@ Count: 441
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 203
+Count: 204
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -626,23 +647,23 @@ Count: 203
 
 
 ## Recommended next batch order
-1. `kampen_park`
-2. `sagene_film`
-3. `kampen_film`
-4. `good_game_redaksjon`
-5. `alnaelvstien`
-6. `loelva_historisk`
-7. `trosterud_friomrade`
-8. `furuset_haugerud_skogbelte`
-9. `hellerud_gard`
-10. `alnabru_jernbane_og_logistikk`
-11. `alnsjoen_alna_kilde`
-12. `alnaparken`
-13. `groruddammen`
-14. `alna_smalvoll`
-15. `alna_bryn`
-16. `svartdalen`
-17. `kvaernerbyen_alna`
-18. `alna_utlop_bjorvika`
-19. `bygdoy_kongeskogen`
-20. `bygdoy_dronningberget`
+1. `sagene`
+2. `kampen`
+3. `psykologisk_institutt_uio`
+4. `kampen_park`
+5. `good_game_redaksjon`
+6. `alnaelvstien`
+7. `loelva_historisk`
+8. `trosterud_friomrade`
+9. `furuset_haugerud_skogbelte`
+10. `hellerud_gard`
+11. `alnabru_jernbane_og_logistikk`
+12. `alnsjoen_alna_kilde`
+13. `alnaparken`
+14. `groruddammen`
+15. `alna_smalvoll`
+16. `alna_bryn`
+17. `svartdalen`
+18. `kvaernerbyen_alna`
+19. `alna_utlop_bjorvika`
+20. `bygdoy_kongeskogen`
