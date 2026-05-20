@@ -9,7 +9,7 @@ const REPORT_MD = path.join(ROOT, 'reports', 'data-health-summary.md');
 const REPORT_JSON = path.join(ROOT, 'reports', 'data-health-full.json');
 
 const VALID_CATEGORIES = new Set([
-  'historie','vitenskap','kunst','musikk','natur','sport','by','politikk','populaerkultur','subkultur','litteratur','naeringsliv','film','film_tv','media'
+  'historie','vitenskap','kunst','musikk','natur','sport','by','politikk','populaerkultur','subkultur','litteratur','naeringsliv','film','film_tv','media','psykologi'
 ]);
 
 const state = {

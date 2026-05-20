@@ -27,7 +27,8 @@ const VALID_CATEGORIES = new Set([
   "naeringsliv",
   "film",
   "film_tv",
-  "media"
+  "media",
+  "psykologi"
 ]);
 
 const CATEGORY_EMNE_PREFIX = {
@@ -45,7 +46,8 @@ const CATEGORY_EMNE_PREFIX = {
   naeringsliv: "em_naering_",
   film: "em_film_tv_",
   film_tv: "em_film_tv_",
-  media: "em_media_"
+  media: "em_media_",
+  psykologi: "em_psy_"
 };
 
 const errors = [];
