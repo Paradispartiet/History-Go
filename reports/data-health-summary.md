@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T18:35:58.321Z
+Generated: 2026-05-20T19:52:38.470Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **177**
+- Files checked: **178**
 - Hard errors: **0**
-- Warnings: **3178**
+- Warnings: **3170**
 
 ## Not configured
 - none
@@ -29,11 +29,11 @@ Generated: 2026-05-20T18:35:58.321Z
 | bygdoy_paradisbukta | 10 | 10 | 0 |
 | bygdoy_bygdoynes | 10 | 10 | 0 |
 | bygdoy_roykenvika | 10 | 10 | 0 |
-| noklevann_ljanselva_start | 10 | 10 | 0 |
-| skraperudtjern | 10 | 10 | 0 |
-| ljanselva_skullerud | 10 | 10 | 0 |
-| ljanselva_hauketo | 10 | 10 | 0 |
-| ljanselva_ljan | 10 | 10 | 0 |
+| colosseum_kino | 10 | 10 | 0 |
+| house_of_nerds | 10 | 10 | 0 |
+| folketeateret | 10 | 10 | 0 |
+| latter | 10 | 10 | 0 |
+| aker_brygge_pop | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 192
+Count: 184
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -662,8 +662,8 @@ Count: 192
 13. `bygdoy_paradisbukta`
 14. `bygdoy_bygdoynes`
 15. `bygdoy_roykenvika`
-16. `noklevann_ljanselva_start`
-17. `skraperudtjern`
-18. `ljanselva_skullerud`
-19. `ljanselva_hauketo`
-20. `ljanselva_ljan`
+16. `colosseum_kino`
+17. `house_of_nerds`
+18. `folketeateret`
+19. `latter`
+20. `aker_brygge_pop`
