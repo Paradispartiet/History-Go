@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-14T05:27:28.981Z",
+  "generatedAt": "2026-05-21T09:45:11.167Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -7,12 +7,12 @@
   },
   "summary": {
     "peopleFilesRead": 17,
-    "peopleRead": 193,
-    "peopleWithInvalidRefs": 22,
-    "invalidRefs": 41,
-    "uniqueInvalidPlaceIds": 20,
-    "peopleWithoutValidPlace": 24,
-    "duplicateInternalPlaceRefs": 171
+    "peopleRead": 203,
+    "peopleWithInvalidRefs": 9,
+    "invalidRefs": 16,
+    "uniqueInvalidPlaceIds": 12,
+    "peopleWithoutValidPlace": 19,
+    "duplicateInternalPlaceRefs": 177
   },
   "invalidRefsGrouped": [
     {
@@ -39,144 +39,6 @@
     {
       "sourceFile": "data/people/people_historie.json",
       "people": [
-        {
-          "personId": "jens_bjelke",
-          "personName": "Jens Bjelke",
-          "invalidPlaceIds": [
-            "toyen_hovedgard"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "jens_bjelke",
-              "personName": "Jens Bjelke",
-              "field": "placeId",
-              "invalidPlaceId": "toyen_hovedgard"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "jens_bjelke",
-              "personName": "Jens Bjelke",
-              "field": "places[0]",
-              "invalidPlaceId": "toyen_hovedgard"
-            }
-          ]
-        },
-        {
-          "personId": "henrik_bjelke",
-          "personName": "Henrik Bjelke",
-          "invalidPlaceIds": [
-            "toyen_hovedgard"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "henrik_bjelke",
-              "personName": "Henrik Bjelke",
-              "field": "placeId",
-              "invalidPlaceId": "toyen_hovedgard"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "henrik_bjelke",
-              "personName": "Henrik Bjelke",
-              "field": "places[0]",
-              "invalidPlaceId": "toyen_hovedgard"
-            }
-          ]
-        },
-        {
-          "personId": "kristine_bonnevie",
-          "personName": "Kristine Bonnevie",
-          "invalidPlaceIds": [
-            "toyen_hovedgard"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "kristine_bonnevie",
-              "personName": "Kristine Bonnevie",
-              "field": "placeId",
-              "invalidPlaceId": "toyen_hovedgard"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "kristine_bonnevie",
-              "personName": "Kristine Bonnevie",
-              "field": "places[0]",
-              "invalidPlaceId": "toyen_hovedgard"
-            }
-          ]
-        },
-        {
-          "personId": "anna_sethne",
-          "personName": "Anna Sethne",
-          "invalidPlaceIds": [
-            "sagene_skole"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "anna_sethne",
-              "personName": "Anna Sethne",
-              "field": "placeId",
-              "invalidPlaceId": "sagene_skole"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "anna_sethne",
-              "personName": "Anna Sethne",
-              "field": "places[0]",
-              "invalidPlaceId": "sagene_skole"
-            }
-          ]
-        },
-        {
-          "personId": "alexis_de_chateauneuf",
-          "personName": "Alexis de Chateauneuf",
-          "invalidPlaceIds": [
-            "trefoldighetskirken"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "alexis_de_chateauneuf",
-              "personName": "Alexis de Chateauneuf",
-              "field": "placeId",
-              "invalidPlaceId": "trefoldighetskirken"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "alexis_de_chateauneuf",
-              "personName": "Alexis de Chateauneuf",
-              "field": "places[0]",
-              "invalidPlaceId": "trefoldighetskirken"
-            }
-          ]
-        },
-        {
-          "personId": "wilhelm_von_hanno",
-          "personName": "Wilhelm von Hanno",
-          "invalidPlaceIds": [
-            "trefoldighetskirken"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "wilhelm_von_hanno",
-              "personName": "Wilhelm von Hanno",
-              "field": "placeId",
-              "invalidPlaceId": "trefoldighetskirken"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "wilhelm_von_hanno",
-              "personName": "Wilhelm von Hanno",
-              "field": "places[0]",
-              "invalidPlaceId": "trefoldighetskirken"
-            }
-          ]
-        },
         {
           "personId": "sigurd_ribbung",
           "personName": "Sigurd Ribbung",
@@ -291,7 +153,6 @@
           "personName": "Camilla Collett",
           "invalidPlaceIds": [
             "collett_barndom",
-            "collett_monument",
             "henrik_wergeland_park"
           ],
           "invalidRefs": [
@@ -301,13 +162,6 @@
               "personName": "Camilla Collett",
               "field": "places[2]",
               "invalidPlaceId": "collett_barndom"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "camilla_collett",
-              "personName": "Camilla Collett",
-              "field": "places[3]",
-              "invalidPlaceId": "collett_monument"
             },
             {
               "sourceFile": "data/people/people_litteratur.json",
@@ -373,218 +227,11 @@
               "invalidPlaceId": "grotten_utsikt"
             }
           ]
-        },
-        {
-          "personId": "gro_dahle",
-          "personName": "Gro Dahle",
-          "invalidPlaceIds": [
-            "sofienberg_poesipark"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "gro_dahle",
-              "personName": "Gro Dahle",
-              "field": "places[3]",
-              "invalidPlaceId": "sofienberg_poesipark"
-            }
-          ]
-        },
-        {
-          "personId": "jan_erik_vold",
-          "personName": "Jan Erik Vold",
-          "invalidPlaceIds": [
-            "sofienberg_poesipark"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "jan_erik_vold",
-              "personName": "Jan Erik Vold",
-              "field": "places[1]",
-              "invalidPlaceId": "sofienberg_poesipark"
-            }
-          ]
-        },
-        {
-          "personId": "jonas_collett",
-          "personName": "Jonas Collett",
-          "invalidPlaceIds": [
-            "collett_monument"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "jonas_collett",
-              "personName": "Jonas Collett",
-              "field": "placeId",
-              "invalidPlaceId": "collett_monument"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "jonas_collett",
-              "personName": "Jonas Collett",
-              "field": "places[0]",
-              "invalidPlaceId": "collett_monument"
-            }
-          ]
-        },
-        {
-          "personId": "cecilie_loveid",
-          "personName": "Cecilie Løveid",
-          "invalidPlaceIds": [
-            "sofienberg_poesipark"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "cecilie_loveid",
-              "personName": "Cecilie Løveid",
-              "field": "placeId",
-              "invalidPlaceId": "sofienberg_poesipark"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "cecilie_loveid",
-              "personName": "Cecilie Løveid",
-              "field": "places[0]",
-              "invalidPlaceId": "sofienberg_poesipark"
-            }
-          ]
-        },
-        {
-          "personId": "rolf_jacobsen",
-          "personName": "Rolf Jacobsen",
-          "invalidPlaceIds": [
-            "rolf_jacobsen_minne"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "rolf_jacobsen",
-              "personName": "Rolf Jacobsen",
-              "field": "placeId",
-              "invalidPlaceId": "rolf_jacobsen_minne"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "rolf_jacobsen",
-              "personName": "Rolf Jacobsen",
-              "field": "places[0]",
-              "invalidPlaceId": "rolf_jacobsen_minne"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_musikk.json",
-      "people": [
-        {
-          "personId": "ulrikke_brandstorp",
-          "personName": "Ulrikke Brandstorp",
-          "invalidPlaceIds": [
-            "vulkan"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_musikk.json",
-              "personId": "ulrikke_brandstorp",
-              "personName": "Ulrikke Brandstorp",
-              "field": "placeId",
-              "invalidPlaceId": "vulkan"
-            },
-            {
-              "sourceFile": "data/people/people_musikk.json",
-              "personId": "ulrikke_brandstorp",
-              "personName": "Ulrikke Brandstorp",
-              "field": "places[0]",
-              "invalidPlaceId": "vulkan"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_vitenskap.json",
-      "people": [
-        {
-          "personId": "eilert_sundt",
-          "personName": "Eilert Sundt",
-          "invalidPlaceIds": [
-            "universitetet"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_vitenskap.json",
-              "personId": "eilert_sundt",
-              "personName": "Eilert Sundt",
-              "field": "placeId",
-              "invalidPlaceId": "universitetet"
-            },
-            {
-              "sourceFile": "data/people/people_vitenskap.json",
-              "personId": "eilert_sundt",
-              "personName": "Eilert Sundt",
-              "field": "places[0]",
-              "invalidPlaceId": "universitetet"
-            }
-          ]
         }
       ]
     }
   ],
   "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "toyen_hovedgard",
-      "occurrences": 6,
-      "peopleCount": 3,
-      "sourceFiles": [
-        "data/people/people_historie.json"
-      ],
-      "classification": "needs_manual_review",
-      "suggestions": [
-        {
-          "placeId": "toyen_torg",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "sofienberg_poesipark",
-      "occurrences": 4,
-      "peopleCount": 3,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "needs_manual_review",
-      "suggestions": [
-        {
-          "placeId": "sofienberg_kirke",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "trefoldighetskirken",
-      "occurrences": 4,
-      "peopleCount": 2,
-      "sourceFiles": [
-        "data/people/people_historie.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "collett_monument",
-      "occurrences": 3,
-      "peopleCount": 2,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
     {
       "invalidPlaceId": "grotten_utsikt",
       "occurrences": 3,
@@ -617,81 +264,6 @@
         {
           "placeId": "henrik_wergeland_statue",
           "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "rolf_jacobsen_minne",
-      "occurrences": 2,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "sagene_skole",
-      "occurrences": 2,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_historie.json"
-      ],
-      "classification": "needs_manual_review",
-      "suggestions": [
-        {
-          "placeId": "gamlebyen_skole",
-          "confidence": "low"
-        },
-        {
-          "placeId": "sagene_film",
-          "confidence": "low"
-        },
-        {
-          "placeId": "sagene_kvernhus",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "universitetet",
-      "occurrences": 2,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_vitenskap.json"
-      ],
-      "classification": "likely_rename_to_existing_place",
-      "suggestions": [
-        {
-          "placeId": "universitetets_gamle_hovedbygning",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "universitetets_gamle_kjemi",
-          "confidence": "medium"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "vulkan",
-      "occurrences": 2,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_musikk.json"
-      ],
-      "classification": "likely_rename_to_existing_place",
-      "suggestions": [
-        {
-          "placeId": "vulkan_energisentral",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "vulkan_industriomrade",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "vulkan_murvegger",
-          "confidence": "medium"
         }
       ]
     },
@@ -789,73 +361,24 @@
   "peopleWithoutValidPlace": [
     {
       "sourceFile": "data/people/people_historie.json",
-      "personId": "jens_bjelke",
-      "personName": "Jens Bjelke",
-      "totalRefs": 2,
-      "refs": [
-        "toyen_hovedgard",
-        "toyen_hovedgard"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_historie.json",
-      "personId": "henrik_bjelke",
-      "personName": "Henrik Bjelke",
-      "totalRefs": 2,
-      "refs": [
-        "toyen_hovedgard",
-        "toyen_hovedgard"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_historie.json",
       "personId": "anna_sethne",
       "personName": "Anna Sethne",
-      "totalRefs": 2,
-      "refs": [
-        "sagene_skole",
-        "sagene_skole"
-      ]
+      "totalRefs": 0,
+      "refs": []
     },
     {
       "sourceFile": "data/people/people_historie.json",
       "personId": "alexis_de_chateauneuf",
       "personName": "Alexis de Chateauneuf",
-      "totalRefs": 2,
-      "refs": [
-        "trefoldighetskirken",
-        "trefoldighetskirken"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "jonas_collett",
-      "personName": "Jonas Collett",
-      "totalRefs": 2,
-      "refs": [
-        "collett_monument",
-        "collett_monument"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "cecilie_loveid",
-      "personName": "Cecilie Løveid",
-      "totalRefs": 2,
-      "refs": [
-        "sofienberg_poesipark",
-        "sofienberg_poesipark"
-      ]
+      "totalRefs": 0,
+      "refs": []
     },
     {
       "sourceFile": "data/people/people_litteratur.json",
       "personId": "rolf_jacobsen",
       "personName": "Rolf Jacobsen",
-      "totalRefs": 2,
-      "refs": [
-        "rolf_jacobsen_minne",
-        "rolf_jacobsen_minne"
-      ]
+      "totalRefs": 0,
+      "refs": []
     },
     {
       "sourceFile": "data/people/people_litteratur.json",
@@ -863,16 +386,6 @@
       "personName": "Per Petterson",
       "totalRefs": 0,
       "refs": []
-    },
-    {
-      "sourceFile": "data/people/people_musikk.json",
-      "personId": "ulrikke_brandstorp",
-      "personName": "Ulrikke Brandstorp",
-      "totalRefs": 2,
-      "refs": [
-        "vulkan",
-        "vulkan"
-      ]
     },
     {
       "sourceFile": "data/people/people_naeringsliv.json",
@@ -1480,7 +993,7 @@
       "sourceFile": "data/people/people_historie.json",
       "personId": "jens_bjelke",
       "personName": "Jens Bjelke",
-      "placeId": "toyen_hovedgard",
+      "placeId": "toyen_torg",
       "count": 2,
       "fields": [
         "placeId",
@@ -1491,7 +1004,7 @@
       "sourceFile": "data/people/people_historie.json",
       "personId": "henrik_bjelke",
       "personName": "Henrik Bjelke",
-      "placeId": "toyen_hovedgard",
+      "placeId": "toyen_torg",
       "count": 2,
       "fields": [
         "placeId",
@@ -1502,40 +1015,7 @@
       "sourceFile": "data/people/people_historie.json",
       "personId": "kristine_bonnevie",
       "personName": "Kristine Bonnevie",
-      "placeId": "toyen_hovedgard",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_historie.json",
-      "personId": "anna_sethne",
-      "personName": "Anna Sethne",
-      "placeId": "sagene_skole",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_historie.json",
-      "personId": "alexis_de_chateauneuf",
-      "personName": "Alexis de Chateauneuf",
-      "placeId": "trefoldighetskirken",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_historie.json",
-      "personId": "wilhelm_von_hanno",
-      "personName": "Wilhelm von Hanno",
-      "placeId": "trefoldighetskirken",
+      "placeId": "toyen_torg",
       "count": 2,
       "fields": [
         "placeId",
@@ -1932,10 +1412,11 @@
       "personId": "camilla_collett",
       "personName": "Camilla Collett",
       "placeId": "camilla_collett_statue",
-      "count": 2,
+      "count": 3,
       "fields": [
         "placeId",
-        "places[0]"
+        "places[0]",
+        "places[3]"
       ]
     },
     {
@@ -2118,7 +1599,7 @@
       "sourceFile": "data/people/people_litteratur.json",
       "personId": "jonas_collett",
       "personName": "Jonas Collett",
-      "placeId": "collett_monument",
+      "placeId": "camilla_collett_statue",
       "count": 2,
       "fields": [
         "placeId",
@@ -2151,18 +1632,7 @@
       "sourceFile": "data/people/people_litteratur.json",
       "personId": "cecilie_loveid",
       "personName": "Cecilie Løveid",
-      "placeId": "sofienberg_poesipark",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "rolf_jacobsen",
-      "personName": "Rolf Jacobsen",
-      "placeId": "rolf_jacobsen_minne",
+      "placeId": "sofienbergparken_subkultur",
       "count": 2,
       "fields": [
         "placeId",
@@ -2305,7 +1775,7 @@
       "sourceFile": "data/people/people_musikk.json",
       "personId": "ulrikke_brandstorp",
       "personName": "Ulrikke Brandstorp",
-      "placeId": "vulkan",
+      "placeId": "vulkan_energisentral",
       "count": 2,
       "fields": [
         "placeId",
@@ -2767,7 +2237,7 @@
       "sourceFile": "data/people/people_vitenskap.json",
       "personId": "eilert_sundt",
       "personName": "Eilert Sundt",
-      "placeId": "universitetet",
+      "placeId": "universitetets_gamle_hovedbygning",
       "count": 2,
       "fields": [
         "placeId",
@@ -2830,6 +2300,116 @@
       ]
     },
     {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "fredrik_skavlan",
+      "personName": "Fredrik Skavlan",
+      "placeId": "nrk_huset_marienlyst",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "erik_bye",
+      "personName": "Erik Bye",
+      "placeId": "nrk_huset_marienlyst",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "anne_grosvold",
+      "personName": "Anne Grosvold",
+      "placeId": "nrk_huset_marienlyst",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "trine_eilertsen",
+      "personName": "Trine Eilertsen",
+      "placeId": "aftenposten_akersgata",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "harald_stanghelle",
+      "personName": "Harald Stanghelle",
+      "placeId": "aftenposten_akersgata",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "john_olav_egeland",
+      "personName": "John Olav Egeland",
+      "placeId": "dagbladet_akersgata",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "frode_hansen",
+      "personName": "Frode Hansen",
+      "placeId": "dagbladet_akersgata",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "bjorg_tulinius",
+      "personName": "Bjørg Tulinius",
+      "placeId": "klassekampen_redaksjon",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "mari_skeie_ljones",
+      "personName": "Mari Skeie Ljones",
+      "placeId": "good_game_redaksjon",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/media/oslo/people_media_oslo.json",
+      "personId": "ruben_gran",
+      "personName": "Ruben Gran",
+      "placeId": "good_game_redaksjon",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
       "sourceFile": "data/people/media/europe/portugal/lisbon/people_media_lisbon.json",
       "personId": "jose_rodrigues_dos_santos",
       "personName": "José Rodrigues dos Santos",
@@ -2865,40 +2445,6 @@
   ],
   "recommendedNextBatch": [
     {
-      "invalidPlaceId": "toyen_hovedgard",
-      "classification": "needs_manual_review",
-      "occurrences": 6,
-      "suggestions": [
-        {
-          "placeId": "toyen_torg",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "sofienberg_poesipark",
-      "classification": "needs_manual_review",
-      "occurrences": 4,
-      "suggestions": [
-        {
-          "placeId": "sofienberg_kirke",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "trefoldighetskirken",
-      "classification": "missing_place_candidate",
-      "occurrences": 4,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "collett_monument",
-      "classification": "missing_place_candidate",
-      "occurrences": 3,
-      "suggestions": []
-    },
-    {
       "invalidPlaceId": "grotten_utsikt",
       "classification": "missing_place_candidate",
       "occurrences": 3,
@@ -2922,65 +2468,6 @@
       ]
     },
     {
-      "invalidPlaceId": "rolf_jacobsen_minne",
-      "classification": "missing_place_candidate",
-      "occurrences": 2,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "sagene_skole",
-      "classification": "needs_manual_review",
-      "occurrences": 2,
-      "suggestions": [
-        {
-          "placeId": "gamlebyen_skole",
-          "confidence": "low"
-        },
-        {
-          "placeId": "sagene_film",
-          "confidence": "low"
-        },
-        {
-          "placeId": "sagene_kvernhus",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "universitetet",
-      "classification": "likely_rename_to_existing_place",
-      "occurrences": 2,
-      "suggestions": [
-        {
-          "placeId": "universitetets_gamle_hovedbygning",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "universitetets_gamle_kjemi",
-          "confidence": "medium"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "vulkan",
-      "classification": "likely_rename_to_existing_place",
-      "occurrences": 2,
-      "suggestions": [
-        {
-          "placeId": "vulkan_energisentral",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "vulkan_industriomrade",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "vulkan_murvegger",
-          "confidence": "medium"
-        }
-      ]
-    },
-    {
       "invalidPlaceId": "bispeborgen",
       "classification": "missing_place_candidate",
       "occurrences": 1,
@@ -3000,6 +2487,36 @@
     },
     {
       "invalidPlaceId": "collett_barndom",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "ibsen_bjornson_graver",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "inger_hagerup_minne",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "wergeland_barndom",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "wergeland_grav",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "wergelandsveien_15",
       "classification": "missing_place_candidate",
       "occurrences": 1,
       "suggestions": []

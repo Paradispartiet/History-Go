@@ -1,39 +1,21 @@
 # People invalid place refs audit
 
-Generated: 2026-05-14T05:27:28.981Z
+Generated: 2026-05-21T09:45:11.167Z
 
 ## Sammendrag
 - People-filer lest: **17**
-- People lest: **193**
-- People med ugyldige refs: **22**
-- Ugyldige refs: **41**
-- Unike ugyldige placeId-er: **20**
-- People uten gyldig sted: **24**
-- Duplikate interne place-referanser: **171**
+- People lest: **203**
+- People med ugyldige refs: **9**
+- Ugyldige refs: **16**
+- Unike ugyldige placeId-er: **12**
+- People uten gyldig sted: **19**
+- Duplikate interne place-referanser: **177**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
 - **christian_heinrich_grosch** (Christian Heinrich Grosch)
   - botanisk_hage @ `places[2]`
 ### data/people/people_historie.json
-- **jens_bjelke** (Jens Bjelke)
-  - toyen_hovedgard @ `placeId`
-  - toyen_hovedgard @ `places[0]`
-- **henrik_bjelke** (Henrik Bjelke)
-  - toyen_hovedgard @ `placeId`
-  - toyen_hovedgard @ `places[0]`
-- **kristine_bonnevie** (Kristine Bonnevie)
-  - toyen_hovedgard @ `placeId`
-  - toyen_hovedgard @ `places[0]`
-- **anna_sethne** (Anna Sethne)
-  - sagene_skole @ `placeId`
-  - sagene_skole @ `places[0]`
-- **alexis_de_chateauneuf** (Alexis de Chateauneuf)
-  - trefoldighetskirken @ `placeId`
-  - trefoldighetskirken @ `places[0]`
-- **wilhelm_von_hanno** (Wilhelm von Hanno)
-  - trefoldighetskirken @ `placeId`
-  - trefoldighetskirken @ `places[0]`
 - **sigurd_ribbung** (Sigurd Ribbung)
   - bispeborgen @ `places[2]`
 ### data/people/people_litteratur.json
@@ -50,7 +32,6 @@ Generated: 2026-05-14T05:27:28.981Z
   - wergelandsveien_15 @ `places[2]`
 - **camilla_collett** (Camilla Collett)
   - collett_barndom @ `places[2]`
-  - collett_monument @ `places[3]`
   - henrik_wergeland_park @ `places[1]`
 - **andre_bjerke** (André Bjerke)
   - grotten_utsikt @ `places[1]`
@@ -59,56 +40,14 @@ Generated: 2026-05-14T05:27:28.981Z
   - inger_hagerup_minne @ `places[2]`
 - **jon_fosse** (Jon Fosse)
   - grotten_utsikt @ `places[1]`
-- **gro_dahle** (Gro Dahle)
-  - sofienberg_poesipark @ `places[3]`
-- **jan_erik_vold** (Jan Erik Vold)
-  - sofienberg_poesipark @ `places[1]`
-- **jonas_collett** (Jonas Collett)
-  - collett_monument @ `placeId`
-  - collett_monument @ `places[0]`
-- **cecilie_loveid** (Cecilie Løveid)
-  - sofienberg_poesipark @ `placeId`
-  - sofienberg_poesipark @ `places[0]`
-- **rolf_jacobsen** (Rolf Jacobsen)
-  - rolf_jacobsen_minne @ `placeId`
-  - rolf_jacobsen_minne @ `places[0]`
-### data/people/people_musikk.json
-- **ulrikke_brandstorp** (Ulrikke Brandstorp)
-  - vulkan @ `placeId`
-  - vulkan @ `places[0]`
-### data/people/people_vitenskap.json
-- **eilert_sundt** (Eilert Sundt)
-  - universitetet @ `placeId`
-  - universitetet @ `places[0]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **toyen_hovedgard** (needs_manual_review, 6 treff)
-  - toyen_torg (confidence: low)
-- **sofienberg_poesipark** (needs_manual_review, 4 treff)
-  - sofienberg_kirke (confidence: low)
-- **trefoldighetskirken** (missing_place_candidate, 4 treff)
-  - missing_place_candidate
-- **collett_monument** (missing_place_candidate, 3 treff)
-  - missing_place_candidate
 - **grotten_utsikt** (missing_place_candidate, 3 treff)
   - missing_place_candidate
 - **bøker_i_byen** (missing_place_candidate, 2 treff)
   - missing_place_candidate
 - **henrik_wergeland_park** (needs_manual_review, 2 treff)
   - henrik_wergeland_statue (confidence: low)
-- **rolf_jacobsen_minne** (missing_place_candidate, 2 treff)
-  - missing_place_candidate
-- **sagene_skole** (needs_manual_review, 2 treff)
-  - gamlebyen_skole (confidence: low)
-  - sagene_film (confidence: low)
-  - sagene_kvernhus (confidence: low)
-- **universitetet** (likely_rename_to_existing_place, 2 treff)
-  - universitetets_gamle_hovedbygning (confidence: medium)
-  - universitetets_gamle_kjemi (confidence: medium)
-- **vulkan** (likely_rename_to_existing_place, 2 treff)
-  - vulkan_energisentral (confidence: medium)
-  - vulkan_industriomrade (confidence: medium)
-  - vulkan_murvegger (confidence: medium)
 - **bispeborgen** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **bjornson_bolig** (missing_place_candidate, 1 treff)
@@ -129,15 +68,10 @@ Generated: 2026-05-14T05:27:28.981Z
   - missing_place_candidate
 
 ## People uten gyldig sted
-- data/people/people_historie.json :: jens_bjelke (Jens Bjelke)
-- data/people/people_historie.json :: henrik_bjelke (Henrik Bjelke)
 - data/people/people_historie.json :: anna_sethne (Anna Sethne)
 - data/people/people_historie.json :: alexis_de_chateauneuf (Alexis de Chateauneuf)
-- data/people/people_litteratur.json :: jonas_collett (Jonas Collett)
-- data/people/people_litteratur.json :: cecilie_loveid (Cecilie Løveid)
 - data/people/people_litteratur.json :: rolf_jacobsen (Rolf Jacobsen)
 - data/people/people_litteratur.json :: per_petterson (Per Petterson)
-- data/people/people_musikk.json :: ulrikke_brandstorp (Ulrikke Brandstorp)
 - data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn)
 - data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg)
 - data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard)
@@ -200,12 +134,9 @@ Generated: 2026-05-14T05:27:28.981Z
 - data/people/people_historie.json :: arnulf_overland (Arnulf Øverland) -> grini_fangeleir x2
 - data/people/people_historie.json :: sam_eyde (Sam Eyde) -> villa_grande x2
 - data/people/people_historie.json :: maria_quisling (Maria Quisling) -> villa_grande x2
-- data/people/people_historie.json :: jens_bjelke (Jens Bjelke) -> toyen_hovedgard x2
-- data/people/people_historie.json :: henrik_bjelke (Henrik Bjelke) -> toyen_hovedgard x2
-- data/people/people_historie.json :: kristine_bonnevie (Kristine Bonnevie) -> toyen_hovedgard x2
-- data/people/people_historie.json :: anna_sethne (Anna Sethne) -> sagene_skole x2
-- data/people/people_historie.json :: alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken x2
-- data/people/people_historie.json :: wilhelm_von_hanno (Wilhelm von Hanno) -> trefoldighetskirken x2
+- data/people/people_historie.json :: jens_bjelke (Jens Bjelke) -> toyen_torg x2
+- data/people/people_historie.json :: henrik_bjelke (Henrik Bjelke) -> toyen_torg x2
+- data/people/people_historie.json :: kristine_bonnevie (Kristine Bonnevie) -> toyen_torg x2
 - data/people/people_historie.json :: haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman x2
 - data/people/people_historie.json :: petter_moen (Petter Moen) -> mollergata_19 x2
 - data/people/people_historie.json :: biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke x2
@@ -241,7 +172,7 @@ Generated: 2026-05-14T05:27:28.981Z
 - data/people/people_litteratur.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
-- data/people/people_litteratur.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x2
+- data/people/people_litteratur.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x3
 - data/people/people_litteratur.json :: andre_bjerke (André Bjerke) -> grotta x2
 - data/people/people_litteratur.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/people_litteratur.json :: jon_fosse (Jon Fosse) -> grotta x2
@@ -258,11 +189,10 @@ Generated: 2026-05-14T05:27:28.981Z
 - data/people/people_litteratur.json :: jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur x2
 - data/people/people_litteratur.json :: pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur x2
 - data/people/people_litteratur.json :: lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata x2
-- data/people/people_litteratur.json :: jonas_collett (Jonas Collett) -> collett_monument x2
+- data/people/people_litteratur.json :: jonas_collett (Jonas Collett) -> camilla_collett_statue x2
 - data/people/people_litteratur.json :: ruth_maier (Ruth Maier) -> ruth_maier_minne x2
 - data/people/people_litteratur.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
-- data/people/people_litteratur.json :: cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark x2
-- data/people/people_litteratur.json :: rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne x2
+- data/people/people_litteratur.json :: cecilie_loveid (Cecilie Løveid) -> sofienbergparken_subkultur x2
 - data/people/people_litteratur.json :: oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen x2
 - data/people/people_litteratur.json :: vogt (Nils Collett Vogt) -> gamle_deichman x2
 - data/people/people_litteratur.json :: andersen (Tryggve Andersen) -> gamle_deichman x2
@@ -275,7 +205,7 @@ Generated: 2026-05-14T05:27:28.981Z
 - data/people/people_musikk.json :: aurora (Aurora) -> salt x2
 - data/people/people_musikk.json :: sigrid (Sigrid) -> salt x2
 - data/people/people_musikk.json :: karpe (Karpe) -> sorenga x2
-- data/people/people_musikk.json :: ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan x2
+- data/people/people_musikk.json :: ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan_energisentral x2
 - data/people/people_musikk.json :: kygo (Kygo) -> barcode x2
 - data/people/people_musikk.json :: gabrielle (Gabrielle) -> barcode x2
 - data/people/people_musikk.json :: arif (Arif) -> stovnertarnet x2
@@ -317,29 +247,36 @@ Generated: 2026-05-14T05:27:28.981Z
 - data/people/people_subkultur.json :: viggo_tigeren (Viggo (byen som tiger)) -> tigeren x2
 - data/people/people_subkultur.json :: tinashe_williamson (Tinashe Williamson) -> aker_brygge x2
 - data/people/people_subkultur.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
-- data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetet x2
+- data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: bernt_olufsen (Bernt Olufsen) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: fredrik_skavlan (Fredrik Skavlan) -> nrk_huset_marienlyst x2
+- data/people/media/oslo/people_media_oslo.json :: erik_bye (Erik Bye) -> nrk_huset_marienlyst x2
+- data/people/media/oslo/people_media_oslo.json :: anne_grosvold (Anne Grosvold) -> nrk_huset_marienlyst x2
+- data/people/media/oslo/people_media_oslo.json :: trine_eilertsen (Trine Eilertsen) -> aftenposten_akersgata x2
+- data/people/media/oslo/people_media_oslo.json :: harald_stanghelle (Harald Stanghelle) -> aftenposten_akersgata x2
+- data/people/media/oslo/people_media_oslo.json :: john_olav_egeland (John Olav Egeland) -> dagbladet_akersgata x2
+- data/people/media/oslo/people_media_oslo.json :: frode_hansen (Frode Hansen) -> dagbladet_akersgata x2
+- data/people/media/oslo/people_media_oslo.json :: bjorg_tulinius (Bjørg Tulinius) -> klassekampen_redaksjon x2
+- data/people/media/oslo/people_media_oslo.json :: mari_skeie_ljones (Mari Skeie Ljones) -> good_game_redaksjon x2
+- data/people/media/oslo/people_media_oslo.json :: ruben_gran (Ruben Gran) -> good_game_redaksjon x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch
-- toyen_hovedgard (needs_manual_review, 6 treff)
-- sofienberg_poesipark (needs_manual_review, 4 treff)
-- trefoldighetskirken (missing_place_candidate, 4 treff)
-- collett_monument (missing_place_candidate, 3 treff)
 - grotten_utsikt (missing_place_candidate, 3 treff)
 - bøker_i_byen (missing_place_candidate, 2 treff)
 - henrik_wergeland_park (needs_manual_review, 2 treff)
-- rolf_jacobsen_minne (missing_place_candidate, 2 treff)
-- sagene_skole (needs_manual_review, 2 treff)
-- universitetet (likely_rename_to_existing_place, 2 treff)
-- vulkan (likely_rename_to_existing_place, 2 treff)
 - bispeborgen (missing_place_candidate, 1 treff)
 - bjornson_bolig (missing_place_candidate, 1 treff)
 - botanisk_hage (missing_place_candidate, 1 treff)
 - collett_barndom (missing_place_candidate, 1 treff)
+- ibsen_bjornson_graver (missing_place_candidate, 1 treff)
+- inger_hagerup_minne (missing_place_candidate, 1 treff)
+- wergeland_barndom (missing_place_candidate, 1 treff)
+- wergeland_grav (missing_place_candidate, 1 treff)
+- wergelandsveien_15 (missing_place_candidate, 1 treff)
