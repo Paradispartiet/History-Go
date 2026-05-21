@@ -18,8 +18,8 @@ fi
 REMOTE_URL="$(git remote get-url "$REMOTE_NAME")"
 echo "Remote URL: $REMOTE_URL"
 
-echo "Checking remote HEAD..."
-git ls-remote "$REMOTE_NAME" HEAD >/dev/null
+echo "Checking remote branch refs/heads/$MAIN_BRANCH..."
+git ls-remote --heads "$REMOTE_NAME" "$MAIN_BRANCH" >/dev/null
 
 echo "Fetching $REMOTE_NAME/$MAIN_BRANCH..."
 git fetch "$REMOTE_NAME" "+refs/heads/$MAIN_BRANCH:refs/remotes/$REMOTE_NAME/$MAIN_BRANCH" --prune

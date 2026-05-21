@@ -55,6 +55,7 @@ git ls-remote --heads origin main
 git fetch origin "+refs/heads/main:refs/remotes/origin/main" --prune
 git rev-parse --verify refs/remotes/origin/main
 ```
+Bruk full refspec/full ref som over for å unngå tvetydig fetch i Codespaces.
 
 ### Repo-script (anbefalt)
 ```bash
