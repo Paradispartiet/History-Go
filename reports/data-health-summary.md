@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T21:51:00.521Z
+Generated: 2026-05-21T05:11:25.238Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **181**
+- Files checked: **182**
 - Hard errors: **0**
-- Warnings: **3144**
+- Warnings: **3141**
 
 ## Not configured
 - none
@@ -20,9 +20,6 @@ Generated: 2026-05-20T21:51:00.521Z
 | kampen_park | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
 | loelva_historisk | 10 | 10 | 0 |
-| trosterud_friomrade | 10 | 10 | 0 |
-| furuset_haugerud_skogbelte | 10 | 10 | 0 |
-| hellerud_gard | 10 | 10 | 0 |
 | toyen_torg_pop | 10 | 10 | 0 |
 | oslo_s_pop | 10 | 10 | 0 |
 | radhusplassen_pop | 10 | 10 | 0 |
@@ -34,6 +31,9 @@ Generated: 2026-05-20T21:51:00.521Z
 | vaterland | 9 | 9 | 0 |
 | tullin | 9 | 9 | 0 |
 | okern | 9 | 9 | 0 |
+| skoyen | 9 | 9 | 0 |
+| torshov | 9 | 9 | 0 |
+| grorud | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 168
+Count: 165
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -629,7 +629,6 @@ Count: 168
 - `frysja_industriomrade`
 - `frysjadammen`
 - `furuset_forum`
-- `furuset_haugerud_skogbelte`
 - `galgeberg`
 - `gamle_aker_kirke`
 - `gamle_deichman`
@@ -644,6 +643,7 @@ Count: 168
 - `gronland_basarene`
 - `gronland_kirke`
 - `gronland_underganger`
+- `gronlandsleiret`
 
 
 ## Recommended next batch order
@@ -653,17 +653,17 @@ Count: 168
 4. `kampen_park`
 5. `good_game_redaksjon`
 6. `loelva_historisk`
-7. `trosterud_friomrade`
-8. `furuset_haugerud_skogbelte`
-9. `hellerud_gard`
-10. `toyen_torg_pop`
-11. `oslo_s_pop`
-12. `radhusplassen_pop`
-13. `slottsplassen_pop`
-14. `youngstorget_pop`
-15. `barcode_pop`
-16. `bjørvika_pop`
-17. `schous_plass`
-18. `vaterland`
-19. `tullin`
-20. `okern`
+7. `toyen_torg_pop`
+8. `oslo_s_pop`
+9. `radhusplassen_pop`
+10. `slottsplassen_pop`
+11. `youngstorget_pop`
+12. `barcode_pop`
+13. `bjørvika_pop`
+14. `schous_plass`
+15. `vaterland`
+16. `tullin`
+17. `okern`
+18. `skoyen`
+19. `torshov`
+20. `grorud`
