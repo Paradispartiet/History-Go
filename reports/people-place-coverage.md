@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-14T05:27:28.908Z
+Generert: 2026-05-21T05:13:26.688Z
 
 ## Sammendrag
 
 - People totalt: **193**
-- Places totalt: **444**
-- Places med people: **74**
-- Places uten people: **370**
-- People-place-lenker: **261**
-- People koblet til flere gyldige steder: **79**
-- People uten gyldig sted: **24**
-- Ugyldige place-referanser: **30**
-- Duplikate place-referanser inne på people: **171**
+- Places totalt: **449**
+- Places med people: **78**
+- Places uten people: **371**
+- People-place-lenker: **270**
+- People koblet til flere gyldige steder: **81**
+- People uten gyldig sted: **19**
+- Ugyldige place-referanser: **16**
+- Duplikate place-referanser inne på people: **167**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -21,20 +21,21 @@ Generert: 2026-05-14T05:27:28.908Z
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 95 | 22 | 73 | 56 | 43 |
-| film_tv | 10 | 0 | 10 | 0 | 0 |
+| by | 97 | 24 | 73 | 60 | 46 |
+| film_tv | 8 | 0 | 8 | 0 | 0 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
-| litteratur | 31 | 16 | 15 | 36 | 31 |
-| media | 7 | 3 | 4 | 8 | 7 |
+| litteratur | 31 | 16 | 15 | 37 | 32 |
+| media | 11 | 3 | 8 | 8 | 7 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 59 | 4 | 55 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
 | populaerkultur | 23 | 0 | 23 | 0 | 0 |
+| psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 38 | 4 | 34 | 7 | 7 |
-| subkultur | 23 | 1 | 22 | 1 | 1 |
-| vitenskap | 17 | 3 | 14 | 10 | 10 |
+| subkultur | 23 | 2 | 21 | 4 | 4 |
+| vitenskap | 17 | 4 | 13 | 11 | 11 |
 
 ## People tags
 
@@ -120,12 +121,6 @@ Generert: 2026-05-14T05:27:28.908Z
 ## Ugyldige place-referanser
 
 - christian_heinrich_grosch (Christian Heinrich Grosch) -> botanisk_hage
-- jens_bjelke (Jens Bjelke) -> toyen_hovedgard
-- henrik_bjelke (Henrik Bjelke) -> toyen_hovedgard
-- kristine_bonnevie (Kristine Bonnevie) -> toyen_hovedgard
-- anna_sethne (Anna Sethne) -> sagene_skole
-- alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken
-- wilhelm_von_hanno (Wilhelm von Hanno) -> trefoldighetskirken
 - sigurd_ribbung (Sigurd Ribbung) -> bispeborgen
 - sigrid_undset (Sigrid Undset) -> bøker_i_byen
 - bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> bjornson_bolig
@@ -137,18 +132,10 @@ Generert: 2026-05-14T05:27:28.908Z
 - henrik_wergeland (Henrik Wergeland) -> bøker_i_byen
 - camilla_collett (Camilla Collett) -> henrik_wergeland_park
 - camilla_collett (Camilla Collett) -> collett_barndom
-- camilla_collett (Camilla Collett) -> collett_monument
 - andre_bjerke (André Bjerke) -> grotten_utsikt
 - inger_hagerup (Inger Hagerup) -> grotten_utsikt
 - inger_hagerup (Inger Hagerup) -> inger_hagerup_minne
 - jon_fosse (Jon Fosse) -> grotten_utsikt
-- gro_dahle (Gro Dahle) -> sofienberg_poesipark
-- jan_erik_vold (Jan Erik Vold) -> sofienberg_poesipark
-- jonas_collett (Jonas Collett) -> collett_monument
-- cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
-- rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
-- ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan
-- eilert_sundt (Eilert Sundt) -> universitetet
 
 ## Duplikate place-referanser inne på people
 
@@ -197,12 +184,9 @@ Generert: 2026-05-14T05:27:28.908Z
 - arnulf_overland (Arnulf Øverland) -> grini_fangeleir
 - sam_eyde (Sam Eyde) -> villa_grande
 - maria_quisling (Maria Quisling) -> villa_grande
-- jens_bjelke (Jens Bjelke) -> toyen_hovedgard
-- henrik_bjelke (Henrik Bjelke) -> toyen_hovedgard
-- kristine_bonnevie (Kristine Bonnevie) -> toyen_hovedgard
-- anna_sethne (Anna Sethne) -> sagene_skole
-- alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken
-- wilhelm_von_hanno (Wilhelm von Hanno) -> trefoldighetskirken
+- jens_bjelke (Jens Bjelke) -> toyen_torg
+- henrik_bjelke (Henrik Bjelke) -> toyen_torg
+- kristine_bonnevie (Kristine Bonnevie) -> toyen_torg
 - haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman
 - petter_moen (Petter Moen) -> mollergata_19
 - biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke
@@ -252,7 +236,10 @@ Generert: 2026-05-14T05:27:28.908Z
 - gro_dahle (Gro Dahle) -> tronsmo_bokhandel
 - helene_uri (Helene Uri) -> eldorado_bokhandel
 - ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka
-- ... 71 flere
+- jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
+- pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
+- lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
+- ... 67 flere
 
 ## Anbefalt første people-batch
 
@@ -305,7 +292,7 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | high
 - lisbon_tobis_portuguesa | Tobis Portuguesa | film_tv | high
 - bjoelsenfossen | Bjølsenfossen | historie | high
+- botsfengselet | Botsfengselet | historie | high
 - frysjadammen | Frysjadammen | historie | high
-- gamle_aker_kirke | Gamle Aker kirke | historie | high
-- glads_molle | Glads mølle | historie | high
+- galgeberg | Galgeberg | historie | high
 
