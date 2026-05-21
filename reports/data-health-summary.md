@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-21T09:58:03.495Z
+Generated: 2026-05-21T17:36:45.496Z
 
 ## Total summary
 - Places: **449**
-- Files checked: **181**
+- Files checked: **183**
 - Hard errors: **0**
-- Warnings: **3196**
+- Warnings: **3191**
 
 ## Not configured
 - none
@@ -14,13 +14,12 @@ Generated: 2026-05-21T09:58:03.495Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| nrk_huset_marienlyst | 13 | 13 | 0 |
-| aftenposten_akersgata | 13 | 13 | 0 |
-| dagbladet_akersgata | 13 | 13 | 0 |
 | klassekampen_redaksjon | 13 | 13 | 0 |
+| nrk_huset_marienlyst | 12 | 12 | 0 |
+| aftenposten_akersgata | 12 | 12 | 0 |
+| dagbladet_akersgata | 12 | 12 | 0 |
 | sagene | 11 | 11 | 0 |
 | kampen | 11 | 11 | 0 |
-| psykologisk_institutt_uio | 11 | 11 | 0 |
 | kampen_park | 10 | 10 | 0 |
 | good_game_redaksjon | 10 | 10 | 0 |
 | loelva_historisk | 10 | 10 | 0 |
@@ -34,6 +33,7 @@ Generated: 2026-05-21T09:58:03.495Z
 | youngstorget_pop | 10 | 10 | 0 |
 | barcode_pop | 10 | 10 | 0 |
 | bjørvika_pop | 10 | 10 | 0 |
+| schous_plass | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -275,7 +275,7 @@ Count: 410
 - `chateau_neuf`
 
 ### missing_leksikon
-Count: 253
+Count: 252
 
 - `abelhaugen`
 - `aftenposten_akersgata`
@@ -383,10 +383,9 @@ Count: 449
 - `bygdoy_paradisbukta`
 
 ### missing_people_linkage
-Count: 381
+Count: 378
 
 - `abelhaugen`
-- `aftenposten_akersgata`
 - `aker_brygge_pop`
 - `akerselva`
 - `akerselva_industri`
@@ -431,10 +430,11 @@ Count: 381
 - `cinemateket_oslo`
 - `colosseum_kino`
 - `daelenenga_idrettspark`
-- `dagbladet_akersgata`
 - `damstredet_telthusbakken`
 - `det_norske_teatret`
 - `eidsvolls_plass`
+- `ekebergsletta`
+- `elvestrekning_bla_brenneriveien`
 
 ### missing_popupDesc
 Count: 69
@@ -604,7 +604,7 @@ Count: 446
 - `bygdoy_roykenvika`
 
 ### missing_wonderkammer
-Count: 172
+Count: 171
 
 - `abelhaugen`
 - `aftenposten_akersgata`
@@ -659,23 +659,23 @@ Count: 172
 
 
 ## Recommended next batch order
-1. `nrk_huset_marienlyst`
-2. `aftenposten_akersgata`
-3. `dagbladet_akersgata`
-4. `klassekampen_redaksjon`
+1. `klassekampen_redaksjon`
+2. `nrk_huset_marienlyst`
+3. `aftenposten_akersgata`
+4. `dagbladet_akersgata`
 5. `sagene`
 6. `kampen`
-7. `psykologisk_institutt_uio`
-8. `kampen_park`
-9. `good_game_redaksjon`
-10. `loelva_historisk`
-11. `trosterud_friomrade`
-12. `furuset_haugerud_skogbelte`
-13. `hellerud_gard`
-14. `toyen_torg_pop`
-15. `oslo_s_pop`
-16. `radhusplassen_pop`
-17. `slottsplassen_pop`
-18. `youngstorget_pop`
-19. `barcode_pop`
-20. `bjørvika_pop`
+7. `kampen_park`
+8. `good_game_redaksjon`
+9. `loelva_historisk`
+10. `trosterud_friomrade`
+11. `furuset_haugerud_skogbelte`
+12. `hellerud_gard`
+13. `toyen_torg_pop`
+14. `oslo_s_pop`
+15. `radhusplassen_pop`
+16. `slottsplassen_pop`
+17. `youngstorget_pop`
+18. `barcode_pop`
+19. `bjørvika_pop`
+20. `schous_plass`
