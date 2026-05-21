@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-21T05:13:26.634Z
+Generert: 2026-05-21T09:51:12.742Z
 
 ## Totalsammendrag
 
@@ -20,7 +20,7 @@ Generert: 2026-05-21T05:13:26.634Z
 ## Dekning per datasett (placeId/places)
 
 - **quiz**: 92/449 steder dekket (mangler 357, ugyldige refs 569)
-- **people**: 78/449 steder dekket (mangler 371, ugyldige refs 16)
+- **people**: 81/449 steder dekket (mangler 368, ugyldige refs 16)
 - **nature**: 36/449 steder dekket (mangler 413, ugyldige refs 3)
 - **badges**: 0/449 steder dekket (mangler 449, ugyldige refs 0)
 - **wonderkammer**: 127/449 steder dekket (mangler 322, ugyldige refs 35)

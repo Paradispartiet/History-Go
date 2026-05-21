@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-21T05:13:26.688Z
+Generert: 2026-05-21T09:51:13.426Z
 
 ## Sammendrag
 
-- People totalt: **193**
+- People totalt: **200**
 - Places totalt: **449**
-- Places med people: **78**
-- Places uten people: **371**
-- People-place-lenker: **270**
+- Places med people: **81**
+- Places uten people: **368**
+- People-place-lenker: **277**
 - People koblet til flere gyldige steder: **81**
 - People uten gyldig sted: **19**
 - Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **167**
+- Duplikate place-referanser inne på people: **174**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -26,7 +26,7 @@ Generert: 2026-05-21T05:13:26.688Z
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
-| media | 11 | 3 | 8 | 8 | 7 |
+| media | 11 | 6 | 5 | 15 | 14 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 59 | 4 | 55 | 6 | 6 |
@@ -43,32 +43,35 @@ Generert: 2026-05-21T05:13:26.688Z
 - litteratur: 38
 - politikk: 27
 - middelalder: 19
+- media: 14
 - subkultur: 13
 - vitenskap: 12
 - krig: 11
 - kunst: 11
 - musikk: 10
+- avis: 8
+- presse: 8
+- redaksjon: 8
 - sport: 8
-- media: 7
 - natur: 7
 - by: 6
+- tv: 6
+- journalistikk: 5
 - arbeiderbevegelse: 4
-- avis: 4
 - borgerkrigstid: 4
 - filantrop: 4
+- kringkasting: 4
 - naeringsliv: 4
-- presse: 4
-- redaksjon: 4
 - mesen: 3
+- programleder: 3
 - satire: 3
-- tv: 3
 - arkitektur: 2
-- journalistikk: 2
-- kringkasting: 2
+- kommentarjournalistikk: 2
 - militaerhistorie: 2
 - rett: 2
 - vikingtid: 2
 - absurd humor: 1
+- allmennkringkasting: 1
 - bibliotek: 1
 - boksamling: 1
 - byutvikling: 1
@@ -80,15 +83,12 @@ Generert: 2026-05-21T05:13:26.688Z
 - kulturarv: 1
 - kunnskap: 1
 - kunstsamler: 1
+- nettavis: 1
 - nobel: 1
 - nyhetsformidling: 1
 - observasjonell humor: 1
 - parodi: 1
 - personlig humor: 1
-- populaerkultur: 1
-- publisering: 1
-- samfunnsanalyse: 1
-- samfunnsengasjement: 1
 
 ## Steder med flest people
 
@@ -116,7 +116,7 @@ Generert: 2026-05-21T05:13:26.688Z
 - litteraturhuset (Litteraturhuset) – 3
 - mollergata_19 (Møllergata 19) – 3
 - nasjonalbiblioteket (Nasjonalbiblioteket) – 3
-- observatoriet (Observatoriet) – 3
+- nrk_huset_marienlyst (NRK-huset på Marienlyst) – 3
 
 ## Ugyldige place-referanser
 
@@ -239,7 +239,7 @@ Generert: 2026-05-21T05:13:26.688Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 67 flere
+- ... 74 flere
 
 ## Anbefalt første people-batch
 
