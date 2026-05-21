@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T19:59:00.453Z
+Generated: 2026-05-20T21:51:00.521Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **179**
+- Files checked: **181**
 - Hard errors: **0**
-- Warnings: **3163**
+- Warnings: **3144**
 
 ## Not configured
 - none
@@ -23,17 +23,17 @@ Generated: 2026-05-20T19:59:00.453Z
 | trosterud_friomrade | 10 | 10 | 0 |
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
 | hellerud_gard | 10 | 10 | 0 |
-| colosseum_kino | 10 | 10 | 0 |
-| house_of_nerds | 10 | 10 | 0 |
-| folketeateret | 10 | 10 | 0 |
-| latter | 10 | 10 | 0 |
-| aker_brygge_pop | 10 | 10 | 0 |
-| frognerstranda_pop | 10 | 10 | 0 |
-| majorstuen_krysset_pop | 10 | 10 | 0 |
-| grand_hotel_pop | 10 | 10 | 0 |
-| vaterland_pop | 10 | 10 | 0 |
-| gronlandsleiret_pop | 10 | 10 | 0 |
 | toyen_torg_pop | 10 | 10 | 0 |
+| oslo_s_pop | 10 | 10 | 0 |
+| radhusplassen_pop | 10 | 10 | 0 |
+| slottsplassen_pop | 10 | 10 | 0 |
+| youngstorget_pop | 10 | 10 | 0 |
+| barcode_pop | 10 | 10 | 0 |
+| bjørvika_pop | 10 | 10 | 0 |
+| schous_plass | 9 | 9 | 0 |
+| vaterland | 9 | 9 | 0 |
+| tullin | 9 | 9 | 0 |
+| okern | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -263,10 +263,9 @@ Count: 406
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 259
+Count: 249
 
 - `abelhaugen`
-- `aker_brygge_pop`
 - `akerselva_industri`
 - `akershus_energi`
 - `akershus_kaier`
@@ -282,16 +281,13 @@ Count: 259
 - `bryn_industriomrade`
 - `camilla_collett_statue`
 - `christiania_seildugsfabrik`
-- `colosseum_kino`
 - `deichman_grunerlokka`
 - `det_norske_teatret`
 - `eidsvolls_plass`
 - `ekebergsletta`
 - `eldorado_bokhandel`
-- `folketeateret`
 - `fornebu_teknologipark`
 - `frogner_stadion`
-- `frognerstranda_pop`
 - `frysja_industriomrade`
 - `furuset_forum`
 - `galgeberg`
@@ -299,11 +295,9 @@ Count: 259
 - `gamle_radhus`
 - `gamlebyen_skole`
 - `good_game_redaksjon`
-- `grand_hotel_pop`
 - `grensen_kjopesenter`
 - `gressbanen`
 - `gronland_underganger`
-- `gronlandsleiret_pop`
 - `gronlikaia`
 - `grotta`
 - `grunerlokka_bakgardsvegger`
@@ -313,8 +307,14 @@ Count: 259
 - `havnelageret`
 - `henrik_wergeland_statue`
 - `holmenkollen_nasjonalanlegg`
-- `house_of_nerds`
 - `ibsen_quotes`
+- `inger_hagerups_plass`
+- `intility_arena`
+- `jernbanetorget_trafikknutepunkt`
+- `jernbaneverkstedet_lodalen`
+- `john_dee`
+- `jordal_amfi`
+- `kampen_park`
 
 ### missing_links
 Count: 445
@@ -592,10 +592,9 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 177
+Count: 168
 
 - `abelhaugen`
-- `aker_brygge_pop`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
 - `akershus_energi`
@@ -624,11 +623,9 @@ Count: 177
 - `ekebergsletta`
 - `eldorado_bokhandel`
 - `elvestrekning_bla_brenneriveien`
-- `folketeateret`
 - `fornebu_teknologipark`
 - `fossveien_elvestrekning`
 - `frogner_stadion`
-- `frognerstranda_pop`
 - `frysja_industriomrade`
 - `frysjadammen`
 - `furuset_forum`
@@ -640,10 +637,13 @@ Count: 177
 - `gamle_trikkestallen`
 - `glads_molle`
 - `good_game_redaksjon`
-- `grand_hotel_pop`
 - `grensen_kjopesenter`
 - `gressbanen`
 - `gressholmen`
+- `grini_fangeleir`
+- `gronland_basarene`
+- `gronland_kirke`
+- `gronland_underganger`
 
 
 ## Recommended next batch order
@@ -656,14 +656,14 @@ Count: 177
 7. `trosterud_friomrade`
 8. `furuset_haugerud_skogbelte`
 9. `hellerud_gard`
-10. `colosseum_kino`
-11. `house_of_nerds`
-12. `folketeateret`
-13. `latter`
-14. `aker_brygge_pop`
-15. `frognerstranda_pop`
-16. `majorstuen_krysset_pop`
-17. `grand_hotel_pop`
-18. `vaterland_pop`
-19. `gronlandsleiret_pop`
-20. `toyen_torg_pop`
+10. `toyen_torg_pop`
+11. `oslo_s_pop`
+12. `radhusplassen_pop`
+13. `slottsplassen_pop`
+14. `youngstorget_pop`
+15. `barcode_pop`
+16. `bjørvika_pop`
+17. `schous_plass`
+18. `vaterland`
+19. `tullin`
+20. `okern`
