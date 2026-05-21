@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T21:51:00.521Z
+Generated: 2026-05-21T09:58:03.495Z
 
 ## Total summary
-- Places: **445**
+- Places: **449**
 - Files checked: **181**
 - Hard errors: **0**
-- Warnings: **3144**
+- Warnings: **3196**
 
 ## Not configured
 - none
@@ -14,6 +14,10 @@ Generated: 2026-05-20T21:51:00.521Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
+| nrk_huset_marienlyst | 13 | 13 | 0 |
+| aftenposten_akersgata | 13 | 13 | 0 |
+| dagbladet_akersgata | 13 | 13 | 0 |
+| klassekampen_redaksjon | 13 | 13 | 0 |
 | sagene | 11 | 11 | 0 |
 | kampen | 11 | 11 | 0 |
 | psykologisk_institutt_uio | 11 | 11 | 0 |
@@ -30,15 +34,12 @@ Generated: 2026-05-20T21:51:00.521Z
 | youngstorget_pop | 10 | 10 | 0 |
 | barcode_pop | 10 | 10 | 0 |
 | bjørvika_pop | 10 | 10 | 0 |
-| schous_plass | 9 | 9 | 0 |
-| vaterland | 9 | 9 | 0 |
-| tullin | 9 | 9 | 0 |
-| okern | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
-Count: 409
+Count: 413
 
+- `aftenposten_akersgata`
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
@@ -88,7 +89,6 @@ Count: 409
 - `bygdoy_roykenvika`
 - `camilla_collett_statue`
 - `carl_berner_plass`
-- `chateau_neuf`
 
 ### missing_emne_ids
 Count: 39
@@ -134,9 +134,10 @@ Count: 39
 - `vaterland`
 
 ### missing_groundhopper
-Count: 445
+Count: 449
 
 - `abelhaugen`
+- `aftenposten_akersgata`
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
@@ -185,32 +186,44 @@ Count: 445
 - `bygdoy_kongeskogen`
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
 
 ### missing_i18n_en
-Count: 3
+Count: 7
 
+- `aftenposten_akersgata`
+- `dagbladet_akersgata`
 - `kampen`
+- `klassekampen_redaksjon`
+- `nrk_huset_marienlyst`
 - `psykologisk_institutt_uio`
 - `sagene`
 
 ### missing_i18n_es
-Count: 3
+Count: 7
 
+- `aftenposten_akersgata`
+- `dagbladet_akersgata`
 - `kampen`
+- `klassekampen_redaksjon`
+- `nrk_huset_marienlyst`
 - `psykologisk_institutt_uio`
 - `sagene`
 
 ### missing_i18n_pt
-Count: 3
+Count: 7
 
+- `aftenposten_akersgata`
+- `dagbladet_akersgata`
 - `kampen`
+- `klassekampen_redaksjon`
+- `nrk_huset_marienlyst`
 - `psykologisk_institutt_uio`
 - `sagene`
 
 ### missing_image
-Count: 406
+Count: 410
 
+- `aftenposten_akersgata`
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
@@ -260,12 +273,12 @@ Count: 406
 - `bygdoy_roykenvika`
 - `carl_berner_plass`
 - `chateau_neuf`
-- `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 249
+Count: 253
 
 - `abelhaugen`
+- `aftenposten_akersgata`
 - `akerselva_industri`
 - `akershus_energi`
 - `akershus_kaier`
@@ -281,6 +294,7 @@ Count: 249
 - `bryn_industriomrade`
 - `camilla_collett_statue`
 - `christiania_seildugsfabrik`
+- `dagbladet_akersgata`
 - `deichman_grunerlokka`
 - `det_norske_teatret`
 - `eidsvolls_plass`
@@ -313,13 +327,12 @@ Count: 249
 - `jernbanetorget_trafikknutepunkt`
 - `jernbaneverkstedet_lodalen`
 - `john_dee`
-- `jordal_amfi`
-- `kampen_park`
 
 ### missing_links
-Count: 445
+Count: 449
 
 - `abelhaugen`
+- `aftenposten_akersgata`
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
@@ -368,12 +381,12 @@ Count: 445
 - `bygdoy_kongeskogen`
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
 
 ### missing_people_linkage
-Count: 377
+Count: 381
 
 - `abelhaugen`
+- `aftenposten_akersgata`
 - `aker_brygge_pop`
 - `akerselva`
 - `akerselva_industri`
@@ -418,15 +431,15 @@ Count: 377
 - `cinemateket_oslo`
 - `colosseum_kino`
 - `daelenenga_idrettspark`
+- `dagbladet_akersgata`
 - `damstredet_telthusbakken`
 - `det_norske_teatret`
 - `eidsvolls_plass`
-- `ekebergsletta`
-- `elvestrekning_bla_brenneriveien`
 
 ### missing_popupDesc
-Count: 65
+Count: 69
 
+- `aftenposten_akersgata`
 - `aker_brygge_pop`
 - `alna_bryn`
 - `alna_smalvoll`
@@ -447,6 +460,7 @@ Count: 65
 - `chateau_neuf`
 - `cinemateket_oslo`
 - `colosseum_kino`
+- `dagbladet_akersgata`
 - `folketeateret`
 - `frognerparken`
 - `frognerstranda_pop`
@@ -461,6 +475,7 @@ Count: 65
 - `house_of_nerds`
 - `kampen`
 - `kampen_park`
+- `klassekampen_redaksjon`
 - `kvaernerbyen_alna`
 - `latter`
 - `ljanselva_bunnefjorden`
@@ -471,12 +486,9 @@ Count: 65
 - `loelva_historisk`
 - `majorstuen_krysset_pop`
 - `noklevann_ljanselva_start`
+- `nrk_huset_marienlyst`
 - `okern`
 - `oslo_s_pop`
-- `ostensjovannet_fugletarn`
-- `ostensjovannet_nord`
-- `ostensjovannet_sivbelte`
-- `ostensjovannet_sor`
 
 ### missing_popupImage
 Count: 1
@@ -484,8 +496,9 @@ Count: 1
 - `vinmonopolet_lager`
 
 ### missing_quiz_profile
-Count: 89
+Count: 93
 
+- `aftenposten_akersgata`
 - `aker_brygge_pop`
 - `aktivitet_rudolf_nilsens_plass`
 - `alna_bryn`
@@ -508,6 +521,7 @@ Count: 89
 - `chateau_neuf`
 - `cinemateket_oslo`
 - `colosseum_kino`
+- `dagbladet_akersgata`
 - `folketeateret`
 - `frognerparken`
 - `frognerstranda_pop`
@@ -525,6 +539,7 @@ Count: 89
 - `house_of_nerds`
 - `kampen`
 - `kampen_park`
+- `klassekampen_redaksjon`
 - `kolstadgata_toyen_vegger`
 - `kuba_akselpassasjer`
 - `kvaernerbyen_alna`
@@ -533,14 +548,12 @@ Count: 89
 - `lekeplass_botsparken`
 - `lekeplass_frognerborgen`
 - `lekeplass_kampen_park`
-- `lekeplass_kirsebarlunden`
-- `lekeplass_olaf_ryes_plass`
-- `lekeplass_snippen`
 
 ### missing_spraakleksikon
-Count: 442
+Count: 446
 
 - `abelhaugen`
+- `aftenposten_akersgata`
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
@@ -589,12 +602,12 @@ Count: 442
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
-- `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 168
+Count: 172
 
 - `abelhaugen`
+- `aftenposten_akersgata`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
 - `akershus_energi`
@@ -616,6 +629,7 @@ Count: 168
 - `bryn_industriomrade`
 - `camilla_collett_statue`
 - `christiania_seildugsfabrik`
+- `dagbladet_akersgata`
 - `damstredet_telthusbakken`
 - `det_norske_teatret`
 - `eidsvolls_plass`
@@ -642,28 +656,26 @@ Count: 168
 - `gressholmen`
 - `grini_fangeleir`
 - `gronland_basarene`
-- `gronland_kirke`
-- `gronland_underganger`
 
 
 ## Recommended next batch order
-1. `sagene`
-2. `kampen`
-3. `psykologisk_institutt_uio`
-4. `kampen_park`
-5. `good_game_redaksjon`
-6. `loelva_historisk`
-7. `trosterud_friomrade`
-8. `furuset_haugerud_skogbelte`
-9. `hellerud_gard`
-10. `toyen_torg_pop`
-11. `oslo_s_pop`
-12. `radhusplassen_pop`
-13. `slottsplassen_pop`
-14. `youngstorget_pop`
-15. `barcode_pop`
-16. `bjørvika_pop`
-17. `schous_plass`
-18. `vaterland`
-19. `tullin`
-20. `okern`
+1. `nrk_huset_marienlyst`
+2. `aftenposten_akersgata`
+3. `dagbladet_akersgata`
+4. `klassekampen_redaksjon`
+5. `sagene`
+6. `kampen`
+7. `psykologisk_institutt_uio`
+8. `kampen_park`
+9. `good_game_redaksjon`
+10. `loelva_historisk`
+11. `trosterud_friomrade`
+12. `furuset_haugerud_skogbelte`
+13. `hellerud_gard`
+14. `toyen_torg_pop`
+15. `oslo_s_pop`
+16. `radhusplassen_pop`
+17. `slottsplassen_pop`
+18. `youngstorget_pop`
+19. `barcode_pop`
+20. `bjørvika_pop`
