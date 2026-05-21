@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-20T21:51:00.521Z
+Generated: 2026-05-21T04:58:48.707Z
 
 ## Total summary
 - Places: **445**
-- Files checked: **181**
+- Files checked: **183**
 - Hard errors: **0**
-- Warnings: **3144**
+- Warnings: **3130**
 
 ## Not configured
 - none
@@ -23,17 +23,17 @@ Generated: 2026-05-20T21:51:00.521Z
 | trosterud_friomrade | 10 | 10 | 0 |
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
 | hellerud_gard | 10 | 10 | 0 |
-| toyen_torg_pop | 10 | 10 | 0 |
-| oslo_s_pop | 10 | 10 | 0 |
-| radhusplassen_pop | 10 | 10 | 0 |
-| slottsplassen_pop | 10 | 10 | 0 |
-| youngstorget_pop | 10 | 10 | 0 |
-| barcode_pop | 10 | 10 | 0 |
-| bjørvika_pop | 10 | 10 | 0 |
 | schous_plass | 9 | 9 | 0 |
 | vaterland | 9 | 9 | 0 |
 | tullin | 9 | 9 | 0 |
 | okern | 9 | 9 | 0 |
+| skoyen | 9 | 9 | 0 |
+| torshov | 9 | 9 | 0 |
+| grorud | 9 | 9 | 0 |
+| gamlebyen | 9 | 9 | 0 |
+| frognerparken | 9 | 9 | 0 |
+| vg_huset | 9 | 9 | 0 |
+| alnaelvstien | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -263,7 +263,7 @@ Count: 406
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 249
+Count: 242
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -273,8 +273,6 @@ Count: 249
 - `aktivitet_rudolf_nilsens_plass`
 - `alexander_kiellands_plass`
 - `alf_proysen_statue_nittedal`
-- `barcode_pop`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `botsfengselet`
@@ -315,6 +313,8 @@ Count: 249
 - `john_dee`
 - `jordal_amfi`
 - `kampen_park`
+- `kfum_arena`
+- `kolstadgata_toyen_vegger`
 
 ### missing_links
 Count: 445
@@ -592,7 +592,7 @@ Count: 442
 - `camilla_collett_statue`
 
 ### missing_wonderkammer
-Count: 168
+Count: 161
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -603,12 +603,10 @@ Count: 168
 - `alf_proysen_statue_nittedal`
 - `alnaelva_hovedsteder`
 - `ankerbrua`
-- `barcode_pop`
 - `beierbrua`
 - `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
-- `bjørvika_pop`
 - `blaa`
 - `bogerudmyra`
 - `bogstadveien`
@@ -644,6 +642,8 @@ Count: 168
 - `gronland_basarene`
 - `gronland_kirke`
 - `gronland_underganger`
+- `gronlandsleiret`
+- `gronlikaia`
 
 
 ## Recommended next batch order
@@ -656,14 +656,14 @@ Count: 168
 7. `trosterud_friomrade`
 8. `furuset_haugerud_skogbelte`
 9. `hellerud_gard`
-10. `toyen_torg_pop`
-11. `oslo_s_pop`
-12. `radhusplassen_pop`
-13. `slottsplassen_pop`
-14. `youngstorget_pop`
-15. `barcode_pop`
-16. `bjørvika_pop`
-17. `schous_plass`
-18. `vaterland`
-19. `tullin`
-20. `okern`
+10. `schous_plass`
+11. `vaterland`
+12. `tullin`
+13. `okern`
+14. `skoyen`
+15. `torshov`
+16. `grorud`
+17. `gamlebyen`
+18. `frognerparken`
+19. `vg_huset`
+20. `alnaelvstien`
