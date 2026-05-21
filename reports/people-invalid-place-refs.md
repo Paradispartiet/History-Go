@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-21T09:45:11.167Z
+Generated: 2026-05-21T09:51:12.604Z
 
 ## Sammendrag
 - People-filer lest: **17**
-- People lest: **203**
+- People lest: **200**
 - People med ugyldige refs: **9**
 - Ugyldige refs: **16**
 - Unike ugyldige placeId-er: **12**
 - People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **177**
+- Duplikate interne place-referanser: **174**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -260,9 +260,6 @@ Generated: 2026-05-21T09:45:11.167Z
 - data/people/media/oslo/people_media_oslo.json :: harald_stanghelle (Harald Stanghelle) -> aftenposten_akersgata x2
 - data/people/media/oslo/people_media_oslo.json :: john_olav_egeland (John Olav Egeland) -> dagbladet_akersgata x2
 - data/people/media/oslo/people_media_oslo.json :: frode_hansen (Frode Hansen) -> dagbladet_akersgata x2
-- data/people/media/oslo/people_media_oslo.json :: bjorg_tulinius (Bjørg Tulinius) -> klassekampen_redaksjon x2
-- data/people/media/oslo/people_media_oslo.json :: mari_skeie_ljones (Mari Skeie Ljones) -> good_game_redaksjon x2
-- data/people/media/oslo/people_media_oslo.json :: ruben_gran (Ruben Gran) -> good_game_redaksjon x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
