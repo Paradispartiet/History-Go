@@ -97,11 +97,11 @@ function getEpoke(domain, epokeId) {
 
 // ✅ Epoker: hvilke domener/merker som har epoke-fil
 // Nøkkelen (domain) må matche det du bruker ellers: "film", "tv", "sport", osv.
-const EPOKER_FILES = {
-  film_tv: "data/epoker/epoker_film.json",
-  tv: "data/epoker/epoker_TV.json",
-  sport: "data/epoker/epoker_sport.json",
-};
+const EPOKER_FILES = [
+  { domain: "film", path: "data/epoker/epoker_film.json", aliases: ["film_tv"] },
+  { domain: "tv", path: "data/epoker/epoker_TV.json" },
+  { domain: "sport", path: "data/epoker/epoker_sport.json" },
+];
 
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
   const raw = payload ?? null;
@@ -150,7 +150,11 @@ const HGEpokerRuntime = (() => {
       status.missingFiles = [];
       status.failedFiles = [];
 
-      for (const [declaredDomain, path] of Object.entries(EPOKER_FILES)) {
+      for (const file of epArr(EPOKER_FILES)) {
+        const declaredDomain = epS(file?.domain);
+        const path = epS(file?.path);
+        const aliases = epArr(file?.aliases).map(epS).filter(Boolean);
+        if (!declaredDomain || !path) continue;
         try {
           const res = await fetch(path, { cache: "no-store" });
           if (!res.ok) {
@@ -162,7 +166,7 @@ const HGEpokerRuntime = (() => {
 
           const payload = await res.json();
           const normalized = normalizeEpokerFilePayload(payload, declaredDomain);
-          const domain = epS(normalized.domain || declaredDomain);
+          const domain = epS(declaredDomain || normalized.domain);
           if (!domain) {
             status.failedFiles.push({ domain: declaredDomain, path, reason: "missing domain" });
             continue;
@@ -170,6 +174,13 @@ const HGEpokerRuntime = (() => {
 
           if (!epokerByDomain[domain]) epokerByDomain[domain] = [];
           epokerByDomain[domain].push(...epArr(normalized.list));
+
+          for (const alias of aliases) {
+            if (!alias) continue;
+            if (!epokerByDomain[alias]) epokerByDomain[alias] = [];
+            epokerByDomain[alias].push(...epArr(normalized.list));
+          }
+
           status.domainsLoaded.push({ domain, path, count: epArr(normalized.list).length });
         } catch (err) {
           status.failedFiles.push({
