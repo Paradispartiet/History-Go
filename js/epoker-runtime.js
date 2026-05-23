@@ -5,6 +5,7 @@
 function epArr(x) { return Array.isArray(x) ? x : []; }
 function epS(x) { return String(x ?? "").trim(); }
 function epN(x) {
+  if (x == null || x === "") return null;
   const v = Number(x);
   return Number.isFinite(v) ? v : null;
 }
@@ -95,12 +96,30 @@ function getEpoke(domain, epokeId) {
   return null;
 }
 
-// ✅ Epoker: hvilke domener/merker som har epoke-fil
-// Nøkkelen (domain) må matche det du bruker ellers: "film", "tv", "sport", osv.
+const MAIN_DOMAINS = [
+  "historie",
+  "vitenskap",
+  "kunst",
+  "musikk",
+  "natur",
+  "sport",
+  "by",
+  "politikk",
+  "populaerkultur",
+  "subkultur",
+  "litteratur",
+  "naeringsliv",
+  "media",
+  "film_tv",
+  "psykologi",
+];
+
+// ✅ Epoker: peker kun til faktiske filer som finnes i repo.
 const EPOKER_FILES = [
-  { domain: "film", path: "data/epoker/epoker_film.json", aliases: ["film_tv"] },
+  { domain: "film_tv", path: "data/epoker/epoker_film.json", aliases: ["film"] },
   { domain: "tv", path: "data/epoker/epoker_TV.json" },
   { domain: "sport", path: "data/epoker/epoker_sport.json" },
+  { domain: "by", path: "data/epoker/epoker_by.json" },
 ];
 
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
@@ -136,6 +155,7 @@ const HGEpokerRuntime = (() => {
     domainsLoaded: [],
     missingFiles: [],
     failedFiles: [],
+    missingDomains: [],
   };
 
   async function load() {
@@ -149,6 +169,7 @@ const HGEpokerRuntime = (() => {
       status.domainsLoaded = [];
       status.missingFiles = [];
       status.failedFiles = [];
+      status.missingDomains = [];
 
       for (const file of epArr(EPOKER_FILES)) {
         const declaredDomain = epS(file?.domain);
@@ -192,6 +213,7 @@ const HGEpokerRuntime = (() => {
       }
 
       const idx = buildEpokerRuntimeIndex(epokerByDomain);
+      status.missingDomains = MAIN_DOMAINS.filter((domain) => !idx.byDomain?.[domain]);
       window.EPOKER_INDEX = idx;
       cache = idx;
       status.loaded = true;
@@ -215,6 +237,7 @@ const HGEpokerRuntime = (() => {
       domainCounts,
       missingFiles: status.missingFiles.slice(),
       failedFiles: status.failedFiles.slice(),
+      missingDomains: status.missingDomains.slice(),
       startedAt: status.startedAt,
       finishedAt: status.finishedAt,
     };
