@@ -109,6 +109,7 @@
 
     return (
       toText(place?.domain) ||
+      toText(place?.category) ||
       toText(place?.categoryId) ||
       toText(place?.fag) ||
       null
@@ -168,7 +169,14 @@
     const epokeId = epoke ? toText(epoke.id) || null : explicitId;
     const epokeLabel = labelForEpoke(epoke);
 
-    const sortBase = startYear ?? year ?? Number.POSITIVE_INFINITY;
+    const sortBase =
+      startYear ??
+      year ??
+      toNumber(epoke?.start_year) ??
+      toNumber(epoke?.start) ??
+      toNumber(epoke?.from) ??
+      toNumber(epoke?.order) ??
+      Number.MAX_SAFE_INTEGER;
     const sortKey = Number.isFinite(sortBase) ? sortBase : Number.MAX_SAFE_INTEGER;
 
     return {
@@ -189,8 +197,23 @@
     return list.map((place) => resolvePlaceTime(place, options));
   }
 
+  function debugPlace(placeId) {
+    const list = Array.isArray(global.PLACES) ? global.PLACES : [];
+    const place = list.find((entry) => toText(entry?.id) === toText(placeId));
+
+    if (!place) {
+      console.log("[HGTimeResolver.debugPlace] place not found", placeId);
+      return null;
+    }
+
+    const result = resolvePlaceTime(place);
+    console.log("[HGTimeResolver.debugPlace]", { placeId: place.id, result });
+    return result;
+  }
+
   global.HGTimeResolver = {
     resolvePlaceTime,
-    resolveMany
+    resolveMany,
+    debugPlace
   };
 })(window);
