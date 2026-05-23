@@ -699,7 +699,8 @@
     place_id: ctx.place_id || null,
     person_id: ctx.person_id || null,
     field_id: ctx.field_id || null,
-    emner: Array.isArray(ctx.emner) ? ctx.emner.slice() : []
+    emner: Array.isArray(ctx.emner) ? ctx.emner.slice() : [],
+    candidate_concepts: Array.isArray(ctx.candidate_concepts) ? ctx.candidate_concepts.slice(0, 20) : []
   };
 }
   
