@@ -172,10 +172,10 @@
     const sortBase =
       startYear ??
       year ??
-      toNumber(place?.epoke?.start_year) ??
-      toNumber(place?.epoke?.start) ??
-      toNumber(place?.epoke?.from) ??
-      toNumber(place?.epoke?.order) ??
+      toNumber(epoke?.start_year) ??
+      toNumber(epoke?.start) ??
+      toNumber(epoke?.from) ??
+      toNumber(epoke?.order) ??
       Number.MAX_SAFE_INTEGER;
     const sortKey = Number.isFinite(sortBase) ? sortBase : Number.MAX_SAFE_INTEGER;
 
