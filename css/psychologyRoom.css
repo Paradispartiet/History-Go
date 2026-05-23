@@ -179,3 +179,92 @@
   border-left: 3px solid #ffabb4;
   padding-left: 10px;
 }
+
+.psychology-room-tabs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psychology-room-card {
+  display: grid;
+  gap: 8px;
+}
+
+.psychology-room-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.psychology-room-tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(247, 241, 232, 0.78);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.psychology-room-detail {
+  display: grid;
+  gap: 14px;
+}
+
+.psychology-room-link-list ul,
+.psychology-room-steps {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.psychology-room-link-list li,
+.psychology-room-steps li {
+  margin: 6px 0;
+  line-height: 1.45;
+}
+
+.psychology-room-day {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.psychology-room-day.is-done {
+  border-color: rgba(150, 255, 190, 0.35);
+  background: rgba(120, 255, 175, 0.08);
+}
+
+.psychology-room-day-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.psychology-room-day-head span {
+  color: rgba(247, 241, 232, 0.68);
+  font-size: 12px;
+}
+
+.psychology-room-safety-note {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(247, 241, 232, 0.72);
+  line-height: 1.45;
+}
+
+@media (max-width: 560px) {
+  .psychology-room-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .psychology-room-day-head {
+    display: grid;
+  }
+}
