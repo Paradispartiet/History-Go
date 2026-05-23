@@ -16,8 +16,8 @@ function epKey(domain, id) {
 
 // Støtter flere schema-varianter uten å kreve kanonisk format:
 // - id / epoke_id
-// - start_year / start / from
-// - end_year / end / to
+// - start_year / year_start / years.from / start / from
+// - end_year / year_end / years.to / end / to
 function buildEpokerRuntimeIndex(epokerByDomain) {
   const idx = {
     byKey: Object.create(null),       // "domain:id" -> epoke
@@ -44,10 +44,10 @@ function buildEpokerRuntimeIndex(epokerByDomain) {
       if (!id) continue;
 
       const start =
-        epN(e?.start_year) ?? epN(e?.start) ?? epN(e?.from) ?? null;
+        epN(e?.start_year) ?? epN(e?.year_start) ?? epN(e?.years?.from) ?? epN(e?.start) ?? epN(e?.from) ?? null;
 
       const end =
-        epN(e?.end_year) ?? epN(e?.end) ?? epN(e?.to) ?? null;
+        epN(e?.end_year) ?? epN(e?.year_end) ?? epN(e?.years?.to) ?? epN(e?.end) ?? epN(e?.to) ?? null;
 
       const ep = { ...(e || {}), id, domain, start_year: start, end_year: end };
 
@@ -98,20 +98,130 @@ function getEpoke(domain, epokeId) {
 // ✅ Epoker: hvilke domener/merker som har epoke-fil
 // Nøkkelen (domain) må matche det du bruker ellers: "film", "tv", "sport", osv.
 const EPOKER_FILES = {
-  historie:       "data/epoker_historie.json",
-  vitenskap:      "data/epoker_vitenskap.json",
-  kunst:          "data/epoker_kunst.json",
-  by:             "data/epoker_by.json",
-  musikk:         "data/epoker_musikk.json",
-  litteratur:     "data/epoker_litteratur.json",
-  natur:          "data/epoker_natur.json",
-  sport:          "data/epoker_sport.json",
-  politikk:       "data/epoker_politikk.json",
-  naeringsliv:    "data/epoker_naeringsliv.json",
-  populaerkultur: "data/epoker_populaerkultur.json",
-  subkultur:      "data/epoker_subkultur.json",
-  film_tv:        "data/epoker_film_tv.json",
-  scenekunst:     "data/epoker_scenekunst.json",
-  media:          "data/epoker_media.json",
-  psykologi:      "data/epoker_psykologi.json",
+  film_tv: "data/epoker/epoker_film.json",
+  tv: "data/epoker/epoker_TV.json",
+  sport: "data/epoker/epoker_sport.json",
 };
+
+function normalizeEpokerFilePayload(payload, fallbackDomain) {
+  const raw = payload ?? null;
+  if (!raw) return { domain: epS(fallbackDomain), list: [] };
+
+  if (Array.isArray(raw)) {
+    return {
+      domain: epS(fallbackDomain),
+      list: raw
+    };
+  }
+
+  const obj = typeof raw === "object" ? raw : {};
+  const domain = epS(obj.domain_id || obj.domain || fallbackDomain);
+
+  const list =
+    epArr(obj.macro_epoker).length ? epArr(obj.macro_epoker) :
+    epArr(obj.epoker).length ? epArr(obj.epoker) :
+    epArr(obj.items).length ? epArr(obj.items) :
+    [] ;
+
+  return { domain, list };
+}
+
+const HGEpokerRuntime = (() => {
+  let loadPromise = null;
+  let cache = null;
+  const status = {
+    loaded: false,
+    startedAt: null,
+    finishedAt: null,
+    domainsLoaded: [],
+    missingFiles: [],
+    failedFiles: [],
+  };
+
+  async function load() {
+    if (cache) return cache;
+    if (loadPromise) return loadPromise;
+
+    status.startedAt = new Date().toISOString();
+
+    loadPromise = (async () => {
+      const epokerByDomain = Object.create(null);
+      status.domainsLoaded = [];
+      status.missingFiles = [];
+      status.failedFiles = [];
+
+      for (const [declaredDomain, path] of Object.entries(EPOKER_FILES)) {
+        try {
+          const res = await fetch(path, { cache: "no-store" });
+          if (!res.ok) {
+            const entry = { domain: declaredDomain, path, status: res.status };
+            if (res.status === 404) status.missingFiles.push(entry);
+            else status.failedFiles.push({ ...entry, reason: `HTTP ${res.status}` });
+            continue;
+          }
+
+          const payload = await res.json();
+          const normalized = normalizeEpokerFilePayload(payload, declaredDomain);
+          const domain = epS(normalized.domain || declaredDomain);
+          if (!domain) {
+            status.failedFiles.push({ domain: declaredDomain, path, reason: "missing domain" });
+            continue;
+          }
+
+          if (!epokerByDomain[domain]) epokerByDomain[domain] = [];
+          epokerByDomain[domain].push(...epArr(normalized.list));
+          status.domainsLoaded.push({ domain, path, count: epArr(normalized.list).length });
+        } catch (err) {
+          status.failedFiles.push({
+            domain: declaredDomain,
+            path,
+            reason: err instanceof Error ? err.message : String(err),
+          });
+        }
+      }
+
+      const idx = buildEpokerRuntimeIndex(epokerByDomain);
+      window.EPOKER_INDEX = idx;
+      cache = idx;
+      status.loaded = true;
+      status.finishedAt = new Date().toISOString();
+      return idx;
+    })();
+
+    return loadPromise;
+  }
+
+  function debug() {
+    const index = window.EPOKER_INDEX || null;
+    const byDomain = index?.byDomain || {};
+    const domainCounts = Object.fromEntries(
+      Object.entries(byDomain).map(([domain, dom]) => [domain, epArr(dom?.list).length])
+    );
+
+    const info = {
+      hasIndex: Boolean(index),
+      loadedDomains: Object.keys(byDomain),
+      domainCounts,
+      missingFiles: status.missingFiles.slice(),
+      failedFiles: status.failedFiles.slice(),
+      startedAt: status.startedAt,
+      finishedAt: status.finishedAt,
+    };
+
+    console.log("[HGEpokerRuntime.debug]", info);
+    return info;
+  }
+
+  return {
+    load,
+    debug,
+    ready: null,
+    get status() { return { ...status }; },
+  };
+})();
+
+window.HGEpokerRuntime = HGEpokerRuntime;
+window.HGEpokerRuntime.ready = window.HGEpokerRuntime.load().catch((err) => {
+  console.warn("[HGEpokerRuntime] load failed", err);
+  return window.EPOKER_INDEX || null;
+});
