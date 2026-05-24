@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T15:03:47.784Z
+Generated: 2026-05-24T15:57:52.001Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3046**
+- Warnings: **3020**
 
 ## Not configured
 - none
@@ -14,26 +14,26 @@ Generated: 2026-05-24T15:03:47.784Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| sagene | 11 | 11 | 0 |
-| kampen | 11 | 11 | 0 |
-| klassekampen_redaksjon | 11 | 11 | 0 |
-| nrk_huset_marienlyst | 10 | 10 | 0 |
-| aftenposten_akersgata | 10 | 10 | 0 |
-| dagbladet_akersgata | 10 | 10 | 0 |
-| kampen_park | 9 | 9 | 0 |
-| trosterud_friomrade | 9 | 9 | 0 |
-| furuset_haugerud_skogbelte | 9 | 9 | 0 |
-| hellerud_gard | 9 | 9 | 0 |
-| ostensjovannet_nord | 9 | 9 | 0 |
-| ostensjovannet_fugletarn | 9 | 9 | 0 |
-| ostensjovannet_sivbelte | 9 | 9 | 0 |
-| ostensjovannet_sor | 9 | 9 | 0 |
-| bogerudmyra | 9 | 9 | 0 |
-| cinemateket_oslo | 9 | 9 | 0 |
-| colosseum_kino | 9 | 9 | 0 |
+| sagene | 10 | 10 | 0 |
+| kampen | 10 | 10 | 0 |
+| klassekampen_redaksjon | 10 | 10 | 0 |
+| nrk_huset_marienlyst | 9 | 9 | 0 |
+| aftenposten_akersgata | 9 | 9 | 0 |
+| dagbladet_akersgata | 9 | 9 | 0 |
 | vulkan_murvegger | 9 | 9 | 0 |
 | hausmannsgate_aksen | 9 | 9 | 0 |
 | kolstadgata_toyen_vegger | 9 | 9 | 0 |
+| gronland_underganger | 9 | 9 | 0 |
+| nybrua_pilarrom | 9 | 9 | 0 |
+| schweigaards_gate_lodalen | 9 | 9 | 0 |
+| kuba_akselpassasjer | 9 | 9 | 0 |
+| grunerlokka_bakgardsvegger | 9 | 9 | 0 |
+| psykologisk_institutt_uio | 9 | 9 | 0 |
+| schous_plass | 8 | 8 | 0 |
+| tullin | 8 | 8 | 0 |
+| okern | 8 | 8 | 0 |
+| skoyen | 8 | 8 | 0 |
+| torshov | 8 | 8 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -435,36 +435,6 @@ Count: 368
 - `fornebu_teknologipark`
 - `fossveien_elvestrekning`
 
-### missing_popupDesc
-Count: 26
-
-- `aftenposten_akersgata`
-- `bogerudmyra`
-- `chateau_neuf`
-- `cinemateket_oslo`
-- `colosseum_kino`
-- `dagbladet_akersgata`
-- `folketeateret`
-- `frognerstranda`
-- `furuset_haugerud_skogbelte`
-- `good_game_redaksjon`
-- `grand_hotel`
-- `hellerud_gard`
-- `house_of_nerds`
-- `kampen`
-- `kampen_park`
-- `klassekampen_redaksjon`
-- `latter`
-- `nrk_huset_marienlyst`
-- `ostensjovannet_fugletarn`
-- `ostensjovannet_nord`
-- `ostensjovannet_sivbelte`
-- `ostensjovannet_sor`
-- `sagene`
-- `slottsplassen`
-- `trosterud_friomrade`
-- `vaterland`
-
 ### missing_popupImage
 Count: 1
 
@@ -640,17 +610,17 @@ Count: 153
 4. `nrk_huset_marienlyst`
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
-7. `kampen_park`
-8. `trosterud_friomrade`
-9. `furuset_haugerud_skogbelte`
-10. `hellerud_gard`
-11. `ostensjovannet_nord`
-12. `ostensjovannet_fugletarn`
-13. `ostensjovannet_sivbelte`
-14. `ostensjovannet_sor`
-15. `bogerudmyra`
-16. `cinemateket_oslo`
-17. `colosseum_kino`
-18. `vulkan_murvegger`
-19. `hausmannsgate_aksen`
-20. `kolstadgata_toyen_vegger`
+7. `vulkan_murvegger`
+8. `hausmannsgate_aksen`
+9. `kolstadgata_toyen_vegger`
+10. `gronland_underganger`
+11. `nybrua_pilarrom`
+12. `schweigaards_gate_lodalen`
+13. `kuba_akselpassasjer`
+14. `grunerlokka_bakgardsvegger`
+15. `psykologisk_institutt_uio`
+16. `schous_plass`
+17. `tullin`
+18. `okern`
+19. `skoyen`
+20. `torshov`
