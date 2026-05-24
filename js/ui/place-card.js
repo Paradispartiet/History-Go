@@ -614,6 +614,68 @@ function formatSubcategoryLabel(rawValue) {
     .replace(/\b\w/g, c => c.toUpperCase());
 }
 
+/**
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @param {PlaceCardBadge | null | undefined} placeBadge
+ * @returns {string[]}
+ */
+function getRelevantBadgeSubcategories(place, placeBadge) {
+  const badgeSubcategories = Array.isArray(placeBadge?.sub) ? placeBadge.sub : [];
+  if (!badgeSubcategories.length) return [];
+
+  const normalizeToken = (value) => String(value || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[\s-]+/g, "_")
+    .replace(/_+/g, "_");
+
+  const tokenPool = new Set();
+  const appendToken = (value) => {
+    const normalized = normalizeToken(value);
+    if (normalized) tokenPool.add(normalized);
+  };
+
+  const appendStringArray = (values) => {
+    if (!Array.isArray(values)) return;
+    for (const value of values) appendToken(value);
+  };
+
+  appendStringArray(place?.badges);
+  appendStringArray(place?.badgeIds);
+  appendStringArray(place?.merker);
+  appendStringArray(place?.merkeIds);
+  appendStringArray(place?.tags);
+  appendStringArray(place?.emne_ids);
+
+  const collectFromQuizProfile = (value) => {
+    if (typeof value === "string") {
+      appendToken(value);
+      return;
+    }
+    if (Array.isArray(value)) {
+      for (const item of value) collectFromQuizProfile(item);
+      return;
+    }
+    if (value && typeof value === "object") {
+      for (const nested of Object.values(value)) collectFromQuizProfile(nested);
+    }
+  };
+
+  collectFromQuizProfile(place?.quiz_profile);
+
+  return badgeSubcategories
+    .map((sub) => normalizeToken(sub))
+    .filter(Boolean)
+    .filter((subId, index, arr) => arr.indexOf(subId) === index)
+    .filter((subId) => {
+      for (const token of tokenPool) {
+        if (token === subId) return true;
+        if (token.includes(subId) || subId.includes(token)) return true;
+      }
+      return false;
+    });
+}
+
 // --- BADGES LIST + BADGES ICON ---
 if (badgesEl) {
   const BADGES_LIST =
@@ -658,7 +720,7 @@ if (badgesEl) {
     .filter(Boolean);
 
   const placeBadge = getBadgeForPlace(place, BADGES_LIST);
-  const badgeSubcategories = Array.isArray(placeBadge?.sub) ? placeBadge.sub : [];
+  const relevantSubcategories = getRelevantBadgeSubcategories(place, placeBadge);
 
   badgesEl.innerHTML = placeBadge
     ? `
@@ -666,13 +728,13 @@ if (badgesEl) {
         <strong>${placeBadge.name || placeBadge.title || placeBadge.id || "Badge"}</strong>
       </div>
       ${
-        badgeSubcategories.length
-          ? badgeSubcategories.map(sub => `
+        relevantSubcategories.length
+          ? relevantSubcategories.map(sub => `
             <div class="pc-badge">
               <span>${formatSubcategoryLabel(sub)}</span>
             </div>
           `).join("")
-          : `<div class="pc-empty">Ingen underkategorier definert for ${placeBadge.name || placeBadge.id}</div>`
+          : `<div class="pc-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`
       }
     `
     : `<div class="pc-empty">Badges.json mangler badge for category: ${String(place?.category || "ukjent").trim() || "ukjent"}</div>`;
@@ -683,7 +745,8 @@ if (badgesEl) {
       const label = placeBadge?.name || placeBadge?.title || placeBadge?.id || "Badge";
       badgesIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="${label}" title="${label}">`;
     } else {
-      setRoundLabel(badgesIcon, "🏅", badges.length);
+      const badgeCount = placeBadge ? (1 + relevantSubcategories.length) : 0;
+      setRoundLabel(badgesIcon, "🏅", badgeCount);
     }
   }
 }
