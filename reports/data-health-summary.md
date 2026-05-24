@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T10:45:51.955Z
+Generated: 2026-05-24T12:36:30.142Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3075**
+- Warnings: **3071**
 
 ## Not configured
 - none
@@ -20,10 +20,6 @@ Generated: 2026-05-24T10:45:51.955Z
 | nrk_huset_marienlyst | 10 | 10 | 0 |
 | aftenposten_akersgata | 10 | 10 | 0 |
 | dagbladet_akersgata | 10 | 10 | 0 |
-| torshov | 9 | 9 | 0 |
-| grorud | 9 | 9 | 0 |
-| gamlebyen | 9 | 9 | 0 |
-| frognerparken | 9 | 9 | 0 |
 | kampen_park | 9 | 9 | 0 |
 | vg_huset | 9 | 9 | 0 |
 | alnaelvstien | 9 | 9 | 0 |
@@ -34,6 +30,10 @@ Generated: 2026-05-24T10:45:51.955Z
 | alnabru_jernbane_og_logistikk | 9 | 9 | 0 |
 | alnsjoen_alna_kilde | 9 | 9 | 0 |
 | alnaparken | 9 | 9 | 0 |
+| groruddammen | 9 | 9 | 0 |
+| alna_smalvoll | 9 | 9 | 0 |
+| alna_bryn | 9 | 9 | 0 |
+| svartdalen | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,7 +436,7 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 55
+Count: 51
 
 - `aftenposten_akersgata`
 - `alna_bryn`
@@ -458,13 +458,10 @@ Count: 55
 - `colosseum_kino`
 - `dagbladet_akersgata`
 - `folketeateret`
-- `frognerparken`
 - `frognerstranda`
 - `furuset_haugerud_skogbelte`
-- `gamlebyen`
 - `good_game_redaksjon`
 - `grand_hotel`
-- `grorud`
 - `groruddammen`
 - `hellerud_gard`
 - `house_of_nerds`
@@ -488,6 +485,9 @@ Count: 55
 - `sagene`
 - `skraperudtjern`
 - `slottsplassen`
+- `svartdalen`
+- `trosterud_friomrade`
+- `vaterland`
 
 ### missing_popupImage
 Count: 1
@@ -664,17 +664,17 @@ Count: 153
 4. `nrk_huset_marienlyst`
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
-7. `torshov`
-8. `grorud`
-9. `gamlebyen`
-10. `frognerparken`
-11. `kampen_park`
-12. `vg_huset`
-13. `alnaelvstien`
-14. `loelva_historisk`
-15. `trosterud_friomrade`
-16. `furuset_haugerud_skogbelte`
-17. `hellerud_gard`
-18. `alnabru_jernbane_og_logistikk`
-19. `alnsjoen_alna_kilde`
-20. `alnaparken`
+7. `kampen_park`
+8. `vg_huset`
+9. `alnaelvstien`
+10. `loelva_historisk`
+11. `trosterud_friomrade`
+12. `furuset_haugerud_skogbelte`
+13. `hellerud_gard`
+14. `alnabru_jernbane_og_logistikk`
+15. `alnsjoen_alna_kilde`
+16. `alnaparken`
+17. `groruddammen`
+18. `alna_smalvoll`
+19. `alna_bryn`
+20. `svartdalen`
