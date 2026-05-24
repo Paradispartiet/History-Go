@@ -162,6 +162,7 @@ const PRECACHE_URLS = [
   "js/Civication/ui/CivicationDashboardUI.js",
   "js/Civication/ui/CivicationMiniSectionsUI.js",
   "js/Civication/ui/CivicationInboxTopActionUI.js",
+  "js/Civication/ui/CivicationDayPhaseUI.js",
   "js/Civication/ui/CivicationEmptyPanels.js",
 
   // Civication – utils / systems
