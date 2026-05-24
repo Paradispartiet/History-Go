@@ -114,7 +114,7 @@ const MAIN_DOMAINS = [
   "psykologi",
 ];
 
-// ✅ Epoker: peker kun til faktiske filer som finnes i repo.
+// ✅ Epoker: peker kun til faktiske filer som finnes i repo (inkl. by).
 const EPOKER_FILES = [
   { domain: "film_tv", path: "data/epoker/epoker_film.json", aliases: ["film"] },
   { domain: "tv", path: "data/epoker/epoker_TV.json" },
