@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T08:33:31.675Z
+Generated: 2026-05-24T10:16:14.097Z
 
 ## Total summary
 - Places: **439**
-- Files checked: **191**
+- Files checked: **193**
 - Hard errors: **0**
-- Warnings: **3079**
+- Warnings: **3075**
 
 ## Not configured
 - none
@@ -20,10 +20,6 @@ Generated: 2026-05-24T08:33:31.675Z
 | nrk_huset_marienlyst | 10 | 10 | 0 |
 | aftenposten_akersgata | 10 | 10 | 0 |
 | dagbladet_akersgata | 10 | 10 | 0 |
-| schous_plass | 9 | 9 | 0 |
-| tullin | 9 | 9 | 0 |
-| okern | 9 | 9 | 0 |
-| skoyen | 9 | 9 | 0 |
 | torshov | 9 | 9 | 0 |
 | grorud | 9 | 9 | 0 |
 | gamlebyen | 9 | 9 | 0 |
@@ -34,6 +30,10 @@ Generated: 2026-05-24T08:33:31.675Z
 | loelva_historisk | 9 | 9 | 0 |
 | trosterud_friomrade | 9 | 9 | 0 |
 | furuset_haugerud_skogbelte | 9 | 9 | 0 |
+| hellerud_gard | 9 | 9 | 0 |
+| alnabru_jernbane_og_logistikk | 9 | 9 | 0 |
+| alnsjoen_alna_kilde | 9 | 9 | 0 |
+| alnaparken | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,7 +436,7 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 59
+Count: 55
 
 - `aftenposten_akersgata`
 - `alna_bryn`
@@ -481,13 +481,13 @@ Count: 59
 - `loelva_historisk`
 - `noklevann_ljanselva_start`
 - `nrk_huset_marienlyst`
-- `okern`
 - `ostensjovannet_fugletarn`
 - `ostensjovannet_nord`
 - `ostensjovannet_sivbelte`
 - `ostensjovannet_sor`
 - `sagene`
-- `schous_plass`
+- `skraperudtjern`
+- `slottsplassen`
 
 ### missing_popupImage
 Count: 1
@@ -664,17 +664,17 @@ Count: 153
 4. `nrk_huset_marienlyst`
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
-7. `schous_plass`
-8. `tullin`
-9. `okern`
-10. `skoyen`
-11. `torshov`
-12. `grorud`
-13. `gamlebyen`
-14. `frognerparken`
-15. `kampen_park`
-16. `vg_huset`
-17. `alnaelvstien`
-18. `loelva_historisk`
-19. `trosterud_friomrade`
-20. `furuset_haugerud_skogbelte`
+7. `torshov`
+8. `grorud`
+9. `gamlebyen`
+10. `frognerparken`
+11. `kampen_park`
+12. `vg_huset`
+13. `alnaelvstien`
+14. `loelva_historisk`
+15. `trosterud_friomrade`
+16. `furuset_haugerud_skogbelte`
+17. `hellerud_gard`
+18. `alnabru_jernbane_og_logistikk`
+19. `alnsjoen_alna_kilde`
+20. `alnaparken`
