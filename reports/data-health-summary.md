@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T05:34:22.524Z
+Generated: 2026-05-24T05:51:24.880Z
 
 ## Total summary
 - Places: **449**
-- Files checked: **183**
+- Files checked: **185**
 - Hard errors: **0**
-- Warnings: **3191**
+- Warnings: **3188**
 
 ## Not configured
 - none
@@ -20,8 +20,6 @@ Generated: 2026-05-24T05:34:22.524Z
 | dagbladet_akersgata | 12 | 12 | 0 |
 | sagene | 11 | 11 | 0 |
 | kampen | 11 | 11 | 0 |
-| kampen_park | 10 | 10 | 0 |
-| good_game_redaksjon | 10 | 10 | 0 |
 | loelva_historisk | 10 | 10 | 0 |
 | trosterud_friomrade | 10 | 10 | 0 |
 | furuset_haugerud_skogbelte | 10 | 10 | 0 |
@@ -34,6 +32,8 @@ Generated: 2026-05-24T05:34:22.524Z
 | barcode_pop | 10 | 10 | 0 |
 | bjørvika_pop | 10 | 10 | 0 |
 | schous_plass | 9 | 9 | 0 |
+| vaterland | 9 | 9 | 0 |
+| tullin | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -275,7 +275,7 @@ Count: 410
 - `chateau_neuf`
 
 ### missing_leksikon
-Count: 252
+Count: 250
 
 - `abelhaugen`
 - `aftenposten_akersgata`
@@ -308,7 +308,6 @@ Count: 252
 - `gamle_deichman`
 - `gamle_radhus`
 - `gamlebyen_skole`
-- `good_game_redaksjon`
 - `grensen_kjopesenter`
 - `gressbanen`
 - `gronland_underganger`
@@ -327,6 +326,7 @@ Count: 252
 - `jernbanetorget_trafikknutepunkt`
 - `jernbaneverkstedet_lodalen`
 - `john_dee`
+- `jordal_amfi`
 
 ### missing_links
 Count: 449
@@ -604,7 +604,7 @@ Count: 446
 - `bygdoy_roykenvika`
 
 ### missing_wonderkammer
-Count: 171
+Count: 170
 
 - `abelhaugen`
 - `aftenposten_akersgata`
@@ -650,12 +650,12 @@ Count: 171
 - `gamle_radhus`
 - `gamle_trikkestallen`
 - `glads_molle`
-- `good_game_redaksjon`
 - `grensen_kjopesenter`
 - `gressbanen`
 - `gressholmen`
 - `grini_fangeleir`
 - `gronland_basarene`
+- `gronland_kirke`
 
 
 ## Recommended next batch order
@@ -665,17 +665,17 @@ Count: 171
 4. `dagbladet_akersgata`
 5. `sagene`
 6. `kampen`
-7. `kampen_park`
-8. `good_game_redaksjon`
-9. `loelva_historisk`
-10. `trosterud_friomrade`
-11. `furuset_haugerud_skogbelte`
-12. `hellerud_gard`
-13. `toyen_torg_pop`
-14. `oslo_s_pop`
-15. `radhusplassen_pop`
-16. `slottsplassen_pop`
-17. `youngstorget_pop`
-18. `barcode_pop`
-19. `bjørvika_pop`
-20. `schous_plass`
+7. `loelva_historisk`
+8. `trosterud_friomrade`
+9. `furuset_haugerud_skogbelte`
+10. `hellerud_gard`
+11. `toyen_torg_pop`
+12. `oslo_s_pop`
+13. `radhusplassen_pop`
+14. `slottsplassen_pop`
+15. `youngstorget_pop`
+16. `barcode_pop`
+17. `bjørvika_pop`
+18. `schous_plass`
+19. `vaterland`
+20. `tullin`
