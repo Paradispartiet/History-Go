@@ -648,51 +648,55 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
     .replace(/[\s-]+/g, "_")
     .replace(/_+/g, "_");
 
-  const tokenPool = new Set();
-  const appendToken = (value) => {
+  const badgeSubcategorySet = new Set(
+    badgeSubcategories
+      .map((sub) => normalizeToken(sub))
+      .filter(Boolean)
+  );
+  if (!badgeSubcategorySet.size) return [];
+
+  const explicitMatches = new Set();
+  const appendExplicitToken = (value) => {
     const normalized = normalizeToken(value);
-    if (normalized) tokenPool.add(normalized);
+    if (normalized && badgeSubcategorySet.has(normalized)) explicitMatches.add(normalized);
   };
 
-  const appendStringArray = (values) => {
+  const appendStringArray = (values, appendTokenFn) => {
     if (!Array.isArray(values)) return;
-    for (const value of values) appendToken(value);
+    for (const value of values) appendTokenFn(value);
   };
 
-  appendStringArray(place?.badges);
-  appendStringArray(place?.badgeIds);
-  appendStringArray(place?.merker);
-  appendStringArray(place?.merkeIds);
-  appendStringArray(place?.tags);
-  appendStringArray(place?.emne_ids);
+  const explicitFields = [
+    place?.sub_badges,
+    place?.subBadges,
+    place?.badge_subcategories,
+    place?.badgeSubcategories,
+    place?.underbadges,
+    place?.underBadges,
+    place?.merke_sub,
+    place?.merkeSub
+  ];
 
-  const collectFromQuizProfile = (value) => {
-    if (typeof value === "string") {
-      appendToken(value);
-      return;
-    }
-    if (Array.isArray(value)) {
-      for (const item of value) collectFromQuizProfile(item);
-      return;
-    }
-    if (value && typeof value === "object") {
-      for (const nested of Object.values(value)) collectFromQuizProfile(nested);
-    }
-  };
+  for (const fieldValue of explicitFields) {
+    appendStringArray(fieldValue, appendExplicitToken);
+  }
 
-  collectFromQuizProfile(place?.quiz_profile);
+  const fallbackFields = [
+    place?.badges,
+    place?.badgeIds,
+    place?.merker,
+    place?.merkeIds
+  ];
+
+  if (!explicitMatches.size) {
+    for (const fieldValue of fallbackFields) {
+      appendStringArray(fieldValue, appendExplicitToken);
+    }
+  }
 
   return badgeSubcategories
     .map((sub) => normalizeToken(sub))
-    .filter(Boolean)
-    .filter((subId, index, arr) => arr.indexOf(subId) === index)
-    .filter((subId) => {
-      for (const token of tokenPool) {
-        if (token === subId) return true;
-        if (token.includes(subId) || subId.includes(token)) return true;
-      }
-      return false;
-    });
+    .filter((subId, index, arr) => subId && arr.indexOf(subId) === index && explicitMatches.has(subId));
 }
 
 /**
