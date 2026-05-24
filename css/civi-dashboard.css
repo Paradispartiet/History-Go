@@ -54,8 +54,21 @@ body.civi-app .civi-footer {
 body.civi-app .topbar {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "left dashboard right";
   align-items: center;
   gap: 10px 14px;
+}
+
+body.civi-app .topbar-left {
+  grid-area: left;
+}
+
+body.civi-app #civiDashboardSection {
+  grid-area: dashboard;
+}
+
+body.civi-app .topbar-right {
+  grid-area: right;
 }
 
 body.civi-app .civi-panels {
@@ -497,6 +510,9 @@ body.civi-app .civi-panels h2 {
 @media (max-width: 920px) {
   body.civi-app .topbar {
     grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "left right"
+      "dashboard dashboard";
     align-items: start;
   }
 
@@ -558,6 +574,10 @@ body.civi-app .civi-panels h2 {
 
   body.civi-app .topbar {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "dashboard"
+      "right";
     gap: 8px;
   }
 
