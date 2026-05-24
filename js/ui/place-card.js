@@ -191,47 +191,63 @@ if (!card.dataset.pcIconsBound) {
       : `<div class="pc-empty">Ingen innhold ennå</div>`;
 
     let html = htmlBase;
-    if (kind === "badges" && typeof window.HGTimeResolver?.resolvePlaceTime === "function") {
-      const timeInfo = window.HGTimeResolver.resolvePlaceTime(currentPlace || place || {});
-      const yearText = Number.isFinite(timeInfo?.year) ? String(timeInfo.year) : "";
-      const epokeText = String(timeInfo?.epokeLabel || "").trim();
+    if (kind === "badges") {
+      const placeBadge = getBadgeForPlace(currentPlace || place || {});
+      const mainBadgeLabel = placeBadge
+        ? (placeBadge.name || placeBadge.title || placeBadge.id || "Badge")
+        : "Ukjent fagområde";
+
+      const timeInfo = (typeof window.HGTimeResolver?.resolvePlaceTime === "function")
+        ? window.HGTimeResolver.resolvePlaceTime(currentPlace || place || {})
+        : null;
+      const yearText = Number.isFinite(timeInfo?.year) ? String(timeInfo.year) : "Ikke registrert";
+      const epokeText = String(timeInfo?.epokeLabel || "").trim() || "Ikke registrert";
       const isZeitgeist = Boolean(timeInfo?.isZeitgeist);
 
-      if (yearText || epokeText) {
-        const zeitgeistNote = isZeitgeist
-          ? `<div class="pc-meta-note">Nåtid / siste epoke</div>`
-          : "";
-
-        const timeSection = `
-          <section class="pc-meta-time">
-            <div class="pc-meta-row-title">Tid</div>
-            ${yearText ? `<div class="pc-meta-row-value">${yearText}</div>` : ""}
-            ${epokeText ? `<div class="pc-meta-row-title">Epoke</div><div class="pc-meta-row-value">${epokeText}</div>` : ""}
-            ${zeitgeistNote}
-          </section>
-        `;
-
-        html = `${timeSection}${htmlBase}`;
-      }
-    }
-
-    if (kind === "badges") {
       const emner = await getRelevantPlaceEmner(currentPlace || place || {});
-      if (emner.length) {
-        const emnerItems = emner.map((emne) => {
-          const label = emne.shortLabel || emne.title || emne.id;
-          const definition = emne.definition
-            ? `<div class="pc-meta-note">${emne.definition}</div>`
-            : "";
-          return `
-            <div class="pc-badge">
-              <span>${label}</span>
-              ${definition}
+      const emnerItems = emner.length
+        ? emner.map((emne) => {
+            const label = emne.shortLabel || emne.title || emne.id;
+            const definition = emne.definition
+              ? `<div class="pc-badges-topic-definition">${emne.definition}</div>`
+              : "";
+            return `
+              <article class="pc-badges-topic">
+                <div class="pc-badges-topic-title">${label}</div>
+                ${definition}
+              </article>
+            `;
+          }).join("")
+        : `<div class="pc-badges-empty">Ingen emner registrert ennå</div>`;
+
+      html = `
+        <div class="pc-badges-profile">
+          <section class="pc-badges-section">
+            <h3 class="pc-badges-section-title">Fagområde</h3>
+            <div class="pc-badges-main">${mainBadgeLabel}</div>
+            <div class="pc-badges-empty">Stedets faglige hovedkategori</div>
+          </section>
+
+          <section class="pc-badges-section">
+            <h3 class="pc-badges-section-title">Tid og epoke</h3>
+            <div class="pc-badges-time-grid">
+              <div><span class="pc-badges-time-label">År</span><span class="pc-badges-time-value">${yearText}</span></div>
+              <div><span class="pc-badges-time-label">Epoke</span><span class="pc-badges-time-value">${epokeText}</span></div>
             </div>
-          `;
-        }).join("");
-        html = `${html}<section class="pc-meta-time"><div class="pc-meta-row-title">Emner</div>${emnerItems}</section>`;
-      }
+            ${isZeitgeist ? `<div class="pc-badges-empty">Zeitgeist: Nåtid / siste epoke</div>` : ""}
+          </section>
+
+          <section class="pc-badges-section">
+            <h3 class="pc-badges-section-title">Underbadges</h3>
+            <div class="pc-badges-chip-list">${htmlBase}</div>
+          </section>
+
+          <section class="pc-badges-section">
+            <h3 class="pc-badges-section-title">Emner</h3>
+            <div class="pc-badges-topic-list">${emnerItems}</div>
+          </section>
+        </div>
+      `;
     }
 
     if (typeof window.showPlaceCardRoundPopup === "function") {
@@ -811,17 +827,15 @@ if (badgesEl) {
 
   badgesEl.innerHTML = placeBadge
     ? `
-      <div class="pc-badge-header">
+      <div class="pc-badges-main">
         <strong>${placeBadge.name || placeBadge.title || placeBadge.id || "Badge"}</strong>
       </div>
       ${
         relevantSubcategories.length
           ? relevantSubcategories.map(sub => `
-            <div class="pc-badge">
-              <span>${formatSubcategoryLabel(sub)}</span>
-            </div>
+            <div class="pc-badges-chip">${formatSubcategoryLabel(sub)}</div>
           `).join("")
-          : `<div class="pc-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`
+          : `<div class="pc-badges-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`
       }
     `
     : `<div class="pc-empty">Badges.json mangler badge for category: ${String(place?.category || "ukjent").trim() || "ukjent"}</div>`;
