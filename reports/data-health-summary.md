@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T14:33:20.765Z
+Generated: 2026-05-24T15:03:47.784Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3053**
+- Warnings: **3046**
 
 ## Not configured
 - none
@@ -24,16 +24,16 @@ Generated: 2026-05-24T14:33:20.765Z
 | trosterud_friomrade | 9 | 9 | 0 |
 | furuset_haugerud_skogbelte | 9 | 9 | 0 |
 | hellerud_gard | 9 | 9 | 0 |
-| noklevann_ljanselva_start | 9 | 9 | 0 |
-| skraperudtjern | 9 | 9 | 0 |
-| ljanselva_skullerud | 9 | 9 | 0 |
-| ljanselva_hauketo | 9 | 9 | 0 |
-| ljanselva_ljan | 9 | 9 | 0 |
-| ljanselva_fiskevollen | 9 | 9 | 0 |
-| ljanselva_bunnefjorden | 9 | 9 | 0 |
 | ostensjovannet_nord | 9 | 9 | 0 |
 | ostensjovannet_fugletarn | 9 | 9 | 0 |
 | ostensjovannet_sivbelte | 9 | 9 | 0 |
+| ostensjovannet_sor | 9 | 9 | 0 |
+| bogerudmyra | 9 | 9 | 0 |
+| cinemateket_oslo | 9 | 9 | 0 |
+| colosseum_kino | 9 | 9 | 0 |
+| vulkan_murvegger | 9 | 9 | 0 |
+| hausmannsgate_aksen | 9 | 9 | 0 |
+| kolstadgata_toyen_vegger | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,7 +436,7 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 33
+Count: 26
 
 - `aftenposten_akersgata`
 - `bogerudmyra`
@@ -455,19 +455,12 @@ Count: 33
 - `kampen_park`
 - `klassekampen_redaksjon`
 - `latter`
-- `ljanselva_bunnefjorden`
-- `ljanselva_fiskevollen`
-- `ljanselva_hauketo`
-- `ljanselva_ljan`
-- `ljanselva_skullerud`
-- `noklevann_ljanselva_start`
 - `nrk_huset_marienlyst`
 - `ostensjovannet_fugletarn`
 - `ostensjovannet_nord`
 - `ostensjovannet_sivbelte`
 - `ostensjovannet_sor`
 - `sagene`
-- `skraperudtjern`
 - `slottsplassen`
 - `trosterud_friomrade`
 - `vaterland`
@@ -651,13 +644,13 @@ Count: 153
 8. `trosterud_friomrade`
 9. `furuset_haugerud_skogbelte`
 10. `hellerud_gard`
-11. `noklevann_ljanselva_start`
-12. `skraperudtjern`
-13. `ljanselva_skullerud`
-14. `ljanselva_hauketo`
-15. `ljanselva_ljan`
-16. `ljanselva_fiskevollen`
-17. `ljanselva_bunnefjorden`
-18. `ostensjovannet_nord`
-19. `ostensjovannet_fugletarn`
-20. `ostensjovannet_sivbelte`
+11. `ostensjovannet_nord`
+12. `ostensjovannet_fugletarn`
+13. `ostensjovannet_sivbelte`
+14. `ostensjovannet_sor`
+15. `bogerudmyra`
+16. `cinemateket_oslo`
+17. `colosseum_kino`
+18. `vulkan_murvegger`
+19. `hausmannsgate_aksen`
+20. `kolstadgata_toyen_vegger`
