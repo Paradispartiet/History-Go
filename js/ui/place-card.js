@@ -192,10 +192,15 @@ if (!card.dataset.pcIconsBound) {
 
     let html = htmlBase;
     if (kind === "badges") {
-      const placeBadge = getBadgeForPlace(currentPlace || place || {});
-      const mainBadgeLabel = placeBadge
-        ? (placeBadge.name || placeBadge.title || placeBadge.id || "Badge")
-        : "Ukjent fagområde";
+      const placeBadge = getBadgeForPlace(currentPlace || place || {}, getBadgesSource());
+      const mainBadgeLabel = placeBadge?.name || placeBadge?.title || placeBadge?.id
+        || String((currentPlace || place)?.category || "Ukjent fagområde");
+      const relevantSubcategories = getRelevantBadgeSubcategories(currentPlace || place || {}, placeBadge);
+      const subcategoryItems = relevantSubcategories.length
+        ? relevantSubcategories.map((subId) => `
+            <span class="pc-badges-chip">${formatSubcategoryLabel(subId)}</span>
+          `).join("")
+        : `<div class="pc-badges-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`;
 
       const timeInfo = (typeof window.HGTimeResolver?.resolvePlaceTime === "function")
         ? window.HGTimeResolver.resolvePlaceTime(currentPlace || place || {})
@@ -239,7 +244,7 @@ if (!card.dataset.pcIconsBound) {
 
           <section class="pc-badges-section">
             <h3 class="pc-badges-section-title">Underbadges</h3>
-            <div class="pc-badges-chip-list">${htmlBase}</div>
+            <div class="pc-badges-chip-list">${subcategoryItems}</div>
           </section>
 
           <section class="pc-badges-section">
@@ -628,12 +633,21 @@ if (natureIcon) {
 function getBadgeForPlace(place, badgesSource) {
   const badges = Array.isArray(badgesSource)
     ? badgesSource
-    : ((typeof BADGES !== "undefined" && Array.isArray(BADGES)) ? BADGES : (Array.isArray(window.BADGES) ? window.BADGES : []));
+    : getBadgesSource();
 
   const categoryId = String(place?.category || "").trim();
   if (!categoryId || !badges.length) return null;
 
   return badges.find(b => String(b?.id || "").trim() === categoryId) || null;
+}
+
+/**
+ * @returns {PlaceCardBadge[]}
+ */
+function getBadgesSource() {
+  if (typeof BADGES !== "undefined" && Array.isArray(BADGES)) return BADGES;
+  if (Array.isArray(window.BADGES)) return window.BADGES;
+  return [];
 }
 
 /**
@@ -781,9 +795,7 @@ async function getRelevantPlaceEmner(place) {
 
 // --- BADGES LIST + BADGES ICON ---
 if (badgesEl) {
-  const BADGES_LIST =
-    (typeof BADGES !== "undefined" && Array.isArray(BADGES)) ? BADGES :
-    (Array.isArray(window.BADGES) ? window.BADGES : []);
+  const BADGES_LIST = getBadgesSource();
 
   const rels = (window.REL_BY_PLACE && window.REL_BY_PLACE[place.id]) ? window.REL_BY_PLACE[place.id] : [];
 
