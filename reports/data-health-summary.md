@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T06:46:09.654Z
+Generated: 2026-05-24T07:33:37.674Z
 
 ## Total summary
-- Places: **449**
+- Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3168**
+- Warnings: **3079**
 
 ## Not configured
 - none
@@ -20,11 +20,7 @@ Generated: 2026-05-24T06:46:09.654Z
 | nrk_huset_marienlyst | 10 | 10 | 0 |
 | aftenposten_akersgata | 10 | 10 | 0 |
 | dagbladet_akersgata | 10 | 10 | 0 |
-| youngstorget_pop | 10 | 10 | 0 |
-| barcode_pop | 10 | 10 | 0 |
-| bjørvika_pop | 10 | 10 | 0 |
 | schous_plass | 9 | 9 | 0 |
-| vaterland | 9 | 9 | 0 |
 | tullin | 9 | 9 | 0 |
 | okern | 9 | 9 | 0 |
 | skoyen | 9 | 9 | 0 |
@@ -34,14 +30,17 @@ Generated: 2026-05-24T06:46:09.654Z
 | frognerparken | 9 | 9 | 0 |
 | kampen_park | 9 | 9 | 0 |
 | vg_huset | 9 | 9 | 0 |
+| alnaelvstien | 9 | 9 | 0 |
+| loelva_historisk | 9 | 9 | 0 |
+| trosterud_friomrade | 9 | 9 | 0 |
+| furuset_haugerud_skogbelte | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
-Count: 413
+Count: 403
 
 - `aftenposten_akersgata`
 - `aker_brygge`
-- `aker_brygge_pop`
 - `akerhus_slott`
 - `akerselva`
 - `akerselva_industri`
@@ -63,7 +62,6 @@ Count: 413
 - `astrup_fearnley`
 - `bankplassen`
 - `barcode`
-- `barcode_pop`
 - `beierbrua`
 - `birkelunden`
 - `bislett_stadion`
@@ -71,7 +69,6 @@ Count: 413
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjorvika`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
@@ -89,9 +86,12 @@ Count: 413
 - `bygdoy_roykenvika`
 - `camilla_collett_statue`
 - `carl_berner_plass`
+- `chateau_neuf`
+- `christiania_seildugsfabrik`
+- `christiania_torv`
 
 ### missing_emne_ids
-Count: 39
+Count: 38
 
 - `alna_bryn`
 - `alna_smalvoll`
@@ -131,15 +131,13 @@ Count: 39
 - `torshov`
 - `trosterud_friomrade`
 - `tullin`
-- `vaterland`
 
 ### missing_groundhopper
-Count: 449
+Count: 439
 
 - `abelhaugen`
 - `aftenposten_akersgata`
 - `aker_brygge`
-- `aker_brygge_pop`
 - `akerhus_slott`
 - `akerselva`
 - `akerselva_industri`
@@ -163,7 +161,6 @@ Count: 449
 - `astrup_fearnley`
 - `bankplassen`
 - `barcode`
-- `barcode_pop`
 - `beierbrua`
 - `birkelunden`
 - `bislett_stadion`
@@ -171,7 +168,6 @@ Count: 449
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjorvika`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
@@ -186,6 +182,9 @@ Count: 449
 - `bygdoy_kongeskogen`
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
+- `bygdoy_roykenvika`
+- `camilla_collett_statue`
+- `carl_berner_plass`
 
 ### missing_i18n_en
 Count: 7
@@ -221,11 +220,10 @@ Count: 7
 - `sagene`
 
 ### missing_image
-Count: 410
+Count: 400
 
 - `aftenposten_akersgata`
 - `aker_brygge`
-- `aker_brygge_pop`
 - `akerhus_slott`
 - `akerselva`
 - `akerselva_industri`
@@ -247,7 +245,6 @@ Count: 410
 - `astrup_fearnley`
 - `bankplassen`
 - `barcode`
-- `barcode_pop`
 - `beierbrua`
 - `birkelunden`
 - `bislett_stadion`
@@ -255,7 +252,6 @@ Count: 410
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjorvika`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
@@ -273,9 +269,12 @@ Count: 410
 - `bygdoy_roykenvika`
 - `carl_berner_plass`
 - `chateau_neuf`
+- `christiania_seildugsfabrik`
+- `christiania_torv`
+- `cinemateket_oslo`
 
 ### missing_leksikon
-Count: 242
+Count: 239
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -285,8 +284,6 @@ Count: 242
 - `aktivitet_rudolf_nilsens_plass`
 - `alexander_kiellands_plass`
 - `alf_proysen_statue_nittedal`
-- `barcode_pop`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `botsfengselet`
@@ -327,14 +324,15 @@ Count: 242
 - `jordal_amfi`
 - `kfum_arena`
 - `kolstadgata_toyen_vegger`
+- `kuba_akselpassasjer`
+- `kulturkirken_jakob_litteratur`
 
 ### missing_links
-Count: 449
+Count: 439
 
 - `abelhaugen`
 - `aftenposten_akersgata`
 - `aker_brygge`
-- `aker_brygge_pop`
 - `akerhus_slott`
 - `akerselva`
 - `akerselva_industri`
@@ -358,7 +356,6 @@ Count: 449
 - `astrup_fearnley`
 - `bankplassen`
 - `barcode`
-- `barcode_pop`
 - `beierbrua`
 - `birkelunden`
 - `bislett_stadion`
@@ -366,7 +363,6 @@ Count: 449
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjorvika`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
@@ -381,12 +377,14 @@ Count: 449
 - `bygdoy_kongeskogen`
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
+- `bygdoy_roykenvika`
+- `camilla_collett_statue`
+- `carl_berner_plass`
 
 ### missing_people_linkage
-Count: 378
+Count: 368
 
 - `abelhaugen`
-- `aker_brygge_pop`
 - `akerselva`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
@@ -405,13 +403,11 @@ Count: 378
 - `alnaparken`
 - `alnsjoen_alna_kilde`
 - `ankerbrua`
-- `barcode_pop`
 - `beierbrua`
 - `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjorvika`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
@@ -435,12 +431,14 @@ Count: 378
 - `eidsvolls_plass`
 - `ekebergsletta`
 - `elvestrekning_bla_brenneriveien`
+- `folketeateret`
+- `fornebu_teknologipark`
+- `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 69
+Count: 59
 
 - `aftenposten_akersgata`
-- `aker_brygge_pop`
 - `alna_bryn`
 - `alna_smalvoll`
 - `alna_utlop_bjorvika`
@@ -448,8 +446,6 @@ Count: 69
 - `alnaelvstien`
 - `alnaparken`
 - `alnsjoen_alna_kilde`
-- `barcode_pop`
-- `bjørvika_pop`
 - `bogerudmyra`
 - `bygdoy_bygdoynes`
 - `bygdoy_dronningberget`
@@ -463,12 +459,11 @@ Count: 69
 - `dagbladet_akersgata`
 - `folketeateret`
 - `frognerparken`
-- `frognerstranda_pop`
+- `frognerstranda`
 - `furuset_haugerud_skogbelte`
 - `gamlebyen`
 - `good_game_redaksjon`
-- `grand_hotel_pop`
-- `gronlandsleiret_pop`
+- `grand_hotel`
 - `grorud`
 - `groruddammen`
 - `hellerud_gard`
@@ -484,11 +479,15 @@ Count: 69
 - `ljanselva_ljan`
 - `ljanselva_skullerud`
 - `loelva_historisk`
-- `majorstuen_krysset_pop`
 - `noklevann_ljanselva_start`
 - `nrk_huset_marienlyst`
 - `okern`
-- `oslo_s_pop`
+- `ostensjovannet_fugletarn`
+- `ostensjovannet_nord`
+- `ostensjovannet_sivbelte`
+- `ostensjovannet_sor`
+- `sagene`
+- `schous_plass`
 
 ### missing_popupImage
 Count: 1
@@ -496,10 +495,9 @@ Count: 1
 - `vinmonopolet_lager`
 
 ### missing_quiz_profile
-Count: 93
+Count: 83
 
 - `aftenposten_akersgata`
-- `aker_brygge_pop`
 - `aktivitet_rudolf_nilsens_plass`
 - `alna_bryn`
 - `alna_smalvoll`
@@ -508,8 +506,6 @@ Count: 93
 - `alnaelvstien`
 - `alnaparken`
 - `alnsjoen_alna_kilde`
-- `barcode_pop`
-- `bjørvika_pop`
 - `bla`
 - `bogerudmyra`
 - `bygdoy_bygdoynes`
@@ -524,13 +520,12 @@ Count: 93
 - `dagbladet_akersgata`
 - `folketeateret`
 - `frognerparken`
-- `frognerstranda_pop`
+- `frognerstranda`
 - `furuset_haugerud_skogbelte`
 - `gamlebyen`
 - `good_game_redaksjon`
-- `grand_hotel_pop`
+- `grand_hotel`
 - `gronland_underganger`
-- `gronlandsleiret_pop`
 - `grorud`
 - `groruddammen`
 - `grunerlokka_bakgardsvegger`
@@ -548,14 +543,17 @@ Count: 93
 - `lekeplass_botsparken`
 - `lekeplass_frognerborgen`
 - `lekeplass_kampen_park`
+- `lekeplass_kirsebarlunden`
+- `lekeplass_olaf_ryes_plass`
+- `lekeplass_snippen`
+- `lekeplass_sofienbergparken`
 
 ### missing_spraakleksikon
-Count: 446
+Count: 436
 
 - `abelhaugen`
 - `aftenposten_akersgata`
 - `aker_brygge`
-- `aker_brygge_pop`
 - `akerhus_slott`
 - `akerselva`
 - `akerselva_industri`
@@ -579,14 +577,12 @@ Count: 446
 - `astrup_fearnley`
 - `bankplassen`
 - `barcode`
-- `barcode_pop`
 - `beierbrua`
 - `birkelunden`
 - `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
 - `bjorvika`
-- `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
@@ -602,9 +598,12 @@ Count: 446
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
+- `camilla_collett_statue`
+- `carl_berner_plass`
+- `chateau_neuf`
 
 ### missing_wonderkammer
-Count: 158
+Count: 153
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -615,12 +614,10 @@ Count: 158
 - `alf_proysen_statue_nittedal`
 - `alnaelva_hovedsteder`
 - `ankerbrua`
-- `barcode_pop`
 - `beierbrua`
 - `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
-- `bjørvika_pop`
 - `blaa`
 - `bogerudmyra`
 - `bogstadveien`
@@ -654,8 +651,10 @@ Count: 158
 - `gronland_basarene`
 - `gronland_kirke`
 - `gronland_underganger`
-- `gronlandsleiret`
 - `gronlikaia`
+- `grotta`
+- `grunerlokka_bakgardsvegger`
+- `grunnlovsbygget_bankplassen`
 
 
 ## Recommended next batch order
@@ -665,17 +664,17 @@ Count: 158
 4. `nrk_huset_marienlyst`
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
-7. `youngstorget_pop`
-8. `barcode_pop`
-9. `bjørvika_pop`
-10. `schous_plass`
-11. `vaterland`
-12. `tullin`
-13. `okern`
-14. `skoyen`
-15. `torshov`
-16. `grorud`
-17. `gamlebyen`
-18. `frognerparken`
-19. `kampen_park`
-20. `vg_huset`
+7. `schous_plass`
+8. `tullin`
+9. `okern`
+10. `skoyen`
+11. `torshov`
+12. `grorud`
+13. `gamlebyen`
+14. `frognerparken`
+15. `kampen_park`
+16. `vg_huset`
+17. `alnaelvstien`
+18. `loelva_historisk`
+19. `trosterud_friomrade`
+20. `furuset_haugerud_skogbelte`
