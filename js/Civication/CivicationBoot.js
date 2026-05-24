@@ -16,6 +16,74 @@
  * @typedef {CiviBootRecord & { badges?: unknown[] }} CiviBootBadgePayload
  */
 
+
+
+/**
+ * @param {string} text
+ * @returns {string}
+ */
+function toSnippet(text) {
+  return String(text || "").replace(/\s+/g, " ").trim().slice(0, 160);
+}
+
+/**
+ * @param {string} path
+ * @returns {Promise<unknown>}
+ */
+async function fetchJsonStrict(path) {
+  const res = await fetch(path, { cache: "no-store" });
+  const text = await res.text();
+
+  if (!res.ok) {
+    const snippet = toSnippet(text);
+    throw new Error(
+      `[CivicationBoot] JSON load failed for ${path} (HTTP ${res.status})${snippet ? `: ${snippet}` : ""}`
+    );
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    const snippet = toSnippet(text);
+    throw new Error(
+      `[CivicationBoot] Invalid JSON in ${path}${snippet ? `: ${snippet}` : ""}`
+    );
+  }
+}
+
+/** @returns {Promise<unknown[]>} */
+async function loadBadgesFromIndex() {
+  const indexJson = /** @type {CiviBootRecord & { files?: unknown }} */ (
+    await fetchJsonStrict("data/badges/index.json")
+  );
+
+  if (!Array.isArray(indexJson?.files)) {
+    throw new Error("[CivicationBoot] Invalid badges index at data/badges/index.json: files must be an array");
+  }
+
+  const payloads = await Promise.all(
+    indexJson.files.map((filePath) => fetchJsonStrict(String(filePath)))
+  );
+
+  return payloads.flatMap((payload) => {
+    if (!payload || typeof payload !== "object") return [];
+
+    if (Array.isArray(/** @type {CiviBootBadgePayload} */ (payload).badges)) {
+      return /** @type {CiviBootBadgePayload} */ (payload).badges.filter(
+        (badge) => !!badge && typeof badge === "object"
+      );
+    }
+
+    const badgeObject = /** @type {CiviBootRecord} */ (payload);
+    const isSingleBadge =
+      typeof badgeObject.id === "string" &&
+      typeof badgeObject.name === "string" &&
+      Array.isArray(badgeObject.tiers);
+
+    return isSingleBadge ? [badgeObject] : [];
+  });
+}
+
 /** @returns {Promise<void>} */
 async function ensureCiviCareerRulesLoaded() {
 
@@ -23,10 +91,9 @@ async function ensureCiviCareerRulesLoaded() {
 
   try {
 
-    const data = /** @type {CiviBootCareerPayload} */ (await fetch(
-        "data/Civication/hg_careers.json",
-      { cache: "no-store" }
-    ).then(r => r.json()));
+    const data = /** @type {CiviBootCareerPayload} */ (
+      await fetchJsonStrict("data/Civication/hg_careers.json")
+    );
 
     window.CIVI_CAREER_RULES =
       Array.isArray(data?.careers)
@@ -121,16 +188,15 @@ async function ensureCivicationCareerRoleResolverLoaded() {
 
 /** @returns {Promise<void>} */
 async function loadCivicationData() {
-  const [badgesRes, careersRes] = await Promise.all([
-    fetch("data/badges.json"),
-    fetch("data/Civication/hg_careers.json")
+  const [badges, careersJson] = await Promise.all([
+    loadBadgesFromIndex(),
+    fetchJsonStrict("data/Civication/hg_careers.json")
   ]);
 
-  const badgesJson = /** @type {CiviBootBadgePayload} */ (await badgesRes.json());
-  const careersJson = /** @type {CiviBootCareerPayload} */ (await careersRes.json());
-
-  window.BADGES = badgesJson.badges;
-  window.HG_CAREERS = careersJson.careers;
+  window.BADGES = badges;
+  window.HG_CAREERS = Array.isArray((/** @type {CiviBootCareerPayload} */ (careersJson))?.careers)
+    ? (/** @type {CiviBootCareerPayload} */ (careersJson)).careers
+    : [];
 }
 
 (function () {
