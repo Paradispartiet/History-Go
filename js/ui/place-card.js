@@ -186,9 +186,34 @@ if (!card.dataset.pcIconsBound) {
       return;
     }
 
-    const html = (listEl && listEl.innerHTML && listEl.innerHTML.trim())
+    const htmlBase = (listEl && listEl.innerHTML && listEl.innerHTML.trim())
       ? listEl.innerHTML
       : `<div class="pc-empty">Ingen innhold ennå</div>`;
+
+    let html = htmlBase;
+    if (kind === "badges" && typeof window.HGTimeResolver?.resolvePlaceTime === "function") {
+      const timeInfo = window.HGTimeResolver.resolvePlaceTime(currentPlace || place || {});
+      const yearText = Number.isFinite(timeInfo?.year) ? String(timeInfo.year) : "";
+      const epokeText = String(timeInfo?.epokeLabel || "").trim();
+      const isZeitgeist = Boolean(timeInfo?.isZeitgeist);
+
+      if (yearText || epokeText) {
+        const zeitgeistNote = isZeitgeist
+          ? `<div class="pc-meta-note">Nåtid / siste epoke</div>`
+          : "";
+
+        const timeSection = `
+          <section class="pc-meta-time">
+            <div class="pc-meta-row-title">Tid</div>
+            ${yearText ? `<div class="pc-meta-row-value">${yearText}</div>` : ""}
+            ${epokeText ? `<div class="pc-meta-row-title">Epoke</div><div class="pc-meta-row-value">${epokeText}</div>` : ""}
+            ${zeitgeistNote}
+          </section>
+        `;
+
+        html = `${timeSection}${htmlBase}`;
+      }
+    }
 
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
