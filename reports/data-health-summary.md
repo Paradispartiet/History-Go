@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T05:51:24.880Z
+Generated: 2026-05-24T06:15:50.028Z
 
 ## Total summary
 - Places: **449**
-- Files checked: **185**
+- Files checked: **187**
 - Hard errors: **0**
-- Warnings: **3188**
+- Warnings: **3184**
 
 ## Not configured
 - none
@@ -20,10 +20,6 @@ Generated: 2026-05-24T05:51:24.880Z
 | dagbladet_akersgata | 12 | 12 | 0 |
 | sagene | 11 | 11 | 0 |
 | kampen | 11 | 11 | 0 |
-| loelva_historisk | 10 | 10 | 0 |
-| trosterud_friomrade | 10 | 10 | 0 |
-| furuset_haugerud_skogbelte | 10 | 10 | 0 |
-| hellerud_gard | 10 | 10 | 0 |
 | toyen_torg_pop | 10 | 10 | 0 |
 | oslo_s_pop | 10 | 10 | 0 |
 | radhusplassen_pop | 10 | 10 | 0 |
@@ -34,6 +30,10 @@ Generated: 2026-05-24T05:51:24.880Z
 | schous_plass | 9 | 9 | 0 |
 | vaterland | 9 | 9 | 0 |
 | tullin | 9 | 9 | 0 |
+| okern | 9 | 9 | 0 |
+| skoyen | 9 | 9 | 0 |
+| torshov | 9 | 9 | 0 |
+| grorud | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -604,7 +604,7 @@ Count: 446
 - `bygdoy_roykenvika`
 
 ### missing_wonderkammer
-Count: 170
+Count: 166
 
 - `abelhaugen`
 - `aftenposten_akersgata`
@@ -643,7 +643,6 @@ Count: 170
 - `frysja_industriomrade`
 - `frysjadammen`
 - `furuset_forum`
-- `furuset_haugerud_skogbelte`
 - `galgeberg`
 - `gamle_aker_kirke`
 - `gamle_deichman`
@@ -656,6 +655,7 @@ Count: 170
 - `grini_fangeleir`
 - `gronland_basarene`
 - `gronland_kirke`
+- `gronland_underganger`
 
 
 ## Recommended next batch order
@@ -665,17 +665,17 @@ Count: 170
 4. `dagbladet_akersgata`
 5. `sagene`
 6. `kampen`
-7. `loelva_historisk`
-8. `trosterud_friomrade`
-9. `furuset_haugerud_skogbelte`
-10. `hellerud_gard`
-11. `toyen_torg_pop`
-12. `oslo_s_pop`
-13. `radhusplassen_pop`
-14. `slottsplassen_pop`
-15. `youngstorget_pop`
-16. `barcode_pop`
-17. `bjørvika_pop`
-18. `schous_plass`
-19. `vaterland`
-20. `tullin`
+7. `toyen_torg_pop`
+8. `oslo_s_pop`
+9. `radhusplassen_pop`
+10. `slottsplassen_pop`
+11. `youngstorget_pop`
+12. `barcode_pop`
+13. `bjørvika_pop`
+14. `schous_plass`
+15. `vaterland`
+16. `tullin`
+17. `okern`
+18. `skoyen`
+19. `torshov`
+20. `grorud`
