@@ -865,58 +865,73 @@ body.civi-mapmode .civi-panels{
 
 
 .civi-day-phase-panel{
-  margin:12px 0 16px;
-  padding:12px 14px;
-  border:1px solid rgba(210,225,240,.16);
-  border-radius:12px;
-  background:linear-gradient(180deg,rgba(34,44,57,.82),rgba(24,32,43,.86));
-  box-shadow:0 10px 26px rgba(0,0,0,.22);
+  margin:6px 0 10px;
+  padding:8px 10px;
+  border:1px solid rgba(210,225,240,.12);
+  border-radius:8px;
+  background:rgba(16,23,31,.66);
+  box-shadow:none;
+
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px 12px;
 }
 
 .civi-day-phase-head{
   display:flex;
   align-items:baseline;
-  justify-content:space-between;
-  gap:10px;
+  gap:8px;
+  min-width:0;
 }
 
 .civi-day-phase-kicker{
-  font-size:11px;
-  letter-spacing:.08em;
+  font-size:10px;
+  letter-spacing:.06em;
   text-transform:uppercase;
-  opacity:.72;
+  opacity:.7;
+  white-space:nowrap;
 }
 
 .civi-day-phase-title{
   margin:0;
-  font-size:19px;
-  font-weight:700;
+  font-size:15px;
+  font-weight:650;
   color:#edf3ff;
+  line-height:1.2;
 }
 
-.civi-day-phase-meta{
-  margin-top:7px;
-  font-size:13px;
-  opacity:.82;
-}
-
+.civi-day-phase-meta,
 .civi-day-phase-status{
-  margin:10px 0 6px;
-  font-size:14px;
-  color:#e4edf8;
-}
-
-.civi-day-phase-list{
-  margin:0 0 8px 18px;
-  padding:0;
-  display:grid;
-  gap:3px;
-  font-size:13px;
+  margin:0;
+  font-size:12px;
+  color:#dce8f5;
   opacity:.88;
 }
 
+.civi-day-phase-list{
+  margin:0;
+  padding-left:16px;
+  display:grid;
+  gap:2px;
+  font-size:12px;
+  opacity:.85;
+}
+
 .civi-day-phase-actions{
-  margin-top:8px;
+  margin:0 0 0 auto;
   display:flex;
-  justify-content:flex-start;
+  justify-content:flex-end;
+}
+
+@media (max-width:640px){
+  .civi-day-phase-panel{
+    gap:6px 8px;
+  }
+
+  .civi-day-phase-actions{
+    margin-left:0;
+    width:100%;
+    justify-content:flex-start;
+  }
 }
