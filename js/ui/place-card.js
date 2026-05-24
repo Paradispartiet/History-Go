@@ -166,7 +166,7 @@ if (!card.dataset.pcIconsBound) {
   };
 
   const bindRoundPopup = (iconEl, listEl, title, kind) => {
-  iconEl?.addEventListener("click", (e) => {
+  iconEl?.addEventListener("click", async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -212,6 +212,25 @@ if (!card.dataset.pcIconsBound) {
         `;
 
         html = `${timeSection}${htmlBase}`;
+      }
+    }
+
+    if (kind === "badges") {
+      const emner = await getRelevantPlaceEmner(currentPlace || place || {});
+      if (emner.length) {
+        const emnerItems = emner.map((emne) => {
+          const label = emne.shortLabel || emne.title || emne.id;
+          const definition = emne.definition
+            ? `<div class="pc-meta-note">${emne.definition}</div>`
+            : "";
+          return `
+            <div class="pc-badge">
+              <span>${label}</span>
+              ${definition}
+            </div>
+          `;
+        }).join("");
+        html = `${html}<section class="pc-meta-time"><div class="pc-meta-row-title">Emner</div>${emnerItems}</section>`;
       }
     }
 
@@ -674,6 +693,57 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
       }
       return false;
     });
+}
+
+/**
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {Promise<Array<{id: string, title: string, shortLabel: string, definition: string}>>}
+ */
+async function getRelevantPlaceEmner(place) {
+  const emneIds = Array.isArray(place?.emne_ids)
+    ? place.emne_ids.map((id) => String(id || "").trim()).filter(Boolean)
+    : [];
+  if (!emneIds.length) return [];
+
+  const subjectId = String(place?.category || "").trim();
+  const emnerApi = window.Emner;
+
+  if (!subjectId) {
+    return emneIds.map((id) => ({ id, title: "", shortLabel: "", definition: "" }));
+  }
+
+  let canResolveWithApi = false;
+  try {
+    if (emnerApi && typeof emnerApi.loadForSubject === "function") {
+      await emnerApi.loadForSubject(subjectId);
+      canResolveWithApi = typeof emnerApi.getEmne === "function";
+    } else if (typeof window.DataHub?.loadEmner === "function") {
+      await window.DataHub.loadEmner(subjectId);
+      canResolveWithApi = emnerApi && typeof emnerApi.getEmne === "function";
+    }
+  } catch (err) {
+    console.warn("[placeCard.getRelevantPlaceEmner] emne load failed", err);
+    canResolveWithApi = false;
+  }
+
+  const mapped = await Promise.all(emneIds.map(async (id) => {
+    if (!canResolveWithApi) return { id, title: "", shortLabel: "", definition: "" };
+    try {
+      const emne = await emnerApi.getEmne(id, subjectId);
+      if (!emne || typeof emne !== "object") return { id, title: "", shortLabel: "", definition: "" };
+      return {
+        id,
+        title: String(emne.title || "").trim(),
+        shortLabel: String(emne.short_label || "").trim(),
+        definition: String(emne.definition || "").trim()
+      };
+    } catch (err) {
+      console.warn("[placeCard.getRelevantPlaceEmner] emne resolve failed", { id, err });
+      return { id, title: "", shortLabel: "", definition: "" };
+    }
+  }));
+
+  return mapped;
 }
 
 // --- BADGES LIST + BADGES ICON ---
