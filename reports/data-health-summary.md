@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T13:24:04.781Z
+Generated: 2026-05-24T13:54:37.293Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3067**
+- Warnings: **3059**
 
 ## Not configured
 - none
@@ -21,19 +21,19 @@ Generated: 2026-05-24T13:24:04.781Z
 | aftenposten_akersgata | 10 | 10 | 0 |
 | dagbladet_akersgata | 10 | 10 | 0 |
 | kampen_park | 9 | 9 | 0 |
-| loelva_historisk | 9 | 9 | 0 |
 | trosterud_friomrade | 9 | 9 | 0 |
 | furuset_haugerud_skogbelte | 9 | 9 | 0 |
 | hellerud_gard | 9 | 9 | 0 |
-| alnaparken | 9 | 9 | 0 |
-| groruddammen | 9 | 9 | 0 |
-| alna_smalvoll | 9 | 9 | 0 |
-| alna_bryn | 9 | 9 | 0 |
-| svartdalen | 9 | 9 | 0 |
-| kvaernerbyen_alna | 9 | 9 | 0 |
-| alna_utlop_bjorvika | 9 | 9 | 0 |
 | bygdoy_kongeskogen | 9 | 9 | 0 |
 | bygdoy_dronningberget | 9 | 9 | 0 |
+| bygdoy_huk | 9 | 9 | 0 |
+| bygdoy_paradisbukta | 9 | 9 | 0 |
+| bygdoy_bygdoynes | 9 | 9 | 0 |
+| bygdoy_roykenvika | 9 | 9 | 0 |
+| noklevann_ljanselva_start | 9 | 9 | 0 |
+| skraperudtjern | 9 | 9 | 0 |
+| ljanselva_skullerud | 9 | 9 | 0 |
+| ljanselva_hauketo | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,13 +436,9 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 47
+Count: 39
 
 - `aftenposten_akersgata`
-- `alna_bryn`
-- `alna_smalvoll`
-- `alna_utlop_bjorvika`
-- `alnaparken`
 - `bogerudmyra`
 - `bygdoy_bygdoynes`
 - `bygdoy_dronningberget`
@@ -459,20 +455,17 @@ Count: 47
 - `furuset_haugerud_skogbelte`
 - `good_game_redaksjon`
 - `grand_hotel`
-- `groruddammen`
 - `hellerud_gard`
 - `house_of_nerds`
 - `kampen`
 - `kampen_park`
 - `klassekampen_redaksjon`
-- `kvaernerbyen_alna`
 - `latter`
 - `ljanselva_bunnefjorden`
 - `ljanselva_fiskevollen`
 - `ljanselva_hauketo`
 - `ljanselva_ljan`
 - `ljanselva_skullerud`
-- `loelva_historisk`
 - `noklevann_ljanselva_start`
 - `nrk_huset_marienlyst`
 - `ostensjovannet_fugletarn`
@@ -482,7 +475,6 @@ Count: 47
 - `sagene`
 - `skraperudtjern`
 - `slottsplassen`
-- `svartdalen`
 - `trosterud_friomrade`
 - `vaterland`
 
@@ -662,16 +654,16 @@ Count: 153
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
 7. `kampen_park`
-8. `loelva_historisk`
-9. `trosterud_friomrade`
-10. `furuset_haugerud_skogbelte`
-11. `hellerud_gard`
-12. `alnaparken`
-13. `groruddammen`
-14. `alna_smalvoll`
-15. `alna_bryn`
-16. `svartdalen`
-17. `kvaernerbyen_alna`
-18. `alna_utlop_bjorvika`
-19. `bygdoy_kongeskogen`
-20. `bygdoy_dronningberget`
+8. `trosterud_friomrade`
+9. `furuset_haugerud_skogbelte`
+10. `hellerud_gard`
+11. `bygdoy_kongeskogen`
+12. `bygdoy_dronningberget`
+13. `bygdoy_huk`
+14. `bygdoy_paradisbukta`
+15. `bygdoy_bygdoynes`
+16. `bygdoy_roykenvika`
+17. `noklevann_ljanselva_start`
+18. `skraperudtjern`
+19. `ljanselva_skullerud`
+20. `ljanselva_hauketo`
