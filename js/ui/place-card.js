@@ -198,7 +198,7 @@ if (!card.dataset.pcIconsBound) {
       const relevantSubcategories = getRelevantBadgeSubcategories(currentPlace || place || {}, placeBadge);
       const subcategoryItems = relevantSubcategories.length
         ? relevantSubcategories.map((subId) => `
-            <span class="pc-badges-chip">${formatSubcategoryLabel(subId)}</span>
+            <span class="pc-badges-chip">${formatSubcategoryLabel(subId, placeBadge)}</span>
           `).join("")
         : `<div class="pc-badges-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`;
 
@@ -654,9 +654,15 @@ function getBadgesSource() {
  * @param {unknown} rawValue
  * @returns {string}
  */
-function formatSubcategoryLabel(rawValue) {
+function formatSubcategoryLabel(rawValue, placeBadge) {
   const raw = String(rawValue || "").trim();
   if (!raw) return "";
+  const normalizedRaw = raw.toLowerCase();
+  const groupChildren = Array.isArray(placeBadge?.groups)
+    ? placeBadge.groups.flatMap((group) => Array.isArray(group?.children) ? group.children : [])
+    : [];
+  const childMatch = groupChildren.find((child) => String(child?.id || "").trim().toLowerCase() === normalizedRaw);
+  if (childMatch?.name) return String(childMatch.name).trim();
   return raw
     .replace(/_/g, " ")
     .replace(/\s+/g, " ")
@@ -669,7 +675,12 @@ function formatSubcategoryLabel(rawValue) {
  * @returns {string[]}
  */
 function getRelevantBadgeSubcategories(place, placeBadge) {
-  const badgeSubcategories = Array.isArray(placeBadge?.sub) ? placeBadge.sub : [];
+  const groupChildren = Array.isArray(placeBadge?.groups)
+    ? placeBadge.groups.flatMap((group) => Array.isArray(group?.children) ? group.children : [])
+    : [];
+  const badgeSubcategories = groupChildren.length
+    ? groupChildren.map((child) => String(child?.id || "").trim()).filter(Boolean)
+    : (Array.isArray(placeBadge?.sub) ? placeBadge.sub : []);
   if (!badgeSubcategories.length) return [];
 
   const normalizeToken = (value) => String(value || "")
@@ -710,6 +721,7 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
   };
 
   const explicitFields = [
+    place?.underbadge_ids,
     place?.sub_badges,
     place?.subBadges,
     place?.badge_subcategories,
@@ -845,7 +857,7 @@ if (badgesEl) {
       ${
         relevantSubcategories.length
           ? relevantSubcategories.map(sub => `
-            <div class="pc-badges-chip">${formatSubcategoryLabel(sub)}</div>
+            <div class="pc-badges-chip">${formatSubcategoryLabel(sub, placeBadge)}</div>
           `).join("")
           : `<div class="pc-badges-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`
       }
