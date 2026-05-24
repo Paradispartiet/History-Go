@@ -661,9 +661,22 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
     if (normalized && badgeSubcategorySet.has(normalized)) explicitMatches.add(normalized);
   };
 
-  const appendStringArray = (values, appendTokenFn) => {
-    if (!Array.isArray(values)) return;
-    for (const value of values) appendTokenFn(value);
+  const extractTokenCandidates = (value) => {
+    if (typeof value === "string") return [value];
+    if (Array.isArray(value)) return value.flatMap((item) => extractTokenCandidates(item));
+    if (value && typeof value === "object") {
+      const record = /** @type {Record<string, unknown>} */ (value);
+      const keys = ["id", "slug", "key", "value", "label"];
+      for (const key of keys) {
+        const tokenValue = record[key];
+        if (typeof tokenValue === "string" && tokenValue.trim()) return [tokenValue];
+      }
+    }
+    return [];
+  };
+
+  const appendFieldTokens = (values, appendTokenFn) => {
+    for (const tokenCandidate of extractTokenCandidates(values)) appendTokenFn(tokenCandidate);
   };
 
   const explicitFields = [
@@ -678,7 +691,7 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
   ];
 
   for (const fieldValue of explicitFields) {
-    appendStringArray(fieldValue, appendExplicitToken);
+    appendFieldTokens(fieldValue, appendExplicitToken);
   }
 
   const fallbackFields = [
@@ -690,7 +703,7 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
 
   if (!explicitMatches.size) {
     for (const fieldValue of fallbackFields) {
-      appendStringArray(fieldValue, appendExplicitToken);
+      appendFieldTokens(fieldValue, appendExplicitToken);
     }
   }
 
