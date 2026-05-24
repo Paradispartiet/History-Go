@@ -230,6 +230,91 @@ body.civi-app .civi-panels h2 {
 }
 
 /* ------------------------------------------------------------
+   DAGENS FASE
+------------------------------------------------------------ */
+
+#civiDayPhasePanel {
+  order: 1;
+  grid-column: 1 / -1;
+}
+
+.civi-day-phase-panel {
+  margin: -4px 0 2px;
+  padding: 10px 12px;
+  border: 1px solid rgba(210,225,240,.12);
+  border-radius: 14px;
+  background: rgba(16,23,31,.72);
+  box-shadow: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 12px;
+}
+
+.civi-day-phase-panel::before {
+  display: none;
+}
+
+.civi-day-phase-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.civi-day-phase-kicker {
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+  white-space: nowrap;
+}
+
+.civi-day-phase-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #edf3ff;
+  line-height: 1.2;
+}
+
+.civi-day-phase-meta,
+.civi-day-phase-status {
+  margin: 0;
+  font-size: 12px;
+  color: #dce8f5;
+  opacity: .88;
+}
+
+.civi-day-phase-list {
+  margin: 0;
+  padding-left: 16px;
+  display: grid;
+  gap: 2px;
+  font-size: 12px;
+  opacity: .85;
+}
+
+.civi-day-phase-actions {
+  margin: 0 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width:640px) {
+  .civi-day-phase-panel {
+    gap: 6px 8px;
+  }
+
+  .civi-day-phase-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ------------------------------------------------------------
    GRID-HIERARKI: VIKTIGST ØVERST
 ------------------------------------------------------------ */
 
