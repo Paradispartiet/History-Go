@@ -80,7 +80,23 @@ function renderNearbyPlaces() {
 
   let items = PLACES.map(p => {
     const resolved = resolveTime ? (resolveTime(p) || null) : null;
-    const timeSortKey = Number.isFinite(resolved?.sortKey) ? Number(resolved.sortKey) : null;
+    const hasSupportedConfidence = (
+      resolved?.confidence === "year_match" ||
+      resolved?.confidence === "year_only" ||
+      resolved?.confidence === "explicit"
+    );
+    const hasTime = !!resolved && (
+      Number.isFinite(resolved.year) ||
+      Number.isFinite(resolved.startYear) ||
+      hasSupportedConfidence
+    );
+    const resolvedSortKey = Number(resolved?.sortKey);
+    const isFallbackSortKey = resolvedSortKey === Number.MAX_SAFE_INTEGER;
+    const timeSortKey = (
+      hasTime &&
+      Number.isFinite(resolvedSortKey) &&
+      !isFallbackSortKey
+    ) ? resolvedSortKey : null;
     return {
       ...p,
       _d: (pos && typeof window.distMeters === "function")
@@ -95,8 +111,8 @@ function renderNearbyPlaces() {
           })()
         : null,
       _timeSortKey: timeSortKey,
-      _timeLabel: String(resolved?.timeLabel || "").trim(),
-      _epokeLabel: String(resolved?.epochLabel || "").trim(),
+      _timeLabel: String(resolved?.year ?? resolved?.startYear ?? "").trim(),
+      _epokeLabel: String(resolved?.epokeLabel || "").trim(),
       _isZeitgeist: !!resolved?.isZeitgeist
     };
   });
