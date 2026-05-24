@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T13:54:37.293Z
+Generated: 2026-05-24T14:33:20.765Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3059**
+- Warnings: **3053**
 
 ## Not configured
 - none
@@ -24,16 +24,16 @@ Generated: 2026-05-24T13:54:37.293Z
 | trosterud_friomrade | 9 | 9 | 0 |
 | furuset_haugerud_skogbelte | 9 | 9 | 0 |
 | hellerud_gard | 9 | 9 | 0 |
-| bygdoy_kongeskogen | 9 | 9 | 0 |
-| bygdoy_dronningberget | 9 | 9 | 0 |
-| bygdoy_huk | 9 | 9 | 0 |
-| bygdoy_paradisbukta | 9 | 9 | 0 |
-| bygdoy_bygdoynes | 9 | 9 | 0 |
-| bygdoy_roykenvika | 9 | 9 | 0 |
 | noklevann_ljanselva_start | 9 | 9 | 0 |
 | skraperudtjern | 9 | 9 | 0 |
 | ljanselva_skullerud | 9 | 9 | 0 |
 | ljanselva_hauketo | 9 | 9 | 0 |
+| ljanselva_ljan | 9 | 9 | 0 |
+| ljanselva_fiskevollen | 9 | 9 | 0 |
+| ljanselva_bunnefjorden | 9 | 9 | 0 |
+| ostensjovannet_nord | 9 | 9 | 0 |
+| ostensjovannet_fugletarn | 9 | 9 | 0 |
+| ostensjovannet_sivbelte | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,16 +436,10 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 39
+Count: 33
 
 - `aftenposten_akersgata`
 - `bogerudmyra`
-- `bygdoy_bygdoynes`
-- `bygdoy_dronningberget`
-- `bygdoy_huk`
-- `bygdoy_kongeskogen`
-- `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
 - `chateau_neuf`
 - `cinemateket_oslo`
 - `colosseum_kino`
@@ -657,13 +651,13 @@ Count: 153
 8. `trosterud_friomrade`
 9. `furuset_haugerud_skogbelte`
 10. `hellerud_gard`
-11. `bygdoy_kongeskogen`
-12. `bygdoy_dronningberget`
-13. `bygdoy_huk`
-14. `bygdoy_paradisbukta`
-15. `bygdoy_bygdoynes`
-16. `bygdoy_roykenvika`
-17. `noklevann_ljanselva_start`
-18. `skraperudtjern`
-19. `ljanselva_skullerud`
-20. `ljanselva_hauketo`
+11. `noklevann_ljanselva_start`
+12. `skraperudtjern`
+13. `ljanselva_skullerud`
+14. `ljanselva_hauketo`
+15. `ljanselva_ljan`
+16. `ljanselva_fiskevollen`
+17. `ljanselva_bunnefjorden`
+18. `ostensjovannet_nord`
+19. `ostensjovannet_fugletarn`
+20. `ostensjovannet_sivbelte`
