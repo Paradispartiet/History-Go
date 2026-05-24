@@ -12,6 +12,12 @@ function hgActiveLeftPanelMode() {
   return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
 }
 
+function normalizeNearbySort(mode) {
+  const raw = String(mode || "distance").trim().toLowerCase();
+  if (raw === "oldest" || raw === "newest") return raw;
+  return "distance";
+}
+
 let _leftPanelRenderRaf = 0;
 let _leftPanelRenderTimer = 0;
 
@@ -87,6 +93,10 @@ function setLeftPanelMode(mode) {
 
   if (typeof window.updateNearbyBadgeFilterButton === "function") {
     window.updateNearbyBadgeFilterButton();
+  }
+
+  if (typeof window.updateNearbySortButton === "function") {
+    window.updateNearbySortButton();
   }
 
   rerenderActiveLeftPanelMode();
@@ -276,6 +286,22 @@ function ensureNearbyBadgeFilterButton(placeFilterBtn) {
   return btn;
 }
 
+function ensureNearbySortButton(placeFilterBtn) {
+  if (!placeFilterBtn) return null;
+
+  let btn = document.getElementById("nearbySortBtn");
+  if (btn) return btn;
+
+  btn = document.createElement("button");
+  btn.id = "nearbySortBtn";
+  btn.className = "nearby-filter-icon nearby-sort-icon";
+  btn.type = "button";
+  btn.setAttribute("aria-label", "Sortering: avstand");
+
+  placeFilterBtn.insertAdjacentElement("afterend", btn);
+  return btn;
+}
+
 // ============================================================
 // INIT
 // ============================================================
@@ -293,6 +319,8 @@ function initLeftPanel() {
 
     window.HG_NEARBY_BADGE_FILTER =
       normalizeBadgeFilter(localStorage.getItem("hg_nearby_badge_filter_v1") || "all");
+    window.HG_NEARBY_SORT =
+      normalizeNearbySort(localStorage.getItem("hg_nearby_sort_v1") || "distance");
 
     window.HG_NATURE_FILTER =
       localStorage.getItem("hg_nature_filter_v1") || "all";
@@ -350,6 +378,7 @@ function initLeftPanel() {
   // =====================================
 
   const btn = document.getElementById("nearbyFilterBtn");
+  const sortBtn = ensureNearbySortButton(btn);
   const badgeBtn = ensureNearbyBadgeFilterButton(btn);
 
   const PLACES_ICONS = { unvisited: "🎯", unlocked: "🔓", all: "🌍" };
@@ -357,6 +386,9 @@ function initLeftPanel() {
 
   const NATURE_ICONS = { all: "🌍", unlocked: "🔓", flora: "🌿", fauna: "🐞" };
   const NATURE_ORDER = ["all", "unlocked", "flora", "fauna"];
+  const SORT_ICONS = { distance: "📍", oldest: "⏳", newest: "🕰️" };
+  const SORT_TITLES = { distance: "Sortering: Avstand", oldest: "Sortering: Eldst", newest: "Sortering: Nyest" };
+  const SORT_ORDER = ["distance", "oldest", "newest"];
 
   function updateBadgeFilterButton() {
     if (!badgeBtn) return;
@@ -398,6 +430,20 @@ function initLeftPanel() {
   }
   window.updateNearbyFilterButton = updateFilterButton;
 
+  function updateNearbySortButton() {
+    if (!sortBtn) return;
+    const mode = hgActiveLeftPanelMode();
+    const isPlacesMode = mode === "nearby";
+    sortBtn.style.display = isPlacesMode ? "inline-flex" : "none";
+    if (!isPlacesMode) return;
+
+    const activeSort = normalizeNearbySort(window.HG_NEARBY_SORT);
+    sortBtn.textContent = SORT_ICONS[activeSort] || "📍";
+    sortBtn.title = SORT_TITLES[activeSort] || SORT_TITLES.distance;
+    sortBtn.setAttribute("aria-label", SORT_TITLES[activeSort] || SORT_TITLES.distance);
+  }
+  window.updateNearbySortButton = updateNearbySortButton;
+
   if (btn) {
     btn.addEventListener("click", () => {
       const mode = hgActiveLeftPanelMode();
@@ -430,8 +476,24 @@ function initLeftPanel() {
     });
   }
 
+  if (sortBtn) {
+    sortBtn.addEventListener("click", () => {
+      const mode = hgActiveLeftPanelMode();
+      if (mode !== "nearby") return;
+
+      const current = normalizeNearbySort(window.HG_NEARBY_SORT);
+      const i = SORT_ORDER.indexOf(current);
+      const next = SORT_ORDER[(i + 1) % SORT_ORDER.length] || "distance";
+      window.HG_NEARBY_SORT = next;
+      try { localStorage.setItem("hg_nearby_sort_v1", next); } catch {}
+      updateNearbySortButton();
+      rerenderActiveLeftPanelMode();
+    });
+  }
+
   updateFilterButton();
   updateBadgeFilterButton();
+  updateNearbySortButton();
 }
 
 // ============================================================

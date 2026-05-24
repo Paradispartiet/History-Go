@@ -72,20 +72,34 @@ function renderNearbyPlaces() {
     ? window.getPlaceDistanceTargets
     : null;
 
-  let items = PLACES.map(p => ({
-    ...p,
-    _d: (pos && typeof window.distMeters === "function")
-      ? (() => {
-          const targets = getTargets ? getTargets(p) : [{ lat: p.lat, lon: p.lon }];
-          let best = Infinity;
-          for (const target of targets) {
-            const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
-            if (Number.isFinite(d) && d < best) best = d;
-          }
-          return Number.isFinite(best) ? Math.round(best) : null;
-        })()
-      : null
-  }));
+  const sortModeRaw = String(window.HG_NEARBY_SORT || "distance").trim().toLowerCase();
+  const sortMode = (sortModeRaw === "oldest" || sortModeRaw === "newest") ? sortModeRaw : "distance";
+  const resolveTime = (typeof window.HGTimeResolver?.resolvePlaceTime === "function")
+    ? window.HGTimeResolver.resolvePlaceTime.bind(window.HGTimeResolver)
+    : null;
+
+  let items = PLACES.map(p => {
+    const resolved = resolveTime ? (resolveTime(p) || null) : null;
+    const timeSortKey = Number.isFinite(resolved?.sortKey) ? Number(resolved.sortKey) : null;
+    return {
+      ...p,
+      _d: (pos && typeof window.distMeters === "function")
+        ? (() => {
+            const targets = getTargets ? getTargets(p) : [{ lat: p.lat, lon: p.lon }];
+            let best = Infinity;
+            for (const target of targets) {
+              const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
+              if (Number.isFinite(d) && d < best) best = d;
+            }
+            return Number.isFinite(best) ? Math.round(best) : null;
+          })()
+        : null,
+      _timeSortKey: timeSortKey,
+      _timeLabel: String(resolved?.timeLabel || "").trim(),
+      _epokeLabel: String(resolved?.epochLabel || "").trim(),
+      _isZeitgeist: !!resolved?.isZeitgeist
+    };
+  });
 
   // 🔹 FILTER: besøksstatus
   if (filterMode === "unvisited") {
@@ -102,7 +116,28 @@ function renderNearbyPlaces() {
   }
 
   // 🔹 SORT
-  items.sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  items.sort((a, b) => {
+    const aName = String(a.name || "");
+    const bName = String(b.name || "");
+    const distanceTieBreak = () => {
+      const d = (a._d ?? 1e12) - (b._d ?? 1e12);
+      if (d !== 0) return d;
+      return aName.localeCompare(bName, "nb");
+    };
+
+    if (sortMode === "distance") return distanceTieBreak();
+
+    const aHasTime = Number.isFinite(a._timeSortKey);
+    const bHasTime = Number.isFinite(b._timeSortKey);
+    if (aHasTime !== bHasTime) return aHasTime ? -1 : 1;
+    if (!aHasTime && !bHasTime) return distanceTieBreak();
+
+    const delta = sortMode === "oldest"
+      ? a._timeSortKey - b._timeSortKey
+      : b._timeSortKey - a._timeSortKey;
+    if (delta !== 0) return delta;
+    return distanceTieBreak();
+  });
 
   listEl.innerHTML = "";
 
@@ -122,6 +157,22 @@ function renderNearbyPlaces() {
       item.classList.add("is-fresh-discovery");
     }
 
+    const parts = [];
+    if (sortMode === "distance") {
+      if (place._d != null) parts.push(`${place._d} m`);
+    } else {
+      if (place._timeLabel) {
+        if (place._epokeLabel) {
+          parts.push(`${place._timeLabel} · ${place._epokeLabel}`);
+        } else {
+          parts.push(place._timeLabel);
+        }
+      }
+      if (place._d != null) parts.push(`${place._d} m`);
+    }
+    if (visited[place.id]) parts.push("✔");
+    if (freshPlaceId && String(place.id || "").trim() === freshPlaceId) parts.push("Ny");
+
     item.innerHTML = `
       <div class="nearby-thumbWrap">
         <img class="nearby-thumb" src="${img}" alt="${place.name}" loading="lazy" decoding="async">
@@ -130,14 +181,12 @@ function renderNearbyPlaces() {
              alt="">
       </div>
 
-      <div class="nearby-content">
-        <div class="nearby-title">${place.name}</div>
-        <div class="nearby-meta">
-          ${place._d != null ? place._d + " m" : ""}
-          ${visited[place.id] ? " • ✔" : ""}
-          ${freshPlaceId && String(place.id || "").trim() === freshPlaceId ? " • Ny" : ""}
+        <div class="nearby-content">
+          <div class="nearby-title">${place.name}</div>
+          <div class="nearby-meta">
+          ${parts.join(" · ")}
+          </div>
         </div>
-      </div>
     `;
 
     item.addEventListener("click", () => {
