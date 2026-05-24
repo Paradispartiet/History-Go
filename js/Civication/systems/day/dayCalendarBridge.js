@@ -150,6 +150,7 @@ function advancePhase() {
 
     cal.DAY_PHASES = DAY_PHASES;
     cal.getPhase = getPhase;
+    cal.getPhaseLabel = getPhaseLabel;
     cal.setPhase = setPhase;
     cal.advancePhase = advancePhase;
     cal.markDailyFlag = markDailyFlag;
