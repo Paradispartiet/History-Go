@@ -53,7 +53,13 @@ function loadCivicationScriptOnce(src) {
       return;
     }
 
-    const existing = document.querySelector(`script[src="${src}"]`);
+    const existing = Array.from(document.scripts || []).find((script) => {
+      const attrSrc = script.getAttribute("src");
+      if (attrSrc === src) return true;
+
+      const absoluteSrc = script.src || "";
+      return absoluteSrc.endsWith("/" + src) || absoluteSrc.endsWith(src);
+    });
     if (existing) {
       resolve(true);
       return;
@@ -133,6 +139,8 @@ async function loadCivicationData() {
    * @returns {void}
    */
   function showBootError(error) {
+    window.__CIVI_BOOT_ERROR__ = error;
+    if (error?.stack) console.error("[CivicationBoot] stack", error.stack);
     const message = error?.message || String(error || "Ukjent feil");
     const host = document.body || document.documentElement;
     if (!host) return;
@@ -158,7 +166,8 @@ async function loadCivicationData() {
       host.appendChild(box);
     }
 
-    box.innerHTML = `<strong>Civication kunne ikke starte.</strong><br>${message}`;
+    box.innerHTML = "<strong>Civication kunne ikke starte.</strong><br>";
+    box.appendChild(document.createTextNode(message));
   }
 
   /** @returns {Promise<void>} */

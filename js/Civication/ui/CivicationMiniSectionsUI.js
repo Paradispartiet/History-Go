@@ -456,10 +456,25 @@
     return document.getElementById(key);
   }
 
+  function getDirectChildByClass(parent, className) {
+    if (!parent || !className) return null;
+    return Array.from(parent.children || []).find(function (child) {
+      return child.classList?.contains(className);
+    }) || null;
+  }
+
+  function getDirectMiniCard(section) {
+    return getDirectChildByClass(section, "civi-mini-card");
+  }
+
+  function getDirectBody(section) {
+    return getDirectChildByClass(section, "civi-section-body");
+  }
+
   function hasBodyAction(sectionId) {
     const section = document.getElementById(sectionId);
     if (!section) return false;
-    const body = section.querySelector(":scope > .civi-section-body") || section;
+    const body = getDirectBody(section) || section;
     const selector = [
       "button:not(.civi-mini-action):not(.civi-popup-close):not([disabled])",
       "input:not([type='hidden']):not([disabled])",
@@ -483,7 +498,7 @@
       } catch {}
     }
 
-    const body = section.querySelector(":scope > .civi-section-body");
+    const body = getDirectBody(section);
     if (!body) return false;
 
     const selector = [
@@ -727,7 +742,7 @@
   function openPopup(section, config) {
     if (!section || !config) return;
 
-    const body = section.querySelector(":scope > .civi-section-body");
+    const body = getDirectBody(section);
     if (!body) return;
 
     closePopup();
@@ -816,10 +831,11 @@
       const section = resolveSection(key, config);
       if (!section || section.dataset.civiMiniReady !== "1") return;
 
-      const summaryEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-summary]");
-      const detailsEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-details]");
-      const statusEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-status]");
-      const actionEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-open]");
+      const miniCard = getDirectMiniCard(section);
+      const summaryEl = miniCard?.querySelector("[data-civi-mini-summary]");
+      const detailsEl = miniCard?.querySelector("[data-civi-mini-details]");
+      const statusEl = miniCard?.querySelector("[data-civi-mini-status]");
+      const actionEl = miniCard?.querySelector("[data-civi-mini-open]");
       const source = getSectionSource(section, config);
 
       let summary = "—";
