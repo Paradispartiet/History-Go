@@ -648,51 +648,68 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
     .replace(/[\s-]+/g, "_")
     .replace(/_+/g, "_");
 
-  const tokenPool = new Set();
-  const appendToken = (value) => {
+  const badgeSubcategorySet = new Set(
+    badgeSubcategories
+      .map((sub) => normalizeToken(sub))
+      .filter(Boolean)
+  );
+  if (!badgeSubcategorySet.size) return [];
+
+  const explicitMatches = new Set();
+  const appendExplicitToken = (value) => {
     const normalized = normalizeToken(value);
-    if (normalized) tokenPool.add(normalized);
+    if (normalized && badgeSubcategorySet.has(normalized)) explicitMatches.add(normalized);
   };
 
-  const appendStringArray = (values) => {
-    if (!Array.isArray(values)) return;
-    for (const value of values) appendToken(value);
-  };
-
-  appendStringArray(place?.badges);
-  appendStringArray(place?.badgeIds);
-  appendStringArray(place?.merker);
-  appendStringArray(place?.merkeIds);
-  appendStringArray(place?.tags);
-  appendStringArray(place?.emne_ids);
-
-  const collectFromQuizProfile = (value) => {
-    if (typeof value === "string") {
-      appendToken(value);
-      return;
-    }
-    if (Array.isArray(value)) {
-      for (const item of value) collectFromQuizProfile(item);
-      return;
-    }
+  const extractTokenCandidates = (value) => {
+    if (typeof value === "string") return [value];
+    if (Array.isArray(value)) return value.flatMap((item) => extractTokenCandidates(item));
     if (value && typeof value === "object") {
-      for (const nested of Object.values(value)) collectFromQuizProfile(nested);
+      const record = /** @type {Record<string, unknown>} */ (value);
+      const keys = ["id", "slug", "key", "value", "label"];
+      for (const key of keys) {
+        const tokenValue = record[key];
+        if (typeof tokenValue === "string" && tokenValue.trim()) return [tokenValue];
+      }
     }
+    return [];
   };
 
-  collectFromQuizProfile(place?.quiz_profile);
+  const appendFieldTokens = (values, appendTokenFn) => {
+    for (const tokenCandidate of extractTokenCandidates(values)) appendTokenFn(tokenCandidate);
+  };
+
+  const explicitFields = [
+    place?.sub_badges,
+    place?.subBadges,
+    place?.badge_subcategories,
+    place?.badgeSubcategories,
+    place?.underbadges,
+    place?.underBadges,
+    place?.merke_sub,
+    place?.merkeSub
+  ];
+
+  for (const fieldValue of explicitFields) {
+    appendFieldTokens(fieldValue, appendExplicitToken);
+  }
+
+  const fallbackFields = [
+    place?.badges,
+    place?.badgeIds,
+    place?.merker,
+    place?.merkeIds
+  ];
+
+  if (!explicitMatches.size) {
+    for (const fieldValue of fallbackFields) {
+      appendFieldTokens(fieldValue, appendExplicitToken);
+    }
+  }
 
   return badgeSubcategories
     .map((sub) => normalizeToken(sub))
-    .filter(Boolean)
-    .filter((subId, index, arr) => arr.indexOf(subId) === index)
-    .filter((subId) => {
-      for (const token of tokenPool) {
-        if (token === subId) return true;
-        if (token.includes(subId) || subId.includes(token)) return true;
-      }
-      return false;
-    });
+    .filter((subId, index, arr) => subId && arr.indexOf(subId) === index && explicitMatches.has(subId));
 }
 
 /**
