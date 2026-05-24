@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T13:24:04.781Z
+Generated: 2026-05-24T13:37:53.156Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3067**
+- Warnings: **3063**
 
 ## Not configured
 - none
@@ -25,15 +25,15 @@ Generated: 2026-05-24T13:24:04.781Z
 | trosterud_friomrade | 9 | 9 | 0 |
 | furuset_haugerud_skogbelte | 9 | 9 | 0 |
 | hellerud_gard | 9 | 9 | 0 |
-| alnaparken | 9 | 9 | 0 |
-| groruddammen | 9 | 9 | 0 |
-| alna_smalvoll | 9 | 9 | 0 |
-| alna_bryn | 9 | 9 | 0 |
 | svartdalen | 9 | 9 | 0 |
 | kvaernerbyen_alna | 9 | 9 | 0 |
 | alna_utlop_bjorvika | 9 | 9 | 0 |
 | bygdoy_kongeskogen | 9 | 9 | 0 |
 | bygdoy_dronningberget | 9 | 9 | 0 |
+| bygdoy_huk | 9 | 9 | 0 |
+| bygdoy_paradisbukta | 9 | 9 | 0 |
+| bygdoy_bygdoynes | 9 | 9 | 0 |
+| bygdoy_roykenvika | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,13 +436,10 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 47
+Count: 43
 
 - `aftenposten_akersgata`
-- `alna_bryn`
-- `alna_smalvoll`
 - `alna_utlop_bjorvika`
-- `alnaparken`
 - `bogerudmyra`
 - `bygdoy_bygdoynes`
 - `bygdoy_dronningberget`
@@ -459,7 +456,6 @@ Count: 47
 - `furuset_haugerud_skogbelte`
 - `good_game_redaksjon`
 - `grand_hotel`
-- `groruddammen`
 - `hellerud_gard`
 - `house_of_nerds`
 - `kampen`
@@ -666,12 +662,12 @@ Count: 153
 9. `trosterud_friomrade`
 10. `furuset_haugerud_skogbelte`
 11. `hellerud_gard`
-12. `alnaparken`
-13. `groruddammen`
-14. `alna_smalvoll`
-15. `alna_bryn`
-16. `svartdalen`
-17. `kvaernerbyen_alna`
-18. `alna_utlop_bjorvika`
-19. `bygdoy_kongeskogen`
-20. `bygdoy_dronningberget`
+12. `svartdalen`
+13. `kvaernerbyen_alna`
+14. `alna_utlop_bjorvika`
+15. `bygdoy_kongeskogen`
+16. `bygdoy_dronningberget`
+17. `bygdoy_huk`
+18. `bygdoy_paradisbukta`
+19. `bygdoy_bygdoynes`
+20. `bygdoy_roykenvika`
