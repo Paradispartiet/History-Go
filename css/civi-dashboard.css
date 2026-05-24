@@ -51,11 +51,18 @@ body.civi-app .civi-footer {
   z-index: 90;
 }
 
+body.civi-app .topbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px 14px;
+}
+
 body.civi-app .civi-panels {
   z-index: 20;
   width: min(var(--civi-page-max), calc(100vw - 24px));
   max-width: var(--civi-page-max);
-  padding: 22px 0 calc(var(--footer-h) + 28px);
+  padding: 12px 0 calc(var(--footer-h) + 28px);
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--civi-gap);
@@ -92,18 +99,18 @@ body.civi-app .civi-panels h2 {
 ------------------------------------------------------------ */
 
 #civiDashboardSection {
-  order: 1;
-  grid-column: 1 / -1;
-  padding: 22px;
-  border-radius: var(--civi-hero-radius);
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-  gap: 18px;
-  align-items: stretch;
-  background:
-    linear-gradient(135deg, rgba(214,170,58,0.22), rgba(255,255,255,0.045) 42%, rgba(95,184,121,0.10)),
-    rgba(16,16,18,0.96);
-  border-color: rgba(214,170,58,0.22);
+  order: 0;
+  grid-column: auto;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: transparent;
 }
 
 #civiDashboardSection::before {
@@ -112,16 +119,17 @@ body.civi-app .civi-panels h2 {
 
 .civi-dashboard-copy {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 172px;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
 }
 
 .civi-dashboard-kicker {
   width: max-content;
   max-width: 100%;
-  padding: 6px 10px;
-  margin-bottom: 12px;
+  padding: 3px 8px;
+  margin-bottom: 0;
   border-radius: 999px;
   background: rgba(214,170,58,0.16);
   border: 1px solid rgba(214,170,58,0.26);
@@ -134,33 +142,43 @@ body.civi-app .civi-panels h2 {
 
 #civiDashRole {
   margin: 0;
-  max-width: 760px;
-  font-size: clamp(32px, 5vw, 58px);
-  line-height: 0.94;
-  letter-spacing: -0.055em;
-  font-weight: 950;
+  max-width: 230px;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-weight: 780;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #civiDashSummary {
-  margin: 12px 0 0;
-  max-width: 720px;
+  margin: 0;
+  max-width: 320px;
   color: rgba(255,255,255,0.72);
-  font-size: 15px;
-  line-height: 1.48;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .civi-dashboard-focus {
-  margin-top: 16px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(0,0,0,0.22);
+  margin-top: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
 }
 
 .civi-dashboard-focus-label {
-  margin-bottom: 4px;
+  margin-bottom: 0;
   color: rgba(255,255,255,0.48);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -168,25 +186,31 @@ body.civi-app .civi-panels h2 {
 
 #civiDashFocus {
   color: rgba(255,255,255,0.88);
-  font-size: 14px;
-  font-weight: 760;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .civi-dashboard-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 
 .civi-dashboard-metric {
-  min-height: 98px;
-  padding: 14px;
+  min-height: 0;
+  padding: 6px 9px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  border-radius: 18px;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 11px;
   background: rgba(255,255,255,0.055);
   border: 1px solid rgba(255,255,255,0.09);
+  flex: 0 0 auto;
 }
 
 .civi-dashboard-metric span {
@@ -198,20 +222,22 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-dashboard-metric strong {
-  margin-top: 9px;
+  margin-top: 0;
   color: #fff;
-  font-size: clamp(21px, 3vw, 34px);
-  line-height: 1;
-  font-weight: 920;
-  letter-spacing: -0.04em;
+  font-size: clamp(12px, 2vw, 14px);
+  line-height: 1.15;
+  font-weight: 860;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .civi-dashboard-metric small {
-  margin-top: 7px;
+  margin-top: 0;
   color: rgba(255,255,255,0.62);
-  font-size: 12px;
-  line-height: 1.25;
+  font-size: 10px;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .civi-dashboard-metric.is-primary {
@@ -469,6 +495,23 @@ body.civi-app .civi-panels h2 {
 ------------------------------------------------------------ */
 
 @media (max-width: 920px) {
+  body.civi-app .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  body.civi-app #civiDashboardSection {
+    grid-column: 1 / -1;
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  body.civi-app #civiDashboardSection .civi-dashboard-copy {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
   body.civi-app .civi-panels {
     width: min(100vw - 20px, 720px);
     grid-template-columns: 1fr;
@@ -492,17 +535,8 @@ body.civi-app .civi-panels h2 {
     grid-column: 1 / -1;
   }
 
-  #civiDashboardSection {
-    grid-template-columns: 1fr;
-    padding: 18px;
-  }
-
-  .civi-dashboard-copy {
-    min-height: 0;
-  }
-
   .civi-dashboard-metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
   }
 }
 
@@ -522,22 +556,22 @@ body.civi-app .civi-panels h2 {
     border-radius: 16px;
   }
 
-  #civiDashboardSection {
-    border-radius: 20px;
+  body.civi-app .topbar {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  #civiDashRole {
-    font-size: 36px;
+  body.civi-app .topbar-right {
+    justify-self: end;
   }
 
-  .civi-dashboard-metrics,
   .civi-workday-grid,
   .civi-psyche .psyche-grid {
     grid-template-columns: 1fr;
   }
 
-  .civi-dashboard-metric {
-    min-height: 86px;
+  .civi-dashboard-metric small {
+    display: none;
   }
 
   .civi-capital .capital-grid {
