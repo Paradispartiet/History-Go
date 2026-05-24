@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T12:36:30.142Z
+Generated: 2026-05-24T13:24:04.781Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3071**
+- Warnings: **3067**
 
 ## Not configured
 - none
@@ -21,19 +21,19 @@ Generated: 2026-05-24T12:36:30.142Z
 | aftenposten_akersgata | 10 | 10 | 0 |
 | dagbladet_akersgata | 10 | 10 | 0 |
 | kampen_park | 9 | 9 | 0 |
-| vg_huset | 9 | 9 | 0 |
-| alnaelvstien | 9 | 9 | 0 |
 | loelva_historisk | 9 | 9 | 0 |
 | trosterud_friomrade | 9 | 9 | 0 |
 | furuset_haugerud_skogbelte | 9 | 9 | 0 |
 | hellerud_gard | 9 | 9 | 0 |
-| alnabru_jernbane_og_logistikk | 9 | 9 | 0 |
-| alnsjoen_alna_kilde | 9 | 9 | 0 |
 | alnaparken | 9 | 9 | 0 |
 | groruddammen | 9 | 9 | 0 |
 | alna_smalvoll | 9 | 9 | 0 |
 | alna_bryn | 9 | 9 | 0 |
 | svartdalen | 9 | 9 | 0 |
+| kvaernerbyen_alna | 9 | 9 | 0 |
+| alna_utlop_bjorvika | 9 | 9 | 0 |
+| bygdoy_kongeskogen | 9 | 9 | 0 |
+| bygdoy_dronningberget | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -436,16 +436,13 @@ Count: 368
 - `fossveien_elvestrekning`
 
 ### missing_popupDesc
-Count: 51
+Count: 47
 
 - `aftenposten_akersgata`
 - `alna_bryn`
 - `alna_smalvoll`
 - `alna_utlop_bjorvika`
-- `alnabru_jernbane_og_logistikk`
-- `alnaelvstien`
 - `alnaparken`
-- `alnsjoen_alna_kilde`
 - `bogerudmyra`
 - `bygdoy_bygdoynes`
 - `bygdoy_dronningberget`
@@ -665,16 +662,16 @@ Count: 153
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
 7. `kampen_park`
-8. `vg_huset`
-9. `alnaelvstien`
-10. `loelva_historisk`
-11. `trosterud_friomrade`
-12. `furuset_haugerud_skogbelte`
-13. `hellerud_gard`
-14. `alnabru_jernbane_og_logistikk`
-15. `alnsjoen_alna_kilde`
-16. `alnaparken`
-17. `groruddammen`
-18. `alna_smalvoll`
-19. `alna_bryn`
-20. `svartdalen`
+8. `loelva_historisk`
+9. `trosterud_friomrade`
+10. `furuset_haugerud_skogbelte`
+11. `hellerud_gard`
+12. `alnaparken`
+13. `groruddammen`
+14. `alna_smalvoll`
+15. `alna_bryn`
+16. `svartdalen`
+17. `kvaernerbyen_alna`
+18. `alna_utlop_bjorvika`
+19. `bygdoy_kongeskogen`
+20. `bygdoy_dronningberget`
