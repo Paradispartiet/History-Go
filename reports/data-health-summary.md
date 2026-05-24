@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T07:41:03.344Z
+Generated: 2026-05-24T08:14:52.914Z
 
 ## Total summary
 - Places: **439**
 - Files checked: **191**
-- Hard errors: **3**
-- Warnings: **4375**
+- Hard errors: **0**
+- Warnings: **3079**
 
 ## Not configured
 - none
@@ -14,26 +14,26 @@ Generated: 2026-05-24T07:41:03.344Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| schous_plass | 12 | 12 | 0 |
-| tullin | 12 | 12 | 0 |
-| okern | 12 | 12 | 0 |
-| skoyen | 12 | 12 | 0 |
-| torshov | 12 | 12 | 0 |
-| grorud | 12 | 12 | 0 |
-| gamlebyen | 12 | 12 | 0 |
-| frognerparken | 12 | 12 | 0 |
-| kampen_park | 12 | 12 | 0 |
-| vg_huset | 12 | 12 | 0 |
-| alnaelvstien | 12 | 12 | 0 |
-| loelva_historisk | 12 | 12 | 0 |
-| trosterud_friomrade | 12 | 12 | 0 |
-| furuset_haugerud_skogbelte | 12 | 12 | 0 |
-| hellerud_gard | 12 | 12 | 0 |
-| alnabru_jernbane_og_logistikk | 12 | 12 | 0 |
-| alnsjoen_alna_kilde | 12 | 12 | 0 |
-| alnaparken | 12 | 12 | 0 |
-| groruddammen | 12 | 12 | 0 |
-| alna_smalvoll | 12 | 12 | 0 |
+| sagene | 11 | 11 | 0 |
+| kampen | 11 | 11 | 0 |
+| klassekampen_redaksjon | 11 | 11 | 0 |
+| nrk_huset_marienlyst | 10 | 10 | 0 |
+| aftenposten_akersgata | 10 | 10 | 0 |
+| dagbladet_akersgata | 10 | 10 | 0 |
+| schous_plass | 9 | 9 | 0 |
+| tullin | 9 | 9 | 0 |
+| okern | 9 | 9 | 0 |
+| skoyen | 9 | 9 | 0 |
+| torshov | 9 | 9 | 0 |
+| grorud | 9 | 9 | 0 |
+| gamlebyen | 9 | 9 | 0 |
+| frognerparken | 9 | 9 | 0 |
+| kampen_park | 9 | 9 | 0 |
+| vg_huset | 9 | 9 | 0 |
+| alnaelvstien | 9 | 9 | 0 |
+| loelva_historisk | 9 | 9 | 0 |
+| trosterud_friomrade | 9 | 9 | 0 |
+| furuset_haugerud_skogbelte | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -187,166 +187,37 @@ Count: 439
 - `carl_berner_plass`
 
 ### missing_i18n_en
-Count: 439
+Count: 7
 
-- `abelhaugen`
 - `aftenposten_akersgata`
-- `aker_brygge`
-- `akerhus_slott`
-- `akerselva`
-- `akerselva_industri`
-- `akerselva_utlop_bjorvika`
-- `akershus_energi`
-- `akershus_kaier`
-- `akershus_slott_bakeriet`
-- `aktivitet_rudolf_nilsens_plass`
-- `alexander_kiellands_plass`
-- `alf_proysen_statue_nittedal`
-- `alna_bryn`
-- `alna_smalvoll`
-- `alna_utlop_bjorvika`
-- `alnabru_jernbane_og_logistikk`
-- `alnaelva`
-- `alnaelva_hovedsteder`
-- `alnaelvstien`
-- `alnaparken`
-- `alnsjoen_alna_kilde`
-- `ankerbrua`
-- `astrup_fearnley`
-- `bankplassen`
-- `barcode`
-- `beierbrua`
-- `birkelunden`
-- `bislett_stadion`
-- `bispelokket`
-- `bjoelsenfossen`
-- `bjoelsenparken_elvenaer`
-- `bjorvika`
-- `bla`
-- `blaa`
-- `bogerudmyra`
-- `bogstad_gard`
-- `bogstadveien`
-- `botsfengselet`
-- `botsparken`
-- `bryn_industriomrade`
-- `bygdoy_bygdoynes`
-- `bygdoy_dronningberget`
-- `bygdoy_huk`
-- `bygdoy_kongeskogen`
-- `bygdoy_natur`
-- `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
-- `camilla_collett_statue`
-- `carl_berner_plass`
+- `dagbladet_akersgata`
+- `kampen`
+- `klassekampen_redaksjon`
+- `nrk_huset_marienlyst`
+- `psykologisk_institutt_uio`
+- `sagene`
 
 ### missing_i18n_es
-Count: 439
+Count: 7
 
-- `abelhaugen`
 - `aftenposten_akersgata`
-- `aker_brygge`
-- `akerhus_slott`
-- `akerselva`
-- `akerselva_industri`
-- `akerselva_utlop_bjorvika`
-- `akershus_energi`
-- `akershus_kaier`
-- `akershus_slott_bakeriet`
-- `aktivitet_rudolf_nilsens_plass`
-- `alexander_kiellands_plass`
-- `alf_proysen_statue_nittedal`
-- `alna_bryn`
-- `alna_smalvoll`
-- `alna_utlop_bjorvika`
-- `alnabru_jernbane_og_logistikk`
-- `alnaelva`
-- `alnaelva_hovedsteder`
-- `alnaelvstien`
-- `alnaparken`
-- `alnsjoen_alna_kilde`
-- `ankerbrua`
-- `astrup_fearnley`
-- `bankplassen`
-- `barcode`
-- `beierbrua`
-- `birkelunden`
-- `bislett_stadion`
-- `bispelokket`
-- `bjoelsenfossen`
-- `bjoelsenparken_elvenaer`
-- `bjorvika`
-- `bla`
-- `blaa`
-- `bogerudmyra`
-- `bogstad_gard`
-- `bogstadveien`
-- `botsfengselet`
-- `botsparken`
-- `bryn_industriomrade`
-- `bygdoy_bygdoynes`
-- `bygdoy_dronningberget`
-- `bygdoy_huk`
-- `bygdoy_kongeskogen`
-- `bygdoy_natur`
-- `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
-- `camilla_collett_statue`
-- `carl_berner_plass`
+- `dagbladet_akersgata`
+- `kampen`
+- `klassekampen_redaksjon`
+- `nrk_huset_marienlyst`
+- `psykologisk_institutt_uio`
+- `sagene`
 
 ### missing_i18n_pt
-Count: 439
+Count: 7
 
-- `abelhaugen`
 - `aftenposten_akersgata`
-- `aker_brygge`
-- `akerhus_slott`
-- `akerselva`
-- `akerselva_industri`
-- `akerselva_utlop_bjorvika`
-- `akershus_energi`
-- `akershus_kaier`
-- `akershus_slott_bakeriet`
-- `aktivitet_rudolf_nilsens_plass`
-- `alexander_kiellands_plass`
-- `alf_proysen_statue_nittedal`
-- `alna_bryn`
-- `alna_smalvoll`
-- `alna_utlop_bjorvika`
-- `alnabru_jernbane_og_logistikk`
-- `alnaelva`
-- `alnaelva_hovedsteder`
-- `alnaelvstien`
-- `alnaparken`
-- `alnsjoen_alna_kilde`
-- `ankerbrua`
-- `astrup_fearnley`
-- `bankplassen`
-- `barcode`
-- `beierbrua`
-- `birkelunden`
-- `bislett_stadion`
-- `bispelokket`
-- `bjoelsenfossen`
-- `bjoelsenparken_elvenaer`
-- `bjorvika`
-- `bla`
-- `blaa`
-- `bogerudmyra`
-- `bogstad_gard`
-- `bogstadveien`
-- `botsfengselet`
-- `botsparken`
-- `bryn_industriomrade`
-- `bygdoy_bygdoynes`
-- `bygdoy_dronningberget`
-- `bygdoy_huk`
-- `bygdoy_kongeskogen`
-- `bygdoy_natur`
-- `bygdoy_paradisbukta`
-- `bygdoy_roykenvika`
-- `camilla_collett_statue`
-- `carl_berner_plass`
+- `dagbladet_akersgata`
+- `kampen`
+- `klassekampen_redaksjon`
+- `nrk_huset_marienlyst`
+- `psykologisk_institutt_uio`
+- `sagene`
 
 ### missing_image
 Count: 400
@@ -787,23 +658,23 @@ Count: 153
 
 
 ## Recommended next batch order
-1. `schous_plass`
-2. `tullin`
-3. `okern`
-4. `skoyen`
-5. `torshov`
-6. `grorud`
-7. `gamlebyen`
-8. `frognerparken`
-9. `kampen_park`
-10. `vg_huset`
-11. `alnaelvstien`
-12. `loelva_historisk`
-13. `trosterud_friomrade`
-14. `furuset_haugerud_skogbelte`
-15. `hellerud_gard`
-16. `alnabru_jernbane_og_logistikk`
-17. `alnsjoen_alna_kilde`
-18. `alnaparken`
-19. `groruddammen`
-20. `alna_smalvoll`
+1. `sagene`
+2. `kampen`
+3. `klassekampen_redaksjon`
+4. `nrk_huset_marienlyst`
+5. `aftenposten_akersgata`
+6. `dagbladet_akersgata`
+7. `schous_plass`
+8. `tullin`
+9. `okern`
+10. `skoyen`
+11. `torshov`
+12. `grorud`
+13. `gamlebyen`
+14. `frognerparken`
+15. `kampen_park`
+16. `vg_huset`
+17. `alnaelvstien`
+18. `loelva_historisk`
+19. `trosterud_friomrade`
+20. `furuset_haugerud_skogbelte`
