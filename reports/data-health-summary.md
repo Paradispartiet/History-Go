@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T06:35:41.327Z
+Generated: 2026-05-24T06:46:09.654Z
 
 ## Total summary
 - Places: **449**
-- Files checked: **189**
+- Files checked: **191**
 - Hard errors: **0**
-- Warnings: **3176**
+- Warnings: **3168**
 
 ## Not configured
 - none
@@ -20,10 +20,6 @@ Generated: 2026-05-24T06:35:41.327Z
 | nrk_huset_marienlyst | 10 | 10 | 0 |
 | aftenposten_akersgata | 10 | 10 | 0 |
 | dagbladet_akersgata | 10 | 10 | 0 |
-| toyen_torg_pop | 10 | 10 | 0 |
-| oslo_s_pop | 10 | 10 | 0 |
-| radhusplassen_pop | 10 | 10 | 0 |
-| slottsplassen_pop | 10 | 10 | 0 |
 | youngstorget_pop | 10 | 10 | 0 |
 | barcode_pop | 10 | 10 | 0 |
 | bjørvika_pop | 10 | 10 | 0 |
@@ -34,6 +30,10 @@ Generated: 2026-05-24T06:35:41.327Z
 | skoyen | 9 | 9 | 0 |
 | torshov | 9 | 9 | 0 |
 | grorud | 9 | 9 | 0 |
+| gamlebyen | 9 | 9 | 0 |
+| frognerparken | 9 | 9 | 0 |
+| kampen_park | 9 | 9 | 0 |
+| vg_huset | 9 | 9 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -275,7 +275,7 @@ Count: 410
 - `chateau_neuf`
 
 ### missing_leksikon
-Count: 246
+Count: 242
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -604,7 +604,7 @@ Count: 446
 - `bygdoy_roykenvika`
 
 ### missing_wonderkammer
-Count: 162
+Count: 158
 
 - `abelhaugen`
 - `akerselva_industri`
@@ -665,17 +665,17 @@ Count: 162
 4. `nrk_huset_marienlyst`
 5. `aftenposten_akersgata`
 6. `dagbladet_akersgata`
-7. `toyen_torg_pop`
-8. `oslo_s_pop`
-9. `radhusplassen_pop`
-10. `slottsplassen_pop`
-11. `youngstorget_pop`
-12. `barcode_pop`
-13. `bjørvika_pop`
-14. `schous_plass`
-15. `vaterland`
-16. `tullin`
-17. `okern`
-18. `skoyen`
-19. `torshov`
-20. `grorud`
+7. `youngstorget_pop`
+8. `barcode_pop`
+9. `bjørvika_pop`
+10. `schous_plass`
+11. `vaterland`
+12. `tullin`
+13. `okern`
+14. `skoyen`
+15. `torshov`
+16. `grorud`
+17. `gamlebyen`
+18. `frognerparken`
+19. `kampen_park`
+20. `vg_huset`
