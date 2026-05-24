@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-24T06:15:50.028Z
+Generated: 2026-05-24T06:35:41.327Z
 
 ## Total summary
 - Places: **449**
-- Files checked: **187**
+- Files checked: **189**
 - Hard errors: **0**
-- Warnings: **3184**
+- Warnings: **3176**
 
 ## Not configured
 - none
@@ -14,12 +14,12 @@ Generated: 2026-05-24T06:15:50.028Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| klassekampen_redaksjon | 13 | 13 | 0 |
-| nrk_huset_marienlyst | 12 | 12 | 0 |
-| aftenposten_akersgata | 12 | 12 | 0 |
-| dagbladet_akersgata | 12 | 12 | 0 |
 | sagene | 11 | 11 | 0 |
 | kampen | 11 | 11 | 0 |
+| klassekampen_redaksjon | 11 | 11 | 0 |
+| nrk_huset_marienlyst | 10 | 10 | 0 |
+| aftenposten_akersgata | 10 | 10 | 0 |
+| dagbladet_akersgata | 10 | 10 | 0 |
 | toyen_torg_pop | 10 | 10 | 0 |
 | oslo_s_pop | 10 | 10 | 0 |
 | radhusplassen_pop | 10 | 10 | 0 |
@@ -275,10 +275,9 @@ Count: 410
 - `chateau_neuf`
 
 ### missing_leksikon
-Count: 250
+Count: 246
 
 - `abelhaugen`
-- `aftenposten_akersgata`
 - `akerselva_industri`
 - `akershus_energi`
 - `akershus_kaier`
@@ -294,7 +293,6 @@ Count: 250
 - `bryn_industriomrade`
 - `camilla_collett_statue`
 - `christiania_seildugsfabrik`
-- `dagbladet_akersgata`
 - `deichman_grunerlokka`
 - `det_norske_teatret`
 - `eidsvolls_plass`
@@ -327,6 +325,8 @@ Count: 250
 - `jernbaneverkstedet_lodalen`
 - `john_dee`
 - `jordal_amfi`
+- `kfum_arena`
+- `kolstadgata_toyen_vegger`
 
 ### missing_links
 Count: 449
@@ -604,10 +604,9 @@ Count: 446
 - `bygdoy_roykenvika`
 
 ### missing_wonderkammer
-Count: 166
+Count: 162
 
 - `abelhaugen`
-- `aftenposten_akersgata`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
 - `akershus_energi`
@@ -629,7 +628,6 @@ Count: 166
 - `bryn_industriomrade`
 - `camilla_collett_statue`
 - `christiania_seildugsfabrik`
-- `dagbladet_akersgata`
 - `damstredet_telthusbakken`
 - `det_norske_teatret`
 - `eidsvolls_plass`
@@ -656,15 +654,17 @@ Count: 166
 - `gronland_basarene`
 - `gronland_kirke`
 - `gronland_underganger`
+- `gronlandsleiret`
+- `gronlikaia`
 
 
 ## Recommended next batch order
-1. `klassekampen_redaksjon`
-2. `nrk_huset_marienlyst`
-3. `aftenposten_akersgata`
-4. `dagbladet_akersgata`
-5. `sagene`
-6. `kampen`
+1. `sagene`
+2. `kampen`
+3. `klassekampen_redaksjon`
+4. `nrk_huset_marienlyst`
+5. `aftenposten_akersgata`
+6. `dagbladet_akersgata`
 7. `toyen_torg_pop`
 8. `oslo_s_pop`
 9. `radhusplassen_pop`
