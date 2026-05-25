@@ -167,6 +167,7 @@
   }
 
   function getBranchFlags() {
+    /** @type {{ flags?: string[] }} */
     const branch = window.CivicationState?.getMailBranchState?.() || {};
     return Array.isArray(branch.flags) ? branch.flags : [];
   }
@@ -314,7 +315,7 @@
     const valid = Array.isArray(events) ? events.filter(Boolean) : [];
     if (!valid.length) return;
 
-    const existing = window.HG_CiviEngine?.getInbox?.() || [];
+    const existing = /** @type {{ event?: { id?: string | number } }[]} */ (window.HG_CiviEngine?.getInbox?.() || []);
     const existingIds = new Set(existing.map(x => String(x?.event?.id || "")).filter(Boolean));
     const next = valid
       .filter(ev => !existingIds.has(String(ev.id || "")))
@@ -566,6 +567,7 @@
 
   function hasActiveEmployment() {
     const activePos = window.CivicationState?.getActivePosition?.();
+    /** @type {{ career?: { activeJob?: unknown } }} */
     const state = window.CivicationState?.getState?.() || {};
     const activeJob = state?.career?.activeJob;
     return !!(activePos || activeJob);

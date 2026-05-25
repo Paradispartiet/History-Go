@@ -333,3 +333,9 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - No runtime behavior was changed: buy/sell/wallet/economy logic, branching/order/returns, storage keys, event flow, DOM/CSS/layout/text, and public API semantics remain unchanged.
 - No globals/schema declarations were changed (`schemas/civication-globals.d.ts` untouched), and no UI/Event Engine/Economy Engine/MiniSections/js/ui files were modified.
 - Regenerated `reports/typecheck-baseline-report.md`; GitHub Actions workflow `Typecheck baseline report` remains the final control gate.
+
+## Phase 39: Narrow CivicationJobs type-only pass after baseline refresh
+
+- Applied an extremely narrow, local JSDoc typing pass in `js/Civication/core/civicationJobs.js` after baseline refresh PR #636.
+- Added local object-shape annotations for branch flags, inbox events and career state reads that were already treated as object/array at runtime.
+- Scope is type-only/JSDoc-only and local to existing expressions; runtime behavior, control flow, payload semantics, and storage/event/mail/career logic remain unchanged.
