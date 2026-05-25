@@ -92,6 +92,18 @@ function isGroundhopperPlace(place) {
   return place?.category === "sport" && place?.sport_profile?.groundhopper_relevant !== false;
 }
 
+/**
+ * @returns {PersistencePlace[]}
+ */
+function getGroundhopperPlaceSources() {
+  const sources = [
+    Array.isArray(window.PLACES) ? window.PLACES : [],
+    Array.isArray(window.allPlaces) ? window.allPlaces : [],
+    Array.isArray(window.HGPlaces) ? window.HGPlaces : []
+  ];
+  return sources.flat().filter(Boolean);
+}
+
 function getGroundhopperLevel(stats) {
   const current = Math.max(0, Number(stats?.total_groundhopper_places_visited || 0));
   const tiers = [
@@ -145,6 +157,9 @@ function getGroundhopperAchievements(stats) {
  */
 function recalculateGroundhopperTotals(stats, placeLookup) {
   const visitedIds = normalizeArray(stats?.visited_groundhopper_places);
+  stats.visited_by_venue_kind = {};
+  stats.visited_by_sport = {};
+  stats.visited_by_groundhopper_type = {};
   let football = 0, ice = 0, athletics = 0, winter = 0, national = 0;
   for (const placeId of visitedIds) {
     const place = placeLookup?.[placeId];
@@ -153,6 +168,11 @@ function recalculateGroundhopperTotals(stats, placeLookup) {
     const sports = normalizeArray(profile.sports).map((s) => s.toLowerCase());
     const venueKind = String(profile.venue_kind || "").toLowerCase();
     const groundhopperType = String(profile.groundhopper_type || "").toLowerCase();
+    if (venueKind) stats.visited_by_venue_kind[venueKind] = Number(stats.visited_by_venue_kind[venueKind] || 0) + 1;
+    for (const sport of sports) {
+      stats.visited_by_sport[sport] = Number(stats.visited_by_sport[sport] || 0) + 1;
+    }
+    if (groundhopperType) stats.visited_by_groundhopper_type[groundhopperType] = Number(stats.visited_by_groundhopper_type[groundhopperType] || 0) + 1;
     if (sports.includes("fotball") || venueKind === "football_ground" || venueKind === "stadium") football++;
     if (sports.includes("ishockey") || sports.includes("skøyter") || sports.includes("bandy") || venueKind === "ice_arena") ice++;
     if (sports.includes("friidrett") || venueKind === "athletics_venue") athletics++;
@@ -191,18 +211,10 @@ function updateGroundhopperFromPlace(place) {
   stats.last_visit_by_place[placeId] = now;
   stats.visit_count_by_place[placeId] = Number(stats.visit_count_by_place[placeId] || 0) + 1;
 
-  const venueKind = String(profile.venue_kind || "").trim();
-  if (venueKind) stats.visited_by_venue_kind[venueKind] = Number(stats.visited_by_venue_kind[venueKind] || 0) + 1;
-  for (const sport of normalizeArray(profile.sports)) {
-    stats.visited_by_sport[sport] = Number(stats.visited_by_sport[sport] || 0) + 1;
-  }
-  const ghType = String(profile.groundhopper_type || "").trim();
-  if (ghType) stats.visited_by_groundhopper_type[ghType] = Number(stats.visited_by_groundhopper_type[ghType] || 0) + 1;
-
   stats.clubs_collected = Array.from(new Set([...normalizeArray(stats.clubs_collected), ...normalizeArray(profile.clubs_or_teams)]));
   stats.teams_collected = Array.from(new Set([...normalizeArray(stats.teams_collected), ...normalizeArray(profile.teams)]));
 
-  const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+  const places = getGroundhopperPlaceSources();
   /** @type {Record<string, PersistencePlace>} */
   const placeLookup = Object.fromEntries(places.map((p) => [String(p?.id || ""), p]));
   placeLookup[placeId] = place;
@@ -237,7 +249,7 @@ function saveVisitedFromQuiz(placeId) {
 
   if (!window.visited[id]) {
     window.visited[id] = true;
-    const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find((p) => String(p?.id || "") === id);
+    const place = getGroundhopperPlaceSources().find((p) => String(p?.id || "") === id);
     updateGroundhopperFromPlace(place);
     saveVisited();
     window.renderNearbyPlaces?.();

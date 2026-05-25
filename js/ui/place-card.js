@@ -366,7 +366,12 @@ if (!card) return;
       if (venueKind) metaLines.push(`Type: ${venueKind}`);
       if (clubs) metaLines.push(`Klubb/spor: ${clubs}`);
     }
-    metaEl.innerHTML = metaLines.map((line) => `<div>${line}</div>`).join("");
+    const lineNodes = metaLines.map((line) => {
+      const row = document.createElement("div");
+      row.textContent = String(line || "");
+      return row;
+    });
+    metaEl.replaceChildren(...lineNodes);
   }
   if (descEl)  descEl.textContent  = place.desc || "";
 
@@ -1427,6 +1432,9 @@ if (btnUnlock) {
 
     window.visited = window.visited || {};
     window.visited[place.id] = true;
+    if (typeof window.HG_updateGroundhopperFromPlace === "function") {
+      window.HG_updateGroundhopperFromPlace(place);
+    }
     if (typeof window.saveVisited === "function") window.saveVisited();
 
     if (window.HGMap) {

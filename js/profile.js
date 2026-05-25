@@ -214,15 +214,6 @@ function resolveGroundName(placeId) {
   return id;
 }
 
-function getGroundhopperRecentVisits(stats) {
-  const keys = ["recent_visits", "recentVisited", "recent_places", "visited_places", "visits"];
-  for (const key of keys) {
-    const arr = stats?.[key];
-    if (Array.isArray(arr) && arr.length) return arr;
-  }
-  return [];
-}
-
 function renderGroundhopperProfilePanel() {
   const panel = document.getElementById("groundhopperProfilePanel");
   const emptyEl = document.getElementById("groundhopperEmpty");
@@ -1155,8 +1146,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 let PROFILE_MAP = null;
 let PROFILE_LAYER = null;
 
-window.addEventListener("updateProfile", renderGroundhopperProfilePanel);
-window.addEventListener("updateProfile", updateProfileMarkers);
 
 function setupProfileMap() {
   if (typeof L === "undefined") return;
