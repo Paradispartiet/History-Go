@@ -164,9 +164,23 @@
     return "Stabil";
   }
 
+  function isOpenInboxItem(item) {
+    const candidate = item?.event && typeof item.event === "object" ? item.event : item;
+    if (!candidate || typeof candidate !== "object") return false;
+
+    if (candidate.resolved === true) return false;
+
+    const status = String(candidate.status || "").toLowerCase();
+    if (status === "resolved") return false;
+    if (status === "pending") return true;
+
+    return true;
+  }
+
   function getPendingLabel(inbox) {
     const pending = window.HG_CiviEngine?.getPendingEvent?.();
-    const event = pending?.event || inbox?.[0]?.event || null;
+    const fallbackItem = Array.isArray(inbox) ? inbox.find(isOpenInboxItem) : null;
+    const event = pending?.event || fallbackItem?.event || fallbackItem || null;
 
     if (!event) return "Ingen åpne hendelser";
 
@@ -185,12 +199,13 @@
     const state = getCiviState();
     const inbox = getInbox();
     const split = window.CivicationEventChannels?.splitInbox?.(inbox) || { messages: inbox, unknown: [], workday: [] };
-    const inboxCount = (split.messages || []).length + (split.unknown || []).length;
+    const openInboxItems = ((split.messages || []).concat(split.unknown || [])).filter(isOpenInboxItem);
+    const inboxCount = openInboxItems.length;
     const walletPC = getWalletPC();
     const weeklyIncome = getWeeklyIncome(active);
     const statusLabel = getStatusLabel(state);
     const homeLabel = getHomeLabel();
-    const pendingLabel = getPendingLabel((split.messages || []).concat(split.unknown || []));
+    const pendingLabel = getPendingLabel(openInboxItems);
 
     const roleTitle = active?.title ? String(active.title) : "Ingen aktiv rolle";
     const roleField = active
