@@ -134,6 +134,8 @@ declare global {
     checkTierUpgrades?: CiviFn;
     calculateWeeklySalary?: CiviFn;
 
+    __CIVI_BOOT_ERROR__?: unknown;
+
     HGLearningLog?: {
       add?: CiviLearningLogFn;
       push?: CiviLearningLogFn;
