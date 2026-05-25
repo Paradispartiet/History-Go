@@ -310,3 +310,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime verification was done against direct assignments in `js/Civication/core/civicationJobs.js`.
 - No runtime logic was changed; this phase only adds global declarations.
 - No Event Engine runtime code, UI files, data/CSS/layout, or flow semantics were changed.
+
+## Phase 36: narrow local JSDoc pass for Civication UI
+
+- Added a narrow, local JSDoc/typecheck-only pass in `js/Civication/ui/CivicationUI.js`, scoped to the district selector and public feed rendering paths.
+- Introduced local record/object casts near usage for feed items and district data (`DISTRICTS`, `modifiers`, `quizRequirements`) to reduce local unknown/property-access diagnostics.
+- Kept runtime behavior unchanged: no logic/flow/branching/order/side-effect changes, no globals additions, and no DOM/CSS/layout/text/event-listener behavior changes.
+- No changes were made to `schemas/civication-globals.d.ts`, `js/Civication/core/civicationEventEngine.js`, or economy engine code.
+- GitHub Actions workflow `Typecheck baseline report` is the final baseline control for this phase.

@@ -352,7 +352,10 @@ function renderPublicFeed() {
   const container = document.getElementById("civiPublicFeed");
   if (!container) return;
 
-  const feed = window.HG_CivicationPublic?.getFeed() || [];
+  /** @type {Array<{ timestamp?: string|number|Date, collapseType?: string, district?: string }>} */
+  const feed = Array.isArray(window.HG_CivicationPublic?.getFeed?.())
+    ? window.HG_CivicationPublic.getFeed()
+    : [];
 
   container.innerHTML = feed.map(e => {
     const date = new Date(e.timestamp).toLocaleTimeString("no-NO");
@@ -599,28 +602,31 @@ function openDistrictSelector() {
   const list  = document.getElementById("districtList");
   if (!modal || !list) return;
 
+  /** @type {Record<string, { id?: string, name?: string, baseCost?: number, modifiers?: Record<string, number>, quizRequirements?: Record<string, unknown> }>} */
   const districts = window.CivicationHome?.DISTRICTS || {};
 
   list.innerHTML = "";
 
-  Object.values(districts).forEach(d => {
-    const canBuy = window.CivicationHome?.canPurchaseDistrict?.(d.id);
+  Object.values(districts).forEach(function (d) {
+    /** @type {{ id?: string, name?: string, baseCost?: number, modifiers?: Record<string, number>, quizRequirements?: Record<string, unknown> }} */
+    const district = d || {};
+    const canBuy = window.CivicationHome?.canPurchaseDistrict?.(district.id);
 
     const card = document.createElement("div");
     card.className = "district-card" + (canBuy ? "" : " locked");
 
     card.innerHTML = `
-      <div class="district-name">${d.name}</div>
-      <div class="district-cost">Pris: ${d.baseCost}</div>
+      <div class="district-name">${district.name}</div>
+      <div class="district-cost">Pris: ${district.baseCost}</div>
 
       <div class="district-effects">
-        ${Object.entries(d.modifiers || {})
+        ${Object.entries(district.modifiers || {})
           .map(([k,v]) => `${k}: ${v > 0 ? "+" : ""}${v}`)
           .join("<br>")}
       </div>
 
       <div class="district-requirements">
-        ${Object.entries(d.quizRequirements || {})
+        ${Object.entries(district.quizRequirements || {})
           .map(([k,v]) => `${k}: ${v}`)
           .join("<br>")}
       </div>
@@ -632,7 +638,7 @@ function openDistrictSelector() {
 
     if (canBuy) {
       card.querySelector("button").onclick = () => {
-        window.CivicationHome.purchaseDistrict(d.id);
+        window.CivicationHome.purchaseDistrict(district.id);
         modal.style.display = "none";
       };
     }
