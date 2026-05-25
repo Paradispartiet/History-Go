@@ -60,6 +60,27 @@
     return "<ul class=\"civi-day-phase-list\">" + itemsHtml + "</ul>";
   }
 
+  function shouldShowDayCompleteSummary(inspection) {
+    const hasNoNextPhase = !inspection?.nextPhase;
+    const hasNoOpenItems = Number(inspection?.openItemsInPhase || 0) === 0;
+    const isAtLastPhase = inspection?.reason === "at_last_phase";
+    return hasNoNextPhase && hasNoOpenItems && isAtLastPhase;
+  }
+
+  function buildDayCompleteSummary(inspection) {
+    return ""
+      + "<section class=\"civi-day-complete\" aria-label=\"Dagen er fullført\">"
+      + "<h4 class=\"civi-day-complete-title\">Dagen er fullført</h4>"
+      + "<p class=\"civi-day-complete-text\">Alle åpne handlinger for denne dagen er avklart. Nye hendelser kommer neste dag.</p>"
+      + "<dl class=\"civi-day-complete-grid\">"
+      + "<div><dt>Dag</dt><dd>" + escapeHtml(inspection.dayIndex || 1) + "</dd></div>"
+      + "<div><dt>Fase</dt><dd>" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</dd></div>"
+      + "<div><dt>Åpne handlinger</dt><dd>0</dd></div>"
+      + "<div><dt>Neste fase</dt><dd>Ingen</dd></div>"
+      + "</dl>"
+      + "</section>";
+  }
+
   function ensurePanel() {
     const panels = document.querySelector(".civi-panels");
     let panel = document.getElementById(PANEL_ID);
@@ -108,6 +129,7 @@
     const nextPhaseLabel = getNextPhaseLabel(nextPhase);
     const canAdvance = inspection.canAdvance === true && !!nextPhase;
     const buttonText = nextPhase ? "Gå til neste fase" : "Dagen er ferdig";
+    const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
 
     panel.innerHTML = ""
       + "<div class=\"civi-day-phase-head\">"
@@ -117,6 +139,7 @@
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
       + "<p class=\"civi-day-phase-status\">" + escapeHtml(getStatusText(inspection)) + "</p>"
       + "<p class=\"civi-day-phase-status muted\">" + escapeHtml(getLoopHint(inspection)) + "</p>"
+      + dayCompleteSummary
       + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
       + "<div class=\"civi-day-phase-actions\">"
       + "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">"
