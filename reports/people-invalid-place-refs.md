@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-25T09:54:29.713Z
+Generated: 2026-05-25T10:50:40.841Z
 
 ## Sammendrag
-- People-filer lest: **18**
-- People lest: **211**
+- People-filer lest: **19**
+- People lest: **220**
 - People med ugyldige refs: **9**
 - Ugyldige refs: **16**
 - Unike ugyldige placeId-er: **12**
 - People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **185**
+- Duplikate interne place-referanser: **194**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -274,6 +274,15 @@ Generated: 2026-05-25T09:54:29.713Z
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: joao_cesar_monteiro (João César Monteiro) -> lisbon_cinemateca_portuguesa x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: pedro_costa (Pedro Costa) -> lisbon_doclisboa x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: serge_trefaut (Serge Tréfaut) -> lisbon_doclisboa x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: tancred_ibsen (Tancred Ibsen) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: edith_carlmar (Edith Carlmar) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: arne_skouen (Arne Skouen) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: liv_ullmann (Liv Ullmann) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: anja_breien (Anja Breien) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: pal_bang_hansen (Pål Bang-Hansen) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: nils_r_muller (Nils R. Müller) -> colosseum_kino x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: jan_erik_holst (Jan Erik Holst) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: bredo_greve (Bredo Greve) -> cinemateket_oslo x2
 
 ## Anbefalt neste ryddebatch
 - grotten_utsikt (missing_place_candidate, 3 treff)
