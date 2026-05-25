@@ -357,7 +357,7 @@ if (!card) return;
   const sportProfile = (place?.category === "sport" && place?.sport_profile && typeof place.sport_profile === "object") ? place.sport_profile : null;
   if (metaEl) {
     const metaLines = [categoryLabel];
-    if (sportProfile?.groundhopper_relevant !== false) {
+    if (sportProfile && sportProfile.groundhopper_relevant !== false) {
       const sports = Array.isArray(sportProfile.sports) ? sportProfile.sports.filter(Boolean).slice(0, 3).join(", ") : "";
       const venueKind = String(sportProfile.venue_kind || "").trim();
       const clubs = Array.isArray(sportProfile.clubs_or_teams) ? sportProfile.clubs_or_teams.filter(Boolean).slice(0, 3).join(" / ") : "";
