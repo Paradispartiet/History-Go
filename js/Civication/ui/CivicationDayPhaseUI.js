@@ -22,10 +22,23 @@
   }
 
   function getStatusText(inspection) {
-    if (inspection?.canAdvance === true) return "Fasen er klar til å fullføres.";
-    if (inspection?.reason === "open_items_in_phase") return "Fullfør åpne meldinger i denne fasen først.";
-    if (inspection?.reason === "at_last_phase") return "Dagen er ved siste fase.";
+    if (inspection?.canAdvance === true && inspection?.nextPhase) return "Fasen er klar. Du kan gå videre til neste fase.";
+    if (inspection?.reason === "open_items_in_phase") return "Svar på åpne meldinger i denne fasen for å gå videre.";
+    if (inspection?.reason === "at_last_phase") return "Dagen er fullført.";
     return formatReason(inspection?.reason);
+  }
+
+  function getLoopHint(inspection) {
+    if (inspection?.reason === "open_items_in_phase") {
+      return "Åpne meldinger med valg er aktiv handling nå. Når de er besvart, låses neste fase opp.";
+    }
+    if (inspection?.canAdvance === true && inspection?.nextPhase) {
+      return "Denne fasen er avklart. Gå videre når du er klar.";
+    }
+    if (!inspection?.nextPhase) {
+      return "Ingen flere faser i dag. Nye hendelser kommer neste dag.";
+    }
+    return "Følg faseflyten: svar på meldinger → fullfør fase → gå videre.";
   }
 
   function getNextPhaseLabel(nextPhase) {
@@ -103,6 +116,7 @@
       + "</div>"
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
       + "<p class=\"civi-day-phase-status\">" + escapeHtml(getStatusText(inspection)) + "</p>"
+      + "<p class=\"civi-day-phase-status muted\">" + escapeHtml(getLoopHint(inspection)) + "</p>"
       + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
       + "<div class=\"civi-day-phase-actions\">"
       + "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">"

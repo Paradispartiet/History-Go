@@ -10,6 +10,7 @@
 
 (function () {
   "use strict";
+  let lastAnswerSummary = null;
 
   function getInbox() {
     const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
@@ -220,9 +221,9 @@
       const first = actionable[0];
       return {
         mode: "urgent",
-        title: "Krever svar",
+        title: "Neste handling: svar på melding",
         summary: `${titleOf(first)} · ${kindOf(first)}`,
-        chip: "Krever svar",
+        chip: `${actionable.length} krever svar`,
         action: "Svar nå",
         openInbox: true
       };
@@ -249,6 +250,33 @@
       action: "Se dashboard",
       openInbox: false
     };
+  }
+
+  function normalizeStabilityLabel(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    const key = raw.toLowerCase();
+    if (key === "stable") return "Stabil";
+    if (key === "warning") return "Advarsel";
+    if (key === "fired") return "Avsluttet";
+    return raw;
+  }
+
+  function buildAnswerSummaryHtml() {
+    if (!lastAnswerSummary) return "";
+    const parts = [];
+    if (lastAnswerSummary.choiceLabel) parts.push(`Valg: ${escapeHtml(lastAnswerSummary.choiceLabel)}`);
+    if (lastAnswerSummary.effect !== "") parts.push(`Effekt: ${escapeHtml(lastAnswerSummary.effect)}`);
+    if (lastAnswerSummary.stability) parts.push(`Stabilitet: ${escapeHtml(lastAnswerSummary.stability)}`);
+    if (lastAnswerSummary.subject) parts.push(`Sak: ${escapeHtml(lastAnswerSummary.subject)}`);
+
+    return `
+      <section class="civi-inbox-answer-summary">
+        <h3>Siste konsekvens</h3>
+        ${lastAnswerSummary.feedback ? `<p>${escapeHtml(lastAnswerSummary.feedback)}</p>` : ""}
+        <div class="civi-inbox-answer-meta">${parts.map(function (part) { return `<span>${part}</span>`; }).join("")}</div>
+      </section>
+    `;
   }
 
   function renderChoiceButtons(item) {
@@ -364,7 +392,19 @@
       : window.HG_CiviEngine?.answer?.(mailId, choiceId);
 
     Promise.resolve(result)
-      .then(function () {
+      .then(function (answerResult) {
+        const inboxItem = getInbox().find(function (item) { return mailIdOf(item) === mailId; });
+        const eventObj = eventOf(inboxItem) || {};
+        const selectedChoice = Array.isArray(eventObj?.choices)
+          ? eventObj.choices.find(function (row) { return String(row?.id || "").trim() === choiceId; }) || null
+          : null;
+        lastAnswerSummary = {
+          choiceLabel: selectedChoice?.label || "",
+          feedback: selectedChoice?.feedback || answerResult?.feedback || eventObj?.feedback || "",
+          effect: answerResult?.effect ?? selectedChoice?.effect ?? "",
+          stability: normalizeStabilityLabel(answerResult?.stability),
+          subject: eventObj?.subject || eventObj?.title || ""
+        };
         try { window.dispatchEvent(new Event("updateProfile")); } catch {}
         scheduleRefresh();
         scheduleInboxSectionsRefresh();
@@ -394,6 +434,7 @@
 
     const markup = `
       <div class="civi-inbox-sections" data-civi-inbox-sections="1">
+        ${buildAnswerSummaryHtml()}
         ${renderInboxSection(
           "Jobbmail",
           "Arbeid, stilling, rolleprogresjon, arbeidsdag, konflikter, forfremmelse, stagnasjon og oppsigelse.",

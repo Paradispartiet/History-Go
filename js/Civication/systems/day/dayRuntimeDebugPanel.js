@@ -72,6 +72,42 @@
   function getFactionState() {
     return window.CivicationFactionConflictSystem?.getState?.() || safeJson("hg_civi_faction_conflicts_v1", { factions: {}, conflicts: [], dominant_conflict: null });
   }
+  function getDayProgressionInspect() {
+    return window.CivicationDayProgression?.inspect?.() || null;
+  }
+
+  function getDailyRuntime() {
+    return window.CivicationDailyMailBuilder?.inspect?.()?.runtime || null;
+  }
+
+  function getCapitalState() {
+    return safeJson("hg_capital_v1", {}) || {};
+  }
+
+  function getMeritsSummary() {
+    const merits = safeJson("merits_by_category", {}) || {};
+    const keys = Object.keys(merits);
+    return {
+      count: keys.length,
+      top: keys.slice(0, 4).map((key) => `${key}:${Number(merits?.[key]?.points || 0)}`)
+    };
+  }
+
+  function summarizeWallet(wallet) {
+    if (!wallet || typeof wallet !== "object") return wallet ?? "—";
+    const balance = wallet?.balance ?? wallet?.amount ?? wallet?.pc ?? "—";
+    const lastTick = wallet?.last_tick_iso || wallet?.lastTickIso || "—";
+    return `balance:${balance}, last_tick:${lastTick}`;
+  }
+
+  function summarizeCapital(capitalState) {
+    if (!capitalState || typeof capitalState !== "object") return "—";
+    const entries = Object.entries(capitalState)
+      .filter(([, value]) => typeof value === "number" && Number.isFinite(value))
+      .slice(0, 8)
+      .map(([key, value]) => `${key}:${value}`);
+    return entries.length ? entries.join(", ") : "—";
+  }
 
   function compactRows(rows, limit) {
     return (Array.isArray(rows) ? rows : []).slice(0, limit || 8);
@@ -130,6 +166,11 @@
     const peopleRows = getPeopleRows();
     const alliances = getAllianceState();
     const factions = getFactionState();
+    const dayInspect = getDayProgressionInspect();
+    const dailyRuntime = getDailyRuntime();
+    const wallet = summarizeWallet(window.CivicationState?.getWallet?.() ?? "—");
+    const capital = getCapitalState();
+    const merits = getMeritsSummary();
     const activeFaction = state?.activeFaction || safeJson("hg_civi_active_faction_v1", {})?.active_faction?.id || "—";
 
     body.innerHTML = `
@@ -140,6 +181,15 @@
         ${renderKV("Plan", progress?.role_plan_id || "—")}
         ${renderKV("Step index", progress?.step_index ?? "—")}
         ${renderKV("Step type", progress?.current_step_type || "—")}
+        ${renderKV("Current day phase", dayInspect?.phaseLabel || dayInspect?.phase || "—")}
+        ${renderKV("Day inspect", dayInspect ? JSON.stringify({ canAdvance: !!dayInspect?.canAdvance, reason: dayInspect?.reason || null, openItemsInPhase: dayInspect?.openItemsInPhase || 0 }) : "—")}
+        ${renderKV("Daily runtime item count", Array.isArray(dailyRuntime?.items) ? dailyRuntime.items.length : 0)}
+        ${renderKV("Daily runtime current_index", dailyRuntime?.current_index ?? "—")}
+        ${renderKV("Delivered IDs", Array.isArray(dailyRuntime?.delivered_ids) ? dailyRuntime.delivered_ids.length : 0)}
+        ${renderKV("Answered IDs", Array.isArray(dailyRuntime?.answered_ids) ? dailyRuntime.answered_ids.length : 0)}
+        ${renderKV("Wallet", wallet)}
+        ${renderKV("Capital", summarizeCapital(capital))}
+        ${renderKV("Merits", `${merits.count} kategorier${merits.top.length ? ` (${merits.top.join(", ")})` : ""}`)}
       </section>
 
       <section>
