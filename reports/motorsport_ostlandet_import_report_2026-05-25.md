@@ -10,7 +10,7 @@
 ## Nye steder lagt til
 Ny fil: `data/places/sport/ostlandet/places_motorsport_ostlandet.json`
 
-Lagt til 10 steder:
+Lagt til 11 steder:
 1. rudskogen_motorsenter
 2. valerbanen
 3. gardermoen_raceway
@@ -20,13 +20,16 @@ Lagt til 10 steder:
 7. kongsberg_motorsenter
 8. finnskogbanen
 9. momarken_bilbane
-10. lyngasbanen (historisk)
+10. lyngasbanen (historisk, Tranby/Lier)
+11. gardermoen_motorpark
 
 ## Kandidater utelatt i denne batchen
-Mange kandidater fra listen er ikke lagt inn i første batch fordi verifisering av nøyaktig lokasjon/anleggstype/år ikke ble vurdert som tilstrekkelig sikker i denne runden. Dette gjelder særlig mindre lokale baner, isbaner og enkelte flerbruksanlegg med varierende navnebruk.
+Dette er første kontrollerte batch og ikke full Østlandet-dekning. Mange kandidater fra listen er ikke lagt inn i første batch fordi verifisering av nøyaktig lokasjon/anleggstype/år ikke ble vurdert som tilstrekkelig sikker i denne runden. Dette gjelder særlig mindre lokale baner, isbaner og enkelte flerbruksanlegg med varierende navnebruk.
 
 ## Usikre årstall eller koordinater
 - `kongsberg_motorsenter`, `finnskogbanen`, `momarken_bilbane`: `year` satt til `null` (usikkert etablert år, etter krav om å fjerne `year: 0`).
+- Lyngåsbanen-geografi er korrigert til Tranby/Lier (Buskerud).
+- Bekreftet at `year: 0` ikke finnes i datasettet.
 - Flere koordinater bør etterkontrolleres mot primærkilder i neste iterasjon for produksjonsnøyaktighet.
 
 ## Duplikatsjekk mot eksisterende sportsteder
@@ -35,6 +38,7 @@ Mange kandidater fra listen er ikke lagt inn i første batch fordi verifisering 
 
 ## Underbadge-kontroll
 - Alle brukte `underbadge_ids` er validert mot badge-IDer i `data/badges/sport.json`.
+- Bekreftet at alle `underbadge_ids` finnes i `data/badges/sport.json`.
 - Ingen nye underbadge-IDer ble opprettet.
 
 ## Manifestoppdatering
