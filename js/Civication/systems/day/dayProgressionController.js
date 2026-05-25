@@ -38,7 +38,7 @@
    * }} DayProgAdvanceResult
    */
 
-  const OPEN_STATUSES = new Set(["queued", "pending", "delivered", "open"]);
+  const OPEN_STATUSES = new Set(["pending", "delivered", "open"]);
 
   function norm(value) {
     return String(value || "").trim();
