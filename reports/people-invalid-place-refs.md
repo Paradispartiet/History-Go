@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-25T10:45:36.602Z
+Generated: 2026-05-25T11:16:33.956Z
 
 ## Sammendrag
 - People-filer lest: **19**
-- People lest: **218**
+- People lest: **220**
 - People med ugyldige refs: **9**
 - Ugyldige refs: **16**
 - Unike ugyldige placeId-er: **12**
 - People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **192**
+- Duplikate interne place-referanser: **194**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -279,8 +279,10 @@ Generated: 2026-05-25T10:45:36.602Z
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: arne_skouen (Arne Skouen) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: liv_ullmann (Liv Ullmann) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: anja_breien (Anja Breien) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: jan_erik_holst (Jan Erik Holst) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: pal_bang_hansen (Pål Bang-Hansen) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: nils_r_muller (Nils R. Müller) -> colosseum_kino x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: bredo_greve (Bredo Greve) -> cinemateket_oslo x2
 
 ## Anbefalt neste ryddebatch
 - grotten_utsikt (missing_place_candidate, 3 treff)
