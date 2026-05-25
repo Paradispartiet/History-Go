@@ -138,6 +138,7 @@
   }
 
   function applyChoiceConsequences(eventObj, choice) {
+    /** @type {{ brand_id?: string | number, brand_name?: string } | null} */
     const active = window.CivicationState?.getActivePosition?.() || null;
     const activeBrandId = slugify(active?.brand_id);
     const eventBrandId = slugify(eventObj?.brand_id);

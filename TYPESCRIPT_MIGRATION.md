@@ -367,3 +367,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Removed one local `TS2339` (`stability` on `unknown`) without changing runtime logic, control flow, branching, return values, storage keys, recovery behavior, or active-position behavior.
 - Left `TS2322` (boolean vs `CiviFn`) and the global/window diagnostic for `CivicationActivePositionRecovery` unchanged in this phase because they require non-local API/global typing scope outside this file-local pass.
 - No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched.
+
+## Phase 44: narrow BrandJobState typecheck pass
+
+- Added one extremely narrow, local JSDoc/type-only annotation in `js/Civication/systems/civicationBrandJobState.js` for the existing active-position read used at `.brand_id` / `.brand_name` access sites.
+- Removed local `TS2339` unknown/property-access diagnostics tied to `brand_id`/`brand_name` reads from the same `active` value, without changing runtime logic, control flow, branching, return values, event flow, storage keys, or brand/job-state behavior.
+- Left only the window/global assignment diagnostic in this file unchanged in this phase because it requires global declaration/schema scope outside this single file-local pass.
+- No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched.
