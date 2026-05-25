@@ -26,7 +26,7 @@ Lagt til 10 steder:
 Mange kandidater fra listen er ikke lagt inn i første batch fordi verifisering av nøyaktig lokasjon/anleggstype/år ikke ble vurdert som tilstrekkelig sikker i denne runden. Dette gjelder særlig mindre lokale baner, isbaner og enkelte flerbruksanlegg med varierende navnebruk.
 
 ## Usikre årstall eller koordinater
-- `kongsberg_motorsenter`, `finnskogbanen`, `momarken_bilbane`: `year` satt til `0` (usikkert etablert år).
+- `kongsberg_motorsenter`, `finnskogbanen`, `momarken_bilbane`: `year` satt til `null` (usikkert etablert år, etter krav om å fjerne `year: 0`).
 - Flere koordinater bør etterkontrolleres mot primærkilder i neste iterasjon for produksjonsnøyaktighet.
 
 ## Duplikatsjekk mot eksisterende sportsteder
