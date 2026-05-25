@@ -165,14 +165,22 @@
   }
 
   function isOpenInboxItem(item) {
-    const candidate = item?.event && typeof item.event === "object" ? item.event : item;
-    if (!candidate || typeof candidate !== "object") return false;
+    if (!item || typeof item !== "object") return false;
 
-    if (candidate.resolved === true) return false;
+    const wrapperStatus = String(item.status || "").toLowerCase();
+    const wrapperResolved = item.resolved === true;
 
-    const status = String(candidate.status || "").toLowerCase();
-    if (status === "resolved") return false;
-    if (status === "pending") return true;
+    const hasEvent = !!item.event && typeof item.event === "object";
+    const eventStatus = hasEvent ? String(item.event.status || "").toLowerCase() : "";
+    const eventResolved = hasEvent ? item.event.resolved === true : false;
+
+    if (wrapperResolved || wrapperStatus === "resolved" || eventResolved || eventStatus === "resolved") {
+      return false;
+    }
+
+    if (wrapperStatus === "pending" || eventStatus === "pending") {
+      return true;
+    }
 
     return true;
   }
