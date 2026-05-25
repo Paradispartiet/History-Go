@@ -352,10 +352,10 @@ function renderPublicFeed() {
   const container = document.getElementById("civiPublicFeed");
   if (!container) return;
 
-  /** @type {Array<{ timestamp?: string|number|Date, collapseType?: string, district?: string }>} */
-  const feed = Array.isArray(window.HG_CivicationPublic?.getFeed?.())
-    ? window.HG_CivicationPublic.getFeed()
-    : [];
+  const feed =
+    /** @type {Array<{ timestamp?: string|number|Date, collapseType?: string, district?: string }>} */ (
+      window.HG_CivicationPublic?.getFeed() || []
+    );
 
   container.innerHTML = feed.map(e => {
     const date = new Date(e.timestamp).toLocaleTimeString("no-NO");
@@ -609,7 +609,7 @@ function openDistrictSelector() {
 
   Object.values(districts).forEach(function (d) {
     /** @type {{ id?: string, name?: string, baseCost?: number, modifiers?: Record<string, number>, quizRequirements?: Record<string, unknown> }} */
-    const district = d || {};
+    const district = d;
     const canBuy = window.CivicationHome?.canPurchaseDistrict?.(district.id);
 
     const card = document.createElement("div");
