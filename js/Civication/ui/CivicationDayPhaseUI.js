@@ -47,14 +47,23 @@
     return "<ul class=\"civi-day-phase-list\">" + itemsHtml + "</ul>";
   }
 
-  function ensurePanel(dashboard) {
+  function ensurePanel() {
+    const panels = document.querySelector(".civi-panels");
     let panel = document.getElementById(PANEL_ID);
-    if (panel) return panel;
+    if (!panels) return panel || null;
 
-    panel = document.createElement("section");
-    panel.id = PANEL_ID;
-    panel.className = "civi-day-phase-panel";
-    dashboard.insertAdjacentElement("afterend", panel);
+    if (!panel) {
+      panel = document.createElement("section");
+      panel.id = PANEL_ID;
+      panel.className = "civi-day-phase-panel";
+    }
+
+    const controls = document.getElementById("civiLifeHomeControls");
+    const anchor = controls && controls.parentElement === panels ? controls.nextElementSibling : panels.firstElementChild;
+    if (panel.parentElement !== panels || panel.previousElementSibling !== controls) {
+      panels.insertBefore(panel, anchor);
+    }
+
     return panel;
   }
 
@@ -75,14 +84,12 @@
   }
 
   function render() {
-    const dashboard = document.getElementById("civiDashboardSection");
-    if (!dashboard) return false;
-
     const progression = window.CivicationDayProgression;
     if (!progression?.inspect) return false;
 
     const inspection = progression.inspect() || {};
-    const panel = ensurePanel(dashboard);
+    const panel = ensurePanel();
+    if (!panel) return false;
 
     const nextPhase = inspection.nextPhase || null;
     const nextPhaseLabel = getNextPhaseLabel(nextPhase);

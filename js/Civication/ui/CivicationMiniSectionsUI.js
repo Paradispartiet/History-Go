@@ -592,8 +592,8 @@
   }
 
   function ensureHomeControls() {
-    const dashboard = document.getElementById("civiDashboardSection");
-    if (!dashboard || !dashboard.parentElement) return null;
+    const panels = document.querySelector(".civi-panels");
+    if (!panels) return null;
 
     let controls = document.getElementById("civiLifeHomeControls");
     if (!controls) {
@@ -611,11 +611,10 @@
         </article>
         <nav class="civi-category-nav" aria-label="Civication livsområder"></nav>
       `;
-      dashboard.insertAdjacentElement("afterend", controls);
     }
 
-    if (controls.previousElementSibling !== dashboard) {
-      dashboard.insertAdjacentElement("afterend", controls);
+    if (controls.parentElement !== panels || panels.firstElementChild !== controls) {
+      panels.insertBefore(controls, panels.firstElementChild);
     }
 
     return controls;
