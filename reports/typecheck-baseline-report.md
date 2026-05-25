@@ -1,20 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-19T20:51:39.930Z
+- Generated at (UTC): 2026-05-25T11:04:50.935Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1919
-- Files with diagnostics: 193
+- Total diagnostic lines found: 1963
+- Files with diagnostics: 197
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 80 | 595 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
-| other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/ui/** | 20 | 481 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| js/Civication/** | 81 | 600 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
+| other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| js/ui/** | 20 | 500 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
 | js/boot.js | 1 | 75 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
@@ -27,15 +27,15 @@
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/ui/place-card.js | 125 | js/ui/** |
+| js/ui/place-card.js | 132 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 107 | js/Civication/** |
 | js/ui/popup-utils.js | 80 | js/ui/** |
 | js/profile.js | 79 | js/profile.js |
 | js/boot.js | 75 | js/boot.js |
+| js/ui/left-panel.js | 55 | js/ui/** |
 | js/routes.js | 47 | other |
-| js/ui/left-panel.js | 47 | js/ui/** |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
-| js/ui/lists.js | 37 | js/ui/** |
+| js/ui/lists.js | 41 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
 | js/Civication/systems/day/dayPatches.js | 30 | js/Civication/** |
@@ -51,16 +51,16 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1591 |
-| TS2551 | 124 |
+| TS2339 | 1628 |
+| TS2551 | 127 |
 | TS2304 | 70 |
 | TS2307 | 36 |
-| TS2322 | 19 |
+| TS2322 | 20 |
 | TS2580 | 13 |
 | TS2349 | 12 |
 | TS2550 | 11 |
+| TS2345 | 9 |
 | TS2362 | 6 |
-| TS2345 | 6 |
 | TS2451 | 6 |
 | TS2552 | 5 |
 | TS2363 | 4 |
@@ -75,8 +75,8 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (595 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (125), `js/Civication/ui/CivicationUI.js` (107), `js/ui/popup-utils.js` (80), `js/profile.js` (79), `js/boot.js` (75).
+1. Start with **js/Civication/** (600 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (132), `js/Civication/ui/CivicationUI.js` (107), `js/ui/popup-utils.js` (80), `js/profile.js` (79), `js/boot.js` (75).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
@@ -84,8 +84,7 @@
 ```
 > history-go@0.0.0 typecheck
 > tsc -p tsconfig.json
-js/Civication/CivicationBoot.js(172,7): error TS2322: Type 'CivicationEventEngine' is not assignable to type 'CiviMethodBag'.
-  Index signature for type 'string' is missing in type 'CivicationEventEngine'.
+js/Civication/CivicationBoot.js(208,12): error TS2339: Property '__CIVI_BOOT_ERROR__' does not exist on type 'Window & typeof globalThis'.
 js/Civication/civicationCommercial.js(53,25): error TS2339: Property 'balance' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(135,36): error TS2339: Property 'packs' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(135,53): error TS2339: Property 'packs' does not exist on type 'unknown'.
@@ -162,4 +161,5 @@ js/Civication/merits-and-jobs.js(177,17): error TS2339: Property 'reason' does n
 js/Civication/merits-and-jobs.js(189,22): error TS2304: Cannot find name 'catIdFromDisplay'.
 js/Civication/roleStoryletBridge.js(133,10): error TS2339: Property 'CiviRoleStoryletBridge' does not exist on type 'Window & typeof globalThis'.
 js/Civication/roleThreadResolver.js(88,67): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/roleThreadResolver.js(105,26): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
 ```

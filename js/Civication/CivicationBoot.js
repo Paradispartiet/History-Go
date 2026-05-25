@@ -244,8 +244,7 @@ async function loadCivicationData() {
       await loadCivicationData();
       await ensureCiviCareerRulesLoaded();
 
-      window.HG_CiviEngine =
-    new CivicationEventEngine({
+      window.HG_CiviEngine = /** @type {any} */ (new CivicationEventEngine({
       packBasePath: "data/Civication",
       maxInbox: 1,
       packMap: {
@@ -255,7 +254,7 @@ async function loadCivicationData() {
       media: "jobbmails/mediaCivic.json",
       by: "jobbmails/byCivic.json"
       }
-    });
+    }));
 
       await ensureCivicationRoleModelRuntimeLoaded();
       await ensureCivicationCareerRoleResolverLoaded();
