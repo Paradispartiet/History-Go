@@ -85,7 +85,9 @@
   }
 
   function getCareerCategoryId() {
-    return normStr(window.CivicationState?.getActivePosition?.()?.career_id || "");
+    /** @type {{ career_id?: string | number } | null | undefined} */
+    const activePosition = window.CivicationState?.getActivePosition?.();
+    return normStr(activePosition?.career_id || "");
   }
 
   function getMeritPointsByCategory() {
