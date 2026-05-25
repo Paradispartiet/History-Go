@@ -1430,12 +1430,16 @@ if (btnUnlock) {
       return;
     }
 
-    window.visited = window.visited || {};
-    window.visited[place.id] = true;
-    if (typeof window.HG_updateGroundhopperFromPlace === "function") {
-      window.HG_updateGroundhopperFromPlace(place);
+    if (typeof window.saveVisitedFromQuiz === "function") {
+      window.saveVisitedFromQuiz(place.id);
+    } else {
+      window.visited = window.visited || {};
+      window.visited[place.id] = true;
+      if (typeof window.HG_updateGroundhopperFromPlace === "function") {
+        window.HG_updateGroundhopperFromPlace(place);
+      }
+      if (typeof window.saveVisited === "function") window.saveVisited();
     }
-    if (typeof window.saveVisited === "function") window.saveVisited();
 
     if (window.HGMap) {
       window.HGMap.setVisited(window.visited);
