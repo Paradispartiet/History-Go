@@ -318,3 +318,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Kept runtime behavior unchanged: no logic/flow/branching/order/side-effect changes, no globals additions, and no DOM/CSS/layout/text/event-listener behavior changes.
 - No changes were made to `schemas/civication-globals.d.ts`, `js/Civication/core/civicationEventEngine.js`, or economy engine code.
 - GitHub Actions workflow `Typecheck baseline report` is the final baseline control for this phase.
+
+## Phase 37: narrow CivicationBoot type-only pass
+
+- Added a declaration-only global in `schemas/civication-globals.d.ts` for existing runtime usage in `js/Civication/CivicationBoot.js`: `window.__CIVI_BOOT_ERROR__`.
+- Scope stayed intentionally narrow to CivicationBoot typing friction only; no runtime guards, no flow/branch/order/storage changes, and no boot-sequence changes were introduced.
+- No UI/Event Engine/Economy Engine/MiniSections/js/ui files were modified in this phase.
+- Runtime behavior, DOM/CSS/layout/text, and app-init semantics remain unchanged.
