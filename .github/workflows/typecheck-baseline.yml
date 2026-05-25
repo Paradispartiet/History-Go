@@ -1,0 +1,42 @@
+name: Typecheck baseline report
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  typecheck-baseline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Syntax check Civication UI
+        run: node --check js/Civication/ui/CivicationUI.js
+
+      - name: Syntax check Civication Event Engine
+        run: node --check js/Civication/core/civicationEventEngine.js
+
+      - name: Generate typecheck baseline report
+        run: npm run typecheck:report
+
+      - name: Print report summary
+        if: always()
+        run: sed -n '1,90p' reports/typecheck-baseline-report.md
+
+      - name: Upload typecheck baseline report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: typecheck-baseline-report
+          path: reports/typecheck-baseline-report.md
