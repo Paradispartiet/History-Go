@@ -96,6 +96,21 @@
     return getPhaseForRow(row) === wanted;
   }
 
+
+  /**
+   * @param {DayProgRuntimeItem} row
+   * @returns {DayProgRecord|null}
+   */
+  function findInboxItemForRow(row) {
+    const rowId = norm(row?.id || row?.event?.id);
+    if (!rowId) return null;
+
+    const inbox = window.CivicationState?.getInbox?.();
+    if (!Array.isArray(inbox)) return null;
+
+    return inbox.find((item) => norm(item?.event?.id || item?.id) === rowId) || null;
+  }
+
   /**
    * @param {DayProgRuntimeItem} row
    * @returns {boolean}
@@ -105,6 +120,17 @@
     const status = norm(row.status || "queued").toLowerCase();
     if (!OPEN_STATUSES.has(status)) return false;
     if (row.resolved === true) return false;
+
+    const inboxItem = findInboxItemForRow(row);
+    const inboxStatus = norm(inboxItem?.status).toLowerCase();
+    const inboxEventStatus = norm(inboxItem?.event?.status).toLowerCase();
+    if (
+      inboxItem?.resolved === true
+      || inboxStatus === "resolved"
+      || inboxItem?.event?.resolved === true
+      || inboxEventStatus === "resolved"
+    ) return false;
+
     if (row.answered_at || row.answeredAt) return false;
     return true;
   }
