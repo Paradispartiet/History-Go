@@ -1,16 +1,16 @@
 # Place Data Audit
 
-Generert: 2026-05-25T08:59:50.108Z
+Generert: 2026-05-25T09:54:29.517Z
 
 ## Totalsammendrag
 
-- Place-filer i manifest: **39**
-- Totalt antall places: **443**
-- Steder med manglende obligatoriske felt: **46**
+- Place-filer i manifest: **40**
+- Totalt antall places: **454**
+- Steder med manglende obligatoriske felt: **50**
 - Steder med manglende popupDesc: **0**
-- Steder med manglende image: **404**
-- Steder med manglende cardImage: **407**
-- Steder med manglende emne_ids: **93**
+- Steder med manglende image: **415**
+- Steder med manglende cardImage: **418**
+- Steder med manglende emne_ids: **104**
 - Steder med manglende quiz_profile: **83**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
@@ -19,20 +19,20 @@ Generert: 2026-05-25T08:59:50.108Z
 
 ## Dekning per datasett (placeId/places)
 
-- **quiz**: 92/443 steder dekket (mangler 351, ugyldige refs 569)
-- **people**: 83/443 steder dekket (mangler 360, ugyldige refs 16)
-- **nature**: 36/443 steder dekket (mangler 407, ugyldige refs 3)
-- **badges**: 0/443 steder dekket (mangler 443, ugyldige refs 0)
-- **wonderkammer**: 136/443 steder dekket (mangler 307, ugyldige refs 35)
-- **relations**: 0/443 steder dekket (mangler 443, ugyldige refs 0)
-- **leksikon**: 200/443 steder dekket (mangler 243, ugyldige refs 1)
-- **sprakleksikon**: 3/443 steder dekket (mangler 440, ugyldige refs 0)
-- **external/offisielle lenker**: 0/443 steder dekket (mangler 443, ugyldige refs 0)
+- **quiz**: 92/454 steder dekket (mangler 362, ugyldige refs 569)
+- **people**: 89/454 steder dekket (mangler 365, ugyldige refs 16)
+- **nature**: 36/454 steder dekket (mangler 418, ugyldige refs 3)
+- **badges**: 0/454 steder dekket (mangler 454, ugyldige refs 0)
+- **wonderkammer**: 136/454 steder dekket (mangler 318, ugyldige refs 35)
+- **relations**: 0/454 steder dekket (mangler 454, ugyldige refs 0)
+- **leksikon**: 200/454 steder dekket (mangler 254, ugyldige refs 1)
+- **sprakleksikon**: 3/454 steder dekket (mangler 451, ugyldige refs 0)
+- **external/offisielle lenker**: 0/454 steder dekket (mangler 454, ugyldige refs 0)
 
 ## Manglende rundinger og quizdekning
 
 - Manglende rundinger (r): **0**
-- Manglende quizdekning: **351**
+- Manglende quizdekning: **362**
   - karl_johan, grunerlokka_helgesens_tm, majorstuen_krysset, oslo_bussterminal, helsfyr, gronlandsleiret, storgata, ullevål_hageby, romsaås, rodelokka, vaalerenga, vinderen, ullern, spikersuppa, bankplassen, christiania_torv, botsparken, stensparken, nydalen, sorenga, majorstuen_tbanestasjon, nationaltheatret_stasjon, olaf_ryes_plass, birkelunden, universitetsplassen, operahuset, schous_plass, vaterland, tullin, okern, skoyen, torshov, grorud, gamlebyen, frognerparken, kampen_park, sagene, kampen, sofienberg_kirke, akerhus_slott, gamle_aker_kirke, var_frelsers_gravlund, hovedoya_kloster, eidsvollsbygningen, oscarsborg_festning, grini_fangeleir, villa_grande, bogstad_gard, mollergata_19, nonneseter_kloster, oslo_ladegard, gamle_radhus, galgeberg, oslo_hospital, botsfengselet, prinds_christian_augusts_minde, camilla_collett_statue, henrik_wergeland_statue, grotta, gamle_deichman, sigrid_undset_statue, ruth_maier_minne, alf_proysen_statue_nittedal, proysenhuset_rudshogda, inger_hagerups_plass, oscar_braaten_statuen, alexander_kiellands_plass, good_game_redaksjon, vg_huset, nrk_huset_marienlyst, aftenposten_akersgata, dagbladet_akersgata, klassekampen_redaksjon, salt, det_norske_teatret, blaa, john_dee, sentrum_scene, ringnes_bryggeri, st_halvard_bryggeri, oslo_kornmagasin, akershus_slott_bakeriet, jernbanetorget_trafikknutepunkt, christiania_seildugsfabrik, alnaelva, alnaelvstien, loelva_historisk, trosterud_friomrade, furuset_haugerud_skogbelte, hellerud_gard, alnabru_jernbane_og_logistikk, frysjadammen, nydalen_industristed, seilduksfabrikken_nydalen, nydalsdammen, stilla_nydalen, bjoelsenfossen, bjoelsenparken_elvenaer, glads_molle, voienfossen ...
 
 ## Funn per fil
@@ -406,6 +406,23 @@ Generert: 2026-05-25T08:59:50.108Z
 - treningssted_sognsvann (Sognsvann treningsrunde): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
 - treningssted_skur13 (Skur 13 skate- og balansetrening): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
 
+### data/places/sport/ostlandet/places_motorsport_ostlandet.json
+
+- Antall places: 11
+- Places med funn: 11
+
+- rudskogen_motorsenter (Rudskogen Motorsenter): mangler image | mangler cardImage | mangler emne_ids
+- valerbanen (Vålerbanen): mangler image | mangler cardImage | mangler emne_ids
+- gardermoen_raceway (Gardermoen Raceway): mangler image | mangler cardImage | mangler emne_ids
+- gardermoen_motorpark (Gardermoen Motorpark): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids
+- grenland_motorsportsenter (Grenland Motorsportsenter): mangler image | mangler cardImage | mangler emne_ids
+- varna_kartring (Varna Kartring): mangler image | mangler cardImage | mangler emne_ids
+- naf_gokartsenter_andebu (NAF Gokartsenter Andebu (Håsken)): mangler image | mangler cardImage | mangler emne_ids
+- kongsberg_motorsenter (Kongsberg Motorsenter): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids
+- finnskogbanen (Finnskogbanen): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids
+- momarken_bilbane (Momarken Bilbane): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids
+- lyngasbanen (Lyngåsbanen (historisk)): mangler image | mangler cardImage | mangler emne_ids
+
 ### data/places/subkultur/oslo/places_subkultur.json
 
 - Antall places: 14
@@ -718,7 +735,7 @@ Generert: 2026-05-25T08:59:50.108Z
 
 ## Neste arbeid (prioritert)
 
-1. Lag quiz for 351 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
+1. Lag quiz for 362 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
 2. Fyll inn rundinger (r) for 0 steder som mangler dette feltet.
 3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).
 4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.
@@ -727,9 +744,9 @@ Generert: 2026-05-25T08:59:50.108Z
 
 - Fil: `reports/place-data-worklist.json`
 - Antall steder klare for quiz: **214**
-- Antall steder klare for Wonderkammer: **307**
-- Antall steder klare for språkleksikon: **440**
-- Prioritet: critical **0**, high **352**, medium **91**, low **0**
+- Antall steder klare for Wonderkammer: **318**
+- Antall steder klare for språkleksikon: **451**
+- Prioritet: critical **0**, high **363**, medium **91**, low **0**
 
 ### Topp 25 anbefalte neste steder
 
