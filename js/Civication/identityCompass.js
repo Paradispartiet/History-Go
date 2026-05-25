@@ -13,7 +13,9 @@
     const identity = window.HG_IdentityCore?.getIdentity();
     if (!identity) return;
 
-    const focus = identity.focus;
+    const focus = /** @type {Record<string, number>} */ (
+      /** @type {{ focus: Record<string, number> }} */ (identity).focus
+    );
 
     const types = Object.keys(focus);
     const size = 240;
