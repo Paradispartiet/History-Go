@@ -80,7 +80,16 @@
 
   function shouldShowDayReport(inspection) {
     if (!inspection || typeof inspection !== "object") return false;
-    return inspection.reason === "at_last_phase" || !inspection.nextPhase;
+    if (inspection.nextPhase) return false;
+    if (Number(inspection.openItemsInPhase || 0) !== 0) return false;
+
+    const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime || null;
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+    if (!items.length) return false;
+
+    return items.every(function (row) {
+      return String(row?.status || "").toLowerCase() === "answered";
+    });
   }
 
   function buildDayReportHtml() {
