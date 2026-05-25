@@ -353,3 +353,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Fixed the local `TS2339` unknown property-access diagnostic on `identity.focus` by adding a local shape cast at the existing read site, with no runtime logic change.
 - Intentionally left the `window.HG_IdentityCompass` global diagnostic in place in this phase because it requires global declaration/schema work outside this file-local pass.
 - No runtime behavior was changed: IdentityCompass rendering flow, API behavior, storage, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+
+## Phase 42: narrow roleThreadResolver typecheck pass
+
+- Added one extremely narrow, local JSDoc/type-only annotation in `js/Civication/roleThreadResolver.js` for the existing active-position read used to access `.career_id`.
+- Removed one local `TS2339` (`career_id` on `unknown`) without changing runtime logic, flow, branching, returns, storage, or resolver behavior.
+- Left global/window diagnostics (`CiviStoryResolver`, `CiviRoleThreadResolver`) unchanged because those require global declaration/schema scope outside this file-local pass.
+- No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched.
