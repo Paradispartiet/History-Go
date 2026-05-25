@@ -77,7 +77,7 @@
   }
 
   function getDailyRuntime() {
-    return window.CivicationDailyMailBuilder?.getRuntime?.() || null;
+    return window.CivicationDailyMailBuilder?.inspect?.()?.runtime || null;
   }
 
   function getCapitalState() {
@@ -91,6 +91,22 @@
       count: keys.length,
       top: keys.slice(0, 4).map((key) => `${key}:${Number(merits?.[key]?.points || 0)}`)
     };
+  }
+
+  function summarizeWallet(wallet) {
+    if (!wallet || typeof wallet !== "object") return wallet ?? "—";
+    const balance = wallet?.balance ?? wallet?.amount ?? wallet?.pc ?? "—";
+    const lastTick = wallet?.last_tick_iso || wallet?.lastTickIso || "—";
+    return `balance:${balance}, last_tick:${lastTick}`;
+  }
+
+  function summarizeCapital(capitalState) {
+    if (!capitalState || typeof capitalState !== "object") return "—";
+    const entries = Object.entries(capitalState)
+      .filter(([, value]) => typeof value === "number" && Number.isFinite(value))
+      .slice(0, 8)
+      .map(([key, value]) => `${key}:${value}`);
+    return entries.length ? entries.join(", ") : "—";
   }
 
   function compactRows(rows, limit) {
@@ -152,7 +168,7 @@
     const factions = getFactionState();
     const dayInspect = getDayProgressionInspect();
     const dailyRuntime = getDailyRuntime();
-    const wallet = window.CivicationState?.getWallet?.() ?? "—";
+    const wallet = summarizeWallet(window.CivicationState?.getWallet?.() ?? "—");
     const capital = getCapitalState();
     const merits = getMeritsSummary();
     const activeFaction = state?.activeFaction || safeJson("hg_civi_active_faction_v1", {})?.active_faction?.id || "—";
@@ -172,7 +188,7 @@
         ${renderKV("Delivered IDs", Array.isArray(dailyRuntime?.delivered_ids) ? dailyRuntime.delivered_ids.length : 0)}
         ${renderKV("Answered IDs", Array.isArray(dailyRuntime?.answered_ids) ? dailyRuntime.answered_ids.length : 0)}
         ${renderKV("Wallet", wallet)}
-        ${renderKV("Capital", Number(capital?.capital ?? capital?.balance ?? 0))}
+        ${renderKV("Capital", summarizeCapital(capital))}
         ${renderKV("Merits", `${merits.count} kategorier${merits.top.length ? ` (${merits.top.join(", ")})` : ""}`)}
       </section>
 
