@@ -150,8 +150,11 @@ const HGEpokerRuntime = (() => {
   let cache = null;
   const status = {
     loaded: false,
+    state: "idle", // idle | loading | complete | partial | failed
     startedAt: null,
     finishedAt: null,
+    expectedFiles: 0,
+    successfulFiles: 0,
     domainsLoaded: [],
     missingFiles: [],
     failedFiles: [],
@@ -162,7 +165,12 @@ const HGEpokerRuntime = (() => {
     if (cache) return cache;
     if (loadPromise) return loadPromise;
 
+    status.state = "loading";
     status.startedAt = new Date().toISOString();
+    status.finishedAt = null;
+    status.expectedFiles = epArr(EPOKER_FILES).length;
+    status.successfulFiles = 0;
+    status.loaded = false;
 
     loadPromise = (async () => {
       const epokerByDomain = Object.create(null);
@@ -187,7 +195,7 @@ const HGEpokerRuntime = (() => {
 
           const payload = await res.json();
           const normalized = normalizeEpokerFilePayload(payload, declaredDomain);
-          const domain = epS(declaredDomain || normalized.domain);
+          const domain = epS(normalized.domain || declaredDomain);
           if (!domain) {
             status.failedFiles.push({ domain: declaredDomain, path, reason: "missing domain" });
             continue;
@@ -203,6 +211,7 @@ const HGEpokerRuntime = (() => {
           }
 
           status.domainsLoaded.push({ domain, path, count: epArr(normalized.list).length });
+          status.successfulFiles += 1;
         } catch (err) {
           status.failedFiles.push({
             domain: declaredDomain,
@@ -215,11 +224,24 @@ const HGEpokerRuntime = (() => {
       const idx = buildEpokerRuntimeIndex(epokerByDomain);
       status.missingDomains = MAIN_DOMAINS.filter((domain) => !idx.byDomain?.[domain]);
       window.EPOKER_INDEX = idx;
-      cache = idx;
-      status.loaded = true;
+      const failedCount = status.failedFiles.length + status.missingFiles.length;
+      if (failedCount === 0) {
+        cache = idx;
+        status.loaded = true;
+        status.state = "complete";
+      } else {
+        cache = null;
+        status.loaded = false;
+        status.state = status.successfulFiles > 0 ? "partial" : "failed";
+        console.warn(
+          `[HGEpokerRuntime] partial load (${status.successfulFiles}/${status.expectedFiles} files). Failed/missing files will be retried on next load().`
+        );
+      }
       status.finishedAt = new Date().toISOString();
       return idx;
-    })();
+    })().finally(() => {
+      if (!cache) loadPromise = null;
+    });
 
     return loadPromise;
   }
