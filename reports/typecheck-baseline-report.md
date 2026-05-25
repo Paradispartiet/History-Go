@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-25T23:06:28.243Z
+- Generated at (UTC): 2026-05-25T23:26:38.125Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1965
+- Total diagnostic lines found: 1962
 - Files with diagnostics: 195
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 79 | 581 | js/Civication/core/civicationCalendar.js<br>js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js |
+| js/Civication/** | 79 | 578 | js/Civication/core/civicationCalendar.js<br>js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js |
 | other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 510 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 83 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1616 |
+| TS2339 | 1613 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (581 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (578 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (142), `js/Civication/ui/CivicationUI.js` (107), `js/profile.js` (83), `js/ui/popup-utils.js` (80), `js/boot.js` (75).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -161,5 +161,5 @@ js/Civication/systems/civicationBrandJobProgression.js(328,24): error TS2339: Pr
 js/Civication/systems/civicationBrandJobProgression.js(337,22): error TS2339: Property 'DEBUG' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobProgression.js(356,23): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobProgression.js(360,10): error TS2339: Property 'CivicationBrandJobProgression' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationBrandJobState.js(142,43): error TS2339: Property 'brand_id' does not exist on type 'unknown'.
+js/Civication/systems/civicationBrandJobState.js(217,10): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 ```
