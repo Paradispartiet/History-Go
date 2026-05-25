@@ -42,3 +42,6 @@
 - kinoer/visningssteder som kan mangle i Oslo (etter dedup mot aktive filer)
 - flere forsknings- og helseinstitusjoner i Oslo med tydelige emne-koblinger
 - gjennomgang av emne_ids-harmonisering for nye filmsteder mot eksisterende popkultur-emner
+
+## Emne-ID note
+- Film-emner (`emne_ids`) for nye Oslo-filmsteder er midlertidig fjernet i batch 01 fordi gyldige, verifiserte emne-ID-er for film/TV/kino/sted-i-fiksjon ikke var harmonisert i eksisterende emne-/fagdata. Dette må harmoniseres/opprettes i egen senere batch.
