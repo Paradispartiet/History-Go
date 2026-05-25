@@ -92,6 +92,53 @@ function isGroundhopperPlace(place) {
   return place?.category === "sport" && place?.sport_profile?.groundhopper_relevant !== false;
 }
 
+function getGroundhopperLevel(stats) {
+  const current = Math.max(0, Number(stats?.total_groundhopper_places_visited || 0));
+  const tiers = [
+    { min: 0, max: 0, label: "Ikke startet", next: 1 },
+    { min: 1, max: 2, label: "Første ground", next: 3 },
+    { min: 3, max: 4, label: "Lokal groundhopper", next: 5 },
+    { min: 5, max: 7, label: "Oslo-groundhopper", next: 8 },
+    { min: 8, max: 11, label: "Arena-kjenner", next: 12 },
+    { min: 12, max: 14, label: "Byens sportskartlegger", next: 15 },
+    { min: 15, max: Infinity, label: "Idrettslegende", next: null }
+  ];
+  const tier = tiers.find((entry) => current >= entry.min && current <= entry.max) || tiers[0];
+  const remaining = tier.next == null ? 0 : Math.max(0, tier.next - current);
+  const progress = tier.next == null
+    ? 1
+    : Math.max(0, Math.min(1, (current - tier.min) / Math.max(1, tier.next - tier.min)));
+  return { label: tier.label, current, next: tier.next, progress, remaining };
+}
+
+function getGroundhopperAchievements(stats) {
+  const safeStats = stats || {};
+  const visited = Math.max(0, Number(safeStats.total_groundhopper_places_visited || 0));
+  const football = Math.max(0, Number(safeStats.total_football_grounds_visited || 0));
+  const ice = Math.max(0, Number(safeStats.total_ice_arenas_visited || 0));
+  const athletics = Math.max(0, Number(safeStats.total_athletics_venues_visited || 0));
+  const winter = Math.max(0, Number(safeStats.total_winter_sport_places_visited || 0));
+  const national = Math.max(0, Number(safeStats.total_national_arenas_visited || 0));
+  const clubs = normalizeArray(safeStats.clubs_collected).length;
+  const defs = [
+    ["first_ground", "Første ground", "Besøk ditt første Groundhopper-sted.", visited, 1],
+    ["football_round", "Fotballrunden", "Besøk 3 fotballgrounds.", football, 3],
+    ["ice_arena", "Iskald arena", "Besøk minst én isarena.", ice, 1],
+    ["athletics", "Friidrettsspor", "Besøk minst ett friidrettssted.", athletics, 1],
+    ["winter_city", "Vintersportbyen", "Besøk 2 vintersportsteder.", winter, 2],
+    ["national", "Nasjonalarenaer", "Besøk 2 nasjonalarenaer.", national, 2],
+    ["club_hunter", "Klubbjeger", "Samle 3 klubber/lag.", clubs, 3],
+    ["oslo_groundhopper", "Oslo Groundhopper", "Besøk 10 Groundhopper-steder.", visited, 10],
+    ["oslo_batch_1", "Full første Oslo-batch", "Besøk 15 Groundhopper-steder.", visited, 15]
+  ];
+  return defs.map(([id, label, desc, value, target]) => ({
+    id, label, desc,
+    unlocked: value >= target,
+    progress: Math.min(target, value),
+    target
+  }));
+}
+
 /**
  * @param {PersistenceGroundhopperStats} stats
  * @param {Record<string, PersistencePlace>} placeLookup
@@ -218,6 +265,8 @@ window.saveVisitedFromQuiz = saveVisitedFromQuiz;
 window.HG_getGroundhopperStats = getGroundhopperStats;
 window.HG_updateGroundhopperFromPlace = updateGroundhopperFromPlace;
 window.HG_isGroundhopperPlace = isGroundhopperPlace;
+window.HG_getGroundhopperLevel = getGroundhopperLevel;
+window.HG_getGroundhopperAchievements = getGroundhopperAchievements;
 
 // Eksponert for QuizEngine-rewards: marker person som samlet + persistér.
 window.savePeopleCollected = function (personId) {

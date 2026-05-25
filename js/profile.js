@@ -231,10 +231,14 @@ function renderGroundhopperProfilePanel() {
   const clubsEl = document.getElementById("groundhopperClubsLine");
   const lastEl = document.getElementById("groundhopperLastVisited");
   const recentListEl = document.getElementById("groundhopperRecentList");
+  const visitedListEl = document.getElementById("groundhopperVisitedList");
+  const visitedHintEl = document.getElementById("groundhopperVisitedHint");
+  const achievementsEl = document.getElementById("groundhopperAchievements");
+  const toplineEl = document.getElementById("groundhopperTopline");
 
-  if (!panel || !emptyEl || !bodyEl || !gridEl || !clubsEl || !lastEl || !recentListEl) return;
+  if (!panel || !emptyEl || !bodyEl || !gridEl || !clubsEl || !lastEl || !recentListEl || !visitedListEl || !visitedHintEl || !achievementsEl || !toplineEl) return;
 
-  const stats = readGroundhopperStats();
+  const stats = readGroundhopperStats() || {};
   const totalVisited = asCount(stats?.total_groundhopper_places_visited);
 
   if (!stats || totalVisited <= 0) {
@@ -245,6 +249,7 @@ function renderGroundhopperProfilePanel() {
 
   const statRows = [
     ["Steder besøkt", asCount(stats.total_groundhopper_places_visited)],
+    ["Groundhopper-nivå", (window.HG_getGroundhopperLevel?.(stats)?.label || "Ikke startet")],
     ["Fotballgrounds", asCount(stats.total_football_grounds_visited)],
     ["Ishaller", asCount(stats.total_ice_arenas_visited)],
     ["Friidrett", asCount(stats.total_athletics_venues_visited)],
@@ -253,15 +258,20 @@ function renderGroundhopperProfilePanel() {
   ];
 
   gridEl.innerHTML = statRows
-    .map(([label, value]) => `<div class="groundhopper-stat-card"><span>${value}</span><small>${_esc(label)}</small></div>`)
+    .map(([label, value]) => `<div class="groundhopper-stat-card"><span>${_esc(value)}</span><small>${_esc(label)}</small></div>`)
     .join("");
+  const level = window.HG_getGroundhopperLevel?.(stats) || { label: "Ikke startet", next: 1, progress: 0, remaining: 1 };
+  toplineEl.textContent = level.next == null
+    ? `Nivå: ${level.label} · Maksnivå nådd`
+    : `Nivå: ${level.label} · ${level.remaining} sted(er) til neste nivå (${Math.round(level.progress * 100)}%)`;
 
   const clubsCollected = Array.isArray(stats.clubs_collected) ? stats.clubs_collected.length : 0;
   clubsEl.textContent = `Klubber samlet: ${clubsCollected}`;
 
-  const visits = getGroundhopperRecentVisits(stats)
+  const visitIds = Array.isArray(stats.visited_groundhopper_places) ? stats.visited_groundhopper_places : [];
+  const visits = visitIds
     .map((entry) => {
-      if (typeof entry === "string") return { placeId: entry, visitedAt: 0 };
+      if (typeof entry === "string") return { placeId: entry, visitedAt: Number(stats?.last_visit_by_place?.[entry] ? Date.parse(stats.last_visit_by_place[entry]) : 0) };
       return {
         placeId: String(entry?.placeId || entry?.place_id || entry?.id || "").trim(),
         visitedAt: Number(entry?.visitedAt || entry?.visited_at || entry?.ts || entry?.timestamp || 0)
@@ -277,10 +287,26 @@ function renderGroundhopperProfilePanel() {
   recentListEl.innerHTML = recent.length
     ? recent.map((entry) => `<li>${_esc(resolveGroundName(entry.placeId))}</li>`).join("")
     : "<li>Ingen stedsliste tilgjengelig ennå.</li>";
+  const fullVisited = visits;
+  const showAll = fullVisited.length <= 10;
+  const visibleVisited = showAll ? fullVisited : fullVisited.slice(0, 10);
+  visitedHintEl.textContent = showAll ? "" : "Viser de siste 10.";
+  visitedListEl.innerHTML = visibleVisited.length
+    ? visibleVisited.map((entry) => `<li>${_esc(resolveGroundName(entry.placeId))}</li>`).join("")
+    : "<li>Du har ikke besøkt noen Groundhopper-steder ennå.</li>";
+  const achievements = Array.isArray(window.HG_getGroundhopperAchievements?.(stats)) ? window.HG_getGroundhopperAchievements(stats) : [];
+  achievementsEl.innerHTML = achievements.map((item) => `
+    <article class="groundhopper-achievement ${item.unlocked ? "is-unlocked" : ""}">
+      <div class="groundhopper-achievement-label">${item.unlocked ? "🏆" : "🎯"} ${_esc(item.label)}</div>
+      <div class="groundhopper-achievement-desc">${_esc(item.desc)}</div>
+      <div class="groundhopper-achievement-progress">${Math.min(item.target, Number(item.progress || 0))}/${item.target}</div>
+    </article>
+  `).join("");
 
   emptyEl.style.display = "none";
   bodyEl.style.display = "block";
 }
+window.HG_renderGroundhopperProfilePanel = renderGroundhopperProfilePanel;
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
