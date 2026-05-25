@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-25T11:16:33.956Z
+Generated: 2026-05-25T11:45:05.500Z
 
 ## Sammendrag
-- People-filer lest: **19**
-- People lest: **220**
+- People-filer lest: **20**
+- People lest: **225**
 - People med ugyldige refs: **9**
 - Ugyldige refs: **16**
 - Unike ugyldige placeId-er: **12**
 - People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **194**
+- Duplikate interne place-referanser: **199**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -283,6 +283,11 @@ Generated: 2026-05-25T11:16:33.956Z
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: pal_bang_hansen (Pål Bang-Hansen) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: nils_r_muller (Nils R. Müller) -> colosseum_kino x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: bredo_greve (Bredo Greve) -> cinemateket_oslo x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: jan_garbarek (Jan Garbarek) -> blaa x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: bugge_wesseltoft (Bugge Wesseltoft) -> blaa x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: mari_boine (Mari Boine) -> rockefeller x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: joachim_nielsen (Joachim Nielsen) -> rockefeller x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: morten_harket (Morten Harket) -> sentrum_scene x2
 
 ## Anbefalt neste ryddebatch
 - grotten_utsikt (missing_place_candidate, 3 treff)
