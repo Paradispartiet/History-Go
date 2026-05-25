@@ -360,3 +360,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Removed one local `TS2339` (`career_id` on `unknown`) without changing runtime logic, flow, branching, returns, storage, or resolver behavior.
 - Left global/window diagnostics (`CiviStoryResolver`, `CiviRoleThreadResolver`) unchanged because those require global declaration/schema scope outside this file-local pass.
 - No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched.
+
+## Phase 43: narrow ActivePositionRecovery typecheck pass
+
+- Added one extremely narrow, local JSDoc/type-only cast in `js/Civication/systems/civicationActivePositionRecovery.js` at the existing `state.stability` read site.
+- Removed one local `TS2339` (`stability` on `unknown`) without changing runtime logic, control flow, branching, return values, storage keys, recovery behavior, or active-position behavior.
+- Left `TS2322` (boolean vs `CiviFn`) and the global/window diagnostic for `CivicationActivePositionRecovery` unchanged in this phase because they require non-local API/global typing scope outside this file-local pass.
+- No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched.

@@ -201,7 +201,7 @@
       api.setState({
         active_role_key: roleKey,
         unemployed_since_week: null,
-        stability: state.stability || "STABLE"
+        stability: (/** @type {{ stability?: unknown }} */ (state)).stability || "STABLE"
       });
     }
 
