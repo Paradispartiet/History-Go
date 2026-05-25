@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-05-21T09:51:12.742Z
+Generert: 2026-05-25T08:59:50.108Z
 
 ## Totalsammendrag
 
-- Place-filer i manifest: **38**
-- Totalt antall places: **449**
-- Steder med manglende obligatoriske felt: **56**
-- Steder med manglende popupDesc: **69**
-- Steder med manglende image: **410**
-- Steder med manglende cardImage: **413**
-- Steder med manglende emne_ids: **94**
-- Steder med manglende quiz_profile: **93**
+- Place-filer i manifest: **39**
+- Totalt antall places: **443**
+- Steder med manglende obligatoriske felt: **46**
+- Steder med manglende popupDesc: **0**
+- Steder med manglende image: **404**
+- Steder med manglende cardImage: **407**
+- Steder med manglende emne_ids: **93**
+- Steder med manglende quiz_profile: **83**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **0**
@@ -19,20 +19,20 @@ Generert: 2026-05-21T09:51:12.742Z
 
 ## Dekning per datasett (placeId/places)
 
-- **quiz**: 92/449 steder dekket (mangler 357, ugyldige refs 569)
-- **people**: 81/449 steder dekket (mangler 368, ugyldige refs 16)
-- **nature**: 36/449 steder dekket (mangler 413, ugyldige refs 3)
-- **badges**: 0/449 steder dekket (mangler 449, ugyldige refs 0)
-- **wonderkammer**: 127/449 steder dekket (mangler 322, ugyldige refs 35)
-- **relations**: 0/449 steder dekket (mangler 449, ugyldige refs 0)
-- **leksikon**: 196/449 steder dekket (mangler 253, ugyldige refs 1)
-- **sprakleksikon**: 3/449 steder dekket (mangler 446, ugyldige refs 0)
-- **external/offisielle lenker**: 0/449 steder dekket (mangler 449, ugyldige refs 0)
+- **quiz**: 92/443 steder dekket (mangler 351, ugyldige refs 569)
+- **people**: 83/443 steder dekket (mangler 360, ugyldige refs 16)
+- **nature**: 36/443 steder dekket (mangler 407, ugyldige refs 3)
+- **badges**: 0/443 steder dekket (mangler 443, ugyldige refs 0)
+- **wonderkammer**: 136/443 steder dekket (mangler 307, ugyldige refs 35)
+- **relations**: 0/443 steder dekket (mangler 443, ugyldige refs 0)
+- **leksikon**: 200/443 steder dekket (mangler 243, ugyldige refs 1)
+- **sprakleksikon**: 3/443 steder dekket (mangler 440, ugyldige refs 0)
+- **external/offisielle lenker**: 0/443 steder dekket (mangler 443, ugyldige refs 0)
 
 ## Manglende rundinger og quizdekning
 
 - Manglende rundinger (r): **0**
-- Manglende quizdekning: **357**
+- Manglende quizdekning: **351**
   - karl_johan, grunerlokka_helgesens_tm, majorstuen_krysset, oslo_bussterminal, helsfyr, gronlandsleiret, storgata, ullevål_hageby, romsaås, rodelokka, vaalerenga, vinderen, ullern, spikersuppa, bankplassen, christiania_torv, botsparken, stensparken, nydalen, sorenga, majorstuen_tbanestasjon, nationaltheatret_stasjon, olaf_ryes_plass, birkelunden, universitetsplassen, operahuset, schous_plass, vaterland, tullin, okern, skoyen, torshov, grorud, gamlebyen, frognerparken, kampen_park, sagene, kampen, sofienberg_kirke, akerhus_slott, gamle_aker_kirke, var_frelsers_gravlund, hovedoya_kloster, eidsvollsbygningen, oscarsborg_festning, grini_fangeleir, villa_grande, bogstad_gard, mollergata_19, nonneseter_kloster, oslo_ladegard, gamle_radhus, galgeberg, oslo_hospital, botsfengselet, prinds_christian_augusts_minde, camilla_collett_statue, henrik_wergeland_statue, grotta, gamle_deichman, sigrid_undset_statue, ruth_maier_minne, alf_proysen_statue_nittedal, proysenhuset_rudshogda, inger_hagerups_plass, oscar_braaten_statuen, alexander_kiellands_plass, good_game_redaksjon, vg_huset, nrk_huset_marienlyst, aftenposten_akersgata, dagbladet_akersgata, klassekampen_redaksjon, salt, det_norske_teatret, blaa, john_dee, sentrum_scene, ringnes_bryggeri, st_halvard_bryggeri, oslo_kornmagasin, akershus_slott_bakeriet, jernbanetorget_trafikknutepunkt, christiania_seildugsfabrik, alnaelva, alnaelvstien, loelva_historisk, trosterud_friomrade, furuset_haugerud_skogbelte, hellerud_gard, alnabru_jernbane_og_logistikk, frysjadammen, nydalen_industristed, seilduksfabrikken_nydalen, nydalsdammen, stilla_nydalen, bjoelsenfossen, bjoelsenparken_elvenaer, glads_molle, voienfossen ...
 
 ## Funn per fil
@@ -93,18 +93,18 @@ Generert: 2026-05-21T09:51:12.742Z
 - barcode (Barcode): mangler image | mangler cardImage
 - vigelandsparken (Vigelandsparken): mangler image | mangler cardImage
 - carl_berner_plass (Carl Berners plass): mangler image | mangler cardImage
-- schous_plass (Schous plass): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vaterland (Vaterland): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- tullin (Tullin): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- okern (Økern): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- skoyen (Skøyen): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- torshov (Torshov): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- grorud (Grorud): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- gamlebyen (Gamlebyen): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- frognerparken (Frognerparken): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- kampen_park (Kampen park): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- sagene (Sagene): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- kampen (Kampen): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- schous_plass (Schous plass): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- vaterland (Vaterland): mangler image | mangler cardImage | mangler quiz_profile
+- tullin (Tullin): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- okern (Økern): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- skoyen (Skøyen): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- torshov (Torshov): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- grorud (Grorud): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- gamlebyen (Gamlebyen): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- frognerparken (Frognerparken): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- kampen_park (Kampen park): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- sagene (Sagene): mangler image | mangler cardImage | mangler quiz_profile
+- kampen (Kampen): mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/film/oslo/places_oslo_film.json
 
@@ -167,12 +167,12 @@ Generert: 2026-05-21T09:51:12.742Z
 - Antall places: 6
 - Places med funn: 6
 
-- good_game_redaksjon (Good Game-redaksjonen (NRK)): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- vg_huset (VG-huset): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- nrk_huset_marienlyst (NRK-huset på Marienlyst): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- aftenposten_akersgata (Aftenposten i Akersgata): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- dagbladet_akersgata (Dagbladet i Akersgata): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- klassekampen_redaksjon (Klassekampen-redaksjonen (Hausmanns gate)): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- good_game_redaksjon (Good Game-redaksjonen (NRK)): mangler image | mangler cardImage | mangler quiz_profile
+- vg_huset (VG-huset): mangler image | mangler cardImage | mangler quiz_profile
+- nrk_huset_marienlyst (NRK-huset på Marienlyst): mangler image | mangler cardImage | mangler quiz_profile
+- aftenposten_akersgata (Aftenposten i Akersgata): mangler image | mangler cardImage | mangler quiz_profile
+- dagbladet_akersgata (Dagbladet i Akersgata): mangler image | mangler cardImage | mangler quiz_profile
+- klassekampen_redaksjon (Klassekampen-redaksjonen (Hausmanns gate)): mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/musikk/oslo/places_musikk.json
 
@@ -226,12 +226,12 @@ Generert: 2026-05-21T09:51:12.742Z
 - Places med funn: 7
 
 - alnaelva (Alnaelva): mangler image | mangler cardImage
-- alnaelvstien (Alnaelvstien): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- loelva_historisk (Loelva (historisk vassdrag)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- trosterud_friomrade (Trosterud friområde): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- furuset_haugerud_skogbelte (Furuset–Haugerud skogbelte): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- hellerud_gard (Hellerud gård): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- alnabru_jernbane_og_logistikk (Alnabru – jernbane og logistikk): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alnaelvstien (Alnaelvstien): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- loelva_historisk (Loelva (historisk vassdrag)): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- trosterud_friomrade (Trosterud friområde): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- furuset_haugerud_skogbelte (Furuset–Haugerud skogbelte): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- hellerud_gard (Hellerud gård): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alnabru_jernbane_og_logistikk (Alnabru – jernbane og logistikk): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/natur/oslo/places_oslo_natur_akerselvarute.json
 
@@ -267,26 +267,26 @@ Generert: 2026-05-21T09:51:12.742Z
 - Antall places: 8
 - Places med funn: 8
 
-- alnsjoen_alna_kilde (Alnsjøen (Alna-kilde)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- alnaparken (Alnaparken): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- groruddammen (Groruddammen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- alna_smalvoll (Alna ved Smalvoll): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- alna_bryn (Alna ved Bryn): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- svartdalen (Svartdalen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- kvaernerbyen_alna (Kværnerbyen ved Alna): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- alna_utlop_bjorvika (Alna utløp i Bjørvika): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alnsjoen_alna_kilde (Alnsjøen (Alna-kilde)): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alnaparken (Alnaparken): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- groruddammen (Groruddammen): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alna_smalvoll (Alna ved Smalvoll): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alna_bryn (Alna ved Bryn): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- svartdalen (Svartdalen): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- kvaernerbyen_alna (Kværnerbyen ved Alna): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- alna_utlop_bjorvika (Alna utløp i Bjørvika): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/natur/oslo/places_oslo_natur_bygdoy.json
 
 - Antall places: 6
 - Places med funn: 6
 
-- bygdoy_kongeskogen (Bygdøy Kongeskogen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bygdoy_dronningberget (Bygdøy Dronningberget): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bygdoy_huk (Bygdøy Huk): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bygdoy_paradisbukta (Bygdøy Paradisbukta): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bygdoy_bygdoynes (Bygdøy Bygdøynes): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bygdoy_roykenvika (Bygdøy Røykensvika): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- bygdoy_kongeskogen (Bygdøy Kongeskogen): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- bygdoy_dronningberget (Bygdøy Dronningberget): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- bygdoy_huk (Bygdøy Huk): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- bygdoy_paradisbukta (Bygdøy Paradisbukta): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- bygdoy_bygdoynes (Bygdøy Bygdøynes): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- bygdoy_roykenvika (Bygdøy Røykensvika): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/natur/oslo/places_oslo_natur_hovedsteder.json
 
@@ -308,24 +308,34 @@ Generert: 2026-05-21T09:51:12.742Z
 - Antall places: 7
 - Places med funn: 7
 
-- noklevann_ljanselva_start (Nøklevann (Ljanselva start)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- skraperudtjern (Skraperudtjern): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ljanselva_skullerud (Ljanselva ved Skullerud): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ljanselva_hauketo (Ljanselva ved Hauketo): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ljanselva_ljan (Ljanselva ved Ljan): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ljanselva_fiskevollen (Ljanselva ved Fiskevollen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ljanselva_bunnefjorden (Ljanselva ut i Bunnefjorden): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- noklevann_ljanselva_start (Nøklevann (Ljanselva start)): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- skraperudtjern (Skraperudtjern): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ljanselva_skullerud (Ljanselva ved Skullerud): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ljanselva_hauketo (Ljanselva ved Hauketo): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ljanselva_ljan (Ljanselva ved Ljan): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ljanselva_fiskevollen (Ljanselva ved Fiskevollen): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ljanselva_bunnefjorden (Ljanselva ut i Bunnefjorden): mangler felt: year | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/natur/oslo/places_oslo_natur_ostensjovannet.json
 
 - Antall places: 5
 - Places med funn: 5
 
-- ostensjovannet_nord (Østensjøvannet nord): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- ostensjovannet_fugletarn (Østensjøvannet fugletårn): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- ostensjovannet_sivbelte (Østensjøvannet sivbelte): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- ostensjovannet_sor (Østensjøvannet sør): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- bogerudmyra (Bøler/Bogerudmyra): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- ostensjovannet_nord (Østensjøvannet nord): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- ostensjovannet_fugletarn (Østensjøvannet fugletårn): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- ostensjovannet_sivbelte (Østensjøvannet sivbelte): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- ostensjovannet_sor (Østensjøvannet sør): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- bogerudmyra (Bøler/Bogerudmyra): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+
+### data/places/natur/oslo/places_oslo_natur_salamanderdammer.json
+
+- Antall places: 4
+- Places med funn: 4
+
+- bygdoy_kongsgard_salamanderdam (Bygdøy Kongsgård salamanderdam): mangler image | mangler cardImage
+- bantjern_salamanderlokalitet (Båntjern salamanderlokalitet): mangler image | mangler cardImage
+- tjernsmyr_salamanderlokalitet (Tjernsmyr salamanderlokalitet): mangler image | mangler cardImage
+- blindern_forskningsparken_salamanderdam (Blindern/Forskningsparken salamanderdam): mangler image | mangler cardImage
 
 ### data/places/politikk/oslo/places_politikk.json
 
@@ -341,28 +351,18 @@ Generert: 2026-05-21T09:51:12.742Z
 
 ### data/places/popkultur/oslo/places_oslo_populaerkultur.json
 
-- Antall places: 19
-- Places med funn: 19
+- Antall places: 9
+- Places med funn: 9
 
-- cinemateket_oslo (Cinemateket i Oslo): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- colosseum_kino (Colosseum kino): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- house_of_nerds (House of Nerds): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- folketeateret (Folketeateret): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- chateau_neuf (Chateau Neuf): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- latter (Latter): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- aker_brygge_pop (Aker Brygge): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- frognerstranda_pop (Frognerstranda): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- majorstuen_krysset_pop (Majorstuen-krysset): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- grand_hotel_pop (Grand Hotel): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- vaterland_pop (Vaterland): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- gronlandsleiret_pop (Grønlandsleiret): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- toyen_torg_pop (Tøyen torg): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- oslo_s_pop (Oslo S / Jernbanetorget): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- radhusplassen_pop (Rådhusplassen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- slottsplassen_pop (Slottsplassen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- youngstorget_pop (Youngstorget): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- barcode_pop (Barcode): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
-- bjørvika_pop (Bjørvika (mediebakgrunn)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- cinemateket_oslo (Cinemateket i Oslo): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- colosseum_kino (Colosseum kino): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- house_of_nerds (House of Nerds): mangler image | mangler cardImage | mangler quiz_profile
+- folketeateret (Folketeateret): mangler image | mangler cardImage | mangler quiz_profile
+- chateau_neuf (Chateau Neuf): mangler image | mangler cardImage | mangler quiz_profile
+- latter (Latter): mangler image | mangler cardImage | mangler quiz_profile
+- frognerstranda (Frognerstranda): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- grand_hotel (Grand Hotel): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- slottsplassen (Slottsplassen): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/sport/oslo/places_sport.json
 
@@ -718,7 +718,7 @@ Generert: 2026-05-21T09:51:12.742Z
 
 ## Neste arbeid (prioritert)
 
-1. Lag quiz for 357 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
+1. Lag quiz for 351 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
 2. Fyll inn rundinger (r) for 0 steder som mangler dette feltet.
 3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).
 4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.
@@ -726,16 +726,15 @@ Generert: 2026-05-21T09:51:12.742Z
 ## Maskinlesbar arbeidsliste
 
 - Fil: `reports/place-data-worklist.json`
-- Antall steder klare for quiz: **210**
-- Antall steder klare for Wonderkammer: **300**
-- Antall steder klare for språkleksikon: **377**
-- Prioritet: critical **0**, high **358**, medium **91**, low **0**
+- Antall steder klare for quiz: **214**
+- Antall steder klare for Wonderkammer: **307**
+- Antall steder klare for språkleksikon: **440**
+- Prioritet: critical **0**, high **352**, medium **91**, low **0**
 
 ### Topp 25 anbefalte neste steder
 
 - ankerbrua | Ankerbrua | by | high | Lag quiz
 - beierbrua | Beierbrua | by | high | Lag quiz
-- gronlandsleiret | Grønlandsleiret | by | high | Lag quiz
 - hausmannsbrua | Hausmannsbrua | by | high | Lag quiz
 - hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high | Lag quiz
 - helsfyr | Helsfyr | by | high | Lag quiz
@@ -758,4 +757,5 @@ Generert: 2026-05-21T09:51:12.742Z
 - majorstuen_tbanestasjon | Majorstuen T-banestasjon | by | high | Lag quiz
 - nybrua_vaterlandsparken | Nybrua / Vaterlandsparken | by | high | Lag quiz
 - nydalen | Nydalen | by | high | Lag quiz
+- oslo_bussterminal | Oslo bussterminal | by | high | Lag quiz
 
