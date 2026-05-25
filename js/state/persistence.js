@@ -222,6 +222,7 @@ function updateGroundhopperFromPlace(place) {
   stats.updated_at = now;
   saveGroundhopperStats(stats);
   window.dispatchEvent(new Event("updateProfile"));
+  return isFirstVisit;
 }
 
 function saveVisited() {
