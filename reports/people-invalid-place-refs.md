@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-25T08:59:50.335Z
+Generated: 2026-05-25T09:54:29.713Z
 
 ## Sammendrag
-- People-filer lest: **17**
-- People lest: **203**
+- People-filer lest: **18**
+- People lest: **211**
 - People med ugyldige refs: **9**
 - Ugyldige refs: **16**
 - Unike ugyldige placeId-er: **12**
 - People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **177**
+- Duplikate interne place-referanser: **185**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -266,6 +266,14 @@ Generated: 2026-05-25T08:59:50.335Z
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: manoel_de_oliveira (Manoel de Oliveira) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: antonio_lopes_ribeiro (António Lopes Ribeiro) -> lisbon_tobis_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: leitao_de_barros (Leitão de Barros) -> lisbon_tobis_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: vasco_santana (Vasco Santana) -> lisbon_tobis_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: paulo_rocha (Paulo Rocha) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: joao_cesar_monteiro (João César Monteiro) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: pedro_costa (Pedro Costa) -> lisbon_doclisboa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: serge_trefaut (Serge Tréfaut) -> lisbon_doclisboa x2
 
 ## Anbefalt neste ryddebatch
 - grotten_utsikt (missing_place_candidate, 3 treff)

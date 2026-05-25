@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-25T08:59:50.275Z
+Generert: 2026-05-25T09:54:29.611Z
 
 ## Sammendrag
 
-- People totalt: **203**
-- Places totalt: **443**
-- Places med people: **83**
-- Places uten people: **360**
-- People-place-lenker: **280**
-- People koblet til flere gyldige steder: **81**
+- People totalt: **211**
+- Places totalt: **454**
+- Places med people: **89**
+- Places uten people: **365**
+- People-place-lenker: **302**
+- People koblet til flere gyldige steder: **89**
 - People uten gyldig sted: **19**
 - Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **177**
+- Duplikate place-referanser inne på people: **185**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -22,7 +22,7 @@ Generert: 2026-05-25T08:59:50.275Z
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
 | by | 100 | 24 | 76 | 60 | 46 |
-| film_tv | 8 | 0 | 8 | 0 | 0 |
+| film_tv | 8 | 6 | 2 | 22 | 8 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
@@ -33,7 +33,7 @@ Generert: 2026-05-25T08:59:50.275Z
 | politikk | 15 | 4 | 11 | 34 | 24 |
 | populaerkultur | 10 | 0 | 10 | 0 | 0 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 38 | 4 | 34 | 7 | 7 |
+| sport | 49 | 4 | 45 | 7 | 7 |
 | subkultur | 23 | 2 | 21 | 4 | 4 |
 | vitenskap | 17 | 4 | 13 | 11 | 11 |
 
@@ -52,21 +52,31 @@ Generert: 2026-05-25T08:59:50.275Z
 - musikk: 10
 - presse: 10
 - redaksjon: 10
+- film: 8
+- film_tv: 8
 - journalistikk: 8
 - sport: 8
 - natur: 7
+- regissor: 7
 - by: 6
 - tv: 6
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
+- filmhistorie: 4
+- filmkanon: 4
 - kommentarjournalistikk: 4
 - kringkasting: 4
 - naeringsliv: 4
 - programleder: 4
+- arthouse: 3
+- lydfilm: 3
 - mesen: 3
 - satire: 3
+- studiohistorie: 3
 - arkitektur: 2
+- dokumentar: 2
+- filmfestival: 2
 - militaerhistorie: 2
 - rett: 2
 - vikingtid: 2
@@ -75,20 +85,10 @@ Generert: 2026-05-25T08:59:50.275Z
 - bibliotek: 1
 - boksamling: 1
 - byutvikling: 1
+- cinematek: 1
 - digital kultur: 1
+- doclisboa: 1
 - eksperimentell underholdning: 1
-- fredspris: 1
-- gamer_offentlighet: 1
-- karakterhumor: 1
-- konseptbasert tv: 1
-- kulturarv: 1
-- kunnskap: 1
-- kunstsamler: 1
-- nettavis: 1
-- nobel: 1
-- nyhetsformidling: 1
-- observasjonell humor: 1
-- parodi: 1
 
 ## Steder med flest people
 
@@ -98,6 +98,7 @@ Generert: 2026-05-25T08:59:50.275Z
 - stortinget (Stortinget) – 14
 - karl_johan (Karl Johans gate) – 10
 - gamle_deichman (Gamle Deichman) – 9
+- lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 8
 - oslo_radhus (Oslo rådhus) – 8
 - universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
@@ -108,15 +109,14 @@ Generert: 2026-05-25T08:59:50.275Z
 - deichman_bjorvika (Deichman Bjørvika) – 4
 - eidsvollsbygningen (Eidsvollsbygningen) – 4
 - grini_fangeleir (Grini fangeleir) – 4
+- lisbon_cinema_nimas (Cinema Nimas) – 4
 - vg_huset (VG-huset) – 4
 - christiania_torv (Christiania Torv) – 3
 - grotta (Grotten) – 3
 - kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
+- lisbon_cinema_ideal (Cinema Ideal) – 3
 - lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 3
-- litteraturhuset (Litteraturhuset) – 3
-- mollergata_19 (Møllergata 19) – 3
-- nasjonalbiblioteket (Nasjonalbiblioteket) – 3
-- nrk_huset_marienlyst (NRK-huset på Marienlyst) – 3
+- lisbon_tobis_portuguesa (Tobis Portuguesa) – 3
 
 ## Ugyldige place-referanser
 
@@ -239,7 +239,7 @@ Generert: 2026-05-25T08:59:50.275Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 77 flere
+- ... 85 flere
 
 ## Anbefalt første people-batch
 
@@ -247,7 +247,6 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 
 - ankerbrua | Ankerbrua | by | high
 - beierbrua | Beierbrua | by | high
-- gronlandsleiret | Grønlandsleiret | by | high
 - hausmannsbrua | Hausmannsbrua | by | high
 - hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high
 - helsfyr | Helsfyr | by | high
@@ -285,14 +284,15 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - storgata | Storgata | by | high
 - ullern | Ullern | by | high
 - vinderen | Vinderen | by | high
-- lisbon_cinema_ideal | Cinema Ideal | film_tv | high
-- lisbon_cinema_nimas | Cinema Nimas | film_tv | high
-- lisbon_cinema_sao_jorge | Cinema São Jorge | film_tv | high
-- lisbon_cinemateca_portuguesa | Cinemateca Portuguesa | film_tv | high
-- lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | high
-- lisbon_tobis_portuguesa | Tobis Portuguesa | film_tv | high
 - bjoelsenfossen | Bjølsenfossen | historie | high
 - botsfengselet | Botsfengselet | historie | high
 - frysjadammen | Frysjadammen | historie | high
 - galgeberg | Galgeberg | historie | high
+- gamle_aker_kirke | Gamle Aker kirke | historie | high
+- gamle_radhus | Gamle rådhus | historie | high
+- glads_molle | Glads mølle | historie | high
+- hovedoya_kloster | Hovedøya kloster | historie | high
+- lisbon_aqueduto_das_aguas_livres | Aqueduto das Águas Livres | historie | high
+- lisbon_castelo_de_sao_jorge | Castelo de São Jorge | historie | high
+- lisbon_convento_do_carmo | Convento do Carmo | historie | high
 
