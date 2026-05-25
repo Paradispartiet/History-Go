@@ -346,3 +346,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Applied small local casts for `window.HG_CAREERS`, `window.BADGES`, existing offers, and push-offer result usage to reduce `unknown` property-access noise (`TS2339`) without changing runtime behavior.
 - Left `TS2304` (`catIdFromDisplay`) unchanged in this phase because fixing it safely would require import/global/declaration/runtime-scope work outside this narrow file-local pass.
 - Runtime logic, merits/jobs logic, career flow, event flow, rewards, storage contracts, UI/DOM/CSS/layout/text, and schemas/globals are unchanged.
+
+## Phase 41: narrow identityCompass typecheck pass
+
+- Added an extremely narrow, local JSDoc/type-only cast in `js/Civication/identityCompass.js` after Phase 40 / PR #638.
+- Fixed the local `TS2339` unknown property-access diagnostic on `identity.focus` by adding a local shape cast at the existing read site, with no runtime logic change.
+- Intentionally left the `window.HG_IdentityCompass` global diagnostic in place in this phase because it requires global declaration/schema work outside this file-local pass.
+- No runtime behavior was changed: IdentityCompass rendering flow, API behavior, storage, DOM/CSS/layout/text, and schemas/globals remain unchanged.

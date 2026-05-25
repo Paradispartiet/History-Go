@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-25T22:24:52.236Z
+- Generated at (UTC): 2026-05-25T22:38:52.930Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1968
+- Total diagnostic lines found: 1967
 - Files with diagnostics: 195
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 79 | 584 | js/Civication/core/civicationCalendar.js<br>js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js |
+| js/Civication/** | 79 | 583 | js/Civication/core/civicationCalendar.js<br>js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js |
 | other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 510 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 83 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1619 |
+| TS2339 | 1618 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (584 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (583 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (142), `js/Civication/ui/CivicationUI.js` (107), `js/profile.js` (83), `js/ui/popup-utils.js` (80), `js/boot.js` (75).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -136,8 +136,7 @@ js/Civication/core/civicationState.js(389,8): error TS2362: The left-hand side o
 js/Civication/core/civicationState.js(389,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationTaskEngine.js(173,14): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
 js/Civication/core/civicationTaskEngine.js(263,10): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
-js/Civication/identityCompass.js(16,28): error TS2339: Property 'focus' does not exist on type 'unknown'.
-js/Civication/identityCompass.js(92,10): error TS2551: Property 'HG_IdentityCompass' does not exist on type 'Window & typeof globalThis'. Did you mean 'HG_IdentityCore'?
+js/Civication/identityCompass.js(94,10): error TS2551: Property 'HG_IdentityCompass' does not exist on type 'Window & typeof globalThis'. Did you mean 'HG_IdentityCore'?
 js/Civication/identityEngine.js(225,8): error TS2339: Property 'HG_IdentityEngine' does not exist on type 'Window & typeof globalThis'.
 js/Civication/mailPlanBridge.js(137,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
 js/Civication/mailPlanBridge.js(141,21): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
@@ -162,4 +161,5 @@ js/Civication/systems/civicationBrandJobProgression.js(193,31): error TS2339: Pr
 js/Civication/systems/civicationBrandJobProgression.js(313,31): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobProgression.js(328,24): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobProgression.js(337,22): error TS2339: Property 'DEBUG' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationBrandJobProgression.js(356,23): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 ```
