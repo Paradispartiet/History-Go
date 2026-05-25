@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-21T09:51:13.426Z
+Generert: 2026-05-25T08:59:50.275Z
 
 ## Sammendrag
 
-- People totalt: **200**
-- Places totalt: **449**
-- Places med people: **81**
-- Places uten people: **368**
-- People-place-lenker: **277**
+- People totalt: **203**
+- Places totalt: **443**
+- Places med people: **83**
+- Places uten people: **360**
+- People-place-lenker: **280**
 - People koblet til flere gyldige steder: **81**
 - People uten gyldig sted: **19**
 - Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **174**
+- Duplikate place-referanser inne på people: **177**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -21,17 +21,17 @@ Generert: 2026-05-21T09:51:13.426Z
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 97 | 24 | 73 | 60 | 46 |
+| by | 100 | 24 | 76 | 60 | 46 |
 | film_tv | 8 | 0 | 8 | 0 | 0 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
-| media | 11 | 6 | 5 | 15 | 14 |
+| media | 11 | 8 | 3 | 18 | 17 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
-| natur | 59 | 4 | 55 | 6 | 6 |
+| natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
-| populaerkultur | 23 | 0 | 23 | 0 | 0 |
+| populaerkultur | 10 | 0 | 10 | 0 | 0 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 38 | 4 | 34 | 7 | 7 |
 | subkultur | 23 | 2 | 21 | 4 | 4 |
@@ -43,30 +43,30 @@ Generert: 2026-05-21T09:51:13.426Z
 - litteratur: 38
 - politikk: 27
 - middelalder: 19
-- media: 14
+- media: 17
 - subkultur: 13
 - vitenskap: 12
 - krig: 11
 - kunst: 11
+- avis: 10
 - musikk: 10
-- avis: 8
-- presse: 8
-- redaksjon: 8
+- presse: 10
+- redaksjon: 10
+- journalistikk: 8
 - sport: 8
 - natur: 7
 - by: 6
 - tv: 6
-- journalistikk: 5
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
+- kommentarjournalistikk: 4
 - kringkasting: 4
 - naeringsliv: 4
+- programleder: 4
 - mesen: 3
-- programleder: 3
 - satire: 3
 - arkitektur: 2
-- kommentarjournalistikk: 2
 - militaerhistorie: 2
 - rett: 2
 - vikingtid: 2
@@ -78,6 +78,7 @@ Generert: 2026-05-21T09:51:13.426Z
 - digital kultur: 1
 - eksperimentell underholdning: 1
 - fredspris: 1
+- gamer_offentlighet: 1
 - karakterhumor: 1
 - konseptbasert tv: 1
 - kulturarv: 1
@@ -88,7 +89,6 @@ Generert: 2026-05-21T09:51:13.426Z
 - nyhetsformidling: 1
 - observasjonell humor: 1
 - parodi: 1
-- personlig humor: 1
 
 ## Steder med flest people
 
@@ -239,7 +239,7 @@ Generert: 2026-05-21T09:51:13.426Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 74 flere
+- ... 77 flere
 
 ## Anbefalt første people-batch
 
