@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-25T11:16:34.596Z
+Generert: 2026-05-25T11:45:06.266Z
 
 ## Sammendrag
 
-- People totalt: **220**
+- People totalt: **225**
 - Places totalt: **454**
-- Places med people: **91**
-- Places uten people: **363**
-- People-place-lenker: **313**
-- People koblet til flere gyldige steder: **91**
+- Places med people: **95**
+- Places uten people: **359**
+- People-place-lenker: **322**
+- People koblet til flere gyldige steder: **95**
 - People uten gyldig sted: **19**
 - Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **194**
+- Duplikate place-referanser inne på people: **199**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -27,7 +27,7 @@ Generert: 2026-05-25T11:16:34.596Z
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
 | media | 11 | 8 | 3 | 18 | 17 |
-| musikk | 13 | 1 | 12 | 2 | 2 |
+| musikk | 13 | 5 | 8 | 11 | 7 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
@@ -46,6 +46,7 @@ Generert: 2026-05-25T11:16:34.596Z
 - film: 17
 - film_tv: 17
 - media: 17
+- musikk: 15
 - regissor: 15
 - subkultur: 13
 - filmhistorie: 12
@@ -55,7 +56,6 @@ Generert: 2026-05-25T11:16:34.596Z
 - kunst: 11
 - avis: 10
 - cinematek: 10
-- musikk: 10
 - presse: 10
 - redaksjon: 10
 - journalistikk: 8
@@ -64,11 +64,16 @@ Generert: 2026-05-25T11:16:34.596Z
 - natur: 7
 - by: 6
 - tv: 6
+- konsert: 5
+- norsk_musikk: 5
+- scene: 5
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
 - kommentarjournalistikk: 4
 - kringkasting: 4
+- musiker: 4
+- musikkhistorie: 4
 - naeringsliv: 4
 - programleder: 4
 - arthouse: 3
@@ -80,15 +85,10 @@ Generert: 2026-05-25T11:16:34.596Z
 - dokumentar: 2
 - filmfestival: 2
 - folkekino: 2
+- jazz: 2
 - kino: 2
 - kinokultur: 2
 - militaerhistorie: 2
-- rett: 2
-- skuespiller: 2
-- vikingtid: 2
-- absurd humor: 1
-- allmennkringkasting: 1
-- bibliotek: 1
 
 ## Steder med flest people
 
@@ -239,7 +239,7 @@ Generert: 2026-05-25T11:16:34.596Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 94 flere
+- ... 99 flere
 
 ## Anbefalt første people-batch
 
