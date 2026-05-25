@@ -339,3 +339,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Applied an extremely narrow, local JSDoc typing pass in `js/Civication/core/civicationJobs.js` after baseline refresh PR #636.
 - Added local object-shape annotations for branch flags, inbox events and career state reads that were already treated as object/array at runtime.
 - Scope is type-only/JSDoc-only and local to existing expressions; runtime behavior, control flow, payload semantics, and storage/event/mail/career logic remain unchanged.
+
+## Phase 40: narrow merits-and-jobs typecheck pass
+
+- Added a narrow, local JSDoc/type-only pass in `js/Civication/merits-and-jobs.js` after Phase 39 / PR #637.
+- Applied small local casts for `window.HG_CAREERS`, `window.BADGES`, existing offers, and push-offer result usage to reduce `unknown` property-access noise (`TS2339`) without changing runtime behavior.
+- Left `TS2304` (`catIdFromDisplay`) unchanged in this phase because fixing it safely would require import/global/declaration/runtime-scope work outside this narrow file-local pass.
+- Runtime logic, merits/jobs logic, career flow, event flow, rewards, storage contracts, UI/DOM/CSS/layout/text, and schemas/globals are unchanged.
