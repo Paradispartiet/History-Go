@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-25T10:45:37.357Z
+Generert: 2026-05-25T11:16:34.596Z
 
 ## Sammendrag
 
-- People totalt: **218**
+- People totalt: **220**
 - Places totalt: **454**
 - Places med people: **91**
 - Places uten people: **363**
 - People-place-lenker: **313**
-- People koblet til flere gyldige steder: **93**
+- People koblet til flere gyldige steder: **91**
 - People uten gyldig sted: **19**
 - Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **192**
+- Duplikate place-referanser inne på people: **194**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -22,7 +22,7 @@ Generert: 2026-05-25T10:45:37.357Z
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
 | by | 100 | 24 | 76 | 60 | 46 |
-| film_tv | 8 | 8 | 0 | 33 | 15 |
+| film_tv | 8 | 8 | 0 | 33 | 17 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
@@ -43,26 +43,26 @@ Generert: 2026-05-25T10:45:37.357Z
 - litteratur: 38
 - politikk: 27
 - middelalder: 19
+- film: 17
+- film_tv: 17
 - media: 17
-- film: 15
-- film_tv: 15
-- regissor: 14
+- regissor: 15
 - subkultur: 13
+- filmhistorie: 12
 - vitenskap: 12
+- filmkanon: 11
 - krig: 11
 - kunst: 11
 - avis: 10
-- filmhistorie: 10
+- cinematek: 10
 - musikk: 10
 - presse: 10
 - redaksjon: 10
-- filmkanon: 9
 - journalistikk: 8
+- norsk_film: 8
 - sport: 8
-- cinematek: 7
 - natur: 7
 - by: 6
-- norsk_film: 6
 - tv: 6
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
@@ -79,10 +79,10 @@ Generert: 2026-05-25T10:45:37.357Z
 - arkitektur: 2
 - dokumentar: 2
 - filmfestival: 2
+- folkekino: 2
 - kino: 2
 - kinokultur: 2
 - militaerhistorie: 2
-- premiere: 2
 - rett: 2
 - skuespiller: 2
 - vikingtid: 2
@@ -97,17 +97,16 @@ Generert: 2026-05-25T10:45:37.357Z
 - oslo_domkirke (Oslo domkirke) – 20
 - stortinget (Stortinget) – 14
 - karl_johan (Karl Johans gate) – 10
+- cinemateket_oslo (Cinemateket i Oslo) – 9
 - gamle_deichman (Gamle Deichman) – 9
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 8
 - oslo_radhus (Oslo rådhus) – 8
 - universitetsplassen (Universitetsplassen) – 8
-- cinemateket_oslo (Cinemateket i Oslo) – 7
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
 - youngstorget (Youngstorget) – 5
-- colosseum_kino (Colosseum kino) – 4
 - deichman_bjorvika (Deichman Bjørvika) – 4
 - eidsvollsbygningen (Eidsvollsbygningen) – 4
 - grini_fangeleir (Grini fangeleir) – 4
@@ -117,6 +116,7 @@ Generert: 2026-05-25T10:45:37.357Z
 - grotta (Grotten) – 3
 - kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
 - lisbon_cinema_ideal (Cinema Ideal) – 3
+- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 3
 
 ## Ugyldige place-referanser
 
@@ -239,7 +239,7 @@ Generert: 2026-05-25T10:45:37.357Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 92 flere
+- ... 94 flere
 
 ## Anbefalt første people-batch
 
