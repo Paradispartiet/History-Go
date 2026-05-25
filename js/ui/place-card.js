@@ -354,7 +354,25 @@ if (!card) return;
   
   if (titleEl) titleEl.textContent = place.name || "";
   const categoryLabel = (window.CATEGORY_LIST || []).find(c => String(c?.id || "").trim() === String(place.category || "").trim())?.name || place.category || "";
-  if (metaEl)  metaEl.textContent  = categoryLabel;
+  const sportProfile = (place?.category === "sport" && place?.sport_profile && typeof place.sport_profile === "object") ? place.sport_profile : null;
+  if (metaEl) {
+    const metaLines = [categoryLabel];
+    if (sportProfile?.groundhopper_relevant !== false) {
+      const sports = Array.isArray(sportProfile.sports) ? sportProfile.sports.filter(Boolean).slice(0, 3).join(", ") : "";
+      const venueKind = String(sportProfile.venue_kind || "").trim();
+      const clubs = Array.isArray(sportProfile.clubs_or_teams) ? sportProfile.clubs_or_teams.filter(Boolean).slice(0, 3).join(" / ") : "";
+      metaLines.push("Groundhopper-sted");
+      if (sports) metaLines.push(`Sport: ${sports}`);
+      if (venueKind) metaLines.push(`Type: ${venueKind}`);
+      if (clubs) metaLines.push(`Klubb/spor: ${clubs}`);
+    }
+    const lineNodes = metaLines.map((line) => {
+      const row = document.createElement("div");
+      row.textContent = String(line || "");
+      return row;
+    });
+    metaEl.replaceChildren(...lineNodes);
+  }
   if (descEl)  descEl.textContent  = place.desc || "";
 
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
@@ -1414,6 +1432,9 @@ if (btnUnlock) {
 
     window.visited = window.visited || {};
     window.visited[place.id] = true;
+    if (typeof window.HG_updateGroundhopperFromPlace === "function") {
+      window.HG_updateGroundhopperFromPlace(place);
+    }
     if (typeof window.saveVisited === "function") window.saveVisited();
 
     if (window.HGMap) {

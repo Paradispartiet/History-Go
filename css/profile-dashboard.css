@@ -573,11 +573,20 @@ body.profile-page{
 
 .groundhopper-line{ margin:6px 0; }
 .groundhopper-recent-title{ margin-top:10px; font-weight:800; }
+.groundhopper-ingress{margin:0 0 10px;}
+.groundhopper-topline{margin:6px 0 12px; font-weight:700;}
+.groundhopper-achievements{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0;}
+.groundhopper-achievement{padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);}
+.groundhopper-achievement.is-unlocked{border-color:rgba(246,200,0,.45);background:rgba(246,200,0,.12);}
+.groundhopper-achievement-label{font-weight:800;}
+.groundhopper-achievement-desc{font-size:12px;opacity:.85;}
+.groundhopper-achievement-progress{font-size:12px;opacity:.8;}
 
 #groundhopperRecentList{
   margin:8px 0 0;
   padding-left:18px;
 }
+#groundhopperVisitedList{margin:8px 0 0; padding-left:18px;}
 
 .profile-dashboard-v2{height:calc(100dvh - var(--profile-header-h));display:flex;flex-direction:column;overflow:hidden}
 .profile-dashboard-v2 .profile-shell{height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:12px;padding-bottom:8px}
