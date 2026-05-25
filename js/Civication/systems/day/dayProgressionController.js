@@ -194,7 +194,14 @@
    */
   async function advancePhaseIfReady() {
     const state = inspect();
-    if (!state.canAdvance) return { advanced: false, reason: state.reason };
+    const canAdvanceToNextPhase = state.canAdvance;
+    const canResetAtDayEnd = state.reason === "at_last_phase"
+      && state.phase === "day_end"
+      && Number(state.openItemsInPhase || 0) === 0;
+
+    if (!canAdvanceToNextPhase && !canResetAtDayEnd) {
+      return { advanced: false, reason: state.reason };
+    }
 
     const calendar = getCalendar();
     const fromPhase = state.phase;
