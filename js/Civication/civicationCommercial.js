@@ -49,6 +49,7 @@
   function getWallet() {
 
     if (typeof window.getPCWallet === "function") {
+      /** @type {CiviCommercialWallet | CiviCommercialRecord | null | undefined} */
       const w = window.getPCWallet();
       if (w && typeof w.balance === "number") return w;
     }
@@ -130,6 +131,7 @@
       try {
 
         if (window.DataHub?.fetchJSON) {
+          /** @type {CiviCommercialPack[] | { packs?: CiviCommercialPack[] } | null} */
           const j = await window.DataHub.fetchJSON(p);
           if (Array.isArray(j)) return j;
           if (j && Array.isArray(j.packs)) return j.packs;
@@ -159,6 +161,7 @@
     for (const p of paths) {
       try {
         if (window.DataHub?.fetchJSON) {
+          /** @type {CiviCommercialStore[] | { stores?: CiviCommercialStore[] } | null} */
           const j = await window.DataHub.fetchJSON(p);
           if (Array.isArray(j)) return j;
           if (j && Array.isArray(j.stores)) return j.stores;
@@ -206,12 +209,18 @@
 
   function getStoreAccessPool() {
     const bridge = window.CivicationPlaceAccessBridge;
-    return bridge?.getBucket ? bridge.getBucket("store") : [];
+    const bucket = /** @type {unknown[]} */ (
+      bridge?.getBucket ? bridge.getBucket("store") : []
+    );
+    return bucket;
   }
 
   function getHousingAccessPool() {
     const bridge = window.CivicationPlaceAccessBridge;
-    return bridge?.getBucket ? bridge.getBucket("housing") : [];
+    const bucket = /** @type {unknown[]} */ (
+      bridge?.getBucket ? bridge.getBucket("housing") : []
+    );
+    return bucket;
   }
 
   /**

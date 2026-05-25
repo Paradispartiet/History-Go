@@ -325,3 +325,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Scope stayed intentionally narrow to CivicationBoot typing friction only; no runtime guards, no flow/branch/order/storage changes, and no boot-sequence changes were introduced.
 - No UI/Event Engine/Economy Engine/MiniSections/js/ui files were modified in this phase.
 - Runtime behavior, DOM/CSS/layout/text, and app-init semantics remain unchanged.
+
+## Phase 38: narrow CivicationCommercial typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/civicationCommercial.js` after Phase 37, focused only on local `unknown` property-access friction.
+- Applied local type annotations/casts for `window.getPCWallet()` result, `window.DataHub.fetchJSON()` pack/store payload shapes, and access-bucket return values near usage.
+- No runtime behavior was changed: buy/sell/wallet/economy logic, branching/order/returns, storage keys, event flow, DOM/CSS/layout/text, and public API semantics remain unchanged.
+- No globals/schema declarations were changed (`schemas/civication-globals.d.ts` untouched), and no UI/Event Engine/Economy Engine/MiniSections/js/ui files were modified.
+- Regenerated `reports/typecheck-baseline-report.md`; GitHub Actions workflow `Typecheck baseline report` remains the final control gate.
