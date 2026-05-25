@@ -1430,6 +1430,10 @@ if (btnUnlock) {
       return;
     }
 
+    const isGroundhopperRelevant = typeof window.HG_isGroundhopperPlace === "function"
+      ? !!window.HG_isGroundhopperPlace(place)
+      : !!(place?.category === "sport" && place?.sport_profile?.groundhopper_relevant !== false);
+
     if (typeof window.saveVisitedFromQuiz === "function") {
       window.saveVisitedFromQuiz(place.id);
     } else {
@@ -1464,7 +1468,9 @@ if (btnUnlock) {
     }
 
     window.showToast?.(`Låst opp: ${place.name} ✅`);
-    window.dispatchEvent(new Event("updateProfile"));
+    if (isGroundhopperRelevant) {
+      window.showToast?.("Groundhopper: sted registrert");
+    }
     updateUnlockUI();
   };
 }

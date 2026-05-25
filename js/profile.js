@@ -238,9 +238,10 @@ function renderGroundhopperProfilePanel() {
     return;
   }
 
+  const level = window.HG_getGroundhopperLevel?.(stats) || { label: "Ikke startet", next: 1, progress: 0, remaining: 1 };
   const statRows = [
-    ["Steder besøkt", asCount(stats.total_groundhopper_places_visited)],
-    ["Groundhopper-nivå", (window.HG_getGroundhopperLevel?.(stats)?.label || "Ikke startet")],
+    ["Nivå", level.label],
+    ["Grounds besøkt", asCount(stats.total_groundhopper_places_visited)],
     ["Fotballgrounds", asCount(stats.total_football_grounds_visited)],
     ["Ishaller", asCount(stats.total_ice_arenas_visited)],
     ["Friidrett", asCount(stats.total_athletics_venues_visited)],
@@ -251,7 +252,6 @@ function renderGroundhopperProfilePanel() {
   gridEl.innerHTML = statRows
     .map(([label, value]) => `<div class="groundhopper-stat-card"><span>${_esc(value)}</span><small>${_esc(label)}</small></div>`)
     .join("");
-  const level = window.HG_getGroundhopperLevel?.(stats) || { label: "Ikke startet", next: 1, progress: 0, remaining: 1 };
   toplineEl.textContent = level.next == null
     ? `Nivå: ${level.label} · Maksnivå nådd`
     : `Nivå: ${level.label} · ${level.remaining} sted(er) til neste nivå (${Math.round(level.progress * 100)}%)`;
