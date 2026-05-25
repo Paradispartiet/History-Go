@@ -24,8 +24,10 @@ async function ensureCivicationBadgesLoaded() {
 
 function qualifiesForTierWithCross(careerId, tierIndex) {
   const career = Array.isArray(window.HG_CAREERS)
-    ? window.HG_CAREERS.find(c => String(c.career_id) === String(careerId))
-    : window.HG_CAREERS?.careers?.find(c => String(c.career_id) === String(careerId));
+    ? /** @type {Array<{ career_id?: string | number, cross_requirements?: Record<string, Array<{ badge: string, min_tier: number }>> }>} */ (window.HG_CAREERS)
+      .find(c => String(c.career_id) === String(careerId))
+    : /** @type {Array<{ career_id?: string | number, cross_requirements?: Record<string, Array<{ badge: string, min_tier: number }>> }> | undefined} */ (window.HG_CAREERS?.careers)
+      ?.find(c => String(c.career_id) === String(careerId));
 
   if (!career) return true;
 
@@ -36,7 +38,7 @@ function qualifiesForTierWithCross(careerId, tierIndex) {
     const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
     const playerPoints = Number(merits?.[req.badge]?.points || 0);
 
-    const badge = window.BADGES?.find(function (b) {
+    const badge = /** @type {Array<{ id?: string }>} */ (window.BADGES || []).find(function (b) {
       return b.id === req.badge;
     });
 
@@ -81,7 +83,7 @@ async function rebuildJobOffersFromCurrentMerits() {
     return { ok: false, reason: "active_job" };
   }
 
-  const existingOffers = window.CivicationJobs?.getOffers?.() || [];
+  const existingOffers = /** @type {Array<{ status?: string }>} */ (window.CivicationJobs?.getOffers?.() || []);
   const hasPending = existingOffers.some(function (o) {
     return o && o.status === "pending";
   });
@@ -91,7 +93,9 @@ async function rebuildJobOffersFromCurrentMerits() {
   }
 
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const badgeList = Array.isArray(window.BADGES) ? window.BADGES : [];
+  const badgeList = /** @type {Array<{ id?: string, name?: string, tiers?: Array<unknown> }>} */ (
+    Array.isArray(window.BADGES) ? window.BADGES : []
+  );
 
   let bestCandidate = null;
 
@@ -173,8 +177,8 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
 
   const pushed = hgPushJobOffer(badge, next, newPoints);
 
-  if (!pushed?.ok) {
-    if (pushed?.reason === "active_job") {
+  if (!/** @type {{ ok?: boolean, reason?: string }} */ (pushed)?.ok) {
+    if (/** @type {{ ok?: boolean, reason?: string }} */ (pushed)?.reason === "active_job") {
       showToast("📌 Du har allerede en aktiv jobb.");
     }
     return;

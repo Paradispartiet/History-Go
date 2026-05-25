@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-25T22:07:52.017Z
+- Generated at (UTC): 2026-05-25T22:24:52.236Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1975
+- Total diagnostic lines found: 1968
 - Files with diagnostics: 195
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 79 | 591 | js/Civication/core/civicationCalendar.js<br>js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js |
+| js/Civication/** | 79 | 584 | js/Civication/core/civicationCalendar.js<br>js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js |
 | other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 510 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 83 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1626 |
+| TS2339 | 1619 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (591 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (584 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (142), `js/Civication/ui/CivicationUI.js` (107), `js/profile.js` (83), `js/ui/popup-utils.js` (80), `js/boot.js` (75).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -144,14 +144,7 @@ js/Civication/mailPlanBridge.js(141,21): error TS2339: Property 'CivicationMailR
 js/Civication/mailPlanBridge.js(245,24): error TS2339: Property 'CivicationNpcReactions' does not exist on type 'Window & typeof globalThis'.
 js/Civication/mailPlanBridge.js(252,24): error TS2339: Property 'CivicationNpcCharacterThreads' does not exist on type 'Window & typeof globalThis'.
 js/Civication/mailPlanBridge.js(690,10): error TS2339: Property 'CiviMailPlanBridge' does not exist on type 'Window & typeof globalThis'.
-js/Civication/merits-and-jobs.js(27,44): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(28,35): error TS2339: Property 'find' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(40,16): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(85,37): error TS2339: Property 'some' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(99,35): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(176,16): error TS2339: Property 'ok' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(177,17): error TS2339: Property 'reason' does not exist on type 'unknown'.
-js/Civication/merits-and-jobs.js(189,22): error TS2304: Cannot find name 'catIdFromDisplay'.
+js/Civication/merits-and-jobs.js(193,22): error TS2304: Cannot find name 'catIdFromDisplay'.
 js/Civication/roleStoryletBridge.js(133,10): error TS2339: Property 'CiviRoleStoryletBridge' does not exist on type 'Window & typeof globalThis'.
 js/Civication/roleThreadResolver.js(88,67): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/roleThreadResolver.js(105,26): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
@@ -162,4 +155,11 @@ js/Civication/systems/civicationActivePositionRecovery.js(226,10): error TS2339:
 js/Civication/systems/civicationBlockedJobMessages.js(15,21): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationBlockedJobMessages.js(16,37): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationBlockedJobMessages.js(24,21): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
+js/Civication/systems/civicationBlockedJobMessages.js(24,67): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
+js/Civication/systems/civicationBrandEmployerBridge.js(98,34): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
+js/Civication/systems/civicationBrandEmployerBridge.js(100,19): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
+js/Civication/systems/civicationBrandJobProgression.js(193,31): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationBrandJobProgression.js(313,31): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationBrandJobProgression.js(328,24): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationBrandJobProgression.js(337,22): error TS2339: Property 'DEBUG' does not exist on type 'Window & typeof globalThis'.
 ```
