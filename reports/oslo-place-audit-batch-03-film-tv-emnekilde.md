@@ -1,4 +1,4 @@
-# Oslo place-audit batch 03 — canonical emnekilde for TV_og_Film
+# Oslo place-audit batch 03 — canonical emnekilde for TV_og_Film (rettet)
 
 **Dato:** 2026-05-25
 
@@ -12,30 +12,33 @@
 - `data/places/film/oslo/places_oslo_film.json`
 - `reports/oslo-place-audit-batch-02-film-emner.md`
 
+## Filnavn-avklaring (viktig)
+- Verifisert canonical emnefil i repoet heter **`emner_film_tv_canonical_v4_5.json`** (uten ekstra `s`).
+- Filen `emners_film_tv_canonical_v4_5.json` finnes ikke i repoet.
+
 ## Konklusjon om canonical emne-definisjonskilde
 Canonical emne-definisjonskilde for `film_tv` er:
 - `data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json`
 
-Filen er **ikke tom**, har gyldig JSON-format, og inneholder fullverdige emnedefinisjoner.
-
 ## Status for `emner_film_tv_canonical_v4_5.json`
 - Vurdering: **gyldig og fullverdig** (ikke tom / ikke ufullstendig).
+- Filstørrelse ved verifisering: 1 123 455 bytes.
 - Innhold: 120 emner totalt.
 - Unikhet: 120 unike `emne_id` (ingen duplikater).
 - `em_film_tv_kino_fellesrom`: finnes som full emnedefinisjon (`subject_id: film_tv`).
 - `em_film_tv_location_filmsted`: finnes som full emnedefinisjon (`subject_id: film_tv`).
 
 ## Funn av `em_film_tv_*` i andre TV/Film-filer
-`em_film_tv_kino_fellesrom` og `em_film_tv_location_filmsted` forekommer også i flere støttefiler:
-- `supersetQUIZMAL_film_tv.json` (anbefalte/retningsgivende lister og profiler)
-- `fagkart_film_tv_canonical_v4_5.json` (fagkart/hook-struktur)
-- `film_tvpensum_canonical_v4_5.json` (pensum/kurateringsnivå)
-- `emnemapping_film_tv_canonical_v4_5.json` (mapping mellom emne og fagkart)
-- `methods_film_tv_canonical_v4_5.json` (metode-affiniteter)
+`em_film_tv_kino_fellesrom` og `em_film_tv_location_filmsted` forekommer også i støttefiler:
+- `supersetQUIZMAL_film_tv.json`
+- `fagkart_film_tv_canonical_v4_5.json`
+- `film_tvpensum_canonical_v4_5.json`
+- `emnemapping_film_tv_canonical_v4_5.json`
+- `methods_film_tv_canonical_v4_5.json`
 
 Vurdering av disse forekomstene:
 - Disse filene fungerer som styrings-, mapping-, metode- eller anbefalingslag.
-- De er **ikke** den primære, fullverdige emne-definisjonskilden.
+- De er **ikke** primær, fullverdig emne-definisjonskilde.
 - Full emne-definisjon ligger i `emner_film_tv_canonical_v4_5.json`.
 
 ## Place-filer
@@ -43,8 +46,8 @@ Vurdering av disse forekomstene:
 - Ingen endringer gjort.
 - Ingen `em_film_tv_*` ble koblet tilbake i denne batchen.
 
-## Endrede filer i batch 03
-- `reports/oslo-place-audit-batch-03-film-tv-emnekilde.md` (ny)
+## Endrede filer i denne rettingen
+- `reports/oslo-place-audit-batch-03-film-tv-emnekilde.md` (oppdatert)
 
 ## Emner opprettet i batch 03
 - Ingen nye emner opprettet.
