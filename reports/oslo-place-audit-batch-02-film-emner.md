@@ -7,42 +7,38 @@
 - `reports/oslo-place-audit-batch-02-film-emner.md`
 
 ## Emne-ID-er funnet eller opprettet
-Ingen nye emner ble opprettet i batch 02. Alle koblinger bruker eksisterende, gyldige emner fra canonical fagdata:
+Ingen nye emner ble opprettet i batch 02.
 
+Etter ny verifisering mot faktisk emne-definisjonsgrunnlag ble `em_film_tv_kino_fellesrom` og `em_film_tv_location_filmsted` fjernet fra place-koblingene i denne PR-en (Løsning B), slik at filmstedene kun bruker trygt verifiserte `em_pop_*`-emner.
+
+Brukte emner i batch 02:
 - `em_pop_kino_populaer_offentlighet`
 - `em_pop_publikum_rytme_vaner`
-- `em_film_tv_kino_fellesrom`
 - `em_pop_serier_foljetong_ritual`
 - `em_pop_sted_kulisse_lokasjon`
-- `em_film_tv_location_filmsted`
 
 ## Filmsteder koblet til emne-ID-er
 - `saga_kino`
   - `em_pop_kino_populaer_offentlighet`
   - `em_pop_publikum_rytme_vaner`
-  - `em_film_tv_kino_fellesrom`
 - `klingenberg_kino`
   - `em_pop_kino_populaer_offentlighet`
   - `em_pop_publikum_rytme_vaner`
-  - `em_film_tv_kino_fellesrom`
 - `gimle_kino`
   - `em_pop_kino_populaer_offentlighet`
   - `em_pop_publikum_rytme_vaner`
-  - `em_film_tv_kino_fellesrom`
 - `vika_kino`
   - `em_pop_kino_populaer_offentlighet`
   - `em_pop_publikum_rytme_vaner`
-  - `em_film_tv_kino_fellesrom`
 - `hartvig_nissens_skole_skam`
   - `em_pop_serier_foljetong_ritual`
   - `em_pop_sted_kulisse_lokasjon`
-  - `em_film_tv_location_filmsted`
 
 ## Emner vurdert, men ikke brukt
-- `em_pop_film_tv_format` (for bredt når stedene allerede kan få mer presise kino-/serie-/lokasjons-emner)
-- `em_film_tv_filmhistorisk_formidling` (passer bedre til institusjonell filmarv/kuratering enn disse fem stedene samlet)
-- `em_film_tv_tv_offentlighet` (for generell ift. konkret SKAM-lokasjon)
+- `em_film_tv_kino_fellesrom` (fjernet i batch 02 etter verifiseringskrav om emne-definisjonskilde)
+- `em_film_tv_location_filmsted` (fjernet i batch 02 etter verifiseringskrav om emne-definisjonskilde)
+- `em_pop_film_tv_format` (for bredt når mer presise kino-/serie-/lokasjons-emner finnes)
 
 ## Gjenstående hull for batch 03
-- Verifisere om flere film-/TV-steder i Oslo trenger samme «kino + publikum + sted» triade for konsistent tagging.
-- Vurdere om det trengs en tydelig retningslinje for når `em_film_tv_location_filmsted` skal kombineres med popkultur-emner i mixed kategori-filer.
+- Avklare og dokumentere én entydig canonical emne-definisjonskilde for `TV_og_Film` før `em_film_tv_*` kobles på nye steder igjen.
+- Eventuelt reintrodusere film/TV-emner på disse stedene i en egen oppfølgings-PR når definisjonskilden er bekreftet.
