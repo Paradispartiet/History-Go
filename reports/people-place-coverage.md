@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-25T09:54:29.611Z
+Generert: 2026-05-25T10:45:37.357Z
 
 ## Sammendrag
 
-- People totalt: **211**
+- People totalt: **218**
 - Places totalt: **454**
-- Places med people: **89**
-- Places uten people: **365**
-- People-place-lenker: **302**
-- People koblet til flere gyldige steder: **89**
+- Places med people: **91**
+- Places uten people: **363**
+- People-place-lenker: **313**
+- People koblet til flere gyldige steder: **93**
 - People uten gyldig sted: **19**
 - Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **185**
+- Duplikate place-referanser inne på people: **192**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -22,7 +22,7 @@ Generert: 2026-05-25T09:54:29.611Z
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
 | by | 100 | 24 | 76 | 60 | 46 |
-| film_tv | 8 | 6 | 2 | 22 | 8 |
+| film_tv | 8 | 8 | 0 | 33 | 15 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
@@ -44,27 +44,29 @@ Generert: 2026-05-25T09:54:29.611Z
 - politikk: 27
 - middelalder: 19
 - media: 17
+- film: 15
+- film_tv: 15
+- regissor: 14
 - subkultur: 13
 - vitenskap: 12
 - krig: 11
 - kunst: 11
 - avis: 10
+- filmhistorie: 10
 - musikk: 10
 - presse: 10
 - redaksjon: 10
-- film: 8
-- film_tv: 8
+- filmkanon: 9
 - journalistikk: 8
 - sport: 8
+- cinematek: 7
 - natur: 7
-- regissor: 7
 - by: 6
+- norsk_film: 6
 - tv: 6
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
-- filmhistorie: 4
-- filmkanon: 4
 - kommentarjournalistikk: 4
 - kringkasting: 4
 - naeringsliv: 4
@@ -77,18 +79,16 @@ Generert: 2026-05-25T09:54:29.611Z
 - arkitektur: 2
 - dokumentar: 2
 - filmfestival: 2
+- kino: 2
+- kinokultur: 2
 - militaerhistorie: 2
+- premiere: 2
 - rett: 2
+- skuespiller: 2
 - vikingtid: 2
 - absurd humor: 1
 - allmennkringkasting: 1
 - bibliotek: 1
-- boksamling: 1
-- byutvikling: 1
-- cinematek: 1
-- digital kultur: 1
-- doclisboa: 1
-- eksperimentell underholdning: 1
 
 ## Steder med flest people
 
@@ -101,11 +101,13 @@ Generert: 2026-05-25T09:54:29.611Z
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 8
 - oslo_radhus (Oslo rådhus) – 8
 - universitetsplassen (Universitetsplassen) – 8
+- cinemateket_oslo (Cinemateket i Oslo) – 7
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
 - youngstorget (Youngstorget) – 5
+- colosseum_kino (Colosseum kino) – 4
 - deichman_bjorvika (Deichman Bjørvika) – 4
 - eidsvollsbygningen (Eidsvollsbygningen) – 4
 - grini_fangeleir (Grini fangeleir) – 4
@@ -115,8 +117,6 @@ Generert: 2026-05-25T09:54:29.611Z
 - grotta (Grotten) – 3
 - kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
 - lisbon_cinema_ideal (Cinema Ideal) – 3
-- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 3
-- lisbon_tobis_portuguesa (Tobis Portuguesa) – 3
 
 ## Ugyldige place-referanser
 
@@ -239,7 +239,7 @@ Generert: 2026-05-25T09:54:29.611Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 85 flere
+- ... 92 flere
 
 ## Anbefalt første people-batch
 
