@@ -453,6 +453,8 @@
 
   function buildRuntimeStatePatchForAnswer(active, eventObj, choiceId) {
     const state = getState();
+    /** @type {{ consumed?: unknown, mail_system?: unknown }} */
+    const stateMailSlices = state;
     const runtime = state?.[RUNTIME_KEY] && typeof state[RUNTIME_KEY] === "object"
       ? state[RUNTIME_KEY]
       : {};
@@ -484,12 +486,12 @@
     ].slice(-80);
 
     const consumedMap = {
-      ...(state?.consumed && typeof state.consumed === "object" ? state.consumed : {}),
+      ...(stateMailSlices?.consumed && typeof stateMailSlices.consumed === "object" ? stateMailSlices.consumed : {}),
       [id]: true
     };
 
-    const legacyMailSystem = state?.mail_system && typeof state.mail_system === "object"
-      ? state.mail_system
+    const legacyMailSystem = stateMailSlices?.mail_system && typeof stateMailSlices.mail_system === "object"
+      ? /** @type {{ consumed_mail_ids?: unknown, history?: unknown, role_plan_id?: unknown, last_mail_type?: unknown }} */ (stateMailSlices.mail_system)
       : {};
 
     const legacyConsumed = uniqueStrings([
