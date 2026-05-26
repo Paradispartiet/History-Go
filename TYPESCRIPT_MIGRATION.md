@@ -393,3 +393,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left global/window diagnostics (`CivicationMailRuntime`, `CivicationEventEngine`, `CivicationCareerOutcomeRuntime`) unchanged because they require globals/schema scope outside this phase.
 - Intentionally did not modify `schemas/civication-globals.d.ts`, and did not add declarations for `CivicationMailEngine`/`CivicationTaskEngine`.
 - No runtime logic, career-outcome logic, mail-runtime logic, storage keys, DOM/CSS/layout/text, or event flow was changed.
+
+## Phase 48: narrow CareerOutcomeRuntime follow-up type-only pass
+
+- Added two narrow, local JSDoc/type-only casts in `js/Civication/systems/civicationCareerOutcomeRuntime.js` after Phase 47 / PR #652.
+- Fixed local property-access diagnostics at existing read/write sites only:
+  - local array+property cast for `suppressed.__career_outcome_terminal_closed` in `makeOutcomeAwareCandidates`.
+  - local state-shape cast for `current.consumed` reads/spread in `patchEventEngineAnswer`.
+- Intentionally left global/window diagnostics (`CivicationMailRuntime`, `CivicationEventEngine`, `CivicationCareerOutcomeRuntime`) unchanged because they require global declaration/schema scope, which is out of bounds for this phase.
+- No runtime logic was changed: career-outcome flow, mail-runtime behavior, event flow, branching/order/returns, storage, DOM/CSS/layout/text all remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not touched; no declarations were added for `CivicationMailRuntime`, `CivicationEventEngine`, `CivicationMailEngine`, or `CivicationTaskEngine`.
