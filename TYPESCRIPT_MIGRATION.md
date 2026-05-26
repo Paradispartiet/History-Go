@@ -412,3 +412,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Left the `window.CivicationStoreUI` global assignment diagnostic (`TS2551`) unchanged because addressing it requires globals/schema declaration scope outside this narrow file-local pass.
 - Runtime logic, store/shop logic, render flow, event flow, DOM/CSS/layout/text, and schemas/globals are unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
+
+## Phase 51-prep: repair state alias migration typecheck regression
+
+- Added a narrow local JSDoc/type-only clarification in `js/state/state.js` after PR #659 drifted the baseline used by Phase 51/dayChoiceDirector.
+- Introduced file-local typedefs for the already-used `window.HGPlaceIds` methods (`normalizePlaceId`, `migrateProgressStorage`) and a local casted `stateWindow` alias used only for typechecking.
+- Added a local type annotation for `migrated` as `StateVisitedPlaces` at the existing migration assignment site.
+- No runtime behavior changed: alias semantics, migration order, `visited_places` data flow, localStorage keys/logic, and overall state runtime flow remain unchanged.
+- No schema/global declarations were modified, and `js/core/placeIdAliases.js` was not changed.
