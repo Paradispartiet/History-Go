@@ -426,3 +426,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added one narrow, local JSDoc/type-only global-assignment cast in `js/core/placeIdAliases.js` for the existing `window.HGPlaceIds = ...` export assignment introduced in the post-#659 area.
 - Fixed one local `TS2339` (`HGPlaceIds` missing on `Window`) at `js/core/placeIdAliases.js` assignment site without changing alias runtime logic, migration flow, storage behavior, or data semantics.
 - No runtime guards, fallbacks, validator behavior, alias normalization semantics, storage/migration contracts, Civication/UI/schemas/data, workflows, or scripts were changed.
+
+## Phase 51: narrow dayChoiceDirector typecheck pass
+
+- Added one extremely narrow, local JSDoc/type-only state-shape cast in `js/Civication/systems/day/dayChoiceDirector.js` at the existing `activeFaction` write site.
+- Removed one local `TS2339` unknown/property-access diagnostic (`activeFaction` on `unknown`) without changing runtime behavior, day-loop logic, event flow, state flow, branching, or return values.
+- Left global/window diagnostics in this file unchanged (`window.CivicationEventEngine`, `window.CivicationChoiceDirector`) because they require global/schema scope outside this file-local phase.
+- No schema/global declarations were changed; `schemas/civication-globals.d.ts` and the `CivicationCalendar?: any` declaration from Phase 46 were not modified.
