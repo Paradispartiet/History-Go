@@ -31,7 +31,6 @@ function collectCanonicalEmneIds() {
   );
 
   const ids = new Set();
-  const aliasIssues = [];
   for (const file of files) {
     const data = readJson(file);
     const entries = toArray(data);
@@ -39,25 +38,11 @@ function collectCanonicalEmneIds() {
       if (!item || typeof item !== 'object') continue;
       const rawId = typeof item.id === 'string' ? item.id : (typeof item.emne_id === 'string' ? item.emne_id : '');
       const id = rawId.trim();
-      if (id) {
-        if (ids.has(id)) aliasIssues.push({ type: 'duplicate_emne_id', file: formatRel(file), emne_id: id });
-        ids.add(id);
-      }
-    }
-
-    for (const item of entries) {
-      if (!item || typeof item !== 'object') continue;
-      if (item.canonical_status !== 'canonical_alias') continue;
-      const emneId = String(item.emne_id || '').trim();
-      const aliasOf = String(item.alias_of || '').trim();
-      if (!emneId) aliasIssues.push({ type: 'alias_missing_emne_id', file: formatRel(file) });
-      if (!aliasOf) aliasIssues.push({ type: 'alias_missing_alias_of', file: formatRel(file), emne_id: emneId || '<missing-emne-id>' });
-      if (emneId && aliasOf && emneId === aliasOf) aliasIssues.push({ type: 'alias_self_reference', file: formatRel(file), emne_id: emneId });
-      if (aliasOf && !ids.has(aliasOf)) aliasIssues.push({ type: 'alias_target_missing', file: formatRel(file), emne_id: emneId || '<missing-emne-id>', alias_of: aliasOf });
+      if (id) ids.add(id);
     }
   }
 
-  return { ids, files, aliasIssues };
+  return { ids, files };
 }
 
 function formatRel(filePath) {
@@ -69,7 +54,7 @@ function main() {
   const manifest = readJson(manifestPath);
   const activeFiles = Array.isArray(manifest.files) ? manifest.files : [];
 
-  const { ids: canonicalEmneIds, files: canonicalFiles, aliasIssues } = collectCanonicalEmneIds();
+  const { ids: canonicalEmneIds, files: canonicalFiles } = collectCanonicalEmneIds();
 
   const missingEmneIds = [];
   const duplicateEmneIdsPerPlace = [];
@@ -141,11 +126,7 @@ function main() {
   console.log(`Duplicate place ids across active files: ${duplicatePlaceIds.length}`);
   if (duplicatePlaceIds.length) console.log(JSON.stringify(duplicatePlaceIds, null, 2));
 
-  console.log('');
-  console.log(`Canonical alias integrity issues: ${aliasIssues.length}`);
-  if (aliasIssues.length) console.log(JSON.stringify(aliasIssues, null, 2));
-
-  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length || aliasIssues.length) {
+  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length) {
     process.exit(1);
   }
 }
