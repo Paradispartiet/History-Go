@@ -78,25 +78,19 @@ function renderNearbyPlaces() {
     ? window.HGTimeResolver.resolvePlaceTime.bind(window.HGTimeResolver)
     : null;
 
+  const readSortYear = (place, resolved) => {
+    const candidates = [resolved?.year, resolved?.startYear, place?.year, place?.start_year, place?.startYear];
+    for (const candidate of candidates) {
+      const n = Number(candidate);
+      if (Number.isFinite(n)) return n;
+    }
+    return null;
+  };
+
   let items = PLACES.map(p => {
     const resolved = resolveTime ? (resolveTime(p) || null) : null;
-    const hasSupportedConfidence = (
-      resolved?.confidence === "year_match" ||
-      resolved?.confidence === "year_only" ||
-      resolved?.confidence === "explicit"
-    );
-    const hasTime = !!resolved && (
-      Number.isFinite(resolved.year) ||
-      Number.isFinite(resolved.startYear) ||
-      hasSupportedConfidence
-    );
-    const resolvedSortKey = Number(resolved?.sortKey);
-    const isFallbackSortKey = resolvedSortKey === Number.MAX_SAFE_INTEGER;
-    const timeSortKey = (
-      hasTime &&
-      Number.isFinite(resolvedSortKey) &&
-      !isFallbackSortKey
-    ) ? resolvedSortKey : null;
+    const sortYear = readSortYear(p, resolved);
+    const hasTime = Number.isFinite(sortYear);
     return {
       ...p,
       _d: (pos && typeof window.distMeters === "function")
@@ -110,9 +104,9 @@ function renderNearbyPlaces() {
             return Number.isFinite(best) ? Math.round(best) : null;
           })()
         : null,
-      _timeSortKey: timeSortKey,
-      _timeLabel: String(resolved?.year ?? resolved?.startYear ?? "").trim(),
-      _epokeLabel: String(resolved?.epokeLabel || "").trim(),
+      _timeSortKey: hasTime ? sortYear : null,
+      _timeLabel: hasTime ? String(sortYear) : "",
+      _epokeLabel: String(resolved?.epokeLabel ?? p?.epokeLabel ?? "").trim(),
       _isZeitgeist: !!resolved?.isZeitgeist
     };
   });

@@ -449,11 +449,12 @@ return {
       ? state.consumed
       : {};
 
-    const autonomy =
+    const autonomyRaw =
       window.CivicationPsyche &&
       typeof window.CivicationPsyche.getAutonomy === "function"
         ? window.CivicationPsyche.getAutonomy(state.active_role_key)
         : 50;
+    const autonomy = Number.isFinite(Number(autonomyRaw)) ? Number(autonomyRaw) : 50;
 
     const stability = state.stability;
 
@@ -1686,9 +1687,9 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
   let autonomy = 50;
   if (window.CivicationPsyche &&
       typeof window.CivicationPsyche.getAutonomy === "function") {
-	    autonomy = /** @type {number} */ (
-      window.CivicationPsyche.getAutonomy(state.active_role_key)
-    );
+    const autonomyRaw = window.CivicationPsyche.getAutonomy(state.active_role_key);
+    const parsedAutonomy = Number(autonomyRaw);
+    autonomy = Number.isFinite(parsedAutonomy) ? parsedAutonomy : 50;
   }
 
   if (baseEffect < 0 && autonomy < 30) {

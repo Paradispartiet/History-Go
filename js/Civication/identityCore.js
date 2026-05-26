@@ -43,7 +43,8 @@
 
   function getBoost(type) {
     const identity = loadIdentity();
-    const weight = identity.focus[type] || 0.2;
+    const parsed = Number(identity?.focus?.[type]);
+    const weight = Number.isFinite(parsed) ? parsed : 0.2;
 
     // Boost range 0.8–1.2
     return 0.8 + weight * 0.4;
