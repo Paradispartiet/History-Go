@@ -382,3 +382,14 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally did not declare `CivicationMailEngine` or `CivicationTaskEngine` in this phase due to known TS2551 regression risk from dry-run findings.
 - No runtime logic, JavaScript source, UI, CSS, HTML, AHA/data, manifests, workflows, or tests were changed.
 - Regenerated `reports/typecheck-baseline-report.md` and verified protected metrics did not increase while CivicationCalendar-related TS2339 noise was reduced.
+
+## Phase 47: narrow CareerOutcomeRuntime type-only pass
+
+- Added a narrow, local JSDoc/type-only pass in `js/Civication/systems/civicationCareerOutcomeRuntime.js` after Phase 46 / PR #649.
+- Applied three local casts at existing read sites to reduce `unknown` property-access diagnostics without altering runtime behavior:
+  - state shape cast for reading `mail_runtime_v1` in `getRuntime`.
+  - active-position cast near `CivicationPsyche.getAutonomy(active?.career_id)`.
+  - active-position cast near `CivicationPsyche.registerCollapse(active?.career_id, ...)`.
+- Intentionally left global/window diagnostics (`CivicationMailRuntime`, `CivicationEventEngine`, `CivicationCareerOutcomeRuntime`) unchanged because they require globals/schema scope outside this phase.
+- Intentionally did not modify `schemas/civication-globals.d.ts`, and did not add declarations for `CivicationMailEngine`/`CivicationTaskEngine`.
+- No runtime logic, career-outcome logic, mail-runtime logic, storage keys, DOM/CSS/layout/text, or event flow was changed.
