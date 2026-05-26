@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  /** @typedef {{ id?: string|number, store_id?: string|number, title?: string, price_pc?: number, price?: number, price_band?: string, category?: string }} CiviStorePack */
+  /** @typedef {{ id?: string|number, name?: string, type?: string, blurb?: string }} CiviStoreDef */
+
   function formatPc(n) {
     const num = Number(n || 0);
     return Number.isFinite(num) ? num.toLocaleString("no-NO") : "0";
@@ -16,15 +19,16 @@
       return;
     }
 
-    const [stores, packs] = await Promise.all([
+    const [stores, packs] = /** @type {[CiviStoreDef[], CiviStorePack[]]} */ (await Promise.all([
       shop.getVisibleStores(),
       shop.getVisiblePacks()
-    ]);
+    ]));
 
-    const wallet = typeof window.getPCWallet === "function"
+    const wallet = /** @type {{ balance?: number }} */ (typeof window.getPCWallet === "function"
       ? window.getPCWallet()
-      : { balance: 0 };
-    const owned = shop.getInv?.()?.packs || {};
+      : { balance: 0 });
+    const inv = /** @type {{ packs?: Record<string, unknown> }} */ (shop.getInv?.() || {});
+    const owned = inv.packs || {};
 
     if (!stores.length && !packs.length) {
       host.innerHTML = `<div class="muted">Ingen tydelige butikker er åpne ennå. Lås opp flere steder i History Go for å gjøre byens kommersielle liv brukbart i Civication.</div>`;
@@ -65,12 +69,13 @@
     `;
 
     host.querySelectorAll("[data-buy-pack]").forEach(function (btn) {
+      const buyBtn = /** @type {HTMLButtonElement} */ (btn);
       btn.addEventListener("click", async function () {
-        const packId = btn.getAttribute("data-buy-pack");
+        const packId = buyBtn.getAttribute("data-buy-pack");
         if (!packId) return;
-        btn.disabled = true;
-        const res = await shop.buyPack(packId);
-        btn.disabled = false;
+        buyBtn.disabled = true;
+        const res = /** @type {{ ok?: boolean }} */ (await shop.buyPack(packId));
+        buyBtn.disabled = false;
         if (!res?.ok) return;
         renderStorePanel();
       });

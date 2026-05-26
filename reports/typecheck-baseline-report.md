@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-26T10:21:48.344Z
+- Generated at (UTC): 2026-05-26T10:48:04.488Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1921
+- Total diagnostic lines found: 1912
 - Files with diagnostics: 191
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -13,7 +13,7 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/Civication/** | 75 | 537 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 75 | 528 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/ui/** | 20 | 510 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 83 | js/profile.js |
 | js/boot.js | 1 | 75 | js/boot.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1572 |
+| TS2339 | 1563 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -97,16 +97,16 @@ js/Civication/core/civicationEventEngine.js(200,25): error TS2339: Property 'Civ
 js/Civication/core/civicationEventEngine.js(201,25): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
 js/Civication/core/civicationEventEngine.js(384,18): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
 js/Civication/core/civicationEventEngine.js(415,20): error TS2339: Property 'CiviRoleStoryletBridge' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1003,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1029,18): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1030,29): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1090,39): error TS2339: Property 'CivicationConflicts' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1091,29): error TS2339: Property 'CivicationConflicts' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1527,35): error TS2339: Property 'CivicationEventChannels' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1532,16): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1533,26): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(1938,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEventEngine.js(2068,8): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
+js/Civication/core/civicationEventEngine.js(1004,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1030,18): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1031,29): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1091,39): error TS2339: Property 'CivicationConflicts' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1092,29): error TS2339: Property 'CivicationConflicts' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1528,35): error TS2339: Property 'CivicationEventChannels' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1533,16): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1534,26): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1939,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(2069,8): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
 js/Civication/core/civicationJobs.js(323,15): error TS2769: No overload matches this call.
   Overload 1 of 2, '(...items: ConcatArray<{ status: string; createdAt: number; event: any; }>[]): { status: string; createdAt: number; event: any; }[]', gave the following error.
     Argument of type '{ event?: { id?: string | number; }; }[]' is not assignable to parameter of type 'ConcatArray<{ status: string; createdAt: number; event: any; }>'.
@@ -156,10 +156,10 @@ js/Civication/systems/civicationBrandJobProgression.js(337,22): error TS2339: Pr
 js/Civication/systems/civicationBrandJobProgression.js(356,23): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobProgression.js(360,10): error TS2339: Property 'CivicationBrandJobProgression' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobState.js(217,10): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(417,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(457,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(492,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
-js/Civication/systems/civicationCareerOutcomeRuntime.js(521,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
-js/Civication/systems/civicationCareerOutcomeRuntime.js(561,10): error TS2339: Property 'CivicationCareerOutcomeRuntime' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(574,25): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(419,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(459,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(494,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
+js/Civication/systems/civicationCareerOutcomeRuntime.js(523,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
+js/Civication/systems/civicationCareerOutcomeRuntime.js(563,10): error TS2339: Property 'CivicationCareerOutcomeRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(576,25): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
 ```

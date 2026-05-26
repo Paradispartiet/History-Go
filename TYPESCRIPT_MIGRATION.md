@@ -403,3 +403,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left global/window diagnostics (`CivicationMailRuntime`, `CivicationEventEngine`, `CivicationCareerOutcomeRuntime`) unchanged because they require global declaration/schema scope, which is out of bounds for this phase.
 - No runtime logic was changed: career-outcome flow, mail-runtime behavior, event flow, branching/order/returns, storage, DOM/CSS/layout/text all remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not touched; no declarations were added for `CivicationMailRuntime`, `CivicationEventEngine`, `CivicationMailEngine`, or `CivicationTaskEngine`.
+
+## Phase 50: narrow CivicationStoreUI typecheck pass
+
+- Added a narrow, local JSDoc/type-only pass in `js/Civication/ui/CivicationStoreUI.js` after Phase 49 audit / PR #658.
+- Added local typedefs and casts for existing store/pack data usage (`stores`, `packs`, wallet balance, inventory packs) plus existing buy-button/result usage, removing local unknown/property-access diagnostics without runtime behavior changes.
+- Fixed local `TS2339` diagnostics for `.packs`, `.length`, `.balance`, `.map`, `.filter`, `.disabled`, and `.ok` in this file.
+- Left the `window.CivicationStoreUI` global assignment diagnostic (`TS2551`) unchanged because addressing it requires globals/schema declaration scope outside this narrow file-local pass.
+- Runtime logic, store/shop logic, render flow, event flow, DOM/CSS/layout/text, and schemas/globals are unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
