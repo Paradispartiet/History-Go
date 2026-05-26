@@ -450,3 +450,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left non-local diagnostics unchanged (window/global assignments and other unknown reads such as `mail_plan_progress` in `inspect`) because they require global/schema scope or broader non-local typing decisions outside this phase.
 - Runtime logic, mail-runtime flow, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
+
+## Phase 55: narrow civicationLifeMailRuntime typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/civicationLifeMailRuntime.js` after Phase 52 audit / PR #670, Phase 53 / PR #671, and Phase 54 / PR #672.
+- Added small local casts for existing `state.consumed` and `state.mail_branch_state.flags` reads inside `getConsumedIds`, `getStateTags`, and `markLifeMailAnswered`.
+- Removed local `unknown` property-access diagnostics at existing `.consumed` and `.mail_branch_state` read sites without changing runtime behavior.
+- Intentionally left non-local/global diagnostics and unrelated unknown accesses (`identity_tags`, `life_tags`, `life_flags`, `tracks`, and window/global assignments) unchanged because they require broader typing or globals/schema scope outside this narrow phase.
+- Runtime logic, life-mail-runtime logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.

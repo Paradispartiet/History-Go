@@ -79,8 +79,10 @@
   }
 
   function getConsumedIds(state = getState()) {
-    const consumedMap = state?.consumed && typeof state.consumed === "object"
-      ? Object.keys(state.consumed)
+    /** @type {{ consumed?: Record<string, unknown> } | null | undefined} */
+    const localState = state;
+    const consumedMap = localState?.consumed && typeof localState.consumed === "object"
+      ? Object.keys(localState.consumed)
       : [];
 
     return uniqueStrings([
@@ -90,8 +92,10 @@
   }
 
   function getStateTags(state = getState()) {
-    const branchFlags = state?.mail_branch_state && Array.isArray(state.mail_branch_state.flags)
-      ? state.mail_branch_state.flags
+    /** @type {{ mail_branch_state?: { flags?: unknown[] } } | null | undefined} */
+    const localState = state;
+    const branchFlags = localState?.mail_branch_state && Array.isArray(localState.mail_branch_state.flags)
+      ? localState.mail_branch_state.flags
       : [];
 
     return new Set(uniqueStrings([
@@ -267,7 +271,9 @@
     const state = getState();
     const runtime = getRuntime(state);
     const consumedIds = uniqueStrings([...runtime.consumed_ids, id]);
-    const consumedMap = state?.consumed && typeof state.consumed === "object" ? state.consumed : {};
+    /** @type {{ consumed?: Record<string, unknown> } | null | undefined} */
+    const localState = state;
+    const consumedMap = localState?.consumed && typeof localState.consumed === "object" ? localState.consumed : {};
 
     const history = [
       ...runtime.history,
