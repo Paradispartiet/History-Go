@@ -66,26 +66,26 @@
 - `psykologi`: **3**
 
 ## Topp 20 mest brukte manglende emne_ids
-- `em_naer_felt_arbeid_verdiskaping` (33) — prefix `em`, fag `naeringsliv`
-- `em_naer_geografi_infrastruktur` (33) — prefix `em`, fag `naeringsliv`
-- `em_by_historiske_lag_i_hverdagsrom` (27) — prefix `em`, fag `by`
-- `em_by_infrastruktur_mobilitet` (26) — prefix `em`, fag `by`
-- `em_by_offentlige_rom_motesteder` (24) — prefix `em`, fag `by`
-- `em_by_symbolsk_makt_og_representasjon` (23) — prefix `em`, fag `by`
-- `em_by_transformasjon_ombruk` (23) — prefix `em`, fag `by`
-- `em_by_industri_havn_logistikk` (21) — prefix `em`, fag `natur`
-- `em_by_gentrifisering_eiendom` (19) — prefix `em`, fag `by`
-- `em_by_kommersielle_gater` (18) — prefix `em`, fag `naeringsliv`
-- `em_sport_idrettsgeografi` (17) — prefix `em`, fag `sport`
-- `em_sport_kropp_konkurranse` (17) — prefix `em`, fag `sport`
-- `em_by_parker_som_sosial_infrastruktur` (16) — prefix `em`, fag `natur`
-- `em_by_torg_plasser_som_scene` (12) — prefix `em`, fag `by`
-- `em_by_styring_forvaltning_planmakt` (11) — prefix `em`, fag `by`
-- `em_by_lavterskel_moteplasser_uten_kjopspress` (10) — prefix `em`, fag `by`
-- `em_by_vannpromenader_fjordliv` (9) — prefix `em`, fag `by`
-- `em_by_barrierer_forbindelser` (8) — prefix `em`, fag `by`
-- `em_by_materialitet_og_sanseerfaring` (7) — prefix `em`, fag `by`
-- `em_by_navneskilt_plaketter_minner` (7) — prefix `em`, fag `litteratur`
+- `em_naer_felt_arbeid_verdiskaping` (33) — prefix `em_naer`, fag `naeringsliv`
+- `em_naer_geografi_infrastruktur` (33) — prefix `em_naer`, fag `naeringsliv`
+- `em_by_historiske_lag_i_hverdagsrom` (27) — prefix `em_by`, fag `by`
+- `em_by_infrastruktur_mobilitet` (26) — prefix `em_by`, fag `by`
+- `em_by_offentlige_rom_motesteder` (24) — prefix `em_by`, fag `by`
+- `em_by_symbolsk_makt_og_representasjon` (23) — prefix `em_by`, fag `by`
+- `em_by_transformasjon_ombruk` (23) — prefix `em_by`, fag `by`
+- `em_by_industri_havn_logistikk` (21) — prefix `em_by`, fag `natur`
+- `em_by_gentrifisering_eiendom` (19) — prefix `em_by`, fag `by`
+- `em_by_kommersielle_gater` (18) — prefix `em_by`, fag `naeringsliv`
+- `em_sport_idrettsgeografi` (17) — prefix `em_sport`, fag `sport`
+- `em_sport_kropp_konkurranse` (17) — prefix `em_sport`, fag `sport`
+- `em_by_parker_som_sosial_infrastruktur` (16) — prefix `em_by`, fag `natur`
+- `em_by_torg_plasser_som_scene` (12) — prefix `em_by`, fag `by`
+- `em_by_styring_forvaltning_planmakt` (11) — prefix `em_by`, fag `by`
+- `em_by_lavterskel_moteplasser_uten_kjopspress` (10) — prefix `em_by`, fag `by`
+- `em_by_vannpromenader_fjordliv` (9) — prefix `em_by`, fag `by`
+- `em_by_barrierer_forbindelser` (8) — prefix `em_by`, fag `by`
+- `em_by_materialitet_og_sanseerfaring` (7) — prefix `em_by`, fag `by`
+- `em_by_navneskilt_plaketter_minner` (7) — prefix `em_by`, fag `litteratur`
 
 ## Eksempelsteder per hovedgruppe
 ### canonical_missing
