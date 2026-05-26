@@ -34,7 +34,21 @@
 - `data/places/psykologi/oslo/places_psykologi.json`: **3**
 
 ## Gruppering etter emne_id-prefix
-- `em`: **510**
+- `em_by`: **331**
+- `em_naer`: **66**
+- `em_sport`: **34**
+- `em_vit`: **31**
+- `em_sub`: **10**
+- `em_musikk`: **7**
+- `em_naering`: **7**
+- `em_lit`: **5**
+- `em_mus`: **4**
+- `em_nat`: **4**
+- `em_media`: **3**
+- `em_psykologi`: **3**
+- `em_pol`: **2**
+- `em_natur`: **2**
+- `em_kunst`: **1**
 
 ## Gruppering etter sannsynlig fagområde
 - `by`: **187**
@@ -97,6 +111,7 @@
 - `unknown_needs_review`: **0**
 
 ## Anbefalt batch 08-rekkefølge
+- Prioriter først prefix-familien med høyest volum og lav semantisk risiko (i denne batchen: `em_by`, deretter `em_naer`).
 1. Rette én kategori/fagfamilie av gangen.
 2. Starte med den gruppen som gir mest effekt og lavest risiko.
 3. Ikke masseendre alle 510 i én PR.
