@@ -374,3 +374,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Removed local `TS2339` unknown/property-access diagnostics tied to `brand_id`/`brand_name` reads from the same `active` value, without changing runtime logic, control flow, branching, return values, event flow, storage keys, or brand/job-state behavior.
 - Left only the window/global assignment diagnostic in this file unchanged in this phase because it requires global declaration/schema scope outside this single file-local pass.
 - No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched.
+
+## Phase 46: declare CivicationCalendar only
+
+- Added one narrow declaration-only global in `schemas/civication-globals.d.ts`: `window.CivicationCalendar?: any`.
+- Chose broad `any` form based on Phase 46-prep dry-run safety results; intentionally did not use narrow `CiviMethodBag` because it caused regression risk.
+- Intentionally did not declare `CivicationMailEngine` or `CivicationTaskEngine` in this phase due to known TS2551 regression risk from dry-run findings.
+- No runtime logic, JavaScript source, UI, CSS, HTML, AHA/data, manifests, workflows, or tests were changed.
+- Regenerated `reports/typecheck-baseline-report.md` and verified protected metrics did not increase while CivicationCalendar-related TS2339 noise was reduced.
