@@ -248,10 +248,12 @@
   /** @type {number} */
   let boost = 1;
   if (window.HG_IdentityCore?.getBoost) {
-    boost = /** @type {number} */ (window.HG_IdentityCore.getBoost(t));
+    const rawBoost = Number(window.HG_IdentityCore.getBoost(t));
+    boost = Number.isFinite(rawBoost) ? rawBoost : 1;
   }
 
-  const effectiveDelta = Number(delta || 0) * boost;
+  const parsedDelta = Number(delta);
+  const effectiveDelta = (Number.isFinite(parsedDelta) ? parsedDelta : 0) * boost;
   const next = cur + effectiveDelta;
 
   values[t] = next;

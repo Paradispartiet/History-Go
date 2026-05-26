@@ -23,7 +23,7 @@
     },
     promoted: {
       completion_ratio_gte: 1,
-      score_gte: 4,
+      score_gte: 2,
       strikes_lte: 0,
       allow_warning: false
     },
@@ -176,7 +176,8 @@
     }
 
     const completionOk = metrics.completionRatio >= Number(rules.promoted?.completion_ratio_gte ?? 1);
-    const scoreOk = metrics.score >= Number(rules.promoted?.score_gte ?? 4);
+    // Score in EventEngine is clamped to [-5, 2], so promotion threshold must live on same scale.
+    const scoreOk = metrics.score >= Number(rules.promoted?.score_gte ?? 2);
     const strikesOk = metrics.strikes <= Number(rules.promoted?.strikes_lte ?? 0);
     const warningOk = rules.promoted?.allow_warning === true || metrics.warningUsed !== true;
 
@@ -359,6 +360,7 @@
     const active = /** @type {{ career_id?: string | number | null } | null} */ (getActive());
     try { window.CivicationState?.appendJobHistoryEnded?.(active, "fired"); } catch {}
     try { window.CivicationState?.setActivePosition?.(null); } catch {}
+    patch.active_role_key = null;
     try { window.CivicationPsyche?.registerCollapse?.(active?.career_id || meta.role_scope, "fired"); } catch {}
   }
 
