@@ -441,3 +441,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left non-local diagnostics unchanged (notably window/global diagnostics for `CivicationEventEngine` and `CivicationTaskEngine`, plus unrelated `answer` shape diagnostics) because those require global/schema or broader typing scope outside this narrow phase.
 - Runtime logic, patch logic, day-loop flow, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
+
+## Phase 54: narrow civicationMailRuntime typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/civicationMailRuntime.js` after Phase 52 audit / PR #670 and Phase 53 / PR #671.
+- Introduced one local state-slice cast for existing `state.consumed` / `state.mail_system` reads and one narrow local shape cast for `legacyMailSystem` property reads (`consumed_mail_ids`, `history`, `role_plan_id`, `last_mail_type`).
+- Removed local `unknown` property-access diagnostics around existing `.consumed` / `.mail_system` read sites in `buildRuntimeStatePatchForAnswer` without changing runtime behavior.
+- Intentionally left non-local diagnostics unchanged (window/global assignments and other unknown reads such as `mail_plan_progress` in `inspect`) because they require global/schema scope or broader non-local typing decisions outside this phase.
+- Runtime logic, mail-runtime flow, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
