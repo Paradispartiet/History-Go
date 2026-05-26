@@ -1,0 +1,32 @@
+{
+  "schema": "history_go_lesespor_schema_v1",
+  "generated_at": "2026-05-26T22:00:00+02:00",
+  "purpose": "Canonical schema for History Go Lesespor data.",
+  "required_item_fields": {
+    "id": "Stable unique id, format lesespor_<topic>_<nnn>.",
+    "title": "Article/title as published.",
+    "author": "Named author/journalist/critic when verified; null if not verified.",
+    "publication": "Publication/source name.",
+    "date": "ISO date YYYY-MM-DD if verified; null otherwise.",
+    "year": "Publication year if known.",
+    "type": "essay | reportasje | intervju | kritikk | anmeldelse | debatt | kommentar | nyhet | artikkel | kritikk_og_oversikt | nyhet_og_kritikk.",
+    "subjects": "Array of topical tags.",
+    "place_ids": "Array of valid History Go place IDs.",
+    "person_ids": "Array of valid History Go person IDs. Empty until person base is verified.",
+    "category_hints": "Array of relevant History Go category ids.",
+    "url": "External source URL.",
+    "access": "open | subscription | library_only | unknown.",
+    "rights": "link_only unless full rights are verified.",
+    "source_quality": "recognized | specialist | archival | unknown.",
+    "curation_status": "strong_candidate | candidate_needs_review | approved | rejected.",
+    "relevance": "Short explanation of why this text belongs in Lesespor."
+  },
+  "rules": [
+    "Do not store copied article fulltext unless rights allow it.",
+    "Do not mix Lesespor into desc, popupDesc, quiz_profile or Språkleksikon.",
+    "Every place_id must exist in the loaded History Go place data.",
+    "Use candidate_needs_review when the source is relevant but the full article has not been read.",
+    "Prefer strong_candidate only when title, source and snippet clearly support the linkage.",
+    "Use person_ids only after the person base has been verified."
+  ]
+}
