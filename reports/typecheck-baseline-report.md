@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-26T17:06:25.168Z
+- Generated at (UTC): 2026-05-26T17:32:11.272Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1911
+- Total diagnostic lines found: 1903
 - Files with diagnostics: 191
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -13,7 +13,7 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/Civication/** | 75 | 527 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 75 | 519 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/ui/** | 20 | 510 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 83 | js/profile.js |
 | js/boot.js | 1 | 75 | js/boot.js |
@@ -43,15 +43,15 @@
 | js/nature_place_map_bridge.js | 27 | other |
 | js/Civication/core/civicationEventEngine.js | 23 | js/Civication/** |
 | js/Civication/systems/civicationLifeMailRuntime.js | 22 | js/Civication/** |
-| js/Civication/systems/day/dayPatches.js | 22 | js/Civication/** |
 | js/Civication/ui/CivicationMiniSectionsUI.js | 22 | js/Civication/** |
 | js/ui/search.js | 22 | js/ui/** |
 | js/console/legacyExtensions.js | 21 | other |
+| js/console/diagnosticConsole.js | 20 | other |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1562 |
+| TS2339 | 1554 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
