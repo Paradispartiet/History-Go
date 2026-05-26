@@ -31,6 +31,7 @@ function collectCanonicalEmneIds() {
   );
 
   const ids = new Set();
+  const duplicateCanonicalEmneIds = [];
   for (const file of files) {
     const data = readJson(file);
     const entries = toArray(data);
@@ -38,11 +39,18 @@ function collectCanonicalEmneIds() {
       if (!item || typeof item !== 'object') continue;
       const rawId = typeof item.id === 'string' ? item.id : (typeof item.emne_id === 'string' ? item.emne_id : '');
       const id = rawId.trim();
-      if (id) ids.add(id);
+      if (!id) continue;
+      if (ids.has(id)) {
+        duplicateCanonicalEmneIds.push({
+          file: formatRel(file),
+          emne_id: id
+        });
+      }
+      ids.add(id);
     }
   }
 
-  return { ids, files };
+  return { ids, files, duplicateCanonicalEmneIds };
 }
 
 function formatRel(filePath) {
@@ -54,7 +62,7 @@ function main() {
   const manifest = readJson(manifestPath);
   const activeFiles = Array.isArray(manifest.files) ? manifest.files : [];
 
-  const { ids: canonicalEmneIds, files: canonicalFiles } = collectCanonicalEmneIds();
+  const { ids: canonicalEmneIds, files: canonicalFiles, duplicateCanonicalEmneIds } = collectCanonicalEmneIds();
 
   const missingEmneIds = [];
   const duplicateEmneIdsPerPlace = [];
@@ -125,8 +133,12 @@ function main() {
 
   console.log(`Duplicate place ids across active files: ${duplicatePlaceIds.length}`);
   if (duplicatePlaceIds.length) console.log(JSON.stringify(duplicatePlaceIds, null, 2));
+  console.log('');
 
-  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length) {
+  console.log(`Duplicate canonical emne_ids across canonical files: ${duplicateCanonicalEmneIds.length}`);
+  if (duplicateCanonicalEmneIds.length) console.log(JSON.stringify(duplicateCanonicalEmneIds, null, 2));
+
+  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length || duplicateCanonicalEmneIds.length) {
     process.exit(1);
   }
 }
