@@ -94,9 +94,10 @@
   }
 
   function getRuntime(state = getState()) {
-    return state?.mail_runtime_v1 && typeof state.mail_runtime_v1 === "object"
-      ? state.mail_runtime_v1
-      : {};
+    const runtimeState = /** @type {{ mail_runtime_v1?: unknown } | null | undefined} */ (state);
+    return runtimeState?.mail_runtime_v1 && typeof runtimeState.mail_runtime_v1 === "object"
+      ? /** @type {{ step_index?: number, role_plan_id?: string | null }} */ (runtimeState.mail_runtime_v1)
+      : /** @type {{ step_index?: number, role_plan_id?: string | null }} */ ({});
   }
 
   function isPlanComplete(plan, runtime) {
@@ -334,7 +335,7 @@
 
     const delta = Number(rules.autonomy_delta ?? -12);
     if (Number.isFinite(delta) && window.CivicationPsyche?.getAutonomy && window.CivicationPsyche?.setAutonomyOverride) {
-      const active = getActive();
+      const active = /** @type {{ career_id?: string | number | null } | null} */ (getActive());
       const current = Number(window.CivicationPsyche.getAutonomy(active?.career_id || null));
       const next = clampNumber(current + delta, 0, 100, current);
       window.CivicationPsyche.setAutonomyOverride(next);
@@ -355,7 +356,7 @@
       }
     };
 
-    const active = getActive();
+    const active = /** @type {{ career_id?: string | number | null } | null} */ (getActive());
     try { window.CivicationState?.appendJobHistoryEnded?.(active, "fired"); } catch {}
     try { window.CivicationState?.setActivePosition?.(null); } catch {}
     try { window.CivicationPsyche?.registerCollapse?.(active?.career_id || meta.role_scope, "fired"); } catch {}
