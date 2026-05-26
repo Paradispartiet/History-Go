@@ -27,6 +27,23 @@ let TAGS_REGISTRY = null;
 window.visited = JSON.parse(
   localStorage.getItem("visited_places") || "{}"
 );
+{
+  const normalizePlaceId = window.HGPlaceIds?.normalizePlaceId
+    || ((id) => String(id || "").trim());
+  if (window.visited && typeof window.visited === "object" && !Array.isArray(window.visited)) {
+    const migrated = {};
+    let changed = false;
+    for (const [key, value] of Object.entries(window.visited)) {
+      const nextKey = normalizePlaceId(key);
+      if (nextKey !== key) changed = true;
+      migrated[nextKey] = migrated[nextKey] || value;
+    }
+    if (changed) {
+      window.visited = migrated;
+      try { localStorage.setItem("visited_places", JSON.stringify(window.visited)); } catch {}
+    }
+  }
+}
 
 /** @type {StatePeopleCollected} */
 const peopleCollected = JSON.parse(
@@ -52,5 +69,4 @@ const personDialogs = JSON.parse(
 const userNotes = JSON.parse(
   localStorage.getItem("hg_user_notes_v1") || "[]"
 );
-
 
