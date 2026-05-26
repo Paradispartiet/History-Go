@@ -42,7 +42,7 @@
     if (mailType !== "faction_choice") return null;
 
     const choiceId = normStr(ctx?.choiceId);
-    const state = window.CivicationState?.getState?.() || {};
+    const state = /** @type {{ activeFaction?: unknown }} */ (window.CivicationState?.getState?.() || {});
 
     state.activeFaction = choiceId;
 
