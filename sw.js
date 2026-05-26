@@ -83,6 +83,7 @@ const PRECACHE_URLS = [
   "js/observationsView.js",
 
   // State
+  "js/core/placeIdAliases.js",
   "js/state/state.js",
   "js/state/persistence.js",
   "js/state/openmode.js",
