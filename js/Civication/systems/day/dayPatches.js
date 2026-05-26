@@ -56,7 +56,13 @@ function isRecoveryEvent(eventObj) {
   return String(eventObj?.mail_class || "").trim() === "recovery";
 }
 
+/** @typedef {{ reason?: unknown, previous_role?: { title?: unknown } }} RecoveryStateLike */
+/** @typedef {{ complete?: unknown }} OnboardingStateLike */
+/** @typedef {{ career_id?: unknown }} PositionLike */
+/** @typedef {{ active?: unknown, previous_role?: unknown }} RecoveryFlagStateLike */
+
 function makeRecoveryEvent(active) {
+  /** @type {RecoveryStateLike} */
   const recovery = window.CivicationJobs?.getRecoveryState?.() || {};
   const reason = String(recovery.reason || "setback");
   const title = String(recovery?.previous_role?.title || active?.title || "rollen");
@@ -182,6 +188,7 @@ function makeRecoveryEvent(active) {
 }
 
 function isOnboardingComplete(active) {
+  /** @type {OnboardingStateLike | undefined} */
   const onboarding = window.CivicationState?.getOnboardingState?.(active);
   return !!onboarding?.complete;
 }
@@ -208,10 +215,12 @@ function updateOnboardingFromEvent(active, eventObj) {
 
 function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
   const tags = Array.isArray(choice?.tags) ? choice.tags.map(String) : [];
+  /** @type {PositionLike | undefined} */
+  const activePosition = window.CivicationState?.getActivePosition?.();
   const careerId =
     String(
       pendingEvent?.career_id ||
-      window.CivicationState?.getActivePosition?.()?.career_id ||
+      activePosition?.career_id ||
       ""
     ).trim();
 
@@ -370,6 +379,7 @@ function patchEventEngine() {
 
   proto.onAppOpen = async function (opts = {}) {
     const active = window.CivicationState?.getActivePosition?.();
+    /** @type {RecoveryFlagStateLike} */
     const recovery = window.CivicationJobs?.getRecoveryState?.() || {};
 
     if (!active && !recovery.active) {
@@ -389,6 +399,7 @@ function patchEventEngine() {
       return { enqueued: true, type: "recovery", event: recoveryEvent };
     }
 
+    /** @type {OnboardingStateLike | undefined} */
     const onboarding = window.CivicationState?.getOnboardingState?.(active);
     if (onboarding && onboarding.complete !== true) {
       return { enqueued: false, reason: "onboarding_incomplete" };

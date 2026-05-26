@@ -433,3 +433,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Removed one local `TS2339` unknown/property-access diagnostic (`activeFaction` on `unknown`) without changing runtime behavior, branching, return values, day-loop flow, event flow, or state flow.
 - Left `window` global diagnostics in this file unchanged (`CivicationEventEngine`, `CivicationChoiceDirector`) because they require globals/schema scope outside this file-local phase.
 - No schema/global declarations were changed; `schemas/civication-globals.d.ts` remains untouched, and `CivicationCalendar?: any` from Phase 46 was not modified.
+
+## Phase 53: narrow dayPatches typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/day/dayPatches.js` after Phase 52 audit / PR #670.
+- Introduced small local typedefs and local casts for existing recovery/onboarding/active-position reads to resolve local `unknown` property-access diagnostics (`reason`, `previous_role`, `complete`, `career_id`, `active`) without changing runtime behavior.
+- Intentionally left non-local diagnostics unchanged (notably window/global diagnostics for `CivicationEventEngine` and `CivicationTaskEngine`, plus unrelated `answer` shape diagnostics) because those require global/schema or broader typing scope outside this narrow phase.
+- Runtime logic, patch logic, day-loop flow, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
