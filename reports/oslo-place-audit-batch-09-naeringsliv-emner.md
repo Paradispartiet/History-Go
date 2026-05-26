@@ -3,7 +3,7 @@
 **Dato:** 2026-05-26
 
 ## Formål
-Verifisere gjenværende `em_naer_*` / næringsliv-relaterte mangler etter batch 08, og gjøre minimal canonical-opprydding i næringsliv canonical-kilde.
+Verifisere gjenværende `em_naer_*` / næringsliv-relaterte mangler etter batch 08, og gjøre minimal canonical-opprydding uten å innføre nytt alias-schema i canonical-filen.
 
 ## Leste filer
 - `reports/place-emne-missing-audit-batch-07.json`
@@ -27,26 +27,34 @@ Gjenværende næringsliv-relaterte mangler i validering:
 - `em_naering_transport_infrastruktur`
 
 ## Verifisering mot eksisterende næringsliv-data
-- `em_naer_felt_arbeid_verdiskaping` og `em_naer_geografi_infrastruktur` finnes allerede fullverdig i `emner_naeringsliv2.json`, men manglet i canonical-scan fordi checker kun leser filer som matcher `emner*_canonical*.json`.
-- Øvrige seks er place-/prefix-varianter som peker semantisk på etablerte canonical-emner i samme fagfamilie (`havn_transport`, `handel_verdikjeder`, `teknologi_infrastruktur`).
+- `em_naer_felt_arbeid_verdiskaping` og `em_naer_geografi_infrastruktur` finnes fullverdig i `emner_naeringsliv2.json` med eksisterende næringsliv-schema.
+- De seks `em_naering_*`-variantene over finnes ikke som fullverdige emner med samme ID i eksisterende næringslivfiler og behandles derfor som legacy/place-varianter i denne batchen.
 
-## Gjennomført canonical-endring
-La til åtte små canonical alias-poster i:
-- `data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json`
+## Gjennomført canonical-endring (Batch 09 fix)
+- Fjernet de korte alias-postene fra `emner_naeringsliv_canonical_v4_5.json` (ingen `id`/`alias_of`/`note`/`canonical_status` beholdt).
+- La i stedet inn to fullverdige emneobjekter (uendret struktur fra `emner_naeringsliv2.json`) i canonical-filen:
+  - `em_naer_felt_arbeid_verdiskaping`
+  - `em_naer_geografi_infrastruktur`
 
-Endringen er additiv:
+Endringen er additiv ift. etablerte schema-felter:
 - ingen place-filer endret
-- ingen eksisterende ID-er endret
-- ingen semantikk flyttet; varianter peker til eksisterende canonical-emner via `alias_of`
+- ingen eksisterende emne-id-er endret
+- ingen ny mini-schema-variant introdusert i canonical-filen
 
-## Utsatt
-- Ingen næringsliv-relaterte `em_naer_*`/`em_naering_*` utsatt i denne batchen.
+## Utsatt (legacy/place variants)
+Følgende beholdes som manglende inntil egen alias/mapping-struktur er etablert i separat PR:
+- `em_naering_havn_sjofart`
+- `em_naering_lager_terminal_infrastruktur`
+- `em_naering_logistikk_handel_flyt`
+- `em_naering_modernisering_teknologi`
+- `em_naering_telekom_infrastruktur`
+- `em_naering_transport_infrastruktur`
 
 ## Før/etter
-- Før batch 09 (`npm run places:emner:check`): `Missing emne_ids: 176`
-- Etter batch 09 (`npm run places:emner:check`): `Missing emne_ids: 103`
-- Netto reduksjon: `73`
+- Før batch 09-fix (`npm run places:emner:check`): `Missing emne_ids: 176`
+- Etter batch 09-fix (`npm run places:emner:check`): `Missing emne_ids: 110`
 
 ## Øvrige sjekker etter endring
+- `npm run places:emner:check` → `Missing emne_ids: 110` (forventet non-zero exit pga øvrige familier)
 - `npm run places:index:check` → OK
-- `npm run health:places` → OK (forventede warnings), unknown emne_ids: 176 (egen health-check teller bredere enn emner-check, men uten nye errors).
+- `npm run health:places` → OK (Errors: 0, Warnings: 1435, Unknown emne_ids: 110)
