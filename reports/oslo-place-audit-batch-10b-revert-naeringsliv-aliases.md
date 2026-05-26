@@ -32,13 +32,15 @@ Fjernet fra scriptet:
 - `alias_self_reference`
 - `alias_target_missing`
 
-Scriptet sjekker nå kun:
+Scriptet sjekker nå:
 - manglende `emne_ids` i places
 - duplikate `emne_ids` per place
 - duplikate place-id-er på tvers av aktive place-filer
+- duplikate canonical `emne_id` på tvers av canonical-filer
 
 ## Før/etter validering
 Kjøringer etter revert:
+- `node --check tools/check_place_emne_ids.mjs` → **OK**.
 - `npm run places:emner:check` → **feiler forventet** med manglende emner; totalt `Missing emne_ids: 65`.
 - `npm run places:index:check` → **OK**.
 - `npm run health:places` → **OK** (0 errors, warnings eksisterer fra før).
