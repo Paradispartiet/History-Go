@@ -43,6 +43,7 @@ window.visited = JSON.parse(
       try { localStorage.setItem("visited_places", JSON.stringify(window.visited)); } catch {}
     }
   }
+  try { window.HGPlaceIds?.migrateProgressStorage?.(localStorage); } catch {}
 }
 
 /** @type {StatePeopleCollected} */
@@ -69,4 +70,3 @@ const personDialogs = JSON.parse(
 const userNotes = JSON.parse(
   localStorage.getItem("hg_user_notes_v1") || "[]"
 );
-
