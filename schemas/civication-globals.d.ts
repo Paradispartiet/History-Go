@@ -124,6 +124,7 @@ declare global {
     HG_CiviShop?: CiviMethodBag;
     HG_Lifestyle?: CiviMethodBag;
     HG_IdentityCore?: CiviMethodBag;
+    CivicationCalendar?: any;
 
     getPrimaryLifestyle?: CiviFn;
     getPCWallet?: CiviFn;
