@@ -420,3 +420,9 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added a local type annotation for `migrated` as `StateVisitedPlaces` at the existing migration assignment site.
 - No runtime behavior changed: alias semantics, migration order, `visited_places` data flow, localStorage keys/logic, and overall state runtime flow remain unchanged.
 - No schema/global declarations were modified, and `js/core/placeIdAliases.js` was not changed.
+
+## Phase 51-prep B: repair remaining post-659 other drift
+
+- Added one narrow, local JSDoc/type-only global-assignment cast in `js/core/placeIdAliases.js` for the existing `window.HGPlaceIds = ...` export assignment introduced in the post-#659 area.
+- Fixed one local `TS2339` (`HGPlaceIds` missing on `Window`) at `js/core/placeIdAliases.js` assignment site without changing alias runtime logic, migration flow, storage behavior, or data semantics.
+- No runtime guards, fallbacks, validator behavior, alias normalization semantics, storage/migration contracts, Civication/UI/schemas/data, workflows, or scripts were changed.

@@ -86,5 +86,7 @@
     }
   }
   function getPlaceIdAliases(){ return PLACE_ID_ALIASES; }
-  window.HGPlaceIds = { normalizePlaceId, normalizeCompositeId, getPlaceIdAliases, migrateProgressStorage };
+  /** @type {Window & typeof globalThis & { HGPlaceIds?: { normalizePlaceId:(id:any)=>string, normalizeCompositeId:(id:any)=>string, getPlaceIdAliases:()=>Readonly<Record<string,string>>, migrateProgressStorage:(localStorageRef?:Storage)=>void } }} */
+  const placeAliasWindow = window;
+  placeAliasWindow.HGPlaceIds = { normalizePlaceId, normalizeCompositeId, getPlaceIdAliases, migrateProgressStorage };
 })();
