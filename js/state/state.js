@@ -6,6 +6,11 @@
  * @typedef {import("../../schemas/storage").MeritsByCategory} StateMeritsByCategory
  * @typedef {import("../../schemas/storage").PersonDialogs} StatePersonDialogs
  * @typedef {import("../../schemas/storage").UserNotes} StateUserNotes
+ * @typedef {{
+ *   normalizePlaceId?: (id: unknown) => string,
+ *   migrateProgressStorage?: (storage: Storage) => void
+ * }} StateHGPlaceIds
+ * @typedef {Window & { HGPlaceIds?: StateHGPlaceIds }} StateWindowWithPlaceIds
  */
 
 // ==============================
@@ -28,9 +33,12 @@ window.visited = JSON.parse(
   localStorage.getItem("visited_places") || "{}"
 );
 {
-  const normalizePlaceId = window.HGPlaceIds?.normalizePlaceId
+  /** @type {StateWindowWithPlaceIds} */
+  const stateWindow = window;
+  const normalizePlaceId = stateWindow.HGPlaceIds?.normalizePlaceId
     || ((id) => String(id || "").trim());
   if (window.visited && typeof window.visited === "object" && !Array.isArray(window.visited)) {
+    /** @type {StateVisitedPlaces} */
     const migrated = {};
     let changed = false;
     for (const [key, value] of Object.entries(window.visited)) {
@@ -43,7 +51,7 @@ window.visited = JSON.parse(
       try { localStorage.setItem("visited_places", JSON.stringify(window.visited)); } catch {}
     }
   }
-  try { window.HGPlaceIds?.migrateProgressStorage?.(localStorage); } catch {}
+  try { stateWindow.HGPlaceIds?.migrateProgressStorage?.(localStorage); } catch {}
 }
 
 /** @type {StatePeopleCollected} */
