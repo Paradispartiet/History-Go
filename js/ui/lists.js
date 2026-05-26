@@ -81,6 +81,8 @@ function renderNearbyPlaces() {
   const readSortYear = (place, resolved) => {
     const candidates = [resolved?.year, resolved?.startYear, place?.year, place?.start_year, place?.startYear];
     for (const candidate of candidates) {
+      if (candidate == null) continue;
+      if (typeof candidate === "string" && candidate.trim() === "") continue;
       const n = Number(candidate);
       if (Number.isFinite(n)) return n;
     }
