@@ -62,6 +62,14 @@ Ingen `em_sport_*` gjenstår som manglende etter denne batchen.
 
 Reduksjon: **34** manglende emne_ids (sport-emnene var brukt på mange steder).
 
+
+## Workflow-avklaring: Typecheck baseline report (PR #664)
+- Kjørt: `npm run typecheck` på commit med Batch 10-endringen.
+- Resultat: typecheck feiler med et stort antall eksisterende repo-wide TypeScript-feil i JS/TS-overflater (bl.a. `js/Civication/**`, `js/ui/**`, `scripts/**`, `sw.js`).
+- Observasjon: feilmønsteret er ikke knyttet til datafiler under `data/fag/sport/`, men til generell baseline-typing i kodebasen.
+- Konklusjon: workflow-feilen fremstår som **unrelated baseline-gjeld**, ikke introdusert av JSON-endringen i `data/fag/sport/emner_sport_canonical_v4_5.json`.
+- Verifisering av JSON-endringen: `data/fag/sport/emner_sport_canonical_v4_5.json` parser gyldig med `JSON.parse`.
+
 ## Validering etter endring
 - `npm run places:emner:check`:
   - fortsatt non-zero i praksis pga andre fagfamilier, men `em_sport_*`-mangler er borte.
