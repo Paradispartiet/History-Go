@@ -447,6 +447,7 @@
     const terminal = await getTerminalPlanState(active, currentState);
     if (terminal.mail) return [terminal.mail];
     if (terminal.closed) {
+      /** @type {any[] & { __career_outcome_terminal_closed?: boolean }} */
       const suppressed = [];
       suppressed.__career_outcome_terminal_closed = true;
       return suppressed;
@@ -531,6 +532,7 @@
 
       const outcomeStatus = norm(eventObj?.career_outcome_meta?.status);
       if (isOutcome && outcomeStatus === "FIRED") {
+        /** @type {{ consumed?: Record<string, unknown> } | null | undefined} */
         const current = getState();
         const consumed = (current && typeof current.consumed === "object" && current.consumed !== null)
           ? { ...current.consumed }

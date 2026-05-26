@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-26T09:58:27.304Z
+- Generated at (UTC): 2026-05-26T10:21:48.344Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1925
+- Total diagnostic lines found: 1921
 - Files with diagnostics: 191
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -13,7 +13,7 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | other | 73 | 571 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/Civication/** | 75 | 541 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 75 | 537 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/ui/** | 20 | 510 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 83 | js/profile.js |
 | js/boot.js | 1 | 75 | js/boot.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1576 |
+| TS2339 | 1572 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -157,9 +157,9 @@ js/Civication/systems/civicationBrandJobProgression.js(356,23): error TS2339: Pr
 js/Civication/systems/civicationBrandJobProgression.js(360,10): error TS2339: Property 'CivicationBrandJobProgression' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationBrandJobState.js(217,10): error TS2339: Property 'CivicationBrandJobState' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/civicationCareerOutcomeRuntime.js(417,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(449,18): error TS2339: Property '__career_outcome_terminal_closed' does not exist on type 'any[]'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(456,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
-js/Civication/systems/civicationCareerOutcomeRuntime.js(491,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
-js/Civication/systems/civicationCareerOutcomeRuntime.js(520,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
-js/Civication/systems/civicationCareerOutcomeRuntime.js(533,53): error TS2339: Property 'consumed' does not exist on type 'unknown'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(457,31): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(492,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
+js/Civication/systems/civicationCareerOutcomeRuntime.js(521,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
+js/Civication/systems/civicationCareerOutcomeRuntime.js(561,10): error TS2339: Property 'CivicationCareerOutcomeRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/civicationCareerOutcomeRuntime.js(574,25): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
 ```
