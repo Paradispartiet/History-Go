@@ -42,17 +42,21 @@
   },
   {
     "place_id": "munch_museet",
-    "version": 1,
-    "popupDesc": "MUNCH forvalter en omfattende Munch-samling i et nytt museumsbygg i Bjørvika. Plasseringen knytter kunstinstitusjonen til et av Oslos viktigste byutviklingsområder.",
+    "version": 2,
+    "popupDesc": "MUNCH forvalter verdens største samling av Edvard Munchs kunst i et nytt museumsbygg i Bjørvika. Stedet binder sammen kunstnerarv, samlingsforvaltning, museumsarkitektur og Oslos nyere fjordbyutvikling.",
     "wikiText": [
-      "MUNCH beskrives i place-data som en kunstinstitusjon med tydelig profil, der samling, utstillingspraksis og formidling bygger en konkret lesning av norsk og internasjonal kunst i Oslo.",
-      "Stedets utviklingsløp kan leses fra institusjonell etablering til dagens bruk, der plassering i byen, publikumstilgang og kuraterte prioriteringer former hvordan kunst oppleves over tid."
+      "MUNCH er en monografisk kunstinstitusjon bygget rundt Edvard Munchs kunstnerskap, arkiv og etterliv. Museet er ikke bare et visningssted for kjente verk, men også en institusjon for samlingsforvaltning, forskning, formidling og ny tolkning av Munchs plass i modernismen.",
+      "Samlingen omfatter nesten 28 000 kunstverk og mer enn 42 000 unike museumsobjekter. Edvard Munchs testamentariske gave utgjør en av verdens største samlinger av verk etter én enkelt kunstner, og gjør museet til et internasjonalt tyngdepunkt for Munch-forskning og Munch-formidling.",
+      "Museets historie går fra Tøyen til Bjørvika. Det gamle Munchmuseet på Tøyen var lenge hovedstedet for formidlingen av Munchs arv, mens det nye bygget i Bjørvika flytter kunstnerskapet inn i en annen urban ramme: fjordfront, høyhus, kulturakse og tett naboskap til Operaen, Deichman og Barcode.",
+      "I History Go bør MUNCH derfor leses på flere nivåer samtidig: som kunstmuseum, som bevaringsinstitusjon, som arkitektur, som symbolbygg og som del av en større byutvikling der kultur brukes til å gi Bjørvika identitet og offentlig tyngde."
     ],
     "summary": {
-      "one_liner": "MUNCH kobler monografisk kunstforvaltning til ny byutvikling ved fjorden.",
+      "one_liner": "MUNCH kobler Edvard Munchs kunstnerskap til samlingsforvaltning, museumsarkitektur og Bjørvikas nye kulturby.",
       "themes": [
         "Munch-forvaltning",
+        "samling",
         "museumsarkitektur",
+        "Bjørvika",
         "byutvikling"
       ],
       "tone": [
@@ -63,23 +67,125 @@
     "facts": [
       {
         "id": "fact_01",
-        "label": "Stedsspesifikt trekk",
-        "desc": "MUNCH beskrives i place-data som en kunstinstitusjon med tydelig profil, der samling, utstillingspraksis og formidling bygger en konkret lesning av norsk og internasjonal kunst i Oslo.",
+        "label": "Samlingsomfang",
+        "desc": "MUNCH forvalter nesten 28 000 kunstverk og mer enn 42 000 unike museumsobjekter knyttet til Edvard Munch og museets øvrige samlinger.",
+        "confidence": "high",
+        "sources": [
+          "munch_collection"
+        ]
+      },
+      {
+        "id": "fact_02",
+        "label": "Museumsadresse",
+        "desc": "MUNCH ligger i Bjørvika, ved Edvard Munchs plass 1, tett på Oslofjorden og de andre store kulturbyggene i området.",
+        "confidence": "high",
+        "sources": [
+          "munch_collection",
+          "this_is_munch"
+        ]
+      },
+      {
+        "id": "fact_03",
+        "label": "Bygg og publikum",
+        "desc": "Det nye museumsbygget i Bjørvika har tretten etasjer og elleve gallerier, og kombinerer Munch-samlingen med samtidskunst, internasjonale utstillinger, samtaler og andre publikumsaktiviteter.",
+        "confidence": "high",
+        "sources": [
+          "this_is_munch"
+        ]
+      },
+      {
+        "id": "fact_04",
+        "label": "Monografisk museum",
+        "desc": "MUNCH er et av de største museene i verden viet én enkelt kunstner, men bruker også Munchs kunstnerskap som inngang til bredere spørsmål om modernitet, kropp, følelser, byliv og billedkultur.",
+        "confidence": "high",
+        "sources": [
+          "this_is_munch",
+          "munch_collection"
+        ]
+      },
+      {
+        "id": "fact_05",
+        "label": "Byutvikling",
+        "desc": "Flyttingen til Bjørvika gjør MUNCH til del av en ny kulturakse ved fjorden, der museet kan sammenlignes med Operaen, Deichman Bjørvika og Barcode som symbolbygg og byutviklingsgrep.",
         "confidence": "medium",
-        "sources": []
+        "sources": [
+          "official_history",
+          "snl_munchmuseet"
+        ]
       }
     ],
     "chronology": [
       {
         "id": "chrono_01",
-        "year": null,
-        "period": "Utviklingsløp",
-        "desc": "Stedets utviklingsløp kan leses fra institusjonell etablering til dagens bruk, der plassering i byen, publikumstilgang og kuraterte prioriteringer former hvordan kunst oppleves over tid.",
+        "year": 1963,
+        "period": "Tøyen-museet åpner",
+        "desc": "Munchmuseet åpnet på Tøyen som hovedinstitusjon for formidling og bevaring av Edvard Munchs kunstneriske arv.",
         "confidence": "medium",
-        "sources": []
+        "sources": [
+          "official_history",
+          "snl_munchmuseet"
+        ]
+      },
+      {
+        "id": "chrono_02",
+        "year": 2004,
+        "period": "Munch-tyveriet",
+        "desc": "Skrik og Madonna ble stjålet fra det gamle Munchmuseet på Tøyen. Hendelsen ble et viktig punkt i nyere museumshistorie og sikkerhetsdebatt.",
+        "confidence": "high",
+        "sources": [
+          "snl_munchtyveriet"
+        ]
+      },
+      {
+        "id": "chrono_03",
+        "year": 2021,
+        "period": "Nytt MUNCH i Bjørvika",
+        "desc": "Det nye museumsbygget i Bjørvika åpnet og flyttet Munch-samlingen inn i et nytt kulturbygg ved fjorden.",
+        "confidence": "high",
+        "sources": [
+          "this_is_munch",
+          "snl_munchmuseet"
+        ]
       }
     ],
-    "sources": []
+    "sources": [
+      {
+        "id": "munch_collection",
+        "title": "MUNCH: About the collection",
+        "url": "https://www.munch.no/en/our-collection/",
+        "type": "official"
+      },
+      {
+        "id": "this_is_munch",
+        "title": "MUNCH: This is MUNCH",
+        "url": "https://www.munch.no/en/this-is-munch/",
+        "type": "official"
+      },
+      {
+        "id": "official_history",
+        "title": "MUNCH: The history of the Museum",
+        "url": "https://www.munch.no/en/about/the-history-of-the-museum/",
+        "type": "official"
+      },
+      {
+        "id": "snl_munchmuseet",
+        "title": "Store norske leksikon: Munchmuseet",
+        "url": "https://snl.no/Munchmuseet",
+        "type": "encyclopedia"
+      },
+      {
+        "id": "snl_munchtyveriet",
+        "title": "Store norske leksikon: Munchtyveriet i 2004",
+        "url": "https://snl.no/munchtyveriet_i_2004",
+        "type": "encyclopedia"
+      },
+      {
+        "id": "estudio_herreros",
+        "title": "estudio Herreros: MUNCH Museum",
+        "url": "https://estudioherreros.com/project/munch-museum/",
+        "type": "architecture"
+      }
+    ]
   },
   {
     "place_id": "astrup_fearnley",
