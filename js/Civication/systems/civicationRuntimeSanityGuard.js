@@ -1,6 +1,16 @@
 (function () {
   "use strict";
 
+  /**
+   * @typedef {Record<string, any> & {
+   *   mail_system?: Record<string, any>,
+   *   mail_plan_progress?: Record<string, any>,
+   *   active_role_key?: unknown,
+   *   unemployed_since_week?: unknown,
+   *   mail_director_v2?: Record<string, any>
+   * }} CiviRuntimeSanityState
+   */
+
   const ROLE_CONFIG = {
     arbeider: {
       plan_id: "arbeider_naeringsliv_v1",
@@ -87,7 +97,7 @@
     const cfg = ROLE_CONFIG[key];
     if (!cfg) return null;
 
-    const state = getState();
+    const state = /** @type {CiviRuntimeSanityState} */ (getState());
     const ms = state.mail_system && typeof state.mail_system === "object" ? state.mail_system : {};
     const mp = state.mail_plan_progress && typeof state.mail_plan_progress === "object" ? state.mail_plan_progress : {};
 
@@ -143,7 +153,7 @@
     const cfg = ROLE_CONFIG[key];
     if (!cfg) return false;
 
-    const state = getState();
+    const state = /** @type {CiviRuntimeSanityState} */ (getState());
     const d = state.mail_director_v2 && typeof state.mail_director_v2 === "object" ? state.mail_director_v2 : null;
     if (!d) return false;
 
