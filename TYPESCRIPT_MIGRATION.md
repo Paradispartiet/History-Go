@@ -477,3 +477,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left global/window diagnostics unchanged (`CivicationActivePositionRecovery`, `CivicationEventEngine`, and `CivicationRuntimeSanityGuard`) because they require globals/schema scope outside this narrow phase.
 - Runtime logic, sanity-guard logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
+
+
+## Phase 61: narrow civicationLifeMailRuntime tag state typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/civicationLifeMailRuntime.js` after the Phase 60 audit / PR #688.
+- Extended the existing local state-shape cast in `getStateTags` for the existing `identity_tags`, `life_tags`, `life_flags`, and `tracks` reads.
+- Removed local `unknown` property-access diagnostics at those existing tag/track state read sites without changing runtime behavior.
+- Intentionally left global/window diagnostics unchanged (`CivicationMailEngine`, `DEBUG`, `CivicationEventEngine`, and `CivicationLifeMailRuntime`) because they require globals/schema scope outside this narrow phase.
+- Runtime logic, life-mail-runtime logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, or `CivicationLifeMailRuntime`.

@@ -92,17 +92,17 @@
   }
 
   function getStateTags(state = getState()) {
-    /** @type {{ mail_branch_state?: { flags?: unknown[] } } | null | undefined} */
+    /** @type {{ identity_tags?: unknown, life_tags?: unknown, life_flags?: unknown, tracks?: unknown, mail_branch_state?: { flags?: unknown[] } } | null | undefined} */
     const localState = state;
     const branchFlags = localState?.mail_branch_state && Array.isArray(localState.mail_branch_state.flags)
       ? localState.mail_branch_state.flags
       : [];
 
     return new Set(uniqueStrings([
-      ...(Array.isArray(state.identity_tags) ? state.identity_tags : []),
-      ...(Array.isArray(state.life_tags) ? state.life_tags : []),
-      ...(Array.isArray(state.life_flags) ? state.life_flags : []),
-      ...(Array.isArray(state.tracks) ? state.tracks : []),
+      ...(Array.isArray(localState?.identity_tags) ? localState.identity_tags : []),
+      ...(Array.isArray(localState?.life_tags) ? localState.life_tags : []),
+      ...(Array.isArray(localState?.life_flags) ? localState.life_flags : []),
+      ...(Array.isArray(localState?.tracks) ? localState.tracks : []),
       ...branchFlags
     ]));
   }
