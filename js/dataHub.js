@@ -45,6 +45,7 @@ const DEFAULTS = {
   let _placeManifestFilesPromise = null;
   let _placeFileByIdPromise = null;
   let _fagManifestPromise = null;
+  let _lesesporPromise = null;
 
   function joinPath(base, path) {
     return `${base}/${path}`.replace(/\/+/g, "/");
@@ -285,6 +286,115 @@ async function loadPlacesBase(opts = {}) {
     };
   }
 
+
+  function getLesesporYear(item) {
+    const year = Number(item?.year);
+    if (Number.isFinite(year)) return year;
+    const dateYear = Number(String(item?.date || "").slice(0, 4));
+    return Number.isFinite(dateYear) ? dateYear : 0;
+  }
+
+  function getLesesporStatusRank(item) {
+    const status = String(item?.curation_status || "").trim();
+    if (status === "strong_candidate") return 0;
+    if (status === "candidate_needs_review" || status === "candidate") return 1;
+    return 2;
+  }
+
+  function sortLesesporItems(items) {
+    return (Array.isArray(items) ? items : [])
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const statusDiff = getLesesporStatusRank(a.item) - getLesesporStatusRank(b.item);
+        if (statusDiff) return statusDiff;
+        const yearDiff = getLesesporYear(b.item) - getLesesporYear(a.item);
+        if (yearDiff) return yearDiff;
+        const dateDiff = String(b.item?.date || "").localeCompare(String(a.item?.date || ""));
+        if (dateDiff) return dateDiff;
+        return a.index - b.index;
+      })
+      .map(({ item }) => item);
+  }
+
+  function buildLesesporPlaceIndex(items) {
+    const index = Object.create(null);
+    for (const item of Array.isArray(items) ? items : []) {
+      const placeIds = Array.isArray(item?.place_ids) ? item.place_ids : [];
+      for (const rawPlaceId of placeIds) {
+        const placeId = String(rawPlaceId || "").trim();
+        if (!placeId) continue;
+        (index[placeId] ||= []).push(item);
+      }
+    }
+    for (const placeId of Object.keys(index)) {
+      index[placeId] = sortLesesporItems(index[placeId]);
+    }
+    return index;
+  }
+
+  function getLesesporForPlace(placeId) {
+    const id = String(placeId || "").trim();
+    if (!id) return [];
+    const byPlace = window.LESESPOR_BY_PLACE || Object.create(null);
+    const candidates = Array.isArray(byPlace[id]) ? byPlace[id] : [];
+    const seen = new Set();
+    const deduped = [];
+    for (const item of candidates) {
+      const itemId = String(item?.id || "").trim();
+      if (!itemId || seen.has(itemId)) continue;
+      if (!Array.isArray(item?.place_ids) || !item.place_ids.some(pid => String(pid || "").trim() === id)) continue;
+      seen.add(itemId);
+      deduped.push(item);
+    }
+    return sortLesesporItems(deduped);
+  }
+
+  async function loadLesespor(opts = {}) {
+    if (_lesesporPromise) return _lesesporPromise;
+
+    _lesesporPromise = (async () => {
+      let manifest;
+      try {
+        manifest = await fetchJSON(pData("lesespor/manifest.json"), opts);
+      } catch (e) {
+        console.warn("[DataHub.loadLesespor] kunne ikke laste data/lesespor/manifest.json", e?.message || e);
+        window.LESESPOR = [];
+        window.LESESPOR_BY_PLACE = Object.create(null);
+        window.getLesesporForPlace = getLesesporForPlace;
+        return { items: window.LESESPOR, byPlace: window.LESESPOR_BY_PLACE, manifest: null };
+      }
+
+      const files = Array.isArray(manifest?.files) ? manifest.files : [];
+      const byId = new Map();
+
+      for (const rawFile of files) {
+        const file = String(rawFile || "").trim().replace(/^\/?data\/lesespor\//, "").replace(/^\.\//, "");
+        if (!file) continue;
+        try {
+          const data = await fetchJSON(pData(`lesespor/${file}`), opts);
+          const items = Array.isArray(data?.items) ? data.items : (Array.isArray(data) ? data : []);
+          for (const item of items) {
+            const id = String(item?.id || "").trim();
+            if (id && !byId.has(id)) byId.set(id, item);
+          }
+        } catch (e) {
+          console.warn(`[DataHub.loadLesespor] hoppet over data/lesespor/${file}`, e?.message || e);
+        }
+      }
+
+      const items = sortLesesporItems([...byId.values()]);
+      const byPlace = buildLesesporPlaceIndex(items);
+
+      window.LESESPOR = items;
+      window.LESESPOR_BY_PLACE = byPlace;
+      window.getLesesporForPlace = getLesesporForPlace;
+
+      return { items, byPlace, manifest };
+    })();
+
+    return _lesesporPromise;
+  }
+
   // ----------------------------
   // Emner/fagkart
   // ----------------------------
@@ -408,6 +518,8 @@ async function loadPlacesBase(opts = {}) {
   function loadPlaces(opts = {}) { return loadPlacesBase(opts); }
   function loadPeople(opts = {}) { return loadPeopleBase(opts); }
 
+  window.getLesesporForPlace = getLesesporForPlace;
+
   // Expose
   window.DataHub = {
     // core
@@ -423,6 +535,8 @@ async function loadPlacesBase(opts = {}) {
     loadBadges,
     loadRoutes,
     loadFullPlace,
+    loadLesespor,
+    getLesesporForPlace,
 
     // overlays/enriched
     loadPlaceOverlays,
