@@ -468,3 +468,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left global/window diagnostics unchanged (`CivicationMailRuntime`, `CivicationEventEngine`, and `CivicationActiveRoleStateSync`) because they require globals/schema scope outside this narrow phase.
 - Runtime logic, active-role logic, day-loop flow, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
+
+## Phase 59: narrow civicationRuntimeSanityGuard typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/civicationRuntimeSanityGuard.js` after the Phase 58 audit / PR #683.
+- Introduced one local state-shape typedef and applied local casts at existing read sites for `mail_system`, `mail_plan_progress`, `active_role_key`, `unemployed_since_week`, and `mail_director_v2`.
+- Removed local `unknown` property-access diagnostics for those existing state reads without changing runtime behavior.
+- Intentionally left global/window diagnostics unchanged (`CivicationActivePositionRecovery`, `CivicationEventEngine`, and `CivicationRuntimeSanityGuard`) because they require globals/schema scope outside this narrow phase.
+- Runtime logic, sanity-guard logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
