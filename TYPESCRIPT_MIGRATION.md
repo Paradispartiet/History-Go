@@ -459,3 +459,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left non-local/global diagnostics and unrelated unknown accesses (`identity_tags`, `life_tags`, `life_flags`, `tracks`, and window/global assignments) unchanged because they require broader typing or globals/schema scope outside this narrow phase.
 - Runtime logic, life-mail-runtime logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.
+
+## Phase 57: narrow dayActiveRoleStateSync typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/day/dayActiveRoleStateSync.js` after Phase 56 audit / PR #677.
+- Added local state-shape and active-position casts at existing read sites for `mail_system`, `mail_plan_progress`, `role_key`, `title`, `role_id`, `career_id`, `active_role_key`, `unemployed_since_week`, and `stability`.
+- Removed local `unknown` property-access diagnostics at those existing read sites without changing runtime behavior.
+- Intentionally left global/window diagnostics unchanged (`CivicationMailRuntime`, `CivicationEventEngine`, and `CivicationActiveRoleStateSync`) because they require globals/schema scope outside this narrow phase.
+- Runtime logic, active-role logic, day-loop flow, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, or `CivicationMailRuntime`.

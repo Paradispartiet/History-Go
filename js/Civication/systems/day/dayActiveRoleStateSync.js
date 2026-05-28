@@ -48,6 +48,7 @@
     const stateApi = window.CivicationState;
     if (!stateApi || typeof stateApi.getState !== "function" || typeof stateApi.setState !== "function") return null;
 
+    /** @type {{ mail_system?: unknown, mail_plan_progress?: { current_step_type?: unknown, role_plan_id?: unknown, step_index?: unknown } }} */
     const state = stateApi.getState() || {};
     const mailSystem = defaultMailSystem(state.mail_system);
     const planId = normStr(mailSystem.role_plan_id);
@@ -127,6 +128,7 @@
     const stateApi = window.CivicationState;
     if (!stateApi || typeof stateApi.getState !== "function" || typeof stateApi.setState !== "function") return null;
 
+    /** @type {{ mail_system?: unknown }} */
     const state = stateApi.getState() || {};
     const current = defaultMailSystem(state.mail_system);
     const id = normStr(eventObj.id);
@@ -216,12 +218,14 @@
     const stateApi = window.CivicationState;
     if (!stateApi || typeof stateApi.getActivePosition !== "function" || typeof stateApi.setState !== "function") return null;
 
+    /** @type {{ role_key?: unknown, title?: unknown, role_id?: unknown, career_id?: unknown } | null} */
     const active = stateApi.getActivePosition() || null;
     if (!active) return null;
 
     const roleKey = normStr(active.role_key || active.title || active.role_id || active.career_id);
     if (!roleKey) return null;
 
+    /** @type {{ active_role_key?: unknown, unemployed_since_week?: unknown, stability?: unknown }} */
     const state = typeof stateApi.getState === "function" ? stateApi.getState() || {} : {};
 
     const patch = {};
