@@ -370,6 +370,14 @@ async function boot() {
     }
   }
 
+  if (window.DataHub?.loadLesespor) {
+    try {
+      await window.DataHub.loadLesespor({ cache: "no-store" });
+    } catch (e) {
+      console.error("[DataHub.loadLesespor]", e);
+    }
+  }
+
   if (window.HGStories?.init) {
     try {
       await window.HGStories.init();

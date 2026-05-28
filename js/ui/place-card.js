@@ -73,6 +73,82 @@
  * }} PlaceCardRelation
  */
 
+
+function escapePlaceCardHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function getPlaceCardLesespor(placeId) {
+  if (typeof window.getLesesporForPlace === "function") {
+    return window.getLesesporForPlace(placeId);
+  }
+
+  const id = String(placeId || "").trim();
+  if (!id || !window.LESESPOR_BY_PLACE) return [];
+  const rows = Array.isArray(window.LESESPOR_BY_PLACE[id]) ? window.LESESPOR_BY_PLACE[id] : [];
+  const seen = new Set();
+  return rows.filter(item => {
+    const itemId = String(item?.id || "").trim();
+    if (!itemId || seen.has(itemId)) return false;
+    seen.add(itemId);
+    return Array.isArray(item?.place_ids) && item.place_ids.some(pid => String(pid || "").trim() === id);
+  });
+}
+
+function renderPlaceCardLesespor(placeId) {
+  const items = getPlaceCardLesespor(placeId);
+  if (!items.length) return "";
+
+  const renderMeta = (item) => [
+    item?.author,
+    item?.publication,
+    item?.year || (item?.date ? String(item.date).slice(0, 4) : ""),
+    item?.type,
+    item?.access
+  ]
+    .map(value => String(value || "").trim())
+    .filter(Boolean)
+    .map(escapePlaceCardHTML)
+    .join(" · ");
+
+  const rows = items.map(item => {
+    const title = String(item?.title || "").trim();
+    const url = String(item?.url || "").trim();
+    const relevance = String(item?.relevance || "").trim();
+    const meta = renderMeta(item);
+
+    if (!title && !url) return "";
+
+    return `
+      <article class="pc-lesespor-item">
+        ${title ? `<h4 class="pc-lesespor-title">${escapePlaceCardHTML(title)}</h4>` : ""}
+        ${meta ? `<div class="pc-lesespor-meta">${meta}</div>` : ""}
+        ${relevance ? `<p class="pc-lesespor-relevance">${escapePlaceCardHTML(relevance)}</p>` : ""}
+        ${url ? `<a class="pc-lesespor-link" href="${escapePlaceCardHTML(url)}" target="_blank" rel="noopener noreferrer">Les teksten</a>` : ""}
+      </article>
+    `;
+  }).filter(Boolean).join("");
+
+  if (!rows) return "";
+
+  return `
+    <section class="pc-section pc-lesespor">
+      <div class="pc-section-head">
+        <h3>Lesespor</h3>
+        <p>Kjente tekster knyttet til dette stedet</p>
+      </div>
+      <div class="pc-lesespor-list">
+        ${rows}
+      </div>
+    </section>
+  `;
+}
+
 /**
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @returns {Promise<void>}
@@ -94,6 +170,14 @@ window.openPlaceCard = async function (place) {
       console.warn("[openPlaceCard.loadFullPlace]", e);
     }
   }
+  if (!Array.isArray(window.LESESPOR) && window.DataHub?.loadLesespor) {
+    try {
+      await window.DataHub.loadLesespor({ cache: "default" });
+    } catch (e) {
+      console.warn("[openPlaceCard.loadLesespor]", e);
+    }
+  }
+
   const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
 
   // 🎓 Learning: mark seen for place-emner
@@ -109,6 +193,7 @@ const cardImgEl  = document.getElementById("pcCardImage");
 const titleEl    = document.getElementById("pcTitle");
 const metaEl     = document.getElementById("pcMeta");
 const descEl     = document.getElementById("pcDesc");
+const lesesporEl = document.getElementById("pcLesespor");
 
 const peopleIcon          = document.getElementById("pcPeopleIcon");
 const natureIcon          = document.getElementById("pcNatureIcon");
@@ -374,6 +459,7 @@ if (!card) return;
     metaEl.replaceChildren(...lineNodes);
   }
   if (descEl)  descEl.textContent  = place.desc || "";
+  if (lesesporEl) lesesporEl.innerHTML = renderPlaceCardLesespor(place.id);
 
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
   try {
