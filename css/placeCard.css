@@ -859,9 +859,22 @@ body.hg-app.hg-phone #placeCard #pcDesc{
    LESESPOR
    ========================= */
 
+#placeCard #pcLesespor{
+  flex: 0 1 170px;
+  max-height: 170px;
+  margin: 0 18px 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+#placeCard #pcLesespor:empty{
+  display: none;
+}
+
 #placeCard .pc-lesespor{
-  margin-top: 10px;
-  padding: 10px 12px;
+  margin: 0;
+  padding: 8px 10px;
   border-radius: 14px;
   background: rgba(255,255,255,0.055);
   border: 1px solid rgba(255,255,255,0.08);
@@ -871,7 +884,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 #placeCard .pc-lesespor .pc-section-head h3{
@@ -891,14 +904,14 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 #placeCard .pc-lesespor-list{
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 #placeCard .pc-lesespor-item{
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-top: 8px;
+  gap: 3px;
+  padding-top: 6px;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
