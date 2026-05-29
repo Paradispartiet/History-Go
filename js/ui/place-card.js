@@ -1227,47 +1227,85 @@ if (brandsEl) {
     ...(Array.isArray(place.brand_ids) ? place.brand_ids : [])
   ];
 
-const seenBrands = new Set();
+  const brandGroups = [
+    { kind: "brand", title: "Merker" },
+    { kind: "shop", title: "Shops" },
+    { kind: "gallery", title: "Gallerier" },
+    { kind: "restaurant", title: "Restauranter / kafeer" },
+    { kind: "bar_club", title: "Barer / klubber" },
+    { kind: "professional", title: "Profesjon" },
+    { kind: "legacy", title: "Historiske brands" },
+    { kind: "signage", title: "Skilt / signage" }
+  ];
+  const knownBrandKinds = new Set(brandGroups.map(group => group.kind));
+  const normalizeBrandKind = (value) => {
+    const kind = String(value || "").trim();
+    return knownBrandKinds.has(kind) ? kind : "brand";
+  };
 
-const brands = rawBrands
-  .map((item, i) => {
-    if (typeof item === "string") {
-      const resolved = window.HGBrands?.getById?.(item);
+  const seenBrands = new Set();
+
+  const brands = rawBrands
+    .map((item, i) => {
+      if (typeof item === "string") {
+        const resolved = window.HGBrands?.getById?.(item);
+        return {
+          id: item,
+          label: resolved?.name || item,
+          logo: resolved?.logo || "",
+          brandKind: normalizeBrandKind(resolved?.brand_kind)
+        };
+      }
+
       return {
-        id: item,
-        label: resolved?.name || item,
-        logo: resolved?.logo || ""
+        id: String(item?.id ?? item?.slug ?? `brand_${i}`).trim(),
+        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Brand ${i + 1}`).trim(),
+        logo: String(item?.logo ?? item?.image ?? item?.icon ?? "").trim(),
+        brandKind: normalizeBrandKind(item?.brand_kind)
       };
-    }
+    })
+    .filter(item => item.id && item.label)
+    .filter(item => {
+      if (seenBrands.has(item.id)) return false;
+      seenBrands.add(item.id);
+      return true;
+    });
 
-    return {
-      id: String(item?.id ?? item?.slug ?? `brand_${i}`).trim(),
-      label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Brand ${i + 1}`).trim(),
-      logo: String(item?.logo ?? item?.image ?? item?.icon ?? "").trim()
-    };
-  })
-  .filter(item => item.id && item.label)
-  .filter(item => {
-    if (seenBrands.has(item.id)) return false;
-    seenBrands.add(item.id);
-    return true;
-  });
+  const brandGroupsHtml = brandGroups
+    .map(group => {
+      const groupBrands = brands
+        .filter(item => item.brandKind === group.kind)
+        .sort((a, b) => a.label.localeCompare(b.label, "no", { sensitivity: "base" }));
+
+      if (!groupBrands.length) return "";
+
+      return `
+        <section class="pc-brand-group" data-brand-kind="${group.kind}">
+          <h3 class="pc-brand-group-title">${group.title}</h3>
+          <div class="pc-brand-group-list">
+            ${groupBrands.map(item => `
+              <button class="pc-brand-entry" data-brand="${item.id}">
+                ${item.logo ? `<img src="${item.logo}" class="pc-person-img" alt="">` : `<span class="pc-brand-emoji">🏷️</span>`}
+                <span class="pc-brand-entry-title">${item.label}</span>
+              </button>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    })
+    .filter(Boolean)
+    .join("");
 
   brandsEl.innerHTML = brands.length
-  ? brands.map(item => `
-      <button class="pc-brand-entry" data-brand="${item.id}">
-        ${item.logo ? `<img src="${item.logo}" class="pc-person-img" alt="">` : `<span class="pc-brand-emoji">🏷️</span>`}
-        <span class="pc-brand-entry-title">${item.label}</span>
-      </button>
-    `).join("")
-  : `<div class="pc-empty">Ingen brands ennå</div>`;
+    ? brandGroupsHtml
+    : `<div class="pc-empty">Ingen brands ennå</div>`;
 
-const b0 = brands.find(b => b.logo);
-if (b0?.logo) {
-  brandsIcon.innerHTML = `<img src="${b0.logo}" class="pc-person-img" alt="">`;
-} else {
-  setRoundLabel(brandsIcon, "🏷️", brands.length);
-}
+  const b0 = brands.find(b => b.logo);
+  if (b0?.logo) {
+    brandsIcon.innerHTML = `<img src="${b0.logo}" class="pc-person-img" alt="">`;
+  } else {
+    setRoundLabel(brandsIcon, "🏷️", brands.length);
+  }
 }
 
 

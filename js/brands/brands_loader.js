@@ -25,6 +25,7 @@
     return {
       id: asString(raw?.id),
       name: asString(raw?.name),
+      brand_kind: asString(raw?.brand_kind) || "brand",
       brand_type: asString(raw?.brand_type),
       sector: asString(raw?.sector),
       status: asString(raw?.status),
