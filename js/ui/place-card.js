@@ -189,7 +189,6 @@ window.openPlaceCard = async function (place) {
 
 const card = document.getElementById("placeCard");
 const frontImgEl = document.getElementById("pcFrontImage");
-const cardImgEl  = document.getElementById("pcCardImage");
 const titleEl    = document.getElementById("pcTitle");
 const metaEl     = document.getElementById("pcMeta");
 const descEl     = document.getElementById("pcDesc");
@@ -430,7 +429,6 @@ if (!card) return;
 
   // Basic content
   if (frontImgEl) frontImgEl.src = (place.image ?? place.cardImage ?? "");
-  if (cardImgEl) cardImgEl.src  = (place.cardImage ?? place.image ?? "");
   // ---- MINI PREVIEW BILDE ----
   const miniImgEl = document.getElementById("pcMiniImg");
   if (miniImgEl) {
