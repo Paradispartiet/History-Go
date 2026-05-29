@@ -201,7 +201,7 @@ function getPlaceCardLesespor(placeId) {
   });
 }
 
-function renderPlaceCardLesespor(placeId) {
+function renderPlaceCardLesesporStoryItems(placeId) {
   const items = getPlaceCardLesespor(placeId);
   if (!items.length) return "";
 
@@ -217,7 +217,7 @@ function renderPlaceCardLesespor(placeId) {
     .map(escapePlaceCardHTML)
     .join(" · ");
 
-  const rows = items.map(item => {
+  return items.map(item => {
     const title = String(item?.title || "").trim();
     const url = String(item?.url || "").trim();
     const relevance = String(item?.relevance || "").trim();
@@ -226,28 +226,17 @@ function renderPlaceCardLesespor(placeId) {
     if (!title && !url) return "";
 
     return `
-      <article class="pc-lesespor-item">
-        ${title ? `<h4 class="pc-lesespor-title">${escapePlaceCardHTML(title)}</h4>` : ""}
-        ${meta ? `<div class="pc-lesespor-meta">${meta}</div>` : ""}
-        ${relevance ? `<p class="pc-lesespor-relevance">${escapePlaceCardHTML(relevance)}</p>` : ""}
+      <article class="pc-story pc-lesespor-story" data-lesespor="${escapePlaceCardHTML(item?.id || title || url)}">
+        <div class="pc-story-top">
+          <span class="pc-story-type">Lesespor</span>
+          ${meta ? `<span class="pc-story-year pc-lesespor-meta">${meta}</span>` : ""}
+        </div>
+        ${title ? `<div class="pc-story-title">${escapePlaceCardHTML(title)}</div>` : ""}
+        ${relevance ? `<div class="pc-story-text">${escapePlaceCardHTML(relevance)}</div>` : ""}
         ${url ? `<a class="pc-lesespor-link" href="${escapePlaceCardHTML(url)}" target="_blank" rel="noopener noreferrer">Les teksten</a>` : ""}
       </article>
     `;
   }).filter(Boolean).join("");
-
-  if (!rows) return "";
-
-  return `
-    <section class="pc-section pc-lesespor">
-      <div class="pc-section-head">
-        <h3>Lesespor</h3>
-        <p>Kjente tekster knyttet til dette stedet</p>
-      </div>
-      <div class="pc-lesespor-list">
-        ${rows}
-      </div>
-    </section>
-  `;
 }
 
 /**
@@ -562,7 +551,7 @@ if (!card) return;
     metaEl.replaceChildren(...lineNodes);
   }
   if (descEl)  descEl.textContent  = place.desc || "";
-  if (lesesporEl) lesesporEl.innerHTML = renderPlaceCardLesespor(place.id);
+  if (lesesporEl) lesesporEl.innerHTML = "";
 
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
   try {
@@ -1096,20 +1085,24 @@ if (storiesEl) {
     console.warn("[stories]", err);
   }
 
-  storiesEl.innerHTML = stories.length
-    ? stories.map(st => `
-        <article class="pc-story" data-story="${st.id}">
-          <div class="pc-story-top">
-            <span class="pc-story-type">${st.type || "story"}</span>
-            ${st.year ? `<span class="pc-story-year">${st.year}</span>` : ""}
-          </div>
-          <div class="pc-story-title">${st.title || ""}</div>
-          <div class="pc-story-text">${st.summary || st.story || ""}</div>
-        </article>
-      `).join("")
+  const storyItemsHtml = stories.map(st => `
+    <article class="pc-story" data-story="${escapePlaceCardHTML(st.id)}">
+      <div class="pc-story-top">
+        <span class="pc-story-type">${escapePlaceCardHTML(st.type || "story")}</span>
+        ${st.year ? `<span class="pc-story-year">${escapePlaceCardHTML(st.year)}</span>` : ""}
+      </div>
+      <div class="pc-story-title">${escapePlaceCardHTML(st.title || "")}</div>
+      <div class="pc-story-text">${escapePlaceCardHTML(st.summary || st.story || "")}</div>
+    </article>
+  `).join("");
+  const lesesporItemsHtml = renderPlaceCardLesesporStoryItems(place.id);
+  const narrativeCount = stories.length + getPlaceCardLesespor(place.id).length;
+
+  storiesEl.innerHTML = (storyItemsHtml || lesesporItemsHtml)
+    ? `${storyItemsHtml}${lesesporItemsHtml}`
     : `<div class="pc-empty">Ingen historier ennå</div>`;
 
-  setRoundLabel(storiesIcon, "📖", stories.length);
+  setRoundLabel(storiesIcon, "📖", narrativeCount);
 }
 
 // --- WONDERKAMMER LIST + WONDERKAMMER ICON ---
