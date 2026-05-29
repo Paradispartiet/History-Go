@@ -487,3 +487,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left global/window diagnostics unchanged (`CivicationMailEngine`, `DEBUG`, `CivicationEventEngine`, and `CivicationLifeMailRuntime`) because they require globals/schema scope outside this narrow phase.
 - Runtime logic, life-mail-runtime logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, or `CivicationLifeMailRuntime`.
+
+## Phase 63: narrow civicationDebateEngine typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/civicationDebateEngine.js` after the Phase 62 audit / PR #691 and baseline repair / PR #700.
+- Introduced local debate identity and psyche snapshot typedefs, then applied casts at the existing `identity.focus` and psyche snapshot read sites for `trust`, `integrity`, `visibility`, `economicRoom`, `autonomy`, and `focus`.
+- Removed local `unknown` property-access diagnostics at those existing read sites without changing runtime behavior.
+- Intentionally left the `window.CivicationDebateEngine` global diagnostic unchanged because it requires globals/schema scope outside this narrow phase.
+- Runtime logic, debate-engine logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, or `CivicationDebateEngine`.

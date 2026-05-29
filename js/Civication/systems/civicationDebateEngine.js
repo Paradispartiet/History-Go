@@ -4,6 +4,11 @@
   const LS_DEBATE = "hg_civi_debate_v1";
   const LS_FIRST_DEBATE = "hg_civi_first_debate_v1";
 
+  /**
+   * @typedef {{ trust?: { value?: unknown, max?: unknown }, integrity?: unknown, visibility?: unknown, economicRoom?: unknown, autonomy?: unknown }} DebatePsycheSnapshot
+   * @typedef {{ focus?: Record<string, unknown> }} DebateIdentityState
+   */
+
   const DEFAULT_STATE = {
     current: null,
     last_result: null,
@@ -278,14 +283,14 @@
   }
 
   function getIdentityState() {
-    return window.HG_IdentityCore?.getProfile?.() || {
+    return /** @type {DebateIdentityState} */ (window.HG_IdentityCore?.getProfile?.() || {
       dominant: null,
       focus: {}
-    };
+    });
   }
 
   function getPsycheState(activeCareerId) {
-    const snap = window.CivicationPsyche?.getSnapshot?.(activeCareerId) || {};
+    const snap = /** @type {DebatePsycheSnapshot} */ (window.CivicationPsyche?.getSnapshot?.(activeCareerId) || {});
     const trust = snap?.trust;
     const trustPct = trust?.max
       ? Math.round((Number(trust.value || 0) / Number(trust.max || 1)) * 100)
