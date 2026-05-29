@@ -134,6 +134,14 @@
     return sortLesesporItems(deduped);
   }
 
+  function getLesesporItemsForPlace(items, placeId) {
+    const id = norm(placeId);
+    if (!id) return [];
+    return dedupeLesesporItems((Array.isArray(items) ? items : []).filter((item) => (
+      Array.isArray(item?.place_ids) && item.place_ids.includes(id)
+    )));
+  }
+
   async function ensureLesesporItems() {
     if (!Array.isArray(window.LESESPOR) && typeof window.DataHub?.loadLesespor === "function") {
       try {
@@ -185,16 +193,28 @@
       .join(" · ");
   }
 
-  function renderLesesporSection(items) {
-    const rows = dedupeLesesporItems(items);
+  function renderLesesporSection(items, options = {}) {
+    const mode = options.mode === "place" ? "place" : "all";
+    const placeId = norm(options.placeId);
+    const placeName = norm(options.placeName);
+    const rows = mode === "place"
+      ? getLesesporItemsForPlace(items, placeId)
+      : dedupeLesesporItems(items);
     const categories = [...new Set(rows.flatMap((item) => normalizeTextList(item?.category_hints)))].sort((a, b) => a.localeCompare(b, "nb"));
+    const title = mode === "place"
+      ? `Lesespor for ${placeName || resolvePlaceLabel(placeId) || "dette stedet"}`
+      : "Kuraterte eksterne tekster";
+    const subtitle = mode === "place"
+      ? "Kjente tekster knyttet til dette stedet"
+      : "Metadata og lenker til tekster knyttet til steder, personer og tema i History Go. Fulltekst vises ikke her.";
+    const emptyTitle = mode === "place" ? "Ingen Lesespor for dette stedet" : "Ingen Lesespor er lastet ennå";
 
     return `
-      <article class="pc-leksikon-article pc-leksikon-lesespor">
-        ${renderBackHeader("hub", "Leksikon")}
+      <article class="pc-leksikon-article pc-leksikon-lesespor" data-lesespor-mode="${esc(mode)}"${placeId ? ` data-lesespor-place-id="${esc(placeId)}"` : ""}>
+        ${mode === "place" ? renderBackHeader("hub", "Leksikon") : ""}
         <div class="pc-leksikon-kicker">Lesespor</div>
-        <h2 class="hg-popup-name">Kuraterte eksterne tekster</h2>
-        <p class="pc-leksikon-one-liner">Metadata og lenker til tekster knyttet til steder, personer og tema i History Go. Fulltekst vises ikke her.</p>
+        <h2 class="hg-popup-name">${esc(title)}</h2>
+        <p class="pc-leksikon-one-liner">${esc(subtitle)}</p>
         <section class="pc-leksikon-section pc-leksikon-lesespor-tools" aria-label="Søk og filter for Lesespor">
           <label class="pc-leksikon-field">
             <span>Søk i Lesespor</span>
@@ -222,17 +242,17 @@
               const places = normalizeTextList(item?.place_ids).map(resolvePlaceLabel).filter(Boolean);
               const searchText = lesesporSearchText(item);
               return `
-                <article class="pc-leksikon-entry pc-leksikon-lesespor-item" data-lesespor-item data-lesespor-search-text="${esc(searchText)}" data-lesespor-categories="${esc(categoriesForItem.map((category) => category.toLowerCase()).join(" "))}">
+                <article class="pc-leksikon-entry pc-leksikon-lesespor-item" data-lesespor-item data-lesespor-search-text="${esc(searchText)}" data-lesespor-categories="${esc(categoriesForItem.map((category) => category.toLowerCase()).join("|"))}">
                   <h3 class="pc-leksikon-entry-title">${esc(title)}</h3>
                   ${meta ? `<div class="pc-leksikon-entry-meta">${meta}</div>` : ""}
                   ${item?.relevance ? `<p class="pc-leksikon-lesespor-relevance">${esc(item.relevance)}</p>` : ""}
                   ${subjects.length ? `<div class="pc-leksikon-entry-meta"><strong>Emner:</strong> ${esc(subjects.join(", "))}</div>` : ""}
                   ${categoriesForItem.length ? tagListHtml(categoriesForItem) : ""}
-                  ${places.length ? `<div class="pc-leksikon-entry-meta"><strong>Steder:</strong> ${esc(places.join(", "))}</div>` : ""}
+                  ${places.length && mode === "all" ? `<div class="pc-leksikon-entry-meta"><strong>Steder:</strong> ${esc(places.join(", "))}</div>` : ""}
                   ${url ? `<a class="pc-leksikon-lesespor-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Les teksten</a>` : ""}
                 </article>
               `;
-            }).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen Lesespor er lastet ennå</span></div>`}
+            }).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">${esc(emptyTitle)}</span></div>`}
           </div>
         </section>
       </article>
@@ -428,6 +448,8 @@
   async function renderOverview(mainArticle, place, sprakArticle, allArticles) {
     const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
     const lesesporItems = await ensureLesesporItems();
+    const placeId = norm(mainArticle?.place_id || place?.id);
+    const placeLesesporItems = getLesesporItemsForPlace(lesesporItems, placeId);
     return `
       <article class="pc-leksikon-article">
         <div class="pc-leksikon-kicker">Leksikon</div>
@@ -440,7 +462,7 @@
             ${renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"')}
             ${renderHubCard("Personer", "Personer knyttet til stedet.", groups.persons.length, "section", true, 'data-leksikon-section="persons"')}
             ${renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"')}
-            ${renderHubCard("Lesespor", "Kuraterte eksterne tekster samlet på tvers av steder.", lesesporItems.length, "lesespor", true)}
+            ${renderHubCard("Lesespor", "Kuraterte eksterne tekster knyttet til dette stedet.", placeLesesporItems.length, "lesespor", true)}
             ${renderHubCard("Kilder / lenker", "Kilder og relevante eksterne lenker.", groups.links.length, "links", true)}
           </div>
         </section>
@@ -568,7 +590,12 @@
 
     if (detailType === "lesespor") {
       const items = await ensureLesesporItems();
-      return renderLesesporSection(items);
+      const placeId = norm(mainArticle?.place_id || place?.id || currentLeksikonContext?.placeId);
+      return renderLesesporSection(items, {
+        mode: "place",
+        placeId,
+        placeName: place?.name || articleTitle(mainArticle)
+      });
     }
 
     if (detailType === "links") {
@@ -766,6 +793,28 @@
     window.showToast?.("Popup-systemet er ikke lastet");
   }
 
+  async function openLesespor() {
+    const items = await ensureLesesporItems();
+    currentLeksikonContext = null;
+
+    const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
+    if (typeof popupFn === "function") {
+      popupFn(renderLesesporSection(items, { mode: "all" }), "leksikon-entry-popup");
+      return;
+    }
+
+    window.showToast?.("Popup-systemet er ikke lastet");
+  }
+
+  function bindLesesporHeaderButton() {
+    const button = document.getElementById("btnLesespor");
+    if (!button || button.dataset.lesesporBound === "1") return;
+    button.dataset.lesesporBound = "1";
+    button.addEventListener("click", () => {
+      window.HGLeksikon?.openLesespor?.();
+    });
+  }
+
   function patchPlaceCard() {
     const originalOpenPlaceCard = window.openPlaceCard;
     if (typeof originalOpenPlaceCard !== "function" || originalOpenPlaceCard.__leksikonPatched) return;
@@ -903,7 +952,7 @@
       const searchText = String(item.dataset.lesesporSearchText || "");
       const categories = String(item.dataset.lesesporCategories || "");
       const matchesSearch = !query || searchText.includes(query);
-      const matchesCategory = !category || categories.split(/\s+/).includes(category);
+      const matchesCategory = !category || categories.split("|").includes(category);
       const show = matchesSearch && matchesCategory;
       item.hidden = !show;
       if (show) visible += 1;
@@ -927,12 +976,17 @@
     openPlace,
     renderPlaceList,
     renderArticle,
-    patchPlaceCard
+    patchPlaceCard,
+    openLesespor
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", patchPlaceCard, { once: true });
+    document.addEventListener("DOMContentLoaded", () => {
+      patchPlaceCard();
+      bindLesesporHeaderButton();
+    }, { once: true });
   } else {
     patchPlaceCard();
+    bindLesesporHeaderButton();
   }
 })();
