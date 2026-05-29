@@ -15,7 +15,11 @@
  *   desc?: string,
  *   popupDesc?: string,
  *   image?: string,
+ *   frontImage?: string,
  *   cardImage?: string,
+ *   quizCardImage?: string,
+ *   quizCard?: string,
+ *   quiz_card_image?: string,
  *   people?: unknown[],
  *   badges?: unknown[],
  *   relations?: unknown[],
@@ -81,6 +85,102 @@ function escapePlaceCardHTML(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+const PLACE_CARD_QUIZ_CARD_BY_ID = Object.freeze({
+  aker_brygge: "bilder/QuizCards/Akerbrygge.PNG",
+  barcode: "bilder/QuizCards/Barcode.PNG",
+  bispelokket: "bilder/QuizCards/Bispelokket.PNG",
+  bjorvika: "bilder/QuizCards/Bjørvika.PNG",
+  bogstadveien: "bilder/QuizCards/Bogstadveien.PNG",
+  damstredet_telthusbakken: "bilder/QuizCards/DamstredetTelthusbakken.PNG",
+  gronland_basarene: "bilder/QuizCards/Grønland basarene.PNG"
+});
+
+function normalizePlaceCardQuizKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "o")
+    .replace(/å/g, "a")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function resolveQuizCardImage(place) {
+  const explicit = [place?.quizCardImage, place?.quizCard, place?.quiz_card_image]
+    .map(value => String(value || "").trim())
+    .find(Boolean);
+  if (explicit) return explicit;
+
+  const keys = new Set([
+    normalizePlaceCardQuizKey(place?.id),
+    normalizePlaceCardQuizKey(place?.name),
+    normalizePlaceCardQuizKey(place?.title)
+  ].filter(Boolean));
+
+  if (keys.has("damstredet_og_telthusbakken")) keys.add("damstredet_telthusbakken");
+  if (keys.has("damstredet_telthusbakken")) keys.add("damstredet_og_telthusbakken");
+
+  for (const key of keys) {
+    if (PLACE_CARD_QUIZ_CARD_BY_ID[key]) return PLACE_CARD_QUIZ_CARD_BY_ID[key];
+  }
+
+  return "";
+}
+
+function bindPlaceCardQuizFlip(card, quizImgEl) {
+  if (!card || card.dataset.pcQuizFlipBound === "1") return;
+  card.dataset.pcQuizFlipBound = "1";
+
+  const toggle = (event) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    if (!card.classList.contains("has-quiz-card")) return;
+    card.classList.toggle("is-flipped");
+    card.setAttribute(
+      "aria-label",
+      card.classList.contains("is-flipped") ? "Vis frontbilde" : "Vis quizkort"
+    );
+  };
+
+  card.addEventListener("click", toggle);
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") toggle(event);
+  });
+
+  if (quizImgEl && quizImgEl.dataset.pcQuizErrorBound !== "1") {
+    quizImgEl.dataset.pcQuizErrorBound = "1";
+    quizImgEl.addEventListener("error", () => {
+      if (String(card.dataset.currentPlaceId || "") !== String(quizImgEl.dataset.placeId || "")) return;
+      card.classList.remove("has-quiz-card", "is-flipped");
+      card.setAttribute("aria-label", "Quizkort mangler");
+      quizImgEl.removeAttribute("src");
+    });
+  }
+}
+
+function setPlaceCardQuizImage(card, quizImgEl, place) {
+  if (!card) return;
+  card.classList.remove("is-flipped", "has-quiz-card");
+  card.setAttribute("aria-label", "Quizkort mangler");
+
+  if (quizImgEl) {
+    quizImgEl.dataset.placeId = String(place?.id || "").trim();
+    quizImgEl.alt = "";
+    quizImgEl.removeAttribute("src");
+  }
+
+  const quizCardImage = resolveQuizCardImage(place);
+  if (!quizCardImage || !quizImgEl) return;
+
+  quizImgEl.alt = `Quizkort for ${place?.name || place?.title || "stedet"}`;
+  quizImgEl.src = quizCardImage;
+  card.classList.add("has-quiz-card");
+  card.setAttribute("aria-label", "Vis quizkort");
 }
 
 function getPlaceCardLesespor(placeId) {
@@ -188,7 +288,9 @@ window.openPlaceCard = async function (place) {
    }
 
 const card = document.getElementById("placeCard");
+const frontCardFlipEl = document.getElementById("pcFrontCardFlip");
 const frontImgEl = document.getElementById("pcFrontImage");
+const quizCardImgEl = document.getElementById("pcQuizCardImage");
 const titleEl    = document.getElementById("pcTitle");
 const metaEl     = document.getElementById("pcMeta");
 const descEl     = document.getElementById("pcDesc");
@@ -205,6 +307,7 @@ const leksikonIcon        = document.getElementById("pcLeksikonIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
   
 card.dataset.currentPlaceId = String(place.id || "").trim();
+bindPlaceCardQuizFlip(frontCardFlipEl, quizCardImgEl);
   
 const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
@@ -428,7 +531,8 @@ if (!card) return;
   card.classList.add("is-switching");
 
   // Basic content
-  if (frontImgEl) frontImgEl.src = (place.image ?? place.cardImage ?? "");
+  if (frontImgEl) frontImgEl.src = (place.frontImage || place.cardImage || place.image || "");
+  setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
   // ---- MINI PREVIEW BILDE ----
   const miniImgEl = document.getElementById("pcMiniImg");
   if (miniImgEl) {
