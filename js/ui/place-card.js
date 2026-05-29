@@ -165,6 +165,7 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
 
 function setPlaceCardQuizImage(card, quizImgEl, place) {
   if (!card) return;
+  card.dataset.currentPlaceId = String(place?.id || "").trim();
   card.classList.remove("is-flipped", "has-quiz-card");
   card.setAttribute("aria-label", "Quizkort mangler");
 
