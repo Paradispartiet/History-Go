@@ -93,6 +93,152 @@
       .filter(Boolean);
   }
 
+  function getLesesporYear(item) {
+    const year = Number(item?.year);
+    if (Number.isFinite(year)) return year;
+    const dateYear = Number(String(item?.date || "").slice(0, 4));
+    return Number.isFinite(dateYear) ? dateYear : 0;
+  }
+
+  function getLesesporStatusRank(item) {
+    const status = norm(item?.curation_status);
+    if (status === "strong_candidate") return 0;
+    if (status === "candidate_needs_review" || status === "candidate") return 1;
+    return 2;
+  }
+
+  function sortLesesporItems(items) {
+    return (Array.isArray(items) ? items : [])
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const statusDiff = getLesesporStatusRank(a.item) - getLesesporStatusRank(b.item);
+        if (statusDiff) return statusDiff;
+        const yearDiff = getLesesporYear(b.item) - getLesesporYear(a.item);
+        if (yearDiff) return yearDiff;
+        const dateDiff = String(b.item?.date || "").localeCompare(String(a.item?.date || ""));
+        if (dateDiff) return dateDiff;
+        return a.index - b.index;
+      })
+      .map(({ item }) => item);
+  }
+
+  function dedupeLesesporItems(items) {
+    const seen = new Set();
+    const deduped = [];
+    for (const item of Array.isArray(items) ? items : []) {
+      const key = norm(item?.id) || [item?.title, item?.author, item?.publication, item?.year || item?.date].map(norm).join("|");
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      deduped.push(item);
+    }
+    return sortLesesporItems(deduped);
+  }
+
+  async function ensureLesesporItems() {
+    if (!Array.isArray(window.LESESPOR) && typeof window.DataHub?.loadLesespor === "function") {
+      try {
+        const result = await window.DataHub.loadLesespor({ cache: "default" });
+        if (Array.isArray(result?.items)) return dedupeLesesporItems(result.items);
+      } catch (err) {
+        console.warn("[HGLeksikon] Lesespor kunne ikke lastes", err);
+      }
+    }
+    return dedupeLesesporItems(window.LESESPOR);
+  }
+
+  function normalizeTextList(values) {
+    if (!Array.isArray(values)) return [];
+    return values.map((value) => {
+      if (typeof value === "string") return norm(value);
+      if (value && typeof value === "object") return norm(value.name || value.title || value.label || value.id || value.type);
+      return norm(value);
+    }).filter(Boolean);
+  }
+
+  function lesesporSearchText(item) {
+    return [
+      item?.title,
+      item?.author,
+      item?.publication,
+      item?.relevance,
+      item?.type,
+      item?.access,
+      ...normalizeTextList(item?.subjects),
+      ...normalizeTextList(item?.category_hints),
+      ...normalizeTextList(item?.place_ids)
+    ].map((value) => norm(value).toLowerCase()).filter(Boolean).join(" ");
+  }
+
+  function resolvePlaceLabel(placeId) {
+    const id = norm(placeId);
+    if (!id) return "";
+    const place = (Array.isArray(window.PLACES) ? window.PLACES : [])
+      .find((candidate) => norm(candidate?.id) === id);
+    return place?.name ? `${place.name} (${id})` : id;
+  }
+
+  function renderLesesporMeta(item) {
+    return [item?.author, item?.publication, item?.year || item?.date, item?.type, item?.access]
+      .map(norm)
+      .filter(Boolean)
+      .map(esc)
+      .join(" · ");
+  }
+
+  function renderLesesporSection(items) {
+    const rows = dedupeLesesporItems(items);
+    const categories = [...new Set(rows.flatMap((item) => normalizeTextList(item?.category_hints)))].sort((a, b) => a.localeCompare(b, "nb"));
+
+    return `
+      <article class="pc-leksikon-article pc-leksikon-lesespor">
+        ${renderBackHeader("hub", "Leksikon")}
+        <div class="pc-leksikon-kicker">Lesespor</div>
+        <h2 class="hg-popup-name">Kuraterte eksterne tekster</h2>
+        <p class="pc-leksikon-one-liner">Metadata og lenker til tekster knyttet til steder, personer og tema i History Go. Fulltekst vises ikke her.</p>
+        <section class="pc-leksikon-section pc-leksikon-lesespor-tools" aria-label="Søk og filter for Lesespor">
+          <label class="pc-leksikon-field">
+            <span>Søk i Lesespor</span>
+            <input type="search" data-lesespor-search placeholder="Søk på tittel, forfatter, publikasjon, emne eller relevans" autocomplete="off">
+          </label>
+          ${categories.length ? `
+            <label class="pc-leksikon-field">
+              <span>Kategori</span>
+              <select data-lesespor-category>
+                <option value="">Alle kategorier</option>
+                ${categories.map((category) => `<option value="${esc(category.toLowerCase())}">${esc(category)}</option>`).join("")}
+              </select>
+            </label>
+          ` : ""}
+        </section>
+        <section class="pc-leksikon-section">
+          <div class="pc-leksikon-lesespor-count" data-lesespor-count>${rows.length} ${rows.length === 1 ? "tekst" : "tekster"}</div>
+          <div class="pc-leksikon-list pc-leksikon-lesespor-list">
+            ${rows.length ? rows.map((item) => {
+              const title = norm(item?.title) || "Uten tittel";
+              const url = sanitizeExternalUrl(item?.url);
+              const meta = renderLesesporMeta(item);
+              const subjects = normalizeTextList(item?.subjects);
+              const categoriesForItem = normalizeTextList(item?.category_hints);
+              const places = normalizeTextList(item?.place_ids).map(resolvePlaceLabel).filter(Boolean);
+              const searchText = lesesporSearchText(item);
+              return `
+                <article class="pc-leksikon-entry pc-leksikon-lesespor-item" data-lesespor-item data-lesespor-search-text="${esc(searchText)}" data-lesespor-categories="${esc(categoriesForItem.map((category) => category.toLowerCase()).join(" "))}">
+                  <h3 class="pc-leksikon-entry-title">${esc(title)}</h3>
+                  ${meta ? `<div class="pc-leksikon-entry-meta">${meta}</div>` : ""}
+                  ${item?.relevance ? `<p class="pc-leksikon-lesespor-relevance">${esc(item.relevance)}</p>` : ""}
+                  ${subjects.length ? `<div class="pc-leksikon-entry-meta"><strong>Emner:</strong> ${esc(subjects.join(", "))}</div>` : ""}
+                  ${categoriesForItem.length ? tagListHtml(categoriesForItem) : ""}
+                  ${places.length ? `<div class="pc-leksikon-entry-meta"><strong>Steder:</strong> ${esc(places.join(", "))}</div>` : ""}
+                  ${url ? `<a class="pc-leksikon-lesespor-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Les teksten</a>` : ""}
+                </article>
+              `;
+            }).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen Lesespor er lastet ennå</span></div>`}
+          </div>
+        </section>
+      </article>
+    `;
+  }
+
   function renderExternalLinks(place, article) {
     const links = normalizeExternalLinks(place, article);
     if (!links.length) return `<section class="pc-leksikon-section"><p>Ingen kilder eller lenker ennå.</p></section>`;
@@ -279,8 +425,9 @@
     `;
   }
 
-  function renderOverview(mainArticle, place, sprakArticle, allArticles) {
+  async function renderOverview(mainArticle, place, sprakArticle, allArticles) {
     const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
+    const lesesporItems = await ensureLesesporItems();
     return `
       <article class="pc-leksikon-article">
         <div class="pc-leksikon-kicker">Leksikon</div>
@@ -293,6 +440,7 @@
             ${renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"')}
             ${renderHubCard("Personer", "Personer knyttet til stedet.", groups.persons.length, "section", true, 'data-leksikon-section="persons"')}
             ${renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"')}
+            ${renderHubCard("Lesespor", "Kuraterte eksterne tekster samlet på tvers av steder.", lesesporItems.length, "lesespor", true)}
             ${renderHubCard("Kilder / lenker", "Kilder og relevante eksterne lenker.", groups.links.length, "links", true)}
           </div>
         </section>
@@ -416,6 +564,11 @@
 
     if (detailType === "place") {
       return renderArticle(mainArticle, "hub", "Leksikon");
+    }
+
+    if (detailType === "lesespor") {
+      const items = await ensureLesesporItems();
+      return renderLesesporSection(items);
     }
 
     if (detailType === "links") {
@@ -605,7 +758,7 @@
       const sprakArticle = await loadSprakForPlace(article?.place_id);
       const html = detailType
         ? await renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, articles, itemSource)
-        : renderOverview(mainArticle, place, sprakArticle, articles);
+        : await renderOverview(mainArticle, place, sprakArticle, articles);
       popupFn(html, "leksikon-entry-popup");
       return;
     }
@@ -733,6 +886,40 @@
       return;
     }
     void openPlace(currentLeksikonContext.placeId, currentLeksikonContext.index);
+  });
+
+
+  function filterLesesporList(container) {
+    const root = container || document;
+    const searchInput = root.querySelector("[data-lesespor-search]");
+    const categorySelect = root.querySelector("[data-lesespor-category]");
+    const items = [...root.querySelectorAll("[data-lesespor-item]")];
+    const countEl = root.querySelector("[data-lesespor-count]");
+    const query = norm(searchInput?.value).toLowerCase();
+    const category = norm(categorySelect?.value).toLowerCase();
+    let visible = 0;
+
+    for (const item of items) {
+      const searchText = String(item.dataset.lesesporSearchText || "");
+      const categories = String(item.dataset.lesesporCategories || "");
+      const matchesSearch = !query || searchText.includes(query);
+      const matchesCategory = !category || categories.split(/\s+/).includes(category);
+      const show = matchesSearch && matchesCategory;
+      item.hidden = !show;
+      if (show) visible += 1;
+    }
+
+    if (countEl) countEl.textContent = `${visible} ${visible === 1 ? "tekst" : "tekster"}`;
+  }
+
+  document.addEventListener("input", (event) => {
+    if (!event.target.closest("[data-lesespor-search]")) return;
+    filterLesesporList(event.target.closest(".pc-leksikon-lesespor") || document);
+  });
+
+  document.addEventListener("change", (event) => {
+    if (!event.target.closest("[data-lesespor-category]")) return;
+    filterLesesporList(event.target.closest(".pc-leksikon-lesespor") || document);
   });
 
   window.HGLeksikon = {

@@ -1428,3 +1428,74 @@
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
+
+/* Lesespor i Leksikon */
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-tools{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 220px);
+  gap: 10px;
+  align-items: end;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-field{
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-field input,
+.hg-popup.leksikon-entry-popup .pc-leksikon-field select{
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 12px;
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  padding: 10px 12px;
+  font: inherit;
+  outline: none;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-field input::placeholder{
+  color: rgba(255,255,255,.45);
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-count{
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,.66);
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-item{
+  cursor: default;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-item:hover{
+  transform: none;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-item[hidden]{
+  display: none;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-relevance{
+  margin: 4px 0 2px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.82);
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-link{
+  margin-top: 4px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 620px){
+  .hg-popup.leksikon-entry-popup .pc-leksikon-lesespor-tools{
+    grid-template-columns: 1fr;
+  }
+}
