@@ -496,3 +496,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left the `window.CivicationDebateEngine` global diagnostic unchanged because it requires globals/schema scope outside this narrow phase.
 - Runtime logic, debate-engine logic, event/task/state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, or `CivicationDebateEngine`.
+
+## Phase 64: narrow civicationMailEngine answer result typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/civicationMailEngine.js` at the existing `window.HG_CiviEngine?.answer` result read site.
+- Removed the local `TS2339` unknown/property-access diagnostic for `result.ok` without changing runtime behavior.
+- Intentionally left the `window.CivicationMailEngine` global diagnostic unchanged because it requires globals/schema scope outside this narrow phase.
+- Runtime logic, mail-engine logic, answer-flow, event-flow, task-flow, state-flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, or `CivicationDebateEngine`.
