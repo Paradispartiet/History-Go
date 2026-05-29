@@ -12,6 +12,17 @@ const LESESPOR_DIR = 'data/lesespor/oslo';
 const PLACES_ROOT = 'data/places';
 const EXPECTED_SCHEMA = 'history_go_lesespor_v1';
 const EXPECTED_CITY = 'oslo';
+const ALLOWED_ACCESS = 'open';
+const ALLOWED_SOURCE_QUALITIES = new Set([
+  'recognized',
+  'institutional',
+  'scholarly',
+  'canonical',
+]);
+const ALLOWED_CURATION_STATUSES = new Set([
+  'strong_candidate',
+  'approved',
+]);
 const FORBIDDEN_ITEM_FIELDS = new Set([
   'article_body',
   'fulltext',
@@ -107,6 +118,10 @@ function extractPlaceIds(document) {
   }
 
   return typeof document.id === 'string' ? [document.id] : [];
+}
+
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
 function validateArrayField(file, itemId, fieldName, value) {
@@ -219,6 +234,30 @@ for (const file of osloLesesporFiles) {
       idsInFile.add(itemId);
     }
 
+    if (item.access !== ALLOWED_ACCESS) {
+      addError(`${file}: item ${itemId} access must be ${JSON.stringify(ALLOWED_ACCESS)}`);
+    }
+
+    if (typeof item.url !== 'string' || item.url.trim().length === 0) {
+      addError(`${file}: item ${itemId} must have a non-empty string url`);
+    }
+
+    if (!isNonEmptyString(item.title)) {
+      addError(`${file}: item ${itemId} must have a non-empty title`);
+    }
+
+    if (!isNonEmptyString(item.relevance)) {
+      addError(`${file}: item ${itemId} must have a non-empty relevance`);
+    }
+
+    if (!ALLOWED_SOURCE_QUALITIES.has(item.source_quality)) {
+      addError(`${file}: item ${itemId} source_quality must be one of ${[...ALLOWED_SOURCE_QUALITIES].join(', ')}`);
+    }
+
+    if (!ALLOWED_CURATION_STATUSES.has(item.curation_status)) {
+      addError(`${file}: item ${itemId} curation_status must be one of ${[...ALLOWED_CURATION_STATUSES].join(', ')}`);
+    }
+
     for (const forbiddenField of FORBIDDEN_ITEM_FIELDS) {
       if (Object.hasOwn(item, forbiddenField)) {
         addError(`${file}: item ${itemId} contains forbidden full-text field ${forbiddenField}`);
@@ -233,6 +272,12 @@ for (const file of osloLesesporFiles) {
     }
 
     const itemPlaceIds = validateArrayField(file, itemId, 'place_ids', item.place_ids);
+    const itemPersonIds = validateArrayField(file, itemId, 'person_ids', item.person_ids);
+
+    if (itemPlaceIds.length === 0 && itemPersonIds.length === 0) {
+      addError(`${file}: item ${itemId} must reference at least one place_id or person_id`);
+    }
+
     for (const placeId of itemPlaceIds) {
       if (!placeIds.has(placeId)) {
         addError(`${file}: item ${itemId} references unknown place_id ${JSON.stringify(placeId)}`);
