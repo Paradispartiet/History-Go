@@ -447,9 +447,6 @@
 
   async function renderOverview(mainArticle, place, sprakArticle, allArticles) {
     const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
-    const lesesporItems = await ensureLesesporItems();
-    const placeId = norm(mainArticle?.place_id || place?.id);
-    const placeLesesporItems = getLesesporItemsForPlace(lesesporItems, placeId);
     return `
       <article class="pc-leksikon-article">
         <div class="pc-leksikon-kicker">Leksikon</div>
@@ -462,7 +459,6 @@
             ${renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"')}
             ${renderHubCard("Personer", "Personer knyttet til stedet.", groups.persons.length, "section", true, 'data-leksikon-section="persons"')}
             ${renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"')}
-            ${renderHubCard("Lesespor", "Kuraterte eksterne tekster knyttet til dette stedet.", placeLesesporItems.length, "lesespor", true)}
             ${renderHubCard("Kilder / lenker", "Kilder og relevante eksterne lenker.", groups.links.length, "links", true)}
           </div>
         </section>
@@ -586,16 +582,6 @@
 
     if (detailType === "place") {
       return renderArticle(mainArticle, "hub", "Leksikon");
-    }
-
-    if (detailType === "lesespor") {
-      const items = await ensureLesesporItems();
-      const placeId = norm(mainArticle?.place_id || place?.id || currentLeksikonContext?.placeId);
-      return renderLesesporSection(items, {
-        mode: "place",
-        placeId,
-        placeName: place?.name || articleTitle(mainArticle)
-      });
     }
 
     if (detailType === "links") {
@@ -793,13 +779,13 @@
     window.showToast?.("Popup-systemet er ikke lastet");
   }
 
-  async function openLesespor() {
+  async function openAllLesespor() {
     const items = await ensureLesesporItems();
     currentLeksikonContext = null;
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      popupFn(renderLesesporSection(items, { mode: "all" }), "leksikon-entry-popup");
+      popupFn(renderLesesporSection(items, { mode: "all" }), "lesespor-entry-popup");
       return;
     }
 
@@ -811,7 +797,7 @@
     if (!button || button.dataset.lesesporBound === "1") return;
     button.dataset.lesesporBound = "1";
     button.addEventListener("click", () => {
-      window.HGLeksikon?.openLesespor?.();
+      window.HGLesespor?.openAll?.();
     });
   }
 
@@ -976,8 +962,11 @@
     openPlace,
     renderPlaceList,
     renderArticle,
-    patchPlaceCard,
-    openLesespor
+    patchPlaceCard
+  };
+
+  window.HGLesespor = {
+    openAll: openAllLesespor
   };
 
   if (document.readyState === "loading") {
