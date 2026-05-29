@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-29T06:45:28.437Z
+- Generated at (UTC): 2026-05-29T09:19:04.342Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1874
+- Total diagnostic lines found: 1873
 - Files with diagnostics: 191
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | other | 73 | 577 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 516 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 75 | 467 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 75 | 466 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/profile.js | 1 | 83 | js/profile.js |
 | js/boot.js | 1 | 76 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1523 |
+| TS2339 | 1522 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |

@@ -274,9 +274,9 @@
     answerMail(mailId, choiceId) {
       const mail = this.getMail(mailId);
       const eventId = mail?.event?.id || mailId;
-      const result = window.HG_CiviEngine?.answer
+      const result = /** @type {{ ok?: unknown }} */ (window.HG_CiviEngine?.answer
         ? window.HG_CiviEngine.answer(eventId, choiceId)
-        : { ok: false, reason: "no_event_engine" };
+        : { ok: false, reason: "no_event_engine" });
 
       if (result?.ok !== false) {
         markResolved(mailId, eventId, choiceId);
