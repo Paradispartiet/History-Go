@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-29T09:19:04.342Z
+- Generated at (UTC): 2026-05-29T11:04:01.945Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1873
+- Total diagnostic lines found: 1875
 - Files with diagnostics: 191
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| other | 73 | 577 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| other | 73 | 579 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 516 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/Civication/** | 75 | 466 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/profile.js | 1 | 83 | js/profile.js |
@@ -46,12 +46,12 @@
 | js/ui/search.js | 22 | js/ui/** |
 | js/console/legacyExtensions.js | 21 | other |
 | js/dataHub.js | 21 | js/dataHub.js |
-| js/console/diagnosticConsole.js | 20 | other |
+| js/leksikon/leksikon_loader.js | 21 | other |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1522 |
+| TS2339 | 1524 |
 | TS2551 | 137 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **other (577 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **other (579 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (148), `js/Civication/ui/CivicationUI.js` (106), `js/profile.js` (83), `js/ui/popup-utils.js` (80), `js/boot.js` (76).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `js/Civication/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
