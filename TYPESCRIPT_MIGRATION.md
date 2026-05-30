@@ -504,3 +504,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left the `window.CivicationMailEngine` global diagnostic unchanged because it requires globals/schema scope outside this narrow phase.
 - Runtime logic, mail-engine logic, answer-flow, event-flow, task-flow, state-flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, or `CivicationDebateEngine`.
+
+## Phase 65: narrow dayConsequences typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only pass in `js/Civication/systems/day/dayConsequences.js` after the Phase 62 audit / PR #691, Phase 63 / PR #703, Phase 64 / PR #708, and baseline repair / PR #715.
+- Applied local casts at the existing `career_id` and `preferred_types` read sites to reduce local `unknown` property-access diagnostics without changing runtime behavior.
+- Intentionally left global/window diagnostics and additional branch-state shape diagnostics unchanged because they require globals/schema scope or broader API-shape typing outside this narrow phase.
+- Runtime logic, day-consequences logic, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, or `CivicationDebateEngine`.

@@ -10,7 +10,7 @@
   }
 
   function activeCareerId() {
-    return normStr(window.CivicationState?.getActivePosition?.()?.career_id);
+    return normStr((/** @type {{ career_id?: unknown }} */ (window.CivicationState?.getActivePosition?.() || {})).career_id);
   }
 
   function activeRoleScope() {
@@ -26,7 +26,7 @@
     };
 
     const next = {
-      preferred_types: uniq([...(current.preferred_types || []), ...((delta && delta.preferred_types) || [])]).slice(-6),
+      preferred_types: uniq([...((/** @type {{ preferred_types?: unknown[] }} */ (current)).preferred_types || []), ...((delta && delta.preferred_types) || [])]).slice(-6),
       preferred_families: uniq([...(current.preferred_families || []), ...((delta && delta.preferred_families) || [])]).slice(-8),
       flags: uniq([...(current.flags || []), ...((delta && delta.flags) || [])]).slice(-16)
     };
