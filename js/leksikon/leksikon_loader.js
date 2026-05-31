@@ -46,12 +46,18 @@
     return res.json();
   }
 
+  function resolvePlaceById(placeId) {
+    const id = norm(placeId);
+    if (!id) return null;
+    return (Array.isArray(window.PLACES) ? window.PLACES : [])
+      .find((place) => norm(place?.id) === id) || null;
+  }
+
   function articleTitle(article) {
     const explicitTitle = norm(article?.title || article?.name || article?.label);
     if (explicitTitle) return explicitTitle;
 
-    const place = (Array.isArray(window.PLACES) ? window.PLACES : [])
-      .find(p => norm(p?.id) === norm(article?.place_id));
+    const place = resolvePlaceById(article?.place_id);
 
     return place?.name || article?.summary?.one_liner || article?.place_id || "Leksikon";
   }
@@ -487,9 +493,9 @@
     return rows[0];
   }
 
-  function groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles) {
+  function groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles, placeIdFallback = "") {
     const sections = normalizeSectionItems(mainArticle, place, sprakArticle);
-    const placeId = norm(mainArticle?.place_id);
+    const placeId = norm(mainArticle?.place_id || place?.id || placeIdFallback);
     const entries = (Array.isArray(allArticles) ? allArticles : []).filter((row) => norm(row?.place_id) === placeId && row !== mainArticle);
 
     const groups = {
@@ -528,28 +534,72 @@
     `;
   }
 
-  async function renderOverview(mainArticle, place, sprakArticle, allArticles) {
-    const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
-    const placeId = norm(place?.id || mainArticle?.place_id);
-    const stories = await getStoriesForPlace(placeId);
-    const lesesporItems = getLesesporItemsForPlace(await ensureLesesporItems(), placeId);
-    const wonderkammerEntries = getWonderkammerEntriesForPlace(placeId);
+  async function getLeksikonContentForPlace(placeId, place = null, articlesInput = null, mainArticleInput = null, sprakArticleInput = undefined) {
+    const id = norm(placeId || place?.id || mainArticleInput?.place_id);
+    const articles = Array.isArray(articlesInput)
+      ? articlesInput
+      : (window.LEKSIKON_BY_PLACE?.[id] || []);
+    const storedPlace = resolvePlaceById(id);
+    const resolvedPlace = place && typeof place === "object"
+      ? { ...(storedPlace || {}), ...place }
+      : storedPlace;
+    const mainArticle = mainArticleInput || resolveMainLeksikonArticle(articles, resolvedPlace);
+    const sprakArticle = sprakArticleInput !== undefined
+      ? sprakArticleInput
+      : await loadSprakForPlace(id || mainArticle?.place_id);
+    const groups = groupLeksikonEntries(mainArticle, resolvedPlace, sprakArticle, articles, id);
+    const stories = await getStoriesForPlace(id);
+    const lesesporItems = getLesesporItemsForPlace(await ensureLesesporItems(), id);
+    const wonderkammerEntries = getWonderkammerEntriesForPlace(id);
+    const total = articles.length
+      + stories.length
+      + lesesporItems.length
+      + wonderkammerEntries.length
+      + groups.objects.length
+      + groups.sprak.length
+      + groups.links.length;
+
+    return {
+      placeId: id,
+      place: resolvedPlace,
+      articles,
+      mainArticle,
+      sprakArticle,
+      groups,
+      stories,
+      lesesporItems,
+      wonderkammerEntries,
+      total
+    };
+  }
+
+  async function renderOverview(mainArticle, place, sprakArticle, allArticles, placeIdFallback = "") {
+    const content = await getLeksikonContentForPlace(
+      placeIdFallback || place?.id || mainArticle?.place_id,
+      place,
+      allArticles,
+      mainArticle,
+      sprakArticle
+    );
+    const groups = content.groups;
+    const title = content.place?.name || articleTitle(content.mainArticle);
 
     return `
       <article class="pc-leksikon-article">
         <div class="pc-leksikon-kicker">Leksikon</div>
-        <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
+        <h2 class="hg-popup-name">${esc(title)}</h2>
         <section class="pc-leksikon-section">
           <div class="pc-leksikon-list">
-            ${renderHubCard("Sted", "Hovedartikkel om stedet.", groups.place.length, "place", false)}
-            ${stories.length ? renderHubCard("Fortellinger", "Stedsspesifikke historier og korte fortellinger.", stories.length, "stories", true) : ""}
-            ${lesesporItems.length ? renderHubCard("Lesespor", "Kuraterte eksterne tekster knyttet til dette stedet.", lesesporItems.length, "lesespor", true) : ""}
-            ${wonderkammerEntries.length ? renderHubCard("Wonderkammer", "Kammeroppføringer og objekter knyttet til stedet.", wonderkammerEntries.length, "wonderkammer", true) : ""}
+            ${content.mainArticle ? renderHubCard("Sted", "Hovedartikkel om stedet.", groups.place.length, "place", false) : ""}
+            ${content.stories.length ? renderHubCard("Fortellinger", "Stedsspesifikke historier og korte fortellinger.", content.stories.length, "stories", true) : ""}
+            ${content.lesesporItems.length ? renderHubCard("Lesespor", "Kuraterte eksterne tekster knyttet til dette stedet.", content.lesesporItems.length, "lesespor", true) : ""}
+            ${content.wonderkammerEntries.length ? renderHubCard("Wonderkammer", "Kammeroppføringer og objekter knyttet til stedet.", content.wonderkammerEntries.length, "wonderkammer", true) : ""}
             ${groups.events.length ? renderHubCard("Arrangementer / idrettshistorie", "Stevner, rekorder, resultater og idrettshistoriske hendelser.", groups.events.length, "section", true, 'data-leksikon-section="events"') : ""}
             ${groups.history.length ? renderHubCard("Historie / bruksspor", "Tidligere bruk, kulturhistorie og flerbruksspor.", groups.history.length, "section", true, 'data-leksikon-section="history"') : ""}
-            ${renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"')}
-            ${renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"')}
-            ${renderHubCard("Kilder / lenker", "Kilder og relevante eksterne lenker.", groups.links.length, "links", true)}
+            ${groups.objects.length ? renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"') : ""}
+            ${groups.sprak.length ? renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"') : ""}
+            ${groups.links.length ? renderHubCard("Kilder / lenker", "Kilder og relevante eksterne lenker.", groups.links.length, "links", true) : ""}
+            ${content.total ? "" : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen leksikoninnhold for dette stedet ennå</span></div>`}
           </div>
         </section>
       </article>
@@ -570,7 +620,7 @@
     return "article";
   }
 
-  function renderSectionList(mainArticle, sectionType, groups) {
+  function renderSectionList(mainArticle, sectionType, groups, place = null) {
     const map = {
       events: { title: "Arrangementer / idrettshistorie", items: groups.events },
       history: { title: "Historie / bruksspor", items: groups.history },
@@ -585,7 +635,7 @@
       <article class="pc-leksikon-article">
         ${renderBackHeader("hub", "Leksikon")}
         <div class="pc-leksikon-kicker">${esc(config.title)}</div>
-        <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
+        <h2 class="hg-popup-name">${esc(place?.name || articleTitle(mainArticle))}</h2>
         <section class="pc-leksikon-section">
           <div class="pc-leksikon-list">
             ${items.length ? items.map((item, idx) => {
@@ -598,26 +648,27 @@
     `;
   }
 
-  async function renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, allArticles, itemSource) {
-    const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
+  async function renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, allArticles, itemSource, placeIdFallback = "") {
+    const effectivePlaceId = norm(place?.id || mainArticle?.place_id || placeIdFallback);
+    const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles, effectivePlaceId);
     const idx = Number(itemIndex) || 0;
 
     if (detailType === "section") {
-      return renderSectionList(mainArticle, sectionType, groups);
+      return renderSectionList(mainArticle, sectionType, groups, place);
     }
 
 
     if (detailType === "stories") {
-      return renderStoriesSection(await getStoriesForPlace(place?.id || mainArticle?.place_id), place);
+      return renderStoriesSection(await getStoriesForPlace(effectivePlaceId), place);
     }
 
     if (detailType === "lesespor") {
       const items = await ensureLesesporItems();
-      return renderLesesporSection(items, { mode: "place", placeId: place?.id || mainArticle?.place_id, placeName: place?.name });
+      return renderLesesporSection(items, { mode: "place", placeId: effectivePlaceId, placeName: place?.name });
     }
 
     if (detailType === "wonderkammer") {
-      return renderWonderkammerSection(getWonderkammerEntriesForPlace(place?.id || mainArticle?.place_id), place);
+      return renderWonderkammerSection(getWonderkammerEntriesForPlace(effectivePlaceId), place);
     }
 
     if (detailType === "entry") {
@@ -669,7 +720,9 @@
     }
 
     if (detailType === "place") {
-      return renderArticle(mainArticle, "hub", "Leksikon");
+      return mainArticle
+        ? renderArticle(mainArticle, "hub", "Leksikon")
+        : renderOverview(mainArticle, place, sprakArticle, allArticles, effectivePlaceId);
     }
 
     if (detailType === "links") {
@@ -677,13 +730,15 @@
         <article class="pc-leksikon-article">
           ${renderBackHeader("hub", "Leksikon")}
           <div class="pc-leksikon-kicker">Kilder / lenker</div>
-          <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
+          <h2 class="hg-popup-name">${esc(place?.name || articleTitle(mainArticle))}</h2>
           ${renderExternalLinks(place, mainArticle)}
         </article>
       `;
     }
 
-    return renderArticle(mainArticle, "hub", "Leksikon");
+    return mainArticle
+      ? renderArticle(mainArticle, "hub", "Leksikon")
+      : renderOverview(mainArticle, place, sprakArticle, allArticles, effectivePlaceId);
   }
 
   async function loadSprakManifest() {
@@ -726,8 +781,7 @@
     const articlePlaceId = norm(article?.place_id);
     if (!articlePlaceId) return null;
 
-    const currentPlace = (Array.isArray(window.PLACES) ? window.PLACES : [])
-      .find((p) => norm(p?.id) === articlePlaceId);
+    const currentPlace = resolvePlaceById(articlePlaceId);
 
     if (typeof window.DataHub?.loadFullPlace !== "function") return currentPlace || null;
 
@@ -832,34 +886,37 @@
     `;
   }
 
-  function renderPlaceList(placeId) {
-    const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
-    if (!articles.length) return "";
-
+  function renderPlaceList(placeId, count = 0) {
+    const meta = count > 0
+      ? `${count} ${count === 1 ? "oppføring" : "oppføringer"} i leksikonhuben`
+      : "Åpne leksikonhub for dette stedet";
     return `
       <div class="pc-leksikon-list">
         <button class="pc-leksikon-entry" type="button" data-leksikon-place="${esc(norm(placeId))}" data-leksikon-index="0">
           <span class="pc-leksikon-entry-title">Leksikon</span>
-          <span class="pc-leksikon-entry-meta">Åpne leksikonhub for dette stedet</span>
+          <span class="pc-leksikon-entry-meta">${esc(meta)}</span>
         </button>
       </div>
     `;
   }
 
   async function openPlace(placeId, index = 0, detailType = "", itemIndex = 0, sectionType = "", itemSource = "") {
-    const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
+    const requestedPlaceId = norm(placeId);
+    const articles = window.LEKSIKON_BY_PLACE?.[requestedPlaceId] || [];
     const article = articles[Number(index) || 0];
     const normalizedIndex = Number(index) || 0;
-    currentLeksikonContext = { placeId: norm(placeId), index: normalizedIndex, detailType: detailType || "hub", sectionType: sectionType || "", itemIndex: Number(itemIndex) || 0, itemSource: itemSource || "" };
+    currentLeksikonContext = { placeId: requestedPlaceId, index: normalizedIndex, detailType: detailType || "hub", sectionType: sectionType || "", itemIndex: Number(itemIndex) || 0, itemSource: itemSource || "" };
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      const place = await resolvePlaceForArticle(article);
-      const mainArticle = resolveMainLeksikonArticle(articles, place) || article;
-      const sprakArticle = await loadSprakForPlace(article?.place_id);
+      const place = await resolvePlaceForArticle(article) || resolvePlaceById(requestedPlaceId);
+      const effectivePlaceId = norm(place?.id || article?.place_id || requestedPlaceId);
+      const mainArticle = resolveMainLeksikonArticle(articles, place) || article || null;
+      const sprakArticle = await loadSprakForPlace(effectivePlaceId);
+      currentLeksikonContext.placeId = effectivePlaceId;
       const html = detailType
-        ? await renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, articles, itemSource)
-        : await renderOverview(mainArticle, place, sprakArticle, articles);
+        ? await renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, articles, itemSource, effectivePlaceId)
+        : await renderOverview(mainArticle, place, sprakArticle, articles, effectivePlaceId);
       popupFn(html, "leksikon-entry-popup");
       return;
     }
@@ -900,17 +957,19 @@
         await init();
         const listEl = document.getElementById("pcLeksikonList");
         const iconEl = document.getElementById("pcLeksikonIcon");
-        const articles = window.LEKSIKON_BY_PLACE?.[norm(place?.id)] || [];
-        if (listEl && articles.length) {
-          listEl.innerHTML = renderPlaceList(place.id);
+        const placeId = norm(place?.id);
+        const articles = window.LEKSIKON_BY_PLACE?.[placeId] || [];
+        const content = await getLeksikonContentForPlace(placeId, place, articles);
+        if (listEl) {
+          listEl.innerHTML = renderPlaceList(placeId, content.total);
         }
-        if (iconEl && articles.length) {
-          iconEl.dataset.leksikonPlace = norm(place?.id);
+        if (iconEl) {
+          iconEl.dataset.leksikonPlace = placeId;
           iconEl.dataset.leksikonIndex = "0";
           iconEl.innerHTML = `
             <div class="pc-round-label">
               <span class="pc-round-emoji">📚</span>
-              <span class="pc-round-count">${articles.length}</span>
+              <span class="pc-round-count">${content.total}</span>
             </div>
           `;
         }
