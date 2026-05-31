@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-31T21:52:24.517Z
+Generated: 2026-05-31T22:17:41.894Z
 
 ## Sammendrag
 - People-filer lest: **21**
-- People lest: **226**
+- People lest: **228**
 - People med ugyldige refs: **8**
 - Ugyldige refs: **15**
 - Unike ugyldige placeId-er: **11**
 - People uten gyldig sted: **15**
-- Duplikate interne place-referanser: **204**
+- Duplikate interne place-referanser: **206**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_historie.json
@@ -284,6 +284,8 @@ Generated: 2026-05-31T21:52:24.517Z
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: else_kass_furuseth (Else Kåss Furuseth) -> latter x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: bard_tufte_johansen (Bård Tufte Johansen) -> chateau_neuf x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: harald_eia (Harald Eia) -> chateau_neuf x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: oystein_wiik (Øystein Wiik) -> folketeateret x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: rein_alexander (Rein Alexander) -> folketeateret x2
 
 ## Anbefalt neste ryddebatch
 - grotten_utsikt (missing_place_candidate, 3 treff)

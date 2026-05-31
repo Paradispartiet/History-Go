@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-31T21:52:24.864Z
+Generert: 2026-05-31T22:17:42.469Z
 
 ## Sammendrag
 
-- People totalt: **226**
+- People totalt: **228**
 - Places totalt: **470**
-- Places med people: **98**
-- Places uten people: **372**
-- People-place-lenker: **328**
+- Places med people: **99**
+- Places uten people: **371**
+- People-place-lenker: **330**
 - People koblet til flere gyldige steder: **95**
 - People uten gyldig sted: **15**
 - Ugyldige place-referanser: **15**
-- Duplikate place-referanser inne på people: **204**
+- Duplikate place-referanser inne på people: **206**
 - People uten image: **12**
 - People uten cardImage: **12**
 - People uten popupDesc: **17**
@@ -31,7 +31,7 @@ Generert: 2026-05-31T21:52:24.864Z
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
-| populaerkultur | 15 | 2 | 13 | 4 | 4 |
+| populaerkultur | 15 | 3 | 12 | 6 | 6 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 49 | 4 | 45 | 7 | 7 |
 | subkultur | 23 | 2 | 21 | 4 | 4 |
@@ -54,21 +54,22 @@ Generert: 2026-05-31T21:52:24.864Z
 - cinematek: 11
 - krig: 11
 - kunst: 11
+- scene: 11
 - vitenskap: 11
 - avis: 10
 - presse: 10
 - redaksjon: 10
 - norsk_film: 9
-- scene: 9
 - journalistikk: 8
 - sport: 8
 - natur: 7
+- populaerkultur: 7
 - by: 6
 - programleder: 6
 - tv: 6
 - konsert: 5
 - norsk_musikk: 5
-- populaerkultur: 5
+- underholdning: 5
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
@@ -85,7 +86,6 @@ Generert: 2026-05-31T21:52:24.864Z
 - mesen: 3
 - skuespiller: 3
 - studiohistorie: 3
-- underholdning: 3
 - arkitektur: 2
 - dokumentar: 2
 - filmfestival: 2
@@ -238,7 +238,7 @@ Generert: 2026-05-31T21:52:24.864Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 104 flere
+- ... 106 flere
 
 ## Anbefalt første people-batch
 
