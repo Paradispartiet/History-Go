@@ -1,21 +1,21 @@
 # People-place coverage audit
 
-Generert: 2026-05-31T11:46:19.877Z
+Generert: 2026-05-31T21:52:24.864Z
 
 ## Sammendrag
 
 - People totalt: **226**
 - Places totalt: **470**
-- Places med people: **96**
-- Places uten people: **374**
-- People-place-lenker: **324**
+- Places med people: **98**
+- Places uten people: **372**
+- People-place-lenker: **328**
 - People koblet til flere gyldige steder: **95**
-- People uten gyldig sted: **19**
+- People uten gyldig sted: **15**
 - Ugyldige place-referanser: **15**
-- Duplikate place-referanser inne på people: **200**
-- People uten image: **16**
-- People uten cardImage: **16**
-- People uten popupDesc: **21**
+- Duplikate place-referanser inne på people: **204**
+- People uten image: **12**
+- People uten cardImage: **12**
+- People uten popupDesc: **17**
 
 ## Dekning per place-kategori
 
@@ -31,7 +31,7 @@ Generert: 2026-05-31T11:46:19.877Z
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
-| populaerkultur | 15 | 0 | 15 | 0 | 0 |
+| populaerkultur | 15 | 2 | 13 | 4 | 4 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 49 | 4 | 45 | 7 | 7 |
 | subkultur | 23 | 2 | 21 | 4 | 4 |
@@ -51,44 +51,44 @@ Generert: 2026-05-31T11:46:19.877Z
 - filmhistorie: 13
 - subkultur: 13
 - filmkanon: 12
-- vitenskap: 12
 - cinematek: 11
 - krig: 11
 - kunst: 11
+- vitenskap: 11
 - avis: 10
 - presse: 10
 - redaksjon: 10
 - norsk_film: 9
+- scene: 9
 - journalistikk: 8
 - sport: 8
 - natur: 7
 - by: 6
+- programleder: 6
 - tv: 6
 - konsert: 5
 - norsk_musikk: 5
-- scene: 5
+- populaerkultur: 5
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
+- humor: 4
 - kommentarjournalistikk: 4
 - kringkasting: 4
 - musiker: 4
 - musikkhistorie: 4
 - naeringsliv: 4
-- programleder: 4
+- satire: 4
+- tv_humor: 4
 - arthouse: 3
 - lydfilm: 3
 - mesen: 3
-- satire: 3
 - skuespiller: 3
 - studiohistorie: 3
+- underholdning: 3
 - arkitektur: 2
 - dokumentar: 2
 - filmfestival: 2
-- folkekino: 2
-- jazz: 2
-- kino: 2
-- kinokultur: 2
 
 ## Steder med flest people
 
@@ -238,7 +238,7 @@ Generert: 2026-05-31T11:46:19.877Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 100 flere
+- ... 104 flere
 
 ## Anbefalt første people-batch
 
