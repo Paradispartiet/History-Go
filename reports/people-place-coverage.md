@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-31T22:17:42.469Z
+Generert: 2026-05-31T22:40:03.625Z
 
 ## Sammendrag
 
-- People totalt: **228**
+- People totalt: **229**
 - Places totalt: **470**
-- Places med people: **99**
-- Places uten people: **371**
-- People-place-lenker: **330**
+- Places med people: **100**
+- Places uten people: **370**
+- People-place-lenker: **331**
 - People koblet til flere gyldige steder: **95**
 - People uten gyldig sted: **15**
 - Ugyldige place-referanser: **15**
-- Duplikate place-referanser inne på people: **206**
+- Duplikate place-referanser inne på people: **207**
 - People uten image: **12**
 - People uten cardImage: **12**
 - People uten popupDesc: **17**
@@ -31,7 +31,7 @@ Generert: 2026-05-31T22:17:42.469Z
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
-| populaerkultur | 15 | 3 | 12 | 6 | 6 |
+| populaerkultur | 15 | 4 | 11 | 7 | 7 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 49 | 4 | 45 | 7 | 7 |
 | subkultur | 23 | 2 | 21 | 4 | 4 |
@@ -46,7 +46,7 @@ Generert: 2026-05-31T22:17:42.469Z
 - film: 18
 - film_tv: 18
 - media: 17
-- musikk: 15
+- musikk: 16
 - regissor: 15
 - filmhistorie: 13
 - subkultur: 13
@@ -61,9 +61,9 @@ Generert: 2026-05-31T22:17:42.469Z
 - redaksjon: 10
 - norsk_film: 9
 - journalistikk: 8
+- populaerkultur: 8
 - sport: 8
 - natur: 7
-- populaerkultur: 7
 - by: 6
 - programleder: 6
 - tv: 6
@@ -238,7 +238,7 @@ Generert: 2026-05-31T22:17:42.469Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 106 flere
+- ... 107 flere
 
 ## Anbefalt første people-batch
 
