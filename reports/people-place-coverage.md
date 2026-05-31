@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-31T22:40:03.625Z
+Generert: 2026-05-31T23:00:08.914Z
 
 ## Sammendrag
 
-- People totalt: **229**
+- People totalt: **240**
 - Places totalt: **470**
-- Places med people: **100**
-- Places uten people: **370**
-- People-place-lenker: **331**
-- People koblet til flere gyldige steder: **95**
+- Places med people: **104**
+- Places uten people: **366**
+- People-place-lenker: **347**
+- People koblet til flere gyldige steder: **99**
 - People uten gyldig sted: **15**
 - Ugyldige place-referanser: **15**
-- Duplikate place-referanser inne på people: **207**
+- Duplikate place-referanser inne på people: **218**
 - People uten image: **12**
 - People uten cardImage: **12**
 - People uten popupDesc: **17**
@@ -27,7 +27,7 @@ Generert: 2026-05-31T22:40:03.625Z
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
 | media | 11 | 8 | 3 | 18 | 17 |
-| musikk | 13 | 5 | 8 | 11 | 7 |
+| musikk | 13 | 9 | 4 | 27 | 19 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
@@ -41,12 +41,13 @@ Generert: 2026-05-31T22:40:03.625Z
 
 - historie: 71
 - litteratur: 38
+- musikk: 27
 - politikk: 27
 - middelalder: 19
 - film: 18
 - film_tv: 18
+- scene: 18
 - media: 17
-- musikk: 16
 - regissor: 15
 - filmhistorie: 13
 - subkultur: 13
@@ -54,41 +55,40 @@ Generert: 2026-05-31T22:40:03.625Z
 - cinematek: 11
 - krig: 11
 - kunst: 11
-- scene: 11
 - vitenskap: 11
 - avis: 10
+- musikkhistorie: 10
 - presse: 10
 - redaksjon: 10
+- konsert: 9
 - norsk_film: 9
+- sanger: 9
+- fado: 8
 - journalistikk: 8
+- kulturarv: 8
+- musiker: 8
 - populaerkultur: 8
 - sport: 8
 - natur: 7
 - by: 6
+- jazz: 6
 - programleder: 6
 - tv: 6
-- konsert: 5
 - norsk_musikk: 5
 - underholdning: 5
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
+- fadokultur: 4
 - filantrop: 4
 - humor: 4
+- jazzhistorie: 4
 - kommentarjournalistikk: 4
 - kringkasting: 4
-- musiker: 4
-- musikkhistorie: 4
 - naeringsliv: 4
 - satire: 4
 - tv_humor: 4
 - arthouse: 3
 - lydfilm: 3
-- mesen: 3
-- skuespiller: 3
-- studiohistorie: 3
-- arkitektur: 2
-- dokumentar: 2
-- filmfestival: 2
 
 ## Steder med flest people
 
@@ -103,6 +103,7 @@ Generert: 2026-05-31T22:40:03.625Z
 - oslo_radhus (Oslo rådhus) – 8
 - universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
+- lisbon_museu_do_fado (Museu do Fado) – 6
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
@@ -111,12 +112,11 @@ Generert: 2026-05-31T22:40:03.625Z
 - eidsvollsbygningen (Eidsvollsbygningen) – 4
 - grini_fangeleir (Grini fangeleir) – 4
 - lisbon_cinema_nimas (Cinema Nimas) – 4
+- lisbon_coliseu_dos_recreios (Coliseu dos Recreios) – 4
+- lisbon_hot_clube_de_portugal (Hot Clube de Portugal) – 4
 - vg_huset (VG-huset) – 4
 - christiania_torv (Christiania Torv) – 3
 - grotta (Grotten) – 3
-- kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
-- lisbon_cinema_ideal (Cinema Ideal) – 3
-- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 3
 
 ## Ugyldige place-referanser
 
@@ -238,7 +238,7 @@ Generert: 2026-05-31T22:40:03.625Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 107 flere
+- ... 118 flere
 
 ## Anbefalt første people-batch
 
