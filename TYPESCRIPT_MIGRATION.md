@@ -523,6 +523,17 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
 - AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
 
+## Phase 71: narrow civicationRoleStarter stability typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/civicationRoleStarter.js` after the Phase 66 audit / PR #723, Phase 67 / PR #725, Phase 68 / PR #726, Phase 69 / PR #729, Phase 70 / PR #731, the Phase 71 preflight audit / PR #732, and the baseline repair / PR #733.
+- Before the change the file held four diagnostics: `civicationRoleStarter.js(149,26)` (`TS2339`, `stability` on `unknown`), `civicationRoleStarter.js(161,16)` (`TS2339`, `window.CivicationActivePositionRecovery`), `civicationRoleStarter.js(162,14)` (`TS2339`, `window.CivicationActivePositionRecovery`), and `civicationRoleStarter.js(174,10)` (`TS2551`, `window.CivicationRoleStarter`).
+- Annotated the existing `api.getState ? api.getState() : {}` binding inside `startRole()` with the existing-read shape `{ stability?: unknown }` (line 141), so the `state.stability` read on line 149 resolves instead of reading off `unknown`.
+- Removed the local `TS2339` `stability`-on-`unknown` property-access diagnostic without changing runtime behavior — the `state.stability || "STABLE"` read and fallback are byte-for-byte preserved.
+- The remaining diagnostics were left standing because `window.CivicationActivePositionRecovery` and `window.CivicationRoleStarter` are global/window-shape errors that would require schema/global or runtime declarations outside this narrow phase.
+- Runtime logic, role-starter logic, active-position logic, state flow, mail-runtime init, event flow, task flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, `CiviMailPlanBridge`, `CivicationRoleStarter`, or `CivicationActivePositionRecovery`.
+- AHA PR #635, the place/emne track, the `js/ui/**` track, and the Lesespor/Leksikon track were not mixed in.
+
 ## Phase 70: narrow dayFactionMailScoring active faction typecheck pass
 
 - Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayFactionMailScoring.js` after the Phase 66 audit / PR #723, Phase 67 / PR #725, Phase 68 / PR #726, and Phase 69 / PR #729.

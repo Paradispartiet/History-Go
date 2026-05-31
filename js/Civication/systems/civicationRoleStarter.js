@@ -138,7 +138,7 @@
 
     var role = Object.assign({}, ROLES[roleKey]);
     var planId = ROLE_TO_PLAN[roleKey];
-    var state = api.getState ? api.getState() : {};
+    var state = /** @type {{ stability?: unknown }} */ (api.getState ? api.getState() : {});
 
     if (typeof api.setActivePosition === "function") api.setActivePosition(role);
 
