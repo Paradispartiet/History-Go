@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-25T11:45:05.500Z",
+  "generatedAt": "2026-05-31T11:46:18.630Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -7,35 +7,14 @@
   },
   "summary": {
     "peopleFilesRead": 20,
-    "peopleRead": 225,
-    "peopleWithInvalidRefs": 9,
-    "invalidRefs": 16,
-    "uniqueInvalidPlaceIds": 12,
+    "peopleRead": 226,
+    "peopleWithInvalidRefs": 8,
+    "invalidRefs": 15,
+    "uniqueInvalidPlaceIds": 11,
     "peopleWithoutValidPlace": 19,
-    "duplicateInternalPlaceRefs": 199
+    "duplicateInternalPlaceRefs": 200
   },
   "invalidRefsGrouped": [
-    {
-      "sourceFile": "data/people/people_by.json",
-      "people": [
-        {
-          "personId": "christian_heinrich_grosch",
-          "personName": "Christian Heinrich Grosch",
-          "invalidPlaceIds": [
-            "botanisk_hage"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_by.json",
-              "personId": "christian_heinrich_grosch",
-              "personName": "Christian Heinrich Grosch",
-              "field": "places[2]",
-              "invalidPlaceId": "botanisk_hage"
-            }
-          ]
-        }
-      ]
-    },
     {
       "sourceFile": "data/people/people_historie.json",
       "people": [
@@ -283,16 +262,6 @@
       "peopleCount": 1,
       "sourceFiles": [
         "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "botanisk_hage",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_by.json"
       ],
       "classification": "missing_place_candidate",
       "suggestions": []
@@ -2630,6 +2599,17 @@
       ]
     },
     {
+      "sourceFile": "data/people/film_tv/oslo/people_film_tv_oslo.json",
+      "personId": "kjersti_holmen",
+      "personName": "Kjersti Holmen",
+      "placeId": "cinemateket_oslo",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
       "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
       "personId": "jan_garbarek",
       "personName": "Jan Garbarek",
@@ -2717,12 +2697,6 @@
     },
     {
       "invalidPlaceId": "bjornson_bolig",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "botanisk_hage",
       "classification": "missing_place_candidate",
       "occurrences": 1,
       "suggestions": []
