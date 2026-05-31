@@ -44,7 +44,9 @@
   }
 
   function getActiveFaction() {
-    const state = window.CivicationState?.getState?.() || {};
+    const state = /** @type {{ activeFaction?: unknown }} */ (
+      window.CivicationState?.getState?.() || {}
+    );
     return normStr(state?.activeFaction);
   }
 

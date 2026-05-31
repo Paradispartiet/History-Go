@@ -523,6 +523,17 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
 - AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
 
+## Phase 70: narrow dayFactionMailScoring active faction typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayFactionMailScoring.js` after the Phase 66 audit / PR #723, Phase 67 / PR #725, Phase 68 / PR #726, and Phase 69 / PR #729.
+- Before the change the file held four `TS2339` diagnostics: `dayFactionMailScoring.js(41,24)` (`window.CivicationFactionConflictSystem`), `dayFactionMailScoring.js(48,27)` (`activeFaction` on `unknown`), `dayFactionMailScoring.js(92,27)` (`window.CiviMailPlanBridge`), and `dayFactionMailScoring.js(112,10)` (`window.CivicationFactionMailScoring`).
+- Annotated the `window.CivicationState?.getState?.() || {}` binding inside `getActiveFaction()` with the existing-read shape `{ activeFaction?: unknown }` (line 47), so the `state?.activeFaction` read on line 50 resolves instead of reading off `unknown`.
+- Removed the local `TS2339` `activeFaction`-on-`unknown` property-access diagnostic (`dayFactionMailScoring.js(48,27)`) without changing runtime behavior — the `normStr(state?.activeFaction)` read is byte-for-byte preserved.
+- The three remaining `TS2339` diagnostics — `window.CivicationFactionConflictSystem`, `window.CiviMailPlanBridge`, and `window.CivicationFactionMailScoring` — were left standing because they are global/window-shape errors that would require schema/global, bridge, or runtime changes outside this narrow pass.
+- Runtime logic, scoring logic, faction logic, bridge-patching, mail-sorting, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, `CiviMailPlanBridge`, `CivicationFactionConflictSystem`, or `CivicationFactionMailScoring`.
+- AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
+
 ## Phase 69: narrow dayEvents day-end state typecheck pass
 
 - Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayEvents.js` after the Phase 66 audit / PR #723, Phase 67 / PR #725, and Phase 68 / PR #726.
