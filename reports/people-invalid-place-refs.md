@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-31T11:46:18.630Z
+Generated: 2026-05-31T21:52:24.517Z
 
 ## Sammendrag
-- People-filer lest: **20**
+- People-filer lest: **21**
 - People lest: **226**
 - People med ugyldige refs: **8**
 - Ugyldige refs: **15**
 - Unike ugyldige placeId-er: **11**
-- People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **200**
+- People uten gyldig sted: **15**
+- Duplikate interne place-referanser: **204**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_historie.json
@@ -78,10 +78,6 @@ Generated: 2026-05-31T11:46:18.630Z
 - data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke)
 - data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig)
 - data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm)
-- data/people/people_populaerkultur.json :: bard_tufte_johansen (Bård Tufte Johansen)
-- data/people/people_populaerkultur.json :: harald_eia (Harald Eia)
-- data/people/people_populaerkultur.json :: else_kass_furuseth (Else Kåss Furuseth)
-- data/people/people_populaerkultur.json :: kristoffer_olsen (Kristoffer Olsen)
 
 ## Duplikate place-referanser inne i people
 - data/people/people_by.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
@@ -284,6 +280,10 @@ Generated: 2026-05-31T11:46:18.630Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: mari_boine (Mari Boine) -> rockefeller x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: joachim_nielsen (Joachim Nielsen) -> rockefeller x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: morten_harket (Morten Harket) -> sentrum_scene x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: kristoffer_olsen (Kristoffer Olsen) -> latter x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: else_kass_furuseth (Else Kåss Furuseth) -> latter x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: bard_tufte_johansen (Bård Tufte Johansen) -> chateau_neuf x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: harald_eia (Harald Eia) -> chateau_neuf x2
 
 ## Anbefalt neste ryddebatch
 - grotten_utsikt (missing_place_candidate, 3 treff)
