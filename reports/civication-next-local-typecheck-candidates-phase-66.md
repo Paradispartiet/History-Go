@@ -1,40 +1,37 @@
-# Phase 66 — Civication next local typecheck candidates audit
+# Phase 66 — audit next Civication local typecheck candidates
 
 ## Status
 
-Audit-only Phase 66 after Phase 65 / PR #720 (`js/Civication/systems/day/dayConsequences.js`) is complete. The working baseline still matches the expected post-#720 numbers, and this report identifies one narrow local candidate for Phase 67 without changing runtime code.
+Phase 66 is an audit-only pass after Phase 65 / PR #720, which targeted `js/Civication/systems/day/dayConsequences.js`. No JavaScript, runtime behavior, schemas/globals, data, AHA files, UI, CSS, HTML, package files, workflow files, manifest files, tests, `TYPESCRIPT_MIGRATION.md`, or baseline files are intentionally changed by this phase.
 
-No JavaScript code, schemas/globals, data, AHA, UI implementation, CSS, HTML, workflows, package files, manifest files, tests, `TYPESCRIPT_MIGRATION.md`, or the tracked baseline report were changed by this phase.
-
-Untracked `node_modules/` was present at start. It is excluded by `tsconfig.json` and was not deleted or modified for this audit.
+Recommended Phase 67 target: **`js/Civication/systems/day/dayProgressionController.js`**.
 
 ## Baseline used
 
-`npm run typecheck:report` regenerated `reports/typecheck-baseline-report.md` with only the timestamp changed. The reported diagnostic counts matched the required post-#720 baseline, so the generated timestamp-only report change was reverted and the baseline file is not part of this diff.
+`npm run typecheck:report` was run before the audit. `reports/typecheck-baseline-report.md` matched the requested post-Phase-65 / PR #720 baseline values:
 
-Expected and observed baseline:
+- Total diagnostics: 1873
+- Files with diagnostics: 191
+- `other`: 579
+- `js/ui/**`: 516
+- `js/Civication/**`: 464
+- `js/Civication/ui/CivicationUI.js`: 106
+- `js/Civication/ui/CivicationMiniSectionsUI.js`: 22
+- `js/Civication/core/civicationEventEngine.js`: 23
+- `js/Civication/core/civicationEconomyEngine.js`: 0
+- `js/profile.js`: 83
+- `js/state/**`: 16
+- TS2339: 1522
+- TS2551: 137
+- TS2304: 70
+- TS2322: 20
+- TS2349: 14
 
-| Metric | Count |
-| --- | ---: |
-| Total diagnostic lines | 1873 |
-| Files with diagnostics | 191 |
-| `other` | 579 |
-| `js/ui/**` | 516 |
-| `js/Civication/**` | 464 |
-| `js/Civication/ui/CivicationUI.js` | 106 |
-| `js/Civication/ui/CivicationMiniSectionsUI.js` | 22 |
-| `js/Civication/core/civicationEventEngine.js` | 23 |
-| `js/Civication/core/civicationEconomyEngine.js` | 0 |
-| `js/profile.js` | 83 |
-| `js/state/**` | 16 |
-| `TS2339` | 1522 |
-| `TS2551` | 137 |
-| `TS2322` | 20 |
-| `TS2349` | 14 |
+The Civication-only capture contained 464 diagnostic lines.
 
 ## Commands run
 
-```sh
+```bash
 git status --porcelain=v1
 git status --porcelain=v1 --untracked-files=no
 git log -1 --oneline
@@ -44,125 +41,117 @@ test -f reports/civication-next-local-typecheck-candidates-phase-62.md
 test -f js/Civication/systems/day/dayConsequences.js
 cat tsconfig.json | sed -n '1,220p'
 npm run typecheck:report
-sed -n '1,220p' reports/typecheck-baseline-report.md
-git diff -- reports/typecheck-baseline-report.md
-git checkout -- reports/typecheck-baseline-report.md
 npm run typecheck 2>&1 | grep "js/Civication/" > /tmp/civication-typecheck-phase-66.txt || true
 wc -l /tmp/civication-typecheck-phase-66.txt
-python3 - <<'PY'
-# parsed /tmp/civication-typecheck-phase-66.txt for file and error-code counts
-PY
-grep -F 'js/Civication/systems/day/dayProgressionController.js' /tmp/civication-typecheck-phase-66.txt
-grep -F 'js/Civication/systems/day/dayConsequencesUI.js' /tmp/civication-typecheck-phase-66.txt
-grep -F 'js/Civication/systems/civicationDailyTaskGates.js' /tmp/civication-typecheck-phase-66.txt
-grep -F 'js/Civication/systems/day/dayPatches.js' /tmp/civication-typecheck-phase-66.txt
-nl -ba js/Civication/systems/day/dayProgressionController.js | sed -n '104,132p'
-nl -ba js/Civication/systems/day/dayConsequencesUI.js | sed -n '1,95p'
-nl -ba js/Civication/systems/civicationMailRuntime.js | sed -n '680,745p'
-nl -ba js/Civication/systems/day/dayContacts.js | sed -n '64,72p'
-nl -ba js/Civication/systems/day/dayEvents.js | sed -n '372,384p'
-nl -ba js/Civication/systems/day/dayFactionMailScoring.js | sed -n '40,52p'
+git diff --name-only
 ```
 
-## Top Civication files with diagnostics
+Start-control commit: `15c85c9 Phase 66 audit Civication local typecheck candidates`.
 
-Full Civication diagnostic extraction found 464 lines across 75 files. Top files by count:
+Start-control note: `node_modules/` was present as an untracked directory. It was not deleted or modified; `tsconfig.json` includes only `js/**/*.js`, `scripts/**/*.js`, root `*.js`, and schema paths while explicitly excluding `node_modules`, and the tracked tree was clean before the report generation step.
 
-| Diagnostics | File | Audit classification |
-| ---: | --- | --- |
-| 106 | `js/Civication/ui/CivicationUI.js` | Hotspot; wait |
-| 23 | `js/Civication/core/civicationEventEngine.js` | Hotspot/globals; wait |
-| 22 | `js/Civication/ui/CivicationMiniSectionsUI.js` | Hotspot; wait |
-| 18 | `js/Civication/ui/CivicationDashboardUI.js` | UI/globals plus local unknowns; wait |
-| 18 | `js/Civication/ui/CivicationMap.js` | Data globals and DOM narrowing; wait |
-| 15 | `js/Civication/systems/civicationDailyMailBuilder.js` | Mail/task globals plus real payload-shape error; wait |
-| 14 | `js/Civication/systems/day/dayPatches.js` | Mixed globals, function contract, and local unknowns; wait |
-| 13 | `js/Civication/ui/CivicationInboxTopActionUI.js` | UI/globals/DOM; wait |
-| 11 | `js/Civication/systems/day/dayConsequencesUI.js` | Local unknowns exist, but wrapper typing also present; second-tier candidate |
-| 10 | `js/Civication/systems/civicationMailRuntime.js` | Mostly globals plus two local state fields; wait |
-| 10 | `js/Civication/systems/day/dayRuntimeDebugPanel.js` | Runtime debug globals plus function property marker; wait |
-| 9 | `js/Civication/ui/CivicationSectionsUI.js` | UI local unknowns plus global export; wait |
-| 8 | `js/Civication/systems/civicationCareerOutcomeRuntime.js` | Mail/EventEngine globals and TS2551; wait |
-| 8 | `js/Civication/systems/civicationDailyTaskGates.js` | Mail/task/EventEngine globals and TS2551; wait |
-| 8 | `js/Civication/ui/CivicationMapModel.js` | UI/model diagnostics; not selected |
-| 8 | `js/Civication/ui/CivicationSystemMap.js` | UI/map diagnostics; not selected |
-| 6 | `js/Civication/systems/day/dayConsequences.js` | Explicitly out of scope; do not touch |
-| 4 | `js/Civication/systems/day/dayProgressionController.js` | Best narrow local candidate despite two remaining globals |
+## Top Civication files by diagnostics
+
+| Diagnostics | File |
+| ---: | --- |
+| 106 | `js/Civication/ui/CivicationUI.js` |
+| 23 | `js/Civication/core/civicationEventEngine.js` |
+| 22 | `js/Civication/ui/CivicationMiniSectionsUI.js` |
+| 18 | `js/Civication/ui/CivicationDashboardUI.js` |
+| 18 | `js/Civication/ui/CivicationMap.js` |
+| 15 | `js/Civication/systems/civicationDailyMailBuilder.js` |
+| 14 | `js/Civication/systems/day/dayPatches.js` |
+| 13 | `js/Civication/ui/CivicationInboxTopActionUI.js` |
+| 11 | `js/Civication/systems/day/dayConsequencesUI.js` |
+| 10 | `js/Civication/systems/civicationMailRuntime.js` |
+| 10 | `js/Civication/systems/day/dayRuntimeDebugPanel.js` |
+| 9 | `js/Civication/ui/CivicationSectionsUI.js` |
+| 8 | `js/Civication/systems/civicationCareerOutcomeRuntime.js` |
+| 8 | `js/Civication/systems/civicationDailyTaskGates.js` |
+| 8 | `js/Civication/ui/CivicationMapModel.js` |
+| 8 | `js/Civication/ui/CivicationSystemMap.js` |
+| 6 | `js/Civication/core/civicationState.js` |
+| 6 | `js/Civication/systems/civicationBrandJobProgression.js` |
+| 6 | `js/Civication/systems/day/dayConsequences.js` |
+| 6 | `js/Civication/utils/storyResolver.js` |
 
 ## Local candidates
 
-These diagnostics look like likely local JSDoc/cast cleanups because the current code already treats the values as objects/arrays/state records and uses guarded optional access. They should still be handled in a later code phase, not in this audit.
+These diagnostics look like possible local JSDoc/cast candidates because the failing access is on an `unknown` value, a local response/status object, or a value already treated by existing code as a structured object/array. They do not require schema/global declarations or runtime semantics to investigate further.
 
-| File | Line | Code | Diagnostic | Why it looks local | Recommended later phase |
+| File | Line | Error | Diagnostic | Why it looks local | Recommended later phase |
 | --- | ---: | --- | --- | --- | --- |
-| `js/Civication/systems/day/dayProgressionController.js` | 126 | TS2339 | `Property 'status' does not exist on type 'unknown'.` | `findInboxItemForRow()` returns an inbox element from `window.CivicationState?.getInbox?.()` after an `Array.isArray` guard, and the same function immediately reads `item?.event?.id` / `item?.id`; a local return/item typedef refinement should make `status` visible without runtime changes. | **Phase 67 recommended target** |
-| `js/Civication/systems/day/dayProgressionController.js` | 130 | TS2339 | `Property 'resolved' does not exist on type 'unknown'.` | Same local inbox-item path as line 126. Existing logic already checks `inboxItem?.event?.resolved`; a local `event` shape or cast is likely sufficient. | **Phase 67 recommended target** |
-| `js/Civication/systems/day/dayConsequencesUI.js` | 12 | TS2339 | `Property 'career_id' does not exist on type 'unknown'.` | `getActivePosition()` is treated as an active-position record. Local state/position typedef would likely clear it, but this file also has wrapper typing diagnostics at lines 128/131/137. | Phase 68+ after `dayProgressionController` |
-| `js/Civication/systems/day/dayConsequencesUI.js` | 75-76 | TS2339 | `Property 'trust' does not exist on type 'unknown'.` | `snap?.psyche` is used as a metrics record; local snapshot/psyche typedefs would likely be enough. | Phase 68+ after wrapper audit |
-| `js/Civication/systems/day/dayConsequencesUI.js` | 83 | TS2339 | `Property 'flags' does not exist on type 'unknown'.` | `snap?.branch` is already treated as a mail branch record with `flags`; local branch typedef likely enough. | Phase 68+ after wrapper audit |
-| `js/Civication/systems/day/dayConsequencesUI.js` | 87-90 | TS2339 | `Property 'integrity'/'visibility'/'economicRoom'/'autonomy' does not exist on type 'unknown'.` | Same local snapshot/psyche metrics record as the trust accesses. | Phase 68+ after wrapper audit |
-| `js/Civication/systems/civicationMailRuntime.js` | 717-718 | TS2339 | `Property 'mail_plan_progress'/'mail_system' does not exist on type 'unknown'.` | `inspect()` reads from the existing state object and returns a debug/report object; a local state record cast may be enough. The surrounding file is still dominated by globals and mail/task dependencies, so it is not the next safest file. | Later mail-runtime phase |
-| `js/Civication/systems/day/dayContacts.js` | 67 | TS2339 | `Property 'career_id' does not exist on type 'unknown'.` | Single active-position field access through `CivicationState`; likely local active-position cast only. | Small later day-system cleanup |
-| `js/Civication/systems/day/dayEvents.js` | 380-381 | TS2339 | `Property 'score'/'stability' does not exist on type 'unknown'.` | Local `getState()` record read with simple scalar defaults. Likely local state typedef/cast only. | Small later day-system cleanup |
-| `js/Civication/systems/day/dayFactionMailScoring.js` | 48 | TS2339 | `Property 'activeFaction' does not exist on type 'unknown'.` | Local `getState()` record read and normalized string. | Small later day-system cleanup |
-| `js/Civication/systems/day/dayPatches.js` | 687, 763 | TS2339 | `Property 'complete'/'career_id' does not exist on type 'unknown'.` | These individual accesses are local-looking, but the file also has globals, `answer` function-contract diagnostics, and TS2322. | Wait; do not split inside Phase 67 |
-| `js/Civication/ui/CivicationDashboardUI.js` | 126, 137, 150, 191, 218, 220 | TS2339 | `id`, `career_id`, `home`, `event`, `title`, `career_name` on `unknown`. | UI data-record casts may be local, but the file mixes UI globals and dashboard integrations. | Later UI-specific phase only |
+| `js/Civication/systems/day/dayProgressionController.js` | 126 | TS2339 | Property `status` does not exist on type `unknown`. | `findInboxItemForRow()` already returns a local inbox item shape, and the existing code reads `status` only for normalization/comparison. A local inbox-item typedef/cast should describe the object without runtime changes. | **Phase 67** |
+| `js/Civication/systems/day/dayProgressionController.js` | 130 | TS2339 | Property `resolved` does not exist on type `unknown`. | Same local inbox item/event object as line 126; the code only checks a boolean-like resolved flag. | **Phase 67** |
+| `js/Civication/systems/day/dayConsequencesUI.js` | 12 | TS2339 | Property `career_id` does not exist on type `unknown`. | Active-position access is immediately normalized as a local career id string; a local active-position typedef/cast looks mechanical. | Later day UI cleanup after wrapper diagnostics are separated |
+| `js/Civication/systems/day/dayConsequencesUI.js` | 75 | TS2339 | Property `trust` does not exist on type `unknown`. | Snapshot data is already consumed as a local psyche snapshot object with trust/integrity/visibility/economic/autonomy fields. | Later day UI cleanup after wrapper diagnostics are separated |
+| `js/Civication/systems/day/dayConsequencesUI.js` | 83 | TS2339 | Property `flags` does not exist on type `unknown`. | Mail branch state has a local fallback object with `flags`, so a local branch-state typedef/cast should be enough in isolation. | Later day UI cleanup after wrapper diagnostics are separated |
+| `js/Civication/systems/civicationMailRuntime.js` | 717 | TS2339 | Property `mail_plan_progress` does not exist on type `unknown`. | `getState()` is used as a local state bag and these are direct state fields; a local state typedef could likely cover them. | Later mail-runtime cleanup only if globals remain out of scope |
+| `js/Civication/systems/civicationMailRuntime.js` | 718 | TS2339 | Property `mail_system` does not exist on type `unknown`. | Same local state bag as line 717. | Later mail-runtime cleanup only if globals remain out of scope |
+| `js/Civication/systems/civicationRoleStarter.js` | 149 | TS2339 | Property `stability` does not exist on type `unknown`. | Looks like a local outcome/state object read for a scalar field; likely local JSDoc/cast once the surrounding file is checked. | Later small systems cleanup |
+| `js/Civication/systems/day/dayEvents.js` | 380 | TS2339 | Property `score` does not exist on type `unknown`. | Existing code treats the value as an event scoring object; likely local object-shape JSDoc if no payload contract issue appears nearby. | Later day-events cleanup |
+| `js/Civication/systems/day/dayEvents.js` | 381 | TS2339 | Property `stability` does not exist on type `unknown`. | Same local scoring object as line 380. | Later day-events cleanup |
+| `js/Civication/systems/day/dayContacts.js` | 67 | TS2339 | Property `career_id` does not exist on type `unknown`. | Active-position style career-id read; likely local active-position typedef/cast. | Later small day-system cleanup |
+| `js/Civication/systems/day/dayFactionMailScoring.js` | 48 | TS2339 | Property `activeFaction` does not exist on type `unknown`. | Local state/context object field access; likely local if the surrounding scoring API is already runtime-stable. | Later faction scoring cleanup |
+| `js/Civication/ui/CivicationDashboardUI.js` | 126 | TS2339 | Property `id` does not exist on type `unknown`. | In isolation this is a local offer/item object read, but the file also has UI/global diagnostics. | Later dedicated UI pass, not Phase 67 |
 
 ## Diagnostics that should wait
 
-| File | Line | Code | Diagnostic | Why it should not be touched now |
+| File | Line | Error | Diagnostic | Why not touch now |
 | --- | ---: | --- | --- | --- |
-| `js/Civication/core/civicationEventEngine.js` | 160-201, 1533-1534 | TS2339 | `CivicationMailEngine` missing on `Window & typeof globalThis`. | Explicitly forbidden: do not declare `CivicationMailEngine`; previous dry-run showed TS2551 regression. Also this is a major hotspot. |
-| `js/Civication/core/civicationEventEngine.js` | 1004, 1939 | TS2339 | `CivicationTaskEngine` missing on `Window & typeof globalThis`. | Explicitly forbidden: do not declare `CivicationTaskEngine`; global declaration risk. |
-| `js/Civication/core/civicationEventEngine.js` | 42 | TS2362/TS2363 | Arithmetic operand typing. | Core event-engine hotspot; not a narrow local unknown-property cleanup. |
-| `js/Civication/core/civicationJobs.js` | 323 | TS2769 | No overload matches this call. | Payload/API-shape error; requires contract understanding rather than local cast. |
-| `js/Civication/core/civicationJobs.js` | 429, 448 | TS2345 | Offer payload missing `brand_id`, `brand_name`, `brand_type`, `brand_group`, `sector`, `place_id`, `employer_context`. | Real payload-shape/contract diagnostic; should wait. |
-| `js/Civication/systems/day/dayPatches.js` | 648, 688, 735, 774 | TS2339 | `getPendingEvent` / `onAppOpen` missing on type `answer`. | Function-contract shape, not a simple local response-field cast. |
-| `js/Civication/systems/day/dayPatches.js` | 716, 785, 920 | TS2339 | `CivicationTaskEngine` missing on `Window & typeof globalThis`. | Explicitly forbidden global/task declaration area. |
-| `js/Civication/systems/day/dayPatches.js` | 845 | TS2322 | `Type 'boolean' is not assignable to type 'CiviFn'.` | Real function/property contract diagnostic. |
-| `js/Civication/systems/day/dayConsequences.js` | 18, 30, 31, 309, 311 | TS2339 | Remaining globals plus local-looking fields in the Phase 65 target. | Explicitly out of scope for Phase 66/67 selection; do not touch `dayConsequences.js`. |
-| `js/Civication/systems/civicationDailyMailBuilder.js` | 95, 1016, 1027, 1078-1120, 1371 | TS2339 | `CivicationMailEngine` / `CivicationTaskEngine` globals. | Explicitly risky globals and not local. |
-| `js/Civication/systems/civicationDailyMailBuilder.js` | 1260 | TS2322 | Optional `date`, `phase`, `phase_label`, `advances_role_plan` assigned to a required payload type. | Real payload contract; wait. |
-| `js/Civication/systems/civicationCareerOutcomeRuntime.js` | 494, 523, 577, 578 | TS2551 | `CivicationEventEngine` missing; suggestion says `CivicationEconomyEngine`. | TS2551 global-name/suggestion area; do not touch in local-cast phase. |
-| `js/Civication/systems/civicationDailyTaskGates.js` | 308, 314, 343, 386, 426-428 | TS2339/TS2551 | Task/mail/builder/EventEngine globals. | Dominated by globals and explicitly sensitive task/mail engines. |
-| `js/Civication/ui/CivicationMap.js` | 6, 16-27, 49-50, 73, 95-96 | TS2339/TS2362/TS2363 | Map data globals and arithmetic typing. | Data/global declarations and UI/map model area; wait. |
-| `js/Civication/ui/CivicationInboxTopActionUI.js` | 194, 197 | TS2339 | `onclick` on `Element`, `closest` on `EventTarget`. | DOM element narrowing in a UI file; not selected for local system phase. |
-| `js/Civication/systems/day/dayRuntimeDebugPanel.js` | 296-297 | TS2339 | `_t` missing on type `() => void`. | Function property marker/debug timer typing; separate debug-panel pass, not Phase 67. |
+| `js/Civication/core/civicationEventEngine.js` | 160 | TS2339 | Property `CivicationMailEngine` does not exist on type `Window & typeof globalThis`. | Global/window declaration area; explicitly do not declare `CivicationMailEngine`. |
+| `js/Civication/core/civicationEventEngine.js` | 1004 | TS2339 | Property `CivicationTaskEngine` does not exist on type `Window & typeof globalThis`. | Global/window declaration area; explicitly do not declare `CivicationTaskEngine`. |
+| `js/Civication/core/civicationEventEngine.js` | 2069 | TS2551 | Property `CivicationEventEngine` does not exist on type `Window & typeof globalThis`. Did you mean `CivicationEconomyEngine`? | TS2551 global-name suggestion; previous dry-runs warned against this category. |
+| `js/Civication/core/civicationJobs.js` | 323 | TS2769 | No overload matches this call. | Payload/object-shape mismatch; likely requires contract/data semantics rather than a local cast. |
+| `js/Civication/core/civicationJobs.js` | 429 | TS2345 | Argument is missing brand/place/employer fields required by the parameter type. | Real payload-shape contract issue; should not be hidden in a local migration. |
+| `js/Civication/core/civicationJobs.js` | 448 | TS2345 | Argument is missing brand/place/employer fields required by the parameter type. | Same payload-shape contract issue as line 429. |
+| `js/Civication/systems/day/dayPatches.js` | 373 | TS2551 | Property `CivicationEventEngine` does not exist on type `Window & typeof globalThis`. Did you mean `CivicationEconomyEngine`? | TS2551 global-name suggestion in a mixed patch file. |
+| `js/Civication/systems/day/dayPatches.js` | 648 | TS2339 | Property `getPendingEvent` does not exist on type `answer`. | Existing `answer` type appears wrong or too narrow; this is API-shape review, not a simple `unknown` access. |
+| `js/Civication/systems/day/dayPatches.js` | 687 | TS2339 | Property `complete` does not exist on type `unknown`. | Local-looking by itself, but this file is a hotspot with globals, `answer` API-shape diagnostics, and function-contract issues. |
+| `js/Civication/systems/day/dayPatches.js` | 845 | TS2322 | Type `boolean` is not assignable to type `CiviFn`. | Function/payload contract mismatch; not safe for a local property-access-only phase. |
+| `js/Civication/systems/day/dayConsequences.js` | 18 | TS2339 | Property `role_scope` does not exist on type `unknown`. | Phase 65 / PR #720 just targeted this file; do not touch it in the next audit-selected phase. |
+| `js/Civication/systems/day/dayConsequencesUI.js` | 128 | TS2339 | Property `__civiConsequencesWrapped` does not exist on type `never`. | Wrapper/function narrowing issue; riskier than simple unknown property access. |
+| `js/Civication/systems/day/dayConsequencesUI.js` | 137 | TS2740 | Function wrapper object is missing `Window` properties. | Function/window shape mismatch; not a simple local response-object cast. |
+| `js/Civication/systems/day/dayRuntimeDebugPanel.js` | 59 | TS2339 | Property `CiviMailPlanBridge` does not exist on type `Window & typeof globalThis`. | File is dominated by globals/window declarations. |
+| `js/Civication/systems/day/dayRuntimeDebugPanel.js` | 296 | TS2339 | Property `_t` does not exist on type `() => void`. | Function augmentation/timer handle shape, not a local response object. |
+| `js/Civication/systems/civicationCareerOutcomeRuntime.js` | 494 | TS2551 | Property `CivicationEventEngine` does not exist on type `Window & typeof globalThis`. Did you mean `CivicationEconomyEngine`? | TS2551 global-name suggestion; do not address through globals/schema here. |
+| `js/Civication/systems/civicationDailyTaskGates.js` | 308 | TS2339 | Property `CivicationTaskEngine` does not exist on type `Window & typeof globalThis`. | Explicitly forbidden global family for this audit. |
+| `js/Civication/systems/civicationDailyMailBuilder.js` | 1260 | TS2322 | Local slot object has optional `date`/`phase` where required fields are expected. | Real object-contract mismatch; needs API-shape review. |
+| `js/Civication/ui/CivicationMap.js` | 13 | TS2339 | Property `getAttribute` does not exist on type `EventTarget`. | DOM element narrowing in a UI file; wait for a dedicated UI pass. |
+| `js/Civication/ui/CivicationDashboardUI.js` | 61 | TS2339 | Property `CivicationMiniSectionsUI` does not exist on type `Window & typeof globalThis`. | UI global/window declaration area; not a local system-file candidate. |
 
 ## High-risk / hotspot list
 
-- `js/Civication/ui/CivicationUI.js` — 106 diagnostics; large UI hotspot with many `unknown` reads mixed with broader UI/runtime shape issues.
-- `js/Civication/core/civicationEventEngine.js` — 23 diagnostics; core runtime/global hotspot and explicitly contains forbidden `CivicationMailEngine`/`CivicationTaskEngine` global diagnostics.
-- `js/Civication/ui/CivicationMiniSectionsUI.js` — 22 diagnostics; UI hotspot with many active-position/offer/home unknown reads.
-- `js/Civication/core/civicationJobs.js` — remaining diagnostics are TS2769/TS2345 payload-shape issues and should wait.
-- `js/Civication/systems/day/dayPatches.js` — mixed globals, function-contract diagnostics, TS2322, and a few local-looking unknowns; should wait.
-- `js/Civication/systems/civicationDailyMailBuilder.js` — mail/task globals and a real TS2322 payload-shape diagnostic.
-- `js/Civication/systems/civicationDailyTaskGates.js` — mail/task/EventEngine globals and TS2551 diagnostics.
-- `js/Civication/ui/CivicationDashboardUI.js`, `js/Civication/ui/CivicationMap.js`, `js/Civication/ui/CivicationInboxTopActionUI.js`, `js/Civication/ui/CivicationSectionsUI.js` — UI/global/DOM areas; do not use as the next system-local candidate.
-- Files dominated by `Window & typeof globalThis`, `typeof globalThis`, missing global declarations, TS2551 suggestions, or TS2304 should wait.
+Defer these for now:
+
+- `js/Civication/ui/CivicationUI.js` — 106 diagnostics; large UI hotspot with many unknown object, DOM, and global accesses.
+- `js/Civication/core/civicationEventEngine.js` — 23 diagnostics; core engine hotspot dominated by globals/window declarations, including mail/task engine globals that should not be declared here.
+- `js/Civication/ui/CivicationMiniSectionsUI.js` — 22 diagnostics; UI hotspot despite many local-looking unknown reads.
+- `js/Civication/ui/CivicationDashboardUI.js` — 18 diagnostics; mixed UI globals and unknown reads, better for a dedicated UI pass.
+- `js/Civication/ui/CivicationMap.js` — 18 diagnostics; map globals plus DOM/EventTarget narrowing and arithmetic issues.
+- `js/Civication/core/civicationJobs.js` — remaining diagnostics are `TS2769`/`TS2345` payload-form issues and should wait.
+- `js/Civication/systems/day/dayPatches.js` — mixed globals, `answer` API-shape diagnostics, `unknown` reads, and a `TS2322` function-contract issue.
+- `js/Civication/systems/day/dayRuntimeDebugPanel.js` — mostly globals/window declarations and function augmentation diagnostics.
+- `js/Civication/systems/civicationDailyTaskGates.js` — includes forbidden `CivicationTaskEngine`/`CivicationMailEngine` globals and TS2551 global suggestions.
+- `js/Civication/systems/civicationDailyMailBuilder.js` — mixed forbidden globals, TS2551 global suggestions, and a real `TS2322` slot object contract.
+- `js/Civication/systems/civicationCareerOutcomeRuntime.js` and `js/Civication/systems/civicationMailRuntime.js` — dominated by global/window/TS2551 diagnostics despite a few local-looking state reads.
+- `js/Civication/systems/day/dayConsequences.js` — just handled by Phase 65 / PR #720; do not select again for Phase 67.
 
 ## Phase 67 recommendation
 
-Recommended next concrete file for Phase 67:
+Pick **`js/Civication/systems/day/dayProgressionController.js`** for Phase 67.
 
-`js/Civication/systems/day/dayProgressionController.js`
+Why this is the safest next concrete candidate:
 
-Reason: it has only four diagnostics in the current Civication typecheck extraction. Two are global export/builder diagnostics that can be left alone, while the two local diagnostics at lines 126 and 130 are both caused by the same inbox-item shape inferred through `findInboxItemForRow()`. A narrow Phase 67 can target only that local inbox item/event typing with JSDoc or local casts, avoid runtime behavior changes, avoid schemas/globals, and avoid the explicitly forbidden `CivicationMailEngine` / `CivicationTaskEngine` declarations.
-
-Expected scope for Phase 67 if accepted:
-
-- Touch only `js/Civication/systems/day/dayProgressionController.js`.
-- Fix only the local `inboxItem?.event?.status` and `inboxItem?.event?.resolved` unknown-property diagnostics.
-- Do not attempt to declare globals or clear `window.CivicationDailyMailBuilder` / `window.CivicationDayProgression` in the same phase.
-- Re-run `npm run typecheck:report` and ensure the GitHub Actions workflow `Typecheck baseline report` remains the final control if it runs.
+1. It is outside the large UI/core hotspots and outside the forbidden Phase 63–65 files (`civicationDebateEngine.js`, `civicationMailEngine.js`, and `dayConsequences.js`).
+2. It has only 4 diagnostics total.
+3. The actionable local part is exactly 2 adjacent `TS2339` diagnostics on the same local inbox item/event shape: `status` at line 126 and `resolved` at line 130.
+4. The existing file already defines local `DayProgRecord`, `DayProgRuntimeItem`, and related typedefs, so a follow-up phase can likely add or reuse a narrow local inbox item/event typedef without runtime behavior changes.
+5. The two remaining diagnostics in the file are `Window & typeof globalThis` export/dependency globals (`CivicationDailyMailBuilder` and `CivicationDayProgression`). Phase 67 should either leave those untouched or use only local casts if needed; it should not edit `schemas/civication-globals.d.ts`.
+6. It does not require declaring `CivicationMailEngine` or `CivicationTaskEngine`, touching `CivicationCalendar?: any`, changing data, AHA, place/emne, Lesespor/Leksikon, CSS, HTML, packages, workflows, tests, or the baseline report.
 
 ## Explicit non-changes
 
-This audit did not change:
+This phase does not intentionally change any JS code, runtime behavior, schemas/globals, data, AHA files, UI, CSS, HTML, workflows, package files, manifest files, tests, `TYPESCRIPT_MIGRATION.md`, or `reports/typecheck-baseline-report.md`. The only intended diff is this audit report:
 
-- JS code or runtime behavior.
-- `schemas/civication-globals.d.ts` or any global declarations.
-- `reports/typecheck-baseline-report.md` in the final diff.
-- AHA files, place/emne files, Lesespor/Leksikon files, `data/fag`, or `data/places`.
-- UI/CSS/HTML implementation files.
-- Workflows, package files, manifest files, tests, or `TYPESCRIPT_MIGRATION.md`.
+- `reports/civication-next-local-typecheck-candidates-phase-66.md`
