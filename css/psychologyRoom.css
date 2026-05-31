@@ -268,3 +268,72 @@
     display: grid;
   }
 }
+
+.psychology-room-active-day {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(255, 171, 180, 0.45);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 154, 162, 0.1);
+}
+
+.psychology-room-day-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.psychology-room-mini-action {
+  display: grid;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7f1e8;
+  font: inherit;
+  text-align: left;
+}
+
+.psychology-room-mini-action strong,
+.psychology-room-mini-action span {
+  display: block;
+}
+
+.psychology-room-mini-action strong {
+  color: #ffabb4;
+}
+
+.psychology-room-mini-action span {
+  color: rgba(247, 241, 232, 0.72);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.psychology-room-mini-action:disabled {
+  opacity: 0.55;
+}
+
+.psychology-room-day-reflection,
+.psychology-room-path-context {
+  display: grid;
+  gap: 10px;
+}
+
+.psychology-room-path-context {
+  border-left: 3px solid #ffabb4;
+  margin: 0;
+  padding: 10px 0 10px 12px;
+  color: rgba(247, 241, 232, 0.8);
+}
+
+.psychology-room-day.is-active {
+  border-color: rgba(255, 171, 180, 0.45);
+}
+
+@media (max-width: 560px) {
+  .psychology-room-day-actions {
+    grid-template-columns: 1fr;
+  }
+}
