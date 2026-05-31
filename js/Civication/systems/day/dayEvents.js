@@ -376,6 +376,7 @@ function makeDayEndEvent() {
     "evening_done"
   ].filter((k) => !!flags[k]).length;
 
+  /** @type {{ score?: unknown, stability?: unknown }} */
   const state = window.CivicationState?.getState?.() || {};
   const score = Number(state.score || 0);
   const stability = String(state.stability || "STABLE");

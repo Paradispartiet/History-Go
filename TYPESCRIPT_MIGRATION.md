@@ -523,6 +523,16 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
 - AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
 
+## Phase 69: narrow dayEvents day-end state typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayEvents.js` after the Phase 66 audit / PR #723, Phase 67 / PR #725, and Phase 68 / PR #726.
+- Annotated the `window.CivicationState?.getState?.() || {}` binding inside `makeDayEndEvent()` with the existing-read shape `{ score?: unknown, stability?: unknown }` (line 379), so the `state.score` and `state.stability` reads resolve instead of reading off `unknown`.
+- Removed the two local `TS2339` property-access diagnostics — `dayEvents.js(380,30)` (`score` on `unknown`) and `dayEvents.js(381,34)` (`stability` on `unknown`) — without changing runtime behavior; the `Number(state.score || 0)` and `String(state.stability || "STABLE")` reads and fallbacks are byte-for-byte preserved.
+- No other local diagnostics existed in the file; there were no global/window or API-shape diagnostics to leave standing here.
+- Runtime logic, event logic, calendar logic, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
+- AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
+
 ## Phase 68: narrow dayContacts active career typecheck pass
 
 - Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayContacts.js` after the Phase 66 audit / PR #723 and Phase 67 / PR #725.
