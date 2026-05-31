@@ -99,7 +99,7 @@
 
   /**
    * @param {DayProgRuntimeItem} row
-   * @returns {DayProgRecord|null}
+   * @returns {DayProgRuntimeItem|null}
    */
   function findInboxItemForRow(row) {
     const rowId = norm(row?.id || row?.event?.id);
