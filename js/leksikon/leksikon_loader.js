@@ -259,6 +259,91 @@
     `;
   }
 
+
+  async function getStoriesForPlace(placeId) {
+    const id = norm(placeId);
+    const storiesApi = window["HGStories"];
+    if (!id || !storiesApi) return [];
+    try {
+      if (typeof storiesApi.init === "function") await storiesApi.init();
+      if (typeof storiesApi.getByPlace !== "function") return [];
+      const stories = storiesApi.getByPlace(id);
+      return Array.isArray(stories) ? stories : [];
+    } catch (err) {
+      console.warn("[HGLeksikon] Fortellinger kunne ikke lastes", err);
+      return [];
+    }
+  }
+
+  function renderStoriesSection(stories, place) {
+    const rows = Array.isArray(stories) ? stories : [];
+    return `
+      <article class="pc-leksikon-article">
+        ${renderBackHeader("hub", "Leksikon")}
+        <div class="pc-leksikon-kicker">Fortellinger</div>
+        <h2 class="hg-popup-name">Fortellinger for ${esc(place?.name || "dette stedet")}</h2>
+        <section class="pc-leksikon-section">
+          <div class="pc-leksikon-list">
+            ${rows.length ? rows.map((story) => {
+              const meta = [story?.type || "Fortelling", story?.year].map(norm).filter(Boolean).join(" · ");
+              const body = norm(story?.summary || story?.story);
+              return `
+                <article class="pc-leksikon-entry">
+                  <h3 class="pc-leksikon-entry-title">${esc(story?.title || story?.name || story?.id || "Fortelling")}</h3>
+                  ${meta ? `<div class="pc-leksikon-entry-meta">${esc(meta)}</div>` : ""}
+                  ${body ? `<p>${esc(body)}</p>` : ""}
+                </article>
+              `;
+            }).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen fortellinger for dette stedet ennå</span></div>`}
+          </div>
+        </section>
+      </article>
+    `;
+  }
+
+  function getWonderkammerEntriesForPlace(placeId) {
+    const id = norm(placeId);
+    const byPlace = window["WK_BY_PLACE"];
+    const rows = Array.isArray(byPlace?.[id]) ? byPlace[id] : [];
+    return rows
+      .map((entry) => ({
+        raw: entry,
+        id: norm(entry?.id),
+        title: norm(entry?.title || entry?.label || entry?.name || entry?.id),
+        chamber: norm(entry?.chamber || entry?.chamberTitle || entry?.group || entry?.category || entry?.type) || "Wonderkammer"
+      }))
+      .filter((entry) => entry.id);
+  }
+
+  function renderWonderkammerSection(entries, place) {
+    const rows = Array.isArray(entries) ? entries : [];
+    const groups = rows.reduce((acc, entry) => {
+      (acc[entry.chamber] ||= []).push(entry);
+      return acc;
+    }, Object.create(null));
+
+    return `
+      <article class="pc-leksikon-article">
+        ${renderBackHeader("hub", "Leksikon")}
+        <div class="pc-leksikon-kicker">Wonderkammer</div>
+        <h2 class="hg-popup-name">Wonderkammer for ${esc(place?.name || "dette stedet")}</h2>
+        <section class="pc-leksikon-section">
+          ${rows.length ? Object.entries(groups).map(([groupTitle, groupEntries]) => `
+            <div class="pc-leksikon-list" aria-label="${esc(groupTitle)}">
+              <h3>${esc(groupTitle)}</h3>
+              ${groupEntries.map((entry) => `
+                <button class="pc-leksikon-entry" type="button" data-wonderkammer-entry="${esc(entry.id)}">
+                  <span class="pc-leksikon-entry-title">${esc(entry.title || entry.id)}</span>
+                  <span class="pc-leksikon-entry-meta">Åpne Wonderkammer-entry</span>
+                </button>
+              `).join("")}
+            </div>
+          `).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen Wonderkammer-koblinger for dette stedet ennå</span></div>`}
+        </section>
+      </article>
+    `;
+  }
+
   function renderExternalLinks(place, article) {
     const links = normalizeExternalLinks(place, article);
     if (!links.length) return `<section class="pc-leksikon-section"><p>Ingen kilder eller lenker ennå.</p></section>`;
@@ -325,11 +410,10 @@
   }
 
   function normalizeSectionItems(article, place, sprakArticle) {
-    const persons = Array.isArray(article?.persons) ? article.persons : (Array.isArray(article?.people) ? article.people : []);
     const objects = Array.isArray(article?.objects) ? article.objects : (Array.isArray(article?.artifacts) ? article.artifacts : []);
     const sourceLinks = normalizeExternalLinks(place, article);
     const sprakEntries = Array.isArray(sprakArticle?.entries) ? sprakArticle.entries : [];
-    return { persons, objects, sourceLinks, sprakEntries };
+    return { objects, sourceLinks, sprakEntries };
   }
 
   function getTextSignals(entry) {
@@ -410,7 +494,6 @@
 
     const groups = {
       place: mainArticle ? [mainArticle] : [],
-      persons: [...sections.persons],
       objects: [...sections.objects],
       events: [],
       history: [],
@@ -447,6 +530,11 @@
 
   async function renderOverview(mainArticle, place, sprakArticle, allArticles) {
     const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
+    const placeId = norm(place?.id || mainArticle?.place_id);
+    const stories = await getStoriesForPlace(placeId);
+    const lesesporItems = getLesesporItemsForPlace(await ensureLesesporItems(), placeId);
+    const wonderkammerEntries = getWonderkammerEntriesForPlace(placeId);
+
     return `
       <article class="pc-leksikon-article">
         <div class="pc-leksikon-kicker">Leksikon</div>
@@ -454,10 +542,12 @@
         <section class="pc-leksikon-section">
           <div class="pc-leksikon-list">
             ${renderHubCard("Sted", "Hovedartikkel om stedet.", groups.place.length, "place", false)}
+            ${stories.length ? renderHubCard("Fortellinger", "Stedsspesifikke historier og korte fortellinger.", stories.length, "stories", true) : ""}
+            ${lesesporItems.length ? renderHubCard("Lesespor", "Kuraterte eksterne tekster knyttet til dette stedet.", lesesporItems.length, "lesespor", true) : ""}
+            ${wonderkammerEntries.length ? renderHubCard("Wonderkammer", "Kammeroppføringer og objekter knyttet til stedet.", wonderkammerEntries.length, "wonderkammer", true) : ""}
             ${groups.events.length ? renderHubCard("Arrangementer / idrettshistorie", "Stevner, rekorder, resultater og idrettshistoriske hendelser.", groups.events.length, "section", true, 'data-leksikon-section="events"') : ""}
             ${groups.history.length ? renderHubCard("Historie / bruksspor", "Tidligere bruk, kulturhistorie og flerbruksspor.", groups.history.length, "section", true, 'data-leksikon-section="history"') : ""}
             ${renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"')}
-            ${renderHubCard("Personer", "Personer knyttet til stedet.", groups.persons.length, "section", true, 'data-leksikon-section="persons"')}
             ${renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"')}
             ${renderHubCard("Kilder / lenker", "Kilder og relevante eksterne lenker.", groups.links.length, "links", true)}
           </div>
@@ -472,7 +562,6 @@
 
   function inferSectionItemSource(sectionType, item) {
     if (sectionType === "objects") return "object";
-    if (sectionType === "persons") return "person";
     if (sectionType === "sprak") return "sprak";
 
     const hasSprakSignals = Boolean(norm(item?.term) || norm(item?.meaning) || item?.linked_to || norm(item?.context));
@@ -486,7 +575,6 @@
       events: { title: "Arrangementer / idrettshistorie", items: groups.events },
       history: { title: "Historie / bruksspor", items: groups.history },
       objects: { title: "Objekter / anlegg", items: groups.objects },
-      persons: { title: "Personer", items: groups.persons },
       sprak: { title: "Språkleksikon", items: groups.sprak }
     };
     const config = map[sectionType];
@@ -518,13 +606,26 @@
       return renderSectionList(mainArticle, sectionType, groups);
     }
 
+
+    if (detailType === "stories") {
+      return renderStoriesSection(await getStoriesForPlace(place?.id || mainArticle?.place_id), place);
+    }
+
+    if (detailType === "lesespor") {
+      const items = await ensureLesesporItems();
+      return renderLesesporSection(items, { mode: "place", placeId: place?.id || mainArticle?.place_id, placeName: place?.name });
+    }
+
+    if (detailType === "wonderkammer") {
+      return renderWonderkammerSection(getWonderkammerEntriesForPlace(place?.id || mainArticle?.place_id), place);
+    }
+
     if (detailType === "entry") {
       const collection = sectionType ? (groups[sectionType] || []) : [];
       const entry = collection[idx];
       if (!entry) return `<div class="pc-empty">Fant ikke oppføringen.</div>`;
 
-      if (itemSource === "person") detailType = "person";
-      else if (itemSource === "object") detailType = "object";
+      if (itemSource === "object") detailType = "object";
       else if (itemSource === "sprak") detailType = "sprak";
       else detailType = "article";
 
@@ -535,19 +636,6 @@
       const backLabel = sectionType ? "Til seksjon" : "Leksikon";
       const backTarget = sectionType ? "section" : "hub";
 
-      if (detailType === "person") {
-        return `
-          <article class="pc-leksikon-article">
-            ${renderBackHeader(backTarget, backLabel)}
-            <div class="pc-leksikon-kicker">Person</div>
-            <h2 class="hg-popup-name">${esc(entry?.name || entry?.title || entry?.id || "Person")}</h2>
-            ${entry?.type ? `<p class="hg-popup-desc">${esc(entry.type)}</p>` : ""}
-            ${paragraphBlockHtml(entry?.desc || entry?.description || entry?.meaning)}
-            ${detailRow("Kontekst", entry?.context)}
-            ${tagListHtml(entry?.tags)}
-          </article>
-        `;
-      }
 
       if (detailType === "object") {
         return `
@@ -921,6 +1009,27 @@
       return;
     }
     void openPlace(currentLeksikonContext.placeId, currentLeksikonContext.index);
+  });
+
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const entryBtn = target?.closest("[data-wonderkammer-entry]");
+    if (!entryBtn) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const id = norm(entryBtn.getAttribute("data-wonderkammer-entry"));
+    if (!id) return;
+
+    const wonderkammerApi = window["Wonderkammer"];
+    const openWonderkammerEntry = window["openWonderkammerEntry"];
+    if (typeof wonderkammerApi?.openEntry === "function") {
+      wonderkammerApi.openEntry(id);
+    } else if (typeof openWonderkammerEntry === "function") {
+      openWonderkammerEntry(id);
+    } else {
+      window.showToast?.("Wonderkammer-handler ikke lastet");
+    }
   });
 
 

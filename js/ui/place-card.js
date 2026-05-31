@@ -184,61 +184,6 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   card.setAttribute("aria-label", "Vis quizkort");
 }
 
-function getPlaceCardLesespor(placeId) {
-  if (typeof window.getLesesporForPlace === "function") {
-    return window.getLesesporForPlace(placeId);
-  }
-
-  const id = String(placeId || "").trim();
-  if (!id || !window.LESESPOR_BY_PLACE) return [];
-  const rows = Array.isArray(window.LESESPOR_BY_PLACE[id]) ? window.LESESPOR_BY_PLACE[id] : [];
-  const seen = new Set();
-  return rows.filter(item => {
-    const itemId = String(item?.id || "").trim();
-    if (!itemId || seen.has(itemId)) return false;
-    seen.add(itemId);
-    return Array.isArray(item?.place_ids) && item.place_ids.some(pid => String(pid || "").trim() === id);
-  });
-}
-
-function renderPlaceCardLesesporStoryItems(placeId) {
-  const items = getPlaceCardLesespor(placeId);
-  if (!items.length) return "";
-
-  const renderMeta = (item) => [
-    item?.author,
-    item?.publication,
-    item?.year || (item?.date ? String(item.date).slice(0, 4) : ""),
-    item?.type,
-    item?.access
-  ]
-    .map(value => String(value || "").trim())
-    .filter(Boolean)
-    .map(escapePlaceCardHTML)
-    .join(" · ");
-
-  return items.map(item => {
-    const title = String(item?.title || "").trim();
-    const url = String(item?.url || "").trim();
-    const relevance = String(item?.relevance || "").trim();
-    const meta = renderMeta(item);
-
-    if (!title && !url) return "";
-
-    return `
-      <article class="pc-story pc-lesespor-story" data-lesespor="${escapePlaceCardHTML(item?.id || title || url)}">
-        <div class="pc-story-top">
-          <span class="pc-story-type">Lesespor</span>
-          ${meta ? `<span class="pc-story-year pc-lesespor-meta">${meta}</span>` : ""}
-        </div>
-        ${title ? `<div class="pc-story-title">${escapePlaceCardHTML(title)}</div>` : ""}
-        ${relevance ? `<div class="pc-story-text">${escapePlaceCardHTML(relevance)}</div>` : ""}
-        ${url ? `<a class="pc-lesespor-link" href="${escapePlaceCardHTML(url)}" target="_blank" rel="noopener noreferrer">Les teksten</a>` : ""}
-      </article>
-    `;
-  }).filter(Boolean).join("");
-}
-
 /**
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @returns {Promise<void>}
@@ -289,8 +234,6 @@ const lesesporEl = document.getElementById("pcLesespor");
 const peopleIcon          = document.getElementById("pcPeopleIcon");
 const natureIcon          = document.getElementById("pcNatureIcon");
 const badgesIcon          = document.getElementById("pcBadgesIcon");
-const storiesIcon         = document.getElementById("pcStoriesIcon");
-const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const brandsIcon          = document.getElementById("pcBrandsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
@@ -304,8 +247,6 @@ const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 const peopleEl          = document.getElementById("pcPeopleList");
 const natureEl          = document.getElementById("pcNatureList");
 const badgesEl          = document.getElementById("pcBadgesList");
-const storiesEl         = document.getElementById("pcStoriesList");
-const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
 const brandsEl          = document.getElementById("pcBrandsList");
 const leksikonEl        = document.getElementById("pcLeksikonList");
@@ -334,8 +275,6 @@ if (!card.dataset.pcIconsBound) {
     peopleEl?.classList.remove("is-open");
     natureEl?.classList.remove("is-open");
     badgesEl?.classList.remove("is-open");
-    storiesEl?.classList.remove("is-open");
-    wonderkammerEl?.classList.remove("is-open");
     civicationStoreEl?.classList.remove("is-open");
     brandsEl?.classList.remove("is-open");
     leksikonEl?.classList.remove("is-open");
@@ -451,8 +390,6 @@ iconsWrap?.addEventListener("click", (e) => {
 bindRoundPopup(peopleIcon, peopleEl, "People", "people");
 bindRoundPopup(natureIcon, natureEl, "Nature", "nature");
 bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
-bindRoundPopup(storiesIcon, storiesEl, "Stories", "stories");
-bindRoundPopup(wonderkammerIcon, wonderkammerEl, "Wonderkammer", "wonderkammer");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
 bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
 bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
@@ -461,8 +398,6 @@ bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
 peopleEl?.addEventListener("click", (e) => e.stopPropagation());
 natureEl?.addEventListener("click", (e) => e.stopPropagation());
 badgesEl?.addEventListener("click", (e) => e.stopPropagation());
-storiesEl?.addEventListener("click", (e) => e.stopPropagation());
-wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
 civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
 brandsEl?.addEventListener("click", (e) => e.stopPropagation());
 leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -1070,85 +1005,6 @@ if (badgesEl) {
       setRoundLabel(badgesIcon, "🏅", badgeCount);
     }
   }
-}
-
-// --- STORIES LIST + STORIES ICON ---
-if (storiesEl) {
-  let stories = [];
-
-  try {
-    if (window.HGStories && typeof window.HGStories.init === "function") {
-      await window.HGStories.init();
-      stories = window.HGStories.getByPlace(place.id) || [];
-    }
-  } catch (err) {
-    console.warn("[stories]", err);
-  }
-
-  const storyItemsHtml = stories.map(st => `
-    <article class="pc-story" data-story="${escapePlaceCardHTML(st.id)}">
-      <div class="pc-story-top">
-        <span class="pc-story-type">${escapePlaceCardHTML(st.type || "story")}</span>
-        ${st.year ? `<span class="pc-story-year">${escapePlaceCardHTML(st.year)}</span>` : ""}
-      </div>
-      <div class="pc-story-title">${escapePlaceCardHTML(st.title || "")}</div>
-      <div class="pc-story-text">${escapePlaceCardHTML(st.summary || st.story || "")}</div>
-    </article>
-  `).join("");
-  const lesesporItemsHtml = renderPlaceCardLesesporStoryItems(place.id);
-  const narrativeCount = stories.length + getPlaceCardLesespor(place.id).length;
-
-  storiesEl.innerHTML = (storyItemsHtml || lesesporItemsHtml)
-    ? `${storyItemsHtml}${lesesporItemsHtml}`
-    : `<div class="pc-empty">Ingen historier ennå</div>`;
-
-  setRoundLabel(storiesIcon, "📖", narrativeCount);
-}
-
-// --- WONDERKAMMER LIST + WONDERKAMMER ICON ---
-if (wonderkammerEl) {
-  const wkChambers = Array.isArray(window.WK_BY_PLACE?.[place.id])
-    ? window.WK_BY_PLACE[place.id]
-    : [];
-
-  const wkEntriesHtml = wkChambers.length
-    ? `
-      <div class="pc-wk-chambers">
-        ${wkChambers.map(c => {
-          const id = String(c?.id ?? "").trim();
-          const label = String(c?.title ?? c?.label ?? c?.name ?? id).trim();
-          if (!id) return "";
-          return `
-            <button class="pc-wk-entry" data-wk="${id}">
-              <span class="pc-wk-entry-title">${label}</span>
-            </button>
-          `;
-        }).join("")}
-      </div>
-    `
-    : "";
-
-  wonderkammerEl.innerHTML =
-    wkEntriesHtml || `<div class="pc-empty">Ingen Wonderkammer-koblinger ennå</div>`;
-
-  wonderkammerEl.querySelectorAll("[data-wk]").forEach(btn => {
-    btn.onclick = () => {
-      const id = String(btn.dataset.wk || "").trim();
-      if (!id) return;
-
-      if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
-        window.Wonderkammer.openEntry(id);
-      } else if (typeof window.openWonderkammerEntry === "function") {
-        window.openWonderkammerEntry(id);
-      } else {
-        window.showToast?.("Wonderkammer-handler ikke lastet");
-      }
-    };
-  });
-
-  const wkCount = wonderkammerEl.querySelectorAll("[data-wk]").length || 0;
-
-  setRoundLabel(wonderkammerIcon, "🗃️", wkCount);
 }
 
 // --- CIVICATION STORE LIST + ICON ---
