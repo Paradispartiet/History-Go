@@ -64,7 +64,9 @@ function addCiviContact(contact) {
 
 function maybeCreateContactFromChoice(phaseTag, pendingEvent, choice, result) {
   const activeCareerId =
-    window.CivicationState?.getActivePosition?.()?.career_id || "";
+    /** @type {{ career_id?: unknown } | undefined} */ (
+      window.CivicationState?.getActivePosition?.()
+    )?.career_id || "";
 
   const effect = Number(result?.effect || 0);
   const choiceId = String(choice?.id || "");
