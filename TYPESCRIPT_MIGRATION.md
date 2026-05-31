@@ -522,3 +522,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime logic, day-progression logic, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
 - AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
+
+## Phase 68: narrow dayContacts active career typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayContacts.js` after the Phase 66 audit / PR #723 and Phase 67 / PR #725.
+- Cast the `window.CivicationState?.getActivePosition?.()` result to the existing-read shape `{ career_id?: unknown } | undefined` at the `activeCareerId` read site (line 67), so the `?.career_id` access resolves instead of reading off `unknown`.
+- Removed the local `TS2339` `career_id`-on-`unknown` property-access diagnostic (`dayContacts.js(67,52)`) without changing runtime behavior — the optional-chaining read and `|| ""` fallback are byte-for-byte preserved.
+- No other diagnostics existed in the file; there were no global/window or API-shape diagnostics to leave standing here.
+- Runtime logic, contact logic, contact storage, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
+- AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
