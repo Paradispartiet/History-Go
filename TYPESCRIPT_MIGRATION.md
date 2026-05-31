@@ -512,3 +512,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Intentionally left global/window diagnostics and additional branch-state shape diagnostics unchanged because they require globals/schema scope or broader API-shape typing outside this narrow phase.
 - Runtime logic, day-consequences logic, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, or `CivicationDebateEngine`.
+
+## Phase 67: narrow dayProgressionController typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only change in `js/Civication/systems/day/dayProgressionController.js` after the Phase 66 audit / PR #723.
+- Narrowed the `findInboxItemForRow` JSDoc return type from `DayProgRecord|null` to the existing `DayProgRuntimeItem|null` typedef so the nested `inboxItem.event` reads resolve through the already-declared `event?: DayProgMailEvent` shape.
+- Removed the local `unknown` property-access diagnostics at the existing `inboxItem?.event?.status` (line 126) and `inboxItem?.event?.resolved` (line 130) read sites without changing runtime behavior.
+- Intentionally left the `window.CivicationDailyMailBuilder` (line 52) and `window.CivicationDayProgression` (line 219) global/window diagnostics unchanged because they require globals/schema scope outside this narrow phase.
+- Runtime logic, day-progression logic, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
+- AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
