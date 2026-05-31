@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-31T22:40:02.706Z
+Generated: 2026-05-31T23:00:07.869Z
 
 ## Sammendrag
-- People-filer lest: **22**
-- People lest: **229**
+- People-filer lest: **23**
+- People lest: **240**
 - People med ugyldige refs: **8**
 - Ugyldige refs: **15**
 - Unike ugyldige placeId-er: **11**
 - People uten gyldig sted: **15**
-- Duplikate interne place-referanser: **207**
+- Duplikate interne place-referanser: **218**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_historie.json
@@ -280,6 +280,17 @@ Generated: 2026-05-31T22:40:02.706Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: mari_boine (Mari Boine) -> rockefeller x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: joachim_nielsen (Joachim Nielsen) -> rockefeller x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: morten_harket (Morten Harket) -> sentrum_scene x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: fernando_mauricio (Fernando Maurício) -> lisbon_mouraria_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: armandinho (Armandinho) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: luis_villas_boas (Luís Villas-Boas) -> lisbon_hot_clube_de_portugal x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_joao (Maria João) -> lisbon_hot_clube_de_portugal x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: mario_laginha (Mário Laginha) -> lisbon_hot_clube_de_portugal x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: ze_eduardo (Zé Eduardo) -> lisbon_hot_clube_de_portugal x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: dulce_pontes (Dulce Pontes) -> lisbon_coliseu_dos_recreios x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: mariza (Mariza) -> lisbon_coliseu_dos_recreios x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: kristoffer_olsen (Kristoffer Olsen) -> latter x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: else_kass_furuseth (Else Kåss Furuseth) -> latter x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: bard_tufte_johansen (Bård Tufte Johansen) -> chateau_neuf x2
