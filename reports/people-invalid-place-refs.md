@@ -1,20 +1,17 @@
 # People invalid place refs audit
 
-Generated: 2026-05-25T11:45:05.500Z
+Generated: 2026-05-31T11:46:18.630Z
 
 ## Sammendrag
 - People-filer lest: **20**
-- People lest: **225**
-- People med ugyldige refs: **9**
-- Ugyldige refs: **16**
-- Unike ugyldige placeId-er: **12**
+- People lest: **226**
+- People med ugyldige refs: **8**
+- Ugyldige refs: **15**
+- Unike ugyldige placeId-er: **11**
 - People uten gyldig sted: **19**
-- Duplikate interne place-referanser: **199**
+- Duplikate interne place-referanser: **200**
 
 ## Ugyldige refs gruppert per fil/person
-### data/people/people_by.json
-- **christian_heinrich_grosch** (Christian Heinrich Grosch)
-  - botanisk_hage @ `places[2]`
 ### data/people/people_historie.json
 - **sigurd_ribbung** (Sigurd Ribbung)
   - bispeborgen @ `places[2]`
@@ -51,8 +48,6 @@ Generated: 2026-05-25T11:45:05.500Z
 - **bispeborgen** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **bjornson_bolig** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **botanisk_hage** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **collett_barndom** (missing_place_candidate, 1 treff)
   - missing_place_candidate
@@ -283,6 +278,7 @@ Generated: 2026-05-25T11:45:05.500Z
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: pal_bang_hansen (Pål Bang-Hansen) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: nils_r_muller (Nils R. Müller) -> colosseum_kino x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: bredo_greve (Bredo Greve) -> cinemateket_oslo x2
+- data/people/film_tv/oslo/people_film_tv_oslo.json :: kjersti_holmen (Kjersti Holmen) -> cinemateket_oslo x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: jan_garbarek (Jan Garbarek) -> blaa x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: bugge_wesseltoft (Bugge Wesseltoft) -> blaa x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: mari_boine (Mari Boine) -> rockefeller x2
@@ -295,7 +291,6 @@ Generated: 2026-05-25T11:45:05.500Z
 - henrik_wergeland_park (needs_manual_review, 2 treff)
 - bispeborgen (missing_place_candidate, 1 treff)
 - bjornson_bolig (missing_place_candidate, 1 treff)
-- botanisk_hage (missing_place_candidate, 1 treff)
 - collett_barndom (missing_place_candidate, 1 treff)
 - ibsen_bjornson_graver (missing_place_candidate, 1 treff)
 - inger_hagerup_minne (missing_place_candidate, 1 treff)

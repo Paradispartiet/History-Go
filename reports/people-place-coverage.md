@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-25T11:45:06.266Z
+Generert: 2026-05-31T11:46:19.877Z
 
 ## Sammendrag
 
-- People totalt: **225**
-- Places totalt: **454**
-- Places med people: **95**
-- Places uten people: **359**
-- People-place-lenker: **322**
+- People totalt: **226**
+- Places totalt: **470**
+- Places med people: **96**
+- Places uten people: **374**
+- People-place-lenker: **324**
 - People koblet til flere gyldige steder: **95**
 - People uten gyldig sted: **19**
-- Ugyldige place-referanser: **16**
-- Duplikate place-referanser inne på people: **199**
+- Ugyldige place-referanser: **15**
+- Duplikate place-referanser inne på people: **200**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -22,7 +22,7 @@ Generert: 2026-05-25T11:45:06.266Z
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
 | by | 100 | 24 | 76 | 60 | 46 |
-| film_tv | 8 | 8 | 0 | 33 | 17 |
+| film_tv | 8 | 8 | 0 | 34 | 18 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 37 | 32 |
@@ -31,11 +31,11 @@ Generert: 2026-05-25T11:45:06.266Z
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 63 | 4 | 59 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
-| populaerkultur | 10 | 0 | 10 | 0 | 0 |
+| populaerkultur | 15 | 0 | 15 | 0 | 0 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 49 | 4 | 45 | 7 | 7 |
 | subkultur | 23 | 2 | 21 | 4 | 4 |
-| vitenskap | 17 | 4 | 13 | 11 | 11 |
+| vitenskap | 28 | 5 | 23 | 12 | 12 |
 
 ## People tags
 
@@ -43,23 +43,23 @@ Generert: 2026-05-25T11:45:06.266Z
 - litteratur: 38
 - politikk: 27
 - middelalder: 19
-- film: 17
-- film_tv: 17
+- film: 18
+- film_tv: 18
 - media: 17
 - musikk: 15
 - regissor: 15
+- filmhistorie: 13
 - subkultur: 13
-- filmhistorie: 12
+- filmkanon: 12
 - vitenskap: 12
-- filmkanon: 11
+- cinematek: 11
 - krig: 11
 - kunst: 11
 - avis: 10
-- cinematek: 10
 - presse: 10
 - redaksjon: 10
+- norsk_film: 9
 - journalistikk: 8
-- norsk_film: 8
 - sport: 8
 - natur: 7
 - by: 6
@@ -80,6 +80,7 @@ Generert: 2026-05-25T11:45:06.266Z
 - lydfilm: 3
 - mesen: 3
 - satire: 3
+- skuespiller: 3
 - studiohistorie: 3
 - arkitektur: 2
 - dokumentar: 2
@@ -88,7 +89,6 @@ Generert: 2026-05-25T11:45:06.266Z
 - jazz: 2
 - kino: 2
 - kinokultur: 2
-- militaerhistorie: 2
 
 ## Steder med flest people
 
@@ -96,8 +96,8 @@ Generert: 2026-05-25T11:45:06.266Z
 - akerhus_slott (Akerhus Slott) – 20
 - oslo_domkirke (Oslo domkirke) – 20
 - stortinget (Stortinget) – 14
+- cinemateket_oslo (Cinemateket i Oslo) – 10
 - karl_johan (Karl Johans gate) – 10
-- cinemateket_oslo (Cinemateket i Oslo) – 9
 - gamle_deichman (Gamle Deichman) – 9
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 8
 - oslo_radhus (Oslo rådhus) – 8
@@ -120,7 +120,6 @@ Generert: 2026-05-25T11:45:06.266Z
 
 ## Ugyldige place-referanser
 
-- christian_heinrich_grosch (Christian Heinrich Grosch) -> botanisk_hage
 - sigurd_ribbung (Sigurd Ribbung) -> bispeborgen
 - sigrid_undset (Sigrid Undset) -> bøker_i_byen
 - bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> bjornson_bolig
@@ -239,7 +238,7 @@ Generert: 2026-05-25T11:45:06.266Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- ... 99 flere
+- ... 100 flere
 
 ## Anbefalt første people-batch
 
