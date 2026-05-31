@@ -1,170 +1,129 @@
-# Oslo Place Audit — Batch 22: Migrer `em_nat_*` til `em_natur_*`
+# Oslo place-audit batch 22 — migrer `em_nat_*` place-referanser til `em_natur_*`
 
 **Dato:** 2026-05-31
+**Branch:** `claude/batch-22-em-nat-migration-DzBZA`
 
-**Gren:** `claude/batch-22-em-nat-migration-DzBZA`
+## Formål
 
-## Mål
+Batch 22 migrerer de gjenværende legacy `em_nat_*`-referansene i natur-place-data til eksisterende canonical `em_natur_*`-mål. Dette er en **place-migreringsbatch**, ikke en canonical-batch. Det er ikke opprettet nye canonical-emner, ikke innført alias-schema, og `em_nat_*` er ikke gjort canonical. Hver migrering peker til et `em_natur_*`-mål som allerede finnes i `data/fag/natur/emner_natur_canonical_v4_5.json`.
 
-Migrere de gjenværende legacy `em_nat_*`-emne_id-referansene i natur-place-data til eksisterende
-kanoniske `em_natur_*`-mål. Dette er en ren PLACE-migrasjon: ingen filer under `data/fag/**` er
-endret, ingen kanoniske emne-oppføringer er opprettet, og ingen alias-schema er innført.
+Bakgrunn: Batch 21 bekreftet at natur-canonical bruker prefikset `em_natur_*` (ikke `em_nat_*`), og opprettet bl.a. `em_natur_kyst_okosystemer` og `em_natur_friluftsliv_helse`. De gjenværende `em_nat_*`-ID-ene ble der utsatt til eksplisitt place-migrering — som utføres her.
 
 ## Kommandoer kjørt
 
-```
-git status --short
-git checkout -- data/places/
-npm run places:emner:check        (før og etter)
-npm run places:index:check
-npm run health:places
-node -e "JSON.parse(...)"          (validering av JSON i hver redigert fil)
-git diff --stat / git status
-```
+- `npm run places:emner:check` — før endring (baseline)
+- `grep`/Node-søk etter `em_nat_by_natur_motepunkt` og `em_nat_okologi_grenser` i `data/places/**`
+- Lesing av place-tekst (`desc`/`popupDesc`) for de berørte stedene
+- Kontroll av at valgte `em_natur_*`-mål finnes i `data/fag/natur/emner_natur_canonical_v4_5.json`
+- Surgical edits i de to berørte place-filene (kun de aktuelle `emne_id`-linjene)
+- `npm run places:emner:check` — etter endring
+- `npm run places:index:check`
+- `npm run health:places`
 
 ## Filer undersøkt
 
+- `reports/oslo-place-audit-batch-21-natur-remaining-emner.md`
+- `tools/check_place_emne_ids.mjs`
+- `data/fag/natur/emner_natur_canonical_v4_5.json` (kun lesing, for å bekrefte canonical-mål)
 - `data/places/natur/oslo/places_oslo_alna.json`
 - `data/places/natur/oslo/places_oslo_natur_hovedsteder.json`
-- `data/fag/natur/emner_natur_canonical_v4_5.json` (kun lest, for å bekrefte at målene finnes)
+- `data/places/manifest.json` (kun for å bekrefte aktive place-filer)
 
-## Hvilke `em_nat_*` var missing før batchen
+## Manglende `em_nat_*` før batchen
 
-Det ble funnet **fem** legacy `em_nat_*`-forekomster (ikke fire, som enkelte notater anga),
-fordelt på **to** unike legacy-IDer:
+`npm run places:emner:check` rapporterte **14** missing `emne_ids` totalt. Av disse var natur-/nat-klyngen **4 forekomster / 2 unike** legacy `em_nat_*`-IDs:
 
-| # | Legacy-ID | Place | Fil |
-|---|---|---|---|
-| 1 | `em_nat_by_natur_motepunkt` | alnaelva | `data/places/natur/oslo/places_oslo_alna.json` |
-| 2 | `em_nat_by_natur_motepunkt` | gressholmen | `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` |
-| 3 | `em_nat_okologi_grenser` | gressholmen | `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` |
-| 4 | `em_nat_by_natur_motepunkt` | maerradalen | `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` |
-| 5 | `em_nat_okologi_grenser` | maerradalen | `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` |
+| emne_id | Forekomster | Place-id-er | Place-fil |
+| --- | ---: | --- | --- |
+| `em_nat_by_natur_motepunkt` | 3 | `alnaelva`, `gressholmen`, `maerradalen` | `places_oslo_alna.json`, `places_oslo_natur_hovedsteder.json` |
+| `em_nat_okologi_grenser` | 1 | `gressholmen` | `places_oslo_natur_hovedsteder.json` |
 
-**Diskrepans-notat:** Enkelte tidligere notater anga fire forekomster. I praksis hadde også
-**maerradalen** `em_nat_okologi_grenser` i tillegg til `em_nat_by_natur_motepunkt`. Det gir totalt
-**fem** legacy-forekomster, ikke fire.
+Merk: `maerradalen` hadde **kun** `em_nat_by_natur_motepunkt`, ikke `em_nat_okologi_grenser`. Totalt antall legacy `em_nat_*`-forekomster var derfor **4**, ikke 5. Dette stemmer med oppgavebeskrivelsen og med den autoritative JSON-parsingen samt `places:emner:check`-rapporten.
 
-## Berørte place-IDer
+De resterende 10 missing `emne_ids` tilhører andre fagfamilier (`em_naering_*`, `em_pol_*`, `em_kunst_*`) og er utenfor scope for denne batchen.
 
-- `alnaelva`
-- `gressholmen`
-- `maerradalen`
+## Berørte place-id-er
 
-## Gamle IDer migrert og nye `em_natur_*`-mål
+- `alnaelva` (`data/places/natur/oslo/places_oslo_alna.json`)
+- `gressholmen` (`data/places/natur/oslo/places_oslo_natur_hovedsteder.json`)
+- `maerradalen` (`data/places/natur/oslo/places_oslo_natur_hovedsteder.json`)
 
-### alnaelva (`places_oslo_alna.json`)
+## Migrering — gamle ID-er → nye `em_natur_*`-mål
 
-| Gammel ID | Ny ID |
-|---|---|
-| `em_nat_by_natur_motepunkt` | `em_natur_urban_okologi_byrom` |
+| Place | Gammel `em_nat_*` | Ny `em_natur_*` |
+| --- | --- | --- |
+| `alnaelva` | `em_nat_by_natur_motepunkt` | `em_natur_urban_okologi_byrom` |
+| `gressholmen` | `em_nat_by_natur_motepunkt` | `em_natur_kyst_okosystemer` |
+| `gressholmen` | `em_nat_okologi_grenser` | `em_natur_arter_habitat_mangfold` |
+| `maerradalen` | `em_nat_by_natur_motepunkt` | `em_natur_gronnstruktur_korridorer` |
 
-### gressholmen (`places_oslo_natur_hovedsteder.json`)
+Totalt **4 erstatninger** i 2 place-filer. Ingen andre `emne_ids`, tekst, bilder, koordinater, titler eller struktur ble endret.
 
-| Gammel ID | Ny ID |
-|---|---|
-| `em_nat_by_natur_motepunkt` | `em_natur_kyst_okosystemer` |
-| `em_nat_okologi_grenser` | `em_natur_arter_habitat_mangfold` |
+### Begrunnelse per place
 
-### maerradalen (`places_oslo_natur_hovedsteder.json`)
+- **`alnaelva` → `em_natur_urban_okologi_byrom`**
+  Place-teksten beskriver Oslos lengste byelv gjennom «tung industrihistorie, tett bebyggelse og nyere restaurering av blågrønne korridorer», fra industriåre/forurensning til miljøopprydding og gjenåpning «for ferdsel og økologisk sammenheng». Den distinktive vinkelen er urban økologi og byrom — natur som gjenåpnes og kobles på i den tette byen. `em_natur_urban_okologi_byrom` fanger dette bedre enn et rent korridor-mål.
 
-| Gammel ID | Ny ID |
-|---|---|
-| `em_nat_by_natur_motepunkt` | `em_natur_gronnstruktur_korridorer` |
-| `em_nat_okologi_grenser` | `em_natur_arter_habitat_mangfold` |
+- **`gressholmen` → `em_natur_kyst_okosystemer`** (for `em_nat_by_natur_motepunkt`)
+  Gressholmen er en «fjordøy med tydelige naturkvaliteter og et rikt fugleliv i indre Oslofjord», del av «fjordens grønne belte». Naturmøtepunktet på øya er først og fremst et kyst-/fjordøkosystem. `em_natur_kyst_okosystemer` (etablert i Batch 21) er det presise målet.
 
-## Begrunnelse per place (med sitat fra place-innhold)
+- **`gressholmen` → `em_natur_arter_habitat_mangfold`** (for `em_nat_okologi_grenser`)
+  Øya har «rikt fugle- og planteliv og fredede naturkvaliteter». De økologiske grensene/randsonene på en fredet fjordøy handler konkret om habitat og artsmangfold. `em_natur_arter_habitat_mangfold` dekker dette uten å duplisere kyst-økosystem-vinkelen.
 
-- **alnaelva** — `popupDesc`: *"Alnaelva er Oslos lengste elv og går gjennom områder med tung
-  industrihistorie, tett bebyggelse og nyere restaurering av blågrønne korridorer ... eksempel på
-  hvordan byutvikling, miljøforvaltning og lokalhistorie møtes i ett vassdrag."* Dette er en
-  restaurert byelv der naturen møter den tette byen, og `em_natur_urban_okologi_byrom` fanger
-  nettopp møtet mellom urban økologi og byrom. (Stedets vannmiljø dekkes allerede av andre emner;
-  korridor-aspektet bæres av `em_by_klima_blagronn_klimatilpasning`.)
-
-- **gressholmen** — `desc`/`popupDesc`: *"Fjordøy ... med rikt fugle- og planteliv og fredede
-  naturkvaliteter ... tydelige naturkvaliteter og et rikt fugleliv i indre Oslofjord ... hvordan
-  øya inngår i fjordens grønne belte."* Som fjord-/kystlokalitet migreres «by-natur-møtepunkt» til
-  `em_natur_kyst_okosystemer` (kystens/fjordens økosystemer), og «økologi-grenser» til
-  `em_natur_arter_habitat_mangfold` (det rike fugle- og plantelivet / artsmangfoldet på øya).
-
-- **maerradalen** — `popupDesc`: *"Mærradalen er et dalføre med bekk, skog og sammenhengende
-  grønnstruktur ... fungerer som nærnatur for flere bydeler og som korridor mellom høyere
-  skogsområder og lavere bebyggelse."* «By-natur-møtepunkt» migreres til
-  `em_natur_gronnstruktur_korridorer` (den eksplisitte korridorfunksjonen i grønnstrukturen), og
-  «økologi-grenser» til `em_natur_arter_habitat_mangfold` (arts- og habitatmangfold i bekkekløften).
+- **`maerradalen` → `em_natur_gronnstruktur_korridorer`**
+  Mærradalen er en fredet bekkekløft/skogdal med «sammenhengende grønnstruktur på Oslos vestside», som «korridor mellom høyere skogsområder og lavere bebyggelse». Dette er en typisk grønnstruktur-/korridorfunksjon, og `em_natur_gronnstruktur_korridorer` er det mest direkte målet.
 
 ## Bekreftelser
 
-- **Alle nye `em_natur_*`-mål finnes i canonical natur-fil.** Verifisert i
-  `data/fag/natur/emner_natur_canonical_v4_5.json`: `em_natur_urban_okologi_byrom` (22 referanser),
-  `em_natur_kyst_okosystemer` (1), `em_natur_arter_habitat_mangfold` (25) og
-  `em_natur_gronnstruktur_korridorer` (15) finnes alle. `places:emner:check` etter redigering viser
-  ingen manglende `em_natur_*`-mål.
-- **Ingen duplicate `emne_ids` laget.** Ingen av de tre stedene hadde mål-IDene fra før; sjekken
-  rapporterer «Duplicate emne_ids within same place: 0».
-- **Ingen `data/fag/**` endret.** Kun de to place-filene er modifisert (se `git diff --stat`).
-- **Alias-schema ikke innført.** Migrasjonen er ren token-erstatning av emne_id-strenger.
+- **Alle nye `em_natur_*`-mål finnes i canonical natur-fil.** Bekreftet mot `data/fag/natur/emner_natur_canonical_v4_5.json` (canonical emne ids loaded: 993). Følgende mål er verifisert til stede: `em_natur_urban_okologi_byrom`, `em_natur_kyst_okosystemer`, `em_natur_arter_habitat_mangfold`, `em_natur_gronnstruktur_korridorer`.
+- **Ingen duplicate `emne_ids` ble laget.** Ingen av de tre stedene hadde målet fra før; `places:emner:check` rapporterer «Duplicate emne_ids within same place: 0».
+- **Ingen `data/fag/**` ble endret.** Kun place-data ble migrert.
+- **Ingen canonical emne-filer ble endret.**
+- **Alias-schema (eller alias-mini-schema) ble ikke innført.**
+- **Manifest ble ikke endret.**
+- **`data/places/places_index.json` ble ikke endret** (ingen index-drift; checker rapporterer in sync).
+- **Ingen UI, CSS, HTML eller JS ble endret.**
+- **Ingen placeholder-emner ble opprettet, og ingen `em_nat_*` ble gjort canonical.**
 
 ## Før/etter — `npm run places:emner:check`
 
-- **Før:** `Missing emne_ids: 14`.
-- **Etter:** `Missing emne_ids: 10`. **0** gjenværende `em_nat_*`-forekomster i place-data.
+### Før
+- Active place files: 40
+- Canonical emne ids loaded: 993
+- Missing emne_ids: **14** (herav 4 legacy `em_nat_*`-forekomster / 2 unike)
+- Duplicate emne_ids within same place: 0
+- Duplicate place ids across active files: 0
+- Duplicate canonical emne_ids across canonical files: 0
 
-**Telle-merknad:** Selve `em_nat_*`-restansen fysisk i place-filene var **fem** forekomster (2 unike
-IDer), se tabellen øverst. `places:emner:check` rapporterer derimot per unik `(place_id, emne_id)`,
-og listet i baseline kun **fire** em_nat-rader (maerradalen sin `em_nat_okologi_grenser` ble ikke
-talt som egen rad). Derfor faller verktøyets totale «Missing emne_ids» fra 14 til 10 (ikke til 9)
-selv om alle fem fysiske forekomster er migrert og 0 `em_nat_*` gjenstår i dataene. Verifisert med
-`grep`: 0 `em_nat_by_natur_motepunkt`/`em_nat_okologi_grenser` igjen under `data/places/`.
+### Etter
+- Active place files: 40
+- Canonical emne ids loaded: 993
+- Missing emne_ids: **10**
+- Gjenværende `em_nat_*`-forekomster: **0**
+- Duplicate emne_ids within same place: 0
+- Duplicate place ids across active files: 0
+- Duplicate canonical emne_ids across canonical files: 0
 
-Gjenværende 10 manglende (ikke-natur familier, utenfor scope for denne batchen):
-
-| # | place_id | emne_id | Fil |
-|---|---|---|---|
-| 1 | havnelageret | `em_naering_logistikk_handel_flyt` | naeringsliv/oslo/places_naeringsliv.json |
-| 2 | havnelageret | `em_naering_lager_terminal_infrastruktur` | naeringsliv/oslo/places_naeringsliv.json |
-| 3 | tollbukaia | `em_naering_havn_sjofart` | naeringsliv/oslo/places_naeringsliv.json |
-| 4 | tollbukaia | `em_naering_logistikk_handel_flyt` | naeringsliv/oslo/places_naeringsliv.json |
-| 5 | telegrafbygningen | `em_naering_telekom_infrastruktur` | naeringsliv/oslo/places_naeringsliv.json |
-| 6 | telegrafbygningen | `em_naering_modernisering_teknologi` | naeringsliv/oslo/places_naeringsliv.json |
-| 7 | jernbaneverkstedet_lodalen | `em_naering_transport_infrastruktur` | naeringsliv/oslo/places_naeringsliv.json |
-| 8 | lisbon_assembleia_da_republica | `em_pol_makt_institusjoner` | politikk/europe/portugal/lisbon/places_lisbon_politikk.json |
-| 9 | lisbon_largo_do_carmo | `em_pol_makt_institusjoner` | politikk/europe/portugal/lisbon/places_lisbon_politikk.json |
-| 10 | lisbon_museu_nacional_do_azulejo | `em_kunst_materialitet_teknikk_handverk` | kunst/europe/portugal/lisbon/places_lisbon_kunst.json |
-
-> Merk: Disse 10 avviker fra tidligere antakelser om `em_naturhistorie_landformer_istid`
-> (noklevann), `em_kunst_*` (ekebergparken) og `em_pol_*` (stortinget); den faktiske gjenværende
-> restanselisten er fanget her (em_naering ×7 rader, em_pol ×2 rader, em_kunst ×1 rad).
+Kommandoen returnerer fortsatt non-zero fordi 10 known missing `emne_ids` fra andre fagfamilier gjenstår.
 
 ## Resultat — `npm run places:index:check`
 
-```
-[places:index:check] OK - 211 entries, index in sync.
-```
-
-Ingen drift; `data/places/places_index.json` ble **ikke** endret (inneholder ikke emne_ids).
+`places_index.json is in sync with source place files.` — **OK**. Ingen index-endring var nødvendig.
 
 ## Resultat — `npm run health:places`
 
-```
-[places:health] OK - 211 places, 0 errors, 0 warnings.
-```
-
-**Errors: 0.**
+- Files checked: 40
+- Places checked: 470
+- Unknown emne_ids: 10
+- **Errors: 0**
+- Warnings: 1329 (alle forhåndseksisterende; uendret av denne batchen)
 
 ## Anbefalt Batch 23
 
-Håndter gjenværende ikke-natur manglende IDer, **én fagfamilie per batch**:
+Fortsett med de gjenværende 10 missing `emne_ids` i andre fagfamilier — én fagfamilie per batch for å unngå sammenblanding:
 
-1. **naering** — `em_naering_*`-klyngen i `data/places/naeringsliv/oslo/places_naeringsliv.json`
-   (havnelageret, tollbukaia, telegrafbygningen, jernbaneverkstedet_lodalen): logistikk/handel,
-   lager/terminal, havn/sjøfart, telekom, modernisering, transport-infrastruktur. Mappes til
-   eksisterende kanoniske `em_naering_*`-IDer.
-2. **pol** — `em_pol_makt_institusjoner` for Lisboa-stedene (assembleia_da_republica, largo_do_carmo)
-   i `places_lisbon_politikk.json`.
-3. **kunst** — `em_kunst_materialitet_teknikk_handverk` for lisbon_museu_nacional_do_azulejo i
-   `places_lisbon_kunst.json`.
+- `em_naering_*` (7 forekomster i `data/places/naeringsliv/oslo/places_naeringsliv.json`: `havnelageret`, `tollbukaia`, `telegrafbygningen`, `jernbaneverkstedet_lodalen`)
+- `em_pol_*` (`em_pol_makt_institusjoner` i Lisboa-politikk-place-data)
+- `em_kunst_*` (`em_kunst_materialitet_teknikk_handverk` i Lisboa-kunst-place-data)
 
-Anbefalt å starte med naering-familien (flest forekomster), deretter pol og kunst, én familie per
-batch.
+Vurder per cluster om riktig håndtering er place-migrering til eksisterende canonical mål eller oppretting av fullverdige canonical-emner, etter samme konservative prinsipp som Batch 21/22.
