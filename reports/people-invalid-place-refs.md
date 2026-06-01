@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T11:12:52.463Z
+Generated: 2026-06-01T18:29:56.988Z
 
 ## Sammendrag
 - People-filer lest: **21**
-- People lest: **227**
+- People lest: **323**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **13**
-- Duplikate interne place-referanser: **207**
+- People uten gyldig sted: **23**
+- Duplikate interne place-referanser: **293**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -27,6 +27,16 @@ Generated: 2026-06-01T11:12:52.463Z
 - data/people/people_naeringsliv.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes)
 - data/people/people_naeringsliv.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard)
 - data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke)
+- data/people/people_naeringsliv.json :: thomas_heftye_bank_og_byutvikling (Thomas Heftye)
+- data/people/people_naeringsliv.json :: olav_thon_eiendom_og_handel (Olav Thon)
+- data/people/people_naeringsliv.json :: petter_stordalen_hotell_og_service (Petter Stordalen)
+- data/people/people_naeringsliv.json :: stein_erik_hagen_handel (Stein Erik Hagen)
+- data/people/people_naeringsliv.json :: amund_ringnes_bryggeri (Amund Ringnes)
+- data/people/people_naeringsliv.json :: herman_schou_bryggeri (Herman Schou)
+- data/people/people_naeringsliv.json :: fred_olsen_shipping (Fred. Olsen)
+- data/people/people_naeringsliv.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen)
+- data/people/people_naeringsliv.json :: anders_jahre_shipping (Anders Jahre)
+- data/people/people_naeringsliv.json :: nicolay_august_andresen_bank (Nicolay August Andresen)
 - data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig)
 - data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm)
 
@@ -35,6 +45,18 @@ Generated: 2026-06-01T11:12:52.463Z
 - data/people/people_by.json :: christian_heinrich_grosch (Christian Heinrich Grosch) -> universitetsplassen x2
 - data/people/people_by.json :: harald_hals (Harald Hals) -> ullevål_hageby x2
 - data/people/people_by.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
+- data/people/people_by.json :: arnstein_arneberg (Arnstein Arneberg) -> oslo_radhus x2
+- data/people/people_by.json :: magnus_poulsson (Magnus Poulsson) -> oslo_radhus x2
+- data/people/people_by.json :: henrik_bull (Henrik Bull) -> nationaltheatret x2
+- data/people/people_by.json :: erling_viksjo (Erling Viksjø) -> regjeringskvartalet x2
+- data/people/people_by.json :: sverre_fehn (Sverre Fehn) -> bankplassen x2
+- data/people/people_by.json :: ove_bang (Ove Bang) -> ullevål_hageby x2
+- data/people/people_by.json :: harald_aars (Harald Aars) -> sagene x2
+- data/people/people_by.json :: kirsten_sand (Kirsten Sand) -> universitetsplassen x2
+- data/people/people_by.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
+- data/people/people_by.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
+- data/people/people_by.json :: thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen x2
+- data/people/people_by.json :: geir_grung (Geir Grung) -> tjuvholmen x2
 - data/people/historie/oslo/people_historie_oslo.json :: kong_sverre (Kong Sverre Sigurdsson) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_vii_krigstid (Haakon VII (krigstiden)) -> oslo_radhus x2
 - data/people/historie/oslo/people_historie_oslo.json :: olav_den_hellige (Olav den hellige) -> oslo_domkirke x2
@@ -152,12 +174,27 @@ Generated: 2026-06-01T11:12:52.463Z
 - data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
 - data/people/people_filantroper.json :: christian_ringnes (Christian Ringnes) -> ekebergparken x2
+- data/people/people_filantroper.json :: rolf_stenersen (Rolf Stenersen) -> tjuvholmen x2
+- data/people/people_filantroper.json :: niels_onstad (Niels Onstad) -> astrup_fearnley x2
+- data/people/people_filantroper.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
+- data/people/people_filantroper.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> bankplassen x2
+- data/people/people_filantroper.json :: eckbos_legat (Eckbos Legat) -> universitetsplassen x2
 - data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
 - data/people/people_natur.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
 - data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
 - data/people/people_natur.json :: jens_esmark (Jens Esmark) -> maridalsvannet x2
 - data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
 - data/people/people_natur.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
+- data/people/people_natur.json :: hanna_resvoll_holmsen (Hanna Resvoll-Holmsen) -> botanisk_hage x2
+- data/people/people_natur.json :: thekla_resvoll (Thekla Resvoll) -> botanisk_hage x2
+- data/people/people_natur.json :: rolf_nordhagen (Rolf Nordhagen) -> botanisk_hage x2
+- data/people/people_natur.json :: haaken_hasberg_gran (Haaken Hasberg Gran) -> naturhistorisk_museum x2
+- data/people/people_natur.json :: dag_o_hessen (Dag O. Hessen) -> naturhistorisk_museum x2
+- data/people/people_natur.json :: lauritz_somme (Lauritz Sømme) -> naturhistorisk_museum x2
+- data/people/people_natur.json :: helge_ingstad (Helge Ingstad) -> bygdoy_natur x2
+- data/people/people_natur.json :: anne_stine_ingstad (Anne Stine Ingstad) -> bygdoy_natur x2
+- data/people/people_natur.json :: bernhard_herre (Bernhard Herre) -> maridalsvannet x2
+- data/people/people_natur.json :: mikkjel_fonhus (Mikkjel Fønhus) -> maridalsvannet x2
 - data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
 - data/people/people_politikk.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/people_politikk.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
@@ -168,6 +205,18 @@ Generated: 2026-06-01T11:12:52.463Z
 - data/people/people_politikk.json :: johan_nygaardsvold (Johan Nygaardsvold) -> stortinget x2
 - data/people/people_politikk.json :: christian_michelsen (Christian Michelsen) -> stortinget x2
 - data/people/people_politikk.json :: haakon_vii (Haakon VII) -> slottet x2
+- data/people/people_politikk.json :: katti_anker_moller (Katti Anker Møller) -> stortinget x2
+- data/people/people_politikk.json :: betzy_kjelsberg (Betzy Kjelsberg) -> stortinget x2
+- data/people/people_politikk.json :: anna_rogstad (Anna Rogstad) -> stortinget x2
+- data/people/people_politikk.json :: fernanda_nissen (Fernanda Nissen) -> youngstorget x2
+- data/people/people_politikk.json :: haakon_lie (Haakon Lie) -> youngstorget x2
+- data/people/people_politikk.json :: reiulf_steen (Reiulf Steen) -> stortinget x2
+- data/people/people_politikk.json :: berit_aas (Berit Ås) -> stortinget x2
+- data/people/people_politikk.json :: eva_kolstad (Eva Kolstad) -> stortinget x2
+- data/people/people_politikk.json :: hanna_kvanmo (Hanna Kvanmo) -> stortinget x2
+- data/people/people_politikk.json :: kirsti_kolle_grondahl (Kirsti Kolle Grøndahl) -> stortinget x2
+- data/people/people_politikk.json :: jo_benkow (Jo Benkow) -> stortinget x2
+- data/people/people_politikk.json :: carl_i_hagen (Carl I. Hagen) -> stortinget x2
 - data/people/people_sport.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
 - data/people/people_sport.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
 - data/people/people_sport.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2
@@ -176,6 +225,26 @@ Generated: 2026-06-01T11:12:52.463Z
 - data/people/people_sport.json :: grete_waitz (Grete Waitz) -> bislett_stadion x2
 - data/people/people_sport.json :: mats_zuccarello (Mats Zuccarello) -> vulkan_industriomrade x2
 - data/people/people_sport.json :: klanen (Klanen (VIF)) -> valle_hovin_stadion x2
+- data/people/people_sport.json :: sonja_henie (Sonja Henie) -> frogner_stadion x2
+- data/people/people_sport.json :: oscar_mathisen (Oscar Mathisen) -> frogner_stadion x2
+- data/people/people_sport.json :: hjalmar_andersen (Hjalmar Andersen) -> frogner_stadion x2
+- data/people/people_sport.json :: johann_olav_koss (Johann Olav Koss) -> frogner_stadion x2
+- data/people/people_sport.json :: karsten_warholm (Karsten Warholm) -> bislett_stadion x2
+- data/people/people_sport.json :: jakob_ingebrigtsen (Jakob Ingebrigtsen) -> bislett_stadion x2
+- data/people/people_sport.json :: ingrid_kristiansen (Ingrid Kristiansen) -> bislett_stadion x2
+- data/people/people_sport.json :: vebjorn_rodal (Vebjørn Rodal) -> bislett_stadion x2
+- data/people/people_sport.json :: trine_hattestad (Trine Hattestad) -> bislett_stadion x2
+- data/people/people_sport.json :: andreas_thorkildsen (Andreas Thorkildsen) -> bislett_stadion x2
+- data/people/people_sport.json :: kjetil_andre_aamodt (Kjetil André Aamodt) -> holmenkollen_nasjonalanlegg x2
+- data/people/people_sport.json :: lasse_kjus (Lasse Kjus) -> holmenkollen_nasjonalanlegg x2
+- data/people/people_sport.json :: cecilie_leganger (Cecilie Leganger) -> ullevaal_stadion x2
+- data/people/people_sport.json :: nora_mork (Nora Mørk) -> ullevaal_stadion x2
+- data/people/people_sport.json :: sander_sagosen (Sander Sagosen) -> ullevaal_stadion x2
+- data/people/people_sport.json :: ole_gunnar_solskjaer (Ole Gunnar Solskjær) -> ullevaal_stadion x2
+- data/people/people_sport.json :: nils_arne_eggen (Nils Arne Eggen) -> ullevaal_stadion x2
+- data/people/people_sport.json :: lyn_fotball (Lyn Fotball) -> ullevaal_stadion x2
+- data/people/people_sport.json :: skeid_fotball (Skeid Fotball) -> nordre_aasen_idrettspark x2
+- data/people/people_sport.json :: oslo_skoiteklub (Oslo Skøiteklub) -> frogner_stadion x2
 - data/people/people_subkultur.json :: kolapalsen (Køla-Pålsen) -> oslo_domkirke x2
 - data/people/people_subkultur.json :: snippmoller (Snipp-Møller) -> oslo_domkirke x2
 - data/people/people_subkultur.json :: lusefrants (Luse-Frants) -> middelalder_oslo x2
@@ -185,7 +254,34 @@ Generated: 2026-06-01T11:12:52.463Z
 - data/people/people_subkultur.json :: viggo_tigeren (Viggo (byen som tiger)) -> tigeren x2
 - data/people/people_subkultur.json :: tinashe_williamson (Tinashe Williamson) -> aker_brygge x2
 - data/people/people_subkultur.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
+- data/people/people_subkultur.json :: blitz_miljoet (Blitz-miljøet) -> youngstorget x2
+- data/people/people_subkultur.json :: hausmania_miljoet (Hausmania-miljøet) -> hausmania x2
+- data/people/people_subkultur.json :: oslo_pride_skeive_dager (Oslo Pride / Skeive dager) -> radhusplassen x2
+- data/people/people_subkultur.json :: radi_orakel (RadiOrakel) -> youngstorget x2
+- data/people/people_subkultur.json :: gateavisa_miljoet (Gateavisa-miljøet) -> torggata x2
+- data/people/people_subkultur.json :: oslo_graffiti_miljoet (Oslo graffiti-miljøet) -> vulkan_industriomrade x2
+- data/people/people_subkultur.json :: oslo_skateboardmiljoet (Oslo skateboardmiljøet) -> vulkan_industriomrade x2
+- data/people/people_subkultur.json :: christopher_nielsen (Christopher Nielsen) -> torggata x2
+- data/people/people_subkultur.json :: hariton_pushwagner (Hariton Pushwagner) -> tjuvholmen x2
+- data/people/people_subkultur.json :: don_martin (Don Martin) -> torggata x2
+- data/people/people_subkultur.json :: tommy_tee (Tommy Tee) -> youngstorget x2
+- data/people/people_subkultur.json :: warlocks_oslo (Warlocks) -> torggata x2
+- data/people/people_subkultur.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
 - data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: niels_henrik_abel (Niels Henrik Abel) -> abelhaugen x2
+- data/people/people_vitenskap.json :: sophus_lie (Sophus Lie) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: vilhelm_bjerknes (Vilhelm Bjerknes) -> observatoriet x2
+- data/people/people_vitenskap.json :: ragnar_frisch (Ragnar Frisch) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: trygve_haavelmo (Trygve Haavelmo) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: helga_eng (Helga Eng) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: harriet_holter (Harriet Holter) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: johan_galtung (Johan Galtung) -> nobelinstituttet x2
+- data/people/people_vitenskap.json :: thomas_hylland_eriksen (Thomas Hylland Eriksen) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: lucy_smith (Lucy Smith) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: tove_stang_dahl (Tove Stang Dahl) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: jon_elster (Jon Elster) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
+- data/people/people_vitenskap.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
