@@ -743,3 +743,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1607 to 1576, and `js/hgKnowledgeEngine.js` diagnostics went from 43 to 12.
 - Runtime behavior, report structure, scoring, storage keys, public API, UI layout, app flow, and data semantics remain unchanged.
 - `js/profile.js`, `js/boot.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed.
+
+## Phase 89 replacement: CivicationUI inbox DOM local casts
+
+- Closed PR #849 as superseded / not mergeable and replaced it with a clean branch from latest `main`.
+- Reapplied only the narrow intended `renderCivicationInbox()` Civication-mode DOM cast fix in `js/Civication/ui/CivicationUI.js`.
+- Added local JSDoc casts for the existing `#civiInboxChoices`, `#civiInboxFeedback`, and `#civiInboxOK` query results as `HTMLElement|null`, `HTMLElement|null`, and `HTMLButtonElement|null` respectively.
+- Targeted the `CivicationUI.js` inbox `querySelector(...)` DOM diagnostic cluster around feedback/OK styling, click handler assignment, and choices clearing/appending.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1576 to 1570, `js/Civication/**` diagnostics went from 271 to 265, and `js/Civication/ui/CivicationUI.js` diagnostics went from 37 to 31.
+- Runtime behavior, UI output, DOM structure, visible text, CSS classes/IDs, event flow, answer flow, storage keys, engine calls, and public API remain unchanged.
+- `js/profile.js`, `js/boot.js`, `js/hgKnowledgeEngine.js`, `js/routes.js`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed by this replacement pass.

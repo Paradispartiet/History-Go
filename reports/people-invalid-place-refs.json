@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T21:14:17.762Z",
+  "generatedAt": "2026-06-01T21:50:18.064Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,59 +8,14 @@
   "summary": {
     "peopleFilesRead": 21,
     "peopleRead": 323,
-    "peopleWithInvalidRefs": 1,
-    "invalidRefs": 2,
-    "uniqueInvalidPlaceIds": 1,
+    "peopleWithInvalidRefs": 0,
+    "invalidRefs": 0,
+    "uniqueInvalidPlaceIds": 0,
     "peopleWithoutValidPlace": 23,
     "duplicateInternalPlaceRefs": 293
   },
-  "invalidRefsGrouped": [
-    {
-      "sourceFile": "data/people/people_by.json",
-      "people": [
-        {
-          "personId": "harald_aars",
-          "personName": "Harald Aars",
-          "invalidPlaceIds": [
-            "sagene"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_by.json",
-              "personId": "harald_aars",
-              "personName": "Harald Aars",
-              "field": "placeId",
-              "invalidPlaceId": "sagene"
-            },
-            {
-              "sourceFile": "data/people/people_by.json",
-              "personId": "harald_aars",
-              "personName": "Harald Aars",
-              "field": "places[0]",
-              "invalidPlaceId": "sagene"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "sagene",
-      "occurrences": 2,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_by.json"
-      ],
-      "classification": "likely_rename_to_existing_place",
-      "suggestions": [
-        {
-          "placeId": "sagene_kvernhus",
-          "confidence": "medium"
-        }
-      ]
-    }
-  ],
+  "invalidRefsGrouped": [],
+  "uniqueInvalidPlaceIds": [],
   "peopleWithoutValidPlace": [
     {
       "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
@@ -3449,17 +3404,5 @@
       ]
     }
   ],
-  "recommendedNextBatch": [
-    {
-      "invalidPlaceId": "sagene",
-      "classification": "likely_rename_to_existing_place",
-      "occurrences": 2,
-      "suggestions": [
-        {
-          "placeId": "sagene_kvernhus",
-          "confidence": "medium"
-        }
-      ]
-    }
-  ]
+  "recommendedNextBatch": []
 }

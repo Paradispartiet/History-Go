@@ -1294,9 +1294,9 @@ function renderCivicationInbox() {
     </div>
   `;
 
-  const choiceBox = host.querySelector("#civiInboxChoices");
-  const fb = host.querySelector("#civiInboxFeedback");
-  const ok = host.querySelector("#civiInboxOK");
+  const choiceBox = /** @type {HTMLElement|null} */ (host.querySelector("#civiInboxChoices"));
+  const fb = /** @type {HTMLElement|null} */ (host.querySelector("#civiInboxFeedback"));
+  const ok = /** @type {HTMLButtonElement|null} */ (host.querySelector("#civiInboxOK"));
 
   function showOk(txt) {
     if (fb) {

@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T21:05:46.872Z
+- Generated at (UTC): 2026-06-01T21:56:49.758Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1576
+- Total diagnostic lines found: 1570
 - Files with diagnostics: 181
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | other | 73 | 555 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 502 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 65 | 271 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 65 | 265 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 57 | js/profile.js |
@@ -34,9 +34,9 @@
 | js/ui/left-panel.js | 55 | js/ui/** |
 | js/routes.js | 46 | other |
 | js/ui/lists.js | 40 | js/ui/** |
-| js/Civication/ui/CivicationUI.js | 37 | js/Civication/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
+| js/Civication/ui/CivicationUI.js | 31 | js/Civication/** |
 | js/nextUpRuntime.js | 29 | other |
 | js/nature_place_map_bridge.js | 27 | other |
 | js/quizzes.js | 25 | other |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1234 |
+| TS2339 | 1228 |
 | TS2551 | 138 |
 | TS2304 | 70 |
 | TS2307 | 36 |
