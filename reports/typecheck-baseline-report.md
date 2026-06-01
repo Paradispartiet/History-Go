@@ -1,7 +1,7 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T19:13:28.282Z
+- Generated at (UTC): 2026-06-01T19:37:58.989Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
 - Total diagnostic lines found: 1669

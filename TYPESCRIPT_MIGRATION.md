@@ -703,6 +703,14 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1669, `js/Civication/**` diagnostics are now 290, and `js/Civication/ui/CivicationUI.js` diagnostics are now 45.
 
+## Phase 87: CivicationUI remaining diagnostics audit after TrackHUD pass
+
+- Added a read-only audit report for the remaining `js/Civication/ui/CivicationUI.js` diagnostics after the Phase 86 TrackHUD local state-shape pass.
+- Confirmed this phase does not change `js/Civication/ui/CivicationUI.js`; the report only documents the current 45-diagnostic distribution and the clusters already resolved by Phases 84, 85, and 86.
+- Schema/declaration files, runtime JavaScript, UI/DOM/CSS, data files, stories, places, people, import tooling, package metadata, and `tsconfig.json` were not changed.
+- The audit recommends Phase 88 as a declaration-only pass for the remaining inbox-adjacent globals `CivicationNPCs`, `CivicationThreadBridge`, and `DEBUG`; if schema work is not allowed, the fallback is a narrow inbox-only DOM local-cast pass for the `querySelector(...)` feedback/OK controls.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics remain 1669, `js/Civication/**` remains 290, and `js/Civication/ui/CivicationUI.js` remains 45.
+
 ## Phase 82C replacement: stringify profile textContent values
 
 - Replaced the stale PR #804 branch with a fresh branch from latest `main` and reapplied only the narrow profile `textContent` TypeScript fix.
