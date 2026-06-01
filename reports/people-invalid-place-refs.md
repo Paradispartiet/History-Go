@@ -1,13 +1,13 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T10:08:49.564Z
+Generated: 2026-06-01T10:36:06.287Z
 
 ## Sammendrag
 - People-filer lest: **24**
 - People lest: **233**
-- People med ugyldige refs: **5**
-- Ugyldige refs: **12**
-- Unike ugyldige placeId-er: **11**
+- People med ugyldige refs: **1**
+- Ugyldige refs: **1**
+- Unike ugyldige placeId-er: **1**
 - People uten gyldig sted: **15**
 - Duplikate interne place-referanser: **211**
 
@@ -15,45 +15,9 @@ Generated: 2026-06-01T10:08:49.564Z
 ### data/people/people_historie.json
 - **sigurd_ribbung** (Sigurd Ribbung)
   - bispeborgen @ `places[2]`
-### data/people/people_litteratur.json
-- **bjornstjerne_bjornson** (Bjørnstjerne Bjørnson)
-  - bjornson_bolig @ `places[2]`
-  - ibsen_bjornson_graver @ `places[3]`
-- **henrik_wergeland** (Henrik Wergeland)
-  - bøker_i_byen @ `places[6]`
-  - henrik_wergeland_park @ `places[3]`
-  - wergeland_barndom @ `places[4]`
-  - wergeland_grav @ `places[5]`
-  - wergelandsveien_15 @ `places[2]`
-- **camilla_collett** (Camilla Collett)
-  - collett_barndom @ `places[2]`
-  - henrik_wergeland_park @ `places[1]`
-- **inger_hagerup** (Inger Hagerup)
-  - grotten_utsikt @ `places[1]`
-  - inger_hagerup_minne @ `places[2]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **henrik_wergeland_park** (needs_manual_review, 2 treff)
-  - henrik_wergeland_statue (confidence: low)
 - **bispeborgen** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **bjornson_bolig** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **bøker_i_byen** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **collett_barndom** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **grotten_utsikt** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **ibsen_bjornson_graver** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **inger_hagerup_minne** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **wergeland_barndom** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **wergeland_grav** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
-- **wergelandsveien_15** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 
 ## People uten gyldig sted
@@ -181,10 +145,10 @@ Generated: 2026-06-01T10:08:49.564Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: andre_bjerke (André Bjerke) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: jon_fosse (Jon Fosse) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
-- data/people/people_litteratur.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
-- data/people/people_litteratur.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
-- data/people/people_litteratur.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x3
-- data/people/people_litteratur.json :: inger_hagerup (Inger Hagerup) -> grotta x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
 - data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
 - data/people/people_musikk.json :: aurora (Aurora) -> salt x2
@@ -287,14 +251,4 @@ Generated: 2026-06-01T10:08:49.564Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch
-- henrik_wergeland_park (needs_manual_review, 2 treff)
 - bispeborgen (missing_place_candidate, 1 treff)
-- bjornson_bolig (missing_place_candidate, 1 treff)
-- bøker_i_byen (missing_place_candidate, 1 treff)
-- collett_barndom (missing_place_candidate, 1 treff)
-- grotten_utsikt (missing_place_candidate, 1 treff)
-- ibsen_bjornson_graver (missing_place_candidate, 1 treff)
-- inger_hagerup_minne (missing_place_candidate, 1 treff)
-- wergeland_barndom (missing_place_candidate, 1 treff)
-- wergeland_grav (missing_place_candidate, 1 treff)
-- wergelandsveien_15 (missing_place_candidate, 1 treff)

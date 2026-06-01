@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T10:08:49.564Z",
+  "generatedAt": "2026-06-01T10:36:06.287Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,9 +8,9 @@
   "summary": {
     "peopleFilesRead": 24,
     "peopleRead": 233,
-    "peopleWithInvalidRefs": 5,
-    "invalidRefs": 12,
-    "uniqueInvalidPlaceIds": 11,
+    "peopleWithInvalidRefs": 1,
+    "invalidRefs": 1,
+    "uniqueInvalidPlaceIds": 1,
     "peopleWithoutValidPlace": 15,
     "duplicateInternalPlaceRefs": 211
   },
@@ -35,245 +35,15 @@
           ]
         }
       ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "people": [
-        {
-          "personId": "bjornstjerne_bjornson",
-          "personName": "Bjørnstjerne Bjørnson",
-          "invalidPlaceIds": [
-            "bjornson_bolig",
-            "ibsen_bjornson_graver"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "bjornstjerne_bjornson",
-              "personName": "Bjørnstjerne Bjørnson",
-              "field": "places[2]",
-              "invalidPlaceId": "bjornson_bolig"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "bjornstjerne_bjornson",
-              "personName": "Bjørnstjerne Bjørnson",
-              "field": "places[3]",
-              "invalidPlaceId": "ibsen_bjornson_graver"
-            }
-          ]
-        },
-        {
-          "personId": "henrik_wergeland",
-          "personName": "Henrik Wergeland",
-          "invalidPlaceIds": [
-            "bøker_i_byen",
-            "henrik_wergeland_park",
-            "wergeland_barndom",
-            "wergeland_grav",
-            "wergelandsveien_15"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "henrik_wergeland",
-              "personName": "Henrik Wergeland",
-              "field": "places[6]",
-              "invalidPlaceId": "bøker_i_byen"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "henrik_wergeland",
-              "personName": "Henrik Wergeland",
-              "field": "places[3]",
-              "invalidPlaceId": "henrik_wergeland_park"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "henrik_wergeland",
-              "personName": "Henrik Wergeland",
-              "field": "places[4]",
-              "invalidPlaceId": "wergeland_barndom"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "henrik_wergeland",
-              "personName": "Henrik Wergeland",
-              "field": "places[5]",
-              "invalidPlaceId": "wergeland_grav"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "henrik_wergeland",
-              "personName": "Henrik Wergeland",
-              "field": "places[2]",
-              "invalidPlaceId": "wergelandsveien_15"
-            }
-          ]
-        },
-        {
-          "personId": "camilla_collett",
-          "personName": "Camilla Collett",
-          "invalidPlaceIds": [
-            "collett_barndom",
-            "henrik_wergeland_park"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "camilla_collett",
-              "personName": "Camilla Collett",
-              "field": "places[2]",
-              "invalidPlaceId": "collett_barndom"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "camilla_collett",
-              "personName": "Camilla Collett",
-              "field": "places[1]",
-              "invalidPlaceId": "henrik_wergeland_park"
-            }
-          ]
-        },
-        {
-          "personId": "inger_hagerup",
-          "personName": "Inger Hagerup",
-          "invalidPlaceIds": [
-            "grotten_utsikt",
-            "inger_hagerup_minne"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "inger_hagerup",
-              "personName": "Inger Hagerup",
-              "field": "places[1]",
-              "invalidPlaceId": "grotten_utsikt"
-            },
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "inger_hagerup",
-              "personName": "Inger Hagerup",
-              "field": "places[2]",
-              "invalidPlaceId": "inger_hagerup_minne"
-            }
-          ]
-        }
-      ]
     }
   ],
   "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "henrik_wergeland_park",
-      "occurrences": 2,
-      "peopleCount": 2,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "needs_manual_review",
-      "suggestions": [
-        {
-          "placeId": "henrik_wergeland_statue",
-          "confidence": "low"
-        }
-      ]
-    },
     {
       "invalidPlaceId": "bispeborgen",
       "occurrences": 1,
       "peopleCount": 1,
       "sourceFiles": [
         "data/people/people_historie.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "bjornson_bolig",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "bøker_i_byen",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "collett_barndom",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "grotten_utsikt",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "ibsen_bjornson_graver",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "inger_hagerup_minne",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "wergeland_barndom",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "wergeland_grav",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "wergelandsveien_15",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
       ],
       "classification": "missing_place_candidate",
       "suggestions": []
@@ -1565,7 +1335,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "personId": "bjornstjerne_bjornson",
       "personName": "Bjørnstjerne Bjørnson",
       "placeId": "nasjonalbiblioteket",
@@ -1576,7 +1346,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "personId": "henrik_wergeland",
       "personName": "Henrik Wergeland",
       "placeId": "voienvolden",
@@ -1587,19 +1357,18 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "personId": "camilla_collett",
       "personName": "Camilla Collett",
       "placeId": "camilla_collett_statue",
-      "count": 3,
+      "count": 2,
       "fields": [
         "placeId",
-        "places[0]",
-        "places[3]"
+        "places[0]"
       ]
     },
     {
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "personId": "inger_hagerup",
       "personName": "Inger Hagerup",
       "placeId": "grotta",
@@ -2712,72 +2481,7 @@
   ],
   "recommendedNextBatch": [
     {
-      "invalidPlaceId": "henrik_wergeland_park",
-      "classification": "needs_manual_review",
-      "occurrences": 2,
-      "suggestions": [
-        {
-          "placeId": "henrik_wergeland_statue",
-          "confidence": "low"
-        }
-      ]
-    },
-    {
       "invalidPlaceId": "bispeborgen",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "bjornson_bolig",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "bøker_i_byen",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "collett_barndom",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "grotten_utsikt",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "ibsen_bjornson_graver",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "inger_hagerup_minne",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "wergeland_barndom",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "wergeland_grav",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "wergelandsveien_15",
       "classification": "missing_place_candidate",
       "occurrences": 1,
       "suggestions": []
