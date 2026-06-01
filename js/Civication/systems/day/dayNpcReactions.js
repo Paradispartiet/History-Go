@@ -266,7 +266,7 @@
       line,
       trustDelta,
       createdAt: new Date().toISOString(),
-      careerId: normStr(window.CivicationState?.getActivePosition?.()?.career_id)
+      careerId: normStr(/** @type {{ career_id?: unknown } | undefined} */ (window.CivicationState?.getActivePosition?.())?.career_id)
     };
   }
 
