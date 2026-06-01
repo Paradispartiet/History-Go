@@ -16,6 +16,38 @@
 //
 // ============================================================
 
+
+/**
+ * @typedef {object} ProfileNextUpPath
+ * @property {string=} title
+ * @property {number=} step_count
+ *
+ * @typedef {object} ProfileNextUpSummary
+ * @property {string=} active_mode
+ * @property {string=} learning_style
+ * @property {string=} current_direction
+ * @property {unknown[]=} recent_choices
+ * @property {ProfileNextUpPath=} active_path
+ *
+ * @typedef {object} ProfileWindow
+ * @property {(person?: unknown) => void=} showPersonPopup
+ * @property {(place?: unknown) => void=} showPlacePopup
+ * @property {() => ProfileNextUpSummary | null=} getNextUpProfileSummary
+ * @property {unknown[]=} allPlaces
+ * @property {unknown[]=} HGPlaces
+ * @property {(stats?: unknown) => {label?: string, next?: number | null, progress?: number, remaining?: number}=} HG_getGroundhopperLevel
+ * @property {(stats?: unknown) => Array<{unlocked?: boolean, label?: string, desc?: string, target?: number, progress?: number}>=} HG_getGroundhopperAchievements
+ * @property {() => void=} HG_renderGroundhopperProfilePanel
+ * @property {boolean=} DEBUG
+ * @property {{getUserConcepts?: (userId: string) => Array<{count?: number, label?: string}>}=} HGInsights
+ * @property {unknown[]=} PEOPLE
+ * @property {unknown[]=} PLACES
+ * @property {unknown[]=} BADGES
+ * @property {any=} L
+ */
+
+const profileWindow = /** @type {Window & ProfileWindow} */ (window);
+
 // Migrer gammel quiz_history inn i hg_learning_log_v1 (én-gangs).
 try { window.HGLearningLog?.migrateLegacy?.(); } catch {}
 
@@ -39,8 +71,8 @@ function _esc(s){ return String(s ?? "").replace(/[&<>"']/g, ch => ({
 }[ch]));}
 
 // Sørg for at globale popup-funksjoner finnes i app.js
-window.showPersonPopup = window.showPersonPopup || (() => {});
-window.showPlacePopup  = window.showPlacePopup  || (() => {});
+profileWindow.showPersonPopup = profileWindow.showPersonPopup || (() => {});
+profileWindow.showPlacePopup  = profileWindow.showPlacePopup  || (() => {});
 
 // GLOBALT
 let PEOPLE = [];
@@ -105,9 +137,9 @@ function renderProfileCard() {
   const quizUnitCount = getCompletedQuizUnitCount();
 
   document.getElementById("profileName").textContent = userName;
-  document.getElementById("statVisited").textContent = placeCount;
-  document.getElementById("statQuizzes").textContent = quizUnitCount;
-  document.getElementById("statStreak").textContent = streak;
+  document.getElementById("statVisited").textContent = String(placeCount);
+  document.getElementById("statQuizzes").textContent = String(quizUnitCount);
+  document.getElementById("statStreak").textContent = String(streak);
 
   const visitedLabel = document.getElementById("statVisitedLabel");
   if (visitedLabel) visitedLabel.textContent = "Steder";
@@ -138,7 +170,7 @@ function renderPC() {
           JSON.parse(localStorage.getItem("hg_pc_wallet_v1") || "{}").pc || 0
         );
 
-  el.textContent = pc;
+  el.textContent = String(pc);
 }
 
 function renderNextUpProfileCard() {
@@ -149,8 +181,8 @@ function renderNextUpProfileCard() {
   const pathEl = document.getElementById("nextUpProfilePath");
   if (!metaEl || !choicesEl || !pathEl) return;
 
-  const summary = typeof window.getNextUpProfileSummary === "function"
-    ? window.getNextUpProfileSummary()
+  const summary = typeof profileWindow.getNextUpProfileSummary === "function"
+    ? profileWindow.getNextUpProfileSummary()
     : null;
 
   if (!summary) {
@@ -204,8 +236,8 @@ function resolveGroundName(placeId) {
   if (!id) return "Ukjent sted";
   const sources = [
     Array.isArray(PLACES) ? PLACES : [],
-    Array.isArray(window.allPlaces) ? window.allPlaces : [],
-    Array.isArray(window.HGPlaces) ? window.HGPlaces : []
+    Array.isArray(profileWindow.allPlaces) ? profileWindow.allPlaces : [],
+    Array.isArray(profileWindow.HGPlaces) ? profileWindow.HGPlaces : []
   ];
   for (const src of sources) {
     const found = src.find((p) => String(p?.id || "").trim() === id);
@@ -238,7 +270,7 @@ function renderGroundhopperProfilePanel() {
     return;
   }
 
-  const level = window.HG_getGroundhopperLevel?.(stats) || { label: "Ikke startet", next: 1, progress: 0, remaining: 1 };
+  const level = profileWindow.HG_getGroundhopperLevel?.(stats) || { label: "Ikke startet", next: 1, progress: 0, remaining: 1 };
   const statRows = [
     ["Nivå", level.label],
     ["Grounds besøkt", asCount(stats.total_groundhopper_places_visited)],
@@ -285,7 +317,7 @@ function renderGroundhopperProfilePanel() {
   visitedListEl.innerHTML = visibleVisited.length
     ? visibleVisited.map((entry) => `<li>${_esc(resolveGroundName(entry.placeId))}</li>`).join("")
     : "<li>Du har ikke besøkt noen Groundhopper-steder ennå.</li>";
-  const achievements = Array.isArray(window.HG_getGroundhopperAchievements?.(stats)) ? window.HG_getGroundhopperAchievements(stats) : [];
+  const achievements = Array.isArray(profileWindow.HG_getGroundhopperAchievements?.(stats)) ? profileWindow.HG_getGroundhopperAchievements(stats) : [];
   achievementsEl.innerHTML = achievements.map((item) => `
     <article class="groundhopper-achievement ${item.unlocked ? "is-unlocked" : ""}">
       <div class="groundhopper-achievement-label">${item.unlocked ? "🏆" : "🎯"} ${_esc(item.label)}</div>
@@ -297,7 +329,7 @@ function renderGroundhopperProfilePanel() {
   emptyEl.style.display = "none";
   bodyEl.style.display = "block";
 }
-window.HG_renderGroundhopperProfilePanel = renderGroundhopperProfilePanel;
+profileWindow.HG_renderGroundhopperProfilePanel = renderGroundhopperProfilePanel;
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
@@ -342,7 +374,7 @@ async function renderMerits() {
     .map((k) => {
 const badge = getBadgeForMeritKey(k);
 if (!badge) {
-  if (window.DEBUG) console.warn("[profile] renderMerits: no badge for merit key:", k);
+  if (profileWindow.DEBUG) console.warn("[profile] renderMerits: no badge for merit key:", k);
   return ""; // ikke render “ukjent”-kort (ingen 🏷️)
 }
 
@@ -377,7 +409,7 @@ if (!badge) {
       const id = String(el.dataset.badgeId || "").trim();
       const badge = BADGES.find(b => String(b.id || "").trim() === id);
       if (!badge) {
-        if (window.DEBUG) console.warn("[profile] click badge: not found", id);
+        if (profileWindow.DEBUG) console.warn("[profile] click badge: not found", id);
         return;
       }
       openBadgeModal(badge);
@@ -516,7 +548,7 @@ function renderPeopleCollection() {
   grid.querySelectorAll(".avatar-card").forEach(el => {
     el.onclick = () => {
       const pr = PEOPLE.find(p => p.id === el.dataset.person);
-      if (pr) window.showPersonPopup(pr);
+      if (pr) profileWindow.showPersonPopup(pr);
     };
   });
 }
@@ -554,7 +586,7 @@ function renderPlacesCollection() {
   grid.querySelectorAll(".place-card").forEach(el => {
     el.onclick = () => {
       const pl = PLACES.find(p => p.id === el.dataset.place);
-      if (pl) window.showPlacePopup(pl);
+      if (pl) profileWindow.showPlacePopup(pl);
     };
   });
 }
@@ -615,10 +647,10 @@ function renderTimeline() {
       const id = el.dataset.id;
 
       const pr = PEOPLE.find(p => p.id === id);
-      if (pr) return window.showPersonPopup(pr);
+      if (pr) return profileWindow.showPersonPopup(pr);
 
       const pl = PLACES.find(p => p.id === id);
-      if (pl) return window.showPlacePopup(pl);
+      if (pl) return profileWindow.showPlacePopup(pl);
     };
   });
 }
@@ -669,10 +701,10 @@ function renderCollectionCards() {
     el.onclick = () => {
       const id = el.dataset.id;
       const pr = PEOPLE.find(p => p.id === id);
-      if (pr) return window.showPersonPopup(pr);
+      if (pr) return profileWindow.showPersonPopup(pr);
 
       const pl = PLACES.find(p => p.id === id);
-      if (pl) return window.showPlacePopup(pl);
+      if (pl) return profileWindow.showPlacePopup(pl);
     };
   });
 }
@@ -685,8 +717,8 @@ function renderConcepts() {
   const metaEl = document.getElementById("conceptsMeta");
   if (!listEl) return;
 
-  const concepts = (typeof window.HGInsights?.getUserConcepts === "function")
-    ? window.HGInsights.getUserConcepts("anon")
+  const concepts = (typeof profileWindow.HGInsights?.getUserConcepts === "function")
+    ? profileWindow.HGInsights.getUserConcepts("anon")
     : [];
 
   listEl.innerHTML = "";
@@ -777,13 +809,53 @@ function renderLatestKnowledge() {
 }
 
 /**
- * @typedef {Record<string, unknown>} ProfileRecord
+ * @typedef {object} ProfileKnowledgeProgress
+ * @property {number | string=} knownEmner
+ * @property {number | string=} emnerCount
+ * @property {number | string=} estimatedCoverage
+ *
+ * @typedef {object} ProfileKnowledgeSignalSummary
+ * @property {number | string=} totalSignals
+ * @property {number | string=} directLearningSignals
+ * @property {number | string=} visitedPlaceSignals
+ * @property {number | string=} streamSignals
+ * @property {number | string=} conceptSignals
+ * @property {unknown[]=} sourcePlaceIds
+ * @property {unknown[]=} sourceEmneIds
+ *
+ * @typedef {object} ProfileKnowledgeSignalBreakdown
+ * @property {Array<{placeName?: string, placeId?: string, emne_id?: string}>=} visitedPlaces
+ * @property {Array<{emne_id?: string, seen?: boolean, understood?: boolean, applied?: boolean, score?: number | string}>=} directLearning
+ *
+ * @typedef {object} ProfileKnowledgeSignals
+ * @property {ProfileKnowledgeSignalSummary=} summary
+ * @property {ProfileKnowledgeSignalBreakdown=} breakdown
+ *
+ * @typedef {object} ProfileKnowledgeSubject
+ * @property {string=} subjectId
+ * @property {ProfileKnowledgeProgress=} progress
+ * @property {ProfileKnowledgeSignals=} signals
+ *
+ * @typedef {object} ProfileKnowledgeSummary
+ * @property {number | string=} subjects
+ * @property {number | string=} totalEmner
+ * @property {number | string=} totalKnownEmner
+ * @property {number | string=} averageCoverage
+ * @property {number | string=} healthErrors
+ * @property {number | string=} healthWarnings
+ * @property {Array<string | {subjectId?: string}>=} weakestSubjects
+ *
+ * @typedef {object} ProfileKnowledgeRecommendation
+ * @property {string=} title
+ * @property {string=} reason
+ * @property {string=} subjectId
+ *
  * @typedef {object} ProfileKnowledgeReport
  * @property {boolean=} ok
- * @property {ProfileRecord=} summary
- * @property {ProfileRecord=} sourceState
- * @property {ProfileRecord=} subjects
- * @property {unknown[]=} recommendations
+ * @property {ProfileKnowledgeSummary=} summary
+ * @property {Record<string, unknown>=} sourceState
+ * @property {Record<string, ProfileKnowledgeSubject>=} subjects
+ * @property {ProfileKnowledgeRecommendation[]=} recommendations
  * @property {unknown=} healthReport
  * @property {string=} generatedAt
  */
@@ -815,9 +887,9 @@ async function renderKnowledgeEnginePanel() {
       return;
     }
 
-    /** @type {ProfileRecord} */
+    /** @type {ProfileKnowledgeSummary} */
     const summary = report?.summary || {};
-    /** @type {ProfileRecord} */
+    /** @type {Record<string, unknown>} */
     const sourceState = report?.sourceState || {};
     const summaryCards = [
       [`${Number(summary.subjects || 0)}`, "fag"],
@@ -831,7 +903,7 @@ async function renderKnowledgeEnginePanel() {
       .map(([value, label]) => `<div class="knowledge-engine-summary-card"><strong>${_esc(value)}</strong><span>${_esc(label)}</span></div>`)
       .join("");
 
-    /** @type {unknown[]} */
+    /** @type {ProfileKnowledgeSubject[]} */
     const allSubjects = Object.values(report?.subjects || {});
     const eligible = allSubjects.filter((subject) => {
       const progress = subject?.progress || {};
@@ -887,7 +959,7 @@ async function renderKnowledgeEnginePanel() {
       `;
     }
 
-    /** @type {unknown[]} */
+    /** @type {ProfileKnowledgeRecommendation[]} */
     const recs = Array.isArray(report?.recommendations) ? report.recommendations.slice(0, 3) : [];
     recsEl.innerHTML = recs.length
       ? recs.map((rec) => `<article class="knowledge-engine-recommendation"><strong>${_esc(rec?.title || "Anbefaling")}</strong><div>${_esc(rec?.reason || "")}</div><small>${_esc(rec?.subjectId ? `Fag: ${rec.subjectId}` : "")}</small></article>`).join("")
@@ -1079,9 +1151,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     PLACES = Array.isArray(places) ? places : [];
     BADGES = Array.isArray(badges?.badges) ? badges.badges : (Array.isArray(badges) ? badges : []);
 
-    window.PEOPLE = PEOPLE;
-    window.PLACES = PLACES;
-    window.BADGES = BADGES;
+    profileWindow.PEOPLE = PEOPLE;
+    profileWindow.PLACES = PLACES;
+    profileWindow.BADGES = BADGES;
 
     // Initial render
     safeCall("renderProfileCard", renderProfileCard);
@@ -1148,6 +1220,7 @@ let PROFILE_LAYER = null;
 
 
 function setupProfileMap() {
+  const L = profileWindow.L;
   if (typeof L === "undefined") return;
 
   if (!PROFILE_MAP) {
@@ -1168,6 +1241,7 @@ function setupProfileMap() {
 }
 
 function updateProfileMarkers() {
+  const L = profileWindow.L;
   if (!PROFILE_LAYER || !PLACES.length) return;
 
   const { byQuiz } = getUnlockState();
@@ -1187,8 +1261,8 @@ function updateProfileMarkers() {
     mk.bindTooltip(p.name, { direction: "top" });
 
     mk.on("click", () => {
-      if (window.showPlacePopup)
-        window.showPlacePopup(p);
+      if (profileWindow.showPlacePopup)
+        profileWindow.showPlacePopup(p);
     });
   });
 }

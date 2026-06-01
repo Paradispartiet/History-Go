@@ -653,3 +653,14 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added the missing narrow `Window` declaration, `CivicationSectionsUI?: CiviMethodBag`, using the existing Civication global method-bag pattern.
 - Runtime behavior is unchanged; this pass adds no runtime code and does not change `js/Civication/ui/CivicationSectionsUI.js`.
 - No unrelated globals, schema entries, runtime files, UI files, DOM/CSS/layout/text, state flow, data files, CivicationCalendar declarations, AHA, People of Places, Lesespor/Leksikon, place/emne, `js/ui/**`, `psychologyRoom`, or other tracks were changed.
+
+## Phase 82: reduce profile.js TypeScript diagnostics
+
+- Added a narrow, file-local JSDoc migration pass in `js/profile.js` for profile-page browser globals, NextUp profile summary data, Groundhopper profile helpers, HGInsights concepts, Leaflet access, and Knowledge Engine profile report shapes.
+- Targeted the concentrated `js/profile.js` cluster made up of `Window` global property diagnostics, profile-card numeric `textContent` assignments, Leaflet global reads, and Knowledge Engine `unknown` property reads.
+- Before this pass, `npm run typecheck:report` reported 1,836 total diagnostic lines and 83 diagnostics for `js/profile.js`.
+- After this pass, `npm run typecheck:report` reports 1,779 total diagnostic lines and 26 diagnostics for `js/profile.js`.
+- The remaining `js/profile.js` diagnostics are the pre-existing top-level `PEOPLE` / `PLACES` / `BADGES` redeclarations plus DOM `Element` narrowing spots and the badges payload shape, which were left for a later narrow pass.
+- Runtime behavior, UI layout, app flow, data, Stories, import scripts, `package.json`, CSS, HTML, and files outside `js/profile.js` remain unchanged.
+- `js/Civication/**` was not touched, and no Civication diagnostics were targeted or changed by source edits in this pass.
+- `data/stories/**`, `data/import/**`, place files, people files, manifest files, and `tools/importPlaces.mjs` were not touched.
