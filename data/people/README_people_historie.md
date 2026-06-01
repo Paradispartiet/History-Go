@@ -1,12 +1,12 @@
 # People historie
 
-Dette dokumentet definerer hva som skal ligge i `data/people/people_historie.json`.
+Dette dokumentet definerer hva som skal ligge i `data/people/historie/oslo/people_historie_oslo.json`.
 
 ## Formål
 
-`people_historie.json` skal inneholde personer som primært fungerer som historiske skikkelser i History Go. Filen skal brukes til eldre historie, epoker, minne, krig, kongemakt, middelalder, vikingtid, statsdannelse og historiske brudd.
+`historie/oslo/people_historie_oslo.json` skal inneholde personer som primært fungerer som historiske skikkelser i History Go. Filen skal brukes til eldre historie, epoker, minne, krig, kongemakt, middelalder, vikingtid, statsdannelse og historiske brudd.
 
-## Skal inn i `people_historie`
+## Skal inn i `historie/oslo/people_historie_oslo.json`
 
 Typiske kandidater:
 
@@ -31,7 +31,7 @@ Eksempler på riktig type:
 - `gregers_gram`
 - `petter_moen`
 
-## Skal vanligvis ikke inn i `people_historie`
+## Skal vanligvis ikke inn i `historie/oslo/people_historie_oslo.json`
 
 Personer skal ikke legges i historie bare fordi de er gamle eller historisk viktige. De skal ligge i sin sterkeste fagkategori hvis hovedrollen deres er politisk, litterær, kunstnerisk, vitenskapelig eller kulturell.
 
@@ -43,7 +43,7 @@ Typisk plassering utenfor historie:
 - forskere, oppdagere og vitenskapelige institusjoner -> `people_vitenskap.json`, med historietag ved behov
 - kunstnere og kulturpersoner -> relevant kunst-/kulturfil
 
-Eksempler som ikke bør legges i `people_historie` som hovedkategori:
+Eksempler som ikke bør legges i `historie/oslo/people_historie_oslo.json` som hovedkategori:
 
 - Anna Rogstad -> politikk
 - Johan Castberg -> politikk
@@ -55,7 +55,7 @@ Eksempler som ikke bør legges i `people_historie` som hovedkategori:
 
 ## Krysskategorier
 
-En person kan ha historisk betydning uten å ligge i `people_historie`.
+En person kan ha historisk betydning uten å ligge i `historie/oslo/people_historie_oslo.json`.
 
 Bruk da:
 
@@ -90,7 +90,7 @@ Før nye personer legges inn, sjekk alltid at `placeId` finnes i aktiv place-man
 
 ## Praktisk regel
 
-Legg en person i `people_historie` bare når svaret på dette er ja:
+Legg en person i `historie/oslo/people_historie_oslo.json` bare når svaret på dette er ja:
 
 > Er personens viktigste funksjon i appen å forklare en historisk epoke, hendelse, krig, middelalder, kongemakt, minne eller kulturarv?
 

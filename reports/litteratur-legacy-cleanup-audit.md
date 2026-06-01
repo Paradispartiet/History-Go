@@ -1,6 +1,6 @@
 # Litteratur legacy cleanup audit
 
-Generert: 2026-06-01T10:36:04.084Z
+Generert: 2026-06-01T11:02:36.161Z
 
 Analysert kilde: `data/people/people_litteratur.json` (kun gjenværende legacy-personer).
 Fasit for aktive placeId-er: `data/places/manifest.json` (470 aktive placeId-er).
