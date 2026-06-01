@@ -1,9 +1,9 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T06:52:43.722Z
+Generated: 2026-06-01T07:29:33.374Z
 
 ## Sammendrag
-- People-filer lest: **23**
+- People-filer lest: **24**
 - People lest: **233**
 - People med ugyldige refs: **8**
 - Ugyldige refs: **15**
@@ -159,7 +159,30 @@ Generated: 2026-06-01T06:52:43.722Z
 - data/people/kunst/oslo/people_kunst_oslo.json :: steinar_jakobsen (Steinar Jakobsen) -> astrup_fearnley x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: sonja (Dronning Sonja) -> slottet x2
-- data/people/people_litteratur.json :: linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: vigdis_hjorth (Vigdis Hjorth) -> deichman_bjorvika x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: karl_ove_knausgard (Karl Ove Knausgård) -> deichman_bjorvika x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: dag_solstad (Dag Solstad) -> litteraturhuset x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: geir_gulliksen (Geir Gulliksen) -> litteraturhuset x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: cecilie_enger (Cecilie Enger) -> litteraturhuset x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: jens_bjorneboe (Jens Bjørneboe) -> tronsmo_bokhandel x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: tor_age_bringsvaerd (Tor Åge Bringsværd) -> tronsmo_bokhandel x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: gro_dahle (Gro Dahle) -> tronsmo_bokhandel x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: helene_uri (Helene Uri) -> eldorado_bokhandel x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: jonas_collett (Jonas Collett) -> camilla_collett_statue x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: ruth_maier (Ruth Maier) -> ruth_maier_minne x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: cecilie_loveid (Cecilie Løveid) -> sofienbergparken_subkultur x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: vogt (Nils Collett Vogt) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: andersen (Tryggve Andersen) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: krag (Vilhelm Krag) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: obstfelder (Sigbjørn Obstfelder) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: hamsun (Knut Hamsun) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: garborg (Arne Garborg) -> gamle_deichman x2
 - data/people/people_litteratur.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
@@ -167,30 +190,7 @@ Generated: 2026-06-01T06:52:43.722Z
 - data/people/people_litteratur.json :: andre_bjerke (André Bjerke) -> grotta x2
 - data/people/people_litteratur.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/people_litteratur.json :: jon_fosse (Jon Fosse) -> grotta x2
-- data/people/people_litteratur.json :: vigdis_hjorth (Vigdis Hjorth) -> deichman_bjorvika x2
-- data/people/people_litteratur.json :: karl_ove_knausgard (Karl Ove Knausgård) -> deichman_bjorvika x2
-- data/people/people_litteratur.json :: dag_solstad (Dag Solstad) -> litteraturhuset x2
-- data/people/people_litteratur.json :: geir_gulliksen (Geir Gulliksen) -> litteraturhuset x2
-- data/people/people_litteratur.json :: cecilie_enger (Cecilie Enger) -> litteraturhuset x2
-- data/people/people_litteratur.json :: jens_bjorneboe (Jens Bjørneboe) -> tronsmo_bokhandel x2
-- data/people/people_litteratur.json :: tor_age_bringsvaerd (Tor Åge Bringsværd) -> tronsmo_bokhandel x2
-- data/people/people_litteratur.json :: gro_dahle (Gro Dahle) -> tronsmo_bokhandel x2
-- data/people/people_litteratur.json :: helene_uri (Helene Uri) -> eldorado_bokhandel x2
-- data/people/people_litteratur.json :: ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka x2
-- data/people/people_litteratur.json :: jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur x2
-- data/people/people_litteratur.json :: pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur x2
-- data/people/people_litteratur.json :: lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata x2
-- data/people/people_litteratur.json :: jonas_collett (Jonas Collett) -> camilla_collett_statue x2
-- data/people/people_litteratur.json :: ruth_maier (Ruth Maier) -> ruth_maier_minne x2
 - data/people/people_litteratur.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
-- data/people/people_litteratur.json :: cecilie_loveid (Cecilie Løveid) -> sofienbergparken_subkultur x2
-- data/people/people_litteratur.json :: oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen x2
-- data/people/people_litteratur.json :: vogt (Nils Collett Vogt) -> gamle_deichman x2
-- data/people/people_litteratur.json :: andersen (Tryggve Andersen) -> gamle_deichman x2
-- data/people/people_litteratur.json :: krag (Vilhelm Krag) -> gamle_deichman x2
-- data/people/people_litteratur.json :: obstfelder (Sigbjørn Obstfelder) -> gamle_deichman x2
-- data/people/people_litteratur.json :: hamsun (Knut Hamsun) -> gamle_deichman x2
-- data/people/people_litteratur.json :: garborg (Arne Garborg) -> gamle_deichman x2
 - data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
 - data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
 - data/people/people_musikk.json :: aurora (Aurora) -> salt x2

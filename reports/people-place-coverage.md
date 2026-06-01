@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-06-01T06:52:44.568Z
+Generert: 2026-06-01T07:29:34.481Z
 
 ## Sammendrag
 
@@ -218,13 +218,6 @@ Generert: 2026-06-01T06:52:44.568Z
 - cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken
 - sonja (Dronning Sonja) -> slottet
 - linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket
-- sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket
-- bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket
-- henrik_wergeland (Henrik Wergeland) -> voienvolden
-- camilla_collett (Camilla Collett) -> camilla_collett_statue
-- andre_bjerke (André Bjerke) -> grotta
-- inger_hagerup (Inger Hagerup) -> grotta
-- jon_fosse (Jon Fosse) -> grotta
 - vigdis_hjorth (Vigdis Hjorth) -> deichman_bjorvika
 - karl_ove_knausgard (Karl Ove Knausgård) -> deichman_bjorvika
 - dag_solstad (Dag Solstad) -> litteraturhuset
@@ -238,6 +231,13 @@ Generert: 2026-06-01T06:52:44.568Z
 - jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
 - pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
+- jonas_collett (Jonas Collett) -> camilla_collett_statue
+- ruth_maier (Ruth Maier) -> ruth_maier_minne
+- cecilie_loveid (Cecilie Løveid) -> sofienbergparken_subkultur
+- oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
+- vogt (Nils Collett Vogt) -> gamle_deichman
+- andersen (Tryggve Andersen) -> gamle_deichman
+- krag (Vilhelm Krag) -> gamle_deichman
 - ... 111 flere
 
 ## Anbefalt første people-batch

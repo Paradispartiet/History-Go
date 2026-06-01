@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-06-01T06:52:43.840Z
+Generert: 2026-06-01T07:29:33.435Z
 
 ## Totalsammendrag
 
@@ -723,20 +723,20 @@ Generert: 2026-06-01T06:52:43.840Z
 ## Referanser til place-id-er som ikke finnes
 
 - data/people/people_historie.json :: [60].places[2] -> bispeborgen
-- data/people/people_litteratur.json :: [1].places[3] -> bøker_i_byen
-- data/people/people_litteratur.json :: [2].places[2] -> bjornson_bolig
-- data/people/people_litteratur.json :: [2].places[3] -> ibsen_bjornson_graver
-- data/people/people_litteratur.json :: [3].places[2] -> wergelandsveien_15
-- data/people/people_litteratur.json :: [3].places[3] -> henrik_wergeland_park
-- data/people/people_litteratur.json :: [3].places[4] -> wergeland_barndom
-- data/people/people_litteratur.json :: [3].places[5] -> wergeland_grav
-- data/people/people_litteratur.json :: [3].places[6] -> bøker_i_byen
-- data/people/people_litteratur.json :: [4].places[1] -> henrik_wergeland_park
-- data/people/people_litteratur.json :: [4].places[2] -> collett_barndom
+- data/people/people_litteratur.json :: [0].places[3] -> bøker_i_byen
+- data/people/people_litteratur.json :: [1].places[2] -> bjornson_bolig
+- data/people/people_litteratur.json :: [1].places[3] -> ibsen_bjornson_graver
+- data/people/people_litteratur.json :: [2].places[2] -> wergelandsveien_15
+- data/people/people_litteratur.json :: [2].places[3] -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [2].places[4] -> wergeland_barndom
+- data/people/people_litteratur.json :: [2].places[5] -> wergeland_grav
+- data/people/people_litteratur.json :: [2].places[6] -> bøker_i_byen
+- data/people/people_litteratur.json :: [3].places[1] -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [3].places[2] -> collett_barndom
+- data/people/people_litteratur.json :: [4].places[1] -> grotten_utsikt
 - data/people/people_litteratur.json :: [5].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [5].places[2] -> inger_hagerup_minne
 - data/people/people_litteratur.json :: [6].places[1] -> grotten_utsikt
-- data/people/people_litteratur.json :: [6].places[2] -> inger_hagerup_minne
-- data/people/people_litteratur.json :: [7].places[1] -> grotten_utsikt
 
 ## Anbefalt rekkefølge for ferdigstilling
 
