@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T20:54:32.184Z",
+  "generatedAt": "2026-06-01T21:14:17.762Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,14 +8,59 @@
   "summary": {
     "peopleFilesRead": 21,
     "peopleRead": 323,
-    "peopleWithInvalidRefs": 0,
-    "invalidRefs": 0,
-    "uniqueInvalidPlaceIds": 0,
+    "peopleWithInvalidRefs": 1,
+    "invalidRefs": 2,
+    "uniqueInvalidPlaceIds": 1,
     "peopleWithoutValidPlace": 23,
     "duplicateInternalPlaceRefs": 293
   },
-  "invalidRefsGrouped": [],
-  "uniqueInvalidPlaceIds": [],
+  "invalidRefsGrouped": [
+    {
+      "sourceFile": "data/people/people_by.json",
+      "people": [
+        {
+          "personId": "harald_aars",
+          "personName": "Harald Aars",
+          "invalidPlaceIds": [
+            "sagene"
+          ],
+          "invalidRefs": [
+            {
+              "sourceFile": "data/people/people_by.json",
+              "personId": "harald_aars",
+              "personName": "Harald Aars",
+              "field": "placeId",
+              "invalidPlaceId": "sagene"
+            },
+            {
+              "sourceFile": "data/people/people_by.json",
+              "personId": "harald_aars",
+              "personName": "Harald Aars",
+              "field": "places[0]",
+              "invalidPlaceId": "sagene"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "uniqueInvalidPlaceIds": [
+    {
+      "invalidPlaceId": "sagene",
+      "occurrences": 2,
+      "peopleCount": 1,
+      "sourceFiles": [
+        "data/people/people_by.json"
+      ],
+      "classification": "likely_rename_to_existing_place",
+      "suggestions": [
+        {
+          "placeId": "sagene_kvernhus",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
   "peopleWithoutValidPlace": [
     {
       "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
@@ -1699,7 +1744,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "peter_christen_asbjornsen",
       "personName": "Peter Christen Asbjørnsen",
       "placeId": "maridalsvannet",
@@ -1710,7 +1755,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "michael_sars",
       "personName": "Michael Sars",
       "placeId": "bygdoy_natur",
@@ -1721,7 +1766,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "georg_ossian_sars",
       "personName": "Georg Ossian Sars",
       "placeId": "hovedoya",
@@ -1732,7 +1777,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "jens_esmark",
       "personName": "Jens Esmark",
       "placeId": "maridalsvannet",
@@ -1743,7 +1788,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "arne_naess",
       "personName": "Arne Næss",
       "placeId": "maerradalen",
@@ -1754,7 +1799,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "nils_faarlund",
       "personName": "Nils Faarlund",
       "placeId": "maerradalen",
@@ -1765,7 +1810,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "hanna_resvoll_holmsen",
       "personName": "Hanna Resvoll-Holmsen",
       "placeId": "botanisk_hage",
@@ -1776,7 +1821,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "thekla_resvoll",
       "personName": "Thekla Resvoll",
       "placeId": "botanisk_hage",
@@ -1787,7 +1832,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "rolf_nordhagen",
       "personName": "Rolf Nordhagen",
       "placeId": "botanisk_hage",
@@ -1798,7 +1843,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "haaken_hasberg_gran",
       "personName": "Haaken Hasberg Gran",
       "placeId": "naturhistorisk_museum",
@@ -1809,7 +1854,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "dag_o_hessen",
       "personName": "Dag O. Hessen",
       "placeId": "naturhistorisk_museum",
@@ -1820,7 +1865,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "lauritz_somme",
       "personName": "Lauritz Sømme",
       "placeId": "naturhistorisk_museum",
@@ -1831,7 +1876,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "helge_ingstad",
       "personName": "Helge Ingstad",
       "placeId": "bygdoy_natur",
@@ -1842,7 +1887,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "anne_stine_ingstad",
       "personName": "Anne Stine Ingstad",
       "placeId": "bygdoy_natur",
@@ -1853,7 +1898,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "bernhard_herre",
       "personName": "Bernhard Herre",
       "placeId": "maridalsvannet",
@@ -1864,7 +1909,7 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
+      "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "personId": "mikkjel_fonhus",
       "personName": "Mikkjel Fønhus",
       "placeId": "maridalsvannet",
@@ -3404,5 +3449,17 @@
       ]
     }
   ],
-  "recommendedNextBatch": []
+  "recommendedNextBatch": [
+    {
+      "invalidPlaceId": "sagene",
+      "classification": "likely_rename_to_existing_place",
+      "occurrences": 2,
+      "suggestions": [
+        {
+          "placeId": "sagene_kvernhus",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ]
 }

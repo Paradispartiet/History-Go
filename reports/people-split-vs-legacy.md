@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-01T20:54:32.364Z
+Generert: 2026-06-01T21:14:17.915Z
 
 ## Sammendrag
 
@@ -36,11 +36,11 @@ Generert: 2026-06-01T20:54:32.364Z
 | data/people/media/oslo/people_media_oslo.json | ja | 14 | 0 |  |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | ja | 4 | 0 |  |
 | data/people/musikk/oslo/people_musikk_oslo.json | ja | 5 | 0 |  |
+| data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
 | data/people/people_by.json | ja | 17 | 0 |  |
 | data/people/people_filantroper.json | ja | 9 | 0 |  |
 | data/people/people_musikk.json | ja | 10 | 0 |  |
 | data/people/people_naeringsliv.json | ja | 19 | 0 |  |
-| data/people/people_natur.json | ja | 16 | 0 |  |
 | data/people/people_populaerkultur.json | ja | 3 | 0 |  |
 | data/people/politikk/oslo/people_politikk_oslo.json | ja | 22 | 0 |  |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | ja | 1 | 0 |  |
@@ -83,7 +83,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - anna_rogstad | Anna Rogstad | data/people/politikk/oslo/people_politikk_oslo.json
 - anna_sethne | Anna Sethne | data/people/historie/oslo/people_historie_oslo.json
 - anne_grosvold | Anne Grosvold | data/people/media/oslo/people_media_oslo.json
-- anne_stine_ingstad | Anne Stine Ingstad | data/people/people_natur.json
+- anne_stine_ingstad | Anne Stine Ingstad | data/people/natur/oslo/people_natur_oslo.json
 - anton_martin_schweigaard_okonomi | Anton Martin Schweigaard | data/people/people_naeringsliv.json
 - antonio_lopes_ribeiro | António Lopes Ribeiro | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
 - arne_korsmo | Arne Korsmo | data/people/people_by.json
@@ -93,7 +93,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - astrid_olavsdatter | Astrid Olavsdatter | data/people/historie/oslo/people_historie_oslo.json
 - bard_tufte_johansen | Bård Tufte Johansen | data/people/popkultur/oslo/people_popkultur_oslo.json
 - berit_aas | Berit Ås | data/people/politikk/oslo/people_politikk_oslo.json
-- bernhard_herre | Bernhard Herre | data/people/people_natur.json
+- bernhard_herre | Bernhard Herre | data/people/natur/oslo/people_natur_oslo.json
 - bernt_anker | Bernt Anker | data/people/historie/oslo/people_historie_oslo.json
 - bernt_olufsen | Bernt Olufsen | data/people/media/oslo/people_media_oslo.json
 - betzy_kjelsberg | Betzy Kjelsberg | data/people/politikk/oslo/people_politikk_oslo.json
@@ -121,7 +121,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - christopher_hansteen | Christopher Hansteen | data/people/historie/oslo/people_historie_oslo.json
 - christopher_nielsen | Christopher Nielsen | data/people/subkultur/oslo/people_subkultur_oslo.json
 - cj_hambro | C.J. Hambro | data/people/historie/oslo/people_historie_oslo.json
-- dag_o_hessen | Dag O. Hessen | data/people/people_natur.json
+- dag_o_hessen | Dag O. Hessen | data/people/natur/oslo/people_natur_oslo.json
 - don_martin | Don Martin | data/people/subkultur/oslo/people_subkultur_oslo.json
 - eckbos_legat | Eckbos Legat | data/people/people_filantroper.json
 - edith_carlmar | Edith Carlmar | data/people/film_tv/oslo/people_film_tv_oslo.json
@@ -141,7 +141,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - gard_steiro | Gard Steiro | data/people/media/oslo/people_media_oslo.json
 - gateavisa_miljoet | Gateavisa-miljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
 - geir_grung | Geir Grung | data/people/people_by.json
-- georg_ossian_sars | Georg Ossian Sars | data/people/people_natur.json
+- georg_ossian_sars | Georg Ossian Sars | data/people/natur/oslo/people_natur_oslo.json
 - georg_sverdrup | Georg Sverdrup | data/people/historie/oslo/people_historie_oslo.json
 - gregers_gram | Gregers Gram | data/people/historie/oslo/people_historie_oslo.json
 - gunnar_jahn_statistikk_og_styring | Gunnar Jahn | data/people/people_naeringsliv.json
@@ -149,7 +149,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - gunnhild_kongsmor | Gunnhild kongsmor | data/people/historie/oslo/people_historie_oslo.json
 - hakon_vi_magnusson | Håkon VI Magnusson | data/people/historie/oslo/people_historie_oslo.json
 - hanna_kvanmo | Hanna Kvanmo | data/people/politikk/oslo/people_politikk_oslo.json
-- hanna_resvoll_holmsen | Hanna Resvoll-Holmsen | data/people/people_natur.json
+- hanna_resvoll_holmsen | Hanna Resvoll-Holmsen | data/people/natur/oslo/people_natur_oslo.json
 - hanne_skartveit | Hanne Skartveit | data/people/media/oslo/people_media_oslo.json
 - hans_rasmus_astrup | Hans Rasmus Astrup | data/people/people_filantroper.json
 - harald_eia | Harald Eia | data/people/popkultur/oslo/people_popkultur_oslo.json
@@ -161,13 +161,13 @@ Generert: 2026-06-01T20:54:32.364Z
 - harriet_holter | Harriet Holter | data/people/vitenskap/oslo/people_vitenskap_oslo.json
 - hausmania_miljoet | Hausmania-miljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
 - helga_eng | Helga Eng | data/people/vitenskap/oslo/people_vitenskap_oslo.json
-- helge_ingstad | Helge Ingstad | data/people/people_natur.json
+- helge_ingstad | Helge Ingstad | data/people/natur/oslo/people_natur_oslo.json
 - henrik_bjelke | Henrik Bjelke | data/people/historie/oslo/people_historie_oslo.json
 - henrik_bull | Henrik Bull | data/people/people_by.json
 - henrik_ibsen | Henrik Ibsen | data/people/historie/oslo/people_historie_oslo.json
 - herman_schou_bryggeri | Herman Schou | data/people/people_naeringsliv.json
 - hjalmar_andersen | Hjalmar Andersen | data/people/sport/oslo/people_sport_oslo.json
-- haaken_hasberg_gran | Haaken Hasberg Gran | data/people/people_natur.json
+- haaken_hasberg_gran | Haaken Hasberg Gran | data/people/natur/oslo/people_natur_oslo.json
 - haakon_haakonsson | Håkon Håkonsson | data/people/historie/oslo/people_historie_oslo.json
 - haakon_lie | Haakon Lie | data/people/politikk/oslo/people_politikk_oslo.json
 - haakon_nyhuus | Haakon Nyhuus | data/people/historie/oslo/people_historie_oslo.json
@@ -179,7 +179,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - jan_erik_holst | Jan Erik Holst | data/people/film_tv/oslo/people_film_tv_oslo.json
 - jan_garbarek | Jan Garbarek | data/people/musikk/oslo/people_musikk_oslo.json
 - jens_bjelke | Jens Bjelke | data/people/historie/oslo/people_historie_oslo.json
-- jens_esmark | Jens Esmark | data/people/people_natur.json
+- jens_esmark | Jens Esmark | data/people/natur/oslo/people_natur_oslo.json
 - jo_benkow | Jo Benkow | data/people/politikk/oslo/people_politikk_oslo.json
 - joachim_nielsen | Joachim Nielsen | data/people/musikk/oslo/people_musikk_oslo.json
 - joao_cesar_monteiro | João César Monteiro | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
@@ -204,7 +204,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - kristine_bonnevie | Kristine Bonnevie | data/people/historie/oslo/people_historie_oslo.json
 - kristoffer_olsen | Kristoffer Olsen | data/people/popkultur/oslo/people_popkultur_oslo.json
 - lasse_kjus | Lasse Kjus | data/people/sport/oslo/people_sport_oslo.json
-- lauritz_somme | Lauritz Sømme | data/people/people_natur.json
+- lauritz_somme | Lauritz Sømme | data/people/natur/oslo/people_natur_oslo.json
 - leitao_de_barros | Leitão de Barros | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
 - liv_ullmann | Liv Ullmann | data/people/film_tv/oslo/people_film_tv_oslo.json
 - lucy_smith | Lucy Smith | data/people/vitenskap/oslo/people_vitenskap_oslo.json
@@ -221,8 +221,8 @@ Generert: 2026-06-01T20:54:32.364Z
 - maria_quisling | Maria Quisling | data/people/historie/oslo/people_historie_oslo.json
 - maria_severa | Maria Severa | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
 - martin_tranmael | Martin Tranmæl | data/people/historie/oslo/people_historie_oslo.json
-- michael_sars | Michael Sars | data/people/people_natur.json
-- mikkjel_fonhus | Mikkjel Fønhus | data/people/people_natur.json
+- michael_sars | Michael Sars | data/people/natur/oslo/people_natur_oslo.json
+- mikkjel_fonhus | Mikkjel Fønhus | data/people/natur/oslo/people_natur_oslo.json
 - morten_harket | Morten Harket | data/people/musikk/oslo/people_musikk_oslo.json
 - morten_ramm | Morten Ramm | data/people/people_populaerkultur.json
 - nicolai_rygg_sentralbank | Nicolai Rygg | data/people/people_naeringsliv.json
@@ -230,7 +230,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - niels_henrik_abel | Niels Henrik Abel | data/people/vitenskap/oslo/people_vitenskap_oslo.json
 - niels_onstad | Niels Onstad | data/people/people_filantroper.json
 - nils_arne_eggen | Nils Arne Eggen | data/people/sport/oslo/people_sport_oslo.json
-- nils_faarlund | Nils Faarlund | data/people/people_natur.json
+- nils_faarlund | Nils Faarlund | data/people/natur/oslo/people_natur_oslo.json
 - nils_r_muller | Nils R. Müller | data/people/film_tv/oslo/people_film_tv_oslo.json
 - nora_mork | Nora Mørk | data/people/sport/oslo/people_sport_oslo.json
 - oda_krohg | Oda Krohg | data/people/historie/oslo/people_historie_oslo.json
@@ -250,14 +250,14 @@ Generert: 2026-06-01T20:54:32.364Z
 - peder_anker | Peder Anker | data/people/historie/oslo/people_historie_oslo.json
 - peder_clausson_friis | Peder Claussøn Friis | data/people/historie/oslo/people_historie_oslo.json
 - pedro_costa | Pedro Costa | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
-- peter_christen_asbjornsen | Peter Christen Asbjørnsen | data/people/people_natur.json
+- peter_christen_asbjornsen | Peter Christen Asbjørnsen | data/people/natur/oslo/people_natur_oslo.json
 - petter_moen | Petter Moen | data/people/historie/oslo/people_historie_oslo.json
 - petter_stordalen_hotell_og_service | Petter Stordalen | data/people/people_naeringsliv.json
 - radi_orakel | RadiOrakel | data/people/subkultur/oslo/people_subkultur_oslo.json
 - ragnar_frisch | Ragnar Frisch | data/people/vitenskap/oslo/people_vitenskap_oslo.json
 - rein_alexander | Rein Alexander | data/people/popkultur/oslo/people_popkultur_oslo.json
 - reiulf_steen | Reiulf Steen | data/people/politikk/oslo/people_politikk_oslo.json
-- rolf_nordhagen | Rolf Nordhagen | data/people/people_natur.json
+- rolf_nordhagen | Rolf Nordhagen | data/people/natur/oslo/people_natur_oslo.json
 - rolf_stenersen | Rolf Stenersen | data/people/people_filantroper.json
 - rolf_wickstrom | Rolf Wickstrøm | data/people/historie/oslo/people_historie_oslo.json
 - rune_fjeld_olsen | Rune Fjeld Olsen | data/people/media/oslo/people_media_oslo.json
@@ -277,7 +277,7 @@ Generert: 2026-06-01T20:54:32.364Z
 - sverre_fehn | Sverre Fehn | data/people/people_by.json
 - sverre_pedersen | Sverre Pedersen | data/people/people_by.json
 - tancred_ibsen | Tancred Ibsen | data/people/film_tv/oslo/people_film_tv_oslo.json
-- thekla_resvoll | Thekla Resvoll | data/people/people_natur.json
+- thekla_resvoll | Thekla Resvoll | data/people/natur/oslo/people_natur_oslo.json
 - thomas_heftye_bank_og_byutvikling | Thomas Heftye | data/people/people_naeringsliv.json
 - thomas_hylland_eriksen | Thomas Hylland Eriksen | data/people/vitenskap/oslo/people_vitenskap_oslo.json
 - thomas_thiis_evensen | Thomas Thiis-Evensen | data/people/people_by.json
@@ -306,7 +306,7 @@ Generert: 2026-06-01T20:54:32.364Z
 
 ## Feltforskjeller for ID-er som finnes begge steder
 
-- arne_naess | Arne Næss | placeId, desc, popupDesc | data/people/people_natur.json
+- arne_naess | Arne Næss | placeId, desc, popupDesc | data/people/natur/oslo/people_natur_oslo.json
 - astrid_s | Astrid S | category | data/people/people_populaerkultur.json
 - cecilie_loveid | Cecilie Løveid | placeId | data/people/litteratur/oslo/people_litteratur_oslo.json
 - christian_frederik | Christian Frederik | category | data/people/historie/oslo/people_historie_oslo.json
