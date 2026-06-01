@@ -13,6 +13,7 @@
  * @typedef {{ ok?: boolean, [key: string]: unknown }} CiviUiOfferActionResult
  * @typedef {{ value?: number, max?: number, collapses?: number, lastCollapse?: { at?: string|number|Date, [key: string]: unknown }, [key: string]: unknown }} CiviUiPsycheTrust
  * @typedef {{ integrity?: number, visibility?: number, economicRoom?: number, autonomy?: number, trust?: CiviUiPsycheTrust, [key: string]: unknown }} CiviUiPsycheSnapshot
+ * @typedef {{ tracks?: unknown[], track_progress?: CiviUiRecord, identity_tags?: unknown[], [key: string]: unknown }} CiviUiTrackHudState
  */
 
 /**
@@ -1415,12 +1416,12 @@ document.getElementById("identityPerceptionBtn")
  */
 function renderTrackHUD() {
 
-  const state = window.CivicationState.getState();
+  const state = /** @type {CiviUiTrackHudState|null|undefined} */ (window.CivicationState.getState());
   if (!state) return;
 
-  const tracks = Array.isArray(state.tracks) ? state.tracks : [];
+  const tracks = /** @type {string[]} */ (Array.isArray(state.tracks) ? state.tracks : []);
   const trackProgress = state.track_progress || {};
-  const tags = Array.isArray(state.identity_tags) ? state.identity_tags : [];
+  const tags = /** @type {string[]} */ (Array.isArray(state.identity_tags) ? state.identity_tags : []);
 
   const nameEl = document.getElementById("civiTrackName");
   const progEl = document.getElementById("civiTrackProgress");
