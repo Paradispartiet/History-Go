@@ -676,3 +676,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added a read-only diagnostics audit for `js/Civication/ui/CivicationUI.js` after Phase 82 and Phase 82B, without changing runtime code, schemas, declarations, DOM/CSS/layout, data, import tooling, package metadata, or `tsconfig.json`.
 - Regenerated `reports/typecheck-baseline-report.md`; the current report records 1724 total diagnostics, `js/Civication/**` at 341, and `js/Civication/ui/CivicationUI.js` unchanged at 96 diagnostics.
 - Documented the remaining `CivicationUI.js` diagnostics by TypeScript code, hotspot function/line range, migration-risk class, and a narrow Phase 84 recommendation focused on local active-position/pending-offer shapes only.
+
+## Phase 84: CivicationUI active-position and pending-offer local JSDoc pass
+
+- Followed the Phase 83 `CivicationUI.js` audit with a narrow, file-local JSDoc/type-only pass in `js/Civication/ui/CivicationUI.js`.
+- Added local active-position and pending-offer typedefs/casts for the shapes already read in `renderCivication()`, including career ids/names, titles, achieved dates, offer thresholds, expiry dates, offer keys, and offer-action result status.
+- Limited the pass to the active-position and pending-offer reads in the profile-mode and Civication-mode branches of `renderCivication()`; `renderCivicationInbox()`, `renderPsycheDashboard()`, `renderPerception()`, and `renderTrackHUD()` were not changed.
+- Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1693, `js/Civication/**` diagnostics are now 310, and `js/Civication/ui/CivicationUI.js` diagnostics are now 65.
