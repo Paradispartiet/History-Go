@@ -734,3 +734,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added local casts around `fetchJSON()` results only where existing code reads `.places`, `.relations`, `.files`, or `.people`, preserving the current array checks, fallbacks, fetch URLs, startup flow, global assignments, and loader behavior.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1660, and `js/boot.js` diagnostics are now 67.
 - `js/profile.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed.
+
+## Phase 88: hgKnowledgeEngine subject report shape pass
+
+- Started the next isolated TypeScript migration pass outside Civication, `js/profile.js`, `js/boot.js`, and `js/ui/**` by targeting only `js/hgKnowledgeEngine.js`.
+- Added file-local JSDoc aliases for the existing Knowledge Engine subject report shape and cast the existing subject maps before `Object.values(...)` consumers in report summarization/recommendation code.
+- Targeted the repeated `unknown` subject-report property diagnostics around `subjects`, `structure`, `progress`, `signals`, `gaps`, and `strengths`; remaining diagnostics are unrelated global/emne/place-shape follow-ups.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1607 to 1576, and `js/hgKnowledgeEngine.js` diagnostics went from 43 to 12.
+- Runtime behavior, report structure, scoring, storage keys, public API, UI layout, app flow, and data semantics remain unchanged.
+- `js/profile.js`, `js/boot.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed.

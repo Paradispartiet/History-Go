@@ -34,9 +34,26 @@
    * @property {number} peopleSignals
    * @property {KnowledgeRecord} signalBreakdown
    *
+   * @typedef {KnowledgeRecord & {emnerCount?: unknown, modulesCount?: unknown, domainsCount?: unknown, courseReady?: unknown, domainAdapted?: unknown}} KnowledgeSubjectStructure
+   * @typedef {KnowledgeRecord & {knownEmner?: unknown, seenEmner?: unknown, understoodEmner?: unknown, appliedEmner?: unknown, knownConcepts?: unknown, quizSignals?: unknown, visitedSignals?: unknown, peopleSignals?: unknown, estimatedCoverage?: unknown}} KnowledgeSubjectProgress
+   * @typedef {KnowledgeRecord & {totalSignals?: unknown, directLearningSignals?: unknown, visitedPlaceSignals?: unknown, streamSignals?: unknown, conceptSignals?: unknown}} KnowledgeSignalSummary
+   * @typedef {KnowledgeRecord & {summary?: KnowledgeSignalSummary, breakdown?: KnowledgeRecord}} KnowledgeSubjectSignalsReport
+   * @typedef {{summary?: {errors?: unknown, warnings?: unknown}, subjects?: Record<string, KnowledgeRecord>} | null} KnowledgeHealthReport
+   *
+   * @typedef {object} KnowledgeSubjectReport
+   * @property {string} subjectId
+   * @property {KnowledgeSubjectStructure} structure
+   * @property {KnowledgeSubjectProgress} progress
+   * @property {KnowledgeSubjectSignalsReport} signals
+   * @property {KnowledgeRecord} health
+   * @property {KnowledgeRecord} files
+   * @property {unknown[]} gaps
+   * @property {unknown[]} strengths
+   * @property {unknown[]} next
+   *
    * @typedef {object} KnowledgeAnalysisResult
-   * @property {KnowledgeRecord} by
-   * @property {unknown} healthReport
+   * @property {Record<string, KnowledgeSubjectReport>} by
+   * @property {KnowledgeHealthReport} healthReport
    * @property {unknown} manifest
    * @property {KnowledgeState} state
    * @property {number} placesLoadedCount
@@ -318,6 +335,7 @@
     }
 
     const subjectIds = Object.keys(toObject(manifest));
+    /** @type {Record<string, KnowledgeSubjectReport>} */
     const by = {};
 
     for (const subjectId of subjectIds) {
@@ -451,7 +469,9 @@
    * @returns {KnowledgeRecord[]}
    */
   function buildRecommendations(analysis) {
-    const subjectsById = toObject(analysis?.subjects?.by || analysis?.by || analysis?.subjects);
+    const rawSubjects = /** @type {{by?: Record<string, KnowledgeSubjectReport>} | Record<string, KnowledgeSubjectReport> | undefined} */ (analysis?.subjects);
+    const subjectsById = /** @type {Record<string, KnowledgeSubjectReport>} */ (toObject(rawSubjects?.by || analysis?.by || rawSubjects));
+    /** @type {KnowledgeSubjectReport[]} */
     const subjects = Object.values(subjectsById);
     const recommendations = [];
 
@@ -513,6 +533,7 @@
   async function run(opts) {
     const analyzed = await analyzeSubjects(opts || {});
     const by = analyzed.by;
+    /** @type {KnowledgeSubjectReport[]} */
     const subjects = Object.values(by);
 
     const totalEmner = subjects.reduce((a, s0) => a + safeNumber(s0?.structure?.emnerCount), 0);
