@@ -61,6 +61,15 @@
     return String(value || "").trim();
   }
 
+  function setAttributeIfChanged(el, name, value) {
+    const next = String(value);
+    if (el.getAttribute(name) !== next) el.setAttribute(name, next);
+  }
+
+  function removeAttributeIfPresent(el, name) {
+    if (el.hasAttribute(name)) el.removeAttribute(name);
+  }
+
   async function loadJson(lang) {
     const url = `data/i18n/ui/${encodeURIComponent(lang)}.json`;
     const res = await fetch(url, { cache: "no-cache" });
@@ -166,8 +175,8 @@
 
         if (!key) {
           if (storedKey && attrText && storedValue && attrText !== storedValue) {
-            el.removeAttribute(storedAttrName);
-            el.removeAttribute(storedValueName);
+            removeAttributeIfPresent(el, storedAttrName);
+            removeAttributeIfPresent(el, storedValueName);
           }
           return;
         }
@@ -175,9 +184,9 @@
         const translated = t(key, attrText);
         if (!translated) return;
 
-        el.setAttribute(storedAttrName, key);
-        el.setAttribute(storedValueName, translated);
-        if (rawValue !== translated) el.setAttribute(attr, translated);
+        setAttributeIfChanged(el, storedAttrName, key);
+        setAttributeIfChanged(el, storedValueName, translated);
+        setAttributeIfChanged(el, attr, translated);
       });
 
       if (el.children && el.children.length > 0) return;
@@ -191,8 +200,8 @@
 
       if (!key) {
         if (storedKey && rawText && storedValue && rawText !== storedValue) {
-          el.removeAttribute("data-hg-i18n-text");
-          el.removeAttribute("data-hg-i18n-text-value");
+          removeAttributeIfPresent(el, "data-hg-i18n-text");
+          removeAttributeIfPresent(el, "data-hg-i18n-text-value");
         }
         return;
       }
@@ -200,8 +209,8 @@
       const translated = t(key, rawText);
       if (!translated) return;
 
-      el.setAttribute("data-hg-i18n-text", key);
-      el.setAttribute("data-hg-i18n-text-value", translated);
+      setAttributeIfChanged(el, "data-hg-i18n-text", key);
+      setAttributeIfChanged(el, "data-hg-i18n-text-value", translated);
       if (el.textContent !== translated) el.textContent = translated;
     });
   }
@@ -341,8 +350,8 @@
 
         if (el.id === "btnSeeMap" && el.classList.contains("iconbtn")) {
           if (translated) {
-            el.setAttribute("aria-label", translated);
-            el.setAttribute("title", translated);
+            setAttributeIfChanged(el, "aria-label", translated);
+            setAttributeIfChanged(el, "title", translated);
           }
 
           let icon = el.querySelector("[data-i18n-icon='map']");
