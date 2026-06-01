@@ -54,15 +54,19 @@ const CATEGORY_EMNE_PREFIXES = {
 // emne_ids. This is intentionally a category -> canonical fagfamilie policy, not
 // a blind prefix rewrite. Unknown/missing emne_ids are never allowlisted because
 // the canonical family is only read from the canonical registry after a hit.
-// Film/populærkultur policy pairs are held outside the first allowlist and remain
-// wrong-prefix warnings for Batch 32 review.
+// Batch 33: by -> film_tv covers urban spaces with an explicitly documented
+// film/TV location or representation layer. populaerkultur -> film_tv covers
+// cinemas and film/TV places while film/TV remains under populaerkultur in
+// place data. by -> populaerkultur is deliberately kept outside the allowlist
+// until after a datafix.
 const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES = {
   natur: ["by", "historie"],
   litteratur: ["by"],
   naeringsliv: ["by", "historie"],
   historie: ["by", "kunst"],
   politikk: ["historie", "by"],
-  by: ["kunst", "historie"],
+  by: ["kunst", "historie", "film_tv"],
+  populaerkultur: ["film_tv"],
   kunst: ["by", "historie"],
   subkultur: ["by", "musikk", "historie", "kunst"]
 };
