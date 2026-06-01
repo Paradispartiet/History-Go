@@ -658,6 +658,6 @@ This supports gradual migration with no framework, bundler, or architecture chan
 
 - Added a declaration-only follow-up after Phase 81 for the remaining `js/Civication/core/civicationEventEngine.js` global/window diagnostics in the current baseline.
 - Declared broad, runtime-safe Civication event-engine globals in `schemas/civication-globals.d.ts`: `HG_STATE`, `CivicationMailEngine`, `CivicationMailRuntime`, `CiviRoleStoryletBridge`, `CivicationTaskEngine`, `CiviStoryResolver`, `CivicationConflicts`, `CivicationEventChannels`, and `CivicationEventEngine`.
-- Used broad method-bag-compatible shapes, with minimal return shapes only where the existing event-engine reads required them, so the declarations remain tolerant of runtime-loaded Civication modules.
+- Kept the newly declared event-engine module globals intentionally broad (`any` for dynamic runtime engine/module objects and `CiviRecord` for `HG_STATE`) so this declaration-only pass does not introduce downstream UI or module contract diagnostics.
 - Runtime behavior is unchanged; no runtime, UI, CSS, data, story, place, people, import, package, or `tsconfig.json` files were changed.
 - Remaining typecheck diagnostics are still expected as part of the incremental TypeScript migration baseline.
