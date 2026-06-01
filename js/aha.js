@@ -371,7 +371,10 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
 }
 
 function openAhaLogin() {
-  window.location.href = HG_AHA_APP_URL;
+  const url = new URL(HG_AHA_APP_URL, window.location.href);
+  url.searchParams.set("auth", "login");
+  url.searchParams.set("source", "historygo");
+  window.location.href = url.toString();
 }
 
 function bindHistoryGoAhaButtons() {
