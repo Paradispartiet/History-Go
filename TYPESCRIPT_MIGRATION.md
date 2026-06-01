@@ -755,8 +755,8 @@ This supports gradual migration with no framework, bundler, or architecture chan
 
 ## Phase 89 replacement: CivicationUI inbox DOM local casts
 
-- Created a fresh replacement for the closed/non-mergeable PR #849 from the current main baseline and reapplied only the narrow `renderCivicationInbox()` DOM local-cast fix.
+- Created a fresh replacement for PR #857 after it was reported not mergeable, starting again from the current main baseline and reapplying only the narrow `renderCivicationInbox()` DOM local-cast fix.
 - Added local JSDoc casts for the existing `#civiInboxChoices`, `#civiInboxFeedback`, and `#civiInboxOK` query results as `HTMLElement|null`, `HTMLElement|null`, and `HTMLButtonElement|null`.
-- Targeted the `CivicationUI.js` inbox DOM/querySelector diagnostic cluster around `style`, `onclick`, and choice container DOM access without changing selectors, markup, DOM structure, CSS classes/IDs, visible text, event listeners, answer flow, storage keys, engine calls, public API, or runtime behavior.
+- Targeted the `CivicationUI.js` inbox DOM/querySelector diagnostic cluster around `style`, `onclick`, and choice container DOM access without changing selectors, markup, DOM structure, event logic, answer flow, visible text, CSS classes/IDs, storage keys, engine calls, public API, or runtime behavior.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1535 to 1529, `js/Civication/**` diagnostics went from 271 to 265, and `js/Civication/ui/CivicationUI.js` diagnostics went from 37 to 31.
-- `js/profile.js`, `js/boot.js`, `js/hgKnowledgeEngine.js`, `js/routes.js`, `js/ui/**`, data/story/import/place/people/manifest files, import tooling, package metadata, CSS, HTML, and unrelated runtime files were not changed.
+- `js/profile.js`, `js/boot.js`, `js/hgKnowledgeEngine.js`, `js/routes.js`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed.
