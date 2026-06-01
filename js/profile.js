@@ -46,6 +46,13 @@ function _t(key, fallback = "") {
   }
 }
 
+function _tf(key, fallback = "", vars = {}) {
+  const template = _t(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) => {
+    return Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`;
+  });
+}
+
 // Sørg for at globale popup-funksjoner finnes i app.js
 window.showPersonPopup = window.showPersonPopup || (() => {});
 window.showPlacePopup  = window.showPlacePopup  || (() => {});
@@ -261,11 +268,15 @@ function renderGroundhopperProfilePanel() {
     .map(([label, value]) => `<div class="groundhopper-stat-card"><span>${_esc(value)}</span><small>${_esc(label)}</small></div>`)
     .join("");
   toplineEl.textContent = level.next == null
-    ? `${_t("ui.groundhopper.level", "Nivå")}: ${level.label} · Maksnivå nådd`
-    : `${_t("ui.groundhopper.level", "Nivå")}: ${level.label} · ${level.remaining} sted(er) til neste nivå (${Math.round(level.progress * 100)}%)`;
+    ? _tf("ui.groundhopper.levelMaxReached", "Nivå: {level} · Maksnivå nådd", { level: level.label })
+    : _tf("ui.groundhopper.levelProgress", "Nivå: {level} · {remaining} sted(er) til neste nivå ({progress}%)", {
+      level: level.label,
+      remaining: level.remaining,
+      progress: Math.round(level.progress * 100)
+    });
 
   const clubsCollected = Array.isArray(stats.clubs_collected) ? stats.clubs_collected.length : 0;
-  clubsEl.textContent = `Klubber samlet: ${clubsCollected}`;
+  clubsEl.textContent = _tf("ui.groundhopper.clubsCollected", "Klubber samlet: {count}", { count: clubsCollected });
 
   const visitIds = Array.isArray(stats.visited_groundhopper_places) ? stats.visited_groundhopper_places : [];
   const visits = visitIds
@@ -280,7 +291,9 @@ function renderGroundhopperProfilePanel() {
 
   visits.sort((a, b) => b.visitedAt - a.visitedAt);
   const latest = visits[0];
-  lastEl.textContent = `Sist besøkt: ${latest ? resolveGroundName(latest.placeId) : "—"}`;
+  lastEl.textContent = _tf("ui.groundhopper.lastVisited", "Sist besøkt: {place}", {
+    place: latest ? resolveGroundName(latest.placeId) : "—"
+  });
 
   const recent = visits.slice(0, 5);
   recentListEl.innerHTML = recent.length
@@ -413,7 +426,7 @@ function openBadgeModal(badge) {
 
   // Vis nivå fra tiers (kanonisk), ikke lagret tekst
   modal.querySelector(".badge-level").textContent = label || _t("ui.badge.beginner", "Nybegynner");
-  modal.querySelector(".badge-progress-text").textContent = `${points} poeng`;
+  modal.querySelector(".badge-progress-text").textContent = _tf("ui.badge.progressPoints", "{points} poeng", { points });
 
   // Progressbar
   const bar = modal.querySelector(".badge-progress-bar");
@@ -602,7 +615,7 @@ function renderTimeline() {
 
   const count = items.length;
   if (count === 0) {
-    body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
+    body.innerHTML = `<div class="muted">${_esc(_tf("ui.profile.timelineNoCards", "Du har ingen historiekort ennå."))}</div>`;
     return;
   }
 
@@ -616,7 +629,7 @@ function renderTimeline() {
 
   const max = PEOPLE.length + PLACES.length;
   if (bar) bar.style.width = `${(count/max)*100}%`;
-  if (txt) txt.textContent = `Du har låst opp ${count} kort`;
+  if (txt) txt.textContent = _tf("ui.profile.timelineUnlockedCards", "Du har låst opp {count} kort", { count });
 
   body.querySelectorAll(".timeline-card").forEach(el => {
     el.onclick = () => {
@@ -708,7 +721,10 @@ function renderConcepts() {
   if (emptyEl) emptyEl.style.display = "none";
 
   const total = concepts.reduce((sum, c) => sum + (c.count || 0), 0);
-  if (metaEl) metaEl.textContent = `${concepts.length} begreper · ${total} riktige svar`;
+  if (metaEl) metaEl.textContent = _tf("ui.profile.conceptsSummary", "{concepts} begreper · {answers} riktige svar", {
+    concepts: concepts.length,
+    answers: total
+  });
 
   const MAX = 40;
   const shown = concepts.slice(0, MAX);
@@ -728,7 +744,7 @@ function renderConcepts() {
   if (concepts.length > MAX) {
     const more = document.createElement("span");
     more.className = "concept-chip";
-    more.textContent = `+${concepts.length - MAX} til`;
+    more.textContent = _tf("ui.profile.moreCount", "+{count} til", { count: concepts.length - MAX });
     frag.appendChild(more);
   }
 
@@ -910,7 +926,7 @@ async function renderKnowledgeEnginePanel() {
           const s = subject?.signals?.summary || {};
           const coverage = Math.max(0, Math.min(100, Number(p.estimatedCoverage || 0)));
           return `<article class="knowledge-engine-subject-card">
-            <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(`${Number(p.knownEmner || 0)} / ${Number(p.emnerCount || 0)} emner · ${coverage} %`)}</span></div>
+            <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(_tf("ui.knowledge.subjectProgress", "{known} / {total} emner · {coverage} %", { known: Number(p.knownEmner || 0), total: Number(p.emnerCount || 0), coverage }))}</span></div>
             <div class="knowledge-engine-bar"><div class="knowledge-engine-bar-fill" style="width:${coverage}%;"></div></div>
             <div class="knowledge-engine-chip-row">
               <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.directLearning", "Direkte læring"))}: ${_esc(Number(s.directLearningSignals || 0))}</span>
@@ -940,7 +956,7 @@ async function renderKnowledgeEnginePanel() {
       const visited = Array.isArray(breakdown.visitedPlaces) ? breakdown.visitedPlaces : [];
       const direct = Array.isArray(breakdown.directLearning) ? breakdown.directLearning.slice(0, 5) : [];
       return `<article class="knowledge-engine-signal-group">
-        <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(`${Number(summarySig.totalSignals || 0)} signaler`)}</span></div>
+        <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(_tf("ui.knowledge.signalCount", "{count} signaler", { count: Number(summarySig.totalSignals || 0) }))}</span></div>
         <div class="knowledge-engine-chip-row">
           <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.directLearning", "directLearning"))}: ${_esc(Number(summarySig.directLearningSignals || 0))}</span>
           <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.visitedPlaces", "visitedPlaces"))}: ${_esc(Number(summarySig.visitedPlaceSignals || 0))}</span>
@@ -954,7 +970,10 @@ async function renderKnowledgeEnginePanel() {
       </article>`;
     }).join("") : `<div class="muted">${_esc(_t("ui.knowledge.noSignalExplanation", "Ingen signalforklaring tilgjengelig ennå."))}</div>`;
 
-    metaEl.textContent = `Analysert ${Number(summary.subjects || 0)} fag · ${Number(summary.totalEmner || 0)} emner`;
+    metaEl.textContent = _tf("ui.knowledge.analyzedSummary", "Analysert {subjects} fag · {topics} emner", {
+      subjects: Number(summary.subjects || 0),
+      topics: Number(summary.totalEmner || 0)
+    });
   } catch (e) {
     console.warn("[profile] Knowledge Engine panel failed", e);
     summaryEl.innerHTML = `<div class="muted">${_esc(_t("ui.knowledge.reportFailed", "Kunnskapsmotoren kunne ikke lage rapport akkurat nå."))}</div>`;
@@ -1017,7 +1036,7 @@ function renderNextWhy() {
     return;
   }
 
-  txt.textContent = `Fordi: ${because}`;
+  txt.textContent = _tf("ui.nextwhy.because", "Fordi: {because}", { because });
   sec.style.display = "block";
 }
 
@@ -1037,7 +1056,9 @@ function renderAhaSummary() {
     return;
   }
 
-  a.textContent = lastNote ? `Siste notat: ${lastNote.title || _t("ui.profile.noteFallback", "Notat")}` : _t("ui.profile.latestDialog", "Siste dialog");
+  a.textContent = lastNote
+    ? _tf("ui.profile.latestNote", "Siste notat: {title}", { title: lastNote.title || _t("ui.profile.noteFallback", "Notat") })
+    : _t("ui.profile.latestDialog", "Siste dialog");
   b.textContent = lastNote ? (lastNote.text || "").slice(0, 90) : (lastDlg.text || "").slice(0, 90);
 
   box.style.display = "block";
