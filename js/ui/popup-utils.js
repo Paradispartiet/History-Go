@@ -282,28 +282,59 @@ function getPeopleForPlace(placeId) {
   if (!pid) return [];
 
   const rels = getRelationsForPlace(pid);
+  const peopleArr = Array.isArray(window.PEOPLE)
+    ? window.PEOPLE
+    : (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE) ? PEOPLE : []);
 
-  const ids = rels
-    .map(r => {
-      const direct = _s(r?.personId || r?.person_id || r?.person);
-      if (direct) return direct;
+  const personIdsFromRel = (r) => {
+    const out = [];
+    const direct = _s(r?.personId || r?.person_id || r?.person);
+    if (direct) out.push(direct);
 
-      const fromT = _s(r?.fromType || r?.from_type);
-      const toT   = _s(r?.toType   || r?.to_type);
-      const fromI = _s(r?.fromId   || r?.from_id);
-      const toI   = _s(r?.toId     || r?.to_id);
+    const fromT = _s(r?.fromType || r?.from_type);
+    const toT   = _s(r?.toType   || r?.to_type);
+    const fromI = _s(r?.fromId   || r?.from_id);
+    const toI   = _s(r?.toId     || r?.to_id);
 
-      if (fromT === "person" && fromI) return fromI;
-      if (toT   === "person" && toI)   return toI;
-      return "";
-    })
-    .filter(Boolean);
+    if (fromT === "person" && fromI) out.push(fromI);
+    if (toT   === "person" && toI)   out.push(toI);
 
-  const uniq = [...new Set(ids)];
-  const peopleArr = Array.isArray(window.PEOPLE) ? window.PEOPLE : (Array.isArray(PEOPLE) ? PEOPLE : []);
-  const out = uniq.map(id => peopleArr.find(p => _s(p?.id) === id)).filter(Boolean);
+    return out;
+  };
 
-  out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
+  const personPlaceIds = (person) => {
+    const fields = [
+      person?.placeId,
+      person?.place_id,
+      person?.place,
+      person?.places,
+      person?.placeIds,
+      person?.place_ids,
+      person?.source_place_id
+    ];
+
+    return fields.flatMap(value => Array.isArray(value) ? value : [value]).map(_s).filter(Boolean);
+  };
+
+  const peopleById = new Map(peopleArr.map(p => [_s(p?.id), p]).filter(([id]) => id));
+  const seen = new Set();
+  const out = [];
+
+  const addPerson = (person) => {
+    const id = _s(person?.id);
+    if (!id || seen.has(id)) return;
+    seen.add(id);
+    out.push(person);
+  };
+
+  // 1) Keep relation-index derived people first, in relation/index order.
+  rels.flatMap(personIdsFromRel).forEach(id => addPerson(peopleById.get(_s(id))));
+
+  // 2) Then add people whose own place-reference fields point here.
+  peopleArr.forEach(person => {
+    if (personPlaceIds(person).includes(pid)) addPerson(person);
+  });
+
   return out;
 }
 
