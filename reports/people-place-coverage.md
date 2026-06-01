@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-06-01T09:43:11.727Z
+Generert: 2026-06-01T10:08:50.144Z
 
 ## Sammendrag
 
@@ -11,7 +11,7 @@ Generert: 2026-06-01T09:43:11.727Z
 - People-place-lenker: **339**
 - People koblet til flere gyldige steder: **98**
 - People uten gyldig sted: **15**
-- Ugyldige place-referanser: **15**
+- Ugyldige place-referanser: **12**
 - Duplikate place-referanser inne på people: **211**
 - People uten image: **12**
 - People uten cardImage: **12**
@@ -121,7 +121,6 @@ Generert: 2026-06-01T09:43:11.727Z
 ## Ugyldige place-referanser
 
 - sigurd_ribbung (Sigurd Ribbung) -> bispeborgen
-- sigrid_undset (Sigrid Undset) -> bøker_i_byen
 - bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> bjornson_bolig
 - bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> ibsen_bjornson_graver
 - henrik_wergeland (Henrik Wergeland) -> wergelandsveien_15
@@ -131,10 +130,8 @@ Generert: 2026-06-01T09:43:11.727Z
 - henrik_wergeland (Henrik Wergeland) -> bøker_i_byen
 - camilla_collett (Camilla Collett) -> henrik_wergeland_park
 - camilla_collett (Camilla Collett) -> collett_barndom
-- andre_bjerke (André Bjerke) -> grotten_utsikt
 - inger_hagerup (Inger Hagerup) -> grotten_utsikt
 - inger_hagerup (Inger Hagerup) -> inger_hagerup_minne
-- jon_fosse (Jon Fosse) -> grotten_utsikt
 
 ## Duplikate place-referanser inne på people
 

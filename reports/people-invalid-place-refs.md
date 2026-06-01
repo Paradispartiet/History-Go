@@ -1,12 +1,12 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T09:43:10.776Z
+Generated: 2026-06-01T10:08:49.564Z
 
 ## Sammendrag
 - People-filer lest: **24**
 - People lest: **233**
-- People med ugyldige refs: **8**
-- Ugyldige refs: **15**
+- People med ugyldige refs: **5**
+- Ugyldige refs: **12**
 - Unike ugyldige placeId-er: **11**
 - People uten gyldig sted: **15**
 - Duplikate interne place-referanser: **211**
@@ -16,8 +16,6 @@ Generated: 2026-06-01T09:43:10.776Z
 - **sigurd_ribbung** (Sigurd Ribbung)
   - bispeborgen @ `places[2]`
 ### data/people/people_litteratur.json
-- **sigrid_undset** (Sigrid Undset)
-  - bøker_i_byen @ `places[3]`
 - **bjornstjerne_bjornson** (Bjørnstjerne Bjørnson)
   - bjornson_bolig @ `places[2]`
   - ibsen_bjornson_graver @ `places[3]`
@@ -30,26 +28,22 @@ Generated: 2026-06-01T09:43:10.776Z
 - **camilla_collett** (Camilla Collett)
   - collett_barndom @ `places[2]`
   - henrik_wergeland_park @ `places[1]`
-- **andre_bjerke** (André Bjerke)
-  - grotten_utsikt @ `places[1]`
 - **inger_hagerup** (Inger Hagerup)
   - grotten_utsikt @ `places[1]`
   - inger_hagerup_minne @ `places[2]`
-- **jon_fosse** (Jon Fosse)
-  - grotten_utsikt @ `places[1]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **grotten_utsikt** (missing_place_candidate, 3 treff)
-  - missing_place_candidate
-- **bøker_i_byen** (missing_place_candidate, 2 treff)
-  - missing_place_candidate
 - **henrik_wergeland_park** (needs_manual_review, 2 treff)
   - henrik_wergeland_statue (confidence: low)
 - **bispeborgen** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **bjornson_bolig** (missing_place_candidate, 1 treff)
   - missing_place_candidate
+- **bøker_i_byen** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
 - **collett_barndom** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **grotten_utsikt** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **ibsen_bjornson_graver** (missing_place_candidate, 1 treff)
   - missing_place_candidate
@@ -183,14 +177,14 @@ Generated: 2026-06-01T09:43:10.776Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: obstfelder (Sigbjørn Obstfelder) -> gamle_deichman x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: hamsun (Knut Hamsun) -> gamle_deichman x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: garborg (Arne Garborg) -> gamle_deichman x2
-- data/people/people_litteratur.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: andre_bjerke (André Bjerke) -> grotta x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: jon_fosse (Jon Fosse) -> grotta x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
 - data/people/people_litteratur.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
 - data/people/people_litteratur.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x3
-- data/people/people_litteratur.json :: andre_bjerke (André Bjerke) -> grotta x2
 - data/people/people_litteratur.json :: inger_hagerup (Inger Hagerup) -> grotta x2
-- data/people/people_litteratur.json :: jon_fosse (Jon Fosse) -> grotta x2
-- data/people/people_litteratur.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
 - data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
 - data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
 - data/people/people_musikk.json :: aurora (Aurora) -> salt x2
@@ -293,12 +287,12 @@ Generated: 2026-06-01T09:43:10.776Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch
-- grotten_utsikt (missing_place_candidate, 3 treff)
-- bøker_i_byen (missing_place_candidate, 2 treff)
 - henrik_wergeland_park (needs_manual_review, 2 treff)
 - bispeborgen (missing_place_candidate, 1 treff)
 - bjornson_bolig (missing_place_candidate, 1 treff)
+- bøker_i_byen (missing_place_candidate, 1 treff)
 - collett_barndom (missing_place_candidate, 1 treff)
+- grotten_utsikt (missing_place_candidate, 1 treff)
 - ibsen_bjornson_graver (missing_place_candidate, 1 treff)
 - inger_hagerup_minne (missing_place_candidate, 1 treff)
 - wergeland_barndom (missing_place_candidate, 1 treff)

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T09:43:10.776Z",
+  "generatedAt": "2026-06-01T10:08:49.564Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,8 +8,8 @@
   "summary": {
     "peopleFilesRead": 24,
     "peopleRead": 233,
-    "peopleWithInvalidRefs": 8,
-    "invalidRefs": 15,
+    "peopleWithInvalidRefs": 5,
+    "invalidRefs": 12,
     "uniqueInvalidPlaceIds": 11,
     "peopleWithoutValidPlace": 15,
     "duplicateInternalPlaceRefs": 211
@@ -39,22 +39,6 @@
     {
       "sourceFile": "data/people/people_litteratur.json",
       "people": [
-        {
-          "personId": "sigrid_undset",
-          "personName": "Sigrid Undset",
-          "invalidPlaceIds": [
-            "bøker_i_byen"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "sigrid_undset",
-              "personName": "Sigrid Undset",
-              "field": "places[3]",
-              "invalidPlaceId": "bøker_i_byen"
-            }
-          ]
-        },
         {
           "personId": "bjornstjerne_bjornson",
           "personName": "Bjørnstjerne Bjørnson",
@@ -152,22 +136,6 @@
           ]
         },
         {
-          "personId": "andre_bjerke",
-          "personName": "André Bjerke",
-          "invalidPlaceIds": [
-            "grotten_utsikt"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "andre_bjerke",
-              "personName": "André Bjerke",
-              "field": "places[1]",
-              "invalidPlaceId": "grotten_utsikt"
-            }
-          ]
-        },
-        {
           "personId": "inger_hagerup",
           "personName": "Inger Hagerup",
           "invalidPlaceIds": [
@@ -190,47 +158,11 @@
               "invalidPlaceId": "inger_hagerup_minne"
             }
           ]
-        },
-        {
-          "personId": "jon_fosse",
-          "personName": "Jon Fosse",
-          "invalidPlaceIds": [
-            "grotten_utsikt"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_litteratur.json",
-              "personId": "jon_fosse",
-              "personName": "Jon Fosse",
-              "field": "places[1]",
-              "invalidPlaceId": "grotten_utsikt"
-            }
-          ]
         }
       ]
     }
   ],
   "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "grotten_utsikt",
-      "occurrences": 3,
-      "peopleCount": 3,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "bøker_i_byen",
-      "occurrences": 2,
-      "peopleCount": 2,
-      "sourceFiles": [
-        "data/people/people_litteratur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
     {
       "invalidPlaceId": "henrik_wergeland_park",
       "occurrences": 2,
@@ -267,7 +199,27 @@
       "suggestions": []
     },
     {
+      "invalidPlaceId": "bøker_i_byen",
+      "occurrences": 1,
+      "peopleCount": 1,
+      "sourceFiles": [
+        "data/people/people_litteratur.json"
+      ],
+      "classification": "missing_place_candidate",
+      "suggestions": []
+    },
+    {
       "invalidPlaceId": "collett_barndom",
+      "occurrences": 1,
+      "peopleCount": 1,
+      "sourceFiles": [
+        "data/people/people_litteratur.json"
+      ],
+      "classification": "missing_place_candidate",
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "grotten_utsikt",
       "occurrences": 1,
       "peopleCount": 1,
       "sourceFiles": [
@@ -1569,10 +1521,43 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "personId": "sigrid_undset",
       "personName": "Sigrid Undset",
       "placeId": "nasjonalbiblioteket",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
+      "personId": "andre_bjerke",
+      "personName": "André Bjerke",
+      "placeId": "grotta",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
+      "personId": "jon_fosse",
+      "personName": "Jon Fosse",
+      "placeId": "grotta",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
+      "personId": "alf_proysen",
+      "personName": "Alf Prøysen",
+      "placeId": "alf_proysen_statue_nittedal",
       "count": 2,
       "fields": [
         "placeId",
@@ -1615,42 +1600,9 @@
     },
     {
       "sourceFile": "data/people/people_litteratur.json",
-      "personId": "andre_bjerke",
-      "personName": "André Bjerke",
-      "placeId": "grotta",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
       "personId": "inger_hagerup",
       "personName": "Inger Hagerup",
       "placeId": "grotta",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "jon_fosse",
-      "personName": "Jon Fosse",
-      "placeId": "grotta",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "alf_proysen",
-      "personName": "Alf Prøysen",
-      "placeId": "alf_proysen_statue_nittedal",
       "count": 2,
       "fields": [
         "placeId",
@@ -2760,18 +2712,6 @@
   ],
   "recommendedNextBatch": [
     {
-      "invalidPlaceId": "grotten_utsikt",
-      "classification": "missing_place_candidate",
-      "occurrences": 3,
-      "suggestions": []
-    },
-    {
-      "invalidPlaceId": "bøker_i_byen",
-      "classification": "missing_place_candidate",
-      "occurrences": 2,
-      "suggestions": []
-    },
-    {
       "invalidPlaceId": "henrik_wergeland_park",
       "classification": "needs_manual_review",
       "occurrences": 2,
@@ -2795,7 +2735,19 @@
       "suggestions": []
     },
     {
+      "invalidPlaceId": "bøker_i_byen",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
       "invalidPlaceId": "collett_barndom",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "grotten_utsikt",
       "classification": "missing_place_candidate",
       "occurrences": 1,
       "suggestions": []
