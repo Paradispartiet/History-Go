@@ -683,7 +683,9 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
         clearPendingEventById(this, pendingEventId);
 
         try {
-          const onboarding = window.CivicationState?.getOnboardingState?.(active);
+          const onboarding = /** @type {{ complete?: unknown } | null | undefined} */ (
+            window.CivicationState?.getOnboardingState?.(active)
+          );
           if (onboarding?.complete === true) {
             await this.onAppOpen?.({ force: true });
           }
@@ -759,8 +761,11 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
        if (summary) {
         saveDailySummaryToWeek(summary);
 
+        const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
+          window.CivicationState?.getActivePosition?.()
+        );
         const activeCareerId =
-        window.CivicationState?.getActivePosition?.()?.career_id || "";
+        activePosition?.career_id || "";
 
         finalizeWeekIfNeeded(activeCareerId);
        }
