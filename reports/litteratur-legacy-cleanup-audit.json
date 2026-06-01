@@ -1,0 +1,910 @@
+{
+  "generatedAt": "2026-06-01T09:43:03.206Z",
+  "input": {
+    "placesManifest": "data/places/manifest.json",
+    "peopleManifest": "data/people/manifest.json",
+    "legacyFile": "data/people/people_litteratur.json",
+    "placesManifestIsSourceOfTruth": true,
+    "peopleJsonUsed": false,
+    "placesIndexUsedAsSourceOfTruth": false,
+    "placesIndexUsedForRuntimeComparison": true,
+    "legacyFileStillInPeopleManifest": true,
+    "activePlaceIdCount": 470
+  },
+  "expectedLegacyPeople": [
+    "sigrid_undset",
+    "bjornstjerne_bjornson",
+    "henrik_wergeland",
+    "camilla_collett",
+    "andre_bjerke",
+    "inger_hagerup",
+    "jon_fosse",
+    "rolf_jacobsen",
+    "alf_proysen",
+    "per_petterson"
+  ],
+  "expected_legacy_people_missing": [],
+  "unexpected_remaining_legacy_people": [],
+  "summary": {
+    "legacyPeopleRead": 10,
+    "expectedLegacyPeopleFound": 10,
+    "unexpectedLegacyPeople": 0,
+    "peopleWithValidPrimaryPlaceId": 8,
+    "peopleWithoutValidPlace": 2,
+    "stubs": 1,
+    "invalidPlaceRefOccurrences": 14,
+    "uniqueInvalidPlaceRefs": 10,
+    "missingPlaceCandidate": 9,
+    "likelyRenameToExistingPlace": 0,
+    "refNeedsManualReview": 1,
+    "classificationCounts": {
+      "has_valid_primary_but_invalid_secondary_refs": 7,
+      "ready_for_manual_mapping": 1,
+      "missing_place_data_required": 1,
+      "stub_needs_manual_completion": 1
+    }
+  },
+  "people": [
+    {
+      "personId": "sigrid_undset",
+      "name": "Sigrid Undset",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "nasjonalbiblioteket",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "nasjonalbiblioteket",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "ullevål_hageby",
+          "status": "valid"
+        },
+        {
+          "index": 2,
+          "placeRef": "sigrid_undset_statue",
+          "status": "valid"
+        },
+        {
+          "index": 3,
+          "placeRef": "bøker_i_byen",
+          "status": "invalid"
+        }
+      ],
+      "validPlaces": [
+        "nasjonalbiblioteket",
+        "ullevål_hageby",
+        "sigrid_undset_statue"
+      ],
+      "invalidPlaces": [
+        "bøker_i_byen"
+      ],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "bøker_i_byen",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "bjornstjerne_bjornson",
+      "name": "Bjørnstjerne Bjørnson",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "nasjonalbiblioteket",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "nasjonalbiblioteket",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "nationaltheatret",
+          "status": "valid"
+        },
+        {
+          "index": 2,
+          "placeRef": "bjornson_bolig",
+          "status": "invalid"
+        },
+        {
+          "index": 3,
+          "placeRef": "ibsen_bjornson_graver",
+          "status": "invalid"
+        }
+      ],
+      "validPlaces": [
+        "nasjonalbiblioteket",
+        "nationaltheatret"
+      ],
+      "invalidPlaces": [
+        "bjornson_bolig",
+        "ibsen_bjornson_graver"
+      ],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "bjornson_bolig",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "ibsen_bjornson_graver",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "henrik_wergeland",
+      "name": "Henrik Wergeland",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "voienvolden",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "voienvolden",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "henrik_wergeland_statue",
+          "status": "valid"
+        },
+        {
+          "index": 2,
+          "placeRef": "wergelandsveien_15",
+          "status": "invalid"
+        },
+        {
+          "index": 3,
+          "placeRef": "henrik_wergeland_park",
+          "status": "invalid"
+        },
+        {
+          "index": 4,
+          "placeRef": "wergeland_barndom",
+          "status": "invalid"
+        },
+        {
+          "index": 5,
+          "placeRef": "wergeland_grav",
+          "status": "invalid"
+        },
+        {
+          "index": 6,
+          "placeRef": "bøker_i_byen",
+          "status": "invalid"
+        }
+      ],
+      "validPlaces": [
+        "voienvolden",
+        "henrik_wergeland_statue"
+      ],
+      "invalidPlaces": [
+        "bøker_i_byen",
+        "henrik_wergeland_park",
+        "wergeland_barndom",
+        "wergeland_grav",
+        "wergelandsveien_15"
+      ],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "bøker_i_byen",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "henrik_wergeland_park",
+          "refClassification": "needs_manual_review",
+          "suggestions": [
+            {
+              "placeId": "henrik_wergeland_statue",
+              "confidence": "low"
+            }
+          ]
+        },
+        {
+          "placeRef": "wergeland_barndom",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "wergeland_grav",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "wergelandsveien_15",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "camilla_collett",
+      "name": "Camilla Collett",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "camilla_collett_statue",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "camilla_collett_statue",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "henrik_wergeland_park",
+          "status": "invalid"
+        },
+        {
+          "index": 2,
+          "placeRef": "collett_barndom",
+          "status": "invalid"
+        },
+        {
+          "index": 3,
+          "placeRef": "camilla_collett_statue",
+          "status": "duplicate_within_person"
+        }
+      ],
+      "validPlaces": [
+        "camilla_collett_statue"
+      ],
+      "invalidPlaces": [
+        "collett_barndom",
+        "henrik_wergeland_park"
+      ],
+      "duplicatePlaces": [
+        "camilla_collett_statue"
+      ],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "collett_barndom",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "henrik_wergeland_park",
+          "refClassification": "needs_manual_review",
+          "suggestions": [
+            {
+              "placeId": "henrik_wergeland_statue",
+              "confidence": "low"
+            }
+          ]
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "andre_bjerke",
+      "name": "André Bjerke",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "grotta",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "grotta",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "grotten_utsikt",
+          "status": "invalid"
+        }
+      ],
+      "validPlaces": [
+        "grotta"
+      ],
+      "invalidPlaces": [
+        "grotten_utsikt"
+      ],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "grotten_utsikt",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "inger_hagerup",
+      "name": "Inger Hagerup",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "grotta",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "grotta",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "grotten_utsikt",
+          "status": "invalid"
+        },
+        {
+          "index": 2,
+          "placeRef": "inger_hagerup_minne",
+          "status": "invalid"
+        }
+      ],
+      "validPlaces": [
+        "grotta"
+      ],
+      "invalidPlaces": [
+        "grotten_utsikt",
+        "inger_hagerup_minne"
+      ],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "grotten_utsikt",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "inger_hagerup_minne",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "jon_fosse",
+      "name": "Jon Fosse",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "grotta",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "grotta",
+          "status": "valid"
+        },
+        {
+          "index": 1,
+          "placeRef": "grotten_utsikt",
+          "status": "invalid"
+        }
+      ],
+      "validPlaces": [
+        "grotta"
+      ],
+      "invalidPlaces": [
+        "grotten_utsikt"
+      ],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "grotten_utsikt",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ],
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
+    },
+    {
+      "personId": "alf_proysen",
+      "name": "Alf Prøysen",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": true,
+      "placeId": "alf_proysen_statue_nittedal",
+      "placeIdStatus": "valid",
+      "places": [
+        {
+          "index": 0,
+          "placeRef": "alf_proysen_statue_nittedal",
+          "status": "valid"
+        }
+      ],
+      "validPlaces": [
+        "alf_proysen_statue_nittedal"
+      ],
+      "invalidPlaces": [],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": true,
+      "missingAllValidPlace": false,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": false,
+      "divergentFields": [],
+      "missingSchemaFields": [],
+      "invalidRefAnalysis": [],
+      "classification": "ready_for_manual_mapping",
+      "recommendedNextAction": "Gyldig primary og kun gyldige refs. Kan tas i trygg manuell mapping-batch (evt. rydde duplikat/tomme refs)."
+    },
+    {
+      "personId": "rolf_jacobsen",
+      "name": "Rolf Jacobsen",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": false,
+      "placeId": null,
+      "placeIdStatus": "missing",
+      "places": [],
+      "validPlaces": [],
+      "invalidPlaces": [],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": false,
+      "missingAllValidPlace": true,
+      "isStub": false,
+      "hasLegacyOrDivergentSchema": true,
+      "divergentFields": [],
+      "missingSchemaFields": [
+        "placeId",
+        "places"
+      ],
+      "invalidRefAnalysis": [],
+      "classification": "missing_place_data_required",
+      "recommendedNextAction": "Mangler all gyldig stedskobling. Avgjør om sted finnes/skal opprettes før people kan ryddes."
+    },
+    {
+      "personId": "per_petterson",
+      "name": "Per Petterson",
+      "sourceFile": "data/people/people_litteratur.json",
+      "hasPlaceId": false,
+      "placeId": null,
+      "placeIdStatus": "missing",
+      "places": [],
+      "validPlaces": [],
+      "invalidPlaces": [],
+      "duplicatePlaces": [],
+      "emptyPlaceRefs": 0,
+      "hasAtLeastOneValidPlace": false,
+      "missingAllValidPlace": true,
+      "isStub": true,
+      "hasLegacyOrDivergentSchema": true,
+      "divergentFields": [
+        "kind",
+        "imageCard",
+        "stub"
+      ],
+      "missingSchemaFields": [
+        "initials",
+        "placeId",
+        "year",
+        "popupDesc",
+        "places",
+        "image",
+        "cardImage"
+      ],
+      "invalidRefAnalysis": [],
+      "classification": "stub_needs_manual_completion",
+      "recommendedNextAction": "Kurater person manuelt i chat: fyll inn manglende schemafelt og bestem stedskobling før implementering."
+    }
+  ],
+  "invalidRefsGroupedByPerson": [
+    {
+      "personId": "sigrid_undset",
+      "name": "Sigrid Undset",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "bøker_i_byen"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "bøker_i_byen",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ]
+    },
+    {
+      "personId": "bjornstjerne_bjornson",
+      "name": "Bjørnstjerne Bjørnson",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "bjornson_bolig",
+        "ibsen_bjornson_graver"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "bjornson_bolig",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "ibsen_bjornson_graver",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ]
+    },
+    {
+      "personId": "henrik_wergeland",
+      "name": "Henrik Wergeland",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "bøker_i_byen",
+        "henrik_wergeland_park",
+        "wergeland_barndom",
+        "wergeland_grav",
+        "wergelandsveien_15"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "bøker_i_byen",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "henrik_wergeland_park",
+          "refClassification": "needs_manual_review",
+          "suggestions": [
+            {
+              "placeId": "henrik_wergeland_statue",
+              "confidence": "low"
+            }
+          ]
+        },
+        {
+          "placeRef": "wergeland_barndom",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "wergeland_grav",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "wergelandsveien_15",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ]
+    },
+    {
+      "personId": "camilla_collett",
+      "name": "Camilla Collett",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "collett_barndom",
+        "henrik_wergeland_park"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "collett_barndom",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "henrik_wergeland_park",
+          "refClassification": "needs_manual_review",
+          "suggestions": [
+            {
+              "placeId": "henrik_wergeland_statue",
+              "confidence": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "personId": "andre_bjerke",
+      "name": "André Bjerke",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "grotten_utsikt"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "grotten_utsikt",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ]
+    },
+    {
+      "personId": "inger_hagerup",
+      "name": "Inger Hagerup",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "grotten_utsikt",
+        "inger_hagerup_minne"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "grotten_utsikt",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        },
+        {
+          "placeRef": "inger_hagerup_minne",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ]
+    },
+    {
+      "personId": "jon_fosse",
+      "name": "Jon Fosse",
+      "classification": "has_valid_primary_but_invalid_secondary_refs",
+      "invalidPlaces": [
+        "grotten_utsikt"
+      ],
+      "invalidRefAnalysis": [
+        {
+          "placeRef": "grotten_utsikt",
+          "refClassification": "missing_place_candidate",
+          "suggestions": []
+        }
+      ]
+    }
+  ],
+  "uniqueInvalidPlaceRefs": [
+    {
+      "placeRef": "bjornson_bolig",
+      "occurrences": 1,
+      "usedBy": [
+        "bjornstjerne_bjornson"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "bøker_i_byen",
+      "occurrences": 2,
+      "usedBy": [
+        "henrik_wergeland",
+        "sigrid_undset"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "collett_barndom",
+      "occurrences": 1,
+      "usedBy": [
+        "camilla_collett"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "grotten_utsikt",
+      "occurrences": 3,
+      "usedBy": [
+        "andre_bjerke",
+        "inger_hagerup",
+        "jon_fosse"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "henrik_wergeland_park",
+      "occurrences": 2,
+      "usedBy": [
+        "camilla_collett",
+        "henrik_wergeland"
+      ],
+      "refClassification": "needs_manual_review",
+      "suggestions": [
+        {
+          "placeId": "henrik_wergeland_statue",
+          "confidence": "low"
+        }
+      ],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "ibsen_bjornson_graver",
+      "occurrences": 1,
+      "usedBy": [
+        "bjornstjerne_bjornson"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "inger_hagerup_minne",
+      "occurrences": 1,
+      "usedBy": [
+        "inger_hagerup"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "wergeland_barndom",
+      "occurrences": 1,
+      "usedBy": [
+        "henrik_wergeland"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "wergeland_grav",
+      "occurrences": 1,
+      "usedBy": [
+        "henrik_wergeland"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    },
+    {
+      "placeRef": "wergelandsveien_15",
+      "occurrences": 1,
+      "usedBy": [
+        "henrik_wergeland"
+      ],
+      "refClassification": "missing_place_candidate",
+      "suggestions": [],
+      "inPlacesIndex": false
+    }
+  ],
+  "peopleWithoutValidPlace": [
+    {
+      "personId": "rolf_jacobsen",
+      "name": "Rolf Jacobsen",
+      "placeIdStatus": "missing",
+      "classification": "missing_place_data_required"
+    },
+    {
+      "personId": "per_petterson",
+      "name": "Per Petterson",
+      "placeIdStatus": "missing",
+      "classification": "stub_needs_manual_completion"
+    }
+  ],
+  "stubsAndDivergentSchema": [
+    {
+      "personId": "rolf_jacobsen",
+      "name": "Rolf Jacobsen",
+      "isStub": false,
+      "divergentFields": [],
+      "missingSchemaFields": [
+        "placeId",
+        "places"
+      ],
+      "classification": "missing_place_data_required"
+    },
+    {
+      "personId": "per_petterson",
+      "name": "Per Petterson",
+      "isStub": true,
+      "divergentFields": [
+        "kind",
+        "imageCard",
+        "stub"
+      ],
+      "missingSchemaFields": [
+        "initials",
+        "placeId",
+        "year",
+        "popupDesc",
+        "places",
+        "image",
+        "cardImage"
+      ],
+      "classification": "stub_needs_manual_completion"
+    }
+  ],
+  "recommendedNextCleanupBatches": {
+    "batchA": {
+      "description": "Trygge personer med gyldig primary placeId. Ugyldige sekundærrefs kan fjernes eller mappes etter manuell beslutning.",
+      "people": [
+        "sigrid_undset",
+        "bjornstjerne_bjornson",
+        "henrik_wergeland",
+        "camilla_collett",
+        "andre_bjerke",
+        "inger_hagerup",
+        "jon_fosse",
+        "alf_proysen"
+      ]
+    },
+    "batchB": {
+      "description": "missing_place_candidate placeRefs som bør få egne places (egen place-beslutning) før people kan ryddes.",
+      "placeRefs": [
+        "bjornson_bolig",
+        "bøker_i_byen",
+        "collett_barndom",
+        "grotten_utsikt",
+        "ibsen_bjornson_graver",
+        "inger_hagerup_minne",
+        "wergeland_barndom",
+        "wergeland_grav",
+        "wergelandsveien_15"
+      ]
+    },
+    "batchC": {
+      "description": "Stubber / personer uten gyldig sted som må kurateres manuelt i chat før implementering.",
+      "people": [
+        "rolf_jacobsen",
+        "per_petterson"
+      ]
+    }
+  }
+}
