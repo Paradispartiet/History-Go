@@ -97,7 +97,7 @@
   grid-column:1;
   grid-row:1;
 
-  aspect-ratio:4/5;
+  aspect-ratio: 3 / 4;
   overflow:hidden;
   border-radius:16px;
   background:#000;
@@ -155,12 +155,13 @@
   grid-row: 1;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: var(--pc-round-gap);
 
-  justify-self: center;
-  width: fit-content;
+  justify-self: stretch;
+  align-self: start;
+  width: 100%;
   transform: none;
   margin-top: 0;
 }
@@ -237,8 +238,8 @@
 
 /* Rundinger */
 .pc-round{
-  width: var(--pc-round-size);
-  height: var(--pc-round-size);
+  width: 100%;
+  height: auto;
 
   aspect-ratio: 1 / 1;
   border-radius: 50%;
