@@ -684,3 +684,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Limited the pass to the active-position and pending-offer reads in the profile-mode and Civication-mode branches of `renderCivication()`; `renderCivicationInbox()`, `renderPsycheDashboard()`, `renderPerception()`, and `renderTrackHUD()` were not changed.
 - Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1693, `js/Civication/**` diagnostics are now 310, and `js/Civication/ui/CivicationUI.js` diagnostics are now 65.
+
+## Phase 85: CivicationUI psyche-dashboard snapshot and textContent local pass
+
+- Followed Phase 84 with a narrow, file-local JSDoc/type-only pass in `js/Civication/ui/CivicationUI.js`.
+- Limited the code change to `renderPsycheDashboard()` and the file-local typedef block used by that function.
+- Added broad local psyche snapshot/trust/collapse typedefs and a broad psyche-modifier map typedef, then cast the existing `CivicationPsyche.getSnapshot()` result locally before reading the rendered score and trust fields.
+- Kept modifier handling type-only: the current `renderPsycheDashboard()` implementation does not read `CivicationPsyche.getPsycheModifiers()` values, so this phase does not add a new runtime engine call.
+- Stringified the numeric `textContent` assignments for integrity, visibility, economic room, and autonomy with `String(Number(...))`, preserving the rendered values while satisfying TypeScript's DOM text contract.
+- Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, text, fallback logic, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1678, `js/Civication/**` diagnostics are now 295, and `js/Civication/ui/CivicationUI.js` diagnostics are now 50.
