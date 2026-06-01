@@ -661,3 +661,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Kept the newly declared event-engine module globals intentionally broad (`any` for dynamic runtime engine/module objects and `CiviRecord` for `HG_STATE`) so this declaration-only pass does not introduce downstream UI or module contract diagnostics.
 - Runtime behavior is unchanged; no runtime, UI, CSS, data, story, place, people, import, package, or `tsconfig.json` files were changed.
 - Remaining typecheck diagnostics are still expected as part of the incremental TypeScript migration baseline.
+
+## Phase 82B: profile Knowledge Engine local JSDoc pass
+
+- Added a narrow `js/profile.js` JSDoc-only follow-up for the profile Knowledge Engine panel after the current Phase 82 baseline.
+- Targeted the repeated `TS2339` diagnostics where Knowledge Engine subjects and recommendations were still typed as `unknown` inside `renderKnowledgeEnginePanel()`.
+- Introduced local profile-only typedefs for Knowledge Engine subject progress, signal summaries, signal breakdowns, subjects, and recommendations; the aliases describe only existing reads and keep broad `unknown` payloads for variable report fields.
+- Cast the existing weakest-subject object branch locally so the current `subjectId` fallback read is understood without changing filtering, fallback values, generated HTML, DataHub calls, storage keys, or profile flow.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1739 to 1718, and `js/profile.js` diagnostics went from 83 to 62.
+- `js/Civication/**`, data/story/import files, runtime UI layout, CSS, HTML, package metadata, app flow, and import tooling were not touched.

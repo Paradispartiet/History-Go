@@ -778,12 +778,38 @@ function renderLatestKnowledge() {
 
 /**
  * @typedef {Record<string, unknown>} ProfileRecord
+ * @typedef {object} ProfileKnowledgeProgress
+ * @property {number=} knownEmner
+ * @property {number=} estimatedCoverage
+ * @property {number=} emnerCount
+ * @typedef {object} ProfileKnowledgeSignalSummary
+ * @property {number=} totalSignals
+ * @property {number=} directLearningSignals
+ * @property {number=} visitedPlaceSignals
+ * @property {number=} streamSignals
+ * @property {number=} conceptSignals
+ * @property {unknown[]=} sourcePlaceIds
+ * @property {unknown[]=} sourceEmneIds
+ * @typedef {object} ProfileKnowledgeSignalBreakdown
+ * @property {ProfileRecord[]=} visitedPlaces
+ * @property {ProfileRecord[]=} directLearning
+ * @typedef {object} ProfileKnowledgeSignals
+ * @property {ProfileKnowledgeSignalSummary=} summary
+ * @property {ProfileKnowledgeSignalBreakdown=} breakdown
+ * @typedef {object} ProfileKnowledgeSubject
+ * @property {unknown=} subjectId
+ * @property {ProfileKnowledgeProgress=} progress
+ * @property {ProfileKnowledgeSignals=} signals
+ * @typedef {object} ProfileKnowledgeRecommendation
+ * @property {unknown=} title
+ * @property {unknown=} reason
+ * @property {unknown=} subjectId
  * @typedef {object} ProfileKnowledgeReport
  * @property {boolean=} ok
  * @property {ProfileRecord=} summary
  * @property {ProfileRecord=} sourceState
- * @property {ProfileRecord=} subjects
- * @property {unknown[]=} recommendations
+ * @property {Record<string, ProfileKnowledgeSubject>=} subjects
+ * @property {ProfileKnowledgeRecommendation[]=} recommendations
  * @property {unknown=} healthReport
  * @property {string=} generatedAt
  */
@@ -831,7 +857,7 @@ async function renderKnowledgeEnginePanel() {
       .map(([value, label]) => `<div class="knowledge-engine-summary-card"><strong>${_esc(value)}</strong><span>${_esc(label)}</span></div>`)
       .join("");
 
-    /** @type {unknown[]} */
+    /** @type {ProfileKnowledgeSubject[]} */
     const allSubjects = Object.values(report?.subjects || {});
     const eligible = allSubjects.filter((subject) => {
       const progress = subject?.progress || {};
@@ -849,7 +875,10 @@ async function renderKnowledgeEnginePanel() {
         .slice(0, 3)
         .map((item) => {
           if (typeof item === "string") return item;
-          if (item && typeof item === "object" && item.subjectId) return item.subjectId;
+          if (item && typeof item === "object") {
+            const subject = /** @type {{ subjectId?: unknown }} */ (item);
+            if (subject.subjectId) return subject.subjectId;
+          }
           return "";
         })
         .filter(Boolean);
@@ -887,7 +916,7 @@ async function renderKnowledgeEnginePanel() {
       `;
     }
 
-    /** @type {unknown[]} */
+    /** @type {ProfileKnowledgeRecommendation[]} */
     const recs = Array.isArray(report?.recommendations) ? report.recommendations.slice(0, 3) : [];
     recsEl.innerHTML = recs.length
       ? recs.map((rec) => `<article class="knowledge-engine-recommendation"><strong>${_esc(rec?.title || "Anbefaling")}</strong><div>${_esc(rec?.reason || "")}</div><small>${_esc(rec?.subjectId ? `Fag: ${rec.subjectId}` : "")}</small></article>`).join("")
