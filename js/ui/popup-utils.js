@@ -282,28 +282,58 @@ function getPeopleForPlace(placeId) {
   if (!pid) return [];
 
   const rels = getRelationsForPlace(pid);
+  const peopleArr = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
+  const peopleById = new Map(peopleArr.map(p => [_s(p?.id), p]).filter(([id]) => id));
+  const seen = new Set();
+  const out = [];
 
-  const ids = rels
-    .map(r => {
-      const direct = _s(r?.personId || r?.person_id || r?.person);
-      if (direct) return direct;
+  const addPersonId = (personId) => {
+    const id = _s(personId);
+    if (!id || seen.has(id)) return;
+    const person = peopleById.get(id);
+    if (!person) return;
+    seen.add(id);
+    out.push(person);
+  };
 
-      const fromT = _s(r?.fromType || r?.from_type);
-      const toT   = _s(r?.toType   || r?.to_type);
-      const fromI = _s(r?.fromId   || r?.from_id);
-      const toI   = _s(r?.toId     || r?.to_id);
+  const addPerson = (person) => {
+    const id = _s(person?.id);
+    if (!id || seen.has(id)) return;
+    seen.add(id);
+    out.push(person);
+  };
 
-      if (fromT === "person" && fromI) return fromI;
-      if (toT   === "person" && toI)   return toI;
-      return "";
-    })
-    .filter(Boolean);
+  const valueHasPlace = (value) => {
+    if (Array.isArray(value)) return value.some(item => _s(item) === pid);
+    return _s(value) === pid;
+  };
 
-  const uniq = [...new Set(ids)];
-  const peopleArr = Array.isArray(window.PEOPLE) ? window.PEOPLE : (Array.isArray(PEOPLE) ? PEOPLE : []);
-  const out = uniq.map(id => peopleArr.find(p => _s(p?.id) === id)).filter(Boolean);
+  rels.forEach(r => {
+    addPersonId(r?.personId || r?.person_id || r?.person);
 
-  out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
+    const fromT = _s(r?.fromType || r?.from_type);
+    const toT   = _s(r?.toType   || r?.to_type);
+    const fromI = _s(r?.fromId   || r?.from_id);
+    const toI   = _s(r?.toId     || r?.to_id);
+
+    if (fromT === "person") addPersonId(fromI);
+    if (toT   === "person") addPersonId(toI);
+  });
+
+  peopleArr.forEach(person => {
+    const hasDirectPlaceRef = [
+      person?.placeId,
+      person?.place_id,
+      person?.place,
+      person?.places,
+      person?.placeIds,
+      person?.place_ids,
+      person?.source_place_id
+    ].some(valueHasPlace);
+
+    if (hasDirectPlaceRef) addPerson(person);
+  });
+
   return out;
 }
 
