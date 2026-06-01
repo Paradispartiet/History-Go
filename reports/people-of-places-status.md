@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-01T20:54:32.621Z
+Generert: 2026-06-01T21:14:18.109Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-01T20:54:32.621Z |
+| generatedAt | 2026-06-01T21:14:18.109Z |
 | peopleFilesRead | 21 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -14,8 +14,8 @@ Generert: 2026-06-01T20:54:32.621Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 5 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 6 |
-| geographicPeopleFiles | 15 |
+| flatPeopleFiles | 5 |
+| geographicPeopleFiles | 16 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -31,11 +31,11 @@ Generert: 2026-06-01T20:54:32.621Z
 | data/people/media/oslo/people_media_oslo.json | media | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_by.json | by | nei | 17 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_filantroper.json | filantroper | nei | 9 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/people_musikk.json | musikk | nei | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
-| data/people/people_natur.json | natur | nei | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -57,7 +57,7 @@ Generert: 2026-06-01T20:54:32.621Z
 | media | 17 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 19 | 1 | 2 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 | naeringsliv | 19 | 1 | 0 | schema_review | Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split. |
-| natur | 16 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| natur | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 10 | 1 | 2 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -66,17 +66,16 @@ Generert: 2026-06-01T20:54:32.621Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 15
-- Fortsatt flate filer: 6
+- Allerede geografisk strukturert: 16
+- Fortsatt flate filer: 5
 - Blandede kategorier: musikk, populaerkultur
-- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json
+- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
 
 - by: 17 entries (data/people/people_by.json)
 - musikk: 19 entries (data/people/people_musikk.json)
-- natur: 16 entries (data/people/people_natur.json)
 
 ## Place-ref audit
 
@@ -140,11 +139,11 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=media
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=musikk
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=musikk
+- data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_by.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; categories=by
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/people_musikk.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=musikk
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
-- data/people/people_natur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
@@ -453,6 +452,38 @@ Mangler filer for image/cardImage/media: 552
 | data/people/musikk/oslo/people_musikk_oslo.json | joachim_nielsen / Joachim Nielsen | cardImage | bilder/kort/people/joachim_nielsen.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | morten_harket / Morten Harket | image | bilder/kort/people/morten_harket.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | morten_harket / Morten Harket | cardImage | bilder/kort/people/morten_harket.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | image | bilder/kort/people/peter_christen_asbjornsen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | cardImage | bilder/kort/people/peter_christen_asbjornsen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | michael_sars / Michael Sars | image | bilder/kort/people/michael_sars.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | michael_sars / Michael Sars | cardImage | bilder/kort/people/michael_sars.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | georg_ossian_sars / Georg Ossian Sars | image | bilder/kort/people/georg_ossian_sars.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | georg_ossian_sars / Georg Ossian Sars | cardImage | bilder/kort/people/georg_ossian_sars.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | jens_esmark / Jens Esmark | image | bilder/kort/people/jens_esmark.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | jens_esmark / Jens Esmark | cardImage | bilder/kort/people/jens_esmark.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | arne_naess / Arne Næss | image | bilder/kort/people/arne_naess.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | arne_naess / Arne Næss | cardImage | bilder/kort/people/arne_naess.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | nils_faarlund / Nils Faarlund | image | bilder/kort/people/nils_faarlund.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | nils_faarlund / Nils Faarlund | cardImage | bilder/kort/people/nils_faarlund.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | hanna_resvoll_holmsen / Hanna Resvoll-Holmsen | image | bilder/kort/people/hanna_resvoll_holmsen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | hanna_resvoll_holmsen / Hanna Resvoll-Holmsen | cardImage | bilder/kort/people/hanna_resvoll_holmsen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | thekla_resvoll / Thekla Resvoll | image | bilder/kort/people/thekla_resvoll.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | thekla_resvoll / Thekla Resvoll | cardImage | bilder/kort/people/thekla_resvoll.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | rolf_nordhagen / Rolf Nordhagen | image | bilder/kort/people/rolf_nordhagen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | rolf_nordhagen / Rolf Nordhagen | cardImage | bilder/kort/people/rolf_nordhagen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | haaken_hasberg_gran / Haaken Hasberg Gran | image | bilder/kort/people/haaken_hasberg_gran.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | haaken_hasberg_gran / Haaken Hasberg Gran | cardImage | bilder/kort/people/haaken_hasberg_gran.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | dag_o_hessen / Dag O. Hessen | image | bilder/kort/people/dag_o_hessen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | dag_o_hessen / Dag O. Hessen | cardImage | bilder/kort/people/dag_o_hessen.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | lauritz_somme / Lauritz Sømme | image | bilder/kort/people/lauritz_somme.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | lauritz_somme / Lauritz Sømme | cardImage | bilder/kort/people/lauritz_somme.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | helge_ingstad / Helge Ingstad | image | bilder/kort/people/helge_ingstad.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | helge_ingstad / Helge Ingstad | cardImage | bilder/kort/people/helge_ingstad.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | anne_stine_ingstad / Anne Stine Ingstad | image | bilder/kort/people/anne_stine_ingstad.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | anne_stine_ingstad / Anne Stine Ingstad | cardImage | bilder/kort/people/anne_stine_ingstad.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | bernhard_herre / Bernhard Herre | image | bilder/kort/people/bernhard_herre.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | bernhard_herre / Bernhard Herre | cardImage | bilder/kort/people/bernhard_herre.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | mikkjel_fonhus / Mikkjel Fønhus | image | bilder/kort/people/mikkjel_fonhus.PNG |
+| data/people/natur/oslo/people_natur_oslo.json | mikkjel_fonhus / Mikkjel Fønhus | cardImage | bilder/kort/people/mikkjel_fonhus.PNG |
 | data/people/people_by.json | carl_berner / Carl Berner | image | bilder/kort/people/carl_berner.PNG |
 | data/people/people_by.json | carl_berner / Carl Berner | cardImage | bilder/kort/people/carl_berner.PNG |
 | data/people/people_by.json | christian_heinrich_grosch / Christian Heinrich Grosch | image | bilder/kort/people/christian_heinrich_grosch.PNG |
@@ -507,38 +538,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/people_musikk.json | arif / Arif | cardImage | bilder/kort/people/arif_stovner.PNG |
 | data/people/people_musikk.json | edvard_grieg / Edvard Grieg | image | bilder/kort/people/edvard_grieg.PNG |
 | data/people/people_musikk.json | edvard_grieg / Edvard Grieg | cardImage | bilder/kort/people/edvard_grieg.PNG |
-| data/people/people_natur.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | image | bilder/kort/people/peter_christen_asbjornsen.PNG |
-| data/people/people_natur.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | cardImage | bilder/kort/people/peter_christen_asbjornsen.PNG |
-| data/people/people_natur.json | michael_sars / Michael Sars | image | bilder/kort/people/michael_sars.PNG |
-| data/people/people_natur.json | michael_sars / Michael Sars | cardImage | bilder/kort/people/michael_sars.PNG |
-| data/people/people_natur.json | georg_ossian_sars / Georg Ossian Sars | image | bilder/kort/people/georg_ossian_sars.PNG |
-| data/people/people_natur.json | georg_ossian_sars / Georg Ossian Sars | cardImage | bilder/kort/people/georg_ossian_sars.PNG |
-| data/people/people_natur.json | jens_esmark / Jens Esmark | image | bilder/kort/people/jens_esmark.PNG |
-| data/people/people_natur.json | jens_esmark / Jens Esmark | cardImage | bilder/kort/people/jens_esmark.PNG |
-| data/people/people_natur.json | arne_naess / Arne Næss | image | bilder/kort/people/arne_naess.PNG |
-| data/people/people_natur.json | arne_naess / Arne Næss | cardImage | bilder/kort/people/arne_naess.PNG |
-| data/people/people_natur.json | nils_faarlund / Nils Faarlund | image | bilder/kort/people/nils_faarlund.PNG |
-| data/people/people_natur.json | nils_faarlund / Nils Faarlund | cardImage | bilder/kort/people/nils_faarlund.PNG |
-| data/people/people_natur.json | hanna_resvoll_holmsen / Hanna Resvoll-Holmsen | image | bilder/kort/people/hanna_resvoll_holmsen.PNG |
-| data/people/people_natur.json | hanna_resvoll_holmsen / Hanna Resvoll-Holmsen | cardImage | bilder/kort/people/hanna_resvoll_holmsen.PNG |
-| data/people/people_natur.json | thekla_resvoll / Thekla Resvoll | image | bilder/kort/people/thekla_resvoll.PNG |
-| data/people/people_natur.json | thekla_resvoll / Thekla Resvoll | cardImage | bilder/kort/people/thekla_resvoll.PNG |
-| data/people/people_natur.json | rolf_nordhagen / Rolf Nordhagen | image | bilder/kort/people/rolf_nordhagen.PNG |
-| data/people/people_natur.json | rolf_nordhagen / Rolf Nordhagen | cardImage | bilder/kort/people/rolf_nordhagen.PNG |
-| data/people/people_natur.json | haaken_hasberg_gran / Haaken Hasberg Gran | image | bilder/kort/people/haaken_hasberg_gran.PNG |
-| data/people/people_natur.json | haaken_hasberg_gran / Haaken Hasberg Gran | cardImage | bilder/kort/people/haaken_hasberg_gran.PNG |
-| data/people/people_natur.json | dag_o_hessen / Dag O. Hessen | image | bilder/kort/people/dag_o_hessen.PNG |
-| data/people/people_natur.json | dag_o_hessen / Dag O. Hessen | cardImage | bilder/kort/people/dag_o_hessen.PNG |
-| data/people/people_natur.json | lauritz_somme / Lauritz Sømme | image | bilder/kort/people/lauritz_somme.PNG |
-| data/people/people_natur.json | lauritz_somme / Lauritz Sømme | cardImage | bilder/kort/people/lauritz_somme.PNG |
-| data/people/people_natur.json | helge_ingstad / Helge Ingstad | image | bilder/kort/people/helge_ingstad.PNG |
-| data/people/people_natur.json | helge_ingstad / Helge Ingstad | cardImage | bilder/kort/people/helge_ingstad.PNG |
-| data/people/people_natur.json | anne_stine_ingstad / Anne Stine Ingstad | image | bilder/kort/people/anne_stine_ingstad.PNG |
-| data/people/people_natur.json | anne_stine_ingstad / Anne Stine Ingstad | cardImage | bilder/kort/people/anne_stine_ingstad.PNG |
-| data/people/people_natur.json | bernhard_herre / Bernhard Herre | image | bilder/kort/people/bernhard_herre.PNG |
-| data/people/people_natur.json | bernhard_herre / Bernhard Herre | cardImage | bilder/kort/people/bernhard_herre.PNG |
-| data/people/people_natur.json | mikkjel_fonhus / Mikkjel Fønhus | image | bilder/kort/people/mikkjel_fonhus.PNG |
-| data/people/people_natur.json | mikkjel_fonhus / Mikkjel Fønhus | cardImage | bilder/kort/people/mikkjel_fonhus.PNG |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.image | bilder/people/herman_flesvig.PNG |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.imageCard | bilder/kort/people/herman_flesvig.PNG |
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.image | bilder/people/morten_ramm.PNG |

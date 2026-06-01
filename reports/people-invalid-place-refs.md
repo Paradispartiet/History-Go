@@ -1,19 +1,25 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T20:54:32.184Z
+Generated: 2026-06-01T21:14:17.762Z
 
 ## Sammendrag
 - People-filer lest: **21**
 - People lest: **323**
-- People med ugyldige refs: **0**
-- Ugyldige refs: **0**
-- Unike ugyldige placeId-er: **0**
+- People med ugyldige refs: **1**
+- Ugyldige refs: **2**
+- Unike ugyldige placeId-er: **1**
 - People uten gyldig sted: **23**
 - Duplikate interne place-referanser: **293**
 
 ## Ugyldige refs gruppert per fil/person
+### data/people/people_by.json
+- **harald_aars** (Harald Aars)
+  - sagene @ `placeId`
+  - sagene @ `places[0]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
+- **sagene** (likely_rename_to_existing_place, 2 treff)
+  - sagene_kvernhus (confidence: medium)
 
 ## People uten gyldig sted
 - data/people/historie/oslo/people_historie_oslo.json :: anna_sethne (Anna Sethne)
@@ -179,22 +185,22 @@ Generated: 2026-06-01T20:54:32.184Z
 - data/people/people_filantroper.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
 - data/people/people_filantroper.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> bankplassen x2
 - data/people/people_filantroper.json :: eckbos_legat (Eckbos Legat) -> universitetsplassen x2
-- data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
-- data/people/people_natur.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
-- data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
-- data/people/people_natur.json :: jens_esmark (Jens Esmark) -> maridalsvannet x2
-- data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
-- data/people/people_natur.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
-- data/people/people_natur.json :: hanna_resvoll_holmsen (Hanna Resvoll-Holmsen) -> botanisk_hage x2
-- data/people/people_natur.json :: thekla_resvoll (Thekla Resvoll) -> botanisk_hage x2
-- data/people/people_natur.json :: rolf_nordhagen (Rolf Nordhagen) -> botanisk_hage x2
-- data/people/people_natur.json :: haaken_hasberg_gran (Haaken Hasberg Gran) -> naturhistorisk_museum x2
-- data/people/people_natur.json :: dag_o_hessen (Dag O. Hessen) -> naturhistorisk_museum x2
-- data/people/people_natur.json :: lauritz_somme (Lauritz Sømme) -> naturhistorisk_museum x2
-- data/people/people_natur.json :: helge_ingstad (Helge Ingstad) -> bygdoy_natur x2
-- data/people/people_natur.json :: anne_stine_ingstad (Anne Stine Ingstad) -> bygdoy_natur x2
-- data/people/people_natur.json :: bernhard_herre (Bernhard Herre) -> maridalsvannet x2
-- data/people/people_natur.json :: mikkjel_fonhus (Mikkjel Fønhus) -> maridalsvannet x2
+- data/people/natur/oslo/people_natur_oslo.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
+- data/people/natur/oslo/people_natur_oslo.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
+- data/people/natur/oslo/people_natur_oslo.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
+- data/people/natur/oslo/people_natur_oslo.json :: jens_esmark (Jens Esmark) -> maridalsvannet x2
+- data/people/natur/oslo/people_natur_oslo.json :: arne_naess (Arne Næss) -> maerradalen x2
+- data/people/natur/oslo/people_natur_oslo.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
+- data/people/natur/oslo/people_natur_oslo.json :: hanna_resvoll_holmsen (Hanna Resvoll-Holmsen) -> botanisk_hage x2
+- data/people/natur/oslo/people_natur_oslo.json :: thekla_resvoll (Thekla Resvoll) -> botanisk_hage x2
+- data/people/natur/oslo/people_natur_oslo.json :: rolf_nordhagen (Rolf Nordhagen) -> botanisk_hage x2
+- data/people/natur/oslo/people_natur_oslo.json :: haaken_hasberg_gran (Haaken Hasberg Gran) -> naturhistorisk_museum x2
+- data/people/natur/oslo/people_natur_oslo.json :: dag_o_hessen (Dag O. Hessen) -> naturhistorisk_museum x2
+- data/people/natur/oslo/people_natur_oslo.json :: lauritz_somme (Lauritz Sømme) -> naturhistorisk_museum x2
+- data/people/natur/oslo/people_natur_oslo.json :: helge_ingstad (Helge Ingstad) -> bygdoy_natur x2
+- data/people/natur/oslo/people_natur_oslo.json :: anne_stine_ingstad (Anne Stine Ingstad) -> bygdoy_natur x2
+- data/people/natur/oslo/people_natur_oslo.json :: bernhard_herre (Bernhard Herre) -> maridalsvannet x2
+- data/people/natur/oslo/people_natur_oslo.json :: mikkjel_fonhus (Mikkjel Fønhus) -> maridalsvannet x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
@@ -336,3 +342,4 @@ Generated: 2026-06-01T20:54:32.184Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch
+- sagene (likely_rename_to_existing_place, 2 treff)
