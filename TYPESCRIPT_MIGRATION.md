@@ -691,3 +691,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Wrapped the remaining numeric profile/stat assignments in `String(...)` for `placeCount`, `quizUnitCount`, `streak`, and the ParadiseCoin `pc` value.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1689, `js/profile.js` diagnostics are now 58, and `js/Civication/**` diagnostics remain 310.
 - Runtime behavior, UI layout, data files, Civication files, package metadata, CSS, HTML, import tooling, and unrelated profile logic remain unchanged.
+
+## Phase 83: boot.js JSON payload narrowing pass
+
+- Moved the next TypeScript migration pass outside Civication and outside `js/profile.js` by targeting only `js/boot.js`.
+- Targeted the repeated `TS2339` diagnostics where JSON payloads returned from `fetchJSON()` were still `unknown` before reading `.places`, `.relations`, `.files`, or `.people`.
+- Added file-local payload typedefs and local casts around the existing place, relation, people manifest, and people file fallback branches so TypeScript can see the same optional array shapes already checked at runtime.
+- Runtime behavior, startup flow, fetch paths, fallback data loading, UI layout, DOM/CSS/HTML, profile code, Civication code, data/story/import/place/people/manifest files, import tooling, and package metadata remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1680, `js/boot.js` diagnostics are now 67, and `js/Civication/**` diagnostics remain 310.

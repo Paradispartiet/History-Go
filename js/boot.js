@@ -4,6 +4,9 @@
 
 /** @typedef {import("../schemas/place").Place} BootPlace */
 /** @typedef {{ files?: string[] }} PlacesManifest */
+/** @typedef {{ places?: unknown[] }} PlacesPayload */
+/** @typedef {{ relations?: unknown[] }} RelationsPayload */
+/** @typedef {{ people?: unknown[] }} PeoplePayload */
 
 async function boot() {
   if (window.CoreEngine) CoreEngine.init();
@@ -208,10 +211,11 @@ async function boot() {
   if (!Array.isArray(places) || !places.length) {
     for (const url of PLACE_FILES_FALLBACK) {
       const data = await fetchJSON(url);
+      const placePayload = /** @type {PlacesPayload | null} */ (data);
       if (Array.isArray(data)) {
         places.push(...data);
-      } else if (Array.isArray(data?.places)) {
-        places.push(...data.places);
+      } else if (Array.isArray(placePayload?.places)) {
+        places.push(.../** @type {BootPlace[]} */ (placePayload.places));
       }
     }
   }
@@ -226,11 +230,12 @@ async function boot() {
 
   for (const url of RELATION_FILE_LIST) {
     const data = await fetchJSON(url);
+    const relationPayload = /** @type {RelationsPayload | null} */ (data);
 
     if (Array.isArray(data)) {
       relations.push(...data);
-    } else if (Array.isArray(data?.relations)) {
-      relations.push(...data.relations);
+    } else if (Array.isArray(relationPayload?.relations)) {
+      relations.push(...relationPayload.relations);
     }
   }
 
@@ -248,6 +253,7 @@ async function boot() {
   };
 
   const loadPeopleFileList = async () => {
+    /** @type {PlacesManifest | null} */
     const manifest = await fetchJSON("data/people/manifest.json");
     if (!Array.isArray(manifest?.files) || !manifest.files.length) {
       console.error("[boot] Missing or invalid people manifest: data/people/manifest.json");
@@ -266,11 +272,12 @@ async function boot() {
 
   for (const url of peopleFiles) {
     const data = await fetchJSON(url);
+    const peoplePayload = /** @type {PeoplePayload | null} */ (data);
 
     if (Array.isArray(data)) {
       peopleAll.push(...data);
-    } else if (Array.isArray(data?.people)) {
-      peopleAll.push(...data.people);
+    } else if (Array.isArray(peoplePayload?.people)) {
+      peopleAll.push(...peoplePayload.people);
     }
   }
 
