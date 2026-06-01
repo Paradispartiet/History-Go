@@ -38,6 +38,14 @@ function _esc(s){ return String(s ?? "").replace(/[&<>"']/g, ch => ({
   "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
 }[ch]));}
 
+function _t(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 // Sørg for at globale popup-funksjoner finnes i app.js
 window.showPersonPopup = window.showPersonPopup || (() => {});
 window.showPlacePopup  = window.showPlacePopup  || (() => {});
@@ -99,7 +107,7 @@ function getCompletedPlaceCount() {
 // ------------------------------------------------------------
 function renderProfileCard() {
   const streak = Number(localStorage.getItem("user_streak") || 0);
-  const userName = localStorage.getItem("user_name") || "Utforsker #182";
+  const userName = localStorage.getItem("user_name") || _t("ui.profile.defaultExplorer", "Utforsker #182");
 
   const placeCount = getCompletedPlaceCount();
   const quizUnitCount = getCompletedQuizUnitCount();
@@ -110,16 +118,16 @@ function renderProfileCard() {
   document.getElementById("statStreak").textContent = String(streak);
 
   const visitedLabel = document.getElementById("statVisitedLabel");
-  if (visitedLabel) visitedLabel.textContent = "Steder";
+  if (visitedLabel) visitedLabel.textContent = _t("ui.tabs.places", "Steder");
 
   const quizzesLabel = document.getElementById("statQuizzesLabel");
-  if (quizzesLabel) quizzesLabel.textContent = "Quizsett";
+  if (quizzesLabel) quizzesLabel.textContent = _t("ui.profile.statQuizSets", "Quizsett");
 
   const visitedEl = document.getElementById("statVisited");
-  if (visitedEl) visitedEl.title = "Antall steder du har låst opp.";
+  if (visitedEl) visitedEl.title = _t("ui.profile.statPlacesTitle", "Antall steder du har låst opp.");
 
   const quizzesEl = document.getElementById("statQuizzes");
-  if (quizzesEl) quizzesEl.title = "Antall fullførte quizenheter. Set-baserte quizer teller per sett.";
+  if (quizzesEl) quizzesEl.title = _t("ui.profile.statQuizTitle", "Antall fullførte quizenheter. Set-baserte quizer teller per sett.");
 
   renderPC();
 }
@@ -159,21 +167,21 @@ function renderNextUpProfileCard() {
   }
 
   const activeMode = summary.active_mode || "nearest";
-  const learningStyle = summary.learning_style || "Under utvikling";
-  const direction = summary.current_direction || "NextUp lærer retningen din når du bruker forslagene.";
+  const learningStyle = summary.learning_style || _t("ui.nextup.developing", "Under utvikling");
+  const direction = summary.current_direction || _t("ui.nextup.learnDirection", "NextUp lærer retningen din når du bruker forslagene.");
   const recentChoices = Array.isArray(summary.recent_choices) ? summary.recent_choices.slice(0, 3) : [];
   const path = summary.active_path || null;
 
   metaEl.innerHTML = `
-    <div><strong>Aktiv modus:</strong> ${_esc(activeMode)}</div>
-    <div><strong>Læringsstil:</strong> ${_esc(learningStyle)}</div>
-    <div><strong>Du følger for tiden:</strong> ${_esc(direction)}</div>
+    <div><strong>${_esc(_t("ui.nextup.activeMode", "Aktiv modus"))}:</strong> ${_esc(activeMode)}</div>
+    <div><strong>${_esc(_t("ui.nextup.learningStyle", "Læringsstil"))}:</strong> ${_esc(learningStyle)}</div>
+    <div><strong>${_esc(_t("ui.nextup.followingNow", "Du følger for tiden"))}:</strong> ${_esc(direction)}</div>
   `;
   choicesEl.innerHTML = recentChoices.length
-    ? `<strong>Siste NextUp-valg:</strong> ${_esc(recentChoices.join(" → "))}`
-    : `<strong>Siste NextUp-valg:</strong> Ingen valg logget ennå`;
+    ? `<strong>${_esc(_t("ui.nextup.latestChoices", "Siste NextUp-valg"))}:</strong> ${_esc(recentChoices.join(" → "))}`
+    : `<strong>${_esc(_t("ui.nextup.latestChoices", "Siste NextUp-valg"))}:</strong> ${_esc(_t("ui.nextup.noChoices", "Ingen valg logget ennå"))}`;
   pathEl.innerHTML = path
-    ? `<strong>Pågående rute:</strong> ${_esc(path.title || "Rute i utvikling")} · ${Number(path.step_count || 0)} steg`
+    ? `<strong>${_esc(_t("ui.nextup.activeRoute", "Pågående rute"))}:</strong> ${_esc(path.title || _t("ui.nextup.routeDeveloping", "Rute i utvikling"))} · ${Number(path.step_count || 0)} steg`
     : "";
   card.style.display = "block";
 }
@@ -201,7 +209,7 @@ function asCount(value) {
 
 function resolveGroundName(placeId) {
   const id = String(placeId || "").trim();
-  if (!id) return "Ukjent sted";
+  if (!id) return _t("ui.groundhopper.unknownPlace", "Ukjent sted");
   const sources = [
     Array.isArray(PLACES) ? PLACES : [],
     Array.isArray(window.allPlaces) ? window.allPlaces : [],
@@ -238,23 +246,23 @@ function renderGroundhopperProfilePanel() {
     return;
   }
 
-  const level = window.HG_getGroundhopperLevel?.(stats) || { label: "Ikke startet", next: 1, progress: 0, remaining: 1 };
+  const level = window.HG_getGroundhopperLevel?.(stats) || { label: _t("ui.groundhopper.notStarted", "Ikke startet"), next: 1, progress: 0, remaining: 1 };
   const statRows = [
-    ["Nivå", level.label],
-    ["Grounds besøkt", asCount(stats.total_groundhopper_places_visited)],
-    ["Fotballgrounds", asCount(stats.total_football_grounds_visited)],
-    ["Ishaller", asCount(stats.total_ice_arenas_visited)],
-    ["Friidrett", asCount(stats.total_athletics_venues_visited)],
-    ["Vintersport", asCount(stats.total_winter_sport_places_visited)],
-    ["Nasjonalarenaer", asCount(stats.total_national_arenas_visited)]
+    [_t("ui.groundhopper.level", "Nivå"), level.label],
+    [_t("ui.groundhopper.groundsVisited", "Grounds besøkt"), asCount(stats.total_groundhopper_places_visited)],
+    [_t("ui.groundhopper.footballGrounds", "Fotballgrounds"), asCount(stats.total_football_grounds_visited)],
+    [_t("ui.groundhopper.iceArenas", "Ishaller"), asCount(stats.total_ice_arenas_visited)],
+    [_t("ui.groundhopper.athletics", "Friidrett"), asCount(stats.total_athletics_venues_visited)],
+    [_t("ui.groundhopper.winterSport", "Vintersport"), asCount(stats.total_winter_sport_places_visited)],
+    [_t("ui.groundhopper.nationalArenas", "Nasjonalarenaer"), asCount(stats.total_national_arenas_visited)]
   ];
 
   gridEl.innerHTML = statRows
     .map(([label, value]) => `<div class="groundhopper-stat-card"><span>${_esc(value)}</span><small>${_esc(label)}</small></div>`)
     .join("");
   toplineEl.textContent = level.next == null
-    ? `Nivå: ${level.label} · Maksnivå nådd`
-    : `Nivå: ${level.label} · ${level.remaining} sted(er) til neste nivå (${Math.round(level.progress * 100)}%)`;
+    ? `${_t("ui.groundhopper.level", "Nivå")}: ${level.label} · Maksnivå nådd`
+    : `${_t("ui.groundhopper.level", "Nivå")}: ${level.label} · ${level.remaining} sted(er) til neste nivå (${Math.round(level.progress * 100)}%)`;
 
   const clubsCollected = Array.isArray(stats.clubs_collected) ? stats.clubs_collected.length : 0;
   clubsEl.textContent = `Klubber samlet: ${clubsCollected}`;
@@ -277,14 +285,14 @@ function renderGroundhopperProfilePanel() {
   const recent = visits.slice(0, 5);
   recentListEl.innerHTML = recent.length
     ? recent.map((entry) => `<li>${_esc(resolveGroundName(entry.placeId))}</li>`).join("")
-    : "<li>Ingen stedsliste tilgjengelig ennå.</li>";
+    : `<li>${_esc(_t("ui.groundhopper.noPlaceList", "Ingen stedsliste tilgjengelig ennå."))}</li>`;
   const fullVisited = visits;
   const showAll = fullVisited.length <= 10;
   const visibleVisited = showAll ? fullVisited : fullVisited.slice(0, 10);
-  visitedHintEl.textContent = showAll ? "" : "Viser de siste 10.";
+  visitedHintEl.textContent = showAll ? "" : _t("ui.groundhopper.showLatest10", "Viser de siste 10.");
   visitedListEl.innerHTML = visibleVisited.length
     ? visibleVisited.map((entry) => `<li>${_esc(resolveGroundName(entry.placeId))}</li>`).join("")
-    : "<li>Du har ikke besøkt noen Groundhopper-steder ennå.</li>";
+    : `<li>${_esc(_t("ui.groundhopper.noVisitedPlaces", "Du har ikke besøkt noen Groundhopper-steder ennå."))}</li>`;
   const achievements = Array.isArray(window.HG_getGroundhopperAchievements?.(stats)) ? window.HG_getGroundhopperAchievements(stats) : [];
   achievementsEl.innerHTML = achievements.map((item) => `
     <article class="groundhopper-achievement ${item.unlocked ? "is-unlocked" : ""}">
@@ -395,7 +403,7 @@ function openBadgeModal(badge) {
   const info =
     merits[String(badge.id || "").trim()] ||
     merits[String(badge.name || "").trim()] ||
-    { level: "Nybegynner", points: 0 };
+    { level: _t("ui.badge.beginner", "Nybegynner"), points: 0 };
 
   const points = Number(info.points || 0);
   const { label } = deriveTierFromPoints(badge, points);
@@ -404,7 +412,7 @@ function openBadgeModal(badge) {
   modal.querySelector(".badge-title").textContent = badge.name;
 
   // Vis nivå fra tiers (kanonisk), ikke lagret tekst
-  modal.querySelector(".badge-level").textContent = label || "Nybegynner";
+  modal.querySelector(".badge-level").textContent = label || _t("ui.badge.beginner", "Nybegynner");
   modal.querySelector(".badge-progress-text").textContent = `${points} poeng`;
 
   // Progressbar
@@ -427,7 +435,7 @@ function openBadgeModal(badge) {
   if (!list) return;
 
   if (!items.length) {
-    list.innerHTML = "<li>Ingen quiz fullført i denne kategorien ennå.</li>";
+    list.innerHTML = `<li>${_esc(_t("ui.badge.noQuizCompleted", "Ingen quiz fullført i denne kategorien ennå."))}</li>`;
   } else {
     list.innerHTML = items.map(h => {
       const date = h.date ? new Date(h.date).toLocaleDateString("no-NO") : "";
@@ -450,7 +458,7 @@ function openBadgeModal(badge) {
             `).join("")}
           </ul>
         `
-        : `<div class="badge-quiz-muted">Ingen svar-detaljer lagret for denne quizen.</div>`;
+        : `<div class="badge-quiz-muted">${_esc(_t("ui.badge.noAnswerDetails", "Ingen svar-detaljer lagret for denne quizen."))}</div>`;
 
       return `
         <li class="badge-quiz-item">
@@ -499,7 +507,7 @@ function renderPeopleCollection() {
     .filter(Boolean);
 
   if (!peopleUnlocked.length) {
-    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
+    grid.innerHTML = `<div class="muted">${_esc(_t("ui.profile.noPeopleUnlocked", "Ingen personer låst opp ennå."))}</div>`;
     return;
   }
 
@@ -539,7 +547,7 @@ function renderPlacesCollection() {
     .filter(Boolean);
 
   if (!places.length) {
-    grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
+    grid.innerHTML = `<div class="muted">${_esc(_t("ui.profile.noPlacesVisited", "Ingen steder besøkt ennå."))}</div>`;
     return;
   }
 
@@ -653,7 +661,7 @@ function renderCollectionCards() {
   const items = [...placeCards, ...personCards].sort((a,b) => a.year - b.year);
 
   if (!items.length) {
-    body.innerHTML = `<div class="muted">Ingen kort låst opp ennå.</div>`;
+    body.innerHTML = `<div class="muted">${_esc(_t("ui.profile.noCardsUnlocked", "Ingen kort låst opp ennå."))}</div>`;
     return;
   }
 
@@ -693,7 +701,7 @@ function renderConcepts() {
 
   if (!concepts.length) {
     if (emptyEl) emptyEl.style.display = "";
-    if (metaEl) metaEl.textContent = "Ingen begreper logget ennå";
+    if (metaEl) metaEl.textContent = _t("ui.profile.noConceptsLogged", "Ingen begreper logget ennå");
     return;
   }
 
@@ -769,7 +777,7 @@ function renderLatestKnowledge() {
   const last = flat[flat.length - 1];
   const item = last.item || {};
 
-  elTopic.textContent = item.topic || item.question || "Kunnskap";
+  elTopic.textContent = item.topic || item.question || _t("ui.knowledge.knowledge", "Kunnskap");
   elCat.textContent = (last.category || "").charAt(0).toUpperCase() + (last.category || "").slice(1);
   elText.textContent = item.text || item.knowledge || "";
 
@@ -827,7 +835,7 @@ async function renderKnowledgeEnginePanel() {
   if (!panel || !metaEl || !summaryEl || !subjectsEl || !recsEl || !signalsEl) return;
 
   if (typeof window.HGKnowledgeEngine?.run !== "function") {
-    summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren er ikke lastet ennå.</div>`;
+    summaryEl.innerHTML = `<div class="muted">${_esc(_t("ui.knowledge.engineNotLoaded", "Kunnskapsmotoren er ikke lastet ennå."))}</div>`;
     return;
   }
 
@@ -837,7 +845,7 @@ async function renderKnowledgeEnginePanel() {
     window.hgKnowledgeReport = report;
 
     if (report?.ok !== true) {
-      summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren kunne ikke lage rapport akkurat nå.</div>`;
+      summaryEl.innerHTML = `<div class="muted">${_esc(_t("ui.knowledge.reportFailed", "Kunnskapsmotoren kunne ikke lage rapport akkurat nå."))}</div>`;
       return;
     }
 
@@ -846,12 +854,12 @@ async function renderKnowledgeEnginePanel() {
     /** @type {ProfileRecord} */
     const sourceState = report?.sourceState || {};
     const summaryCards = [
-      [`${Number(summary.subjects || 0)}`, "fag"],
-      [`${Number(summary.totalEmner || 0)}`, "emner"],
-      [`${Number(summary.totalKnownEmner || 0)}`, "kjente emner"],
-      [`${Number(summary.averageCoverage || 0)} %`, "snittdekning"],
-      [`${Number(sourceState.subjectsWithSignalsCount || 0)}`, "fag med signaler"],
-      [`${Number(summary.healthErrors || 0)} / ${Number(summary.healthWarnings || 0)}`, "feil / varsler"]
+      [`${Number(summary.subjects || 0)}`, _t("ui.knowledge.subjects", "fag")],
+      [`${Number(summary.totalEmner || 0)}`, _t("ui.knowledge.topics", "emner")],
+      [`${Number(summary.totalKnownEmner || 0)}`, _t("ui.knowledge.knownTopics", "kjente emner")],
+      [`${Number(summary.averageCoverage || 0)} %`, _t("ui.knowledge.averageCoverage", "snittdekning")],
+      [`${Number(sourceState.subjectsWithSignalsCount || 0)}`, _t("ui.knowledge.subjectsWithSignals", "fag med signaler")],
+      [`${Number(summary.healthErrors || 0)} / ${Number(summary.healthWarnings || 0)}`, _t("ui.knowledge.errorsWarnings", "feil / varsler")]
     ];
     summaryEl.innerHTML = summaryCards
       .map(([value, label]) => `<div class="knowledge-engine-summary-card"><strong>${_esc(value)}</strong><span>${_esc(label)}</span></div>`)
@@ -869,7 +877,7 @@ async function renderKnowledgeEnginePanel() {
       .slice(0, 5);
 
     if (!strongest.length) {
-      subjectsEl.innerHTML = `<div class="muted">Du har ikke nok registrerte læringssignaler ennå.</div>`;
+      subjectsEl.innerHTML = `<div class="muted">${_esc(_t("ui.knowledge.notEnoughSignals", "Du har ikke nok registrerte læringssignaler ennå."))}</div>`;
     } else {
       const weakest = (Array.isArray(summary.weakestSubjects) ? summary.weakestSubjects : [])
         .slice(0, 3)
@@ -905,22 +913,22 @@ async function renderKnowledgeEnginePanel() {
             <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(`${Number(p.knownEmner || 0)} / ${Number(p.emnerCount || 0)} emner · ${coverage} %`)}</span></div>
             <div class="knowledge-engine-bar"><div class="knowledge-engine-bar-fill" style="width:${coverage}%;"></div></div>
             <div class="knowledge-engine-chip-row">
-              <span class="knowledge-engine-chip">Direkte læring: ${_esc(Number(s.directLearningSignals || 0))}</span>
-              <span class="knowledge-engine-chip">Besøkte steder: ${_esc(Number(s.visitedPlaceSignals || 0))}</span>
-              <span class="knowledge-engine-chip">Streams: ${_esc(Number(s.streamSignals || 0))}</span>
-              <span class="knowledge-engine-chip">Begreper: ${_esc(Number(s.conceptSignals || 0))}</span>
+              <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.directLearning", "Direkte læring"))}: ${_esc(Number(s.directLearningSignals || 0))}</span>
+              <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.visitedPlaces", "Besøkte steder"))}: ${_esc(Number(s.visitedPlaceSignals || 0))}</span>
+              <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.streams", "Streams"))}: ${_esc(Number(s.streamSignals || 0))}</span>
+              <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.concepts", "Begreper"))}: ${_esc(Number(s.conceptSignals || 0))}</span>
             </div>
           </article>`;
         }).join("")}
-        <div class="knowledge-engine-summary-card"><strong>Svakeste fag nå:</strong> ${_esc(weakestIds.join(", ") || "Ingen tydelige kandidater ennå")}</div>
+        <div class="knowledge-engine-summary-card"><strong>${_esc(_t("ui.knowledge.weakestNow", "Svakeste fag nå"))}:</strong> ${_esc(weakestIds.join(", ") || _t("ui.knowledge.noWeakCandidates", "Ingen tydelige kandidater ennå"))}</div>
       `;
     }
 
     /** @type {ProfileKnowledgeRecommendation[]} */
     const recs = Array.isArray(report?.recommendations) ? report.recommendations.slice(0, 3) : [];
     recsEl.innerHTML = recs.length
-      ? recs.map((rec) => `<article class="knowledge-engine-recommendation"><strong>${_esc(rec?.title || "Anbefaling")}</strong><div>${_esc(rec?.reason || "")}</div><small>${_esc(rec?.subjectId ? `Fag: ${rec.subjectId}` : "")}</small></article>`).join("")
-      : `<div class="muted">Ingen anbefalinger akkurat nå.</div>`;
+      ? recs.map((rec) => `<article class="knowledge-engine-recommendation"><strong>${_esc(rec?.title || _t("ui.knowledge.recommendation", "Anbefaling"))}</strong><div>${_esc(rec?.reason || "")}</div><small>${_esc(rec?.subjectId ? `Fag: ${rec.subjectId}` : "")}</small></article>`).join("")
+      : `<div class="muted">${_esc(_t("ui.knowledge.noRecommendations", "Ingen anbefalinger akkurat nå."))}</div>`;
 
     const signalSubjects = allSubjects.filter((subject) => Number(subject?.signals?.summary?.totalSignals || 0) > 0);
     signalsEl.innerHTML = signalSubjects.length ? signalSubjects.map((subject) => {
@@ -934,22 +942,22 @@ async function renderKnowledgeEnginePanel() {
       return `<article class="knowledge-engine-signal-group">
         <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(`${Number(summarySig.totalSignals || 0)} signaler`)}</span></div>
         <div class="knowledge-engine-chip-row">
-          <span class="knowledge-engine-chip">directLearning: ${_esc(Number(summarySig.directLearningSignals || 0))}</span>
-          <span class="knowledge-engine-chip">visitedPlaces: ${_esc(Number(summarySig.visitedPlaceSignals || 0))}</span>
-          <span class="knowledge-engine-chip">streams: ${_esc(Number(summarySig.streamSignals || 0))}</span>
-          <span class="knowledge-engine-chip">concepts: ${_esc(Number(summarySig.conceptSignals || 0))}</span>
+          <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.directLearning", "directLearning"))}: ${_esc(Number(summarySig.directLearningSignals || 0))}</span>
+          <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.visitedPlaces", "visitedPlaces"))}: ${_esc(Number(summarySig.visitedPlaceSignals || 0))}</span>
+          <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.streams", "streams"))}: ${_esc(Number(summarySig.streamSignals || 0))}</span>
+          <span class="knowledge-engine-chip">${_esc(_t("ui.knowledge.concepts", "concepts"))}: ${_esc(Number(summarySig.conceptSignals || 0))}</span>
         </div>
-        <div class="muted">Kilde-steder: ${_esc(sourcePlaces.join(", ") || "—")}</div>
-        <div class="muted">Kilde-emner: ${_esc(sourceEmner.join(", ") || "—")}</div>
-        <div>${visited.map((v) => `${_esc(v.placeName || v.placeId || "Sted")} → ${_esc(v.emne_id || "ukjent emne")}`).join("<br>") || "Ingen stedskoblinger registrert."}</div>
-        <div style="margin-top:6px;">${direct.map((d) => `${_esc(d.emne_id || "")} · ${_esc(`${d.seen ? "seen" : "not-seen"}/${d.understood ? "understood" : "not-understood"}/${d.applied ? "applied" : "not-applied"}`)} · score ${_esc(Number(d.score || 0))}`).join("<br>") || "Ingen direkte læringssignal registrert."}</div>
+        <div class="muted">${_esc(_t("ui.knowledge.sourcePlaces", "Kilde-steder"))}: ${_esc(sourcePlaces.join(", ") || "—")}</div>
+        <div class="muted">${_esc(_t("ui.knowledge.sourceTopics", "Kilde-emner"))}: ${_esc(sourceEmner.join(", ") || "—")}</div>
+        <div>${visited.map((v) => `${_esc(v.placeName || v.placeId || _t("ui.knowledge.place", "Sted"))} → ${_esc(v.emne_id || _t("ui.knowledge.unknownTopic", "ukjent emne"))}`).join("<br>") || _esc(_t("ui.knowledge.noPlaceLinks", "Ingen stedskoblinger registrert."))}</div>
+        <div style="margin-top:6px;">${direct.map((d) => `${_esc(d.emne_id || _t("ui.knowledge.unknownTopic", "ukjent emne"))} · ${_esc(`${d.seen ? "seen" : "not-seen"}/${d.understood ? "understood" : "not-understood"}/${d.applied ? "applied" : "not-applied"}`)} · score ${_esc(Number(d.score || 0))}`).join("<br>") || _esc(_t("ui.knowledge.noDirectSignals", "Ingen direkte læringssignal registrert."))}</div>
       </article>`;
-    }).join("") : `<div class="muted">Ingen signalforklaring tilgjengelig ennå.</div>`;
+    }).join("") : `<div class="muted">${_esc(_t("ui.knowledge.noSignalExplanation", "Ingen signalforklaring tilgjengelig ennå."))}</div>`;
 
     metaEl.textContent = `Analysert ${Number(summary.subjects || 0)} fag · ${Number(summary.totalEmner || 0)} emner`;
   } catch (e) {
     console.warn("[profile] Knowledge Engine panel failed", e);
-    summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren kunne ikke lage rapport akkurat nå.</div>`;
+    summaryEl.innerHTML = `<div class="muted">${_esc(_t("ui.knowledge.reportFailed", "Kunnskapsmotoren kunne ikke lage rapport akkurat nå."))}</div>`;
   }
 }
 
@@ -1029,7 +1037,7 @@ function renderAhaSummary() {
     return;
   }
 
-  a.textContent = lastNote ? `Siste notat: ${lastNote.title || "Notat"}` : "Siste dialog";
+  a.textContent = lastNote ? `Siste notat: ${lastNote.title || _t("ui.profile.noteFallback", "Notat")}` : _t("ui.profile.latestDialog", "Siste dialog");
   b.textContent = lastNote ? (lastNote.text || "").slice(0, 90) : (lastDlg.text || "").slice(0, 90);
 
   box.style.display = "block";
@@ -1039,20 +1047,20 @@ function renderAhaSummary() {
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
 function openProfileModal() {
-  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const name = localStorage.getItem("user_name") || _t("ui.profile.defaultExplorer", "Utforsker #182");
   const color = localStorage.getItem("user_color") || "#f6c800";
 
   const modal = document.createElement("div");
   modal.className = "profile-modal";
   modal.innerHTML = `
     <div class="profile-modal-inner">
-      <h3>Endre profil</h3>
-      <label>Navn</label>
+      <h3>${_esc(_t("ui.profile.edit", "Endre profil"))}</h3>
+      <label>${_esc(_t("ui.profile.modalName", "Navn"))}</label>
       <input id="newName" value="${name}">
-      <label>Farge</label>
+      <label>${_esc(_t("ui.profile.modalColor", "Farge"))}</label>
       <input id="newColor" type="color" value="${color}">
-      <button id="saveProfile">Lagre</button>
-      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
+      <button id="saveProfile">${_esc(_t("ui.profile.modalSave", "Lagre"))}</button>
+      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">${_esc(_t("ui.profile.modalCancel", "Avbryt"))}</button>
     </div>
   `;
   document.body.appendChild(modal);
@@ -1060,7 +1068,7 @@ function openProfileModal() {
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
   modal.querySelector("#saveProfile").onclick = () => {
-    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newName = modal.querySelector("#newName").value.trim() || _t("ui.profile.defaultExplorer", "Utforsker #182");
     const newColor = modal.querySelector("#newColor").value;
 
     localStorage.setItem("user_name", newName);
