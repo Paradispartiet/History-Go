@@ -42,15 +42,21 @@ const CATEGORY_EMNE_PREFIXES = {
 // Batch 33: by -> film_tv covers urban spaces with an explicitly documented
 // film/TV location or representation layer. populaerkultur -> film_tv covers
 // cinemas and film/TV places while film/TV remains under populaerkultur in
-// place data. by -> populaerkultur is deliberately kept outside the allowlist
-// until after a datafix.
+// place data.
+// Batch 35: by -> populaerkultur applies only to urban spaces with an
+// explicitly documented popular-cultural secondary layer in the place text, for
+// example icon status, shared culture, audience rhythms, social belonging,
+// representation or mediated publicness. The pair was allowlisted only after
+// Batch 34 cleaned up miscategorized pop-culture places and weak pop-culture
+// links. politikk -> populaerkultur, natur -> kunst and subkultur ->
+// naeringsliv remain outside the allowlist.
 const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES = {
   natur: ["by", "historie"],
   litteratur: ["by"],
   naeringsliv: ["by", "historie"],
   historie: ["by", "kunst"],
   politikk: ["historie", "by"],
-  by: ["kunst", "historie", "film_tv"],
+  by: ["kunst", "historie", "film_tv", "populaerkultur"],
   populaerkultur: ["film_tv"],
   kunst: ["by", "historie"],
   subkultur: ["by", "musikk", "historie", "kunst"]
