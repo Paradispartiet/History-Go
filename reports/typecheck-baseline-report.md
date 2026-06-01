@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T21:05:46.872Z
+- Generated at (UTC): 2026-06-01T21:32:29.758Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1576
+- Total diagnostic lines found: 1535
 - Files with diagnostics: 181
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| other | 73 | 555 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| other | 73 | 514 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 502 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/Civication/** | 65 | 271 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/boot.js | 1 | 67 | js/boot.js |
@@ -32,7 +32,6 @@
 | js/boot.js | 67 | js/boot.js |
 | js/profile.js | 57 | js/profile.js |
 | js/ui/left-panel.js | 55 | js/ui/** |
-| js/routes.js | 46 | other |
 | js/ui/lists.js | 40 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 37 | js/Civication/** |
 | js/console/devConsole.js | 36 | other |
@@ -47,17 +46,18 @@
 | js/Civication/ui/CivicationMiniSectionsUI.js | 20 | js/Civication/** |
 | js/console/diagnosticConsole.js | 20 | other |
 | js/ui/mini-profile.js | 20 | js/ui/** |
+| js/ui/wonderkammer-entry.js | 20 | js/ui/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1234 |
-| TS2551 | 138 |
-| TS2304 | 70 |
+| TS2339 | 1202 |
+| TS2551 | 133 |
+| TS2304 | 68 |
 | TS2307 | 36 |
-| TS2349 | 14 |
 | TS2345 | 13 |
 | TS2580 | 13 |
+| TS2349 | 12 |
 | TS2322 | 11 |
 | TS2550 | 11 |
 | TS2451 | 6 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **other (555 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **other (514 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (139), `js/ui/popup-utils.js` (79), `js/boot.js` (67), `js/profile.js` (57), `js/ui/left-panel.js` (55).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `js/Civication/**`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
