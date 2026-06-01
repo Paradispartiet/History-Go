@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T19:37:58.989Z
+- Generated at (UTC): 2026-06-01T20:04:09.156Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1669
+- Total diagnostic lines found: 1660
 - Files with diagnostics: 183
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -15,7 +15,7 @@
 | other | 73 | 583 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 507 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/Civication/** | 67 | 290 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
-| js/boot.js | 1 | 76 | js/boot.js |
+| js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 58 | js/profile.js |
 | js/hgKnowledgeEngine.js | 1 | 43 | js/hgKnowledgeEngine.js |
@@ -29,7 +29,7 @@
 | --- | ---: | --- |
 | js/ui/place-card.js | 139 | js/ui/** |
 | js/ui/popup-utils.js | 80 | js/ui/** |
-| js/boot.js | 76 | js/boot.js |
+| js/boot.js | 67 | js/boot.js |
 | js/profile.js | 58 | js/profile.js |
 | js/ui/left-panel.js | 55 | js/ui/** |
 | js/routes.js | 47 | other |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1325 |
+| TS2339 | 1316 |
 | TS2551 | 138 |
 | TS2304 | 70 |
 | TS2307 | 36 |
@@ -76,7 +76,7 @@
 
 ## Priority recommendations (mechanical)
 1. Start with **other (583 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (139), `js/ui/popup-utils.js` (80), `js/boot.js` (76), `js/profile.js` (58), `js/ui/left-panel.js` (55).
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (139), `js/ui/popup-utils.js` (80), `js/boot.js` (67), `js/profile.js` (58), `js/ui/left-panel.js` (55).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `js/Civication/**`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
