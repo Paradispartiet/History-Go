@@ -711,6 +711,15 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - The audit recommends Phase 88 as a declaration-only pass for the remaining inbox-adjacent globals `CivicationNPCs`, `CivicationThreadBridge`, and `DEBUG`; if schema work is not allowed, the fallback is a narrow inbox-only DOM local-cast pass for the `querySelector(...)` feedback/OK controls.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics remain 1669, `js/Civication/**` remains 290, and `js/Civication/ui/CivicationUI.js` remains 45.
 
+
+## Phase 88: Civication inbox-adjacent globals declaration pass
+
+- Followed the Phase 87 `CivicationUI.js` remaining-diagnostics audit with a narrow declaration-only pass for inbox-adjacent globals.
+- Declared broad, runtime-safe `window.CivicationNPCs`, `window.CivicationThreadBridge`, and `window.DEBUG` shapes in `schemas/civication-globals.d.ts`; `CivicationNPCs.lookup(...)` keeps only the minimal sender `name`/`title` result shape already read by the UI.
+- `js/Civication/ui/CivicationUI.js` was not changed, and runtime behavior, inbox rendering, thread enqueue/event flow, Civication engine calls, storage keys, UI output, DOM structure, CSS, data files, schema runtime files, and `tsconfig.json` remain unchanged.
+- No direct global declarations were added because the regenerated baseline only required the `window.*` forms for these three globals.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1607, `js/Civication/**` diagnostics are now 271, and `js/Civication/ui/CivicationUI.js` diagnostics are now 37.
+
 ## Phase 82C replacement: stringify profile textContent values
 
 - Replaced the stale PR #804 branch with a fresh branch from latest `main` and reapplied only the narrow profile `textContent` TypeScript fix.

@@ -78,6 +78,16 @@ type CiviMethodBag = {
 
 type CiviEngineLike = CiviMethodBag;
 type CiviUiLike = CiviMethodBag;
+type CiviNpcRecordLike = CiviRecord & {
+  name?: string;
+  title?: string;
+};
+
+type CiviNpcDirectoryLike = (CiviMethodBag | CiviRecord) & {
+  lookup?: (...args: unknown[]) => CiviNpcRecordLike | null | undefined;
+  all?: CiviFn;
+  load?: CiviFn;
+};
 declare global {
   function deriveTierFromPoints(
     badge: unknown,
@@ -120,6 +130,9 @@ declare global {
     CivicationJobs?: CiviMethodBag;
     CivicationState?: CiviMethodBag;
     CivicationPsyche?: CiviMethodBag;
+    CivicationNPCs?: CiviNpcDirectoryLike;
+    CivicationThreadBridge?: CiviMethodBag;
+    DEBUG?: boolean;
 
     HG_CiviEngine?: CiviEngineLike;
     CivicationEconomyEngine?: CiviMethodBag;
