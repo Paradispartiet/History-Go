@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-31T23:00:07.958Z
+Generert: 2026-06-01T06:33:37.002Z
 
 ## Totalsammendrag
 
