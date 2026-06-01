@@ -102,7 +102,7 @@
 
   function getInboxSummary(section) {
     const inbox = window.CivicationState?.getInbox?.() || [];
-    const pending = window.HG_CiviEngine?.getPendingEvent?.();
+    const pending = /** @type {{ event?: { subject?: unknown, title?: unknown } } | undefined} */ (window.HG_CiviEngine?.getPendingEvent?.());
     const event = pending?.event || inbox?.[0]?.event || null;
     const subject = cleanText(event?.subject || event?.title || section.textContent);
 
@@ -114,7 +114,7 @@
   }
 
   function getActiveRoleSummary(section) {
-    const active = window.CivicationState?.getActivePosition?.();
+    const active = /** @type {{ title?: unknown, career_name?: unknown, career_id?: unknown } | undefined} */ (window.CivicationState?.getActivePosition?.());
     const salary = cleanText(section.querySelector("#activeJobCard")?.textContent)
       .match(/Lønn:\s*([^\n]+)/i)?.[1];
 
@@ -130,7 +130,7 @@
   }
 
   function getHomeSummary(section) {
-    const state = window.CivicationHome?.getState?.();
+    const state = /** @type {{ home?: { status?: unknown, district?: unknown, level?: unknown } } | undefined} */ (window.CivicationHome?.getState?.());
     if (state?.home?.status === "settled") {
       return `${state.home.district || "Hjem"} · Nivå ${state.home.level || 1}`;
     }
