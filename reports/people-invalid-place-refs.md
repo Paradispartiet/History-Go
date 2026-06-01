@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T19:57:43.541Z
+Generated: 2026-06-01T20:16:08.022Z
 
 ## Sammendrag
 - People-filer lest: **21**
@@ -245,28 +245,28 @@ Generated: 2026-06-01T19:57:43.541Z
 - data/people/sport/oslo/people_sport_oslo.json :: lyn_fotball (Lyn Fotball) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: skeid_fotball (Skeid Fotball) -> nordre_aasen_idrettspark x2
 - data/people/sport/oslo/people_sport_oslo.json :: oslo_skoiteklub (Oslo Skøiteklub) -> frogner_stadion x2
-- data/people/people_subkultur.json :: kolapalsen (Køla-Pålsen) -> oslo_domkirke x2
-- data/people/people_subkultur.json :: snippmoller (Snipp-Møller) -> oslo_domkirke x2
-- data/people/people_subkultur.json :: lusefrants (Luse-Frants) -> middelalder_oslo x2
-- data/people/people_subkultur.json :: lisa_kristoffersen (Lisa Kristoffersen) -> voienvolden x2
-- data/people/people_subkultur.json :: advokat_hermansen (Advokat Hermansen) -> stortinget x2
-- data/people/people_subkultur.json :: ole_bjorn (Ole-Bjørn) -> oslo_domkirke x2
-- data/people/people_subkultur.json :: viggo_tigeren (Viggo (byen som tiger)) -> tigeren x2
-- data/people/people_subkultur.json :: tinashe_williamson (Tinashe Williamson) -> aker_brygge x2
-- data/people/people_subkultur.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
-- data/people/people_subkultur.json :: blitz_miljoet (Blitz-miljøet) -> youngstorget x2
-- data/people/people_subkultur.json :: hausmania_miljoet (Hausmania-miljøet) -> hausmania x2
-- data/people/people_subkultur.json :: oslo_pride_skeive_dager (Oslo Pride / Skeive dager) -> radhusplassen x2
-- data/people/people_subkultur.json :: radi_orakel (RadiOrakel) -> youngstorget x2
-- data/people/people_subkultur.json :: gateavisa_miljoet (Gateavisa-miljøet) -> torggata x2
-- data/people/people_subkultur.json :: oslo_graffiti_miljoet (Oslo graffiti-miljøet) -> vulkan_industriomrade x2
-- data/people/people_subkultur.json :: oslo_skateboardmiljoet (Oslo skateboardmiljøet) -> vulkan_industriomrade x2
-- data/people/people_subkultur.json :: christopher_nielsen (Christopher Nielsen) -> torggata x2
-- data/people/people_subkultur.json :: hariton_pushwagner (Hariton Pushwagner) -> tjuvholmen x2
-- data/people/people_subkultur.json :: don_martin (Don Martin) -> torggata x2
-- data/people/people_subkultur.json :: tommy_tee (Tommy Tee) -> youngstorget x2
-- data/people/people_subkultur.json :: warlocks_oslo (Warlocks) -> torggata x2
-- data/people/people_subkultur.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: kolapalsen (Køla-Pålsen) -> oslo_domkirke x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: snippmoller (Snipp-Møller) -> oslo_domkirke x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: lusefrants (Luse-Frants) -> middelalder_oslo x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: lisa_kristoffersen (Lisa Kristoffersen) -> voienvolden x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: advokat_hermansen (Advokat Hermansen) -> stortinget x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: ole_bjorn (Ole-Bjørn) -> oslo_domkirke x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: viggo_tigeren (Viggo (byen som tiger)) -> tigeren x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: tinashe_williamson (Tinashe Williamson) -> aker_brygge x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: blitz_miljoet (Blitz-miljøet) -> youngstorget x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: hausmania_miljoet (Hausmania-miljøet) -> hausmania x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: oslo_pride_skeive_dager (Oslo Pride / Skeive dager) -> radhusplassen x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: radi_orakel (RadiOrakel) -> youngstorget x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: gateavisa_miljoet (Gateavisa-miljøet) -> torggata x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: oslo_graffiti_miljoet (Oslo graffiti-miljøet) -> vulkan_industriomrade x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: oslo_skateboardmiljoet (Oslo skateboardmiljøet) -> vulkan_industriomrade x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: christopher_nielsen (Christopher Nielsen) -> torggata x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: hariton_pushwagner (Hariton Pushwagner) -> tjuvholmen x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: don_martin (Don Martin) -> torggata x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: tommy_tee (Tommy Tee) -> youngstorget x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: warlocks_oslo (Warlocks) -> torggata x2
+- data/people/subkultur/oslo/people_subkultur_oslo.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
 - data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
 - data/people/people_vitenskap.json :: niels_henrik_abel (Niels Henrik Abel) -> abelhaugen x2
 - data/people/people_vitenskap.json :: sophus_lie (Sophus Lie) -> universitetets_gamle_hovedbygning x2
