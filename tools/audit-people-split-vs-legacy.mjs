@@ -5,7 +5,7 @@ const root = process.cwd();
 const legacyPath = path.join(root, 'data/people.json');
 const peopleDir = path.join(root, 'data/people');
 const relationsPath = path.join(root, 'data/relations.json');
-const bootPath = path.join(root, 'js/boot.js');
+const peopleManifestPath = path.join(root, 'data/people/manifest.json');
 const reportJsonPath = path.join(root, 'reports/people-split-vs-legacy.json');
 const reportMdPath = path.join(root, 'reports/people-split-vs-legacy.md');
 const relationOnlyLegacyStubExclusions = new Set(['per_petterson']);
@@ -73,27 +73,26 @@ function indexPeople(rows, sourceFile) {
   return { byId, missingId, duplicates };
 }
 
-function collectPeopleFiles() {
-  if (!fs.existsSync(peopleDir)) return [];
-  return fs.readdirSync(peopleDir, { withFileTypes: true })
-    .filter((entry) => entry.isFile())
-    .map((entry) => entry.name)
-    .filter((name) => /^people_.*\.json$/i.test(name))
-    .sort((a, b) => a.localeCompare(b, 'nb'))
-    .map((name) => path.join(peopleDir, name));
+function normalizeManifestEntry(entry) {
+  const raw = String(entry || '').trim().replace(/^\.?\//, '');
+  if (!raw) return null;
+  return raw.startsWith('data/') ? raw : `data/${raw}`;
 }
 
-function extractBootPeopleFileList() {
-  if (!fs.existsSync(bootPath)) return [];
-  const boot = readText(bootPath);
-  const match = boot.match(/const\s+PEOPLE_FILE_LIST\s*=\s*\[([\s\S]*?)\];/);
-  if (!match) return [];
-  const body = match[1];
-  const files = [];
-  const re = /["']([^"']*data\/people\/people_[^"']+\.json)["']/g;
-  let item;
-  while ((item = re.exec(body))) files.push(item[1]);
-  return uniqueSorted(files);
+function collectPeopleManifestFiles() {
+  if (!fs.existsSync(peopleManifestPath)) return [];
+  const manifest = readJson(peopleManifestPath);
+  if (!Array.isArray(manifest?.files)) return [];
+  return uniqueSorted(manifest.files.map(normalizeManifestEntry))
+    .map((file) => path.join(root, file));
+}
+
+function collectPeopleFiles() {
+  return collectPeopleManifestFiles();
+}
+
+function extractRuntimePeopleFileList() {
+  return collectPeopleManifestFiles().map(normalizeRepoPath);
 }
 
 function compareSimpleFields(legacyEntry, splitEntry) {
@@ -126,7 +125,7 @@ const legacyRows = fs.existsSync(legacyPath) ? toPeopleArray(readJson(legacyPath
 const legacyIndex = indexPeople(legacyRows, 'data/people.json');
 
 const peopleFiles = collectPeopleFiles();
-const runtimeFiles = extractBootPeopleFileList();
+const runtimeFiles = extractRuntimePeopleFileList();
 const runtimeSet = new Set(runtimeFiles);
 
 const splitRows = [];
@@ -143,7 +142,7 @@ for (const filePath of peopleFiles) {
     splitMissingId.push(...indexed.missingId);
     fileSummaries.push({
       file: sourceFile,
-      loadedByBoot: runtimeSet.has(sourceFile),
+      listedInManifest: runtimeSet.has(sourceFile),
       peopleCount: rows.length,
       missingIdCount: indexed.missingId.length,
       duplicateIdsInsideFile: indexed.duplicates.map((row) => row.id),
@@ -196,11 +195,11 @@ const duplicateIdsAcrossSplitFiles = [...splitById.entries()]
 
 const duplicateIdsInLegacy = legacyIndex.duplicates.sort((a, b) => a.id.localeCompare(b.id, 'nb'));
 
-const splitFilesNotLoadedByBoot = fileSummaries
-  .filter((row) => !row.loadedByBoot)
+const splitFilesNotListedInManifest = fileSummaries
+  .filter((row) => !row.listedInManifest)
   .map((row) => row.file);
 
-const bootFilesMissingOnDisk = runtimeFiles
+const manifestFilesMissingOnDisk = runtimeFiles
   .filter((file) => !fs.existsSync(path.join(root, file)));
 
 const fieldDifferences = [];
@@ -224,7 +223,7 @@ const report = {
   sourceFiles: {
     legacy: fs.existsSync(legacyPath) ? 'data/people.json' : null,
     peopleDir: fs.existsSync(peopleDir) ? 'data/people' : null,
-    boot: fs.existsSync(bootPath) ? 'js/boot.js' : null,
+    peopleManifest: fs.existsSync(peopleManifestPath) ? 'data/people/manifest.json' : null,
     relations: fs.existsSync(relationsPath) ? 'data/relations.json' : null,
   },
   totals: {
@@ -233,22 +232,22 @@ const report = {
     splitPeople: splitRows.length,
     splitUniqueIds: splitIds.size,
     splitFiles: peopleFiles.length,
-    bootRuntimeFiles: runtimeFiles.length,
+    runtimeManifestFiles: runtimeFiles.length,
     inBoth: inBoth.length,
     onlyInLegacy: onlyInLegacy.length,
     relationOnlyLegacyStubs: relationOnlyLegacyStubs.length,
     onlyInSplit: onlyInSplit.length,
     duplicateIdsAcrossSplitFiles: duplicateIdsAcrossSplitFiles.length,
     duplicateIdsInLegacy: duplicateIdsInLegacy.length,
-    splitFilesNotLoadedByBoot: splitFilesNotLoadedByBoot.length,
-    bootFilesMissingOnDisk: bootFilesMissingOnDisk.length,
+    splitFilesNotListedInManifest: splitFilesNotListedInManifest.length,
+    manifestFilesMissingOnDisk: manifestFilesMissingOnDisk.length,
     invalidJsonFiles: invalidJsonFiles.length,
     fieldDifferences: fieldDifferences.length,
   },
   files: fileSummaries,
   runtimeFiles,
-  splitFilesNotLoadedByBoot,
-  bootFilesMissingOnDisk,
+  splitFilesNotListedInManifest,
+  manifestFilesMissingOnDisk,
   invalidJsonFiles,
   onlyInLegacy,
   relationOnlyLegacyStubs,
@@ -268,42 +267,42 @@ md += `Generert: ${generatedAt}\n\n`;
 md += '## Sammendrag\n\n';
 md += `- Legacy people-fil: ${report.sourceFiles.legacy || 'mangler'}\n`;
 md += `- People-mappe: ${report.sourceFiles.peopleDir || 'mangler'}\n`;
-md += `- Runtime-liste lest fra: ${report.sourceFiles.boot || 'mangler'}\n`;
+md += `- People-manifest lest fra: ${report.sourceFiles.peopleManifest || 'mangler'}\n`;
 md += `- Relasjoner lest fra: ${report.sourceFiles.relations || 'mangler'}\n`;
 md += `- Legacy people: **${report.totals.legacyPeople}**\n`;
 md += `- Legacy unike ID-er: **${report.totals.legacyUniqueIds}**\n`;
 md += `- Split people: **${report.totals.splitPeople}**\n`;
 md += `- Split unike ID-er: **${report.totals.splitUniqueIds}**\n`;
 md += `- Split-filer: **${report.totals.splitFiles}**\n`;
-md += `- Runtime-filer i boot.js: **${report.totals.bootRuntimeFiles}**\n`;
+md += `- Runtime-/manifestfiler: **${report.totals.runtimeManifestFiles}**\n`;
 md += `- ID-er i begge: **${report.totals.inBoth}**\n`;
 md += `- ID-er bare i legacy: **${report.totals.onlyInLegacy}**\n`;
 md += `- Legacy relation-only stubs: **${report.totals.relationOnlyLegacyStubs}**\n`;
 md += `- ID-er bare i split: **${report.totals.onlyInSplit}**\n`;
 md += `- Duplikate ID-er på tvers av split-filer: **${report.totals.duplicateIdsAcrossSplitFiles}**\n`;
-md += `- Split-filer ikke lastet av boot.js: **${report.totals.splitFilesNotLoadedByBoot}**\n`;
-md += `- Runtime-filer i boot.js som mangler på disk: **${report.totals.bootFilesMissingOnDisk}**\n`;
+md += `- Split-filer ikke listet i manifest: **${report.totals.splitFilesNotListedInManifest}**\n`;
+md += `- Manifest-filer som mangler på disk: **${report.totals.manifestFilesMissingOnDisk}**\n`;
 md += `- JSON-filer med feil: **${report.totals.invalidJsonFiles}**\n\n`;
 
 md += '## Split-filer\n\n';
-md += '| Fil | Lastes av boot.js | People | Mangler ID | Duplikate ID-er i fil |\n';
+md += '| Fil | Listet i manifest | People | Mangler ID | Duplikate ID-er i fil |\n';
 md += '|---|---:|---:|---:|---|\n';
 for (const file of fileSummaries) {
-  md += `| ${mdEscape(file.file)} | ${file.loadedByBoot ? 'ja' : 'nei'} | ${file.peopleCount} | ${file.missingIdCount} | ${mdEscape(file.duplicateIdsInsideFile.join(', '))} |\n`;
+  md += `| ${mdEscape(file.file)} | ${file.listedInManifest ? 'ja' : 'nei'} | ${file.peopleCount} | ${file.missingIdCount} | ${mdEscape(file.duplicateIdsInsideFile.join(', '))} |\n`;
 }
 md += '\n';
 
-md += '## Split-filer som ikke lastes av boot.js\n\n';
-if (!splitFilesNotLoadedByBoot.length) md += '- Ingen.\n\n';
+md += '## Split-filer som ikke er listet i manifest\n\n';
+if (!splitFilesNotListedInManifest.length) md += '- Ingen.\n\n';
 else {
-  for (const file of splitFilesNotLoadedByBoot) md += `- ${file}\n`;
+  for (const file of splitFilesNotListedInManifest) md += `- ${file}\n`;
   md += '\n';
 }
 
-md += '## Boot-filer som mangler på disk\n\n';
-if (!bootFilesMissingOnDisk.length) md += '- Ingen.\n\n';
+md += '## Manifest-filer som mangler på disk\n\n';
+if (!manifestFilesMissingOnDisk.length) md += '- Ingen.\n\n';
 else {
-  for (const file of bootFilesMissingOnDisk) md += `- ${file}\n`;
+  for (const file of manifestFilesMissingOnDisk) md += `- ${file}\n`;
   md += '\n';
 }
 
@@ -355,7 +354,7 @@ else {
 }
 
 md += '## Anbefalt bruk\n\n';
-md += '- Bruk rapporten til å avgjøre om `data/people.json` kan fjernes som manuell kilde, eller om manglende ID-er først må flyttes til `data/people/*.json`.\n';
+md += '- Bruk rapporten til å avgjøre om `data/people.json` kan fjernes som manuell kilde, eller om manglende ID-er først må flyttes til manifestlistede `data/people/`-filer.\n';
 md += '- Ikke slett `data/people.json` før `onlyInLegacy` er tom eller bevisst markert som legacy/stub.\n';
 md += '- Ikke legg nye people i `data/people.json`; legg dem i riktig mappefil.\n';
 

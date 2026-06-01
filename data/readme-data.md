@@ -12,5 +12,5 @@
       people_by.json
     historie/
       places_historie.json
-      people_historie.json
+      people/historie/oslo/people_historie_oslo.json
     ...
