@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T21:17:27.878Z
+- Generated at (UTC): 2026-06-01T21:41:27.956Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1601
+- Total diagnostic lines found: 1570
 - Files with diagnostics: 181
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -18,7 +18,7 @@
 | js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 57 | js/profile.js |
-| js/hgKnowledgeEngine.js | 1 | 43 | js/hgKnowledgeEngine.js |
+| js/hgKnowledgeEngine.js | 1 | 12 | js/hgKnowledgeEngine.js |
 | js/dataHub.js | 1 | 21 | js/dataHub.js |
 | js/state/** | 3 | 16 | js/state/openmode.js<br>js/state/persistence.js<br>js/state/state.js |
 | sw.js | 1 | 12 | sw.js |
@@ -33,7 +33,6 @@
 | js/profile.js | 57 | js/profile.js |
 | js/ui/left-panel.js | 55 | js/ui/** |
 | js/routes.js | 46 | other |
-| js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
 | js/ui/lists.js | 40 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
@@ -51,16 +50,16 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1257 |
+| TS2339 | 1228 |
 | TS2551 | 138 |
 | TS2304 | 70 |
 | TS2307 | 36 |
 | TS2349 | 14 |
 | TS2345 | 13 |
 | TS2580 | 13 |
-| TS2322 | 12 |
+| TS2322 | 11 |
 | TS2550 | 11 |
-| TS2362 | 6 |
+| TS2362 | 5 |
 | TS2451 | 6 |
 | TS2552 | 5 |
 | TS2363 | 4 |
