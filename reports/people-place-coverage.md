@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-06-01T11:08:19.030Z
+Generert: 2026-06-01T11:43:07.995Z
 
 ## Sammendrag
 
@@ -13,8 +13,8 @@ Generert: 2026-06-01T11:08:19.030Z
 - People uten gyldig sted: **13**
 - Ugyldige place-referanser: **0**
 - Duplikate place-referanser inne på people: **213**
-- People uten image: **11**
-- People uten cardImage: **11**
+- People uten image: **13**
+- People uten cardImage: **13**
 - People uten popupDesc: **16**
 
 ## Dekning per place-kategori
