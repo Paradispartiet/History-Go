@@ -1,0 +1,331 @@
+{
+  "report": "playgrounds-wonderkammer-migration-audit",
+  "generated_by": "manual audit script in PR; no appdata modified",
+  "model_rule": "Lekeplasser, husker, sklier, klatrestativer, sandkasser, benker, bakker, stier, rollelek og treningsmuligheter skal være Wonderkammer-/activity-innhold under faktisk parent-place, ikke egne place-poster.",
+  "scope": {
+    "primary_place_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+    "explicitly_checked_wonderkammer_files": [
+      "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+      "data/wonderkammer/playgrounds.json",
+      "data/wonderkammer/playgrounds_expansion.json",
+      "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json",
+      "data/wonderkammer/index.json"
+    ],
+    "additional_reference_scan": "All data/wonderkammer/**/*.json files were scanned for exact current_place_id strings."
+  },
+  "summary": {
+    "total_audited": 15,
+    "recommended_migrate_to_parent_wonderkammer": 10,
+    "recommended_keep_as_place": 0,
+    "recommended_needs_manual_review": 5,
+    "parents_missing_in_repo": [
+      "treningssted_sognsvann"
+    ]
+  },
+  "records": [
+    {
+      "current_place_id": "lekeplass_sofienbergparken",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Sofienbergparken lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "sofienbergparken_subkultur",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/places_index.json",
+        "data/places/subkultur/oslo/places_subkultur.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass/barnepark i park; bør flyttes til Wonderkammer under eksisterende park-place. Merk at repoet bruker sofienbergparken_subkultur som eksisterende park-nær place-id."
+    },
+    {
+      "current_place_id": "lekeplass_st_hanshaugen",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "St. Hanshaugen lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "st_hanshaugen_park",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass i høydepark; parent er åpenbar."
+    },
+    {
+      "current_place_id": "lekeplass_birkelunden",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Birkelunden lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "birkelunden",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass i Birkelunden; parent er åpenbar."
+    },
+    {
+      "current_place_id": "lekeplass_olaf_ryes_plass",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Olaf Ryes plass lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "olaf_ryes_plass",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass på Olaf Ryes plass; parent er åpenbar."
+    },
+    {
+      "current_place_id": "lekeplass_botsparken",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Botsparken lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "botsparken",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass i Botsparken; parent er åpenbar."
+    },
+    {
+      "current_place_id": "lekeplass_stensparken",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Stensparken lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "stensparken",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass i Stensparken; parent er åpenbar."
+    },
+    {
+      "current_place_id": "lekeplass_kirsebarlunden",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Kirsebærlunden lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "toyen_torg",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "needs_manual_review",
+      "audit_note": "Ren lekeplass, men eksisterende Wonderkammer-objekt peker mot toyen_torg. Det bør manuelt avklares om Tøyen torg, Tøyenparken/område eller en annen faktisk parent er riktig."
+    },
+    {
+      "current_place_id": "lekeplass_snippen",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Snippen lekepark",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "botanisk_hage",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/places_index.json",
+        "data/places/vitenskap/oslo/places_vitenskap.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "needs_manual_review",
+      "audit_note": "Ren lekepark ved Botanisk hage; Botanisk hage finnes som place og virker mer faktisk parent enn toyen_torg, men bør bekreftes før migrering."
+    },
+    {
+      "current_place_id": "lekeplass_frognerborgen",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Frognerborgen",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "frognerparken",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Ren lekeplass/lekeborg i Frognerparken; bør være Wonderkammer under Frognerparken."
+    },
+    {
+      "current_place_id": "lekeplass_kampen_park",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Kampen park lekeplass",
+      "place_type": "lekeplass",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "kampen_park",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Lekeplass i Kampen park; parent er åpenbar. Kan samordnes med treningssted_kampen_park ved migrering."
+    },
+    {
+      "current_place_id": "aktivitet_rudolf_nilsens_plass",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Rudolf Nilsens plass aktivitetspark",
+      "place_type": "aktivitetspark",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "toyen_torg",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects.json",
+        "data/wonderkammer/playgrounds/oslo_playground_objects_flat.json"
+      ],
+      "recommended_future_action": "needs_manual_review",
+      "audit_note": "Grensefall: aktivitetspark med småbarnslekeplass, multibane, treningsapparater og kunstgress/kunstis. Kan være place hvis det behandles som større selvstendig anlegg; krever manuell vurdering."
+    },
+    {
+      "current_place_id": "treningssted_torshovdalen",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Torshovdalen trenings- og aktivitetspark",
+      "place_type": "treningssted",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "torshov",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json"
+      ],
+      "recommended_future_action": "needs_manual_review",
+      "audit_note": "Trenings-/aktivitetsinnhold i parkdal. Torshov finnes, men faktisk parent Torshovdalen ser ikke ut til å finnes som egen parent-place i repoet; vurder separat før eventuell migrering."
+    },
+    {
+      "current_place_id": "treningssted_kampen_park",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Kampen park treningssted",
+      "place_type": "treningssted",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "kampen_park",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/by/oslo/places_by.json",
+        "data/places/places_index.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Treningsmuligheter i Kampen park; bør trolig være Wonderkammer/activity under Kampen park, ikke eget treningssted-place."
+    },
+    {
+      "current_place_id": "treningssted_sognsvann",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Sognsvann treningsrunde",
+      "place_type": "treningssted",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "sognsvann",
+      "parent_place_exists_in_repo": false,
+      "parent_place_files": [],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json"
+      ],
+      "recommended_future_action": "needs_manual_review",
+      "audit_note": "Større frilufts- og treningsområde, men foreslått parent sognsvann finnes ikke som place-id i data/places. Krever manuell vurdering/import av parent er eksplisitt utenfor denne PR-en."
+    },
+    {
+      "current_place_id": "treningssted_skur13",
+      "current_file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "name": "Skur 13 skate- og balansetrening",
+      "place_type": "treningssted",
+      "looks_like_playground_or_activity_place": true,
+      "suggested_parent_place_id": "skur13",
+      "parent_place_exists_in_repo": true,
+      "parent_place_files": [
+        "data/places/places_index.json",
+        "data/places/subkultur/oslo/places_subkultur.json"
+      ],
+      "wonderkammer_files_pointing_to_current_place_id": [
+        "data/wonderkammer/oslo_lekeplasser_trening.json",
+        "data/wonderkammer/oslo_lekeplasser_trening_flat.json"
+      ],
+      "recommended_future_action": "migrate_to_parent_wonderkammer",
+      "audit_note": "Skate-/aktivitetsarena ved Skur 13. Skur 13 finnes som selvstendig place; vurder om treningsinnholdet skal ligge som Wonderkammer under skur13."
+    }
+  ]
+}
