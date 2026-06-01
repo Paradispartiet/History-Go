@@ -1,25 +1,19 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T21:14:17.762Z
+Generated: 2026-06-01T21:50:18.064Z
 
 ## Sammendrag
 - People-filer lest: **21**
 - People lest: **323**
-- People med ugyldige refs: **1**
-- Ugyldige refs: **2**
-- Unike ugyldige placeId-er: **1**
+- People med ugyldige refs: **0**
+- Ugyldige refs: **0**
+- Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **23**
 - Duplikate interne place-referanser: **293**
 
 ## Ugyldige refs gruppert per fil/person
-### data/people/people_by.json
-- **harald_aars** (Harald Aars)
-  - sagene @ `placeId`
-  - sagene @ `places[0]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **sagene** (likely_rename_to_existing_place, 2 treff)
-  - sagene_kvernhus (confidence: medium)
 
 ## People uten gyldig sted
 - data/people/historie/oslo/people_historie_oslo.json :: anna_sethne (Anna Sethne)
@@ -57,7 +51,7 @@ Generated: 2026-06-01T21:14:17.762Z
 - data/people/people_by.json :: erling_viksjo (Erling Viksjø) -> regjeringskvartalet x2
 - data/people/people_by.json :: sverre_fehn (Sverre Fehn) -> bankplassen x2
 - data/people/people_by.json :: ove_bang (Ove Bang) -> ullevål_hageby x2
-- data/people/people_by.json :: harald_aars (Harald Aars) -> sagene x2
+- data/people/people_by.json :: harald_aars (Harald Aars) -> sagene_kvernhus x2
 - data/people/people_by.json :: kirsten_sand (Kirsten Sand) -> universitetsplassen x2
 - data/people/people_by.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
 - data/people/people_by.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
@@ -342,4 +336,3 @@ Generated: 2026-06-01T21:14:17.762Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch
-- sagene (likely_rename_to_existing_place, 2 treff)
