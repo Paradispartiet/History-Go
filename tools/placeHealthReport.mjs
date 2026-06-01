@@ -31,23 +31,23 @@ const VALID_CATEGORIES = new Set([
   "psykologi"
 ]);
 
-const CATEGORY_EMNE_PREFIX = {
-  historie: "em_his_",
-  vitenskap: "em_vit_",
-  kunst: "em_kunst_",
-  musikk: "em_musikk_",
-  natur: "em_natur_",
-  sport: "em_sport_",
-  by: "em_by_",
-  politikk: "em_pol_",
-  populaerkultur: "em_pop_",
-  subkultur: "em_sub_",
-  litteratur: "em_lit_",
-  naeringsliv: "em_naering_",
-  film: "em_film_tv_",
-  film_tv: "em_film_tv_",
-  media: "em_media_",
-  psykologi: "em_psykologi_"
+const CATEGORY_EMNE_PREFIXES = {
+  historie: ["em_his_"],
+  vitenskap: ["em_vit_"],
+  kunst: ["em_kunst_"],
+  musikk: ["em_musikk_"],
+  natur: ["em_natur_"],
+  sport: ["em_sport_"],
+  by: ["em_by_"],
+  politikk: ["em_pol_"],
+  populaerkultur: ["em_pop_"],
+  subkultur: ["em_sub_"],
+  litteratur: ["em_lit_"],
+  naeringsliv: ["em_naering_", "em_naer_"],
+  film: ["em_film_tv_"],
+  film_tv: ["em_film_tv_"],
+  media: ["em_media_"],
+  psykologi: ["em_psykologi_", "em_psy_"]
 };
 
 const errors = [];
@@ -186,7 +186,8 @@ function validateEmneIds(place, context, canonicalEmneRegistry) {
   }
 
   const category = String(place.category || "").trim();
-  const expectedPrefix = CATEGORY_EMNE_PREFIX[category];
+  const expectedPrefixes = CATEGORY_EMNE_PREFIXES[category] || [];
+  const expectedPrefixLabel = expectedPrefixes.join(" or ");
 
   place.emne_ids.forEach((raw, index) => {
     const emneId = String(raw || "").trim();
@@ -202,9 +203,9 @@ function validateEmneIds(place, context, canonicalEmneRegistry) {
       return;
     }
 
-    if (expectedPrefix && !emneId.startsWith(expectedPrefix)) {
+    if (expectedPrefixes.length && !expectedPrefixes.some((prefix) => emneId.startsWith(prefix))) {
       stats.wrongPrefixEmneIds += 1;
-      warnings.push(`${context}: emne_id "${emneId}" does not match category "${category}" expected prefix "${expectedPrefix}"`);
+      warnings.push(`${context}: emne_id "${emneId}" does not match category "${category}" expected prefix "${expectedPrefixLabel}"`);
     }
 
     if (canonicalEmneRegistry.has(emneId)) {
