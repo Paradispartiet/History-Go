@@ -1,123 +1,182 @@
 # Stories coverage-rapport
 
-Post-merge rapport etter at PR #787 / Stories batch 5 er merget. Rapporten kartlegger eksisterende story-dekning uten å endre story-, place-, people-, manifest-, UI-, CSS-, loader- eller runtime-data.
+Post-merge rapport etter at PR #839 er merget. Rapporten kartlegger faktisk Stories-dekning i `main` etter at story-filene fra parallelbatchen er registrert i `data/stories/stories_manifest.json`.
 
-Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer manifestet peker på, faktisk `data/places/manifest.json` og alle aktive place-sourcefiler som place-manifestet peker på. Gamle rapporttall er ikke brukt som fasit.
+Dette er kun coverage-/rapportanalyse. Det er ikke gjort endringer i story-filer, place-filer, people-filer, manifeststruktur, UI, CSS, loaders eller runtime-kode.
+
+Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer manifestet peker til, faktisk `data/places/manifest.json` og alle aktive place-sourcefiler som place-manifestet peker til. Gamle rapporttall er bare brukt som formatreferanse, ikke som fasit.
 
 ## Sammendrag
 
 - Totalt antall aktive, unike places i place-sourcefilene: **470**.
-- Places med minst én story: **51**.
-- Places uten story: **419**.
-- Total coverage: **10.9%**.
-- Story-manifestet peker på **52** story-filer med **53** stories totalt. **53** stories har `place_id`, fordelt på **51** aktive places.
-- Batch 5-place_id-ene `alnaelva`, `ostensjovannet`, `hovedoya`, `maridalsvannet`, `ljanselva`, `hausmania`, `bla`, `skur13`, `torggata_blad` og `sofienbergparken_subkultur` finnes som aktive places og telles nå som places med stories.
+- Places med minst én story: **75**.
+- Places uten story: **395**.
+- Total coverage: **16.0%**.
+- Story-manifestet peker på **76** story-filer med **77** stories totalt. **77** stories har `place_id`, fordelt på **75** aktive places.
+- `teknisk_museum` er registrert i story-manifestet, peker til en eksisterende story-fil og teller nå som aktivt place med story.
+- Alle **24** place_id-er fra siste parallelbatch finnes som aktive places, er registrert i manifestet og teller med i dekningen.
 
 ## Dekning totalt
 
 | Måltall | Antall |
 |---|---:|
 | Aktive places totalt | 470 |
-| Places med minst én story | 51 |
-| Places uten story | 419 |
-| Coverage totalt | 10.9% |
-| Story-filer i manifest | 52 |
-| Stories totalt | 53 |
+| Places med minst én story | 75 |
+| Places uten story | 395 |
+| Coverage totalt | 16.0% |
+| Story-filer i manifest | 76 |
+| Stories totalt | 77 |
 
 ## Dekning per kategori
 
 | Kategori | Places totalt | Med story | Uten story | Coverage |
 |---|---:|---:|---:|---:|
-| by | 97 | 6 | 91 | 6.2% |
+| by | 97 | 9 | 88 | 9.3% |
 | film_tv | 8 | 1 | 7 | 12.5% |
 | historie | 54 | 14 | 40 | 25.9% |
-| kunst | 18 | 1 | 17 | 5.6% |
-| litteratur | 31 | 1 | 30 | 3.2% |
+| kunst | 18 | 5 | 13 | 27.8% |
+| litteratur | 31 | 6 | 25 | 19.4% |
 | media | 11 | 1 | 10 | 9.1% |
 | musikk | 13 | 1 | 12 | 7.7% |
-| naeringsliv | 41 | 2 | 39 | 4.9% |
-| natur | 63 | 5 | 58 | 7.9% |
+| naeringsliv | 41 | 7 | 34 | 17.1% |
+| natur | 63 | 9 | 54 | 14.3% |
 | politikk | 15 | 5 | 10 | 33.3% |
 | populaerkultur | 18 | 2 | 16 | 11.1% |
-| psykologi | 1 | 0 | 1 | 0.0% |
+| psykologi | 1 | 1 | 0 | 100.0% |
 | sport | 49 | 5 | 44 | 10.2% |
 | subkultur | 23 | 5 | 18 | 21.7% |
-| vitenskap | 28 | 2 | 26 | 7.1% |
+| vitenskap | 28 | 4 | 24 | 14.3% |
 
-## Effekt av batch 5
+## Kontrollseksjon
 
-| place_id | Status i aktive places | Navn | Kategori | Story title | Story file |
+Datakontrollen er gjort mot manifestet, story-filene, aktive place-ID-er og aktive people-ID-er:
+
+- Manifest-entry-filer kontrollert: **76**.
+- Story-filer som lot seg lese som gyldig JSON: **76**.
+- Story-objekter kontrollert: **77**.
+- Batchkontroll: `teknisk_museum` og de øvrige **23** place_id-ene fra siste parallelbatch er aktive, registrert og dekket.
+- Kontrollfunn som bør rettes i egen PR: **5**.
+
+| Funn |
+|---|
+| Story `st_youngstorget_mayday` i `data/stories/stories_youngstorget.json` har related_people `trygve_lie` som ikke finnes som aktiv people-ID. |
+| Manifest entity_id `henrik_ibsen` matcher ikke story place_id `grand_hotel` i `data/stories/stories_henrik_ibsen.json`. |
+| Manifest entity_id `edvard_munch` matcher ikke story place_id `munch_museet` i `data/stories/stories_edvard_munch.json`. |
+| Manifest entity_id `bislett` matcher ikke story place_id `bislett_stadion` i `data/stories/stories_bislett.json`. |
+| Manifest entity_id `holmenkollen` matcher ikke story place_id `holmenkollen_nasjonalanlegg` i `data/stories/stories_holmenkollen.json`. |
+
+## Siste parallelbatch etter PR #839
+
+| place_id | Status | Navn | Kategori | Story title | Story file |
 |---|---|---|---|---|---|
-| `alnaelva` | aktiv med story | Alnaelva | natur | Byelva som ble skjult og lesbar igjen | data/stories/stories_alnaelva.json |
-| `ostensjovannet` | aktiv med story | Østensjøvannet | natur | Innsjøen som lagrer fugl, vann og randsoner | data/stories/stories_ostensjovannet.json |
-| `hovedoya` | aktiv med story | Hovedøya | natur | Øya der kalknatur, kloster og forsvar ligger lagvis | data/stories/stories_hovedoya.json |
-| `maridalsvannet` | aktiv med story | Maridalsvannet | natur | Vannet som gjør byen mulig, men holder byen på avstand | data/stories/stories_maridalsvannet.json |
-| `ljanselva` | aktiv med story | Ljanselva | natur | Vassdraget som går fra marka mot fjorden | data/stories/stories_ljanselva.json |
-| `hausmania` | aktiv med story | Hausmania | subkultur | Kulturhuset som ble fristed og bypolitisk konflikt | data/stories/stories_hausmania.json |
-| `bla` | aktiv med story | Blå | subkultur | Elvekanten som ble nattlig musikkrom | data/stories/stories_bla.json |
-| `skur13` | aktiv med story | Skur 13 | subkultur | Havnelageret som ble rulleflate | data/stories/stories_skur13.json |
-| `torggata_blad` | aktiv med story | Torggata Blad | subkultur | Bladet som gjorde gata til alternativ offentlighet | data/stories/stories_torggata_blad.json |
-| `sofienbergparken_subkultur` | aktiv med story | Sofienbergparken | subkultur | Parken som lavterskel offentlighet | data/stories/stories_sofienbergparken_subkultur.json |
+| `psykologisk_institutt_uio` | aktiv med story | Psykologisk institutt, UiO | psykologi | Da psykologien fikk et institutt i Norge | `data/stories/stories_psykologisk_institutt_uio.json` |
+| `nasjonalbiblioteket` | aktiv med story | Nasjonalbiblioteket | litteratur | Da nasjonalbiblioteket flyttet inn på Solli plass | `data/stories/stories_nasjonalbiblioteket.json` |
+| `litteraturhuset` | aktiv med story | Litteraturhuset | litteratur | Et nytt hus for litteraturen | `data/stories/stories_litteraturhuset.json` |
+| `gamle_deichman` | aktiv med story | Gamle Deichman | litteratur | Boksamlingen som ble folkebibliotek | `data/stories/stories_gamle_deichman.json` |
+| `tronsmo_bokhandel` | aktiv med story | Tronsmo Bokhandel | litteratur | Den uavhengige bokhandelen som holdt kursen | `data/stories/stories_tronsmo_bokhandel.json` |
+| `ruth_maier_minne` | aktiv med story | Ruth Maier-minnesmerke | litteratur | Dagboken som overlevde | `data/stories/stories_ruth_maier_minne.json` |
+| `oslo_gassverk` | aktiv med story | Oslo Gassverk | naeringsliv | Gassen som tente byen | `data/stories/stories_oslo_gassverk.json` |
+| `telegrafbygningen` | aktiv med story | Telegrafbygningen | naeringsliv | Kvartalet som koblet landet | `data/stories/stories_telegrafbygningen.json` |
+| `grunnlovsbygget_bankplassen` | aktiv med story | Den gamle Norges Bank | naeringsliv | Bankplassen og den nye statens kapital | `data/stories/stories_grunnlovsbygget_bankplassen.json` |
+| `jernbaneverkstedet_lodalen` | aktiv med story | Lodalen jernbaneverksted | naeringsliv | Togenes verkstedby i dalen | `data/stories/stories_jernbaneverkstedet_lodalen.json` |
+| `ringnes_bryggeri` | aktiv med story | Ringnes bryggeri | naeringsliv | Bryggeriet som fylte kvartalet | `data/stories/stories_ringnes_bryggeri.json` |
+| `nasjonalmuseet` | aktiv med story | Nasjonalmuseet | kunst | Da samlingene flyttet under ett tak | `data/stories/stories_nasjonalmuseet.json` |
+| `astrup_fearnley` | aktiv med story | Astrup Fearnley Museet | kunst | Privatsamlingen som ble fjordbyens kunstscene | `data/stories/stories_astrup_fearnley.json` |
+| `ekebergparken` | aktiv med story | Ekebergparken skulpturpark | kunst | Skulpturparken som leses til fots | `data/stories/stories_ekebergparken.json` |
+| `lisbon_fundacao_calouste_gulbenkian` | aktiv med story | Fundação Calouste Gulbenkian | kunst | Samlingen som ble en kulturstiftelse | `data/stories/stories_lisbon_fundacao_calouste_gulbenkian.json` |
+| `torggata` | aktiv med story | Torggata | by | Gata som ble forhandlet mellom handel, sykkel og opphold | `data/stories/stories_torggata.json` |
+| `vaterland` | aktiv med story | Vaterland | by | Bydelen som ble slettet og kom tilbake som knutepunkt | `data/stories/stories_vaterland.json` |
+| `toyen_torg` | aktiv med story | Tøyen torg | by | Fra Tøyensenteret til nabolagets åpne stue | `data/stories/stories_toyen_torg.json` |
+| `alnaelvstien` | aktiv med story | Alnaelvstien | natur | Turveien som gjør Alna lesbar | `data/stories/stories_alnaelvstien.json` |
+| `alnaparken` | aktiv med story | Alnaparken | natur | Fra jordvei til parkdrag langs Alna | `data/stories/stories_alnaparken.json` |
+| `svartdalen` | aktiv med story | Svartdalen | natur | Ravinedalen der byen slipper elva fram | `data/stories/stories_svartdalen.json` |
+| `akerselva_utlop_bjorvika` | aktiv med story | Akerselvas utløp mot fjorden (Bjørvika) | natur | Der Akerselva møter fjorden igjen | `data/stories/stories_akerselva_utlop_bjorvika.json` |
+| `meteorologisk_institutt` | aktiv med story | Meteorologisk institutt | vitenskap | Været blir en nasjonal datainfrastruktur | `data/stories/stories_meteorologisk_institutt.json` |
+| `teknisk_museum` | aktiv med story | Norsk Teknisk Museum | vitenskap | Fra jubileumsutstilling til teknologihistorisk hukommelse | `data/stories/stories_teknisk_museum.json` |
 
 ## Places med stories
 
 | place_id | Navn | Kategori | Story title(s) | Story file |
 |---|---|---|---|---|
-| `akerselva` | Akerselva | by | Fyrstikkpikene streiker langs Akerselva | data/stories/stories_akerselva.json |
-| `barcode` | Barcode | by | Striden om Barcode<br>Fra havn til finansdistrikt | data/stories/stories_barcode.json |
-| `operahuset` | Operahuset | by | Operahuset man kan gå på taket av | data/stories/stories_operahuset.json |
-| `tigeren` | Tigerstatuen | by | Da Tigerstaden fikk sin bronsetiger | data/stories/stories_tigeren.json |
-| `universitetsplassen` | Universitetsplassen | by | Det Kongelige Frederiks Universitet – grunnlagt 1811 | data/stories/stories_universitetsplassen.json |
-| `vigelandsparken` | Vigelandsparken | by | Gustav Vigelands kontrakt med Oslo | data/stories/stories_vigelandsparken.json |
-| `colosseum_kino` | Colosseum kino | film_tv | Kuppelen som falt i brannen | data/stories/stories_colosseum_kino.json |
-| `akerhus_slott` | Akerhus Slott | historie | Terboven tar over Akershus, september 1940 | data/stories/stories_akerhus_slott.json |
-| `botsfengselet` | Botsfengselet | historie | Cellefengselet bygd for total isolasjon | data/stories/stories_botsfengselet.json |
-| `eidsvollsbygningen` | Eidsvollsbygningen | historie | Grunnloven ble skrevet på Eidsvoll | data/stories/stories_eidsvollsbygningen.json |
-| `gamle_aker_kirke` | Gamle Aker kirke | historie | Fossiler i Oslos eldste stående bygning | data/stories/stories_gamle_aker_kirke.json |
-| `grini_fangeleir` | Grini fangeleir | historie | Grini ble den største fangeleiren i Norge | data/stories/stories_grini_fangeleir.json |
-| `hovedoya_kloster` | Hovedøya kloster | historie | Klosteret på Hovedøya ble plyndret og brent | data/stories/stories_hovedoya_kloster.json |
-| `middelalder_oslo` | Middelalderparken | historie | Ruinene der Oslo begynte | data/stories/stories_middelalder_oslo.json |
-| `mollergata_19` | Møllergata 19 | historie | Quisling overga seg ved Møllergata 19 | data/stories/stories_mollergata_19.json |
-| `oscarsborg_festning` | Oscarsborg festning | historie | Oscarsborg senket Blücher | data/stories/stories_oscarsborg_festning.json |
-| `oslo_domkirke` | Oslo domkirke | historie | Bybrannen 1624 og den nye byen | data/stories/stories_oslo_domkirke.json |
-| `oslo_ladegard` | Oslo ladegård | historie | Barokk over middelaldermurer | data/stories/stories_oslo_ladegard.json |
-| `prinds_christian_augusts_minde` | Prinds Christian Augusts Minde | historie | Arbeid, tvang og asyl i Storgata 36 | data/stories/stories_prinds_christian_augusts_minde.json |
-| `var_frelsers_gravlund` | Vår Frelsers gravlund | historie | Æreslunden – der Ibsen, Bjørnson og Munch hviler | data/stories/stories_var_frelsers_gravlund.json |
-| `villa_grande` | Villa Grande | historie | Fra Gimle til HL-senteret | data/stories/stories_villa_grande.json |
-| `munch_museet` | MUNCH | kunst | Munchs nattlige ridetur<br>Skrik og Madonna stjålet i høylys dag | data/stories/stories_edvard_munch.json<br>data/stories/stories_munch_museet.json |
-| `nationaltheatret` | Nationaltheatret | litteratur | Åpningen av Nationaltheatret 1899 | data/stories/stories_nationaltheatret.json |
-| `nrk_huset_marienlyst` | NRK-huset på Marienlyst | media | Det hvite huset der radio og TV samlet seg | data/stories/stories_nrk_huset_marienlyst.json |
-| `det_norske_teatret` | Det Norske Teatret | musikk | Teaterslaget om nynorsk på scenen | data/stories/stories_det_norske_teatret.json |
-| `havnelageret` | Oslo Havnelager | naeringsliv | Betonglageret som organiserte havnebyen | data/stories/stories_havnelageret.json |
-| `schous_bryggeri` | Schous bryggeri | naeringsliv | Bryggeriet som ble kulturkvartal | data/stories/stories_schous_bryggeri.json |
-| `alnaelva` | Alnaelva | natur | Byelva som ble skjult og lesbar igjen | data/stories/stories_alnaelva.json |
-| `hovedoya` | Hovedøya | natur | Øya der kalknatur, kloster og forsvar ligger lagvis | data/stories/stories_hovedoya.json |
-| `ljanselva` | Ljanselva | natur | Vassdraget som går fra marka mot fjorden | data/stories/stories_ljanselva.json |
-| `maridalsvannet` | Maridalsvannet | natur | Vannet som gjør byen mulig, men holder byen på avstand | data/stories/stories_maridalsvannet.json |
-| `ostensjovannet` | Østensjøvannet | natur | Innsjøen som lagrer fugl, vann og randsoner | data/stories/stories_ostensjovannet.json |
-| `eidsvolls_plass` | Eidsvolls plass | politikk | Lavvoen foran Stortinget | data/stories/stories_eidsvolls_plass.json |
-| `oslo_radhus` | Oslo rådhus | politikk | Rådhuset åpner under byjubileet | data/stories/stories_oslo_radhus.json |
-| `regjeringskvartalet` | Regjeringskvartalet | politikk | Bomben i Regjeringskvartalet 22. juli | data/stories/stories_regjeringskvartalet.json |
-| `stortinget` | Stortinget | politikk | 7. juni 1905 – Stortinget erklærer unionen opphørt | data/stories/stories_stortinget.json |
-| `youngstorget` | Youngstorget | politikk | 1. mai på Youngstorget | data/stories/stories_youngstorget.json |
-| `grand_hotel` | Grand Hotel | populaerkultur | Ibsens daglige marsj til Grand Café | data/stories/stories_henrik_ibsen.json |
-| `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | populaerkultur | Skolen som ble SKAMs virkelige adresse | data/stories/stories_hartvig_nissens_skole_skam.json |
-| `bislett_stadion` | Bislett Stadion | sport | Hjalmar «Hjallis» Andersen tok tre gull på Bislett | data/stories/stories_bislett.json |
-| `ekebergsletta` | Ekebergsletta | sport | Norway Cup starter med jentelag | data/stories/stories_ekebergsletta.json |
-| `holmenkollen_nasjonalanlegg` | Holmenkollen nasjonalanlegg | sport | Da Holmenkollrennet ble en nasjonal tradisjon | data/stories/stories_holmenkollen.json |
-| `jordal_amfi` | Jordal Amfi | sport | Kunstisen som reddet OL-hockeyen | data/stories/stories_jordal_amfi.json |
-| `ullevaal_stadion` | Ullevaal Stadion | sport | Cupfinalenes hjem åpnet i 1926 | data/stories/stories_ullevaal_stadion.json |
-| `bla` | Blå | subkultur | Elvekanten som ble nattlig musikkrom | data/stories/stories_bla.json |
-| `hausmania` | Hausmania | subkultur | Kulturhuset som ble fristed og bypolitisk konflikt | data/stories/stories_hausmania.json |
-| `skur13` | Skur 13 | subkultur | Havnelageret som ble rulleflate | data/stories/stories_skur13.json |
-| `sofienbergparken_subkultur` | Sofienbergparken | subkultur | Parken som lavterskel offentlighet | data/stories/stories_sofienbergparken_subkultur.json |
-| `torggata_blad` | Torggata Blad | subkultur | Bladet som gjorde gata til alternativ offentlighet | data/stories/stories_torggata_blad.json |
-| `botanisk_hage` | Botanisk hage | vitenskap | Hagen som skulle bygge kunnskap for den nye nasjonen | data/stories/stories_botanisk_hage.json |
-| `naturhistorisk_museum` | Naturhistorisk museum | vitenskap | Fossilet Ida blir verdensnyhet | data/stories/stories_naturhistorisk_museum.json |
+| `akerselva` | Akerselva | by | Fyrstikkpikene streiker langs Akerselva | `data/stories/stories_akerselva.json` |
+| `barcode` | Barcode | by | Striden om Barcode<br>Fra havn til finansdistrikt | `data/stories/stories_barcode.json`<br>`data/stories/stories_barcode.json` |
+| `operahuset` | Operahuset | by | Operahuset man kan gå på taket av | `data/stories/stories_operahuset.json` |
+| `tigeren` | Tigerstatuen | by | Da Tigerstaden fikk sin bronsetiger | `data/stories/stories_tigeren.json` |
+| `torggata` | Torggata | by | Gata som ble forhandlet mellom handel, sykkel og opphold | `data/stories/stories_torggata.json` |
+| `toyen_torg` | Tøyen torg | by | Fra Tøyensenteret til nabolagets åpne stue | `data/stories/stories_toyen_torg.json` |
+| `universitetsplassen` | Universitetsplassen | by | Det Kongelige Frederiks Universitet – grunnlagt 1811 | `data/stories/stories_universitetsplassen.json` |
+| `vaterland` | Vaterland | by | Bydelen som ble slettet og kom tilbake som knutepunkt | `data/stories/stories_vaterland.json` |
+| `vigelandsparken` | Vigelandsparken | by | Gustav Vigelands kontrakt med Oslo | `data/stories/stories_vigelandsparken.json` |
+| `colosseum_kino` | Colosseum kino | film_tv | Kuppelen som falt i brannen | `data/stories/stories_colosseum_kino.json` |
+| `akerhus_slott` | Akerhus Slott | historie | Terboven tar over Akershus, september 1940 | `data/stories/stories_akerhus_slott.json` |
+| `botsfengselet` | Botsfengselet | historie | Cellefengselet bygd for total isolasjon | `data/stories/stories_botsfengselet.json` |
+| `eidsvollsbygningen` | Eidsvollsbygningen | historie | Grunnloven ble skrevet på Eidsvoll | `data/stories/stories_eidsvollsbygningen.json` |
+| `gamle_aker_kirke` | Gamle Aker kirke | historie | Fossiler i Oslos eldste stående bygning | `data/stories/stories_gamle_aker_kirke.json` |
+| `grini_fangeleir` | Grini fangeleir | historie | Grini ble den største fangeleiren i Norge | `data/stories/stories_grini_fangeleir.json` |
+| `hovedoya_kloster` | Hovedøya kloster | historie | Klosteret på Hovedøya ble plyndret og brent | `data/stories/stories_hovedoya_kloster.json` |
+| `middelalder_oslo` | Middelalderparken | historie | Ruinene der Oslo begynte | `data/stories/stories_middelalder_oslo.json` |
+| `mollergata_19` | Møllergata 19 | historie | Quisling overga seg ved Møllergata 19 | `data/stories/stories_mollergata_19.json` |
+| `oscarsborg_festning` | Oscarsborg festning | historie | Oscarsborg senket Blücher | `data/stories/stories_oscarsborg_festning.json` |
+| `oslo_domkirke` | Oslo domkirke | historie | Bybrannen 1624 og den nye byen | `data/stories/stories_oslo_domkirke.json` |
+| `oslo_ladegard` | Oslo ladegård | historie | Barokk over middelaldermurer | `data/stories/stories_oslo_ladegard.json` |
+| `prinds_christian_augusts_minde` | Prinds Christian Augusts Minde | historie | Arbeid, tvang og asyl i Storgata 36 | `data/stories/stories_prinds_christian_augusts_minde.json` |
+| `villa_grande` | Villa Grande | historie | Fra Gimle til HL-senteret | `data/stories/stories_villa_grande.json` |
+| `var_frelsers_gravlund` | Vår Frelsers gravlund | historie | Æreslunden – der Ibsen, Bjørnson og Munch hviler | `data/stories/stories_var_frelsers_gravlund.json` |
+| `astrup_fearnley` | Astrup Fearnley Museet | kunst | Privatsamlingen som ble fjordbyens kunstscene | `data/stories/stories_astrup_fearnley.json` |
+| `ekebergparken` | Ekebergparken skulpturpark | kunst | Skulpturparken som leses til fots | `data/stories/stories_ekebergparken.json` |
+| `lisbon_fundacao_calouste_gulbenkian` | Fundação Calouste Gulbenkian | kunst | Samlingen som ble en kulturstiftelse | `data/stories/stories_lisbon_fundacao_calouste_gulbenkian.json` |
+| `munch_museet` | MUNCH | kunst | Munchs nattlige ridetur<br>Skrik og Madonna stjålet i høylys dag | `data/stories/stories_edvard_munch.json`<br>`data/stories/stories_munch_museet.json` |
+| `nasjonalmuseet` | Nasjonalmuseet | kunst | Da samlingene flyttet under ett tak | `data/stories/stories_nasjonalmuseet.json` |
+| `gamle_deichman` | Gamle Deichman | litteratur | Boksamlingen som ble folkebibliotek | `data/stories/stories_gamle_deichman.json` |
+| `litteraturhuset` | Litteraturhuset | litteratur | Et nytt hus for litteraturen | `data/stories/stories_litteraturhuset.json` |
+| `nasjonalbiblioteket` | Nasjonalbiblioteket | litteratur | Da nasjonalbiblioteket flyttet inn på Solli plass | `data/stories/stories_nasjonalbiblioteket.json` |
+| `nationaltheatret` | Nationaltheatret | litteratur | Åpningen av Nationaltheatret 1899 | `data/stories/stories_nationaltheatret.json` |
+| `ruth_maier_minne` | Ruth Maier-minnesmerke | litteratur | Dagboken som overlevde | `data/stories/stories_ruth_maier_minne.json` |
+| `tronsmo_bokhandel` | Tronsmo Bokhandel | litteratur | Den uavhengige bokhandelen som holdt kursen | `data/stories/stories_tronsmo_bokhandel.json` |
+| `nrk_huset_marienlyst` | NRK-huset på Marienlyst | media | Det hvite huset der radio og TV samlet seg | `data/stories/stories_nrk_huset_marienlyst.json` |
+| `det_norske_teatret` | Det Norske Teatret | musikk | Teaterslaget om nynorsk på scenen | `data/stories/stories_det_norske_teatret.json` |
+| `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | naeringsliv | Bankplassen og den nye statens kapital | `data/stories/stories_grunnlovsbygget_bankplassen.json` |
+| `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | naeringsliv | Togenes verkstedby i dalen | `data/stories/stories_jernbaneverkstedet_lodalen.json` |
+| `oslo_gassverk` | Oslo Gassverk | naeringsliv | Gassen som tente byen | `data/stories/stories_oslo_gassverk.json` |
+| `havnelageret` | Oslo Havnelager | naeringsliv | Betonglageret som organiserte havnebyen | `data/stories/stories_havnelageret.json` |
+| `ringnes_bryggeri` | Ringnes bryggeri | naeringsliv | Bryggeriet som fylte kvartalet | `data/stories/stories_ringnes_bryggeri.json` |
+| `schous_bryggeri` | Schous bryggeri | naeringsliv | Bryggeriet som ble kulturkvartal | `data/stories/stories_schous_bryggeri.json` |
+| `telegrafbygningen` | Telegrafbygningen | naeringsliv | Kvartalet som koblet landet | `data/stories/stories_telegrafbygningen.json` |
+| `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | natur | Der Akerselva møter fjorden igjen | `data/stories/stories_akerselva_utlop_bjorvika.json` |
+| `alnaelva` | Alnaelva | natur | Byelva som ble skjult og lesbar igjen | `data/stories/stories_alnaelva.json` |
+| `alnaelvstien` | Alnaelvstien | natur | Turveien som gjør Alna lesbar | `data/stories/stories_alnaelvstien.json` |
+| `alnaparken` | Alnaparken | natur | Fra jordvei til parkdrag langs Alna | `data/stories/stories_alnaparken.json` |
+| `hovedoya` | Hovedøya | natur | Øya der kalknatur, kloster og forsvar ligger lagvis | `data/stories/stories_hovedoya.json` |
+| `ljanselva` | Ljanselva | natur | Vassdraget som går fra marka mot fjorden | `data/stories/stories_ljanselva.json` |
+| `maridalsvannet` | Maridalsvannet | natur | Vannet som gjør byen mulig, men holder byen på avstand | `data/stories/stories_maridalsvannet.json` |
+| `svartdalen` | Svartdalen | natur | Ravinedalen der byen slipper elva fram | `data/stories/stories_svartdalen.json` |
+| `ostensjovannet` | Østensjøvannet | natur | Innsjøen som lagrer fugl, vann og randsoner | `data/stories/stories_ostensjovannet.json` |
+| `eidsvolls_plass` | Eidsvolls plass | politikk | Lavvoen foran Stortinget | `data/stories/stories_eidsvolls_plass.json` |
+| `oslo_radhus` | Oslo rådhus | politikk | Rådhuset åpner under byjubileet | `data/stories/stories_oslo_radhus.json` |
+| `regjeringskvartalet` | Regjeringskvartalet | politikk | Bomben i Regjeringskvartalet 22. juli | `data/stories/stories_regjeringskvartalet.json` |
+| `stortinget` | Stortinget | politikk | 7. juni 1905 – Stortinget erklærer unionen opphørt | `data/stories/stories_stortinget.json` |
+| `youngstorget` | Youngstorget | politikk | 1. mai på Youngstorget | `data/stories/stories_youngstorget.json` |
+| `grand_hotel` | Grand Hotel | populaerkultur | Ibsens daglige marsj til Grand Café | `data/stories/stories_henrik_ibsen.json` |
+| `hartvig_nissens_skole_skam` | Hartvig Nissens skole (SKAM) | populaerkultur | Skolen som ble SKAMs virkelige adresse | `data/stories/stories_hartvig_nissens_skole_skam.json` |
+| `psykologisk_institutt_uio` | Psykologisk institutt, UiO | psykologi | Da psykologien fikk et institutt i Norge | `data/stories/stories_psykologisk_institutt_uio.json` |
+| `bislett_stadion` | Bislett Stadion | sport | Hjalmar «Hjallis» Andersen tok tre gull på Bislett | `data/stories/stories_bislett.json` |
+| `ekebergsletta` | Ekebergsletta | sport | Norway Cup starter med jentelag | `data/stories/stories_ekebergsletta.json` |
+| `holmenkollen_nasjonalanlegg` | Holmenkollen nasjonalanlegg | sport | Da Holmenkollrennet ble en nasjonal tradisjon | `data/stories/stories_holmenkollen.json` |
+| `jordal_amfi` | Jordal Amfi | sport | Kunstisen som reddet OL-hockeyen | `data/stories/stories_jordal_amfi.json` |
+| `ullevaal_stadion` | Ullevaal Stadion | sport | Cupfinalenes hjem åpnet i 1926 | `data/stories/stories_ullevaal_stadion.json` |
+| `bla` | Blå | subkultur | Elvekanten som ble nattlig musikkrom | `data/stories/stories_bla.json` |
+| `hausmania` | Hausmania | subkultur | Kulturhuset som ble fristed og bypolitisk konflikt | `data/stories/stories_hausmania.json` |
+| `skur13` | Skur 13 | subkultur | Havnelageret som ble rulleflate | `data/stories/stories_skur13.json` |
+| `sofienbergparken_subkultur` | Sofienbergparken | subkultur | Parken som lavterskel offentlighet | `data/stories/stories_sofienbergparken_subkultur.json` |
+| `torggata_blad` | Torggata Blad | subkultur | Bladet som gjorde gata til alternativ offentlighet | `data/stories/stories_torggata_blad.json` |
+| `botanisk_hage` | Botanisk hage | vitenskap | Hagen som skulle bygge kunnskap for den nye nasjonen | `data/stories/stories_botanisk_hage.json` |
+| `meteorologisk_institutt` | Meteorologisk institutt | vitenskap | Været blir en nasjonal datainfrastruktur | `data/stories/stories_meteorologisk_institutt.json` |
+| `naturhistorisk_museum` | Naturhistorisk museum | vitenskap | Fossilet Ida blir verdensnyhet | `data/stories/stories_naturhistorisk_museum.json` |
+| `teknisk_museum` | Norsk Teknisk Museum | vitenskap | Fra jubileumsutstilling til teknologihistorisk hukommelse | `data/stories/stories_teknisk_museum.json` |
 
 ## Places uten stories, gruppert per kategori
 
-### by (91 uten story)
+### by (88 uten story)
 
 | place_id | Navn | År | Place file |
 |---|---|---:|---|
@@ -198,14 +257,11 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `storgata` | Storgata | 1850 | `data/places/by/oslo/places_by.json` |
 | `sorenga` | Sørenga | 2015 | `data/places/by/oslo/places_by.json` |
 | `tjuvholmen` | Tjuvholmen | 2010 | `data/places/by/oslo/places_by.json` |
-| `torggata` | Torggata | 1850 | `data/places/by/oslo/places_by.json` |
 | `torshov` | Torshov | 1920 | `data/places/by/oslo/places_by.json` |
 | `trikk_17_18` | Trikkelinje 17/18 | 1924 | `data/places/by/oslo/places_by.json` |
 | `tullin` | Tullin | 1890 | `data/places/by/oslo/places_by.json` |
-| `toyen_torg` | Tøyen torg | 1972 | `data/places/by/oslo/places_by.json` |
 | `ullern` | Ullern | 1930 | `data/places/by/oslo/places_by.json` |
 | `ullevål_hageby` | Ullevål Hageby | 1915 | `data/places/by/oslo/places_by.json` |
-| `vaterland` | Vaterland | 1850 | `data/places/by/oslo/places_by.json` |
 | `vinderen` | Vinderen | 1920 | `data/places/by/oslo/places_by.json` |
 | `vulkan_energisentral` | Vulkan energisentral | 2012 | `data/places/by/oslo/places_by.json` |
 | `vulkan_industriomrade` | Vulkan industriområde | 1857 | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
@@ -270,15 +326,12 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `voien_gard_voienvolden` | Vøien gård / Vøienvolden | 1670 | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
 | `voienfossen` | Vøienfossen | 1847 | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
 
-### kunst (17 uten story)
+### kunst (13 uten story)
 
 | place_id | Navn | År | Place file |
 |---|---|---:|---|
-| `astrup_fearnley` | Astrup Fearnley Museet | 2012 | `data/places/kunst/oslo/places_kunst.json` |
 | `lisbon_centro_cultural_de_belem` | Centro Cultural de Belém | 1992 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_culturgest` | Culturgest | 1993 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
-| `ekebergparken` | Ekebergparken skulpturpark | 2013 | `data/places/kunst/oslo/places_kunst.json` |
-| `lisbon_fundacao_calouste_gulbenkian` | Fundação Calouste Gulbenkian | 1956 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_maat` | MAAT / Tejo-kraftstasjonen | 2016 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_mac_ccb_berardo` | MAC/CCB (tidligere Museu Coleção Berardo) | 2007 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_mude` | MUDE – Museu do Design e da Moda | 2009 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
@@ -288,11 +341,10 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `lisbon_museu_nacional_de_arte_contemporanea_do_chiado` | Museu Nacional de Arte Contemporânea do Chiado | 1911 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_museu_nacional_do_azulejo` | Museu Nacional do Azulejo | 1965 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_museu_do_oriente` | Museu do Oriente | 2008 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
-| `nasjonalmuseet` | Nasjonalmuseet | 2022 | `data/places/kunst/oslo/places_kunst.json` |
 | `lisbon_teatro_nacional_d_maria_ii` | Teatro Nacional D. Maria II | 1846 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 | `lisbon_teatro_sao_luiz` | Teatro São Luiz | 1894 | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
 
-### litteratur (30 uten story)
+### litteratur (25 uten story)
 
 | place_id | Navn | År | Place file |
 |---|---|---:|---|
@@ -308,7 +360,6 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `deichman_grunerlokka` | Deichman Grünerløkka | 1914 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `eldorado_bokhandel` | Eldorado Bokhandel | 1924 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `lisbon_estatua_eca_de_queiros` | Estátua de Eça de Queirós | 1903 | `data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json` |
-| `gamle_deichman` | Gamle Deichman | 1890 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `grotta` | Grotten | 1924 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `lisbon_gremio_literario` | Grémio Literário | 1846 | `data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json` |
 | `lisbon_hemeroteca_municipal` | Hemeroteca Municipal de Lisboa | 1931 | `data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json` |
@@ -316,16 +367,12 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `ibsen_quotes` | Ibsen sitater | 2006 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `inger_hagerups_plass` | Inger Hagerups plass | 1990 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `kulturkirken_jakob_litteratur` | Kulturkirken Jakob | 2000 | `data/places/litteratur/oslo/places_litteratur.json` |
-| `litteraturhuset` | Litteraturhuset | 2007 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `lisbon_livraria_bertrand` | Livraria Bertrand (Chiado) | 1732 | `data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json` |
-| `nasjonalbiblioteket` | Nasjonalbiblioteket | 1914 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `norli_universitetsgata` | Norli Universitetsgata | 1890 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `oscar_braaten_statuen` | Oscar Braaten-statuen | 1956 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `lisbon_praca_luis_de_camoes` | Praça Luís de Camões | 1867 | `data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json` |
 | `proysenhuset_rudshogda` | Prøysenhuset – Rudshøgda | 2014 | `data/places/litteratur/oslo/places_litteratur.json` |
-| `ruth_maier_minne` | Ruth Maier-minnesmerke | 2010 | `data/places/litteratur/oslo/places_litteratur.json` |
 | `sigrid_undset_statue` | Sigrid Undset-statuen | 1982 | `data/places/litteratur/oslo/places_litteratur.json` |
-| `tronsmo_bokhandel` | Tronsmo Bokhandel | 1973 | `data/places/litteratur/oslo/places_litteratur.json` |
 
 ### media (10 uten story)
 
@@ -359,7 +406,7 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `lisbon_tasca_do_chico` | Tasca do Chico | 1993 | `data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json` |
 | `lisbon_teatro_tivoli_bbva` | Teatro Tivoli BBVA | 1924 | `data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json` |
 
-### naeringsliv (39 uten story)
+### naeringsliv (34 uten story)
 
 | place_id | Navn | År | Place file |
 |---|---|---:|---|
@@ -372,7 +419,6 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `christiania_seildugsfabrik` | Christiania Seildugsfabrik | 1856 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `oslo_kornmagasin` | Christiania kornmagasin | 1785 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_cordoaria_nacional` | Cordoaria Nacional | 1771 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
-| `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | 1828 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_doca_de_alcantara` | Doca de Alcântara | 1887 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
 | `fornebu_teknologipark` | Fornebu Teknologipark | 2002 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `frysja_industriomrade` | Frysja industriområde | 1750 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
@@ -381,21 +427,17 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `jernbanetorget_trafikknutepunkt` | Jernbanetorget – handelsknutepunktet | 1854 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_lx_factory` | LX Factory | 1846 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
 | `lilleborg_fabrikker` | Lilleborg Fabrikker | 1833 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | 1890 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_mercado_da_ribeira` | Mercado da Ribeira / Time Out Market | 1882 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
 | `lisbon_mercado_de_campo_de_ourique` | Mercado de Campo de Ourique | 1934 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
 | `myrens_verksted` | Myrens Verksted | 1848 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `nrk_marienlyst` | NRK Marienlyst | 1938 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `norges_varemesse` | Norges Varemesse | 1920 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| `oslo_gassverk` | Oslo Gassverk | 1858 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `oslo_kraftselskap` | Oslo Lysverker | 1892 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `oslo_mek` | Oslo Mekaniske Verksted | 1854 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `oslo_posthus` | Oslo Posthus | 1924 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_parque_das_nacoes` | Parque das Nações | 1998 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
-| `ringnes_bryggeri` | Ringnes bryggeri | 1876 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `sagene_kvernhus` | Sagene mølle og kvernhus | 1750 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `st_halvard_bryggeri` | St. Halvard bryggeri | 1843 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| `telegrafbygningen` | Telegrafbygningen | 1924 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `lisbon_terminal_de_cruzeiros` | Terminal de Cruzeiros de Lisboa | 2017 | `data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json` |
 | `tollbukaia` | Tollbukaia | 1890 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `ulven_handelspark` | Ulven handelspark | 2020 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
@@ -403,17 +445,14 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `vippetangen_fisketorg` | Vippetangen fisketorg | 1890 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 | `ovre_foss` | Øvre Foss – Hjula Veveri | 1855 | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
 
-### natur (58 uten story)
+### natur (54 uten story)
 
 | place_id | Navn | År | Place file |
 |---|---|---:|---|
-| `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | 2000 | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
 | `alna_utlop_bjorvika` | Alna utløp i Bjørvika |  | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
 | `alna_bryn` | Alna ved Bryn |  | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
 | `alna_smalvoll` | Alna ved Smalvoll |  | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
 | `alnaelva_hovedsteder` | Alnaelva | 2005 | `data/places/natur/oslo/places_oslo_natur_hovedsteder.json` |
-| `alnaelvstien` | Alnaelvstien |  | `data/places/natur/oslo/places_oslo_alna.json` |
-| `alnaparken` | Alnaparken |  | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
 | `alnsjoen_alna_kilde` | Alnsjøen (Alna-kilde) |  | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
 | `bjoelsenparken_elvenaer` | Bjølsenparken (elvenær del) | 1930 | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
 | `blindern_forskningsparken_salamanderdam` | Blindern/Forskningsparken salamanderdam | 2025 | `data/places/natur/oslo/places_oslo_natur_salamanderdammer.json` |
@@ -456,7 +495,6 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `lisbon_monsanto` | Parque Florestal de Monsanto | 1934 | `data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json` |
 | `skraperudtjern` | Skraperudtjern |  | `data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json` |
 | `stilla_nydalen` | Stilla ved Nydalen | 1900 | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
-| `svartdalen` | Svartdalen |  | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
 | `lisbon_tapada_da_ajuda` | Tapada da Ajuda | 1645 | `data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json` |
 | `lisbon_tapada_das_necessidades` | Tapada das Necessidades | 1747 | `data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json` |
 | `tjernsmyr_salamanderlokalitet` | Tjernsmyr salamanderlokalitet | 2020 | `data/places/natur/oslo/places_oslo_natur_salamanderdammer.json` |
@@ -501,12 +539,6 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `slottsplassen` | Slottsplassen |  | `data/places/popkultur/oslo/places_oslo_populaerkultur.json` |
 | `lisbon_tram_28` | Tram 28 (Eléctrico 28) | 1914 | `data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json` |
 | `vika_kino` | Vika kino | 1981 | `data/places/film/oslo/places_oslo_film.json` |
-
-### psykologi (1 uten story)
-
-| place_id | Navn | År | Place file |
-|---|---|---:|---|
-| `psykologisk_institutt_uio` | Psykologisk institutt, UiO | 1909 | `data/places/psykologi/oslo/places_psykologi.json` |
 
 ### sport (44 uten story)
 
@@ -580,7 +612,7 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `lisbon_village_underground` | Village Underground Lisboa | 2014 | `data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json` |
 | `vulkan_murvegger` | Vulkan murvegger og passasjer | 2012 | `data/places/subkultur/oslo/places_subkultur.json` |
 
-### vitenskap (26 uten story)
+### vitenskap (24 uten story)
 
 | place_id | Navn | År | Place file |
 |---|---|---:|---|
@@ -596,10 +628,8 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `lisbon_instituto_higiene_medicina_tropical` | Instituto de Higiene e Medicina Tropical | 1902 | `data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json` |
 | `lisbon_jardim_botanico_tropical` | Jardim Botânico Tropical | 1906 | `data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json` |
 | `lisbon_laboratorio_nacional_engenharia_civil` | Laboratório Nacional de Engenharia Civil | 1946 | `data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json` |
-| `meteorologisk_institutt` | Meteorologisk institutt | 1866 | `data/places/vitenskap/oslo/places_vitenskap.json` |
 | `lisbon_museu_nacional_de_historia_natural_e_da_ciencia` | Museu Nacional de História Natural e da Ciência | 1858 | `data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json` |
 | `nobelinstituttet` | Nobelinstituttet | 1905 | `data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json` |
-| `teknisk_museum` | Norsk Teknisk Museum | 1914 | `data/places/vitenskap/oslo/places_vitenskap.json` |
 | `observatoriet` | Observatoriet | 1833 | `data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json` |
 | `lisbon_observatorio_astronomico` | Observatório Astronómico de Lisboa | 1861 | `data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json` |
 | `oslo_met_pilestredet` | OsloMet, Pilestredet | 1994 | `data/places/vitenskap/oslo/places_vitenskap.json` |
@@ -611,78 +641,123 @@ Grunnlaget er faktisk `data/stories/stories_manifest.json`, alle story-filer man
 | `universitetets_gamle_hovedbygning` | Universitetets gamle hovedbygning | 1852 | `data/places/vitenskap/oslo/places_vitenskap.json` |
 | `universitetets_gamle_kjemi` | Universitetets gamle kjemibygning | 1865 | `data/places/vitenskap/oslo/places_vitenskap.json` |
 
-## Kort vurdering av svakest dekkede kategorier
+## Uregistrerte story-filer
 
-- `psykologi` er svakest dekket med 0 av 1 aktive places (0.0%).
-- `litteratur` (1 av 31, 3.2%), `naeringsliv` (2 av 41, 4.9%) og `kunst` (1 av 18, 5.6%) er de svakeste større kategoriene etter batch 5.
-- `by` har mange aktive places og lav dekning (6 av 97, 6.2%), så enkelttilskudd her gir stor absolutt effekt, men lav prosentvis effekt.
-- Batch 5 løftet `natur` fra 0 til 5 dekkede places og `subkultur` fra 0 til 5 dekkede places. `subkultur` er dermed ikke lenger blant de aller svakeste prosentvis, mens `natur` fortsatt har mange udekkede aktive places (58).
+Følgende `data/stories/stories_*.json`-filer finnes, men er ikke registrert i `data/stories/stories_manifest.json`:
 
-## Anbefalt neste batch (analyse, ingen nye story-filer i denne PR-en)
+- `data/stories/stories_by.json`
+- `data/stories/stories_generation_manifest.json`
 
-Forslaget under prioriterer konkrete `place_id`-er som allerede finnes i aktive place-filer, med vekt på kategorier med lavest coverage og/eller mange udekkede aktive steder.
+## Svakest dekkede kategorier
 
-### psykologi
+Målt i coverage-prosent er de svakeste kategoriene fortsatt:
 
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `psykologisk_institutt_uio` | Psykologisk institutt, UiO | `data/places/psykologi/oslo/places_psykologi.json` |
+- **musikk**: 1 av 13 places har story (7.7%); 12 places står uten story.
+- **media**: 1 av 11 places har story (9.1%); 10 places står uten story.
+- **by**: 9 av 97 places har story (9.3%); 88 places står uten story.
+- **sport**: 5 av 49 places har story (10.2%); 44 places står uten story.
+- **populaerkultur**: 2 av 18 places har story (11.1%); 16 places står uten story.
+- **film_tv**: 1 av 8 places har story (12.5%); 7 places står uten story.
 
-### litteratur
+`psykologi` er nå fullt dekket fordi den eneste aktive psykologi-place-ID-en har story. `politikk`, `kunst`, `historie` og `subkultur` ligger relativt sterkere enn totaldekningen, mens særlig `musikk`, `by`, `media`, `sport` og `populaerkultur` fortsatt har lav dekning i absolutte og prosentvise tall.
 
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `nasjonalbiblioteket` | Nasjonalbiblioteket | `data/places/litteratur/oslo/places_litteratur.json` |
-| 2 | `litteraturhuset` | Litteraturhuset | `data/places/litteratur/oslo/places_litteratur.json` |
-| 3 | `gamle_deichman` | Gamle Deichman | `data/places/litteratur/oslo/places_litteratur.json` |
-| 4 | `tronsmo_bokhandel` | Tronsmo Bokhandel | `data/places/litteratur/oslo/places_litteratur.json` |
-| 5 | `ruth_maier_minne` | Ruth Maier-minnesmerke | `data/places/litteratur/oslo/places_litteratur.json` |
+## Anbefalt neste batch (analyse, ingen data opprettet)
 
-### naeringsliv
+Forslagene under prioriterer konkrete place_id-er som allerede finnes i aktive place-filer og mangler story. De bør håndteres i en egen story-data-PR, ikke i denne rapport-PR-en.
 
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `oslo_gassverk` | Oslo Gassverk | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| 2 | `telegrafbygningen` | Telegrafbygningen | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| 3 | `grunnlovsbygget_bankplassen` | Den gamle Norges Bank | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| 4 | `jernbaneverkstedet_lodalen` | Lodalen jernbaneverksted | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
-| 5 | `ringnes_bryggeri` | Ringnes bryggeri | `data/places/naeringsliv/oslo/places_naeringsliv.json` |
+### musikk
 
-### kunst
-
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `nasjonalmuseet` | Nasjonalmuseet | `data/places/kunst/oslo/places_kunst.json` |
-| 2 | `astrup_fearnley` | Astrup Fearnley Museet | `data/places/kunst/oslo/places_kunst.json` |
-| 3 | `ekebergparken` | Ekebergparken skulpturpark | `data/places/kunst/oslo/places_kunst.json` |
-| 4 | `lisbon_fundacao_calouste_gulbenkian` | Fundação Calouste Gulbenkian | `data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json` |
+- `lisbon_mouraria_fado` — Mouraria / fado (`data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json`)
+- `lisbon_coliseu_dos_recreios` — Coliseu dos Recreios (`data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json`)
+- `lisbon_teatro_tivoli_bbva` — Teatro Tivoli BBVA (`data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json`)
+- `lisbon_hot_clube_de_portugal` — Hot Clube de Portugal (`data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json`)
+- `rockefeller` — Rockefeller Music Hall (`data/places/musikk/oslo/places_musikk.json`)
+- `sentrum_scene` — Sentrum Scene (`data/places/musikk/oslo/places_musikk.json`)
 
 ### by
 
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `torggata` | Torggata | `data/places/by/oslo/places_by.json` |
-| 2 | `vaterland` | Vaterland | `data/places/by/oslo/places_by.json` |
-| 3 | `toyen_torg` | Tøyen torg | `data/places/by/oslo/places_by.json` |
+- `lisbon_alfama` — Alfama (`data/places/by/europe/portugal/lisbon/places_lisbon_by.json`)
+- `gamlebyen` — Gamlebyen (`data/places/by/oslo/places_by.json`)
+- `lisbon_city` — Lisboa (`data/places/by/europe/portugal/lisbon/places_lisbon_by.json`)
+- `lisbon_martim_moniz_mouraria_axis` — Martim Moniz–Mouraria-aksen (`data/places/by/europe/portugal/lisbon/places_lisbon_by.json`)
+- `lisbon_graca` — Graça (`data/places/by/europe/portugal/lisbon/places_lisbon_by.json`)
+- `lisbon_belem_bydel` — Belém (`data/places/by/europe/portugal/lisbon/places_lisbon_by.json`)
 
-### vitenskap
+### media
 
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `meteorologisk_institutt` | Meteorologisk institutt | `data/places/vitenskap/oslo/places_vitenskap.json` |
-| 2 | `teknisk_museum` | Norsk Teknisk Museum | `data/places/vitenskap/oslo/places_vitenskap.json` |
+- `lisbon_diario_de_noticias` — Diário de Notícias-bygget (`data/places/media/europe/portugal/lisbon/places_lisbon_media.json`)
+- `dagbladet_akersgata` — Dagbladet i Akersgata (`data/places/media/oslo/places_oslo_media.json`)
+- `aftenposten_akersgata` — Aftenposten i Akersgata (`data/places/media/oslo/places_oslo_media.json`)
+- `lisbon_antena_1_rdp` — Antena 1 / RDP-radiohistorie (`data/places/media/europe/portugal/lisbon/places_lisbon_media.json`)
+- `vg_huset` — VG-huset (`data/places/media/oslo/places_oslo_media.json`)
+- `lisbon_arquivo_rtp` — Arquivo RTP (`data/places/media/europe/portugal/lisbon/places_lisbon_media.json`)
+
+### sport
+
+- `lisbon_centro_nautico_de_belem` — Centro Náutico de Belém (`data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json`)
+- `lisbon_hipodromo_do_campo_grande` — Hipódromo do Campo Grande (`data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json`)
+- `frogner_stadion` — Frogner stadion (`data/places/sport/oslo/places_sport.json`)
+- `daelenenga_idrettspark` — Dælenenga idrettspark (`data/places/sport/oslo/places_sport.json`)
+- `gressbanen` — Gressbanen (`data/places/sport/oslo/places_sport.json`)
+- `nordre_aasen_idrettspark` — Nordre Åsen idrettspark (`data/places/sport/oslo/places_sport.json`)
+
+### populaerkultur
+
+- `lisbon_feira_da_ladra` — Feira da Ladra (`data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json`)
+- `lisbon_tram_28` — Tram 28 (Eléctrico 28) (`data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json`)
+- `lisbon_feira_do_livro` — Feira do Livro de Lisboa (`data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json`)
+- `lisbon_marchas_populares` — Marchas Populares de Lisboa (`data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json`)
+- `lisbon_santo_antonio_festival` — Santo António-festivalen i Lisboa (`data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json`)
+- `folketeateret` — Folketeateret (`data/places/popkultur/oslo/places_oslo_populaerkultur.json`)
+
+### film_tv
+
+- `lisbon_cinema_ideal` — Cinema Ideal (`data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json`)
+- `lisbon_tobis_portuguesa` — Tobis Portuguesa (`data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json`)
+- `lisbon_cinemateca_portuguesa` — Cinemateca Portuguesa (`data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json`)
+- `lisbon_cinema_sao_jorge` — Cinema São Jorge (`data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json`)
+- `cinemateket_oslo` — Cinemateket i Oslo (`data/places/popkultur/oslo/places_oslo_populaerkultur.json`)
+- `lisbon_cinema_nimas` — Cinema Nimas (`data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json`)
 
 ### natur
 
-| Prioritet | place_id | Navn | Place file |
-|---:|---|---|---|
-| 1 | `alnaelvstien` | Alnaelvstien | `data/places/natur/oslo/places_oslo_alna.json` |
-| 2 | `alnaparken` | Alnaparken | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
-| 3 | `svartdalen` | Svartdalen | `data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json` |
-| 4 | `akerselva_utlop_bjorvika` | Akerselvas utløp mot fjorden (Bjørvika) | `data/places/natur/oslo/places_oslo_natur_akerselvarute.json` |
+- `lisbon_miradouro_da_graca` — Miradouro da Graça (Sophia de Mello Breyner Andresen) (`data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json`)
+- `lisbon_tapada_da_ajuda` — Tapada da Ajuda (`data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json`)
+- `lisbon_tapada_das_necessidades` — Tapada das Necessidades (`data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json`)
+- `lisbon_miradouro_da_senhora_do_monte` — Miradouro da Senhora do Monte (`data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json`)
+- `lisbon_jardim_da_estrela` — Jardim da Estrela (`data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json`)
+- `lisbon_jardim_do_principe_real` — Jardim do Príncipe Real (`data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json`)
 
-## Kontrollgrunnlag
+### vitenskap
 
-- Rapporten er beregnet fra 40 aktive place-sourcefiler i `data/places/manifest.json`.
-- Rapporten er beregnet fra 52 story-filer i `data/stories/stories_manifest.json`.
-- Ingen story-, place-, people-, manifest-, UI-, CSS-, loader- eller runtime-filer er endret av denne rapportoppdateringen.
+- `gamlebyen_skole` — Gamlebyen skole (`data/places/vitenskap/oslo/places_vitenskap.json`)
+- `rikshospitalet` — Rikshospitalet (`data/places/vitenskap/oslo/places_vitenskap.json`)
+- `observatoriet` — Observatoriet (`data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json`)
+- `universitetets_gamle_hovedbygning` — Universitetets gamle hovedbygning (`data/places/vitenskap/oslo/places_vitenskap.json`)
+- `lisbon_museu_nacional_de_historia_natural_e_da_ciencia` — Museu Nacional de História Natural e da Ciência (`data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json`)
+- `lisbon_observatorio_astronomico` — Observatório Astronómico de Lisboa (`data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json`)
+
+### naeringsliv
+
+- `frysja_industriomrade` — Frysja industriområde (`data/places/naeringsliv/oslo/places_naeringsliv.json`)
+- `sagene_kvernhus` — Sagene mølle og kvernhus (`data/places/naeringsliv/oslo/places_naeringsliv.json`)
+- `lisbon_cordoaria_nacional` — Cordoaria Nacional (`data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json`)
+- `oslo_kornmagasin` — Christiania kornmagasin (`data/places/naeringsliv/oslo/places_naeringsliv.json`)
+- `grensen_kjopesenter` — Grensen – handelens sentrum (`data/places/naeringsliv/oslo/places_naeringsliv.json`)
+- `akershus_slott_bakeriet` — Bakeriet ved Akershus (`data/places/naeringsliv/oslo/places_naeringsliv.json`)
+
+### litteratur
+
+- `lisbon_casa_dos_bicos` — Casa dos Bicos / Fundação José Saramago (`data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json`)
+- `lisbon_livraria_bertrand` — Livraria Bertrand (Chiado) (`data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json`)
+- `lisbon_biblioteca_nacional_de_portugal` — Biblioteca Nacional de Portugal (`data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json`)
+- `lisbon_cemiterio_dos_prazeres` — Cemitério dos Prazeres (`data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json`)
+- `lisbon_gremio_literario` — Grémio Literário (`data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json`)
+- `lisbon_praca_luis_de_camoes` — Praça Luís de Camões (`data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json`)
+
+## Endring siden forrige rapport
+
+- Nye manifest-entries som nå teller: **24** (fra 52 til 76 story-filer i manifestet).
+- Nye places med story: **24** (fra 51 til 75).
+- Ny coverage-prosent: **16.0%** (forrige rapport: 10.9%).
+- `teknisk_museum` er nå inkludert, registrert i manifestet og telles i `vitenskap`-dekningen.
