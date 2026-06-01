@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T09:43:03.206Z",
+  "generatedAt": "2026-06-01T10:08:49.413Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -23,83 +23,32 @@
     "alf_proysen",
     "per_petterson"
   ],
-  "expected_legacy_people_missing": [],
+  "expected_legacy_people_missing": [
+    "sigrid_undset",
+    "andre_bjerke",
+    "jon_fosse",
+    "alf_proysen"
+  ],
   "unexpected_remaining_legacy_people": [],
   "summary": {
-    "legacyPeopleRead": 10,
-    "expectedLegacyPeopleFound": 10,
+    "legacyPeopleRead": 6,
+    "expectedLegacyPeopleFound": 6,
     "unexpectedLegacyPeople": 0,
-    "peopleWithValidPrimaryPlaceId": 8,
+    "peopleWithValidPrimaryPlaceId": 4,
     "peopleWithoutValidPlace": 2,
     "stubs": 1,
-    "invalidPlaceRefOccurrences": 14,
+    "invalidPlaceRefOccurrences": 11,
     "uniqueInvalidPlaceRefs": 10,
     "missingPlaceCandidate": 9,
     "likelyRenameToExistingPlace": 0,
     "refNeedsManualReview": 1,
     "classificationCounts": {
-      "has_valid_primary_but_invalid_secondary_refs": 7,
-      "ready_for_manual_mapping": 1,
+      "has_valid_primary_but_invalid_secondary_refs": 4,
       "missing_place_data_required": 1,
       "stub_needs_manual_completion": 1
     }
   },
   "people": [
-    {
-      "personId": "sigrid_undset",
-      "name": "Sigrid Undset",
-      "sourceFile": "data/people/people_litteratur.json",
-      "hasPlaceId": true,
-      "placeId": "nasjonalbiblioteket",
-      "placeIdStatus": "valid",
-      "places": [
-        {
-          "index": 0,
-          "placeRef": "nasjonalbiblioteket",
-          "status": "valid"
-        },
-        {
-          "index": 1,
-          "placeRef": "ullevål_hageby",
-          "status": "valid"
-        },
-        {
-          "index": 2,
-          "placeRef": "sigrid_undset_statue",
-          "status": "valid"
-        },
-        {
-          "index": 3,
-          "placeRef": "bøker_i_byen",
-          "status": "invalid"
-        }
-      ],
-      "validPlaces": [
-        "nasjonalbiblioteket",
-        "ullevål_hageby",
-        "sigrid_undset_statue"
-      ],
-      "invalidPlaces": [
-        "bøker_i_byen"
-      ],
-      "duplicatePlaces": [],
-      "emptyPlaceRefs": 0,
-      "hasAtLeastOneValidPlace": true,
-      "missingAllValidPlace": false,
-      "isStub": false,
-      "hasLegacyOrDivergentSchema": false,
-      "divergentFields": [],
-      "missingSchemaFields": [],
-      "invalidRefAnalysis": [
-        {
-          "placeRef": "bøker_i_byen",
-          "refClassification": "missing_place_candidate",
-          "suggestions": []
-        }
-      ],
-      "classification": "has_valid_primary_but_invalid_secondary_refs",
-      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
-    },
     {
       "personId": "bjornstjerne_bjornson",
       "name": "Bjørnstjerne Bjørnson",
@@ -325,49 +274,6 @@
       "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
     },
     {
-      "personId": "andre_bjerke",
-      "name": "André Bjerke",
-      "sourceFile": "data/people/people_litteratur.json",
-      "hasPlaceId": true,
-      "placeId": "grotta",
-      "placeIdStatus": "valid",
-      "places": [
-        {
-          "index": 0,
-          "placeRef": "grotta",
-          "status": "valid"
-        },
-        {
-          "index": 1,
-          "placeRef": "grotten_utsikt",
-          "status": "invalid"
-        }
-      ],
-      "validPlaces": [
-        "grotta"
-      ],
-      "invalidPlaces": [
-        "grotten_utsikt"
-      ],
-      "duplicatePlaces": [],
-      "emptyPlaceRefs": 0,
-      "hasAtLeastOneValidPlace": true,
-      "missingAllValidPlace": false,
-      "isStub": false,
-      "hasLegacyOrDivergentSchema": false,
-      "divergentFields": [],
-      "missingSchemaFields": [],
-      "invalidRefAnalysis": [
-        {
-          "placeRef": "grotten_utsikt",
-          "refClassification": "missing_place_candidate",
-          "suggestions": []
-        }
-      ],
-      "classification": "has_valid_primary_but_invalid_secondary_refs",
-      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
-    },
-    {
       "personId": "inger_hagerup",
       "name": "Inger Hagerup",
       "sourceFile": "data/people/people_litteratur.json",
@@ -420,79 +326,6 @@
       ],
       "classification": "has_valid_primary_but_invalid_secondary_refs",
       "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
-    },
-    {
-      "personId": "jon_fosse",
-      "name": "Jon Fosse",
-      "sourceFile": "data/people/people_litteratur.json",
-      "hasPlaceId": true,
-      "placeId": "grotta",
-      "placeIdStatus": "valid",
-      "places": [
-        {
-          "index": 0,
-          "placeRef": "grotta",
-          "status": "valid"
-        },
-        {
-          "index": 1,
-          "placeRef": "grotten_utsikt",
-          "status": "invalid"
-        }
-      ],
-      "validPlaces": [
-        "grotta"
-      ],
-      "invalidPlaces": [
-        "grotten_utsikt"
-      ],
-      "duplicatePlaces": [],
-      "emptyPlaceRefs": 0,
-      "hasAtLeastOneValidPlace": true,
-      "missingAllValidPlace": false,
-      "isStub": false,
-      "hasLegacyOrDivergentSchema": false,
-      "divergentFields": [],
-      "missingSchemaFields": [],
-      "invalidRefAnalysis": [
-        {
-          "placeRef": "grotten_utsikt",
-          "refClassification": "missing_place_candidate",
-          "suggestions": []
-        }
-      ],
-      "classification": "has_valid_primary_but_invalid_secondary_refs",
-      "recommendedNextAction": "Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt."
-    },
-    {
-      "personId": "alf_proysen",
-      "name": "Alf Prøysen",
-      "sourceFile": "data/people/people_litteratur.json",
-      "hasPlaceId": true,
-      "placeId": "alf_proysen_statue_nittedal",
-      "placeIdStatus": "valid",
-      "places": [
-        {
-          "index": 0,
-          "placeRef": "alf_proysen_statue_nittedal",
-          "status": "valid"
-        }
-      ],
-      "validPlaces": [
-        "alf_proysen_statue_nittedal"
-      ],
-      "invalidPlaces": [],
-      "duplicatePlaces": [],
-      "emptyPlaceRefs": 0,
-      "hasAtLeastOneValidPlace": true,
-      "missingAllValidPlace": false,
-      "isStub": false,
-      "hasLegacyOrDivergentSchema": false,
-      "divergentFields": [],
-      "missingSchemaFields": [],
-      "invalidRefAnalysis": [],
-      "classification": "ready_for_manual_mapping",
-      "recommendedNextAction": "Gyldig primary og kun gyldige refs. Kan tas i trygg manuell mapping-batch (evt. rydde duplikat/tomme refs)."
     },
     {
       "personId": "rolf_jacobsen",
@@ -555,21 +388,6 @@
     }
   ],
   "invalidRefsGroupedByPerson": [
-    {
-      "personId": "sigrid_undset",
-      "name": "Sigrid Undset",
-      "classification": "has_valid_primary_but_invalid_secondary_refs",
-      "invalidPlaces": [
-        "bøker_i_byen"
-      ],
-      "invalidRefAnalysis": [
-        {
-          "placeRef": "bøker_i_byen",
-          "refClassification": "missing_place_candidate",
-          "suggestions": []
-        }
-      ]
-    },
     {
       "personId": "bjornstjerne_bjornson",
       "name": "Bjørnstjerne Bjørnson",
@@ -662,21 +480,6 @@
       ]
     },
     {
-      "personId": "andre_bjerke",
-      "name": "André Bjerke",
-      "classification": "has_valid_primary_but_invalid_secondary_refs",
-      "invalidPlaces": [
-        "grotten_utsikt"
-      ],
-      "invalidRefAnalysis": [
-        {
-          "placeRef": "grotten_utsikt",
-          "refClassification": "missing_place_candidate",
-          "suggestions": []
-        }
-      ]
-    },
-    {
       "personId": "inger_hagerup",
       "name": "Inger Hagerup",
       "classification": "has_valid_primary_but_invalid_secondary_refs",
@@ -696,21 +499,6 @@
           "suggestions": []
         }
       ]
-    },
-    {
-      "personId": "jon_fosse",
-      "name": "Jon Fosse",
-      "classification": "has_valid_primary_but_invalid_secondary_refs",
-      "invalidPlaces": [
-        "grotten_utsikt"
-      ],
-      "invalidRefAnalysis": [
-        {
-          "placeRef": "grotten_utsikt",
-          "refClassification": "missing_place_candidate",
-          "suggestions": []
-        }
-      ]
     }
   ],
   "uniqueInvalidPlaceRefs": [
@@ -726,10 +514,9 @@
     },
     {
       "placeRef": "bøker_i_byen",
-      "occurrences": 2,
+      "occurrences": 1,
       "usedBy": [
-        "henrik_wergeland",
-        "sigrid_undset"
+        "henrik_wergeland"
       ],
       "refClassification": "missing_place_candidate",
       "suggestions": [],
@@ -747,11 +534,9 @@
     },
     {
       "placeRef": "grotten_utsikt",
-      "occurrences": 3,
+      "occurrences": 1,
       "usedBy": [
-        "andre_bjerke",
-        "inger_hagerup",
-        "jon_fosse"
+        "inger_hagerup"
       ],
       "refClassification": "missing_place_candidate",
       "suggestions": [],
@@ -875,14 +660,10 @@
     "batchA": {
       "description": "Trygge personer med gyldig primary placeId. Ugyldige sekundærrefs kan fjernes eller mappes etter manuell beslutning.",
       "people": [
-        "sigrid_undset",
         "bjornstjerne_bjornson",
         "henrik_wergeland",
         "camilla_collett",
-        "andre_bjerke",
-        "inger_hagerup",
-        "jon_fosse",
-        "alf_proysen"
+        "inger_hagerup"
       ]
     },
     "batchB": {

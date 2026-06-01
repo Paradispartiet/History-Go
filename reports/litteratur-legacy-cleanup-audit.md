@@ -1,6 +1,6 @@
 # Litteratur legacy cleanup audit
 
-Generert: 2026-06-01T09:43:03.206Z
+Generert: 2026-06-01T10:08:49.413Z
 
 Analysert kilde: `data/people/people_litteratur.json` (kun gjenværende legacy-personer).
 Fasit for aktive placeId-er: `data/places/manifest.json` (470 aktive placeId-er).
@@ -9,34 +9,30 @@ Fasit for aktive placeId-er: `data/places/manifest.json` (470 aktive placeId-er)
 Denne rapporten endrer ingen data – den klassifiserer kun gjenværende litteratur-legacy.
 
 ## 1. Sammendrag
-- Legacy-personer lest: **10**
-- Forventede legacy-personer funnet: **10 / 10**
+- Legacy-personer lest: **6**
+- Forventede legacy-personer funnet: **6 / 10**
 - Uventede legacy-personer: **0**
-- Personer med gyldig primary placeId: **8**
+- Personer med gyldig primary placeId: **4**
 - Personer uten gyldig sted: **2**
 - Stubber: **1**
-- Ugyldige placeRefs (treff totalt): **14**
+- Ugyldige placeRefs (treff totalt): **11**
 - Unike ugyldige placeRefs: **10**
 - missing_place_candidate: **9**
 - likely_rename_to_existing_place: **0**
 - needs_manual_review (refs): **1**
 
 Klassifisering (personer):
-- has_valid_primary_but_invalid_secondary_refs: **7**
+- has_valid_primary_but_invalid_secondary_refs: **4**
 - missing_place_data_required: **1**
-- ready_for_manual_mapping: **1**
 - stub_needs_manual_completion: **1**
 
-## 2. Gjenværende legacy-personer
-### sigrid_undset — Sigrid Undset
-- classification: **has_valid_primary_but_invalid_secondary_refs**
-- placeId: `nasjonalbiblioteket` (status: valid)
-- valid places: `nasjonalbiblioteket`, `ullevål_hageby`, `sigrid_undset_statue`
-- invalid places: `bøker_i_byen`
-- manglende schemafelt: (ingen)
-- stub: false
-- anbefalt neste handling: Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt.
+**expected_legacy_people_missing:**
+- sigrid_undset
+- andre_bjerke
+- jon_fosse
+- alf_proysen
 
+## 2. Gjenværende legacy-personer
 ### bjornstjerne_bjornson — Bjørnstjerne Bjørnson
 - classification: **has_valid_primary_but_invalid_secondary_refs**
 - placeId: `nasjonalbiblioteket` (status: valid)
@@ -65,15 +61,6 @@ Klassifisering (personer):
 - stub: false
 - anbefalt neste handling: Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt.
 
-### andre_bjerke — André Bjerke
-- classification: **has_valid_primary_but_invalid_secondary_refs**
-- placeId: `grotta` (status: valid)
-- valid places: `grotta`
-- invalid places: `grotten_utsikt`
-- manglende schemafelt: (ingen)
-- stub: false
-- anbefalt neste handling: Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt.
-
 ### inger_hagerup — Inger Hagerup
 - classification: **has_valid_primary_but_invalid_secondary_refs**
 - placeId: `grotta` (status: valid)
@@ -82,24 +69,6 @@ Klassifisering (personer):
 - manglende schemafelt: (ingen)
 - stub: false
 - anbefalt neste handling: Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt.
-
-### jon_fosse — Jon Fosse
-- classification: **has_valid_primary_but_invalid_secondary_refs**
-- placeId: `grotta` (status: valid)
-- valid places: `grotta`
-- invalid places: `grotten_utsikt`
-- manglende schemafelt: (ingen)
-- stub: false
-- anbefalt neste handling: Gyldig primary, men sekundærrefs peker trolig på manglende steder. Beslutt place-data eller fjern refs manuelt.
-
-### alf_proysen — Alf Prøysen
-- classification: **ready_for_manual_mapping**
-- placeId: `alf_proysen_statue_nittedal` (status: valid)
-- valid places: `alf_proysen_statue_nittedal`
-- invalid places: (ingen)
-- manglende schemafelt: (ingen)
-- stub: false
-- anbefalt neste handling: Gyldig primary og kun gyldige refs. Kan tas i trygg manuell mapping-batch (evt. rydde duplikat/tomme refs).
 
 ### rolf_jacobsen — Rolf Jacobsen
 - classification: **missing_place_data_required**
@@ -121,8 +90,6 @@ Klassifisering (personer):
 - anbefalt neste handling: Kurater person manuelt i chat: fyll inn manglende schemafelt og bestem stedskobling før implementering.
 
 ## 3. Ugyldige placeRefs gruppert per person
-- **sigrid_undset** (Sigrid Undset) — has_valid_primary_but_invalid_secondary_refs
-  - `bøker_i_byen` → missing_place_candidate
 - **bjornstjerne_bjornson** (Bjørnstjerne Bjørnson) — has_valid_primary_but_invalid_secondary_refs
   - `bjornson_bolig` → missing_place_candidate
   - `ibsen_bjornson_graver` → missing_place_candidate
@@ -135,13 +102,9 @@ Klassifisering (personer):
 - **camilla_collett** (Camilla Collett) — has_valid_primary_but_invalid_secondary_refs
   - `collett_barndom` → missing_place_candidate
   - `henrik_wergeland_park` → needs_manual_review
-- **andre_bjerke** (André Bjerke) — has_valid_primary_but_invalid_secondary_refs
-  - `grotten_utsikt` → missing_place_candidate
 - **inger_hagerup** (Inger Hagerup) — has_valid_primary_but_invalid_secondary_refs
   - `grotten_utsikt` → missing_place_candidate
   - `inger_hagerup_minne` → missing_place_candidate
-- **jon_fosse** (Jon Fosse) — has_valid_primary_but_invalid_secondary_refs
-  - `grotten_utsikt` → missing_place_candidate
 
 ## 4. Unike ugyldige placeRefs
 ### `bjornson_bolig`
@@ -152,8 +115,8 @@ Klassifisering (personer):
 - kandidatforslag: missing_place_candidate (ingen god kandidat)
 
 ### `bøker_i_byen`
-- antall treff: 2
-- brukt av: henrik_wergeland, sigrid_undset
+- antall treff: 1
+- brukt av: henrik_wergeland
 - klassifisering: **missing_place_candidate**
 - finnes i places_index.json (kun runtime-sammenligning): false
 - kandidatforslag: missing_place_candidate (ingen god kandidat)
@@ -166,8 +129,8 @@ Klassifisering (personer):
 - kandidatforslag: missing_place_candidate (ingen god kandidat)
 
 ### `grotten_utsikt`
-- antall treff: 3
-- brukt av: andre_bjerke, inger_hagerup, jon_fosse
+- antall treff: 1
+- brukt av: inger_hagerup
 - klassifisering: **missing_place_candidate**
 - finnes i places_index.json (kun runtime-sammenligning): false
 - kandidatforslag: missing_place_candidate (ingen god kandidat)
@@ -231,14 +194,10 @@ Foreslår neste arbeid uten å utføre det. Ingen data endres av denne rapporten
 
 ### Batch A — trygge personer med gyldig primary placeId
 Trygge personer med gyldig primary placeId. Ugyldige sekundærrefs kan fjernes eller mappes etter manuell beslutning.
-- sigrid_undset
 - bjornstjerne_bjornson
 - henrik_wergeland
 - camilla_collett
-- andre_bjerke
 - inger_hagerup
-- jon_fosse
-- alf_proysen
 
 ### Batch B — missing place-data candidates
 missing_place_candidate placeRefs som bør få egne places (egen place-beslutning) før people kan ryddes.
