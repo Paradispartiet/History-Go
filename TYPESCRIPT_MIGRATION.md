@@ -769,3 +769,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Regenerated `reports/typecheck-baseline-report.md`, which keeps the current baseline at 1529 total diagnostics and records `js/ui/place-card.js` as the largest hotspot with 139 diagnostics.
 - The new audit report classifies the 139 `place-card.js` diagnostics by TypeScript code, hotspot line range, migration-risk class, and likely owner.
 - Recommended Phase 91 is a very small local TypeScript-only pass: target the image element cluster in `openPlaceCard()` around `pcFrontImage`/`pcMiniImg` first, with an optional single `btnUnlock` button cast only if needed; do not mix in global declarations, schema work, data changes, route/observation logic, or broad place-card cleanup.
+
+## Phase 91: place-card image element local cast pass
+
+- Followed the Phase 90 `js/ui/place-card.js` audit recommendation by targeting only the safest local DOM image cluster in `openPlaceCard()`.
+- Added narrow local `HTMLImageElement|null` casts for the existing `pcFrontImage` and `pcMiniImg` nodes, preserving their current selectors and render flow.
+- Wrapped the existing `.src` assignment values in `String(...)` for the front-image fallback chain and the mini-preview `place.image` fallback so TypeScript sees string values without changing the existing image priority or fallback order.
+- Runtime behavior, UI output, DOM structure, CSS, data, schema declarations, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1526, `js/ui/place-card.js` diagnostics are now 136, and `js/ui/**` diagnostics are now 499.
