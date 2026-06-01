@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-01T20:16:08.517Z",
+  "generatedAt": "2026-06-01T20:25:02.469Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-01T20:16:08.517Z",
+    "generatedAt": "2026-06-01T20:25:02.469Z",
     "peopleFilesRead": 21,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
@@ -14,8 +14,8 @@
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 5,
     "peopleWithEmptyPlacesArray": 3,
-    "flatPeopleFiles": 7,
-    "geographicPeopleFiles": 14,
+    "flatPeopleFiles": 6,
+    "geographicPeopleFiles": 15,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -338,27 +338,6 @@
       ]
     },
     {
-      "path": "data/people/people_vitenskap.json",
-      "listedInManifest": true,
-      "categoryGuess": "vitenskap",
-      "geographicStructure": false,
-      "peopleCount": 20,
-      "duplicateIdsWithinFile": [],
-      "missingIdCount": 0,
-      "missingNameCount": 0,
-      "missingCategoryCount": 5,
-      "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=20/20",
-        "source_place_id=0/20",
-        "placesArray=15/20",
-        "categories=vitenskap"
-      ]
-    },
-    {
       "path": "data/people/politikk/oslo/people_politikk_oslo.json",
       "listedInManifest": true,
       "categoryGuess": "politikk",
@@ -461,6 +440,27 @@
         "source_place_id=0/22",
         "placesArray=22/22",
         "categories=subkultur"
+      ]
+    },
+    {
+      "path": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
+      "listedInManifest": true,
+      "categoryGuess": "vitenskap",
+      "geographicStructure": true,
+      "peopleCount": 20,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 5,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=20/20",
+        "source_place_id=0/20",
+        "placesArray=15/20",
+        "categories=vitenskap"
       ]
     }
   ],
@@ -665,14 +665,14 @@
       "category": "vitenskap",
       "totalPeople": 20,
       "files": [
-        "data/people/people_vitenskap.json"
+        "data/people/vitenskap/oslo/people_vitenskap_oslo.json"
       ],
-      "flatFiles": [
-        "data/people/people_vitenskap.json"
+      "flatFiles": [],
+      "geographicFiles": [
+        "data/people/vitenskap/oslo/people_vitenskap_oslo.json"
       ],
-      "geographicFiles": [],
-      "suggestedNextAction": "geographic_split",
-      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     }
   ],
   "geographicStructureStatus": {
@@ -690,7 +690,8 @@
       "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
       "data/people/popkultur/oslo/people_popkultur_oslo.json",
       "data/people/sport/oslo/people_sport_oslo.json",
-      "data/people/subkultur/oslo/people_subkultur_oslo.json"
+      "data/people/subkultur/oslo/people_subkultur_oslo.json",
+      "data/people/vitenskap/oslo/people_vitenskap_oslo.json"
     ],
     "stillFlat": [
       "data/people/people_by.json",
@@ -698,8 +699,7 @@
       "data/people/people_musikk.json",
       "data/people/people_naeringsliv.json",
       "data/people/people_natur.json",
-      "data/people/people_populaerkultur.json",
-      "data/people/people_vitenskap.json"
+      "data/people/people_populaerkultur.json"
     ],
     "mixedCategoryStructure": [
       "musikk",
@@ -726,20 +726,12 @@
         "files": [
           "data/people/people_natur.json"
         ]
-      },
-      {
-        "category": "vitenskap",
-        "totalPeople": 20,
-        "files": [
-          "data/people/people_vitenskap.json"
-        ]
       }
     ],
     "safeFlatFilesForGeographicSplit": [
       "data/people/people_by.json",
       "data/people/people_musikk.json",
-      "data/people/people_natur.json",
-      "data/people/people_vitenskap.json"
+      "data/people/people_natur.json"
     ],
     "flatFilesHoldForSchemaReview": [
       {
@@ -1020,7 +1012,7 @@
       "reason": "missing_places_array"
     },
     {
-      "sourceFile": "data/people/people_vitenskap.json",
+      "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
       "personId": "kristian_birkeland",
       "personName": "Kristian Birkeland",
       "placeId": "observatoriet",
@@ -1029,7 +1021,7 @@
       "reason": "missing_places_array"
     },
     {
-      "sourceFile": "data/people/people_vitenskap.json",
+      "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
       "personId": "may_britt_moser",
       "personName": "May-Britt Moser",
       "placeId": "nobelinstituttet",
@@ -1038,7 +1030,7 @@
       "reason": "missing_places_array"
     },
     {
-      "sourceFile": "data/people/people_vitenskap.json",
+      "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
       "personId": "edvard_moser",
       "personName": "Edvard Moser",
       "placeId": "nobelinstituttet",
@@ -1047,7 +1039,7 @@
       "reason": "missing_places_array"
     },
     {
-      "sourceFile": "data/people/people_vitenskap.json",
+      "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
       "personId": "peter_waage",
       "personName": "Peter Waage",
       "placeId": "universitetets_gamle_kjemi",
@@ -1056,7 +1048,7 @@
       "reason": "missing_places_array"
     },
     {
-      "sourceFile": "data/people/people_vitenskap.json",
+      "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
       "personId": "cato_guldberg",
       "personName": "Cato Maximilian Guldberg",
       "placeId": "universitetets_gamle_kjemi",
@@ -1250,18 +1242,6 @@
       "deviations": []
     },
     {
-      "sourceFile": "data/people/people_vitenskap.json",
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=20/20",
-        "source_place_id=0/20",
-        "placesArray=15/20",
-        "categories=vitenskap"
-      ],
-      "deviations": []
-    },
-    {
       "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
@@ -1318,6 +1298,18 @@
         "source_place_id=0/22",
         "placesArray=22/22",
         "categories=subkultur"
+      ],
+      "deviations": []
+    },
+    {
+      "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=20/20",
+        "source_place_id=0/20",
+        "placesArray=15/20",
+        "categories=vitenskap"
       ],
       "deviations": []
     }
@@ -3974,1222 +3966,1222 @@
         "imagePath": "bilder/kort/people/astridS_sorenga.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_sverdrup",
+        "personName": "Johan Sverdrup",
+        "field": "image",
+        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_sverdrup",
+        "personName": "Johan Sverdrup",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fredrikke_marie_qvam",
+        "personName": "Fredrikke Marie Qvam",
+        "field": "image",
+        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fredrikke_marie_qvam",
+        "personName": "Fredrikke Marie Qvam",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "gina_krog",
+        "personName": "Gina Krog",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gina_krog.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "gina_krog",
+        "personName": "Gina Krog",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gina_krog.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "einar_gerhardsen",
+        "personName": "Einar Gerhardsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "einar_gerhardsen",
+        "personName": "Einar Gerhardsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_nygaardsvold",
+        "personName": "Johan Nygaardsvold",
+        "field": "image",
+        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_nygaardsvold",
+        "personName": "Johan Nygaardsvold",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "christian_michelsen",
+        "personName": "Christian Michelsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "christian_michelsen",
+        "personName": "Christian Michelsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_vii",
+        "personName": "Haakon VII",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_vii.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_vii",
+        "personName": "Haakon VII",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_vii.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "katti_anker_moller",
+        "personName": "Katti Anker Møller",
+        "field": "image",
+        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "katti_anker_moller",
+        "personName": "Katti Anker Møller",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "betzy_kjelsberg",
+        "personName": "Betzy Kjelsberg",
+        "field": "image",
+        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "betzy_kjelsberg",
+        "personName": "Betzy Kjelsberg",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "anna_rogstad",
+        "personName": "Anna Rogstad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "anna_rogstad",
+        "personName": "Anna Rogstad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fernanda_nissen",
+        "personName": "Fernanda Nissen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fernanda_nissen",
+        "personName": "Fernanda Nissen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_lie",
+        "personName": "Haakon Lie",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_lie.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_lie",
+        "personName": "Haakon Lie",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_lie.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "reiulf_steen",
+        "personName": "Reiulf Steen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "reiulf_steen",
+        "personName": "Reiulf Steen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "berit_aas",
+        "personName": "Berit Ås",
+        "field": "image",
+        "imagePath": "bilder/kort/people/berit_aas.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "berit_aas",
+        "personName": "Berit Ås",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/berit_aas.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "eva_kolstad",
+        "personName": "Eva Kolstad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "eva_kolstad",
+        "personName": "Eva Kolstad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "hanna_kvanmo",
+        "personName": "Hanna Kvanmo",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "hanna_kvanmo",
+        "personName": "Hanna Kvanmo",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "kirsti_kolle_grondahl",
+        "personName": "Kirsti Kolle Grøndahl",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "kirsti_kolle_grondahl",
+        "personName": "Kirsti Kolle Grøndahl",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "jo_benkow",
+        "personName": "Jo Benkow",
+        "field": "image",
+        "imagePath": "bilder/kort/people/jo_benkow.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "jo_benkow",
+        "personName": "Jo Benkow",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/jo_benkow.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "carl_i_hagen",
+        "personName": "Carl I. Hagen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "carl_i_hagen",
+        "personName": "Carl I. Hagen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
+        "personId": "amalia_rodrigues",
+        "personName": "Amália Rodrigues",
+        "field": "image",
+        "imagePath": "bilder/kort/people/amalia_rodrigues.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
+        "personId": "amalia_rodrigues",
+        "personName": "Amália Rodrigues",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/amalia_rodrigues.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "kristoffer_olsen",
+        "personName": "Kristoffer Olsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kristoffer_olsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "kristoffer_olsen",
+        "personName": "Kristoffer Olsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kristoffer_olsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "else_kass_furuseth",
+        "personName": "Else Kåss Furuseth",
+        "field": "image",
+        "imagePath": "bilder/kort/people/else_kass_furuseth.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "else_kass_furuseth",
+        "personName": "Else Kåss Furuseth",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/else_kass_furuseth.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "bard_tufte_johansen",
+        "personName": "Bård Tufte Johansen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/bard_tufte_johansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "bard_tufte_johansen",
+        "personName": "Bård Tufte Johansen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/bard_tufte_johansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "harald_eia",
+        "personName": "Harald Eia",
+        "field": "image",
+        "imagePath": "bilder/kort/people/harald_eia.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "harald_eia",
+        "personName": "Harald Eia",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/harald_eia.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "oystein_wiik",
+        "personName": "Øystein Wiik",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oystein_wiik.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "oystein_wiik",
+        "personName": "Øystein Wiik",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oystein_wiik.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "rein_alexander",
+        "personName": "Rein Alexander",
+        "field": "image",
+        "imagePath": "bilder/kort/people/rein_alexander.PNG"
+      },
+      {
+        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
+        "personId": "rein_alexander",
+        "personName": "Rein Alexander",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/rein_alexander.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ada_hegerberg",
+        "personName": "Ada Hegerberg",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ada_hegerberg",
+        "personName": "Ada Hegerberg",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "erling_haaland",
+        "personName": "Erling Braut Haaland",
+        "field": "image",
+        "imagePath": "bilder/kort/people/erling_haaland.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "erling_haaland",
+        "personName": "Erling Braut Haaland",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/erling_haaland.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "marit_bjorgen",
+        "personName": "Marit Bjørgen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "marit_bjorgen",
+        "personName": "Marit Bjørgen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "therese_johaug",
+        "personName": "Therese Johaug",
+        "field": "image",
+        "imagePath": "bilder/kort/people/therese_johaug.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "therese_johaug",
+        "personName": "Therese Johaug",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/therese_johaug.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sonja_henie",
+        "personName": "Sonja Henie",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sonja_henie.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sonja_henie",
+        "personName": "Sonja Henie",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sonja_henie.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oscar_mathisen",
+        "personName": "Oscar Mathisen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oscar_mathisen",
+        "personName": "Oscar Mathisen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "hjalmar_andersen",
+        "personName": "Hjalmar Andersen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "hjalmar_andersen",
+        "personName": "Hjalmar Andersen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "johann_olav_koss",
+        "personName": "Johann Olav Koss",
+        "field": "image",
+        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "johann_olav_koss",
+        "personName": "Johann Olav Koss",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "karsten_warholm",
+        "personName": "Karsten Warholm",
+        "field": "image",
+        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "karsten_warholm",
+        "personName": "Karsten Warholm",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "jakob_ingebrigtsen",
+        "personName": "Jakob Ingebrigtsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "jakob_ingebrigtsen",
+        "personName": "Jakob Ingebrigtsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ingrid_kristiansen",
+        "personName": "Ingrid Kristiansen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ingrid_kristiansen",
+        "personName": "Ingrid Kristiansen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "vebjorn_rodal",
+        "personName": "Vebjørn Rodal",
+        "field": "image",
+        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "vebjorn_rodal",
+        "personName": "Vebjørn Rodal",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "trine_hattestad",
+        "personName": "Trine Hattestad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "trine_hattestad",
+        "personName": "Trine Hattestad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "andreas_thorkildsen",
+        "personName": "Andreas Thorkildsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "andreas_thorkildsen",
+        "personName": "Andreas Thorkildsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "kjetil_andre_aamodt",
+        "personName": "Kjetil André Aamodt",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "kjetil_andre_aamodt",
+        "personName": "Kjetil André Aamodt",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lasse_kjus",
+        "personName": "Lasse Kjus",
+        "field": "image",
+        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lasse_kjus",
+        "personName": "Lasse Kjus",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "cecilie_leganger",
+        "personName": "Cecilie Leganger",
+        "field": "image",
+        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "cecilie_leganger",
+        "personName": "Cecilie Leganger",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nora_mork",
+        "personName": "Nora Mørk",
+        "field": "image",
+        "imagePath": "bilder/kort/people/nora_mork.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nora_mork",
+        "personName": "Nora Mørk",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/nora_mork.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sander_sagosen",
+        "personName": "Sander Sagosen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sander_sagosen",
+        "personName": "Sander Sagosen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ole_gunnar_solskjaer",
+        "personName": "Ole Gunnar Solskjær",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ole_gunnar_solskjaer",
+        "personName": "Ole Gunnar Solskjær",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nils_arne_eggen",
+        "personName": "Nils Arne Eggen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nils_arne_eggen",
+        "personName": "Nils Arne Eggen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lyn_fotball",
+        "personName": "Lyn Fotball",
+        "field": "image",
+        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lyn_fotball",
+        "personName": "Lyn Fotball",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "skeid_fotball",
+        "personName": "Skeid Fotball",
+        "field": "image",
+        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "skeid_fotball",
+        "personName": "Skeid Fotball",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oslo_skoiteklub",
+        "personName": "Oslo Skøiteklub",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oslo_skoiteklub",
+        "personName": "Oslo Skøiteklub",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kolapalsen",
+        "personName": "Køla-Pålsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kolapalsen",
+        "personName": "Køla-Pålsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "snippmoller",
+        "personName": "Snipp-Møller",
+        "field": "image",
+        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "snippmoller",
+        "personName": "Snipp-Møller",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "lisa_kristoffersen",
+        "personName": "Lisa Kristoffersen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "lisa_kristoffersen",
+        "personName": "Lisa Kristoffersen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "advokat_hermansen",
+        "personName": "Advokat Hermansen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "advokat_hermansen",
+        "personName": "Advokat Hermansen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "ole_bjorn",
+        "personName": "Ole-Bjørn",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "ole_bjorn",
+        "personName": "Ole-Bjørn",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "viggo_tigeren",
+        "personName": "Viggo (byen som tiger)",
+        "field": "image",
+        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "viggo_tigeren",
+        "personName": "Viggo (byen som tiger)",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tinashe_williamson",
+        "personName": "Tinashe Williamson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tinashe_williamson",
+        "personName": "Tinashe Williamson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "stephen_butkus",
+        "personName": "Stephen Butkus",
+        "field": "image",
+        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "stephen_butkus",
+        "personName": "Stephen Butkus",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "blitz_miljoet",
+        "personName": "Blitz-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "blitz_miljoet",
+        "personName": "Blitz-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hausmania_miljoet",
+        "personName": "Hausmania-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hausmania_miljoet",
+        "personName": "Hausmania-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_pride_skeive_dager",
+        "personName": "Oslo Pride / Skeive dager",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_pride_skeive_dager",
+        "personName": "Oslo Pride / Skeive dager",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "radi_orakel",
+        "personName": "RadiOrakel",
+        "field": "image",
+        "imagePath": "bilder/kort/people/radi_orakel.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "radi_orakel",
+        "personName": "RadiOrakel",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/radi_orakel.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "gateavisa_miljoet",
+        "personName": "Gateavisa-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "gateavisa_miljoet",
+        "personName": "Gateavisa-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_graffiti_miljoet",
+        "personName": "Oslo graffiti-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_graffiti_miljoet",
+        "personName": "Oslo graffiti-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_skateboardmiljoet",
+        "personName": "Oslo skateboardmiljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_skateboardmiljoet",
+        "personName": "Oslo skateboardmiljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "christopher_nielsen",
+        "personName": "Christopher Nielsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "christopher_nielsen",
+        "personName": "Christopher Nielsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hariton_pushwagner",
+        "personName": "Hariton Pushwagner",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hariton_pushwagner",
+        "personName": "Hariton Pushwagner",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "don_martin",
+        "personName": "Don Martin",
+        "field": "image",
+        "imagePath": "bilder/kort/people/don_martin.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "don_martin",
+        "personName": "Don Martin",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/don_martin.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tommy_tee",
+        "personName": "Tommy Tee",
+        "field": "image",
+        "imagePath": "bilder/kort/people/tommy_tee.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tommy_tee",
+        "personName": "Tommy Tee",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/tommy_tee.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "warlocks_oslo",
+        "personName": "Warlocks",
+        "field": "image",
+        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "warlocks_oslo",
+        "personName": "Warlocks",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kjetil_rolness",
+        "personName": "Kjetil Rolness",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kjetil_rolness",
+        "personName": "Kjetil Rolness",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
+      },
+      {
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "edvard_moser",
         "personName": "Edvard Moser",
         "field": "image",
         "imagePath": "bilder/people/Edvard_Moser.JPG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "edvard_moser",
         "personName": "Edvard Moser",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/edvardmoser.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "peter_waage",
         "personName": "Peter Waage",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/peter_waage.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "cato_guldberg",
         "personName": "Cato Maximilian Guldberg",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/cato_guldberg.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "eilert_sundt",
         "personName": "Eilert Sundt",
         "field": "image",
         "imagePath": "bilder/kort/people/eilert_sundt.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "eilert_sundt",
         "personName": "Eilert Sundt",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/eilert_sundt.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "sophus_lie",
         "personName": "Sophus Lie",
         "field": "image",
         "imagePath": "bilder/kort/people/sophus_lie.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "sophus_lie",
         "personName": "Sophus Lie",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/sophus_lie.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "vilhelm_bjerknes",
         "personName": "Vilhelm Bjerknes",
         "field": "image",
         "imagePath": "bilder/kort/people/vilhelm_bjerknes.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "vilhelm_bjerknes",
         "personName": "Vilhelm Bjerknes",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/vilhelm_bjerknes.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "ragnar_frisch",
         "personName": "Ragnar Frisch",
         "field": "image",
         "imagePath": "bilder/kort/people/ragnar_frisch.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "ragnar_frisch",
         "personName": "Ragnar Frisch",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/ragnar_frisch.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "trygve_haavelmo",
         "personName": "Trygve Haavelmo",
         "field": "image",
         "imagePath": "bilder/kort/people/trygve_haavelmo.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "trygve_haavelmo",
         "personName": "Trygve Haavelmo",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/trygve_haavelmo.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "helga_eng",
         "personName": "Helga Eng",
         "field": "image",
         "imagePath": "bilder/kort/people/helga_eng.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "helga_eng",
         "personName": "Helga Eng",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/helga_eng.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "harriet_holter",
         "personName": "Harriet Holter",
         "field": "image",
         "imagePath": "bilder/kort/people/harriet_holter.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "harriet_holter",
         "personName": "Harriet Holter",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/harriet_holter.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "johan_galtung",
         "personName": "Johan Galtung",
         "field": "image",
         "imagePath": "bilder/kort/people/johan_galtung.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "johan_galtung",
         "personName": "Johan Galtung",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/johan_galtung.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "thomas_hylland_eriksen",
         "personName": "Thomas Hylland Eriksen",
         "field": "image",
         "imagePath": "bilder/kort/people/thomas_hylland_eriksen.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "thomas_hylland_eriksen",
         "personName": "Thomas Hylland Eriksen",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/thomas_hylland_eriksen.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "lucy_smith",
         "personName": "Lucy Smith",
         "field": "image",
         "imagePath": "bilder/kort/people/lucy_smith.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "lucy_smith",
         "personName": "Lucy Smith",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/lucy_smith.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "tove_stang_dahl",
         "personName": "Tove Stang Dahl",
         "field": "image",
         "imagePath": "bilder/kort/people/tove_stang_dahl.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "tove_stang_dahl",
         "personName": "Tove Stang Dahl",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/tove_stang_dahl.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "jon_elster",
         "personName": "Jon Elster",
         "field": "image",
         "imagePath": "bilder/kort/people/jon_elster.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "jon_elster",
         "personName": "Jon Elster",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/jon_elster.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "fredrik_barth",
         "personName": "Fredrik Barth",
         "field": "image",
         "imagePath": "bilder/kort/people/fredrik_barth.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "fredrik_barth",
         "personName": "Fredrik Barth",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/fredrik_barth.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "kristian_schreiner",
         "personName": "Kristian Emil Schreiner",
         "field": "image",
         "imagePath": "bilder/kort/people/kristian_schreiner.PNG"
       },
       {
-        "sourceFile": "data/people/people_vitenskap.json",
+        "sourceFile": "data/people/vitenskap/oslo/people_vitenskap_oslo.json",
         "personId": "kristian_schreiner",
         "personName": "Kristian Emil Schreiner",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/kristian_schreiner.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "johan_sverdrup",
-        "personName": "Johan Sverdrup",
-        "field": "image",
-        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "johan_sverdrup",
-        "personName": "Johan Sverdrup",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "fredrikke_marie_qvam",
-        "personName": "Fredrikke Marie Qvam",
-        "field": "image",
-        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "fredrikke_marie_qvam",
-        "personName": "Fredrikke Marie Qvam",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "gina_krog",
-        "personName": "Gina Krog",
-        "field": "image",
-        "imagePath": "bilder/kort/people/gina_krog.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "gina_krog",
-        "personName": "Gina Krog",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/gina_krog.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "einar_gerhardsen",
-        "personName": "Einar Gerhardsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "einar_gerhardsen",
-        "personName": "Einar Gerhardsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "johan_nygaardsvold",
-        "personName": "Johan Nygaardsvold",
-        "field": "image",
-        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "johan_nygaardsvold",
-        "personName": "Johan Nygaardsvold",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "christian_michelsen",
-        "personName": "Christian Michelsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "christian_michelsen",
-        "personName": "Christian Michelsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "haakon_vii",
-        "personName": "Haakon VII",
-        "field": "image",
-        "imagePath": "bilder/kort/people/haakon_vii.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "haakon_vii",
-        "personName": "Haakon VII",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/haakon_vii.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "katti_anker_moller",
-        "personName": "Katti Anker Møller",
-        "field": "image",
-        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "katti_anker_moller",
-        "personName": "Katti Anker Møller",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "betzy_kjelsberg",
-        "personName": "Betzy Kjelsberg",
-        "field": "image",
-        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "betzy_kjelsberg",
-        "personName": "Betzy Kjelsberg",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "anna_rogstad",
-        "personName": "Anna Rogstad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "anna_rogstad",
-        "personName": "Anna Rogstad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "fernanda_nissen",
-        "personName": "Fernanda Nissen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "fernanda_nissen",
-        "personName": "Fernanda Nissen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "haakon_lie",
-        "personName": "Haakon Lie",
-        "field": "image",
-        "imagePath": "bilder/kort/people/haakon_lie.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "haakon_lie",
-        "personName": "Haakon Lie",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/haakon_lie.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "reiulf_steen",
-        "personName": "Reiulf Steen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "reiulf_steen",
-        "personName": "Reiulf Steen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "berit_aas",
-        "personName": "Berit Ås",
-        "field": "image",
-        "imagePath": "bilder/kort/people/berit_aas.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "berit_aas",
-        "personName": "Berit Ås",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/berit_aas.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "eva_kolstad",
-        "personName": "Eva Kolstad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "eva_kolstad",
-        "personName": "Eva Kolstad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "hanna_kvanmo",
-        "personName": "Hanna Kvanmo",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "hanna_kvanmo",
-        "personName": "Hanna Kvanmo",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "kirsti_kolle_grondahl",
-        "personName": "Kirsti Kolle Grøndahl",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "kirsti_kolle_grondahl",
-        "personName": "Kirsti Kolle Grøndahl",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "jo_benkow",
-        "personName": "Jo Benkow",
-        "field": "image",
-        "imagePath": "bilder/kort/people/jo_benkow.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "jo_benkow",
-        "personName": "Jo Benkow",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/jo_benkow.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "carl_i_hagen",
-        "personName": "Carl I. Hagen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
-      },
-      {
-        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
-        "personId": "carl_i_hagen",
-        "personName": "Carl I. Hagen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
-        "personId": "amalia_rodrigues",
-        "personName": "Amália Rodrigues",
-        "field": "image",
-        "imagePath": "bilder/kort/people/amalia_rodrigues.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
-        "personId": "amalia_rodrigues",
-        "personName": "Amália Rodrigues",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/amalia_rodrigues.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "kristoffer_olsen",
-        "personName": "Kristoffer Olsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kristoffer_olsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "kristoffer_olsen",
-        "personName": "Kristoffer Olsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kristoffer_olsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "else_kass_furuseth",
-        "personName": "Else Kåss Furuseth",
-        "field": "image",
-        "imagePath": "bilder/kort/people/else_kass_furuseth.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "else_kass_furuseth",
-        "personName": "Else Kåss Furuseth",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/else_kass_furuseth.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "bard_tufte_johansen",
-        "personName": "Bård Tufte Johansen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/bard_tufte_johansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "bard_tufte_johansen",
-        "personName": "Bård Tufte Johansen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/bard_tufte_johansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "harald_eia",
-        "personName": "Harald Eia",
-        "field": "image",
-        "imagePath": "bilder/kort/people/harald_eia.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "harald_eia",
-        "personName": "Harald Eia",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/harald_eia.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "oystein_wiik",
-        "personName": "Øystein Wiik",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oystein_wiik.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "oystein_wiik",
-        "personName": "Øystein Wiik",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oystein_wiik.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "rein_alexander",
-        "personName": "Rein Alexander",
-        "field": "image",
-        "imagePath": "bilder/kort/people/rein_alexander.PNG"
-      },
-      {
-        "sourceFile": "data/people/popkultur/oslo/people_popkultur_oslo.json",
-        "personId": "rein_alexander",
-        "personName": "Rein Alexander",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/rein_alexander.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "ada_hegerberg",
-        "personName": "Ada Hegerberg",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "ada_hegerberg",
-        "personName": "Ada Hegerberg",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "erling_haaland",
-        "personName": "Erling Braut Haaland",
-        "field": "image",
-        "imagePath": "bilder/kort/people/erling_haaland.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "erling_haaland",
-        "personName": "Erling Braut Haaland",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/erling_haaland.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "marit_bjorgen",
-        "personName": "Marit Bjørgen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "marit_bjorgen",
-        "personName": "Marit Bjørgen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "therese_johaug",
-        "personName": "Therese Johaug",
-        "field": "image",
-        "imagePath": "bilder/kort/people/therese_johaug.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "therese_johaug",
-        "personName": "Therese Johaug",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/therese_johaug.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "sonja_henie",
-        "personName": "Sonja Henie",
-        "field": "image",
-        "imagePath": "bilder/kort/people/sonja_henie.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "sonja_henie",
-        "personName": "Sonja Henie",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sonja_henie.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "oscar_mathisen",
-        "personName": "Oscar Mathisen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "oscar_mathisen",
-        "personName": "Oscar Mathisen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "hjalmar_andersen",
-        "personName": "Hjalmar Andersen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "hjalmar_andersen",
-        "personName": "Hjalmar Andersen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "johann_olav_koss",
-        "personName": "Johann Olav Koss",
-        "field": "image",
-        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "johann_olav_koss",
-        "personName": "Johann Olav Koss",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "karsten_warholm",
-        "personName": "Karsten Warholm",
-        "field": "image",
-        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "karsten_warholm",
-        "personName": "Karsten Warholm",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "jakob_ingebrigtsen",
-        "personName": "Jakob Ingebrigtsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "jakob_ingebrigtsen",
-        "personName": "Jakob Ingebrigtsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "ingrid_kristiansen",
-        "personName": "Ingrid Kristiansen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "ingrid_kristiansen",
-        "personName": "Ingrid Kristiansen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "vebjorn_rodal",
-        "personName": "Vebjørn Rodal",
-        "field": "image",
-        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "vebjorn_rodal",
-        "personName": "Vebjørn Rodal",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "trine_hattestad",
-        "personName": "Trine Hattestad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "trine_hattestad",
-        "personName": "Trine Hattestad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "andreas_thorkildsen",
-        "personName": "Andreas Thorkildsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "andreas_thorkildsen",
-        "personName": "Andreas Thorkildsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "kjetil_andre_aamodt",
-        "personName": "Kjetil André Aamodt",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "kjetil_andre_aamodt",
-        "personName": "Kjetil André Aamodt",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "lasse_kjus",
-        "personName": "Lasse Kjus",
-        "field": "image",
-        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "lasse_kjus",
-        "personName": "Lasse Kjus",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "cecilie_leganger",
-        "personName": "Cecilie Leganger",
-        "field": "image",
-        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "cecilie_leganger",
-        "personName": "Cecilie Leganger",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "nora_mork",
-        "personName": "Nora Mørk",
-        "field": "image",
-        "imagePath": "bilder/kort/people/nora_mork.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "nora_mork",
-        "personName": "Nora Mørk",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/nora_mork.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "sander_sagosen",
-        "personName": "Sander Sagosen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "sander_sagosen",
-        "personName": "Sander Sagosen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "ole_gunnar_solskjaer",
-        "personName": "Ole Gunnar Solskjær",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "ole_gunnar_solskjaer",
-        "personName": "Ole Gunnar Solskjær",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "nils_arne_eggen",
-        "personName": "Nils Arne Eggen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "nils_arne_eggen",
-        "personName": "Nils Arne Eggen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "lyn_fotball",
-        "personName": "Lyn Fotball",
-        "field": "image",
-        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "lyn_fotball",
-        "personName": "Lyn Fotball",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "skeid_fotball",
-        "personName": "Skeid Fotball",
-        "field": "image",
-        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "skeid_fotball",
-        "personName": "Skeid Fotball",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "oslo_skoiteklub",
-        "personName": "Oslo Skøiteklub",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
-      },
-      {
-        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
-        "personId": "oslo_skoiteklub",
-        "personName": "Oslo Skøiteklub",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "kolapalsen",
-        "personName": "Køla-Pålsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "kolapalsen",
-        "personName": "Køla-Pålsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "snippmoller",
-        "personName": "Snipp-Møller",
-        "field": "image",
-        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "snippmoller",
-        "personName": "Snipp-Møller",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "lisa_kristoffersen",
-        "personName": "Lisa Kristoffersen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "lisa_kristoffersen",
-        "personName": "Lisa Kristoffersen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "advokat_hermansen",
-        "personName": "Advokat Hermansen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "advokat_hermansen",
-        "personName": "Advokat Hermansen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "ole_bjorn",
-        "personName": "Ole-Bjørn",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "ole_bjorn",
-        "personName": "Ole-Bjørn",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "viggo_tigeren",
-        "personName": "Viggo (byen som tiger)",
-        "field": "image",
-        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "viggo_tigeren",
-        "personName": "Viggo (byen som tiger)",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "tinashe_williamson",
-        "personName": "Tinashe Williamson",
-        "field": "image",
-        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "tinashe_williamson",
-        "personName": "Tinashe Williamson",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "stephen_butkus",
-        "personName": "Stephen Butkus",
-        "field": "image",
-        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "stephen_butkus",
-        "personName": "Stephen Butkus",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "blitz_miljoet",
-        "personName": "Blitz-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "blitz_miljoet",
-        "personName": "Blitz-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "hausmania_miljoet",
-        "personName": "Hausmania-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "hausmania_miljoet",
-        "personName": "Hausmania-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "oslo_pride_skeive_dager",
-        "personName": "Oslo Pride / Skeive dager",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "oslo_pride_skeive_dager",
-        "personName": "Oslo Pride / Skeive dager",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "radi_orakel",
-        "personName": "RadiOrakel",
-        "field": "image",
-        "imagePath": "bilder/kort/people/radi_orakel.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "radi_orakel",
-        "personName": "RadiOrakel",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/radi_orakel.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "gateavisa_miljoet",
-        "personName": "Gateavisa-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "gateavisa_miljoet",
-        "personName": "Gateavisa-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "oslo_graffiti_miljoet",
-        "personName": "Oslo graffiti-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "oslo_graffiti_miljoet",
-        "personName": "Oslo graffiti-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "oslo_skateboardmiljoet",
-        "personName": "Oslo skateboardmiljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "oslo_skateboardmiljoet",
-        "personName": "Oslo skateboardmiljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "christopher_nielsen",
-        "personName": "Christopher Nielsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "christopher_nielsen",
-        "personName": "Christopher Nielsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "hariton_pushwagner",
-        "personName": "Hariton Pushwagner",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "hariton_pushwagner",
-        "personName": "Hariton Pushwagner",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "don_martin",
-        "personName": "Don Martin",
-        "field": "image",
-        "imagePath": "bilder/kort/people/don_martin.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "don_martin",
-        "personName": "Don Martin",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/don_martin.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "tommy_tee",
-        "personName": "Tommy Tee",
-        "field": "image",
-        "imagePath": "bilder/kort/people/tommy_tee.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "tommy_tee",
-        "personName": "Tommy Tee",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/tommy_tee.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "warlocks_oslo",
-        "personName": "Warlocks",
-        "field": "image",
-        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "warlocks_oslo",
-        "personName": "Warlocks",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "kjetil_rolness",
-        "personName": "Kjetil Rolness",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
-      },
-      {
-        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
-        "personId": "kjetil_rolness",
-        "personName": "Kjetil Rolness",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
       }
     ]
   },
@@ -5245,9 +5237,9 @@
   ],
   "recommendedNextPr": {
     "type": "geographic_split",
-    "category": "vitenskap",
-    "reason": "vitenskap er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-    "safeBatchSize": 20,
+    "category": "musikk",
+    "reason": "musikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+    "safeBatchSize": 19,
     "blockers": []
   },
   "guardrails": {
