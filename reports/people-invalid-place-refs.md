@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T18:29:56.988Z
+Generated: 2026-06-01T19:29:01.258Z
 
 ## Sammendrag
 - People-filer lest: **21**
@@ -217,34 +217,34 @@ Generated: 2026-06-01T18:29:56.988Z
 - data/people/people_politikk.json :: kirsti_kolle_grondahl (Kirsti Kolle Grøndahl) -> stortinget x2
 - data/people/people_politikk.json :: jo_benkow (Jo Benkow) -> stortinget x2
 - data/people/people_politikk.json :: carl_i_hagen (Carl I. Hagen) -> stortinget x2
-- data/people/people_sport.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
-- data/people/people_sport.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
-- data/people/people_sport.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2
-- data/people/people_sport.json :: marit_bjorgen (Marit Bjørgen) -> holmenkollen_nasjonalanlegg x2
-- data/people/people_sport.json :: therese_johaug (Therese Johaug) -> holmenkollen_nasjonalanlegg x2
-- data/people/people_sport.json :: grete_waitz (Grete Waitz) -> bislett_stadion x2
-- data/people/people_sport.json :: mats_zuccarello (Mats Zuccarello) -> vulkan_industriomrade x2
-- data/people/people_sport.json :: klanen (Klanen (VIF)) -> valle_hovin_stadion x2
-- data/people/people_sport.json :: sonja_henie (Sonja Henie) -> frogner_stadion x2
-- data/people/people_sport.json :: oscar_mathisen (Oscar Mathisen) -> frogner_stadion x2
-- data/people/people_sport.json :: hjalmar_andersen (Hjalmar Andersen) -> frogner_stadion x2
-- data/people/people_sport.json :: johann_olav_koss (Johann Olav Koss) -> frogner_stadion x2
-- data/people/people_sport.json :: karsten_warholm (Karsten Warholm) -> bislett_stadion x2
-- data/people/people_sport.json :: jakob_ingebrigtsen (Jakob Ingebrigtsen) -> bislett_stadion x2
-- data/people/people_sport.json :: ingrid_kristiansen (Ingrid Kristiansen) -> bislett_stadion x2
-- data/people/people_sport.json :: vebjorn_rodal (Vebjørn Rodal) -> bislett_stadion x2
-- data/people/people_sport.json :: trine_hattestad (Trine Hattestad) -> bislett_stadion x2
-- data/people/people_sport.json :: andreas_thorkildsen (Andreas Thorkildsen) -> bislett_stadion x2
-- data/people/people_sport.json :: kjetil_andre_aamodt (Kjetil André Aamodt) -> holmenkollen_nasjonalanlegg x2
-- data/people/people_sport.json :: lasse_kjus (Lasse Kjus) -> holmenkollen_nasjonalanlegg x2
-- data/people/people_sport.json :: cecilie_leganger (Cecilie Leganger) -> ullevaal_stadion x2
-- data/people/people_sport.json :: nora_mork (Nora Mørk) -> ullevaal_stadion x2
-- data/people/people_sport.json :: sander_sagosen (Sander Sagosen) -> ullevaal_stadion x2
-- data/people/people_sport.json :: ole_gunnar_solskjaer (Ole Gunnar Solskjær) -> ullevaal_stadion x2
-- data/people/people_sport.json :: nils_arne_eggen (Nils Arne Eggen) -> ullevaal_stadion x2
-- data/people/people_sport.json :: lyn_fotball (Lyn Fotball) -> ullevaal_stadion x2
-- data/people/people_sport.json :: skeid_fotball (Skeid Fotball) -> nordre_aasen_idrettspark x2
-- data/people/people_sport.json :: oslo_skoiteklub (Oslo Skøiteklub) -> frogner_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: marit_bjorgen (Marit Bjørgen) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/people_sport_oslo.json :: therese_johaug (Therese Johaug) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/people_sport_oslo.json :: grete_waitz (Grete Waitz) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: mats_zuccarello (Mats Zuccarello) -> vulkan_industriomrade x2
+- data/people/sport/oslo/people_sport_oslo.json :: klanen (Klanen (VIF)) -> valle_hovin_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: sonja_henie (Sonja Henie) -> frogner_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: oscar_mathisen (Oscar Mathisen) -> frogner_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: hjalmar_andersen (Hjalmar Andersen) -> frogner_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: johann_olav_koss (Johann Olav Koss) -> frogner_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: karsten_warholm (Karsten Warholm) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: jakob_ingebrigtsen (Jakob Ingebrigtsen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: ingrid_kristiansen (Ingrid Kristiansen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: vebjorn_rodal (Vebjørn Rodal) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: trine_hattestad (Trine Hattestad) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: andreas_thorkildsen (Andreas Thorkildsen) -> bislett_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: kjetil_andre_aamodt (Kjetil André Aamodt) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/people_sport_oslo.json :: lasse_kjus (Lasse Kjus) -> holmenkollen_nasjonalanlegg x2
+- data/people/sport/oslo/people_sport_oslo.json :: cecilie_leganger (Cecilie Leganger) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: nora_mork (Nora Mørk) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: sander_sagosen (Sander Sagosen) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: ole_gunnar_solskjaer (Ole Gunnar Solskjær) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: nils_arne_eggen (Nils Arne Eggen) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: lyn_fotball (Lyn Fotball) -> ullevaal_stadion x2
+- data/people/sport/oslo/people_sport_oslo.json :: skeid_fotball (Skeid Fotball) -> nordre_aasen_idrettspark x2
+- data/people/sport/oslo/people_sport_oslo.json :: oslo_skoiteklub (Oslo Skøiteklub) -> frogner_stadion x2
 - data/people/people_subkultur.json :: kolapalsen (Køla-Pålsen) -> oslo_domkirke x2
 - data/people/people_subkultur.json :: snippmoller (Snipp-Møller) -> oslo_domkirke x2
 - data/people/people_subkultur.json :: lusefrants (Luse-Frants) -> middelalder_oslo x2

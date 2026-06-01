@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-01T18:29:57.277Z",
+  "generatedAt": "2026-06-01T19:29:01.574Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-01T18:29:57.277Z",
+    "generatedAt": "2026-06-01T19:29:01.574Z",
     "peopleFilesRead": 21,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
@@ -14,8 +14,8 @@
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 5,
     "peopleWithEmptyPlacesArray": 3,
-    "flatPeopleFiles": 10,
-    "geographicPeopleFiles": 11,
+    "flatPeopleFiles": 9,
+    "geographicPeopleFiles": 12,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -359,27 +359,6 @@
       ]
     },
     {
-      "path": "data/people/people_sport.json",
-      "listedInManifest": true,
-      "categoryGuess": "sport",
-      "geographicStructure": false,
-      "peopleCount": 28,
-      "duplicateIdsWithinFile": [],
-      "missingIdCount": 0,
-      "missingNameCount": 0,
-      "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=28/28",
-        "source_place_id=0/28",
-        "placesArray=28/28",
-        "categories=sport"
-      ]
-    },
-    {
       "path": "data/people/people_subkultur.json",
       "listedInManifest": true,
       "categoryGuess": "subkultur",
@@ -461,6 +440,27 @@
         "source_place_id=0/6",
         "placesArray=6/6",
         "categories=populaerkultur"
+      ]
+    },
+    {
+      "path": "data/people/sport/oslo/people_sport_oslo.json",
+      "listedInManifest": true,
+      "categoryGuess": "sport",
+      "geographicStructure": true,
+      "peopleCount": 28,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=28/28",
+        "source_place_id=0/28",
+        "placesArray=28/28",
+        "categories=sport"
       ]
     }
   ],
@@ -639,14 +639,14 @@
       "category": "sport",
       "totalPeople": 28,
       "files": [
-        "data/people/people_sport.json"
+        "data/people/sport/oslo/people_sport_oslo.json"
       ],
-      "flatFiles": [
-        "data/people/people_sport.json"
+      "flatFiles": [],
+      "geographicFiles": [
+        "data/people/sport/oslo/people_sport_oslo.json"
       ],
-      "geographicFiles": [],
-      "suggestedNextAction": "geographic_split",
-      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     },
     {
       "category": "subkultur",
@@ -687,7 +687,8 @@
       "data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json",
       "data/people/musikk/oslo/people_musikk_oslo.json",
       "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
-      "data/people/popkultur/oslo/people_popkultur_oslo.json"
+      "data/people/popkultur/oslo/people_popkultur_oslo.json",
+      "data/people/sport/oslo/people_sport_oslo.json"
     ],
     "stillFlat": [
       "data/people/people_by.json",
@@ -697,7 +698,6 @@
       "data/people/people_natur.json",
       "data/people/people_politikk.json",
       "data/people/people_populaerkultur.json",
-      "data/people/people_sport.json",
       "data/people/people_subkultur.json",
       "data/people/people_vitenskap.json"
     ],
@@ -735,13 +735,6 @@
         ]
       },
       {
-        "category": "sport",
-        "totalPeople": 28,
-        "files": [
-          "data/people/people_sport.json"
-        ]
-      },
-      {
         "category": "subkultur",
         "totalPeople": 22,
         "files": [
@@ -761,7 +754,6 @@
       "data/people/people_musikk.json",
       "data/people/people_natur.json",
       "data/people/people_politikk.json",
-      "data/people/people_sport.json",
       "data/people/people_subkultur.json",
       "data/people/people_vitenskap.json"
     ],
@@ -1286,18 +1278,6 @@
       "deviations": []
     },
     {
-      "sourceFile": "data/people/people_sport.json",
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=28/28",
-        "source_place_id=0/28",
-        "placesArray=28/28",
-        "categories=sport"
-      ],
-      "deviations": []
-    },
-    {
       "sourceFile": "data/people/people_subkultur.json",
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
@@ -1342,6 +1322,18 @@
         "source_place_id=0/6",
         "placesArray=6/6",
         "categories=populaerkultur"
+      ],
+      "deviations": []
+    },
+    {
+      "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=28/28",
+        "source_place_id=0/28",
+        "placesArray=28/28",
+        "categories=sport"
       ],
       "deviations": []
     }
@@ -4264,342 +4256,6 @@
         "imagePath": "bilder/kort/people/astridS_sorenga.PNG"
       },
       {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "ada_hegerberg",
-        "personName": "Ada Hegerberg",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "ada_hegerberg",
-        "personName": "Ada Hegerberg",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "erling_haaland",
-        "personName": "Erling Braut Haaland",
-        "field": "image",
-        "imagePath": "bilder/kort/people/erling_haaland.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "erling_haaland",
-        "personName": "Erling Braut Haaland",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/erling_haaland.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "marit_bjorgen",
-        "personName": "Marit Bjørgen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "marit_bjorgen",
-        "personName": "Marit Bjørgen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "therese_johaug",
-        "personName": "Therese Johaug",
-        "field": "image",
-        "imagePath": "bilder/kort/people/therese_johaug.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "therese_johaug",
-        "personName": "Therese Johaug",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/therese_johaug.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "sonja_henie",
-        "personName": "Sonja Henie",
-        "field": "image",
-        "imagePath": "bilder/kort/people/sonja_henie.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "sonja_henie",
-        "personName": "Sonja Henie",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sonja_henie.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "oscar_mathisen",
-        "personName": "Oscar Mathisen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "oscar_mathisen",
-        "personName": "Oscar Mathisen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "hjalmar_andersen",
-        "personName": "Hjalmar Andersen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "hjalmar_andersen",
-        "personName": "Hjalmar Andersen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "johann_olav_koss",
-        "personName": "Johann Olav Koss",
-        "field": "image",
-        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "johann_olav_koss",
-        "personName": "Johann Olav Koss",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "karsten_warholm",
-        "personName": "Karsten Warholm",
-        "field": "image",
-        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "karsten_warholm",
-        "personName": "Karsten Warholm",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "jakob_ingebrigtsen",
-        "personName": "Jakob Ingebrigtsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "jakob_ingebrigtsen",
-        "personName": "Jakob Ingebrigtsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "ingrid_kristiansen",
-        "personName": "Ingrid Kristiansen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "ingrid_kristiansen",
-        "personName": "Ingrid Kristiansen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "vebjorn_rodal",
-        "personName": "Vebjørn Rodal",
-        "field": "image",
-        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "vebjorn_rodal",
-        "personName": "Vebjørn Rodal",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "trine_hattestad",
-        "personName": "Trine Hattestad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "trine_hattestad",
-        "personName": "Trine Hattestad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "andreas_thorkildsen",
-        "personName": "Andreas Thorkildsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "andreas_thorkildsen",
-        "personName": "Andreas Thorkildsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "kjetil_andre_aamodt",
-        "personName": "Kjetil André Aamodt",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "kjetil_andre_aamodt",
-        "personName": "Kjetil André Aamodt",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "lasse_kjus",
-        "personName": "Lasse Kjus",
-        "field": "image",
-        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "lasse_kjus",
-        "personName": "Lasse Kjus",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "cecilie_leganger",
-        "personName": "Cecilie Leganger",
-        "field": "image",
-        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "cecilie_leganger",
-        "personName": "Cecilie Leganger",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "nora_mork",
-        "personName": "Nora Mørk",
-        "field": "image",
-        "imagePath": "bilder/kort/people/nora_mork.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "nora_mork",
-        "personName": "Nora Mørk",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/nora_mork.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "sander_sagosen",
-        "personName": "Sander Sagosen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "sander_sagosen",
-        "personName": "Sander Sagosen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "ole_gunnar_solskjaer",
-        "personName": "Ole Gunnar Solskjær",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "ole_gunnar_solskjaer",
-        "personName": "Ole Gunnar Solskjær",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "nils_arne_eggen",
-        "personName": "Nils Arne Eggen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "nils_arne_eggen",
-        "personName": "Nils Arne Eggen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "lyn_fotball",
-        "personName": "Lyn Fotball",
-        "field": "image",
-        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "lyn_fotball",
-        "personName": "Lyn Fotball",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "skeid_fotball",
-        "personName": "Skeid Fotball",
-        "field": "image",
-        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "skeid_fotball",
-        "personName": "Skeid Fotball",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "oslo_skoiteklub",
-        "personName": "Oslo Skøiteklub",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_sport.json",
-        "personId": "oslo_skoiteklub",
-        "personName": "Oslo Skøiteklub",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
-      },
-      {
         "sourceFile": "data/people/people_subkultur.json",
         "personId": "kolapalsen",
         "personName": "Køla-Pålsen",
@@ -5214,6 +4870,342 @@
         "personName": "Rein Alexander",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/rein_alexander.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ada_hegerberg",
+        "personName": "Ada Hegerberg",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ada_hegerberg",
+        "personName": "Ada Hegerberg",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ada_hegerberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "erling_haaland",
+        "personName": "Erling Braut Haaland",
+        "field": "image",
+        "imagePath": "bilder/kort/people/erling_haaland.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "erling_haaland",
+        "personName": "Erling Braut Haaland",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/erling_haaland.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "marit_bjorgen",
+        "personName": "Marit Bjørgen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "marit_bjorgen",
+        "personName": "Marit Bjørgen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/marit_bjorgen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "therese_johaug",
+        "personName": "Therese Johaug",
+        "field": "image",
+        "imagePath": "bilder/kort/people/therese_johaug.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "therese_johaug",
+        "personName": "Therese Johaug",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/therese_johaug.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sonja_henie",
+        "personName": "Sonja Henie",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sonja_henie.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sonja_henie",
+        "personName": "Sonja Henie",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sonja_henie.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oscar_mathisen",
+        "personName": "Oscar Mathisen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oscar_mathisen",
+        "personName": "Oscar Mathisen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oscar_mathisen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "hjalmar_andersen",
+        "personName": "Hjalmar Andersen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "hjalmar_andersen",
+        "personName": "Hjalmar Andersen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hjalmar_andersen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "johann_olav_koss",
+        "personName": "Johann Olav Koss",
+        "field": "image",
+        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "johann_olav_koss",
+        "personName": "Johann Olav Koss",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/johann_olav_koss.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "karsten_warholm",
+        "personName": "Karsten Warholm",
+        "field": "image",
+        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "karsten_warholm",
+        "personName": "Karsten Warholm",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/karsten_warholm.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "jakob_ingebrigtsen",
+        "personName": "Jakob Ingebrigtsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "jakob_ingebrigtsen",
+        "personName": "Jakob Ingebrigtsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/jakob_ingebrigtsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ingrid_kristiansen",
+        "personName": "Ingrid Kristiansen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ingrid_kristiansen",
+        "personName": "Ingrid Kristiansen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ingrid_kristiansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "vebjorn_rodal",
+        "personName": "Vebjørn Rodal",
+        "field": "image",
+        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "vebjorn_rodal",
+        "personName": "Vebjørn Rodal",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/vebjorn_rodal.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "trine_hattestad",
+        "personName": "Trine Hattestad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "trine_hattestad",
+        "personName": "Trine Hattestad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/trine_hattestad.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "andreas_thorkildsen",
+        "personName": "Andreas Thorkildsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "andreas_thorkildsen",
+        "personName": "Andreas Thorkildsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/andreas_thorkildsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "kjetil_andre_aamodt",
+        "personName": "Kjetil André Aamodt",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "kjetil_andre_aamodt",
+        "personName": "Kjetil André Aamodt",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kjetil_andre_aamodt.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lasse_kjus",
+        "personName": "Lasse Kjus",
+        "field": "image",
+        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lasse_kjus",
+        "personName": "Lasse Kjus",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/lasse_kjus.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "cecilie_leganger",
+        "personName": "Cecilie Leganger",
+        "field": "image",
+        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "cecilie_leganger",
+        "personName": "Cecilie Leganger",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/cecilie_leganger.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nora_mork",
+        "personName": "Nora Mørk",
+        "field": "image",
+        "imagePath": "bilder/kort/people/nora_mork.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nora_mork",
+        "personName": "Nora Mørk",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/nora_mork.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sander_sagosen",
+        "personName": "Sander Sagosen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "sander_sagosen",
+        "personName": "Sander Sagosen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sander_sagosen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ole_gunnar_solskjaer",
+        "personName": "Ole Gunnar Solskjær",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "ole_gunnar_solskjaer",
+        "personName": "Ole Gunnar Solskjær",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ole_gunnar_solskjaer.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nils_arne_eggen",
+        "personName": "Nils Arne Eggen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "nils_arne_eggen",
+        "personName": "Nils Arne Eggen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/nils_arne_eggen.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lyn_fotball",
+        "personName": "Lyn Fotball",
+        "field": "image",
+        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "lyn_fotball",
+        "personName": "Lyn Fotball",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/lyn_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "skeid_fotball",
+        "personName": "Skeid Fotball",
+        "field": "image",
+        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "skeid_fotball",
+        "personName": "Skeid Fotball",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/skeid_fotball.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oslo_skoiteklub",
+        "personName": "Oslo Skøiteklub",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
+      },
+      {
+        "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
+        "personId": "oslo_skoiteklub",
+        "personName": "Oslo Skøiteklub",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
       }
     ]
   },
@@ -5269,9 +5261,9 @@
   ],
   "recommendedNextPr": {
     "type": "geographic_split",
-    "category": "sport",
-    "reason": "sport er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-    "safeBatchSize": 28,
+    "category": "politikk",
+    "reason": "politikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+    "safeBatchSize": 22,
     "blockers": []
   },
   "guardrails": {
