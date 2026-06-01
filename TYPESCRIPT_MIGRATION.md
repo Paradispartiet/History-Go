@@ -653,3 +653,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added the missing narrow `Window` declaration, `CivicationSectionsUI?: CiviMethodBag`, using the existing Civication global method-bag pattern.
 - Runtime behavior is unchanged; this pass adds no runtime code and does not change `js/Civication/ui/CivicationSectionsUI.js`.
 - No unrelated globals, schema entries, runtime files, UI files, DOM/CSS/layout/text, state flow, data files, CivicationCalendar declarations, AHA, People of Places, Lesespor/Leksikon, place/emne, `js/ui/**`, `psychologyRoom`, or other tracks were changed.
+
+## Phase 82: Civication event-engine globals declaration pass
+
+- Added a declaration-only follow-up after Phase 81 for the remaining `js/Civication/core/civicationEventEngine.js` global/window diagnostics in the current baseline.
+- Declared broad, runtime-safe Civication event-engine globals in `schemas/civication-globals.d.ts`: `HG_STATE`, `CivicationMailEngine`, `CivicationMailRuntime`, `CiviRoleStoryletBridge`, `CivicationTaskEngine`, `CiviStoryResolver`, `CivicationConflicts`, `CivicationEventChannels`, and `CivicationEventEngine`.
+- Used broad method-bag-compatible shapes, with minimal return shapes only where the existing event-engine reads required them, so the declarations remain tolerant of runtime-loaded Civication modules.
+- Runtime behavior is unchanged; no runtime, UI, CSS, data, story, place, people, import, package, or `tsconfig.json` files were changed.
+- Remaining typecheck diagnostics are still expected as part of the incremental TypeScript migration baseline.

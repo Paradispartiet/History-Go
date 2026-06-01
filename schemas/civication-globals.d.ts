@@ -78,6 +78,40 @@ type CiviMethodBag = {
 
 type CiviEngineLike = CiviMethodBag;
 type CiviUiLike = CiviMethodBag;
+type CiviMailEngineLike = CiviMethodBag & {
+  getInbox?: (...args: unknown[]) => unknown[];
+  sendMail?: (...args: unknown[]) => CiviRecord | undefined;
+};
+
+type CiviMailCandidateRuntimeLike = CiviMethodBag & {
+  makeCandidateMailsForActiveRole?: (
+    ...args: unknown[]
+  ) => CiviRecord[] | Promise<CiviRecord[]>;
+  inspect?: (...args: unknown[]) => CiviRecord | undefined;
+};
+
+type CiviTaskEngineLike = CiviMethodBag & {
+  ensureTaskForMail?: (...args: unknown[]) => CiviRecord | undefined;
+  completeByMail?: (...args: unknown[]) => CiviRecord | undefined;
+};
+
+type CiviStoryResolverLike = CiviMethodBag & {
+  refresh?: (...args: unknown[]) => unknown;
+};
+
+type CiviConflictsLike = CiviMethodBag & {
+  load?: (...args: unknown[]) => unknown;
+  getForTier?: (...args: unknown[]) => CiviRecord | undefined;
+};
+
+type CiviEventChannelsLike = CiviMethodBag & {
+  getMessageChannel?: (...args: unknown[]) => string;
+};
+
+type CiviEventEngineGlobal = Function & {
+  prototype: any;
+};
+
 
 
 
@@ -103,6 +137,17 @@ declare global {
 
     CIVI_CAPITAL_MAINT_PROFILE?: CiviRecord;
     CIVI_QUIZ_CAPITAL_MAP?: CiviRecord;
+
+    HG_STATE?: CiviRecord;
+
+    CivicationMailEngine?: CiviMailEngineLike;
+    CivicationMailRuntime?: CiviMailCandidateRuntimeLike;
+    CiviRoleStoryletBridge?: CiviMailCandidateRuntimeLike;
+    CivicationTaskEngine?: CiviTaskEngineLike;
+    CiviStoryResolver?: CiviStoryResolverLike;
+    CivicationConflicts?: CiviConflictsLike;
+    CivicationEventChannels?: CiviEventChannelsLike;
+    CivicationEventEngine?: CiviEventEngineGlobal;
 
     CivicationRoleModelRuntime?: CiviMethodBag;
     CivicationBlockedJobMessages?: CiviMethodBag;
