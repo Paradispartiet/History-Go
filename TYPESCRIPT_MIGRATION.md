@@ -684,3 +684,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Limited the pass to the active-position and pending-offer reads in the profile-mode and Civication-mode branches of `renderCivication()`; `renderCivicationInbox()`, `renderPsycheDashboard()`, `renderPerception()`, and `renderTrackHUD()` were not changed.
 - Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1693, `js/Civication/**` diagnostics are now 310, and `js/Civication/ui/CivicationUI.js` diagnostics are now 65.
+
+## Phase 82C replacement: stringify profile textContent values
+
+- Replaced the stale PR #804 branch with a fresh branch from latest `main` and reapplied only the narrow profile `textContent` TypeScript fix.
+- Wrapped the remaining numeric profile/stat assignments in `String(...)` for `placeCount`, `quizUnitCount`, `streak`, and the ParadiseCoin `pc` value.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1689, `js/profile.js` diagnostics are now 58, and `js/Civication/**` diagnostics remain 310.
+- Runtime behavior, UI layout, data files, Civication files, package metadata, CSS, HTML, import tooling, and unrelated profile logic remain unchanged.
