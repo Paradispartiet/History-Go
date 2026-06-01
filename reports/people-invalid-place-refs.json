@@ -1,54 +1,21 @@
 {
-  "generatedAt": "2026-06-01T10:36:06.287Z",
+  "generatedAt": "2026-06-01T11:08:18.177Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
     "peopleJsonUsed": false
   },
   "summary": {
-    "peopleFilesRead": 24,
+    "peopleFilesRead": 23,
     "peopleRead": 233,
-    "peopleWithInvalidRefs": 1,
-    "invalidRefs": 1,
-    "uniqueInvalidPlaceIds": 1,
-    "peopleWithoutValidPlace": 15,
-    "duplicateInternalPlaceRefs": 211
+    "peopleWithInvalidRefs": 0,
+    "invalidRefs": 0,
+    "uniqueInvalidPlaceIds": 0,
+    "peopleWithoutValidPlace": 13,
+    "duplicateInternalPlaceRefs": 213
   },
-  "invalidRefsGrouped": [
-    {
-      "sourceFile": "data/people/people_historie.json",
-      "people": [
-        {
-          "personId": "sigurd_ribbung",
-          "personName": "Sigurd Ribbung",
-          "invalidPlaceIds": [
-            "bispeborgen"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "sigurd_ribbung",
-              "personName": "Sigurd Ribbung",
-              "field": "places[2]",
-              "invalidPlaceId": "bispeborgen"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "bispeborgen",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_historie.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    }
-  ],
+  "invalidRefsGrouped": [],
+  "uniqueInvalidPlaceIds": [],
   "peopleWithoutValidPlace": [
     {
       "sourceFile": "data/people/people_historie.json",
@@ -61,20 +28,6 @@
       "sourceFile": "data/people/people_historie.json",
       "personId": "alexis_de_chateauneuf",
       "personName": "Alexis de Chateauneuf",
-      "totalRefs": 0,
-      "refs": []
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "rolf_jacobsen",
-      "personName": "Rolf Jacobsen",
-      "totalRefs": 0,
-      "refs": []
-    },
-    {
-      "sourceFile": "data/people/people_litteratur.json",
-      "personId": "per_petterson",
-      "personName": "Per Petterson",
       "totalRefs": 0,
       "refs": []
     },
@@ -1379,6 +1332,28 @@
       ]
     },
     {
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
+      "personId": "rolf_jacobsen",
+      "personName": "Rolf Jacobsen",
+      "placeId": "nasjonalbiblioteket",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
+      "personId": "per_petterson",
+      "personName": "Per Petterson",
+      "placeId": "nasjonalbiblioteket",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
       "sourceFile": "data/people/people_musikk.json",
       "personId": "kirsten_flagstad",
       "personName": "Kirsten Flagstad",
@@ -2479,12 +2454,5 @@
       ]
     }
   ],
-  "recommendedNextBatch": [
-    {
-      "invalidPlaceId": "bispeborgen",
-      "classification": "missing_place_candidate",
-      "occurrences": 1,
-      "suggestions": []
-    }
-  ]
+  "recommendedNextBatch": []
 }

@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-06-01T10:36:12.977Z
+Generert: 2026-06-01T11:08:19.030Z
 
 ## Sammendrag
 
@@ -8,14 +8,14 @@ Generert: 2026-06-01T10:36:12.977Z
 - Places totalt: **470**
 - Places med people: **104**
 - Places uten people: **366**
-- People-place-lenker: **339**
+- People-place-lenker: **341**
 - People koblet til flere gyldige steder: **98**
-- People uten gyldig sted: **15**
-- Ugyldige place-referanser: **1**
-- Duplikate place-referanser inne på people: **211**
-- People uten image: **12**
-- People uten cardImage: **12**
-- People uten popupDesc: **17**
+- People uten gyldig sted: **13**
+- Ugyldige place-referanser: **0**
+- Duplikate place-referanser inne på people: **213**
+- People uten image: **11**
+- People uten cardImage: **11**
+- People uten popupDesc: **16**
 
 ## Dekning per place-kategori
 
@@ -25,7 +25,7 @@ Generert: 2026-06-01T10:36:12.977Z
 | film_tv | 8 | 8 | 0 | 34 | 18 |
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
-| litteratur | 31 | 16 | 15 | 37 | 32 |
+| litteratur | 31 | 16 | 15 | 39 | 34 |
 | media | 11 | 8 | 3 | 18 | 17 |
 | musikk | 13 | 9 | 4 | 19 | 12 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
@@ -104,6 +104,7 @@ Generert: 2026-06-01T10:36:12.977Z
 - universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
+- nasjonalbiblioteket (Nasjonalbiblioteket) – 5
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
 - youngstorget (Youngstorget) – 5
@@ -116,11 +117,10 @@ Generert: 2026-06-01T10:36:12.977Z
 - christiania_torv (Christiania Torv) – 3
 - grotta (Grotten) – 3
 - kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
-- lisbon_cinema_ideal (Cinema Ideal) – 3
 
 ## Ugyldige place-referanser
 
-- sigurd_ribbung (Sigurd Ribbung) -> bispeborgen
+- Ingen ugyldige place-referanser funnet.
 
 ## Duplikate place-referanser inne på people
 
@@ -224,7 +224,7 @@ Generert: 2026-06-01T10:36:12.977Z
 - vogt (Nils Collett Vogt) -> gamle_deichman
 - andersen (Tryggve Andersen) -> gamle_deichman
 - krag (Vilhelm Krag) -> gamle_deichman
-- ... 111 flere
+- ... 113 flere
 
 ## Anbefalt første people-batch
 

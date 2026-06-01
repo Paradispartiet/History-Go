@@ -1,30 +1,23 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T10:36:06.287Z
+Generated: 2026-06-01T11:08:18.177Z
 
 ## Sammendrag
-- People-filer lest: **24**
+- People-filer lest: **23**
 - People lest: **233**
-- People med ugyldige refs: **1**
-- Ugyldige refs: **1**
-- Unike ugyldige placeId-er: **1**
-- People uten gyldig sted: **15**
-- Duplikate interne place-referanser: **211**
+- People med ugyldige refs: **0**
+- Ugyldige refs: **0**
+- Unike ugyldige placeId-er: **0**
+- People uten gyldig sted: **13**
+- Duplikate interne place-referanser: **213**
 
 ## Ugyldige refs gruppert per fil/person
-### data/people/people_historie.json
-- **sigurd_ribbung** (Sigurd Ribbung)
-  - bispeborgen @ `places[2]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **bispeborgen** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
 
 ## People uten gyldig sted
 - data/people/people_historie.json :: anna_sethne (Anna Sethne)
 - data/people/people_historie.json :: alexis_de_chateauneuf (Alexis de Chateauneuf)
-- data/people/people_litteratur.json :: rolf_jacobsen (Rolf Jacobsen)
-- data/people/people_litteratur.json :: per_petterson (Per Petterson)
 - data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn)
 - data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg)
 - data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard)
@@ -149,6 +142,8 @@ Generated: 2026-06-01T10:36:06.287Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
 - data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
 - data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
 - data/people/people_musikk.json :: aurora (Aurora) -> salt x2
@@ -251,4 +246,3 @@ Generated: 2026-06-01T10:36:06.287Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch
-- bispeborgen (missing_place_candidate, 1 treff)

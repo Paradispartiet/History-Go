@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-06-01T10:36:12.977Z",
+  "generatedAt": "2026-06-01T11:08:19.030Z",
   "totals": {
     "places": 470,
     "people": 233,
     "placesWithPeople": 104,
     "placesWithoutPeople": 366,
-    "peopleLinks": 339,
+    "peopleLinks": 341,
     "peopleWithMultiplePlaces": 98,
-    "peopleWithNoValidPlace": 15,
-    "invalidPlaceRefs": 1,
-    "duplicatePlaceRefs": 211,
-    "peopleMissingImage": 12,
-    "peopleMissingCardImage": 12,
-    "peopleMissingPopupDesc": 17,
-    "tagCount": 100,
+    "peopleWithNoValidPlace": 13,
+    "invalidPlaceRefs": 0,
+    "duplicatePlaceRefs": 213,
+    "peopleMissingImage": 11,
+    "peopleMissingCardImage": 11,
+    "peopleMissingPopupDesc": 16,
+    "tagCount": 105,
     "categoryFieldCount": 14
   },
   "categories": [
@@ -54,8 +54,8 @@
       "placesTotal": 31,
       "placesWithPeople": 16,
       "placesWithoutPeople": 15,
-      "peopleLinks": 37,
-      "uniquePeople": 32
+      "peopleLinks": 39,
+      "uniquePeople": 34
     },
     {
       "category": "media",
@@ -428,6 +428,10 @@
       "count": 1
     },
     {
+      "tag": "familie",
+      "count": 1
+    },
+    {
       "tag": "filmarkiv",
       "count": 1
     },
@@ -468,6 +472,10 @@
       "count": 1
     },
     {
+      "tag": "minne",
+      "count": 1
+    },
+    {
       "tag": "nasjonal_kanon",
       "count": 1
     },
@@ -477,6 +485,10 @@
     },
     {
       "tag": "nobel",
+      "count": 1
+    },
+    {
+      "tag": "norsk_litteratur",
       "count": 1
     },
     {
@@ -512,7 +524,15 @@
       "count": 1
     },
     {
+      "tag": "roman",
+      "count": 1
+    },
+    {
       "tag": "samtidskunst",
+      "count": 1
+    },
+    {
+      "tag": "samtidslitteratur",
       "count": 1
     },
     {
@@ -2305,6 +2325,69 @@
       ]
     },
     {
+      "placeId": "nasjonalbiblioteket",
+      "name": "Nasjonalbiblioteket",
+      "category": "litteratur",
+      "sourceFile": "data/places/litteratur/oslo/places_litteratur.json",
+      "peopleCount": 5,
+      "hasPeople": true,
+      "worklistPriority": "medium",
+      "readyForWonderkammer": false,
+      "readyForSprakleksikon": true,
+      "people": [
+        {
+          "id": "bjornstjerne_bjornson",
+          "name": "Bjørnstjerne Bjørnson",
+          "tags": [
+            "litteratur"
+          ],
+          "category": "litteratur",
+          "year": 1882
+        },
+        {
+          "id": "linn_ullmann",
+          "name": "Linn Ullmann",
+          "tags": [
+            "litteratur"
+          ],
+          "category": "litteratur",
+          "year": 2015
+        },
+        {
+          "id": "per_petterson",
+          "name": "Per Petterson",
+          "tags": [
+            "litteratur",
+            "roman",
+            "samtidslitteratur",
+            "minne",
+            "familie",
+            "norsk_litteratur"
+          ],
+          "category": "litteratur",
+          "year": 1987
+        },
+        {
+          "id": "rolf_jacobsen",
+          "name": "Rolf Jacobsen",
+          "tags": [
+            "litteratur"
+          ],
+          "category": "litteratur",
+          "year": 1933
+        },
+        {
+          "id": "sigrid_undset",
+          "name": "Sigrid Undset",
+          "tags": [
+            "litteratur"
+          ],
+          "category": "litteratur",
+          "year": 1928
+        }
+      ]
+    },
+    {
       "placeId": "nobelinstituttet",
       "name": "Nobelinstituttet",
       "category": "vitenskap",
@@ -3222,46 +3305,6 @@
           ],
           "category": "historie",
           "year": 1941
-        }
-      ]
-    },
-    {
-      "placeId": "nasjonalbiblioteket",
-      "name": "Nasjonalbiblioteket",
-      "category": "litteratur",
-      "sourceFile": "data/places/litteratur/oslo/places_litteratur.json",
-      "peopleCount": 3,
-      "hasPeople": true,
-      "worklistPriority": "medium",
-      "readyForWonderkammer": false,
-      "readyForSprakleksikon": true,
-      "people": [
-        {
-          "id": "bjornstjerne_bjornson",
-          "name": "Bjørnstjerne Bjørnson",
-          "tags": [
-            "litteratur"
-          ],
-          "category": "litteratur",
-          "year": 1882
-        },
-        {
-          "id": "linn_ullmann",
-          "name": "Linn Ullmann",
-          "tags": [
-            "litteratur"
-          ],
-          "category": "litteratur",
-          "year": 2015
-        },
-        {
-          "id": "sigrid_undset",
-          "name": "Sigrid Undset",
-          "tags": [
-            "litteratur"
-          ],
-          "category": "litteratur",
-          "year": 1928
         }
       ]
     },
@@ -15040,24 +15083,33 @@
     {
       "id": "per_petterson",
       "name": "Per Petterson",
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "tags": [
-        "litteratur"
+        "litteratur",
+        "roman",
+        "samtidslitteratur",
+        "minne",
+        "familie",
+        "norsk_litteratur"
       ],
       "category": "litteratur",
-      "primaryPlaceId": null,
-      "places": [],
-      "validPlaces": [],
+      "primaryPlaceId": "nasjonalbiblioteket",
+      "places": [
+        "nasjonalbiblioteket"
+      ],
+      "validPlaces": [
+        "nasjonalbiblioteket"
+      ],
       "invalidPlaces": [],
       "missing": {
         "id": false,
         "name": false,
         "desc": false,
-        "popupDesc": true,
+        "popupDesc": false,
         "tags": false,
-        "placeRefs": true,
-        "image": true,
-        "cardImage": true
+        "placeRefs": false,
+        "image": false,
+        "cardImage": false
       }
     },
     {
@@ -15208,14 +15260,18 @@
     {
       "id": "rolf_jacobsen",
       "name": "Rolf Jacobsen",
-      "sourceFile": "data/people/people_litteratur.json",
+      "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "tags": [
         "litteratur"
       ],
       "category": "litteratur",
-      "primaryPlaceId": null,
-      "places": [],
-      "validPlaces": [],
+      "primaryPlaceId": "nasjonalbiblioteket",
+      "places": [
+        "nasjonalbiblioteket"
+      ],
+      "validPlaces": [
+        "nasjonalbiblioteket"
+      ],
       "invalidPlaces": [],
       "missing": {
         "id": false,
@@ -15223,7 +15279,7 @@
         "desc": false,
         "popupDesc": false,
         "tags": false,
-        "placeRefs": true,
+        "placeRefs": false,
         "image": false,
         "cardImage": false
       }
@@ -15533,16 +15589,13 @@
       "primaryPlaceId": "oslo_domkirke",
       "places": [
         "oslo_domkirke",
-        "middelalder_oslo",
-        "bispeborgen"
+        "middelalder_oslo"
       ],
       "validPlaces": [
         "oslo_domkirke",
         "middelalder_oslo"
       ],
-      "invalidPlaces": [
-        "bispeborgen"
-      ],
+      "invalidPlaces": [],
       "missing": {
         "id": false,
         "name": false,
@@ -16288,13 +16341,7 @@
       }
     }
   ],
-  "invalidPlaceRefs": [
-    {
-      "personId": "sigurd_ribbung",
-      "name": "Sigurd Ribbung",
-      "placeId": "bispeborgen"
-    }
-  ],
+  "invalidPlaceRefs": [],
   "duplicatePlaceRefs": [
     {
       "personId": "carl_berner",
@@ -16850,6 +16897,16 @@
       "personId": "inger_hagerup",
       "name": "Inger Hagerup",
       "placeId": "grotta"
+    },
+    {
+      "personId": "rolf_jacobsen",
+      "name": "Rolf Jacobsen",
+      "placeId": "nasjonalbiblioteket"
+    },
+    {
+      "personId": "per_petterson",
+      "name": "Per Petterson",
+      "placeId": "nasjonalbiblioteket"
     },
     {
       "personId": "kirsten_flagstad",
