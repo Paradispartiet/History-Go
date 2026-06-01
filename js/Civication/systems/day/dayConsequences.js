@@ -14,19 +14,19 @@
   }
 
   function activeRoleScope() {
-    const active = window.CivicationState?.getActivePosition?.() || {};
+    const active = /** @type {{ role_scope?: unknown }} */ (window.CivicationState?.getActivePosition?.() || {});
     return normStr(window.CiviMailPlanBridge?.resolveRoleScope?.(active) || active.role_scope);
   }
 
   function mergeBranchState(delta) {
-    const current = window.CivicationState?.getMailBranchState?.() || {
+    const current = /** @type {{ preferred_types?: unknown[], preferred_families?: unknown[], flags?: unknown[] }} */ (window.CivicationState?.getMailBranchState?.() || {
       preferred_types: [],
       preferred_families: [],
       flags: []
-    };
+    });
 
     const next = {
-      preferred_types: uniq([...((/** @type {{ preferred_types?: unknown[] }} */ (current)).preferred_types || []), ...((delta && delta.preferred_types) || [])]).slice(-6),
+      preferred_types: uniq([...(current.preferred_types || []), ...((delta && delta.preferred_types) || [])]).slice(-6),
       preferred_families: uniq([...(current.preferred_families || []), ...((delta && delta.preferred_families) || [])]).slice(-8),
       flags: uniq([...(current.flags || []), ...((delta && delta.flags) || [])]).slice(-16)
     };

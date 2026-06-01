@@ -576,3 +576,15 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime logic, NPC-reaction logic, faction logic, character-thread logic, reaction payload semantics, event dispatch, updateProfile dispatch, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationNpcCharacterThreads`, `CivicationChoiceDirector`, `CivicationState`, `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, or `CiviMailPlanBridge`.
 - AHA PR #635, the place/emne track, the `js/ui/**` track, the `js/psychologyRoom.js` baseline-drift track, and the Lesespor/Leksikon track were not mixed in.
+
+## Phase 74: narrow dayConsequences branch state typecheck pass
+
+- Added narrow, file-local JSDoc/type-only casts in `js/Civication/systems/day/dayConsequences.js` after the Phase 72 audit / PR #741 and Phase 73 / PR #749.
+- Before the change the file held six `TS2339` diagnostics: `dayConsequences.js(18,27)` (`window.CiviMailPlanBridge`), `dayConsequences.js(18,84)` (`role_scope` on `unknown`), `dayConsequences.js(30,45)` (`preferred_families` on `unknown`), `dayConsequences.js(31,32)` (`flags` on `unknown`), `dayConsequences.js(309,17)` (`window.CivicationChoiceDirector`), and `dayConsequences.js(311,12)` (`window.CivicationChoiceDirector`).
+- Cast the existing active-position binding in `activeRoleScope()` to `{ role_scope?: unknown }`, so the existing `active.role_scope` fallback read resolves without changing the `normStr(...)` expression or role-scope behavior.
+- Cast the existing mail-branch-state binding in `mergeBranchState()` to `{ preferred_types?: unknown[], preferred_families?: unknown[], flags?: unknown[] }`, so the existing `preferred_types`, `preferred_families`, and `flags` array-spread/fallback reads resolve through the local branch-state shape.
+- Removed the local `TS2339` unknown/property-access diagnostics for `role_scope`, `preferred_families`, and `flags` without changing runtime behavior.
+- The remaining `TS2339` diagnostics for `window.CiviMailPlanBridge` and `window.CivicationChoiceDirector` were left standing because they are global/window-shape errors that require schema/global scope outside this narrow pass.
+- Runtime logic, consequence logic, branch-state logic, mail-plan logic, psyche/capital updates, state flow, event flow, task flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CiviMailPlanBridge`, `CivicationState`, `HG_CapitalMaintenance`, `CivicationPsyche`, `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationChoiceDirector`, `CivicationNpcCharacterThreads`, or other globals.
+- AHA PR #635, the place/emne track, the `js/ui/**` track, the `js/psychologyRoom.js` track, and the Lesespor/Leksikon track were not mixed in.
