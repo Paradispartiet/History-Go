@@ -27,6 +27,8 @@
     "zh-Hans": "中文"
   };
 
+  const HG_STATIC_ATTRS = ["aria-label", "title", "placeholder", "alt"];
+
   let currentLang = HG_FALLBACK_LANG;
   let currentDict = {};
   let fallbackDict = {};
@@ -111,6 +113,55 @@
     if (Object.prototype.hasOwnProperty.call(currentDict, key)) return currentDict[key];
     if (Object.prototype.hasOwnProperty.call(fallbackDict, key)) return fallbackDict[key];
     return fallback ?? key;
+  }
+
+  function buildFallbackTextLookup() {
+    const lookup = new Map();
+
+    Object.entries(fallbackDict || {}).forEach(([key, value]) => {
+      if (typeof value !== "string") return;
+      const text = value.trim();
+      if (!text || lookup.has(text)) return;
+      lookup.set(text, key);
+    });
+
+    return lookup;
+  }
+
+  function applyStaticTextFallbacks(target) {
+    const lookup = buildFallbackTextLookup();
+    if (!lookup.size || !target || !target.querySelectorAll) return;
+
+    const nodes = target.querySelectorAll("body *:not(script):not(style)");
+
+    nodes.forEach((el) => {
+      if (!el || !el.getAttribute) return;
+
+      HG_STATIC_ATTRS.forEach((attr) => {
+        const storedAttrName = `data-hg-i18n-${attr}`;
+        const storedKey = el.getAttribute(storedAttrName);
+        const rawValue = el.getAttribute(attr);
+        const attrText = String(rawValue || "").trim();
+        const key = storedKey || lookup.get(attrText);
+        if (!key) return;
+
+        el.setAttribute(storedAttrName, key);
+        const translated = t(key, attrText);
+        if (translated && rawValue !== translated) el.setAttribute(attr, translated);
+      });
+
+      if (el.children && el.children.length > 0) return;
+      if (el.hasAttribute("data-i18n")) return;
+
+      const storedKey = el.getAttribute("data-hg-i18n-text");
+      const rawText = (el.textContent || "").trim();
+      const key = storedKey || lookup.get(rawText);
+      if (!key) return;
+
+      el.setAttribute("data-hg-i18n-text", key);
+      const translated = t(key, rawText);
+      if (translated && el.textContent !== translated) el.textContent = translated;
+    });
   }
 
   function getOriginalPlaceText(place) {
@@ -213,6 +264,8 @@
         el.textContent = translated;
       }
     });
+
+    applyStaticTextFallbacks(target);
   }
 
   function rerenderLocalizedSurfaces() {
