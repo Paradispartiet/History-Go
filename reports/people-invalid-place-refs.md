@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T20:16:08.022Z
+Generated: 2026-06-01T20:25:02.181Z
 
 ## Sammendrag
 - People-filer lest: **21**
@@ -267,21 +267,21 @@ Generated: 2026-06-01T20:16:08.022Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: tommy_tee (Tommy Tee) -> youngstorget x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: warlocks_oslo (Warlocks) -> torggata x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
-- data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: niels_henrik_abel (Niels Henrik Abel) -> abelhaugen x2
-- data/people/people_vitenskap.json :: sophus_lie (Sophus Lie) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: vilhelm_bjerknes (Vilhelm Bjerknes) -> observatoriet x2
-- data/people/people_vitenskap.json :: ragnar_frisch (Ragnar Frisch) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: trygve_haavelmo (Trygve Haavelmo) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: helga_eng (Helga Eng) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: harriet_holter (Harriet Holter) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: johan_galtung (Johan Galtung) -> nobelinstituttet x2
-- data/people/people_vitenskap.json :: thomas_hylland_eriksen (Thomas Hylland Eriksen) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: lucy_smith (Lucy Smith) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: tove_stang_dahl (Tove Stang Dahl) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: jon_elster (Jon Elster) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
-- data/people/people_vitenskap.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: niels_henrik_abel (Niels Henrik Abel) -> abelhaugen x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: sophus_lie (Sophus Lie) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: vilhelm_bjerknes (Vilhelm Bjerknes) -> observatoriet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: ragnar_frisch (Ragnar Frisch) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: trygve_haavelmo (Trygve Haavelmo) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: helga_eng (Helga Eng) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: harriet_holter (Harriet Holter) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: johan_galtung (Johan Galtung) -> nobelinstituttet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: thomas_hylland_eriksen (Thomas Hylland Eriksen) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: lucy_smith (Lucy Smith) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: tove_stang_dahl (Tove Stang Dahl) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: jon_elster (Jon Elster) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2

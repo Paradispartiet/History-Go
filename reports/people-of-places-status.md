@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-01T20:16:08.517Z
+Generert: 2026-06-01T20:25:02.469Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-01T20:16:08.517Z |
+| generatedAt | 2026-06-01T20:25:02.469Z |
 | peopleFilesRead | 21 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -14,8 +14,8 @@ Generert: 2026-06-01T20:16:08.517Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 5 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 7 |
-| geographicPeopleFiles | 14 |
+| flatPeopleFiles | 6 |
+| geographicPeopleFiles | 15 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -37,12 +37,12 @@ Generert: 2026-06-01T20:16:08.517Z
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
 | data/people/people_natur.json | natur | nei | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
-| data/people/people_vitenskap.json | vitenskap | nei | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | vitenskap | ja | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 
 ## Kategorioversikt
 
@@ -62,14 +62,14 @@ Generert: 2026-06-01T20:16:08.517Z
 | populaerkultur | 10 | 1 | 2 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| vitenskap | 20 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| vitenskap | 20 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 14
-- Fortsatt flate filer: 7
+- Allerede geografisk strukturert: 15
+- Fortsatt flate filer: 6
 - Blandede kategorier: musikk, populaerkultur
-- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_vitenskap.json
+- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
@@ -77,7 +77,6 @@ Generert: 2026-06-01T20:16:08.517Z
 - by: 17 entries (data/people/people_by.json)
 - musikk: 19 entries (data/people/people_musikk.json)
 - natur: 16 entries (data/people/people_natur.json)
-- vitenskap: 20 entries (data/people/people_vitenskap.json)
 
 ## Place-ref audit
 
@@ -124,11 +123,11 @@ Entries med svak/manglende places[] etter auditreglene: 29
 | data/people/people_naeringsliv.json | nicolay_august_andresen_bank / Nicolay August Andresen | missing_places_array |  | grunnlovsbygget_bankplassen | null |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | missing_places_array |  |  | null |
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | missing_places_array |  |  | null |
-| data/people/people_vitenskap.json | kristian_birkeland / Kristian Birkeland | missing_places_array | observatoriet |  | null |
-| data/people/people_vitenskap.json | may_britt_moser / May-Britt Moser | missing_places_array | nobelinstituttet |  | null |
-| data/people/people_vitenskap.json | edvard_moser / Edvard Moser | missing_places_array | nobelinstituttet |  | null |
-| data/people/people_vitenskap.json | peter_waage / Peter Waage | missing_places_array | universitetets_gamle_kjemi |  | null |
-| data/people/people_vitenskap.json | cato_guldberg / Cato Maximilian Guldberg | missing_places_array | universitetets_gamle_kjemi |  | null |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | kristian_birkeland / Kristian Birkeland | missing_places_array | observatoriet |  | null |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | may_britt_moser / May-Britt Moser | missing_places_array | nobelinstituttet |  | null |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | edvard_moser / Edvard Moser | missing_places_array | nobelinstituttet |  | null |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | peter_waage / Peter Waage | missing_places_array | universitetets_gamle_kjemi |  | null |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | cato_guldberg / Cato Maximilian Guldberg | missing_places_array | universitetets_gamle_kjemi |  | null |
 
 ## Schema-status
 
@@ -147,12 +146,12 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
 - data/people/people_natur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
-- data/people/people_vitenskap.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
 - data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
 
 ## Category/collectionGroup-avvik
 
@@ -546,38 +545,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.imageCard | bilder/kort/people/morten_ramm.PNG |
 | data/people/people_populaerkultur.json | astrid_s / Astrid S | image | bilder/kort/people/astridS_sorenga.PNG |
 | data/people/people_populaerkultur.json | astrid_s / Astrid S | cardImage | bilder/kort/people/astridS_sorenga.PNG |
-| data/people/people_vitenskap.json | edvard_moser / Edvard Moser | image | bilder/people/Edvard_Moser.JPG |
-| data/people/people_vitenskap.json | edvard_moser / Edvard Moser | cardImage | bilder/kort/people/edvardmoser.PNG |
-| data/people/people_vitenskap.json | peter_waage / Peter Waage | cardImage | bilder/kort/people/peter_waage.PNG |
-| data/people/people_vitenskap.json | cato_guldberg / Cato Maximilian Guldberg | cardImage | bilder/kort/people/cato_guldberg.PNG |
-| data/people/people_vitenskap.json | eilert_sundt / Eilert Sundt | image | bilder/kort/people/eilert_sundt.PNG |
-| data/people/people_vitenskap.json | eilert_sundt / Eilert Sundt | cardImage | bilder/kort/people/eilert_sundt.PNG |
-| data/people/people_vitenskap.json | sophus_lie / Sophus Lie | image | bilder/kort/people/sophus_lie.PNG |
-| data/people/people_vitenskap.json | sophus_lie / Sophus Lie | cardImage | bilder/kort/people/sophus_lie.PNG |
-| data/people/people_vitenskap.json | vilhelm_bjerknes / Vilhelm Bjerknes | image | bilder/kort/people/vilhelm_bjerknes.PNG |
-| data/people/people_vitenskap.json | vilhelm_bjerknes / Vilhelm Bjerknes | cardImage | bilder/kort/people/vilhelm_bjerknes.PNG |
-| data/people/people_vitenskap.json | ragnar_frisch / Ragnar Frisch | image | bilder/kort/people/ragnar_frisch.PNG |
-| data/people/people_vitenskap.json | ragnar_frisch / Ragnar Frisch | cardImage | bilder/kort/people/ragnar_frisch.PNG |
-| data/people/people_vitenskap.json | trygve_haavelmo / Trygve Haavelmo | image | bilder/kort/people/trygve_haavelmo.PNG |
-| data/people/people_vitenskap.json | trygve_haavelmo / Trygve Haavelmo | cardImage | bilder/kort/people/trygve_haavelmo.PNG |
-| data/people/people_vitenskap.json | helga_eng / Helga Eng | image | bilder/kort/people/helga_eng.PNG |
-| data/people/people_vitenskap.json | helga_eng / Helga Eng | cardImage | bilder/kort/people/helga_eng.PNG |
-| data/people/people_vitenskap.json | harriet_holter / Harriet Holter | image | bilder/kort/people/harriet_holter.PNG |
-| data/people/people_vitenskap.json | harriet_holter / Harriet Holter | cardImage | bilder/kort/people/harriet_holter.PNG |
-| data/people/people_vitenskap.json | johan_galtung / Johan Galtung | image | bilder/kort/people/johan_galtung.PNG |
-| data/people/people_vitenskap.json | johan_galtung / Johan Galtung | cardImage | bilder/kort/people/johan_galtung.PNG |
-| data/people/people_vitenskap.json | thomas_hylland_eriksen / Thomas Hylland Eriksen | image | bilder/kort/people/thomas_hylland_eriksen.PNG |
-| data/people/people_vitenskap.json | thomas_hylland_eriksen / Thomas Hylland Eriksen | cardImage | bilder/kort/people/thomas_hylland_eriksen.PNG |
-| data/people/people_vitenskap.json | lucy_smith / Lucy Smith | image | bilder/kort/people/lucy_smith.PNG |
-| data/people/people_vitenskap.json | lucy_smith / Lucy Smith | cardImage | bilder/kort/people/lucy_smith.PNG |
-| data/people/people_vitenskap.json | tove_stang_dahl / Tove Stang Dahl | image | bilder/kort/people/tove_stang_dahl.PNG |
-| data/people/people_vitenskap.json | tove_stang_dahl / Tove Stang Dahl | cardImage | bilder/kort/people/tove_stang_dahl.PNG |
-| data/people/people_vitenskap.json | jon_elster / Jon Elster | image | bilder/kort/people/jon_elster.PNG |
-| data/people/people_vitenskap.json | jon_elster / Jon Elster | cardImage | bilder/kort/people/jon_elster.PNG |
-| data/people/people_vitenskap.json | fredrik_barth / Fredrik Barth | image | bilder/kort/people/fredrik_barth.PNG |
-| data/people/people_vitenskap.json | fredrik_barth / Fredrik Barth | cardImage | bilder/kort/people/fredrik_barth.PNG |
-| data/people/people_vitenskap.json | kristian_schreiner / Kristian Emil Schreiner | image | bilder/kort/people/kristian_schreiner.PNG |
-| data/people/people_vitenskap.json | kristian_schreiner / Kristian Emil Schreiner | cardImage | bilder/kort/people/kristian_schreiner.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | johan_sverdrup / Johan Sverdrup | image | bilder/kort/people/johan_sverdrup.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | johan_sverdrup / Johan Sverdrup | cardImage | bilder/kort/people/johan_sverdrup.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | image | bilder/kort/people/fredrikke_marie_qvam.PNG |
@@ -720,6 +687,38 @@ Mangler filer for image/cardImage/media: 552
 | data/people/subkultur/oslo/people_subkultur_oslo.json | warlocks_oslo / Warlocks | cardImage | bilder/kort/people/warlocks_oslo.PNG |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | kjetil_rolness / Kjetil Rolness | image | bilder/kort/people/kjetil_rolness.PNG |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | kjetil_rolness / Kjetil Rolness | cardImage | bilder/kort/people/kjetil_rolness.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | edvard_moser / Edvard Moser | image | bilder/people/Edvard_Moser.JPG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | edvard_moser / Edvard Moser | cardImage | bilder/kort/people/edvardmoser.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | peter_waage / Peter Waage | cardImage | bilder/kort/people/peter_waage.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | cato_guldberg / Cato Maximilian Guldberg | cardImage | bilder/kort/people/cato_guldberg.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | eilert_sundt / Eilert Sundt | image | bilder/kort/people/eilert_sundt.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | eilert_sundt / Eilert Sundt | cardImage | bilder/kort/people/eilert_sundt.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | sophus_lie / Sophus Lie | image | bilder/kort/people/sophus_lie.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | sophus_lie / Sophus Lie | cardImage | bilder/kort/people/sophus_lie.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | vilhelm_bjerknes / Vilhelm Bjerknes | image | bilder/kort/people/vilhelm_bjerknes.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | vilhelm_bjerknes / Vilhelm Bjerknes | cardImage | bilder/kort/people/vilhelm_bjerknes.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | ragnar_frisch / Ragnar Frisch | image | bilder/kort/people/ragnar_frisch.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | ragnar_frisch / Ragnar Frisch | cardImage | bilder/kort/people/ragnar_frisch.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | trygve_haavelmo / Trygve Haavelmo | image | bilder/kort/people/trygve_haavelmo.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | trygve_haavelmo / Trygve Haavelmo | cardImage | bilder/kort/people/trygve_haavelmo.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | helga_eng / Helga Eng | image | bilder/kort/people/helga_eng.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | helga_eng / Helga Eng | cardImage | bilder/kort/people/helga_eng.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | harriet_holter / Harriet Holter | image | bilder/kort/people/harriet_holter.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | harriet_holter / Harriet Holter | cardImage | bilder/kort/people/harriet_holter.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | johan_galtung / Johan Galtung | image | bilder/kort/people/johan_galtung.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | johan_galtung / Johan Galtung | cardImage | bilder/kort/people/johan_galtung.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | thomas_hylland_eriksen / Thomas Hylland Eriksen | image | bilder/kort/people/thomas_hylland_eriksen.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | thomas_hylland_eriksen / Thomas Hylland Eriksen | cardImage | bilder/kort/people/thomas_hylland_eriksen.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | lucy_smith / Lucy Smith | image | bilder/kort/people/lucy_smith.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | lucy_smith / Lucy Smith | cardImage | bilder/kort/people/lucy_smith.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | tove_stang_dahl / Tove Stang Dahl | image | bilder/kort/people/tove_stang_dahl.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | tove_stang_dahl / Tove Stang Dahl | cardImage | bilder/kort/people/tove_stang_dahl.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | jon_elster / Jon Elster | image | bilder/kort/people/jon_elster.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | jon_elster / Jon Elster | cardImage | bilder/kort/people/jon_elster.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | fredrik_barth / Fredrik Barth | image | bilder/kort/people/fredrik_barth.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | fredrik_barth / Fredrik Barth | cardImage | bilder/kort/people/fredrik_barth.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | kristian_schreiner / Kristian Emil Schreiner | image | bilder/kort/people/kristian_schreiner.PNG |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | kristian_schreiner / Kristian Emil Schreiner | cardImage | bilder/kort/people/kristian_schreiner.PNG |
 
 ## Holdt tilbake fra tidligere batcher
 
@@ -743,9 +742,9 @@ Mangler filer for image/cardImage/media: 552
 ```json
 {
   "type": "geographic_split",
-  "category": "vitenskap",
-  "reason": "vitenskap er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-  "safeBatchSize": 20,
+  "category": "musikk",
+  "reason": "musikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+  "safeBatchSize": 19,
   "blockers": []
 }
 ```
