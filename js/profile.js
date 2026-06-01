@@ -105,9 +105,9 @@ function renderProfileCard() {
   const quizUnitCount = getCompletedQuizUnitCount();
 
   document.getElementById("profileName").textContent = userName;
-  document.getElementById("statVisited").textContent = placeCount;
-  document.getElementById("statQuizzes").textContent = quizUnitCount;
-  document.getElementById("statStreak").textContent = streak;
+  document.getElementById("statVisited").textContent = String(placeCount);
+  document.getElementById("statQuizzes").textContent = String(quizUnitCount);
+  document.getElementById("statStreak").textContent = String(streak);
 
   const visitedLabel = document.getElementById("statVisitedLabel");
   if (visitedLabel) visitedLabel.textContent = "Steder";
@@ -138,7 +138,7 @@ function renderPC() {
           JSON.parse(localStorage.getItem("hg_pc_wallet_v1") || "{}").pc || 0
         );
 
-  el.textContent = pc;
+  el.textContent = String(pc);
 }
 
 function renderNextUpProfileCard() {
