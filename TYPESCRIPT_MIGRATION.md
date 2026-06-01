@@ -646,3 +646,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime logic, summary logic, section query logic, DOM structure, text, layout, state flow, CSS, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationSectionsUI`, `CivicationState`, `CivicationHome`, `HG_CiviEngine`, `CivicationMiniSectionsUI`, `CivicationUI`, `CivicationEventEngine`, or other globals.
 - AHA PR #635, the place/emne track, the general `js/ui/**` track, the `js/psychologyRoom.js` track, and the Lesespor/Leksikon track were not mixed in.
+
+## Phase 81: narrow CivicationSectionsUI global declaration pass
+
+- PR #776 / Phase 80 intentionally left the single remaining `js/Civication/ui/CivicationSectionsUI.js` diagnostic for `window.CivicationSectionsUI` because it required schema/global declaration scope rather than a local file cast.
+- Added the missing narrow `Window` declaration, `CivicationSectionsUI?: CiviMethodBag`, using the existing Civication global method-bag pattern.
+- Runtime behavior is unchanged; this pass adds no runtime code and does not change `js/Civication/ui/CivicationSectionsUI.js`.
+- No unrelated globals, schema entries, runtime files, UI files, DOM/CSS/layout/text, state flow, data files, CivicationCalendar declarations, AHA, People of Places, Lesespor/Leksikon, place/emne, `js/ui/**`, `psychologyRoom`, or other tracks were changed.

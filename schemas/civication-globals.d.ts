@@ -121,6 +121,7 @@ declare global {
     CAPITAL_ENGINE?: CiviMethodBag;
 
     CivicationUI?: CiviUiLike;
+    CivicationSectionsUI?: CiviMethodBag;
     HG_CiviShop?: CiviMethodBag;
     HG_Lifestyle?: CiviMethodBag;
     HG_IdentityCore?: CiviMethodBag;

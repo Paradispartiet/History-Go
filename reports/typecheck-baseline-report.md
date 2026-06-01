@@ -1,11 +1,11 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T11:05:43.294Z
+- Generated at (UTC): 2026-06-01T11:50:03.542Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1837
-- Files with diagnostics: 189
+- Total diagnostic lines found: 1836
+- Files with diagnostics: 188
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | other | 73 | 586 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 498 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 73 | 439 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 72 | 438 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/profile.js | 1 | 83 | js/profile.js |
 | js/boot.js | 1 | 76 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
@@ -51,8 +51,8 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1486 |
-| TS2551 | 137 |
+| TS2339 | 1474 |
+| TS2551 | 148 |
 | TS2304 | 70 |
 | TS2307 | 36 |
 | TS2322 | 20 |
@@ -134,7 +134,7 @@ js/Civication/identityCompass.js(94,10): error TS2551: Property 'HG_IdentityComp
 js/Civication/identityEngine.js(225,8): error TS2339: Property 'HG_IdentityEngine' does not exist on type 'Window & typeof globalThis'.
 js/Civication/mailPlanBridge.js(137,26): error TS2551: Property 'CivicationEventEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationEconomyEngine'?
 js/Civication/mailPlanBridge.js(141,21): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
-js/Civication/mailPlanBridge.js(245,24): error TS2339: Property 'CivicationNpcReactions' does not exist on type 'Window & typeof globalThis'.
+js/Civication/mailPlanBridge.js(245,24): error TS2551: Property 'CivicationNpcReactions' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationSectionsUI'?
 js/Civication/mailPlanBridge.js(252,24): error TS2339: Property 'CivicationNpcCharacterThreads' does not exist on type 'Window & typeof globalThis'.
 js/Civication/mailPlanBridge.js(690,10): error TS2339: Property 'CiviMailPlanBridge' does not exist on type 'Window & typeof globalThis'.
 js/Civication/merits-and-jobs.js(193,22): error TS2304: Cannot find name 'catIdFromDisplay'.
