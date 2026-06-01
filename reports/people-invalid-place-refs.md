@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T22:35:36.211Z
+Generated: 2026-06-01T22:57:27.836Z
 
 ## Sammendrag
 - People-filer lest: **21**
@@ -41,22 +41,22 @@ Generated: 2026-06-01T22:35:36.211Z
 - data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm)
 
 ## Duplikate place-referanser inne i people
-- data/people/people_by.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
-- data/people/people_by.json :: christian_heinrich_grosch (Christian Heinrich Grosch) -> universitetsplassen x2
-- data/people/people_by.json :: harald_hals (Harald Hals) -> ullevål_hageby x2
-- data/people/people_by.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
-- data/people/people_by.json :: arnstein_arneberg (Arnstein Arneberg) -> oslo_radhus x2
-- data/people/people_by.json :: magnus_poulsson (Magnus Poulsson) -> oslo_radhus x2
-- data/people/people_by.json :: henrik_bull (Henrik Bull) -> nationaltheatret x2
-- data/people/people_by.json :: erling_viksjo (Erling Viksjø) -> regjeringskvartalet x2
-- data/people/people_by.json :: sverre_fehn (Sverre Fehn) -> bankplassen x2
-- data/people/people_by.json :: ove_bang (Ove Bang) -> ullevål_hageby x2
-- data/people/people_by.json :: harald_aars (Harald Aars) -> sagene_kvernhus x2
-- data/people/people_by.json :: kirsten_sand (Kirsten Sand) -> universitetsplassen x2
-- data/people/people_by.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
-- data/people/people_by.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
-- data/people/people_by.json :: thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen x2
-- data/people/people_by.json :: geir_grung (Geir Grung) -> tjuvholmen x2
+- data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
+- data/people/by/oslo/people_by_oslo.json :: christian_heinrich_grosch (Christian Heinrich Grosch) -> universitetsplassen x2
+- data/people/by/oslo/people_by_oslo.json :: harald_hals (Harald Hals) -> ullevål_hageby x2
+- data/people/by/oslo/people_by_oslo.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
+- data/people/by/oslo/people_by_oslo.json :: arnstein_arneberg (Arnstein Arneberg) -> oslo_radhus x2
+- data/people/by/oslo/people_by_oslo.json :: magnus_poulsson (Magnus Poulsson) -> oslo_radhus x2
+- data/people/by/oslo/people_by_oslo.json :: henrik_bull (Henrik Bull) -> nationaltheatret x2
+- data/people/by/oslo/people_by_oslo.json :: erling_viksjo (Erling Viksjø) -> regjeringskvartalet x2
+- data/people/by/oslo/people_by_oslo.json :: sverre_fehn (Sverre Fehn) -> bankplassen x2
+- data/people/by/oslo/people_by_oslo.json :: ove_bang (Ove Bang) -> ullevål_hageby x2
+- data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> sagene_kvernhus x2
+- data/people/by/oslo/people_by_oslo.json :: kirsten_sand (Kirsten Sand) -> universitetsplassen x2
+- data/people/by/oslo/people_by_oslo.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
+- data/people/by/oslo/people_by_oslo.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
+- data/people/by/oslo/people_by_oslo.json :: thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen x2
+- data/people/by/oslo/people_by_oslo.json :: geir_grung (Geir Grung) -> tjuvholmen x2
 - data/people/historie/oslo/people_historie_oslo.json :: kong_sverre (Kong Sverre Sigurdsson) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_vii_krigstid (Haakon VII (krigstiden)) -> oslo_radhus x2
 - data/people/historie/oslo/people_historie_oslo.json :: olav_den_hellige (Olav den hellige) -> oslo_domkirke x2
