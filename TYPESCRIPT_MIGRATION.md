@@ -599,3 +599,14 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime logic, mail runtime logic, inspect semantics, event-engine patching, candidate generation, inbox flow, thread/cache logic, runtime persistence, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailRuntime`, `CivicationState`, `CivicationMailEngine`, `CivicationEventEngine`, `CivicationCalendar`, `CiviMailPlanBridge`, `CivicationTaskEngine`, `CivicationChoiceDirector`, `CivicationNpcCharacterThreads`, or other globals.
 - AHA PR #635, the place/emne track, the `js/ui/**` track, the `js/psychologyRoom.js` track, and the Lesespor/Leksikon track were not mixed in.
+
+## Phase 76: narrow dayNpcReactions active career typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayNpcReactions.js` after the Phase 72 audit / PR #741, Phase 73 / PR #749, Phase 74 / PR #751, and Phase 75 / PR #755.
+- Before the change the file held five `TS2339` diagnostics: `dayNpcReactions.js(13,25)` (`window.CivicationPeopleEngine`), `dayNpcReactions.js(18,24)` (`window.CivicationNpcCharacterThreads`), `dayNpcReactions.js(269,72)` (`career_id` on `unknown`), `dayNpcReactions.js(285,17)` (`window.CivicationChoiceDirector`), and `dayNpcReactions.js(287,12)` (`window.CivicationChoiceDirector`).
+- Cast the existing active-position expression inside `buildReaction()` to `{ career_id?: unknown } | undefined`, so the existing `.career_id` read resolves through the local active-position shape.
+- Removed the local `TS2339` unknown/property-access diagnostic for `career_id` without changing runtime behavior; the existing `normStr(...)`, optional chaining, and reaction payload value are preserved.
+- The remaining diagnostics were left standing because `window.CivicationPeopleEngine`, `window.CivicationNpcCharacterThreads`, and `window.CivicationChoiceDirector` are global/window-shape errors that require schema/global or broader API-scope work outside this narrow pass.
+- Runtime logic, NPC-reaction logic, people matching, character-thread logic, reaction payload, event dispatch, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationPeopleEngine`, `CivicationNpcCharacterThreads`, `CivicationChoiceDirector`, `CivicationState`, `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CiviMailPlanBridge`, or other globals.
+- AHA PR #635, the place/emne track, the `js/ui/**` track, the `js/psychologyRoom.js` track, and the Lesespor/Leksikon track were not mixed in.
