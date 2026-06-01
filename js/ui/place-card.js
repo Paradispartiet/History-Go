@@ -1392,10 +1392,81 @@ if (btnQuiz) {
 
 // --- Rute ---
 if (btnRoute) {
-  btnRoute.onclick = () => {
-    if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
-    if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
-    window.showToast?.("Rute-funksjon ikke lastet");
+  btnRoute.onclick = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+
+    const wasOpen = Boolean(document.getElementById("pcRouteMenu"));
+    if (typeof window.__closePcRouteMenu === "function") {
+      window.__closePcRouteMenu();
+      if (wasOpen) return;
+    }
+
+    const footer = btnRoute.closest(".app-footer") || document.body;
+    const menu = document.createElement("div");
+    menu.id = "pcRouteMenu";
+    menu.className = "pc-route-menu";
+    menu.setAttribute("role", "menu");
+    menu.setAttribute("aria-label", "Rutevalg");
+    menu.innerHTML = `
+      <button type="button" role="menuitem" data-route-action="go">Gå Hit</button>
+      <button type="button" role="menuitem" data-route-action="routes">Ruter</button>
+    `;
+
+    const placeMenu = () => {
+      const footerRect = footer.getBoundingClientRect();
+      const btnRect = btnRoute.getBoundingClientRect();
+      menu.style.left = `${btnRect.left - footerRect.left + (btnRect.width / 2)}px`;
+    };
+
+    menu.addEventListener("click", (menuEvent) => {
+      menuEvent.preventDefault();
+      menuEvent.stopPropagation();
+
+      const action = menuEvent.target?.closest?.("[data-route-action]")?.dataset?.routeAction;
+      if (!action) return;
+
+      window.__closePcRouteMenu?.();
+
+      if (action === "go") {
+        if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
+        if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
+        window.showToast?.("Rute-funksjon ikke lastet");
+        return;
+      }
+
+      if (action === "routes") {
+        if (routesIcon) {
+          routesIcon.dispatchEvent(new MouseEvent("click", {
+            bubbles: true,
+            cancelable: true,
+            view: window
+          }));
+        } else {
+          window.showToast?.("Rute-funksjon ikke lastet");
+        }
+      }
+    });
+
+    footer.appendChild(menu);
+    placeMenu();
+
+    const closeOnOutsideClick = (outsideEvent) => {
+      if (menu.contains(outsideEvent.target) || btnRoute.contains(outsideEvent.target)) return;
+      window.__closePcRouteMenu?.();
+    };
+
+    const closeOnResize = () => window.__closePcRouteMenu?.();
+
+    window.__closePcRouteMenu = () => {
+      menu.remove();
+      document.removeEventListener("click", closeOnOutsideClick);
+      window.removeEventListener("resize", closeOnResize);
+      if (window.__closePcRouteMenu) window.__closePcRouteMenu = null;
+    };
+
+    document.addEventListener("click", closeOnOutsideClick);
+    window.addEventListener("resize", closeOnResize);
   };
 }
 

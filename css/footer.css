@@ -71,6 +71,62 @@
   background: rgba(255,255,255,0.08);
 }
 
+
+/* Liten rute-meny for footerens ruteikon */
+.app-footer{
+  position: relative;
+}
+
+.pc-route-menu{
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  min-width: 132px;
+  padding: 8px;
+  border-radius: 16px;
+  background: rgba(0,0,0,.94);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 12px 30px rgba(0,0,0,.42);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pc-route-menu::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%) rotate(45deg);
+  background: rgba(0,0,0,.94);
+  border-right: 1px solid rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+
+.pc-route-menu button{
+  width: 100%;
+  height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pc-route-menu button:hover,
+.pc-route-menu button:focus-visible{
+  background: rgba(255,255,255,.22);
+  outline: none;
+}
+
 /* Skjul bare gammel global NextUp-linje, ikke det nye footer-panelet. */
 .app-nextup:not(.footer-nextup-panel){
   display: none;
