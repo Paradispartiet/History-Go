@@ -3,7 +3,10 @@
 // app.js skal være eneste entry på index-siden.
 
 /** @typedef {import("../schemas/place").Place} BootPlace */
-/** @typedef {{ files?: string[] }} PlacesManifest */
+/** @typedef {{ places?: BootPlace[] }} BootPlacesPayload */
+/** @typedef {{ relations?: unknown[] }} BootRelationsPayload */
+/** @typedef {{ files?: string[] }} BootFileManifestPayload */
+/** @typedef {{ people?: unknown[] }} BootPeoplePayload */
 
 async function boot() {
   if (window.CoreEngine) CoreEngine.init();
@@ -109,8 +112,9 @@ async function boot() {
       "data/wonderkammer/seasonal.json"
     ];
 
-    /** @type {PlacesManifest | null} */
-    const manifest = await fetchJSON("data/wonderkammer/index.json");
+    const manifest = /** @type {BootFileManifestPayload | null} */ (
+      await fetchJSON("data/wonderkammer/index.json")
+    );
     const files = Array.isArray(manifest?.files) && manifest.files.length
       ? manifest.files
       : fallbackFiles;
@@ -207,7 +211,7 @@ async function boot() {
 
   if (!Array.isArray(places) || !places.length) {
     for (const url of PLACE_FILES_FALLBACK) {
-      const data = await fetchJSON(url);
+      const data = /** @type {BootPlace[] | BootPlacesPayload | null} */ (await fetchJSON(url));
       if (Array.isArray(data)) {
         places.push(...data);
       } else if (Array.isArray(data?.places)) {
@@ -225,7 +229,7 @@ async function boot() {
   let relations = [];
 
   for (const url of RELATION_FILE_LIST) {
-    const data = await fetchJSON(url);
+    const data = /** @type {unknown[] | BootRelationsPayload | null} */ (await fetchJSON(url));
 
     if (Array.isArray(data)) {
       relations.push(...data);
@@ -248,7 +252,9 @@ async function boot() {
   };
 
   const loadPeopleFileList = async () => {
-    const manifest = await fetchJSON("data/people/manifest.json");
+    const manifest = /** @type {BootFileManifestPayload | null} */ (
+      await fetchJSON("data/people/manifest.json")
+    );
     if (!Array.isArray(manifest?.files) || !manifest.files.length) {
       console.error("[boot] Missing or invalid people manifest: data/people/manifest.json");
       return [];
@@ -265,7 +271,7 @@ async function boot() {
   const peopleFiles = await loadPeopleFileList();
 
   for (const url of peopleFiles) {
-    const data = await fetchJSON(url);
+    const data = /** @type {unknown[] | BootPeoplePayload | null} */ (await fetchJSON(url));
 
     if (Array.isArray(data)) {
       peopleAll.push(...data);

@@ -717,3 +717,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Wrapped the remaining numeric profile/stat assignments in `String(...)` for `placeCount`, `quizUnitCount`, `streak`, and the ParadiseCoin `pc` value.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1689, `js/profile.js` diagnostics are now 58, and `js/Civication/**` diagnostics remain 310.
 - Runtime behavior, UI layout, data files, Civication files, package metadata, CSS, HTML, import tooling, and unrelated profile logic remain unchanged.
+
+## Phase 83 replacement: narrow boot.js JSON payload diagnostics
+
+- Replaced the stale/non-mergeable boot.js PR #816 with a fresh branch from the current main baseline and reapplied only the narrow JSON payload narrowing pass.
+- Added file-local `js/boot.js` typedefs for existing JSON payload shapes read during startup: place payloads, relation payloads, file manifests, and people payloads.
+- Added local casts around `fetchJSON()` results only where existing code reads `.places`, `.relations`, `.files`, or `.people`, preserving the current array checks, fallbacks, fetch URLs, startup flow, global assignments, and loader behavior.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1660, and `js/boot.js` diagnostics are now 67.
+- `js/profile.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed.
