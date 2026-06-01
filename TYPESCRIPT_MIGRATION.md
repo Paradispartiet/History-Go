@@ -670,3 +670,5 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Cast the existing weakest-subject object branch locally so the current `subjectId` fallback read is understood without changing filtering, fallback values, generated HTML, DataHub calls, storage keys, or profile flow.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1739 to 1718, and `js/profile.js` diagnostics went from 83 to 62.
 - `js/Civication/**`, data/story/import files, runtime UI layout, CSS, HTML, package metadata, app flow, and import tooling were not touched.
+
+- Phase 82C follow-up narrowed the remaining `js/profile.js` work to numeric `textContent` assignments by explicitly stringifying profile stat values, leaving runtime flow and layout unchanged. The current report drops measured post-#794 diagnostics from 1724 to 1720 overall and from 62 to 58 in `js/profile.js`, with `js/Civication/**` unchanged at 341.
