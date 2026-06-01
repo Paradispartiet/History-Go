@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-01T18:29:57.277Z
+Generert: 2026-06-01T19:26:52.580Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-01T18:29:57.277Z |
+| generatedAt | 2026-06-01T19:26:52.580Z |
 | peopleFilesRead | 21 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -14,8 +14,8 @@ Generert: 2026-06-01T18:29:57.277Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 5 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 10 |
-| geographicPeopleFiles | 11 |
+| flatPeopleFiles | 9 |
+| geographicPeopleFiles | 12 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -38,11 +38,11 @@ Generert: 2026-06-01T18:29:57.277Z
 | data/people/people_natur.json | natur | nei | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_politikk.json | politikk | nei | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
-| data/people/people_sport.json | sport | nei | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_subkultur.json | subkultur | nei | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_vitenskap.json | vitenskap | nei | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/sport/oslo/people_sport_oslo.json | sport | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 
 ## Kategorioversikt
 
@@ -60,16 +60,16 @@ Generert: 2026-06-01T18:29:57.277Z
 | natur | 16 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 | politikk | 22 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 | populaerkultur | 10 | 1 | 2 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
-| sport | 28 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 22 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 | vitenskap | 20 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 11
-- Fortsatt flate filer: 10
+- Allerede geografisk strukturert: 12
+- Fortsatt flate filer: 9
 - Blandede kategorier: musikk, populaerkultur
-- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_politikk.json, data/people/people_sport.json, data/people/people_subkultur.json, data/people/people_vitenskap.json
+- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_politikk.json, data/people/people_subkultur.json, data/people/people_vitenskap.json
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
@@ -78,7 +78,6 @@ Generert: 2026-06-01T18:29:57.277Z
 - musikk: 19 entries (data/people/people_musikk.json)
 - natur: 16 entries (data/people/people_natur.json)
 - politikk: 22 entries (data/people/people_politikk.json)
-- sport: 28 entries (data/people/people_sport.json)
 - subkultur: 22 entries (data/people/people_subkultur.json)
 - vitenskap: 20 entries (data/people/people_vitenskap.json)
 
@@ -151,11 +150,11 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/people_natur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_politikk.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
-- data/people/people_sport.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
 - data/people/people_subkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
 - data/people/people_vitenskap.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
+- data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
 
 ## Category/collectionGroup-avvik
 
@@ -587,54 +586,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.imageCard | bilder/kort/people/morten_ramm.PNG |
 | data/people/people_populaerkultur.json | astrid_s / Astrid S | image | bilder/kort/people/astridS_sorenga.PNG |
 | data/people/people_populaerkultur.json | astrid_s / Astrid S | cardImage | bilder/kort/people/astridS_sorenga.PNG |
-| data/people/people_sport.json | ada_hegerberg / Ada Hegerberg | image | bilder/kort/people/ada_hegerberg.PNG |
-| data/people/people_sport.json | ada_hegerberg / Ada Hegerberg | cardImage | bilder/kort/people/ada_hegerberg.PNG |
-| data/people/people_sport.json | erling_haaland / Erling Braut Haaland | image | bilder/kort/people/erling_haaland.PNG |
-| data/people/people_sport.json | erling_haaland / Erling Braut Haaland | cardImage | bilder/kort/people/erling_haaland.PNG |
-| data/people/people_sport.json | marit_bjorgen / Marit Bjørgen | image | bilder/kort/people/marit_bjorgen.PNG |
-| data/people/people_sport.json | marit_bjorgen / Marit Bjørgen | cardImage | bilder/kort/people/marit_bjorgen.PNG |
-| data/people/people_sport.json | therese_johaug / Therese Johaug | image | bilder/kort/people/therese_johaug.PNG |
-| data/people/people_sport.json | therese_johaug / Therese Johaug | cardImage | bilder/kort/people/therese_johaug.PNG |
-| data/people/people_sport.json | sonja_henie / Sonja Henie | image | bilder/kort/people/sonja_henie.PNG |
-| data/people/people_sport.json | sonja_henie / Sonja Henie | cardImage | bilder/kort/people/sonja_henie.PNG |
-| data/people/people_sport.json | oscar_mathisen / Oscar Mathisen | image | bilder/kort/people/oscar_mathisen.PNG |
-| data/people/people_sport.json | oscar_mathisen / Oscar Mathisen | cardImage | bilder/kort/people/oscar_mathisen.PNG |
-| data/people/people_sport.json | hjalmar_andersen / Hjalmar Andersen | image | bilder/kort/people/hjalmar_andersen.PNG |
-| data/people/people_sport.json | hjalmar_andersen / Hjalmar Andersen | cardImage | bilder/kort/people/hjalmar_andersen.PNG |
-| data/people/people_sport.json | johann_olav_koss / Johann Olav Koss | image | bilder/kort/people/johann_olav_koss.PNG |
-| data/people/people_sport.json | johann_olav_koss / Johann Olav Koss | cardImage | bilder/kort/people/johann_olav_koss.PNG |
-| data/people/people_sport.json | karsten_warholm / Karsten Warholm | image | bilder/kort/people/karsten_warholm.PNG |
-| data/people/people_sport.json | karsten_warholm / Karsten Warholm | cardImage | bilder/kort/people/karsten_warholm.PNG |
-| data/people/people_sport.json | jakob_ingebrigtsen / Jakob Ingebrigtsen | image | bilder/kort/people/jakob_ingebrigtsen.PNG |
-| data/people/people_sport.json | jakob_ingebrigtsen / Jakob Ingebrigtsen | cardImage | bilder/kort/people/jakob_ingebrigtsen.PNG |
-| data/people/people_sport.json | ingrid_kristiansen / Ingrid Kristiansen | image | bilder/kort/people/ingrid_kristiansen.PNG |
-| data/people/people_sport.json | ingrid_kristiansen / Ingrid Kristiansen | cardImage | bilder/kort/people/ingrid_kristiansen.PNG |
-| data/people/people_sport.json | vebjorn_rodal / Vebjørn Rodal | image | bilder/kort/people/vebjorn_rodal.PNG |
-| data/people/people_sport.json | vebjorn_rodal / Vebjørn Rodal | cardImage | bilder/kort/people/vebjorn_rodal.PNG |
-| data/people/people_sport.json | trine_hattestad / Trine Hattestad | image | bilder/kort/people/trine_hattestad.PNG |
-| data/people/people_sport.json | trine_hattestad / Trine Hattestad | cardImage | bilder/kort/people/trine_hattestad.PNG |
-| data/people/people_sport.json | andreas_thorkildsen / Andreas Thorkildsen | image | bilder/kort/people/andreas_thorkildsen.PNG |
-| data/people/people_sport.json | andreas_thorkildsen / Andreas Thorkildsen | cardImage | bilder/kort/people/andreas_thorkildsen.PNG |
-| data/people/people_sport.json | kjetil_andre_aamodt / Kjetil André Aamodt | image | bilder/kort/people/kjetil_andre_aamodt.PNG |
-| data/people/people_sport.json | kjetil_andre_aamodt / Kjetil André Aamodt | cardImage | bilder/kort/people/kjetil_andre_aamodt.PNG |
-| data/people/people_sport.json | lasse_kjus / Lasse Kjus | image | bilder/kort/people/lasse_kjus.PNG |
-| data/people/people_sport.json | lasse_kjus / Lasse Kjus | cardImage | bilder/kort/people/lasse_kjus.PNG |
-| data/people/people_sport.json | cecilie_leganger / Cecilie Leganger | image | bilder/kort/people/cecilie_leganger.PNG |
-| data/people/people_sport.json | cecilie_leganger / Cecilie Leganger | cardImage | bilder/kort/people/cecilie_leganger.PNG |
-| data/people/people_sport.json | nora_mork / Nora Mørk | image | bilder/kort/people/nora_mork.PNG |
-| data/people/people_sport.json | nora_mork / Nora Mørk | cardImage | bilder/kort/people/nora_mork.PNG |
-| data/people/people_sport.json | sander_sagosen / Sander Sagosen | image | bilder/kort/people/sander_sagosen.PNG |
-| data/people/people_sport.json | sander_sagosen / Sander Sagosen | cardImage | bilder/kort/people/sander_sagosen.PNG |
-| data/people/people_sport.json | ole_gunnar_solskjaer / Ole Gunnar Solskjær | image | bilder/kort/people/ole_gunnar_solskjaer.PNG |
-| data/people/people_sport.json | ole_gunnar_solskjaer / Ole Gunnar Solskjær | cardImage | bilder/kort/people/ole_gunnar_solskjaer.PNG |
-| data/people/people_sport.json | nils_arne_eggen / Nils Arne Eggen | image | bilder/kort/people/nils_arne_eggen.PNG |
-| data/people/people_sport.json | nils_arne_eggen / Nils Arne Eggen | cardImage | bilder/kort/people/nils_arne_eggen.PNG |
-| data/people/people_sport.json | lyn_fotball / Lyn Fotball | image | bilder/kort/people/lyn_fotball.PNG |
-| data/people/people_sport.json | lyn_fotball / Lyn Fotball | cardImage | bilder/kort/people/lyn_fotball.PNG |
-| data/people/people_sport.json | skeid_fotball / Skeid Fotball | image | bilder/kort/people/skeid_fotball.PNG |
-| data/people/people_sport.json | skeid_fotball / Skeid Fotball | cardImage | bilder/kort/people/skeid_fotball.PNG |
-| data/people/people_sport.json | oslo_skoiteklub / Oslo Skøiteklub | image | bilder/kort/people/oslo_skoiteklub.PNG |
-| data/people/people_sport.json | oslo_skoiteklub / Oslo Skøiteklub | cardImage | bilder/kort/people/oslo_skoiteklub.PNG |
 | data/people/people_subkultur.json | kolapalsen / Køla-Pålsen | image | bilder/kort/people/kolapalsen_karljohan.PNG |
 | data/people/people_subkultur.json | kolapalsen / Køla-Pålsen | cardImage | bilder/kort/people/kolapalsen_karljohan.PNG |
 | data/people/people_subkultur.json | snippmoller / Snipp-Møller | image | bilder/kort/people/snippmoller_stortorvet.PNG |
@@ -723,6 +674,54 @@ Mangler filer for image/cardImage/media: 552
 | data/people/popkultur/oslo/people_popkultur_oslo.json | oystein_wiik / Øystein Wiik | cardImage | bilder/kort/people/oystein_wiik.PNG |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | rein_alexander / Rein Alexander | image | bilder/kort/people/rein_alexander.PNG |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | rein_alexander / Rein Alexander | cardImage | bilder/kort/people/rein_alexander.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | ada_hegerberg / Ada Hegerberg | image | bilder/kort/people/ada_hegerberg.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | ada_hegerberg / Ada Hegerberg | cardImage | bilder/kort/people/ada_hegerberg.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | erling_haaland / Erling Braut Haaland | image | bilder/kort/people/erling_haaland.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | erling_haaland / Erling Braut Haaland | cardImage | bilder/kort/people/erling_haaland.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | marit_bjorgen / Marit Bjørgen | image | bilder/kort/people/marit_bjorgen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | marit_bjorgen / Marit Bjørgen | cardImage | bilder/kort/people/marit_bjorgen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | therese_johaug / Therese Johaug | image | bilder/kort/people/therese_johaug.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | therese_johaug / Therese Johaug | cardImage | bilder/kort/people/therese_johaug.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | sonja_henie / Sonja Henie | image | bilder/kort/people/sonja_henie.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | sonja_henie / Sonja Henie | cardImage | bilder/kort/people/sonja_henie.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | oscar_mathisen / Oscar Mathisen | image | bilder/kort/people/oscar_mathisen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | oscar_mathisen / Oscar Mathisen | cardImage | bilder/kort/people/oscar_mathisen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | hjalmar_andersen / Hjalmar Andersen | image | bilder/kort/people/hjalmar_andersen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | hjalmar_andersen / Hjalmar Andersen | cardImage | bilder/kort/people/hjalmar_andersen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | johann_olav_koss / Johann Olav Koss | image | bilder/kort/people/johann_olav_koss.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | johann_olav_koss / Johann Olav Koss | cardImage | bilder/kort/people/johann_olav_koss.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | karsten_warholm / Karsten Warholm | image | bilder/kort/people/karsten_warholm.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | karsten_warholm / Karsten Warholm | cardImage | bilder/kort/people/karsten_warholm.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | jakob_ingebrigtsen / Jakob Ingebrigtsen | image | bilder/kort/people/jakob_ingebrigtsen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | jakob_ingebrigtsen / Jakob Ingebrigtsen | cardImage | bilder/kort/people/jakob_ingebrigtsen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | ingrid_kristiansen / Ingrid Kristiansen | image | bilder/kort/people/ingrid_kristiansen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | ingrid_kristiansen / Ingrid Kristiansen | cardImage | bilder/kort/people/ingrid_kristiansen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | vebjorn_rodal / Vebjørn Rodal | image | bilder/kort/people/vebjorn_rodal.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | vebjorn_rodal / Vebjørn Rodal | cardImage | bilder/kort/people/vebjorn_rodal.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | trine_hattestad / Trine Hattestad | image | bilder/kort/people/trine_hattestad.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | trine_hattestad / Trine Hattestad | cardImage | bilder/kort/people/trine_hattestad.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | andreas_thorkildsen / Andreas Thorkildsen | image | bilder/kort/people/andreas_thorkildsen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | andreas_thorkildsen / Andreas Thorkildsen | cardImage | bilder/kort/people/andreas_thorkildsen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | kjetil_andre_aamodt / Kjetil André Aamodt | image | bilder/kort/people/kjetil_andre_aamodt.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | kjetil_andre_aamodt / Kjetil André Aamodt | cardImage | bilder/kort/people/kjetil_andre_aamodt.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | lasse_kjus / Lasse Kjus | image | bilder/kort/people/lasse_kjus.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | lasse_kjus / Lasse Kjus | cardImage | bilder/kort/people/lasse_kjus.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | cecilie_leganger / Cecilie Leganger | image | bilder/kort/people/cecilie_leganger.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | cecilie_leganger / Cecilie Leganger | cardImage | bilder/kort/people/cecilie_leganger.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | nora_mork / Nora Mørk | image | bilder/kort/people/nora_mork.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | nora_mork / Nora Mørk | cardImage | bilder/kort/people/nora_mork.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | sander_sagosen / Sander Sagosen | image | bilder/kort/people/sander_sagosen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | sander_sagosen / Sander Sagosen | cardImage | bilder/kort/people/sander_sagosen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | ole_gunnar_solskjaer / Ole Gunnar Solskjær | image | bilder/kort/people/ole_gunnar_solskjaer.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | ole_gunnar_solskjaer / Ole Gunnar Solskjær | cardImage | bilder/kort/people/ole_gunnar_solskjaer.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | nils_arne_eggen / Nils Arne Eggen | image | bilder/kort/people/nils_arne_eggen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | nils_arne_eggen / Nils Arne Eggen | cardImage | bilder/kort/people/nils_arne_eggen.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | lyn_fotball / Lyn Fotball | image | bilder/kort/people/lyn_fotball.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | lyn_fotball / Lyn Fotball | cardImage | bilder/kort/people/lyn_fotball.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | skeid_fotball / Skeid Fotball | image | bilder/kort/people/skeid_fotball.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | skeid_fotball / Skeid Fotball | cardImage | bilder/kort/people/skeid_fotball.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | oslo_skoiteklub / Oslo Skøiteklub | image | bilder/kort/people/oslo_skoiteklub.PNG |
+| data/people/sport/oslo/people_sport_oslo.json | oslo_skoiteklub / Oslo Skøiteklub | cardImage | bilder/kort/people/oslo_skoiteklub.PNG |
 
 ## Holdt tilbake fra tidligere batcher
 
@@ -746,9 +745,9 @@ Mangler filer for image/cardImage/media: 552
 ```json
 {
   "type": "geographic_split",
-  "category": "sport",
-  "reason": "sport er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-  "safeBatchSize": 28,
+  "category": "politikk",
+  "reason": "politikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+  "safeBatchSize": 22,
   "blockers": []
 }
 ```
