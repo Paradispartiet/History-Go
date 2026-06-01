@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-06-01T10:08:49.659Z
+Generert: 2026-06-01T10:36:08.143Z
 
 ## Totalsammendrag
 
@@ -15,12 +15,12 @@ Generert: 2026-06-01T10:08:49.659Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **0**
-- Antall place-referanser til ikke-eksisterende id-er: **12**
+- Antall place-referanser til ikke-eksisterende id-er: **1**
 
 ## Dekning per datasett (placeId/places)
 
 - **quiz**: 93/470 steder dekket (mangler 377, ugyldige refs 567)
-- **people**: 104/470 steder dekket (mangler 366, ugyldige refs 12)
+- **people**: 104/470 steder dekket (mangler 366, ugyldige refs 1)
 - **nature**: 36/470 steder dekket (mangler 434, ugyldige refs 3)
 - **badges**: 0/470 steder dekket (mangler 470, ugyldige refs 0)
 - **wonderkammer**: 137/470 steder dekket (mangler 333, ugyldige refs 26)
@@ -723,17 +723,6 @@ Generert: 2026-06-01T10:08:49.659Z
 ## Referanser til place-id-er som ikke finnes
 
 - data/people/people_historie.json :: [60].places[2] -> bispeborgen
-- data/people/people_litteratur.json :: [0].places[2] -> bjornson_bolig
-- data/people/people_litteratur.json :: [0].places[3] -> ibsen_bjornson_graver
-- data/people/people_litteratur.json :: [1].places[2] -> wergelandsveien_15
-- data/people/people_litteratur.json :: [1].places[3] -> henrik_wergeland_park
-- data/people/people_litteratur.json :: [1].places[4] -> wergeland_barndom
-- data/people/people_litteratur.json :: [1].places[5] -> wergeland_grav
-- data/people/people_litteratur.json :: [1].places[6] -> bøker_i_byen
-- data/people/people_litteratur.json :: [2].places[1] -> henrik_wergeland_park
-- data/people/people_litteratur.json :: [2].places[2] -> collett_barndom
-- data/people/people_litteratur.json :: [3].places[1] -> grotten_utsikt
-- data/people/people_litteratur.json :: [3].places[2] -> inger_hagerup_minne
 
 ## Anbefalt rekkefølge for ferdigstilling
 
