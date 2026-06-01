@@ -18,16 +18,6 @@
     return text || fallback;
   }
 
-
-  function escapeHtml(value) {
-    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[char] || char));
-  }
   function cleanColor(value) {
     const color = String(value || "").trim();
     return /^#[0-9a-fA-F]{6}$/.test(color) ? color : DEFAULT_COLOR;
@@ -236,13 +226,6 @@
     });
   }
 
-  function getHistoryGoRedirectUrl() {
-    const path = window.location.pathname.includes("/History-Go/")
-      ? window.location.pathname
-      : "/History-Go/profile.html";
-    return `${window.location.origin}${path}`;
-  }
-
   async function refreshAhaProfileCache() {
     const loader = window.HistoryGoAHAAuth?.loadAhaProfile;
     if (typeof loader !== "function") return null;
@@ -285,87 +268,13 @@
     }
   }
 
-  function setAuthStatus(message, type = "") {
-    const el = document.getElementById("hgAhaLoginStatus");
-    if (!el) return;
-    el.className = `hg-auth-status${type ? ` is-${type}` : ""}`;
-    el.textContent = message;
-  }
-
-  async function sendMagicLink(email) {
-    const cleanEmail = String(email || "").trim();
-    if (!cleanEmail || !cleanEmail.includes("@")) {
-      setAuthStatus("Skriv inn en gyldig e-postadresse.", "error");
-      return;
-    }
-
-    const client = await window.HistoryGoAHAAuth?.getClient?.();
-    if (!client?.auth?.signInWithOtp) {
-      setAuthStatus("AHA-login er ikke klar ennå. Prøv å åpne AHA direkte.", "error");
-      return;
-    }
-
-    setAuthStatus("Sender innloggingslenke …");
-
-    const { error } = await client.auth.signInWithOtp({
-      email: cleanEmail,
-      options: {
-        emailRedirectTo: getHistoryGoRedirectUrl(),
-        shouldCreateUser: true
-      }
-    });
-
-    if (error) {
-      setAuthStatus(error.message || "Kunne ikke sende innloggingslenke.", "error");
-      return;
-    }
-
-    setAuthStatus("Innloggingslenke sendt. Åpne e-posten på samme enhet, trykk lenken, og kom tilbake hit.", "ok");
-  }
-
-  async function openLoginPopup() {
-    injectStyles();
+  function openLoginPopup() {
     closeLoginPopup();
-
-    const session = await window.HistoryGoAHAAuth?.getSession?.();
-    const email = session?.user?.email || "";
-    const ahaName = getAhaDisplayName();
-    const safeEmail = escapeHtml(email);
-    const safeAhaName = escapeHtml(ahaName);
-
-    const backdrop = document.createElement("div");
-    backdrop.id = "hgAhaLoginBackdrop";
-    backdrop.className = "hg-profile-editor-backdrop";
-    backdrop.innerHTML = `
-      <div class="hg-profile-editor" role="dialog" aria-modal="true" aria-labelledby="hgAhaLoginTitle">
-        <h2 id="hgAhaLoginTitle">Logg inn med AHA</h2>
-        <p>AHA er kontoen og hovedprofilen din. Navn opprettes og endres i AHA.</p>
-        <div class="hg-profile-field">
-          <label for="hgAhaEmailInput">E-post</label>
-          <input id="hgAhaEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="navn@eksempel.no" value="${safeEmail}">
-        </div>
-        <div id="hgAhaLoginStatus" class="hg-auth-status">${session?.user?.id ? (ahaName ? `Innlogget som ${safeAhaName}.` : "Du er innlogget. Opprett navn/profil i AHA først.") : "Skriv inn e-post for å få innloggingslenke."}</div>
-        <div class="hg-profile-actions">
-          <button class="hg-profile-cancel" type="button" id="hgAhaLoginCancel">Lukk</button>
-          <button class="hg-profile-cancel" type="button" id="hgAhaOpenAha">Åpne AHA</button>
-          <button class="hg-profile-save" type="button" id="hgAhaSendLink">Send lenke</button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(backdrop);
-    const input = document.getElementById("hgAhaEmailInput");
-    input?.focus();
-
-    document.getElementById("hgAhaLoginCancel")?.addEventListener("click", closeLoginPopup);
-    document.getElementById("hgAhaOpenAha")?.addEventListener("click", () => window.HistoryGoAHAAuth?.openAhaLogin?.());
-    document.getElementById("hgAhaSendLink")?.addEventListener("click", () => sendMagicLink(input?.value));
-    input?.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") sendMagicLink(input.value);
-    });
-    backdrop.addEventListener("click", (event) => {
-      if (event.target === backdrop) closeLoginPopup();
-    });
+    if (typeof window.HistoryGoAHAAuth?.openAhaLogin === "function") {
+      window.HistoryGoAHAAuth.openAhaLogin();
+      return;
+    }
+    window.location.href = "https://paradispartiet.github.io/AHA-EchoNet/?auth=login&source=historygo";
   }
 
   function bindProfileButtons() {
