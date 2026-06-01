@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T06:33:36.926Z
+Generated: 2026-06-01T06:52:43.722Z
 
 ## Sammendrag
 - People-filer lest: **23**
@@ -152,13 +152,13 @@ Generated: 2026-06-01T06:33:36.926Z
 - data/people/people_historie_next_batch_03_normalized.json :: ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott x2
 - data/people/people_historie_next_batch_03_normalized.json :: haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke x2
 - data/people/people_historie_next_batch_03_normalized.json :: skule_baardsson (Skule Bårdsson) -> middelalder_oslo x2
-- data/people/people_kunst.json :: munch (Edvard Munch) -> munch_museet x2
-- data/people/people_kunst.json :: harriet_backer (Harriet Backer) -> nasjonalmuseet x2
-- data/people/people_kunst.json :: gustav_vigeland (Gustav Vigeland) -> vigelandsparken x2
-- data/people/people_kunst.json :: bjarne_melgaard (Bjarne Melgaard) -> tjuvholmen x2
-- data/people/people_kunst.json :: steinar_jakobsen (Steinar Jakobsen) -> astrup_fearnley x2
-- data/people/people_kunst.json :: cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken x2
-- data/people/people_kunst.json :: sonja (Dronning Sonja) -> slottet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: munch (Edvard Munch) -> munch_museet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: harriet_backer (Harriet Backer) -> nasjonalmuseet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: gustav_vigeland (Gustav Vigeland) -> vigelandsparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: bjarne_melgaard (Bjarne Melgaard) -> tjuvholmen x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: steinar_jakobsen (Steinar Jakobsen) -> astrup_fearnley x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: sonja (Dronning Sonja) -> slottet x2
 - data/people/people_litteratur.json :: linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
 - data/people/people_litteratur.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
