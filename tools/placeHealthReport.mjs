@@ -7,29 +7,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import {
+  getPlaceCategoryPolicyStatus,
+  REQUIRED_PLACE_FIELDS
+} from "./placeSchemaPolicy.mjs";
 
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, "data", "places", "manifest.json");
 const FAG_ROOT = path.join(ROOT, "data", "fag");
-
-const VALID_CATEGORIES = new Set([
-  "historie",
-  "vitenskap",
-  "kunst",
-  "musikk",
-  "natur",
-  "sport",
-  "by",
-  "politikk",
-  "populaerkultur",
-  "subkultur",
-  "litteratur",
-  "naeringsliv",
-  "film",
-  "film_tv",
-  "media",
-  "psykologi"
-]);
 
 const CATEGORY_EMNE_PREFIXES = {
   historie: ["em_his_"],
@@ -296,11 +281,16 @@ function validatePlace(place, context, seenIds, canonicalEmneRegistry) {
     seenIds.set(id, context);
   }
 
-  validateTextField(place, "name", context);
-  validateTextField(place, "category", context);
+  for (const field of REQUIRED_PLACE_FIELDS) {
+    if (["id", "lat", "lon"].includes(field)) continue;
+    validateTextField(place, field, context);
+  }
 
-  if (!VALID_CATEGORIES.has(String(place.category || "").trim())) {
+  const categoryStatus = getPlaceCategoryPolicyStatus(place.category);
+  if (categoryStatus === "unknown") {
     errors.push(`${context}: invalid category "${place.category}"`);
+  } else if (categoryStatus === "legacy_or_secondary") {
+    warnings.push(`${context}: legacy/secondary category "${place.category}"`);
   }
 
   if (!isFiniteNumber(place.lat) || place.lat < -90 || place.lat > 90) {

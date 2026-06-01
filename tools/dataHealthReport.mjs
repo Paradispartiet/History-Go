@@ -3,14 +3,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import {
+  getPlaceCategoryPolicyStatus,
+  REQUIRED_PLACE_FIELDS,
+  RECOMMENDED_PLACE_FIELDS
+} from './placeSchemaPolicy.mjs';
 
 const ROOT = process.cwd();
 const REPORT_MD = path.join(ROOT, 'reports', 'data-health-summary.md');
 const REPORT_JSON = path.join(ROOT, 'reports', 'data-health-full.json');
-
-const VALID_CATEGORIES = new Set([
-  'historie','vitenskap','kunst','musikk','natur','sport','by','politikk','populaerkultur','subkultur','litteratur','naeringsliv','film','film_tv','media','psykologi'
-]);
 
 const state = {
   generatedAt: new Date().toISOString(),
@@ -189,7 +190,7 @@ function run() {
     const missing = [];
     const warnings = [];
     const errors = [];
-    const req = ['name','category','lat','lon','r','year','desc','popupDesc','image','cardImage','emne_ids','quiz_profile'];
+    const req = [...REQUIRED_PLACE_FIELDS.filter((field) => field !== 'id'), ...RECOMMENDED_PLACE_FIELDS, 'popupDesc','image','cardImage','emne_ids','quiz_profile'];
     for (const field of req) if (place[field] == null || (typeof place[field] === 'string' && !place[field].trim())) missing.push(field);
     if (missing.includes('desc')) warnings.push('missing_desc');
     if (missing.includes('popupDesc')) warnings.push('missing_popupDesc');
@@ -198,7 +199,9 @@ function run() {
     if (missing.includes('emne_ids')) warnings.push('missing_emne_ids');
     if (missing.includes('quiz_profile')) warnings.push('missing_quiz_profile');
 
-    if (!VALID_CATEGORIES.has(String(place.category || '').trim())) errors.push('invalid_category');
+    const categoryStatus = getPlaceCategoryPolicyStatus(place.category);
+    if (categoryStatus === 'unknown') errors.push('invalid_category');
+    else if (categoryStatus === 'legacy_or_secondary') warnings.push('legacy_secondary_category');
     if (!(typeof place.lat === 'number' && Number.isFinite(place.lat) && place.lat >= -90 && place.lat <= 90)) errors.push('invalid_lat');
     if (!(typeof place.lon === 'number' && Number.isFinite(place.lon) && place.lon >= -180 && place.lon <= 180)) errors.push('invalid_lon');
 
