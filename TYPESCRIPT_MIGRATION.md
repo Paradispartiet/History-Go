@@ -720,6 +720,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - No direct global declarations were added because the regenerated baseline only required the `window.*` forms for these three globals.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1607, `js/Civication/**` diagnostics are now 271, and `js/Civication/ui/CivicationUI.js` diagnostics are now 37.
 
+## Phase 89: CivicationUI inbox DOM local-cast pass
+
+- Followed Phase 88 with a narrow local JSDoc/type-only pass in `renderCivicationInbox()` in `js/Civication/ui/CivicationUI.js`.
+- Cast only the existing inbox DOM/querySelector results for `choiceBox`, `fb`, and `ok`, where the code already treats those elements as HTMLElements/buttons for `.style`, `.onclick`, `.textContent`, and related DOM reads/writes.
+- Runtime behavior, UI output, DOM structure, visible text, CSS classes/IDs, event flow, answer flow, data files, schemas, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1601, `js/Civication/**` diagnostics are now 265, and `js/Civication/ui/CivicationUI.js` diagnostics are now 31.
+
 ## Phase 82C replacement: stringify profile textContent values
 
 - Replaced the stale PR #804 branch with a fresh branch from latest `main` and reapplied only the narrow profile `textContent` TypeScript fix.
