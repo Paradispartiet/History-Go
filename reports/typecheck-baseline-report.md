@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T13:16:29.689Z
+- Generated at (UTC): 2026-06-01T17:22:05.128Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1718
+- Total diagnostic lines found: 1720
 - Files with diagnostics: 183
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,12 +12,12 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| other | 73 | 586 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/ui/** | 20 | 498 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| other | 73 | 583 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| js/ui/** | 20 | 507 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/Civication/** | 67 | 341 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/boot.js | 1 | 76 | js/boot.js |
-| js/profile.js | 1 | 62 | js/profile.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
+| js/profile.js | 1 | 58 | js/profile.js |
 | js/hgKnowledgeEngine.js | 1 | 43 | js/hgKnowledgeEngine.js |
 | js/dataHub.js | 1 | 21 | js/dataHub.js |
 | js/state/** | 3 | 16 | js/state/openmode.js<br>js/state/persistence.js<br>js/state/state.js |
@@ -27,11 +27,11 @@
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/ui/place-card.js | 130 | js/ui/** |
+| js/ui/place-card.js | 139 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 96 | js/Civication/** |
 | js/ui/popup-utils.js | 80 | js/ui/** |
 | js/boot.js | 76 | js/boot.js |
-| js/profile.js | 62 | js/profile.js |
+| js/profile.js | 58 | js/profile.js |
 | js/ui/left-panel.js | 55 | js/ui/** |
 | js/routes.js | 47 | other |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
@@ -51,11 +51,11 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1366 |
+| TS2339 | 1372 |
 | TS2551 | 138 |
 | TS2304 | 70 |
 | TS2307 | 36 |
-| TS2322 | 20 |
+| TS2322 | 16 |
 | TS2349 | 14 |
 | TS2345 | 13 |
 | TS2580 | 13 |
@@ -75,8 +75,8 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **other (586 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (130), `js/Civication/ui/CivicationUI.js` (96), `js/ui/popup-utils.js` (80), `js/boot.js` (76), `js/profile.js` (62).
+1. Start with **other (583 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (139), `js/Civication/ui/CivicationUI.js` (96), `js/ui/popup-utils.js` (80), `js/boot.js` (76), `js/profile.js` (58).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `js/Civication/**`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
