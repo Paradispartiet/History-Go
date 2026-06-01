@@ -695,6 +695,14 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1674, `js/Civication/**` diagnostics are now 295, and `js/Civication/ui/CivicationUI.js` diagnostics are now 50.
 
+## Phase 86: CivicationUI TrackHUD local state-shape pass
+
+- Followed Phase 85 with a narrow, file-local JSDoc/type-only pass in `js/Civication/ui/CivicationUI.js`.
+- Limited the code pass to `renderTrackHUD()`, adding a broad local TrackHUD state-shape typedef for only the existing `tracks`, `track_progress`, and `identity_tags` reads.
+- Cast the existing Civication state result locally for the TrackHUD fields, with local array casts for the already-rendered track and tag values.
+- Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1669, `js/Civication/**` diagnostics are now 290, and `js/Civication/ui/CivicationUI.js` diagnostics are now 45.
+
 ## Phase 82C replacement: stringify profile textContent values
 
 - Replaced the stale PR #804 branch with a fresh branch from latest `main` and reapplied only the narrow profile `textContent` TypeScript fix.

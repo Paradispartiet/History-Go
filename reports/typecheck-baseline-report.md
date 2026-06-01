@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T18:15:29.172Z
+- Generated at (UTC): 2026-06-01T19:13:28.282Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1674
+- Total diagnostic lines found: 1669
 - Files with diagnostics: 183
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | other | 73 | 583 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 507 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 67 | 295 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 67 | 290 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
 | js/boot.js | 1 | 76 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 58 | js/profile.js |
@@ -32,8 +32,8 @@
 | js/boot.js | 76 | js/boot.js |
 | js/profile.js | 58 | js/profile.js |
 | js/ui/left-panel.js | 55 | js/ui/** |
-| js/Civication/ui/CivicationUI.js | 50 | js/Civication/** |
 | js/routes.js | 47 | other |
+| js/Civication/ui/CivicationUI.js | 45 | js/Civication/** |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
 | js/ui/lists.js | 41 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1330 |
+| TS2339 | 1325 |
 | TS2551 | 138 |
 | TS2304 | 70 |
 | TS2307 | 36 |
