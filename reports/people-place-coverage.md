@@ -1,21 +1,21 @@
 # People-place coverage audit
 
-Generert: 2026-06-01T10:36:12.977Z
+Generert: 2026-06-01T11:12:53.320Z
 
 ## Sammendrag
 
-- People totalt: **233**
+- People totalt: **227**
 - Places totalt: **470**
 - Places med people: **104**
 - Places uten people: **366**
-- People-place-lenker: **339**
-- People koblet til flere gyldige steder: **98**
-- People uten gyldig sted: **15**
-- Ugyldige place-referanser: **1**
-- Duplikate place-referanser inne på people: **211**
-- People uten image: **12**
-- People uten cardImage: **12**
-- People uten popupDesc: **17**
+- People-place-lenker: **329**
+- People koblet til flere gyldige steder: **92**
+- People uten gyldig sted: **13**
+- Ugyldige place-referanser: **0**
+- Duplikate place-referanser inne på people: **207**
+- People uten image: **11**
+- People uten cardImage: **11**
+- People uten popupDesc: **16**
 
 ## Dekning per place-kategori
 
@@ -23,9 +23,9 @@ Generert: 2026-06-01T10:36:12.977Z
 |---|---:|---:|---:|---:|---:|
 | by | 100 | 24 | 76 | 60 | 46 |
 | film_tv | 8 | 8 | 0 | 34 | 18 |
-| historie | 54 | 11 | 43 | 94 | 52 |
+| historie | 54 | 11 | 43 | 82 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
-| litteratur | 31 | 16 | 15 | 37 | 32 |
+| litteratur | 31 | 16 | 15 | 39 | 34 |
 | media | 11 | 8 | 3 | 18 | 17 |
 | musikk | 13 | 9 | 4 | 19 | 12 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
@@ -39,15 +39,15 @@ Generert: 2026-06-01T10:36:12.977Z
 
 ## People tags
 
-- historie: 71
+- historie: 65
 - litteratur: 38
 - politikk: 27
 - musikk: 20
-- middelalder: 19
 - film: 18
 - film_tv: 18
 - media: 17
 - regissor: 15
+- middelalder: 14
 - filmhistorie: 13
 - scene: 13
 - subkultur: 13
@@ -74,7 +74,6 @@ Generert: 2026-06-01T10:36:12.977Z
 - sanger: 5
 - underholdning: 5
 - arbeiderbevegelse: 4
-- borgerkrigstid: 4
 - fado: 4
 - filantrop: 4
 - humor: 4
@@ -85,6 +84,7 @@ Generert: 2026-06-01T10:36:12.977Z
 - satire: 4
 - tv_humor: 4
 - arthouse: 3
+- borgerkrigstid: 3
 - fadokultur: 3
 - jazz: 3
 - lydfilm: 3
@@ -92,9 +92,9 @@ Generert: 2026-06-01T10:36:12.977Z
 
 ## Steder med flest people
 
-- middelalder_oslo (Middelalderparken) – 27
-- akerhus_slott (Akerhus Slott) – 20
-- oslo_domkirke (Oslo domkirke) – 20
+- middelalder_oslo (Middelalderparken) – 21
+- akerhus_slott (Akerhus Slott) – 17
+- oslo_domkirke (Oslo domkirke) – 17
 - stortinget (Stortinget) – 14
 - cinemateket_oslo (Cinemateket i Oslo) – 10
 - karl_johan (Karl Johans gate) – 10
@@ -104,6 +104,7 @@ Generert: 2026-06-01T10:36:12.977Z
 - universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
+- nasjonalbiblioteket (Nasjonalbiblioteket) – 5
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
 - youngstorget (Youngstorget) – 5
@@ -116,11 +117,10 @@ Generert: 2026-06-01T10:36:12.977Z
 - christiania_torv (Christiania Torv) – 3
 - grotta (Grotten) – 3
 - kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
-- lisbon_cinema_ideal (Cinema Ideal) – 3
 
 ## Ugyldige place-referanser
 
-- sigurd_ribbung (Sigurd Ribbung) -> bispeborgen
+- Ingen ugyldige place-referanser funnet.
 
 ## Duplikate place-referanser inne på people
 
@@ -187,12 +187,6 @@ Generert: 2026-06-01T10:36:12.977Z
 - gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott
 - sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke
 - alv_erlingsson (Alv Erlingsson) -> akerhus_slott
-- astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo
-- magnus_den_gode (Magnus den gode) -> middelalder_oslo
-- magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo
-- gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott
-- sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke
-- alv_erlingsson (Alv Erlingsson) -> akerhus_slott
 - ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott
 - haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke
 - skule_baardsson (Skule Bårdsson) -> middelalder_oslo
@@ -224,7 +218,13 @@ Generert: 2026-06-01T10:36:12.977Z
 - vogt (Nils Collett Vogt) -> gamle_deichman
 - andersen (Tryggve Andersen) -> gamle_deichman
 - krag (Vilhelm Krag) -> gamle_deichman
-- ... 111 flere
+- obstfelder (Sigbjørn Obstfelder) -> gamle_deichman
+- hamsun (Knut Hamsun) -> gamle_deichman
+- garborg (Arne Garborg) -> gamle_deichman
+- sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket
+- andre_bjerke (André Bjerke) -> grotta
+- jon_fosse (Jon Fosse) -> grotta
+- ... 107 flere
 
 ## Anbefalt første people-batch
 

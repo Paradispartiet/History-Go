@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-06-01T10:36:08.143Z
+Generert: 2026-06-01T11:12:52.598Z
 
 ## Totalsammendrag
 
@@ -15,12 +15,12 @@ Generert: 2026-06-01T10:36:08.143Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **0**
-- Antall place-referanser til ikke-eksisterende id-er: **1**
+- Antall place-referanser til ikke-eksisterende id-er: **0**
 
 ## Dekning per datasett (placeId/places)
 
 - **quiz**: 93/470 steder dekket (mangler 377, ugyldige refs 567)
-- **people**: 104/470 steder dekket (mangler 366, ugyldige refs 1)
+- **people**: 104/470 steder dekket (mangler 366, ugyldige refs 0)
 - **nature**: 36/470 steder dekket (mangler 434, ugyldige refs 3)
 - **badges**: 0/470 steder dekket (mangler 470, ugyldige refs 0)
 - **wonderkammer**: 137/470 steder dekket (mangler 333, ugyldige refs 26)
@@ -722,7 +722,7 @@ Generert: 2026-06-01T10:36:08.143Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/people/people_historie.json :: [60].places[2] -> bispeborgen
+- Ingen ugyldige place-referanser i people/badges/routes/wonderkammer/civication-filer som ble sjekket.
 
 ## Anbefalt rekkefølge for ferdigstilling
 

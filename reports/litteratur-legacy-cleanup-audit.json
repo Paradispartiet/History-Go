@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T11:02:36.161Z",
+  "generatedAt": "2026-06-01T11:12:52.224Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,7 +8,7 @@
     "peopleJsonUsed": false,
     "placesIndexUsedAsSourceOfTruth": false,
     "placesIndexUsedForRuntimeComparison": true,
-    "legacyFileStillInPeopleManifest": true,
+    "legacyFileStillInPeopleManifest": false,
     "activePlaceIdCount": 470
   },
   "expectedLegacyPeople": [
@@ -31,136 +31,30 @@
     "andre_bjerke",
     "inger_hagerup",
     "jon_fosse",
-    "alf_proysen"
+    "rolf_jacobsen",
+    "alf_proysen",
+    "per_petterson"
   ],
   "unexpected_remaining_legacy_people": [],
   "summary": {
-    "legacyPeopleRead": 2,
-    "expectedLegacyPeopleFound": 2,
+    "legacyPeopleRead": 0,
+    "expectedLegacyPeopleFound": 0,
     "unexpectedLegacyPeople": 0,
     "peopleWithValidPrimaryPlaceId": 0,
-    "peopleWithoutValidPlace": 2,
-    "stubs": 1,
+    "peopleWithoutValidPlace": 0,
+    "stubs": 0,
     "invalidPlaceRefOccurrences": 0,
     "uniqueInvalidPlaceRefs": 0,
     "missingPlaceCandidate": 0,
     "likelyRenameToExistingPlace": 0,
     "refNeedsManualReview": 0,
-    "classificationCounts": {
-      "missing_place_data_required": 1,
-      "stub_needs_manual_completion": 1
-    }
+    "classificationCounts": {}
   },
-  "people": [
-    {
-      "personId": "rolf_jacobsen",
-      "name": "Rolf Jacobsen",
-      "sourceFile": "data/people/people_litteratur.json",
-      "hasPlaceId": false,
-      "placeId": null,
-      "placeIdStatus": "missing",
-      "places": [],
-      "validPlaces": [],
-      "invalidPlaces": [],
-      "duplicatePlaces": [],
-      "emptyPlaceRefs": 0,
-      "hasAtLeastOneValidPlace": false,
-      "missingAllValidPlace": true,
-      "isStub": false,
-      "hasLegacyOrDivergentSchema": true,
-      "divergentFields": [],
-      "missingSchemaFields": [
-        "placeId",
-        "places"
-      ],
-      "invalidRefAnalysis": [],
-      "classification": "missing_place_data_required",
-      "recommendedNextAction": "Mangler all gyldig stedskobling. Avgjør om sted finnes/skal opprettes før people kan ryddes."
-    },
-    {
-      "personId": "per_petterson",
-      "name": "Per Petterson",
-      "sourceFile": "data/people/people_litteratur.json",
-      "hasPlaceId": false,
-      "placeId": null,
-      "placeIdStatus": "missing",
-      "places": [],
-      "validPlaces": [],
-      "invalidPlaces": [],
-      "duplicatePlaces": [],
-      "emptyPlaceRefs": 0,
-      "hasAtLeastOneValidPlace": false,
-      "missingAllValidPlace": true,
-      "isStub": true,
-      "hasLegacyOrDivergentSchema": true,
-      "divergentFields": [
-        "kind",
-        "imageCard",
-        "stub"
-      ],
-      "missingSchemaFields": [
-        "initials",
-        "placeId",
-        "year",
-        "popupDesc",
-        "places",
-        "image",
-        "cardImage"
-      ],
-      "invalidRefAnalysis": [],
-      "classification": "stub_needs_manual_completion",
-      "recommendedNextAction": "Kurater person manuelt i chat: fyll inn manglende schemafelt og bestem stedskobling før implementering."
-    }
-  ],
+  "people": [],
   "invalidRefsGroupedByPerson": [],
   "uniqueInvalidPlaceRefs": [],
-  "peopleWithoutValidPlace": [
-    {
-      "personId": "rolf_jacobsen",
-      "name": "Rolf Jacobsen",
-      "placeIdStatus": "missing",
-      "classification": "missing_place_data_required"
-    },
-    {
-      "personId": "per_petterson",
-      "name": "Per Petterson",
-      "placeIdStatus": "missing",
-      "classification": "stub_needs_manual_completion"
-    }
-  ],
-  "stubsAndDivergentSchema": [
-    {
-      "personId": "rolf_jacobsen",
-      "name": "Rolf Jacobsen",
-      "isStub": false,
-      "divergentFields": [],
-      "missingSchemaFields": [
-        "placeId",
-        "places"
-      ],
-      "classification": "missing_place_data_required"
-    },
-    {
-      "personId": "per_petterson",
-      "name": "Per Petterson",
-      "isStub": true,
-      "divergentFields": [
-        "kind",
-        "imageCard",
-        "stub"
-      ],
-      "missingSchemaFields": [
-        "initials",
-        "placeId",
-        "year",
-        "popupDesc",
-        "places",
-        "image",
-        "cardImage"
-      ],
-      "classification": "stub_needs_manual_completion"
-    }
-  ],
+  "peopleWithoutValidPlace": [],
+  "stubsAndDivergentSchema": [],
   "recommendedNextCleanupBatches": {
     "batchA": {
       "description": "Trygge personer med gyldig primary placeId. Ugyldige sekundærrefs kan fjernes eller mappes etter manuell beslutning.",
@@ -172,10 +66,7 @@
     },
     "batchC": {
       "description": "Stubber / personer uten gyldig sted som må kurateres manuelt i chat før implementering.",
-      "people": [
-        "rolf_jacobsen",
-        "per_petterson"
-      ]
+      "people": []
     }
   }
 }

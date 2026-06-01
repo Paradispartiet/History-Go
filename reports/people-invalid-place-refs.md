@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T11:02:36.025Z
+Generated: 2026-06-01T11:12:52.463Z
 
 ## Sammendrag
-- People-filer lest: **22**
+- People-filer lest: **21**
 - People lest: **227**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **15**
-- Duplikate interne place-referanser: **205**
+- People uten gyldig sted: **13**
+- Duplikate interne place-referanser: **207**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -18,8 +18,6 @@ Generated: 2026-06-01T11:02:36.025Z
 ## People uten gyldig sted
 - data/people/historie/oslo/people_historie_oslo.json :: anna_sethne (Anna Sethne)
 - data/people/historie/oslo/people_historie_oslo.json :: alexis_de_chateauneuf (Alexis de Chateauneuf)
-- data/people/people_litteratur.json :: rolf_jacobsen (Rolf Jacobsen)
-- data/people/people_litteratur.json :: per_petterson (Per Petterson)
 - data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn)
 - data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg)
 - data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard)
@@ -138,6 +136,8 @@ Generated: 2026-06-01T11:02:36.025Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
 - data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
 - data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
 - data/people/people_musikk.json :: aurora (Aurora) -> salt x2
