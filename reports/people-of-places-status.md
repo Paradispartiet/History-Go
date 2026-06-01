@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-01T19:26:52.580Z
+Generert: 2026-06-01T19:57:43.869Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-01T19:26:52.580Z |
+| generatedAt | 2026-06-01T19:57:43.869Z |
 | peopleFilesRead | 21 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -14,8 +14,8 @@ Generert: 2026-06-01T19:26:52.580Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 5 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 9 |
-| geographicPeopleFiles | 12 |
+| flatPeopleFiles | 8 |
+| geographicPeopleFiles | 13 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -36,10 +36,10 @@ Generert: 2026-06-01T19:26:52.580Z
 | data/people/people_musikk.json | musikk | nei | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
 | data/people/people_natur.json | natur | nei | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/people_politikk.json | politikk | nei | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
 | data/people/people_subkultur.json | subkultur | nei | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_vitenskap.json | vitenskap | nei | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
+| data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -58,7 +58,7 @@ Generert: 2026-06-01T19:26:52.580Z
 | musikk | 19 | 1 | 2 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 | naeringsliv | 19 | 1 | 0 | schema_review | Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split. |
 | natur | 16 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
-| politikk | 22 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 10 | 1 | 2 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 22 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
@@ -66,10 +66,10 @@ Generert: 2026-06-01T19:26:52.580Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 12
-- Fortsatt flate filer: 9
+- Allerede geografisk strukturert: 13
+- Fortsatt flate filer: 8
 - Blandede kategorier: musikk, populaerkultur
-- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_politikk.json, data/people/people_subkultur.json, data/people/people_vitenskap.json
+- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_subkultur.json, data/people/people_vitenskap.json
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
@@ -77,7 +77,6 @@ Generert: 2026-06-01T19:26:52.580Z
 - by: 17 entries (data/people/people_by.json)
 - musikk: 19 entries (data/people/people_musikk.json)
 - natur: 16 entries (data/people/people_natur.json)
-- politikk: 22 entries (data/people/people_politikk.json)
 - subkultur: 22 entries (data/people/people_subkultur.json)
 - vitenskap: 20 entries (data/people/people_vitenskap.json)
 
@@ -148,10 +147,10 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/people_musikk.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=musikk
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
 - data/people/people_natur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
-- data/people/people_politikk.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
 - data/people/people_subkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
 - data/people/people_vitenskap.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
+- data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
@@ -542,44 +541,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/people_natur.json | bernhard_herre / Bernhard Herre | cardImage | bilder/kort/people/bernhard_herre.PNG |
 | data/people/people_natur.json | mikkjel_fonhus / Mikkjel Fønhus | image | bilder/kort/people/mikkjel_fonhus.PNG |
 | data/people/people_natur.json | mikkjel_fonhus / Mikkjel Fønhus | cardImage | bilder/kort/people/mikkjel_fonhus.PNG |
-| data/people/people_politikk.json | johan_sverdrup / Johan Sverdrup | image | bilder/kort/people/johan_sverdrup.PNG |
-| data/people/people_politikk.json | johan_sverdrup / Johan Sverdrup | cardImage | bilder/kort/people/johan_sverdrup.PNG |
-| data/people/people_politikk.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | image | bilder/kort/people/fredrikke_marie_qvam.PNG |
-| data/people/people_politikk.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | cardImage | bilder/kort/people/fredrikke_marie_qvam.PNG |
-| data/people/people_politikk.json | gina_krog / Gina Krog | image | bilder/kort/people/gina_krog.PNG |
-| data/people/people_politikk.json | gina_krog / Gina Krog | cardImage | bilder/kort/people/gina_krog.PNG |
-| data/people/people_politikk.json | einar_gerhardsen / Einar Gerhardsen | image | bilder/kort/people/einar_gerhardsen.PNG |
-| data/people/people_politikk.json | einar_gerhardsen / Einar Gerhardsen | cardImage | bilder/kort/people/einar_gerhardsen.PNG |
-| data/people/people_politikk.json | johan_nygaardsvold / Johan Nygaardsvold | image | bilder/kort/people/johan_nygaardsvold.PNG |
-| data/people/people_politikk.json | johan_nygaardsvold / Johan Nygaardsvold | cardImage | bilder/kort/people/johan_nygaardsvold.PNG |
-| data/people/people_politikk.json | christian_michelsen / Christian Michelsen | image | bilder/kort/people/christian_michelsen.PNG |
-| data/people/people_politikk.json | christian_michelsen / Christian Michelsen | cardImage | bilder/kort/people/christian_michelsen.PNG |
-| data/people/people_politikk.json | haakon_vii / Haakon VII | image | bilder/kort/people/haakon_vii.PNG |
-| data/people/people_politikk.json | haakon_vii / Haakon VII | cardImage | bilder/kort/people/haakon_vii.PNG |
-| data/people/people_politikk.json | katti_anker_moller / Katti Anker Møller | image | bilder/kort/people/katti_anker_moller.PNG |
-| data/people/people_politikk.json | katti_anker_moller / Katti Anker Møller | cardImage | bilder/kort/people/katti_anker_moller.PNG |
-| data/people/people_politikk.json | betzy_kjelsberg / Betzy Kjelsberg | image | bilder/kort/people/betzy_kjelsberg.PNG |
-| data/people/people_politikk.json | betzy_kjelsberg / Betzy Kjelsberg | cardImage | bilder/kort/people/betzy_kjelsberg.PNG |
-| data/people/people_politikk.json | anna_rogstad / Anna Rogstad | image | bilder/kort/people/anna_rogstad.PNG |
-| data/people/people_politikk.json | anna_rogstad / Anna Rogstad | cardImage | bilder/kort/people/anna_rogstad.PNG |
-| data/people/people_politikk.json | fernanda_nissen / Fernanda Nissen | image | bilder/kort/people/fernanda_nissen.PNG |
-| data/people/people_politikk.json | fernanda_nissen / Fernanda Nissen | cardImage | bilder/kort/people/fernanda_nissen.PNG |
-| data/people/people_politikk.json | haakon_lie / Haakon Lie | image | bilder/kort/people/haakon_lie.PNG |
-| data/people/people_politikk.json | haakon_lie / Haakon Lie | cardImage | bilder/kort/people/haakon_lie.PNG |
-| data/people/people_politikk.json | reiulf_steen / Reiulf Steen | image | bilder/kort/people/reiulf_steen.PNG |
-| data/people/people_politikk.json | reiulf_steen / Reiulf Steen | cardImage | bilder/kort/people/reiulf_steen.PNG |
-| data/people/people_politikk.json | berit_aas / Berit Ås | image | bilder/kort/people/berit_aas.PNG |
-| data/people/people_politikk.json | berit_aas / Berit Ås | cardImage | bilder/kort/people/berit_aas.PNG |
-| data/people/people_politikk.json | eva_kolstad / Eva Kolstad | image | bilder/kort/people/eva_kolstad.PNG |
-| data/people/people_politikk.json | eva_kolstad / Eva Kolstad | cardImage | bilder/kort/people/eva_kolstad.PNG |
-| data/people/people_politikk.json | hanna_kvanmo / Hanna Kvanmo | image | bilder/kort/people/hanna_kvanmo.PNG |
-| data/people/people_politikk.json | hanna_kvanmo / Hanna Kvanmo | cardImage | bilder/kort/people/hanna_kvanmo.PNG |
-| data/people/people_politikk.json | kirsti_kolle_grondahl / Kirsti Kolle Grøndahl | image | bilder/kort/people/kirsti_kolle_grondahl.PNG |
-| data/people/people_politikk.json | kirsti_kolle_grondahl / Kirsti Kolle Grøndahl | cardImage | bilder/kort/people/kirsti_kolle_grondahl.PNG |
-| data/people/people_politikk.json | jo_benkow / Jo Benkow | image | bilder/kort/people/jo_benkow.PNG |
-| data/people/people_politikk.json | jo_benkow / Jo Benkow | cardImage | bilder/kort/people/jo_benkow.PNG |
-| data/people/people_politikk.json | carl_i_hagen / Carl I. Hagen | image | bilder/kort/people/carl_i_hagen.PNG |
-| data/people/people_politikk.json | carl_i_hagen / Carl I. Hagen | cardImage | bilder/kort/people/carl_i_hagen.PNG |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.image | bilder/people/herman_flesvig.PNG |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.imageCard | bilder/kort/people/herman_flesvig.PNG |
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.image | bilder/people/morten_ramm.PNG |
@@ -660,6 +621,44 @@ Mangler filer for image/cardImage/media: 552
 | data/people/people_vitenskap.json | fredrik_barth / Fredrik Barth | cardImage | bilder/kort/people/fredrik_barth.PNG |
 | data/people/people_vitenskap.json | kristian_schreiner / Kristian Emil Schreiner | image | bilder/kort/people/kristian_schreiner.PNG |
 | data/people/people_vitenskap.json | kristian_schreiner / Kristian Emil Schreiner | cardImage | bilder/kort/people/kristian_schreiner.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | johan_sverdrup / Johan Sverdrup | image | bilder/kort/people/johan_sverdrup.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | johan_sverdrup / Johan Sverdrup | cardImage | bilder/kort/people/johan_sverdrup.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | image | bilder/kort/people/fredrikke_marie_qvam.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | cardImage | bilder/kort/people/fredrikke_marie_qvam.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | gina_krog / Gina Krog | image | bilder/kort/people/gina_krog.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | gina_krog / Gina Krog | cardImage | bilder/kort/people/gina_krog.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | einar_gerhardsen / Einar Gerhardsen | image | bilder/kort/people/einar_gerhardsen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | einar_gerhardsen / Einar Gerhardsen | cardImage | bilder/kort/people/einar_gerhardsen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | johan_nygaardsvold / Johan Nygaardsvold | image | bilder/kort/people/johan_nygaardsvold.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | johan_nygaardsvold / Johan Nygaardsvold | cardImage | bilder/kort/people/johan_nygaardsvold.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | christian_michelsen / Christian Michelsen | image | bilder/kort/people/christian_michelsen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | christian_michelsen / Christian Michelsen | cardImage | bilder/kort/people/christian_michelsen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | haakon_vii / Haakon VII | image | bilder/kort/people/haakon_vii.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | haakon_vii / Haakon VII | cardImage | bilder/kort/people/haakon_vii.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | katti_anker_moller / Katti Anker Møller | image | bilder/kort/people/katti_anker_moller.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | katti_anker_moller / Katti Anker Møller | cardImage | bilder/kort/people/katti_anker_moller.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | betzy_kjelsberg / Betzy Kjelsberg | image | bilder/kort/people/betzy_kjelsberg.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | betzy_kjelsberg / Betzy Kjelsberg | cardImage | bilder/kort/people/betzy_kjelsberg.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | anna_rogstad / Anna Rogstad | image | bilder/kort/people/anna_rogstad.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | anna_rogstad / Anna Rogstad | cardImage | bilder/kort/people/anna_rogstad.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | fernanda_nissen / Fernanda Nissen | image | bilder/kort/people/fernanda_nissen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | fernanda_nissen / Fernanda Nissen | cardImage | bilder/kort/people/fernanda_nissen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | haakon_lie / Haakon Lie | image | bilder/kort/people/haakon_lie.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | haakon_lie / Haakon Lie | cardImage | bilder/kort/people/haakon_lie.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | reiulf_steen / Reiulf Steen | image | bilder/kort/people/reiulf_steen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | reiulf_steen / Reiulf Steen | cardImage | bilder/kort/people/reiulf_steen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | berit_aas / Berit Ås | image | bilder/kort/people/berit_aas.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | berit_aas / Berit Ås | cardImage | bilder/kort/people/berit_aas.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | eva_kolstad / Eva Kolstad | image | bilder/kort/people/eva_kolstad.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | eva_kolstad / Eva Kolstad | cardImage | bilder/kort/people/eva_kolstad.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | hanna_kvanmo / Hanna Kvanmo | image | bilder/kort/people/hanna_kvanmo.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | hanna_kvanmo / Hanna Kvanmo | cardImage | bilder/kort/people/hanna_kvanmo.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | kirsti_kolle_grondahl / Kirsti Kolle Grøndahl | image | bilder/kort/people/kirsti_kolle_grondahl.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | kirsti_kolle_grondahl / Kirsti Kolle Grøndahl | cardImage | bilder/kort/people/kirsti_kolle_grondahl.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | jo_benkow / Jo Benkow | image | bilder/kort/people/jo_benkow.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | jo_benkow / Jo Benkow | cardImage | bilder/kort/people/jo_benkow.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | carl_i_hagen / Carl I. Hagen | image | bilder/kort/people/carl_i_hagen.PNG |
+| data/people/politikk/oslo/people_politikk_oslo.json | carl_i_hagen / Carl I. Hagen | cardImage | bilder/kort/people/carl_i_hagen.PNG |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | amalia_rodrigues / Amália Rodrigues | image | bilder/kort/people/amalia_rodrigues.PNG |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | amalia_rodrigues / Amália Rodrigues | cardImage | bilder/kort/people/amalia_rodrigues.PNG |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | kristoffer_olsen / Kristoffer Olsen | image | bilder/kort/people/kristoffer_olsen.PNG |
@@ -745,8 +744,8 @@ Mangler filer for image/cardImage/media: 552
 ```json
 {
   "type": "geographic_split",
-  "category": "politikk",
-  "reason": "politikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+  "category": "subkultur",
+  "reason": "subkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
   "safeBatchSize": 22,
   "blockers": []
 }
