@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-01T20:50:44.691Z
+- Generated at (UTC): 2026-06-01T21:05:46.872Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1607
+- Total diagnostic lines found: 1576
 - Files with diagnostics: 181
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -18,9 +18,9 @@
 | js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 57 | js/profile.js |
-| js/hgKnowledgeEngine.js | 1 | 43 | js/hgKnowledgeEngine.js |
 | js/dataHub.js | 1 | 21 | js/dataHub.js |
 | js/state/** | 3 | 16 | js/state/openmode.js<br>js/state/persistence.js<br>js/state/state.js |
+| js/hgKnowledgeEngine.js | 1 | 12 | js/hgKnowledgeEngine.js |
 | sw.js | 1 | 12 | sw.js |
 | root files | 1 | 1 | knowledge.js |
 
@@ -33,7 +33,6 @@
 | js/profile.js | 57 | js/profile.js |
 | js/ui/left-panel.js | 55 | js/ui/** |
 | js/routes.js | 46 | other |
-| js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
 | js/ui/lists.js | 40 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 37 | js/Civication/** |
 | js/console/devConsole.js | 36 | other |
@@ -47,21 +46,22 @@
 | js/leksikon/leksikon_loader.js | 21 | other |
 | js/Civication/ui/CivicationMiniSectionsUI.js | 20 | js/Civication/** |
 | js/console/diagnosticConsole.js | 20 | other |
+| js/ui/mini-profile.js | 20 | js/ui/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1263 |
+| TS2339 | 1234 |
 | TS2551 | 138 |
 | TS2304 | 70 |
 | TS2307 | 36 |
 | TS2349 | 14 |
 | TS2345 | 13 |
 | TS2580 | 13 |
-| TS2322 | 12 |
+| TS2322 | 11 |
 | TS2550 | 11 |
-| TS2362 | 6 |
 | TS2451 | 6 |
+| TS2362 | 5 |
 | TS2552 | 5 |
 | TS2363 | 4 |
 | TS2538 | 4 |
