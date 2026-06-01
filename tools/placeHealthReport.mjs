@@ -50,6 +50,41 @@ const CATEGORY_EMNE_PREFIXES = {
   psykologi: ["em_psykologi_", "em_psy_"]
 };
 
+// Batch 31: explicit health allowlist for editorially approved cross-disciplinary
+// emne_ids. This is intentionally a category -> canonical fagfamilie policy, not
+// a blind prefix rewrite. Unknown/missing emne_ids are never allowlisted because
+// the canonical family is only read from the canonical registry after a hit.
+// Film/populærkultur policy pairs are held outside the first allowlist and remain
+// wrong-prefix warnings for Batch 32 review.
+const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES = {
+  natur: ["by", "historie"],
+  litteratur: ["by"],
+  naeringsliv: ["by", "historie"],
+  historie: ["by", "kunst"],
+  politikk: ["historie", "by"],
+  by: ["kunst", "historie"],
+  kunst: ["by", "historie"],
+  subkultur: ["by", "musikk", "historie", "kunst"]
+};
+
+const CANONICAL_FAMILY_BY_FAG_DIR = {
+  TV_og_Film: "film_tv",
+  by: "by",
+  historie: "historie",
+  kunst: "kunst",
+  litteratur: "litteratur",
+  media: "media",
+  musikk: "musikk",
+  naeringsliv: "naeringsliv",
+  natur: "natur",
+  politikk: "politikk",
+  popkultur: "populaerkultur",
+  psykologi: "psykologi",
+  sport: "sport",
+  subkultur: "subkultur",
+  vitenskap: "vitenskap"
+};
+
 const errors = [];
 const warnings = [];
 const stats = {
@@ -61,6 +96,7 @@ const stats = {
   canonicalEmneIds: 0,
   unknownEmneIds: 0,
   wrongPrefixEmneIds: 0,
+  allowlistedCrossDisciplinaryEmneIds: 0,
   filesWithCanonicalEmner: 0
 };
 
@@ -92,6 +128,17 @@ function walkFiles(dirPath, predicate, found = []) {
   return found;
 }
 
+function canonicalFamilyFromPath(filePath) {
+  const relativeParts = rel(filePath).split("/");
+  const fagIndex = relativeParts.indexOf("fag");
+  const fagDir = fagIndex >= 0 ? relativeParts[fagIndex + 1] : "";
+  return CANONICAL_FAMILY_BY_FAG_DIR[fagDir] || "";
+}
+
+function isAllowedCrossDisciplinaryEmneFamily(category, canonicalFamily) {
+  return (ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES[category] || []).includes(canonicalFamily);
+}
+
 function loadCanonicalEmneRegistry() {
   const registry = new Map();
   const canonicalFiles = walkFiles(
@@ -113,7 +160,7 @@ function loadCanonicalEmneRegistry() {
       const emneId = String(item?.emne_id || "").trim();
       if (!emneId) continue;
       fileContributed = true;
-      registry.set(emneId, rel(filePath));
+      registry.set(emneId, { sourcePath: rel(filePath), family: canonicalFamilyFromPath(filePath) });
     }
 
     if (fileContributed) stats.filesWithCanonicalEmner += 1;
@@ -132,7 +179,7 @@ function loadCanonicalEmneRegistry() {
         const emneId = String(raw || "").trim();
         if (!emneId) continue;
         fileContributed = true;
-        registry.set(emneId, rel(filePath));
+        registry.set(emneId, { sourcePath: rel(filePath), family: canonicalFamilyFromPath(filePath) });
       }
     }
 
@@ -203,16 +250,22 @@ function validateEmneIds(place, context, canonicalEmneRegistry) {
       return;
     }
 
-    if (expectedPrefixes.length && !expectedPrefixes.some((prefix) => emneId.startsWith(prefix))) {
-      stats.wrongPrefixEmneIds += 1;
-      warnings.push(`${context}: emne_id "${emneId}" does not match category "${category}" expected prefix "${expectedPrefixLabel}"`);
-    }
+    const canonicalEntry = canonicalEmneRegistry.get(emneId);
 
-    if (canonicalEmneRegistry.has(emneId)) {
+    if (canonicalEntry) {
       stats.canonicalEmneIds += 1;
     } else {
       stats.unknownEmneIds += 1;
       warnings.push(`${context}: emne_id "${emneId}" not found in canonical emner registry`);
+    }
+
+    if (expectedPrefixes.length && !expectedPrefixes.some((prefix) => emneId.startsWith(prefix))) {
+      if (canonicalEntry && isAllowedCrossDisciplinaryEmneFamily(category, canonicalEntry.family)) {
+        stats.allowlistedCrossDisciplinaryEmneIds += 1;
+      } else {
+        stats.wrongPrefixEmneIds += 1;
+        warnings.push(`${context}: emne_id "${emneId}" does not match category "${category}" expected prefix "${expectedPrefixLabel}"`);
+      }
     }
   });
 }
@@ -337,6 +390,7 @@ function main() {
   console.log(`Canonical emne_ids: ${stats.canonicalEmneIds}`);
   console.log(`Unknown emne_ids: ${stats.unknownEmneIds}`);
   console.log(`Wrong-prefix emne_ids: ${stats.wrongPrefixEmneIds}`);
+  console.log(`Allowlisted cross-disciplinary emne_ids: ${stats.allowlistedCrossDisciplinaryEmneIds}`);
   console.log(`Errors: ${errors.length}`);
   console.log(`Warnings: ${warnings.length}`);
 
