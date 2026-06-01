@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-import { readdir, readFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const REPO_ROOT = process.cwd();
 const STORIES_MANIFEST_PATH = 'data/stories/stories_manifest.json';
-const PLACES_ROOT = 'data/places';
 const PEOPLE_MANIFEST_PATH = 'data/people/manifest.json';
 
 const VALID_STORY_CATEGORIES = new Set([
@@ -22,14 +21,9 @@ const VALID_STORY_CATEGORIES = new Set([
 
 const errors = [];
 const todos = [];
-const warnings = [];
 
 function repoPath(...segments) {
   return path.join(REPO_ROOT, ...segments);
-}
-
-function toPosixPath(filePath) {
-  return filePath.split(path.sep).join('/');
 }
 
 function isNonEmptyValue(value) {
@@ -59,77 +53,81 @@ async function readJson(relativePath, label, { reportError = true } = {}) {
   }
 }
 
-async function listJsonFiles(relativeDir) {
-  const absoluteDir = repoPath(relativeDir);
-  const found = [];
+function getEntityArrayFromSource(json, file, entityName, arrayKeys, { reportErrors = true } = {}) {
+  if (Array.isArray(json)) {
+    return json;
+  }
 
-  async function walk(dir) {
-    let entries;
-    try {
-      entries = await readdir(dir, { withFileTypes: true });
-    } catch (error) {
-      errors.push(`Kan ikke lese mappe ${toPosixPath(path.relative(REPO_ROOT, dir))}: ${error.message}`);
+  if (json && typeof json === 'object') {
+    const matchingKeys = arrayKeys.filter((key) => Array.isArray(json[key]));
+    if (matchingKeys.length === 1) {
+      return json[matchingKeys[0]];
+    }
+
+    if (matchingKeys.length > 1) {
+      if (reportErrors) {
+        errors.push(`${entityName}-sourcefil har flere mulige entity-arrays (${matchingKeys.join(', ')}): ${file}`);
+      }
+      return undefined;
+    }
+  }
+
+  if (reportErrors) {
+    errors.push(`${entityName}-sourcefil må ha root-array eller tydelig ${entityName}-array: ${file}`);
+  }
+  return undefined;
+}
+
+function collectTopLevelEntityIds(json, file, entityName, arrayKeys, { reportErrors = true } = {}) {
+  const entities = getEntityArrayFromSource(json, file, entityName, arrayKeys, { reportErrors });
+  const ids = [];
+  let isSimpleEntityArray = true;
+
+  if (!entities) {
+    return undefined;
+  }
+
+  entities.forEach((entity, index) => {
+    if (!entity || typeof entity !== 'object' || Array.isArray(entity)) {
+      isSimpleEntityArray = false;
+      if (reportErrors) {
+        errors.push(`${entityName}-entry må være objekt: file=${file} index=${index}`);
+      }
       return;
     }
 
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        await walk(fullPath);
-      } else if (entry.isFile() && entry.name.endsWith('.json')) {
-        found.push(toPosixPath(path.relative(REPO_ROOT, fullPath)));
+    if (typeof entity.id !== 'string' || !entity.id.trim()) {
+      isSimpleEntityArray = false;
+      if (reportErrors) {
+        errors.push(`${entityName}-entry mangler id: file=${file} index=${index}`);
       }
-    }
-  }
-
-  await walk(absoluteDir);
-  return found.sort();
-}
-
-function collectObjectIds(value, ids) {
-  if (Array.isArray(value)) {
-    for (const item of value) collectObjectIds(item, ids);
-    return;
-  }
-
-  if (value && typeof value === 'object') {
-    if (typeof value.id === 'string' && value.id.trim()) {
-      ids.add(value.id);
+      return;
     }
 
-    for (const nestedValue of Object.values(value)) {
-      if (nestedValue && typeof nestedValue === 'object') {
-        collectObjectIds(nestedValue, ids);
-      }
-    }
-  }
+    ids.push(entity.id);
+  });
+
+  return isSimpleEntityArray ? ids : undefined;
 }
 
 async function loadPlaceIds() {
   const placeIds = new Set();
-  const placeManifest = await readJson('data/places/manifest.json', 'Place-manifest', { reportError: false });
-  let placeFiles;
+  const placeManifest = await readJson('data/places/manifest.json', 'Place-manifest');
 
-  if (placeManifest && Array.isArray(placeManifest.files)) {
-    placeFiles = placeManifest.files.map((file) => (file.startsWith('data/') ? file : `data/${file}`));
-  } else {
-    warnings.push('Fant ikke lesbar data/places/manifest.json med files-array; scanner JSON-sourcefiler under data/places/ direkte.');
-    placeFiles = (await listJsonFiles(PLACES_ROOT)).filter((file) => {
-      const basename = path.posix.basename(file);
-      return ![
-        'manifest.json',
-        'places_index.json',
-        'places_nature_aliases.json',
-        'place_image_candidates.json',
-        'place_image_seeds.json',
-      ].includes(basename);
-    });
+  if (!placeManifest || !Array.isArray(placeManifest.files)) {
+    errors.push('Place-manifest må ha files-array: data/places/manifest.json');
+    return { placeIds, placeFileCount: 0 };
   }
+
+  const placeFiles = placeManifest.files.map((file) => (file.startsWith('data/') ? file : `data/${file}`));
 
   for (const file of placeFiles) {
     const json = await readJson(file, 'Place-sourcefil');
     if (json !== undefined) {
-      collectObjectIds(json, placeIds);
+      const ids = collectTopLevelEntityIds(json, file, 'Place', ['places']);
+      for (const placeId of ids ?? []) {
+        placeIds.add(placeId);
+      }
     }
   }
 
@@ -156,7 +154,14 @@ async function loadPeopleIdsIfAvailable() {
       todos.push(`person_id-sjekk TODO: people-sourcefil kan ikke leses som JSON (${peopleFile}); person_id-er er ikke fullstendig validert.`);
       return undefined;
     }
-    collectObjectIds(json, peopleIds);
+    const ids = collectTopLevelEntityIds(json, peopleFile, 'People', ['people', 'persons'], { reportErrors: false });
+    if (!ids) {
+      todos.push(`person_id-sjekk TODO: people-sourcefil har ikke en enkel person-array med id-felt (${peopleFile}); person_id-er er ikke fullstendig validert.`);
+      return undefined;
+    }
+    for (const personId of ids) {
+      peopleIds.add(personId);
+    }
   }
 
   return peopleIds;
@@ -307,9 +312,6 @@ async function main() {
   console.log(`- Next scenes: ${stats.nextScenes}`);
   console.log(`- Place-sourcefiler lest: ${placeFileCount}`);
 
-  for (const warning of warnings) {
-    console.log(`WARNING: ${warning}`);
-  }
   for (const todo of todos) {
     console.log(`TODO: ${todo}`);
   }
