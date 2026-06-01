@@ -224,7 +224,7 @@ window.openPlaceCard = async function (place) {
 
 const card = document.getElementById("placeCard");
 const frontCardFlipEl = document.getElementById("pcFrontCardFlip");
-const frontImgEl = document.getElementById("pcFrontImage");
+const frontImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcFrontImage"));
 const quizCardImgEl = document.getElementById("pcQuizCardImage");
 const titleEl    = document.getElementById("pcTitle");
 const metaEl     = document.getElementById("pcMeta");
@@ -456,12 +456,12 @@ if (!card) return;
   card.classList.add("is-switching");
 
   // Basic content
-  if (frontImgEl) frontImgEl.src = (place.frontImage || place.cardImage || place.image || "");
+  if (frontImgEl) frontImgEl.src = String(place.frontImage || place.cardImage || place.image || "");
   setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
   // ---- MINI PREVIEW BILDE ----
-  const miniImgEl = document.getElementById("pcMiniImg");
+  const miniImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcMiniImg"));
   if (miniImgEl) {
-    miniImgEl.src = frontImgEl?.src || (place.image ?? "");
+    miniImgEl.src = frontImgEl?.src || String(place.image ?? "");
    }
   
   if (titleEl) titleEl.textContent = place.name || "";
