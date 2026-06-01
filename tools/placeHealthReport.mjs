@@ -54,16 +54,30 @@ const CATEGORY_EMNE_PREFIXES = {
 // emne_ids. This is intentionally a category -> canonical fagfamilie policy, not
 // a blind prefix rewrite. Unknown/missing emne_ids are never allowlisted because
 // the canonical family is only read from the canonical registry after a hit.
-// Film/populærkultur policy pairs are held outside the first allowlist and remain
-// wrong-prefix warnings for Batch 32 review.
+//
+// Batch 33: add two narrow, documented film/TV secondary-layer pairs recommended
+// as Tier A by the Batch 32 policy audit
+// (reports/oslo-place-audit-batch-32-film-popkultur-policy-audit.md):
+//   - by -> film_tv: applies to byrom (category "by") with an explicitly
+//     documented film/TV location or representation layer in the place text
+//     (e.g. Sagene, Kampen "spilles som seg selv i norsk TV"). Film is a
+//     secondary layer on a lived urban space, not its category.
+//   - populaerkultur -> film_tv: applies to cinemas and film/TV places
+//     (kinoer, SKAM-lokasjon) for as long as film/TV sits under populærkultur
+//     in place-data. This is correct category policy, not an emne mismatch.
+// Deliberately NOT allowlisted in Batch 33: by -> populaerkultur is held outside
+// until a targeted datafix cleans the miscategorised popkultur places and the
+// weak trend/digital couplings. politikk -> populaerkultur, natur -> kunst and
+// subkultur -> naeringsliv stay warnings (too thin / mismatched emne choice).
 const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES = {
   natur: ["by", "historie"],
   litteratur: ["by"],
   naeringsliv: ["by", "historie"],
   historie: ["by", "kunst"],
   politikk: ["historie", "by"],
-  by: ["kunst", "historie"],
+  by: ["kunst", "historie", "film_tv"],
   kunst: ["by", "historie"],
+  populaerkultur: ["film_tv"],
   subkultur: ["by", "musikk", "historie", "kunst"]
 };
 
