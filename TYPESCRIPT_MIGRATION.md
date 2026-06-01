@@ -670,3 +670,9 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Cast the existing weakest-subject object branch locally so the current `subjectId` fallback read is understood without changing filtering, fallback values, generated HTML, DataHub calls, storage keys, or profile flow.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1739 to 1718, and `js/profile.js` diagnostics went from 83 to 62.
 - `js/Civication/**`, data/story/import files, runtime UI layout, CSS, HTML, package metadata, app flow, and import tooling were not touched.
+
+## Phase 83: CivicationUI diagnostics audit after profile pass
+
+- Added a read-only diagnostics audit for `js/Civication/ui/CivicationUI.js` after Phase 82 and Phase 82B, without changing runtime code, schemas, declarations, DOM/CSS/layout, data, import tooling, package metadata, or `tsconfig.json`.
+- Regenerated `reports/typecheck-baseline-report.md`; the current report records 1724 total diagnostics, `js/Civication/**` at 341, and `js/Civication/ui/CivicationUI.js` unchanged at 96 diagnostics.
+- Documented the remaining `CivicationUI.js` diagnostics by TypeScript code, hotspot function/line range, migration-risk class, and a narrow Phase 84 recommendation focused on local active-position/pending-offer shapes only.
