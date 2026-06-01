@@ -752,3 +752,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1576 to 1535, and `js/routes.js` diagnostics went from 46 to 5.
 - Runtime behavior, routing behavior, navigation flow, storage keys, URL/hash behavior, DOM targets, event listeners, data semantics, UI layout, and public API remain unchanged.
 - `js/profile.js`, `js/boot.js`, `js/hgKnowledgeEngine.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, import tooling, package metadata, CSS, HTML, and unrelated runtime files were not changed.
+
+## Phase 89 replacement: CivicationUI inbox DOM local-cast pass
+
+- PR #849 and PR #855 were both closed without merge after becoming non-mergeable; no Phase 89 inbox DOM local-cast changes from those PRs are included here.
+- This PR replaces #849 and #855 from the current main baseline with a narrow `renderCivicationInbox()` pass only.
+- Added only local DOM casts for `choiceBox`, `fb`, and `ok` in `renderCivicationInbox()` so the inbox choice/feedback/OK nodes keep their existing selectors while TypeScript sees the intended element types.
+- Runtime behavior, UI output, DOM structure, visible text, CSS classes/IDs, event flow, answer flow, CivicationThreadBridge calls, CivicationNPCs calls, data, schemas, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1529, and `js/Civication/ui/CivicationUI.js` diagnostics are now 31.
