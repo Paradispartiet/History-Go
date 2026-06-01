@@ -760,3 +760,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added only local DOM casts for `choiceBox`, `fb`, and `ok` in `renderCivicationInbox()` so the inbox choice/feedback/OK nodes keep their existing selectors while TypeScript sees the intended element types.
 - Runtime behavior, UI output, DOM structure, visible text, CSS classes/IDs, event flow, answer flow, CivicationThreadBridge calls, CivicationNPCs calls, data, schemas, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1529, and `js/Civication/ui/CivicationUI.js` diagnostics are now 31.
+
+## Phase 90: place-card TypeScript diagnostics audit
+
+- Added a read-only diagnostics audit for `js/ui/place-card.js` after the Phase 89 replacement baseline.
+- `js/ui/place-card.js` was not changed; this phase is documentation/audit-only.
+- Runtime code, UI/DOM/CSS, data files, schema declarations, `tsconfig.json`, package metadata, stories, places, people, and import tooling were not changed.
+- Regenerated `reports/typecheck-baseline-report.md`, which keeps the current baseline at 1529 total diagnostics and records `js/ui/place-card.js` as the largest hotspot with 139 diagnostics.
+- The new audit report classifies the 139 `place-card.js` diagnostics by TypeScript code, hotspot line range, migration-risk class, and likely owner.
+- Recommended Phase 91 is a very small local TypeScript-only pass: target the image element cluster in `openPlaceCard()` around `pcFrontImage`/`pcMiniImg` first, with an optional single `btnUnlock` button cast only if needed; do not mix in global declarations, schema work, data changes, route/observation logic, or broad place-card cleanup.
