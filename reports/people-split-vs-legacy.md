@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-01T19:57:43.673Z
+Generert: 2026-06-01T20:16:08.227Z
 
 ## Sammendrag
 
@@ -42,12 +42,12 @@ Generert: 2026-06-01T19:57:43.673Z
 | data/people/people_naeringsliv.json | ja | 19 | 0 |  |
 | data/people/people_natur.json | ja | 16 | 0 |  |
 | data/people/people_populaerkultur.json | ja | 3 | 0 |  |
-| data/people/people_subkultur.json | ja | 22 | 0 |  |
 | data/people/people_vitenskap.json | ja | 20 | 0 |  |
 | data/people/politikk/oslo/people_politikk_oslo.json | ja | 22 | 0 |  |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | ja | 1 | 0 |  |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | ja | 6 | 0 |  |
 | data/people/sport/oslo/people_sport_oslo.json | ja | 28 | 0 |  |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | ja | 22 | 0 |  |
 
 ## Split-filer som ikke er listet i manifest
 
@@ -100,7 +100,7 @@ Generert: 2026-06-01T19:57:43.673Z
 - birger_eriksen | Birger Eriksen | data/people/historie/oslo/people_historie_oslo.json
 - biskop_nikolas_arnason | Biskop Nikolas Arnesson | data/people/historie/oslo/people_historie_oslo.json
 - bjorgulv_braanen | Bjørgulv Braanen | data/people/media/oslo/people_media_oslo.json
-- blitz_miljoet | Blitz-miljøet | data/people/people_subkultur.json
+- blitz_miljoet | Blitz-miljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
 - bredo_greve | Bredo Greve | data/people/film_tv/oslo/people_film_tv_oslo.json
 - bugge_wesseltoft | Bugge Wesseltoft | data/people/musikk/oslo/people_musikk_oslo.json
 - carl_deichman | Carl Deichman | data/people/people_filantroper.json
@@ -119,10 +119,10 @@ Generert: 2026-06-01T19:57:43.673Z
 - christian_ringnes | Christian Ringnes | data/people/people_filantroper.json
 - christian_schweigaard_post_og_administrasjon | Christian Schweigaard | data/people/people_naeringsliv.json
 - christopher_hansteen | Christopher Hansteen | data/people/historie/oslo/people_historie_oslo.json
-- christopher_nielsen | Christopher Nielsen | data/people/people_subkultur.json
+- christopher_nielsen | Christopher Nielsen | data/people/subkultur/oslo/people_subkultur_oslo.json
 - cj_hambro | C.J. Hambro | data/people/historie/oslo/people_historie_oslo.json
 - dag_o_hessen | Dag O. Hessen | data/people/people_natur.json
-- don_martin | Don Martin | data/people/people_subkultur.json
+- don_martin | Don Martin | data/people/subkultur/oslo/people_subkultur_oslo.json
 - eckbos_legat | Eckbos Legat | data/people/people_filantroper.json
 - edith_carlmar | Edith Carlmar | data/people/film_tv/oslo/people_film_tv_oslo.json
 - edvard_munch | Edvard Munch | data/people/historie/oslo/people_historie_oslo.json
@@ -139,7 +139,7 @@ Generert: 2026-06-01T19:57:43.673Z
 - fredrik_skavlan | Fredrik Skavlan | data/people/media/oslo/people_media_oslo.json
 - frode_hansen | Frode Hansen | data/people/media/oslo/people_media_oslo.json
 - gard_steiro | Gard Steiro | data/people/media/oslo/people_media_oslo.json
-- gateavisa_miljoet | Gateavisa-miljøet | data/people/people_subkultur.json
+- gateavisa_miljoet | Gateavisa-miljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
 - geir_grung | Geir Grung | data/people/people_by.json
 - georg_ossian_sars | Georg Ossian Sars | data/people/people_natur.json
 - georg_sverdrup | Georg Sverdrup | data/people/historie/oslo/people_historie_oslo.json
@@ -157,9 +157,9 @@ Generert: 2026-06-01T19:57:43.673Z
 - harald_hardrade | Harald Hardråde | data/people/historie/oslo/people_historie_oslo.json
 - harald_stanghelle | Harald Stanghelle | data/people/media/oslo/people_media_oslo.json
 - harald_aars | Harald Aars | data/people/people_by.json
-- hariton_pushwagner | Hariton Pushwagner | data/people/people_subkultur.json
+- hariton_pushwagner | Hariton Pushwagner | data/people/subkultur/oslo/people_subkultur_oslo.json
 - harriet_holter | Harriet Holter | data/people/people_vitenskap.json
-- hausmania_miljoet | Hausmania-miljøet | data/people/people_subkultur.json
+- hausmania_miljoet | Hausmania-miljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
 - helga_eng | Helga Eng | data/people/people_vitenskap.json
 - helge_ingstad | Helge Ingstad | data/people/people_natur.json
 - henrik_bjelke | Henrik Bjelke | data/people/historie/oslo/people_historie_oslo.json
@@ -196,7 +196,7 @@ Generert: 2026-06-01T19:57:43.673Z
 - kirsti_kolle_grondahl | Kirsti Kolle Grøndahl | data/people/politikk/oslo/people_politikk_oslo.json
 - kjersti_holmen | Kjersti Holmen | data/people/film_tv/oslo/people_film_tv_oslo.json
 - kjetil_andre_aamodt | Kjetil André Aamodt | data/people/sport/oslo/people_sport_oslo.json
-- kjetil_rolness | Kjetil Rolness | data/people/people_subkultur.json
+- kjetil_rolness | Kjetil Rolness | data/people/subkultur/oslo/people_subkultur_oslo.json
 - kong_karl_johan | Karl Johan | data/people/historie/oslo/people_historie_oslo.json
 - kong_olav_kyrre | Olav Kyrre | data/people/historie/oslo/people_historie_oslo.json
 - kristian_birkeland_teknologi_og_industri | Kristian Birkeland | data/people/people_naeringsliv.json
@@ -239,9 +239,9 @@ Generert: 2026-06-01T19:57:43.673Z
 - ole_gunnar_solskjaer | Ole Gunnar Solskjær | data/people/sport/oslo/people_sport_oslo.json
 - oscar_i | Oscar I | data/people/historie/oslo/people_historie_oslo.json
 - oscar_mathisen | Oscar Mathisen | data/people/sport/oslo/people_sport_oslo.json
-- oslo_graffiti_miljoet | Oslo graffiti-miljøet | data/people/people_subkultur.json
-- oslo_pride_skeive_dager | Oslo Pride / Skeive dager | data/people/people_subkultur.json
-- oslo_skateboardmiljoet | Oslo skateboardmiljøet | data/people/people_subkultur.json
+- oslo_graffiti_miljoet | Oslo graffiti-miljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
+- oslo_pride_skeive_dager | Oslo Pride / Skeive dager | data/people/subkultur/oslo/people_subkultur_oslo.json
+- oslo_skateboardmiljoet | Oslo skateboardmiljøet | data/people/subkultur/oslo/people_subkultur_oslo.json
 - oslo_skoiteklub | Oslo Skøiteklub | data/people/sport/oslo/people_sport_oslo.json
 - ove_bang | Ove Bang | data/people/people_by.json
 - oystein_wiik | Øystein Wiik | data/people/popkultur/oslo/people_popkultur_oslo.json
@@ -253,7 +253,7 @@ Generert: 2026-06-01T19:57:43.673Z
 - peter_christen_asbjornsen | Peter Christen Asbjørnsen | data/people/people_natur.json
 - petter_moen | Petter Moen | data/people/historie/oslo/people_historie_oslo.json
 - petter_stordalen_hotell_og_service | Petter Stordalen | data/people/people_naeringsliv.json
-- radi_orakel | RadiOrakel | data/people/people_subkultur.json
+- radi_orakel | RadiOrakel | data/people/subkultur/oslo/people_subkultur_oslo.json
 - ragnar_frisch | Ragnar Frisch | data/people/people_vitenskap.json
 - rein_alexander | Rein Alexander | data/people/popkultur/oslo/people_popkultur_oslo.json
 - reiulf_steen | Reiulf Steen | data/people/politikk/oslo/people_politikk_oslo.json
@@ -282,7 +282,7 @@ Generert: 2026-06-01T19:57:43.673Z
 - thomas_hylland_eriksen | Thomas Hylland Eriksen | data/people/people_vitenskap.json
 - thomas_thiis_evensen | Thomas Thiis-Evensen | data/people/people_by.json
 - thorvald_meyer | Thorvald Meyer | data/people/historie/oslo/people_historie_oslo.json
-- tommy_tee | Tommy Tee | data/people/people_subkultur.json
+- tommy_tee | Tommy Tee | data/people/subkultur/oslo/people_subkultur_oslo.json
 - torry_pedersen | Torry Pedersen | data/people/media/oslo/people_media_oslo.json
 - tove_stang_dahl | Tove Stang Dahl | data/people/people_vitenskap.json
 - trine_eilertsen | Trine Eilertsen | data/people/media/oslo/people_media_oslo.json
@@ -294,7 +294,7 @@ Generert: 2026-06-01T19:57:43.673Z
 - vidkun_quisling | Vidkun Quisling | data/people/historie/oslo/people_historie_oslo.json
 - viggo_hansteen | Viggo Hansteen | data/people/historie/oslo/people_historie_oslo.json
 - vilhelm_bjerknes | Vilhelm Bjerknes | data/people/people_vitenskap.json
-- warlocks_oslo | Warlocks | data/people/people_subkultur.json
+- warlocks_oslo | Warlocks | data/people/subkultur/oslo/people_subkultur_oslo.json
 - wilhelm_f_k_christie | Wilhelm Frimann Koren Christie | data/people/historie/oslo/people_historie_oslo.json
 - wilhelm_von_hanno | Wilhelm von Hanno | data/people/historie/oslo/people_historie_oslo.json
 - wilhelm_wilhelmsen_shipping | Wilhelm Wilhelmsen | data/people/people_naeringsliv.json

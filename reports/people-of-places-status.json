@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-01T19:57:43.869Z",
+  "generatedAt": "2026-06-01T20:16:08.517Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-01T19:57:43.869Z",
+    "generatedAt": "2026-06-01T20:16:08.517Z",
     "peopleFilesRead": 21,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
@@ -14,8 +14,8 @@
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 5,
     "peopleWithEmptyPlacesArray": 3,
-    "flatPeopleFiles": 8,
-    "geographicPeopleFiles": 13,
+    "flatPeopleFiles": 7,
+    "geographicPeopleFiles": 14,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -338,27 +338,6 @@
       ]
     },
     {
-      "path": "data/people/people_subkultur.json",
-      "listedInManifest": true,
-      "categoryGuess": "subkultur",
-      "geographicStructure": false,
-      "peopleCount": 22,
-      "duplicateIdsWithinFile": [],
-      "missingIdCount": 0,
-      "missingNameCount": 0,
-      "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=22/22",
-        "source_place_id=0/22",
-        "placesArray=22/22",
-        "categories=subkultur"
-      ]
-    },
-    {
       "path": "data/people/people_vitenskap.json",
       "listedInManifest": true,
       "categoryGuess": "vitenskap",
@@ -461,6 +440,27 @@
         "source_place_id=0/28",
         "placesArray=28/28",
         "categories=sport"
+      ]
+    },
+    {
+      "path": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+      "listedInManifest": true,
+      "categoryGuess": "subkultur",
+      "geographicStructure": true,
+      "peopleCount": 22,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=22/22",
+        "source_place_id=0/22",
+        "placesArray=22/22",
+        "categories=subkultur"
       ]
     }
   ],
@@ -652,14 +652,14 @@
       "category": "subkultur",
       "totalPeople": 22,
       "files": [
-        "data/people/people_subkultur.json"
+        "data/people/subkultur/oslo/people_subkultur_oslo.json"
       ],
-      "flatFiles": [
-        "data/people/people_subkultur.json"
+      "flatFiles": [],
+      "geographicFiles": [
+        "data/people/subkultur/oslo/people_subkultur_oslo.json"
       ],
-      "geographicFiles": [],
-      "suggestedNextAction": "geographic_split",
-      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     },
     {
       "category": "vitenskap",
@@ -689,7 +689,8 @@
       "data/people/politikk/oslo/people_politikk_oslo.json",
       "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
       "data/people/popkultur/oslo/people_popkultur_oslo.json",
-      "data/people/sport/oslo/people_sport_oslo.json"
+      "data/people/sport/oslo/people_sport_oslo.json",
+      "data/people/subkultur/oslo/people_subkultur_oslo.json"
     ],
     "stillFlat": [
       "data/people/people_by.json",
@@ -698,7 +699,6 @@
       "data/people/people_naeringsliv.json",
       "data/people/people_natur.json",
       "data/people/people_populaerkultur.json",
-      "data/people/people_subkultur.json",
       "data/people/people_vitenskap.json"
     ],
     "mixedCategoryStructure": [
@@ -728,13 +728,6 @@
         ]
       },
       {
-        "category": "subkultur",
-        "totalPeople": 22,
-        "files": [
-          "data/people/people_subkultur.json"
-        ]
-      },
-      {
         "category": "vitenskap",
         "totalPeople": 20,
         "files": [
@@ -746,7 +739,6 @@
       "data/people/people_by.json",
       "data/people/people_musikk.json",
       "data/people/people_natur.json",
-      "data/people/people_subkultur.json",
       "data/people/people_vitenskap.json"
     ],
     "flatFilesHoldForSchemaReview": [
@@ -1258,18 +1250,6 @@
       "deviations": []
     },
     {
-      "sourceFile": "data/people/people_subkultur.json",
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=22/22",
-        "source_place_id=0/22",
-        "placesArray=22/22",
-        "categories=subkultur"
-      ],
-      "deviations": []
-    },
-    {
       "sourceFile": "data/people/people_vitenskap.json",
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
@@ -1326,6 +1306,18 @@
         "source_place_id=0/28",
         "placesArray=28/28",
         "categories=sport"
+      ],
+      "deviations": []
+    },
+    {
+      "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=22/22",
+        "source_place_id=0/22",
+        "placesArray=22/22",
+        "categories=subkultur"
       ],
       "deviations": []
     }
@@ -3982,300 +3974,6 @@
         "imagePath": "bilder/kort/people/astridS_sorenga.PNG"
       },
       {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "kolapalsen",
-        "personName": "Køla-Pålsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "kolapalsen",
-        "personName": "Køla-Pålsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "snippmoller",
-        "personName": "Snipp-Møller",
-        "field": "image",
-        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "snippmoller",
-        "personName": "Snipp-Møller",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "lisa_kristoffersen",
-        "personName": "Lisa Kristoffersen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "lisa_kristoffersen",
-        "personName": "Lisa Kristoffersen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "advokat_hermansen",
-        "personName": "Advokat Hermansen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "advokat_hermansen",
-        "personName": "Advokat Hermansen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "ole_bjorn",
-        "personName": "Ole-Bjørn",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "ole_bjorn",
-        "personName": "Ole-Bjørn",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "viggo_tigeren",
-        "personName": "Viggo (byen som tiger)",
-        "field": "image",
-        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "viggo_tigeren",
-        "personName": "Viggo (byen som tiger)",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "tinashe_williamson",
-        "personName": "Tinashe Williamson",
-        "field": "image",
-        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "tinashe_williamson",
-        "personName": "Tinashe Williamson",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "stephen_butkus",
-        "personName": "Stephen Butkus",
-        "field": "image",
-        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "stephen_butkus",
-        "personName": "Stephen Butkus",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "blitz_miljoet",
-        "personName": "Blitz-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "blitz_miljoet",
-        "personName": "Blitz-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "hausmania_miljoet",
-        "personName": "Hausmania-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "hausmania_miljoet",
-        "personName": "Hausmania-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "oslo_pride_skeive_dager",
-        "personName": "Oslo Pride / Skeive dager",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "oslo_pride_skeive_dager",
-        "personName": "Oslo Pride / Skeive dager",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "radi_orakel",
-        "personName": "RadiOrakel",
-        "field": "image",
-        "imagePath": "bilder/kort/people/radi_orakel.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "radi_orakel",
-        "personName": "RadiOrakel",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/radi_orakel.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "gateavisa_miljoet",
-        "personName": "Gateavisa-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "gateavisa_miljoet",
-        "personName": "Gateavisa-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "oslo_graffiti_miljoet",
-        "personName": "Oslo graffiti-miljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "oslo_graffiti_miljoet",
-        "personName": "Oslo graffiti-miljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "oslo_skateboardmiljoet",
-        "personName": "Oslo skateboardmiljøet",
-        "field": "image",
-        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "oslo_skateboardmiljoet",
-        "personName": "Oslo skateboardmiljøet",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "christopher_nielsen",
-        "personName": "Christopher Nielsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "christopher_nielsen",
-        "personName": "Christopher Nielsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "hariton_pushwagner",
-        "personName": "Hariton Pushwagner",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "hariton_pushwagner",
-        "personName": "Hariton Pushwagner",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "don_martin",
-        "personName": "Don Martin",
-        "field": "image",
-        "imagePath": "bilder/kort/people/don_martin.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "don_martin",
-        "personName": "Don Martin",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/don_martin.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "tommy_tee",
-        "personName": "Tommy Tee",
-        "field": "image",
-        "imagePath": "bilder/kort/people/tommy_tee.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "tommy_tee",
-        "personName": "Tommy Tee",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/tommy_tee.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "warlocks_oslo",
-        "personName": "Warlocks",
-        "field": "image",
-        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "warlocks_oslo",
-        "personName": "Warlocks",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "kjetil_rolness",
-        "personName": "Kjetil Rolness",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_subkultur.json",
-        "personId": "kjetil_rolness",
-        "personName": "Kjetil Rolness",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
-      },
-      {
         "sourceFile": "data/people/people_vitenskap.json",
         "personId": "edvard_moser",
         "personName": "Edvard Moser",
@@ -5198,6 +4896,300 @@
         "personName": "Oslo Skøiteklub",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/oslo_skoiteklub.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kolapalsen",
+        "personName": "Køla-Pålsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kolapalsen",
+        "personName": "Køla-Pålsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kolapalsen_karljohan.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "snippmoller",
+        "personName": "Snipp-Møller",
+        "field": "image",
+        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "snippmoller",
+        "personName": "Snipp-Møller",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/snippmoller_stortorvet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "lisa_kristoffersen",
+        "personName": "Lisa Kristoffersen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "lisa_kristoffersen",
+        "personName": "Lisa Kristoffersen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/lisa_kristoffersen_sagene.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "advokat_hermansen",
+        "personName": "Advokat Hermansen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "advokat_hermansen",
+        "personName": "Advokat Hermansen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/advokat_hermansen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "ole_bjorn",
+        "personName": "Ole-Bjørn",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "ole_bjorn",
+        "personName": "Ole-Bjørn",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ole_bjorn.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "viggo_tigeren",
+        "personName": "Viggo (byen som tiger)",
+        "field": "image",
+        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "viggo_tigeren",
+        "personName": "Viggo (byen som tiger)",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/viggo_tigeren.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tinashe_williamson",
+        "personName": "Tinashe Williamson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tinashe_williamson",
+        "personName": "Tinashe Williamson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/tinashe_williamson.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "stephen_butkus",
+        "personName": "Stephen Butkus",
+        "field": "image",
+        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "stephen_butkus",
+        "personName": "Stephen Butkus",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/stephen_butkus.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "blitz_miljoet",
+        "personName": "Blitz-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "blitz_miljoet",
+        "personName": "Blitz-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/blitz_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hausmania_miljoet",
+        "personName": "Hausmania-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hausmania_miljoet",
+        "personName": "Hausmania-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hausmania_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_pride_skeive_dager",
+        "personName": "Oslo Pride / Skeive dager",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_pride_skeive_dager",
+        "personName": "Oslo Pride / Skeive dager",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_pride_skeive_dager.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "radi_orakel",
+        "personName": "RadiOrakel",
+        "field": "image",
+        "imagePath": "bilder/kort/people/radi_orakel.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "radi_orakel",
+        "personName": "RadiOrakel",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/radi_orakel.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "gateavisa_miljoet",
+        "personName": "Gateavisa-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "gateavisa_miljoet",
+        "personName": "Gateavisa-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gateavisa_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_graffiti_miljoet",
+        "personName": "Oslo graffiti-miljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_graffiti_miljoet",
+        "personName": "Oslo graffiti-miljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_graffiti_miljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_skateboardmiljoet",
+        "personName": "Oslo skateboardmiljøet",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "oslo_skateboardmiljoet",
+        "personName": "Oslo skateboardmiljøet",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oslo_skateboardmiljoet.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "christopher_nielsen",
+        "personName": "Christopher Nielsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "christopher_nielsen",
+        "personName": "Christopher Nielsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/christopher_nielsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hariton_pushwagner",
+        "personName": "Hariton Pushwagner",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "hariton_pushwagner",
+        "personName": "Hariton Pushwagner",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hariton_pushwagner.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "don_martin",
+        "personName": "Don Martin",
+        "field": "image",
+        "imagePath": "bilder/kort/people/don_martin.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "don_martin",
+        "personName": "Don Martin",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/don_martin.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tommy_tee",
+        "personName": "Tommy Tee",
+        "field": "image",
+        "imagePath": "bilder/kort/people/tommy_tee.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "tommy_tee",
+        "personName": "Tommy Tee",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/tommy_tee.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "warlocks_oslo",
+        "personName": "Warlocks",
+        "field": "image",
+        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "warlocks_oslo",
+        "personName": "Warlocks",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/warlocks_oslo.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kjetil_rolness",
+        "personName": "Kjetil Rolness",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
+      },
+      {
+        "sourceFile": "data/people/subkultur/oslo/people_subkultur_oslo.json",
+        "personId": "kjetil_rolness",
+        "personName": "Kjetil Rolness",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kjetil_rolness.PNG"
       }
     ]
   },
@@ -5253,9 +5245,9 @@
   ],
   "recommendedNextPr": {
     "type": "geographic_split",
-    "category": "subkultur",
-    "reason": "subkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-    "safeBatchSize": 22,
+    "category": "vitenskap",
+    "reason": "vitenskap er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+    "safeBatchSize": 20,
     "blockers": []
   },
   "guardrails": {

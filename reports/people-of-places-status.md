@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-01T19:57:43.869Z
+Generert: 2026-06-01T20:16:08.517Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-01T19:57:43.869Z |
+| generatedAt | 2026-06-01T20:16:08.517Z |
 | peopleFilesRead | 21 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -14,8 +14,8 @@ Generert: 2026-06-01T19:57:43.869Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 5 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 8 |
-| geographicPeopleFiles | 13 |
+| flatPeopleFiles | 7 |
+| geographicPeopleFiles | 14 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -37,12 +37,12 @@ Generert: 2026-06-01T19:57:43.869Z
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
 | data/people/people_natur.json | natur | nei | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
-| data/people/people_subkultur.json | subkultur | nei | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_vitenskap.json | vitenskap | nei | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 
 ## Kategorioversikt
 
@@ -61,15 +61,15 @@ Generert: 2026-06-01T19:57:43.869Z
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 10 | 1 | 2 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| subkultur | 22 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| subkultur | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 20 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 13
-- Fortsatt flate filer: 8
+- Allerede geografisk strukturert: 14
+- Fortsatt flate filer: 7
 - Blandede kategorier: musikk, populaerkultur
-- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_subkultur.json, data/people/people_vitenskap.json
+- Trygge flate filer for neste geografiske split: data/people/people_by.json, data/people/people_musikk.json, data/people/people_natur.json, data/people/people_vitenskap.json
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
@@ -77,7 +77,6 @@ Generert: 2026-06-01T19:57:43.869Z
 - by: 17 entries (data/people/people_by.json)
 - musikk: 19 entries (data/people/people_musikk.json)
 - natur: 16 entries (data/people/people_natur.json)
-- subkultur: 22 entries (data/people/people_subkultur.json)
 - vitenskap: 20 entries (data/people/people_vitenskap.json)
 
 ## Place-ref audit
@@ -148,12 +147,12 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
 - data/people/people_natur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
-- data/people/people_subkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
 - data/people/people_vitenskap.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
+- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
 
 ## Category/collectionGroup-avvik
 
@@ -547,48 +546,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.imageCard | bilder/kort/people/morten_ramm.PNG |
 | data/people/people_populaerkultur.json | astrid_s / Astrid S | image | bilder/kort/people/astridS_sorenga.PNG |
 | data/people/people_populaerkultur.json | astrid_s / Astrid S | cardImage | bilder/kort/people/astridS_sorenga.PNG |
-| data/people/people_subkultur.json | kolapalsen / Køla-Pålsen | image | bilder/kort/people/kolapalsen_karljohan.PNG |
-| data/people/people_subkultur.json | kolapalsen / Køla-Pålsen | cardImage | bilder/kort/people/kolapalsen_karljohan.PNG |
-| data/people/people_subkultur.json | snippmoller / Snipp-Møller | image | bilder/kort/people/snippmoller_stortorvet.PNG |
-| data/people/people_subkultur.json | snippmoller / Snipp-Møller | cardImage | bilder/kort/people/snippmoller_stortorvet.PNG |
-| data/people/people_subkultur.json | lisa_kristoffersen / Lisa Kristoffersen | image | bilder/kort/people/lisa_kristoffersen_sagene.PNG |
-| data/people/people_subkultur.json | lisa_kristoffersen / Lisa Kristoffersen | cardImage | bilder/kort/people/lisa_kristoffersen_sagene.PNG |
-| data/people/people_subkultur.json | advokat_hermansen / Advokat Hermansen | image | bilder/kort/people/advokat_hermansen.PNG |
-| data/people/people_subkultur.json | advokat_hermansen / Advokat Hermansen | cardImage | bilder/kort/people/advokat_hermansen.PNG |
-| data/people/people_subkultur.json | ole_bjorn / Ole-Bjørn | image | bilder/kort/people/ole_bjorn.PNG |
-| data/people/people_subkultur.json | ole_bjorn / Ole-Bjørn | cardImage | bilder/kort/people/ole_bjorn.PNG |
-| data/people/people_subkultur.json | viggo_tigeren / Viggo (byen som tiger) | image | bilder/kort/people/viggo_tigeren.PNG |
-| data/people/people_subkultur.json | viggo_tigeren / Viggo (byen som tiger) | cardImage | bilder/kort/people/viggo_tigeren.PNG |
-| data/people/people_subkultur.json | tinashe_williamson / Tinashe Williamson | image | bilder/kort/people/tinashe_williamson.PNG |
-| data/people/people_subkultur.json | tinashe_williamson / Tinashe Williamson | cardImage | bilder/kort/people/tinashe_williamson.PNG |
-| data/people/people_subkultur.json | stephen_butkus / Stephen Butkus | image | bilder/kort/people/stephen_butkus.PNG |
-| data/people/people_subkultur.json | stephen_butkus / Stephen Butkus | cardImage | bilder/kort/people/stephen_butkus.PNG |
-| data/people/people_subkultur.json | blitz_miljoet / Blitz-miljøet | image | bilder/kort/people/blitz_miljoet.PNG |
-| data/people/people_subkultur.json | blitz_miljoet / Blitz-miljøet | cardImage | bilder/kort/people/blitz_miljoet.PNG |
-| data/people/people_subkultur.json | hausmania_miljoet / Hausmania-miljøet | image | bilder/kort/people/hausmania_miljoet.PNG |
-| data/people/people_subkultur.json | hausmania_miljoet / Hausmania-miljøet | cardImage | bilder/kort/people/hausmania_miljoet.PNG |
-| data/people/people_subkultur.json | oslo_pride_skeive_dager / Oslo Pride / Skeive dager | image | bilder/kort/people/oslo_pride_skeive_dager.PNG |
-| data/people/people_subkultur.json | oslo_pride_skeive_dager / Oslo Pride / Skeive dager | cardImage | bilder/kort/people/oslo_pride_skeive_dager.PNG |
-| data/people/people_subkultur.json | radi_orakel / RadiOrakel | image | bilder/kort/people/radi_orakel.PNG |
-| data/people/people_subkultur.json | radi_orakel / RadiOrakel | cardImage | bilder/kort/people/radi_orakel.PNG |
-| data/people/people_subkultur.json | gateavisa_miljoet / Gateavisa-miljøet | image | bilder/kort/people/gateavisa_miljoet.PNG |
-| data/people/people_subkultur.json | gateavisa_miljoet / Gateavisa-miljøet | cardImage | bilder/kort/people/gateavisa_miljoet.PNG |
-| data/people/people_subkultur.json | oslo_graffiti_miljoet / Oslo graffiti-miljøet | image | bilder/kort/people/oslo_graffiti_miljoet.PNG |
-| data/people/people_subkultur.json | oslo_graffiti_miljoet / Oslo graffiti-miljøet | cardImage | bilder/kort/people/oslo_graffiti_miljoet.PNG |
-| data/people/people_subkultur.json | oslo_skateboardmiljoet / Oslo skateboardmiljøet | image | bilder/kort/people/oslo_skateboardmiljoet.PNG |
-| data/people/people_subkultur.json | oslo_skateboardmiljoet / Oslo skateboardmiljøet | cardImage | bilder/kort/people/oslo_skateboardmiljoet.PNG |
-| data/people/people_subkultur.json | christopher_nielsen / Christopher Nielsen | image | bilder/kort/people/christopher_nielsen.PNG |
-| data/people/people_subkultur.json | christopher_nielsen / Christopher Nielsen | cardImage | bilder/kort/people/christopher_nielsen.PNG |
-| data/people/people_subkultur.json | hariton_pushwagner / Hariton Pushwagner | image | bilder/kort/people/hariton_pushwagner.PNG |
-| data/people/people_subkultur.json | hariton_pushwagner / Hariton Pushwagner | cardImage | bilder/kort/people/hariton_pushwagner.PNG |
-| data/people/people_subkultur.json | don_martin / Don Martin | image | bilder/kort/people/don_martin.PNG |
-| data/people/people_subkultur.json | don_martin / Don Martin | cardImage | bilder/kort/people/don_martin.PNG |
-| data/people/people_subkultur.json | tommy_tee / Tommy Tee | image | bilder/kort/people/tommy_tee.PNG |
-| data/people/people_subkultur.json | tommy_tee / Tommy Tee | cardImage | bilder/kort/people/tommy_tee.PNG |
-| data/people/people_subkultur.json | warlocks_oslo / Warlocks | image | bilder/kort/people/warlocks_oslo.PNG |
-| data/people/people_subkultur.json | warlocks_oslo / Warlocks | cardImage | bilder/kort/people/warlocks_oslo.PNG |
-| data/people/people_subkultur.json | kjetil_rolness / Kjetil Rolness | image | bilder/kort/people/kjetil_rolness.PNG |
-| data/people/people_subkultur.json | kjetil_rolness / Kjetil Rolness | cardImage | bilder/kort/people/kjetil_rolness.PNG |
 | data/people/people_vitenskap.json | edvard_moser / Edvard Moser | image | bilder/people/Edvard_Moser.JPG |
 | data/people/people_vitenskap.json | edvard_moser / Edvard Moser | cardImage | bilder/kort/people/edvardmoser.PNG |
 | data/people/people_vitenskap.json | peter_waage / Peter Waage | cardImage | bilder/kort/people/peter_waage.PNG |
@@ -721,6 +678,48 @@ Mangler filer for image/cardImage/media: 552
 | data/people/sport/oslo/people_sport_oslo.json | skeid_fotball / Skeid Fotball | cardImage | bilder/kort/people/skeid_fotball.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | oslo_skoiteklub / Oslo Skøiteklub | image | bilder/kort/people/oslo_skoiteklub.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | oslo_skoiteklub / Oslo Skøiteklub | cardImage | bilder/kort/people/oslo_skoiteklub.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | kolapalsen / Køla-Pålsen | image | bilder/kort/people/kolapalsen_karljohan.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | kolapalsen / Køla-Pålsen | cardImage | bilder/kort/people/kolapalsen_karljohan.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | snippmoller / Snipp-Møller | image | bilder/kort/people/snippmoller_stortorvet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | snippmoller / Snipp-Møller | cardImage | bilder/kort/people/snippmoller_stortorvet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | lisa_kristoffersen / Lisa Kristoffersen | image | bilder/kort/people/lisa_kristoffersen_sagene.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | lisa_kristoffersen / Lisa Kristoffersen | cardImage | bilder/kort/people/lisa_kristoffersen_sagene.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | advokat_hermansen / Advokat Hermansen | image | bilder/kort/people/advokat_hermansen.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | advokat_hermansen / Advokat Hermansen | cardImage | bilder/kort/people/advokat_hermansen.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | ole_bjorn / Ole-Bjørn | image | bilder/kort/people/ole_bjorn.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | ole_bjorn / Ole-Bjørn | cardImage | bilder/kort/people/ole_bjorn.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | viggo_tigeren / Viggo (byen som tiger) | image | bilder/kort/people/viggo_tigeren.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | viggo_tigeren / Viggo (byen som tiger) | cardImage | bilder/kort/people/viggo_tigeren.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | tinashe_williamson / Tinashe Williamson | image | bilder/kort/people/tinashe_williamson.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | tinashe_williamson / Tinashe Williamson | cardImage | bilder/kort/people/tinashe_williamson.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | stephen_butkus / Stephen Butkus | image | bilder/kort/people/stephen_butkus.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | stephen_butkus / Stephen Butkus | cardImage | bilder/kort/people/stephen_butkus.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | blitz_miljoet / Blitz-miljøet | image | bilder/kort/people/blitz_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | blitz_miljoet / Blitz-miljøet | cardImage | bilder/kort/people/blitz_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | hausmania_miljoet / Hausmania-miljøet | image | bilder/kort/people/hausmania_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | hausmania_miljoet / Hausmania-miljøet | cardImage | bilder/kort/people/hausmania_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | oslo_pride_skeive_dager / Oslo Pride / Skeive dager | image | bilder/kort/people/oslo_pride_skeive_dager.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | oslo_pride_skeive_dager / Oslo Pride / Skeive dager | cardImage | bilder/kort/people/oslo_pride_skeive_dager.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | radi_orakel / RadiOrakel | image | bilder/kort/people/radi_orakel.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | radi_orakel / RadiOrakel | cardImage | bilder/kort/people/radi_orakel.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | gateavisa_miljoet / Gateavisa-miljøet | image | bilder/kort/people/gateavisa_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | gateavisa_miljoet / Gateavisa-miljøet | cardImage | bilder/kort/people/gateavisa_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | oslo_graffiti_miljoet / Oslo graffiti-miljøet | image | bilder/kort/people/oslo_graffiti_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | oslo_graffiti_miljoet / Oslo graffiti-miljøet | cardImage | bilder/kort/people/oslo_graffiti_miljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | oslo_skateboardmiljoet / Oslo skateboardmiljøet | image | bilder/kort/people/oslo_skateboardmiljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | oslo_skateboardmiljoet / Oslo skateboardmiljøet | cardImage | bilder/kort/people/oslo_skateboardmiljoet.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | christopher_nielsen / Christopher Nielsen | image | bilder/kort/people/christopher_nielsen.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | christopher_nielsen / Christopher Nielsen | cardImage | bilder/kort/people/christopher_nielsen.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | hariton_pushwagner / Hariton Pushwagner | image | bilder/kort/people/hariton_pushwagner.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | hariton_pushwagner / Hariton Pushwagner | cardImage | bilder/kort/people/hariton_pushwagner.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | don_martin / Don Martin | image | bilder/kort/people/don_martin.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | don_martin / Don Martin | cardImage | bilder/kort/people/don_martin.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | tommy_tee / Tommy Tee | image | bilder/kort/people/tommy_tee.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | tommy_tee / Tommy Tee | cardImage | bilder/kort/people/tommy_tee.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | warlocks_oslo / Warlocks | image | bilder/kort/people/warlocks_oslo.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | warlocks_oslo / Warlocks | cardImage | bilder/kort/people/warlocks_oslo.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | kjetil_rolness / Kjetil Rolness | image | bilder/kort/people/kjetil_rolness.PNG |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | kjetil_rolness / Kjetil Rolness | cardImage | bilder/kort/people/kjetil_rolness.PNG |
 
 ## Holdt tilbake fra tidligere batcher
 
@@ -744,9 +743,9 @@ Mangler filer for image/cardImage/media: 552
 ```json
 {
   "type": "geographic_split",
-  "category": "subkultur",
-  "reason": "subkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-  "safeBatchSize": 22,
+  "category": "vitenskap",
+  "reason": "vitenskap er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+  "safeBatchSize": 20,
   "blockers": []
 }
 ```
