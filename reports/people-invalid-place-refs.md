@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T19:26:52.212Z
+Generated: 2026-06-01T19:57:43.541Z
 
 ## Sammendrag
 - People-filer lest: **21**
@@ -195,28 +195,28 @@ Generated: 2026-06-01T19:26:52.212Z
 - data/people/people_natur.json :: anne_stine_ingstad (Anne Stine Ingstad) -> bygdoy_natur x2
 - data/people/people_natur.json :: bernhard_herre (Bernhard Herre) -> maridalsvannet x2
 - data/people/people_natur.json :: mikkjel_fonhus (Mikkjel Fønhus) -> maridalsvannet x2
-- data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
-- data/people/people_politikk.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
-- data/people/people_politikk.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
-- data/people/people_politikk.json :: ole_kopreitan (Ole Kopreitan) -> stortinget x2
-- data/people/people_politikk.json :: fredrikke_marie_qvam (Fredrikke Marie Qvam) -> stortinget x2
-- data/people/people_politikk.json :: gina_krog (Gina Krog) -> stortinget x2
-- data/people/people_politikk.json :: einar_gerhardsen (Einar Gerhardsen) -> youngstorget x2
-- data/people/people_politikk.json :: johan_nygaardsvold (Johan Nygaardsvold) -> stortinget x2
-- data/people/people_politikk.json :: christian_michelsen (Christian Michelsen) -> stortinget x2
-- data/people/people_politikk.json :: haakon_vii (Haakon VII) -> slottet x2
-- data/people/people_politikk.json :: katti_anker_moller (Katti Anker Møller) -> stortinget x2
-- data/people/people_politikk.json :: betzy_kjelsberg (Betzy Kjelsberg) -> stortinget x2
-- data/people/people_politikk.json :: anna_rogstad (Anna Rogstad) -> stortinget x2
-- data/people/people_politikk.json :: fernanda_nissen (Fernanda Nissen) -> youngstorget x2
-- data/people/people_politikk.json :: haakon_lie (Haakon Lie) -> youngstorget x2
-- data/people/people_politikk.json :: reiulf_steen (Reiulf Steen) -> stortinget x2
-- data/people/people_politikk.json :: berit_aas (Berit Ås) -> stortinget x2
-- data/people/people_politikk.json :: eva_kolstad (Eva Kolstad) -> stortinget x2
-- data/people/people_politikk.json :: hanna_kvanmo (Hanna Kvanmo) -> stortinget x2
-- data/people/people_politikk.json :: kirsti_kolle_grondahl (Kirsti Kolle Grøndahl) -> stortinget x2
-- data/people/people_politikk.json :: jo_benkow (Jo Benkow) -> stortinget x2
-- data/people/people_politikk.json :: carl_i_hagen (Carl I. Hagen) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: ole_kopreitan (Ole Kopreitan) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: fredrikke_marie_qvam (Fredrikke Marie Qvam) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: gina_krog (Gina Krog) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: einar_gerhardsen (Einar Gerhardsen) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: johan_nygaardsvold (Johan Nygaardsvold) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: christian_michelsen (Christian Michelsen) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: haakon_vii (Haakon VII) -> slottet x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: katti_anker_moller (Katti Anker Møller) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: betzy_kjelsberg (Betzy Kjelsberg) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: anna_rogstad (Anna Rogstad) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: fernanda_nissen (Fernanda Nissen) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: haakon_lie (Haakon Lie) -> youngstorget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: reiulf_steen (Reiulf Steen) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: berit_aas (Berit Ås) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: eva_kolstad (Eva Kolstad) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: hanna_kvanmo (Hanna Kvanmo) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: kirsti_kolle_grondahl (Kirsti Kolle Grøndahl) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: jo_benkow (Jo Benkow) -> stortinget x2
+- data/people/politikk/oslo/people_politikk_oslo.json :: carl_i_hagen (Carl I. Hagen) -> stortinget x2
 - data/people/sport/oslo/people_sport_oslo.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-01T19:26:52.580Z",
+  "generatedAt": "2026-06-01T19:57:43.869Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-01T19:26:52.580Z",
+    "generatedAt": "2026-06-01T19:57:43.869Z",
     "peopleFilesRead": 21,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
@@ -14,8 +14,8 @@
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 5,
     "peopleWithEmptyPlacesArray": 3,
-    "flatPeopleFiles": 9,
-    "geographicPeopleFiles": 12,
+    "flatPeopleFiles": 8,
+    "geographicPeopleFiles": 13,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -317,27 +317,6 @@
       ]
     },
     {
-      "path": "data/people/people_politikk.json",
-      "listedInManifest": true,
-      "categoryGuess": "politikk",
-      "geographicStructure": false,
-      "peopleCount": 22,
-      "duplicateIdsWithinFile": [],
-      "missingIdCount": 0,
-      "missingNameCount": 0,
-      "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=22/22",
-        "source_place_id=0/22",
-        "placesArray=22/22",
-        "categories=politikk"
-      ]
-    },
-    {
       "path": "data/people/people_populaerkultur.json",
       "listedInManifest": true,
       "categoryGuess": "populaerkultur",
@@ -398,6 +377,27 @@
         "source_place_id=0/20",
         "placesArray=15/20",
         "categories=vitenskap"
+      ]
+    },
+    {
+      "path": "data/people/politikk/oslo/people_politikk_oslo.json",
+      "listedInManifest": true,
+      "categoryGuess": "politikk",
+      "geographicStructure": true,
+      "peopleCount": 22,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=22/22",
+        "source_place_id=0/22",
+        "placesArray=22/22",
+        "categories=politikk"
       ]
     },
     {
@@ -608,14 +608,14 @@
       "category": "politikk",
       "totalPeople": 22,
       "files": [
-        "data/people/people_politikk.json"
+        "data/people/politikk/oslo/people_politikk_oslo.json"
       ],
-      "flatFiles": [
-        "data/people/people_politikk.json"
+      "flatFiles": [],
+      "geographicFiles": [
+        "data/people/politikk/oslo/people_politikk_oslo.json"
       ],
-      "geographicFiles": [],
-      "suggestedNextAction": "geographic_split",
-      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     },
     {
       "category": "populaerkultur",
@@ -686,6 +686,7 @@
       "data/people/media/oslo/people_media_oslo.json",
       "data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json",
       "data/people/musikk/oslo/people_musikk_oslo.json",
+      "data/people/politikk/oslo/people_politikk_oslo.json",
       "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
       "data/people/popkultur/oslo/people_popkultur_oslo.json",
       "data/people/sport/oslo/people_sport_oslo.json"
@@ -696,7 +697,6 @@
       "data/people/people_musikk.json",
       "data/people/people_naeringsliv.json",
       "data/people/people_natur.json",
-      "data/people/people_politikk.json",
       "data/people/people_populaerkultur.json",
       "data/people/people_subkultur.json",
       "data/people/people_vitenskap.json"
@@ -728,13 +728,6 @@
         ]
       },
       {
-        "category": "politikk",
-        "totalPeople": 22,
-        "files": [
-          "data/people/people_politikk.json"
-        ]
-      },
-      {
         "category": "subkultur",
         "totalPeople": 22,
         "files": [
@@ -753,7 +746,6 @@
       "data/people/people_by.json",
       "data/people/people_musikk.json",
       "data/people/people_natur.json",
-      "data/people/people_politikk.json",
       "data/people/people_subkultur.json",
       "data/people/people_vitenskap.json"
     ],
@@ -1254,18 +1246,6 @@
       "deviations": []
     },
     {
-      "sourceFile": "data/people/people_politikk.json",
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=22/22",
-        "source_place_id=0/22",
-        "placesArray=22/22",
-        "categories=politikk"
-      ],
-      "deviations": []
-    },
-    {
       "sourceFile": "data/people/people_populaerkultur.json",
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
@@ -1298,6 +1278,18 @@
         "source_place_id=0/20",
         "placesArray=15/20",
         "categories=vitenskap"
+      ],
+      "deviations": []
+    },
+    {
+      "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=22/22",
+        "source_place_id=0/22",
+        "placesArray=22/22",
+        "categories=politikk"
       ],
       "deviations": []
     },
@@ -3948,272 +3940,6 @@
         "imagePath": "bilder/kort/people/mikkjel_fonhus.PNG"
       },
       {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "johan_sverdrup",
-        "personName": "Johan Sverdrup",
-        "field": "image",
-        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "johan_sverdrup",
-        "personName": "Johan Sverdrup",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "fredrikke_marie_qvam",
-        "personName": "Fredrikke Marie Qvam",
-        "field": "image",
-        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "fredrikke_marie_qvam",
-        "personName": "Fredrikke Marie Qvam",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "gina_krog",
-        "personName": "Gina Krog",
-        "field": "image",
-        "imagePath": "bilder/kort/people/gina_krog.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "gina_krog",
-        "personName": "Gina Krog",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/gina_krog.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "einar_gerhardsen",
-        "personName": "Einar Gerhardsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "einar_gerhardsen",
-        "personName": "Einar Gerhardsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "johan_nygaardsvold",
-        "personName": "Johan Nygaardsvold",
-        "field": "image",
-        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "johan_nygaardsvold",
-        "personName": "Johan Nygaardsvold",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "christian_michelsen",
-        "personName": "Christian Michelsen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "christian_michelsen",
-        "personName": "Christian Michelsen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "haakon_vii",
-        "personName": "Haakon VII",
-        "field": "image",
-        "imagePath": "bilder/kort/people/haakon_vii.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "haakon_vii",
-        "personName": "Haakon VII",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/haakon_vii.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "katti_anker_moller",
-        "personName": "Katti Anker Møller",
-        "field": "image",
-        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "katti_anker_moller",
-        "personName": "Katti Anker Møller",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "betzy_kjelsberg",
-        "personName": "Betzy Kjelsberg",
-        "field": "image",
-        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "betzy_kjelsberg",
-        "personName": "Betzy Kjelsberg",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "anna_rogstad",
-        "personName": "Anna Rogstad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "anna_rogstad",
-        "personName": "Anna Rogstad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "fernanda_nissen",
-        "personName": "Fernanda Nissen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "fernanda_nissen",
-        "personName": "Fernanda Nissen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "haakon_lie",
-        "personName": "Haakon Lie",
-        "field": "image",
-        "imagePath": "bilder/kort/people/haakon_lie.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "haakon_lie",
-        "personName": "Haakon Lie",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/haakon_lie.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "reiulf_steen",
-        "personName": "Reiulf Steen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "reiulf_steen",
-        "personName": "Reiulf Steen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "berit_aas",
-        "personName": "Berit Ås",
-        "field": "image",
-        "imagePath": "bilder/kort/people/berit_aas.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "berit_aas",
-        "personName": "Berit Ås",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/berit_aas.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "eva_kolstad",
-        "personName": "Eva Kolstad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "eva_kolstad",
-        "personName": "Eva Kolstad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "hanna_kvanmo",
-        "personName": "Hanna Kvanmo",
-        "field": "image",
-        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "hanna_kvanmo",
-        "personName": "Hanna Kvanmo",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "kirsti_kolle_grondahl",
-        "personName": "Kirsti Kolle Grøndahl",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "kirsti_kolle_grondahl",
-        "personName": "Kirsti Kolle Grøndahl",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "jo_benkow",
-        "personName": "Jo Benkow",
-        "field": "image",
-        "imagePath": "bilder/kort/people/jo_benkow.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "jo_benkow",
-        "personName": "Jo Benkow",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/jo_benkow.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "carl_i_hagen",
-        "personName": "Carl I. Hagen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_politikk.json",
-        "personId": "carl_i_hagen",
-        "personName": "Carl I. Hagen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
-      },
-      {
         "sourceFile": "data/people/people_populaerkultur.json",
         "personId": "herman_flesvig",
         "personName": "Herman Flesvig",
@@ -4774,6 +4500,272 @@
         "imagePath": "bilder/kort/people/kristian_schreiner.PNG"
       },
       {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_sverdrup",
+        "personName": "Johan Sverdrup",
+        "field": "image",
+        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_sverdrup",
+        "personName": "Johan Sverdrup",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/johan_sverdrup.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fredrikke_marie_qvam",
+        "personName": "Fredrikke Marie Qvam",
+        "field": "image",
+        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fredrikke_marie_qvam",
+        "personName": "Fredrikke Marie Qvam",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/fredrikke_marie_qvam.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "gina_krog",
+        "personName": "Gina Krog",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gina_krog.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "gina_krog",
+        "personName": "Gina Krog",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gina_krog.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "einar_gerhardsen",
+        "personName": "Einar Gerhardsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "einar_gerhardsen",
+        "personName": "Einar Gerhardsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/einar_gerhardsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_nygaardsvold",
+        "personName": "Johan Nygaardsvold",
+        "field": "image",
+        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "johan_nygaardsvold",
+        "personName": "Johan Nygaardsvold",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/johan_nygaardsvold.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "christian_michelsen",
+        "personName": "Christian Michelsen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "christian_michelsen",
+        "personName": "Christian Michelsen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/christian_michelsen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_vii",
+        "personName": "Haakon VII",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_vii.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_vii",
+        "personName": "Haakon VII",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_vii.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "katti_anker_moller",
+        "personName": "Katti Anker Møller",
+        "field": "image",
+        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "katti_anker_moller",
+        "personName": "Katti Anker Møller",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/katti_anker_moller.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "betzy_kjelsberg",
+        "personName": "Betzy Kjelsberg",
+        "field": "image",
+        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "betzy_kjelsberg",
+        "personName": "Betzy Kjelsberg",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/betzy_kjelsberg.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "anna_rogstad",
+        "personName": "Anna Rogstad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "anna_rogstad",
+        "personName": "Anna Rogstad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/anna_rogstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fernanda_nissen",
+        "personName": "Fernanda Nissen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "fernanda_nissen",
+        "personName": "Fernanda Nissen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/fernanda_nissen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_lie",
+        "personName": "Haakon Lie",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_lie.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "haakon_lie",
+        "personName": "Haakon Lie",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_lie.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "reiulf_steen",
+        "personName": "Reiulf Steen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "reiulf_steen",
+        "personName": "Reiulf Steen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/reiulf_steen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "berit_aas",
+        "personName": "Berit Ås",
+        "field": "image",
+        "imagePath": "bilder/kort/people/berit_aas.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "berit_aas",
+        "personName": "Berit Ås",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/berit_aas.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "eva_kolstad",
+        "personName": "Eva Kolstad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "eva_kolstad",
+        "personName": "Eva Kolstad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/eva_kolstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "hanna_kvanmo",
+        "personName": "Hanna Kvanmo",
+        "field": "image",
+        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "hanna_kvanmo",
+        "personName": "Hanna Kvanmo",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/hanna_kvanmo.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "kirsti_kolle_grondahl",
+        "personName": "Kirsti Kolle Grøndahl",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "kirsti_kolle_grondahl",
+        "personName": "Kirsti Kolle Grøndahl",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kirsti_kolle_grondahl.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "jo_benkow",
+        "personName": "Jo Benkow",
+        "field": "image",
+        "imagePath": "bilder/kort/people/jo_benkow.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "jo_benkow",
+        "personName": "Jo Benkow",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/jo_benkow.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "carl_i_hagen",
+        "personName": "Carl I. Hagen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
+      },
+      {
+        "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
+        "personId": "carl_i_hagen",
+        "personName": "Carl I. Hagen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/carl_i_hagen.PNG"
+      },
+      {
         "sourceFile": "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
         "personId": "amalia_rodrigues",
         "personName": "Amália Rodrigues",
@@ -5261,8 +5253,8 @@
   ],
   "recommendedNextPr": {
     "type": "geographic_split",
-    "category": "politikk",
-    "reason": "politikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+    "category": "subkultur",
+    "reason": "subkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
     "safeBatchSize": 22,
     "blockers": []
   },
