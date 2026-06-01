@@ -177,6 +177,16 @@ Gjenværende wrong-prefix etter Batch 36:
 - `politikk → populaerkultur`, `natur → kunst` og `subkultur → naeringsliv` er ikke allowlistet.
 - Ingen blind prefix-rewrite er gjort.
 
+## Sluttvalidering på gjeldende branch
+
+Etter at Batch 36-endringene allerede lå i arbeidskopien, ble kontrollene kjørt på nytt i denne arbeidsøkten for å bekrefte at resultatet fortsatt står på gjeldende branch:
+
+- `npm run places:emner:check`: exit code 0, Missing emne_ids 0, Duplicate emne_ids 0, Duplicate place ids 0 og Duplicate canonical emne_ids 0.
+- `npm run places:index:check`: exit code 0, `places_index.json is in sync with source place files.`
+- `npm run health:places`: exit code 0, Errors 0, Warnings 1110, Wrong-prefix emne_ids 1, Allowlisted cross-disciplinary emne_ids 217 og Unknown emne_ids 0.
+
+Denne revalideringen krevde ikke index-sync, og `places_index.json` ble ikke endret.
+
 ## Anbefalt Batch 37
 
 Anbefalt Batch 37 er en smal policy-/emnemodell-vurdering av den siste gjenværende warningen på `youngstorget`: om politisk, mediert og digital offentlighet bør dekkes av et politikk-spesifikt canonical emne i stedet for `em_pop_digital_offentlighet`. Ikke innfør en bred `politikk → populaerkultur` allowlist uten flere tydelig dokumenterte eksempler.
