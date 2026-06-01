@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T07:29:33.374Z
+Generated: 2026-06-01T09:43:10.776Z
 
 ## Sammendrag
 - People-filer lest: **24**
