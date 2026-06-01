@@ -36,7 +36,9 @@
           trustDelta: 0,
           faction,
           createdAt: new Date().toISOString(),
-          careerId: normStr(window.CivicationState?.getActivePosition?.()?.career_id)
+          careerId: normStr(
+            (/** @type {{ career_id?: unknown } | undefined} */ (window.CivicationState?.getActivePosition?.()))?.career_id
+          )
         };
       })
       .filter(Boolean);

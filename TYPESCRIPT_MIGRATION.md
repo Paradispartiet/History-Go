@@ -564,3 +564,15 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime logic, contact logic, contact storage, day-loop behavior, mail-branch logic, event flow, task flow, state flow, DOM/CSS/layout/text, and schemas/globals remain unchanged.
 - `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, `CivicationChoiceDirector`, or `CiviMailPlanBridge`.
 - AHA PR #635, the place/emne track, and the Lesespor/Leksikon track were not mixed in.
+
+
+## Phase 73: narrow dayFactionNpcReactions active career typecheck pass
+
+- Added a narrow, file-local JSDoc/type-only cast in `js/Civication/systems/day/dayFactionNpcReactions.js` after the Phase 72 audit / PR #741, Phase 73 preflight audit / PR #745, and baseline repair / PR #748.
+- Before the change the file held three `TS2339` diagnostics: `dayFactionNpcReactions.js(20,26)` (`window.CivicationNpcCharacterThreads`), `dayFactionNpcReactions.js(39,76)` (`career_id` on `unknown`), and `dayFactionNpcReactions.js(54,24)` (`window.CivicationChoiceDirector`).
+- Cast the existing `window.CivicationState?.getActivePosition?.()` result to the existing-read shape `{ career_id?: unknown } | undefined` at the reaction payload `careerId` read site, so the `?.career_id` access resolves instead of reading off `unknown`.
+- Removed the local `TS2339` `career_id`-on-`unknown` property-access diagnostic without changing runtime behavior; the existing `normStr(...)`, optional chaining, and reaction payload value are preserved.
+- The remaining `TS2339` diagnostics for `window.CivicationNpcCharacterThreads` and `window.CivicationChoiceDirector` were left standing because they are global/window-shape errors that require schema/global or API-scope work outside this narrow pass.
+- Runtime logic, NPC-reaction logic, faction logic, character-thread logic, reaction payload semantics, event dispatch, updateProfile dispatch, DOM/CSS/layout/text, and schemas/globals remain unchanged.
+- `schemas/civication-globals.d.ts` was not modified; `CivicationCalendar?: any` from Phase 46 was not changed; no declarations were added for `CivicationNpcCharacterThreads`, `CivicationChoiceDirector`, `CivicationState`, `CivicationMailEngine`, `CivicationTaskEngine`, `CivicationEventEngine`, `CivicationMailRuntime`, `CivicationLifeMailRuntime`, `CivicationDebateEngine`, or `CiviMailPlanBridge`.
+- AHA PR #635, the place/emne track, the `js/ui/**` track, the `js/psychologyRoom.js` baseline-drift track, and the Lesespor/Leksikon track were not mixed in.
