@@ -11,6 +11,9 @@
  * @typedef {{ career_id?: string|number, career_name?: string|number, title?: string|number, achieved_at?: string|number, [key: string]: unknown }} CiviUiActivePosition
  * @typedef {{ career_id?: string|number, career_name?: string|number, threshold?: string|number, expires_iso?: string|number, offer_key?: string|number, ok?: boolean, [key: string]: unknown }} CiviUiPendingOffer
  * @typedef {{ ok?: boolean, [key: string]: unknown }} CiviUiOfferActionResult
+ * @typedef {{ value?: number, max?: number, collapses?: number, lastCollapse?: { at?: string|number|Date, [key: string]: unknown }, [key: string]: unknown }} CiviUiPsycheTrust
+ * @typedef {{ integrity?: number, visibility?: number, economicRoom?: number, autonomy?: number, trust?: CiviUiPsycheTrust, [key: string]: unknown }} CiviUiPsycheSnapshot
+ * @typedef {{ autonomy?: number, integrity?: number, trust?: number, visibility?: number, [key: string]: unknown }} CiviUiPsycheModifierMap
  */
 
 /**
@@ -517,10 +520,16 @@ function renderHomeStatus() {
 
 function renderPsycheDashboard() {
 
-  const activeCareerId =
-  window.CivicationState?.getActivePosition?.()?.career_id || null;
-  
-  const snapshot = window.CivicationPsyche?.getSnapshot?.(activeCareerId);
+  /** @type {CiviUiActivePosition|null} */
+  const activePosition = /** @type {CiviUiActivePosition|null} */ (
+    window.CivicationState?.getActivePosition?.() || null
+  );
+  const activeCareerId = activePosition?.career_id || null;
+
+  /** @type {CiviUiPsycheSnapshot|null} */
+  const snapshot = /** @type {CiviUiPsycheSnapshot|null} */ (
+    window.CivicationPsyche?.getSnapshot?.(activeCareerId) || null
+  );
   if (!snapshot) return;
 
   const integrityEl  = document.getElementById("psyIntegrity");
@@ -536,16 +545,16 @@ function renderPsycheDashboard() {
   // -----------------------------
 
   if (integrityEl)
-    integrityEl.textContent = Number(snapshot.integrity ?? 0);
+    integrityEl.textContent = String(Number(snapshot.integrity ?? 0));
 
   if (visibilityEl)
-    visibilityEl.textContent = Number(snapshot.visibility ?? 0);
+    visibilityEl.textContent = String(Number(snapshot.visibility ?? 0));
 
   if (economicEl)
-    economicEl.textContent = Number(snapshot.economicRoom ?? 0);
+    economicEl.textContent = String(Number(snapshot.economicRoom ?? 0));
 
   if (autonomyEl)
-    autonomyEl.textContent = Number(snapshot.autonomy ?? 0);
+    autonomyEl.textContent = String(Number(snapshot.autonomy ?? 0));
 
   // -----------------------------
   // Trust (rolle-spesifikk)

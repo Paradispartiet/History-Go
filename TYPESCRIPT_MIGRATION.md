@@ -685,6 +685,16 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1693, `js/Civication/**` diagnostics are now 310, and `js/Civication/ui/CivicationUI.js` diagnostics are now 65.
 
+
+## Phase 85: CivicationUI psyche-dashboard snapshot and textContent local pass
+
+- Followed Phase 84 with a narrow, file-local JSDoc/type-only pass in `js/Civication/ui/CivicationUI.js`.
+- Limited the code pass to `renderPsycheDashboard()`, adding broad local psyche snapshot/trust/modifier typedefs for the values the dashboard reads while keeping the rest of `CivicationUI.js` unchanged.
+- Cast the active-position and `CivicationPsyche.getSnapshot()` values locally before reading psyche dashboard scores and trust/collapse state; `getPsycheModifiers()` remains covered by the new broad file-local modifier-map typedef without changing engine calls.
+- Stringified the four numeric score `textContent` assignments with `String(Number(...))` so the visible values remain unchanged while satisfying DOM typing.
+- Runtime behavior, visible UI output, HTML/DOM structure, CSS classes/IDs, storage keys, event flow, Civication engine calls, data files, schemas, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1674, `js/Civication/**` diagnostics are now 295, and `js/Civication/ui/CivicationUI.js` diagnostics are now 50.
+
 ## Phase 82C replacement: stringify profile textContent values
 
 - Replaced the stale PR #804 branch with a fresh branch from latest `main` and reapplied only the narrow profile `textContent` TypeScript fix.
