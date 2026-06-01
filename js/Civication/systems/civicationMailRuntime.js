@@ -702,7 +702,7 @@
 
   function inspect() {
     const active = getActive();
-    const state = getState();
+    const state = /** @type {({ mail_plan_progress?: unknown, mail_system?: unknown } & Record<string, unknown>) | null | undefined} */ (getState());
     const inbox = getInbox();
     const proto = window.CivicationEventEngine?.prototype;
 
