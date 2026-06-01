@@ -6,16 +6,55 @@
 
 console.log("routes.js start");
 
+/**
+ * Local type view for route-owned browser globals. Keeps this migration pass
+ * type-only while preserving the existing window-backed runtime API.
+ * @typedef {Window & typeof globalThis & {
+ *   HG_ORS?: { baseUrl?: string, apiKey?: string, profile?: string },
+ *   HGMap?: { getMap?: Function, resize?: Function },
+ *   MAP?: any,
+ *   PLACES?: any[],
+ *   ROUTES?: any[],
+ *   CATEGORY_LIST?: Array<{ id?: string, name?: string }>,
+ *   HG_NEARBY_BADGE_FILTER?: string,
+ *   HG_getActiveBadgeFilter?: () => string,
+ *   getPos?: () => any,
+ *   userLat?: number,
+ *   userLon?: number,
+ *   userLng?: number,
+ *   LayerManager?: { setMode?: (mode: string) => void },
+ *   enterMapMode?: () => void,
+ *   setPlaceCardCollapsed?: (collapsed: boolean) => void,
+ *   setNearbyCollapsed?: (collapsed: boolean) => void,
+ *   openPlaceCard?: (place: any) => void,
+ *   KnowledgeLearning?: { isUnderstood?: (emne: string) => boolean },
+ *   visited?: Record<string, boolean>,
+ *   HGRoutes?: any,
+ *   renderLeftRoutesList?: typeof renderLeftRoutesList,
+ *   focusRouteOnMap?: typeof focusRouteOnMap,
+ *   showRouteOverlay?: typeof showRouteOverlay,
+ *   clearThematicRoute?: typeof clearThematicRoute,
+ *   showRouteToPlace?: (place: any) => any,
+ *   showRouteTo?: (place: any) => any,
+ *   showToast?: (msg: any) => void,
+ *   DEBUG?: boolean,
+ *   maplibregl?: { LngLatBounds: new (sw: any, ne: any) => any }
+ * }} HGRoutesWindow
+ */
+
+/** @type {HGRoutesWindow} */
+const hgWindow = window;
+
 const HG_ORS = {
   baseUrl: "https://api.openrouteservice.org",
   apiKey: "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6Ijg1NjAxMzZmNDg0ZDQ0NzM4OTFlMWU1ODJjMjE5NzZlIiwiaCI6Im11cm11cjY0In0=",
   profile: "foot-walking"
 };
 
-window.HG_ORS = window.HG_ORS || {};
-window.HG_ORS.baseUrl = HG_ORS.baseUrl;
-window.HG_ORS.apiKey  = HG_ORS.apiKey;
-window.HG_ORS.profile = HG_ORS.profile;
+hgWindow.HG_ORS = hgWindow.HG_ORS || {};
+hgWindow.HG_ORS.baseUrl = HG_ORS.baseUrl;
+hgWindow.HG_ORS.apiKey  = HG_ORS.apiKey;
+hgWindow.HG_ORS.profile = HG_ORS.profile;
 
 let ROUTES = [];
 let routesLoaded = false;
@@ -29,12 +68,12 @@ const HG_NAV_SRC  = "hg-nav-route";
 const HG_NAV_LINE = "hg-nav-route-line";
 
 function _toast(msg) {
-  if (typeof window.showToast === "function") window.showToast(msg);
+  if (typeof hgWindow.showToast === "function") hgWindow.showToast(msg);
 }
 
 function _getMap() {
-  const map = window.MAP || window.HGMap?.getMap?.() || null;
-  if (map && window.MAP !== map) window.MAP = map;
+  const map = hgWindow.MAP || hgWindow.HGMap?.getMap?.() || null;
+  if (map && hgWindow.MAP !== map) hgWindow.MAP = map;
   return map;
 }
 
@@ -56,28 +95,28 @@ function _routeById(routeId) {
 }
 
 function _placeById(id) {
-  return (window.PLACES || []).find(p => p.id === id) || null;
+  return (hgWindow.PLACES || []).find(p => p.id === id) || null;
 }
 
 function getUserPos() {
-  if (typeof window.getPos === "function") {
-    const p = window.getPos();
+  if (typeof hgWindow.getPos === "function") {
+    const p = hgWindow.getPos();
     if (p && Number.isFinite(p.lat) && Number.isFinite(p.lon)) return p;
   }
 
-  if (Number.isFinite(window.userLat) && Number.isFinite(window.userLon)) {
-    return { lat: window.userLat, lon: window.userLon };
+  if (Number.isFinite(hgWindow.userLat) && Number.isFinite(hgWindow.userLon)) {
+    return { lat: hgWindow.userLat, lon: hgWindow.userLon };
   }
 
-  if (Number.isFinite(window.userLat) && Number.isFinite(window.userLng)) {
-    return { lat: window.userLat, lon: window.userLng };
+  if (Number.isFinite(hgWindow.userLat) && Number.isFinite(hgWindow.userLng)) {
+    return { lat: hgWindow.userLat, lon: hgWindow.userLng };
   }
 
   return null;
 }
 
 function getActiveRouteBadgeFilter() {
-  return window.HG_getActiveBadgeFilter?.() || window.HG_NEARBY_BADGE_FILTER || "all";
+  return hgWindow.HG_getActiveBadgeFilter?.() || hgWindow.HG_NEARBY_BADGE_FILTER || "all";
 }
 
 function isRouteBadgeFilterActive() {
@@ -99,7 +138,7 @@ function routeMatchesActiveBadge(route) {
 
 function activeBadgeNameForRoutes() {
   const id = getActiveRouteBadgeFilter();
-  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
+  const cats = Array.isArray(hgWindow.CATEGORY_LIST) ? hgWindow.CATEGORY_LIST : [];
   const c = cats.find(x => String(x.id || "").trim() === String(id).trim());
   return c?.name || id;
 }
@@ -214,10 +253,10 @@ function _ensureRoutePanelStyles() {
 function _enterRouteMapMode() {
   document.body?.classList.add("map-only");
 
-  if (window.LayerManager?.setMode) {
-    window.LayerManager.setMode("map");
-  } else if (typeof window.enterMapMode === "function") {
-    window.enterMapMode();
+  if (hgWindow.LayerManager?.setMode) {
+    hgWindow.LayerManager.setMode("map");
+  } else if (typeof hgWindow.enterMapMode === "function") {
+    hgWindow.enterMapMode();
   }
 
   const btnSeeMap = document.getElementById("btnSeeMap");
@@ -225,10 +264,10 @@ function _enterRouteMapMode() {
   if (btnSeeMap) btnSeeMap.style.display = "none";
   if (btnExitMap) btnExitMap.style.display = "block";
 
-  window.setPlaceCardCollapsed?.(true);
-  window.setNearbyCollapsed?.(true);
+  hgWindow.setPlaceCardCollapsed?.(true);
+  hgWindow.setNearbyCollapsed?.(true);
 
-  window.HGMap?.resize?.();
+  hgWindow.HGMap?.resize?.();
   _getMap()?.resize?.();
 }
 
@@ -301,9 +340,9 @@ async function loadRoutes() {
     });
 
   routesLoaded = true;
-  window.ROUTES = ROUTES;
+  hgWindow.ROUTES = ROUTES;
 
-  if (window.DEBUG) console.log("[routes] loaded merged:", ROUTES.length);
+  if (hgWindow.DEBUG) console.log("[routes] loaded merged:", ROUTES.length);
   return ROUTES;
 }
 
@@ -426,8 +465,8 @@ function drawThematicRouteGeoJSON(map, geo, fitCoords) {
       const id = f.properties?.placeId;
       const p = id ? _placeById(id) : null;
 
-      if (p && typeof window.openPlaceCard === "function") {
-        window.openPlaceCard(p);
+      if (p && typeof hgWindow.openPlaceCard === "function") {
+        hgWindow.openPlaceCard(p);
       }
     });
 
@@ -445,7 +484,7 @@ function drawThematicRouteGeoJSON(map, geo, fitCoords) {
   } else if (coords.length >= 2) {
     const b = coords.reduce(
       (bb, c) => bb.extend(c),
-      new maplibregl.LngLatBounds(coords[0], coords[0])
+      new hgWindow.maplibregl.LngLatBounds(coords[0], coords[0])
     );
 
     map.fitBounds(b, { padding: 70, maxZoom: 16 });
@@ -646,7 +685,7 @@ async function showWalkingRouteToPlace(place) {
   const coords = out.geojson.features[0].geometry.coordinates;
   const b = coords.reduce(
     (bb, c) => bb.extend(c),
-    new maplibregl.LngLatBounds(coords[0], coords[0])
+    new hgWindow.maplibregl.LngLatBounds(coords[0], coords[0])
   );
 
   map.fitBounds(b, { padding: 60 });
@@ -740,8 +779,8 @@ async function renderLeftRoutesList() {
 
   const learningFilteredRoutes = availableRoutes.filter(r => {
     if (!r.unlock_emne) return true;
-    if (!window.KnowledgeLearning) return true;
-    return window.KnowledgeLearning.isUnderstood?.(r.unlock_emne);
+    if (!hgWindow.KnowledgeLearning) return true;
+    return hgWindow.KnowledgeLearning.isUnderstood?.(r.unlock_emne);
   });
 
   if (!learningFilteredRoutes.length) {
@@ -768,7 +807,7 @@ async function renderLeftRoutesList() {
     return;
   }
 
-  const visitedMap = (typeof window.visited !== "undefined" && window.visited) ? window.visited : {};
+  const visitedMap = (typeof hgWindow.visited !== "undefined" && hgWindow.visited) ? hgWindow.visited : {};
   const list = getNearbyRoutesSorted(pos, visitedMap, badgeFilteredRoutes);
 
   if (!list.length) {
@@ -800,7 +839,7 @@ async function renderLeftRoutesList() {
     if (!routeId) return;
 
     const pos = getUserPos();
-    const visitedMap = (typeof window.visited !== "undefined" && window.visited) ? window.visited : {};
+    const visitedMap = (typeof hgWindow.visited !== "undefined" && hgWindow.visited) ? hgWindow.visited : {};
     const r = _routeById(routeId);
     const n = (r && pos) ? computeNearestStop(r, pos, visitedMap) : null;
     const idx = n ? n.stopIndex : 0;
@@ -817,14 +856,14 @@ function initLeftRoutesPanel() {
 
   sel.addEventListener("change", () => setLeftPanelMode(sel.value));
 
-  window.addEventListener("hg:geo", () => {
+  hgWindow.addEventListener("hg:geo", () => {
     if (sel.value === "routes") renderLeftRoutesList();
   });
 
   setLeftPanelMode(sel.value || "nearby");
 }
 
-window.HGRoutes = {
+hgWindow.HGRoutes = {
   load: loadRoutes,
 
   init() {
@@ -855,15 +894,15 @@ window.HGRoutes = {
   }
 };
 
-window.renderLeftRoutesList = renderLeftRoutesList;
-window.focusRouteOnMap = focusRouteOnMap;
-window.showRouteOverlay = showRouteOverlay;
-window.clearThematicRoute = clearThematicRoute;
+hgWindow.renderLeftRoutesList = renderLeftRoutesList;
+hgWindow.focusRouteOnMap = focusRouteOnMap;
+hgWindow.showRouteOverlay = showRouteOverlay;
+hgWindow.clearThematicRoute = clearThematicRoute;
 
-window.showRouteToPlace = (place) => window.HGRoutes.showToPlace(place);
-window.showRouteTo = function(place) {
-  if (typeof window.showRouteToPlace === "function") return window.showRouteToPlace(place);
+hgWindow.showRouteToPlace = (place) => hgWindow.HGRoutes.showToPlace(place);
+hgWindow.showRouteTo = function(place) {
+  if (typeof hgWindow.showRouteToPlace === "function") return hgWindow.showRouteToPlace(place);
   _toast("Rute-funksjon ikke lastet");
 };
 
-console.log("routes.js end", typeof window.showRouteToPlace);
+console.log("routes.js end", typeof hgWindow.showRouteToPlace);

@@ -743,3 +743,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1607 to 1576, and `js/hgKnowledgeEngine.js` diagnostics went from 43 to 12.
 - Runtime behavior, report structure, scoring, storage keys, public API, UI layout, app flow, and data semantics remain unchanged.
 - `js/profile.js`, `js/boot.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, package metadata, CSS, HTML, and unrelated runtime files were not changed.
+
+## Phase 89: routes.js window-global JSDoc pass
+
+- Started the next isolated TypeScript migration pass outside Civication, `js/profile.js`, `js/boot.js`, `js/hgKnowledgeEngine.js`, and `js/ui/**` by targeting only `js/routes.js`.
+- Added a file-local `HGRoutesWindow` JSDoc type view for the existing route-owned browser globals and routed the file's current `window.*` reads/writes through that typed alias.
+- Targeted the repeated `TS2339`/`TS2551` browser-global diagnostics for `HG_ORS`, `MAP`/`HGMap`, user position fields, badge/category globals, route panel globals, public route exports, `KnowledgeLearning`, and MapLibre bounds access.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics went from 1576 to 1535, and `js/routes.js` diagnostics went from 46 to 5.
+- Runtime behavior, routing behavior, navigation flow, storage keys, URL/hash behavior, DOM targets, event listeners, data semantics, UI layout, and public API remain unchanged.
+- `js/profile.js`, `js/boot.js`, `js/hgKnowledgeEngine.js`, `js/Civication/**`, `js/ui/**`, data/story/import/place/people/manifest files, import tooling, package metadata, CSS, HTML, and unrelated runtime files were not changed.
