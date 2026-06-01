@@ -33,6 +33,9 @@
   let currentDict = {};
   let fallbackDict = {};
   let currentPlaceDict = {};
+  let i18nObserver = null;
+  let i18nApplying = false;
+  let i18nApplyQueued = false;
 
   function isRtl(lang) {
     return lang === "ar" || lang === "ur";
@@ -52,6 +55,10 @@
     const prefixes = ["en", "fr", "pt", "es", "de", "ar", "sw", "hi", "ur", "ru", "bn", "id", "ja", "ko", "tr", "it"];
     const prefix = prefixes.find((p) => lower === p || lower.startsWith(p + "-"));
     return prefix || HG_FALLBACK_LANG;
+  }
+
+  function normalizeUiText(value) {
+    return String(value || "").trim();
   }
 
   async function loadJson(lang) {
@@ -120,12 +127,22 @@
 
     Object.entries(fallbackDict || {}).forEach(([key, value]) => {
       if (typeof value !== "string") return;
-      const text = value.trim();
+      const text = normalizeUiText(value);
       if (!text || lookup.has(text)) return;
       lookup.set(text, key);
     });
 
     return lookup;
+  }
+
+  function isOwnedStaticValue(key, rawValue, storedValue) {
+    if (!key) return false;
+    const raw = normalizeUiText(rawValue);
+    const stored = normalizeUiText(storedValue);
+    const fallback = normalizeUiText(fallbackDict?.[key]);
+    const current = normalizeUiText(currentDict?.[key]);
+
+    return raw === stored || raw === fallback || raw === current;
   }
 
   function applyStaticTextFallbacks(target) {
@@ -139,28 +156,107 @@
 
       HG_STATIC_ATTRS.forEach((attr) => {
         const storedAttrName = `data-hg-i18n-${attr}`;
+        const storedValueName = `${storedAttrName}-value`;
         const storedKey = el.getAttribute(storedAttrName);
+        const storedValue = el.getAttribute(storedValueName);
         const rawValue = el.getAttribute(attr);
-        const attrText = String(rawValue || "").trim();
-        const key = storedKey || lookup.get(attrText);
-        if (!key) return;
+        const attrText = normalizeUiText(rawValue);
+        const ownedKey = storedKey && isOwnedStaticValue(storedKey, attrText, storedValue) ? storedKey : "";
+        const key = ownedKey || lookup.get(attrText);
+
+        if (!key) {
+          if (storedKey && attrText && storedValue && attrText !== storedValue) {
+            el.removeAttribute(storedAttrName);
+            el.removeAttribute(storedValueName);
+          }
+          return;
+        }
+
+        const translated = t(key, attrText);
+        if (!translated) return;
 
         el.setAttribute(storedAttrName, key);
-        const translated = t(key, attrText);
-        if (translated && rawValue !== translated) el.setAttribute(attr, translated);
+        el.setAttribute(storedValueName, translated);
+        if (rawValue !== translated) el.setAttribute(attr, translated);
       });
 
       if (el.children && el.children.length > 0) return;
       if (el.hasAttribute("data-i18n")) return;
 
       const storedKey = el.getAttribute("data-hg-i18n-text");
-      const rawText = (el.textContent || "").trim();
-      const key = storedKey || lookup.get(rawText);
-      if (!key) return;
+      const storedValue = el.getAttribute("data-hg-i18n-text-value");
+      const rawText = normalizeUiText(el.textContent);
+      const ownedKey = storedKey && isOwnedStaticValue(storedKey, rawText, storedValue) ? storedKey : "";
+      const key = ownedKey || lookup.get(rawText);
+
+      if (!key) {
+        if (storedKey && rawText && storedValue && rawText !== storedValue) {
+          el.removeAttribute("data-hg-i18n-text");
+          el.removeAttribute("data-hg-i18n-text-value");
+        }
+        return;
+      }
+
+      const translated = t(key, rawText);
+      if (!translated) return;
 
       el.setAttribute("data-hg-i18n-text", key);
-      const translated = t(key, rawText);
-      if (translated && el.textContent !== translated) el.textContent = translated;
+      el.setAttribute("data-hg-i18n-text-value", translated);
+      if (el.textContent !== translated) el.textContent = translated;
+    });
+  }
+
+  function queueApply(root) {
+    if (i18nApplying || i18nApplyQueued) return;
+    i18nApplyQueued = true;
+
+    const run = () => {
+      i18nApplyQueued = false;
+      apply(root || document);
+    };
+
+    if (typeof window.requestAnimationFrame === "function") {
+      window.requestAnimationFrame(run);
+    } else {
+      window.setTimeout(run, 0);
+    }
+  }
+
+  function startDynamicTranslationObserver() {
+    if (i18nObserver || typeof window.MutationObserver !== "function") return;
+
+    const root = document.body || document.documentElement;
+    if (!root) return;
+
+    i18nObserver = new MutationObserver((mutations) => {
+      if (i18nApplying) return;
+
+      const shouldApply = mutations.some((mutation) => {
+        if (mutation.type === "childList") {
+          return Array.from(mutation.addedNodes || []).some((node) => node && node.nodeType === 1);
+        }
+
+        if (mutation.type === "characterData") {
+          return normalizeUiText(mutation.target?.textContent);
+        }
+
+        if (mutation.type === "attributes") {
+          const attr = mutation.attributeName || "";
+          return attr === "data-i18n" || HG_STATIC_ATTRS.includes(attr);
+        }
+
+        return false;
+      });
+
+      if (shouldApply) queueApply(document);
+    });
+
+    i18nObserver.observe(root, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["data-i18n", ...HG_STATIC_ATTRS]
     });
   }
 
@@ -231,41 +327,47 @@
 
   function apply(root) {
     const target = root && root.querySelectorAll ? root : document;
-    const nodes = target.querySelectorAll("[data-i18n]");
+    i18nApplying = true;
 
-    nodes.forEach((el) => {
-      const key = el.getAttribute("data-i18n");
-      if (!key) return;
+    try {
+      const nodes = target.querySelectorAll("[data-i18n]");
 
-      const fallbackText = (el.textContent || "").trim();
-      const translated = t(key, fallbackText);
+      nodes.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (!key) return;
 
-      if (el.id === "btnSeeMap" && el.classList.contains("iconbtn")) {
-        if (translated) {
-          el.setAttribute("aria-label", translated);
-          el.setAttribute("title", translated);
+        const fallbackText = (el.textContent || "").trim();
+        const translated = t(key, fallbackText);
+
+        if (el.id === "btnSeeMap" && el.classList.contains("iconbtn")) {
+          if (translated) {
+            el.setAttribute("aria-label", translated);
+            el.setAttribute("title", translated);
+          }
+
+          let icon = el.querySelector("[data-i18n-icon='map']");
+          if (!icon) {
+            el.textContent = "";
+            icon = document.createElement("span");
+            icon.setAttribute("data-i18n-icon", "map");
+            icon.setAttribute("aria-hidden", "true");
+            el.appendChild(icon);
+          }
+          icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path></svg>`;
+          return;
         }
 
-        let icon = el.querySelector("[data-i18n-icon='map']");
-        if (!icon) {
-          el.textContent = "";
-          icon = document.createElement("span");
-          icon.setAttribute("data-i18n-icon", "map");
-          icon.setAttribute("aria-hidden", "true");
-          el.appendChild(icon);
+        if (el.children && el.children.length > 0) return;
+
+        if (translated && el.textContent !== translated) {
+          el.textContent = translated;
         }
-        icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path></svg>`;
-        return;
-      }
+      });
 
-      if (el.children && el.children.length > 0) return;
-
-      if (translated && el.textContent !== translated) {
-        el.textContent = translated;
-      }
-    });
-
-    applyStaticTextFallbacks(target);
+      applyStaticTextFallbacks(target);
+    } finally {
+      i18nApplying = false;
+    }
   }
 
   function rerenderLocalizedSurfaces() {
@@ -417,10 +519,12 @@
 
     await setLang(preferred);
     initLanguageSelect();
+    startDynamicTranslationObserver();
     startContentPatchLoop();
     document.addEventListener("DOMContentLoaded", () => {
       initLanguageSelect();
       patchContentRenderers();
+      startDynamicTranslationObserver();
       apply(document);
     });
   }
