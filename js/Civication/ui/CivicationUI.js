@@ -8,6 +8,9 @@
  * @typedef {{ id?: string, status?: string, type?: string, title?: string, subject?: string, body?: string, message?: string, feedback?: string, from?: string, place_id?: string, brand_name?: string, task_id?: string, task_kind?: string, calendar_label?: string, situation?: unknown, pressure?: unknown, choices?: CiviUiChoice[], [key: string]: unknown }} CiviUiEvent
  * @typedef {{ status?: string, enqueued_at?: string, event?: CiviUiEvent, [key: string]: unknown }} CiviUiInboxItem
  * @typedef {{ stability?: string, warning_used?: boolean, strikes?: number, score?: number, active_role_key?: string|null, consumed?: CiviUiRecord, identity_tags?: unknown[], tracks?: unknown[], track_progress?: CiviUiRecord, unemployed_since_week?: string|null, career?: CiviUiRecord, [key: string]: unknown }} CiviUiState
+ * @typedef {{ career_id?: string|number, career_name?: string|number, title?: string|number, achieved_at?: string|number, [key: string]: unknown }} CiviUiActivePosition
+ * @typedef {{ career_id?: string|number, career_name?: string|number, threshold?: string|number, expires_iso?: string|number, offer_key?: string|number, ok?: boolean, [key: string]: unknown }} CiviUiPendingOffer
+ * @typedef {{ ok?: boolean, [key: string]: unknown }} CiviUiOfferActionResult
  */
 
 /**
@@ -151,7 +154,9 @@ async function renderCivication() {
     title && details && meritLn && salaryLn && oBox && oTitle && oMeta;
 
   if (isProfile) {
-    const active = window.CivicationState.getActivePosition();
+    const active = /** @type {CiviUiActivePosition|null|undefined} */ (
+      window.CivicationState.getActivePosition()
+    );
     syncRoleBaseline();
 
     if (active && active.title) {
@@ -196,22 +201,24 @@ async function renderCivication() {
     }
 
     // JOBBTILBUD (profil = indikator, ingen handling)
-const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+    const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
+      window.CivicationJobs?.getLatestPendingOffer?.()
+    );
 
-if (!offer) {
-  oBox.style.display = "none";
-} else {
-  oBox.style.display = "";
-  oTitle.textContent = "🧾 Nytt jobbtilbud";
+    if (!offer) {
+      oBox.style.display = "none";
+    } else {
+      oBox.style.display = "";
+      oTitle.textContent = "🧾 Nytt jobbtilbud";
 
-  const expTxt =
-    offer.expires_iso
-      ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
-      : "—";
+      const expTxt =
+        offer.expires_iso
+          ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
+          : "—";
 
-  const jobTxt = offer.career_name || offer.career_id || "Jobb";
-  oMeta.textContent = `${jobTxt} · Utløper: ${expTxt} · Åpne Civication for å svare.`;
-}
+      const jobTxt = offer.career_name || offer.career_id || "Jobb";
+      oMeta.textContent = `${jobTxt} · Utløper: ${expTxt} · Åpne Civication for å svare.`;
+    }
 
     // BESTE ROLLE (MERIT-PROFIL) – samme som din nå
     const merits2 = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
@@ -279,8 +286,12 @@ if (!offer) {
   const host = document.getElementById("activeJobCard");
   if (!host) return;
 
-  const active = window.CivicationState.getActivePosition();
-  const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+  const active = /** @type {CiviUiActivePosition|null|undefined} */ (
+    window.CivicationState.getActivePosition()
+  );
+  const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
+    window.CivicationJobs?.getLatestPendingOffer?.()
+  );
 
   // Lønn (best effort)
   let salaryTxt = "Lønn: —";
@@ -333,11 +344,13 @@ if (!offer) {
 
   if (offer?.offer_key) {
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
-  const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
-  if (!res?.ok) return;
+      const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (
+        window.CivicationJobs?.acceptOffer?.(offer.offer_key)
+      );
+      if (!res?.ok) return;
 
-  window.dispatchEvent(new Event("updateProfile"));
-});
+      window.dispatchEvent(new Event("updateProfile"));
+    });
 
     host.querySelector("#civiOfferDecline")?.addEventListener("click", () => {
       window.CivicationJobs?.declineOffer?.(offer.offer_key);
