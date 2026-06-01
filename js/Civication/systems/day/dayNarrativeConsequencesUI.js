@@ -9,7 +9,7 @@
   }
 
   function activeCareerId() {
-    return normStr(window.CivicationState?.getActivePosition?.()?.career_id);
+    return normStr((/** @type {{ career_id?: unknown } | undefined} */ (window.CivicationState?.getActivePosition?.()))?.career_id);
   }
 
   function currentSnapshot() {
