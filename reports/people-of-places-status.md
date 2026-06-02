@@ -1,20 +1,20 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-01T22:57:28.140Z
+Generert: 2026-06-02T09:43:31.502Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-01T22:57:28.140Z |
-| peopleFilesRead | 21 |
+| generatedAt | 2026-06-02T09:43:31.502Z |
+| peopleFilesRead | 20 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 5 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 4 |
+| flatPeopleFiles | 3 |
 | geographicPeopleFiles | 17 |
 | categoriesRepresented | 15 |
 
@@ -31,10 +31,9 @@ Generert: 2026-06-01T22:57:28.140Z
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | media | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/oslo/people_media_oslo.json | media | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 15 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_filantroper.json | filantroper | nei | 9 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
-| data/people/people_musikk.json | musikk | nei | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
 | data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -55,7 +54,7 @@ Generert: 2026-06-01T22:57:28.140Z
 | kunst | 7 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 34 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 17 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| musikk | 19 | 1 | 2 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| musikk | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 19 | 1 | 0 | schema_review | Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split. |
 | natur | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -67,14 +66,14 @@ Generert: 2026-06-01T22:57:28.140Z
 ## Geografisk strukturstatus
 
 - Allerede geografisk strukturert: 17
-- Fortsatt flate filer: 4
-- Blandede kategorier: musikk, populaerkultur
-- Trygge flate filer for neste geografiske split: data/people/people_musikk.json
+- Fortsatt flate filer: 3
+- Blandede kategorier: populaerkultur
+- Trygge flate filer for neste geografiske split: ingen
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
 
-- musikk: 19 entries (data/people/people_musikk.json)
+- Ingen basert på nåværende auditlogikk.
 
 ## Place-ref audit
 
@@ -138,10 +137,9 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=media
 - data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=media
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=musikk
-- data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=musikk
+- data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=musikk
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
-- data/people/people_musikk.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=musikk
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
 - data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
@@ -485,6 +483,26 @@ Mangler filer for image/cardImage/media: 552
 | data/people/musikk/oslo/people_musikk_oslo.json | joachim_nielsen / Joachim Nielsen | cardImage | bilder/kort/people/joachim_nielsen.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | morten_harket / Morten Harket | image | bilder/kort/people/morten_harket.PNG |
 | data/people/musikk/oslo/people_musikk_oslo.json | morten_harket / Morten Harket | cardImage | bilder/kort/people/morten_harket.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | kirsten_flagstad / Kirsten Flagstad | image | bilder/kort/people/kirsten_flagstad.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | kirsten_flagstad / Kirsten Flagstad | cardImage | bilder/kort/people/kirsten_flagstad.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | alexander_rybak / Alexander Rybak | image | bilder/kort/people/alexander_rybak.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | alexander_rybak / Alexander Rybak | cardImage | bilder/kort/people/alexander_rybak.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | aurora / Aurora | image | bilder/kort/people/aurora_salt.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | aurora / Aurora | cardImage | bilder/kort/people/aurora_salt.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | sigrid / Sigrid | image | bilder/kort/people/sigrid_salt.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | sigrid / Sigrid | cardImage | bilder/kort/people/sigrid_salt.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | karpe / Karpe | image | bilder/kort/people/karpe_sorenga.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | karpe / Karpe | cardImage | bilder/kort/people/karpe_sorenga.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | ulrikke_brandstorp / Ulrikke Brandstorp | image | bilder/kort/people/ulrikke_brandstorp.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | ulrikke_brandstorp / Ulrikke Brandstorp | cardImage | bilder/kort/people/ulrikke_brandstorp.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | kygo / Kygo | image | bilder/kort/people/kygo_barcode.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | kygo / Kygo | cardImage | bilder/kort/people/kygo_barcode.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | gabrielle / Gabrielle | image | bilder/kort/people/gabrielle_barcode.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | gabrielle / Gabrielle | cardImage | bilder/kort/people/gabrielle_barcode.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | arif / Arif | image | bilder/kort/people/arif_stovner.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | arif / Arif | cardImage | bilder/kort/people/arif_stovner.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | edvard_grieg / Edvard Grieg | image | bilder/kort/people/edvard_grieg.PNG |
+| data/people/musikk/oslo/people_musikk_oslo.json | edvard_grieg / Edvard Grieg | cardImage | bilder/kort/people/edvard_grieg.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | image | bilder/kort/people/peter_christen_asbjornsen.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | peter_christen_asbjornsen / Peter Christen Asbjørnsen | cardImage | bilder/kort/people/peter_christen_asbjornsen.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | michael_sars / Michael Sars | image | bilder/kort/people/michael_sars.PNG |
@@ -517,26 +535,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/natur/oslo/people_natur_oslo.json | bernhard_herre / Bernhard Herre | cardImage | bilder/kort/people/bernhard_herre.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | mikkjel_fonhus / Mikkjel Fønhus | image | bilder/kort/people/mikkjel_fonhus.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | mikkjel_fonhus / Mikkjel Fønhus | cardImage | bilder/kort/people/mikkjel_fonhus.PNG |
-| data/people/people_musikk.json | kirsten_flagstad / Kirsten Flagstad | image | bilder/kort/people/kirsten_flagstad.PNG |
-| data/people/people_musikk.json | kirsten_flagstad / Kirsten Flagstad | cardImage | bilder/kort/people/kirsten_flagstad.PNG |
-| data/people/people_musikk.json | alexander_rybak / Alexander Rybak | image | bilder/kort/people/alexander_rybak.PNG |
-| data/people/people_musikk.json | alexander_rybak / Alexander Rybak | cardImage | bilder/kort/people/alexander_rybak.PNG |
-| data/people/people_musikk.json | aurora / Aurora | image | bilder/kort/people/aurora_salt.PNG |
-| data/people/people_musikk.json | aurora / Aurora | cardImage | bilder/kort/people/aurora_salt.PNG |
-| data/people/people_musikk.json | sigrid / Sigrid | image | bilder/kort/people/sigrid_salt.PNG |
-| data/people/people_musikk.json | sigrid / Sigrid | cardImage | bilder/kort/people/sigrid_salt.PNG |
-| data/people/people_musikk.json | karpe / Karpe | image | bilder/kort/people/karpe_sorenga.PNG |
-| data/people/people_musikk.json | karpe / Karpe | cardImage | bilder/kort/people/karpe_sorenga.PNG |
-| data/people/people_musikk.json | ulrikke_brandstorp / Ulrikke Brandstorp | image | bilder/kort/people/ulrikke_brandstorp.PNG |
-| data/people/people_musikk.json | ulrikke_brandstorp / Ulrikke Brandstorp | cardImage | bilder/kort/people/ulrikke_brandstorp.PNG |
-| data/people/people_musikk.json | kygo / Kygo | image | bilder/kort/people/kygo_barcode.PNG |
-| data/people/people_musikk.json | kygo / Kygo | cardImage | bilder/kort/people/kygo_barcode.PNG |
-| data/people/people_musikk.json | gabrielle / Gabrielle | image | bilder/kort/people/gabrielle_barcode.PNG |
-| data/people/people_musikk.json | gabrielle / Gabrielle | cardImage | bilder/kort/people/gabrielle_barcode.PNG |
-| data/people/people_musikk.json | arif / Arif | image | bilder/kort/people/arif_stovner.PNG |
-| data/people/people_musikk.json | arif / Arif | cardImage | bilder/kort/people/arif_stovner.PNG |
-| data/people/people_musikk.json | edvard_grieg / Edvard Grieg | image | bilder/kort/people/edvard_grieg.PNG |
-| data/people/people_musikk.json | edvard_grieg / Edvard Grieg | cardImage | bilder/kort/people/edvard_grieg.PNG |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.image | bilder/people/herman_flesvig.PNG |
 | data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.imageCard | bilder/kort/people/herman_flesvig.PNG |
 | data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.image | bilder/people/morten_ramm.PNG |
@@ -739,10 +737,10 @@ Mangler filer for image/cardImage/media: 552
 
 ```json
 {
-  "type": "geographic_split",
-  "category": "musikk",
-  "reason": "musikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-  "safeBatchSize": 19,
+  "type": "content_expansion",
+  "category": "filantroper",
+  "reason": "filantroper er liten og ren nok for innholdsutvidelse.",
+  "safeBatchSize": 10,
   "blockers": []
 }
 ```
