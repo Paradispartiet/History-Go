@@ -1168,10 +1168,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const btnOpenAHA = document.getElementById("btnOpenAHA");
-    const refreshBtnOpenAHA = async () => {
+    const refreshBtnOpenAHA = async (stateOverride = null) => {
       if (!btnOpenAHA) return;
       try {
-        const state = await window.HistoryGoAHAAuth?.refresh?.();
+        const state = stateOverride || await window.HistoryGoAHAAuth?.refresh?.();
         btnOpenAHA.textContent = state?.signed_in ? "AHA koblet" : "Logg inn";
       } catch {
         btnOpenAHA.textContent = "Logg inn";
@@ -1195,8 +1195,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "https://paradispartiet.github.io/AHA-EchoNet/?auth=login&source=historygo";
     });
     refreshBtnOpenAHA();
-    window.addEventListener("aha:auth-ready", refreshBtnOpenAHA);
-    window.addEventListener("historygo:aha-readback", refreshBtnOpenAHA);
+    window.addEventListener("aha:auth-ready", (event) => {
+      refreshBtnOpenAHA(event.detail || { signed_in: false });
+    });
+    window.addEventListener("historygo:aha-readback", (event) => {
+      refreshBtnOpenAHA({ signed_in: Boolean(event.detail?.profile_id || localStorage.getItem("aha_profile_id")) });
+    });
 
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {
