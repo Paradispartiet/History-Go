@@ -9,7 +9,7 @@
   }
 
   function activeCareerId() {
-    return normStr(window.CivicationState?.getActivePosition?.()?.career_id);
+    return normStr(/** @type {any} */ (window.CivicationState?.getActivePosition?.())?.career_id);
   }
 
   function currentSnapshot() {
@@ -71,7 +71,7 @@
   }
 
   function consequenceBoxHtml() {
-    const snap = currentSnapshot();
+    const snap = /** @type {any} */ (currentSnapshot());
     const trustValue = Number(snap?.psyche?.trust?.value || 0);
     const trustMax = Number(snap?.psyche?.trust?.max || 0);
 
@@ -124,7 +124,7 @@
   }
 
   function patchRenderer(name, injector) {
-    const original = window[name];
+    const original = /** @type {any} */ (window)[name];
     if (typeof original !== "function" || original.__civiConsequencesWrapped) return;
 
     const wrapped = function () {
@@ -134,7 +134,7 @@
     };
 
     wrapped.__civiConsequencesWrapped = true;
-    window[name] = wrapped;
+    /** @type {any} */ (window)[name] = wrapped;
   }
 
   function setup() {

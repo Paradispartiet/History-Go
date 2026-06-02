@@ -28,12 +28,12 @@
       action: "Åpne rolle",
       urgentAction: "Svar på tilbud",
       summary: function () {
-        const active = window.CivicationState?.getActivePosition?.();
+        const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
         if (!active) return "Ingen aktiv rolle ennå.";
         return String(active.title || active.career_name || active.career_id || "Aktiv rolle");
       },
       details: function () {
-        const active = window.CivicationState?.getActivePosition?.() || {};
+        const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.()) || {};
         const wallet = firstText("civiDashWallet");
         const income = firstText("civiDashIncome");
         return [
@@ -64,13 +64,13 @@
         const pending = (split.workday || []).find(function (item) { return item && item.status === "pending"; });
         const ev = pending?.event || null;
         if (ev?.subject) return String(ev.subject);
-        const active = window.CivicationState?.getActivePosition?.();
+        const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
         return active ? "Arbeidsdag, oppgaver og kontraktspress." : "Ingen arbeidsdag uten aktiv rolle.";
       },
       details: function () {
         const split = splitInbox();
         const workday = (split.workday || []).filter(function (item) { return item && item.status === "pending"; });
-        const active = window.CivicationState?.getActivePosition?.() || null;
+        const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.()) || null;
         const first = workday[0]?.event || workday[0] || null;
         return [
           active?.title ? `Rolle: ${active.title}` : null,
@@ -115,16 +115,16 @@
       action: "Åpne hjem",
       urgentAction: "Velg nabolag",
       forceUrgent: function () {
-        const home = window.CivicationHome?.getState?.()?.home || null;
+        const home = /** @type {any} */ (window.CivicationHome?.getState?.())?.home || null;
         return home?.status !== "settled";
       },
       summary: function () {
-        const home = window.CivicationHome?.getState?.()?.home || null;
+        const home = /** @type {any} */ (window.CivicationHome?.getState?.())?.home || null;
         if (home?.status === "settled") return `Bosatt: ${home.district || "valgt nabolag"}`;
         return "Ikke valgt nabolag.";
       },
       details: function () {
-        const home = window.CivicationHome?.getState?.()?.home || null;
+        const home = /** @type {any} */ (window.CivicationHome?.getState?.())?.home || null;
         return [
           home?.district ? `Nabolag: ${home.district}` : "Nabolag ikke valgt",
           home?.status ? `Bostatus: ${home.status}` : null,
@@ -351,7 +351,7 @@
   let selectedCategory = null;
 
   function getPreferredDefaultCategory() {
-    const active = window.CivicationState?.getActivePosition?.();
+    const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
     return active ? "karriere" : "personlig";
   }
 
@@ -541,7 +541,7 @@
       };
     }
 
-    const home = window.CivicationHome?.getState?.()?.home || null;
+    const home = /** @type {any} */ (window.CivicationHome?.getState?.())?.home || null;
     if (home?.status !== "settled") {
       return {
         mode: "urgent",
@@ -672,7 +672,7 @@
   }
 
   function refreshTopActionCard() {
-    const card = ensureHomeControls()?.querySelector("#civiTopActionCard");
+    const card = /** @type {HTMLElement} */ (ensureHomeControls()?.querySelector("#civiTopActionCard"));
     if (!card) return;
 
     const next = getTopAction();
@@ -684,7 +684,7 @@
     card.querySelector(".civi-top-action-summary").textContent = next.summary;
     card.querySelector(".civi-top-action-chip").textContent = next.tone === "milestone" ? "Milepæl" : (next.mode === "urgent" ? "Krever svar" : "Stabilt");
 
-    const actionBtn = card.querySelector("[data-civi-top-action]");
+    const actionBtn = /** @type {HTMLElement} */ (card.querySelector("[data-civi-top-action]"));
     actionBtn.textContent = next.action;
 
     const openFromTopCard = function () {
@@ -695,7 +695,7 @@
 
     actionBtn.onclick = openFromTopCard;
     card.onclick = function (event) {
-      const target = event.target;
+      const target = /** @type {Element} */ (event.target);
       if (target && target.closest("button")) return;
       openFromTopCard();
     };
@@ -815,7 +815,7 @@
     section.dataset.civiLifeCategory = config.category || "system";
 
     card.addEventListener("click", function (event) {
-      const target = event.target;
+      const target = /** @type {Element} */ (event.target);
       if (target && target.closest("button")) return;
       openPopup(section, config);
     });
