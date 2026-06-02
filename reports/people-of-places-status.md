@@ -1,15 +1,15 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-02T21:43:08.881Z
+Generert: 2026-06-02T22:05:47.466Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-02T21:43:08.881Z |
+| generatedAt | 2026-06-02T22:05:47.466Z |
 | peopleFilesRead | 19 |
-| totalPeople | 323 |
-| uniquePeopleIds | 323 |
+| totalPeople | 342 |
+| uniquePeopleIds | 342 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 2 |
@@ -26,21 +26,21 @@ Generert: 2026-06-02T21:43:08.881Z
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 8 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/oslo/people_film_tv_oslo.json | film_tv | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
-| data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 12 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | litteratur | ja | 34 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | media | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/media/oslo/people_media_oslo.json | media | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/media/oslo/people_media_oslo.json | media | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 15 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_filantroper.json | filantroper | nei | 9 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 9 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/vitenskap/oslo/people_vitenskap_oslo.json | vitenskap | ja | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
+| data/people/vitenskap/oslo/people_vitenskap_oslo.json | vitenskap | ja | 21 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
 
 ## Kategorioversikt
 
@@ -50,17 +50,17 @@ Generert: 2026-06-02T21:43:08.881Z
 | filantroper | 9 | 1 | 0 | expand_content | Kategorien er liten og ren; mer innhold bør komme før eventuell split. |
 | film_tv | 18 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 65 | 0 | 1 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
-| kunst | 7 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 12 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 34 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| media | 17 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| media | 22 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 19 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| naeringsliv | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| populaerkultur | 10 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| populaerkultur | 15 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| vitenskap | 20 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| vitenskap | 21 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
@@ -101,21 +101,21 @@ Entries med svak/manglende places[] etter auditreglene: 2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=8/8; source_place_id=0/8; placesArray=8/8; categories=film_tv
 - data/people/film_tv/oslo/people_film_tv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=film_tv
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=63/65; source_place_id=0/65; placesArray=65/65; categories=historie
-- data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=kunst
+- data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=12/12; source_place_id=0/12; placesArray=12/12; categories=kunst
 - data/people/litteratur/oslo/people_litteratur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=34/34; source_place_id=0/34; placesArray=34/34; categories=litteratur
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=media
-- data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=media
+- data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=0/19; placesArray=19/19; categories=media
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=musikk
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=musikk
-- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=19/19; placesArray=19/19; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
-- data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; categories=populaerkultur
+- data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=populaerkultur
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
 - data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
-- data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=20/20; categories=vitenskap
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=21/21; source_place_id=0/21; placesArray=21/21; categories=vitenskap
 
 ## Category/collectionGroup-avvik
 

@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T21:43:08.534Z
+Generated: 2026-06-02T22:05:46.966Z
 
 ## Sammendrag
 - People-filer lest: **19**
-- People lest: **323**
+- People lest: **342**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **2**
-- Duplikate interne place-referanser: **321**
+- Duplikate interne place-referanser: **340**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -107,6 +107,11 @@ Generated: 2026-06-02T21:43:08.534Z
 - data/people/kunst/oslo/people_kunst_oslo.json :: steinar_jakobsen (Steinar Jakobsen) -> astrup_fearnley x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: sonja (Dronning Sonja) -> slottet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: nikolai_astrup (Nikolai Astrup) -> nasjonalmuseet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: theodor_kittelsen (Theodor Kittelsen) -> nasjonalmuseet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: anna_eva_bergman (Anna-Eva Bergman) -> nasjonalmuseet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: rolf_nesch (Rolf Nesch) -> nasjonalmuseet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: per_kleiva (Per Kleiva) -> nasjonalmuseet x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: vigdis_hjorth (Vigdis Hjorth) -> deichman_bjorvika x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: karl_ove_knausgard (Karl Ove Knausgård) -> deichman_bjorvika x2
@@ -160,6 +165,9 @@ Generated: 2026-06-02T21:43:08.534Z
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen) -> akershus_kaier x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anders_jahre_shipping (Anders Jahre) -> akershus_kaier x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: nicolay_august_andresen_bank (Nicolay August Andresen) -> grunnlovsbygget_bankplassen x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes (Ellef Ringnes) -> ringnes_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: amund_ringnes (Amund Ringnes) -> ringnes_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: halvor_schou (Halvor Schou) -> schous_bryggeri x2
 - data/people/people_filantroper.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
@@ -277,6 +285,7 @@ Generated: 2026-06-02T21:43:08.534Z
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: jon_elster (Jon Elster) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: waldemar_christopher_brogger (Waldemar Christopher Brøgger) -> universitetets_gamle_hovedbygning x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
@@ -291,6 +300,11 @@ Generated: 2026-06-02T21:43:08.534Z
 - data/people/media/oslo/people_media_oslo.json :: bjorgulv_braanen (Bjørgulv Braanen) -> klassekampen_redaksjon x2
 - data/people/media/oslo/people_media_oslo.json :: mari_skurdal (Mari Skurdal) -> klassekampen_redaksjon x2
 - data/people/media/oslo/people_media_oslo.json :: rune_fjeld_olsen (Rune Fjeld Olsen) -> good_game_redaksjon x2
+- data/people/media/oslo/people_media_oslo.json :: anne_cath_vestly (Anne-Cath. Vestly) -> nrk_huset_marienlyst x2
+- data/people/media/oslo/people_media_oslo.json :: totto_osvold (Totto Osvold) -> nrk_huset_marienlyst x2
+- data/people/media/oslo/people_media_oslo.json :: sissel_benneche_osvold (Sissel Benneche Osvold) -> dagbladet_akersgata x2
+- data/people/media/oslo/people_media_oslo.json :: kare_valebrokk (Kåre Valebrokk) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: per_egil_hegge (Per Egil Hegge) -> aftenposten_akersgata x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
@@ -340,6 +354,11 @@ Generated: 2026-06-02T21:43:08.534Z
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: herman_flesvig (Herman Flesvig) -> nrk_huset_marienlyst x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: morten_ramm (Morten Ramm) -> nrk_huset_marienlyst x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: astrid_s (Astrid S) -> sorenga x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: rolv_wesenlund (Rolv Wesenlund) -> nrk_huset_marienlyst x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: harald_heide_steen_jr (Harald Heide-Steen jr.) -> nrk_huset_marienlyst x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: aud_schonemann (Aud Schønemann) -> nrk_huset_marienlyst x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: wenche_foss (Wenche Foss) -> folketeateret x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: nils_vogt (Nils Vogt) -> nrk_huset_marienlyst x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch
