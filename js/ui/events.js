@@ -33,12 +33,12 @@ function focusMap(lat, lon) {
 }
 
 document.addEventListener("click", e => {
-  const target = e.target;
+  const target = /** @type {Element} */ (e.target);
 
 
   
   // --- PlaceCard: toggle icon lists (people / nature / badges) ---
-  const toggleBtn = target.closest?.("[data-toggle]");
+  const toggleBtn = /** @type {HTMLElement|null} */ (target.closest?.("[data-toggle]"));
   if (toggleBtn) {
     const type = toggleBtn.dataset.toggle;
 

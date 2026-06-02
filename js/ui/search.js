@@ -238,7 +238,7 @@
     input.dataset.hgSearchBound = "1";
 
     input.addEventListener("input", e => {
-      const value = e.target.value || "";
+      const value = /** @type {HTMLInputElement} */ (e.target).value || "";
       if (value.trim().length < 2) {
         showSearchBox(false);
         return;
@@ -247,28 +247,29 @@
     });
 
     input.addEventListener("focus", e => {
-      const value = e.target.value || "";
+      const value = /** @type {HTMLInputElement} */ (e.target).value || "";
       if (value.trim().length >= 2) {
         renderSearchResults(globalSearch(value), value);
       }
     });
 
     box.addEventListener("click", e => {
-      const item = e.target.closest(".search-item");
+      const item = /** @type {Element} */ (e.target).closest(".search-item");
       if (!item) return;
       activateSearchItem(item);
     });
 
     box.addEventListener("keydown", e => {
       if (e.key !== "Enter" && e.key !== " ") return;
-      const item = e.target.closest(".search-item");
+      const item = /** @type {Element} */ (e.target).closest(".search-item");
       if (!item) return;
       e.preventDefault();
       activateSearchItem(item);
     });
 
     document.addEventListener("click", e => {
-      if (!box.contains(e.target) && !input.contains(e.target)) {
+      const clickTarget = /** @type {Node} */ (e.target);
+      if (!box.contains(clickTarget) && !input.contains(clickTarget)) {
         showSearchBox(false);
       }
     });

@@ -539,7 +539,7 @@
     bindBack();
     document.getElementById("psychologyRoomExerciseForm")?.addEventListener("submit", event => {
       event.preventDefault();
-      const reflection = String(event.currentTarget.elements.reflection?.value || "").trim();
+      const reflection = String(/** @type {any} */ (event.currentTarget).elements.reflection?.value || "").trim();
       completeSession("exercise", exercise.id, exercise.title, Number(exercise.reward?.insight_points || 5), reflection, null, { returnPathId: path?.id || null });
     });
   }
@@ -653,15 +653,15 @@
       });
     });
     document.querySelector("[data-path-phenomenon-id]")?.addEventListener("click", (event) => {
-      const item = findById(dataCache?.phenomena || [], event.currentTarget.dataset.pathPhenomenonId);
+      const item = findById(dataCache?.phenomena || [], /** @type {HTMLElement} */ (event.currentTarget).dataset.pathPhenomenonId);
       if (item) renderPhenomenonDetail(item, { type: "path", pathId: path.id });
     });
     document.querySelector("[data-path-tool-id]")?.addEventListener("click", (event) => {
-      const tool = findById(dataCache?.tools || [], event.currentTarget.dataset.pathToolId);
+      const tool = findById(dataCache?.tools || [], /** @type {HTMLElement} */ (event.currentTarget).dataset.pathToolId);
       if (tool) renderToolDetail(tool, { type: "path", pathId: path.id });
     });
     document.querySelector("[data-path-exercise-id]")?.addEventListener("click", (event) => {
-      const exercise = findById(dataCache?.exercises || [], event.currentTarget.dataset.pathExerciseId);
+      const exercise = findById(dataCache?.exercises || [], /** @type {HTMLElement} */ (event.currentTarget).dataset.pathExerciseId);
       if (exercise) renderExercise(exercise, { type: "path", pathId: path.id, dayNumber: currentDay });
     });
   }
@@ -671,7 +671,7 @@
     bindBack();
     document.getElementById("psychologyRoomJournalForm")?.addEventListener("submit", event => {
       event.preventDefault();
-      const reflection = String(event.currentTarget.elements.reflection?.value || "").trim();
+      const reflection = String(/** @type {any} */ (event.currentTarget).elements.reflection?.value || "").trim();
       completeSession("journal", "reflection_room", "Refleksjonsrom", 4, reflection);
     });
   }

@@ -900,6 +900,16 @@
     `;
   }
 
+  /**
+   * Index/itemIndex accept the raw string values read from data-* attributes
+   * (coerced internally via Number()), as well as numeric literals.
+   * @param {string|undefined} placeId
+   * @param {string|number} [index]
+   * @param {string} [detailType]
+   * @param {string|number} [itemIndex]
+   * @param {string} [sectionType]
+   * @param {string} [itemSource]
+   */
   async function openPlace(placeId, index = 0, detailType = "", itemIndex = 0, sectionType = "", itemSource = "") {
     const requestedPlaceId = norm(placeId);
     const articles = window.LEKSIKON_BY_PLACE?.[requestedPlaceId] || [];
@@ -1022,7 +1032,7 @@
   }
 
   document.addEventListener("click", (event) => {
-    const openHubBtn = event.target.closest("[data-leksikon-open-hub]");
+    const openHubBtn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (event.target).closest("[data-leksikon-open-hub]"));
     if (openHubBtn) {
       event.preventDefault();
       event.stopPropagation();
@@ -1030,7 +1040,7 @@
       return;
     }
 
-    const btn = event.target.closest("[data-leksikon-place]");
+    const btn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (event.target).closest("[data-leksikon-place]"));
     if (!btn) return;
     event.preventDefault();
     event.stopPropagation();
@@ -1038,7 +1048,7 @@
   });
 
   document.addEventListener("click", (event) => {
-    const detailBtn = event.target.closest("[data-leksikon-detail]");
+    const detailBtn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (event.target).closest("[data-leksikon-detail]"));
     if (!detailBtn) return;
     if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
@@ -1057,7 +1067,7 @@
   });
 
   document.addEventListener("click", (event) => {
-    const backBtn = event.target.closest("[data-leksikon-back]");
+    const backBtn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (event.target).closest("[data-leksikon-back]"));
     if (!backBtn) return;
     if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
@@ -1116,13 +1126,13 @@
   }
 
   document.addEventListener("input", (event) => {
-    if (!event.target.closest("[data-lesespor-search]")) return;
-    filterLesesporList(event.target.closest(".pc-leksikon-lesespor") || document);
+    if (!(/** @type {Element} */ (event.target).closest("[data-lesespor-search]"))) return;
+    filterLesesporList(/** @type {Element} */ (event.target).closest(".pc-leksikon-lesespor") || document);
   });
 
   document.addEventListener("change", (event) => {
-    if (!event.target.closest("[data-lesespor-category]")) return;
-    filterLesesporList(event.target.closest(".pc-leksikon-lesespor") || document);
+    if (!(/** @type {Element} */ (event.target).closest("[data-lesespor-category]"))) return;
+    filterLesesporList(/** @type {Element} */ (event.target).closest(".pc-leksikon-lesespor") || document);
   });
 
   window.HGLeksikon = {
