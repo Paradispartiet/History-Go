@@ -784,3 +784,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added only a narrow local `HTMLButtonElement|null` cast for the existing `btnUnlock` / unlock-button node so the current `.disabled` usage is typed as a button property.
 - Unlock logic, UI output, DOM structure, selectors, IDs/classes, CSS, data, schema declarations, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1520, and `js/ui/place-card.js` diagnostics are now 130.
+
+## Phase 93: Civication remaining diagnostics audit
+
+- Parked the CivicationUI cleanup track at its lower post-Phase 82–89 / Phase 92 baseline instead of reopening broad UI work.
+- Added a read-only audit report for the remaining `js/Civication/**` TypeScript diagnostics: `reports/civication-phase-93-remaining-diagnostics-audit.md`.
+- The audit records the current baseline at 1520 total diagnostics, with 265 diagnostics across `js/Civication/**`, including 31 in `js/Civication/ui/CivicationUI.js` and 20 in `js/Civication/ui/CivicationMiniSectionsUI.js`.
+- No Civication runtime files were changed; no `js/Civication/**/*.js` files were modified.
+- Schema/declaration files were not changed; `schemas/*.d.ts` and Civication global declarations remain untouched.
+- Runtime, UI, DOM, CSS, data, stories, places, people, import tooling, package metadata, HTML, and `tsconfig.json` were not changed.
+- The report recommends Phase 94 as a single, narrow numeric-coercion micro-pass in `js/Civication/core/civicationEventEngine.js` `weekKey()` line 42 only, and explicitly keeps `js/Civication/core/civicationJobs.js` concat/object-shape work for a later separate job-contract phase.
