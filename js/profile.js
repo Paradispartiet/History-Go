@@ -114,12 +114,16 @@ function getCompletedPlaceCount() {
 // ------------------------------------------------------------
 function renderProfileCard() {
   const streak = Number(localStorage.getItem("user_streak") || 0);
-  const userName = localStorage.getItem("user_name") || _t("ui.profile.defaultExplorer", "Utforsker #182");
+  const userName =
+    window.HGUserProfile?.getDisplayName?.() ||
+    localStorage.getItem("user_name") ||
+    "Logg inn";
 
   const placeCount = getCompletedPlaceCount();
   const quizUnitCount = getCompletedQuizUnitCount();
 
-  document.getElementById("profileName").textContent = userName;
+  const profileNameEl = document.getElementById("profileName");
+  if (profileNameEl) profileNameEl.textContent = userName;
   document.getElementById("statVisited").textContent = String(placeCount);
   document.getElementById("statQuizzes").textContent = String(quizUnitCount);
   document.getElementById("statStreak").textContent = String(streak);
@@ -1068,7 +1072,10 @@ function renderAhaSummary() {
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
 function openProfileModal() {
-  const name = localStorage.getItem("user_name") || _t("ui.profile.defaultExplorer", "Utforsker #182");
+  const name =
+    window.HGUserProfile?.getDisplayName?.() ||
+    localStorage.getItem("user_name") ||
+    "Logg inn";
   const color = localStorage.getItem("user_color") || "#f6c800";
 
   const modal = document.createElement("div");
@@ -1089,7 +1096,7 @@ function openProfileModal() {
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
   modal.querySelector("#saveProfile").onclick = () => {
-    const newName = modal.querySelector("#newName").value.trim() || _t("ui.profile.defaultExplorer", "Utforsker #182");
+    const newName = modal.querySelector("#newName").value.trim() || "Logg inn";
     const newColor = modal.querySelector("#newColor").value;
 
     localStorage.setItem("user_name", newName);
