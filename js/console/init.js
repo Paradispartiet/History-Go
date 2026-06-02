@@ -167,23 +167,23 @@
 
   // Buttons
   btn.onclick = () => toggle(true);
-  panel.querySelector("#hgClose").onclick = () => toggle(false);
-  panel.querySelector("#hgClear").onclick = () => { state.logs = []; render(); };
-  panel.querySelector("#hgPause").onclick = (e) => {
+  /** @type {HTMLElement} */ (panel.querySelector("#hgClose")).onclick = () => toggle(false);
+  /** @type {HTMLElement} */ (panel.querySelector("#hgClear")).onclick = () => { state.logs = []; render(); };
+  /** @type {HTMLElement} */ (panel.querySelector("#hgPause")).onclick = (e) => {
     state.pause = !state.pause;
-    e.target.textContent = state.pause ? "resume" : "pause";
+    /** @type {Element} */ (e.target).textContent = state.pause ? "resume" : "pause";
   };
-  panel.querySelector("#hgFilter").onchange = (e) => { state.filter = e.target.value; render(); };
+  /** @type {HTMLElement} */ (panel.querySelector("#hgFilter")).onchange = (e) => { state.filter = /** @type {HTMLInputElement} */ (e.target).value; render(); };
 
   // Quick actions
-  panel.querySelectorAll(".hgqa").forEach(b => {
+  panel.querySelectorAll(".hgqa").forEach((/** @type {HTMLElement} */ b) => {
     b.onclick = () => run(b.getAttribute("data-cmd"));
   });
 
   // Command input
-  const cmdInput = panel.querySelector("#hgCmd");
-  panel.querySelector("#hgRun").onclick = () => run(cmdInput.value);
-  cmdInput.addEventListener("keydown", (e) => {
+  const cmdInput = /** @type {HTMLInputElement} */ (panel.querySelector("#hgCmd"));
+  /** @type {HTMLElement} */ (panel.querySelector("#hgRun")).onclick = () => run(cmdInput.value);
+  cmdInput.addEventListener("keydown", (/** @type {KeyboardEvent} */ e) => {
     if (e.key === "Enter") run(cmdInput.value);
   });
 

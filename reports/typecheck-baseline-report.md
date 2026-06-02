@@ -1,11 +1,11 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T17:55:28.270Z
+- Generated at (UTC): 2026-06-02T18:03:28.037Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 344
-- Files with diagnostics: 68
+- Total diagnostic lines found: 306
+- Files with diagnostics: 64
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
@@ -13,8 +13,8 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | js/Civication/** | 22 | 116 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
-| other | 23 | 98 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
 | js/ui/** | 14 | 74 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| other | 19 | 60 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
 | js/profile.js | 1 | 26 | js/profile.js |
 | sw.js | 1 | 10 | sw.js |
 | js/boot.js | 1 | 8 | js/boot.js |
@@ -33,12 +33,8 @@
 | js/Civication/ui/CivicationMiniSectionsUI.js | 18 | js/Civication/** |
 | js/Civication/systems/day/dayConsequencesUI.js | 11 | js/Civication/** |
 | js/psychologyRoom.js | 11 | other |
-| js/observations.js | 10 | other |
-| js/quizzes.js | 10 | other |
 | js/ui/popup-utils.js | 10 | js/ui/** |
 | sw.js | 10 | sw.js |
-| js/console/init.js | 9 | other |
-| js/profileIdentity.js | 9 | other |
 | js/Civication/ui/CivicationDashboardUI.js | 8 | js/Civication/** |
 | js/boot.js | 8 | js/boot.js |
 | js/ui/badges.js | 8 | js/ui/** |
@@ -47,11 +43,15 @@
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
 | js/console/diagnosticConsole.js | 6 | other |
 | js/i18n.js | 6 | other |
+| js/observationsView.js | 6 | other |
+| js/Civication/ui/CivicationMap.js | 5 | js/Civication/** |
+| js/hgKnowledgeEngine.js | 5 | js/hgKnowledgeEngine.js |
+| js/map.js | 5 | other |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 286 |
+| TS2339 | 248 |
 | TS2345 | 11 |
 | TS2322 | 10 |
 | TS2451 | 6 |
@@ -73,7 +73,7 @@
 ## Priority recommendations (mechanical)
 1. Start with **js/Civication/** (116 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/Civication/ui/CivicationUI.js` (31), `js/profile.js` (26), `js/ui/place-card.js` (23), `js/Civication/ui/CivicationMiniSectionsUI.js` (18), `js/Civication/systems/day/dayConsequencesUI.js` (11).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
+3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `other`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)

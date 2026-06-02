@@ -118,13 +118,13 @@
         : "Din spillerprofil, kunnskapsreise og samling i ett kompakt dashboard.";
     }
 
-    document.querySelectorAll(".profile-avatar-orb").forEach((el) => {
+    document.querySelectorAll(".profile-avatar-orb").forEach((/** @type {HTMLElement} */ el) => {
       el.textContent = initialsFromName(displayName);
       el.style.background = `linear-gradient(135deg, ${profile.color}, rgba(255,255,255,.18))`;
       el.style.boxShadow = `0 0 0 2px ${profile.color}55, 0 18px 50px rgba(0,0,0,.22)`;
     });
 
-    document.querySelectorAll(".profile-pill.gold").forEach((el) => {
+    document.querySelectorAll(".profile-pill.gold").forEach((/** @type {HTMLElement} */ el) => {
       el.style.borderColor = `${profile.color}99`;
       el.style.color = profile.color;
     });
@@ -192,8 +192,8 @@
     `;
 
     document.body.appendChild(backdrop);
-    const nicknameInput = document.getElementById("hgProfileNicknameInput");
-    const placeInput = document.getElementById("hgProfilePlaceInput");
+    const nicknameInput = /** @type {HTMLInputElement} */ (document.getElementById("hgProfileNicknameInput"));
+    const placeInput = /** @type {HTMLInputElement} */ (document.getElementById("hgProfilePlaceInput"));
     nicknameInput.value = profile.nickname || "";
     placeInput.value = profile.place || "";
     nicknameInput.focus();
@@ -203,7 +203,7 @@
       <button type="button" class="hg-profile-color${color === selectedColor ? " is-active" : ""}" data-color="${color}" style="background:${color}" aria-label="Velg ${color}"></button>
     `).join("");
 
-    colors.querySelectorAll(".hg-profile-color").forEach((btn) => {
+    colors.querySelectorAll(".hg-profile-color").forEach((/** @type {HTMLElement} */ btn) => {
       btn.addEventListener("click", () => {
         selectedColor = btn.dataset.color;
         colors.querySelectorAll(".hg-profile-color").forEach((b) => b.classList.toggle("is-active", b === btn));
