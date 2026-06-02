@@ -1,20 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T22:20:38.385Z
+- Generated at (UTC): 2026-06-02T22:27:45.632Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 192
-- Files with diagnostics: 59
+- Total diagnostic lines found: 160
+- Files with diagnostics: 55
 - Groups with diagnostics: 10
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| other | 19 | 60 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
-| js/Civication/** | 20 | 58 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
 | js/ui/** | 12 | 51 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/dom.js |
+| js/Civication/** | 18 | 43 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
+| other | 17 | 43 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
 | js/boot.js | 1 | 8 | js/boot.js |
 | js/hgKnowledgeEngine.js | 1 | 5 | js/hgKnowledgeEngine.js |
 | js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
@@ -27,14 +27,10 @@
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
 | js/ui/place-card.js | 23 | js/ui/** |
-| js/psychologyRoom.js | 11 | other |
-| js/Civication/ui/CivicationDashboardUI.js | 8 | js/Civication/** |
 | js/boot.js | 8 | js/boot.js |
-| js/Civication/ui/CivicationSystemMap.js | 7 | js/Civication/** |
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
 | js/console/diagnosticConsole.js | 6 | other |
 | js/i18n.js | 6 | other |
-| js/observationsView.js | 6 | other |
 | js/Civication/ui/CivicationMap.js | 5 | js/Civication/** |
 | js/hgKnowledgeEngine.js | 5 | js/hgKnowledgeEngine.js |
 | js/map.js | 5 | other |
@@ -46,11 +42,15 @@
 | js/Civication/systems/day/dayNarrativeConsequencesUI.js | 3 | js/Civication/** |
 | js/Civication/ui/CivicationEmptyPanels.js | 3 | js/Civication/** |
 | js/Civication/ui/CivicationInboxTopActionUI.js | 3 | js/Civication/** |
+| js/onboarding/onboardingEngine.js | 3 | other |
+| js/profile.js | 3 | js/profile.js |
+| js/state/state.js | 3 | js/state/** |
+| js/stories/stories_utils.js | 3 | other |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 136 |
+| TS2339 | 104 |
 | TS2345 | 11 |
 | TS2322 | 10 |
 | TS2451 | 6 |
@@ -69,9 +69,9 @@
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **other (60 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/psychologyRoom.js` (11), `js/Civication/ui/CivicationDashboardUI.js` (8), `js/boot.js` (8), `js/Civication/ui/CivicationSystemMap.js` (7).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `js/ui/**`, `js/boot.js`.
+1. Start with **js/ui/** (51 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/boot.js` (8), `js/Civication/systems/day/dayPatches.js` (6), `js/console/diagnosticConsole.js` (6), `js/i18n.js` (6).
+3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
@@ -108,14 +108,6 @@ js/Civication/systems/day/dayRuntimeDebugPanel.js(296,40): error TS2339: Propert
 js/Civication/systems/day/dayRuntimeDebugPanel.js(297,20): error TS2339: Property '_t' does not exist on type '() => void'.
 js/Civication/systems/day/dayWeeklyReview.js(19,21): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/systems/day/dayWeeklyReview.js(19,25): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/ui/CivicationDashboardUI.js(126,34): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(137,34): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(150,27): error TS2339: Property 'home' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(191,28): error TS2339: Property 'event' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(218,31): error TS2339: Property 'title' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(218,53): error TS2339: Property 'title' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(220,23): error TS2339: Property 'career_name' does not exist on type 'unknown'.
-js/Civication/ui/CivicationDashboardUI.js(220,45): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/ui/CivicationEmptyPanels.js(57,17): error TS2339: Property '_t' does not exist on type '() => void'.
 js/Civication/ui/CivicationEmptyPanels.js(57,48): error TS2339: Property '_t' does not exist on type '() => void'.
 js/Civication/ui/CivicationEmptyPanels.js(58,13): error TS2339: Property '_t' does not exist on type '() => void'.
@@ -129,13 +121,6 @@ js/Civication/ui/CivicationMap.js(13,729): error TS2339: Property 'setAttribute'
 js/Civication/ui/CivicationMap.js(50,525): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationMap.js(95,934): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationMap.js(95,958): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/ui/CivicationSystemMap.js(38,150): error TS2339: Property 'work' does not exist on type '{}'.
-js/Civication/ui/CivicationSystemMap.js(53,1042): error TS2339: Property 'work' does not exist on type '{}'.
-js/Civication/ui/CivicationSystemMap.js(53,1142): error TS2339: Property 'housing' does not exist on type '{}'.
-js/Civication/ui/CivicationSystemMap.js(53,1246): error TS2339: Property 'store' does not exist on type '{}'.
-js/Civication/ui/CivicationSystemMap.js(53,1351): error TS2339: Property 'people' does not exist on type '{}'.
-js/Civication/ui/CivicationSystemMap.js(53,1454): error TS2339: Property 'debate' does not exist on type '{}'.
-js/Civication/ui/CivicationSystemMap.js(53,1557): error TS2339: Property 'leisure' does not exist on type '{}'.
 js/Civication/ui/CivicationUI.js(628,9): error TS2322: Type 'CiviFn | {}' is not assignable to type 'Record<string, { id?: string; name?: string; baseCost?: number; modifiers?: Record<string, number>; quizRequirements?: Record<string, unknown>; }>'.
   Type 'CiviFn' is not assignable to type 'Record<string, { id?: string; name?: string; baseCost?: number; modifiers?: Record<string, number>; quizRequirements?: Record<string, unknown>; }>'.
     Index signature for type 'string' is missing in type 'CiviFn'.
@@ -156,4 +141,19 @@ js/boot.js(454,44): error TS2304: Cannot find name 'renderGallery'.
 js/console/diagnosticConsole.js(126,10): error TS2339: Property 'type' does not exist on type 'HTMLElement'.
 js/console/diagnosticConsole.js(207,12): error TS2339: Property 'onclick' does not exist on type 'Element'.
 js/console/diagnosticConsole.js(214,8): error TS2339: Property 'style' does not exist on type 'Element'.
+js/console/diagnosticConsole.js(215,8): error TS2339: Property 'onclick' does not exist on type 'Element'.
+js/console/diagnosticConsole.js(285,68): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/console/diagnosticConsole.js(329,20): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/console/legacyExtensions.js(101,77): error TS2339: Property 'url' does not exist on type 'URL | Request'.
+  Property 'url' does not exist on type 'URL'.
+js/console/verify.js(140,12): error TS2339: Property 'onclick' does not exist on type 'Element'.
+js/core/pos.js(364,43): error TS2339: Property 'hasAttribute' does not exist on type 'EventTarget'.
+js/core/viewportManager.js(24,10): error TS2339: Property 'isContentEditable' does not exist on type 'Element'.
+js/dataHub.js(67,38): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(input: string | URL | Request, init?: RequestInit): Promise<Response>', gave the following error.
+    Type 'string' is not assignable to type 'RequestCache'.
+  Overload 2 of 2, '(input: URL | RequestInfo, init?: RequestInit): Promise<Response>', gave the following error.
+    Type 'string' is not assignable to type 'RequestCache'.
+js/emnerLoader.js(26,41): error TS2339: Property 'src' does not exist on type 'HTMLOrSVGScriptElement'.
+  Property 'src' does not exist on type 'SVGScriptElement'.
 ```

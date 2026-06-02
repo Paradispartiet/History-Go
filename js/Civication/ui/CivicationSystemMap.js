@@ -29,7 +29,7 @@
   function read(k,fallback){try{const raw=localStorage.getItem(k);return raw?JSON.parse(raw):fallback}catch{return fallback}}
   function esc(v){return String(v??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c]))}
   function list(v){return Array.isArray(v)&&v.length?v.join(", "):"—"}
-  function contextFor(zone){return contexts.find(c=>c.context_id===zone.context)||FALLBACK_CONTEXTS.find(c=>c.context_id===zone.context)||{} }
+  function contextFor(zone){return /** @type {any} */ (contexts.find(c=>c.context_id===zone.context)||FALLBACK_CONTEXTS.find(c=>c.context_id===zone.context)||{}) }
   function getHomeDistrict(){const s=read(STORE.home,{});return s?.home?.district||null}
   function getActive(){return read(STORE.active,null)||read(STORE.state,{})?.active_role_key||null}
   function activeLabel(){const a=getActive();if(!a)return"Ingen rolle";if(typeof a==="string")return a;return a.title||a.role_title||a.roleName||a.role||a.positionTitle||a.career_title||a.role_scope||a.career_key||a.id||"Aktiv rolle"}

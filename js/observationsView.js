@@ -112,7 +112,7 @@
   const HGObsView = {};
 
   // Returner rå events for target
-  HGObsView.getForTarget = function ({ targetId, targetType } = {}) {
+  HGObsView.getForTarget = function ({ targetId, targetType } = /** @type {any} */ ({})) {
     const tid = s(targetId);
     const ttype = s(targetType);
     if (!tid || !ttype) return [];
@@ -126,7 +126,7 @@
   };
 
   // Render inline HTML for popup (place/person)
-  HGObsView.renderInline = async function ({ subjectId, targetId, targetType, title } = {}) {
+  HGObsView.renderInline = async function ({ subjectId, targetId, targetType, title } = /** @type {any} */ ({})) {
     const sid = s(subjectId);
     const tid = s(targetId);
     const ttype = s(targetType);
