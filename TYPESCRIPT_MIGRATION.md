@@ -794,3 +794,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Schema/declaration files were not changed; `schemas/*.d.ts` and Civication global declarations remain untouched.
 - Runtime, UI, DOM, CSS, data, stories, places, people, import tooling, package metadata, HTML, and `tsconfig.json` were not changed.
 - The report recommends Phase 94 as a single, narrow numeric-coercion micro-pass in `js/Civication/core/civicationEventEngine.js` `weekKey()` line 42 only, and explicitly keeps `js/Civication/core/civicationJobs.js` concat/object-shape work for a later separate job-contract phase.
+
+## Phase 94: Civication eventEngine weekKey numeric coercion pass
+
+- Followed the Phase 93 Civication remaining-diagnostics audit with the recommended single-file, single-function numeric-coercion micro-pass.
+- Limited the code change to `weekKey()` in `js/Civication/core/civicationEventEngine.js` only.
+- Made the existing date arithmetic operands explicitly numeric by subtracting `date.getTime()` and `yearStart.getTime()` instead of subtracting the `Date` objects directly.
+- The week-key runtime semantics, week-start logic, calendar behavior, and `YYYY-WNN` return format remain unchanged.
+- Event flow, event scheduling, event storage, jobs, state, UI, schema declarations, data files, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1518, `js/Civication/**` diagnostics are now 263, and `js/Civication/core/civicationEventEngine.js` diagnostics are now 0.

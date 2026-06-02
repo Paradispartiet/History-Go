@@ -1,11 +1,11 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T10:19:01.581Z
+- Generated at (UTC): 2026-06-02T10:29:54.437Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1520
-- Files with diagnostics: 181
+- Total diagnostic lines found: 1518
+- Files with diagnostics: 180
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | other | 73 | 514 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 493 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 65 | 265 | js/Civication/core/civicationEventEngine.js<br>js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js |
+| js/Civication/** | 64 | 263 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/identityCompass.js |
 | js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 57 | js/profile.js |
@@ -61,10 +61,10 @@
 | TS2322 | 11 |
 | TS2550 | 11 |
 | TS2451 | 6 |
-| TS2362 | 5 |
 | TS2552 | 5 |
-| TS2363 | 4 |
+| TS2362 | 4 |
 | TS2538 | 4 |
+| TS2363 | 3 |
 | TS2769 | 2 |
 | TS2740 | 2 |
 | TS2739 | 2 |
@@ -84,8 +84,6 @@
 ```
 > history-go@0.0.0 typecheck
 > tsc -p tsconfig.json
-js/Civication/core/civicationEventEngine.js(42,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/core/civicationEventEngine.js(42,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationJobs.js(323,15): error TS2769: No overload matches this call.
   Overload 1 of 2, '(...items: ConcatArray<{ status: string; createdAt: number; event: any; }>[]): { status: string; createdAt: number; event: any; }[]', gave the following error.
     Argument of type '{ event?: { id?: string | number; }; }[]' is not assignable to parameter of type 'ConcatArray<{ status: string; createdAt: number; event: any; }>'.
@@ -162,4 +160,6 @@ js/Civication/systems/day/dayChoiceToneVariants.js(195,10): error TS2339: Proper
 js/Civication/systems/day/dayConsequences.js(18,27): error TS2339: Property 'CiviMailPlanBridge' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/day/dayConsequences.js(309,17): error TS2339: Property 'CivicationChoiceDirector' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/day/dayConsequences.js(311,12): error TS2339: Property 'CivicationChoiceDirector' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/day/dayConsequencesUI.js(12,67): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(75,45): error TS2339: Property 'trust' does not exist on type 'unknown'.
 ```
