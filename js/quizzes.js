@@ -437,9 +437,9 @@ dlog("loaded sets:", _byTargetSets.size);
     document.body.appendChild(m);
 
     const modal = document.getElementById("quizModal");
-    modal.querySelector("#quizClose").onclick = closeQuiz;
+    /** @type {HTMLElement} */ (modal.querySelector("#quizClose")).onclick = closeQuiz;
     modal.addEventListener("click", (e) => {
-      if (e.target && e.target.id === "quizModal") closeQuiz();
+      if (e.target && /** @type {Element} */ (e.target).id === "quizModal") closeQuiz();
     });
 
     if (!_escWired) {
@@ -477,9 +477,9 @@ dlog("loaded sets:", _byTargetSets.size);
     document.body.appendChild(m);
 
     const modal = document.getElementById("quizSummaryModal");
-    modal.querySelector("#quizSummaryClose").onclick = closeQuizSummary;
+    /** @type {HTMLElement} */ (modal.querySelector("#quizSummaryClose")).onclick = closeQuizSummary;
     modal.addEventListener("click", (e) => {
-      if (e.target && e.target.id === "quizSummaryModal") closeQuizSummary();
+      if (e.target && /** @type {Element} */ (e.target).id === "quizSummaryModal") closeQuizSummary();
     });
   }
 
@@ -490,8 +490,8 @@ dlog("loaded sets:", _byTargetSets.size);
     const titleEl = modal.querySelector("#quizSummaryTitle");
     const leadEl = modal.querySelector("#quizSummaryLead");
     const metaEl = modal.querySelector("#quizSummaryMeta");
-    const primaryBtn = modal.querySelector("#quizSummaryPrimary");
-    const secondaryBtn = modal.querySelector("#quizSummarySecondary");
+    const primaryBtn = /** @type {HTMLElement} */ (modal.querySelector("#quizSummaryPrimary"));
+    const secondaryBtn = /** @type {HTMLElement} */ (modal.querySelector("#quizSummarySecondary"));
 
     titleEl.textContent = title;
     leadEl.textContent = lead;
@@ -606,7 +606,7 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
       : `${i + 1}/${questions.length}`;
     qs.feedback.textContent = "";
 
-    const bar = document.querySelector(".quiz-progress .bar");
+    const bar = /** @type {HTMLElement} */ (document.querySelector(".quiz-progress .bar"));
     if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
 
     qs.choices.querySelectorAll("button").forEach((btn) => {

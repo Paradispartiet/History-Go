@@ -143,9 +143,9 @@
     document.body.appendChild(m);
 
     const modal = document.getElementById("obsModal");
-    modal.querySelector("#obsClose").onclick = close;
+    /** @type {HTMLElement} */ (modal.querySelector("#obsClose")).onclick = close;
     modal.addEventListener("click", (e) => {
-      if (e.target && e.target.id === "obsModal") close();
+      if (e.target && /** @type {Element} */ (e.target).id === "obsModal") close();
     });
 
     if (!_escWired) {
@@ -252,7 +252,7 @@
 
       const elNoteWrap = document.getElementById("obsNoteWrap");
       const elNoteLabel = document.getElementById("obsNoteLabel");
-      const elNote = document.getElementById("obsNote");
+      const elNote = /** @type {HTMLTextAreaElement} */ (document.getElementById("obsNote"));
       const elNoteCount = document.getElementById("obsNoteCount");
       const elNoteMax = document.getElementById("obsNoteMax");
 
@@ -292,7 +292,7 @@
 
         elChips.innerHTML = opts.map(o => buildChip(o, selected)).join("");
 
-        elChips.querySelectorAll("button[data-opt]").forEach(btn => {
+        elChips.querySelectorAll("button[data-opt]").forEach((/** @type {HTMLElement} */ btn) => {
           btn.onclick = () => {
             const id = s(btn.dataset.opt);
             if (!id) return;
