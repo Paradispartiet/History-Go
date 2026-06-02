@@ -60,9 +60,16 @@ const directShapeWrites = inbox.filter(item => item && item.source_type === 'blo
 assert.strictEqual(directShapeWrites.length, 0);
 
 const bootSource = fs.readFileSync(path.join(__dirname, '..', 'js/Civication/CivicationBoot.js'), 'utf8');
+// Implementation-agnostic: the loader must detect an already-present <script>
+// and skip re-appending. It currently scans document.scripts (more robust than
+// a querySelector match), so assert the dedup *behaviour*, not an exact string.
 assert.ok(
-  bootSource.includes('const existing = document.querySelector(`script[src="${src}"]`);'),
-  'boot loader should check for existing script before append'
+  /document\.scripts|querySelector\(\s*`?script\[src/.test(bootSource),
+  'boot loader should look for an already-loaded script before appending'
+);
+assert.ok(
+  /if\s*\(\s*existing\s*\)/.test(bootSource),
+  'boot loader should short-circuit when the script already exists'
 );
 assert.ok(
   bootSource.includes('if (window.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage) return true;'),
