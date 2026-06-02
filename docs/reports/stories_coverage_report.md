@@ -1,6 +1,6 @@
 # Stories coverage-rapport
 
-Post-merge rapport etter at PR #892 er merget. Rapporten kartlegger faktisk Stories-dekning i `main` etter at 40 nye story manifest-entries fra de siste parallelle storybatchene er registrert i `data/stories/stories_manifest.json`.
+Post-merge rapport etter at PR #892 er merget. Rapporten kartlegger faktisk Stories-dekning i `main` etter at 40 nye story manifest-entries fra de siste parallelle storybatchene er registrert i `data/stories/stories_manifest.json`. Rapporten er revalidert mot gjeldende main-grunnlag for PR #898-refresh; totalsummene er uendret etter refreshen.
 
 Dette er kun coverage-/rapportanalyse. Det er ikke gjort endringer i story-filer, place-filer, people-filer, manifeststruktur, UI, CSS, loaders eller runtime-kode.
 
@@ -122,7 +122,7 @@ Ingen kontrollfunn: alle manifest-entryer peker til eksisterende story-fil, alle
 
 ## Uregistrerte story-filer
 
-Disse `stories_*.json`-filene finnes i `data/stories/`, men er ikke registrert i `data/stories/stories_manifest.json` og teller derfor ikke i aktiv coverage. Øvrige JSON-støttefiler i `data/stories/` er ikke listet her fordi de ikke følger `stories_*.json`-navnemønsteret for story coverage.
+Disse story-lignende JSON-filene finnes i `data/stories/`, men er ikke registrert i `data/stories/stories_manifest.json` og teller derfor ikke i aktiv coverage. Manifest- og støttefiler som `stories_manifest.json`, `stories_generation_manifest.json`, grafdata, kandidatdata og legacy people/place-dumper er ikke aktive story coverage-filer og er derfor holdt utenfor denne korte listen.
 
 | Fil | Story-id / rute-id | place_id / beat-place_id | Status |
 |---|---|---|---|
