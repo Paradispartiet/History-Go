@@ -1,9 +1,9 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T10:40:56.902Z
+Generated: 2026-06-02T11:07:26.751Z
 
 ## Sammendrag
-- People-filer lest: **20**
+- People-filer lest: **19**
 - People lest: **323**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
@@ -270,9 +270,6 @@ Generated: 2026-06-02T10:40:56.902Z
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: jon_elster (Jon Elster) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
-- data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig) -> nrk_huset_marienlyst x2
-- data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm) -> nrk_huset_marienlyst x2
-- data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
@@ -333,6 +330,9 @@ Generated: 2026-06-02T10:40:56.902Z
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: harald_eia (Harald Eia) -> chateau_neuf x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: oystein_wiik (Øystein Wiik) -> folketeateret x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: rein_alexander (Rein Alexander) -> folketeateret x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: herman_flesvig (Herman Flesvig) -> nrk_huset_marienlyst x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: morten_ramm (Morten Ramm) -> nrk_huset_marienlyst x2
+- data/people/popkultur/oslo/people_popkultur_oslo.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
 
 ## Anbefalt neste ryddebatch

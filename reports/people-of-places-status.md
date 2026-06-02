@@ -1,20 +1,20 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-02T10:40:57.773Z
+Generert: 2026-06-02T11:07:27.058Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-02T10:40:57.773Z |
-| peopleFilesRead | 20 |
+| generatedAt | 2026-06-02T11:07:27.058Z |
+| peopleFilesRead | 19 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 3 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 3 |
+| flatPeopleFiles | 2 |
 | geographicPeopleFiles | 17 |
 | categoriesRepresented | 15 |
 
@@ -35,10 +35,9 @@ Generert: 2026-06-02T10:40:57.773Z
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_filantroper.json | filantroper | nei | 9 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
-| data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 9 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/sport/oslo/people_sport_oslo.json | sport | ja | 28 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | subkultur | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | vitenskap | ja | 20 | 0 | 0 | 0 | 5 | 0 | 0 | standard_placeId_schema |
@@ -58,7 +57,7 @@ Generert: 2026-06-02T10:40:57.773Z
 | naeringsliv | 19 | 1 | 0 | schema_review | Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split. |
 | natur | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| populaerkultur | 10 | 1 | 2 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| populaerkultur | 10 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 20 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -66,14 +65,14 @@ Generert: 2026-06-02T10:40:57.773Z
 ## Geografisk strukturstatus
 
 - Allerede geografisk strukturert: 17
-- Fortsatt flate filer: 3
-- Blandede kategorier: populaerkultur
+- Fortsatt flate filer: 2
+- Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
 - Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
 
 ### Anbefalte geografiske split-kandidater
 
-- populaerkultur: 10 entries (data/people/people_populaerkultur.json)
+- Ingen basert på nåværende auditlogikk.
 
 ## Place-ref audit
 
@@ -137,10 +136,9 @@ Entries med svak/manglende places[] etter auditreglene: 27
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
-- data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=populaerkultur
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
-- data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
+- data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; categories=populaerkultur
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
 - data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
@@ -531,12 +529,6 @@ Mangler filer for image/cardImage/media: 552
 | data/people/natur/oslo/people_natur_oslo.json | bernhard_herre / Bernhard Herre | cardImage | bilder/kort/people/bernhard_herre.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | mikkjel_fonhus / Mikkjel Fønhus | image | bilder/kort/people/mikkjel_fonhus.PNG |
 | data/people/natur/oslo/people_natur_oslo.json | mikkjel_fonhus / Mikkjel Fønhus | cardImage | bilder/kort/people/mikkjel_fonhus.PNG |
-| data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.image | bilder/people/herman_flesvig.PNG |
-| data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | media.imageCard | bilder/kort/people/herman_flesvig.PNG |
-| data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.image | bilder/people/morten_ramm.PNG |
-| data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | media.imageCard | bilder/kort/people/morten_ramm.PNG |
-| data/people/people_populaerkultur.json | astrid_s / Astrid S | image | bilder/kort/people/astridS_sorenga.PNG |
-| data/people/people_populaerkultur.json | astrid_s / Astrid S | cardImage | bilder/kort/people/astridS_sorenga.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | johan_sverdrup / Johan Sverdrup | image | bilder/kort/people/johan_sverdrup.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | johan_sverdrup / Johan Sverdrup | cardImage | bilder/kort/people/johan_sverdrup.PNG |
 | data/people/politikk/oslo/people_politikk_oslo.json | fredrikke_marie_qvam / Fredrikke Marie Qvam | image | bilder/kort/people/fredrikke_marie_qvam.PNG |
@@ -589,6 +581,12 @@ Mangler filer for image/cardImage/media: 552
 | data/people/popkultur/oslo/people_popkultur_oslo.json | oystein_wiik / Øystein Wiik | cardImage | bilder/kort/people/oystein_wiik.PNG |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | rein_alexander / Rein Alexander | image | bilder/kort/people/rein_alexander.PNG |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | rein_alexander / Rein Alexander | cardImage | bilder/kort/people/rein_alexander.PNG |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | herman_flesvig / Herman Flesvig | media.image | bilder/people/herman_flesvig.PNG |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | herman_flesvig / Herman Flesvig | media.imageCard | bilder/kort/people/herman_flesvig.PNG |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | morten_ramm / Morten Ramm | media.image | bilder/people/morten_ramm.PNG |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | morten_ramm / Morten Ramm | media.imageCard | bilder/kort/people/morten_ramm.PNG |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | astrid_s / Astrid S | image | bilder/kort/people/astridS_sorenga.PNG |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | astrid_s / Astrid S | cardImage | bilder/kort/people/astridS_sorenga.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | ada_hegerberg / Ada Hegerberg | image | bilder/kort/people/ada_hegerberg.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | ada_hegerberg / Ada Hegerberg | cardImage | bilder/kort/people/ada_hegerberg.PNG |
 | data/people/sport/oslo/people_sport_oslo.json | erling_haaland / Erling Braut Haaland | image | bilder/kort/people/erling_haaland.PNG |
@@ -733,9 +731,9 @@ Mangler filer for image/cardImage/media: 552
 
 ```json
 {
-  "type": "geographic_split",
-  "category": "populaerkultur",
-  "reason": "populaerkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+  "type": "content_expansion",
+  "category": "filantroper",
+  "reason": "filantroper er liten og ren nok for innholdsutvidelse.",
   "safeBatchSize": 10,
   "blockers": []
 }
