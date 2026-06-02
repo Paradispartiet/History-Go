@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T21:21:17.974Z
+Generated: 2026-06-02T21:43:08.534Z
 
 ## Sammendrag
 - People-filer lest: **19**
@@ -9,7 +9,7 @@ Generated: 2026-06-02T21:21:17.974Z
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **2**
-- Duplikate interne place-referanser: **314**
+- Duplikate interne place-referanser: **321**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -23,6 +23,7 @@ Generated: 2026-06-02T21:21:17.974Z
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
 - data/people/by/oslo/people_by_oslo.json :: christian_heinrich_grosch (Christian Heinrich Grosch) -> universitetsplassen x2
 - data/people/by/oslo/people_by_oslo.json :: harald_hals (Harald Hals) -> ullevål_hageby x2
+- data/people/by/oslo/people_by_oslo.json :: arne_korsmo (Arne Korsmo) -> vigelandsparken x2
 - data/people/by/oslo/people_by_oslo.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: arnstein_arneberg (Arnstein Arneberg) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: magnus_poulsson (Magnus Poulsson) -> oslo_radhus x2
@@ -80,6 +81,7 @@ Generated: 2026-06-02T21:21:17.974Z
 - data/people/historie/oslo/people_historie_oslo.json :: jens_bjelke (Jens Bjelke) -> toyen_torg x2
 - data/people/historie/oslo/people_historie_oslo.json :: henrik_bjelke (Henrik Bjelke) -> toyen_torg x2
 - data/people/historie/oslo/people_historie_oslo.json :: kristine_bonnevie (Kristine Bonnevie) -> toyen_torg x2
+- data/people/historie/oslo/people_historie_oslo.json :: wilhelm_von_hanno (Wilhelm von Hanno) -> gronland_kirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman x2
 - data/people/historie/oslo/people_historie_oslo.json :: petter_moen (Petter Moen) -> mollergata_19 x2
 - data/people/historie/oslo/people_historie_oslo.json :: biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke x2
@@ -255,6 +257,11 @@ Generated: 2026-06-02T21:21:17.974Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: tommy_tee (Tommy Tee) -> youngstorget x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: warlocks_oslo (Warlocks) -> torggata x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_birkeland (Kristian Birkeland) -> observatoriet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: may_britt_moser (May-Britt Moser) -> nobelinstituttet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: edvard_moser (Edvard Moser) -> nobelinstituttet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: peter_waage (Peter Waage) -> universitetets_gamle_kjemi x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: cato_guldberg (Cato Maximilian Guldberg) -> universitetets_gamle_kjemi x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: niels_henrik_abel (Niels Henrik Abel) -> abelhaugen x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: sophus_lie (Sophus Lie) -> universitetets_gamle_hovedbygning x2

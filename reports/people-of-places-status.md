@@ -1,19 +1,19 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-02T21:21:18.279Z
+Generert: 2026-06-02T21:43:08.881Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-02T21:21:18.279Z |
+| generatedAt | 2026-06-02T21:43:08.881Z |
 | peopleFilesRead | 19 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
-| peopleWithoutValidPrimaryAnchor | 3 |
-| peopleWithEmptyPlacesArray | 3 |
+| peopleWithoutValidPrimaryAnchor | 2 |
+| peopleWithEmptyPlacesArray | 2 |
 | flatPeopleFiles | 1 |
 | geographicPeopleFiles | 18 |
 | categoriesRepresented | 15 |
@@ -25,7 +25,7 @@ Generert: 2026-06-02T21:21:18.279Z
 | data/people/by/oslo/people_by_oslo.json | by | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 8 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/oslo/people_film_tv_oslo.json | film_tv | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 3 | 0 | standard_placeId_schema |
+| data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
 | data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | litteratur | ja | 34 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | media | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -84,30 +84,23 @@ Invalid refs: 0
 |---|---|---|---|
 | data/people/historie/oslo/people_historie_oslo.json | anna_sethne / Anna Sethne | primary_anchor_missing |  |
 | data/people/historie/oslo/people_historie_oslo.json | alexis_de_chateauneuf / Alexis de Chateauneuf | primary_anchor_missing |  |
-| data/people/historie/oslo/people_historie_oslo.json | wilhelm_von_hanno / Wilhelm von Hanno | primary_anchor_missing |  |
 
 ## Tom eller svak places[]
 
-Entries med tom places[]: 3
-Entries med svak/manglende places[] etter auditreglene: 8
+Entries med tom places[]: 2
+Entries med svak/manglende places[] etter auditreglene: 2
 
 | Fil | Person | Årsak | placeId | source_place_id | places |
 |---|---|---|---|---|---|
-| data/people/by/oslo/people_by_oslo.json | arne_korsmo / Arne Korsmo | empty_places_array | vigelandsparken |  | [] |
 | data/people/historie/oslo/people_historie_oslo.json | anna_sethne / Anna Sethne | empty_places_array |  |  | [] |
 | data/people/historie/oslo/people_historie_oslo.json | alexis_de_chateauneuf / Alexis de Chateauneuf | empty_places_array |  |  | [] |
-| data/people/vitenskap/oslo/people_vitenskap_oslo.json | kristian_birkeland / Kristian Birkeland | missing_places_array | observatoriet |  | null |
-| data/people/vitenskap/oslo/people_vitenskap_oslo.json | may_britt_moser / May-Britt Moser | missing_places_array | nobelinstituttet |  | null |
-| data/people/vitenskap/oslo/people_vitenskap_oslo.json | edvard_moser / Edvard Moser | missing_places_array | nobelinstituttet |  | null |
-| data/people/vitenskap/oslo/people_vitenskap_oslo.json | peter_waage / Peter Waage | missing_places_array | universitetets_gamle_kjemi |  | null |
-| data/people/vitenskap/oslo/people_vitenskap_oslo.json | cato_guldberg / Cato Maximilian Guldberg | missing_places_array | universitetets_gamle_kjemi |  | null |
 
 ## Schema-status
 
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; categories=by
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=8/8; source_place_id=0/8; placesArray=8/8; categories=film_tv
 - data/people/film_tv/oslo/people_film_tv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=film_tv
-- data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=62/65; source_place_id=0/65; placesArray=65/65; categories=historie
+- data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=63/65; source_place_id=0/65; placesArray=65/65; categories=historie
 - data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=kunst
 - data/people/litteratur/oslo/people_litteratur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=34/34; source_place_id=0/34; placesArray=34/34; categories=litteratur
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=media
@@ -122,7 +115,7 @@ Entries med svak/manglende places[] etter auditreglene: 8
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; categories=populaerkultur
 - data/people/sport/oslo/people_sport_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=28/28; source_place_id=0/28; placesArray=28/28; categories=sport
 - data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=subkultur
-- data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=15/20; categories=vitenskap
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=20/20; source_place_id=0/20; placesArray=20/20; categories=vitenskap
 
 ## Category/collectionGroup-avvik
 
