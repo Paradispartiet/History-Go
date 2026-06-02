@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-02T11:07:27.058Z
+Generert: 2026-06-02T11:21:07.967Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-02T11:07:27.058Z |
+| generatedAt | 2026-06-02T11:21:07.967Z |
 | peopleFilesRead | 19 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -89,32 +89,13 @@ Invalid refs: 0
 ## Tom eller svak places[]
 
 Entries med tom places[]: 3
-Entries med svak/manglende places[] etter auditreglene: 27
+Entries med svak/manglende places[] etter auditreglene: 8
 
 | Fil | Person | Årsak | placeId | source_place_id | places |
 |---|---|---|---|---|---|
 | data/people/by/oslo/people_by_oslo.json | arne_korsmo / Arne Korsmo | empty_places_array | vigelandsparken |  | [] |
 | data/people/historie/oslo/people_historie_oslo.json | anna_sethne / Anna Sethne | empty_places_array |  |  | [] |
 | data/people/historie/oslo/people_historie_oslo.json | alexis_de_chateauneuf / Alexis de Chateauneuf | empty_places_array |  |  | [] |
-| data/people/people_naeringsliv.json | gunnar_jahn_statistikk_og_styring / Gunnar Jahn | missing_places_array |  | grunnlovsbygget_bankplassen | null |
-| data/people/people_naeringsliv.json | nicolai_rygg_sentralbank / Nicolai Rygg | missing_places_array |  | grunnlovsbygget_bankplassen | null |
-| data/people/people_naeringsliv.json | anton_martin_schweigaard_okonomi / Anton Martin Schweigaard | missing_places_array |  | grunnlovsbygget_bankplassen | null |
-| data/people/people_naeringsliv.json | sam_eyde_industriutbygger / Sam Eyde | missing_places_array |  | akerselva_industri | null |
-| data/people/people_naeringsliv.json | kristian_birkeland_teknologi_og_industri / Kristian Birkeland | missing_places_array |  | akerselva_industri | null |
-| data/people/people_naeringsliv.json | christen_smith_schous_bryggeri / Christen Smith | missing_places_array |  | schous_bryggeri | null |
-| data/people/people_naeringsliv.json | ellef_ringnes_bryggeri_og_ledelse / Ellef Ringnes | missing_places_array |  | ringnes_bryggeri | null |
-| data/people/people_naeringsliv.json | christian_schweigaard_post_og_administrasjon / Christian Schweigaard | missing_places_array |  | oslo_posthus | null |
-| data/people/people_naeringsliv.json | alf_bjercke_industri_og_kvalitet / Alf Bjercke | missing_places_array |  | lilleborg_fabrikker | null |
-| data/people/people_naeringsliv.json | thomas_heftye_bank_og_byutvikling / Thomas Heftye | missing_places_array |  | grunnlovsbygget_bankplassen | null |
-| data/people/people_naeringsliv.json | olav_thon_eiendom_og_handel / Olav Thon | missing_places_array |  | aker_brygge | null |
-| data/people/people_naeringsliv.json | petter_stordalen_hotell_og_service / Petter Stordalen | missing_places_array |  | karl_johan | null |
-| data/people/people_naeringsliv.json | stein_erik_hagen_handel / Stein Erik Hagen | missing_places_array |  | aker_brygge | null |
-| data/people/people_naeringsliv.json | amund_ringnes_bryggeri / Amund Ringnes | missing_places_array |  | ringnes_bryggeri | null |
-| data/people/people_naeringsliv.json | herman_schou_bryggeri / Herman Schou | missing_places_array |  | schous_bryggeri | null |
-| data/people/people_naeringsliv.json | fred_olsen_shipping / Fred. Olsen | missing_places_array |  | akershus_kaier | null |
-| data/people/people_naeringsliv.json | wilhelm_wilhelmsen_shipping / Wilhelm Wilhelmsen | missing_places_array |  | akershus_kaier | null |
-| data/people/people_naeringsliv.json | anders_jahre_shipping / Anders Jahre | missing_places_array |  | akershus_kaier | null |
-| data/people/people_naeringsliv.json | nicolay_august_andresen_bank / Nicolay August Andresen | missing_places_array |  | grunnlovsbygget_bankplassen | null |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | kristian_birkeland / Kristian Birkeland | missing_places_array | observatoriet |  | null |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | may_britt_moser / May-Britt Moser | missing_places_array | nobelinstituttet |  | null |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | edvard_moser / Edvard Moser | missing_places_array | nobelinstituttet |  | null |
@@ -135,7 +116,7 @@ Entries med svak/manglende places[] etter auditreglene: 27
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=musikk
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
-- data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
+- data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=19/19; source_place_id=19/19; placesArray=19/19; categories=naeringsliv; schema_review: næringsliv blander source_place_id/placeId-mønstre
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; categories=populaerkultur
