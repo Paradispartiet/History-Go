@@ -30,6 +30,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tt(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   function esc(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -864,15 +871,16 @@ if (setList.length) {
     ? remainingBefore
     : Math.max(totalSets - (completedBefore + 1), 0);
   const setName = s(block?.title || block?.name || block?.label || "");
+  const setIndexLabel = tfUI("ui.quiz.setIndexOfTotal", "Sett {current}/{total}", { current: setIndex + 1, total: totalSets });
   const titleSuffix = setName
-    ? `${setName} · Sett ${setIndex + 1}/${totalSets}`
-    : `Sett ${setIndex + 1}/${totalSets}`;
+    ? `${setName} · ${setIndexLabel}`
+    : setIndexLabel;
   const progressPrefix = alreadyCompleted
     ? (remainingBefore > 0
-        ? `Dette settet er allerede tatt • ${remainingBefore} sett mangler fortsatt`
+        ? tfUI("ui.quiz.setAlreadyTakenRemaining", "Dette settet er allerede tatt • {remaining} sett mangler fortsatt", { remaining: remainingBefore })
         : tt("ui.quiz.allSetsAlreadyCompleted", "Alle sett er allerede fullført"))
     : (remainingAfterThis > 0
-        ? `${remainingAfterThis} sett igjen etter dette • +1 poeng`
+        ? tfUI("ui.quiz.remainingAfterThisPlusPoint", "{remaining} sett igjen etter dette • +1 poeng", { remaining: remainingAfterThis })
         : tt("ui.quiz.lastSetPlusPoint", "Siste sett • +1 poeng"));
 
   localStorage.setItem("hg_active_set", setMeta.set_id);
@@ -900,7 +908,7 @@ if (setList.length) {
       let awardedPoint = false;
 
       const compositeSetId = `${tid}::${setMeta.set_id}`;
-      const displayName = [person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")), setName || `Sett ${setIndex + 1}/${totalSets}`]
+      const displayName = [person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")), setName || setIndexLabel]
         .filter(Boolean)
         .join(" — ");
       const image = s(place?.image || person?.image || "");
@@ -975,32 +983,32 @@ if (setList.length) {
         }
       }
 
-      const toastParts = [`Sett ${setIndex + 1}/${totalSets} fullført: ${correct}/${total}`];
-      if (awardedPoint) toastParts.push("+1 poeng");
+      const toastParts = [tfUI("ui.quiz.setCompletedScore", "Sett {current}/{totalSets} fullført: {correct}/{total}", { current: setIndex + 1, totalSets, correct, total })];
+      if (awardedPoint) toastParts.push(tfUI("ui.quiz.plusPoints", "+{points} poeng", { points: 1 }));
       else if (!firstCompletion) toastParts.push(tt("ui.quiz.alreadyCompletedEarlier", "allerede fullført tidligere"));
       else if (firstCompletion && !categoryId) toastParts.push(tt("ui.quiz.missingCategoryNoPoints", "mangler kategori – ingen poeng"));
-      if (remainingSets > 0) toastParts.push(`${remainingSets} sett gjenstår`);
+      if (remainingSets > 0) toastParts.push(tfUI("ui.quiz.remainingSets", "{count} sett gjenstår", { count: remainingSets }));
       else toastParts.push(tt("ui.quiz.allSetsCompleted", "alle sett fullført"));
 
       API.showToast(toastParts.join(" • "));
       API.dispatchProfileUpdate();
 
       const nextSet = findNextSet(setList, setMeta.set_id);
-      const scoreLine = `Score: ${correct}/${total}`;
+      const scoreLine = tfUI("ui.quiz.score", "Score: {correct}/{total}", { correct, total });
       const rewardLine = awardedPoint
-        ? "+1 poeng"
+        ? tfUI("ui.quiz.plusPoints", "+{points} poeng", { points: 1 })
         : (!firstCompletion
             ? tt("ui.quiz.noNewPointsAlreadyCompleted", "Ingen nye poeng – dette settet var allerede fullført.")
             : (categoryId ? tt("ui.quiz.noNewPoints", "Ingen nye poeng.") : tt("ui.quiz.noPointsMissingCategory", "Ingen poeng – mangler kategori på settet.")));
       const remainingLine = remainingSets > 0
-        ? `${remainingSets} sett gjenstår.`
+        ? `${tfUI("ui.quiz.remainingSets", "{count} sett gjenstår", { count: remainingSets })}.`
         : tt("ui.quiz.allSetsCompletedForPlace", "Alle sett for dette stedet er fullført.");
 
       closeQuiz();
       setTimeout(() => {
         openQuizSummary({
           title: person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")),
-          lead: `Sett ${setIndex + 1} av ${totalSets} fullført`,
+          lead: tfUI("ui.quiz.setCompletedOfTotal", "Sett {current} av {total} fullført", { current: setIndex + 1, total: totalSets }),
           meta: [scoreLine, rewardLine, remainingLine].filter(Boolean).join(" • "),
           primaryText: remainingSets > 0 ? tt("ui.quiz.nextSet", "Neste sett") : tt("ui.quiz.done", "Ferdig"),
           onPrimary: () => {
@@ -1128,10 +1136,10 @@ if (perfect) {
             } catch {}
             }
 
-            API.showToast(`Perfekt! ${total}/${total} 🎯`);
+            API.showToast(tfUI("ui.quiz.perfectScore", "Perfekt! {correct}/{total} 🎯", { correct: total, total }));
             API.dispatchProfileUpdate();
           } else {
-            API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+            API.showToast(tfUI("ui.quiz.completedTryAgain", "Fullført: {correct}/{total} – prøv igjen for full score.", { correct, total }));
           }
 
           if (person && person.placeId) {

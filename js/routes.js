@@ -75,6 +75,13 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
 function _toast(msg) {
   if (typeof hgWindow.showToast === "function") hgWindow.showToast(msg);
 }
@@ -597,7 +604,7 @@ function showRouteOverlay(routeId, startIndex = 0) {
     }
   }, 160);
 
-  _toast(`${r.name || r.title || "Rute"} (${r.stops?.length || 0} stopp)`);
+  _toast(tfUI("ui.routes.routeStopsToast", "{route} ({count} stopp)", { route: r.name || r.title || "Rute", count: r.stops?.length || 0 }));
 }
 
 function clearNavRoute() {
@@ -803,7 +810,7 @@ async function renderLeftRoutesList() {
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🏅</div>
         <div class="hg-empty-guide-title">${tUI("ui.routes.noneTitle", "Ingen ruter")}</div>
-        <div class="hg-empty-guide-text">Ingen ruter har stopp i ${_escapeHTML(activeBadgeNameForRoutes())}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
+        <div class="hg-empty-guide-text">${_escapeHTML(tfUI("ui.routes.noStopsForBadge", "Ingen ruter har stopp i {badge}. Trykk badgeknappen for å velge et annet badge eller alle.", { badge: activeBadgeNameForRoutes() }))}</div>
       </div>
     `;
     return;

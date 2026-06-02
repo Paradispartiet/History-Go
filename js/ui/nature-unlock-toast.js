@@ -21,6 +21,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   function escapeHtml(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -145,7 +152,7 @@
       const stack = ensureStack();
       const more = document.createElement("div");
       more.className = "nature-unlock-card is-more";
-      more.innerHTML = `<div class="nature-unlock-body"><div class="nature-unlock-title">+${total - MAX} til samlet</div></div>`;
+      more.innerHTML = `<div class="nature-unlock-body"><div class="nature-unlock-title">${escapeHtml(tfUI("ui.nature.unlock.moreCollectedCount", "+{count} til samlet", { count: total - MAX }))}</div></div>`;
       stack.appendChild(more);
       requestAnimationFrame(() => more.classList.add("is-visible"));
       setTimeout(() => {

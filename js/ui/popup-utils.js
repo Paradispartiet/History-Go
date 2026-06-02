@@ -21,6 +21,13 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
 
 window.showPlaceCardRoundPopup = function ({
   title = "",
@@ -653,7 +660,7 @@ async function enhanceQuizButton(btn, targetId) {
         btn.title = `Alle ${info.totalSets} sett er fullført.`;
       } else if (info.completedSets > 0) {
         btn.textContent = `Fortsett quiz · ${info.completedSets}/${info.totalSets} sett`;
-        btn.title = `${info.remainingSets} sett gjenstår.`;
+        btn.title = tfUI("ui.quiz.remainingSets", "{count} sett gjenstår", { count: info.remainingSets });
       } else {
         btn.textContent = `Ta quiz · ${info.totalSets} sett`;
         btn.title = `${info.totalSets} sett totalt.`;
