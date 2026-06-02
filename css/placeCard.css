@@ -21,7 +21,7 @@
   --pc-collapsed-h: 26px;
 
   --pc-text-inset: 18px;
-  --pc-text-h: 210px;
+  --pc-text-h: 230px;
 }
 
 
@@ -35,7 +35,7 @@
   --pc-round-gap: 8px;
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
-  --pc-popout-top: 86px;
+  --pc-popout-top: 96px;
 
   position: absolute;
   left: 0;
@@ -90,7 +90,7 @@
   column-gap: 16px;
   row-gap: 18px;
 
-  padding: 18px 18px 12px;
+  padding: 22px 18px 12px;
 }
 
 .pc-frontcard{
@@ -159,8 +159,15 @@
   gap: 12px;
 
   justify-self: stretch;
-  align-self: start;
+  align-self: stretch;
+  justify-content: space-between;
   width: 100%;
+  max-width: calc(
+    var(--pc-round-size) + var(--pc-round-size) + var(--pc-round-size) +
+    var(--pc-round-gap) + var(--pc-round-gap)
+  );
+  height: 100%;
+  min-height: 0;
 }
 
 /* Ikon-kvadratet (rundingene) */
@@ -353,14 +360,14 @@ body.hg-app.hg-phone #placeCard{
   --pc-round-size: 74px;
   --pc-round-gap: 5px;
   --pc-text-inset: 12px;
-  --pc-text-h: 168px;
+  --pc-text-h: 184px;
 }
 
 body.hg-app.hg-phone #placeCard .pc-grid{
   grid-template-columns: 150px minmax(0, 1fr);
   column-gap: 10px;
   row-gap: 12px;
-  padding: 14px 12px 10px;
+  padding: 18px 12px 10px;
 }
 
 body.hg-app.hg-phone .pc-frontcard{
