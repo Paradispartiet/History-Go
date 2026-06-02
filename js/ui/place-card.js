@@ -535,7 +535,7 @@ if (!card) return;
 // --- MiniProfile: send TriNext + Fordi ---
 try {
   const completedQuiz = hasCompletedQuiz(place.id);
-  const isVisited = !!(window.visited && window.visited[place.id]);
+  const isVisited = !!(window.visited && window.visited[/** @type {string} */ (place.id)]);
   const cat = place.category || "";
 
   const because = [];
@@ -698,7 +698,7 @@ if (peopleEl) {
       ? `${peopleHtml}${relationTextHtml}`
       : `<div class="pc-empty">Ingen personer ennå</div>`;
 
-  peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+  peopleEl.querySelectorAll("[data-person]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const pr = PEOPLE_LIST.find(x => x.id === btn.dataset.person);
       if (pr) window.showPersonPopup?.(pr);
@@ -738,7 +738,7 @@ if (natureEl) {
   natureEl.innerHTML = floraHtml;
 
   // flora click (åpne infokort)
-  natureEl.querySelectorAll("[data-flora]").forEach(btn => {
+  natureEl.querySelectorAll("[data-flora]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
       if (a && typeof window.showFloraPopup === "function") window.showFloraPopup(a);
@@ -942,7 +942,7 @@ async function getRelevantPlaceEmner(place) {
 if (badgesEl) {
   const BADGES_LIST = getBadgesSource();
 
-  const rels = (window.REL_BY_PLACE && window.REL_BY_PLACE[place.id]) ? window.REL_BY_PLACE[place.id] : [];
+  const rels = (window.REL_BY_PLACE && window.REL_BY_PLACE[/** @type {string} */ (place.id)]) ? window.REL_BY_PLACE[/** @type {string} */ (place.id)] : [];
 
   let badgeIds = [];
 
@@ -1012,7 +1012,7 @@ if (badgesEl) {
 // --- CIVICATION STORE LIST + ICON ---
 if (civicationStoreEl) {
   const rawStoreItems = [
-    ...(Array.isArray(window.CIVICATION_STORE_BY_PLACE?.[place.id]) ? window.CIVICATION_STORE_BY_PLACE[place.id] : []),
+    ...(Array.isArray(window.CIVICATION_STORE_BY_PLACE?.[/** @type {string} */ (place.id)]) ? window.CIVICATION_STORE_BY_PLACE[/** @type {string} */ (place.id)] : []),
     ...(Array.isArray(place.civication_store) ? place.civication_store : []),
     ...(Array.isArray(place.civicationStore) ? place.civicationStore : []),
     ...(Array.isArray(place.civication_items) ? place.civication_items : []),
@@ -1052,7 +1052,7 @@ if (civicationStoreEl) {
       `).join("")
     : `<div class="pc-empty">Ingen Civication-objekter ennå</div>`;
 
-  civicationStoreEl.querySelectorAll("[data-civi-store]").forEach(btn => {
+  civicationStoreEl.querySelectorAll("[data-civi-store]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const id = String(btn.dataset.civiStore || "").trim();
       if (!id) return;
@@ -1073,7 +1073,7 @@ if (civicationStoreEl) {
 // --- BRANDS LIST + BRANDS ICON ---
 if (brandsEl) {
   const rawBrands = [
-    ...(Array.isArray(window.BRANDS_BY_PLACE?.[place.id]) ? window.BRANDS_BY_PLACE[place.id] : []),
+    ...(Array.isArray(window.BRANDS_BY_PLACE?.[/** @type {string} */ (place.id)]) ? window.BRANDS_BY_PLACE[/** @type {string} */ (place.id)] : []),
     ...(Array.isArray(place.brands) ? place.brands : []),
     ...(Array.isArray(place.brand_ids) ? place.brand_ids : [])
   ];
@@ -1388,7 +1388,7 @@ if (btnRoute) {
       menuEvent.preventDefault();
       menuEvent.stopPropagation();
 
-      const action = menuEvent.target?.closest?.("[data-route-action]")?.dataset?.routeAction;
+      const action = /** @type {any} */ (menuEvent.target)?.closest?.("[data-route-action]")?.dataset?.routeAction;
       if (!action) return;
 
       window.__closePcRouteMenu?.();
@@ -1401,7 +1401,7 @@ if (btnRoute) {
       }
 
       if (action === "routes") {
-        const modeSelect = document.getElementById("leftPanelMode");
+        const modeSelect = /** @type {HTMLSelectElement|null} */ (document.getElementById("leftPanelMode"));
         if (modeSelect) {
           modeSelect.value = "routes";
           modeSelect.dispatchEvent(new Event("change", { bubbles: true }));
@@ -1487,7 +1487,7 @@ function setUnlockUI(disabled, text) {
 function updateUnlockUI() {
   if (!btnUnlock) return;
 
-  const isUnlocked = !!(window.visited && window.visited[place.id]);
+  const isUnlocked = !!(window.visited && window.visited[/** @type {string} */ (place.id)]);
 
   if (isUnlocked) {
     setUnlockUI(true, `${tt("ui.unlock.unlocked", "Låst opp")} ✅`);
@@ -1525,7 +1525,7 @@ _unlockTimer = window.TEST_MODE ? null : setInterval(updateUnlockUI, 1200);
 
 if (btnUnlock) {
   btnUnlock.onclick = () => {
-    if (window.visited && window.visited[place.id]) {
+    if (window.visited && window.visited[/** @type {string} */ (place.id)]) {
       window.showToast?.(tt("ui.unlock.alreadyUnlocked", "Allerede låst opp"));
       return;
     }
@@ -1549,7 +1549,7 @@ if (btnUnlock) {
       window.saveVisitedFromQuiz(place.id);
     } else {
       window.visited = window.visited || {};
-      window.visited[place.id] = true;
+      window.visited[/** @type {string} */ (place.id)] = true;
       if (typeof window.HG_updateGroundhopperFromPlace === "function") {
         window.HG_updateGroundhopperFromPlace(place);
       }
