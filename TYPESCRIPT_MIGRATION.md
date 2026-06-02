@@ -821,3 +821,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime output, inbox-envelope object values, ordering, duplicate filtering, the `window.HG_CiviEngine?.setInbox?.(next)` write, fallback-to-`[]` behavior, job flow, offer flow, state, UI, schema declarations, data files, and `tsconfig.json` remain unchanged.
 - The two `pushOffer()` diagnostics for optional brand/employer context are deliberately deferred to a later dedicated offer-contract phase; `pushOffer()`, promotion thresholds, offer storage, accept/decline behavior, active-position logic, and first-job onboarding semantics were not changed.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1517, `js/Civication/**` diagnostics are now 262, and `js/Civication/core/civicationJobs.js` diagnostics are now 2.
+
+## Phase 97: Civication jobs offer input contract pass
+
+- Followed the Phase 95/96 jobs contract audits by targeting only the remaining `pushOffer()` input typing diagnostics in `js/Civication/core/civicationJobs.js`.
+- Added a narrow local `PushOfferInput` JSDoc contract for `pushOffer()` with required core offer fields and optional brand/employer context fields.
+- Brand/employer context is optional in the input contract because the existing `pushOffer()` runtime already normalizes missing brand, employer, sector, place, and context values to `null`.
+- No dummy brand/employer fields were added to the generic progression offer call-sites.
+- Offer runtime output, null-normalization, offer storage, accept/decline behavior, active-position updates, first-job onboarding semantics, job flow, state, UI, schema declarations, data files, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1521, `js/Civication/**` diagnostics are now 260, and `js/Civication/core/civicationJobs.js` diagnostics are now 0.

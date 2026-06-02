@@ -1,20 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T10:59:02.383Z
+- Generated at (UTC): 2026-06-02T11:13:35.285Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1517
-- Files with diagnostics: 180
+- Total diagnostic lines found: 1521
+- Files with diagnostics: 179
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| other | 73 | 514 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/ui/** | 20 | 493 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 64 | 262 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/identityCompass.js |
+| other | 73 | 516 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| js/ui/** | 20 | 497 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| js/Civication/** | 63 | 260 | js/Civication/core/civicationState.js<br>js/Civication/identityCompass.js<br>js/Civication/identityEngine.js |
 | js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 57 | js/profile.js |
@@ -28,18 +28,18 @@
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
 | js/ui/place-card.js | 130 | js/ui/** |
-| js/ui/popup-utils.js | 79 | js/ui/** |
+| js/ui/popup-utils.js | 80 | js/ui/** |
 | js/boot.js | 67 | js/boot.js |
 | js/profile.js | 57 | js/profile.js |
-| js/ui/left-panel.js | 55 | js/ui/** |
-| js/ui/lists.js | 40 | js/ui/** |
+| js/ui/left-panel.js | 56 | js/ui/** |
+| js/ui/lists.js | 41 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 31 | js/Civication/** |
 | js/nextUpRuntime.js | 29 | other |
 | js/nature_place_map_bridge.js | 27 | other |
 | js/quizzes.js | 25 | other |
-| js/ui/search.js | 22 | js/ui/** |
+| js/ui/search.js | 23 | js/ui/** |
 | js/console/legacyExtensions.js | 21 | other |
 | js/dataHub.js | 21 | js/dataHub.js |
 | js/leksikon/leksikon_loader.js | 21 | other |
@@ -51,15 +51,15 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1187 |
+| TS2339 | 1193 |
 | TS2551 | 133 |
 | TS2304 | 68 |
 | TS2307 | 36 |
-| TS2345 | 13 |
 | TS2580 | 13 |
 | TS2349 | 12 |
 | TS2322 | 11 |
 | TS2550 | 11 |
+| TS2345 | 11 |
 | TS2451 | 6 |
 | TS2552 | 5 |
 | TS2362 | 4 |
@@ -75,8 +75,8 @@
 | TS2769 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **other (514 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (130), `js/ui/popup-utils.js` (79), `js/boot.js` (67), `js/profile.js` (57), `js/ui/left-panel.js` (55).
+1. Start with **other (516 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (130), `js/ui/popup-utils.js` (80), `js/boot.js` (67), `js/profile.js` (57), `js/ui/left-panel.js` (56).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `js/Civication/**`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
@@ -84,10 +84,6 @@
 ```
 > history-go@0.0.0 typecheck
 > tsc -p tsconfig.json
-js/Civication/core/civicationJobs.js(443,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
-  Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
-js/Civication/core/civicationJobs.js(462,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
-  Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
 js/Civication/core/civicationState.js(389,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationState.js(389,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/identityCompass.js(94,10): error TS2551: Property 'HG_IdentityCompass' does not exist on type 'Window & typeof globalThis'. Did you mean 'HG_IdentityCore'?
@@ -162,4 +158,8 @@ js/Civication/systems/day/dayConsequencesUI.js(137,5): error TS2740: Type '{ (..
 js/Civication/systems/day/dayFactionChoiceSystem.js(61,10): error TS2339: Property 'CivicationFactionChoiceSystem' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/day/dayFactionConflictSystem.js(89,24): error TS2339: Property 'CivicationAllianceSystem' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/day/dayFactionConflictSystem.js(116,25): error TS2339: Property 'score' does not exist on type 'never'.
+js/Civication/systems/day/dayFactionConflictSystem.js(116,42): error TS2339: Property 'faction' does not exist on type 'never'.
+js/Civication/systems/day/dayFactionConflictSystem.js(222,10): error TS2339: Property 'CivicationFactionConflictSystem' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/day/dayFactionMailScoring.js(41,24): error TS2339: Property 'CivicationFactionConflictSystem' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/day/dayFactionMailScoring.js(94,27): error TS2339: Property 'CiviMailPlanBridge' does not exist on type 'Window & typeof globalThis'.
 ```

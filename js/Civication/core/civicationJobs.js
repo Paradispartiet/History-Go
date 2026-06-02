@@ -600,6 +600,25 @@
     }) || null;
   }
 
+  /**
+   * @typedef {object} PushOfferInput
+   * @property {unknown} career_id
+   * @property {unknown} career_name
+   * @property {unknown} title
+   * @property {unknown} threshold
+   * @property {unknown} points_at_offer
+   * @property {unknown=} brand_id
+   * @property {unknown=} brand_name
+   * @property {unknown=} brand_type
+   * @property {unknown=} brand_group
+   * @property {unknown=} sector
+   * @property {unknown=} place_id
+   * @property {unknown=} employer_context
+   */
+
+  /**
+   * @param {PushOfferInput} offerInput
+   */
   function pushOffer({
     career_id,
     career_name,
