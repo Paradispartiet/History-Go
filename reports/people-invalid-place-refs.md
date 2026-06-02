@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T11:07:26.751Z
+Generated: 2026-06-02T11:21:07.665Z
 
 ## Sammendrag
 - People-filer lest: **19**
@@ -8,8 +8,8 @@ Generated: 2026-06-02T11:07:26.751Z
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **21**
-- Duplikate interne place-referanser: **295**
+- People uten gyldig sted: **2**
+- Duplikate interne place-referanser: **314**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -18,25 +18,6 @@ Generated: 2026-06-02T11:07:26.751Z
 ## People uten gyldig sted
 - data/people/historie/oslo/people_historie_oslo.json :: anna_sethne (Anna Sethne)
 - data/people/historie/oslo/people_historie_oslo.json :: alexis_de_chateauneuf (Alexis de Chateauneuf)
-- data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn)
-- data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg)
-- data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard)
-- data/people/people_naeringsliv.json :: sam_eyde_industriutbygger (Sam Eyde)
-- data/people/people_naeringsliv.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland)
-- data/people/people_naeringsliv.json :: christen_smith_schous_bryggeri (Christen Smith)
-- data/people/people_naeringsliv.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes)
-- data/people/people_naeringsliv.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard)
-- data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke)
-- data/people/people_naeringsliv.json :: thomas_heftye_bank_og_byutvikling (Thomas Heftye)
-- data/people/people_naeringsliv.json :: olav_thon_eiendom_og_handel (Olav Thon)
-- data/people/people_naeringsliv.json :: petter_stordalen_hotell_og_service (Petter Stordalen)
-- data/people/people_naeringsliv.json :: stein_erik_hagen_handel (Stein Erik Hagen)
-- data/people/people_naeringsliv.json :: amund_ringnes_bryggeri (Amund Ringnes)
-- data/people/people_naeringsliv.json :: herman_schou_bryggeri (Herman Schou)
-- data/people/people_naeringsliv.json :: fred_olsen_shipping (Fred. Olsen)
-- data/people/people_naeringsliv.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen)
-- data/people/people_naeringsliv.json :: anders_jahre_shipping (Anders Jahre)
-- data/people/people_naeringsliv.json :: nicolay_august_andresen_bank (Nicolay August Andresen)
 
 ## Duplikate place-referanser inne i people
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
@@ -158,6 +139,25 @@ Generated: 2026-06-02T11:07:26.751Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
+- data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn) -> grunnlovsbygget_bankplassen x2
+- data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg) -> grunnlovsbygget_bankplassen x2
+- data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard) -> grunnlovsbygget_bankplassen x2
+- data/people/people_naeringsliv.json :: sam_eyde_industriutbygger (Sam Eyde) -> akerselva_industri x2
+- data/people/people_naeringsliv.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland) -> akerselva_industri x2
+- data/people/people_naeringsliv.json :: christen_smith_schous_bryggeri (Christen Smith) -> schous_bryggeri x2
+- data/people/people_naeringsliv.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes) -> ringnes_bryggeri x2
+- data/people/people_naeringsliv.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard) -> oslo_posthus x2
+- data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke) -> lilleborg_fabrikker x2
+- data/people/people_naeringsliv.json :: thomas_heftye_bank_og_byutvikling (Thomas Heftye) -> grunnlovsbygget_bankplassen x2
+- data/people/people_naeringsliv.json :: olav_thon_eiendom_og_handel (Olav Thon) -> aker_brygge x2
+- data/people/people_naeringsliv.json :: petter_stordalen_hotell_og_service (Petter Stordalen) -> karl_johan x2
+- data/people/people_naeringsliv.json :: stein_erik_hagen_handel (Stein Erik Hagen) -> aker_brygge x2
+- data/people/people_naeringsliv.json :: amund_ringnes_bryggeri (Amund Ringnes) -> ringnes_bryggeri x2
+- data/people/people_naeringsliv.json :: herman_schou_bryggeri (Herman Schou) -> schous_bryggeri x2
+- data/people/people_naeringsliv.json :: fred_olsen_shipping (Fred. Olsen) -> akershus_kaier x2
+- data/people/people_naeringsliv.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen) -> akershus_kaier x2
+- data/people/people_naeringsliv.json :: anders_jahre_shipping (Anders Jahre) -> akershus_kaier x2
+- data/people/people_naeringsliv.json :: nicolay_august_andresen_bank (Nicolay August Andresen) -> grunnlovsbygget_bankplassen x2
 - data/people/people_filantroper.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
