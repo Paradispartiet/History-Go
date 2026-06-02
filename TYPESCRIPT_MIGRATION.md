@@ -803,3 +803,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - The week-key runtime semantics, week-start logic, calendar behavior, and `YYYY-WNN` return format remain unchanged.
 - Event flow, event scheduling, event storage, jobs, state, UI, schema declarations, data files, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1518, `js/Civication/**` diagnostics are now 263, and `js/Civication/core/civicationEventEngine.js` diagnostics are now 0.
+
+## Phase 95: Civication jobs contract diagnostics audit
+
+- Followed Phase 94 after `js/Civication/core/civicationEventEngine.js` reached 0 diagnostics via the narrow `weekKey()` numeric-coercion pass.
+- Added a read-only audit report for the 3 remaining TypeScript diagnostics in `js/Civication/core/civicationJobs.js`: `reports/civication-jobs-phase-95-contract-audit.md`.
+- No runtime, job, state, inbox, offer, or Civication JS files were changed; `js/Civication/core/civicationJobs.js` remains untouched in this phase.
+- Schema/declaration files were not changed; `schemas/*.d.ts` and Civication global declarations remain untouched.
+- Data, UI, DOM, CSS, stories, places, people, import tooling, package metadata, HTML, and `tsconfig.json` were not changed.
+- The report recommends Phase 96 as one narrow target only: a local inbox-envelope typedef/cast around the existing `prependInboxEvents()` concat boundary, while deferring the `pushOffer()` optional brand/employer input contract to a later dedicated offer-contract phase.
