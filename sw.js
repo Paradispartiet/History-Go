@@ -277,7 +277,7 @@ async function networkFirst(req, cacheName) {
 }
 
 // -------------------- install / activate --------------------
-self.addEventListener("install", (event) => {
+self.addEventListener("install", (/** @type {any} */ event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_STATIC);
     await cacheAddAllSafe(cache, PRECACHE_URLS);
@@ -285,7 +285,7 @@ self.addEventListener("install", (event) => {
   })());
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", (/** @type {any} */ event) => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
     await Promise.all(keys.map((k) => {
@@ -298,7 +298,7 @@ self.addEventListener("activate", (event) => {
 });
 
 // -------------------- fetch routing --------------------
-self.addEventListener("fetch", (event) => {
+self.addEventListener("fetch", (/** @type {any} */ event) => {
   const req = event.request;
   const url = new URL(req.url);
 
