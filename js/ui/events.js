@@ -1,3 +1,11 @@
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 // ==============================
 // 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
 // ==============================
@@ -83,7 +91,7 @@ document.addEventListener("click", e => {
   if (window.QuizEngine?.start) {
     QuizEngine.start(quizId);
   } else {
-    showToast("Quiz-modul ikke lastet");
+    showToast(tUI("ui.quiz.moduleNotLoaded", "Quiz-modul ikke lastet"));
   }
   return;
 }

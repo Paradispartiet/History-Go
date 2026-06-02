@@ -12,6 +12,23 @@
   "use strict";
 
   const STACK_ID = "natureUnlockStack";
+
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
   const AUTO_DISMISS_MS = 4500;
 
   function ensureStack() {
@@ -65,12 +82,15 @@
     card.innerHTML = `
       ${thumb}
       <div class="nature-unlock-body">
-        <div class="nature-unlock-kicker">✨ Ny ${kind === "fauna" ? "art" : "plante"} samlet</div>
+        <div class="nature-unlock-kicker"></div>
         <div class="nature-unlock-title"></div>
         <div class="nature-unlock-latin"></div>
       </div>
-      <button class="nature-unlock-close" type="button" aria-label="Lukk">✕</button>
+      <button class="nature-unlock-close" type="button" aria-label="${escapeHtml(tUI("ui.attr.close", "Lukk"))}">✕</button>
     `;
+    card.querySelector(".nature-unlock-kicker").textContent = kind === "fauna"
+      ? tUI("ui.nature.unlock.newSpecies", "✨ Ny art samlet")
+      : tUI("ui.nature.unlock.newPlant", "✨ Ny plante samlet");
     card.querySelector(".nature-unlock-title").textContent = title;
     card.querySelector(".nature-unlock-latin").textContent = latin;
 
