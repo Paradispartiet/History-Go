@@ -9,7 +9,7 @@
   const AHA_PROFILE_CACHE_KEY = "aha_profile_cache_v1";
   const LEGACY_NAME_KEY = "user_name";
   const LEGACY_COLOR_KEY = "user_color";
-  const DEFAULT_DISPLAY_NAME = "Logg inn med AHA";
+  const DEFAULT_DISPLAY_NAME = "Logg inn";
   const DEFAULT_COLOR = "#f6c800";
   const COLOR_OPTIONS = ["#f6c800", "#8fd3ff", "#ff8fb3", "#a9f5b5", "#c7a7ff", "#ffb86b"];
 
@@ -229,7 +229,15 @@
   async function refreshAhaProfileCache() {
     const loader = window.HistoryGoAHAAuth?.loadAhaProfile;
     if (typeof loader !== "function") return null;
-    const result = await loader();
+
+    let result = null;
+    try {
+      result = await loader();
+    } catch (error) {
+      if (window.DEBUG) console.warn("[profileIdentity] AHA profile loader failed", error);
+      return null;
+    }
+
     if (result?.ok && result.data) {
       writeJson(AHA_PROFILE_CACHE_KEY, result.data);
       persistProfile({});
@@ -250,7 +258,7 @@
       const state = await window.HistoryGoAHAAuth?.refresh?.();
       if (state?.signed_in) {
         const ahaProfile = await refreshAhaProfileCache();
-        btn.textContent = ahaProfile?.display_name ? "Innlogget" : "Opprett AHA-profil";
+        btn.textContent = ahaProfile?.display_name ? "AHA koblet" : "Opprett AHA-profil";
         btn.dataset.signedIn = ahaProfile?.display_name ? "true" : "missing-profile";
         btn.title = ahaProfile?.display_name
           ? `Innlogget med AHA: ${ahaProfile.display_name}`
@@ -316,8 +324,15 @@
     applyProfileToDom();
     bindProfileButtons();
     bindLoginButton();
-    await refreshAhaProfileCache();
+
+    try {
+      await refreshAhaProfileCache();
+    } catch (error) {
+      if (window.DEBUG) console.warn("[profileIdentity] AHA profile refresh failed", error);
+    }
+
     applyProfileToDom();
+    refreshLoginButton();
   }
 
   window.HGUserProfile = {
@@ -343,8 +358,16 @@
     applyProfileToDom();
     refreshLoginButton();
   });
-  window.addEventListener("historygo:aha-readback", () => applyProfileToDom());
-  window.addEventListener("aha:auth-ready", () => {
-    refreshAhaProfileCache().then(() => refreshLoginButton());
-  });
+  async function refreshAfterAhaAuth() {
+    try {
+      await refreshAhaProfileCache();
+    } catch (error) {
+      if (window.DEBUG) console.warn("[profileIdentity] AHA profile refresh failed", error);
+    }
+    applyProfileToDom();
+    refreshLoginButton();
+  }
+
+  window.addEventListener("historygo:aha-readback", refreshAfterAhaAuth);
+  window.addEventListener("aha:auth-ready", refreshAfterAhaAuth);
 })();
