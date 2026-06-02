@@ -237,7 +237,6 @@ const badgesIcon          = document.getElementById("pcBadgesIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const brandsIcon          = document.getElementById("pcBrandsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
-const routesIcon          = document.getElementById("pcRoutesIcon");
   
 card.dataset.currentPlaceId = String(place.id || "").trim();
 bindPlaceCardQuizFlip(frontCardFlipEl, quizCardImgEl);
@@ -250,7 +249,6 @@ const badgesEl          = document.getElementById("pcBadgesList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
 const brandsEl          = document.getElementById("pcBrandsList");
 const leksikonEl        = document.getElementById("pcLeksikonList");
-const routesEl          = document.getElementById("pcRoutesList");
 
 const eventsBox         = document.getElementById("pcEventsBox");
 const addEventBtn       = document.getElementById("pcAddEvent");
@@ -278,7 +276,6 @@ if (!card.dataset.pcIconsBound) {
     civicationStoreEl?.classList.remove("is-open");
     brandsEl?.classList.remove("is-open");
     leksikonEl?.classList.remove("is-open");
-    routesEl?.classList.remove("is-open");
   };
 
   const bindRoundPopup = (iconEl, listEl, title, kind) => {
@@ -393,7 +390,6 @@ bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
 bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
 bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
-bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
 
 peopleEl?.addEventListener("click", (e) => e.stopPropagation());
 natureEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -401,7 +397,6 @@ badgesEl?.addEventListener("click", (e) => e.stopPropagation());
 civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
 brandsEl?.addEventListener("click", (e) => e.stopPropagation());
 leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
-routesEl?.addEventListener("click", (e) => e.stopPropagation());
 }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
@@ -1337,43 +1332,6 @@ if (leksikonEl) {
   setRoundLabel(leksikonIcon, "📚", 1);
 }
 
-// --- ROUTES LIST + ROUTES ICON ---
-if (routesEl) {
-  const allRoutes = (window.HGRoutes?.load ? await window.HGRoutes.load() : (Array.isArray(window.ROUTES) ? window.ROUTES : [])) || [];
-  const placeRoutes = allRoutes.filter(route =>
-    Array.isArray(route?.stops) && route.stops.some(stop => String(stop?.placeId || "").trim() === String(place.id || "").trim())
-  );
-
-  routesEl.innerHTML = placeRoutes.length
-    ? placeRoutes.map(route => `
-        <button class="pc-route-entry" data-route="${route.id}">
-          <span class="pc-route-entry-title">${route.title || route.name || route.id}</span>
-          ${Array.isArray(route.stops) ? `<span class="pc-route-entry-meta">${route.stops.length} stopp</span>` : ""}
-        </button>
-      `).join("")
-    : `<div class="pc-empty">Ingen ruter ennå</div>`;
-
-  routesEl.querySelectorAll("[data-route]").forEach(btn => {
-    btn.onclick = () => {
-      const id = String(btn.dataset.route || "").trim();
-      if (!id) return;
-      const route = placeRoutes.find(r => String(r.id || "").trim() === id);
-      const stopIndex = Array.isArray(route?.stops)
-        ? route.stops.findIndex(s => String(s?.placeId || "").trim() === String(place.id || "").trim())
-        : -1;
-
-      if (typeof window.showRouteOverlay === "function") {
-        window.showRouteOverlay(id, stopIndex >= 0 ? stopIndex : 0);
-      } else {
-        window.showToast?.("Rute-funksjon ikke lastet");
-      }
-    };
-  });
-
-  setRoundLabel(routesIcon, "🗺️", placeRoutes.length);
-}
-
-
   
 // --- Mer info ---
   
@@ -1436,15 +1394,14 @@ if (btnRoute) {
       }
 
       if (action === "routes") {
-        if (routesIcon) {
-          routesIcon.dispatchEvent(new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-            view: window
-          }));
-        } else {
-          window.showToast?.("Rute-funksjon ikke lastet");
+        const modeSelect = document.getElementById("leftPanelMode");
+        if (modeSelect) {
+          modeSelect.value = "routes";
+          modeSelect.dispatchEvent(new Event("change", { bubbles: true }));
         }
+        if (typeof window.setLeftPanelMode === "function") window.setLeftPanelMode("routes");
+        if (typeof window.renderLeftRoutesList === "function") window.renderLeftRoutesList();
+        window.showToast?.("Ruter vises i utforsk-panelet");
       }
     });
 
