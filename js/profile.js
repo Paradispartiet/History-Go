@@ -1163,8 +1163,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("updateProfileMarkers", updateProfileMarkers);
 
     // UI-knapper
-    document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("https://paradispartiet.github.io/AHA-EchoNet/", "_blank"));
+    if (!window.HGUserProfile?.openEditor) {
+      document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+    }
+
+    const btnOpenAHA = document.getElementById("btnOpenAHA");
+    const refreshBtnOpenAHA = async () => {
+      if (!btnOpenAHA) return;
+      try {
+        const state = await window.HistoryGoAHAAuth?.refresh?.();
+        btnOpenAHA.textContent = state?.signed_in ? "AHA koblet" : "Logg inn";
+      } catch {
+        btnOpenAHA.textContent = "Logg inn";
+      }
+    };
+
+    btnOpenAHA?.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (typeof window.HGUserProfile?.openLoginPopup === "function") {
+        window.HGUserProfile.openLoginPopup();
+        return;
+      }
+
+      if (typeof window.HistoryGoAHAAuth?.openAhaLogin === "function") {
+        window.HistoryGoAHAAuth.openAhaLogin();
+        return;
+      }
+
+      window.location.href = "https://paradispartiet.github.io/AHA-EchoNet/?auth=login&source=historygo";
+    });
+    refreshBtnOpenAHA();
+    window.addEventListener("aha:auth-ready", refreshBtnOpenAHA);
+    window.addEventListener("historygo:aha-readback", refreshBtnOpenAHA);
 
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {

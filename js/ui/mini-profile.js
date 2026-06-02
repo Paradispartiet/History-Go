@@ -5,7 +5,10 @@ function initMiniProfile() {
   const st = document.getElementById("miniStats");
   if (!nm || !st) return;
 
-  const name  = localStorage.getItem("user_name")  || "Utforsker #182";
+  const name =
+    window.HGUserProfile?.getDisplayName?.() ||
+    localStorage.getItem("user_name") ||
+    "Logg inn";
   const color = localStorage.getItem("user_color") || "#f6c800";
 
   const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
@@ -200,6 +203,8 @@ try {
 
 
 window.addEventListener("updateProfile", initMiniProfile);
+window.addEventListener("aha:auth-ready", initMiniProfile);
+window.addEventListener("historygo:aha-readback", initMiniProfile);
 
 function showQuizHistory() {
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
