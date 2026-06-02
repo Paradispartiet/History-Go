@@ -39,7 +39,7 @@ function weekKey(d) {
   );
 
   const weekNo = Math.ceil(
-    (((date - yearStart) / 86400000) + 1) / 7
+    (((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7
   );
 
   return (
