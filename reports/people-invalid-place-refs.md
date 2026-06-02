@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T09:43:31.261Z
+Generated: 2026-06-02T10:40:56.902Z
 
 ## Sammendrag
 - People-filer lest: **20**
@@ -8,8 +8,8 @@ Generated: 2026-06-02T09:43:31.261Z
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **23**
-- Duplikate interne place-referanser: **293**
+- People uten gyldig sted: **21**
+- Duplikate interne place-referanser: **295**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -37,8 +37,6 @@ Generated: 2026-06-02T09:43:31.261Z
 - data/people/people_naeringsliv.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen)
 - data/people/people_naeringsliv.json :: anders_jahre_shipping (Anders Jahre)
 - data/people/people_naeringsliv.json :: nicolay_august_andresen_bank (Nicolay August Andresen)
-- data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig)
-- data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm)
 
 ## Duplikate place-referanser inne i people
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
@@ -272,6 +270,8 @@ Generated: 2026-06-02T09:43:31.261Z
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: jon_elster (Jon Elster) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
+- data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig) -> nrk_huset_marienlyst x2
+- data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm) -> nrk_huset_marienlyst x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2

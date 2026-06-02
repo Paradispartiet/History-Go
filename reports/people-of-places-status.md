@@ -1,18 +1,18 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-02T09:43:31.502Z
+Generert: 2026-06-02T10:40:57.773Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-02T09:43:31.502Z |
+| generatedAt | 2026-06-02T10:40:57.773Z |
 | peopleFilesRead | 20 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
-| peopleWithoutValidPrimaryAnchor | 5 |
+| peopleWithoutValidPrimaryAnchor | 3 |
 | peopleWithEmptyPlacesArray | 3 |
 | flatPeopleFiles | 3 |
 | geographicPeopleFiles | 17 |
@@ -35,7 +35,7 @@ Generert: 2026-06-02T09:43:31.502Z
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_filantroper.json | filantroper | nei | 9 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
-| data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
+| data/people/people_populaerkultur.json | populaerkultur | nei | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -58,7 +58,7 @@ Generert: 2026-06-02T09:43:31.502Z
 | naeringsliv | 19 | 1 | 0 | schema_review | Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split. |
 | natur | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| populaerkultur | 10 | 1 | 2 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
+| populaerkultur | 10 | 1 | 2 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
 | sport | 28 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | subkultur | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 20 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -73,7 +73,7 @@ Generert: 2026-06-02T09:43:31.502Z
 
 ### Anbefalte geografiske split-kandidater
 
-- Ingen basert på nåværende auditlogikk.
+- populaerkultur: 10 entries (data/people/people_populaerkultur.json)
 
 ## Place-ref audit
 
@@ -86,13 +86,11 @@ Invalid refs: 0
 | data/people/historie/oslo/people_historie_oslo.json | anna_sethne / Anna Sethne | primary_anchor_missing |  |
 | data/people/historie/oslo/people_historie_oslo.json | alexis_de_chateauneuf / Alexis de Chateauneuf | primary_anchor_missing |  |
 | data/people/historie/oslo/people_historie_oslo.json | wilhelm_von_hanno / Wilhelm von Hanno | primary_anchor_missing |  |
-| data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | primary_anchor_missing |  |
-| data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | primary_anchor_missing |  |
 
 ## Tom eller svak places[]
 
 Entries med tom places[]: 3
-Entries med svak/manglende places[] etter auditreglene: 29
+Entries med svak/manglende places[] etter auditreglene: 27
 
 | Fil | Person | Årsak | placeId | source_place_id | places |
 |---|---|---|---|---|---|
@@ -118,8 +116,6 @@ Entries med svak/manglende places[] etter auditreglene: 29
 | data/people/people_naeringsliv.json | wilhelm_wilhelmsen_shipping / Wilhelm Wilhelmsen | missing_places_array |  | akershus_kaier | null |
 | data/people/people_naeringsliv.json | anders_jahre_shipping / Anders Jahre | missing_places_array |  | akershus_kaier | null |
 | data/people/people_naeringsliv.json | nicolay_august_andresen_bank / Nicolay August Andresen | missing_places_array |  | grunnlovsbygget_bankplassen | null |
-| data/people/people_populaerkultur.json | herman_flesvig / Herman Flesvig | missing_places_array |  |  | null |
-| data/people/people_populaerkultur.json | morten_ramm / Morten Ramm | missing_places_array |  |  | null |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | kristian_birkeland / Kristian Birkeland | missing_places_array | observatoriet |  | null |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | may_britt_moser / May-Britt Moser | missing_places_array | nobelinstituttet |  | null |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | edvard_moser / Edvard Moser | missing_places_array | nobelinstituttet |  | null |
@@ -141,7 +137,7 @@ Entries med svak/manglende places[] etter auditreglene: 29
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=0/19; source_place_id=19/19; placesArray=0/19; categories=naeringsliv; ok: særskilt næringsliv-schema med source_place_id
-- data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/3; source_place_id=0/3; placesArray=1/3; categories=populaerkultur
+- data/people/people_populaerkultur.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=populaerkultur
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=populaerkultur
@@ -737,9 +733,9 @@ Mangler filer for image/cardImage/media: 552
 
 ```json
 {
-  "type": "content_expansion",
-  "category": "filantroper",
-  "reason": "filantroper er liten og ren nok for innholdsutvidelse.",
+  "type": "geographic_split",
+  "category": "populaerkultur",
+  "reason": "populaerkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
   "safeBatchSize": 10,
   "blockers": []
 }

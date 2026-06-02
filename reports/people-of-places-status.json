@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-06-02T09:43:31.502Z",
+  "generatedAt": "2026-06-02T10:40:57.773Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-02T09:43:31.502Z",
+    "generatedAt": "2026-06-02T10:40:57.773Z",
     "peopleFilesRead": 20,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
     "duplicatePeopleIds": 0,
     "invalidPlaceRefs": 0,
-    "peopleWithoutValidPrimaryAnchor": 5,
+    "peopleWithoutValidPrimaryAnchor": 3,
     "peopleWithEmptyPlacesArray": 3,
     "flatPeopleFiles": 3,
     "geographicPeopleFiles": 17,
@@ -305,14 +305,14 @@
       "missingIdCount": 0,
       "missingNameCount": 0,
       "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 2,
+      "missingPrimaryAnchorCount": 0,
       "invalidPlaceRefCount": 0,
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=1/3",
+        "placeId=3/3",
         "source_place_id=0/3",
-        "placesArray=1/3",
+        "placesArray=3/3",
         "categories=populaerkultur"
       ]
     },
@@ -608,8 +608,8 @@
         "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
         "data/people/popkultur/oslo/people_popkultur_oslo.json"
       ],
-      "suggestedNextAction": "schema_review",
-      "reason": "Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde."
+      "suggestedNextAction": "geographic_split",
+      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
     },
     {
       "category": "sport",
@@ -679,7 +679,15 @@
     "mixedCategoryStructure": [
       "populaerkultur"
     ],
-    "recommendedNextGeographicSplit": [],
+    "recommendedNextGeographicSplit": [
+      {
+        "category": "populaerkultur",
+        "totalPeople": 10,
+        "files": [
+          "data/people/people_populaerkultur.json"
+        ]
+      }
+    ],
     "safeFlatFilesForGeographicSplit": [],
     "flatFilesHoldForSchemaReview": [
       {
@@ -724,22 +732,6 @@
       "validRefs": [
         "gamle_deichman"
       ]
-    },
-    {
-      "sourceFile": "data/people/people_populaerkultur.json",
-      "personId": "herman_flesvig",
-      "personName": "Herman Flesvig",
-      "reason": "primary_anchor_missing",
-      "primaryAnchor": null,
-      "validRefs": []
-    },
-    {
-      "sourceFile": "data/people/people_populaerkultur.json",
-      "personId": "morten_ramm",
-      "personName": "Morten Ramm",
-      "reason": "primary_anchor_missing",
-      "primaryAnchor": null,
-      "validRefs": []
     }
   ],
   "weakPlaces": [
@@ -938,24 +930,6 @@
       "personName": "Nicolay August Andresen",
       "placeId": null,
       "source_place_id": "grunnlovsbygget_bankplassen",
-      "places": null,
-      "reason": "missing_places_array"
-    },
-    {
-      "sourceFile": "data/people/people_populaerkultur.json",
-      "personId": "herman_flesvig",
-      "personName": "Herman Flesvig",
-      "placeId": null,
-      "source_place_id": null,
-      "places": null,
-      "reason": "missing_places_array"
-    },
-    {
-      "sourceFile": "data/people/people_populaerkultur.json",
-      "personId": "morten_ramm",
-      "personName": "Morten Ramm",
-      "placeId": null,
-      "source_place_id": null,
       "places": null,
       "reason": "missing_places_array"
     },
@@ -1170,9 +1144,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=1/3",
+        "placeId=3/3",
         "source_place_id=0/3",
-        "placesArray=1/3",
+        "placesArray=3/3",
         "categories=populaerkultur"
       ],
       "deviations": []
@@ -5172,9 +5146,9 @@
     }
   ],
   "recommendedNextPr": {
-    "type": "content_expansion",
-    "category": "filantroper",
-    "reason": "filantroper er liten og ren nok for innholdsutvidelse.",
+    "type": "geographic_split",
+    "category": "populaerkultur",
+    "reason": "populaerkultur er største flate kategori med gyldige hovedankere og vanlig people-schema.",
     "safeBatchSize": 10,
     "blockers": []
   },
