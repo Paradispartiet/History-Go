@@ -6,6 +6,14 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   function esc(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -160,7 +168,7 @@
 
     return `
       <section class="wk-entry-section">
-        <h3>Inne i dette nivået</h3>
+        <h3>${esc(tUI("ui.wonderkammer.insideThisLevel", "Inne i dette nivået"))}</h3>
         <div class="pc-wk-chambers">
           ${items.map(item => {
             const id = norm(item?.id);
@@ -219,9 +227,9 @@
   // Valgfrie smart-felt. Vises kun når feltet finnes på entryen.
   // Rekkefølgen styrer rekkefølgen i popupen.
   const SMART_SECTIONS = [
-    ["observationHook", "Se etter"],
-    ["whyItMatters", "Hvorfor det betyr noe"],
-    ["placeSpecificDetail", "Stedsspesifikk detalj"],
+    ["observationHook", tUI("ui.wonderkammer.lookFor", "Se etter")],
+    ["whyItMatters", tUI("ui.wonderkammer.whyItMatters", "Hvorfor det betyr noe")],
+    ["placeSpecificDetail", tUI("ui.wonderkammer.placeSpecificDetail", "Stedsspesifikk detalj")],
     ["sensoryPrompt", "Sans dette"],
     ["microMission", "Mikrooppgave"],
     ["childAction", "Barnets handling"],
@@ -235,8 +243,8 @@
 
 
   const TREASURE_SECTIONS = [
-    ["treasureTitle", "Skatten"],
-    ["treasureScope", "Skattetype"],
+    ["treasureTitle", tUI("ui.wonderkammer.treasure", "Skatten")],
+    ["treasureScope", tUI("ui.wonderkammer.treasureType", "Skattetype")],
     ["cabinetCategory", "Kategori"],
     ["treasureType", "Type"],
     ["curiosity", "Hva er forunderlig?"],
@@ -247,7 +255,7 @@
     ["rarity", "Sjeldenhet"],
     ["collectible", "Kan samles som"],
     ["collectionNote", "Samlingsnotat"],
-    ["sourceNote", "Grunnlag"]
+    ["sourceNote", tUI("ui.wonderkammer.basis", "Grunnlag")]
   ];
 
   const TREASURE_SCOPE_LABELS = {
@@ -317,20 +325,20 @@
         <header class="hg-modal-header">
         <p class="wk-entry-breadcrumb hg-modal-meta">${esc(breadcrumb || title)}</p>
         <div class="wk-entry-type-chip hg-modal-meta">${esc(type)}</div>
-        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || "forrige nivå")}</button>` : ""}
+        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || tUI("ui.wonderkammer.previousLevel", "forrige nivå"))}</button>` : ""}
         <h2 class="hg-popup-name hg-modal-title">${esc(title)}</h2>
         </header>
         <div class="hg-modal-body">
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${treasureSectionsHtml(entry)}
-        ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
-        ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
+        ${activityText ? `<section class="wk-entry-section"><h3>${esc(tUI("ui.wonderkammer.whatCanYouDoHere", "Hva kan man gjøre her?"))}</h3><p>${esc(activityText)}</p></section>` : ""}
+        ${ageHint ? `<section class="wk-entry-section"><h3>${esc(tUI("ui.wonderkammer.ageLevel", "Alder / nivå"))}</h3><p>${esc(ageHint)}</p></section>` : ""}
         ${smartSectionsHtml(entry)}
         ${metaGridHtml(entry)}
         ${childListHtml(entry)}
         </div>
         <footer class="hg-modal-footer">
-          <button class="reward-ok" data-close-popup>Lukk</button>
+          <button class="reward-ok" data-close-popup>${esc(tUI("ui.attr.close", "Lukk"))}</button>
         </footer>
       </article>
     `;
@@ -367,6 +375,14 @@
 // ============================================================
 (function () {
   "use strict";
+
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
 
   if (window.__wkListGroupingBound) return;
   window.__wkListGroupingBound = true;
@@ -443,57 +459,57 @@
   const GROUPS = [
     {
       id: "play",
-      title: "Lek",
+      title: tUI("ui.wonderkammer.group.play", "Lek"),
       types: ["play_zone", "play_object", "open_play_area"]
     },
     {
       id: "nature",
-      title: "Natur",
+      title: tUI("ui.wonderkammer.group.nature", "Natur"),
       types: ["landscape_zone", "nature_discovery", "sensory_zone", "water_play_zone", "seasonal_activity_zone"]
     },
     {
       id: "season",
-      title: "Sesong",
+      title: tUI("ui.wonderkammer.group.season", "Sesong"),
       types: ["season_zone", "seasonal_activity", "weather_activity", "light_observation", "winter_activity", "spring_observation", "summer_activity", "autumn_observation", "rain_observation", "snow_observation", "wind_observation", "water_observation"]
     },
     {
       id: "training",
-      title: "Trening",
+      title: tUI("ui.wonderkammer.group.training", "Trening"),
       types: ["training_zone", "training"]
     },
     {
       id: "art",
-      title: "Kunst",
+      title: tUI("ui.wonderkammer.group.art", "Kunst"),
       types: ["art_zone", "artwork", "sculpture", "public_art", "material_study"]
     },
     {
       id: "street_art",
-      title: "Gatekunst",
+      title: tUI("ui.wonderkammer.group.streetArt", "Gatekunst"),
       types: ["street_art_zone", "mural", "graffiti_piece", "street_art_detail"]
     },
     {
       id: "architecture",
-      title: "Arkitektur",
+      title: tUI("ui.wonderkammer.group.architecture", "Arkitektur"),
       types: ["architecture_zone", "architectural_feature", "facade_detail"]
     },
     {
       id: "knowledge",
-      title: "Kunnskap",
+      title: tUI("ui.wonderkammer.group.knowledge", "Kunnskap"),
       types: ["museum_zone", "library_zone", "knowledge_zone", "collection_activity", "reading_activity", "observation_activity", "archive_trace", "research_trace"]
     },
     {
       id: "explore",
-      title: "Utforsking",
+      title: tUI("ui.wonderkammer.group.exploration", "Utforsking"),
       types: ["exploration_zone", "thing_to_see", "viewpoint", "urban_space", "media_concept"]
     },
     {
       id: "quiet",
-      title: "Rolig",
+      title: tUI("ui.wonderkammer.group.quiet", "Rolig"),
       types: ["quiet_zone"]
     },
     {
       id: "other",
-      title: "Annet",
+      title: tUI("ui.wonderkammer.group.other", "Annet"),
       types: []
     }
   ];
@@ -540,7 +556,7 @@
         } else if (typeof window.openWonderkammerEntry === "function") {
           window.openWonderkammerEntry(id);
         } else {
-          window.showToast?.("Wonderkammer-handler ikke lastet");
+          window.showToast?.(tUI("ui.wonderkammer.notLoaded", "Wonderkammer-handler ikke lastet"));
         }
       };
     });
