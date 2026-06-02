@@ -393,7 +393,7 @@ if (!badge) {
     .join("");
 
   // Klikk → modal
-  box.querySelectorAll(".badge-mini").forEach(el => {
+  box.querySelectorAll(".badge-mini").forEach((/** @type {HTMLElement} */ el) => {
     el.addEventListener("click", () => {
       const id = String(el.dataset.badgeId || "").trim();
       const badge = BADGES.find(b => String(b.id || "").trim() === id);
@@ -421,7 +421,7 @@ function openBadgeModal(badge) {
   const points = Number(info.points || 0);
   const { label } = deriveTierFromPoints(badge, points);
 
-  modal.querySelector(".badge-img").src = (badge.image || badge.icon || badge.img || badge.imageCard || "");
+  /** @type {HTMLImageElement} */ (modal.querySelector(".badge-img")).src = (badge.image || badge.icon || badge.img || badge.imageCard || "");
   modal.querySelector(".badge-title").textContent = badge.name;
 
   // Vis nivå fra tiers (kanonisk), ikke lagret tekst
@@ -429,7 +429,7 @@ function openBadgeModal(badge) {
   modal.querySelector(".badge-progress-text").textContent = _tf("ui.badge.progressPoints", "{points} poeng", { points });
 
   // Progressbar
-  const bar = modal.querySelector(".badge-progress-bar");
+  const bar = /** @type {HTMLElement} */ (modal.querySelector(".badge-progress-bar"));
   const tiers = Array.isArray(badge.tiers) ? badge.tiers : [];
   const max = tiers.length ? Number(tiers[tiers.length - 1].threshold || 1) : 1;
   if (bar) {
@@ -492,10 +492,10 @@ function openBadgeModal(badge) {
   modal.setAttribute("aria-hidden", "false");
 
   modal.onclick = e => {
-    if (e.target && e.target.id === "badgeModal") closeBadgeModal();
+    if (e.target && /** @type {Element} */ (e.target).id === "badgeModal") closeBadgeModal();
   };
 
-  const closeBtn = modal.querySelector(".close-btn");
+  const closeBtn = /** @type {HTMLElement} */ (modal.querySelector(".close-btn"));
   if (closeBtn) closeBtn.onclick = closeBadgeModal;
 }
 
@@ -534,7 +534,7 @@ function renderPeopleCollection() {
     </div>
   `).join("");
 
-  grid.querySelectorAll(".avatar-card").forEach(el => {
+  grid.querySelectorAll(".avatar-card").forEach((/** @type {HTMLElement} */ el) => {
     el.onclick = () => {
       const pr = PEOPLE.find(p => p.id === el.dataset.person);
       if (pr) window.showPersonPopup(pr);
@@ -572,7 +572,7 @@ function renderPlacesCollection() {
     </div>
   `).join("");
 
-  grid.querySelectorAll(".place-card").forEach(el => {
+  grid.querySelectorAll(".place-card").forEach((/** @type {HTMLElement} */ el) => {
     el.onclick = () => {
       const pl = PLACES.find(p => p.id === el.dataset.place);
       if (pl) window.showPlacePopup(pl);
@@ -631,7 +631,7 @@ function renderTimeline() {
   if (bar) bar.style.width = `${(count/max)*100}%`;
   if (txt) txt.textContent = _tf("ui.profile.timelineUnlockedCards", "Du har låst opp {count} kort", { count });
 
-  body.querySelectorAll(".timeline-card").forEach(el => {
+  body.querySelectorAll(".timeline-card").forEach((/** @type {HTMLElement} */ el) => {
     el.onclick = () => {
       const id = el.dataset.id;
 
@@ -686,7 +686,7 @@ function renderCollectionCards() {
     </div>
   `).join("");
 
-  body.querySelectorAll(".collection-card").forEach(el => {
+  body.querySelectorAll(".collection-card").forEach((/** @type {HTMLElement} */ el) => {
     el.onclick = () => {
       const id = el.dataset.id;
       const pr = PEOPLE.find(p => p.id === id);
@@ -1087,10 +1087,10 @@ function openProfileModal() {
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
-  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
-  modal.querySelector("#saveProfile").onclick = () => {
-    const newName = modal.querySelector("#newName").value.trim() || _t("ui.profile.defaultExplorer", "Utforsker #182");
-    const newColor = modal.querySelector("#newColor").value;
+  /** @type {HTMLElement} */ (modal.querySelector("#cancelProfile")).onclick = () => modal.remove();
+  /** @type {HTMLElement} */ (modal.querySelector("#saveProfile")).onclick = () => {
+    const newName = /** @type {HTMLInputElement} */ (modal.querySelector("#newName")).value.trim() || _t("ui.profile.defaultExplorer", "Utforsker #182");
+    const newColor = /** @type {HTMLInputElement} */ (modal.querySelector("#newColor")).value;
 
     localStorage.setItem("user_name", newName);
     localStorage.setItem("user_color", newColor);
@@ -1135,7 +1135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     PEOPLE = Array.isArray(people) ? people : [];
     PLACES = Array.isArray(places) ? places : [];
-    BADGES = Array.isArray(badges?.badges) ? badges.badges : (Array.isArray(badges) ? badges : []);
+    BADGES = Array.isArray(/** @type {any} */ (badges)?.badges) ? /** @type {any} */ (badges).badges : (Array.isArray(badges) ? badges : []);
 
     window.PEOPLE = PEOPLE;
     window.PLACES = PLACES;
@@ -1285,8 +1285,8 @@ function lighten(hex, amount = 0.35) {
 }
 
 function initProfileTabs() {
-  const tabs = Array.from(document.querySelectorAll('.profile-tab'));
-  const panels = Array.from(document.querySelectorAll('.profile-tab-panel'));
+  const tabs = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('.profile-tab')));
+  const panels = /** @type {HTMLElement[]} */ (Array.from(document.querySelectorAll('.profile-tab-panel')));
   if (!tabs.length || !panels.length) return;
 
   const activate = (name) => {
