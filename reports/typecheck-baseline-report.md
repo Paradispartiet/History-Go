@@ -1,21 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T11:28:26.509Z
+- Generated at (UTC): 2026-06-02T11:39:11.961Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 556
-- Files with diagnostics: 96
+- Total diagnostic lines found: 485
+- Files with diagnostics: 80
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 19 | 160 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| other | 31 | 141 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/devConsole.js |
+| js/ui/** | 19 | 158 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| other | 28 | 133 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/devConsole.js |
 | js/Civication/** | 23 | 117 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/merits-and-jobs.js |
-| scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 31 | js/profile.js |
 | js/boot.js | 1 | 19 | js/boot.js |
 | sw.js | 1 | 10 | sw.js |
@@ -23,6 +22,7 @@
 | js/hgKnowledgeEngine.js | 1 | 5 | js/hgKnowledgeEngine.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
 | root files | 1 | 1 | knowledge.js |
+| scripts/** | 1 | 1 | scripts/verify-civication-boot-smoke.js |
 
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
@@ -35,35 +35,33 @@
 | js/psychologyRoom.js | 16 | other |
 | js/ui/events.js | 16 | js/ui/** |
 | js/ui/mini-profile.js | 13 | js/ui/** |
-| js/ui/popup-utils.js | 13 | js/ui/** |
 | js/Civication/systems/day/dayConsequencesUI.js | 11 | js/Civication/** |
-| js/console/init.js | 10 | other |
+| js/ui/popup-utils.js | 11 | js/ui/** |
 | js/observations.js | 10 | other |
 | js/quizzes.js | 10 | other |
 | js/ui/nature-card.js | 10 | js/ui/** |
 | sw.js | 10 | sw.js |
 | js/console/diagnosticConsole.js | 9 | other |
+| js/console/init.js | 9 | other |
 | js/profileIdentity.js | 9 | other |
 | js/ui/left-panel.js | 9 | js/ui/** |
 | js/ui/search.js | 9 | js/ui/** |
-| scripts/i18n-quality-places.js | 9 | scripts/** |
+| js/Civication/ui/CivicationDashboardUI.js | 8 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
 | TS2339 | 351 |
-| TS2304 | 68 |
-| TS2591 | 48 |
+| TS2304 | 56 |
 | TS2345 | 13 |
 | TS2349 | 12 |
-| TS2322 | 11 |
-| TS2550 | 11 |
+| TS2322 | 10 |
 | TS2538 | 10 |
 | TS2451 | 6 |
 | TS2552 | 5 |
 | TS2362 | 4 |
+| TS2769 | 4 |
 | TS2363 | 3 |
-| TS2769 | 3 |
 | TS2740 | 2 |
 | TS2739 | 2 |
 | TS2554 | 2 |
@@ -74,9 +72,9 @@
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (160 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/ui/** (158 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (48), `js/Civication/ui/CivicationUI.js` (31), `js/profile.js` (31), `js/boot.js` (19), `js/Civication/ui/CivicationMiniSectionsUI.js` (18).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/Civication/**`, `scripts/**`.
+3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/Civication/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
@@ -108,12 +106,12 @@ js/Civication/systems/day/dayConsequencesUI.js(89,49): error TS2339: Property 'e
 js/Civication/systems/day/dayConsequencesUI.js(90,49): error TS2339: Property 'autonomy' does not exist on type 'unknown'.
 js/Civication/systems/day/dayConsequencesUI.js(128,52): error TS2339: Property '__civiConsequencesWrapped' does not exist on type 'never'.
 js/Civication/systems/day/dayConsequencesUI.js(131,28): error TS2339: Property 'apply' does not exist on type 'never'.
-js/Civication/systems/day/dayConsequencesUI.js(137,5): error TS2740: Type '{ (...args: any[]): any; __civiConsequencesWrapped: boolean; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 211 more.
+js/Civication/systems/day/dayConsequencesUI.js(137,5): error TS2740: Type '{ (...args: any[]): any; __civiConsequencesWrapped: boolean; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 208 more.
 js/Civication/systems/day/dayFactionConflictSystem.js(116,25): error TS2339: Property 'score' does not exist on type 'never'.
 js/Civication/systems/day/dayFactionConflictSystem.js(116,42): error TS2339: Property 'faction' does not exist on type 'never'.
 js/Civication/systems/day/dayNarrativeConsequencesUI.js(168,52): error TS2339: Property '__civiNarrativeWrapped' does not exist on type 'never'.
 js/Civication/systems/day/dayNarrativeConsequencesUI.js(171,28): error TS2339: Property 'apply' does not exist on type 'never'.
-js/Civication/systems/day/dayNarrativeConsequencesUI.js(177,5): error TS2740: Type '{ (...args: any[]): any; __civiNarrativeWrapped: boolean; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 211 more.
+js/Civication/systems/day/dayNarrativeConsequencesUI.js(177,5): error TS2740: Type '{ (...args: any[]): any; __civiNarrativeWrapped: boolean; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 208 more.
 js/Civication/systems/day/dayNpcCharacterThreads.js(147,28): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/Civication/systems/day/dayPatches.js(648,28): error TS2339: Property 'getPendingEvent' does not exist on type 'answer'.
 js/Civication/systems/day/dayPatches.js(648,51): error TS2339: Property 'getPendingEvent' does not exist on type 'answer'.
