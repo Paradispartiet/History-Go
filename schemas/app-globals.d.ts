@@ -276,6 +276,31 @@ declare global {
     userLat?: any;
     userLon?: any;
   }
+
+  // Bare (unqualified) references to known runtime globals. In the browser
+  // these resolve to the same slots as the window.* properties above; the app
+  // reads several of them without the window. prefix, often behind a
+  // `typeof X !== "undefined"` guard. Declared here so checkJs stops emitting
+  // TS2304/TS2552 for safe global access. Names verified to also be used as
+  // window.<name> elsewhere in the codebase.
+  var API: any;
+  var CoreEngine: any;
+  var DomainHealthReport: any;
+  var DomainRegistry: any;
+  var FLORA: any;
+  var HG: any;
+  var HGEngine: any;
+  var HGMap: any;
+  var L: any;
+  var LayerManager: any;
+  var QuizEngine: any;
+  var ViewportManager: any;
+  var catIdFromDisplay: any;
+  var maplibregl: any;
+  var openPlaceCard: any;
+  var showPersonPopup: any;
+  var showPlacePopup: any;
+  var visited: any;
 }
 
 export {};

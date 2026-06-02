@@ -16,6 +16,22 @@ function closeSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "true");
 }
 
+// Center/zoom the map on a coordinate (pure zoom, no card side effects).
+// Mirrors the map access used by window.flyToPlace in js/ui/lists.js.
+function focusMap(lat, lon) {
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return false;
+  const map = window.HGMap?.getMap?.() || window.MAP;
+  if (map?.flyTo) {
+    map.flyTo({
+      center: [lon, lat],
+      zoom: Math.max(map.getZoom?.() || 13, 16),
+      speed: 1.1,
+      essential: true
+    });
+  }
+  return true;
+}
+
 document.addEventListener("click", e => {
   const target = e.target;
 

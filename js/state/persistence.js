@@ -262,7 +262,10 @@ function savePeople() {
     "people_collected",
     JSON.stringify(peopleCollected)
   );
-  renderGallery();
+  // Refresh the people gallery if a renderer is present. Guarded like the
+  // other call sites (boot.js, openmode.js); the function is optional and
+  // is not defined when the gallery view is inactive.
+  window.renderPeopleGallery?.();
 }
 
 function saveMerits() {
