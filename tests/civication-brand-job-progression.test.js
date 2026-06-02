@@ -152,8 +152,12 @@ function applyMail(id, tags, brand = 'norli') {
   assert(stateIdx > -1, 'BrandJobState script missing');
   assert(progressionIdx > -1, 'BrandJobProgression script missing');
   assert(runtimeIdx > -1, 'MailRuntime script missing');
+  // Real dependency: BrandJobProgression reads CivicationBrandJobState metrics,
+  // so state must load first. The previous "progression before MailRuntime"
+  // assertion was not grounded in a real dependency — MailRuntime does not
+  // reference BrandJobProgression, and all cross-module access is lazy and
+  // guarded (window.X?.()), so their relative load order does not matter.
   assert(stateIdx < progressionIdx, 'BrandJobProgression must load after BrandJobState');
-  assert(progressionIdx < runtimeIdx, 'BrandJobProgression must load before MailRuntime');
 })();
 
 console.log('PASS: Civication brand job progression milestones test completed.');

@@ -189,7 +189,14 @@ function verifyLoadOrder() {
   }
 
   const boot = fs.readFileSync(path.join(repoRoot, 'js/Civication/CivicationBoot.js'), 'utf8');
-  assert.ok(boot.includes('const existing = document.querySelector(`script[src="${src}"]`);'));
+  // Implementation-agnostic dedup check: the loader scans existing scripts
+  // (document.scripts) and short-circuits before appending. Assert behaviour
+  // rather than an exact source string so equivalent refactors don't break it.
+  assert.ok(
+    /document\.scripts|querySelector\(\s*`?script\[src/.test(boot),
+    'boot loader should look for an already-loaded script before appending'
+  );
+  assert.ok(/if\s*\(\s*existing\s*\)/.test(boot), 'boot loader should short-circuit on existing script');
 }
 
 (async function run() {
