@@ -3,6 +3,14 @@
 // Global-safe versjon
 // ============================================================
 
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 function getActiveLeftBadgeFilter() {
   return window.HG_NEARBY_BADGE_FILTER || "all";
 }
@@ -51,7 +59,7 @@ function renderBadgeFilterEmpty(listEl, noun) {
   listEl.innerHTML = `
     <div class="hg-empty-guide">
       <div class="hg-empty-guide-icon">🏅</div>
-      <div class="hg-empty-guide-title">Ingen treff</div>
+      <div class="hg-empty-guide-title">${tUI("ui.empty.noMatches", "Ingen treff")}</div>
       <div class="hg-empty-guide-text">Ingen ${noun} passer med badgefilteret ${label}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
     </div>
   `;
@@ -237,8 +245,8 @@ function renderNearbyPeople() {
     listEl.innerHTML = `
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">👤</div>
-        <div class="hg-empty-guide-title">Folk lastes inn</div>
-        <div class="hg-empty-guide-text">Personene som hører til Oslo lastes nå.</div>
+        <div class="hg-empty-guide-title">${tUI("ui.people.loading", "Folk lastes inn")}</div>
+        <div class="hg-empty-guide-text">${tUI("ui.people.loadingText", "Personene som hører til Oslo lastes nå.")}</div>
       </div>
     `;
     return;
@@ -499,8 +507,8 @@ function renderNearbyNature() {
     listEl.innerHTML = `
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🌿</div>
-        <div class="hg-empty-guide-title">Natur lastes inn</div>
-        <div class="hg-empty-guide-text">Gi det et øyeblikk — flora og fauna for Oslo lastes i bakgrunnen.</div>
+        <div class="hg-empty-guide-title">${tUI("ui.nature.loading", "Natur lastes inn")}</div>
+        <div class="hg-empty-guide-text">${tUI("ui.nature.loadingText", "Gi det et øyeblikk — flora og fauna for Oslo lastes i bakgrunnen.")}</div>
       </div>
     `;
     return;
@@ -513,9 +521,9 @@ function renderNearbyNature() {
     listEl.innerHTML = `
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🌿</div>
-        <div class="hg-empty-guide-title">Ingen arter samlet ennå</div>
-        <div class="hg-empty-guide-text">Ta en quiz på et naturrikt sted for å låse opp din første plante eller ditt første dyr. Vigelandsparken, Botanisk hage og Sognsvann er gode startsteder.</div>
-        <button type="button" class="hg-empty-guide-action" data-onb-action="open-places">Vis steder</button>
+        <div class="hg-empty-guide-title">${tUI("ui.nature.noneCollectedTitle", "Ingen arter samlet ennå")}</div>
+        <div class="hg-empty-guide-text">${tUI("ui.nature.noneCollectedText", "Ta en quiz på et naturrikt sted for å låse opp din første plante eller ditt første dyr. Vigelandsparken, Botanisk hage og Sognsvann er gode startsteder.")}</div>
+        <button type="button" class="hg-empty-guide-action" data-onb-action="open-places">${tUI("ui.nature.showPlaces", "Vis steder")}</button>
       </div>
     `;
     listEl.querySelector('[data-onb-action="open-places"]')?.addEventListener("click", () => {

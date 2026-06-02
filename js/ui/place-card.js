@@ -86,6 +86,13 @@ function escapePlaceCardHTML(value) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 const PLACE_CARD_QUIZ_CARD_BY_ID = Object.freeze({
   aker_brygge: "bilder/QuizCards/Akerbrygge.PNG",
@@ -143,7 +150,7 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
     card.classList.toggle("is-flipped");
     card.setAttribute(
       "aria-label",
-      card.classList.contains("is-flipped") ? "Vis frontbilde" : "Vis quizkort"
+      card.classList.contains("is-flipped") ? tUI("ui.place.showFrontImage", "Vis frontbilde") : tUI("ui.attr.showQuizCard", "Vis quizkort")
     );
   };
 
@@ -157,7 +164,7 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
     quizImgEl.addEventListener("error", () => {
       if (String(card.dataset.currentPlaceId || "") !== String(quizImgEl.dataset.placeId || "")) return;
       card.classList.remove("has-quiz-card", "is-flipped");
-      card.setAttribute("aria-label", "Quizkort mangler");
+      card.setAttribute("aria-label", tUI("ui.place.quizCardMissing", "Quizkort mangler"));
       quizImgEl.removeAttribute("src");
     });
   }
@@ -167,7 +174,7 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   if (!card) return;
   card.dataset.currentPlaceId = String(place?.id || "").trim();
   card.classList.remove("is-flipped", "has-quiz-card");
-  card.setAttribute("aria-label", "Quizkort mangler");
+  card.setAttribute("aria-label", tUI("ui.place.quizCardMissing", "Quizkort mangler"));
 
   if (quizImgEl) {
     quizImgEl.dataset.placeId = String(place?.id || "").trim();
@@ -181,7 +188,7 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   quizImgEl.alt = `Quizkort for ${place?.name || place?.title || "stedet"}`;
   quizImgEl.src = quizCardImage;
   card.classList.add("has-quiz-card");
-  card.setAttribute("aria-label", "Vis quizkort");
+  card.setAttribute("aria-label", tUI("ui.attr.showQuizCard", "Vis quizkort"));
 }
 
 /**
@@ -213,7 +220,7 @@ window.openPlaceCard = async function (place) {
     }
   }
 
-  const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
+  const tt = tUI;
 
   // 🎓 Learning: mark seen for place-emner
    if (window.KnowledgeLearning && Array.isArray(place.emne_ids)) {
@@ -590,7 +597,7 @@ if (peopleEl) {
 
   const relationChipValue = (r) => {
     const base = [r?.type, r?.kind, r?.category].map(prettifyToken).find(Boolean);
-    return base ? base.toUpperCase() : "RELASJON";
+    return base ? base.toUpperCase() : tt("ui.place.relationFallback", "RELASJON");
   };
 
   const getRelationDisplayModel = (r) => {
@@ -1225,8 +1232,8 @@ if (eventsBox) {
 
   const head = `
     <div class="pc-events-head">
-      <span class="pc-events-title">På stedet</span>
-      <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til">＋</button>
+      <span class="pc-events-title">${tt("ui.static.onSite", "På stedet")}</span>
+      <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="${tt("ui.attr.add", "Legg til")}">＋</button>
     </div>
   `;
 
@@ -1254,20 +1261,20 @@ if (eventsBox) {
 
   const modeButtons = [
     modes.has("meetup")
-      ? `<button class="pc-events-action" type="button" data-social-action="meetup">Avtal å møtes</button>`
+      ? `<button class="pc-events-action" type="button" data-social-action="meetup">${tt("ui.events.meetup", "Avtal å møtes")}</button>`
       : "",
     modes.has("message_game")
-      ? `<button class="pc-events-action" type="button" data-social-action="message_game">Start meldingsspill</button>`
+      ? `<button class="pc-events-action" type="button" data-social-action="message_game">${tt("ui.events.messageGame", "Start meldingsspill")}</button>`
       : "",
     modes.has("group_quiz")
-      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">Ta quiz sammen</button>`
+      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">${tt("ui.events.groupQuiz", "Ta quiz sammen")}</button>`
       : ""
   ].filter(Boolean).join("");
 
   const compactStatus = `${peopleCount} her · ${friendsCount} venner`;
   const compactEvents = canonicalForPlace.length
     ? `${canonicalForPlace.length} ting skjer her`
-    : `Ingen hendelser`;
+    : tt("ui.events.none", "Ingen hendelser");
 
   const body = `
     <div class="pc-events-preview-line" title="${compactStatus}">${compactStatus}</div>
@@ -1289,26 +1296,26 @@ if (eventsBox) {
   eventsBox.onclick = () => {
     const socialPopupHtml = `
       <section class="pc-events-section">
-        <div class="pc-event-entry-title">Her nå</div>
-        <div class="pc-events-row">Personer: ${peopleCount}</div>
-        <div class="pc-events-row">Venner: ${friendsCount}</div>
+        <div class="pc-event-entry-title">${tt("ui.events.hereNow", "Her nå")}</div>
+        <div class="pc-events-row">${tt("ui.events.people", "Personer:")} ${peopleCount}</div>
+        <div class="pc-events-row">${tt("ui.events.friends", "Venner:")} ${friendsCount}</div>
       </section>
       <section class="pc-events-section">
-        <div class="pc-event-entry-title">Skjer her</div>
+        <div class="pc-event-entry-title">${tt("ui.events.happeningHere", "Skjer her")}</div>
         ${canonicalForPlace.length
           ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
-          : `<div class="pc-events-row">Ingen kanoniserte hendelser lagt til ennå.</div>`
+          : `<div class="pc-events-row">${tt("ui.events.noCanonicalYet", "Ingen kanoniserte hendelser lagt til ennå.")}</div>`
         }
       </section>
       <section class="pc-events-section">
-        <div class="pc-event-entry-title">Sosialt</div>
+        <div class="pc-event-entry-title">${tt("ui.events.social", "Sosialt")}</div>
         ${modeButtons}
       </section>
     `;
 
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
-        title: "På stedet",
+        title: tt("ui.static.onSite", "På stedet"),
         subtitle: place?.name || "",
         html: socialPopupHtml,
         place,
@@ -1324,7 +1331,7 @@ if (leksikonEl) {
 
   leksikonEl.innerHTML = `
     <a class="pc-leksikon-entry" href="${leksikonPath}" target="_blank" rel="noopener">
-      <span class="pc-leksikon-entry-title">Åpne leksikon</span>
+      <span class="pc-leksikon-entry-title">${tt("ui.place.openLexicon", "Åpne leksikon")}</span>
       <span class="pc-leksikon-entry-meta">${place.name}</span>
     </a>
   `;
@@ -1343,7 +1350,7 @@ if (btnQuiz) {
     if (window.QuizEngine && typeof window.QuizEngine.start === "function") {
       window.QuizEngine.start(place.id);
     } else {
-      window.showToast?.("Quiz-modul ikke lastet");
+      window.showToast?.(tt("ui.quiz.moduleNotLoaded", "Quiz-modul ikke lastet"));
     }
   };
 }
@@ -1365,10 +1372,10 @@ if (btnRoute) {
     menu.id = "pcRouteMenu";
     menu.className = "pc-route-menu";
     menu.setAttribute("role", "menu");
-    menu.setAttribute("aria-label", "Rutevalg");
+    menu.setAttribute("aria-label", tt("ui.routes.menuLabel", "Rutevalg"));
     menu.innerHTML = `
-      <button type="button" role="menuitem" data-route-action="go">Gå Hit</button>
-      <button type="button" role="menuitem" data-route-action="routes">Ruter</button>
+      <button type="button" role="menuitem" data-route-action="go">${tt("ui.routes.goHere", "Gå Hit")}</button>
+      <button type="button" role="menuitem" data-route-action="routes">${tt("ui.tabs.routes", "Ruter")}</button>
     `;
 
     const placeMenu = () => {
@@ -1389,7 +1396,7 @@ if (btnRoute) {
       if (action === "go") {
         if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
         if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
-        window.showToast?.("Rute-funksjon ikke lastet");
+        window.showToast?.(tt("ui.routes.notLoaded", "Rute-funksjon ikke lastet"));
         return;
       }
 
@@ -1401,7 +1408,7 @@ if (btnRoute) {
         }
         if (typeof window.setLeftPanelMode === "function") window.setLeftPanelMode("routes");
         if (typeof window.renderLeftRoutesList === "function") window.renderLeftRoutesList();
-        window.showToast?.("Ruter vises i utforsk-panelet");
+        window.showToast?.(tt("ui.routes.shownInExplorePanel", "Ruter vises i utforsk-panelet"));
       }
     });
 
@@ -1436,7 +1443,7 @@ if (btnNote && typeof window.handlePlaceNote === "function") {
 if (btnObs) {
   btnObs.onclick = () => {
     if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
-      window.showToast?.("Observasjoner er ikke lastet");
+      window.showToast?.(tt("ui.observations.notLoaded", "Observasjoner er ikke lastet"));
       return;
     }
 
@@ -1519,7 +1526,7 @@ _unlockTimer = window.TEST_MODE ? null : setInterval(updateUnlockUI, 1200);
 if (btnUnlock) {
   btnUnlock.onclick = () => {
     if (window.visited && window.visited[place.id]) {
-      window.showToast?.("Allerede låst opp");
+      window.showToast?.(tt("ui.unlock.alreadyUnlocked", "Allerede låst opp"));
       return;
     }
 
