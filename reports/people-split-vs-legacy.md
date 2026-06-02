@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-02T10:40:57.273Z
+Generert: 2026-06-02T11:07:26.882Z
 
 ## Sammendrag
 
@@ -12,8 +12,8 @@ Generert: 2026-06-02T10:40:57.273Z
 - Legacy unike ID-er: **98**
 - Split people: **323**
 - Split unike ID-er: **323**
-- Split-filer: **20**
-- Runtime-/manifestfiler: **20**
+- Split-filer: **19**
+- Runtime-/manifestfiler: **19**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
@@ -40,10 +40,9 @@ Generert: 2026-06-02T10:40:57.273Z
 | data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
 | data/people/people_filantroper.json | ja | 9 | 0 |  |
 | data/people/people_naeringsliv.json | ja | 19 | 0 |  |
-| data/people/people_populaerkultur.json | ja | 3 | 0 |  |
 | data/people/politikk/oslo/people_politikk_oslo.json | ja | 22 | 0 |  |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | ja | 1 | 0 |  |
-| data/people/popkultur/oslo/people_popkultur_oslo.json | ja | 6 | 0 |  |
+| data/people/popkultur/oslo/people_popkultur_oslo.json | ja | 9 | 0 |  |
 | data/people/sport/oslo/people_sport_oslo.json | ja | 28 | 0 |  |
 | data/people/subkultur/oslo/people_subkultur_oslo.json | ja | 22 | 0 |  |
 | data/people/vitenskap/oslo/people_vitenskap_oslo.json | ja | 20 | 0 |  |
@@ -223,7 +222,7 @@ Generert: 2026-06-02T10:40:57.273Z
 - michael_sars | Michael Sars | data/people/natur/oslo/people_natur_oslo.json
 - mikkjel_fonhus | Mikkjel Fønhus | data/people/natur/oslo/people_natur_oslo.json
 - morten_harket | Morten Harket | data/people/musikk/oslo/people_musikk_oslo.json
-- morten_ramm | Morten Ramm | data/people/people_populaerkultur.json
+- morten_ramm | Morten Ramm | data/people/popkultur/oslo/people_popkultur_oslo.json
 - nicolai_rygg_sentralbank | Nicolai Rygg | data/people/people_naeringsliv.json
 - nicolay_august_andresen_bank | Nicolay August Andresen | data/people/people_naeringsliv.json
 - niels_henrik_abel | Niels Henrik Abel | data/people/vitenskap/oslo/people_vitenskap_oslo.json
@@ -306,13 +305,13 @@ Generert: 2026-06-02T10:40:57.273Z
 ## Feltforskjeller for ID-er som finnes begge steder
 
 - arne_naess | Arne Næss | placeId, desc, popupDesc | data/people/natur/oslo/people_natur_oslo.json
-- astrid_s | Astrid S | category | data/people/people_populaerkultur.json
+- astrid_s | Astrid S | category | data/people/popkultur/oslo/people_popkultur_oslo.json
 - cecilie_loveid | Cecilie Løveid | placeId | data/people/litteratur/oslo/people_litteratur_oslo.json
 - christian_frederik | Christian Frederik | category | data/people/historie/oslo/people_historie_oslo.json
 - eilert_sundt | Eilert Sundt | placeId | data/people/vitenskap/oslo/people_vitenskap_oslo.json
 - fridtjof_nansen | Fridtjof Nansen | category | data/people/historie/oslo/people_historie_oslo.json
 - grete_waitz | Grete Waitz | placeId, popupDesc | data/people/sport/oslo/people_sport_oslo.json
-- herman_flesvig | Herman Flesvig | category, placeId, year, desc, popupDesc, image, cardImage | data/people/people_populaerkultur.json
+- herman_flesvig | Herman Flesvig | category, placeId, year, desc, popupDesc, image, cardImage | data/people/popkultur/oslo/people_popkultur_oslo.json
 - klanen | Klanen (VIF) | placeId | data/people/sport/oslo/people_sport_oslo.json
 - marit_bjorgen | Marit Bjørgen | placeId | data/people/sport/oslo/people_sport_oslo.json
 - per_petterson | Per Petterson | category, placeId, year, desc, popupDesc, image, cardImage | data/people/litteratur/oslo/people_litteratur_oslo.json
