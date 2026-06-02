@@ -14,6 +14,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   function esc(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -325,7 +332,7 @@
         <header class="hg-modal-header">
         <p class="wk-entry-breadcrumb hg-modal-meta">${esc(breadcrumb || title)}</p>
         <div class="wk-entry-type-chip hg-modal-meta">${esc(type)}</div>
-        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || tUI("ui.wonderkammer.previousLevel", "forrige nivå"))}</button>` : ""}
+        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">${esc(tfUI("ui.wonderkammer.backToParent", "← Tilbake til {parent}", { parent: parentTitle || tUI("ui.wonderkammer.previousLevel", "forrige nivå") }))}</button>` : ""}
         <h2 class="hg-popup-name hg-modal-title">${esc(title)}</h2>
         </header>
         <div class="hg-modal-body">

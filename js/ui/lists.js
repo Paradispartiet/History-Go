@@ -11,6 +11,22 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function getActiveLeftBadgeFilter() {
   return window.HG_NEARBY_BADGE_FILTER || "all";
 }
@@ -60,7 +76,7 @@ function renderBadgeFilterEmpty(listEl, noun) {
     <div class="hg-empty-guide">
       <div class="hg-empty-guide-icon">🏅</div>
       <div class="hg-empty-guide-title">${tUI("ui.empty.noMatches", "Ingen treff")}</div>
-      <div class="hg-empty-guide-text">Ingen ${noun} passer med badgefilteret ${label}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
+      <div class="hg-empty-guide-text">${escapeHTML(tfUI("ui.filter.noMatchesForBadge", "Ingen {noun} passer med badgefilteret {label}. Trykk badgeknappen for å velge et annet badge eller alle.", { noun, label }))}</div>
     </div>
   `;
 }

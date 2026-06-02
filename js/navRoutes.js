@@ -15,6 +15,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   // --- konfig ---
   function getORS() {
   return {
@@ -141,7 +148,7 @@
       if (Number.isFinite(distM) && Number.isFinite(durS)) {
         const km = (distM / 1000).toFixed(1);
         const min = Math.round(durS / 60);
-        window.showToast?.(`Gangrute: ${km} km · ca ${min} min`);
+        window.showToast?.(tfUI("ui.routes.walkingRouteEstimate", "Gangrute: {km} km · ca {min} min", { km, min }));
       } else {
         window.showToast?.(tUI("ui.routes.walkingRouteShown", "Gangrute vist på kartet"));
       }
