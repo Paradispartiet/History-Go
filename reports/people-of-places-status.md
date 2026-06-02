@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-02T11:21:07.967Z
+Generert: 2026-06-02T21:21:18.279Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-02T11:21:07.967Z |
+| generatedAt | 2026-06-02T21:21:18.279Z |
 | peopleFilesRead | 19 |
 | totalPeople | 323 |
 | uniquePeopleIds | 323 |
@@ -14,8 +14,8 @@ Generert: 2026-06-02T11:21:07.967Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 3 |
 | peopleWithEmptyPlacesArray | 3 |
-| flatPeopleFiles | 2 |
-| geographicPeopleFiles | 17 |
+| flatPeopleFiles | 1 |
+| geographicPeopleFiles | 18 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -32,9 +32,9 @@ Generert: 2026-06-02T11:21:07.967Z
 | data/people/media/oslo/people_media_oslo.json | media | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 4 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 15 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/people_filantroper.json | filantroper | nei | 9 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
-| data/people/people_naeringsliv.json | naeringsliv | nei | 19 | 0 | 0 | 0 | 0 | 0 | 0 | source_place_id_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 9 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -54,7 +54,7 @@ Generert: 2026-06-02T11:21:07.967Z
 | litteratur | 34 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 17 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 19 | 1 | 0 | schema_review | Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split. |
+| naeringsliv | 19 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 16 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 22 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 10 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -64,11 +64,11 @@ Generert: 2026-06-02T11:21:07.967Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 17
-- Fortsatt flate filer: 2
+- Allerede geografisk strukturert: 18
+- Fortsatt flate filer: 1
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
-- Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema), data/people/people_naeringsliv.json (source_place_id_schema)
+- Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema)
 
 ### Anbefalte geografiske split-kandidater
 
@@ -114,9 +114,9 @@ Entries med svak/manglende places[] etter auditreglene: 8
 - data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=media
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=4/4; source_place_id=0/4; placesArray=4/4; categories=musikk
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=musikk
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=19/19; placesArray=19/19; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
 - data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; collectionGroup=9/9; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
-- data/people/people_naeringsliv.json: source_place_id_schema; schemaKind=source_place_id_schema; placeId=19/19; source_place_id=19/19; placesArray=19/19; categories=naeringsliv; schema_review: næringsliv blander source_place_id/placeId-mønstre
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=9/9; source_place_id=0/9; placesArray=9/9; categories=populaerkultur

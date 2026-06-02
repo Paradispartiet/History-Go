@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-02T11:21:07.967Z",
+  "generatedAt": "2026-06-02T21:21:18.279Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-02T11:21:07.967Z",
+    "generatedAt": "2026-06-02T21:21:18.279Z",
     "peopleFilesRead": 19,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
@@ -14,8 +14,8 @@
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 3,
     "peopleWithEmptyPlacesArray": 3,
-    "flatPeopleFiles": 2,
-    "geographicPeopleFiles": 17,
+    "flatPeopleFiles": 1,
+    "geographicPeopleFiles": 18,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -230,6 +230,28 @@
       ]
     },
     {
+      "path": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+      "listedInManifest": true,
+      "categoryGuess": "naeringsliv",
+      "geographicStructure": true,
+      "peopleCount": 19,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=19/19",
+        "source_place_id=19/19",
+        "placesArray=19/19",
+        "categories=naeringsliv",
+        "schema_review: source_place_id brukes utenfor særskilt næringsliv-schema"
+      ]
+    },
+    {
       "path": "data/people/natur/oslo/people_natur_oslo.json",
       "listedInManifest": true,
       "categoryGuess": "natur",
@@ -271,28 +293,6 @@
         "collectionGroup=9/9",
         "categories=by,kunst,litteratur,politikk,vitenskap",
         "ok: filantroper vurderes etter collectionGroup, ikke category"
-      ]
-    },
-    {
-      "path": "data/people/people_naeringsliv.json",
-      "listedInManifest": true,
-      "categoryGuess": "naeringsliv",
-      "geographicStructure": false,
-      "peopleCount": 19,
-      "duplicateIdsWithinFile": [],
-      "missingIdCount": 0,
-      "missingNameCount": 0,
-      "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
-      "schemaKind": "source_place_id_schema",
-      "schemaNotes": [
-        "schemaKind=source_place_id_schema",
-        "placeId=19/19",
-        "source_place_id=19/19",
-        "placesArray=19/19",
-        "categories=naeringsliv",
-        "schema_review: næringsliv blander source_place_id/placeId-mønstre"
       ]
     },
     {
@@ -537,14 +537,14 @@
       "category": "naeringsliv",
       "totalPeople": 19,
       "files": [
-        "data/people/people_naeringsliv.json"
+        "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json"
       ],
-      "flatFiles": [
-        "data/people/people_naeringsliv.json"
+      "flatFiles": [],
+      "geographicFiles": [
+        "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json"
       ],
-      "geographicFiles": [],
-      "suggestedNextAction": "schema_review",
-      "reason": "Kategorien bruker særskilt source_place_id-schema og bør vurderes før geografisk split."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     },
     {
       "category": "natur",
@@ -639,6 +639,7 @@
       "data/people/media/oslo/people_media_oslo.json",
       "data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json",
       "data/people/musikk/oslo/people_musikk_oslo.json",
+      "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
       "data/people/natur/oslo/people_natur_oslo.json",
       "data/people/politikk/oslo/people_politikk_oslo.json",
       "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
@@ -648,8 +649,7 @@
       "data/people/vitenskap/oslo/people_vitenskap_oslo.json"
     ],
     "stillFlat": [
-      "data/people/people_filantroper.json",
-      "data/people/people_naeringsliv.json"
+      "data/people/people_filantroper.json"
     ],
     "mixedCategoryStructure": [],
     "recommendedNextGeographicSplit": [],
@@ -659,11 +659,6 @@
         "path": "data/people/people_filantroper.json",
         "schemaKind": "collectionGroup_filantroper_schema",
         "reason": "Særskilt filschema bør vurderes før split."
-      },
-      {
-        "path": "data/people/people_naeringsliv.json",
-        "schemaKind": "source_place_id_schema",
-        "reason": "Særskilt source_place_id-schema bør vurderes før split."
       }
     ]
   },
@@ -895,6 +890,21 @@
       "deviations": []
     },
     {
+      "sourceFile": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=19/19",
+        "source_place_id=19/19",
+        "placesArray=19/19",
+        "categories=naeringsliv",
+        "schema_review: source_place_id brukes utenfor særskilt næringsliv-schema"
+      ],
+      "deviations": [
+        "schema_review: source_place_id brukes utenfor særskilt næringsliv-schema"
+      ]
+    },
+    {
       "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
@@ -919,21 +929,6 @@
         "ok: filantroper vurderes etter collectionGroup, ikke category"
       ],
       "deviations": []
-    },
-    {
-      "sourceFile": "data/people/people_naeringsliv.json",
-      "schemaKind": "source_place_id_schema",
-      "schemaNotes": [
-        "schemaKind=source_place_id_schema",
-        "placeId=19/19",
-        "source_place_id=19/19",
-        "placesArray=19/19",
-        "categories=naeringsliv",
-        "schema_review: næringsliv blander source_place_id/placeId-mønstre"
-      ],
-      "deviations": [
-        "schema_review: næringsliv blander source_place_id/placeId-mønstre"
-      ]
     },
     {
       "sourceFile": "data/people/politikk/oslo/people_politikk_oslo.json",
