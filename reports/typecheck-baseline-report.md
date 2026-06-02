@@ -1,25 +1,25 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T11:39:11.961Z
+- Generated at (UTC): 2026-06-02T11:48:04.451Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 485
-- Files with diagnostics: 80
+- Total diagnostic lines found: 421
+- Files with diagnostics: 73
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 19 | 158 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| other | 28 | 133 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/devConsole.js |
-| js/Civication/** | 23 | 117 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/merits-and-jobs.js |
-| js/profile.js | 1 | 31 | js/profile.js |
-| js/boot.js | 1 | 19 | js/boot.js |
+| js/ui/** | 18 | 138 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| js/Civication/** | 22 | 116 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
+| other | 24 | 111 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
+| js/profile.js | 1 | 26 | js/profile.js |
 | sw.js | 1 | 10 | sw.js |
-| js/state/** | 3 | 9 | js/state/openmode.js<br>js/state/persistence.js<br>js/state/state.js |
+| js/boot.js | 1 | 8 | js/boot.js |
 | js/hgKnowledgeEngine.js | 1 | 5 | js/hgKnowledgeEngine.js |
+| js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
 | root files | 1 | 1 | knowledge.js |
 | scripts/** | 1 | 1 | scripts/verify-civication-boot-smoke.js |
@@ -27,44 +27,44 @@
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/ui/place-card.js | 48 | js/ui/** |
+| js/ui/place-card.js | 41 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 31 | js/Civication/** |
-| js/profile.js | 31 | js/profile.js |
-| js/boot.js | 19 | js/boot.js |
+| js/profile.js | 26 | js/profile.js |
 | js/Civication/ui/CivicationMiniSectionsUI.js | 18 | js/Civication/** |
 | js/psychologyRoom.js | 16 | other |
-| js/ui/events.js | 16 | js/ui/** |
 | js/ui/mini-profile.js | 13 | js/ui/** |
 | js/Civication/systems/day/dayConsequencesUI.js | 11 | js/Civication/** |
-| js/ui/popup-utils.js | 11 | js/ui/** |
 | js/observations.js | 10 | other |
 | js/quizzes.js | 10 | other |
+| js/ui/events.js | 10 | js/ui/** |
 | js/ui/nature-card.js | 10 | js/ui/** |
+| js/ui/popup-utils.js | 10 | js/ui/** |
 | sw.js | 10 | sw.js |
-| js/console/diagnosticConsole.js | 9 | other |
 | js/console/init.js | 9 | other |
 | js/profileIdentity.js | 9 | other |
-| js/ui/left-panel.js | 9 | js/ui/** |
 | js/ui/search.js | 9 | js/ui/** |
 | js/Civication/ui/CivicationDashboardUI.js | 8 | js/Civication/** |
+| js/boot.js | 8 | js/boot.js |
+| js/leksikon/leksikon_loader.js | 8 | other |
+| js/ui/badges.js | 8 | js/ui/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
 | TS2339 | 351 |
-| TS2304 | 56 |
 | TS2345 | 13 |
-| TS2349 | 12 |
 | TS2322 | 10 |
 | TS2538 | 10 |
 | TS2451 | 6 |
-| TS2552 | 5 |
 | TS2362 | 4 |
+| TS2304 | 4 |
 | TS2769 | 4 |
 | TS2363 | 3 |
+| TS2349 | 3 |
 | TS2740 | 2 |
 | TS2739 | 2 |
 | TS2554 | 2 |
+| TS2552 | 2 |
 | TS2698 | 1 |
 | TS2488 | 1 |
 | TS2353 | 1 |
@@ -72,9 +72,9 @@
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (158 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (48), `js/Civication/ui/CivicationUI.js` (31), `js/profile.js` (31), `js/boot.js` (19), `js/Civication/ui/CivicationMiniSectionsUI.js` (18).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/Civication/**`, `js/profile.js`.
+1. Start with **js/ui/** (138 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (41), `js/Civication/ui/CivicationUI.js` (31), `js/profile.js` (26), `js/Civication/ui/CivicationMiniSectionsUI.js` (18), `js/psychologyRoom.js` (16).
+3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
@@ -85,7 +85,6 @@ js/Civication/core/civicationJobs.js(462,24): error TS2345: Argument of type '{ 
   Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
 js/Civication/core/civicationState.js(389,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationState.js(389,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/merits-and-jobs.js(193,22): error TS2304: Cannot find name 'catIdFromDisplay'.
 js/Civication/systems/civicationActivePositionRecovery.js(170,5): error TS2322: Type 'boolean' is not assignable to type 'CiviFn'.
 js/Civication/systems/civicationBlockedJobMessages.js(15,21): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationBlockedJobMessages.js(16,37): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
@@ -159,4 +158,5 @@ js/Civication/ui/CivicationMiniSectionsUI.js(118,59): error TS2339: Property 'ho
 js/Civication/ui/CivicationMiniSectionsUI.js(122,59): error TS2339: Property 'home' does not exist on type 'unknown'.
 js/Civication/ui/CivicationMiniSectionsUI.js(127,59): error TS2339: Property 'home' does not exist on type 'unknown'.
 js/Civication/ui/CivicationMiniSectionsUI.js(544,55): error TS2339: Property 'home' does not exist on type 'unknown'.
+js/Civication/ui/CivicationMiniSectionsUI.js(696,15): error TS2339: Property 'onclick' does not exist on type 'Element'.
 ```
