@@ -280,8 +280,8 @@
     const wrap = document.createElement("div");
     wrap.className = "hg-map-style-toggle";
     wrap.innerHTML = `
-      <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false">Kart</button>
-      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Detaljert</button>
+      <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false" data-i18n="ui.attr.map">Kart</button>
+      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false" data-i18n="ui.map.detailed">Detaljert</button>
     `;
 
     const onStyleTogglePress = (ev) => {

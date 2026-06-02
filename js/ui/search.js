@@ -6,6 +6,14 @@
 (function () {
   const MAX_PER_SECTION = 24;
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   function norm(value) {
     return String(value ?? "")
       .trim()
@@ -165,7 +173,7 @@
       <div class="search-item" role="button" tabindex="0" data-type="place" data-place="${html(place.id)}">
         ${badge(place.category)}
         <div class="title">${html(place.name)}</div>
-        <div class="meta">${html(getCategory(place.category)?.name || place.category || "Sted")}${place.year ? ` · ${html(place.year)}` : ""}</div>
+        <div class="meta">${html(getCategory(place.category)?.name || place.category || tUI("ui.search.placeFallback", "Sted"))}${place.year ? ` · ${html(place.year)}` : ""}</div>
       </div>
     `);
 
@@ -173,7 +181,7 @@
       <div class="search-item" role="button" tabindex="0" data-type="person" data-person="${html(person.id)}">
         ${badge(person.category)}
         <div class="title">${html(person.name)}</div>
-        <div class="meta">${html(getCategory(person.category)?.name || person.category || "Person")}${person.year ? ` · ${html(person.year)}` : ""}</div>
+        <div class="meta">${html(getCategory(person.category)?.name || person.category || tUI("ui.search.personFallback", "Person"))}${person.year ? ` · ${html(person.year)}` : ""}</div>
       </div>
     `);
 
@@ -181,14 +189,14 @@
       <div class="search-item" role="button" tabindex="0" data-type="category" data-category="${html(cat.id)}">
         ${badge(cat.id)}
         <div class="title">${html(cat.name)}</div>
-        <div class="meta">Kategori</div>
+        <div class="meta">${html(tUI("ui.search.category", "Kategori"))}</div>
       </div>
     `);
 
     box.innerHTML = `
-      ${section("Steder", placeRows)}
-      ${section("Personer", peopleRows)}
-      ${section("Kategorier", categoryRows)}
+      ${section(tUI("ui.search.places", "Steder"), placeRows)}
+      ${section(tUI("ui.search.people", "Personer"), peopleRows)}
+      ${section(tUI("ui.search.categories", "Kategorier"), categoryRows)}
     `;
   }
 

@@ -65,7 +65,7 @@
 
   <!-- EGET KARTLAG -->
   <div id="mapLayer" aria-hidden="false">
-    <div id="map" aria-label="Kart"></div>
+    <div id="map" aria-label="Kart" data-hg-i18n-aria-label="ui.attr.map"></div>
   </div>
 
   <!-- APP SHELL -->
@@ -78,16 +78,16 @@
   
   <div class="top-actions">
 
-    <select id="languageSelect" class="top-lang-select" aria-label="Language" title="Språk" style="max-width:120px; font-size:1.15rem; padding:4px 8px;">
+    <select id="languageSelect" class="top-lang-select" aria-label="Language" title="Språk" data-hg-i18n-aria-label="ui.attr.language" data-hg-i18n-title="ui.language.label" style="max-width:120px; font-size:1.15rem; padding:4px 8px;">
       <option value="nb" aria-label="Norsk" title="Norsk">🇳🇴</option>
       <option value="en" aria-label="English" title="English">🇬🇧</option>
       <option value="pt" aria-label="Português" title="Português">🇧🇷🇵🇹</option>
     </select>
 
-    <a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil">
-      <span id="miniName" class="mpt-name">Utforsker #182</span>
+    <a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil" data-hg-i18n-aria-label="ui.attr.profile">
+      <span id="miniName" class="mpt-name" data-i18n="ui.profile.defaultExplorer">Utforsker #182</span>
 
-      <span class="mpt-badges" aria-label="Merker">
+      <span class="mpt-badges" aria-label="Merker" data-hg-i18n-aria-label="ui.tabs.badges">
         <span class="mpt-badgeIcon" aria-hidden="true"></span>
         <span id="linkBadges" class="mpt-count">0</span>
       </span>
@@ -119,17 +119,19 @@
             class="iconbtn"
             type="button"
             aria-label="Lesespor"
-            title="Lesespor">
+            title="Lesespor"
+            data-hg-i18n-aria-label="ui.nav.readingTracks"
+            data-hg-i18n-title="ui.nav.readingTracks">
       📚
     </button>
   
-    <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus" data-i18n="ui.map.show">Se kart</button>
+    <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus" data-hg-i18n-aria-label="ui.attr.mapMode" data-hg-i18n-title="ui.attr.mapMode" data-i18n="ui.map.show">Se kart</button>
 
-    <input id="globalSearch" type="search" placeholder="Søk…" autocomplete="off">
+    <input id="globalSearch" type="search" placeholder="Søk…" data-hg-i18n-placeholder="ui.attr.search" autocomplete="off">
 
-    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
+    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus" data-hg-i18n-title="ui.attr.positionStatus">…</span>
 
-    <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all">🔓</button>
+    <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all" data-hg-i18n-aria-label="ui.attr.unlockAll" data-hg-i18n-title="ui.attr.unlockAll">🔓</button>
       
     <label class="toggle">
       <input id="openToggle" type="checkbox" />
@@ -147,23 +149,23 @@
   
   <!-- KART -->
   <div class="map-controls">
-    <button id="btnCenter" title="Sentrer">⌖</button>
-    <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
+    <button id="btnCenter" title="Sentrer" data-hg-i18n-title="ui.attr.center">⌖</button>
+    <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart" data-hg-i18n-title="ui.attr.closeMap" data-hg-i18n-aria-label="ui.attr.closeMap">✕</button>
   </div>
 
   <!-- nearbylistcontainer -->
   <div id="nearbyListContainer" class="leftpanel">
 
     <div class="leftpanel-head">
-      <div class="leftpanel-title">Utforsk</div>
+      <div class="leftpanel-title" data-i18n="ui.static.explore">Utforsk</div>
 
       <div class="nearby-row1">
-        <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
+        <div class="nearby-tabs" role="tablist" aria-label="Utforsk" data-hg-i18n-aria-label="ui.static.explore">
 
           <button id="nearbyFilterBtn"
                   class="nearby-filter-icon"
                   type="button"
-                  aria-label="Filter"></button>
+                  aria-label="Filter" data-hg-i18n-aria-label="ui.attr.filter"></button>
 
           <button class="nearby-tab is-active"
                   data-leftmode="nearby"
@@ -195,8 +197,9 @@
         <select id="leftPanelMode"
                 class="leftpanel-select"
                 aria-label="Velg visning"
+                data-hg-i18n-aria-label="ui.attr.chooseView"
                 style="display:none">
-          <option value="nearby" selected>Nærmeste</option>
+          <option value="nearby" selected data-i18n="ui.static.nearest">Nærmeste</option>
           <option value="people" data-i18n="ui.tabs.people">Folk</option>
           <option value="nature" data-i18n="ui.tabs.nature">Natur</option>
           <option value="routes" data-i18n="ui.tabs.routes">Ruter</option>
@@ -242,7 +245,7 @@
 
   <button id="pcCollapseBtn"
           class="pc-collapse-btn"
-          aria-label="Minimer">▾</button>
+          aria-label="Minimer" data-hg-i18n-aria-label="ui.attr.minimize">▾</button>
 
   <div class="pc-body">
 
@@ -257,7 +260,7 @@
   <div class="pc-grid">
 
     <!-- 1: FrontcardImage -->
-    <div class="pc-frontcard" id="pcFrontCardFlip" role="button" tabindex="0" aria-label="Vis quizkort">
+    <div class="pc-frontcard" id="pcFrontCardFlip" role="button" tabindex="0" aria-label="Vis quizkort" data-hg-i18n-aria-label="ui.attr.showQuizCard">
       <div class="pc-card-flip-inner">
         <div class="pc-card-face pc-card-face-front">
           <img id="pcFrontImage" src="" alt="">
@@ -282,10 +285,10 @@
       </div>
 
       <!-- 4: På stedet -->
-      <div class="pc-quad pc-events-quad" id="pcEventsBox" aria-label="Det som skjer her">
+      <div class="pc-quad pc-events-quad" id="pcEventsBox" aria-label="Det som skjer her" data-hg-i18n-aria-label="ui.attr.onSite">
         <div class="pc-events-head">
-          <span class="pc-events-title">På stedet</span>
-          <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til">＋</button>
+          <span class="pc-events-title" data-i18n="ui.static.onSite">På stedet</span>
+          <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til" data-hg-i18n-aria-label="ui.attr.add">＋</button>
         </div>
       </div>
     </div>
@@ -315,6 +318,7 @@
       id="pcExpandBtn"
       class="pc-collapse-btn pc-expand-btn"
       aria-label="Åpne"
+      data-hg-i18n-aria-label="ui.attr.open"
       type="button"
     >▴</button>
   </div>
@@ -326,9 +330,9 @@
     <button id="pcQuiz" class="primary" data-i18n="ui.place.takeQuiz">Ta quiz</button>
     <button id="pcUnlock" class="primary" data-i18n="ui.place.unlock">Lås opp</button>
 
-    <button id="pcRoute" class="iconbtn" aria-label="Rute"></button>
-    <button id="pcObserve" class="iconbtn" aria-label="Observer"></button>
-    <button id="pcNote" class="iconbtn" aria-label="Notat"></button>
+    <button id="pcRoute" class="iconbtn" aria-label="Rute" data-hg-i18n-aria-label="ui.place.route"></button>
+    <button id="pcObserve" class="iconbtn" aria-label="Observer" data-hg-i18n-aria-label="ui.place.observe"></button>
+    <button id="pcNote" class="iconbtn" aria-label="Notat" data-hg-i18n-aria-label="ui.place.note"></button>
   </div>
 
 </div>
@@ -346,13 +350,13 @@
   <!-- Badge-modal -->
   <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
     <div class="modal-content">
-      <img class="badge-img" src="" alt="Merke">
+      <img class="badge-img" src="" alt="Merke" data-hg-i18n-alt="ui.attr.badge">
       <h3 class="badge-title"></h3>
       <p class="badge-level"></p>
       <div class="badge-progress"><div class="badge-progress-bar"></div></div>
       <p class="badge-progress-text"></p>
       <ul class="badge-quizzes"></ul>
-      <button class="close-btn">Lukk</button>
+      <button class="close-btn" data-i18n="ui.quiz.close">Lukk</button>
     </div>
   </div>
 
