@@ -13,6 +13,23 @@
   "use strict";
 
   const STACK_ID = "natureUnlockStack";
+
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
   const AUTO_DISMISS_MS = 5500; // litt lenger enn andre — dette er en stor milepæl
 
   function ensureStack() {
@@ -30,7 +47,7 @@
     const stack = ensureStack();
 
     const categoryName = String(detail?.categoryName || detail?.categoryId || "Kategori").trim();
-    const tierLabel = String(detail?.newTierLabel || "").trim() || "Nytt nivå";
+    const tierLabel = String(detail?.newTierLabel || "").trim() || tUI("ui.badge.newLevel", "Nytt nivå");
     const badgeImage = String(detail?.badgeImage || "").trim();
 
     const card = document.createElement("div");
@@ -48,9 +65,9 @@
         <div class="nature-unlock-title"></div>
         <div class="nature-unlock-latin"></div>
       </div>
-      <button class="nature-unlock-close" type="button" aria-label="Lukk">✕</button>
+      <button class="nature-unlock-close" type="button" aria-label="${escapeHtml(tUI("ui.attr.close", "Lukk"))}">✕</button>
     `;
-    card.querySelector(".nature-unlock-kicker").textContent = "🎓 Nytt nivå oppnådd";
+    card.querySelector(".nature-unlock-kicker").textContent = tUI("ui.badge.newLevelAchieved", "🎓 Nytt nivå oppnådd");
     card.querySelector(".nature-unlock-title").textContent = tierLabel;
     card.querySelector(".nature-unlock-latin").textContent = categoryName;
 
