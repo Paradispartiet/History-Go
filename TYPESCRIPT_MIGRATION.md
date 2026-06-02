@@ -777,3 +777,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Wrapped the existing `.src` assignment values in `String(...)` for the front-image fallback chain and the mini-preview `place.image` fallback so TypeScript sees string values without changing the existing image priority or fallback order.
 - Runtime behavior, UI output, DOM structure, CSS, data, schema declarations, and `tsconfig.json` remain unchanged.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1526, `js/ui/place-card.js` diagnostics are now 136, and `js/ui/**` diagnostics are now 499.
+
+## Phase 92: place-card unlock button local cast pass
+
+- Followed Phase 91 with the next smallest safe local DOM target from the Phase 90 `js/ui/place-card.js` audit.
+- Added only a narrow local `HTMLButtonElement|null` cast for the existing `btnUnlock` / unlock-button node so the current `.disabled` usage is typed as a button property.
+- Unlock logic, UI output, DOM structure, selectors, IDs/classes, CSS, data, schema declarations, and `tsconfig.json` remain unchanged.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1520, and `js/ui/place-card.js` diagnostics are now 130.

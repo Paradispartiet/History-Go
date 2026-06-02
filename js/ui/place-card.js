@@ -255,7 +255,7 @@ const addEventBtn       = document.getElementById("pcAddEvent");
   
 const btnInfo   = document.getElementById("pcInfo");
 const btnQuiz   = document.getElementById("pcQuiz");
-const btnUnlock = document.getElementById("pcUnlock");
+const btnUnlock = /** @type {HTMLButtonElement|null} */ (document.getElementById("pcUnlock"));
 const btnRoute  = document.getElementById("pcRoute");
 const btnNote   = document.getElementById("pcNote");
 const btnObs    = document.getElementById("pcObserve");
