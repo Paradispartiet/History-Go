@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T10:47:41.606Z
+- Generated at (UTC): 2026-06-02T10:59:02.383Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 1518
+- Total diagnostic lines found: 1517
 - Files with diagnostics: 180
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | other | 73 | 514 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 493 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/Civication/** | 64 | 263 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/identityCompass.js |
+| js/Civication/** | 64 | 262 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/identityCompass.js |
 | js/boot.js | 1 | 67 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/profile.js | 1 | 57 | js/profile.js |
@@ -65,7 +65,6 @@
 | TS2362 | 4 |
 | TS2538 | 4 |
 | TS2363 | 3 |
-| TS2769 | 2 |
 | TS2740 | 2 |
 | TS2739 | 2 |
 | TS2554 | 2 |
@@ -73,6 +72,7 @@
 | TS2488 | 1 |
 | TS2353 | 1 |
 | TS2741 | 1 |
+| TS2769 | 1 |
 
 ## Priority recommendations (mechanical)
 1. Start with **other (514 diagnostics)** because it currently has the highest baseline volume.
@@ -84,21 +84,9 @@
 ```
 > history-go@0.0.0 typecheck
 > tsc -p tsconfig.json
-js/Civication/core/civicationJobs.js(323,15): error TS2769: No overload matches this call.
-  Overload 1 of 2, '(...items: ConcatArray<{ status: string; createdAt: number; event: any; }>[]): { status: string; createdAt: number; event: any; }[]', gave the following error.
-    Argument of type '{ event?: { id?: string | number; }; }[]' is not assignable to parameter of type 'ConcatArray<{ status: string; createdAt: number; event: any; }>'.
-      The types returned by 'slice(...)' are incompatible between these types.
-        Type '{ event?: { id?: string | number; }; }[]' is not assignable to type '{ status: string; createdAt: number; event: any; }[]'.
-          Type '{ event?: { id?: string | number; }; }' is missing the following properties from type '{ status: string; createdAt: number; event: any; }': status, createdAt
-  Overload 2 of 2, '(...items: ({ status: string; createdAt: number; event: any; } | ConcatArray<{ status: string; createdAt: number; event: any; }>)[]): { status: string; createdAt: number; event: any; }[]', gave the following error.
-    Argument of type '{ event?: { id?: string | number; }; }[]' is not assignable to parameter of type '{ status: string; createdAt: number; event: any; } | ConcatArray<{ status: string; createdAt: number; event: any; }>'.
-      Type '{ event?: { id?: string | number; }; }[]' is not assignable to type 'ConcatArray<{ status: string; createdAt: number; event: any; }>'.
-        The types returned by 'slice(...)' are incompatible between these types.
-          Type '{ event?: { id?: string | number; }; }[]' is not assignable to type '{ status: string; createdAt: number; event: any; }[]'.
-            Type '{ event?: { id?: string | number; }; }' is missing the following properties from type '{ status: string; createdAt: number; event: any; }': status, createdAt
-js/Civication/core/civicationJobs.js(429,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
+js/Civication/core/civicationJobs.js(443,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
   Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
-js/Civication/core/civicationJobs.js(448,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
+js/Civication/core/civicationJobs.js(462,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
   Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
 js/Civication/core/civicationState.js(389,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationState.js(389,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
@@ -162,4 +150,16 @@ js/Civication/systems/day/dayConsequences.js(309,17): error TS2339: Property 'Ci
 js/Civication/systems/day/dayConsequences.js(311,12): error TS2339: Property 'CivicationChoiceDirector' does not exist on type 'Window & typeof globalThis'.
 js/Civication/systems/day/dayConsequencesUI.js(12,67): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/systems/day/dayConsequencesUI.js(75,45): error TS2339: Property 'trust' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(76,43): error TS2339: Property 'trust' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(83,64): error TS2339: Property 'flags' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(87,50): error TS2339: Property 'integrity' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(88,51): error TS2339: Property 'visibility' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(89,49): error TS2339: Property 'economicRoom' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(90,49): error TS2339: Property 'autonomy' does not exist on type 'unknown'.
+js/Civication/systems/day/dayConsequencesUI.js(128,52): error TS2339: Property '__civiConsequencesWrapped' does not exist on type 'never'.
+js/Civication/systems/day/dayConsequencesUI.js(131,28): error TS2339: Property 'apply' does not exist on type 'never'.
+js/Civication/systems/day/dayConsequencesUI.js(137,5): error TS2740: Type '{ (...args: any[]): any; __civiConsequencesWrapped: boolean; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 208 more.
+js/Civication/systems/day/dayFactionChoiceSystem.js(61,10): error TS2339: Property 'CivicationFactionChoiceSystem' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/day/dayFactionConflictSystem.js(89,24): error TS2339: Property 'CivicationAllianceSystem' does not exist on type 'Window & typeof globalThis'.
+js/Civication/systems/day/dayFactionConflictSystem.js(116,25): error TS2339: Property 'score' does not exist on type 'never'.
 ```

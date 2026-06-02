@@ -303,6 +303,17 @@
     return !!current[String(offerKey || "")];
   }
 
+  /**
+   * @typedef {object} InboxEnvelope
+   * @property {string=} status
+   * @property {number=} createdAt
+   * @property {({ id?: string | number } | Record<string, unknown> | unknown)=} event
+   */
+
+  /**
+   * @param {unknown} eventObj
+   * @returns {InboxEnvelope}
+   */
   function makeInboxEnvelope(eventObj) {
     return {
       status: "pending",
@@ -315,8 +326,11 @@
     const valid = Array.isArray(events) ? events.filter(Boolean) : [];
     if (!valid.length) return;
 
-    const existing = /** @type {{ event?: { id?: string | number } }[]} */ (window.HG_CiviEngine?.getInbox?.() || []);
-    const existingIds = new Set(existing.map(x => String(x?.event?.id || "")).filter(Boolean));
+    const existing = /** @type {InboxEnvelope[]} */ (window.HG_CiviEngine?.getInbox?.() || []);
+    const existingIds = new Set(existing.map(x => {
+      const event = /** @type {{ id?: string | number } | undefined} */ (x?.event);
+      return String(event?.id || "");
+    }).filter(Boolean));
     const next = valid
       .filter(ev => !existingIds.has(String(ev.id || "")))
       .map(makeInboxEnvelope)
