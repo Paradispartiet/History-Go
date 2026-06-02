@@ -114,12 +114,16 @@ function getCompletedPlaceCount() {
 // ------------------------------------------------------------
 function renderProfileCard() {
   const streak = Number(localStorage.getItem("user_streak") || 0);
-  const userName = localStorage.getItem("user_name") || _t("ui.profile.defaultExplorer", "Utforsker #182");
+  const userName =
+    window.HGUserProfile?.getDisplayName?.() ||
+    localStorage.getItem("user_name") ||
+    "Logg inn";
 
   const placeCount = getCompletedPlaceCount();
   const quizUnitCount = getCompletedQuizUnitCount();
 
-  document.getElementById("profileName").textContent = userName;
+  const profileNameEl = document.getElementById("profileName");
+  if (profileNameEl) profileNameEl.textContent = userName;
   document.getElementById("statVisited").textContent = String(placeCount);
   document.getElementById("statQuizzes").textContent = String(quizUnitCount);
   document.getElementById("statStreak").textContent = String(streak);
@@ -1068,7 +1072,10 @@ function renderAhaSummary() {
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
 function openProfileModal() {
-  const name = localStorage.getItem("user_name") || _t("ui.profile.defaultExplorer", "Utforsker #182");
+  const name =
+    window.HGUserProfile?.getDisplayName?.() ||
+    localStorage.getItem("user_name") ||
+    "Logg inn";
   const color = localStorage.getItem("user_color") || "#f6c800";
 
   const modal = document.createElement("div");
@@ -1089,7 +1096,7 @@ function openProfileModal() {
 
   /** @type {HTMLElement} */ (modal.querySelector("#cancelProfile")).onclick = () => modal.remove();
   /** @type {HTMLElement} */ (modal.querySelector("#saveProfile")).onclick = () => {
-    const newName = /** @type {HTMLInputElement} */ (modal.querySelector("#newName")).value.trim() || _t("ui.profile.defaultExplorer", "Utforsker #182");
+    const newName = /** @type {HTMLInputElement} */ (modal.querySelector("#newName")).value.trim() || "Logg inn";
     const newColor = /** @type {HTMLInputElement} */ (modal.querySelector("#newColor")).value;
 
     localStorage.setItem("user_name", newName);
@@ -1163,8 +1170,44 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("updateProfileMarkers", updateProfileMarkers);
 
     // UI-knapper
-    document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("https://paradispartiet.github.io/AHA-EchoNet/", "_blank"));
+    if (!window.HGUserProfile?.openEditor) {
+      document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+    }
+
+    const btnOpenAHA = document.getElementById("btnOpenAHA");
+    const refreshBtnOpenAHA = async (stateOverride = null) => {
+      if (!btnOpenAHA) return;
+      try {
+        const state = stateOverride || await window.HistoryGoAHAAuth?.refresh?.();
+        btnOpenAHA.textContent = state?.signed_in ? "AHA koblet" : "Logg inn";
+      } catch {
+        btnOpenAHA.textContent = "Logg inn";
+      }
+    };
+
+    btnOpenAHA?.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (typeof window.HGUserProfile?.openLoginPopup === "function") {
+        window.HGUserProfile.openLoginPopup();
+        return;
+      }
+
+      if (typeof window.HistoryGoAHAAuth?.openAhaLogin === "function") {
+        window.HistoryGoAHAAuth.openAhaLogin();
+        return;
+      }
+
+      window.location.href = "https://paradispartiet.github.io/AHA-EchoNet/?auth=login&source=historygo";
+    });
+    refreshBtnOpenAHA();
+    window.addEventListener("aha:auth-ready", (/** @type {CustomEvent} */ event) => {
+      refreshBtnOpenAHA(event.detail || { signed_in: false });
+    });
+    window.addEventListener("historygo:aha-readback", (/** @type {CustomEvent} */ event) => {
+      refreshBtnOpenAHA({ signed_in: Boolean(event.detail?.profile_id || localStorage.getItem("aha_profile_id")) });
+    });
 
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {

@@ -1,11 +1,11 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T22:27:45.632Z
+- Generated at (UTC): 2026-06-02T22:32:30.061Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 160
-- Files with diagnostics: 55
+- Total diagnostic lines found: 162
+- Files with diagnostics: 56
 - Groups with diagnostics: 10
 - Unparsed/unknown diagnostic lines: 0
 
@@ -13,8 +13,8 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | js/ui/** | 12 | 51 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/dom.js |
+| other | 18 | 45 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
 | js/Civication/** | 18 | 43 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
-| other | 17 | 43 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
 | js/boot.js | 1 | 8 | js/boot.js |
 | js/hgKnowledgeEngine.js | 1 | 5 | js/hgKnowledgeEngine.js |
 | js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
@@ -50,7 +50,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 104 |
+| TS2339 | 106 |
 | TS2345 | 11 |
 | TS2322 | 10 |
 | TS2451 | 6 |
@@ -71,7 +71,7 @@
 ## Priority recommendations (mechanical)
 1. Start with **js/ui/** (51 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/boot.js` (8), `js/Civication/systems/day/dayPatches.js` (6), `js/console/diagnosticConsole.js` (6), `js/i18n.js` (6).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/boot.js`.
+3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/Civication/**`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)

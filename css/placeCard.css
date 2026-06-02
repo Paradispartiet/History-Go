@@ -84,13 +84,14 @@
 /* Grid */
 #placeCard .pc-grid{
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 320px minmax(0, 1fr);
   grid-template-rows: auto auto;
 
   column-gap: 16px;
   row-gap: 18px;
 
   padding: 22px 18px 12px;
+  box-sizing: border-box;
 }
 
 .pc-frontcard{
@@ -162,10 +163,7 @@
   align-self: stretch;
   justify-content: space-between;
   width: 100%;
-  max-width: calc(
-    var(--pc-round-size) + var(--pc-round-size) + var(--pc-round-size) +
-    var(--pc-round-gap) + var(--pc-round-gap)
-  );
+  min-width: 0;
   height: 100%;
   min-height: 0;
 }
@@ -178,12 +176,14 @@
   gap: var(--pc-round-gap);
 
   width: 100%;
+  min-width: 0;
   transform: none;
   margin-top: 0;
 }
 
 .pc-events-quad{
   width: 100%;
+  min-width: 0;
   min-height: 44px;
   max-height: 56px;
   padding: 8px 12px;
@@ -252,6 +252,7 @@
 /* Rundinger */
 .pc-round{
   width: 100%;
+  min-width: 0;
   height: auto;
 
   aspect-ratio: 1 / 1;
@@ -357,7 +358,7 @@
 }
 
 body.hg-app.hg-phone #placeCard{
-  --pc-round-size: 74px;
+  --pc-round-size: 79px;
   --pc-round-gap: 5px;
   --pc-text-inset: 12px;
   --pc-text-h: 184px;

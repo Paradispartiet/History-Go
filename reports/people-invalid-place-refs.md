@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T11:21:07.665Z
+Generated: 2026-06-02T21:43:08.534Z
 
 ## Sammendrag
 - People-filer lest: **19**
@@ -9,7 +9,7 @@ Generated: 2026-06-02T11:21:07.665Z
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **2**
-- Duplikate interne place-referanser: **314**
+- Duplikate interne place-referanser: **321**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -23,6 +23,7 @@ Generated: 2026-06-02T11:21:07.665Z
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
 - data/people/by/oslo/people_by_oslo.json :: christian_heinrich_grosch (Christian Heinrich Grosch) -> universitetsplassen x2
 - data/people/by/oslo/people_by_oslo.json :: harald_hals (Harald Hals) -> ullevål_hageby x2
+- data/people/by/oslo/people_by_oslo.json :: arne_korsmo (Arne Korsmo) -> vigelandsparken x2
 - data/people/by/oslo/people_by_oslo.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: arnstein_arneberg (Arnstein Arneberg) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: magnus_poulsson (Magnus Poulsson) -> oslo_radhus x2
@@ -80,6 +81,7 @@ Generated: 2026-06-02T11:21:07.665Z
 - data/people/historie/oslo/people_historie_oslo.json :: jens_bjelke (Jens Bjelke) -> toyen_torg x2
 - data/people/historie/oslo/people_historie_oslo.json :: henrik_bjelke (Henrik Bjelke) -> toyen_torg x2
 - data/people/historie/oslo/people_historie_oslo.json :: kristine_bonnevie (Kristine Bonnevie) -> toyen_torg x2
+- data/people/historie/oslo/people_historie_oslo.json :: wilhelm_von_hanno (Wilhelm von Hanno) -> gronland_kirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman x2
 - data/people/historie/oslo/people_historie_oslo.json :: petter_moen (Petter Moen) -> mollergata_19 x2
 - data/people/historie/oslo/people_historie_oslo.json :: biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke x2
@@ -139,25 +141,25 @@ Generated: 2026-06-02T11:21:07.665Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
-- data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn) -> grunnlovsbygget_bankplassen x2
-- data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg) -> grunnlovsbygget_bankplassen x2
-- data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard) -> grunnlovsbygget_bankplassen x2
-- data/people/people_naeringsliv.json :: sam_eyde_industriutbygger (Sam Eyde) -> akerselva_industri x2
-- data/people/people_naeringsliv.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland) -> akerselva_industri x2
-- data/people/people_naeringsliv.json :: christen_smith_schous_bryggeri (Christen Smith) -> schous_bryggeri x2
-- data/people/people_naeringsliv.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes) -> ringnes_bryggeri x2
-- data/people/people_naeringsliv.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard) -> oslo_posthus x2
-- data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke) -> lilleborg_fabrikker x2
-- data/people/people_naeringsliv.json :: thomas_heftye_bank_og_byutvikling (Thomas Heftye) -> grunnlovsbygget_bankplassen x2
-- data/people/people_naeringsliv.json :: olav_thon_eiendom_og_handel (Olav Thon) -> aker_brygge x2
-- data/people/people_naeringsliv.json :: petter_stordalen_hotell_og_service (Petter Stordalen) -> karl_johan x2
-- data/people/people_naeringsliv.json :: stein_erik_hagen_handel (Stein Erik Hagen) -> aker_brygge x2
-- data/people/people_naeringsliv.json :: amund_ringnes_bryggeri (Amund Ringnes) -> ringnes_bryggeri x2
-- data/people/people_naeringsliv.json :: herman_schou_bryggeri (Herman Schou) -> schous_bryggeri x2
-- data/people/people_naeringsliv.json :: fred_olsen_shipping (Fred. Olsen) -> akershus_kaier x2
-- data/people/people_naeringsliv.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen) -> akershus_kaier x2
-- data/people/people_naeringsliv.json :: anders_jahre_shipping (Anders Jahre) -> akershus_kaier x2
-- data/people/people_naeringsliv.json :: nicolay_august_andresen_bank (Nicolay August Andresen) -> grunnlovsbygget_bankplassen x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn) -> grunnlovsbygget_bankplassen x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: nicolai_rygg_sentralbank (Nicolai Rygg) -> grunnlovsbygget_bankplassen x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard) -> grunnlovsbygget_bankplassen x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: sam_eyde_industriutbygger (Sam Eyde) -> akerselva_industri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland) -> akerselva_industri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christen_smith_schous_bryggeri (Christen Smith) -> schous_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes) -> ringnes_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard) -> oslo_posthus x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke) -> lilleborg_fabrikker x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: thomas_heftye_bank_og_byutvikling (Thomas Heftye) -> grunnlovsbygget_bankplassen x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: olav_thon_eiendom_og_handel (Olav Thon) -> aker_brygge x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: petter_stordalen_hotell_og_service (Petter Stordalen) -> karl_johan x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: stein_erik_hagen_handel (Stein Erik Hagen) -> aker_brygge x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: amund_ringnes_bryggeri (Amund Ringnes) -> ringnes_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: herman_schou_bryggeri (Herman Schou) -> schous_bryggeri x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: fred_olsen_shipping (Fred. Olsen) -> akershus_kaier x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: wilhelm_wilhelmsen_shipping (Wilhelm Wilhelmsen) -> akershus_kaier x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anders_jahre_shipping (Anders Jahre) -> akershus_kaier x2
+- data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: nicolay_august_andresen_bank (Nicolay August Andresen) -> grunnlovsbygget_bankplassen x2
 - data/people/people_filantroper.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
@@ -255,6 +257,11 @@ Generated: 2026-06-02T11:21:07.665Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: tommy_tee (Tommy Tee) -> youngstorget x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: warlocks_oslo (Warlocks) -> torggata x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_birkeland (Kristian Birkeland) -> observatoriet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: may_britt_moser (May-Britt Moser) -> nobelinstituttet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: edvard_moser (Edvard Moser) -> nobelinstituttet x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: peter_waage (Peter Waage) -> universitetets_gamle_kjemi x2
+- data/people/vitenskap/oslo/people_vitenskap_oslo.json :: cato_guldberg (Cato Maximilian Guldberg) -> universitetets_gamle_kjemi x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: eilert_sundt (Eilert Sundt) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: niels_henrik_abel (Niels Henrik Abel) -> abelhaugen x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: sophus_lie (Sophus Lie) -> universitetets_gamle_hovedbygning x2

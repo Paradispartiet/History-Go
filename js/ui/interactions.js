@@ -6,11 +6,17 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
 function handlePersonChat(person) {
   // Enkel V1: ett åpent spørsmål + lagring
   const userText = window.prompt(
-    `Du snakker med ${person.name}.\n\n` +
-    `Hva tenker du når du ser livet og tiden til denne personen?`
+    tfUI("ui.interactions.talkPrompt", "Du snakker med {name}. Skriv én setning eller tanke du vil ta vare på:", { name: person.name })
   );
   if (!userText) return;
 
@@ -24,12 +30,12 @@ function handlePersonChat(person) {
   });
   savePersonDialogs();
 
-  showToast(`Samtale med ${person.name} lagret 💬`);
+  showToast(tfUI("ui.interactions.conversationSaved", "Samtale med {name} lagret 💬", { name: person.name }));
 }
 
 function handlePersonNote(person) {
   const noteText = window.prompt(
-    `Notat om ${person.name}.\n\n` +
+    `${tfUI("ui.notes.noteAbout", "Notat om {name}", { name: person.name })}.\n\n` +
     tUI("ui.notes.promptOneSentence", "Skriv én setning eller tanke du vil ta vare på:")
   );
   if (!noteText) return;
@@ -42,7 +48,7 @@ function handlePersonNote(person) {
     personId: person.id,
     placeId: null,
     categoryId: (person.tags && person.tags[0]) || null,
-    title: `Notat om ${person.name}`,
+    title: tfUI("ui.notes.noteAboutPerson", "Notat om {person}", { person: person.name }),
     text: noteText,
     feeling: null,                // plass til følelser/valens senere
     createdAt: new Date().toISOString(),
@@ -50,12 +56,12 @@ function handlePersonNote(person) {
   });
   saveUserNotes();
 
-  showToast(`Notat om ${person.name} lagret 📝`);
+  showToast(tfUI("ui.notes.noteSaved", "Notat om {name} lagret 📝", { name: person.name }));
 }
 
 function handlePlaceNote(place) {
   const noteText = window.prompt(
-    `Notat om ${place.name}.\n\n${tUI("ui.notes.promptOneSentence", "Skriv én setning eller tanke du vil ta vare på:")}`
+    `${tfUI("ui.notes.noteAbout", "Notat om {name}", { name: place.name })}.\n\n${tUI("ui.notes.promptOneSentence", "Skriv én setning eller tanke du vil ta vare på:")}`
   );
   if (!noteText) return;
 
@@ -67,14 +73,14 @@ function handlePlaceNote(place) {
     personId: null,
     placeId: place.id,
     categoryId: place.category || null,
-    title: `Notat om ${place.name}`,
+    title: tfUI("ui.notes.noteAboutPlace", "Notat om {place}", { place: place.name }),
     text: noteText,
     feeling: null,
     createdAt: new Date().toISOString(),
     visibility: "private"
   });
   saveUserNotes();
-  showToast(`Notat om ${place.name} lagret 📝`);
+  showToast(tfUI("ui.notes.noteSaved", "Notat om {name} lagret 📝", { name: place.name }));
 }
 
 // ============================================================

@@ -12,6 +12,22 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function hg$(id) {
   return document.getElementById(id);
 }
@@ -234,8 +250,8 @@ function renderLeftBadges() {
   }
 
   const collectedBadgeCount = getCollectedBadgeCount();
-  const collectedBadgeText = `${collectedBadgeCount} ${collectedBadgeCount === 1 ? "merke" : "merker"} samlet`;
-  const summaryHtml = `<div class="muted" style="font-size:13px;margin:0 0 8px;padding:0 2px;">${collectedBadgeText}</div>`;
+  const collectedBadgeText = tfUI("ui.badges.collectedCount", "{count} merker samlet", { count: collectedBadgeCount });
+  const summaryHtml = `<div class="muted" style="font-size:13px;margin:0 0 8px;padding:0 2px;">${escapeHTML(collectedBadgeText)}</div>`;
 
   if (!Array.isArray(window.CATEGORY_LIST) || !window.CATEGORY_LIST.length) {
     box.innerHTML = `${summaryHtml}<div class="muted">${tUI("ui.badges.noCategoriesLoaded", "Ingen kategorier lastet.")}</div>`;
@@ -422,8 +438,9 @@ function initLeftPanel() {
     }
 
     badgeBtn.innerHTML = `<img src="bilder/merker/${cat.id}.PNG" alt="" loading="lazy" decoding="async" style="width:22px;height:22px;object-fit:contain;display:block;">`;
-    badgeBtn.title = `Badgefilter: ${cat.name || cat.id}`;
-    badgeBtn.setAttribute("aria-label", `Badgefilter: ${cat.name || cat.id}`);
+    const badgeFilterCategory = tfUI("ui.badges.badgeFilterCategory", "Badgefilter: {category}", { category: cat.name || cat.id });
+    badgeBtn.title = badgeFilterCategory;
+    badgeBtn.setAttribute("aria-label", badgeFilterCategory);
   }
   window.updateNearbyBadgeFilterButton = updateBadgeFilterButton;
 

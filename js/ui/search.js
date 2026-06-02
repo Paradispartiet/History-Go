@@ -14,6 +14,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   function norm(value) {
     return String(value ?? "")
       .trim()
@@ -153,7 +160,7 @@
     if (!people.length && !places.length && !categories.length) {
       box.innerHTML = `
         <div class="search-section">
-          <div class="search-empty">Ingen treff på «${html(query)}»</div>
+          <div class="search-empty">${html(tfUI("ui.search.noResultsFor", "Ingen treff på «{query}»", { query }))}</div>
         </div>
       `;
       showSearchBox(query.trim().length > 1);

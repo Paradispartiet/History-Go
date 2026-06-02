@@ -94,6 +94,13 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
 const PLACE_CARD_QUIZ_CARD_BY_ID = Object.freeze({
   aker_brygge: "bilder/QuizCards/Akerbrygge.PNG",
   barcode: "bilder/QuizCards/Barcode.PNG",
@@ -185,7 +192,7 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   const quizCardImage = resolveQuizCardImage(place);
   if (!quizCardImage || !quizImgEl) return;
 
-  quizImgEl.alt = `Quizkort for ${place?.name || place?.title || "stedet"}`;
+  quizImgEl.alt = tfUI("ui.place.quizCardFor", "Quizkort for {place}", { place: place?.name || place?.title || "stedet" });
   quizImgEl.src = quizCardImage;
   card.classList.add("has-quiz-card");
   card.setAttribute("aria-label", tUI("ui.attr.showQuizCard", "Vis quizkort"));
@@ -542,7 +549,7 @@ try {
   if (cat) because.push(cat);
   because.push(completedQuiz ? "quiz fullført" : "quiz ikke tatt");
   because.push(isVisited ? "låst opp" : "ikke låst opp");
-  if (persons.length) because.push(`${persons.length} personer her`);
+  if (persons.length) because.push(tfUI("ui.place.peopleHereCount", "{count} personer her", { count: persons.length }));
   const becauseLine = because.join(" • ");
 
   const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
@@ -1271,14 +1278,14 @@ if (eventsBox) {
       : ""
   ].filter(Boolean).join("");
 
-  const compactStatus = `${peopleCount} her · ${friendsCount} venner`;
+  const compactStatus = tfUI("ui.events.peopleFriendsHere", "{people} her · {friends} venner", { people: peopleCount, friends: friendsCount });
   const compactEvents = canonicalForPlace.length
-    ? `${canonicalForPlace.length} ting skjer her`
+    ? tfUI("ui.events.countHere", "{count} ting skjer her", { count: canonicalForPlace.length })
     : tt("ui.events.none", "Ingen hendelser");
 
   const body = `
-    <div class="pc-events-preview-line" title="${compactStatus}">${compactStatus}</div>
-    <div class="pc-events-preview-line" title="${compactEvents}">${compactEvents}</div>
+    <div class="pc-events-preview-line" title="${escapePlaceCardHTML(compactStatus)}">${escapePlaceCardHTML(compactStatus)}</div>
+    <div class="pc-events-preview-line" title="${escapePlaceCardHTML(compactEvents)}">${escapePlaceCardHTML(compactEvents)}</div>
   `;
 
   eventsBox.innerHTML = head + body;
@@ -1509,7 +1516,7 @@ function updateUnlockUI() {
 
     if (gate.d != null) {
       const left = Math.max(0, Math.ceil(gate.d - gate.r));
-      setUnlockUI(true, `${tt("ui.unlock.goCloser", "Gå nærmere")} (${left} m)`);
+      setUnlockUI(true, tfUI("ui.unlock.goCloserMeters", "Gå nærmere: {meters} m", { meters: left }));
       return;
     }
 
@@ -1537,7 +1544,7 @@ if (btnUnlock) {
         return;
       }
       const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
-      window.showToast?.(left != null ? `${tt("ui.unlock.goCloser", "Gå nærmere")}: ${left} m` : `${tt("ui.unlock.goCloser", "Gå nærmere")} (${tt("ui.place.unlock", "Lås opp")})`);
+      window.showToast?.(left != null ? tfUI("ui.unlock.goCloserMeters", "Gå nærmere: {meters} m", { meters: left }) : `${tt("ui.unlock.goCloser", "Gå nærmere")} (${tt("ui.place.unlock", "Lås opp")})`);
       return;
     }
 

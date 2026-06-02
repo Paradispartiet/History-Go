@@ -13,6 +13,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   function ensureModal() {
     let modal = document.getElementById("natureCard");
     if (modal) return modal;
@@ -110,7 +117,7 @@
 
     modal.querySelector(".nature-card-title").textContent = obj.title || obj.name || obj.id || "";
     modal.querySelector(".nature-card-latin").textContent = obj.latin || obj.taxonomy?.latin_navn || "";
-    modal.querySelector(".nature-card-family").textContent = obj.taxonomy?.familie ? `Familie: ${obj.taxonomy.familie}` : "";
+    modal.querySelector(".nature-card-family").textContent = obj.taxonomy?.familie ? tfUI("ui.nature.family", "Familie: {family}", { family: obj.taxonomy.familie }) : "";
 
     const img = /** @type {HTMLImageElement} */ (modal.querySelector(".nature-card-image"));
     const iconEl = modal.querySelector(".nature-card-icon");
@@ -195,7 +202,7 @@
     }
 
     const items = places.slice(0, 6).map(({ place, distance }) => {
-      const distLabel = distance != null ? ` · ${distance} m` : "";
+      const distLabel = distance != null ? ` · ${escapeHtml(tfUI("ui.nature.distanceMeters", "{distance} m", { distance }))}` : "";
       return `
         <li class="nature-place-item" data-place-id="${escapeHtml(String(place.id))}">
           <button type="button" class="nature-place-btn">

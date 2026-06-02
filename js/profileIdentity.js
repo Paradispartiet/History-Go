@@ -7,9 +7,10 @@
 (function () {
   const PROFILE_KEY = "hg_user_profile_v1";
   const AHA_PROFILE_CACHE_KEY = "aha_profile_cache_v1";
+  const AHA_PROFILE_ID_KEY = "aha_profile_id";
   const LEGACY_NAME_KEY = "user_name";
   const LEGACY_COLOR_KEY = "user_color";
-  const DEFAULT_DISPLAY_NAME = "Logg inn med AHA";
+  const DEFAULT_DISPLAY_NAME = "Logg inn";
   const DEFAULT_COLOR = "#f6c800";
   const COLOR_OPTIONS = ["#f6c800", "#8fd3ff", "#ff8fb3", "#a9f5b5", "#c7a7ff", "#ffb86b"];
 
@@ -46,6 +47,15 @@
   function getAhaDisplayName() {
     const cached = getCachedAhaProfile();
     return cleanText(cached.display_name || cached.name || "", "");
+  }
+
+  function getCachedAhaAuthState(state = {}) {
+    const cachedProfile = getCachedAhaProfile();
+    return {
+      ...state,
+      signed_in: Boolean(state?.signed_in || state?.profile_id || localStorage.getItem(AHA_PROFILE_ID_KEY)),
+      aha_profile: state?.aha_profile || cachedProfile
+    };
   }
 
   function getDisplayName() {
@@ -229,7 +239,15 @@
   async function refreshAhaProfileCache() {
     const loader = window.HistoryGoAHAAuth?.loadAhaProfile;
     if (typeof loader !== "function") return null;
-    const result = await loader();
+
+    let result = null;
+    try {
+      result = await loader();
+    } catch (error) {
+      if (window.DEBUG) console.warn("[profileIdentity] AHA profile loader failed", error);
+      return null;
+    }
+
     if (result?.ok && result.data) {
       writeJson(AHA_PROFILE_CACHE_KEY, result.data);
       persistProfile({});
@@ -243,14 +261,14 @@
     return null;
   }
 
-  async function refreshLoginButton() {
+  async function refreshLoginButton(stateOverride = null) {
     const btn = document.getElementById("loginAhaBtn");
     if (!btn) return;
     try {
-      const state = await window.HistoryGoAHAAuth?.refresh?.();
+      const state = stateOverride || await window.HistoryGoAHAAuth?.refresh?.();
       if (state?.signed_in) {
-        const ahaProfile = await refreshAhaProfileCache();
-        btn.textContent = ahaProfile?.display_name ? "Innlogget" : "Opprett AHA-profil";
+        const ahaProfile = state?.aha_profile || await refreshAhaProfileCache();
+        btn.textContent = ahaProfile?.display_name ? "AHA koblet" : "Opprett AHA-profil";
         btn.dataset.signedIn = ahaProfile?.display_name ? "true" : "missing-profile";
         btn.title = ahaProfile?.display_name
           ? `Innlogget med AHA: ${ahaProfile.display_name}`
@@ -316,8 +334,15 @@
     applyProfileToDom();
     bindProfileButtons();
     bindLoginButton();
-    await refreshAhaProfileCache();
+
+    try {
+      await refreshAhaProfileCache();
+    } catch (error) {
+      if (window.DEBUG) console.warn("[profileIdentity] AHA profile refresh failed", error);
+    }
+
     applyProfileToDom();
+    refreshLoginButton();
   }
 
   window.HGUserProfile = {
@@ -341,10 +366,31 @@
 
   window.addEventListener("updateProfile", () => {
     applyProfileToDom();
-    refreshLoginButton();
+    refreshLoginButton(getCachedAhaAuthState());
   });
-  window.addEventListener("historygo:aha-readback", () => applyProfileToDom());
-  window.addEventListener("aha:auth-ready", () => {
-    refreshAhaProfileCache().then(() => refreshLoginButton());
+  window.addEventListener("historygo:aha-readback", (event) => {
+    applyProfileToDom();
+    refreshLoginButton(getCachedAhaAuthState(event.detail || {}));
+  });
+
+  window.addEventListener("aha:auth-ready", async (event) => {
+    const state = event.detail || { signed_in: false, profile_id: null, source_app: "historygo" };
+    const buttonState = { ...state };
+
+    try {
+      if (state?.aha_profile) {
+        writeJson(AHA_PROFILE_CACHE_KEY, state.aha_profile);
+      } else if (state?.signed_in) {
+        const ahaProfile = await refreshAhaProfileCache();
+        if (ahaProfile) buttonState.aha_profile = ahaProfile;
+      } else {
+        writeJson(AHA_PROFILE_CACHE_KEY, {});
+      }
+    } catch (error) {
+      if (window.DEBUG) console.warn("[profileIdentity] AHA auth event refresh failed", error);
+    }
+
+    applyProfileToDom();
+    refreshLoginButton(buttonState);
   });
 })();
