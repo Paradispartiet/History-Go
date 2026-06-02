@@ -103,7 +103,7 @@
     if (!obj || typeof obj !== "object") return;
 
     const modal = ensureModal();
-    const root = modal.querySelector(".nature-card-inner");
+    const root = /** @type {HTMLElement} */ (modal.querySelector(".nature-card-inner"));
     const kind = obj._kind || (obj.related_fauna_id ? "fauna" : obj.related_flora_id ? "flora" : "flora");
 
     root.dataset.kind = kind;
@@ -112,7 +112,7 @@
     modal.querySelector(".nature-card-latin").textContent = obj.latin || obj.taxonomy?.latin_navn || "";
     modal.querySelector(".nature-card-family").textContent = obj.taxonomy?.familie ? `Familie: ${obj.taxonomy.familie}` : "";
 
-    const img = modal.querySelector(".nature-card-image");
+    const img = /** @type {HTMLImageElement} */ (modal.querySelector(".nature-card-image"));
     const iconEl = modal.querySelector(".nature-card-icon");
     const imgSrc = (typeof window.resolveNatureImage === "function") ? window.resolveNatureImage(obj, kind) : "";
     if (imgSrc) {

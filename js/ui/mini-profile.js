@@ -64,7 +64,7 @@ function initMiniProfile() {
     const latest = Object.values(meritsLS)
       .sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0))
       .slice(0,3)
-      .map(m => window.BADGES.find(bb => bb.id === m.id))
+      .map(m => /** @type {any[]} */ (window.BADGES).find(bb => bb.id === m.id))
       .filter(Boolean);
 
     badgeRow.innerHTML = latest
@@ -87,7 +87,7 @@ function initMiniProfile() {
     const img  = person?.imageCard || place?.cardImage || "";
     const n    = person?.name || place?.name || "Quiz";
 
-    document.getElementById("miniLastQuizImg").src = img;
+    /** @type {HTMLImageElement} */ (document.getElementById("miniLastQuizImg")).src = img;
     document.getElementById("miniLastQuizName").textContent = n;
 
     lastQuizBox.style.display = "flex";
@@ -98,7 +98,7 @@ function initMiniProfile() {
 
 
 
-window.addEventListener("hg:mpNextUp", (e) => {
+window.addEventListener("hg:mpNextUp", (/** @type {CustomEvent} */ e) => {
   const mount = document.getElementById("mpNextUp");
   if (!mount) return;
 
@@ -147,7 +147,7 @@ try {
 
 `;
 
-    mount.querySelectorAll("[data-mp]").forEach((btn) => {
+    mount.querySelectorAll("[data-mp]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const t = btn.dataset.mp;
 
@@ -237,7 +237,7 @@ function showQuizHistory() {
   const modal = document.getElementById("quizHistoryModal");
   document.getElementById("closeQuizHistory").onclick = () => modal.remove();
   modal.addEventListener("click", e => {
-    if (e.target.id === "quizHistoryModal") modal.remove();
+    if (/** @type {Element} */ (e.target).id === "quizHistoryModal") modal.remove();
   });
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") modal.remove();
