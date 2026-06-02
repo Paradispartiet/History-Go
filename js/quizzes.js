@@ -22,7 +22,13 @@
 
   function dlog(...args) { if (window.DEBUG) console.log("[QuizEngine]", ...args); }
   function dwarn(...args) { if (window.DEBUG) console.warn("[QuizEngine]", ...args); }
-  function tt(key, fallback) { return window.HG_I18N?.t?.(key, fallback) || fallback; }
+  function tt(key, fallback) {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
 
   // ============================================================
   // URL / FETCH
@@ -406,7 +412,7 @@ dlog("loaded sets:", _byTargetSets.size);
     m.innerHTML = `
       <div class="modal-body">
         <div class="modal-head">
-          <strong id="quizTitle">Quiz</strong>
+          <strong id="quizTitle">${tt("ui.quiz.title", "Quiz")}</strong>
           <button class="ghost" id="quizClose">Lukk</button>
         </div>
         <div class="quiz-progress"><div class="bar"></div></div>
@@ -447,7 +453,7 @@ dlog("loaded sets:", _byTargetSets.size);
     m.innerHTML = `
       <div class="modal-body">
         <div class="modal-head">
-          <strong id="quizSummaryTitle">Quiz</strong>
+          <strong id="quizSummaryTitle">${tt("ui.quiz.title", "Quiz")}</strong>
           <button class="ghost" id="quizSummaryClose">Lukk</button>
         </div>
         <div class="sheet-body">
@@ -455,7 +461,7 @@ dlog("loaded sets:", _byTargetSets.size);
           <div id="quizSummaryMeta" class="muted" style="margin:0 0 14px"></div>
           <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
             <button class="ghost" id="quizSummarySecondary" style="display:none"></button>
-            <button id="quizSummaryPrimary">Neste</button>
+            <button id="quizSummaryPrimary">${tt("ui.quiz.next", "Neste")}</button>
           </div>
         </div>
       </div>`;
@@ -468,7 +474,7 @@ dlog("loaded sets:", _byTargetSets.size);
     });
   }
 
-  function openQuizSummary({ title = "Quiz", lead = "", meta = "", primaryText = "Neste", onPrimary = null, secondaryText = "", onSecondary = null }) {
+  function openQuizSummary({ title = "Quiz", lead = "", meta = "", primaryText = tt("ui.quiz.next", "Neste"), onPrimary = null, secondaryText = "", onSecondary = null }) {
     ensureQuizSummaryUI();
 
     const modal = document.getElementById("quizSummaryModal");
@@ -481,7 +487,7 @@ dlog("loaded sets:", _byTargetSets.size);
     titleEl.textContent = title;
     leadEl.textContent = lead;
     metaEl.textContent = meta;
-    primaryBtn.textContent = primaryText || "Neste";
+    primaryBtn.textContent = primaryText || tt("ui.quiz.next", "Neste");
     primaryBtn.onclick = () => {
       closeQuizSummary();
       if (typeof onPrimary === "function") onPrimary();
@@ -529,7 +535,7 @@ dlog("loaded sets:", _byTargetSets.size);
     quizBtns.forEach((btn) => {
       const firstTime = !btn.classList.contains("quiz-done");
       btn.classList.add("quiz-done");
-      btn.innerHTML = "✔️ Tatt (kan gjentas)";
+      btn.innerHTML = tt("ui.quiz.takenRepeatable", "✔️ Tatt (kan gjentas)");
       if (firstTime) {
         btn.classList.add("blink");
         setTimeout(() => btn.classList.remove("blink"), 1200);
@@ -552,7 +558,7 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
     progress: document.getElementById("quizProgress"),
     feedback: document.getElementById("quizFeedback")
   };
-  qs.title.textContent = [title || "Quiz", titleSuffix].filter(Boolean).join(" — ");
+  qs.title.textContent = [title || tt("ui.quiz.title", "Quiz"), titleSuffix].filter(Boolean).join(" — ");
 
   let i = 0;
   let correct = 0;
@@ -600,7 +606,7 @@ function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", prog
         const ok = chosenIdx === answerIndex;
 
         btn.classList.add(ok ? "correct" : "wrong");
-        qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
+        qs.feedback.textContent = ok ? tt("ui.quiz.correct", "Riktig ✅") : tt("ui.quiz.wrong", "Feil ❌");
 
         const tid = s(targetId);
 
@@ -776,7 +782,7 @@ if (canTag) {
       const place = API.getPlaceById(tid);
 
       if (!person && !place) {
-        API.showToast("Fant verken person eller sted");
+        API.showToast(tt("ui.quiz.targetMissing", "Fant verken person eller sted"));
         return;
       }
 
@@ -823,7 +829,7 @@ if (setList.length) {
   const setData = await loadSetFile(setMeta.file);
 
   if (!setData) {
-    API.showToast("Kunne ikke laste quiz-set");
+    API.showToast(tt("ui.quiz.setLoadFailed", "Kunne ikke laste quiz-set"));
     return;
   }
 
@@ -836,7 +842,7 @@ if (setList.length) {
     : null;
 
   if (!setQuestions) {
-    API.showToast("Set-data feilformatert");
+    API.showToast(tt("ui.quiz.setMalformed", "Set-data feilformatert"));
     return;
   }
 
@@ -855,17 +861,17 @@ if (setList.length) {
   const progressPrefix = alreadyCompleted
     ? (remainingBefore > 0
         ? `Dette settet er allerede tatt • ${remainingBefore} sett mangler fortsatt`
-        : `Alle sett er allerede fullført`)
+        : tt("ui.quiz.allSetsAlreadyCompleted", "Alle sett er allerede fullført"))
     : (remainingAfterThis > 0
         ? `${remainingAfterThis} sett igjen etter dette • +1 poeng`
-        : `Siste sett • +1 poeng`);
+        : tt("ui.quiz.lastSetPlusPoint", "Siste sett • +1 poeng"));
 
   localStorage.setItem("hg_active_set", setMeta.set_id);
 
   openQuiz();
 
   runQuizFlow({
-    title: person ? person.name : (place ? place.name : "Quiz"),
+    title: person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")),
     titleSuffix,
     progressPrefix,
     targetId: tid,
@@ -885,7 +891,7 @@ if (setList.length) {
       let awardedPoint = false;
 
       const compositeSetId = `${tid}::${setMeta.set_id}`;
-      const displayName = [person ? person.name : (place ? place.name : "Quiz"), setName || `Sett ${setIndex + 1}/${totalSets}`]
+      const displayName = [person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")), setName || `Sett ${setIndex + 1}/${totalSets}`]
         .filter(Boolean)
         .join(" — ");
       const image = s(place?.image || person?.image || "");
@@ -962,10 +968,10 @@ if (setList.length) {
 
       const toastParts = [`Sett ${setIndex + 1}/${totalSets} fullført: ${correct}/${total}`];
       if (awardedPoint) toastParts.push("+1 poeng");
-      else if (!firstCompletion) toastParts.push("allerede fullført tidligere");
-      else if (firstCompletion && !categoryId) toastParts.push("mangler kategori – ingen poeng");
+      else if (!firstCompletion) toastParts.push(tt("ui.quiz.alreadyCompletedEarlier", "allerede fullført tidligere"));
+      else if (firstCompletion && !categoryId) toastParts.push(tt("ui.quiz.missingCategoryNoPoints", "mangler kategori – ingen poeng"));
       if (remainingSets > 0) toastParts.push(`${remainingSets} sett gjenstår`);
-      else toastParts.push("alle sett fullført");
+      else toastParts.push(tt("ui.quiz.allSetsCompleted", "alle sett fullført"));
 
       API.showToast(toastParts.join(" • "));
       API.dispatchProfileUpdate();
@@ -975,25 +981,25 @@ if (setList.length) {
       const rewardLine = awardedPoint
         ? "+1 poeng"
         : (!firstCompletion
-            ? "Ingen nye poeng – dette settet var allerede fullført."
-            : (categoryId ? "Ingen nye poeng." : "Ingen poeng – mangler kategori på settet."));
+            ? tt("ui.quiz.noNewPointsAlreadyCompleted", "Ingen nye poeng – dette settet var allerede fullført.")
+            : (categoryId ? tt("ui.quiz.noNewPoints", "Ingen nye poeng.") : tt("ui.quiz.noPointsMissingCategory", "Ingen poeng – mangler kategori på settet.")));
       const remainingLine = remainingSets > 0
         ? `${remainingSets} sett gjenstår.`
-        : "Alle sett for dette stedet er fullført.";
+        : tt("ui.quiz.allSetsCompletedForPlace", "Alle sett for dette stedet er fullført.");
 
       closeQuiz();
       setTimeout(() => {
         openQuizSummary({
-          title: person ? person.name : (place ? place.name : "Quiz"),
+          title: person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")),
           lead: `Sett ${setIndex + 1} av ${totalSets} fullført`,
           meta: [scoreLine, rewardLine, remainingLine].filter(Boolean).join(" • "),
-          primaryText: remainingSets > 0 ? "Neste sett" : "Ferdig",
+          primaryText: remainingSets > 0 ? tt("ui.quiz.nextSet", "Neste sett") : tt("ui.quiz.done", "Ferdig"),
           onPrimary: () => {
             if (remainingSets > 0) {
               QuizEngine.start(tid);
             }
           },
-          secondaryText: remainingSets > 0 ? "Lukk" : "",
+          secondaryText: remainingSets > 0 ? tt("ui.attr.close", "Lukk") : "",
           onSecondary: () => {}
         });
       }, 180);
@@ -1006,14 +1012,14 @@ if (setList.length) {
 // ---- FALLBACK TO LEGACY ----
 const questions = (_byTarget && _byTarget.get(tid)) || [];
 if (!questions.length) {
-  API.showToast("Ingen quiz tilgjengelig her ennå");
+  API.showToast(tt("ui.quiz.noneHereYet", "Ingen quiz tilgjengelig her ennå"));
   return;
 }
 
       openQuiz();
 
       runQuizFlow({
-        title: person ? person.name : (place ? place.name : "Quiz"),
+        title: person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz")),
         targetId: tid,
         questions,
         onEnd: (correct, total, meta) => {
@@ -1024,13 +1030,13 @@ if (perfect) {
 
   if (!categoryId) {
     if (window.DEBUG) console.warn("[quiz] perfect but missing categoryId; not awarding points", questions[0]);
-    API.showToast("Perfekt, men mangler kategori på quiz-data (ingen poeng gitt).");
+    API.showToast(tt("ui.quiz.perfectMissingCategory", "Perfekt, men mangler kategori på quiz-data (ingen poeng gitt)."));
     API.dispatchProfileUpdate();
     return;
   }
 
   const ca = Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [];
-  const displayName = person ? person.name : (place ? place.name : "Quiz");
+  const displayName = person ? person.name : (place ? place.name : tt("ui.quiz.title", "Quiz"));
   const image = s(place?.image || person?.image || "");
 
             appendLearningEvent({
@@ -1128,7 +1134,7 @@ if (perfect) {
 
     } catch (e) {
       dwarn("start crashed:", e);
-      API.showToast("Quiz-feil: noe krasjet i quizzes.js");
+      API.showToast(tt("ui.quiz.runtimeError", "Quiz-feil: noe krasjet."));
     }
   };
 

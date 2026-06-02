@@ -4,6 +4,15 @@
 // Init: initLeftPanel() kalles fra DOMContentLoaded
 // ============================================================
 
+
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 function hg$(id) {
   return document.getElementById(id);
 }
@@ -230,7 +239,7 @@ function renderLeftBadges() {
   const summaryHtml = `<div class="muted" style="font-size:13px;margin:0 0 8px;padding:0 2px;">${collectedBadgeText}</div>`;
 
   if (!Array.isArray(window.CATEGORY_LIST) || !window.CATEGORY_LIST.length) {
-    box.innerHTML = `${summaryHtml}<div class="muted">Ingen kategorier lastet.</div>`;
+    box.innerHTML = `${summaryHtml}<div class="muted">${tUI("ui.badges.noCategoriesLoaded", "Ingen kategorier lastet.")}</div>`;
     return;
   }
 
@@ -246,8 +255,8 @@ function renderLeftBadges() {
       ${summaryHtml}
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🏅</div>
-        <div class="hg-empty-guide-title">Ingen merker</div>
-        <div class="hg-empty-guide-text">Badgefilteret skjuler alle merker akkurat nå. Trykk badgeknappen for å vise alle.</div>
+        <div class="hg-empty-guide-title">${tUI("ui.badges.none", "Ingen merker")}</div>
+        <div class="hg-empty-guide-text">${tUI("ui.badges.filterHidesAll", "Badgefilteret skjuler alle merker akkurat nå. Trykk badgeknappen for å vise alle.")}</div>
       </div>
     `;
     return;
@@ -280,7 +289,7 @@ function ensureNearbyBadgeFilterButton(placeFilterBtn) {
   btn.id = "nearbyBadgeFilterBtn";
   btn.className = "nearby-filter-icon nearby-badge-filter-icon";
   btn.type = "button";
-  btn.setAttribute("aria-label", "Badgefilter");
+  btn.setAttribute("aria-label", tUI("ui.badges.badgeFilter", "Badgefilter"));
 
   placeFilterBtn.insertAdjacentElement("afterend", btn);
   return btn;
@@ -296,7 +305,7 @@ function ensureNearbySortButton(placeFilterBtn) {
   btn.id = "nearbySortBtn";
   btn.className = "nearby-filter-icon nearby-sort-icon";
   btn.type = "button";
-  btn.setAttribute("aria-label", "Sortering: avstand");
+  btn.setAttribute("aria-label", tUI("ui.sort.sortDistance", "Sortering: avstand"));
 
   placeFilterBtn.insertAdjacentElement("afterend", btn);
   return btn;
@@ -387,7 +396,11 @@ function initLeftPanel() {
   const NATURE_ICONS = { all: "🌍", unlocked: "🔓", flora: "🌿", fauna: "🐞" };
   const NATURE_ORDER = ["all", "unlocked", "flora", "fauna"];
   const SORT_ICONS = { distance: "📍", oldest: "⏳", newest: "🕰️" };
-  const SORT_TITLES = { distance: "Sortering: Avstand", oldest: "Sortering: Eldst", newest: "Sortering: Nyest" };
+  const SORT_TITLES = {
+    distance: tUI("ui.sort.sortDistance", "Sortering: avstand"),
+    oldest: tUI("ui.sort.sortOldest", "Sortering: eldst"),
+    newest: tUI("ui.sort.sortNewest", "Sortering: nyest")
+  };
   const SORT_ORDER = ["distance", "oldest", "newest"];
 
   function updateBadgeFilterButton() {
@@ -404,8 +417,8 @@ function initLeftPanel() {
 
     if (!cat || filter === "all") {
       badgeBtn.textContent = "🏅";
-      badgeBtn.title = "Badgefilter: alle";
-      badgeBtn.setAttribute("aria-label", "Badgefilter: alle");
+      badgeBtn.title = tUI("ui.badges.badgeFilterAll", "Badgefilter: alle");
+      badgeBtn.setAttribute("aria-label", tUI("ui.badges.badgeFilterAll", "Badgefilter: alle"));
       return;
     }
 

@@ -3,6 +3,15 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+
   let MAP = null;
   let mapReady = false;
   let mapStyleMode = "standard";
@@ -281,7 +290,7 @@
     wrap.className = "hg-map-style-toggle";
     wrap.innerHTML = `
       <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false">Kart</button>
-      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Detaljert</button>
+      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">${tUI("ui.map.detailed", "Detaljert")}</button>
     `;
 
     const onStyleTogglePress = (ev) => {

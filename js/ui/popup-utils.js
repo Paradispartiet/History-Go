@@ -11,6 +11,14 @@
 // NB: STRICT: ingen normalisering utover trim.
 // ============================================================
 
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 let currentPopup = null;
 
 
@@ -29,7 +37,7 @@ window.showPlaceCardRoundPopup = function ({
           ${subtitle ? `<p class="pc-round-popup-sub hg-modal-meta">${hgEsc(subtitle)}</p>` : ``}
         </header>
         <div class="pc-round-popup-body hg-modal-body">
-          ${html || `<p class="hg-muted">Ingen innhold ennå.</p>`}
+          ${html || `<p class="hg-muted">${hgEsc(tUI("ui.popup.noContentYet", "Ingen innhold ennå."))}</p>`}
         </div>
       </article>
     `,
@@ -72,7 +80,7 @@ window.showPlaceCardRoundPopup = function ({
         closePopup();
         window.openWonderkammerEntry(id);
       } else {
-        window.showToast?.("Wonderkammer-handler ikke lastet");
+        window.showToast?.(tUI("ui.wonderkammer.notLoaded", "Wonderkammer-handler ikke lastet"));
       }
     };
   });
@@ -104,7 +112,7 @@ window.showPlaceCardRoundPopup = function ({
       if (typeof window.loadRoutes === "function" && typeof window.focusRouteOnMap === "function") {
         window.loadRoutes().then(() => window.focusRouteOnMap(id));
       } else {
-        window.showToast?.("Rute-funksjon ikke lastet");
+        window.showToast?.(tUI("ui.routes.notLoaded", "Rute-funksjon ikke lastet"));
       }
     };
   });
@@ -513,7 +521,7 @@ function makePopup(html, extraClass = "", onClose = null) {
 
   el.innerHTML = `
     <div class="hg-popup-inner hg-modal-card">
-      <button class="hg-popup-close hg-modal-close" data-close-popup aria-label="Lukk popup">✕</button>
+      <button class="hg-popup-close hg-modal-close" data-close-popup aria-label="${hgEsc(tUI("ui.popup.close", "Lukk popup"))}">✕</button>
       ${html}
     </div>
   `;
@@ -654,7 +662,7 @@ async function enhanceQuizButton(btn, targetId) {
     }
 
     if (info.mode === "legacy" && info.isComplete) {
-      btn.textContent = "Ta quiz igjen";
+      btn.textContent = tUI("ui.quiz.takeAgain", "Ta quiz igjen");
       btn.classList.add("quiz-done");
       btn.title = "Quizen er allerede fullført, men kan tas igjen.";
     }
@@ -849,7 +857,7 @@ function getObservationsForTarget(targetId, targetType) {
 }
 
 function renderObsList(obs) {
-  if (!obs || !obs.length) return `<p class="hg-muted">Ingen observasjoner ennå.</p>`;
+  if (!obs || !obs.length) return `<p class="hg-muted">${hgEsc(tUI("ui.observations.noneYet", "Ingen observasjoner ennå."))}</p>`;
 
   return `
     <ul style="margin:0;padding-left:18px;">
@@ -890,7 +898,7 @@ window.showFloraPopup = function (flora) {
       <div class="hg-flora-popup">
         ${img ? `<img src="${img}" class="hg-flora-img">` : ``}
         <h2 class="hg-popup-name">${title}</h2>
-        ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+        ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">${hgEsc(tUI("ui.popup.noDescriptionYet", "Ingen beskrivelse ennå."))}</p>`}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </div>
     `,
@@ -1029,7 +1037,7 @@ window.showBrandPopup = async function (brandId, place = null) {
                 </button>
               `).join("")}
             </div>`
-          : `<p class="hg-muted">Ingen steder registrert ennå.</p>`
+          : `<p class="hg-muted">${hgEsc(tUI("ui.popup.noPlacesRegisteredYet", "Ingen steder registrert ennå."))}</p>`
       }
     </div>
   `;
@@ -1047,7 +1055,7 @@ window.showBrandPopup = async function (brandId, place = null) {
                 </button>
               `).join("")}
             </div>`
-          : `<p class="hg-muted">Ingen relaterte brands funnet ennå.</p>`
+          : `<p class="hg-muted">${hgEsc(tUI("ui.popup.noRelatedBrandsYet", "Ingen relaterte brands funnet ennå."))}</p>`
       }
     </div>
   `;
@@ -1062,7 +1070,7 @@ window.showBrandPopup = async function (brandId, place = null) {
         <div class="hg-brand-head">
           <h2 class="hg-popup-name">${hgEsc(brand.name)}</h2>
           ${chipsHtml}
-          ${desc ? `<p class="hg-popup-desc">${hgEsc(desc)}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+          ${desc ? `<p class="hg-popup-desc">${hgEsc(desc)}</p>` : `<p class="hg-muted">${hgEsc(tUI("ui.popup.noDescriptionYet", "Ingen beskrivelse ennå."))}</p>`}
         </div>
       </div>
 
@@ -1295,7 +1303,7 @@ window.showPersonPopup = function(person) {
       ${
       works.length
         ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
-        : `<p class="hg-muted">Ingen registrerte verk.</p>`
+        : `<p class="hg-muted">${hgEsc(tUI("ui.popup.noRegisteredWorks", "Ingen registrerte verk."))}</p>`
         }
         <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
         
@@ -1316,7 +1324,7 @@ window.showPersonPopup = function(person) {
                   .map(pl => `<div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>`)
                   .join("")}
               </div>`
-            : `<p class="hg-muted">Ingen stedstilknytning.</p>`
+            : `<p class="hg-muted">${hgEsc(tUI("ui.popup.noPlaceConnection", "Ingen stedstilknytning."))}</p>`
         }
       </div>
 
@@ -1338,7 +1346,7 @@ window.showPersonPopup = function(person) {
 
       <!-- Observasjoner -->
       <div class="hg-section">
-        <h3>Observasjoner</h3>
+        <h3>${hgEsc(tUI("ui.observations.title", "Observasjoner"))}</h3>
         ${obsHtml}
       </div>
 
@@ -1359,7 +1367,7 @@ window.showPersonPopup = function(person) {
                   </ul>
                 `)
                 .join("")
-            : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+            : `<p class="hg-muted">${hgEsc(tUI("ui.knowledge.noneRegisteredYet", "Ingen kunnskap registrert ennå."))}</p>`
         }
       </div>
 
@@ -1368,7 +1376,7 @@ window.showPersonPopup = function(person) {
         ${
           triviaList.length
             ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
-            : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+            : `<p class="hg-muted">${hgEsc(tUI("ui.trivia.noneYet", "Ingen funfacts ennå."))}</p>`
         }
       </div>
           `
@@ -1410,7 +1418,7 @@ function renderWonderkammerSection(chambers, title = "Wonderkammer") {
     return `
       <div class="hg-section">
         <h3>${wkEsc(title)}</h3>
-        <p class="hg-muted">Ingen Wonderkammer-koblinger ennå.</p>
+        <p class="hg-muted">${hgEsc(tUI("ui.wonderkammer.noLinksYet", "Ingen Wonderkammer-koblinger ennå."))}</p>
       </div>
     `;
   }
@@ -1436,7 +1444,7 @@ function renderWonderkammerSection(chambers, title = "Wonderkammer") {
     <div class="hg-section">
       <h3>${wkEsc(title)}</h3>
       <ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">
-        ${rows || `<li><p class="hg-muted">Ingen Wonderkammer-koblinger ennå.</p></li>`}
+        ${rows || `<li><p class="hg-muted">${hgEsc(tUI("ui.wonderkammer.noLinksYet", "Ingen Wonderkammer-koblinger ennå."))}</p></li>`}
       </ul>
     </div>
   `;
@@ -1553,7 +1561,7 @@ const peopleHere = (typeof getPeopleForPlace === "function")
                 `
                 )
                 .join("")
-            : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+            : `<p class="hg-muted">${hgEsc(tUI("ui.knowledge.noneRegisteredYet", "Ingen kunnskap registrert ennå."))}</p>`
         }
       </div>
 
@@ -1562,7 +1570,7 @@ const peopleHere = (typeof getPeopleForPlace === "function")
         ${
           triviaList.length
             ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
-            : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+            : `<p class="hg-muted">${hgEsc(tUI("ui.trivia.noneYet", "Ingen funfacts ennå."))}</p>`
         }
       </div>
           `
@@ -1576,7 +1584,7 @@ const peopleHere = (typeof getPeopleForPlace === "function")
       ${renderStoriesSection(window.HGStories?.getByPlace?.(place.id) || [])}
 
       <div class="hg-section">
-        <h3>Observasjoner</h3>
+        <h3>${hgEsc(tUI("ui.observations.title", "Observasjoner"))}</h3>
         ${obsHtml}
       </div>
       </div>
@@ -1807,7 +1815,7 @@ window.showRewardPlace = function(place) {
                       ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
                     </ul>
                   `).join("")
-              : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+              : `<p class="hg-muted">${hgEsc(tUI("ui.knowledge.noneRegisteredYet", "Ingen kunnskap registrert ennå."))}</p>`
           }
         </div>
 
@@ -1816,14 +1824,14 @@ window.showRewardPlace = function(place) {
           ${
             triviaList.length
               ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
-              : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+              : `<p class="hg-muted">${hgEsc(tUI("ui.trivia.noneYet", "Ingen funfacts ennå."))}</p>`
           }
         </div>
             `
             : ""
         }
 
-        <button class="reward-ok" data-close-popup>Fortsett</button>
+        <button class="reward-ok" data-close-popup>${hgEsc(tUI("ui.popup.continue", "Fortsett"))}</button>
       </div>
     `,
     "reward-popup",
@@ -1878,7 +1886,7 @@ window.showRewardPerson = function(person) {
                       ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
                     </ul>
                   `).join("")
-              : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+              : `<p class="hg-muted">${hgEsc(tUI("ui.knowledge.noneRegisteredYet", "Ingen kunnskap registrert ennå."))}</p>`
           }
         </div>
 
@@ -1887,14 +1895,14 @@ window.showRewardPerson = function(person) {
           ${
             triviaList.length
               ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
-              : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+              : `<p class="hg-muted">${hgEsc(tUI("ui.trivia.noneYet", "Ingen funfacts ennå."))}</p>`
           }
         </div>
             `
             : ""
         }
 
-        <button class="reward-ok" data-close-popup>Fortsett</button>
+        <button class="reward-ok" data-close-popup>${hgEsc(tUI("ui.popup.continue", "Fortsett"))}</button>
       </div>
     `,
     "reward-popup",

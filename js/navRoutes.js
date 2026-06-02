@@ -7,6 +7,15 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+
   // --- konfig ---
   function getORS() {
   return {
@@ -103,25 +112,25 @@
   async function showNavRouteToPlace(place, opts = {}) {
     const map = getMap();
     if (!map) {
-      window.showToast?.("Kart ikke klart ennå.");
+      window.showToast?.(tUI("ui.routes.mapNotReady", "Kart ikke klart ennå."));
       return;
     }
 
     const pos = window.getPos?.();
     if (!pos) {
-      window.showToast?.("Fant ingen posisjon ennå.");
+      window.showToast?.(tUI("ui.position.notFoundYet", "Fant ikke posisjon ennå."));
       return;
     }
 
     const toLat = Number(place?.lat);
     const toLon = Number(place?.lon);
     if (!Number.isFinite(toLat) || !Number.isFinite(toLon)) {
-      window.showToast?.("Sted mangler koordinater.");
+      window.showToast?.(tUI("ui.routes.placeMissingCoordinates", "Sted mangler koordinater."));
       return;
     }
 
     try {
-      window.showToast?.("Beregner gangrute…");
+      window.showToast?.(tUI("ui.routes.calculatingWalkingRoute", "Beregner gangrute…"));
       const geo = await fetchRouteGeoJSON(pos, { lat: toLat, lon: toLon });
       drawRoute(geo, { fit: true });
 
@@ -135,11 +144,11 @@
         const min = Math.round(durS / 60);
         window.showToast?.(`Gangrute: ${km} km · ca ${min} min`);
       } else {
-        window.showToast?.("Gangrute vist på kartet");
+        window.showToast?.(tUI("ui.routes.walkingRouteShown", "Gangrute vist på kartet"));
       }
     } catch (e) {
       console.warn("[navRoutes]", e);
-      window.showToast?.("Fant ingen rute ennå (ORS-feil).");
+      window.showToast?.(tUI("ui.routes.noRouteFound", "Fant ingen rute ennå."));
     }
   }
 

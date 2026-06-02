@@ -9,6 +9,14 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   const STACK_ID = "natureUnlockStack"; // deler kø med natur-toasten
   const AUTO_DISMISS_MS = 4500;
 
@@ -25,7 +33,7 @@
 
   function showTargetUnlock(detail) {
     const kind = detail?.kind === "place" ? "place" : "person";
-    const name = String(detail?.name || "").trim() || (kind === "place" ? "Nytt sted" : "Ny person");
+    const name = String(detail?.name || "").trim() || (kind === "place" ? tUI("ui.unlock.newPlace", "Nytt sted") : tUI("ui.unlock.newPerson", "Ny person"));
     const image = String(detail?.image || "").trim();
     const id = String(detail?.id || "").trim();
     const stack = ensureStack();
@@ -34,7 +42,7 @@
     card.className = `nature-unlock-card is-target is-${kind}`;
 
     const fallbackIcon = kind === "place" ? "📍" : "👤";
-    const kicker = kind === "place" ? "✨ Nytt sted samlet" : "✨ Ny person møtt";
+    const kicker = kind === "place" ? tUI("ui.unlock.placeCollected", "✨ Nytt sted samlet") : tUI("ui.unlock.personMet", "✨ Ny person møtt");
 
     const thumb = image
       ? `<img class="nature-unlock-thumb" src="${image}" alt=""
@@ -47,7 +55,7 @@
         <div class="nature-unlock-kicker"></div>
         <div class="nature-unlock-title"></div>
       </div>
-      <button class="nature-unlock-close" type="button" aria-label="Lukk">✕</button>
+      <button class="nature-unlock-close" type="button" aria-label="${tUI("ui.attr.close", "Lukk")}">✕</button>
     `;
     card.querySelector(".nature-unlock-kicker").textContent = kicker;
     card.querySelector(".nature-unlock-title").textContent = name;

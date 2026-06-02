@@ -78,6 +78,15 @@
  */
 
 
+
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 function escapePlaceCardHTML(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -143,7 +152,7 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
     card.classList.toggle("is-flipped");
     card.setAttribute(
       "aria-label",
-      card.classList.contains("is-flipped") ? "Vis frontbilde" : "Vis quizkort"
+      card.classList.contains("is-flipped") ? tUI("ui.place.showFrontImage", "Vis frontbilde") : tUI("ui.attr.showQuizCard", "Vis quizkort")
     );
   };
 
@@ -157,7 +166,7 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
     quizImgEl.addEventListener("error", () => {
       if (String(card.dataset.currentPlaceId || "") !== String(quizImgEl.dataset.placeId || "")) return;
       card.classList.remove("has-quiz-card", "is-flipped");
-      card.setAttribute("aria-label", "Quizkort mangler");
+      card.setAttribute("aria-label", tUI("ui.place.quizCardMissing", "Quizkort mangler"));
       quizImgEl.removeAttribute("src");
     });
   }
@@ -167,7 +176,7 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   if (!card) return;
   card.dataset.currentPlaceId = String(place?.id || "").trim();
   card.classList.remove("is-flipped", "has-quiz-card");
-  card.setAttribute("aria-label", "Quizkort mangler");
+  card.setAttribute("aria-label", tUI("ui.place.quizCardMissing", "Quizkort mangler"));
 
   if (quizImgEl) {
     quizImgEl.dataset.placeId = String(place?.id || "").trim();
@@ -178,10 +187,10 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   const quizCardImage = resolveQuizCardImage(place);
   if (!quizCardImage || !quizImgEl) return;
 
-  quizImgEl.alt = `Quizkort for ${place?.name || place?.title || "stedet"}`;
+  quizImgEl.alt = `Quizkort for ${place?.name || place?.title || tUI("ui.place.fallbackPlace", "stedet")}`;
   quizImgEl.src = quizCardImage;
   card.classList.add("has-quiz-card");
-  card.setAttribute("aria-label", "Vis quizkort");
+  card.setAttribute("aria-label", tUI("ui.attr.showQuizCard", "Vis quizkort"));
 }
 
 /**
@@ -301,7 +310,7 @@ if (!card.dataset.pcIconsBound) {
 
     const htmlBase = (listEl && listEl.innerHTML && listEl.innerHTML.trim())
       ? listEl.innerHTML
-      : `<div class="pc-empty">Ingen innhold ennå</div>`;
+      : `<div class="pc-empty">${escapePlaceCardHTML(tUI("ui.popup.noContentYet", "Ingen innhold ennå."))}</div>`;
 
     let html = htmlBase;
     if (kind === "badges") {
@@ -590,7 +599,7 @@ if (peopleEl) {
 
   const relationChipValue = (r) => {
     const base = [r?.type, r?.kind, r?.category].map(prettifyToken).find(Boolean);
-    return base ? base.toUpperCase() : "RELASJON";
+    return base ? base.toUpperCase() : tUI("ui.place.relationFallback", "RELASJON");
   };
 
   const getRelationDisplayModel = (r) => {
@@ -1225,7 +1234,7 @@ if (eventsBox) {
 
   const head = `
     <div class="pc-events-head">
-      <span class="pc-events-title">På stedet</span>
+      <span class="pc-events-title">${escapePlaceCardHTML(tUI("ui.static.onSite", "På stedet"))}</span>
       <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til">＋</button>
     </div>
   `;
@@ -1254,20 +1263,20 @@ if (eventsBox) {
 
   const modeButtons = [
     modes.has("meetup")
-      ? `<button class="pc-events-action" type="button" data-social-action="meetup">Avtal å møtes</button>`
+      ? `<button class="pc-events-action" type="button" data-social-action="meetup">${escapePlaceCardHTML(tUI("ui.events.meetup", "Avtal å møtes"))}</button>`
       : "",
     modes.has("message_game")
-      ? `<button class="pc-events-action" type="button" data-social-action="message_game">Start meldingsspill</button>`
+      ? `<button class="pc-events-action" type="button" data-social-action="message_game">${escapePlaceCardHTML(tUI("ui.events.messageGame", "Start meldingsspill"))}</button>`
       : "",
     modes.has("group_quiz")
-      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">Ta quiz sammen</button>`
+      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">${escapePlaceCardHTML(tUI("ui.events.groupQuiz", "Ta quiz sammen"))}</button>`
       : ""
   ].filter(Boolean).join("");
 
   const compactStatus = `${peopleCount} her · ${friendsCount} venner`;
   const compactEvents = canonicalForPlace.length
     ? `${canonicalForPlace.length} ting skjer her`
-    : `Ingen hendelser`;
+    : tUI("ui.events.none", "Ingen hendelser");
 
   const body = `
     <div class="pc-events-preview-line" title="${compactStatus}">${compactStatus}</div>
@@ -1289,26 +1298,26 @@ if (eventsBox) {
   eventsBox.onclick = () => {
     const socialPopupHtml = `
       <section class="pc-events-section">
-        <div class="pc-event-entry-title">Her nå</div>
-        <div class="pc-events-row">Personer: ${peopleCount}</div>
-        <div class="pc-events-row">Venner: ${friendsCount}</div>
+        <div class="pc-event-entry-title">${escapePlaceCardHTML(tUI("ui.events.hereNow", "Her nå"))}</div>
+        <div class="pc-events-row">${escapePlaceCardHTML(tUI("ui.events.people", "Personer:"))} ${peopleCount}</div>
+        <div class="pc-events-row">${escapePlaceCardHTML(tUI("ui.events.friends", "Venner:"))} ${friendsCount}</div>
       </section>
       <section class="pc-events-section">
-        <div class="pc-event-entry-title">Skjer her</div>
+        <div class="pc-event-entry-title">${escapePlaceCardHTML(tUI("ui.events.happeningHere", "Skjer her"))}</div>
         ${canonicalForPlace.length
           ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
-          : `<div class="pc-events-row">Ingen kanoniserte hendelser lagt til ennå.</div>`
+          : `<div class="pc-events-row">${escapePlaceCardHTML(tUI("ui.events.noCanonicalYet", "Ingen kanoniserte hendelser lagt til ennå."))}</div>`
         }
       </section>
       <section class="pc-events-section">
-        <div class="pc-event-entry-title">Sosialt</div>
+        <div class="pc-event-entry-title">${escapePlaceCardHTML(tUI("ui.events.social", "Sosialt"))}</div>
         ${modeButtons}
       </section>
     `;
 
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
-        title: "På stedet",
+        title: tUI("ui.static.onSite", "På stedet"),
         subtitle: place?.name || "",
         html: socialPopupHtml,
         place,
@@ -1324,7 +1333,7 @@ if (leksikonEl) {
 
   leksikonEl.innerHTML = `
     <a class="pc-leksikon-entry" href="${leksikonPath}" target="_blank" rel="noopener">
-      <span class="pc-leksikon-entry-title">Åpne leksikon</span>
+      <span class="pc-leksikon-entry-title">${escapePlaceCardHTML(tUI("ui.place.openLexicon", "Åpne leksikon"))}</span>
       <span class="pc-leksikon-entry-meta">${place.name}</span>
     </a>
   `;
@@ -1343,7 +1352,7 @@ if (btnQuiz) {
     if (window.QuizEngine && typeof window.QuizEngine.start === "function") {
       window.QuizEngine.start(place.id);
     } else {
-      window.showToast?.("Quiz-modul ikke lastet");
+      window.showToast?.(tUI("ui.quiz.moduleNotLoaded", "Quiz-modul ikke lastet"));
     }
   };
 }
@@ -1365,10 +1374,10 @@ if (btnRoute) {
     menu.id = "pcRouteMenu";
     menu.className = "pc-route-menu";
     menu.setAttribute("role", "menu");
-    menu.setAttribute("aria-label", "Rutevalg");
+    menu.setAttribute("aria-label", tUI("ui.routes.menuLabel", "Rutevalg"));
     menu.innerHTML = `
-      <button type="button" role="menuitem" data-route-action="go">Gå Hit</button>
-      <button type="button" role="menuitem" data-route-action="routes">Ruter</button>
+      <button type="button" role="menuitem" data-route-action="go">${escapePlaceCardHTML(tUI("ui.routes.goHere", "Gå hit"))}</button>
+      <button type="button" role="menuitem" data-route-action="routes">${escapePlaceCardHTML(tt("ui.tabs.routes", "Ruter"))}</button>
     `;
 
     const placeMenu = () => {
@@ -1389,7 +1398,7 @@ if (btnRoute) {
       if (action === "go") {
         if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
         if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
-        window.showToast?.("Rute-funksjon ikke lastet");
+        window.showToast?.(tUI("ui.routes.notLoaded", "Rute-funksjon ikke lastet"));
         return;
       }
 
@@ -1401,7 +1410,7 @@ if (btnRoute) {
         }
         if (typeof window.setLeftPanelMode === "function") window.setLeftPanelMode("routes");
         if (typeof window.renderLeftRoutesList === "function") window.renderLeftRoutesList();
-        window.showToast?.("Ruter vises i utforsk-panelet");
+        window.showToast?.(tUI("ui.routes.shownInExplorePanel", "Ruter vises i utforsk-panelet"));
       }
     });
 
@@ -1436,7 +1445,7 @@ if (btnNote && typeof window.handlePlaceNote === "function") {
 if (btnObs) {
   btnObs.onclick = () => {
     if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
-      window.showToast?.("Observasjoner er ikke lastet");
+      window.showToast?.(tUI("ui.observations.notLoaded", "Observasjoner er ikke lastet"));
       return;
     }
 
@@ -1488,7 +1497,7 @@ function updateUnlockUI() {
   }
 
   if (window.TEST_MODE) {
-    setUnlockUI(false, `${tt("ui.unlock.locked", "Lås opp")} (test)`);
+    setUnlockUI(false, tUI("ui.unlock.lockedTest", "Lås opp (test)"));
     return;
   }
 
@@ -1519,7 +1528,7 @@ _unlockTimer = window.TEST_MODE ? null : setInterval(updateUnlockUI, 1200);
 if (btnUnlock) {
   btnUnlock.onclick = () => {
     if (window.visited && window.visited[place.id]) {
-      window.showToast?.("Allerede låst opp");
+      window.showToast?.(tUI("ui.unlock.alreadyUnlocked", "Allerede låst opp"));
       return;
     }
 

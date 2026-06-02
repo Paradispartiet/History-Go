@@ -6,6 +6,14 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   function esc(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -17,6 +25,10 @@
 
   function norm(value) {
     return String(value ?? "").trim();
+  }
+
+  function wkLabel(row) {
+    return Array.isArray(row) && row[2] ? tUI(row[2], row[1]) : row?.[1];
   }
 
   function typeLabel(type) {
@@ -160,7 +172,7 @@
 
     return `
       <section class="wk-entry-section">
-        <h3>Inne i dette nivået</h3>
+        <h3>${esc(tUI("ui.wonderkammer.insideThisLevel", "Inne i dette nivået"))}</h3>
         <div class="pc-wk-chambers">
           ${items.map(item => {
             const id = norm(item?.id);
@@ -195,7 +207,9 @@
     ];
 
     const blocks = fields
-      .map(([key, label]) => {
+      .map((row) => {
+        const [key] = row;
+        const label = wkLabel(row);
         const value = norm(entry?.[key]);
         if (!value) return "";
         return `
@@ -219,9 +233,9 @@
   // Valgfrie smart-felt. Vises kun når feltet finnes på entryen.
   // Rekkefølgen styrer rekkefølgen i popupen.
   const SMART_SECTIONS = [
-    ["observationHook", "Se etter"],
-    ["whyItMatters", "Hvorfor det betyr noe"],
-    ["placeSpecificDetail", "Stedsspesifikk detalj"],
+    ["observationHook", "Se etter", "ui.wonderkammer.lookFor"],
+    ["whyItMatters", "Hvorfor det betyr noe", "ui.wonderkammer.whyItMatters"],
+    ["placeSpecificDetail", "Stedsspesifikk detalj", "ui.wonderkammer.placeSpecificDetail"],
     ["sensoryPrompt", "Sans dette"],
     ["microMission", "Mikrooppgave"],
     ["childAction", "Barnets handling"],
@@ -235,8 +249,8 @@
 
 
   const TREASURE_SECTIONS = [
-    ["treasureTitle", "Skatten"],
-    ["treasureScope", "Skattetype"],
+    ["treasureTitle", "Skatten", "ui.wonderkammer.treasure"],
+    ["treasureScope", "Skattetype", "ui.wonderkammer.treasureType"],
     ["cabinetCategory", "Kategori"],
     ["treasureType", "Type"],
     ["curiosity", "Hva er forunderlig?"],
@@ -247,7 +261,7 @@
     ["rarity", "Sjeldenhet"],
     ["collectible", "Kan samles som"],
     ["collectionNote", "Samlingsnotat"],
-    ["sourceNote", "Grunnlag"]
+    ["sourceNote", "Grunnlag", "ui.wonderkammer.basis"]
   ];
 
   const TREASURE_SCOPE_LABELS = {
@@ -264,7 +278,9 @@
 
   function treasureSectionsHtml(entry) {
     return TREASURE_SECTIONS
-      .map(([key, label]) => {
+      .map((row) => {
+        const [key] = row;
+        const label = wkLabel(row);
         const value = norm(entry?.[key]);
         if (!value) return "";
         const display = treasureFieldDisplay(key, value);
@@ -281,7 +297,9 @@
 
   function smartSectionsHtml(entry) {
     return SMART_SECTIONS
-      .map(([key, label]) => {
+      .map((row) => {
+        const [key] = row;
+        const label = wkLabel(row);
         const value = norm(entry?.[key]);
         if (!value) return "";
         return `
@@ -317,20 +335,20 @@
         <header class="hg-modal-header">
         <p class="wk-entry-breadcrumb hg-modal-meta">${esc(breadcrumb || title)}</p>
         <div class="wk-entry-type-chip hg-modal-meta">${esc(type)}</div>
-        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || "forrige nivå")}</button>` : ""}
+        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || tUI("ui.wonderkammer.previousLevel", "forrige nivå"))}</button>` : ""}
         <h2 class="hg-popup-name hg-modal-title">${esc(title)}</h2>
         </header>
         <div class="hg-modal-body">
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${treasureSectionsHtml(entry)}
-        ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
-        ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
+        ${activityText ? `<section class="wk-entry-section"><h3>${esc(tUI("ui.wonderkammer.whatCanYouDoHere", "Hva kan man gjøre her?"))}</h3><p>${esc(activityText)}</p></section>` : ""}
+        ${ageHint ? `<section class="wk-entry-section"><h3>${esc(tUI("ui.wonderkammer.ageLevel", "Alder / nivå"))}</h3><p>${esc(ageHint)}</p></section>` : ""}
         ${smartSectionsHtml(entry)}
         ${metaGridHtml(entry)}
         ${childListHtml(entry)}
         </div>
         <footer class="hg-modal-footer">
-          <button class="reward-ok" data-close-popup>Lukk</button>
+          <button class="reward-ok" data-close-popup>${esc(tUI("ui.attr.close", "Lukk"))}</button>
         </footer>
       </article>
     `;
@@ -367,6 +385,14 @@
 // ============================================================
 (function () {
   "use strict";
+
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
 
   if (window.__wkListGroupingBound) return;
   window.__wkListGroupingBound = true;
@@ -444,56 +470,67 @@
     {
       id: "play",
       title: "Lek",
+      titleKey: "ui.wonderkammer.group.play",
       types: ["play_zone", "play_object", "open_play_area"]
     },
     {
       id: "nature",
       title: "Natur",
+      titleKey: "ui.wonderkammer.group.nature",
       types: ["landscape_zone", "nature_discovery", "sensory_zone", "water_play_zone", "seasonal_activity_zone"]
     },
     {
       id: "season",
       title: "Sesong",
+      titleKey: "ui.wonderkammer.group.season",
       types: ["season_zone", "seasonal_activity", "weather_activity", "light_observation", "winter_activity", "spring_observation", "summer_activity", "autumn_observation", "rain_observation", "snow_observation", "wind_observation", "water_observation"]
     },
     {
       id: "training",
       title: "Trening",
+      titleKey: "ui.wonderkammer.group.training",
       types: ["training_zone", "training"]
     },
     {
       id: "art",
       title: "Kunst",
+      titleKey: "ui.wonderkammer.group.art",
       types: ["art_zone", "artwork", "sculpture", "public_art", "material_study"]
     },
     {
       id: "street_art",
       title: "Gatekunst",
+      titleKey: "ui.wonderkammer.group.streetArt",
       types: ["street_art_zone", "mural", "graffiti_piece", "street_art_detail"]
     },
     {
       id: "architecture",
       title: "Arkitektur",
+      titleKey: "ui.wonderkammer.group.architecture",
       types: ["architecture_zone", "architectural_feature", "facade_detail"]
     },
     {
       id: "knowledge",
       title: "Kunnskap",
+      titleKey: "ui.wonderkammer.group.knowledge",
       types: ["museum_zone", "library_zone", "knowledge_zone", "collection_activity", "reading_activity", "observation_activity", "archive_trace", "research_trace"]
     },
     {
       id: "explore",
       title: "Utforsking",
+      titleKey: "ui.wonderkammer.group.exploration",
       types: ["exploration_zone", "thing_to_see", "viewpoint", "urban_space", "media_concept"]
     },
     {
       id: "quiet",
       title: "Rolig",
+      titleKey: "ui.wonderkammer.group.quiet",
       types: ["quiet_zone"]
     },
     {
       id: "other",
       title: "Annet",
+      titleKey: "ui.wonderkammer.group.other",
       types: []
     }
   ];
@@ -540,7 +577,7 @@
         } else if (typeof window.openWonderkammerEntry === "function") {
           window.openWonderkammerEntry(id);
         } else {
-          window.showToast?.("Wonderkammer-handler ikke lastet");
+          window.showToast?.(tUI("ui.wonderkammer.notLoaded", "Wonderkammer-handler ikke lastet"));
         }
       };
     });
@@ -580,7 +617,7 @@
       .map(bucket => `
         <section class="pc-wk-group" data-wk-group="${esc(bucket.group.id)}">
           <div class="pc-wk-group-head">
-            <span class="pc-wk-group-title">${esc(bucket.group.title)}</span>
+            <span class="pc-wk-group-title">${esc(tUI(bucket.group.titleKey, bucket.group.title))}</span>
             <span class="pc-wk-group-count">${bucket.entries.length}</span>
           </div>
           <div class="pc-wk-group-list">

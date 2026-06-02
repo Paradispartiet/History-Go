@@ -1,3 +1,11 @@
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 function handlePersonChat(person) {
   // Enkel V1: ett åpent spørsmål + lagring
   const userText = window.prompt(
@@ -22,7 +30,7 @@ function handlePersonChat(person) {
 function handlePersonNote(person) {
   const noteText = window.prompt(
     `Notat om ${person.name}.\n\n` +
-    `Skriv én setning eller tanke du vil ta vare på:`
+    tUI("ui.notes.promptOneSentence", "Skriv én setning eller tanke du vil ta vare på:")
   );
   if (!noteText) return;
 
@@ -91,7 +99,7 @@ function openActivePlaceDescription(e) {
   if (typeof window.showPlacePopup === "function") {
     window.showPlacePopup(place);
   } else {
-    window.showToast?.("Stedsbeskrivelse ikke lastet");
+    window.showToast?.(tUI("ui.place.descriptionNotLoaded", "Stedsbeskrivelse ikke lastet"));
   }
 }
 
@@ -102,7 +110,7 @@ function bindPlaceDescriptionPopup() {
   descEl.dataset.fullTextPopupBound = "1";
   descEl.setAttribute("role", "button");
   descEl.setAttribute("tabindex", "0");
-  descEl.setAttribute("title", "Trykk for å lese hele teksten");
+  descEl.setAttribute("title", tUI("ui.place.readFullTextHint", "Trykk for å lese hele teksten"));
   descEl.style.cursor = "pointer";
 
   descEl.addEventListener("click", openActivePlaceDescription);
@@ -221,7 +229,7 @@ function exitMapMode() {
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 
-  showToast("Tilbake til oversikt");
+  showToast(tUI("ui.map.backToOverview", "Tilbake til oversikt"));
 }
 
 el.btnSeeMap?.addEventListener("click", enterMapMode);

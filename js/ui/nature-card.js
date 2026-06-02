@@ -5,6 +5,14 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   function ensureModal() {
     let modal = document.getElementById("natureCard");
     if (modal) return modal;
@@ -17,7 +25,7 @@
 
     modal.innerHTML = `
       <div class="nature-card-inner" role="dialog" aria-modal="true">
-        <button class="nature-card-close" type="button" aria-label="Lukk">✕</button>
+        <button class="nature-card-close" type="button" aria-label="${tUI("ui.attr.close", "Lukk")}">✕</button>
         <div class="nature-card-image-wrap">
           <img class="nature-card-image" alt="">
           <span class="nature-card-icon" aria-hidden="true"></span>
@@ -127,36 +135,36 @@
       : false;
     const hint = modal.querySelector(".nature-card-unlocked-hint");
     hint.textContent = unlocked
-      ? "✔ Låst opp — du har samlet denne."
-      : "🔒 Ikke samlet ennå. Ta en quiz på riktig sted.";
+      ? tUI("ui.nature.unlockedHint", "✔ Låst opp — du har samlet denne.")
+      : tUI("ui.nature.lockedHint", "🔒 Ikke samlet ennå. Ta en quiz på riktig sted.");
     hint.className = "nature-card-unlocked-hint " + (unlocked ? "is-unlocked" : "is-locked");
 
     const sections = modal.querySelector(".nature-card-sections");
     sections.innerHTML = [
-      sectionHTML("Kjennetegn", listHTML(obj.kjennetegn)),
-      sectionHTML("Habitat", dlHTML([
-        ["Biotop", obj.habitat?.biotop],
-        ["Jord", obj.habitat?.jord],
-        ["Lys", obj.habitat?.lys],
-        ["Fukt", obj.habitat?.fukt],
+      sectionHTML(tUI("ui.nature.traits", "Kjennetegn"), listHTML(obj.kjennetegn)),
+      sectionHTML(tUI("ui.nature.habitat", "Habitat"), dlHTML([
+        [tUI("ui.nature.biotope", "Biotop"), obj.habitat?.biotop],
+        [tUI("ui.nature.soil", "Jord"), obj.habitat?.jord],
+        [tUI("ui.nature.light", "Lys"), obj.habitat?.lys],
+        [tUI("ui.nature.moisture", "Fukt"), obj.habitat?.fukt],
       ])),
-      sectionHTML("Fenologi", dlHTML([
-        ["Aktiv", obj.fenologi?.aktiv],
-        ["Blomstring", obj.fenologi?.blomstring],
-        ["Strategi", obj.fenologi?.strategi],
+      sectionHTML(tUI("ui.nature.phenology", "Fenologi"), dlHTML([
+        [tUI("ui.nature.active", "Aktiv"), obj.fenologi?.aktiv],
+        [tUI("ui.nature.flowering", "Blomstring"), obj.fenologi?.blomstring],
+        [tUI("ui.nature.strategy", "Strategi"), obj.fenologi?.strategi],
       ])),
-      sectionHTML("Økologi", dlHTML([
-        ["Rolle", obj.økologi?.rolle],
-        ["Samspill", obj.økologi?.samspill],
+      sectionHTML(tUI("ui.nature.ecology", "Økologi"), dlHTML([
+        [tUI("ui.nature.role", "Rolle"), obj.økologi?.rolle],
+        [tUI("ui.nature.interaction", "Samspill"), obj.økologi?.samspill],
       ])),
-      sectionHTML("I byen", dlHTML([
-        ["Typiske steder", obj.bykontekst?.typiske_steder],
-        ["Observert typisk", obj.bykontekst?.oslo_observert_typisk],
+      sectionHTML(tUI("ui.nature.inCity", "I byen"), dlHTML([
+        [tUI("ui.nature.typicalPlaces", "Typiske steder"), obj.bykontekst?.typiske_steder],
+        [tUI("ui.nature.typicallyObserved", "Observert typisk"), obj.bykontekst?.oslo_observert_typisk],
       ])),
-      sectionHTML("Observasjonstips", listHTML(obj.observasjonstips)),
+      sectionHTML(tUI("ui.nature.observationTips", "Observasjonstips"), listHTML(obj.observasjonstips)),
       `<section class="nature-card-section nature-card-places" data-places-slot>
-         <h3>${unlocked ? "Her samlet du den" : "Hvor du kan finne den"}</h3>
-         <div class="nature-places-loading muted">Leter etter steder …</div>
+         <h3>${unlocked ? tUI("ui.nature.collectedHere", "Her samlet du den") : tUI("ui.nature.whereToFind", "Hvor du kan finne den")}</h3>
+         <div class="nature-places-loading muted">${tUI("ui.nature.findingPlaces", "Leter etter steder …")}</div>
        </section>`,
     ].filter(Boolean).join("");
 
@@ -180,8 +188,8 @@
 
     if (!places.length) {
       slot.innerHTML = `
-        <h3>${unlocked ? "Her samlet du den" : "Hvor du kan finne den"}</h3>
-        <p class="muted">Ingen steder koblet til denne arten ennå.</p>
+        <h3>${unlocked ? tUI("ui.nature.collectedHere", "Her samlet du den") : tUI("ui.nature.whereToFind", "Hvor du kan finne den")}</h3>
+        <p class="muted">${tUI("ui.nature.noLinkedPlacesYet", "Ingen steder koblet til denne arten ennå.")}</p>
       `;
       return;
     }
@@ -199,7 +207,7 @@
     }).join("");
 
     slot.innerHTML = `
-      <h3>${unlocked ? "Her samlet du den" : "Hvor du kan finne den"}</h3>
+      <h3>${unlocked ? tUI("ui.nature.collectedHere", "Her samlet du den") : tUI("ui.nature.whereToFind", "Hvor du kan finne den")}</h3>
       <ul class="nature-places-list">${items}</ul>
     `;
 

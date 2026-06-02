@@ -83,7 +83,7 @@ document.addEventListener("click", e => {
   if (window.QuizEngine?.start) {
     QuizEngine.start(quizId);
   } else {
-    showToast("Quiz-modul ikke lastet");
+    showToast(window.HG_I18N?.t?.("ui.quiz.moduleNotLoaded", "Quiz-modul ikke lastet") || "Quiz-modul ikke lastet");
   }
   return;
 }

@@ -6,6 +6,14 @@
 
 console.log("routes.js start");
 
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 /**
  * Local type view for route-owned browser globals. Keeps this migration pass
  * type-only while preserving the existing window-backed runtime API.
@@ -645,7 +653,7 @@ async function showWalkingRouteToPlace(place) {
 
   const pos = getUserPos();
   if (!pos) {
-    _toast("Fant ikke posisjon ennå.");
+    _toast(tUI("ui.position.notFoundYet", "Fant ikke posisjon ennå."));
     return;
   }
 
@@ -773,7 +781,7 @@ async function renderLeftRoutesList() {
   const availableRoutes = _validRoutes();
 
   if (!availableRoutes.length) {
-    box.innerHTML = `<div class="muted">Ingen ruter lastet fra routes.json.</div>`;
+    box.innerHTML = `<div class="muted">${_escapeHTML(tUI("ui.routes.noneLoaded", "Ingen ruter lastet fra routes.json."))}</div>`;
     return;
   }
 
@@ -784,7 +792,7 @@ async function renderLeftRoutesList() {
   });
 
   if (!learningFilteredRoutes.length) {
-    box.innerHTML = `<div class="muted">Ingen ruter tilgjengelige enda.</div>`;
+    box.innerHTML = `<div class="muted">${_escapeHTML(tUI("ui.routes.noneAvailableYet", "Ingen ruter tilgjengelige enda."))}</div>`;
     return;
   }
 
@@ -794,7 +802,7 @@ async function renderLeftRoutesList() {
     box.innerHTML = `
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🏅</div>
-        <div class="hg-empty-guide-title">Ingen ruter</div>
+        <div class="hg-empty-guide-title">${_escapeHTML(tUI("ui.routes.noneTitle", "Ingen ruter"))}</div>
         <div class="hg-empty-guide-text">Ingen ruter har stopp i ${_escapeHTML(activeBadgeNameForRoutes())}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
       </div>
     `;
@@ -803,7 +811,7 @@ async function renderLeftRoutesList() {
 
   const pos = getUserPos();
   if (!pos) {
-    box.innerHTML = `<div class="muted">Fant ikke posisjon ennå.</div>`;
+    box.innerHTML = `<div class="muted">${_escapeHTML(tUI("ui.position.notFoundYet", "Fant ikke posisjon ennå."))}</div>`;
     return;
   }
 
@@ -811,12 +819,12 @@ async function renderLeftRoutesList() {
   const list = getNearbyRoutesSorted(pos, visitedMap, badgeFilteredRoutes);
 
   if (!list.length) {
-    box.innerHTML = `<div class="muted">Ingen ruter har gyldige stopp i kartdataene.</div>`;
+    box.innerHTML = `<div class="muted">${_escapeHTML(tUI("ui.routes.noValidStops", "Ingen ruter har gyldige stopp i kartdataene."))}</div>`;
     return;
   }
 
   box.innerHTML = list.slice(0, 12).map(r => {
-    const title = r.title || r.name || "Rute";
+    const title = r.title || r.name || tUI("ui.routes.fallbackRoute", "Rute");
     const dist = formatDist(r._nearestDistM);
     const stop = r._nearestStopName || "";
 
@@ -902,7 +910,7 @@ hgWindow.clearThematicRoute = clearThematicRoute;
 hgWindow.showRouteToPlace = (place) => hgWindow.HGRoutes.showToPlace(place);
 hgWindow.showRouteTo = function(place) {
   if (typeof hgWindow.showRouteToPlace === "function") return hgWindow.showRouteToPlace(place);
-  _toast("Rute-funksjon ikke lastet");
+  _toast(tUI("ui.routes.notLoaded", "Rute-funksjon ikke lastet"));
 };
 
 console.log("routes.js end", typeof hgWindow.showRouteToPlace);

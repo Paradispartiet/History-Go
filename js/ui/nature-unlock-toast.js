@@ -11,6 +11,14 @@
 (function () {
   "use strict";
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   const STACK_ID = "natureUnlockStack";
   const AUTO_DISMISS_MS = 4500;
 
@@ -50,7 +58,7 @@
     const card = document.createElement("div");
     card.className = `nature-unlock-card is-${kind}`;
 
-    const title = obj?.title || obj?.id || "Ny art";
+    const title = obj?.title || obj?.id || tUI("ui.nature.unlock.newSpecies", "✨ Ny art samlet");
     const latin = obj?.latin || obj?.taxonomy?.latin_navn || "";
     const icon = kind === "fauna" ? "🐞" : "🌿";
     const imgSrc = (typeof window.resolveNatureImage === "function")
@@ -65,11 +73,11 @@
     card.innerHTML = `
       ${thumb}
       <div class="nature-unlock-body">
-        <div class="nature-unlock-kicker">✨ Ny ${kind === "fauna" ? "art" : "plante"} samlet</div>
+        <div class="nature-unlock-kicker">${kind === "fauna" ? tUI("ui.nature.unlock.newSpecies", "✨ Ny art samlet") : tUI("ui.nature.unlock.newPlant", "✨ Ny plante samlet")}</div>
         <div class="nature-unlock-title"></div>
         <div class="nature-unlock-latin"></div>
       </div>
-      <button class="nature-unlock-close" type="button" aria-label="Lukk">✕</button>
+      <button class="nature-unlock-close" type="button" aria-label="${tUI("ui.attr.close", "Lukk")}">✕</button>
     `;
     card.querySelector(".nature-unlock-title").textContent = title;
     card.querySelector(".nature-unlock-latin").textContent = latin;
