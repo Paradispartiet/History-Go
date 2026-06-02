@@ -812,3 +812,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Schema/declaration files were not changed; `schemas/*.d.ts` and Civication global declarations remain untouched.
 - Data, UI, DOM, CSS, stories, places, people, import tooling, package metadata, HTML, and `tsconfig.json` were not changed.
 - The report recommends Phase 96 as one narrow target only: a local inbox-envelope typedef/cast around the existing `prependInboxEvents()` concat boundary, while deferring the `pushOffer()` optional brand/employer input contract to a later dedicated offer-contract phase.
+
+## Phase 96: Civication jobs inbox envelope concat pass
+
+- Followed the Phase 95 jobs contract audit recommendation by targeting only the safest remaining `js/Civication/core/civicationJobs.js` item: the `prependInboxEvents()` inbox-envelope concat boundary.
+- Added a narrow local `InboxEnvelope` JSDoc shape/cast so TypeScript sees the existing `valid.filter(...).map(makeInboxEnvelope).concat(existing)` boundary as a compatible inbox-envelope array.
+- The local shape covers only the fields used at this boundary: optional `status`, optional `createdAt`, and the existing dynamic `event` payload with optional event id access for duplicate detection.
+- Runtime output, inbox-envelope object values, ordering, duplicate filtering, the `window.HG_CiviEngine?.setInbox?.(next)` write, fallback-to-`[]` behavior, job flow, offer flow, state, UI, schema declarations, data files, and `tsconfig.json` remain unchanged.
+- The two `pushOffer()` diagnostics for optional brand/employer context are deliberately deferred to a later dedicated offer-contract phase; `pushOffer()`, promotion thresholds, offer storage, accept/decline behavior, active-position logic, and first-job onboarding semantics were not changed.
+- Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1517, `js/Civication/**` diagnostics are now 262, and `js/Civication/core/civicationJobs.js` diagnostics are now 2.
