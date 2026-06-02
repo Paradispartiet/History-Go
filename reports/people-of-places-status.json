@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-06-01T22:57:28.140Z",
+  "generatedAt": "2026-06-02T09:43:31.502Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-01T22:57:28.140Z",
-    "peopleFilesRead": 21,
+    "generatedAt": "2026-06-02T09:43:31.502Z",
+    "peopleFilesRead": 20,
     "totalPeople": 323,
     "uniquePeopleIds": 323,
     "duplicatePeopleIds": 0,
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 5,
     "peopleWithEmptyPlacesArray": 3,
-    "flatPeopleFiles": 4,
+    "flatPeopleFiles": 3,
     "geographicPeopleFiles": 17,
     "categoriesRepresented": 15
   },
@@ -213,7 +213,7 @@
       "listedInManifest": true,
       "categoryGuess": "musikk",
       "geographicStructure": true,
-      "peopleCount": 5,
+      "peopleCount": 15,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
@@ -223,9 +223,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=5/5",
-        "source_place_id=0/5",
-        "placesArray=5/5",
+        "placeId=15/15",
+        "source_place_id=0/15",
+        "placesArray=15/15",
         "categories=musikk"
       ]
     },
@@ -271,27 +271,6 @@
         "collectionGroup=9/9",
         "categories=by,kunst,litteratur,politikk,vitenskap",
         "ok: filantroper vurderes etter collectionGroup, ikke category"
-      ]
-    },
-    {
-      "path": "data/people/people_musikk.json",
-      "listedInManifest": true,
-      "categoryGuess": "musikk",
-      "geographicStructure": false,
-      "peopleCount": 10,
-      "duplicateIdsWithinFile": [],
-      "missingIdCount": 0,
-      "missingNameCount": 0,
-      "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=10/10",
-        "source_place_id=0/10",
-        "placesArray=10/10",
-        "categories=musikk"
       ]
     },
     {
@@ -565,18 +544,15 @@
       "totalPeople": 19,
       "files": [
         "data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json",
-        "data/people/musikk/oslo/people_musikk_oslo.json",
-        "data/people/people_musikk.json"
+        "data/people/musikk/oslo/people_musikk_oslo.json"
       ],
-      "flatFiles": [
-        "data/people/people_musikk.json"
-      ],
+      "flatFiles": [],
       "geographicFiles": [
         "data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json",
         "data/people/musikk/oslo/people_musikk_oslo.json"
       ],
-      "suggestedNextAction": "geographic_split",
-      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     },
     {
       "category": "naeringsliv",
@@ -697,26 +673,14 @@
     ],
     "stillFlat": [
       "data/people/people_filantroper.json",
-      "data/people/people_musikk.json",
       "data/people/people_naeringsliv.json",
       "data/people/people_populaerkultur.json"
     ],
     "mixedCategoryStructure": [
-      "musikk",
       "populaerkultur"
     ],
-    "recommendedNextGeographicSplit": [
-      {
-        "category": "musikk",
-        "totalPeople": 19,
-        "files": [
-          "data/people/people_musikk.json"
-        ]
-      }
-    ],
-    "safeFlatFilesForGeographicSplit": [
-      "data/people/people_musikk.json"
-    ],
+    "recommendedNextGeographicSplit": [],
+    "safeFlatFilesForGeographicSplit": [],
     "flatFilesHoldForSchemaReview": [
       {
         "path": "data/people/people_filantroper.json",
@@ -1155,9 +1119,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=5/5",
-        "source_place_id=0/5",
-        "placesArray=5/5",
+        "placeId=15/15",
+        "source_place_id=0/15",
+        "placesArray=15/15",
         "categories=musikk"
       ],
       "deviations": []
@@ -1185,18 +1149,6 @@
         "collectionGroup=9/9",
         "categories=by,kunst,litteratur,politikk,vitenskap",
         "ok: filantroper vurderes etter collectionGroup, ikke category"
-      ],
-      "deviations": []
-    },
-    {
-      "sourceFile": "data/people/people_musikk.json",
-      "schemaKind": "standard_placeId_schema",
-      "schemaNotes": [
-        "schemaKind=standard_placeId_schema",
-        "placeId=10/10",
-        "source_place_id=0/10",
-        "placesArray=10/10",
-        "categories=musikk"
       ],
       "deviations": []
     },
@@ -3544,6 +3496,146 @@
         "imagePath": "bilder/kort/people/morten_harket.PNG"
       },
       {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "kirsten_flagstad",
+        "personName": "Kirsten Flagstad",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kirsten_flagstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "kirsten_flagstad",
+        "personName": "Kirsten Flagstad",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kirsten_flagstad.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "alexander_rybak",
+        "personName": "Alexander Rybak",
+        "field": "image",
+        "imagePath": "bilder/kort/people/alexander_rybak.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "alexander_rybak",
+        "personName": "Alexander Rybak",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/alexander_rybak.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "aurora",
+        "personName": "Aurora",
+        "field": "image",
+        "imagePath": "bilder/kort/people/aurora_salt.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "aurora",
+        "personName": "Aurora",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/aurora_salt.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "sigrid",
+        "personName": "Sigrid",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sigrid_salt.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "sigrid",
+        "personName": "Sigrid",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sigrid_salt.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "karpe",
+        "personName": "Karpe",
+        "field": "image",
+        "imagePath": "bilder/kort/people/karpe_sorenga.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "karpe",
+        "personName": "Karpe",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/karpe_sorenga.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "ulrikke_brandstorp",
+        "personName": "Ulrikke Brandstorp",
+        "field": "image",
+        "imagePath": "bilder/kort/people/ulrikke_brandstorp.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "ulrikke_brandstorp",
+        "personName": "Ulrikke Brandstorp",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/ulrikke_brandstorp.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "kygo",
+        "personName": "Kygo",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kygo_barcode.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "kygo",
+        "personName": "Kygo",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kygo_barcode.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "gabrielle",
+        "personName": "Gabrielle",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gabrielle_barcode.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "gabrielle",
+        "personName": "Gabrielle",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gabrielle_barcode.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "arif",
+        "personName": "Arif",
+        "field": "image",
+        "imagePath": "bilder/kort/people/arif_stovner.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "arif",
+        "personName": "Arif",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/arif_stovner.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "edvard_grieg",
+        "personName": "Edvard Grieg",
+        "field": "image",
+        "imagePath": "bilder/kort/people/edvard_grieg.PNG"
+      },
+      {
+        "sourceFile": "data/people/musikk/oslo/people_musikk_oslo.json",
+        "personId": "edvard_grieg",
+        "personName": "Edvard Grieg",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/edvard_grieg.PNG"
+      },
+      {
         "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
         "personId": "peter_christen_asbjornsen",
         "personName": "Peter Christen Asbjørnsen",
@@ -3766,146 +3858,6 @@
         "personName": "Mikkjel Fønhus",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/mikkjel_fonhus.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "kirsten_flagstad",
-        "personName": "Kirsten Flagstad",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kirsten_flagstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "kirsten_flagstad",
-        "personName": "Kirsten Flagstad",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kirsten_flagstad.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "alexander_rybak",
-        "personName": "Alexander Rybak",
-        "field": "image",
-        "imagePath": "bilder/kort/people/alexander_rybak.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "alexander_rybak",
-        "personName": "Alexander Rybak",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/alexander_rybak.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "aurora",
-        "personName": "Aurora",
-        "field": "image",
-        "imagePath": "bilder/kort/people/aurora_salt.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "aurora",
-        "personName": "Aurora",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/aurora_salt.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "sigrid",
-        "personName": "Sigrid",
-        "field": "image",
-        "imagePath": "bilder/kort/people/sigrid_salt.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "sigrid",
-        "personName": "Sigrid",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sigrid_salt.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "karpe",
-        "personName": "Karpe",
-        "field": "image",
-        "imagePath": "bilder/kort/people/karpe_sorenga.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "karpe",
-        "personName": "Karpe",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/karpe_sorenga.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "ulrikke_brandstorp",
-        "personName": "Ulrikke Brandstorp",
-        "field": "image",
-        "imagePath": "bilder/kort/people/ulrikke_brandstorp.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "ulrikke_brandstorp",
-        "personName": "Ulrikke Brandstorp",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/ulrikke_brandstorp.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "kygo",
-        "personName": "Kygo",
-        "field": "image",
-        "imagePath": "bilder/kort/people/kygo_barcode.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "kygo",
-        "personName": "Kygo",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/kygo_barcode.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "gabrielle",
-        "personName": "Gabrielle",
-        "field": "image",
-        "imagePath": "bilder/kort/people/gabrielle_barcode.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "gabrielle",
-        "personName": "Gabrielle",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/gabrielle_barcode.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "arif",
-        "personName": "Arif",
-        "field": "image",
-        "imagePath": "bilder/kort/people/arif_stovner.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "arif",
-        "personName": "Arif",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/arif_stovner.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "edvard_grieg",
-        "personName": "Edvard Grieg",
-        "field": "image",
-        "imagePath": "bilder/kort/people/edvard_grieg.PNG"
-      },
-      {
-        "sourceFile": "data/people/people_musikk.json",
-        "personId": "edvard_grieg",
-        "personName": "Edvard Grieg",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/edvard_grieg.PNG"
       },
       {
         "sourceFile": "data/people/people_populaerkultur.json",
@@ -5220,10 +5172,10 @@
     }
   ],
   "recommendedNextPr": {
-    "type": "geographic_split",
-    "category": "musikk",
-    "reason": "musikk er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-    "safeBatchSize": 19,
+    "type": "content_expansion",
+    "category": "filantroper",
+    "reason": "filantroper er liten og ren nok for innholdsutvidelse.",
+    "safeBatchSize": 10,
     "blockers": []
   },
   "guardrails": {

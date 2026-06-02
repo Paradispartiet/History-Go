@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-01T22:57:27.957Z
+Generert: 2026-06-02T09:43:31.367Z
 
 ## Sammendrag
 
@@ -12,8 +12,8 @@ Generert: 2026-06-01T22:57:27.957Z
 - Legacy unike ID-er: **98**
 - Split people: **323**
 - Split unike ID-er: **323**
-- Split-filer: **21**
-- Runtime-/manifestfiler: **21**
+- Split-filer: **20**
+- Runtime-/manifestfiler: **20**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
@@ -36,10 +36,9 @@ Generert: 2026-06-01T22:57:27.957Z
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | ja | 3 | 0 |  |
 | data/people/media/oslo/people_media_oslo.json | ja | 14 | 0 |  |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | ja | 4 | 0 |  |
-| data/people/musikk/oslo/people_musikk_oslo.json | ja | 5 | 0 |  |
+| data/people/musikk/oslo/people_musikk_oslo.json | ja | 15 | 0 |  |
 | data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
 | data/people/people_filantroper.json | ja | 9 | 0 |  |
-| data/people/people_musikk.json | ja | 10 | 0 |  |
 | data/people/people_naeringsliv.json | ja | 19 | 0 |  |
 | data/people/people_populaerkultur.json | ja | 3 | 0 |  |
 | data/people/politikk/oslo/people_politikk_oslo.json | ja | 22 | 0 |  |
@@ -321,7 +320,7 @@ Generert: 2026-06-01T22:57:27.957Z
 - rolf_jacobsen | Rolf Jacobsen | placeId, popupDesc | data/people/litteratur/oslo/people_litteratur_oslo.json
 - ronny_deila | Ronny Deila | placeId | data/people/sport/oslo/people_sport_oslo.json
 - therese_johaug | Therese Johaug | placeId | data/people/sport/oslo/people_sport_oslo.json
-- ulrikke_brandstorp | Ulrikke Brandstorp | placeId | data/people/people_musikk.json
+- ulrikke_brandstorp | Ulrikke Brandstorp | placeId | data/people/musikk/oslo/people_musikk_oslo.json
 
 ## Anbefalt bruk
 

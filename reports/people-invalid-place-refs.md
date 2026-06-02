@@ -1,9 +1,9 @@
 # People invalid place refs audit
 
-Generated: 2026-06-01T22:57:27.836Z
+Generated: 2026-06-02T09:43:31.261Z
 
 ## Sammendrag
-- People-filer lest: **21**
+- People-filer lest: **20**
 - People lest: **323**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
@@ -160,16 +160,6 @@ Generated: 2026-06-01T22:57:27.836Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
-- data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
-- data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
-- data/people/people_musikk.json :: aurora (Aurora) -> salt x2
-- data/people/people_musikk.json :: sigrid (Sigrid) -> salt x2
-- data/people/people_musikk.json :: karpe (Karpe) -> sorenga x2
-- data/people/people_musikk.json :: ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan_energisentral x2
-- data/people/people_musikk.json :: kygo (Kygo) -> barcode x2
-- data/people/people_musikk.json :: gabrielle (Gabrielle) -> barcode x2
-- data/people/people_musikk.json :: arif (Arif) -> stovnertarnet x2
-- data/people/people_musikk.json :: edvard_grieg (Edvard Grieg) -> operahuset x2
 - data/people/people_filantroper.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
@@ -323,6 +313,16 @@ Generated: 2026-06-01T22:57:27.836Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: mari_boine (Mari Boine) -> rockefeller x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: joachim_nielsen (Joachim Nielsen) -> rockefeller x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: morten_harket (Morten Harket) -> sentrum_scene x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: aurora (Aurora) -> salt x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: sigrid (Sigrid) -> salt x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: karpe (Karpe) -> sorenga x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan_energisentral x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: kygo (Kygo) -> barcode x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: gabrielle (Gabrielle) -> barcode x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: arif (Arif) -> stovnertarnet x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: edvard_grieg (Edvard Grieg) -> operahuset x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
