@@ -224,7 +224,7 @@ function renderLeftBadges() {
   if (box.dataset.hgBadgeDelegated !== "1") {
     box.dataset.hgBadgeDelegated = "1";
     box.addEventListener("click", (event) => {
-      const btn = event.target?.closest?.("[data-badge-id]");
+      const btn = /** @type {Element|null} */ (event.target)?.closest?.("[data-badge-id]");
       if (!btn || !box.contains(btn)) return;
       if (badgeFilterTapIsLocked()) return;
 
@@ -281,7 +281,7 @@ function renderLeftBadges() {
 function ensureNearbyBadgeFilterButton(placeFilterBtn) {
   if (!placeFilterBtn) return null;
 
-  let btn = document.getElementById("nearbyBadgeFilterBtn");
+  let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbyBadgeFilterBtn"));
   if (btn) return btn;
 
   btn = document.createElement("button");
@@ -297,7 +297,7 @@ function ensureNearbyBadgeFilterButton(placeFilterBtn) {
 function ensureNearbySortButton(placeFilterBtn) {
   if (!placeFilterBtn) return null;
 
-  let btn = document.getElementById("nearbySortBtn");
+  let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbySortBtn"));
   if (btn) return btn;
 
   btn = document.createElement("button");
@@ -319,7 +319,7 @@ function initLeftPanel() {
   window.__HG_LEFT_PANEL_INIT_DONE__ = true;
 
   const panel = hg$("nearbyListContainer");
-  const sel   = hg$("leftPanelMode");
+  const sel   = /** @type {HTMLSelectElement} */ (hg$("leftPanelMode"));
   if (!panel || !sel) return;
 
     window.HG_NEARBY_FILTER =

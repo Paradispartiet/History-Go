@@ -35,4 +35,7 @@ export interface Place {
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;
+  /** Legacy nature fields: arrays of flora/fauna ids attached to a place. */
+  flora?: string[];
+  fauna?: string[];
 }
