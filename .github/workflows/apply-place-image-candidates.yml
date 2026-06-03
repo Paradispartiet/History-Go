@@ -1,0 +1,266 @@
+name: Apply approved place image candidates (manual, safe)
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_ids:
+        description: "Comma-separated approved place IDs expected before apply"
+        required: true
+        default: "tigeren,gronland_kirke"
+      commit_output:
+        description: "Commit applied images and updated place data to branch"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      commit_branch:
+        description: "Branch to commit apply output to"
+        required: false
+        default: "image-apply-output"
+
+permissions:
+  contents: write
+
+jobs:
+  apply-approved-place-images:
+    name: Apply reviewed place image candidates
+    runs-on: ubuntu-latest
+
+    env:
+      CANDIDATES_FILE: data/places/place_image_candidates.json
+      PLACE_FILE: data/places/by/oslo/places_by.json
+      PLACES_INDEX_FILE: data/places/places_index.json
+      TIGEREN_IMAGE: bilder/places/auto/tigeren.jpg
+      GRONLAND_KIRKE_IMAGE: bilder/places/auto/gronland_kirke.jpg
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Preflight approved candidates
+        env:
+          EXPECTED_IDS: ${{ inputs.expected_ids }}
+        run: |
+          node <<'NODE'
+          const crypto = require("node:crypto");
+          const fs = require("node:fs");
+          const os = require("node:os");
+          const path = require("node:path");
+
+          const candidatePath = process.env.CANDIDATES_FILE;
+          const placePath = process.env.PLACE_FILE;
+          const allowedIds = ["tigeren", "gronland_kirke"];
+          const expectedIds = (process.env.EXPECTED_IDS || "")
+            .split(",")
+            .map((id) => id.trim())
+            .filter(Boolean);
+
+          const sameSet = (a, b) => {
+            const aSet = new Set(a);
+            const bSet = new Set(b);
+            return aSet.size === a.length && bSet.size === b.length && aSet.size === bSet.size && [...aSet].every((id) => bSet.has(id));
+          };
+          if (!sameSet(expectedIds, allowedIds)) {
+            throw new Error(`expected_ids must be exactly ${allowedIds.join(",")}; got ${expectedIds.join(",") || "<empty>"}`);
+          }
+
+          const candidatesRaw = fs.readFileSync(candidatePath, "utf8");
+          const candidatesHash = crypto.createHash("sha256").update(candidatesRaw).digest("hex");
+          const candidates = JSON.parse(candidatesRaw);
+          if (candidates?.schema !== "historygo_place_image_candidates_v1") {
+            throw new Error(`${candidatePath} has unknown schema: ${candidates?.schema}`);
+          }
+
+          const places = Array.isArray(candidates.places) ? candidates.places : [];
+          const approved = [];
+          for (const place of places) {
+            const approvedCandidates = (place?.candidates || []).filter((candidate) => candidate?.approved === true);
+            if (approvedCandidates.length > 1) {
+              throw new Error(`${place?.id || "<missing id>"} has more than one approved candidate.`);
+            }
+            if (approvedCandidates.length === 1) {
+              approved.push({ place, candidate: approvedCandidates[0] });
+            }
+          }
+
+          const approvedIds = approved.map(({ place }) => place.id).sort();
+          if (!sameSet(approvedIds, allowedIds)) {
+            throw new Error(`Approved IDs must be exactly ${allowedIds.join(",")}; got ${approvedIds.join(",") || "<none>"}`);
+          }
+
+          for (const id of allowedIds) {
+            const item = approved.find(({ place }) => place.id === id);
+            if (!item) throw new Error(`${id} is missing approved:true.`);
+
+            const suggested = item.candidate?.suggested || {};
+            const suggestedImage = typeof suggested.image === "string" ? suggested.image.trim() : "";
+            const suggestedCardImage = typeof suggested.cardImage === "string" ? suggested.cardImage.trim() : "";
+            if (suggestedImage && suggestedCardImage && suggestedImage === suggestedCardImage) {
+              throw new Error(`${id} has suggested.image equal to suggested.cardImage.`);
+            }
+            if (suggestedCardImage) {
+              throw new Error(`${id} must have blank/null suggested.cardImage so apply only sets image and imageMeta.`);
+            }
+          }
+
+          const sourcePlaces = JSON.parse(fs.readFileSync(placePath, "utf8"));
+          if (!Array.isArray(sourcePlaces)) throw new Error(`${placePath} must be a JSON array.`);
+          for (const id of allowedIds) {
+            const place = sourcePlaces.find((entry) => entry?.id === id);
+            if (!place) throw new Error(`${id} is missing from ${placePath}.`);
+            const cardImage = typeof place.cardImage === "string" ? place.cardImage.trim() : "";
+            if (cardImage) {
+              throw new Error(`${id} already has cardImage set before apply; refusing to test automatic cardImage behavior.`);
+            }
+          }
+
+          const stateDir = path.join(os.tmpdir(), "place-image-apply-preflight");
+          fs.mkdirSync(stateDir, { recursive: true });
+          fs.writeFileSync(path.join(stateDir, "candidates.sha256"), `${candidatesHash}\n`, "utf8");
+          fs.writeFileSync(path.join(stateDir, "places.before.json"), JSON.stringify(sourcePlaces, null, 2), "utf8");
+
+          const summary = [
+            "preflight-summary",
+            `expectedIds=${allowedIds.join(",")}`,
+            `approvedIds=${approvedIds.join(",")}`,
+            `candidatePlaces=${places.length}`,
+            `candidateFileSha256=${candidatesHash}`,
+            "suggested.cardImage is blank/null for tigeren and gronland_kirke",
+            "source cardImage is blank before apply for tigeren and gronland_kirke"
+          ].join("\n");
+          console.log(summary);
+          if (process.env.GITHUB_STEP_SUMMARY) {
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${summary}\n`, "utf8");
+          }
+          NODE
+
+      - name: Apply approved place image candidates
+        run: node tools/apply_place_image_candidates.mjs
+
+      - name: Verify applied output
+        run: |
+          node <<'NODE'
+          const crypto = require("node:crypto");
+          const fs = require("node:fs");
+          const os = require("node:os");
+          const path = require("node:path");
+
+          const candidatePath = process.env.CANDIDATES_FILE;
+          const placePath = process.env.PLACE_FILE;
+          const allowedIds = ["tigeren", "gronland_kirke"];
+          const expectedImages = new Map([
+            ["tigeren", process.env.TIGEREN_IMAGE],
+            ["gronland_kirke", process.env.GRONLAND_KIRKE_IMAGE]
+          ]);
+          const stateDir = path.join(os.tmpdir(), "place-image-apply-preflight");
+
+          for (const imagePath of expectedImages.values()) {
+            if (!fs.existsSync(imagePath)) throw new Error(`${imagePath} was not created.`);
+            const stat = fs.statSync(imagePath);
+            if (!stat.isFile() || stat.size <= 0) throw new Error(`${imagePath} is empty or not a file.`);
+          }
+
+          const beforePlaces = JSON.parse(fs.readFileSync(path.join(stateDir, "places.before.json"), "utf8"));
+          const afterPlaces = JSON.parse(fs.readFileSync(placePath, "utf8"));
+          if (!Array.isArray(afterPlaces)) throw new Error(`${placePath} must remain a JSON array.`);
+
+          for (const id of allowedIds) {
+            const before = beforePlaces.find((entry) => entry?.id === id);
+            const after = afterPlaces.find((entry) => entry?.id === id);
+            if (!after) throw new Error(`${id} is missing from ${placePath} after apply.`);
+            if (after.image !== expectedImages.get(id)) {
+              throw new Error(`${id} image must be ${expectedImages.get(id)}; got ${after.image || "<blank>"}.`);
+            }
+            if (!after.imageMeta || typeof after.imageMeta !== "object") {
+              throw new Error(`${id} is missing imageMeta after apply.`);
+            }
+            const beforeCardImage = typeof before?.cardImage === "string" ? before.cardImage.trim() : "";
+            const afterCardImage = typeof after.cardImage === "string" ? after.cardImage.trim() : "";
+            if (!beforeCardImage && afterCardImage) {
+              throw new Error(`${id} cardImage was set automatically; this workflow only allows image and imageMeta.`);
+            }
+          }
+
+          const beforeById = new Map(beforePlaces.map((place) => [place?.id, place]));
+          for (const after of afterPlaces) {
+            if (!after?.id || allowedIds.includes(after.id)) continue;
+            const before = beforeById.get(after.id);
+            if (JSON.stringify(after) !== JSON.stringify(before)) {
+              throw new Error(`${after.id} changed even though it is not an approved apply target.`);
+            }
+          }
+
+          const beforeHash = fs.readFileSync(path.join(stateDir, "candidates.sha256"), "utf8").trim();
+          const afterHash = crypto.createHash("sha256").update(fs.readFileSync(candidatePath)).digest("hex");
+          if (beforeHash !== afterHash) {
+            throw new Error(`${candidatePath} changed during apply.`);
+          }
+
+          console.log("Verified applied images, target place updates, unchanged reject/non-target places, and unchanged candidate file.");
+          NODE
+
+      - name: Rebuild places index
+        run: node tools/build_places_index.mjs
+
+      - name: Check places index sync
+        run: node tools/check_places_index_sync.mjs
+
+      - name: Upload applied output artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: applied-place-images
+          path: |
+            bilder/places/auto/tigeren.jpg
+            bilder/places/auto/gronland_kirke.jpg
+            data/places/by/oslo/places_by.json
+            data/places/places_index.json
+          if-no-files-found: error
+
+      - name: Commit applied output to branch
+        if: ${{ inputs.commit_output == 'true' }}
+        env:
+          TARGET_BRANCH: ${{ inputs.commit_branch }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${TARGET_BRANCH}" ]; then
+            echo "commit_branch cannot be empty."
+            exit 1
+          fi
+
+          case "${TARGET_BRANCH}" in
+            main|master|refs/heads/main|refs/heads/master)
+              echo "Refusing to commit or push directly to ${TARGET_BRANCH}. Choose a non-main output branch."
+              exit 1
+              ;;
+          esac
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git show-ref --verify --quiet "refs/heads/${TARGET_BRANCH}"; then
+            git switch "${TARGET_BRANCH}"
+          else
+            git switch -c "${TARGET_BRANCH}"
+          fi
+
+          git add \
+            bilder/places/auto/tigeren.jpg \
+            bilder/places/auto/gronland_kirke.jpg \
+            data/places/by/oslo/places_by.json \
+            data/places/places_index.json
+
+          if git diff --cached --quiet; then
+            echo "No applied image output changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore(data): apply reviewed place images"
+          git push origin "HEAD:${TARGET_BRANCH}"
