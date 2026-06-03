@@ -143,6 +143,102 @@ function run() {
   assert.strictEqual(embeddedHigh.masteryThreshold, 10, 'embedded mastery_threshold is used');
   assert.strictEqual(embeddedHigh.learningStatus, 'still_learning', 'high-value early role still learning');
 
+  // ===========================================================================
+  // Persisted per-role job_learning_progress (PR 980).
+  // Uses a distinct active role so it does not inherit the low-value 'testrolle'
+  // profile registered above.
+  // ===========================================================================
+  const thr = Runtime.DEFAULT_MASTERY_THRESHOLD;
+  const activeP = { career_id: 'naeringsliv', role_id: 'naer_prog', role_key: 'progrolle', title: 'Prog' };
+
+  // Canonical role key is role_id (same as jobLearningProfiles / the audit).
+  assert.strictEqual(Runtime.resolveLearningRoleKey(activeP), 'naer_prog', 'role key resolves to role_id');
+  assert.strictEqual(Runtime.resolveLearningRoleKey({ role_key: 'x' }), 'x', 'falls back to scope when no role_id');
+
+  // A/B: helpers tolerate empty / partial state and missing active without throwing.
+  assert.strictEqual(Runtime.getJobLearningProgress({}, activeP), null, 'no entry => null progress');
+  assert.strictEqual(Runtime.getJobLearningSteps({}, activeP), null, 'no entry => null steps');
+  assert.strictEqual(Runtime.getJobLearningProgress({}, null), null, 'no active => null progress');
+  assert.strictEqual(Runtime.isJobMastered({}, null), false, 'no active => not mastered');
+  assert.doesNotThrow(() => Runtime.markJobLearningStep(undefined, undefined, undefined), 'mark tolerates empty args');
+  assert.doesNotThrow(() => Runtime.ensureJobLearningProgressEntry(undefined, undefined), 'ensure tolerates empty args');
+
+  // C: stored steps below threshold => not mastered, still more to teach.
+  const below = vmOf({ job_learning_progress: { naer_prog: { steps: 1 } } }, activeP);
+  assert.strictEqual(below.stepsTaken, 1, 'view model reads stored steps');
+  assert.strictEqual(below.jobMastered, false, 'below threshold is not mastered');
+  assert.strictEqual(below.jobHasMoreToTeach, true, 'below threshold still has more to teach');
+
+  // D: stored steps >= threshold => mastered, and routine when stagnation flag is set.
+  const storedMastered = vmOf({ job_learning_progress: { naer_prog: { steps: thr } } }, activeP);
+  assert.strictEqual(storedMastered.jobMastered, true, 'stored steps drive mastery');
+  assert.strictEqual(storedMastered.learningStatus, 'mastered', 'mastered status from stored progress');
+  assert.strictEqual(storedMastered.jobHasMoreToTeach, false, 'mastered role has nothing more to teach');
+
+  const storedRoutine = vmOf(
+    { job_learning_progress: { naer_prog: { steps: thr } }, mail_branch_state: { flags: ['career_stagnated'] } },
+    activeP
+  );
+  assert.strictEqual(storedRoutine.learningStatus, 'routine', 'mastered (stored) + stagnation => routine');
+
+  // E: PROMOTED with low stored steps is still NOT mastered.
+  const promotedStored = vmOf(
+    { job_learning_progress: { naer_prog: { steps: 1 } }, career_outcome_state: { status: 'PROMOTED' } },
+    activeP
+  );
+  assert.strictEqual(promotedStored.jobMastered, false, 'PROMOTED + low stored steps is not mastered');
+
+  // F: mastery is reachable from stored progress with no career outcome at all.
+  const masteredNoOutcomeStored = vmOf({ job_learning_progress: { naer_prog: { steps: thr } } }, activeP);
+  assert.strictEqual(masteredNoOutcomeStored.jobMastered, true, 'mastery from stored steps without any career outcome');
+
+  // G: stored progress is prioritized over mail_plan_progress.
+  const conflicting = vmOf(
+    { job_learning_progress: { naer_prog: { steps: thr } }, mail_plan_progress: { step_index: 0 } },
+    activeP
+  );
+  assert.strictEqual(conflicting.stepsTaken, thr, 'stored progress wins over mail_plan_progress');
+  assert.strictEqual(conflicting.jobMastered, true, 'stored progress drives mastery over mail progress');
+
+  // H: with no stored progress, the existing mail-progress fallback still works.
+  const fallback = vmOf({ mail_plan_progress: { step_index: 1 } }, activeP);
+  assert.strictEqual(fallback.stepsTaken, 1, 'falls back to mail progress when no stored entry');
+  assert.strictEqual(fallback.jobMastered, false, 'fallback path computes mastery from mail steps');
+
+  // I: markJobLearningStep creates entry, increments deterministically, clamps,
+  //    sets mastered, records the day, and never touches career_outcome_state.
+  let st = {};
+  const p1 = Runtime.markJobLearningStep(st, activeP, { day: 3 });
+  assert.strictEqual(p1.job_learning_progress.naer_prog.steps, 1, 'mark creates entry and increments to 1');
+  assert.strictEqual(p1.job_learning_progress.naer_prog.mastered, false, 'one step is not mastery');
+  assert.strictEqual(p1.job_learning_progress.naer_prog.last_updated_day, 3, 'records last_updated_day');
+  assert.strictEqual(p1.job_learning_progress.naer_prog.learned_at, null, 'not mastered => no learned_at');
+  assert.strictEqual(p1.career_outcome_state, undefined, 'mark never writes career_outcome_state');
+
+  st = { ...st, ...p1 };
+  const p2 = Runtime.markJobLearningStep(st, activeP, { delta: thr });
+  const e2 = p2.job_learning_progress.naer_prog;
+  assert.strictEqual(e2.steps, 1 + thr, 'increments deterministically from the stored value');
+  assert.strictEqual(e2.mastered, true, 'crossing the threshold sets mastered');
+  assert(typeof e2.learned_at === 'string' && e2.learned_at, 'reaching mastery sets learned_at');
+
+  const clamped = Runtime.markJobLearningStep({ job_learning_progress: { naer_prog: { steps: 1 } } }, activeP, { delta: -5 });
+  assert.strictEqual(clamped.job_learning_progress.naer_prog.steps, 0, 'steps never go below 0');
+
+  // ensureJobLearningProgressEntry creates a normalized entry without mutating input.
+  const inputState = {};
+  const ensured = Runtime.ensureJobLearningProgressEntry(inputState, activeP);
+  assert.strictEqual(ensured.key, 'naer_prog', 'ensure resolves the role key');
+  assert.strictEqual(ensured.entry.steps, 0, 'ensured entry starts at 0 steps');
+  assert.deepStrictEqual(inputState, {}, 'ensure does not mutate the input state');
+  assert(ensured.job_learning_progress.naer_prog, 'ensure patch contains the entry');
+
+  // Other roles in the map are preserved when marking one role.
+  const multi = { job_learning_progress: { naer_other: { steps: 4 } } };
+  const pMulti = Runtime.markJobLearningStep(multi, activeP, {});
+  assert.strictEqual(pMulti.job_learning_progress.naer_other.steps, 4, 'unrelated role progress is preserved');
+  assert.strictEqual(pMulti.job_learning_progress.naer_prog.steps, 1, 'target role progress is added');
+
   console.log('PASS: Civication job learning view-model tests completed.');
 }
 
