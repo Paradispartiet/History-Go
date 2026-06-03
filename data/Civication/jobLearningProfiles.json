@@ -1,0 +1,45 @@
+{
+  "schema": "civication_job_learning_profiles_v1",
+  "version": 1,
+  "note": "Forberedt struktur for job learning (ikke career outcome). Her kan jobber/roller senere få metadata om hva de faktisk lærer spilleren, hvor verdifull læringen er, og hvor lenge det er noe nytt å hente. Dette er IKKE en full datarevisjon: bortsett fra eksemplene under arver alle roller standardprofilen i runtime. Reelle per-rolle-profiler kan legges inn etter hvert, og leses av CivicationJobLearningRuntime.registerProfiles.",
+  "field_docs": {
+    "learning_value": "Hvor verdifull jobben er læringsmessig. \"high\" | \"standard\" | \"low\".",
+    "teaches": "Kort liste over hva jobben faktisk lærer spilleren. Kan speile role.what_player_learns / scenario_families.what_it_teaches.",
+    "mastery_threshold": "Antall læringssteg før rollen regnes som utlært. Bevisst frikoblet fra career outcome sin plan-fullføring.",
+    "usefulness": "Hvor nyttig/overførbar kompetansen er utenfor rollen. \"high\" | \"standard\" | \"low\".",
+    "transferable_skills": "Ferdigheter spilleren tar med seg videre til andre roller.",
+    "dead_end_risk": "Risiko for at rollen er en blindvei læringsmessig. \"low\" | \"medium\" | \"high\" eller 0..1."
+  },
+  "default": {
+    "learning_value": "standard",
+    "teaches": [],
+    "mastery_threshold": 6,
+    "usefulness": "standard",
+    "transferable_skills": [],
+    "dead_end_risk": "low"
+  },
+  "profiles": {
+    "_examples": {
+      "_comment": "Eksempler som dokumenterer formen. De ligger under _examples og brukes ikke i runtime før de flyttes opp på profiles-nivå med ekte role scope-nøkler.",
+      "fagarbeider": {
+        "learning_value": "high",
+        "teaches": [
+          "at kvalitet er sosialt og tidsmessig presset, ikke bare teknisk definert",
+          "at praktisk kunnskap ofte bærer virksomheten uten å bli fullstendig anerkjent"
+        ],
+        "mastery_threshold": 8,
+        "usefulness": "high",
+        "transferable_skills": ["kvalitetsvurdering", "mønsterblikk", "rolig problemløsing"],
+        "dead_end_risk": "low"
+      },
+      "lavutbytte_rolle_eksempel": {
+        "learning_value": "low",
+        "teaches": [],
+        "mastery_threshold": 3,
+        "usefulness": "low",
+        "transferable_skills": [],
+        "dead_end_risk": "high"
+      }
+    }
+  }
+}

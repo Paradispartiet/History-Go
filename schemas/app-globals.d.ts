@@ -51,6 +51,7 @@ declare global {
     CivicationFactionMailScoring?: any;
     CivicationFactionVoice?: any;
     CivicationInboxTopActionUI?: any;
+    CivicationJobLearningRuntime?: any;
     CivicationLifeMailRuntime?: any;
     CivicationMap?: any;
     CivicationMiniSectionsUI?: any;
