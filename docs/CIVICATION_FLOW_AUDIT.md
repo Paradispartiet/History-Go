@@ -315,3 +315,32 @@ Faktiske felt som brukes i mail/event-objekter:
 ### PR 7: kveld/personlige konsekvenser basert på hva spilleren gjorde eller ikke gjorde i History Go
 
 - Life/daily/consequence-systemene bruker task completion eller manglende completion til kveldsmeldinger, personlige reaksjoner og konsekvenser.
+
+## 6. Jobbmail outcome-flow audit after inbox split
+
+Auditdato: 2026-06-03.
+
+Denne auditten bekrefter at eksisterende Jobbmail outcome-flow allerede finnes etter innboks-splittingen fra PR #953. Det er ikke lagt inn ny message director, ny jobbmail-progresjonsmotor, TypeScript-migrering eller spillbalanseendringer.
+
+### Verifisert runtime-kontrakt
+
+- `CivicationCareerOutcomeRuntime` eier fortsatt bare terminaltilstandene for ferdig jobbmail-plan og lar `CivicationMailRuntime` eie ordinær jobbmailprogresjon.
+- Terminal outcome-mails produseres med `source_type: "role_outcome"`, `mail_type: "job_outcome"`, `mail_class: "career_outcome"` og `career_outcome_meta`, slik at både event-channel split og UI-klassifisering har stabile Jobbmail-signaler.
+- Støttede terminal states er fortsatt `PROMOTED`, `STAGNATED` og `FIRED`.
+- Ferdig mailPlan gir én terminal outcome-mail. Når samme plan er lukket med terminal `career_outcome_state`, undertrykkes nye kandidater slik at flowen ikke faller tilbake til gamle legacy-mails.
+- Answer-flowen er fortsatt patchet til å kalle `CivicationCareerOutcomeRuntime.applyOutcomeState` for ekte career outcome-mails.
+
+### Verifiserte konsekvenser
+
+- `STAGNATED` setter branch-flaggene `career_stagnated`, `evening_pressure` og `morning_choices_expand`, samt lavere autonomi når `CivicationPsyche` støtter override.
+- `FIRED` avslutter aktiv jobb og rydder aktiv position.
+- `PROMOTED` setter `career.promotion_ready`.
+- Personlige meldinger skal ikke få jobbmail-outcome-behandling selv om en feilaktig payload inneholder `career_outcome_meta`.
+
+### Innboks etter PR #953
+
+- Career outcome-mails klassifiseres som Jobbmail, ikke Personlige meldinger.
+- Innboks-klassifiseringen plukker fortsatt opp `mail_type`, `source_type`, `mail_class` og `career_outcome_meta`.
+- Personlige/life-meldinger forblir personlige meldinger og får ikke outcome-behandling.
+
+Existing Jobbmail outcome-flow preserved. No new message director. No TypeScript migration. No game-balance changes.
