@@ -1,20 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-03T04:12:43.105Z
+- Generated at (UTC): 2026-06-03T08:54:53.998Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 112
-- Files with diagnostics: 47
+- Total diagnostic lines found: 92
+- Files with diagnostics: 41
 - Groups with diagnostics: 9
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 10 | 42 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
-| js/Civication/** | 17 | 37 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
-| other | 13 | 19 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
+| js/ui/** | 9 | 37 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
+| js/Civication/** | 14 | 28 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
+| other | 11 | 13 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
 | js/boot.js | 1 | 4 | js/boot.js |
 | js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
 | js/profile.js | 1 | 3 | js/profile.js |
@@ -28,28 +28,28 @@
 | js/ui/place-card.js | 23 | js/ui/** |
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
 | js/boot.js | 4 | js/boot.js |
-| js/Civication/systems/day/dayNarrativeConsequencesUI.js | 3 | js/Civication/** |
-| js/Civication/ui/CivicationEmptyPanels.js | 3 | js/Civication/** |
-| js/Civication/ui/CivicationInboxTopActionUI.js | 3 | js/Civication/** |
 | js/Civication/ui/CivicationMap.js | 3 | js/Civication/** |
-| js/onboarding/onboardingEngine.js | 3 | other |
 | js/profile.js | 3 | js/profile.js |
 | js/state/state.js | 3 | js/state/** |
-| js/stories/stories_utils.js | 3 | other |
 | js/ui/popup-utils.js | 3 | js/ui/** |
-| js/ui/search.js | 3 | js/ui/** |
-| js/ui/wonderkammer-entry.js | 3 | js/ui/** |
 | js/Civication/core/civicationJobs.js | 2 | js/Civication/** |
 | js/Civication/core/civicationState.js | 2 | js/Civication/** |
 | js/Civication/systems/civicationBrandEmployerBridge.js | 2 | js/Civication/** |
 | js/Civication/systems/day/dayFactionConflictSystem.js | 2 | js/Civication/** |
 | js/Civication/systems/day/dayRuntimeDebugPanel.js | 2 | js/Civication/** |
 | js/Civication/systems/day/dayWeeklyReview.js | 2 | js/Civication/** |
+| js/Civication/ui/CivicationUI.js | 2 | js/Civication/** |
+| js/audits/imageRoles.audit.js | 2 | other |
+| js/profileIdentity.js | 2 | other |
+| js/ui/badge-unlock-toast.js | 2 | js/ui/** |
+| js/ui/lists.js | 2 | js/ui/** |
+| js/ui/nature-unlock-toast.js | 2 | js/ui/** |
+| js/ui/person-place-unlock-toast.js | 2 | js/ui/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 60 |
+| TS2339 | 41 |
 | TS2345 | 11 |
 | TS2322 | 10 |
 | TS2451 | 6 |
@@ -59,7 +59,6 @@
 | TS2363 | 3 |
 | TS2739 | 2 |
 | TS2552 | 2 |
-| TS2740 | 1 |
 | TS2488 | 1 |
 | TS2353 | 1 |
 | TS2741 | 1 |
@@ -67,8 +66,8 @@
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (42 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/systems/day/dayNarrativeConsequencesUI.js` (3), `js/Civication/ui/CivicationEmptyPanels.js` (3).
+1. Start with **js/ui/** (37 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/ui/CivicationMap.js` (3), `js/profile.js` (3).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
@@ -88,9 +87,6 @@ js/Civication/systems/civicationDailyMailBuilder.js(1260,11): error TS2322: Type
 js/Civication/systems/civicationPlaceAccessBridge.js(198,64): error TS2339: Property 'then' does not exist on type 'unknown'.
 js/Civication/systems/day/dayFactionConflictSystem.js(116,25): error TS2339: Property 'score' does not exist on type 'never'.
 js/Civication/systems/day/dayFactionConflictSystem.js(116,42): error TS2339: Property 'faction' does not exist on type 'never'.
-js/Civication/systems/day/dayNarrativeConsequencesUI.js(168,52): error TS2339: Property '__civiNarrativeWrapped' does not exist on type 'never'.
-js/Civication/systems/day/dayNarrativeConsequencesUI.js(171,28): error TS2339: Property 'apply' does not exist on type 'never'.
-js/Civication/systems/day/dayNarrativeConsequencesUI.js(177,5): error TS2740: Type '{ (...args: any[]): any; __civiNarrativeWrapped: boolean; }' is missing the following properties from type 'Window': clientInformation, closed, cookieStore, customElements, and 208 more.
 js/Civication/systems/day/dayNpcCharacterThreads.js(147,28): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/Civication/systems/day/dayPatches.js(648,28): error TS2339: Property 'getPendingEvent' does not exist on type 'answer'.
 js/Civication/systems/day/dayPatches.js(648,51): error TS2339: Property 'getPendingEvent' does not exist on type 'answer'.
@@ -102,14 +98,8 @@ js/Civication/systems/day/dayRuntimeDebugPanel.js(296,40): error TS2339: Propert
 js/Civication/systems/day/dayRuntimeDebugPanel.js(297,20): error TS2339: Property '_t' does not exist on type '() => void'.
 js/Civication/systems/day/dayWeeklyReview.js(19,21): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/systems/day/dayWeeklyReview.js(19,25): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/ui/CivicationEmptyPanels.js(57,17): error TS2339: Property '_t' does not exist on type '() => void'.
-js/Civication/ui/CivicationEmptyPanels.js(57,48): error TS2339: Property '_t' does not exist on type '() => void'.
-js/Civication/ui/CivicationEmptyPanels.js(58,13): error TS2339: Property '_t' does not exist on type '() => void'.
 js/Civication/ui/CivicationHome.js(348,5): error TS2322: Type '{ frogner: { id: string; name: string; baseCost: number; quizRequirements: { naeringsliv: number; kunst: number; }; modifiers: { visibility: number; integrity: number; autonomy: number; }; }; grunerlokka: { ...; }; sagene: { ...; }; ullern: { ...; }; sondre_nordstrand: { ...; }; sentrum: { ...; }; }' is not assignable to type 'CiviFn'.
   Type '{ frogner: { id: string; name: string; baseCost: number; quizRequirements: { naeringsliv: number; kunst: number; }; modifiers: { visibility: number; integrity: number; autonomy: number; }; }; grunerlokka: { ...; }; sagene: { ...; }; ullern: { ...; }; sondre_nordstrand: { ...; }; sentrum: { ...; }; }' provides no match for the signature '(...args: unknown[]): unknown'.
-js/Civication/ui/CivicationInboxTopActionUI.js(194,18): error TS2339: Property 'onclick' does not exist on type 'Element'.
-js/Civication/ui/CivicationInboxTopActionUI.js(197,28): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
-js/Civication/ui/CivicationInboxTopActionUI.js(501,24): error TS2339: Property '__civiInboxSectionsWrapped' does not exist on type '() => void'.
 js/Civication/ui/CivicationMap.js(50,525): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationMap.js(95,934): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationMap.js(95,958): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
@@ -139,9 +129,6 @@ js/emnerLoader.js(26,41): error TS2339: Property 'src' does not exist on type 'H
 js/hgchips.js(65,21): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
 js/learningLog.js(130,7): error TS2353: Object literal may only specify known properties, and 'LEARNING' does not exist in type 'CiviLearningLogFn'.
 js/nature_place_map_bridge.js(269,31): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
-js/onboarding/onboardingEngine.js(131,18): error TS2339: Property 'filter' does not exist on type 'unknown'.
-js/onboarding/onboardingEngine.js(138,18): error TS2339: Property 'some' does not exist on type 'unknown'.
-js/onboarding/onboardingEngine.js(344,43): error TS2339: Property 'filter' does not exist on type 'unknown'.
 js/profile.js(61,5): error TS2451: Cannot redeclare block-scoped variable 'PEOPLE'.
 js/profile.js(62,5): error TS2451: Cannot redeclare block-scoped variable 'PLACES'.
 js/profile.js(63,5): error TS2451: Cannot redeclare block-scoped variable 'BADGES'.
@@ -152,6 +139,18 @@ js/state/persistence.js(149,24): error TS2345: Argument of type 'string | number
 js/state/state.js(21,5): error TS2451: Cannot redeclare block-scoped variable 'PLACES'.
 js/state/state.js(22,5): error TS2451: Cannot redeclare block-scoped variable 'PEOPLE'.
 js/state/state.js(23,5): error TS2451: Cannot redeclare block-scoped variable 'BADGES'.
-js/stories/stories_utils.js(46,16): error TS2339: Property 'dataset' does not exist on type 'Element'.
-js/stories/stories_utils.js(48,14): error TS2339: Property 'dataset' does not exist on type 'Element'.
+js/ui/badge-unlock-toast.js(86,20): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
+js/ui/badge-unlock-toast.js(99,30): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/ui/dom.js(33,16): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/ui/geo-indicator.js(17,17): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/ui/lists.js(445,34): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+js/ui/lists.js(547,32): error TS2339: Property 'click' does not exist on type 'Element'.
+js/ui/nature-unlock-toast.js(118,20): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
+js/ui/nature-unlock-toast.js(166,27): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/ui/person-place-unlock-toast.js(84,20): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
+js/ui/person-place-unlock-toast.js(111,31): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/ui/place-card.js(216,23): error TS2741: Property 'id' is missing in type 'Record<string, unknown>' but required in type 'Place'.
+js/ui/place-card.js(224,28): error TS2349: This expression is not callable.
+  Type '{}' has no call signatures.
+js/ui/place-card.js(322,43): error TS2345: Argument of type 'Place | Record<string, unknown>' is not assignable to parameter of type 'Record<string, unknown> | PlaceCardPlace'.
 ```

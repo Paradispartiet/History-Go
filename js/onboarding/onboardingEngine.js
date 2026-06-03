@@ -127,14 +127,14 @@
   }
 
   function getPendingMailCount() {
-    const inbox = window.HG_CiviEngine?.getInbox?.() || [];
+    const inbox = /** @type {any[]} */ (window.HG_CiviEngine?.getInbox?.() || []);
     return inbox.filter(function (item) {
       return String(item?.status || "") === "pending";
     }).length;
   }
 
   function hasDayEvent() {
-    const inbox = window.HG_CiviEngine?.getInbox?.() || [];
+    const inbox = /** @type {any[]} */ (window.HG_CiviEngine?.getInbox?.() || []);
     return inbox.some(function (item) {
       const id = String(item?.event?.id || "");
       return id.startsWith("phase_");
@@ -341,7 +341,7 @@
     const store = await hasStore();
     const pendingOffer = !!window.CivicationJobs?.getLatestPendingOffer?.();
     const pendingOfferCount = Array.isArray(window.CivicationJobs?.getOffers?.())
-      ? window.CivicationJobs.getOffers().filter(function (o) {
+      ? /** @type {any[]} */ (window.CivicationJobs.getOffers()).filter(function (o) {
           return String(o?.status || "") === "pending";
         }).length
       : 0;

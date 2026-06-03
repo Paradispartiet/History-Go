@@ -54,8 +54,9 @@
     // Observer kun de relevante panel-containerne; billig.
     const observer = new MutationObserver(() => {
       // debounce
-      if (start._t) cancelAnimationFrame(start._t);
-      start._t = requestAnimationFrame(refresh);
+      const s = /** @type {any} */ (start);
+      if (s._t) cancelAnimationFrame(s._t);
+      s._t = requestAnimationFrame(refresh);
     });
 
     for (const contentId of Object.values(PANEL_MAP)) {
