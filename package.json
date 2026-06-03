@@ -13,7 +13,7 @@
     "places:index:check": "node tools/check_places_index_sync.mjs",
     "health:places": "node tools/placeHealthReport.mjs",
     "typecheck:report": "node tools/typecheck-baseline-report.mjs",
-    "test:civication": "node tests/civication-career-outcomes.test.js && node tests/civication-career-outcome-reachability.test.js && node tests/civication-career-outcome-view-model.test.js && node tests/civication-job-learning-view-model.test.js",
+    "test:civication": "node tests/civication-career-outcomes.test.js && node tests/civication-career-outcome-reachability.test.js && node tests/civication-career-outcome-view-model.test.js && node tests/civication-job-learning-view-model.test.js && npm run audit:job-learning-profiles",
     "health:data": "node tools/dataHealthReport.mjs",
     "health": "npm run health:data",
     "places:emner:check": "node tools/check_place_emne_ids.mjs",
@@ -21,7 +21,8 @@
     "leksikon:ids:check": "node tools/check_leksikon_duplicate_ids.mjs",
     "places:aliases:check": "node tools/check_place_id_aliases.mjs",
     "check:stories": "node tools/check_stories_integrity.mjs",
-    "places:import": "node tools/importPlaces.mjs"
+    "places:import": "node tools/importPlaces.mjs",
+    "audit:job-learning-profiles": "node scripts/auditJobLearningProfiles.js"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
