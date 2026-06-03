@@ -1,0 +1,233 @@
+{
+  "file_role": "emne_training_extension",
+  "schema_version": "1.0",
+  "subject_id": "kunst",
+  "module_id": "kunst_offentlig_kunst_training_v1",
+  "title": "Offentlig kunst – trening og testgrunnlag",
+  "status": "draft_ready",
+  "integration_target": {
+    "canonical_emne_file": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+    "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+    "parent_title": "Offentlig kunst og monumenter"
+  },
+  "principle": "Emnefilen definerer hva brukeren skal lære. Quizfilen tester konkrete underemner. Dette skal ikke opp som egen appseksjon eller UI-knapp.",
+  "do_not_use_as": [
+    "egen header-knapp",
+    "egen Nearby-fane",
+    "egen kartmarkørtype",
+    "egen PlaceCard-seksjon",
+    "erstatning for places.json eller people.json"
+  ],
+  "recommended_use": [
+    "treningsgrunnlag for kunst-emner",
+    "quizgenerering per emne_id",
+    "senere kobling til konkrete steder, verk og personer",
+    "knowledge/trivia etter fullført quiz"
+  ],
+  "module_learning_goals": [
+    {
+      "goal_id": "g_kunst_offentlig_01",
+      "title": "Forstå offentlig kunst som kunst i fellesrom",
+      "success_criteria": [
+        "Kan forklare at offentlig kunst møter et bredt publikum i fellesrom.",
+        "Kan skille mellom kunstverk, monument, utsmykking og gatekunst.",
+        "Kan stille spørsmålet: hvorfor står dette akkurat her?"
+      ]
+    },
+    {
+      "goal_id": "g_kunst_offentlig_02",
+      "title": "Lese sted, materiale og publikum sammen",
+      "success_criteria": [
+        "Kan koble plassering til betydning.",
+        "Kan bruke materiale, skala og sokkel som observasjonspunkter.",
+        "Kan forklare hvordan offentlig kunst kan skape tilhørighet eller konflikt."
+      ]
+    }
+  ],
+  "underemner": [
+    {
+      "emne_id": "em_kunst_offentlig_kunst_skulptur_i_byrom",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Skulptur i byrom",
+      "short_label": "Skulptur i byrom",
+      "role": "grunnemne",
+      "definition": "Skulpturer som står i gater, parker, torg og andre fellesrom, der kropp, form, skala, sokkel, materiale og plassering påvirker hvordan verket oppleves.",
+      "learning_goals": [
+        "Forstå hva en skulptur i offentlig rom er.",
+        "Skille mellom statue, monument og fri skulptur.",
+        "Analysere hvordan sokkel, høyde og skala påvirker publikums møte med verket.",
+        "Koble materiale til varighet, tyngde og sårbarhet."
+      ],
+      "key_concepts": ["skulptur", "statue", "sokkel", "bronse", "stein", "skala", "byrom", "monumentalitet"],
+      "training_tasks": [
+        "Se om figuren er opphøyd eller på samme nivå som publikum.",
+        "Vurder om verket virker minneskapende, dekorativt eller frittstående.",
+        "Beskriv hvordan man må bevege seg rundt verket for å forstå formen.",
+        "Koble materialet til forventet varighet i vær og bymiljø."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_skulptur_i_byrom",
+      "tags": ["kunst", "offentlig_kunst", "skulptur", "byrom", "materialitet"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_monumenter_og_minnesmerker",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Monumenter og minnesmerker",
+      "short_label": "Monumenter",
+      "role": "historisk_emne",
+      "definition": "Kunstverk og markører som brukes til å minnes personer, hendelser, verdier eller kollektive erfaringer i offentlig rom.",
+      "learning_goals": [
+        "Skille mellom monument og minnesmerke.",
+        "Forstå hvordan minnekultur gjør noen historier synlige.",
+        "Lese symboler, inskripsjoner og plassering som del av fortellingen.",
+        "Forklare hvorfor monumenter kan bli omdiskuterte."
+      ],
+      "key_concepts": ["monument", "minnesmerke", "minnekultur", "historiebruk", "helt", "offer", "symbol", "kollektiv hukommelse"],
+      "training_tasks": [
+        "Finn ut hvem eller hva verket handler om.",
+        "Spør hvem som blir synlig i byrommet, og hvem som ikke blir synlig.",
+        "Les inskripsjon, symboler og kroppsspråk sammen.",
+        "Vurder om verket hyller, sørger, forklarer eller advarer."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_monumenter_og_minnesmerker",
+      "tags": ["kunst", "offentlig_kunst", "monument", "minnesmerke", "historiebruk"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_stedsspesifikk_kunst",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Stedsspesifikk kunst",
+      "short_label": "Stedsspesifikk",
+      "role": "history_go_kjerneemne",
+      "definition": "Kunst som er laget for et bestemt sted, og der stedets historie, arkitektur, landskap eller brukere er en del av verkets betydning.",
+      "learning_goals": [
+        "Forstå forskjellen mellom kunst som bare er plassert et sted og kunst som er laget for stedet.",
+        "Forklare hvorfor plassering kan være en del av verket.",
+        "Lese forholdet mellom kunstverk, bygninger, landskap og publikum.",
+        "Bruke spørsmålet: hvorfor akkurat her?"
+      ],
+      "key_concepts": ["stedsspesifikk", "kontekst", "arkitektur", "landskap", "plassering", "byrom", "publikum", "historie"],
+      "training_tasks": [
+        "Beskriv hva rundt verket som ser viktig ut.",
+        "Se om verket peker på stedets historie eller funksjon.",
+        "Vurder om verket mister mening hvis det flyttes.",
+        "Observer om publikum må gå gjennom, rundt eller forbi verket."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_stedsspesifikk_kunst",
+      "tags": ["kunst", "offentlig_kunst", "stedsspesifikk_kunst", "kontekst", "byrom"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_kunst_og_makt",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Kunst og makt",
+      "short_label": "Kunst og makt",
+      "role": "dybdeemne",
+      "definition": "Analyse av hvordan offentlig kunst viser, støtter, utfordrer eller omskriver makt gjennom personer, symboler, plassering, størrelse og finansiering.",
+      "learning_goals": [
+        "Forstå at offentlig kunst ofte viser verdier samfunnet vil fremheve.",
+        "Analysere hvordan plassering og størrelse kan uttrykke autoritet.",
+        "Spørre hvem som har bestilt, finansiert eller godkjent verket.",
+        "Forklare hvorfor statuer og monumenter kan bli politiske."
+      ],
+      "key_concepts": ["makt", "representasjon", "autoritet", "symbol", "offentlig rom", "finansiering", "historiebruk", "konflikt"],
+      "training_tasks": [
+        "Se hvem som er avbildet og hvordan personen fremstilles.",
+        "Vurder om verket hyller, kritiserer eller problematiserer makt.",
+        "Koble verkets plassering til institusjoner eller maktsentre i nærheten.",
+        "Spør hvem som kan føle seg inkludert eller utelatt."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_kunst_og_makt",
+      "tags": ["kunst", "offentlig_kunst", "makt", "representasjon", "politisk_estetikk"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_gatekunst_og_veggmaleri",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Gatekunst og veggmaleri",
+      "short_label": "Gatekunst",
+      "role": "samtidsemne",
+      "definition": "Visuelle uttrykk på vegger og i byrom, fra graffiti og sjablonger til bestilte veggmalerier og midlertidige intervensjoner.",
+      "learning_goals": [
+        "Skille mellom gatekunst, graffiti og veggmaleri.",
+        "Forstå at uttrykket kan være lovlig, ulovlig, midlertidig eller bestilt.",
+        "Forklare hvordan vegg, gate og nabolag kan bli del av verket.",
+        "Lese tekst, symboler, figurer og plassering sammen."
+      ],
+      "key_concepts": ["gatekunst", "graffiti", "mural", "sjablong", "veggmaleri", "midlertidighet", "nabolag", "visuell kultur"],
+      "training_tasks": [
+        "Se om verket er integrert i veggen eller lagt oppå den.",
+        "Vurder om budskapet virker dekorativt, politisk eller identitetsskapende.",
+        "Se etter tegn på bestilling, autorisasjon eller spontan handling.",
+        "Spør hvordan verket endrer opplevelsen av gata."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_gatekunst_og_veggmaleri",
+      "tags": ["kunst", "offentlig_kunst", "gatekunst", "graffiti", "samtidskunst"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_utsmykking_i_offentlige_bygg",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Utsmykking i offentlige bygg",
+      "short_label": "Utsmykking",
+      "role": "institusjonsemne",
+      "definition": "Kunst i rådhus, skoler, bibliotek, stasjoner og andre offentlige bygg, ofte laget for å uttrykke fellesskap, historie, institusjonens rolle eller offentlige verdier.",
+      "learning_goals": [
+        "Forstå at kunst i offentlige bygg ofte har en offentlig funksjon.",
+        "Analysere hvordan kunst og arkitektur virker sammen.",
+        "Forklare hvordan utsmykking kan formidle verdier eller historie.",
+        "Se forskjell på dekorativ, symbolsk og fortellende utsmykking."
+      ],
+      "key_concepts": ["utsmykking", "offentlig bygg", "institusjon", "arkitektur", "freske", "relieff", "veggmaleri", "fellesskap"],
+      "training_tasks": [
+        "Se hvordan kunsten er plassert i bygget.",
+        "Spør om verket forteller noe om byggets funksjon.",
+        "Vurder om kunsten styrker, pynter eller problematiserer institusjonen.",
+        "Beskriv hvordan materiale og arkitektur spiller sammen."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_utsmykking_i_offentlige_bygg",
+      "tags": ["kunst", "offentlig_kunst", "utsmykking", "offentlig_bygg", "arkitektur"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_materialer_og_varighet",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Materialer og varighet",
+      "short_label": "Materialer",
+      "role": "observasjonsemne",
+      "definition": "Hvordan bronse, stein, stål, betong, tre, maling og midlertidige materialer påvirker offentlig kunsts uttrykk, levetid, vedlikehold og betydning.",
+      "learning_goals": [
+        "Koble materiale til varighet, vedlikehold og slitasje.",
+        "Forstå forskjellen mellom permanent og midlertidig kunst.",
+        "Se hvordan patina, rust, forfall eller reparasjon påvirker verket.",
+        "Forklare hvorfor materialvalg kan være en del av meningen."
+      ],
+      "key_concepts": ["bronse", "stein", "stål", "betong", "tre", "patina", "forfall", "vedlikehold", "midlertidighet"],
+      "training_tasks": [
+        "Identifiser hovedmaterialet i verket.",
+        "Se etter slitasje, rust, patina, sprekker eller reparasjoner.",
+        "Vurder om verket virker laget for å vare lenge eller kort.",
+        "Koble materialet til verkets uttrykk: tungt, sårbart, industrielt eller organisk."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_materialer_og_varighet",
+      "tags": ["kunst", "offentlig_kunst", "materialer", "varighet", "observasjon"]
+    },
+    {
+      "emne_id": "em_kunst_offentlig_kunst_publikum_og_konflikt",
+      "parent_emne_id": "em_kunst_offentlig_kunst_monumenter",
+      "title": "Publikum og konflikt",
+      "short_label": "Publikum og konflikt",
+      "role": "refleksjonsemne",
+      "definition": "Hvordan offentlig kunst møter et publikum som ikke nødvendigvis har valgt kunsten selv, og hvordan konflikter kan oppstå rundt smak, historie, representasjon, kostnader og plassering.",
+      "learning_goals": [
+        "Forstå at offentlig kunst møter mange ulike publikumsgrupper.",
+        "Forklare hvorfor offentlig kunst kan skape debatt.",
+        "Skille mellom konflikt om smak, historie, penger, plassering og representasjon.",
+        "Spørre hvem byen og fellesrommet oppleves å være for."
+      ],
+      "key_concepts": ["publikum", "konflikt", "smak", "representasjon", "offentlig rom", "demokrati", "debatt", "eierskap"],
+      "training_tasks": [
+        "Spør hvem som møter verket i hverdagen.",
+        "Vurder om verket kan oppleves ulikt av ulike grupper.",
+        "Se om plasseringen gjør verket lett eller vanskelig å ignorere.",
+        "Forklar hvorfor noen kan like, mislike eller ønske å flytte verket."
+      ],
+      "quiz_id": "quiz_kunst_offentlig_kunst_publikum_og_konflikt",
+      "tags": ["kunst", "offentlig_kunst", "publikum", "konflikt", "demokrati"]
+    }
+  ]
+}
