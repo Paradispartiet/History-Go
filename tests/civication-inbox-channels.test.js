@@ -14,8 +14,20 @@ function loadScript(relPath) {
 
 function run() {
   global.window = global;
+  global.addEventListener = () => {};
+  global.document = {
+    getElementById() { return null; },
+    addEventListener() {}
+  };
+  global.localStorage = { getItem() { return '{}'; } };
+  global.CivicationState = {
+    getState() { return {}; },
+    getInbox() { return []; },
+    getActivePosition() { return null; }
+  };
 
   loadScript('js/Civication/systems/civicationEventChannels.js');
+  loadScript('js/Civication/ui/CivicationUI.js');
 
   const plannedRoleMail = {
     status: 'pending',
@@ -58,6 +70,29 @@ function run() {
         role_scope: 'ekspeditor',
         role_plan_id: 'ekspeditor_naeringsliv_v1'
       }
+    }
+  };
+
+  const careerOutcomeByMetaOnly = {
+    status: 'pending',
+    event: {
+      id: 'ekspeditor_outcome_meta_only',
+      source_type: 'planned',
+      mail_type: 'story',
+      career_outcome_meta: {
+        status: 'PROMOTED',
+        role_scope: 'ekspeditor',
+        role_plan_id: 'ekspeditor_naeringsliv_v1'
+      }
+    }
+  };
+
+  const careerOutcomeByClassOnly = {
+    status: 'pending',
+    event: {
+      id: 'ekspeditor_outcome_class_only',
+      source_type: 'planned',
+      mail_class: 'career_outcome'
     }
   };
 
@@ -133,9 +168,39 @@ function run() {
   );
 
   assert.strictEqual(
+    global.CivicationEventChannels.getMessageChannel(careerOutcomeByMetaOnly.event),
+    'job',
+    'career_outcome_meta should be enough to route planned outcome mails to Jobbmail'
+  );
+
+  assert.strictEqual(
+    global.CivicationEventChannels.getMessageChannel(careerOutcomeByClassOnly.event),
+    'job',
+    'career_outcome mail_class should be enough to route mails to Jobbmail'
+  );
+
+  assert.strictEqual(
+    global.classifyCiviInboxItem(careerOutcomeMail),
+    'job',
+    'Civication UI split must keep career outcome mails under Jobbmail'
+  );
+
+  assert.strictEqual(
+    global.classifyCiviInboxItem(careerOutcomeByMetaOnly),
+    'job',
+    'Civication UI split must pick up career_outcome_meta'
+  );
+
+  assert.strictEqual(
     global.CivicationEventChannels.getMessageChannel(privateLifeMail.event),
     'private',
     'life/evening mails must be private messages'
+  );
+
+  assert.strictEqual(
+    global.classifyCiviInboxItem(privateLifeMail),
+    'personal',
+    'Civication UI split must keep life mails under Personal messages'
   );
 
   assert.strictEqual(
@@ -161,6 +226,8 @@ function run() {
     plannedRoleMail,
     workdayMail,
     careerOutcomeMail,
+    careerOutcomeByMetaOnly,
+    careerOutcomeByClassOnly,
     privateLifeMail,
     explicitPrivateMail,
     privateNarrativeStoryMail,
@@ -168,7 +235,7 @@ function run() {
     systemMail
   ]);
 
-  assert.strictEqual(split.job.length, 4, 'Expected four jobmail items');
+  assert.strictEqual(split.job.length, 6, 'Expected six jobmail items');
   assert.strictEqual(split.private.length, 3, 'Expected three private message items');
   assert.strictEqual(split.system.length, 1, 'Expected one system item');
 
@@ -176,6 +243,8 @@ function run() {
     plannedRoleMail,
     workdayMail,
     careerOutcomeMail,
+    careerOutcomeByMetaOnly,
+    careerOutcomeByClassOnly,
     privateLifeMail,
     explicitPrivateMail,
     privateNarrativeStoryMail,
@@ -183,7 +252,7 @@ function run() {
     systemMail
   ]);
 
-  assert.strictEqual(inspect.counts.job, 4, 'Inspect should expose job channel count');
+  assert.strictEqual(inspect.counts.job, 6, 'Inspect should expose job channel count');
   assert.strictEqual(inspect.counts.private, 3, 'Inspect should expose private channel count');
 
   console.log('PASS: Civication inbox channel split test completed.');
