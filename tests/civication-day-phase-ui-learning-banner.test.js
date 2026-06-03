@@ -180,6 +180,34 @@ function run() {
   assert(!emptyHtml.includes('Du lærte:'), 'empty teaches do not render a learned line');
   assert(!emptyHtml.includes('undefined'), 'empty unlocked lists never render undefined');
 
+  const readyHtml = renderWithLearning(masteredLearningVm({
+    careerReadiness: {
+      level: 'ready_for_next_step',
+      label: 'Du har ferdigheter som kan brukes videre',
+      detail: 'Du har mestret rollen.'
+    }
+  }));
+  assert(readyHtml.includes('Karrieregrunnlag: du har ferdigheter som kan brukes videre'), 'next-step readiness renders in learning banner');
+  assert(readyHtml.includes('class="civi-learning-detail civi-learning-readiness"'), 'readiness line uses the learning detail pattern');
+
+  const strongHtml = renderWithLearning(masteredLearningVm({
+    careerReadiness: {
+      level: 'strong',
+      label: 'Sterk læring fra tidligere roller',
+      detail: 'Mange ferdigheter.'
+    }
+  }));
+  assert(strongHtml.includes('Karrieregrunnlag: sterk læring fra tidligere roller'), 'strong readiness renders in learning banner');
+
+  const noneReadinessHtml = renderWithLearning(masteredLearningVm({
+    careerReadiness: {
+      level: 'none',
+      label: 'Ingen karrieregrunnlag fra jobblæring ennå',
+      detail: ''
+    }
+  }));
+  assert(!noneReadinessHtml.includes('Karrieregrunnlag:'), 'none readiness does not render a career-readiness line');
+
   const outcomeHtml = renderWithLearning(
     masteredLearningVm({ unlockedSkills: ['arbeidsrytme'] }),
     {

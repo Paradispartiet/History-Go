@@ -125,6 +125,15 @@
     return "";
   }
 
+  function buildCareerReadinessLine(viewModel) {
+    const readiness = viewModel?.careerReadiness || null;
+    const level = String(readiness?.level || "");
+    if (level !== "ready_for_next_step" && level !== "strong") return "";
+    const label = String(readiness?.label || "").trim();
+    if (!label) return "";
+    return "Karrieregrunnlag: " + label.charAt(0).toLowerCase() + label.slice(1);
+  }
+
   // Job learning is shown separately from career outcome (Forfremmelse / Stagnasjon /
   // Arbeidsforhold avsluttet). Staying in a job that still teaches is framed as
   // potentially positive, not as stagnation.
@@ -132,6 +141,7 @@
     if (!viewModel || !viewModel.hasLearningState || !viewModel.learningLabel) return "";
 
     const unlockedLine = buildUnlockedLearningLine(viewModel);
+    const readinessLine = buildCareerReadinessLine(viewModel);
 
     return ""
       + "<section class=\"civi-learning-banner\" aria-label=\"Læringsstatus\">"
@@ -140,6 +150,7 @@
       + "<span class=\"civi-learning-label\">Læring: " + escapeHtml(viewModel.learningLabel) + "</span>"
       + "<span class=\"civi-learning-detail\">" + escapeHtml(viewModel.learningDetail) + "</span>"
       + (unlockedLine ? "<span class=\"civi-learning-detail civi-learning-unlocked\">" + escapeHtml(unlockedLine) + "</span>" : "")
+      + (readinessLine ? "<span class=\"civi-learning-detail civi-learning-readiness\">" + escapeHtml(readinessLine) + "</span>" : "")
       + "</p>"
       + "</section>";
   }
