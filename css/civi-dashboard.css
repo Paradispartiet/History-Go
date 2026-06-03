@@ -442,6 +442,50 @@ body.civi-app .civi-panels h2 {
   opacity: .9;
 }
 
+.civi-learning-banner {
+  width: 100%;
+  margin: 2px 0 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(210,225,240,.14);
+  border-radius: 10px;
+  background: rgba(14,20,27,.45);
+}
+
+.civi-learning-kicker {
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.civi-learning-status {
+  display: grid;
+  gap: 1px;
+  margin: 4px 0 0;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.03);
+  border-left: 3px solid rgba(122,180,255,.5);
+}
+
+.civi-learning-status[data-learning-status="mastered"] { border-left-color: #6fd08c; }
+.civi-learning-status[data-learning-status="still_learning"],
+.civi-learning-status[data-learning-status="nearing_mastery"] { border-left-color: #7ab4ff; }
+.civi-learning-status[data-learning-status="low_value"],
+.civi-learning-status[data-learning-status="routine"] { border-left-color: #e0c06f; }
+
+.civi-learning-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #edf3ff;
+}
+
+.civi-learning-detail {
+  font-size: 12px;
+  color: #dce8f5;
+  opacity: .9;
+}
+
 @media (max-width:640px) {
   .civi-day-phase-panel {
     gap: 6px 8px;

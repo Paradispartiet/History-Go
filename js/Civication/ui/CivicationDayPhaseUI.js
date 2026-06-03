@@ -88,9 +88,34 @@
     return runtime.getOutcomeViewModel(state);
   }
 
+  function getLearningViewModel() {
+    const runtime = window.CivicationJobLearningRuntime;
+    if (!runtime?.getJobLearningViewModel) return null;
+    const state = window.CivicationState?.getState?.() || {};
+    const active = window.CivicationState?.getActivePosition?.() || null;
+    return runtime.getJobLearningViewModel(state, active);
+  }
+
+  // Job learning is shown separately from career outcome (Forfremmelse / Stagnasjon /
+  // Arbeidsforhold avsluttet). Staying in a job that still teaches is framed as
+  // potentially positive, not as stagnation.
+  function buildLearningBanner(viewModel) {
+    if (!viewModel || !viewModel.hasLearningState || !viewModel.learningLabel) return "";
+
+    return ""
+      + "<section class=\"civi-learning-banner\" aria-label=\"Læringsstatus\">"
+      + "<div class=\"civi-learning-kicker\">Læring</div>"
+      + "<p class=\"civi-learning-status\" data-learning-status=\"" + escapeHtml(viewModel.learningStatus) + "\">"
+      + "<span class=\"civi-learning-label\">Læring: " + escapeHtml(viewModel.learningLabel) + "</span>"
+      + "<span class=\"civi-learning-detail\">" + escapeHtml(viewModel.learningDetail) + "</span>"
+      + "</p>"
+      + "</section>";
+  }
+
   function getAutonomyNote() {
     const psyche = window.CivicationPsyche;
     if (!psyche?.getAutonomy) return "";
+    /** @type {{ career_id?: string | number | null } | null} */
     const active = window.CivicationState?.getActivePosition?.();
     const value = Number(psyche.getAutonomy(active?.career_id ?? null));
     if (!Number.isFinite(value)) return "";
@@ -170,6 +195,7 @@
     const buttonText = nextPhase ? "Gå til neste fase" : "Dagen er ferdig";
     const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
     const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
+    const learningBanner = buildLearningBanner(getLearningViewModel());
 
     panel.innerHTML = ""
       + "<div class=\"civi-day-phase-head\">"
@@ -177,6 +203,7 @@
       + "<h3 class=\"civi-day-phase-title\">" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</h3>"
       + "</div>"
       + outcomeBanner
+      + learningBanner
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
       + "<p class=\"civi-day-phase-status\">" + escapeHtml(getStatusText(inspection)) + "</p>"
       + "<p class=\"civi-day-phase-status muted\">" + escapeHtml(getLoopHint(inspection)) + "</p>"
