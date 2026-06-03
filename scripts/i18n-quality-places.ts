@@ -18,30 +18,42 @@ const lang = (process.argv.find(a => !a.startsWith("--") && a !== __filename && 
 const failOnWarning = process.argv.includes("--fail-on-warning");
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-quality");
 
+type JsonObject = Record<string, any>;
 
-function readJson(rel) {
+type MasterEntry = {
+  id: string;
+  file: string;
+  hash: string;
+  source: { name: string; desc: string; popupDesc: string };
+};
+
+type Issue = { severity: "error" | "warning"; code: string; text: string };
+
+type ResultRow = { id: string; file?: string; issues: Issue[] };
+
+function readJson(rel: string): any {
   return JSON.parse(fs.readFileSync(path.join(ROOT, rel), "utf8"));
 }
 
-function tryReadJson(rel) {
+function tryReadJson(rel: string): any {
   const full = path.join(ROOT, rel);
   return fs.existsSync(full) ? readJson(rel) : {};
 }
 
-function norm(x) {
+function norm(x: unknown): string {
   return String(x || "").replace(/\r\n/g, "\n").replace(/[ \t]+/g, " ").trim();
 }
 
-function words(x) {
+function words(x: unknown): number {
   const s = norm(x).toLowerCase().replace(/[^a-z0-9æøåéèêàáäöüñçßа-я一-龥ぁ-んァ-ン가-힣\s]+/gi, " ").replace(/\s+/g, " ").trim();
   return s ? s.split(" ").length : 0;
 }
 
-function paras(x) {
+function paras(x: unknown): number {
   return String(x || "").split(/\n\s*\n/g).map(p => p.trim()).filter(Boolean).length;
 }
 
-function payload(p) {
+function payload(p: JsonObject): { name: string; desc: string; popupDesc: string } {
   return {
     name: norm(p.name),
     desc: norm(p.desc),
@@ -49,18 +61,18 @@ function payload(p) {
   };
 }
 
-function hash(p) {
+function hash(p: JsonObject): string {
   return crypto.createHash("sha256").update(JSON.stringify(payload(p))).digest("hex").slice(0, 16);
 }
 
-function rows(data) {
+function rows(data: any): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data && data.places)) return data.places;
   return [];
 }
 
-function loadMaster() {
-  const map = new Map();
+function loadMaster(): Map<string, MasterEntry> {
+  const map = new Map<string, MasterEntry>();
   const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
   for (const file of placeFiles) {
     for (const p of rows(placeManifestLoader.readJson(file))) {
@@ -72,20 +84,20 @@ function loadMaster() {
   return map;
 }
 
-function add(list, severity, code, text) {
+function add(list: Issue[], severity: Issue["severity"], code: string, text: string): void {
   list.push({ severity, code, text });
 }
 
 const master = loadMaster();
 const trPath = `data/i18n/content/places/${lang}.json`;
-const translations = tryReadJson(trPath);
-const results = [];
+const translations: Record<string, JsonObject> = tryReadJson(trPath);
+const results: ResultRow[] = [];
 let errors = 0;
 let warnings = 0;
 
 for (const [id, tr] of Object.entries(translations)) {
   const m = master.get(id);
-  const issues = [];
+  const issues: Issue[] = [];
 
   if (!m) {
     add(issues, "error", "extra_translation_id", "Translation id has no master place.");

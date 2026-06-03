@@ -21,26 +21,34 @@ const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_LANGS = ["en"];
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-stamp");
 
+type JsonObject = Record<string, any>;
 
-function readJson(relativePath) {
+type MasterPlace = JsonObject & {
+  _sourceFile: string;
+  _sourceHash: string;
+};
+
+type StampResult = { lang: string; changed: number; missingMaster: number; total: number };
+
+function readJson(relativePath: string): any {
   const filePath = path.join(ROOT, relativePath);
   const raw = fs.readFileSync(filePath, "utf8");
   return JSON.parse(raw);
 }
 
-function writeJson(relativePath, data) {
+function writeJson(relativePath: string, data: any): void {
   const filePath = path.join(ROOT, relativePath);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf8");
 }
 
-function normalizeText(value) {
+function normalizeText(value: unknown): string {
   return String(value || "")
     .replace(/\r\n/g, "\n")
     .replace(/[ \t]+/g, " ")
     .trim();
 }
 
-function sourcePayload(place) {
+function sourcePayload(place: JsonObject): { name: string; desc: string; popupDesc: string } {
   return {
     name: normalizeText(place.name),
     desc: normalizeText(place.desc),
@@ -48,7 +56,7 @@ function sourcePayload(place) {
   };
 }
 
-function sourceHash(place) {
+function sourceHash(place: JsonObject): string {
   return crypto
     .createHash("sha256")
     .update(JSON.stringify(sourcePayload(place)))
@@ -56,15 +64,15 @@ function sourceHash(place) {
     .slice(0, 16);
 }
 
-function extractRows(data, relativePath) {
+function extractRows(data: any, relativePath: string): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.places)) return data.places;
   console.warn(`[i18n-stamp] ${relativePath} is not an array and has no .places array. Skipping.`);
   return [];
 }
 
-function loadMasterPlaces() {
-  const byId = new Map();
+function loadMasterPlaces(): Map<string, MasterPlace> {
+  const byId = new Map<string, MasterPlace>();
   const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
 
   for (const relativePath of placeFiles) {
@@ -88,7 +96,7 @@ function loadMasterPlaces() {
   return byId;
 }
 
-function stampLanguage(lang, masterById) {
+function stampLanguage(lang: string, masterById: Map<string, MasterPlace>): StampResult {
   const relativePath = `data/i18n/content/places/${lang}.json`;
   const filePath = path.join(ROOT, relativePath);
 
@@ -97,7 +105,7 @@ function stampLanguage(lang, masterById) {
     return { lang, changed: 0, missingMaster: 0, total: 0 };
   }
 
-  const translations = readJson(relativePath);
+  const translations: Record<string, JsonObject> = readJson(relativePath);
   let changed = 0;
   let missingMaster = 0;
   let total = 0;
@@ -126,7 +134,7 @@ function stampLanguage(lang, masterById) {
   return { lang, changed, missingMaster, total };
 }
 
-function main() {
+function main(): void {
   const langs = process.argv.slice(2).map(x => String(x || "").trim()).filter(Boolean);
   const targetLangs = langs.length ? langs : DEFAULT_LANGS;
   const masterById = loadMasterPlaces();
