@@ -346,6 +346,8 @@ async function renderCivication() {
   `;
 
   if (offer?.offer_key) {
+    window.CivicationState?.markJobOffersRead?.([offer.offer_key]);
+
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
       const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (
         window.CivicationJobs?.acceptOffer?.(offer.offer_key)
@@ -1238,6 +1240,13 @@ function renderCivicationInbox() {
     if (typeof resolveChannel !== "function") return false;
     return resolveChannel(evItem) === "job";
   });
+  const visibleJobMailIds = jobMails.map(function (item) {
+    const evItem = toEvent(item);
+    return String(evItem?.id || item?.id || "").trim();
+  }).filter(Boolean);
+  if (visibleJobMailIds.length) {
+    window.CivicationState?.markJobMailsRead?.(visibleJobMailIds);
+  }
   const privateMessages = messageItems.filter(function (item) {
     const evItem = toEvent(item);
     if (typeof resolveChannel !== "function") return true;
