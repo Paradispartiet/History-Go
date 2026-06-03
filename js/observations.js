@@ -30,6 +30,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, ch => ({
       "&": "&amp;",
@@ -152,8 +159,8 @@
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
             <span id="obsFeedback" class="muted"></span>
             <div style="display:flex;gap:8px;">
-              <button class="ghost" id="obsClear">Nullstill</button>
-              <button id="obsSave">Lagre</button>
+              <button class="ghost" id="obsClear">${esc(tUI("ui.observations.reset", "Nullstill"))}</button>
+              <button id="obsSave">${esc(tUI("ui.observations.save", "Lagre"))}</button>
             </div>
           </div>
         </div>
@@ -243,7 +250,7 @@
       const errT = validateTarget(target);
       if (errT) {
         dwarn("start rejected:", errT, target);
-        API.showToast("Observasjon-feil: mangler target-data");
+        API.showToast(tUI("ui.observations.missingTargetData", "Observasjon-feil: mangler target-data"));
         return;
       }
 
@@ -254,7 +261,7 @@
       const errL = validateLens(lens);
       if (errL) {
         dwarn("lens invalid:", errL, lensId, lens);
-        API.showToast("Fant ikke observasjon-linse");
+        API.showToast(tUI("ui.observations.lensNotFound", "Fant ikke observasjon-linse"));
         return;
       }
 
@@ -282,14 +289,14 @@
 
       elTitle.textContent =
         s(lens.title) ||
-        (s(target.title) ? `Observasjon: ${s(target.title)}` : tUI("ui.observations.modalTitle", "Observasjon"));
+        (s(target.title) ? tfUI("ui.observations.titleWithTarget", "Observasjon: {title}", { title: s(target.title) }) : tUI("ui.observations.modalTitle", "Observasjon"));
 
       elPrompt.textContent = s(lens.prompt) || "";
 
       // Note UI
       if (allowNote) {
         elNoteWrap.style.display = "block";
-        elNoteLabel.textContent = s(lens.note_label) || "Kort observasjon (valgfritt)";
+        elNoteLabel.textContent = s(lens.note_label) || tUI("ui.observations.noteLabelOptional", "Kort observasjon (valgfritt)");
         elNote.value = "";
         elNoteMax.textContent = String(noteMax);
         elNoteCount.textContent = "0";
@@ -384,7 +391,7 @@
 
         appendLearningEvent(evt);
 
-        API.showToast("📝 Observasjon lagret");
+        API.showToast(tUI("ui.observations.saved", "📝 Observasjon lagret"));
         API.dispatchProfileUpdate();
         close();
       };
@@ -394,7 +401,7 @@
 
     } catch (e) {
       dwarn("start crashed:", e);
-      API.showToast("Observasjon-feil: noe krasjet");
+      API.showToast(tUI("ui.observations.runtimeError", "Observasjon-feil: noe krasjet"));
       close();
     }
   };

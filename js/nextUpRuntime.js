@@ -135,14 +135,14 @@
     });
     const dominant_types = Object.entries(types).sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 3);
     const dominant_sources = Object.entries(sources).sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 3);
-    let title = "Rute i utvikling";
-    if (lowerEmne.some(x => x.includes("mobilitet")) && lowerEmne.some(x => x.includes("transformasjon"))) title = "Rute om mobilitet og bytransformasjon";
-    else if (dominant_types[0] === "concept") title = "Rute for å forstå byens begreper";
-    else if (dominant_types[0] === "narrative") title = "Fortellingsrute gjennom byen";
-    else if (dominant_types[0] === "spatial") title = "Utforskningsrute i nærheten";
+    let title = tUI("ui.nextup.route.developing", "Rute i utvikling");
+    if (lowerEmne.some(x => x.includes("mobilitet")) && lowerEmne.some(x => x.includes("transformasjon"))) title = tUI("ui.nextup.route.mobilityTransformation", "Rute om mobilitet og bytransformasjon");
+    else if (dominant_types[0] === "concept") title = tUI("ui.nextup.route.cityConcepts", "Rute for å forstå byens begreper");
+    else if (dominant_types[0] === "narrative") title = tUI("ui.nextup.route.storyThroughCity", "Fortellingsrute gjennom byen");
+    else if (dominant_types[0] === "spatial") title = tUI("ui.nextup.route.nearbyExploration", "Utforskningsrute i nærheten");
     const description = steps.length >= 4
-      ? "Du er i gang med en læringssti som holder tråden mellom steder, emner og fortellinger."
-      : "Du følger en rute der transport, byrom og offentlighet henger sammen.";
+      ? tUI("ui.nextup.route.learningPathStarted", "Du er i gang med en læringssti gjennom steder, begreper og fortellinger.")
+      : tUI("ui.nextup.route.followingPath", "Du følger en rute som bygges videre etter forslagene du bruker.");
     return {
       place_ids: Array.from(placeIds).slice(0, 20),
       emne_ids: Array.from(emneIds).slice(0, 20),
@@ -278,10 +278,10 @@
   function pickLearningStyle(dominantTypes = []) {
     const top = uniqTop(dominantTypes, 2);
     const has = (type) => top.includes(type);
-    if (has("concept") && has("narrative")) return "Begreper + fortellinger";
-    if (has("spatial") && has("wonderkammer")) return "Utforsking + detaljer";
-    if (has("concept")) return "Begrepsbasert";
-    if (has("narrative")) return "Fortellingsbasert";
+    if (has("concept") && has("narrative")) return tUI("ui.nextup.learningStyle.conceptsStories", "Begreper + fortellinger");
+    if (has("spatial") && has("wonderkammer")) return tUI("ui.nextup.learningStyle.explorationDetails", "Utforsking + detaljer");
+    if (has("concept")) return tUI("ui.nextup.learningStyle.conceptBased", "Begrepsbasert");
+    if (has("narrative")) return tUI("ui.nextup.learningStyle.storyBased", "Fortellingsbasert");
     if (has("spatial")) return tUI("ui.nextup.learningStyle.exploratory", "Utforskende");
     if (has("wonderkammer")) return tUI("ui.nextup.learningStyle.detailObject", "Detalj- og objektbasert");
     return tUI("ui.nextup.learningStyle.developing", "Under utvikling");
@@ -300,7 +300,7 @@
     learningLog.slice(0, 50).forEach((item) => push(item?.emne_id || item?.topic_id, item?.emne_id || item?.topic || item?.concept));
     insights.slice(0, 50).forEach((item) => push(item?.emne_id || item?.topic_id, item?.topic || item?.label));
     const topics = Array.from(labelMap.values()).map(x => s(x)).filter(Boolean).slice(0, 3);
-    if (!topics.length) return "NextUp lærer retningen din når du bruker forslagene.";
+    if (!topics.length) return tUI("ui.nextup.learnDirection", "NextUp lærer retningen din når du bruker forslagene.");
     return topics.join(" · ");
   }
 
@@ -500,9 +500,9 @@
       btn.id = BUTTON_ID;
       btn.className = "iconbtn pc-nextup-btn";
       btn.type = "button";
-      btn.setAttribute("aria-label", "Neste");
+      btn.setAttribute("aria-label", tUI("ui.nextup.next", "Neste"));
       btn.setAttribute("aria-expanded", "false");
-      btn.title = "Neste";
+      btn.title = tUI("ui.nextup.next", "Neste");
       btn.textContent = "➜";
       footer.appendChild(btn);
     }
@@ -545,7 +545,7 @@
       return;
     }
 
-    window.showToast?.("Fant ikke Wonderkammer-visning");
+    window.showToast?.(tUI("ui.nextup.wonderkammerViewNotFound", "Fant ikke Wonderkammer-visning"));
   }
 
   function openConcept(sug) {
@@ -618,7 +618,7 @@
 
     const activeMode = ensureModeStored();
     const modeRow = `
-      <div class="nextup-mode-row" role="tablist" aria-label="NextUp-modus">
+      <div class="nextup-mode-row" role="tablist" aria-label="${attr(tUI("ui.nextup.modeTablistLabel", "NextUp-modus"))}">
         ${NEXTUP_MODES.map((m) => `
           <button type="button" class="nextup-mode-chip ${m.mode === activeMode.mode ? "is-active" : ""}" data-nextup-mode="${attr(m.mode)}">${esc(modeChip(m))}</button>
         `).join("")}
@@ -628,7 +628,7 @@
     const activePath = getActiveNextUpPath();
     const summary = activePath?.summary || summarizeActiveNextUpPath(activePath);
     const pathStatus = summary?.step_count >= 4
-      ? `<div class="nextup-path-status"><div class="nextup-path-title">Du er i gang med en rute · Fortsett?</div><div class="nextup-path-meta">${esc(summary.title || "")} · ${summary.step_count} steg</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
+      ? `<div class="nextup-path-status"><div class="nextup-path-title">${esc(tUI("ui.nextup.activePathContinue", "Du er i gang med en rute · Fortsett?"))}</div><div class="nextup-path-meta">${esc(summary.title || "")} · ${esc(tfUI("ui.nextup.stepsCount", "{count} steg", { count: summary.step_count }))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
       : summary?.step_count >= 2
         ? `<div class="nextup-path-status"><div class="nextup-path-title">${esc(tfUI("ui.nextup.routeStarted", "Rute startet: {count} steg", { count: summary.step_count }))}</div><div class="nextup-path-meta">${esc(tfUI("ui.nextup.theme", "Tema: {theme}", { theme: (summary.emne_ids || []).slice(0,2).join(" / ") || (summary.dominant_types || []).join(" / ") }))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
         : `<div class="nextup-path-status"><div class="nextup-path-meta">${esc(tUI("ui.nextup.routeBuilderEmpty", "NextUp kan bygge en rute når du har nok steder, quizzer eller forslag."))}</div></div>`;
