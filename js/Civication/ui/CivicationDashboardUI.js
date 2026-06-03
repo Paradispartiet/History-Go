@@ -81,7 +81,10 @@
 
   function getWalletPC() {
     if (typeof window.getPCWallet === "function") {
-      const fromFn = asNumber(window.getPCWallet(), NaN);
+      const wallet = window.getPCWallet();
+      const fromFn = typeof wallet === "number"
+        ? asNumber(wallet, NaN)
+        : asNumber(wallet?.pc ?? wallet?.balance ?? wallet?.amount, NaN);
       if (Number.isFinite(fromFn)) return fromFn;
     }
 
@@ -150,7 +153,7 @@
     const current = home?.home || null;
 
     if (current?.status === "settled") {
-      return String(current.district || "Hjem");
+      return window.CivicationHome?.getDistrictName?.(current.district) || String(current.district || "Hjem");
     }
 
     return "Ikke valgt";
