@@ -6,6 +6,12 @@
   "families": [
     {
       "id": "tempo_vs_kvalitet_intro",
+      "purpose": "Introdusere at tempo ikke bare er fart, men en organisatorisk kraft som kan senke kvalitet uten at noen tar eksplisitt ansvar.",
+      "learning_focus": [
+        "tempo_vs_kvalitet",
+        "faglig standard",
+        "synlig friksjon"
+      ],
       "thread_binding": {
         "conflict_id": "tempo_vs_kvalitet",
         "conflict_phase": "intro"
@@ -21,11 +27,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Farten blir viktigere enn finishen",
+          "summary": "Skiftet ligger etter, og detaljene omtales som noe som kan vente.",
+          "purpose": "Vise at kvalitet ofte kuttes indirekte gjennom tempo, ikke som åpen beslutning.",
+          "stakes": "Holder du standarden, blir du friksjonen. Følger du tempoet, blir kvalitetstapet usynlig.",
           "situation": [
             "Skiftet går tregere enn ledelsen liker.",
             "Det sies at detaljer får vente til senere.",
             "Du merker at det som kuttes først, er kvalitet."
+          ],
+          "task_domain": "tempo_og_kvalitet",
+          "competency": "kvalitetsvurdering",
+          "pressure": "produksjonspress",
+          "choice_axis": "faglig_standard_vs_driftstempo",
+          "consequence_axis": "synlig_friksjon_vs_skjult_kvalitetstap",
+          "narrative_arc": "første møte med at tempo kan omdefinere godt nok",
+          "learning_focus": [
+            "kvalitet taper ofte gjennom små tempojusteringer",
+            "arbeideren kan bli gjort ansvarlig for friksjonen når standarden holdes"
           ],
           "thread_binding": {
             "conflict_id": "tempo_vs_kvalitet",
@@ -38,15 +59,23 @@
             {
               "id": "A",
               "label": "Hold standarden selv om det sinker",
+              "reply": "Jeg holder standarden selv om det sinker.",
               "effect": 1,
-              "tags": ["craft", "risk"],
+              "tags": [
+                "craft",
+                "risk"
+              ],
               "feedback": "Du holder nivået. Nå blir tempoet plutselig ditt problem."
             },
             {
               "id": "B",
               "label": "Prioriter flyt og håp at det holder",
+              "reply": "Jeg prioriterer flyten og håper det holder.",
               "effect": 0,
-              "tags": ["shortcut", "visibility"],
+              "tags": [
+                "shortcut",
+                "visibility"
+              ],
               "feedback": "Linjen ser penere ut. Du vet at noe glipper."
             }
           ]
@@ -61,11 +90,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Det holder for i dag",
+          "summary": "En oppgave lukkes sosialt før den er faglig ferdig.",
+          "purpose": "Vise hvordan gruppen kan lukke en sak gjennom stemning selv om arbeidet ikke er helt rent.",
+          "stakes": "Å åpne saken igjen beskytter kvalitet, men gjør deg sosialt synlig. Å la den gå videre beskytter flyten.",
           "situation": [
             "En oppgave blir avsluttet før den egentlig er ferdig.",
             "Ingen sier direkte at det er godt nok.",
             "Alle oppfører seg likevel som om saken er lukket."
+          ],
+          "task_domain": "ferdigstilling",
+          "competency": "faglig_integritet",
+          "pressure": "sosial_lukking",
+          "choice_axis": "gjenapne_sak_vs_la_flyten_bestemme",
+          "consequence_axis": "kvalitetssikring_vs_sosial_ro",
+          "narrative_arc": "spilleren lærer at ferdig ofte er sosialt bestemt",
+          "learning_focus": [
+            "ferdigstillelse er både faglig og sosial vurdering",
+            "korrekt arbeid kan skape uønsket synlighet"
           ],
           "thread_binding": {
             "conflict_id": "tempo_vs_kvalitet",
@@ -78,15 +122,23 @@
             {
               "id": "A",
               "label": "Åpne saken igjen og gjøre den ordentlig",
+              "reply": "Jeg åpner saken igjen og gjør den ordentlig.",
               "effect": -1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du gjør det riktig. Du gjør deg også synlig."
             },
             {
               "id": "B",
               "label": "La den gå videre som den er",
+              "reply": "Jeg lar den gå videre som den er.",
               "effect": 0,
-              "tags": ["avoidance", "shortcut"],
+              "tags": [
+                "avoidance",
+                "shortcut"
+              ],
               "feedback": "Ting flyter videre. Du bærer resten i kroppen."
             }
           ]
@@ -101,11 +153,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "bjarne_naboarbeider",
+          "place_id": "schous_bryggeri",
           "subject": "Snarveien begynner å ligne regel",
+          "summary": "En midlertidig snarvei gjentas så ofte at den får status som praksis.",
+          "purpose": "Lære spilleren hvordan improvisasjon kan bli uformell struktur.",
+          "stakes": "Holder du gammel standard, blir du motvekt. Godtar du snarveien, hjelper du den å bli normal.",
           "situation": [
             "En midlertidig løsning blir brukt så ofte at den ikke lenger føles midlertidig.",
             "Ingen har bestemt at dette er standarden, men alle oppfører seg som om det er den.",
             "Du merker hvor raskt press kan gjøre improvisasjon til struktur."
+          ],
+          "task_domain": "uformell_standard",
+          "competency": "rutineforståelse",
+          "pressure": "normalisert_snarvei",
+          "choice_axis": "standard_vs_pragmatisk_tilpasning",
+          "consequence_axis": "faglig_motstand_vs_institusjonalisert_snarvei",
+          "narrative_arc": "tempoets unntak begynner å bli gulvets regel",
+          "learning_focus": [
+            "midlertidige løsninger kan bli institusjoner",
+            "ingen trenger å eie en ny regel for at alle skal følge den"
           ],
           "thread_binding": {
             "conflict_id": "tempo_vs_kvalitet",
@@ -118,15 +185,23 @@
             {
               "id": "A",
               "label": "Holde fast ved den gamle standarden",
+              "reply": "Jeg holder fast ved den gamle standarden.",
               "effect": 1,
-              "tags": ["craft", "visibility"],
+              "tags": [
+                "craft",
+                "visibility"
+              ],
               "feedback": "Du nekter å la det tilfeldige bli normal praksis."
             },
             {
               "id": "B",
               "label": "Godta snarveien som ny hverdag",
+              "reply": "Jeg godtar snarveien som ny hverdag.",
               "effect": 0,
-              "tags": ["legitimacy", "shortcut"],
+              "tags": [
+                "legitimacy",
+                "shortcut"
+              ],
               "feedback": "Du glir med i en regel ingen vil eie."
             }
           ]
@@ -135,6 +210,12 @@
     },
     {
       "id": "lojalitet_vs_selvoppholdelse_intro",
+      "purpose": "Introdusere at lojalitet på gulvet ofte starter som små tjenester, men kan bli en asymmetrisk fordeling av kostnader.",
+      "learning_focus": [
+        "lojalitet_vs_selvoppholdelse",
+        "taus lojalitet",
+        "uformelt gruppepress"
+      ],
       "thread_binding": {
         "conflict_id": "lojalitet_vs_selvoppholdelse",
         "conflict_phase": "intro"
@@ -150,11 +231,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Dekker du for en kollega?",
+          "summary": "En kollega faller bakpå, og gruppen forventer at du absorberer noe av problemet.",
+          "purpose": "Vise at kollegial lojalitet ofte fordeles gjennom blikk og forventninger, ikke direkte ordre.",
+          "stakes": "Dekker du, holder du fellesskapet mykt. Lar du saken bli synlig, beskytter du deg selv men endrer stemningen.",
           "situation": [
             "En kollega har falt bakpå.",
             "Du forstår at noen må ta noe ekstra hvis det ikke skal bli bråk.",
             "Ingen ber deg direkte. Alle ser på deg."
+          ],
+          "task_domain": "kollegial_dekning",
+          "competency": "sosial lesning",
+          "pressure": "uformelt_gruppepress",
+          "choice_axis": "fellesskapslojalitet_vs_selvbeskyttelse",
+          "consequence_axis": "sosial_ro_vs_tydelig_ansvarsfordeling",
+          "narrative_arc": "spilleren møter lojalitet som praktisk kostnadsfordeling",
+          "learning_focus": [
+            "gruppen kan be uten å spørre",
+            "lojalitet kan begynne som stilltiende ekstraarbeid"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -167,15 +263,23 @@
             {
               "id": "A",
               "label": "Ta litt ekstra og dekke over det",
+              "reply": "Jeg tar litt ekstra og dekker over det.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du holder laget samlet. Kostnaden blir din."
             },
             {
               "id": "B",
               "label": "La saken bli synlig og beskytte deg selv",
+              "reply": "Jeg lar saken bli synlig og beskytter meg selv.",
               "effect": -1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Du beskytter deg. Stemningen skifter."
             }
           ]
@@ -190,11 +294,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
           "subject": "Du vet mer enn du burde bære alene",
+          "summary": "Du får kunnskap om hvorfor noe gikk galt, men også om hvorfor ingen vil at det skal bli sagt.",
+          "purpose": "Lære spilleren at kunnskap kan bli ansvar, og at taushet kan flytte byrde fra struktur til person.",
+          "stakes": "Bærer du kunnskapen, beskytter du fellesskapet kortsiktig. Deler du den riktig, kan byrden flyttes til systemet.",
           "situation": [
             "Du får vite hvorfor noe gikk galt, men også hvorfor ingen ønsker at det skal sies høyt.",
             "Kunnskap blir plutselig en byrde, ikke bare en innsikt.",
             "Du merker at lojalitet ofte begynner som taushet."
+          ],
+          "task_domain": "taus_kunnskap_og_ansvar",
+          "competency": "ansvarsvurdering",
+          "pressure": "taus_lojalitet",
+          "choice_axis": "personlig_bæring_vs_strukturell_deling",
+          "consequence_axis": "kortsiktig_samhold_vs_langsiktig_ansvarsrydding",
+          "narrative_arc": "kunnskap går fra innsikt til byrde",
+          "learning_focus": [
+            "taushet kan være sosialt nyttig og organisatorisk skadelig samtidig",
+            "riktig deling av kunnskap er en arbeidsferdighet"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -207,15 +326,23 @@
             {
               "id": "A",
               "label": "Bære det videre for å beskytte andre",
+              "reply": "Jeg bærer det videre for å beskytte de andre.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du beskytter fellesskapet på kort sikt og gjør deg selv mer innviklet i det."
             },
             {
               "id": "B",
               "label": "Markere at kunnskapen må deles riktig",
+              "reply": "Jeg markerer at kunnskapen må deles riktig.",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du prøver å flytte byrden fra person til struktur."
             }
           ]
@@ -224,6 +351,12 @@
     },
     {
       "id": "tempo_vs_kvalitet_early",
+      "purpose": "Vise hva som skjer når tempo-kompromisser får etterliv: feil kommer tilbake, tall forskjønner virkeligheten, og arbeideren står nær restene.",
+      "learning_focus": [
+        "tilbakevendende avvik",
+        "måling vs gulverfaring",
+        "dokumentasjon"
+      ],
       "thread_binding": {
         "conflict_id": "tempo_vs_kvalitet",
         "conflict_phase": "early"
@@ -239,11 +372,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Feilen kommer tilbake",
+          "summary": "En snarvei fra tidligere skift skaper dobbeltarbeid, men ingen vil eie årsaken.",
+          "purpose": "Vise at tempo-kompromisser ofte kommer tilbake som uklart ansvar.",
+          "stakes": "Dokumenterer du feilen, gjør du mønsteret synlig. Rydder du opp stille, lar du praksisen overleve.",
           "situation": [
             "En snarvei fra tidligere skift skaper dobbeltarbeid.",
             "Ingen vil eie at problemet egentlig startet da det hastet som mest.",
             "Du står midt i restene av en beslutning ingen vil vedkjenne seg."
+          ],
+          "task_domain": "tilbakevendende_avvik",
+          "competency": "avvikshåndtering",
+          "pressure": "historisk_snarvei",
+          "choice_axis": "dokumentasjon_vs_stille_reparasjon",
+          "consequence_axis": "organisatorisk_læring_vs_gjentatt_mønster",
+          "narrative_arc": "spilleren ser at snarveier ikke forsvinner, de bare venter",
+          "learning_focus": [
+            "feil har historikk",
+            "opprydding uten dokumentasjon kan bevare årsaken"
           ],
           "thread_binding": {
             "conflict_id": "tempo_vs_kvalitet",
@@ -256,15 +404,23 @@
             {
               "id": "A",
               "label": "Dokumenter feilen og vis hvor den oppsto",
+              "reply": "Jeg dokumenterer feilen og viser hvor den oppsto.",
               "effect": 1,
-              "tags": ["process", "legitimacy"],
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
               "feedback": "Du gjør konflikten synlig. Det er nyttig og farlig."
             },
             {
               "id": "B",
               "label": "Bare rydde opp og gå videre",
+              "reply": "Jeg rydder opp og går videre.",
               "effect": 0,
-              "tags": ["craft", "avoidance"],
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
               "feedback": "Du redder dagen. Mønsteret får leve videre."
             }
           ]
@@ -279,11 +435,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Tallene ser bedre ut enn arbeidet føles",
+          "summary": "Resultatene ser gode ut i rapporteringen, men restene på gulvet forteller en annen historie.",
+          "purpose": "Lære spilleren at målesystemer kan forskjønne arbeidets praktiske kostnader.",
+          "stakes": "Peker du på kostnaden, utfordrer du tallbildet. Aksepterer du tallene, lar du det målbare eie virkeligheten.",
           "situation": [
             "Resultatene for dagen ser penere ut enn restene du står i.",
             "Det som måles ovenfra, stemmer dårlig med det som merkes nedenfra.",
             "Du må velge om du skal stole på tallene eller på sporene de etterlater."
+          ],
+          "task_domain": "rapportering_og_måling",
+          "competency": "organisatorisk lesning",
+          "pressure": "kpi_vs_gulverfaring",
+          "choice_axis": "gulvrealitet_vs_målt_resultat",
+          "consequence_axis": "synlig_kostnad_vs_rapportert_suksess",
+          "narrative_arc": "spilleren forstår avstanden mellom tall og arbeidserfaring",
+          "learning_focus": [
+            "rapporter kan være sanne og utilstrekkelige samtidig",
+            "det målbare er ikke alltid det viktigste"
           ],
           "thread_binding": {
             "conflict_id": "tempo_vs_kvalitet",
@@ -296,15 +467,23 @@
             {
               "id": "A",
               "label": "Peke på kostnaden som skjules i regnskapet",
+              "reply": "Jeg peker på kostnaden som skjules i regnskapet.",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du gjør målesystemet mindre uskyldig."
             },
             {
               "id": "B",
               "label": "Akseptere at tallene teller mest akkurat nå",
+              "reply": "Jeg aksepterer at tallene teller mest akkurat nå.",
               "effect": 0,
-              "tags": ["legitimacy", "shortcut"],
+              "tags": [
+                "legitimacy",
+                "shortcut"
+              ],
               "feedback": "Du lar det målbare definere virkeligheten for denne dagen."
             }
           ]
@@ -313,6 +492,12 @@
     },
     {
       "id": "lojalitet_vs_selvoppholdelse_early",
+      "purpose": "Vise at lojalitet kan feste seg som forventning, og at pålitelighet kan gjøre spilleren mer brukbar enn beskyttet.",
+      "learning_focus": [
+        "grensesetting",
+        "selvbeskyttelse",
+        "pålitelighet som sårbarhet"
+      ],
       "thread_binding": {
         "conflict_id": "lojalitet_vs_selvoppholdelse",
         "conflict_phase": "early"
@@ -328,11 +513,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "frode_formann",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Navnet ditt begynner å følge andres feil",
+          "summary": "Du har hjulpet så ofte at andres feil begynner å klebe til deg som del av gruppen.",
+          "purpose": "Vise hvordan utydelige grenser kan gjøre lojalitet til ansvar uten mandat.",
+          "stakes": "Trekker du grense, beskytter du deg men endrer andres bilde av deg. Fortsetter du stille, blir mønsteret sterkere.",
           "situation": [
             "Du har hjulpet så ofte at grensene har blitt uklare.",
             "Når noe svikter, nevnes gruppen og gruppen er plutselig deg.",
             "Du må velge om lojalitet fortsatt er gratis."
+          ],
+          "task_domain": "ansvar_og_grense",
+          "competency": "grensesetting",
+          "pressure": "kollektivt_ansvar",
+          "choice_axis": "grense_vs_stilltiende_bæring",
+          "consequence_axis": "tydelig_ansvar_vs_identitetsfestet_lojalitet",
+          "narrative_arc": "lojalitet går fra valg til forventning",
+          "learning_focus": [
+            "ansvar kan feste seg uten formell beslutning",
+            "selvbeskyttelse kan oppfattes som brudd på lagånd"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -345,15 +545,23 @@
             {
               "id": "A",
               "label": "Trekk en grense og avklar ansvar",
+              "reply": "Jeg trekker en grense og avklarer ansvar.",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du beskytter deg. Nå vet alle at du har merket det."
             },
             {
               "id": "B",
               "label": "Fortsett å bære det i stillhet",
+              "reply": "Jeg fortsetter å bære det i stillhet.",
               "effect": -1,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Lojaliteten kjennes edel helt til regningen kommer."
             }
           ]
@@ -368,11 +576,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
           "subject": "Du blir lett å bruke fordi du er lett å stole på",
+          "summary": "Påliteligheten din gjør deg nyttig, men også sårbar for ekstra belastning.",
+          "purpose": "Lære spilleren at stabilitet kan bli utnyttbarhet hvis grensene ikke finnes.",
+          "stakes": "Gjør du grensene tydelige, stopper du mønsteret tidlig. Fortsetter du, blir pålitelighet en stilltiende ressurs andre bruker.",
           "situation": [
             "Det du gjør godt, gjør også at andre begynner å lene seg mot deg uten å spørre.",
             "Kompetanse blir gradvis til ekstra belastning når ingen eier grensene.",
             "Du kjenner at pålitelighet kan være en form for sårbarhet."
+          ],
+          "task_domain": "pålitelighet_og_belastning",
+          "competency": "selvbeskyttelse",
+          "pressure": "tillit_som_ekstraarbeid",
+          "choice_axis": "tydelig_grense_vs_fortsatt_tilgjengelighet",
+          "consequence_axis": "beskyttet_stabilitet_vs_utnyttet_pålitelighet",
+          "narrative_arc": "spilleren lærer at det å være flink kan skape ny risiko",
+          "learning_focus": [
+            "stabilitet må ha grenser for å være bærekraftig",
+            "pålitelighet er sosial kapital, men også en mulig belastning"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -385,15 +608,23 @@
             {
               "id": "A",
               "label": "Gjøre grensene tydelige før mønsteret fester seg mer",
+              "reply": "Jeg gjør grensene tydelige før mønsteret fester seg mer.",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du forsøker å stoppe en vane før den blir en forventning."
             },
             {
               "id": "B",
               "label": "Fortsette å være den som alltid tar det",
+              "reply": "Jeg fortsetter å være den som alltid tar det.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du holder systemet mykt for andre og hardt for deg selv."
             }
           ]
