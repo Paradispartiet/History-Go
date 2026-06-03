@@ -669,9 +669,9 @@ async function enhanceQuizButton(btn, targetId) {
     }
 
     if (info.mode === "legacy" && info.isComplete) {
-      btn.textContent = tUI("ui.quiz.takeAgain", "Ta quiz igjen");
+      btn.textContent = tUI("ui.badge.quizRetakeTitle", "Ta quiz igjen");
       btn.classList.add("quiz-done");
-      btn.title = "Quizen er allerede fullført, men kan tas igjen.";
+      btn.title = tUI("ui.badge.quizCompletedTitle", "Quizen er allerede fullført, men kan tas igjen.");
     }
   } catch {}
 }
@@ -906,7 +906,7 @@ window.showFloraPopup = function (flora) {
         ${img ? `<img src="${img}" class="hg-flora-img">` : ``}
         <h2 class="hg-popup-name">${title}</h2>
         ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">${tUI("ui.popup.noDescriptionYet", "Ingen beskrivelse ennå.")}</p>`}
-        <button class="reward-ok" data-close-popup>Lukk</button>
+        <button class="reward-ok" data-close-popup>${hgEsc(tUI("ui.attr.close", "Lukk"))}</button>
       </div>
     `,
     "flora-popup"
@@ -1051,7 +1051,7 @@ window.showBrandPopup = async function (brandId, place = null) {
 
   const relatedBrandsHtml = `
     <div class="hg-section">
-      <h3>Relaterte brands i samme område</h3>
+      <h3>${hgEsc(tUI("ui.popup.relatedBrandsNearby", "Relaterte brands i samme område"))}</h3>
       ${
         relatedBrands.length
           ? `<div class="hg-brand-related-list">
@@ -1150,7 +1150,12 @@ function renderEventsSection(events) {
     const category = evt.category ? wkEsc(String(evt.category)) : "";
     const description = evt.description ? wkEsc(String(evt.description)) : "";
     const sourceUrl = evt.source_url ? String(evt.source_url) : "";
-    const phaseLabel = { ongoing: "Pågår nå", upcoming: "Kommer", past: "Tidligere" }[phase] || "";
+    const phaseLabels = {
+      ongoing: tUI("ui.events.phase.now", "Pågår nå"),
+      upcoming: tUI("ui.events.phase.upcoming", "Kommer"),
+      past: tUI("ui.events.phase.past", "Tidligere")
+    };
+    const phaseLabel = phaseLabels[phase] || "";
 
     return `
       <article class="pc-event is-${phase}">
@@ -1270,7 +1275,7 @@ window.showPersonPopup = function(person) {
   const kind = String(person.kind || "").trim();
   const kindLabel =
   kind === "ikon" ? "Ikon" :
-  kind === "institusjonsbærer" ? "Institusjonsbærer" :
+  kind === "institusjonsbærer" ? tUI("ui.person.kind.institutionBearer", "Institusjonsbærer") :
   kind === "kontekst" ? "Kontekst" : "";
   
   const categoryId =
@@ -1299,7 +1304,7 @@ window.showPersonPopup = function(person) {
     <article class="hg-modal">
       <header class="hg-modal-header">
         <h2 class="hg-popup-name hg-modal-title">${person.name}</h2>
-        ${kindLabel ? `<p class="hg-popup-cat hg-modal-meta">${kindLabel}</p>` : ``}
+        ${kindLabel ? `<p class="hg-popup-cat hg-modal-meta">${hgEsc(kindLabel)}</p>` : ``}
       </header>
       <div class="hg-modal-body">
         <img src="${face}" class="hg-popup-face">
@@ -1340,13 +1345,13 @@ window.showPersonPopup = function(person) {
 
       <!-- Samtale & notat -->
       <div class="hg-section">
-        <h3>Samtale & notat</h3>
+        <h3>${hgEsc(tUI("ui.person.conversationNotes", "Samtale & notat"))}</h3>
         <div class="hg-actions-row">
           <button class="hg-ghost-btn" data-chat-person="${person.id}">
             💬 Snakk med ${person.name}
           </button>
           <button class="hg-ghost-btn" data-note-person="${person.id}">
-            📝 Notat
+            📝 ${hgEsc(tUI("ui.person.note", "Notat"))}
           </button>
         </div>
       </div>
@@ -1471,10 +1476,10 @@ function renderWonderkammerDossier(doc) {
           const label = String(f?.label || "").trim();
           const val = String(f?.value || "").trim();
           if (!label && !val) return "";
-          return `<li style="margin:8px 0;"><strong>${wkEsc(label || "Fakta")}</strong>: ${wkEsc(val)}</li>`;
+          return `<li style="margin:8px 0;"><strong>${wkEsc(label || tUI("ui.wonderkammer.facts", "Fakta"))}</strong>: ${wkEsc(val)}</li>`;
         }).join("")}
       </ul>`
-    : `<p class="hg-muted">Ingen fakta ennå.</p>`;
+    : `<p class="hg-muted">${wkEsc(tUI("ui.wonderkammer.noFactsYet", "Ingen fakta ennå."))}</p>`;
 
   return `
     <div class="hg-section">
@@ -1660,7 +1665,7 @@ const HGNavigator = (() => {
       type: "spatial",
       place_id: next.id,
       label: next.name || next.id,
-      why: "I nærheten"
+      why: tUI("ui.nextup.reason.nearby", "I nærheten")
     };
   }
 
@@ -1681,9 +1686,9 @@ const HGNavigator = (() => {
         return {
           type: "narrative",
           story_id: st.id,
-          label: st.title || "Fortsett historien",
+          label: st.title || tUI("ui.nextup.reason.continueStory", "Fortsett historien"),
           next_place_id: String(beat.next_place_id),
-          why: "Neste kapittel"
+          why: tUI("ui.nextup.reason.nextChapter", "Neste kapittel")
         };
       }
     }
@@ -1725,7 +1730,7 @@ const HGNavigator = (() => {
     return {
       type: "concept",
       emne_id: best.emne_id,
-      label: best.title || "Forstå mer",
+      label: best.title || tUI("ui.nextup.reason.understandMore", "Forstå mer"),
       why: `Begreper ×${bestScore}`
     };
   }

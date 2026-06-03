@@ -1179,9 +1179,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!btnOpenAHA) return;
       try {
         const state = stateOverride || await window.HistoryGoAHAAuth?.refresh?.();
-        btnOpenAHA.textContent = state?.signed_in ? "AHA koblet" : "Logg inn";
+        btnOpenAHA.textContent = state?.signed_in ? _t("ui.aha.connected", "AHA koblet") : _t("ui.aha.login", "Logg inn");
       } catch {
-        btnOpenAHA.textContent = "Logg inn";
+        btnOpenAHA.textContent = _t("ui.aha.login", "Logg inn");
       }
     };
 

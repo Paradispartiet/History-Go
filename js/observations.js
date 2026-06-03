@@ -22,6 +22,24 @@
   const LEARNING_KEY = "hg_learning_log_v1";
   const LEARNING_SCHEMA = 1;
 
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, ch => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#039;"
+    }[ch]));
+  }
+
   function dlog(...a) { if (window.DEBUG) console.log("[HGObservations]", ...a); }
   function dwarn(...a) { if (window.DEBUG) console.warn("[HGObservations]", ...a); }
 
@@ -113,8 +131,8 @@
     m.innerHTML = `
       <div class="modal-body" style="max-width:720px;">
         <div class="modal-head">
-          <strong id="obsTitle">Observasjon</strong>
-          <button class="ghost" id="obsClose">Lukk</button>
+          <strong id="obsTitle">${esc(tUI("ui.observations.modalTitle", "Observasjon"))}</strong>
+          <button class="ghost" id="obsClose">${esc(tUI("ui.attr.close", "Lukk"))}</button>
         </div>
 
         <div class="sheet-body">
@@ -264,7 +282,7 @@
 
       elTitle.textContent =
         s(lens.title) ||
-        (s(target.title) ? `Observasjon: ${s(target.title)}` : "Observasjon");
+        (s(target.title) ? `Observasjon: ${s(target.title)}` : tUI("ui.observations.modalTitle", "Observasjon"));
 
       elPrompt.textContent = s(lens.prompt) || "";
 
@@ -326,7 +344,7 @@
 
         // strict: må velge minst 1
         if (!sel.length) {
-          elFeedback.textContent = "Velg minst ett ord før du lagrer.";
+          elFeedback.textContent = tUI("ui.observations.chooseAtLeastOne", "Velg minst ett ord før du lagrer.");
           return;
         }
 

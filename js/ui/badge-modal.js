@@ -1,3 +1,11 @@
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 async function handleBadgeClick(badgeEl) {
   const badgeId = badgeEl.getAttribute("data-badge-id");
   const modal = document.getElementById("badgeModal");
@@ -26,7 +34,7 @@ const info =
   if (titleEl) titleEl.textContent = badge.name;
 
   // Kanonisk: vis nivå ut fra tiers+points (ikke lagret level-tekst)
-  if (levelEl) levelEl.textContent = label || "Nybegynner";
+  if (levelEl) levelEl.textContent = label || tUI("ui.badge.modalTitleFallback", "Nybegynner");
   if (textEl)  textEl.textContent = `${points} poeng`;
 
   // Progressbar

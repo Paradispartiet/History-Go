@@ -509,7 +509,7 @@ function drawThematicRouteGeoJSON(map, geo, fitCoords) {
 async function focusRouteOnMap(routeId, startIndex = 0) {
   const map = _getMap();
   if (!map) {
-    _toast("Kartet er ikke klart ennå.");
+    _toast(tUI("ui.routes.mapNotReadyAlt", "Kartet er ikke klart ennå."));
     return;
   }
 
@@ -520,7 +520,7 @@ async function focusRouteOnMap(routeId, startIndex = 0) {
 
   const r = _routeById(routeId);
   if (!r?.stops?.length) {
-    _toast("Fant ikke rute.");
+    _toast(tUI("ui.routes.notFound", "Fant ikke rute."));
     return;
   }
 
@@ -530,7 +530,7 @@ async function focusRouteOnMap(routeId, startIndex = 0) {
     .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon));
 
   if (!places.length) {
-    _toast("Ruten har ingen gyldige stopp i PLACES.");
+    _toast(tUI("ui.routes.noValidStopsInPlaces", "Ruten har ingen gyldige stopp i PLACES."));
     return;
   }
 
@@ -556,7 +556,7 @@ async function focusRouteOnMap(routeId, startIndex = 0) {
   if (walkingCoords?.length >= 2) {
     features.push({
       type: "Feature",
-      properties: { id: r.id, name: r.name || r.title || "Rute", mode: "foot-walking" },
+      properties: { id: r.id, name: r.name || r.title || tUI("ui.routes.fallbackRoute", "Rute"), mode: "foot-walking" },
       geometry: { type: "LineString", coordinates: walkingCoords }
     });
   }
@@ -574,23 +574,23 @@ async function focusRouteOnMap(routeId, startIndex = 0) {
         const min = Math.round(routeStats.duration_s / 60);
         _toast(`Fottur vist: ${km} km · ca ${min} min`);
       } else {
-        _toast("Fottur vist på kartet");
+        _toast(tUI("ui.routes.hikingRouteShown", "Fottur vist på kartet"));
       }
     } else if (stopCoords.length === 1) {
-      _toast("Rutestopp vist på kartet");
+      _toast(tUI("ui.routes.routeStopShown", "Rutestopp vist på kartet"));
     } else {
-      _toast("Kunne ikke hente fottur – viser stopp uten luftlinje.");
+      _toast(tUI("ui.routes.hikeFetchFailedShowingStops", "Kunne ikke hente fottur – viser stopp uten luftlinje."));
     }
   } catch (e) {
     console.warn("[routes] thematic route draw failed", e);
-    _toast("Kunne ikke tegne ruten på kartet.");
+    _toast(tUI("ui.routes.drawRouteFailed", "Kunne ikke tegne ruten på kartet."));
   }
 }
 
 function showRouteOverlay(routeId, startIndex = 0) {
   const r = _routeById(routeId);
   if (!r) {
-    _toast("Fant ikke rute.");
+    _toast(tUI("ui.routes.notFound", "Fant ikke rute."));
     return;
   }
 
@@ -604,7 +604,7 @@ function showRouteOverlay(routeId, startIndex = 0) {
     }
   }, 160);
 
-  _toast(tfUI("ui.routes.routeStopsToast", "{route} ({count} stopp)", { route: r.name || r.title || "Rute", count: r.stops?.length || 0 }));
+  _toast(tfUI("ui.routes.routeStopsToast", "{route} ({count} stopp)", { route: r.name || r.title || tUI("ui.routes.fallbackRoute", "Rute"), count: r.stops?.length || 0 }));
 }
 
 function clearNavRoute() {
@@ -674,7 +674,7 @@ async function showWalkingRouteToPlace(place) {
     out = await fetchORSRouteGeoJSON(from, to);
   } catch (e) {
     console.warn("[ORS route] failed", e);
-    _toast("Kunne ikke hente gangrute (ORS).");
+    _toast(tUI("ui.routes.walkingRouteFetchFailed", "Kunne ikke hente gangrute."));
     return;
   }
 
@@ -693,7 +693,7 @@ async function showWalkingRouteToPlace(place) {
     });
   } catch (e) {
     console.warn("[ORS route] draw failed", e);
-    _toast("Kunne ikke tegne gangruten.");
+    _toast(tUI("ui.routes.drawWalkingRouteFailed", "Kunne ikke tegne gangruten."));
     return;
   }
 
@@ -710,7 +710,7 @@ async function showWalkingRouteToPlace(place) {
     const min = Math.round(out.duration_s / 60);
     _toast(`Gårute: ${km} km · ca ${min} min`);
   } else {
-    _toast(`Gårute til ${place.name || "sted"}`);
+    _toast(`Gårute til ${place.name || tUI("ui.routes.placeFallback", "sted")}`);
   }
 }
 
