@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-06-03T11:01:22.750Z
+Generert: 2026-06-03T11:38:36.552Z
 
 ## Sammendrag
 
-- People totalt: **394**
+- People totalt: **403**
 - Places totalt: **469**
-- Places med people: **141**
-- Places uten people: **328**
-- People-place-lenker: **577**
-- People koblet til flere gyldige steder: **151**
+- Places med people: **147**
+- Places uten people: **322**
+- People-place-lenker: **587**
+- People koblet til flere gyldige steder: **152**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **394**
-- People uten image: **84**
-- People uten cardImage: **84**
+- Duplikate place-referanser inne på people: **403**
+- People uten image: **93**
+- People uten cardImage: **93**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -29,12 +29,12 @@ Generert: 2026-06-03T11:01:22.750Z
 | media | 11 | 8 | 3 | 38 | 37 |
 | musikk | 13 | 9 | 4 | 27 | 18 |
 | naeringsliv | 41 | 9 | 32 | 23 | 23 |
-| natur | 63 | 4 | 59 | 10 | 10 |
+| natur | 63 | 5 | 58 | 13 | 13 |
 | politikk | 15 | 7 | 8 | 73 | 60 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 49 | 7 | 42 | 31 | 27 |
-| subkultur | 30 | 3 | 27 | 5 | 5 |
+| sport | 49 | 10 | 39 | 34 | 30 |
+| subkultur | 30 | 5 | 25 | 9 | 8 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
 ## People tags
@@ -43,19 +43,19 @@ Generert: 2026-06-03T11:01:22.750Z
 - litteratur: 46
 - politikk: 44
 - vitenskap: 34
+- sport: 31
 - musikk: 29
-- sport: 28
+- subkultur: 29
 - media: 27
-- subkultur: 26
 - kunst: 25
 - film: 23
 - film_tv: 23
+- natur: 20
 - regissor: 20
 - by: 18
 - populaerkultur: 18
 - tv: 18
 - filantrop: 17
-- natur: 17
 - filmhistorie: 15
 - scene: 15
 - filmkanon: 14
@@ -78,6 +78,7 @@ Generert: 2026-06-03T11:01:22.750Z
 - musikkhistorie: 8
 - radio: 8
 - arbeiderbevegelse: 7
+- fotball: 6
 - konsert: 6
 - mesen: 6
 - satire: 6
@@ -85,10 +86,9 @@ Generert: 2026-06-03T11:01:22.750Z
 - stifter: 6
 - underholdning: 6
 - arthouse: 5
+- botanikk: 5
 - fadokultur: 5
 - forskning: 5
-- kulturarv: 5
-- musiker: 5
 
 ## Steder med flest people
 
@@ -224,7 +224,7 @@ Generert: 2026-06-03T11:01:22.750Z
 - arpad_szenes (Árpád Szenes) -> lisbon_museu_arpad_szenes_vieira_da_silva
 - rafael_bordalo_pinheiro (Rafael Bordalo Pinheiro) -> lisbon_museu_bordalo_pinheiro
 - amadeo_de_souza_cardoso (Amadeo de Souza-Cardoso) -> lisbon_fundacao_calouste_gulbenkian
-- ... 294 flere
+- ... 303 flere
 
 ## Anbefalt første people-batch
 
