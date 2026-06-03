@@ -449,9 +449,9 @@ async function boot() {
     await ensureBadgesLoaded();
   }
 
-  if (typeof wire === "function") wire();
+  if (typeof window["wire"] === "function") window["wire"]();
   if (typeof renderCollection === "function") renderCollection();
-  if (typeof renderGallery === "function") renderGallery();
+  if (typeof window["renderGallery"] === "function") window["renderGallery"]();
 
   if (typeof initPlaceCardCollapse === "function") {
     initPlaceCardCollapse();
