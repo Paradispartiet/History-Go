@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-03T06:29:47.265Z
+Generated: 2026-06-03T08:35:07.427Z
 
 ## Sammendrag
 - People-filer lest: **19**
-- People lest: **350**
+- People lest: **370**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **2**
-- Duplikate interne place-referanser: **348**
+- Duplikate interne place-referanser: **368**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -316,6 +316,10 @@ Generated: 2026-06-03T06:29:47.265Z
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: maria_elisa (Maria Elisa) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: julio_isidro (Júlio Isidro) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: maria_flor_pedroso (Maria Flor Pedroso) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: candida_pinto (Cândida Pinto) -> lisbon_rtp x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: manoel_de_oliveira (Manoel de Oliveira) -> lisbon_cinemateca_portuguesa x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: antonio_lopes_ribeiro (António Lopes Ribeiro) -> lisbon_tobis_portuguesa x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: leitao_de_barros (Leitão de Barros) -> lisbon_tobis_portuguesa x2
@@ -324,6 +328,11 @@ Generated: 2026-06-03T06:29:47.265Z
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: joao_cesar_monteiro (João César Monteiro) -> lisbon_cinemateca_portuguesa x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: pedro_costa (Pedro Costa) -> lisbon_doclisboa x2
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: serge_trefaut (Serge Tréfaut) -> lisbon_doclisboa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: joao_botelho (João Botelho) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: antonio_pedro_vasconcelos (António-Pedro Vasconcelos) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: teresa_villaverde (Teresa Villaverde) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: margarida_gil (Margarida Gil) -> lisbon_cinemateca_portuguesa x2
+- data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json :: leonor_teles (Leonor Teles) -> lisbon_doclisboa x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: tancred_ibsen (Tancred Ibsen) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: edith_carlmar (Edith Carlmar) -> cinemateket_oslo x2
 - data/people/film_tv/oslo/people_film_tv_oslo.json :: arne_skouen (Arne Skouen) -> cinemateket_oslo x2
@@ -353,6 +362,12 @@ Generated: 2026-06-03T06:29:47.265Z
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: luis_villas_boas (Luís Villas-Boas) -> lisbon_hot_clube_de_portugal x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: mariza (Mariza) -> lisbon_mouraria_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: camane (Camané) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carminho (Carminho) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: ana_moura (Ana Moura) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: antonio_zambujo (António Zambujo) -> lisbon_museu_do_fado x2
+- data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: misia (Mísia) -> lisbon_museu_do_fado x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: kristoffer_olsen (Kristoffer Olsen) -> latter x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: else_kass_furuseth (Else Kåss Furuseth) -> latter x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: bard_tufte_johansen (Bård Tufte Johansen) -> chateau_neuf x2
@@ -368,5 +383,10 @@ Generated: 2026-06-03T06:29:47.265Z
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: wenche_foss (Wenche Foss) -> folketeateret x2
 - data/people/popkultur/oslo/people_popkultur_oslo.json :: nils_vogt (Nils Vogt) -> nrk_huset_marienlyst x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: amalia_rodrigues (Amália Rodrigues) -> lisbon_casa_museu_amalia_rodrigues x2
+- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: herman_jose (Herman José) -> lisbon_rtp x2
+- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: ricardo_araujo_pereira (Ricardo Araújo Pereira) -> lisbon_rtp x2
+- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: bruno_nogueira (Bruno Nogueira) -> lisbon_rtp x2
+- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: filomena_cautela (Filomena Cautela) -> lisbon_rtp x2
+- data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch
