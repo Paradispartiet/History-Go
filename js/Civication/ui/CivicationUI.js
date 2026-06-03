@@ -346,8 +346,6 @@ async function renderCivication() {
   `;
 
   if (offer?.offer_key) {
-    window.CivicationState?.markJobOffersRead?.([offer.offer_key]);
-
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
       const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (
         window.CivicationJobs?.acceptOffer?.(offer.offer_key)
@@ -1014,9 +1012,147 @@ function closeTaskModal() {
 }
 
 
+function getInboxItemsForCivicationUi() {
+  const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
+  if (Array.isArray(fromMailEngine)) return fromMailEngine;
+
+  const fromState = window.CivicationState?.getInbox?.();
+  if (Array.isArray(fromState)) return fromState;
+
+  return [];
+}
+
+function normalizeCiviInboxClassifierValue(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function collectCiviInboxClassifierValues(target, output) {
+  if (!target || typeof target !== "object") return;
+
+  [
+    "mail_type",
+    "type",
+    "source_type",
+    "mail_class",
+    "channel",
+    "messageChannel",
+    "task_kind",
+    "task_domain",
+    "source",
+    "phase",
+    "phase_tag",
+    "kind",
+    "track",
+    "arc"
+  ].forEach(function (key) {
+    const normalized = normalizeCiviInboxClassifierValue(target[key]);
+    if (normalized) output.add(normalized);
+  });
+}
+
+function collectCiviInboxMetaValues(target, output) {
+  if (!target || typeof target !== "object") return;
+
+  Object.keys(target).forEach(function (key) {
+    const value = target[key];
+    if (Array.isArray(value)) {
+      value.forEach(function (entry) {
+        const normalized = normalizeCiviInboxClassifierValue(entry);
+        if (normalized) output.add(normalized);
+      });
+      return;
+    }
+
+    if (value == null || typeof value === "object") return;
+    const normalized = normalizeCiviInboxClassifierValue(value);
+    if (normalized) output.add(normalized);
+  });
+}
+
+/**
+ * Visuell innboks-sortering for Civication.html.
+ * Returnerer bare presentasjonsgruppene "job", "personal" eller "other"
+ * og endrer ikke mail store, localStorage eller answer-flow. "other" vises
+ * sammen med personlige meldinger nedenfor slik at usikre meldinger ikke skjules.
+ *
+ * @param {CiviUiInboxItem|CiviUiEvent|null|undefined} item
+ * @returns {"job"|"personal"|"other"}
+ */
+function classifyCiviInboxItem(item) {
+  const ev = item?.event || item || {};
+  const values = new Set();
+  collectCiviInboxClassifierValues(item, values);
+  collectCiviInboxClassifierValues(ev, values);
+
+  const dailyMeta = ev?.daily_mail_meta || item?.daily_mail_meta || null;
+  const roleMeta = ev?.role_content_meta || item?.role_content_meta || null;
+  const lifeMeta = ev?.life_mail_meta || item?.life_mail_meta || null;
+  const mailPlanMeta = ev?.mail_plan_meta || item?.mail_plan_meta || null;
+  const careerOutcomeMeta = ev?.career_outcome_meta || item?.career_outcome_meta || null;
+
+  [dailyMeta, roleMeta, lifeMeta, mailPlanMeta, careerOutcomeMeta].forEach(function (meta) {
+    collectCiviInboxMetaValues(meta, values);
+  });
+
+  if (values.has("system") || values.has("debug") || values.has("status")) {
+    return "other";
+  }
+
+  if (values.has("private") || values.has("personal")) return "personal";
+  if (values.has("job") || values.has("jobmail")) return "job";
+
+  if (lifeMeta ||
+      values.has("life") ||
+      values.has("evening") ||
+      values.has("free_time") ||
+      values.has("leisure") ||
+      values.has("fritid") ||
+      values.has("kveld")) {
+    return "personal";
+  }
+
+  if (dailyMeta ||
+      roleMeta ||
+      mailPlanMeta ||
+      careerOutcomeMeta ||
+      values.has("planned") ||
+      values.has("thread") ||
+      values.has("role") ||
+      values.has("legacy_pack") ||
+      values.has("workday") ||
+      values.has("work") ||
+      values.has("daily_generated") ||
+      values.has("daily_extra") ||
+      values.has("daily_task_gate") ||
+      values.has("daily_workday") ||
+      values.has("task_gate") ||
+      values.has("task") ||
+      values.has("warning") ||
+      values.has("fired") ||
+      values.has("promotion") ||
+      values.has("stagnation") ||
+      values.has("job_outcome") ||
+      values.has("career_outcome") ||
+      values.has("role_outcome") ||
+      values.has("brand_progression")) {
+    return "job";
+  }
+
+  if (values.has("people") ||
+      values.has("relationship") ||
+      values.has("relation") ||
+      values.has("consequence")) {
+    return "personal";
+  }
+
+  return "other";
+}
+
+window.classifyCiviInboxItem = classifyCiviInboxItem;
+
 
 function getChannelBuckets() {
-  const inbox = window.CivicationState?.getInbox?.() || [];
+  const inbox = getInboxItemsForCivicationUi();
   const splitter = window.CivicationEventChannels?.splitInbox;
   if (typeof splitter !== "function") {
     return { messages: inbox, workday: [], milestones: [], system: [], unknown: [] };
@@ -1232,27 +1368,21 @@ function renderCivicationInbox() {
   if (!host) return;
 
   const buckets = getChannelBuckets();
-  const messageItems = buckets.messages.concat(buckets.unknown);
+  const inboxItems = getInboxItemsForCivicationUi();
+  const allInboxItems = inboxItems.length
+    ? inboxItems
+    : buckets.messages.concat(buckets.workday, buckets.milestones, buckets.system, buckets.unknown);
   const toEvent = function (item) { return item?.event || item || null; };
-  const resolveChannel = window.CivicationEventChannels?.getMessageChannel;
-  const jobMails = messageItems.filter(function (item) {
-    const evItem = toEvent(item);
-    if (typeof resolveChannel !== "function") return false;
-    return resolveChannel(evItem) === "job";
+  const jobMails = allInboxItems.filter(function (item) {
+    return classifyCiviInboxItem(item) === "job";
   });
-  const visibleJobMailIds = jobMails.map(function (item) {
-    const evItem = toEvent(item);
-    return String(evItem?.id || item?.id || "").trim();
-  }).filter(Boolean);
-  if (visibleJobMailIds.length) {
-    window.CivicationState?.markJobMailsRead?.(visibleJobMailIds);
-  }
-  const privateMessages = messageItems.filter(function (item) {
-    const evItem = toEvent(item);
-    if (typeof resolveChannel !== "function") return true;
-    return resolveChannel(evItem) === "private";
+  const privateMessages = allInboxItems.filter(function (item) {
+    const group = classifyCiviInboxItem(item);
+    // Usikre/andre meldinger vises sammen med personlige meldinger for å
+    // unngå at ukjente mail/event-varianter skjules fra samme innkommende store.
+    return group === "personal" || group === "other";
   });
-  const ev = findPendingFromItems(messageItems);
+  const ev = findPendingFromItems(allInboxItems);
 
   const renderMessageList = function (items) {
     if (!Array.isArray(items) || !items.length) return "";
