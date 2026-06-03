@@ -16,7 +16,7 @@ function getWeekKey(date = new Date()) {
   firstThursday.setDate(firstThursday.getDate() - firstDayNum + 3);
 
   const weekNo =
-    1 + Math.round((d - firstThursday) / (7 * 24 * 60 * 60 * 1000));
+    1 + Math.round((d.getTime() - firstThursday.getTime()) / (7 * 24 * 60 * 60 * 1000));
 
   return `${d.getFullYear()}-W${String(weekNo).padStart(2, "0")}`;
 }

@@ -624,8 +624,9 @@ function openDistrictSelector() {
   const list  = document.getElementById("districtList");
   if (!modal || !list) return;
 
+  const civiHome = /** @type {any} */ (window.CivicationHome || {});
   /** @type {Record<string, { id?: string, name?: string, baseCost?: number, modifiers?: Record<string, number>, quizRequirements?: Record<string, unknown> }>} */
-  const districts = window.CivicationHome?.DISTRICTS || {};
+  const districts = civiHome.DISTRICTS || {};
 
   list.innerHTML = "";
 
@@ -1371,7 +1372,7 @@ function renderCapital() {
   Object.keys(map).forEach(key => {
     const el = document.getElementById(map[key]);
     if (el) {
-      el.textContent = Math.round(capital[key] || 0);
+      el.textContent = String(Math.round(capital[key] || 0));
     }
   });
 }
