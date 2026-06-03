@@ -336,7 +336,7 @@
   // Export
   // ----------------------------------------------------------
 
-  window.CivicationHome = {
+  window.CivicationHome = /** @type {any} */ ({
     getState,
     getHomeInfluence,
     purchaseHomeObject,
@@ -346,6 +346,6 @@
     canPurchaseDistrict,
     canPurchaseHomeObject,
     DISTRICTS
-  };
+  });
 
 })();
