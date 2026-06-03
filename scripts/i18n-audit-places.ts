@@ -7,9 +7,9 @@
   - Translation files under data/i18n/content/places/{lang}.json are derived content.
   - This script reports missing, stale and extra place translations without changing app data.
 
-  Usage:
-    node scripts/i18n-audit-places.js
-    node scripts/i18n-audit-places.js en
+  TypeScript migration note:
+  - This source is typechecked by tsconfig.scripts.json.
+  - No emitted JS/run target is configured yet.
 */
 
 const fs = require("fs");
@@ -21,27 +21,52 @@ const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_LANGS = ["en"];
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-audit");
 
+type JsonObject = Record<string, any>;
 
-function readJson(relativePath) {
+type MasterPlace = JsonObject & {
+  id?: unknown;
+  name?: unknown;
+  desc?: unknown;
+  popupDesc?: unknown;
+  popupdesc?: unknown;
+  hidden?: boolean;
+  stub?: boolean;
+  _sourceFile: string;
+  _sourceHash: string;
+};
+
+type MasterPlaces = {
+  byId: Map<string, MasterPlace>;
+  duplicateIds: string[];
+};
+
+type AuditRow = {
+  id: string;
+  sourceFile?: string;
+  sourceHash?: string;
+  translationHash?: string;
+};
+
+function readJson(relativePath: string): any {
   const filePath = path.join(ROOT, relativePath);
   const raw = fs.readFileSync(filePath, "utf8");
   return JSON.parse(raw);
 }
 
-function tryReadJson(relativePath) {
+function tryReadJson(relativePath: string): any | null {
   const filePath = path.join(ROOT, relativePath);
   if (!fs.existsSync(filePath)) return null;
   return readJson(relativePath);
 }
 
-function normalizeText(value) {
+function normalizeText(value: unknown): string {
   return String(value || "")
     .replace(/\r\n/g, "\n")
     .replace(/[ \t]+/g, " ")
     .trim();
 }
 
-function sourcePayload(place) {
+function sourcePayload(place: JsonObject): { name: string; desc: string; popupDesc: string } {
   return {
     name: normalizeText(place.name),
     desc: normalizeText(place.desc),
@@ -49,7 +74,7 @@ function sourcePayload(place) {
   };
 }
 
-function sourceHash(place) {
+function sourceHash(place: JsonObject): string {
   return crypto
     .createHash("sha256")
     .update(JSON.stringify(sourcePayload(place)))
@@ -57,14 +82,14 @@ function sourceHash(place) {
     .slice(0, 16);
 }
 
-function extractRows(data, relativePath) {
+function extractRows(data: any, relativePath: string): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.places)) return data.places;
   console.warn(`[i18n-audit] ${relativePath} is not an array and has no .places array. Skipping.`);
   return [];
 }
 
-function loadMasterPlaces() {
+function loadMasterPlaces(): MasterPlaces {
   const byId = new Map();
   const duplicateIds = [];
   const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
@@ -94,7 +119,7 @@ function loadMasterPlaces() {
   return { byId, duplicateIds };
 }
 
-function auditLanguage(lang, master) {
+function auditLanguage(lang: string, master: MasterPlaces) {
   const relativePath = `data/i18n/content/places/${lang}.json`;
   const translations = tryReadJson(relativePath) || {};
   const translationIds = new Set(Object.keys(translations));
@@ -155,7 +180,7 @@ function auditLanguage(lang, master) {
   };
 }
 
-function printList(title, rows, limit = 25) {
+function printList(title: string, rows: AuditRow[], limit = 25): void {
   console.log(`\n${title}: ${rows.length}`);
   rows.slice(0, limit).forEach(row => {
     const parts = [`- ${row.id}`];
@@ -167,7 +192,7 @@ function printList(title, rows, limit = 25) {
   if (rows.length > limit) console.log(`... ${rows.length - limit} more`);
 }
 
-function main() {
+function main(): void {
   const langs = process.argv.slice(2).map(x => String(x || "").trim()).filter(Boolean);
   const targetLangs = langs.length ? langs : DEFAULT_LANGS;
 
