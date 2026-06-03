@@ -1,4 +1,12 @@
 
+function tUI(key, fallback = "") {
+  try {
+    return window.HG_I18N?.t?.(key, fallback) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
@@ -51,7 +59,7 @@ function initMiniProfile() {
   }
 
   if (pos && pos.title) {
-    const careerName = pos.career_name || pos.career_id || "Karriere";
+    const careerName = pos.career_name || pos.career_id || tUI("ui.miniprofile.careerFallback", "Karriere");
     posEl.textContent = `💼 ${pos.title} · ${careerName}`;
     posEl.style.display = "";
   } else {
@@ -123,28 +131,28 @@ try {
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="goto"
       ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
-      🧭 <b>Neste Sted:</b> ${spatial ? hgEsc(spatial.label) : "—"}
+      🧭 <b>${hgEsc(tUI("ui.miniprofile.nextPlace", "Neste Sted:"))}</b> ${spatial ? hgEsc(spatial.label) : "—"}
     </button>
   </div>
 
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="wk"
       ${wk ? `data-wk="${hgEscAttr(wk.entry_id)}" title="${hgEscAttr(wk.because || "")}"` : "disabled"}>
-      🗃️ <b>Wonderkammer:</b> ${wk ? hgEsc(wk.label) : "—"}
+      🗃️ <b>${hgEsc(tUI("ui.miniprofile.wonderkammer", "Wonderkammer:"))}</b> ${wk ? hgEsc(wk.label) : "—"}
     </button>
   </div>
 
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="story"
       ${narrative ? `data-nextplace="${hgEscAttr(narrative.next_place_id)}"` : "disabled"}>
-      📖 <b>Neste Scene:</b> ${narrative ? hgEsc(narrative.label) : "—"}
+      📖 <b>${hgEsc(tUI("ui.miniprofile.nextScene", "Neste Scene:"))}</b> ${narrative ? hgEsc(narrative.label) : "—"}
     </button>
   </div>
 
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="emne"
       ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}" data-knowledge-href="${hgEscAttr(concept.knowledge_href || "")}"` : "disabled"}>
-      🧠 <b>Forstå:</b> ${concept ? hgEsc(concept.label) : "—"}
+      🧠 <b>${hgEsc(tUI("ui.miniprofile.understand", "Forstå:"))}</b> ${concept ? hgEsc(concept.label) : "—"}
     </button>
   </div>
 
@@ -159,7 +167,7 @@ try {
         if (!id) return;
         const pl = (window.PLACES || []).find(x => String(x.id) === String(id));
         if (pl) return window.openPlaceCard?.(pl);
-        return window.showToast?.("Fant ikke stedet");
+        return window.showToast?.(tUI("ui.miniprofile.placeNotFound", "Fant ikke stedet"));
       }
 
       if (t === "wk") {
@@ -173,7 +181,7 @@ try {
           window.openWonderkammerEntry(id);
         } else {
           console.warn("[mpNextUp] No Wonderkammer open handler found for", id);
-          window.showToast?.("Fant ikke Wonderkammer-visning");
+          window.showToast?.(tUI("ui.miniprofile.wonderkammerViewNotFound", "Fant ikke Wonderkammer-visning"));
         }
         return;
       }
@@ -184,7 +192,7 @@ try {
         if (!nextId) return;
         const pl = (window.PLACES || []).find(x => String(x.id) === String(nextId));
         if (pl) return window.openPlaceCard?.(pl);
-        return window.showToast?.("Fant ikke neste kapittel-sted");
+        return window.showToast?.(tUI("ui.miniprofile.nextChapterPlaceNotFound", "Fant ikke neste kapittel-sted"));
       }
 
       if (t === "emne") {
@@ -213,7 +221,7 @@ function showQuizHistory() {
   );
 
   if (!allCompleted.length) {
-    showToast("Du har ingen fullførte quizzer ennå.");
+    showToast(tUI("ui.miniprofile.noCompletedQuizzes", "Du har ingen fullførte quizzer ennå."));
     return;
   }
 
@@ -231,8 +239,8 @@ function showQuizHistory() {
   const html = `
     <div class="quiz-modal" id="quizHistoryModal">
       <div class="quiz-modal-inner">
-        <button class="quiz-close" id="closeQuizHistory">✕</button>
-        <h2>Fullførte quizzer</h2>
+        <button class="quiz-close" id="closeQuizHistory" aria-label="${hgEscAttr(tUI("ui.attr.close", "Lukk"))}">✕</button>
+        <h2>${hgEsc(tUI("ui.miniprofile.completedQuizzes", "Fullførte quizzer"))}</h2>
         <ul class="quiz-history-list">${list}</ul>
       </div>
     </div>`;
@@ -253,7 +261,7 @@ function wireMiniProfileLinks() {
   document.getElementById("linkPlaces")?.addEventListener("click", (e) => {
     e.preventDefault(); e.stopPropagation();
     enterMapMode();
-    showToast("Viser steder på kartet");
+    showToast(tUI("ui.miniprofile.showingPlacesOnMap", "Viser steder på kartet"));
   });
 
   document.getElementById("linkBadges")?.addEventListener("click", (e) => {

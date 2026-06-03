@@ -16,12 +16,20 @@
   const MAX_HISTORY = 200;
   const MAX_PATH_STEPS = 12;
   const MODE_KEY = "hg_nextup_mode_v1";
+  function tUI(key, fallback = "") {
+    try {
+      return window.HG_I18N?.t?.(key, fallback) || fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   const NEXTUP_MODES = [
-    { mode: "nearest", label: "Nærmest", chip: "Nærmest" },
-    { mode: "learn", label: "Lær mest", chip: "Lær mest" },
-    { mode: "story", label: "Fortsett historien", chip: "Historie" },
-    { mode: "wonder", label: "Oppdag noe rart", chip: "Rart" },
-    { mode: "complete", label: "Fullfør merket", chip: "Fullfør" }
+    { mode: "nearest", labelKey: "ui.nextup.mode.nearest", label: "Nærmest", chipKey: "ui.nextup.mode.nearest", chip: "Nærmest" },
+    { mode: "learn", labelKey: "ui.nextup.mode.learnMost", label: "Lær mest", chipKey: "ui.nextup.mode.learnMost", chip: "Lær mest" },
+    { mode: "story", labelKey: "ui.nextup.mode.continueStory", label: "Fortsett historien", chipKey: "ui.nextup.chip.history", chip: "Historie" },
+    { mode: "wonder", labelKey: "ui.nextup.mode.discoverOdd", label: "Oppdag noe rart", chipKey: "ui.nextup.chip.odd", chip: "Rart" },
+    { mode: "complete", labelKey: "ui.nextup.mode.completeBadge", label: "Fullfør merket", chipKey: "ui.nextup.chip.complete", chip: "Fullfør" }
   ];
   const MODE_BY_KEY = Object.fromEntries(NEXTUP_MODES.map(m => [m.mode, m]));
 
@@ -191,16 +199,24 @@
     writeJSON(HISTORY_KEY, next);
   }
 
+  function modeLabel(mode) {
+    return tUI(mode?.labelKey, mode?.label || "");
+  }
+
+  function modeChip(mode) {
+    return tUI(mode?.chipKey, mode?.chip || "");
+  }
+
   function readActiveMode() {
     const raw = readJSON(MODE_KEY, {});
     const mode = s(raw?.mode || "nearest");
     const picked = MODE_BY_KEY[mode] || MODE_BY_KEY.nearest;
-    return { mode: picked.mode, label: picked.label, updated_at: s(raw?.updated_at) || "" };
+    return { mode: picked.mode, label: modeLabel(picked), updated_at: s(raw?.updated_at) || "" };
   }
 
   function persistMode(modeKey) {
     const picked = MODE_BY_KEY[s(modeKey)] || MODE_BY_KEY.nearest;
-    const payload = { mode: picked.mode, label: picked.label, updated_at: new Date().toISOString() };
+    const payload = { mode: picked.mode, label: modeLabel(picked), updated_at: new Date().toISOString() };
     writeJSON(MODE_KEY, payload);
     appendHistory({ event: "mode_change", mode: payload.mode, label: payload.label });
     return payload;
@@ -228,14 +244,16 @@
   }
 
   function suggestionTitle(type) {
-    return {
-      spatial: "Neste sted",
-      wonderkammer: "Wonderkammer",
-      narrative: "Neste scene",
-      concept: "Forstå",
-      quiz: "Neste quiz",
-      badge: "Neste merke"
-    }[type] || "Neste";
+    const titles = {
+      spatial: ["ui.nextup.suggestion.nextPlace", "Neste sted"],
+      wonderkammer: ["ui.nextup.suggestion.wonderkammer", "Wonderkammer"],
+      narrative: ["ui.nextup.suggestion.nextScene", "Neste scene"],
+      concept: ["ui.nextup.suggestion.understand", "Forstå"],
+      quiz: ["ui.nextup.suggestion.nextQuiz", "Neste quiz"],
+      badge: ["ui.nextup.suggestion.nextBadge", "Neste merke"]
+    };
+    const picked = titles[type] || ["ui.nextup.suggestion.next", "Neste"];
+    return tUI(picked[0], picked[1]);
   }
 
   function uniqTop(values = [], limit = 3) {
@@ -257,9 +275,9 @@
     if (has("spatial") && has("wonderkammer")) return "Utforsking + detaljer";
     if (has("concept")) return "Begrepsbasert";
     if (has("narrative")) return "Fortellingsbasert";
-    if (has("spatial")) return "Utforskende";
-    if (has("wonderkammer")) return "Detalj- og objektbasert";
-    return "Under utvikling";
+    if (has("spatial")) return tUI("ui.nextup.learningStyle.exploratory", "Utforskende");
+    if (has("wonderkammer")) return tUI("ui.nextup.learningStyle.detailObject", "Detalj- og objektbasert");
+    return tUI("ui.nextup.learningStyle.developing", "Under utvikling");
   }
 
   function buildCurrentDirection(pathSummary, suggestions = [], learningLog = [], insights = []) {
@@ -595,7 +613,7 @@
     const modeRow = `
       <div class="nextup-mode-row" role="tablist" aria-label="NextUp-modus">
         ${NEXTUP_MODES.map((m) => `
-          <button type="button" class="nextup-mode-chip ${m.mode === activeMode.mode ? "is-active" : ""}" data-nextup-mode="${attr(m.mode)}">${esc(m.chip)}</button>
+          <button type="button" class="nextup-mode-chip ${m.mode === activeMode.mode ? "is-active" : ""}" data-nextup-mode="${attr(m.mode)}">${esc(modeChip(m))}</button>
         `).join("")}
       </div>
     `;
@@ -603,16 +621,16 @@
     const activePath = getActiveNextUpPath();
     const summary = activePath?.summary || summarizeActiveNextUpPath(activePath);
     const pathStatus = summary?.step_count >= 4
-      ? `<div class="nextup-path-status"><div class="nextup-path-title">Du er i gang med en rute · Fortsett?</div><div class="nextup-path-meta">${esc(summary.title || "")} · ${summary.step_count} steg</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>Nullstill</button></div>`
+      ? `<div class="nextup-path-status"><div class="nextup-path-title">Du er i gang med en rute · Fortsett?</div><div class="nextup-path-meta">${esc(summary.title || "")} · ${summary.step_count} steg</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
       : summary?.step_count >= 2
-        ? `<div class="nextup-path-status"><div class="nextup-path-title">Rute startet: ${summary.step_count} steg</div><div class="nextup-path-meta">Tema: ${esc((summary.emne_ids || []).slice(0,2).join(" / ") || (summary.dominant_types || []).join(" / "))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>Nullstill</button></div>`
-        : `<div class="nextup-path-status"><div class="nextup-path-meta">NextUp kan bygge en rute når du følger flere forslag.</div></div>`;
+        ? `<div class="nextup-path-status"><div class="nextup-path-title">Rute startet: ${summary.step_count} steg</div><div class="nextup-path-meta">Tema: ${esc((summary.emne_ids || []).slice(0,2).join(" / ") || (summary.dominant_types || []).join(" / "))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
+        : `<div class="nextup-path-status"><div class="nextup-path-meta">${esc(tUI("ui.nextup.routeBuilderEmpty", "NextUp kan bygge en rute når du har nok steder, quizzer eller forslag."))}</div></div>`;
 
     if (!suggestions.length) {
       panel.innerHTML = modeRow + `
         <div class="mp-nextup-line mp-nextup-empty">
           <button class="mp-nextup-link" disabled>
-            ➜ <b>Neste</b><span>Ingen forslag ennå</span>
+            ➜ <b>${esc(tUI("ui.nextup.next", "Neste"))}</b><span>${esc(tUI("ui.nextup.noSuggestions", "Ingen forslag ennå"))}</span>
           </button>
         </div>
       ` + pathStatus;

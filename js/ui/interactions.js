@@ -219,7 +219,7 @@ function enterMapMode() {
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 
-  showToast("Kartmodus");
+  showToast(tUI("ui.map.mode", "Kartmodus"));
 }
 
 function exitMapMode() {
