@@ -144,7 +144,7 @@
     window.__civiNpcCharacterThreadPatched = true;
 
     window.addEventListener("civi:npcReaction", function (ev) {
-      const reaction = ev?.detail || getLatestReaction();
+      const reaction = /** @type {CustomEvent} */ (ev).detail || getLatestReaction();
       if (!reaction) return;
       try {
         updateCharacterThreadFromReaction(reaction);

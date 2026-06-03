@@ -600,6 +600,22 @@
     }) || null;
   }
 
+  /**
+   * @param {{
+   *   career_id: unknown,
+   *   career_name: unknown,
+   *   title: unknown,
+   *   threshold: unknown,
+   *   points_at_offer: unknown,
+   *   brand_id?: unknown,
+   *   brand_name?: unknown,
+   *   brand_type?: unknown,
+   *   brand_group?: unknown,
+   *   sector?: unknown,
+   *   place_id?: unknown,
+   *   employer_context?: unknown
+   * }} offerInput
+   */
   function pushOffer({
     career_id,
     career_name,

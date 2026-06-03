@@ -195,9 +195,15 @@
   };
 
   document.addEventListener("DOMContentLoaded", function () {
-    window.CivicationPlaceAccessBridge?.rebuildAccessState?.().then(function () {
-      window.dispatchEvent(new Event("updateProfile"));
-    });
+    const rebuildResult = window.CivicationPlaceAccessBridge?.rebuildAccessState?.();
+    const rebuildPromise = /** @type {{ then?: Function } | null} */ (
+      rebuildResult && typeof rebuildResult === "object" ? rebuildResult : null
+    );
+    if (typeof rebuildPromise?.then === "function") {
+      rebuildPromise.then(function () {
+        window.dispatchEvent(new Event("updateProfile"));
+      });
+    }
   });
 
   window.addEventListener("updateProfile", function () {
