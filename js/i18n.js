@@ -410,7 +410,7 @@
   function patchContentRenderers() {
     let didPatch = false;
 
-    if (window.DataHub && typeof window.DataHub.loadFullPlace === "function" && window.DataHub.loadFullPlace.__hgI18nWrapped !== true) {
+    if (window.DataHub && typeof window.DataHub.loadFullPlace === "function" && /** @type {any} */ (window.DataHub.loadFullPlace).__hgI18nWrapped !== true) {
       const originalLoadFullPlace = window.DataHub.loadFullPlace;
       const wrappedLoadFullPlace = async function (...args) {
         const fullPlace = await originalLoadFullPlace.apply(this, args);
@@ -431,7 +431,7 @@
       didPatch = true;
     }
 
-    if (typeof window.renderNearbyPlaces === "function" && window.renderNearbyPlaces.__hgI18nWrapped !== true) {
+    if (typeof window.renderNearbyPlaces === "function" && /** @type {any} */ (window.renderNearbyPlaces).__hgI18nWrapped !== true) {
       const originalRenderNearbyPlaces = window.renderNearbyPlaces;
       const wrappedRenderNearbyPlaces = function (...args) {
         const originalPlaces = window.PLACES;
@@ -447,7 +447,7 @@
       didPatch = true;
     }
 
-    if (typeof window.renderCollection === "function" && window.renderCollection.__hgI18nWrapped !== true) {
+    if (typeof window.renderCollection === "function" && /** @type {any} */ (window.renderCollection).__hgI18nWrapped !== true) {
       const originalRenderCollection = window.renderCollection;
       const wrappedRenderCollection = function (...args) {
         const originalPlaces = window.PLACES;
@@ -505,13 +505,13 @@
   }
 
   function initLanguageSelect() {
-    const select = document.getElementById("languageSelect");
+    const select = /** @type {HTMLSelectElement} */ (document.getElementById("languageSelect"));
     if (!select || select.dataset.hgI18nBound === "1") return;
 
     select.dataset.hgI18nBound = "1";
     select.value = normalizeLang(currentLang);
     select.addEventListener("change", async (e) => {
-      const nextLang = e.target && e.target.value;
+      const nextLang = e.target && /** @type {HTMLSelectElement} */ (e.target).value;
       await setLang(nextLang);
       select.value = normalizeLang(currentLang);
     });
