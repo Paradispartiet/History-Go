@@ -8,6 +8,7 @@
     "build:scripts": "tsc -p tsconfig.scripts.build.json",
     "i18n:places:audit": "npm run build:scripts && node dist/scripts/i18n-audit-places.js",
     "i18n:places:quality": "npm run build:scripts && node dist/scripts/i18n-quality-places.js",
+    "i18n:places:worklist": "npm run build:scripts && node dist/scripts/i18n-worklist-places.js --out reports/i18n-places-worklist.json",
     "places:index:build": "node tools/build_places_index.mjs",
     "places:index:check": "node tools/check_places_index_sync.mjs",
     "health:places": "node tools/placeHealthReport.mjs",
