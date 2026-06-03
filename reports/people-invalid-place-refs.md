@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-03T11:01:21.829Z
+Generated: 2026-06-03T11:38:36.157Z
 
 ## Sammendrag
-- People-filer lest: **24**
-- People lest: **394**
+- People-filer lest: **27**
+- People lest: **403**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **394**
+- Duplikate interne place-referanser: **403**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -214,6 +214,9 @@ Generated: 2026-06-03T11:01:21.829Z
 - data/people/natur/oslo/people_natur_oslo.json :: anne_stine_ingstad (Anne Stine Ingstad) -> bygdoy_natur x2
 - data/people/natur/oslo/people_natur_oslo.json :: bernhard_herre (Bernhard Herre) -> maridalsvannet x2
 - data/people/natur/oslo/people_natur_oslo.json :: mikkjel_fonhus (Mikkjel Fønhus) -> maridalsvannet x2
+- data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: felix_de_avelar_brotero (Félix de Avelar Brotero) -> lisbon_jardim_botanico x2
+- data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: francisco_caldeira_cabral (Francisco Caldeira Cabral) -> lisbon_jardim_botanico x2
+- data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: goncalo_ribeiro_telles (Gonçalo Ribeiro Telles) -> lisbon_jardim_botanico x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
@@ -269,6 +272,9 @@ Generated: 2026-06-03T11:01:21.829Z
 - data/people/sport/oslo/people_sport_oslo.json :: lyn_fotball (Lyn Fotball) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: skeid_fotball (Skeid Fotball) -> nordre_aasen_idrettspark x2
 - data/people/sport/oslo/people_sport_oslo.json :: oslo_skoiteklub (Oslo Skøiteklub) -> frogner_stadion x2
+- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: eusebio (Eusébio) -> lisbon_estadio_da_luz x2
+- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: jose_alvalade (José Alvalade) -> lisbon_estadio_jose_alvalade x2
+- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: mario_moniz_pereira (Mário Moniz Pereira) -> lisbon_estadio_universitario x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kolapalsen (Køla-Pålsen) -> oslo_domkirke x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: snippmoller (Snipp-Møller) -> oslo_domkirke x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: lusefrants (Luse-Frants) -> middelalder_oslo x2
@@ -291,6 +297,9 @@ Generated: 2026-06-03T11:01:21.829Z
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: tommy_tee (Tommy Tee) -> youngstorget x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: warlocks_oslo (Warlocks) -> torggata x2
 - data/people/subkultur/oslo/people_subkultur_oslo.json :: kjetil_rolness (Kjetil Rolness) -> torggata x2
+- data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
+- data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
+- data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_bairro_alto x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_birkeland (Kristian Birkeland) -> observatoriet x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: may_britt_moser (May-Britt Moser) -> nobelinstituttet x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: edvard_moser (Edvard Moser) -> nobelinstituttet x2
