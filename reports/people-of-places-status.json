@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-06-03T09:34:53.836Z",
+  "generatedAt": "2026-06-03T10:12:35.757Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-03T09:34:53.836Z",
-    "peopleFilesRead": 24,
-    "totalPeople": 394,
-    "uniquePeopleIds": 394,
+    "generatedAt": "2026-06-03T10:12:35.757Z",
+    "peopleFilesRead": 27,
+    "totalPeople": 406,
+    "uniquePeopleIds": 406,
     "duplicatePeopleIds": 0,
     "invalidPlaceRefs": 0,
-    "peopleWithoutValidPrimaryAnchor": 2,
-    "peopleWithEmptyPlacesArray": 2,
+    "peopleWithoutValidPrimaryAnchor": 0,
+    "peopleWithEmptyPlacesArray": 0,
     "flatPeopleFiles": 0,
-    "geographicPeopleFiles": 24,
+    "geographicPeopleFiles": 27,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -115,12 +115,12 @@
       "missingIdCount": 0,
       "missingNameCount": 0,
       "missingCategoryCount": 0,
-      "missingPrimaryAnchorCount": 2,
+      "missingPrimaryAnchorCount": 0,
       "invalidPlaceRefCount": 0,
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=63/65",
+        "placeId=65/65",
         "source_place_id=0/65",
         "placesArray=65/65",
         "categories=historie"
@@ -299,7 +299,7 @@
       "listedInManifest": true,
       "categoryGuess": "naeringsliv",
       "geographicStructure": true,
-      "peopleCount": 2,
+      "peopleCount": 5,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
@@ -309,9 +309,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=2/2",
-        "source_place_id=0/2",
-        "placesArray=2/2",
+        "placeId=5/5",
+        "source_place_id=0/5",
+        "placesArray=5/5",
         "categories=naeringsliv"
       ]
     },
@@ -335,6 +335,27 @@
         "placesArray=22/22",
         "categories=naeringsliv",
         "schema_review: source_place_id brukes utenfor særskilt næringsliv-schema"
+      ]
+    },
+    {
+      "path": "data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json",
+      "listedInManifest": true,
+      "categoryGuess": "natur",
+      "geographicStructure": true,
+      "peopleCount": 3,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=3/3",
+        "source_place_id=0/3",
+        "placesArray=3/3",
+        "categories=natur"
       ]
     },
     {
@@ -443,6 +464,27 @@
       ]
     },
     {
+      "path": "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
+      "listedInManifest": true,
+      "categoryGuess": "sport",
+      "geographicStructure": true,
+      "peopleCount": 3,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=3/3",
+        "source_place_id=0/3",
+        "placesArray=3/3",
+        "categories=sport"
+      ]
+    },
+    {
       "path": "data/people/sport/oslo/people_sport_oslo.json",
       "listedInManifest": true,
       "categoryGuess": "sport",
@@ -461,6 +503,27 @@
         "source_place_id=0/28",
         "placesArray=28/28",
         "categories=sport"
+      ]
+    },
+    {
+      "path": "data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json",
+      "listedInManifest": true,
+      "categoryGuess": "subkultur",
+      "geographicStructure": true,
+      "peopleCount": 3,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=3/3",
+        "source_place_id=0/3",
+        "placesArray=3/3",
+        "categories=subkultur"
       ]
     },
     {
@@ -579,8 +642,8 @@
       "geographicFiles": [
         "data/people/historie/oslo/people_historie_oslo.json"
       ],
-      "suggestedNextAction": "schema_review",
-      "reason": "Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde."
+      "suggestedNextAction": "leave_as_is",
+      "reason": "Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten."
     },
     {
       "category": "kunst",
@@ -644,7 +707,7 @@
     },
     {
       "category": "naeringsliv",
-      "totalPeople": 24,
+      "totalPeople": 27,
       "files": [
         "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
         "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json"
@@ -659,12 +722,14 @@
     },
     {
       "category": "natur",
-      "totalPeople": 16,
+      "totalPeople": 19,
       "files": [
+        "data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json",
         "data/people/natur/oslo/people_natur_oslo.json"
       ],
       "flatFiles": [],
       "geographicFiles": [
+        "data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json",
         "data/people/natur/oslo/people_natur_oslo.json"
       ],
       "suggestedNextAction": "leave_as_is",
@@ -702,12 +767,14 @@
     },
     {
       "category": "sport",
-      "totalPeople": 28,
+      "totalPeople": 31,
       "files": [
+        "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
         "data/people/sport/oslo/people_sport_oslo.json"
       ],
       "flatFiles": [],
       "geographicFiles": [
+        "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
         "data/people/sport/oslo/people_sport_oslo.json"
       ],
       "suggestedNextAction": "leave_as_is",
@@ -715,12 +782,14 @@
     },
     {
       "category": "subkultur",
-      "totalPeople": 22,
+      "totalPeople": 25,
       "files": [
+        "data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json",
         "data/people/subkultur/oslo/people_subkultur_oslo.json"
       ],
       "flatFiles": [],
       "geographicFiles": [
+        "data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json",
         "data/people/subkultur/oslo/people_subkultur_oslo.json"
       ],
       "suggestedNextAction": "leave_as_is",
@@ -759,12 +828,15 @@
       "data/people/musikk/oslo/people_musikk_oslo.json",
       "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
       "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
+      "data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json",
       "data/people/natur/oslo/people_natur_oslo.json",
       "data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json",
       "data/people/politikk/oslo/people_politikk_oslo.json",
       "data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json",
       "data/people/popkultur/oslo/people_popkultur_oslo.json",
+      "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
       "data/people/sport/oslo/people_sport_oslo.json",
+      "data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json",
       "data/people/subkultur/oslo/people_subkultur_oslo.json",
       "data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json",
       "data/people/vitenskap/oslo/people_vitenskap_oslo.json"
@@ -779,44 +851,8 @@
     "invalidPlaceRefs": [],
     "missingPlaceBlockers": []
   },
-  "peopleWithoutStrongAnchor": [
-    {
-      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-      "personId": "anna_sethne",
-      "personName": "Anna Sethne",
-      "reason": "primary_anchor_missing",
-      "primaryAnchor": null,
-      "validRefs": []
-    },
-    {
-      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-      "personId": "alexis_de_chateauneuf",
-      "personName": "Alexis de Chateauneuf",
-      "reason": "primary_anchor_missing",
-      "primaryAnchor": null,
-      "validRefs": []
-    }
-  ],
-  "weakPlaces": [
-    {
-      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-      "personId": "anna_sethne",
-      "personName": "Anna Sethne",
-      "placeId": null,
-      "source_place_id": null,
-      "places": [],
-      "reason": "empty_places_array"
-    },
-    {
-      "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-      "personId": "alexis_de_chateauneuf",
-      "personName": "Alexis de Chateauneuf",
-      "placeId": null,
-      "source_place_id": null,
-      "places": [],
-      "reason": "empty_places_array"
-    }
-  ],
+  "peopleWithoutStrongAnchor": [],
+  "weakPlaces": [],
   "schemaStatus": [
     {
       "sourceFile": "data/people/by/oslo/people_by_oslo.json",
@@ -873,7 +909,7 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=63/65",
+        "placeId=65/65",
         "source_place_id=0/65",
         "placesArray=65/65",
         "categories=historie"
@@ -981,9 +1017,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=2/2",
-        "source_place_id=0/2",
-        "placesArray=2/2",
+        "placeId=5/5",
+        "source_place_id=0/5",
+        "placesArray=5/5",
         "categories=naeringsliv"
       ],
       "deviations": []
@@ -1002,6 +1038,18 @@
       "deviations": [
         "schema_review: source_place_id brukes utenfor særskilt næringsliv-schema"
       ]
+    },
+    {
+      "sourceFile": "data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=3/3",
+        "source_place_id=0/3",
+        "placesArray=3/3",
+        "categories=natur"
+      ],
+      "deviations": []
     },
     {
       "sourceFile": "data/people/natur/oslo/people_natur_oslo.json",
@@ -1064,6 +1112,18 @@
       "deviations": []
     },
     {
+      "sourceFile": "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=3/3",
+        "source_place_id=0/3",
+        "placesArray=3/3",
+        "categories=sport"
+      ],
+      "deviations": []
+    },
+    {
       "sourceFile": "data/people/sport/oslo/people_sport_oslo.json",
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
@@ -1072,6 +1132,18 @@
         "source_place_id=0/28",
         "placesArray=28/28",
         "categories=sport"
+      ],
+      "deviations": []
+    },
+    {
+      "sourceFile": "data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=3/3",
+        "source_place_id=0/3",
+        "placesArray=3/3",
+        "categories=subkultur"
       ],
       "deviations": []
     },
@@ -5034,10 +5106,10 @@
     }
   ],
   "recommendedNextPr": {
-    "type": "schema_cleanup",
-    "category": "historie",
-    "reason": "historie bør ha schema review før split eller ekspansjon.",
-    "safeBatchSize": 65,
+    "type": "content_expansion",
+    "category": null,
+    "reason": "Ingen invalid refs, duplikater eller store flate split-kandidater ble funnet.",
+    "safeBatchSize": 10,
     "blockers": []
   },
   "guardrails": {
