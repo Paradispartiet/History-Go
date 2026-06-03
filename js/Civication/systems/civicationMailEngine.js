@@ -169,14 +169,24 @@
     );
   }
 
+  function markJobMailIdsRead(ids) {
+    const normalized = (Array.isArray(ids) ? ids : [])
+      .map(function (value) { return String(value || "").trim(); })
+      .filter(Boolean);
+    if (!normalized.length) return;
+    window.CivicationState?.markJobMailsRead?.(Array.from(new Set(normalized)));
+  }
+
   function markResolved(mailId, eventId, choiceId) {
     const store = migrateOldInboxIfNeeded();
     const now = new Date().toISOString();
     let changed = false;
+    const readIds = [mailId, eventId];
 
     store.items = (store.items || []).map((m) => {
       if (!resolveMailMatch(m, mailId, eventId)) return m;
       changed = true;
+      readIds.push(m?.id, m?.event?.id, m?.key);
       return {
         ...m,
         read: true,
@@ -187,7 +197,10 @@
       };
     });
 
-    if (changed) saveStore(store);
+    if (changed) {
+      saveStore(store);
+      markJobMailIdsRead(readIds);
+    }
     return changed;
   }
 
@@ -300,8 +313,14 @@
     },
     markRead(mailId) {
       const store = migrateOldInboxIfNeeded();
-      store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, read: true } : m);
+      const readIds = [mailId];
+      store.items = (store.items || []).map((m) => {
+        if (m.id !== mailId && m?.event?.id !== mailId) return m;
+        readIds.push(m?.id, m?.event?.id, m?.key);
+        return { ...m, read: true };
+      });
       saveStore(store);
+      markJobMailIdsRead(readIds);
     },
     markUnread(mailId) {
       const store = migrateOldInboxIfNeeded();
