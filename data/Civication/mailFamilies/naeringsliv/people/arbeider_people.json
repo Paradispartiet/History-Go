@@ -6,6 +6,12 @@
   "families": [
     {
       "id": "uformell_leder_intro",
+      "purpose": "Vise at arbeidsplassen har et uformelt hierarki som kan styre sterkere enn formell stilling.",
+      "learning_focus": [
+        "uformell autoritet",
+        "maktlesning",
+        "taus kunnskap"
+      ],
       "thread_binding": {
         "people_thread_id": "uformell_leder",
         "people_phase": "intro"
@@ -21,11 +27,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "frode_formann",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Han som ikke er leder, men bestemmer",
+          "summary": "En kollega uten formell lederrolle gir instrukser før den formelle beskjeden kommer.",
+          "purpose": "Vise at faktisk autoritet kan ligge hos den som får dagen til å fungere, ikke den som har tittel.",
+          "stakes": "Følger du ham, glir du inn i den virkelige ordenen. Ber du om formell beskjed, gjør du strukturen synlig.",
           "situation": [
             "En kollega gir instrukser før noen formell beskjed har kommet.",
             "Alle andre følger ham som om det var helt normalt.",
             "Du må velge om du går inn i den uformelle ordenen eller holder deg til formalia."
+          ],
+          "task_domain": "uformelt_hierarki",
+          "competency": "sosial lesning",
+          "pressure": "uformell_autoritet",
+          "choice_axis": "praksisautoritet_vs_formell_klarhet",
+          "consequence_axis": "flyt_vs_friksjon",
+          "narrative_arc": "spilleren oppdager at organisasjonskartet ikke er arbeidsplassens egentlige kart",
+          "learning_focus": [
+            "uformell autoritet kan være mer operativ enn formell tittel",
+            "sosial legitimitet bygges ved å lese hvem folk faktisk følger"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -38,15 +59,23 @@
             {
               "id": "A",
               "label": "Følge ham for å holde flyten oppe",
+              "reply": "Jeg følger ham for å holde flyten oppe.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du glir inn i den virkelige strukturen, ikke den formelle."
             },
             {
               "id": "B",
               "label": "Be om tydelig beskjed fra faktisk leder",
+              "reply": "Jeg ber om tydelig beskjed fra faktisk leder.",
               "effect": -1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du gjør det riktig. Du gjør også friksjonen synlig."
             }
           ]
@@ -61,11 +90,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "bjarne_naboarbeider",
+          "place_id": "schous_bryggeri",
           "subject": "Han vet hvordan ting faktisk blir gjort",
+          "summary": "Den uformelle lederen kan løse alt, men kunnskapen hans finnes ikke i rutinene.",
+          "purpose": "Vise at personavhengig kunnskap kan være effektiv og sårbar samtidig.",
+          "stakes": "Lærer du metoden hans, blir du mer funksjonell. Holder du avstand, verner du om formell struktur.",
           "situation": [
             "Den uformelle lederen har løsninger på alt, men nesten ingen av dem finnes i de offisielle rutinene.",
             "Du skjønner hvorfor folk lytter til ham, samtidig som du ser hva det koster at strukturen bor i en person.",
             "Spørsmålet er om du skal lære av ham eller holde avstand til metoden hans."
+          ],
+          "task_domain": "lokal_praksiskunnskap",
+          "competency": "taus kunnskap",
+          "pressure": "personavhengig_drift",
+          "choice_axis": "lære_uoffisiell_logikk_vs_formell_avstand",
+          "consequence_axis": "operativ_funksjonalitet_vs_strukturell_ryddighet",
+          "narrative_arc": "spilleren ser at det virkelige systemet bor i personer",
+          "learning_focus": [
+            "taus kunnskap kan sitte i bestemte personer",
+            "effektivitet kan skjule strukturell sårbarhet"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -78,15 +122,23 @@
             {
               "id": "A",
               "label": "Lære den uoffisielle logikken for å overleve bedre",
+              "reply": "Jeg lærer den uoffisielle logikken for å fungere bedre her.",
               "effect": 0,
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "feedback": "Du blir mer funksjonell i det virkelige systemet."
             },
             {
               "id": "B",
               "label": "Holde deg til det formelle selv om det går tregere",
+              "reply": "Jeg holder meg til det formelle selv om det går tregere.",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du verner om struktur fremfor personavhengighet."
             }
           ]
@@ -101,11 +153,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "frode_formann",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Det er lettere å følge den som får dagen til å henge sammen enn den som formelt har ansvaret",
+          "summary": "Gruppen orienterer seg mot den som faktisk vet hvor ting skal, ikke nødvendigvis den med formelt ansvar.",
+          "purpose": "Lære spilleren å skille funksjonell makt fra legitim styring.",
+          "stakes": "Godtar du ordenen, får du flyt. Holder du fast ved prinsippet, gjør du maktforholdet mer synlig.",
           "situation": [
             "Du merker at gruppen orienterer seg mot den som faktisk vet hvor ting skal, ikke nødvendigvis den som har tittelen.",
             "Det gjør hverdagen smidigere, men gjør også maktforholdene vanskeligere å lese rent.",
             "Du står mellom effektivitetens dragning og ønsket om klarere struktur."
+          ],
+          "task_domain": "funksjonell_makt",
+          "competency": "maktlesning",
+          "pressure": "effektivitetens_dragning",
+          "choice_axis": "funksjonell_orden_vs_legitim_styring",
+          "consequence_axis": "smidig_hverdag_vs_tydelig_maktforståelse",
+          "narrative_arc": "spilleren ser forskjellen mellom hvem som styrer på papiret og hvem som styrer i rommet",
+          "learning_focus": [
+            "uformell makt kan være praktisk nødvendig",
+            "funksjonell autoritet er ikke alltid legitim autoritet"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -118,15 +185,23 @@
             {
               "id": "A",
               "label": "Godta denne ordenen som det som faktisk får arbeidet til å fungere",
+              "reply": "Jeg godtar denne ordenen som det som faktisk får arbeidet til å fungere.",
               "effect": 0,
-              "tags": ["legitimacy", "craft"],
+              "tags": [
+                "legitimacy",
+                "craft"
+              ],
               "feedback": "Du bøyer deg mot praksisens egen autoritet."
             },
             {
               "id": "B",
               "label": "Holde fast ved at flyt ikke alene kan definere hvem som styrer",
+              "reply": "Jeg holder fast ved at flyt ikke alene kan definere hvem som styrer.",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du prøver å skille funksjonell makt fra legitim styring."
             }
           ]
@@ -135,6 +210,12 @@
     },
     {
       "id": "kollega_press_intro",
+      "purpose": "Vise at kollegialt press ofte virker gjennom tone, humor, timing og stemning, ikke bare direkte krav.",
+      "learning_focus": [
+        "kollegialt press",
+        "humor som sosial styring",
+        "stemningslesning"
+      ],
       "thread_binding": {
         "people_thread_id": "kollega_press",
         "people_phase": "intro"
@@ -150,11 +231,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "«Ikke gjør det vanskelig»",
+          "summary": "En kollega gjør motstand mot at du gjør dagen mer tungvint ved å påpeke noe.",
+          "purpose": "Vise at gruppepress kan være billigere enn argumenter.",
+          "stakes": "Glatter du over, blir dagen enklere. Står du i det, beskytter du saken og svekker stillheten.",
           "situation": [
             "En kollega sier det halvt vennlig, halvt truende.",
             "Det du vurderer å påpeke, vil gjøre dagen mer tungvint for flere.",
             "Du merker at gruppetrykk er billigere enn argumenter."
+          ],
+          "task_domain": "kollegialt_press",
+          "competency": "sosial lesning",
+          "pressure": "sosial_kostnad",
+          "choice_axis": "glatte_over_vs_stå_i_sak",
+          "consequence_axis": "kortsiktig_ro_vs_saklig_synlighet",
+          "narrative_arc": "spilleren møter gruppens ønske om friksjonsfrihet",
+          "learning_focus": [
+            "gruppen regulerer ofte gjennom stemning",
+            "saklig motstand kan få sosial kostnad"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -167,15 +263,23 @@
             {
               "id": "A",
               "label": "Tone det ned og glatte over",
+              "reply": "Jeg toner det ned og glatter over.",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Dagen blir enklere. Det blir du også."
             },
             {
               "id": "B",
               "label": "Stå i det du mente",
+              "reply": "Jeg står i det jeg mente.",
               "effect": -1,
-              "tags": ["risk", "visibility"],
+              "tags": [
+                "risk",
+                "visibility"
+              ],
               "feedback": "Du beskytter innholdet og svekker stillheten."
             }
           ]
@@ -190,11 +294,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "bjarne_naboarbeider",
+          "place_id": "schous_bryggeri",
           "subject": "Humor som sosial styring",
+          "summary": "Innvendinger møtes med vitser som gjør motstand dyrere uten å bli åpen konflikt.",
+          "purpose": "Lære spilleren at humor kan fungere som uformell sosial kontroll.",
+          "stakes": "Leser du humoren som press, beskytter du innholdet. Ler du med, kjøper du ro med stillhet.",
           "situation": [
             "Innvendinger blir møtt med vitser og små stikk i stedet for argumenter.",
             "Alle ler litt, og dermed er retningen allerede satt.",
             "Du kjenner hvordan arbeidsplassen kan bruke lett tone til å gjøre motstand dyrere."
+          ],
+          "task_domain": "humor_og_sosial_kontroll",
+          "competency": "sosial lesning",
+          "pressure": "latter_som_regulering",
+          "choice_axis": "markere_press_vs_delta_i_latter",
+          "consequence_axis": "innholdets_integritet_vs_sosial_ro",
+          "narrative_arc": "spilleren forstår at lett tone kan bære tung styring",
+          "learning_focus": [
+            "humor kan være sosial kontroll",
+            "det usagte kan styre mer effektivt enn direkte ordre"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -207,15 +326,23 @@
             {
               "id": "A",
               "label": "Lese humoren som press og markere rolig tilbake",
+              "reply": "Jeg leser humoren som press og markerer rolig tilbake.",
               "effect": 1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Du lar ikke tonen skjule hva som faktisk skjer."
             },
             {
               "id": "B",
               "label": "Ler med og lar temaet passere",
+              "reply": "Jeg ler med og lar temaet passere.",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Du kjøper ro i øyeblikket med stillhet i sak."
             }
           ]
@@ -230,11 +357,26 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Det er ikke alltid ordlyden som gjør presset tydeligst, men tidspunktet og blikkene",
+          "summary": "Små kommentarer kommer akkurat når du vurderer å si fra eller bremse.",
+          "purpose": "Vise at press ofte sitter i timing, blikk og akkumulert stemning.",
+          "stakes": "Behandler du stemningen som reelt press, blir du mer synlig. Lar du det gli, bevarer du fred og mønster.",
           "situation": [
             "Det kommer små kommentarer akkurat når du vurderer å bremse eller si fra.",
             "Ingen setning er grov nok alene til å bli en sak, men summen gjør valget ditt mindre fritt.",
             "Du merker at tilpasning ofte presses fram gjennom stemning mer enn argument."
+          ],
+          "task_domain": "stemningspress",
+          "competency": "sosial presisjon",
+          "pressure": "indirekte_gruppepress",
+          "choice_axis": "tolke_stemning_som_press_vs_la_det_gli",
+          "consequence_axis": "tydelig_grense_vs_fredsbevarende_tilpasning",
+          "narrative_arc": "spilleren lærer å lese press uten klar avsender",
+          "learning_focus": [
+            "sosialt press kan være presist uten å være eksplisitt",
+            "diffuse signaler kan redusere faktisk handlingsrom"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -247,15 +389,23 @@
             {
               "id": "A",
               "label": "Behandle stemningen som reelt press og stå litt mer imot",
+              "reply": "Jeg behandler stemningen som reelt press og står litt mer imot.",
               "effect": 1,
-              "tags": ["risk", "visibility"],
+              "tags": [
+                "risk",
+                "visibility"
+              ],
               "feedback": "Du lar ikke det uskarpe slippe unna bare fordi det er sosialt billig."
             },
             {
               "id": "B",
               "label": "La det gli forbi fordi det er vanskelig å peke presist på",
+              "reply": "Jeg lar det gli forbi fordi det er vanskelig å peke presist på.",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Du beskytter freden og lar også mønsteret bli litt sterkere."
             }
           ]
@@ -264,6 +414,12 @@
     },
     {
       "id": "taus_lojalitet",
+      "purpose": "Vise hvordan små hjelpsomme handlinger kan bli ordninger, bindinger og identitet.",
+      "learning_focus": [
+        "taus lojalitet",
+        "grensesetting",
+        "rolle og identitet"
+      ],
       "thread_binding": {
         "people_thread_id": "taus_lojalitet",
         "people_phase": "mid"
@@ -279,11 +435,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
           "subject": "Stillheten blir et bånd",
+          "summary": "En enkel tjeneste har begynt å ligne en ordning ingen sier høyt.",
+          "purpose": "Vise hvordan stillhet kan gjøre ekstraarbeid til sosial binding.",
+          "stakes": "Setter du ord på det, bryter du bindingen. Bærer du videre, blir stillheten sterkere.",
           "situation": [
             "Det som før var en enkel tjeneste mellom kolleger, begynner å ligne en ordning.",
             "Ingen sier høyt hva som bæres av hvem.",
             "Du merker at det er vanskelig å trekke seg uten å bli lest som illojal."
+          ],
+          "task_domain": "taus_lojalitet",
+          "competency": "grensesetting",
+          "pressure": "stilltiende_forventning",
+          "choice_axis": "sette_ord_vs_bære_videre",
+          "consequence_axis": "brutt_stillhet_vs_styrket_binding",
+          "narrative_arc": "lojalitet går fra handling til ordning",
+          "learning_focus": [
+            "stillhet kan fungere som sosial kontrakt",
+            "det uuttalte kan være vanskeligere å bryte enn det formelle"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -296,15 +467,23 @@
             {
               "id": "A",
               "label": "Sette ord på det som har blitt normalt",
+              "reply": "Jeg setter ord på det som har blitt normalt.",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Stillheten sprekker litt. Det kan være en begynnelse."
             },
             {
               "id": "B",
               "label": "Bære det videre uten å markere noe",
+              "reply": "Jeg bærer det videre uten å markere noe.",
               "effect": -1,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Lojaliteten kjennes edel helt til regningen kommer."
             }
           ]
@@ -319,11 +498,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "frode_formann",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Den som sier minst, skylder mest",
+          "summary": "Taus lojalitet viser seg som en skjev fordeling av kostnader.",
+          "purpose": "Lære spilleren at samhold kan skjule hvem som faktisk bærer arbeidet.",
+          "stakes": "Gjør du fordelingen tydelig, blir samholdet mindre mytisk. Lar du stillheten fortsette, forblir regnskapet skjult.",
           "situation": [
             "Det blir stadig tydeligere at visse ting bare fungerer fordi noen absorberer dem uten å kreve språk for det.",
             "Stillheten ser ut som samhold, men kjennes mer og mer som binding.",
             "Du merker at taus lojalitet ikke bare er en holdning, men en fordeling av kostnader."
+          ],
+          "task_domain": "kostnadsfordeling",
+          "competency": "organisatorisk lesning",
+          "pressure": "lojalitet_som_kostnad",
+          "choice_axis": "synliggjøre_bæring_vs_bevare_stillhet",
+          "consequence_axis": "konkret_rettferdighet_vs_mykt_samhold",
+          "narrative_arc": "spilleren ser at lojalitet fordeler arbeid uten å kalle det fordeling",
+          "learning_focus": [
+            "fellesskap kan skjule asymmetrisk belastning",
+            "å sette ord på kostnad endrer sosial balanse"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -336,15 +530,23 @@
             {
               "id": "A",
               "label": "Gjøre det tydelig hvem som faktisk bærer hva",
+              "reply": "Jeg gjør det tydelig hvem som faktisk bærer hva.",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du gjør samholdet mindre mytisk og mer konkret."
             },
             {
               "id": "B",
               "label": "La stillheten fortsette å holde laget samlet",
+              "reply": "Jeg lar stillheten fortsette å holde laget samlet.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du bevarer roen og lar regnskapet forbli skjult."
             }
           ]
@@ -359,11 +561,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
           "subject": "Jo lenger ordningen varer, desto mer ligner den karakter i stedet for valg",
+          "summary": "Det som først var hjelpsomhet, begynner å bli lest som hvem du er.",
+          "purpose": "Vise hvordan en sosial rolle kan feste seg som identitet.",
+          "stakes": "Bryter du mønsteret, forsvarer du rommet mellom person og rolle. Lar du bildet stå, brukes identiteten din som lim.",
           "situation": [
             "Du merker at det som først ble lest som hjelpsomhet nå begynner å bli oppfattet som bare sånn du er.",
             "Det gjør det vanskeligere å trekke grenser, fordi du da ikke bare endrer handlinger, men andres bilde av deg.",
             "Taus lojalitet begynner å feste seg som identitet."
+          ],
+          "task_domain": "rolle_og_identitet",
+          "competency": "selvbeskyttelse",
+          "pressure": "identitetsfestet_lojalitet",
+          "choice_axis": "bryte_identitetsmønster_vs_la_bildet_stå",
+          "consequence_axis": "personlig_rom_vs_sosialt_lim",
+          "narrative_arc": "lojalitet går fra valgt handling til forventet personlighet",
+          "learning_focus": [
+            "roller kan feste seg som identitet",
+            "selvbeskyttelse handler også om å forsvare hvem man får lov til å være"
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
@@ -376,15 +593,23 @@
             {
               "id": "A",
               "label": "Bryte mønsteret før det helt blir lest som hvem du er",
+              "reply": "Jeg bryter mønsteret før det helt blir lest som hvem jeg er.",
               "effect": 1,
-              "tags": ["visibility", "risk"],
+              "tags": [
+                "visibility",
+                "risk"
+              ],
               "feedback": "Du forsvarer et rom mellom rollen du tok og personen du blir gjort til."
             },
             {
               "id": "B",
               "label": "La bildet få stå fordi det fortsatt holder laget sammen",
+              "reply": "Jeg lar bildet få stå fordi det fortsatt holder laget sammen.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du lar samholdet bruke identiteten din som lim."
             }
           ]
@@ -393,6 +618,12 @@
     },
     {
       "id": "kollega_skyld",
+      "purpose": "Vise at skyld ikke bare fordeles etter fakta, men etter språk, status, tone og gruppens behov for ro.",
+      "learning_focus": [
+        "skyldfordeling",
+        "lagånd og ansvar",
+        "sosial presisjon"
+      ],
       "thread_binding": {
         "people_thread_id": "kollega_skyld",
         "people_phase": "mid"
@@ -408,11 +639,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Skylden lander mykt og skjevt",
+          "summary": "Et problem omtales som gruppens ansvar, men du ser at skylden ikke fordeles likt.",
+          "purpose": "Vise at ansvar ofte fordeles sosialt, ikke bare faktisk.",
+          "stakes": "Peker du på fordelingen, gjør du urettferdigheten synlig. Tar du din del, kjøper du ro med uklarhet.",
           "situation": [
             "Et problem blir omtalt som noe gruppen må rydde opp i, men du ser at ansvaret ikke er likt fordelt.",
             "Noen slipper billigere fordi de har språk, status eller rett tone.",
             "Du må velge om du lar skyld bli sosial tyngdekraft eller gjør fordelingen mer presis."
+          ],
+          "task_domain": "skyldfordeling",
+          "competency": "ansvarslesning",
+          "pressure": "sosial_tyngdekraft",
+          "choice_axis": "presis_ansvarsfordeling_vs_uklar_fellesro",
+          "consequence_axis": "synlig_urett_vs_midlertidig_fred",
+          "narrative_arc": "spilleren ser at ansvar beveger seg mot dem som har minst språk eller status",
+          "learning_focus": [
+            "skyld følger ofte sosial kraft, ikke bare fakta",
+            "presis ansvarsfordeling kan være sosialt ubehagelig"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -425,15 +671,23 @@
             {
               "id": "A",
               "label": "Peke på ansvaret slik det faktisk fordeler seg",
+              "reply": "Jeg peker på ansvaret slik det faktisk fordeler seg.",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du gjør noe ubehagelig enklere å se og vanskeligere å skjule."
             },
             {
               "id": "B",
               "label": "Ta din del og la resten flyte ut i gruppen",
+              "reply": "Jeg tar min del og lar resten flyte ut i gruppen.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du kjøper midlertidig ro med uklar rettferdighet."
             }
           ]
@@ -448,11 +702,26 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Det kalles lagånd når ansvaret blir uklart nok",
+          "summary": "Språket om samhold brukes på en måte som gjør ulik skyld mindre synlig.",
+          "purpose": "Lære spilleren at lagånd kan være både ekte fellesskap og skjold for urettferdighet.",
+          "stakes": "Skjærer du gjennom fellesskapsspråket, beskytter du rettferdighet. Aksepterer du det, unngår du splittelse.",
           "situation": [
             "Språket om at man står i det sammen begynner å bli brukt på en måte som gjør ulik skyld mindre synlig.",
             "Du merker hvordan fellesskapet noen ganger ikke fjerner urettferdighet, men pakker den inn.",
             "Du må velge om du vil la gruppespråket bli skjold eller skjære gjennom det."
+          ],
+          "task_domain": "lagånd_og_ansvar",
+          "competency": "sosial presisjon",
+          "pressure": "fellesskapsspråk",
+          "choice_axis": "rettferdig_presisjon_vs_fredsbevarende_samhold",
+          "consequence_axis": "tydelig_ansvar_vs_diffus_skyld",
+          "narrative_arc": "spilleren lærer at varme ord kan gjøre harde fordelinger uklare",
+          "learning_focus": [
+            "samholdsspråk kan pakke inn ulikt ansvar",
+            "fellesskap er ikke automatisk rettferdighet"
           ],
           "thread_binding": {
             "conflict_id": null,
@@ -465,15 +734,23 @@
             {
               "id": "A",
               "label": "Gjøre det tydelig at samhold ikke opphever ulikt ansvar",
+              "reply": "Jeg gjør det tydelig at samhold ikke opphever ulikt ansvar.",
               "effect": 1,
-              "tags": ["visibility", "process"],
+              "tags": [
+                "visibility",
+                "process"
+              ],
               "feedback": "Du lar ikke varme ord alene få definere rettferdighet."
             },
             {
               "id": "B",
               "label": "Akseptere fellesskapets språk for å unngå ny splittelse",
+              "reply": "Jeg aksepterer fellesskapets språk for å unngå ny splittelse.",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Du holder laget mykere og lar skylden bli mer diffus."
             }
           ]
