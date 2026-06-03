@@ -645,7 +645,8 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
   };
 
     proto.answer = async function (eventId, choiceId) {
-      const pending = this.getPendingEvent ? this.getPendingEvent() : null;
+      const engine = /** @type {any} */ (this);
+      const pending = engine.getPendingEvent ? engine.getPendingEvent() : null;
       const pendingEventId = String(pending?.event?.id || eventId || "").trim();
       const active = window.CivicationState?.getActivePosition?.();
       const onboardingEvent = pending?.event && isOnboardingEvent(pending.event);
@@ -658,9 +659,9 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
       const phaseTag = inferredPhaseTag;
 
       let originalFollowup = null;
-      if (phaseTag && typeof this.enqueueImmediateFollowupEvent === "function") {
-        originalFollowup = this.enqueueImmediateFollowupEvent;
-        this.enqueueImmediateFollowupEvent = function () {
+      if (phaseTag && typeof engine.enqueueImmediateFollowupEvent === "function") {
+        originalFollowup = engine.enqueueImmediateFollowupEvent;
+        engine.enqueueImmediateFollowupEvent = function () {
           return Promise.resolve({
             enqueued: false,
             reason: "day_phase_blocked"
@@ -673,21 +674,21 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
         : { ok: false };
 
       if (originalFollowup) {
-        this.enqueueImmediateFollowupEvent = originalFollowup;
+        engine.enqueueImmediateFollowupEvent = originalFollowup;
       }
 
       if (!result?.ok) return result;
 
       if (onboardingEvent) {
         updateOnboardingFromEvent(active, pending.event);
-        clearPendingEventById(this, pendingEventId);
+        clearPendingEventById(engine, pendingEventId);
 
         try {
           const onboarding = /** @type {{ complete?: unknown } | null | undefined} */ (
             window.CivicationState?.getOnboardingState?.(active)
           );
           if (onboarding?.complete === true) {
-            await this.onAppOpen?.({ force: true });
+            await engine.onAppOpen?.({ force: true });
           }
         } catch {}
 
@@ -732,9 +733,9 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
       } catch {}
 
       if (recoveryEvent) {
-        clearPendingEventById(this, pendingEventId);
+        clearPendingEventById(engine, pendingEventId);
         try {
-          await this.onAppOpen?.({ force: true });
+          await engine.onAppOpen?.({ force: true });
         } catch {}
         rerenderCivicationUiNow();
         window.dispatchEvent(new Event("updateProfile"));
@@ -772,11 +773,11 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
        cal.resetForNewDay?.();
      }
 
-      clearPendingEventById(this, pendingEventId);
+      clearPendingEventById(engine, pendingEventId);
 
       try {
-        clearPendingEventById(this, pendingEventId);
-        await this.onAppOpen?.({ force: true });
+        clearPendingEventById(engine, pendingEventId);
+        await engine.onAppOpen?.({ force: true });
       } catch {}
 
       rerenderCivicationUiNow();
@@ -845,7 +846,7 @@ function patchTaskEngine() {
 }
 
   function patchJobs() {
-    const jobs = window.CivicationJobs;
+    const jobs = /** @type {any} */ (window.CivicationJobs);
     if (!jobs || jobs.__dayPhasePatched) return;
     jobs.__dayPhasePatched = true;
 

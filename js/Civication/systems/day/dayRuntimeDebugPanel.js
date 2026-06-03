@@ -293,8 +293,9 @@
   }
 
   function scheduleRender() {
-    window.clearTimeout(scheduleRender._t);
-    scheduleRender._t = window.setTimeout(render, 60);
+    const scheduleRenderAny = /** @type {any} */ (scheduleRender);
+    window.clearTimeout(scheduleRenderAny._t);
+    scheduleRenderAny._t = window.setTimeout(render, 60);
   }
 
   if (document.readyState === "loading") {
