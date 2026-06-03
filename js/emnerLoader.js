@@ -23,7 +23,8 @@ window.Emner = (function () {
   // Prosjektrot beregnet fra denne scriptfilen, ikke fra HTML-siden.
   // Dette gjør loaderen trygg både fra index.html og fra /knowledge/*.html.
   const PROJECT_ROOT = (() => {
-    const src = document.currentScript?.src || "";
+    const script = document.currentScript;
+    const src = script instanceof HTMLScriptElement ? script.src : "";
     if (src) return new URL("../", src).toString();
     return new URL("./", location.href).toString();
   })();

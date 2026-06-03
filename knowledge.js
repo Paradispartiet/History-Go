@@ -3,7 +3,8 @@
 (function () {
   "use strict";
 
-  const current = document.currentScript?.src || "";
+  const script = document.currentScript;
+  const current = script instanceof HTMLScriptElement ? script.src : "";
   const src = current
     ? new URL("js/knowledge.js", current).toString()
     : "js/knowledge.js";

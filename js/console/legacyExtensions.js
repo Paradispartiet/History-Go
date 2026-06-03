@@ -98,7 +98,10 @@
   const _fetch = window.fetch;
   window.fetch = async function (...args) {
     const t0 = performance.now();
-    const url = typeof args[0] === "string" ? args[0] : (args[0] && args[0].url);
+    const input = args[0];
+    const url = typeof input === "string"
+      ? input
+      : (input instanceof Request ? input.url : (input instanceof URL ? input.toString() : ""));
     try {
       const res = await _fetch.apply(this, args);
       const dt = Math.round(performance.now() - t0);

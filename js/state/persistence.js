@@ -145,9 +145,9 @@ function getGroundhopperAchievements(stats) {
   ];
   return defs.map(([id, label, desc, value, target]) => ({
     id, label, desc,
-    unlocked: value >= target,
-    progress: Math.min(target, value),
-    target
+    unlocked: Number(value) >= Number(target),
+    progress: Math.min(Number(target), Number(value)),
+    target: Number(target)
   }));
 }
 

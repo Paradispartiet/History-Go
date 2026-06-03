@@ -64,7 +64,7 @@ const DEFAULTS = {
     if (!bust && _cache.has(key)) return _cache.get(key);
 
     const p = (async () => {
-      const res = await fetch(url, { cache });
+      const res = await fetch(url, { cache: /** @type {RequestCache} */ (cache) });
       if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
       return res.json();
     })();
