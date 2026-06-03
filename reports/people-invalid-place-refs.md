@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-03T08:35:07.427Z
+Generated: 2026-06-03T09:34:53.476Z
 
 ## Sammendrag
-- People-filer lest: **19**
-- People lest: **370**
+- People-filer lest: **24**
+- People lest: **394**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **2**
-- Duplikate interne place-referanser: **368**
+- Duplikate interne place-referanser: **392**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -112,6 +112,12 @@ Generated: 2026-06-03T08:35:07.427Z
 - data/people/kunst/oslo/people_kunst_oslo.json :: anna_eva_bergman (Anna-Eva Bergman) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: rolf_nesch (Rolf Nesch) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: per_kleiva (Per Kleiva) -> nasjonalmuseet x2
+- data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: calouste_gulbenkian (Calouste Gulbenkian) -> lisbon_fundacao_calouste_gulbenkian x2
+- data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: joana_vasconcelos (Joana Vasconcelos) -> lisbon_maat x2
+- data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: maria_helena_vieira_da_silva (Maria Helena Vieira da Silva) -> lisbon_museu_arpad_szenes_vieira_da_silva x2
+- data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: arpad_szenes (Árpád Szenes) -> lisbon_museu_arpad_szenes_vieira_da_silva x2
+- data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: rafael_bordalo_pinheiro (Rafael Bordalo Pinheiro) -> lisbon_museu_bordalo_pinheiro x2
+- data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: amadeo_de_souza_cardoso (Amadeo de Souza-Cardoso) -> lisbon_fundacao_calouste_gulbenkian x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: vigdis_hjorth (Vigdis Hjorth) -> deichman_bjorvika x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: karl_ove_knausgard (Karl Ove Knausgård) -> deichman_bjorvika x2
@@ -146,6 +152,11 @@ Generated: 2026-06-03T08:35:07.427Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: inger_hagerup (Inger Hagerup) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: rolf_jacobsen (Rolf Jacobsen) -> nasjonalbiblioteket x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: per_petterson (Per Petterson) -> nasjonalbiblioteket x2
+- data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: jose_saramago (José Saramago) -> lisbon_casa_dos_bicos x2
+- data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: fernando_pessoa (Fernando Pessoa) -> lisbon_casa_fernando_pessoa x2
+- data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: eca_de_queiros (Eça de Queirós) -> lisbon_livraria_bertrand x2
+- data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: sophia_de_mello_breyner_andresen (Sophia de Mello Breyner Andresen) -> lisbon_biblioteca_nacional_de_portugal x2
+- data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json :: almeida_garrett (Almeida Garrett) -> lisbon_biblioteca_nacional_de_portugal x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: nicolai_rygg_sentralbank (Nicolai Rygg) -> grunnlovsbygget_bankplassen x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard) -> grunnlovsbygget_bankplassen x2
@@ -168,6 +179,8 @@ Generated: 2026-06-03T08:35:07.427Z
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes (Ellef Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: amund_ringnes (Amund Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: halvor_schou (Halvor Schou) -> schous_bryggeri x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: tony_elliott (Tony Elliott) -> lisbon_mercado_da_ribeira x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: jose_avillez (José Avillez) -> lisbon_mercado_da_ribeira x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
@@ -223,6 +236,11 @@ Generated: 2026-06-03T08:35:07.427Z
 - data/people/politikk/oslo/people_politikk_oslo.json :: kirsti_kolle_grondahl (Kirsti Kolle Grøndahl) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: jo_benkow (Jo Benkow) -> stortinget x2
 - data/people/politikk/oslo/people_politikk_oslo.json :: carl_i_hagen (Carl I. Hagen) -> stortinget x2
+- data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: salgueiro_maia (Salgueiro Maia) -> lisbon_largo_do_carmo x2
+- data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: celeste_caeiro (Celeste Caeiro) -> lisbon_largo_do_carmo x2
+- data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: marcelo_caetano (Marcelo Caetano) -> lisbon_largo_do_carmo x2
+- data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: mario_soares (Mário Soares) -> lisbon_museu_do_aljube x2
+- data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json :: antonio_de_oliveira_salazar (António de Oliveira Salazar) -> lisbon_assembleia_da_republica x2
 - data/people/sport/oslo/people_sport_oslo.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
 - data/people/sport/oslo/people_sport_oslo.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2
@@ -294,6 +312,12 @@ Generated: 2026-06-03T08:35:07.427Z
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: fredrik_barth (Fredrik Barth) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: kristian_schreiner (Kristian Emil Schreiner) -> universitetets_gamle_hovedbygning x2
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json :: waldemar_christopher_brogger (Waldemar Christopher Brøgger) -> universitetets_gamle_hovedbygning x2
+- data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json :: alfredo_bensaude (Alfredo Bensaúde) -> lisbon_instituto_superior_tecnico x2
+- data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json :: gago_coutinho (Gago Coutinho) -> lisbon_observatorio_astronomico x2
+- data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json :: sacadura_cabral (Sacadura Cabral) -> lisbon_observatorio_astronomico x2
+- data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json :: romulo_de_carvalho (Rómulo de Carvalho) -> lisbon_museu_nacional_de_historia_natural_e_da_ciencia x2
+- data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json :: branca_edmee_marques (Branca Edmée Marques) -> lisbon_museu_nacional_de_historia_natural_e_da_ciencia x2
+- data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json :: antonio_champalimaud (António Champalimaud) -> lisbon_champalimaud_foundation x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
