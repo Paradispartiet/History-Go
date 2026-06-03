@@ -1,19 +1,19 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-03T09:03:27.897Z
+- Generated at (UTC): 2026-06-03T09:10:58.244Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 84
-- Files with diagnostics: 39
+- Total diagnostic lines found: 63
+- Files with diagnostics: 38
 - Groups with diagnostics: 8
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 9 | 35 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
 | js/Civication/** | 14 | 28 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
+| js/ui/** | 8 | 14 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
 | other | 11 | 13 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
 | js/boot.js | 1 | 4 | js/boot.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
@@ -24,7 +24,6 @@
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/ui/place-card.js | 21 | js/ui/** |
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
 | js/boot.js | 4 | js/boot.js |
 | js/Civication/ui/CivicationMap.js | 3 | js/Civication/** |
@@ -44,28 +43,28 @@
 | js/ui/person-place-unlock-toast.js | 2 | js/ui/** |
 | js/Civication/systems/civicationActivePositionRecovery.js | 1 | js/Civication/** |
 | js/Civication/systems/civicationDailyMailBuilder.js | 1 | js/Civication/** |
+| js/Civication/systems/civicationPlaceAccessBridge.js | 1 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 41 |
-| TS2345 | 11 |
-| TS2322 | 9 |
+| TS2339 | 32 |
+| TS2322 | 7 |
+| TS2345 | 4 |
 | TS2362 | 4 |
 | TS2304 | 4 |
-| TS2769 | 4 |
 | TS2363 | 3 |
 | TS2739 | 2 |
+| TS2769 | 2 |
 | TS2552 | 2 |
 | TS2488 | 1 |
 | TS2353 | 1 |
-| TS2349 | 1 |
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (35 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (21), `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/ui/CivicationMap.js` (3), `js/ui/popup-utils.js` (3).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/boot.js`.
+1. Start with **js/Civication/** (28 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/ui/CivicationMap.js` (3), `js/ui/popup-utils.js` (3), `js/Civication/core/civicationJobs.js` (2).
+3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `other`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
@@ -140,14 +139,14 @@ js/ui/nature-unlock-toast.js(118,20): error TS2339: Property 'closest' does not 
 js/ui/nature-unlock-toast.js(166,27): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/ui/person-place-unlock-toast.js(84,20): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
 js/ui/person-place-unlock-toast.js(111,31): error TS2339: Property 'detail' does not exist on type 'Event'.
-js/ui/place-card.js(224,28): error TS2349: This expression is not callable.
-  Type '{}' has no call signatures.
-js/ui/place-card.js(322,43): error TS2345: Argument of type 'Place | Record<string, unknown>' is not assignable to parameter of type 'Record<string, unknown> | PlaceCardPlace'.
-  Type 'Place' is not assignable to type 'Record<string, unknown> | PlaceCardPlace'.
-    Type 'Place' is not assignable to type 'PlaceCardPlace'.
-      Type 'Place' is not assignable to type 'Record<string, unknown>'.
-        Index signature for type 'string' is missing in type 'Place'.
-js/ui/place-card.js(325,67): error TS2345: Argument of type 'Place | Record<string, unknown>' is not assignable to parameter of type 'Record<string, unknown> | PlaceCardPlace'.
-  Type 'Place' is not assignable to type 'Record<string, unknown> | PlaceCardPlace'.
-    Type 'Place' is not assignable to type 'PlaceCardPlace'.
+js/ui/popup-utils.js(334,30): error TS2769: No overload matches this call.
+  Overload 1 of 4, '(iterable?: Iterable<readonly [any, any]>): Map<any, any>', gave the following error.
+    Argument of type 'any[][]' is not assignable to parameter of type 'Iterable<readonly [any, any]>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<any[], any>' is not assignable to type 'IteratorResult<readonly [any, any], any>'.
+          Type 'IteratorYieldResult<any[]>' is not assignable to type 'IteratorResult<readonly [any, any], any>'.
+            Type 'IteratorYieldResult<any[]>' is not assignable to type 'IteratorYieldResult<readonly [any, any]>'.
+              Type 'any[]' is not assignable to type 'readonly [any, any]'.
+                Target requires 2 element(s) but source may have fewer.
+  Overload 2 of 4, '(entries?: readonly (readonly [any, any])[]): Map<any, any>', gave the following error.
 ```
