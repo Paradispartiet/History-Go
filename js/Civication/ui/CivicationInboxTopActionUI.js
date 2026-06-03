@@ -38,6 +38,18 @@
 
   function splitInboxByMessageChannel() {
     const inbox = getInbox();
+    const classify = window.classifyCiviInboxItem;
+
+    if (typeof classify === "function") {
+      return (Array.isArray(inbox) ? inbox : []).reduce(function (acc, item) {
+        const group = classify(item);
+        if (group === "job") acc.job.push(item);
+        else if (group === "personal") acc.private.push(item);
+        else acc.unknown.push(item);
+        return acc;
+      }, { job: [], private: [], system: [], unknown: [] });
+    }
+
     const splitter = window.CivicationEventChannels?.splitInboxByMessageChannel;
     if (typeof splitter === "function") {
       return splitter(inbox);
@@ -428,8 +440,10 @@
     if (!host) return false;
 
     const split = splitInboxByMessageChannel();
-    const job = (split.job || []).concat(split.unknown || []);
-    const privateMessages = split.private || [];
+    const job = split.job || [];
+    // Uklassifiserte meldinger hører fortsatt til samme underliggende store;
+    // de vises med personlige meldinger slik at ingenting skjules ved usikker klassifisering.
+    const privateMessages = (split.private || []).concat(split.unknown || []);
     const systemMessages = split.system || [];
 
     const markup = `
