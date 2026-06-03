@@ -55,9 +55,9 @@
         const blob = new Blob([json], { type: "application/json;charset=utf-8" });
 
         // File finnes ikke alltid
-        const file = (typeof File === "function")
+        const file = /** @type {File} */ ((typeof File === "function")
           ? new File([blob], safeName, { type: "application/json;charset=utf-8" })
-          : blob;
+          : blob);
 
         if (!global.navigator.canShare || global.navigator.canShare({ files: [file] })) {
           await global.navigator.share({ title: safeName, files: [file] });

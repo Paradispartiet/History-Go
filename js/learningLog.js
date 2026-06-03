@@ -122,7 +122,7 @@
     return { migrated: extras.length, skipped: false };
   }
 
-  global.HGLearningLog = {
+  const api = {
     getEvents,
     getQuizHistory,
     migrateLegacy,
@@ -132,4 +132,6 @@
       MIGRATED_FLAG
     }
   };
+
+  global.HGLearningLog = /** @type {any} */ (api);
 })(window);

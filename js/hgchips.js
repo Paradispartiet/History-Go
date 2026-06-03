@@ -61,7 +61,8 @@
     }
 
     // quiz-events (via HGLearningLog): accept optional fields if present
-    const hist = window.HGLearningLog?.getEvents?.() ?? [];
+    const events = window.HGLearningLog?.getEvents?.() ?? [];
+    const hist = Array.isArray(events) ? events : [];
     for (const h of hist) {
       if (!h) continue;
       const list = Array.isArray(h.unlocked_concepts)
