@@ -101,7 +101,7 @@ declare global {
     CIVI_CAREER_RULES?: unknown[] | CiviRecord;
     HG_CAREERS?: unknown[] | CiviRecord;
     CAREERS?: unknown[] | CiviRecord;
-    BADGES?: unknown[];
+    BADGES?: any[];
 
     CIVI_ITEMS?: unknown[];
     CIVI_SYNERGIES?: unknown[];

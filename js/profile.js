@@ -58,9 +58,12 @@ window.showPersonPopup = window.showPersonPopup || (() => {});
 window.showPlacePopup  = window.showPlacePopup  || (() => {});
 
 // GLOBALT
-let PEOPLE = [];
-let PLACES = [];
-let BADGES = [];
+// var (not let) so TypeScript merges these with the matching globals in
+// js/state/state.js; the files are never co-loaded (profile.js -> profile.html,
+// state.js -> index.html), so this only silences the cross-file checkJs TS2451.
+var PEOPLE = [];
+var PLACES = [];
+var BADGES = [];
 
 
 // ------------------------------------------------------------
