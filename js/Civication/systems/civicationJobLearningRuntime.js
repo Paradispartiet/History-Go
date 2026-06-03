@@ -158,6 +158,123 @@
     return 0;
   }
 
+  // ---------------------------------------------------------------------------
+  // Persisted per-role job learning progress (PR 980).
+  //
+  // job_learning_progress is a separate, role-keyed state slice that answers one
+  // question: how far has the player come in LEARNING this role? It is keyed by the
+  // same canonical key as jobLearningProfiles / the audit (role_id, e.g.
+  // "naer_arbeider"). It deliberately does NOT live inside career_outcome_state and
+  // never uses career outcome status as a source of mastery.
+  //
+  // Shape per role:
+  //   { steps, mastered, learned_at, last_updated_day, unlocked_teaches, unlocked_skills }
+  // ---------------------------------------------------------------------------
+
+  const PROGRESS_KEY = "job_learning_progress";
+
+  // Canonical learning role key. role_id first — that is how jobLearningProfiles and
+  // auditJobLearningProfiles key roles — then fall back to the same scope/slug the
+  // profile lookup uses, so progress and profile always agree in production.
+  function resolveLearningRoleKey(active) {
+    const roleId = norm(active?.role_id);
+    if (roleId) return roleId;
+    return resolveRoleScope(active);
+  }
+
+  // Coerce any stored/legacy entry into a safe, fully-formed entry (also produces the
+  // default entry from {} / missing input). Never throws.
+  function normalizeProgressEntry(raw) {
+    const e = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+    const steps = Math.max(0, Math.floor(Number(e.steps) || 0));
+    return {
+      steps,
+      mastered: e.mastered === true,
+      learned_at: e.learned_at || null,
+      last_updated_day: (e.last_updated_day === 0 || e.last_updated_day) ? e.last_updated_day : null,
+      unlocked_teaches: Array.isArray(e.unlocked_teaches) ? e.unlocked_teaches.filter((x) => typeof x === "string") : [],
+      unlocked_skills: Array.isArray(e.unlocked_skills) ? e.unlocked_skills.filter((x) => typeof x === "string") : []
+    };
+  }
+
+  function getProgressMap(state) {
+    const map = state && typeof state === "object" ? state[PROGRESS_KEY] : null;
+    return map && typeof map === "object" && !Array.isArray(map) ? map : {};
+  }
+
+  function masteryThresholdFor(active) {
+    const profile = getLearningProfile(active);
+    return Math.max(1, Number(profile?.mastery_threshold) || DEFAULT_MASTERY_THRESHOLD);
+  }
+
+  // Stored progress entry for the active role, normalized — or null when there is no
+  // role key or no stored entry yet (so callers can fall back to mail progress).
+  function getJobLearningProgress(state, active) {
+    const key = resolveLearningRoleKey(active);
+    if (!key) return null;
+    const map = getProgressMap(state);
+    if (!Object.prototype.hasOwnProperty.call(map, key)) return null;
+    return normalizeProgressEntry(map[key]);
+  }
+
+  // Stored steps for the active role, or null when no stored progress exists.
+  function getJobLearningSteps(state, active) {
+    const entry = getJobLearningProgress(state, active);
+    return entry ? entry.steps : null;
+  }
+
+  // Effective learning steps: stored progress wins, else tolerant mail-progress
+  // fallback, else 0. This is the single source the view model and isJobMastered use.
+  function resolveEffectiveSteps(state, active) {
+    const stored = getJobLearningSteps(state, active);
+    return stored != null ? stored : getStepsTaken(state);
+  }
+
+  // Mastery is purely steps >= mastery_threshold. Never derived from career outcome.
+  function isJobMastered(state, active) {
+    return resolveEffectiveSteps(state, active) >= masteryThresholdFor(active);
+  }
+
+  // Ensure a progress entry exists for the active role. Pure: returns a patch with a
+  // freshly-copied map plus the resolved key/entry; does not mutate the input state.
+  function ensureJobLearningProgressEntry(state, active) {
+    const key = resolveLearningRoleKey(active);
+    const map = { ...getProgressMap(state) };
+    if (!key) return { key: "", entry: null, [PROGRESS_KEY]: map };
+    const entry = normalizeProgressEntry(map[key]);
+    map[key] = entry;
+    return { key, entry, [PROGRESS_KEY]: map };
+  }
+
+  // Deterministically advance learning progress for the active role. Pure: returns a
+  // state patch ({ job_learning_progress }) the caller applies via CivicationState
+  // .setState. Creates the entry if missing, clamps steps at >= 0, sets mastered when
+  // the threshold is reached, and never touches career_outcome_state.
+  //
+  // options: { delta = 1, day = <unchanged>, now = <ISO> }
+  function markJobLearningStep(state, active, options) {
+    const opts = options && typeof options === "object" ? options : {};
+    const key = resolveLearningRoleKey(active);
+    const map = { ...getProgressMap(state) };
+    if (!key) return { [PROGRESS_KEY]: map };
+
+    const prev = normalizeProgressEntry(map[key]);
+    const delta = Number.isFinite(Number(opts.delta)) ? Math.floor(Number(opts.delta)) : 1;
+    const steps = Math.max(0, prev.steps + delta);
+    const mastered = steps >= masteryThresholdFor(active);
+    const day = (opts.day === 0 || opts.day) ? opts.day : prev.last_updated_day;
+
+    map[key] = {
+      ...prev,
+      steps,
+      mastered,
+      learned_at: mastered ? (prev.learned_at || opts.now || new Date().toISOString()) : null,
+      last_updated_day: day
+    };
+
+    return { [PROGRESS_KEY]: map };
+  }
+
   function stagnationFlagSet(state) {
     const flags = Array.isArray(state?.mail_branch_state?.flags)
       ? state.mail_branch_state.flags.map(norm)
@@ -200,7 +317,8 @@
     const lowValue = learningValue === "low";
 
     const masteryThreshold = Math.max(1, Number(profile?.mastery_threshold) || DEFAULT_MASTERY_THRESHOLD);
-    const stepsTaken = getStepsTaken(s);
+    // Persisted job_learning_progress wins; otherwise tolerant mail-progress fallback.
+    const stepsTaken = resolveEffectiveSteps(s, activePosition);
     const progress = Math.max(0, Math.min(1, stepsTaken / masteryThreshold));
 
     // jobMastered is a LEARNING signal (steps vs threshold), never a career outcome
@@ -303,6 +421,14 @@
     getLearningProfile,
     registerProfiles,
     normalizeLearningValue,
+    // Persisted per-role learning progress (PR 980).
+    resolveLearningRoleKey,
+    getJobLearningProgress,
+    getJobLearningSteps,
+    isJobMastered,
+    ensureJobLearningProgressEntry,
+    markJobLearningStep,
+    PROGRESS_KEY,
     DEFAULT_PROFILE,
     DEFAULT_MASTERY_THRESHOLD,
     inspect() {
