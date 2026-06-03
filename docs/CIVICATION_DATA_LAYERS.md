@@ -256,9 +256,14 @@ Ikke:
 Jobbtilgang vurderes gjennom to porter (eies av `CivicationJobEligibilityRuntime`, ikke av career outcome):
 
 - `knowledge_gate` = History Go / quiz / merits / kunnskap.
-  - Kontraktsklar, men ikke håndhevet ennå. Har et tilbud eksplisitte kunnskapskrav, leses de tolerant; mangler de, returneres `not_configured`/`unknown` og tilbudet blokkeres ikke. Konkrete quizkrav per jobb kommer i en senere PR.
+  - Knowledge-gate-metadata ligger i `data/Civication/jobKnowledgeRequirements.json` (schema `civication_job_knowledge_requirements_v1`). Filen er History Go-kunnskapssiden av dual-gaten; `jobLearningProfiles.json` er Civication-læringssiden.
+  - Krav løses i denne rekkefølgen: eksplisitte krav på tilbudet/targetRole → `roles[role_id]` → `categories[<offer category>]` → ellers `not_configured`.
+  - Progresjon leses tolerant fra eksisterende History Go quiz-state (`quiz_progress[category].completed`), fra innsendt Civication-state først, så `localStorage`. Ingenting skrives.
+  - `category_quiz_count` teller fullførte quiz i en kategori og sammenligner med `min_completed`. Kan ikke kilden leses, returneres `unknown` (aldri en falsk `missing`).
+  - Modus styrer håndheving: `not_required`/`not_configured`/`unknown` blokkerer aldri; `soft_required` kan forklare et manglende krav (reason) uten å blokkere; `required` kan blokkere — men kun når resolveren sikkert kan bekrefte `missing`. Når quiz/progress-state blir helt stabilt kan flere krav gjøres `required`.
+  - Filen valideres av `npm run audit:job-knowledge-requirements` (gyldig JSON, schema/version, kjent `mode`, gyldig krav-`type`, numerisk `min_completed`, kategori-IDer mot faktiske History Go quiz-kategorier, og ingen `required` på krav som ikke kan evalueres sikkert).
 - `learning_gate` = Civication / `job_learning_progress` / mastered roles / unlocked skills.
-  - Bruker `CivicationJobLearningRuntime.getCareerLearningSignals(...)`. Det er kun et signal: det promoterer aldri automatisk og skriver aldri `career_outcome_state`.
+  - Bruker `CivicationJobLearningRuntime.getCareerLearningSignals(...)`. Det er kun et signal: det promoterer aldri automatisk og skriver aldri `career_outcome_state`. Knowledge gate er helt separat fra learning gate og endrer aldri `career_outcome_state`.
 
 Eligibility-helperen (`getJobOfferEligibility`) skiller disse to portene og legger til `careerStateModifier`, `reentryLock`, `offerRoute`, `eligible`, `reasons` og `blockers`.
 
@@ -271,6 +276,7 @@ Fired-regelen: **Får du sparken i én kategori, må du jobbe i en annen kategor
 - Locken cleares først når spilleren har aktiv jobb i en annen kategori OG besvarer minst én plan-fremmende jobbmail der (samme smale signal som job learning: `source_type: "planned"` eller `daily_mail_meta.advances_role_plan`, aldri terminal/outcome-mail).
 - `STAGNATED` gir ingen kategori-lock; den kan bare gi `offerRoute: "exit_from_stagnation"`. `PROMOTED` gir heller ingen lock.
 - FIRED sletter aldri quiz/merits, `job_learning_progress`, mastered roles, `unlocked_skills`/`unlocked_teaches` eller job history. Locken berører kun fremtidige jobbtilbud i samme kategori.
+- Reentry lock har høyeste prioritet og overstyrer begge gates for samme kategori: et tilbud i en låst kategori er `eligible: false` selv om knowledge gate er `passed` og learning gate er klar. Andre kategorier er upåvirket.
 
 UI skal lese aktive `career_reentry_locks` direkte fra state/runtime, fordi locked-category offers kan bli stoppet i `pushOffer` før de lagres.
 

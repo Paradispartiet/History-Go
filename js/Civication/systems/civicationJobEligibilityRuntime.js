@@ -17,9 +17,13 @@
 //
 // Avgrensning (denne PR-en):
 // - Ikke en full karrieremotor. Ingen auto-promote. Skriver aldri career_outcome_state.
-// - Knowledge gate er KONTRAKTSKLAR, men konkrete quizkrav per jobb kommer i en senere PR.
-//   Derfor håndheves ikke knowledge gate aggressivt: mangler eksplisitte krav, returneres
-//   "not_configured"/"unknown" og tilbud blokkeres ikke av den grunn.
+// - Knowledge gate har nå en smal, reell evaluering mot eksisterende History Go quiz-
+//   progresjon (quiz_progress[category].completed), styrt av en liten datafil
+//   data/Civication/jobKnowledgeRequirements.json. Den håndheves forsiktig:
+//     not_required / not_configured / unknown blokkerer ALDRI,
+//     soft_required forklarer men blokkerer ikke,
+//     kun required + sikkert "missing" kan blokkere.
+//   Mangler quiz-kilden, returneres "unknown" (aldri en falsk "missing").
 
 (function () {
   "use strict";
@@ -189,36 +193,298 @@
   // Dual-gate eligibility.
   // ---------------------------------------------------------------------------
 
-  // Knowledge gate: kontraktsklar, men ikke håndhevet ennå. Har tilbudet/targetRole
-  // eksplisitte kunnskapskrav, leses de tolerant; mangler de, returneres "not_configured"
-  // og tilbudet blokkeres ALDRI av denne grunn. Konkrete quizkrav per jobb kommer senere.
-  function readKnowledgeGate(offer, targetRole) {
-    const req =
+  // ---------------------------------------------------------------------------
+  // Knowledge gate: knowledge requirements registry + History Go progress resolver.
+  //
+  // History Go-siden av dual-gaten. Krav kommer fra to steder:
+  //   1. eksplisitte krav på offer/targetRole, eller
+  //   2. data/Civication/jobKnowledgeRequirements.json (lastet best-effort, keyet på
+  //      offer-kategori / role_id), registrert i KNOWLEDGE_REQUIREMENTS.
+  //
+  // Progresjon leses tolerant fra eksisterende History Go quiz-signaler
+  // (quiz_progress[category].completed) — fra den innsendte staten først, så
+  // localStorage. Ingenting skrives. Manglende/uleselig kilde gir "unknown", aldri en
+  // falsk "missing".
+  // ---------------------------------------------------------------------------
+
+  // Registry populated best-effort fra jobKnowledgeRequirements.json og/eller
+  // registerKnowledgeRequirements(). Null til noe registreres, slik at et tilbud uten
+  // konfig faller tilbake til "not_configured" (blokkerer aldri).
+  let KNOWLEDGE_REQUIREMENTS = null;
+
+  function isPlainObject(value) {
+    return !!value && typeof value === "object" && !Array.isArray(value);
+  }
+
+  function readJsonLocalStorage(key) {
+    try {
+      if (typeof localStorage === "undefined" || !localStorage) return undefined;
+      const raw = localStorage.getItem(key);
+      if (raw == null) return undefined;
+      const parsed = JSON.parse(raw);
+      return parsed == null ? undefined : parsed;
+    } catch (_e) {
+      return undefined;
+    }
+  }
+
+  // Plukk en kunnskapskilde fra innsendt state først (slik at tester/callere kan injisere
+  // den), så fra localStorage (den faktiske History Go-lagringen). Returnerer objektet og
+  // om en brukbar kilde faktisk fantes — sistnevnte avgjør unknown vs missing.
+  function readKnowledgeSource(state, key) {
+    if (state && typeof state === "object" && isPlainObject(state[key])) {
+      return { value: state[key], present: true };
+    }
+    const fromLs = readJsonLocalStorage(key);
+    if (isPlainObject(fromLs)) return { value: fromLs, present: true };
+    return { value: {}, present: false };
+  }
+
+  // Tolerant snapshot av History Go kunnskapsprogresjon. Kaster aldri, skriver aldri.
+  // quizCompletedByCategory[cat] = antall fullførte quiz registrert i
+  // quiz_progress[cat].completed. hasQuizSource er false når ingen quiz_progress kunne
+  // leses (da blir krav "unknown", ikke "missing").
+  function getKnowledgeProgressSnapshot(state) {
+    const quiz = readKnowledgeSource(state, "quiz_progress");
+    const merits = readKnowledgeSource(state, "merits_by_category");
+
+    const quizCompletedByCategory = {};
+    for (const [cat, entry] of Object.entries(quiz.value)) {
+      const key = lower(cat);
+      if (!key) continue;
+      const completed = entry && Array.isArray(entry.completed) ? entry.completed : [];
+      quizCompletedByCategory[key] = completed.filter((id) => norm(id)).length;
+    }
+
+    const meritPointsByCategory = {};
+    for (const [cat, entry] of Object.entries(merits.value)) {
+      const key = lower(cat);
+      if (!key) continue;
+      const points = Number(entry && entry.points);
+      meritPointsByCategory[key] = Number.isFinite(points) ? points : 0;
+    }
+
+    return {
+      hasQuizSource: quiz.present,
+      hasMeritSource: merits.present,
+      quizCompletedByCategory,
+      meritPointsByCategory
+    };
+  }
+
+  // Evaluer ett enkelt kunnskapskrav mot snapshotet. Returnerer et lite, serialiserbart
+  // resultat. Ukjente/ustøttede kravtyper og uleselige kilder gir "unknown" (aldri en
+  // falsk "missing").
+  function evaluateKnowledgeRequirement(state, requirement, snapshot) {
+    const snap = snapshot || getKnowledgeProgressSnapshot(state);
+
+    // Strengkrav (legacy/opake id-er) kan ikke evalueres ennå.
+    if (typeof requirement === "string") {
+      return { type: "opaque", raw: requirement, status: "unknown", detail: "Kravet kan ikke tolkes ennå." };
+    }
+    if (!isPlainObject(requirement)) {
+      return { type: "invalid", status: "unknown", detail: "Ugyldig kunnskapskrav." };
+    }
+
+    const type = lower(requirement.type);
+
+    if (type === "category_quiz_count") {
+      const category = lower(requirement.category);
+      const min = Number(requirement.min_completed);
+      const minCompleted = Number.isFinite(min) && min > 0 ? Math.floor(min) : 1;
+      if (!category) {
+        return { type, status: "unknown", detail: "Kravet mangler kategori." };
+      }
+      if (!snap.hasQuizSource) {
+        return {
+          type, category, min_completed: minCompleted, observed: null,
+          status: "unknown", detail: "Quiz-progresjon kunne ikke leses."
+        };
+      }
+      const observed = Number(snap.quizCompletedByCategory[category]) || 0;
+      const ok = observed >= minCompleted;
+      return {
+        type,
+        category,
+        min_completed: minCompleted,
+        observed,
+        status: ok ? "passed" : "missing",
+        detail: ok
+          ? `Fullført ${observed} quiz i ${category}.`
+          : `Fullført ${observed} av ${minCompleted} quiz i ${category}.`
+      };
+    }
+
+    return { type: type || "unknown", status: "unknown", detail: "Ukjent kravtype." };
+  }
+
+  function normalizeRequirementList(req) {
+    if (Array.isArray(req)) return req.slice();
+    if (isPlainObject(req)) {
+      if (Array.isArray(req.requirements)) return req.requirements.slice();
+      return [req];
+    }
+    if (norm(req)) return [norm(req)];
+    return [];
+  }
+
+  // Resolve kunnskapskrav-konfig for et tilbud/targetRole. Rekkefølge:
+  //   1. eksplisitte krav på offer/targetRole (source "offer_requirements")
+  //   2. role-keyet konfig i jobKnowledgeRequirements.roles[role_id]
+  //   3. kategori-keyet konfig i jobKnowledgeRequirements.categories[category]
+  // Returnerer null når ingenting gjelder (=> not_configured, blokkerer aldri).
+  function getKnowledgeRequirementForOffer(offer, targetRole) {
+    const explicit =
       offer?.knowledge_requirements ||
       offer?.requirements?.knowledge ||
       offer?.knowledge_gate ||
       targetRole?.knowledge_requirements ||
       targetRole?.requirements?.knowledge ||
       null;
+    const explicitList = normalizeRequirementList(explicit);
+    if (explicitList.length > 0) {
+      const mode = isPlainObject(explicit) && norm(explicit.mode) ? lower(explicit.mode) : "required";
+      return { source: "offer_requirements", mode, label: "", requirements: explicitList };
+    }
 
-    const hasReq = Array.isArray(req)
-      ? req.length > 0
-      : (req && typeof req === "object" ? Object.keys(req).length > 0 : !!norm(req));
+    const registry = isPlainObject(KNOWLEDGE_REQUIREMENTS) ? KNOWLEDGE_REQUIREMENTS : null;
+    if (!registry) return null;
 
-    if (!hasReq) {
+    const roles = isPlainObject(registry.roles) ? registry.roles : {};
+    const roleId = norm(offer?.role_id) || norm(targetRole?.role_id);
+    if (roleId && isPlainObject(roles[roleId])) {
+      const cfg = roles[roleId];
+      return {
+        source: "jobKnowledgeRequirements",
+        mode: lower(cfg.mode) || "not_required",
+        label: norm(cfg.label),
+        requirements: normalizeRequirementList(cfg.requirements)
+      };
+    }
+
+    const categories = isPlainObject(registry.categories) ? registry.categories : {};
+    const category = resolveOfferCategory(offer);
+    if (category && isPlainObject(categories[category])) {
+      const cfg = categories[category];
+      return {
+        source: "jobKnowledgeRequirements",
+        mode: lower(cfg.mode) || "not_required",
+        label: norm(cfg.label),
+        requirements: normalizeRequirementList(cfg.requirements)
+      };
+    }
+
+    return null;
+  }
+
+  // Full knowledge-gate-evaluering for et tilbud. Bøtter hvert krav i
+  // passed/missing/unknown og utleder en samlet status. Blokkerer aldri her — caller
+  // avgjør blokkering (kun mode "required" + et bekreftet "missing").
+  function evaluateKnowledgeGate(state, offer, targetRole) {
+    const config = getKnowledgeRequirementForOffer(offer, targetRole);
+
+    if (!config) {
       return {
         status: "not_configured",
         source: "not_configured",
-        detail: "Ingen eksplisitte kunnskapskrav er definert for dette tilbudet ennå."
+        mode: "not_required",
+        detail: "Ingen eksplisitte kunnskapskrav er definert for dette tilbudet ennå.",
+        requirements: [],
+        passed: [],
+        missing: [],
+        unknown: []
       };
     }
-    // Krav finnes, men per-jobb quizkontrakt er ikke implementert ennå: les tolerant,
-    // marker som "unknown", og blokker likevel ikke i denne PR-en.
+
+    const mode = config.mode || "not_required";
+    const reqList = Array.isArray(config.requirements) ? config.requirements : [];
+
+    if (mode === "not_required" || reqList.length === 0) {
+      return {
+        status: "not_required",
+        source: config.source,
+        mode: "not_required",
+        detail: "Ingen kunnskapskrav blokkerer dette tilbudet.",
+        requirements: [],
+        passed: [],
+        missing: [],
+        unknown: []
+      };
+    }
+
+    const snapshot = getKnowledgeProgressSnapshot(state);
+    const evaluated = reqList.map((req) => evaluateKnowledgeRequirement(state, req, snapshot));
+    const passed = evaluated.filter((r) => r.status === "passed");
+    const missing = evaluated.filter((r) => r.status === "missing");
+    const unknown = evaluated.filter((r) => r.status === "unknown");
+
+    let status;
+    let detail;
+    if (missing.length > 0) {
+      status = "missing";
+      detail = mode === "required"
+        ? "Denne jobben krever kunnskap du ennå ikke har bekreftet."
+        : "Denne jobben bygger på kunnskap du kan styrke med relevante quiz.";
+    } else if (unknown.length > 0) {
+      status = "unknown";
+      detail = "Kunnskapskrav finnes, men progresjonen kunne ikke bekreftes ennå.";
+    } else {
+      status = "passed";
+      detail = "Du har kunnskapsgrunnlaget for denne jobbkategorien.";
+    }
+
     return {
-      status: "unknown",
-      source: "offer_requirements",
-      detail: "Kunnskapskrav finnes, men håndheves ikke ennå i denne versjonen."
+      status,
+      source: config.source,
+      mode,
+      label: config.label || "",
+      detail,
+      requirements: evaluated,
+      passed,
+      missing,
+      unknown
     };
+  }
+
+  // Bakoverkompatibelt inngangspunkt brukt av getJobOfferEligibility.
+  function readKnowledgeGate(state, offer, targetRole) {
+    return evaluateKnowledgeGate(state, offer, targetRole);
+  }
+
+  // Merge knowledge requirements-data inn i registryet. Tar den parsede
+  // jobKnowledgeRequirements.json (eller et kompatibelt delsett). Best-effort og
+  // tolerant: ugyldig input ignoreres.
+  function registerKnowledgeRequirements(data) {
+    if (!isPlainObject(data)) return KNOWLEDGE_REQUIREMENTS;
+    const base = isPlainObject(KNOWLEDGE_REQUIREMENTS) ? KNOWLEDGE_REQUIREMENTS : {};
+    KNOWLEDGE_REQUIREMENTS = {
+      schema: norm(data.schema) || base.schema || "",
+      version: Number.isFinite(Number(data.version)) ? Number(data.version) : base.version,
+      default: isPlainObject(data.default) ? data.default : (base.default || { mode: "not_required" }),
+      categories: {
+        ...(isPlainObject(base.categories) ? base.categories : {}),
+        ...(isPlainObject(data.categories) ? data.categories : {})
+      },
+      roles: {
+        ...(isPlainObject(base.roles) ? base.roles : {}),
+        ...(isPlainObject(data.roles) ? data.roles : {})
+      }
+    };
+    return KNOWLEDGE_REQUIREMENTS;
+  }
+
+  // Best-effort lasting av jobKnowledgeRequirements.json. Blokkerer aldri boot; feil
+  // svelges og tilbud faller bare tilbake til "not_configured".
+  function loadKnowledgeRequirements() {
+    try {
+      if (typeof fetch !== "function") return;
+      fetch("data/Civication/jobKnowledgeRequirements.json")
+        .then((res) => (res && res.ok ? res.json() : null))
+        .then((json) => { if (json) registerKnowledgeRequirements(json); })
+        .catch(() => {});
+    } catch (_err) {
+      // Eligibility virker uten filen; tilbud defaulter til not_configured.
+    }
   }
 
   // Learning gate: bruker job learning-signaler (readiness, mastered roles, unlocked
@@ -288,7 +554,7 @@
     const offerCategory = resolveOfferCategory(offer);
     const activeCategory = resolveCategory(active);
 
-    const knowledgeGate = readKnowledgeGate(offer, targetRole);
+    const knowledgeGate = readKnowledgeGate(s, offer, targetRole);
     const learningGate = readLearningGate(s, active);
     const careerStateModifier = readCareerStateModifier(s);
 
@@ -315,6 +581,22 @@
     }
 
     if (learningGate.detail) reasons.push(learningGate.detail);
+
+    // Knowledge gate: kun mode "required" + et bekreftet "missing" kan blokkere.
+    // soft_required forklarer uten å blokkere; passed/unknown/not_configured/not_required
+    // blokkerer aldri. Reentry-lock-blokkeringen over er uavhengig og har fortsatt
+    // prioritet: en passert knowledge gate fjerner den ikke.
+    if (knowledgeGate.status === "missing" && knowledgeGate.mode === "required") {
+      blockers.push(
+        "Denne jobben krever History Go-kunnskap du ennå ikke har bekreftet. " +
+        "Fullfør relevante quiz for å låse den opp."
+      );
+    } else if (knowledgeGate.detail &&
+      (knowledgeGate.status === "missing" ||
+        knowledgeGate.status === "passed" ||
+        knowledgeGate.status === "unknown")) {
+      reasons.push(knowledgeGate.detail);
+    }
 
     const eligible = blockers.length === 0;
     const offerRoute = resolveOfferRoute({
@@ -446,6 +728,7 @@
   }
 
   function boot() {
+    loadKnowledgeRequirements();
     patchEventEngineAnswer();
     patchJobsPushOffer();
   }
@@ -455,6 +738,14 @@
     // Kategori
     resolveCategory,
     resolveOfferCategory,
+    // Knowledge gate
+    loadKnowledgeRequirements,
+    registerKnowledgeRequirements,
+    getKnowledgeRequirementForOffer,
+    getKnowledgeProgressSnapshot,
+    evaluateKnowledgeRequirement,
+    evaluateKnowledgeGate,
+    readKnowledgeGate,
     // Locks
     getReentryLocks,
     getActiveLockForCategory,

@@ -14,7 +14,7 @@
     "places:index:check": "node tools/check_places_index_sync.mjs",
     "health:places": "node tools/placeHealthReport.mjs",
     "typecheck:report": "node tools/typecheck-baseline-report.mjs",
-    "test:civication": "node tests/civication-career-outcomes.test.js && node tests/civication-career-outcome-reachability.test.js && node tests/civication-career-outcome-view-model.test.js && node tests/civication-job-learning-view-model.test.js && node tests/civication-day-phase-ui-learning-banner.test.js && node tests/civication-day-phase-ui-reentry-lock.test.js && node tests/civication-job-eligibility.test.js && npm run audit:job-learning-profiles",
+    "test:civication": "node tests/civication-career-outcomes.test.js && node tests/civication-career-outcome-reachability.test.js && node tests/civication-career-outcome-view-model.test.js && node tests/civication-job-learning-view-model.test.js && node tests/civication-day-phase-ui-learning-banner.test.js && node tests/civication-day-phase-ui-reentry-lock.test.js && node tests/civication-job-eligibility.test.js && npm run audit:job-learning-profiles && npm run audit:job-knowledge-requirements",
     "health:data": "node tools/dataHealthReport.mjs",
     "health": "npm run health:data",
     "places:emner:check": "node tools/check_place_emne_ids.mjs",
@@ -23,7 +23,8 @@
     "places:aliases:check": "node tools/check_place_id_aliases.mjs",
     "check:stories": "node tools/check_stories_integrity.mjs",
     "places:import": "node tools/importPlaces.mjs",
-    "audit:job-learning-profiles": "node scripts/auditJobLearningProfiles.js"
+    "audit:job-learning-profiles": "node scripts/auditJobLearningProfiles.js",
+    "audit:job-knowledge-requirements": "node scripts/auditJobKnowledgeRequirements.js"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",

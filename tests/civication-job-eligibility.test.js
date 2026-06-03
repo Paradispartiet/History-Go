@@ -231,6 +231,102 @@ async function run() {
   assert.doesNotThrow(() => E.getJobOfferEligibility({}, null, {}), 'eligibility tolerates null offer');
 
   // ==================================================================================
+  // Knowledge gate: real, narrow knowledge requirements against History Go quiz state.
+  //   not_required / not_configured / unknown never block.
+  //   soft_required explains (reason) but never blocks.
+  //   required blocks ONLY when the resolver can confirm a "missing" requirement.
+  // ==================================================================================
+  for (const fn of ['registerKnowledgeRequirements', 'getKnowledgeProgressSnapshot', 'evaluateKnowledgeRequirement', 'evaluateKnowledgeGate', 'getKnowledgeRequirementForOffer']) {
+    assert.strictEqual(typeof E[fn], 'function', `${fn} is exported`);
+  }
+
+  // K1. No requirements registered => not_configured, never blocks.
+  const kNone = E.getJobOfferEligibility({ quiz_progress: {} }, { career_id: 'naeringsliv', title: 'Selger' }, { active: null });
+  assert.strictEqual(kNone.knowledgeGate.status, 'not_configured', 'no registry => not_configured');
+  assert.strictEqual(kNone.eligible, true, 'not_configured never blocks');
+  for (const bucket of ['requirements', 'passed', 'missing', 'unknown']) {
+    assert(Array.isArray(kNone.knowledgeGate[bucket]), `knowledgeGate.${bucket} is an array`);
+  }
+
+  // Register a contract mirroring data/Civication/jobKnowledgeRequirements.json, plus a
+  // deliberately strict role to exercise mode "required" (real categories only).
+  E.registerKnowledgeRequirements({
+    schema: 'civication_job_knowledge_requirements_v1',
+    version: 1,
+    default: { mode: 'not_required' },
+    categories: {
+      naeringsliv: { mode: 'soft_required', label: 'Næringsliv', requirements: [{ type: 'category_quiz_count', category: 'politikk', min_completed: 1 }] },
+      vitenskap: { mode: 'soft_required', label: 'Vitenskap', requirements: [{ type: 'category_quiz_count', category: 'vitenskap', min_completed: 1 }] }
+    },
+    roles: {
+      med_redaktor: { mode: 'required', label: 'Redaktør', requirements: [{ type: 'category_quiz_count', category: 'politikk', min_completed: 2 }] }
+    }
+  });
+
+  // K2. Category requirement exists but no quiz_progress source => unknown; soft never blocks.
+  const kUnknown = E.getJobOfferEligibility({}, { career_id: 'naeringsliv', title: 'Selger' }, { active: null });
+  assert.strictEqual(kUnknown.knowledgeGate.status, 'unknown', 'no readable quiz source => unknown, not missing');
+  assert.strictEqual(kUnknown.knowledgeGate.mode, 'soft_required', 'soft_required mode carried through');
+  assert.strictEqual(kUnknown.knowledgeGate.source, 'jobKnowledgeRequirements', 'sourced from jobKnowledgeRequirements');
+  assert.strictEqual(kUnknown.eligible, true, 'unknown never blocks');
+
+  // K3. Soft requirement missing (source readable, category empty) => eligible, reason, no blocker.
+  const kSoftMissing = E.getJobOfferEligibility({ quiz_progress: { historie: { completed: ['a'] } } }, { career_id: 'naeringsliv' }, { active: null });
+  assert.strictEqual(kSoftMissing.knowledgeGate.status, 'missing', 'readable source + below threshold => missing');
+  assert.strictEqual(kSoftMissing.eligible, true, 'soft_required missing does not block');
+  assert.strictEqual(kSoftMissing.blockers.length, 0, 'soft_required missing adds no blocker');
+  assert(kSoftMissing.reasons.some((r) => /quiz/i.test(r)), 'soft missing surfaces an explanatory reason');
+  assert.strictEqual(kSoftMissing.knowledgeGate.missing.length, 1, 'one missing requirement reported');
+
+  // K4. Required requirement missing AND resolver can evaluate => eligible false + blocker.
+  const kRequiredMissing = E.getJobOfferEligibility({ quiz_progress: { politikk: { completed: ['p1'] } } }, { role_id: 'med_redaktor', career_id: 'media' }, { active: null });
+  assert.strictEqual(kRequiredMissing.knowledgeGate.status, 'missing', 'required role requirement below threshold => missing');
+  assert.strictEqual(kRequiredMissing.knowledgeGate.mode, 'required', 'required mode carried through');
+  assert.strictEqual(kRequiredMissing.eligible, false, 'required + confirmed missing blocks the offer');
+  assert(kRequiredMissing.blockers.length > 0, 'required missing adds a blocker');
+
+  // K4b. Required requirement WITHOUT a readable source => unknown; must NOT block.
+  const kRequiredUnknown = E.getJobOfferEligibility({}, { role_id: 'med_redaktor', career_id: 'media' }, { active: null });
+  assert.strictEqual(kRequiredUnknown.knowledgeGate.status, 'unknown', 'required requirement without source => unknown');
+  assert.strictEqual(kRequiredUnknown.eligible, true, 'required + unknown never blocks (cannot confirm missing)');
+
+  // K5. Passed requirement => passed, eligible, with a reason.
+  const kPassed = E.getJobOfferEligibility({ quiz_progress: { politikk: { completed: ['p1', 'p2'] } } }, { career_id: 'naeringsliv' }, { active: null });
+  assert.strictEqual(kPassed.knowledgeGate.status, 'passed', 'enough completed quizzes => passed');
+  assert.strictEqual(kPassed.eligible, true, 'passed is eligible');
+  assert(kPassed.reasons.some((r) => /kunnskapsgrunnlag/i.test(r)), 'passed surfaces a reason');
+  assert.strictEqual(kPassed.knowledgeGate.passed.length, 1, 'one passed requirement reported');
+
+  // K6. Fired reentry lock OVERRIDES a passed knowledge gate for the same category.
+  const lockedNaering = {
+    quiz_progress: { politikk: { completed: ['p1', 'p2'] } },
+    career_reentry_locks: { naeringsliv: { status: 'locked', reason: 'fired', fired_category: 'naeringsliv' } }
+  };
+  const kLockWins = E.getJobOfferEligibility(lockedNaering, { career_id: 'naeringsliv', title: 'Selger' }, { active: null });
+  assert.strictEqual(kLockWins.knowledgeGate.status, 'passed', 'knowledge is passed');
+  assert.strictEqual(kLockWins.reentryLock.status, 'blocked', 'reentry lock still blocks same category');
+  assert.strictEqual(kLockWins.eligible, false, 'reentry lock overrides a passed knowledge gate');
+
+  // K7. Learning gate still works alongside the knowledge gate; neither writes career_outcome_state.
+  const kLearn = {
+    quiz_progress: { politikk: { completed: ['p1', 'p2'] } },
+    job_learning_progress: { naer_fagarbeider: { steps: 6, mastered: true, unlocked_skills: ['a', 'b', 'c'] } }
+  };
+  const kLearnEl = E.getJobOfferEligibility(kLearn, { career_id: 'naeringsliv' }, { active: { career_id: 'naeringsliv', role_id: 'naer_fagarbeider' } });
+  assert(['ready_for_next_step', 'strong'].includes(kLearnEl.learningGate.status), 'learning gate still reflects readiness');
+  assert.strictEqual(kLearnEl.knowledgeGate.status, 'passed', 'knowledge gate evaluated independently of learning gate');
+  assert.strictEqual(kLearn.career_outcome_state, undefined, 'knowledge/learning gates never set career_outcome_state');
+
+  // K8. Snapshot + requirement helpers tolerate empty / malformed input without throwing.
+  assert.doesNotThrow(() => E.getKnowledgeProgressSnapshot(undefined), 'snapshot tolerates undefined state');
+  assert.doesNotThrow(() => E.getKnowledgeProgressSnapshot({ quiz_progress: 'nope' }), 'snapshot tolerates malformed quiz_progress');
+  assert.strictEqual(E.evaluateKnowledgeRequirement({}, { type: 'unsupported_type' }).status, 'unknown', 'unsupported requirement type => unknown');
+  assert.strictEqual(E.evaluateKnowledgeRequirement({}, 'opaque_id').status, 'unknown', 'opaque string requirement => unknown');
+  const snap = E.getKnowledgeProgressSnapshot({ quiz_progress: { politikk: { completed: ['p1', 'p2'] } } });
+  assert.strictEqual(snap.quizCompletedByCategory.politikk, 2, 'snapshot counts completed quizzes per category');
+  assert.strictEqual(snap.hasQuizSource, true, 'snapshot flags a readable quiz source');
+
+  // ==================================================================================
   // End-to-end through patched CivicationEventEngine.answer.
   // ==================================================================================
   let engineState = {

@@ -1,0 +1,61 @@
+{
+  "schema": "civication_job_knowledge_requirements_v1",
+  "version": 1,
+  "note": "Knowledge gate requirements for Civication job offers. This is the History Go side of the dual gate (knowledge_gate). It uses existing History Go quiz/progress signals (quiz_progress[category].completed). jobLearningProfiles.json is the Civication learning side (learning_gate). Category and requirement category IDs MUST be real History Go quiz category IDs.",
+  "field_docs": {
+    "mode": "not_required = never blocks. soft_required = can report passed/missing and explain, but does not block offers in this version. required = may block when the resolver can confirm a requirement is missing.",
+    "requirements[].type": "category_quiz_count = count completed quizzes in quiz_progress[category].completed and compare with min_completed.",
+    "requirements[].category": "Must be an existing History Go quiz category id (e.g. politikk, vitenskap, by, naeringsliv).",
+    "requirements[].min_completed": "Number of completed quizzes required in that category."
+  },
+  "default": {
+    "mode": "not_required"
+  },
+  "categories": {
+    "naeringsliv": {
+      "mode": "soft_required",
+      "label": "Næringsliv",
+      "requirements": [
+        {
+          "type": "category_quiz_count",
+          "category": "politikk",
+          "min_completed": 1
+        }
+      ]
+    },
+    "media": {
+      "mode": "soft_required",
+      "label": "Media",
+      "requirements": [
+        {
+          "type": "category_quiz_count",
+          "category": "politikk",
+          "min_completed": 1
+        }
+      ]
+    },
+    "vitenskap": {
+      "mode": "soft_required",
+      "label": "Vitenskap",
+      "requirements": [
+        {
+          "type": "category_quiz_count",
+          "category": "vitenskap",
+          "min_completed": 1
+        }
+      ]
+    },
+    "by": {
+      "mode": "soft_required",
+      "label": "By",
+      "requirements": [
+        {
+          "type": "category_quiz_count",
+          "category": "by",
+          "min_completed": 1
+        }
+      ]
+    }
+  },
+  "roles": {}
+}
