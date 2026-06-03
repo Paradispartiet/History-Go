@@ -3,6 +3,7 @@
    - Gir window.HG_CiviShop med getInv(), getPacks(), buyPack()
    - Lagrer inventory i localStorage
    - Filtrerer synlige butikker/pakker via History Go → Civication access
+   - Leser valgt Civication-nabolag som bolig-/butikktilgang
    ============================================================ */
 
 (function () {
@@ -207,12 +208,23 @@
   // ACCESS FILTERING
   // ============================================================
 
+  function getSelectedNeighborhoodAccess() {
+    const access = window.CivicationHome?.getSelectedDistrictAccess?.();
+
+    return access && typeof access === "object"
+      ? access
+      : { housing: [], store: [] };
+  }
+
   function getStoreAccessPool() {
     const bridge = window.CivicationPlaceAccessBridge;
     const bucket = /** @type {unknown[]} */ (
       bridge?.getBucket ? bridge.getBucket("store") : []
     );
-    return bucket;
+    const neighborhood = getSelectedNeighborhoodAccess();
+    const selectedStore = normalizeList(neighborhood?.store);
+
+    return Array.from(new Set(bucket.map(String).concat(selectedStore)));
   }
 
   function getHousingAccessPool() {
@@ -220,7 +232,10 @@
     const bucket = /** @type {unknown[]} */ (
       bridge?.getBucket ? bridge.getBucket("housing") : []
     );
-    return bucket;
+    const neighborhood = getSelectedNeighborhoodAccess();
+    const selectedHousing = normalizeList(neighborhood?.housing);
+
+    return Array.from(new Set(bucket.map(String).concat(selectedHousing)));
   }
 
   /**
@@ -249,7 +264,7 @@
       work_shop_generic: ["equipment", "clothing"],
       hifi_shop_generic: ["audio"],
       car_dealer_generic: ["electronics", "equipment"],
-      housing_market: ["home"]
+      housing_market: ["home", "stable_home"]
     };
 
     const wanted = mapping[storeId] || mapping[storeType] || [storeType];
