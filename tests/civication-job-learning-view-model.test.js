@@ -318,6 +318,54 @@ async function run() {
   await engine.answer('naer_prog_outcome', 'A');
   assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 'answering the outcome mail does not grant a learning step');
 
+  // ===========================================================================
+  // Unlock transferable_skills / teaches at mastery (idempotent, only at mastery).
+  // ===========================================================================
+  Runtime.registerProfiles({
+    naer_unlock: {
+      learning_value: 'high',
+      usefulness: 'high',
+      dead_end_risk: 'low',
+      mastery_threshold: 2,
+      teaches: ['lærdom A', 'lærdom B', 'lærdom C'],
+      transferable_skills: ['ferdighet A', 'ferdighet B', 'ferdighet C']
+    }
+  });
+  const activeU = { career_id: 'naeringsliv', role_id: 'naer_unlock', role_key: 'unlockrolle', title: 'Unlock' };
+
+  // Below mastery: nothing unlocked yet.
+  let us = {};
+  const u1 = Runtime.markJobLearningStep(us, activeU, {});
+  assert.strictEqual(u1.job_learning_progress.naer_unlock.steps, 1, 'first step');
+  assert.strictEqual(u1.job_learning_progress.naer_unlock.mastered, false, 'not yet mastered');
+  assert.deepStrictEqual(u1.job_learning_progress.naer_unlock.unlocked_skills, [], 'no skills before mastery');
+  assert.deepStrictEqual(u1.job_learning_progress.naer_unlock.unlocked_teaches, [], 'no teaches before mastery');
+
+  // Reaching the threshold unlocks the profile's skills and teaches.
+  us = { ...us, ...u1 };
+  const u2 = Runtime.markJobLearningStep(us, activeU, {});
+  const eU = u2.job_learning_progress.naer_unlock;
+  assert.strictEqual(eU.mastered, true, 'mastered at threshold');
+  assert.deepStrictEqual(eU.unlocked_skills, ['ferdighet A', 'ferdighet B', 'ferdighet C'], 'mastery unlocks transferable skills');
+  assert.deepStrictEqual(eU.unlocked_teaches, ['lærdom A', 'lærdom B', 'lærdom C'], 'mastery unlocks teaches');
+
+  // Further steps are idempotent: unlocked lists do not grow or duplicate.
+  us = { ...us, ...u2 };
+  const u3 = Runtime.markJobLearningStep(us, activeU, {});
+  assert.deepStrictEqual(u3.job_learning_progress.naer_unlock.unlocked_skills, ['ferdighet A', 'ferdighet B', 'ferdighet C'], 'unlocks stay idempotent');
+  assert.strictEqual(u3.job_learning_progress.naer_unlock.steps, 3, 'steps keep advancing past mastery');
+
+  // View model surfaces the unlocked lists.
+  const uvm = vmOf(us, activeU);
+  assert.strictEqual(uvm.jobMastered, true, 'mastered in view model');
+  assert.deepStrictEqual(uvm.unlockedSkills, ['ferdighet A', 'ferdighet B', 'ferdighet C'], 'view model exposes unlocked skills');
+  assert.deepStrictEqual(uvm.unlockedTeaches, ['lærdom A', 'lærdom B', 'lærdom C'], 'view model exposes unlocked teaches');
+
+  // No stored progress => view model exposes empty unlocked lists, never undefined.
+  const noStore = vmOf({}, activeU);
+  assert.deepStrictEqual(noStore.unlockedSkills, [], 'empty unlocked skills without stored progress');
+  assert.deepStrictEqual(noStore.unlockedTeaches, [], 'empty unlocked teaches without stored progress');
+
   console.log('PASS: Civication job learning view-model tests completed.');
 }
 

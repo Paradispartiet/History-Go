@@ -252,10 +252,21 @@
     return { key, entry, [PROGRESS_KEY]: map };
   }
 
+  // Merge previously-unlocked strings with a profile-sourced list, deduped and capped.
+  // Used to populate "what the player took with them" once a role is mastered. Sticky
+  // and idempotent: re-running never duplicates or drops already-unlocked entries.
+  function unlockList(prev, source, cap) {
+    const base = Array.isArray(prev) ? prev.filter((s) => typeof s === "string" && s.trim()) : [];
+    const add = Array.isArray(source) ? source.filter((s) => typeof s === "string" && s.trim()) : [];
+    return [...new Set([...base, ...add])].slice(0, cap);
+  }
+
   // Deterministically advance learning progress for the active role. Pure: returns a
   // state patch ({ job_learning_progress }) the caller applies via CivicationState
   // .setState. Creates the entry if missing, clamps steps at >= 0, sets mastered when
-  // the threshold is reached, and never touches career_outcome_state.
+  // the threshold is reached, and never touches career_outcome_state. When (and only
+  // when) the role is mastered, it unlocks the profile's teaches / transferable_skills
+  // into the entry — idempotently, so further steps never duplicate them.
   //
   // options: { delta = 1, day = <unchanged>, now = <ISO> }
   function markJobLearningStep(state, active, options) {
@@ -267,7 +278,9 @@
     const prev = normalizeProgressEntry(map[key]);
     const delta = Number.isFinite(Number(opts.delta)) ? Math.floor(Number(opts.delta)) : 1;
     const steps = Math.max(0, prev.steps + delta);
-    const mastered = steps >= masteryThresholdFor(active);
+    const profile = getLearningProfile(active);
+    const threshold = Math.max(1, Number(profile?.mastery_threshold) || DEFAULT_MASTERY_THRESHOLD);
+    const mastered = steps >= threshold;
     const day = (opts.day === 0 || opts.day) ? opts.day : prev.last_updated_day;
 
     map[key] = {
@@ -275,7 +288,10 @@
       steps,
       mastered,
       learned_at: mastered ? (prev.learned_at || opts.now || new Date().toISOString()) : null,
-      last_updated_day: day
+      last_updated_day: day,
+      // Unlock at mastery only; never revoke what was already unlocked.
+      unlocked_teaches: mastered ? unlockList(prev.unlocked_teaches, profile?.teaches, 6) : prev.unlocked_teaches,
+      unlocked_skills: mastered ? unlockList(prev.unlocked_skills, profile?.transferable_skills, 12) : prev.unlocked_skills
     };
 
     return { [PROGRESS_KEY]: map };
@@ -376,6 +392,11 @@
     const stepsTaken = resolveEffectiveSteps(s, activePosition);
     const progress = Math.max(0, Math.min(1, stepsTaken / masteryThreshold));
 
+    // Skills/lessons the player has already taken with them, unlocked at mastery.
+    const storedEntry = getJobLearningProgress(s, activePosition);
+    const unlockedTeaches = storedEntry ? storedEntry.unlocked_teaches : [];
+    const unlockedSkills = storedEntry ? storedEntry.unlocked_skills : [];
+
     // jobMastered is a LEARNING signal (steps vs threshold), never a career outcome
     // signal. A PROMOTED player is not automatically "utlært".
     const jobMastered = stepsTaken >= masteryThreshold;
@@ -398,6 +419,8 @@
         stepsTaken,
         progress,
         teaches: Array.isArray(profile?.teaches) ? profile.teaches.slice(0, 6) : [],
+        unlockedTeaches,
+        unlockedSkills,
         indicators: []
       };
     }
@@ -431,6 +454,8 @@
       stepsTaken,
       progress,
       teaches: Array.isArray(profile?.teaches) ? profile.teaches.slice(0, 6) : [],
+      unlockedTeaches,
+      unlockedSkills,
       indicators
     };
   }
