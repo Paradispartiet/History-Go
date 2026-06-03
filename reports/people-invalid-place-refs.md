@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-02T22:05:46.966Z
+Generated: 2026-06-03T05:31:32.762Z
 
 ## Sammendrag
 - People-filer lest: **19**
-- People lest: **342**
+- People lest: **350**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **2**
-- Duplikate interne place-referanser: **340**
+- Duplikate interne place-referanser: **348**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -177,6 +177,14 @@ Generated: 2026-06-02T22:05:46.966Z
 - data/people/people_filantroper.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
 - data/people/people_filantroper.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> bankplassen x2
 - data/people/people_filantroper.json :: eckbos_legat (Eckbos Legat) -> universitetsplassen x2
+- data/people/people_filantroper.json :: olav_thon (Olav Thon) -> universitetets_gamle_hovedbygning x2
+- data/people/people_filantroper.json :: fred_kavli (Fred Kavli) -> universitetets_gamle_hovedbygning x2
+- data/people/people_filantroper.json :: anders_jahre (Anders Jahre) -> universitetets_gamle_hovedbygning x2
+- data/people/people_filantroper.json :: jens_henrik_nordlie (Jens Henrik Nordlie) -> stortinget x2
+- data/people/people_filantroper.json :: jens_christian_hauge (Jens Christian Hauge) -> stortinget x2
+- data/people/people_filantroper.json :: finn_skedsmo (Finn Skedsmo) -> stortinget x2
+- data/people/people_filantroper.json :: kavlifondet (Kavlifondet) -> universitetets_gamle_hovedbygning x2
+- data/people/people_filantroper.json :: gjensidigestiftelsen (Gjensidigestiftelsen) -> bankplassen x2
 - data/people/natur/oslo/people_natur_oslo.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
 - data/people/natur/oslo/people_natur_oslo.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
 - data/people/natur/oslo/people_natur_oslo.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2

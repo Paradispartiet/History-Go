@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-02T22:05:47.466Z",
+  "generatedAt": "2026-06-03T05:31:33.215Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-02T22:05:47.466Z",
+    "generatedAt": "2026-06-03T05:31:33.215Z",
     "peopleFilesRead": 19,
-    "totalPeople": 342,
-    "uniquePeopleIds": 342,
+    "totalPeople": 350,
+    "uniquePeopleIds": 350,
     "duplicatePeopleIds": 0,
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 2,
@@ -277,7 +277,7 @@
       "listedInManifest": true,
       "categoryGuess": "filantroper",
       "geographicStructure": false,
-      "peopleCount": 9,
+      "peopleCount": 17,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
@@ -287,10 +287,10 @@
       "schemaKind": "collectionGroup_filantroper_schema",
       "schemaNotes": [
         "schemaKind=collectionGroup_filantroper_schema",
-        "placeId=9/9",
-        "source_place_id=0/9",
-        "placesArray=9/9",
-        "collectionGroup=9/9",
+        "placeId=17/17",
+        "source_place_id=0/17",
+        "placesArray=17/17",
+        "collectionGroup=17/17",
         "categories=by,kunst,litteratur,politikk,vitenskap",
         "ok: filantroper vurderes etter collectionGroup, ikke category"
       ]
@@ -438,7 +438,7 @@
     },
     {
       "category": "filantroper",
-      "totalPeople": 9,
+      "totalPeople": 17,
       "files": [
         "data/people/people_filantroper.json"
       ],
@@ -446,8 +446,8 @@
         "data/people/people_filantroper.json"
       ],
       "geographicFiles": [],
-      "suggestedNextAction": "expand_content",
-      "reason": "Kategorien er liten og ren; mer innhold bør komme før eventuell split."
+      "suggestedNextAction": "geographic_split",
+      "reason": "Kategorien er flat, har mange entries og alle entries har gyldig hovedanker."
     },
     {
       "category": "film_tv",
@@ -652,7 +652,15 @@
       "data/people/people_filantroper.json"
     ],
     "mixedCategoryStructure": [],
-    "recommendedNextGeographicSplit": [],
+    "recommendedNextGeographicSplit": [
+      {
+        "category": "filantroper",
+        "totalPeople": 17,
+        "files": [
+          "data/people/people_filantroper.json"
+        ]
+      }
+    ],
     "safeFlatFilesForGeographicSplit": [],
     "flatFilesHoldForSchemaReview": [
       {
@@ -857,10 +865,10 @@
       "schemaKind": "collectionGroup_filantroper_schema",
       "schemaNotes": [
         "schemaKind=collectionGroup_filantroper_schema",
-        "placeId=9/9",
-        "source_place_id=0/9",
-        "placesArray=9/9",
-        "collectionGroup=9/9",
+        "placeId=17/17",
+        "source_place_id=0/17",
+        "placesArray=17/17",
+        "collectionGroup=17/17",
         "categories=by,kunst,litteratur,politikk,vitenskap",
         "ok: filantroper vurderes etter collectionGroup, ikke category"
       ],
@@ -4861,10 +4869,10 @@
     }
   ],
   "recommendedNextPr": {
-    "type": "content_expansion",
+    "type": "geographic_split",
     "category": "filantroper",
-    "reason": "filantroper er liten og ren nok for innholdsutvidelse.",
-    "safeBatchSize": 10,
+    "reason": "filantroper er største flate kategori med gyldige hovedankere og vanlig people-schema.",
+    "safeBatchSize": 17,
     "blockers": []
   },
   "guardrails": {
