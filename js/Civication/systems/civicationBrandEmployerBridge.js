@@ -95,9 +95,10 @@
       const result = originalAcceptOffer.call(this, offerKey);
       if (!result?.ok) return result;
       const offer = result.offer || {};
-      const active = globalScope.CivicationState?.getActivePosition?.();
+      const civicationState = /** @type {any} */ (globalScope).CivicationState;
+      const active = civicationState?.getActivePosition?.();
       if (!active) return result;
-      globalScope.CivicationState?.setActivePosition?.({
+      civicationState?.setActivePosition?.({
         ...active,
         brand_id: normalize(offer.brand_id) || null,
         brand_name: normalize(offer.brand_name) || null,
