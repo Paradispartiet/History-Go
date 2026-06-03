@@ -25,6 +25,57 @@
     return [...new Set((Array.isArray(xs) ? xs : []).map(s).filter(Boolean))];
   }
 
+  function esc(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function resolvePlaceNameById(placeId) {
+    const id = s(placeId);
+    if (!id) return "";
+    const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+    const match = places.find(p => s(p?.id) === id);
+    return s(match?.name || match?.title || id);
+  }
+
+  function renderNatureProfile(place) {
+    if (window.HGPlaceNatureProfile && typeof window.HGPlaceNatureProfile.render === "function") {
+      return window.HGPlaceNatureProfile.render(place);
+    }
+
+    const raw = place?.nature_profile && typeof place.nature_profile === "object" ? place.nature_profile : null;
+    const title = s(raw?.title) || "Natur";
+    const summary = s(raw?.summary) || "Natursporet for dette stedet er ikke fylt ut ennå.";
+    const themes = uniq(raw?.themes);
+    const nearbyPlaceIds = uniq(raw?.nearby_place_ids);
+    const themesHtml = themes.length
+      ? `<div class="pc-nature-profile-themes" aria-label="Naturtemaer">${themes.map(theme => `<span class="pc-badges-chip pc-nature-theme">${esc(theme)}</span>`).join("")}</div>`
+      : "";
+    const nearbyHtml = nearbyPlaceIds.length
+      ? `
+        <div class="pc-nature-profile-nearby">
+          <div class="pc-nature-section-title">Nærnatur</div>
+          <div class="pc-badges-chip-list">
+            ${nearbyPlaceIds.map(id => `<span class="pc-badges-chip pc-nature-nearby" data-place-id="${esc(id)}">${esc(resolvePlaceNameById(id) || id)}</span>`).join("")}
+          </div>
+        </div>
+      `
+      : "";
+
+    return `
+      <div class="pc-nature-profile${raw ? "" : " pc-nature-profile-fallback"}">
+        <h3 class="pc-nature-profile-title">${esc(title)}</h3>
+        <p class="pc-nature-profile-summary">${esc(summary)}</p>
+        ${themesHtml}
+        ${nearbyHtml}
+      </div>
+    `;
+  }
+
   function mergeEntry(base, extra) {
     const out = { ...(base || {}) };
     out.flora = uniq([...(Array.isArray(base?.flora) ? base.flora : []), ...(Array.isArray(extra?.flora) ? extra.flora : [])]);
@@ -170,7 +221,8 @@
     `;
   }
 
-  function renderNatureList({ floraItems, faunaItems }) {
+  function renderNatureList({ place, floraItems, faunaItems }) {
+    const profileHtml = renderNatureProfile(place);
     const floraHtml = floraItems.length
       ? `<div class="pc-nature-section"><div class="pc-nature-section-title">Flora</div>${floraItems.map(x => renderNatureButton(x, "flora")).join("")}</div>`
       : "";
@@ -179,9 +231,11 @@
       ? `<div class="pc-nature-section"><div class="pc-nature-section-title">Fauna</div>${faunaItems.map(x => renderNatureButton(x, "fauna")).join("")}</div>`
       : "";
 
-    return (floraHtml || faunaHtml)
+    const speciesHtml = (floraHtml || faunaHtml)
       ? `<div class="pc-flora-row pc-nature-row">${floraHtml}${faunaHtml}</div>`
-      : `<div class="pc-empty">Ingen naturkoblinger ennå</div>`;
+      : "";
+
+    return `${profileHtml}${speciesHtml}`;
   }
 
   async function getNatureForPlace(place) {
@@ -218,7 +272,7 @@
     const count = nature.floraItems.length + nature.faunaItems.length;
 
     if (natureEl) {
-      natureEl.innerHTML = renderNatureList(nature);
+      natureEl.innerHTML = renderNatureList({ place, ...nature });
     }
 
     if (natureIcon) {
@@ -294,7 +348,10 @@
         : place;
 
       const res = await original.call(this, enrichedPlace);
-      await applyNatureToPlaceCard(enrichedPlace);
+      const latestPlace = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
+        p => s(p?.id) === s(enrichedPlace?.id)
+      ) || enrichedPlace;
+      await applyNatureToPlaceCard(latestPlace);
       return res;
     };
 

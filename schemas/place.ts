@@ -1,3 +1,12 @@
+export interface PlaceNatureProfile {
+  type?: string;
+  title?: string;
+  summary?: string;
+  themes?: string[];
+  nearby_place_ids?: string[];
+  [key: string]: unknown;
+}
+
 export interface PlaceSportProfile {
   groundhopper_relevant?: boolean;
   sports?: string[];
@@ -11,6 +20,7 @@ export interface PlaceSportProfile {
 export interface Place {
   id: string;
   name?: string;
+  title?: string;
   lat?: number;
   lon?: number;
   /**
@@ -32,6 +42,7 @@ export interface Place {
   stub?: boolean;
   sport_profile?: PlaceSportProfile;
   quiz_profile?: Record<string, unknown>;
+  nature_profile?: PlaceNatureProfile;
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;
