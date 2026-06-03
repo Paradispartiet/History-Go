@@ -101,6 +101,92 @@ function tfUI(key, fallback = "", vars = {}) {
   );
 }
 
+const PLACE_CARD_NATURE_FALLBACK_PROFILE = Object.freeze({
+  title: "Natur",
+  summary: "Natursporet for dette stedet er ikke fylt ut ennå.",
+  themes: []
+});
+
+function normalizePlaceCardStringList(value) {
+  return (Array.isArray(value) ? value : [])
+    .map(item => String(item ?? "").trim())
+    .filter(Boolean);
+}
+
+function resolvePlaceCardNameById(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return "";
+  const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+  const match = places.find(p => String(p?.id || "").trim() === id);
+  return String(match?.name || match?.title || id).trim();
+}
+
+function normalizePlaceCardNatureProfile(place) {
+  const raw = place?.nature_profile && typeof place.nature_profile === "object"
+    ? place.nature_profile
+    : null;
+
+  if (!raw) {
+    return {
+      type: "fallback",
+      title: PLACE_CARD_NATURE_FALLBACK_PROFILE.title,
+      summary: PLACE_CARD_NATURE_FALLBACK_PROFILE.summary,
+      themes: [],
+      nearby_place_ids: [],
+      isFallback: true
+    };
+  }
+
+  return {
+    type: String(raw.type || "").trim(),
+    title: String(raw.title || PLACE_CARD_NATURE_FALLBACK_PROFILE.title).trim(),
+    summary: String(raw.summary || PLACE_CARD_NATURE_FALLBACK_PROFILE.summary).trim(),
+    themes: normalizePlaceCardStringList(raw.themes),
+    nearby_place_ids: normalizePlaceCardStringList(raw.nearby_place_ids),
+    isFallback: false
+  };
+}
+
+function renderPlaceCardNatureProfile(place) {
+  const profile = normalizePlaceCardNatureProfile(place);
+  const themesHtml = profile.themes.length
+    ? `
+      <div class="pc-nature-profile-themes" aria-label="Naturtemaer">
+        ${profile.themes.map(theme => `<span class="pc-badges-chip pc-nature-theme">${escapePlaceCardHTML(theme)}</span>`).join("")}
+      </div>
+    `
+    : "";
+
+  const nearbyHtml = profile.nearby_place_ids.length
+    ? `
+      <div class="pc-nature-profile-nearby">
+        <div class="pc-nature-section-title">Nærnatur</div>
+        <div class="pc-badges-chip-list">
+          ${profile.nearby_place_ids.map(id => {
+            const label = resolvePlaceCardNameById(id) || id;
+            return `<span class="pc-badges-chip pc-nature-nearby" data-place-id="${escapePlaceCardHTML(id)}">${escapePlaceCardHTML(label)}</span>`;
+          }).join("")}
+        </div>
+      </div>
+    `
+    : "";
+
+  return `
+    <div class="pc-nature-profile${profile.isFallback ? " pc-nature-profile-fallback" : ""}">
+      <h3 class="pc-nature-profile-title">${escapePlaceCardHTML(profile.title)}</h3>
+      <p class="pc-nature-profile-summary">${escapePlaceCardHTML(profile.summary)}</p>
+      ${themesHtml}
+      ${nearbyHtml}
+    </div>
+  `;
+}
+
+window.HGPlaceNatureProfile = {
+  fallback: PLACE_CARD_NATURE_FALLBACK_PROFILE,
+  normalize: normalizePlaceCardNatureProfile,
+  render: renderPlaceCardNatureProfile
+};
+
 const PLACE_CARD_QUIZ_CARD_BY_ID = Object.freeze({
   aker_brygge: "bilder/QuizCards/Akerbrygge.PNG",
   barcode: "bilder/QuizCards/Barcode.PNG",
@@ -399,7 +485,7 @@ iconsWrap?.addEventListener("click", (e) => {
 });
 
 bindRoundPopup(peopleIcon, peopleEl, "People", "people");
-bindRoundPopup(natureIcon, natureEl, "Nature", "nature");
+bindRoundPopup(natureIcon, natureEl, "Natur", "nature");
 bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
 bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
@@ -724,8 +810,9 @@ if (peopleIcon) {
 }
 
 
-// --- NATURE LIST (flora) ---
+// --- NATURE LIST (fast runding: place.nature_profile + flora) ---
 if (natureEl) {
+  const profileHtml = renderPlaceCardNatureProfile(place);
   const floraHtml = floraHere.length
     ? `
       <div class="pc-flora-row">
@@ -733,7 +820,7 @@ if (natureEl) {
           const img = a.imageCard || a.image || a.img || "";
           if (!img) return "";
           return `
-            <button class="pc-flora" data-flora="${a.id}" aria-label="${a.name || ""}">
+            <button class="pc-flora" data-flora="${a.id}" aria-label="${escapePlaceCardHTML(a.name || "")}">
               <img src="${img}" class="pc-person-img" alt="">
             </button>
           `;
@@ -742,7 +829,7 @@ if (natureEl) {
     `
     : "";
 
-  natureEl.innerHTML = floraHtml;
+  natureEl.innerHTML = `${profileHtml}${floraHtml}`;
 
   // flora click (åpne infokort)
   natureEl.querySelectorAll("[data-flora]").forEach((/** @type {HTMLElement} */ btn) => {

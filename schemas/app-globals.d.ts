@@ -104,6 +104,7 @@ declare global {
     HGMissingImages?: any;
     HGNarratives?: any;
     HGNaturePlaceMap?: any;
+    HGPlaceNatureProfile?: any;
     HGNatureUnlocks?: any;
     HGNavRoutes?: any;
     HGNavigator?: any;
