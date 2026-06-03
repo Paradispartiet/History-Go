@@ -1,20 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-03T09:10:58.244Z
+- Generated at (UTC): 2026-06-03T09:54:49.714Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 63
-- Files with diagnostics: 38
+- Total diagnostic lines found: 46
+- Files with diagnostics: 32
 - Groups with diagnostics: 8
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 14 | 28 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
 | js/ui/** | 8 | 14 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
 | other | 11 | 13 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
+| js/Civication/** | 8 | 11 | js/Civication/core/civicationJobs.js<br>js/Civication/systems/civicationActivePositionRecovery.js<br>js/Civication/systems/civicationBrandEmployerBridge.js |
 | js/boot.js | 1 | 4 | js/boot.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
 | js/state/** | 1 | 1 | js/state/persistence.js |
@@ -24,17 +24,11 @@
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
 | js/boot.js | 4 | js/boot.js |
-| js/Civication/ui/CivicationMap.js | 3 | js/Civication/** |
 | js/ui/popup-utils.js | 3 | js/ui/** |
 | js/Civication/core/civicationJobs.js | 2 | js/Civication/** |
-| js/Civication/core/civicationState.js | 2 | js/Civication/** |
 | js/Civication/systems/civicationBrandEmployerBridge.js | 2 | js/Civication/** |
 | js/Civication/systems/day/dayFactionConflictSystem.js | 2 | js/Civication/** |
-| js/Civication/systems/day/dayRuntimeDebugPanel.js | 2 | js/Civication/** |
-| js/Civication/systems/day/dayWeeklyReview.js | 2 | js/Civication/** |
-| js/Civication/ui/CivicationUI.js | 2 | js/Civication/** |
 | js/audits/imageRoles.audit.js | 2 | other |
 | js/profileIdentity.js | 2 | other |
 | js/ui/badge-unlock-toast.js | 2 | js/ui/** |
@@ -44,16 +38,20 @@
 | js/Civication/systems/civicationActivePositionRecovery.js | 1 | js/Civication/** |
 | js/Civication/systems/civicationDailyMailBuilder.js | 1 | js/Civication/** |
 | js/Civication/systems/civicationPlaceAccessBridge.js | 1 | js/Civication/** |
+| js/Civication/systems/day/dayNpcCharacterThreads.js | 1 | js/Civication/** |
+| js/Civication/ui/CivicationHome.js | 1 | js/Civication/** |
+| js/app.js | 1 | other |
+| js/console/legacyExtensions.js | 1 | other |
+| js/console/verify.js | 1 | other |
+| js/core/pos.js | 1 | other |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 32 |
-| TS2322 | 7 |
+| TS2339 | 25 |
 | TS2345 | 4 |
-| TS2362 | 4 |
+| TS2322 | 4 |
 | TS2304 | 4 |
-| TS2363 | 3 |
 | TS2739 | 2 |
 | TS2769 | 2 |
 | TS2552 | 2 |
@@ -62,19 +60,19 @@
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (28 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/ui/CivicationMap.js` (3), `js/ui/popup-utils.js` (3), `js/Civication/core/civicationJobs.js` (2).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `js/ui/**`, `other`, `js/boot.js`.
+1. Start with **js/ui/** (14 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/boot.js` (4), `js/ui/popup-utils.js` (3), `js/Civication/core/civicationJobs.js` (2), `js/Civication/systems/civicationBrandEmployerBridge.js` (2), `js/Civication/systems/day/dayFactionConflictSystem.js` (2).
+3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/Civication/**`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
 ```
+> history-go@0.0.0 typecheck
+> tsc -p tsconfig.json
 js/Civication/core/civicationJobs.js(443,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
   Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
 js/Civication/core/civicationJobs.js(462,24): error TS2345: Argument of type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is not assignable to parameter of type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }'.
   Type '{ career_id: string; career_name: string; title: string; threshold: number; points_at_offer: number; }' is missing the following properties from type '{ career_id: any; career_name: any; title: any; threshold: any; points_at_offer: any; brand_id: any; brand_name: any; brand_type: any; brand_group: any; sector: any; place_id: any; employer_context: any; }': brand_id, brand_name, brand_type, brand_group, and 3 more.
-js/Civication/core/civicationState.js(389,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/core/civicationState.js(389,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/systems/civicationActivePositionRecovery.js(170,5): error TS2322: Type 'boolean' is not assignable to type 'CiviFn'.
 js/Civication/systems/civicationBrandEmployerBridge.js(98,34): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationBrandEmployerBridge.js(100,19): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
@@ -84,25 +82,8 @@ js/Civication/systems/civicationPlaceAccessBridge.js(198,64): error TS2339: Prop
 js/Civication/systems/day/dayFactionConflictSystem.js(116,25): error TS2339: Property 'score' does not exist on type 'never'.
 js/Civication/systems/day/dayFactionConflictSystem.js(116,42): error TS2339: Property 'faction' does not exist on type 'never'.
 js/Civication/systems/day/dayNpcCharacterThreads.js(147,28): error TS2339: Property 'detail' does not exist on type 'Event'.
-js/Civication/systems/day/dayPatches.js(648,28): error TS2339: Property 'getPendingEvent' does not exist on type 'answer'.
-js/Civication/systems/day/dayPatches.js(648,51): error TS2339: Property 'getPendingEvent' does not exist on type 'answer'.
-js/Civication/systems/day/dayPatches.js(690,24): error TS2339: Property 'onAppOpen' does not exist on type 'answer'.
-js/Civication/systems/day/dayPatches.js(737,22): error TS2339: Property 'onAppOpen' does not exist on type 'answer'.
-js/Civication/systems/day/dayPatches.js(779,20): error TS2339: Property 'onAppOpen' does not exist on type 'answer'.
-js/Civication/systems/day/dayPatches.js(850,5): error TS2322: Type 'boolean' is not assignable to type 'CiviFn'.
-js/Civication/systems/day/dayRuntimeDebugPanel.js(296,40): error TS2339: Property '_t' does not exist on type '() => void'.
-js/Civication/systems/day/dayRuntimeDebugPanel.js(297,20): error TS2339: Property '_t' does not exist on type '() => void'.
-js/Civication/systems/day/dayWeeklyReview.js(19,21): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/systems/day/dayWeeklyReview.js(19,25): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationHome.js(348,5): error TS2322: Type '{ frogner: { id: string; name: string; baseCost: number; quizRequirements: { naeringsliv: number; kunst: number; }; modifiers: { visibility: number; integrity: number; autonomy: number; }; }; grunerlokka: { ...; }; sagene: { ...; }; ullern: { ...; }; sondre_nordstrand: { ...; }; sentrum: { ...; }; }' is not assignable to type 'CiviFn'.
   Type '{ frogner: { id: string; name: string; baseCost: number; quizRequirements: { naeringsliv: number; kunst: number; }; modifiers: { visibility: number; integrity: number; autonomy: number; }; }; grunerlokka: { ...; }; sagene: { ...; }; ullern: { ...; }; sondre_nordstrand: { ...; }; sentrum: { ...; }; }' provides no match for the signature '(...args: unknown[]): unknown'.
-js/Civication/ui/CivicationMap.js(50,525): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/ui/CivicationMap.js(95,934): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/ui/CivicationMap.js(95,958): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
-js/Civication/ui/CivicationUI.js(628,9): error TS2322: Type 'CiviFn | {}' is not assignable to type 'Record<string, { id?: string; name?: string; baseCost?: number; modifiers?: Record<string, number>; quizRequirements?: Record<string, unknown>; }>'.
-  Type 'CiviFn' is not assignable to type 'Record<string, { id?: string; name?: string; baseCost?: number; modifiers?: Record<string, number>; quizRequirements?: Record<string, unknown>; }>'.
-    Index signature for type 'string' is missing in type 'CiviFn'.
-js/Civication/ui/CivicationUI.js(1374,7): error TS2322: Type 'number' is not assignable to type 'string'.
 js/app.js(121,20): error TS2339: Property 'dataset' does not exist on type 'Element'.
 js/audits/imageRoles.audit.js(62,79): error TS2739: Type 'Blob' is missing the following properties from type 'File': lastModified, name, webkitRelativePath
 js/audits/imageRoles.audit.js(63,67): error TS2739: Type 'Blob' is missing the following properties from type 'File': lastModified, name, webkitRelativePath
@@ -149,4 +130,15 @@ js/ui/popup-utils.js(334,30): error TS2769: No overload matches this call.
               Type 'any[]' is not assignable to type 'readonly [any, any]'.
                 Target requires 2 element(s) but source may have fewer.
   Overload 2 of 4, '(entries?: readonly (readonly [any, any])[]): Map<any, any>', gave the following error.
+    Argument of type 'any[][]' is not assignable to parameter of type 'readonly (readonly [any, any])[]'.
+      Type 'any[]' is not assignable to type 'readonly [any, any]'.
+        Target requires 2 element(s) but source may have fewer.
+js/ui/popup-utils.js(1536,16): error TS2552: Cannot find name 'wkDocHtml'. Did you mean 'wkHtml'?
+js/ui/popup-utils.js(1536,41): error TS2552: Cannot find name 'wkDocHtml'. Did you mean 'wkHtml'?
+js/ui/search.js(137,5): error TS2322: Type 'Place[]' is not assignable to type '{ item: Place; score: number; distance: number; }[]'.
+  Type 'Place' is missing the following properties from type '{ item: Place; score: number; distance: number; }': item, score, distance
+knowledge.js(6,43): error TS2339: Property 'src' does not exist on type 'HTMLOrSVGScriptElement'.
+  Property 'src' does not exist on type 'SVGScriptElement'.
+scripts/verify-civication-boot-smoke.js(4,28): error TS2307: Cannot find module 'playwright' or its corresponding type declarations.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
 ```
