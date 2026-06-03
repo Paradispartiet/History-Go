@@ -31,6 +31,9 @@ jobs:
       - name: Syntax check Civication Event Engine
         run: node --check js/Civication/core/civicationEventEngine.js
 
+      - name: Run Civication outcome tests
+        run: npm run test:civication
+
       - name: Generate typecheck baseline report
         run: npm run typecheck:report
 
