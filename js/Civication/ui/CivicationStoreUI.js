@@ -39,7 +39,7 @@
       <div class="latest-knowledge-box">
         <div class="lk-topic">Tilgjengelige butikker og pakker</div>
         <div class="lk-category">PC-saldo: <strong>${formatPc(wallet?.balance || 0)}</strong></div>
-        <div class="lk-text">Dette er butikker og pakker som faktisk finnes i livsverdenen din nå fordi du har åpnet relevante steder i History Go.</div>
+        <div class="lk-text">Dette er butikker og pakker som faktisk finnes i livsverdenen din nå fordi du har åpnet relevante steder i History Go eller valgt nabolag i Civication.</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
         ${stores.map(function (store) {
@@ -88,4 +88,5 @@
 
   document.addEventListener("DOMContentLoaded", renderStorePanel);
   window.addEventListener("updateProfile", renderStorePanel);
+  window.addEventListener("civi:homeChanged", renderStorePanel);
 })();
