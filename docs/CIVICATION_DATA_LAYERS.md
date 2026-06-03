@@ -272,6 +272,8 @@ Fired-regelen: **Får du sparken i én kategori, må du jobbe i en annen kategor
 - `STAGNATED` gir ingen kategori-lock; den kan bare gi `offerRoute: "exit_from_stagnation"`. `PROMOTED` gir heller ingen lock.
 - FIRED sletter aldri quiz/merits, `job_learning_progress`, mastered roles, `unlocked_skills`/`unlocked_teaches` eller job history. Locken berører kun fremtidige jobbtilbud i samme kategori.
 
+UI skal lese aktive `career_reentry_locks` direkte fra state/runtime, fordi locked-category offers kan bli stoppet i `pushOffer` før de lagres.
+
 ## 9. Åpne neste steg
 
 Dette dokumentet implementerer ingenting. Mulige neste steg er:
