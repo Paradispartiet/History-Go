@@ -4,6 +4,7 @@ Denne planen beskriver hvordan History Go kan migreres fra TypeScript-sjekket Ja
 
 ## Nåværende status
 
+- **Prosjektbeslutning:** Civication holdes utenfor TypeScript-migrering inntil videre. Det skal fortsatt jobbes aktivt videre med Civication-funksjoner i JavaScript, og Civication kan fortsatt være `checkJs`-/JSDoc-typekontrollert JavaScript under dagens TypeScript-sjekk.
 - Repoet kjører i dag JavaScript med TypeScript-kontroll via `allowJs: true` og `checkJs: true` i `tsconfig.json`.
 - `npm run typecheck` kjører `tsc -p tsconfig.json` med `noEmit: true`, altså ren statisk sjekk uten byggede filer.
 - Per denne planen gir `npm run typecheck` 0 TypeScript-diagnostics.
@@ -53,7 +54,23 @@ Node-scripts i `scripts/` og `tools/` bruker en blanding av `.js` og `.mjs`. `to
 
 ## Filgrupper og anbefalt migreringsrekkefølge
 
-### 1. Rene utility/core-filer
+### 1. Node-only scripts
+
+Eksempler:
+
+- `scripts/i18n-audit-places.js`
+- `scripts/i18n-place-manifest-loader.js`
+- `scripts/i18n-quality-places.js`
+- `scripts/i18n-stamp-places.js`
+- `scripts/i18n-worklist-places.js`
+
+Vurdering:
+
+- Første migreringsområde bør være Node-only scripts som ikke lastes fra HTML og ikke er Civication-funksjonskode.
+- `scripts/**/*.js` er allerede inkludert i `tsconfig.json`, men kjøres av Node, ikke browser.
+- De bør bare konverteres når Node-kjøring av `.ts` er avklart, for eksempel via TypeScript emit til `.js` eller en egen Node-runner-strategi.
+
+### 2. Ikke-Civication utility/core-filer
 
 Eksempler:
 
@@ -67,11 +84,12 @@ Eksempler:
 
 Vurdering:
 
-- Dette er ofte de tryggeste kandidatene fordi de typisk har færre DOM-avhengigheter enn UI-laget.
+- Dette er ofte de tryggeste browser-kandidatene etter Node-only scripts fordi de typisk har færre DOM-avhengigheter enn UI-laget.
 - Flere er likevel direkte lastet fra HTML, spesielt `index.html` og `profile.html`.
 - De bør derfor ikke renames til `.ts` før det finnes en transpileringsavtale som produserer samme `.js`-runtime-output.
+- Civication-filer inngår ikke i denne gruppen og holdes deferred.
 
-### 2. Data loaders
+### 3. Data loaders
 
 Eksempler:
 
@@ -89,7 +107,7 @@ Vurdering:
 - De kan ha fetch/cache-feilhåndtering og global eksponering som må bevares nøyaktig.
 - Flere lastes direkte fra HTML og må derfor enten forbli `.js` eller kompileres til samme `.js`-sti.
 
-### 3. UI/DOM-filer
+### 4. UI/DOM-filer
 
 Eksempler:
 
@@ -110,7 +128,43 @@ Vurdering:
 - De bør migreres etter core og data loaders.
 - Før konvertering bør man ha tydelige typer for DOM-elementer, nullable lookups og `window`-globals.
 
-### 4. Civication-filer
+### 5. Boot/runtime/globals
+
+Eksempler:
+
+- `js/config.js`
+- `js/boot.js`
+- `js/app.js`
+- `js/routes.js`
+- `js/console/init.js`
+- `js/console/legacyExtensions.js`
+
+Vurdering:
+
+- Dette er de minst trygge kandidatene for tidlig rename.
+- De etablerer eller forbruker globals, appstart, scriptrekkefølge, init-sekvenser og sideeffekter.
+- De bør migreres sent, etter at build/transpile, global type-deklarering og røyk-/typecheck er stabile.
+
+### 6. Browser-audits og øvrige scripts
+
+Eksempler:
+
+- `scripts/i18n-audit-places.js`
+- `scripts/i18n-place-manifest-loader.js`
+- `scripts/i18n-quality-places.js`
+- `scripts/i18n-stamp-places.js`
+- `scripts/i18n-worklist-places.js`
+- `js/audits/*.audit.js`
+- Civication-relaterte scripts, for eksempel `scripts/validate-civication-*.js`, holdes deferred sammen med øvrig Civication-migrering.
+
+Vurdering:
+
+- Ikke-Civication `scripts/**/*.js` er allerede inkludert i `tsconfig.json`, men kjøres av Node, ikke browser.
+- Node-scripts er ofte tryggere å konvertere først fordi de ikke brytes av HTML script-tags.
+- Civication-relaterte scripts og generatorer bør likevel ikke være første migreringsbatch nå, siden Civication bevisst holdes i JavaScript.
+- Audit-filer under `js/audits/` er derimot browser-loadede i `index.html` og bør behandles som browser-runtime inntil build finnes.
+
+### 7. Civication-filer (deferred)
 
 Eksempler:
 
@@ -122,47 +176,10 @@ Eksempler:
 
 Vurdering:
 
-- Civication har mange filer og mye rekkefølgeavhengig script-loading i `Civication.html`, `index.html` og `profile.html`.
-- Core- og utility-filer er tryggere enn UI og boot, men de er fortsatt browser-loadede.
-- Civication bør migreres i egne små batches fordi domenet er stort og globalt koblet.
-
-### 5. Boot/runtime/globals
-
-Eksempler:
-
-- `js/config.js`
-- `js/boot.js`
-- `js/app.js`
-- `js/routes.js`
-- `js/Civication/CivicationBoot.js`
-- `js/console/init.js`
-- `js/console/legacyExtensions.js`
-
-Vurdering:
-
-- Dette er de minst trygge kandidatene for tidlig rename.
-- De etablerer eller forbruker globals, appstart, scriptrekkefølge, init-sekvenser og sideeffekter.
-- De bør migreres sent, etter at build/transpile, global type-deklarering og røyk-/typecheck er stabile.
-
-### 6. Scripts/audits
-
-Eksempler:
-
-- `scripts/generate-civication-mails.js`
-- `scripts/i18n-audit-places.js`
-- `scripts/i18n-place-manifest-loader.js`
-- `scripts/i18n-quality-places.js`
-- `scripts/i18n-stamp-places.js`
-- `scripts/i18n-worklist-places.js`
-- `scripts/validate-civication-*.js`
-- `scripts/verify-civication-assets.js`
-- `js/audits/*.audit.js`
-
-Vurdering:
-
-- `scripts/**/*.js` er allerede inkludert i `tsconfig.json`, men kjøres av Node, ikke browser.
-- Node-scripts er ofte tryggere å konvertere først fordi de ikke brytes av HTML script-tags.
-- Audit-filer under `js/audits/` er derimot browser-loadede i `index.html` og bør behandles som browser-runtime inntil build finnes.
+- Civication holdes utenfor TypeScript-migrering inntil videre mens det jobbes aktivt videre med Civication-funksjoner i JavaScript.
+- Civication kan fortsatt være `checkJs`-/JSDoc-typekontrollert JavaScript, slik at typefeil kan oppdages uten `.js` → `.ts` rename.
+- Browser-loadede Civication-filer skal ikke renames til `.ts`, ikke flyttes og ikke build-kobles nå. Dette gjelder filer lastet fra `Civication.html`, `index.html` og `profile.html`.
+- Når prosjektbeslutningen endres, bør Civication migreres i egne små batches fordi domenet er stort og globalt koblet.
 
 ## Filer som bør forbli `.js` inntil videre
 
@@ -171,7 +188,7 @@ Alle filer som lastes direkte med `<script src="...js">` fra HTML bør forbli `.
 Dette gjelder særlig:
 
 - hovedruntime i `index.html`, inkludert `js/config.js`, core/state/UI, stories, Civication-utdrag, `js/boot.js`, `js/app.js` og `js/routes.js`
-- alle Civication-filer lastet i `Civication.html`
+- alle Civication-filer lastet i `Civication.html`, `index.html` eller `profile.html`; disse skal ikke renames til `.ts`, ikke flyttes og ikke build-kobles nå
 - profil- og kunnskapsfiler lastet i `profile.html`, `knowledge.html` og `emner.html`
 - `js/audits/*.audit.js` når de lastes fra browser
 
@@ -179,7 +196,7 @@ Dette gjelder særlig:
 
 Anbefalt første faktiske konverteringsbatch er Node-only `scripts/**/*.js`, ikke browser-loadede `js/**/*.js`.
 
-Start med en liten gruppe validerings-/audit-scripts som:
+Start med en liten gruppe ikke-Civication validerings-/audit-scripts som:
 
 - allerede er inkludert i `tsconfig.json`
 - ikke lastes fra HTML
@@ -188,14 +205,13 @@ Start med en liten gruppe validerings-/audit-scripts som:
 
 Kandidater:
 
-1. `scripts/validate-civication-mails.js`
-2. `scripts/validate-civication-daily-task-gates.js`
-3. `scripts/validate-civication-finance-mails.js`
-4. `scripts/validate-civication-finance-rolemodels.js`
-5. `scripts/validate-civication-avdelingsleder-mails.js`
-6. `scripts/verify-civication-assets.js`
+1. `scripts/i18n-audit-places.js`
+2. `scripts/i18n-quality-places.js`
+3. `scripts/i18n-stamp-places.js`
+4. `scripts/i18n-worklist-places.js`
+5. `scripts/i18n-place-manifest-loader.js`
 
-Disse bør bare konverteres når Node-kjøring av `.ts` er avklart, for eksempel via TypeScript emit til `.js` eller en egen Node-runner-strategi. Hvis man ikke ønsker runtime-runner-endringer for scripts ennå, bør første batch i stedet være rene typeforberedelser: shared `.d.ts`/`.ts`-typer i `schemas/` og JSDoc-opprydding uten rename.
+Disse bør bare konverteres når Node-kjøring av `.ts` er avklart, for eksempel via TypeScript emit til `.js` eller en egen Node-runner-strategi. Civication-relaterte scripts bør ikke brukes som første batch nå. Hvis man ikke ønsker runtime-runner-endringer for scripts ennå, bør første batch i stedet være rene typeforberedelser: shared `.d.ts`/`.ts`-typer i `schemas/` og JSDoc-opprydding uten rename.
 
 ## Hva som må være på plass før første `.js` → `.ts`-konvertering
 
@@ -217,19 +233,18 @@ Minimum før første faktiske rename:
 - **Sideeffekter ved load:** Flere filer initialiserer state, event listeners eller UI ved lasting. Transpile/bundle må bevare sideeffektrekkefølge.
 - **DOM-kontrakter:** UI-filer kan være avhengige av elementer i spesifikke HTML-sider. Strengere typer kan avdekke nullable DOM som krever varsom håndtering.
 - **Cache/querystrings:** Enkelte HTML script-tags bruker cache-busting querystrings. Output-strategien må bevare forventet filnavn og cache-atferd.
-- **Civication-koblinger:** Civication lastes på flere sider og har mange interne system/UI-avhengigheter; små endringer kan få stor effekt.
+- **Civication-koblinger:** Civication lastes på flere sider og har mange interne system/UI-avhengigheter; derfor holdes browser-loadede Civication-filer utenfor TypeScript-migreringen inntil videre.
 
 ## Anbefalt migreringsrekkefølge
 
 1. **Plan og typegrunnlag:** Behold alle `.js`; legg til/rydd shared schema- og global-typer der det trengs.
-2. **Node-only scripts:** Konverter små `scripts/**/*.js`-valideringer når runner/transpile for Node er bestemt.
-3. **Ikke-DOM core/data:** Konverter rene utility-/core-/loader-filer, men bare med generert `.js` output eller etter build-PR.
-4. **Civication core:** Konverter Civication core/utility i små batches før systems/UI.
-5. **Data loaders:** Konverter loaders med tydelige datatyper og fetch-resultater.
-6. **UI/DOM:** Konverter DOM-tunge UI-filer med eksplisitte elementtyper og side-spesifikke smoke checks.
-7. **Civication systems/UI:** Konverter Civication systems/day og UI i små, domenespesifikke PR-er.
-8. **Boot/runtime/globals:** Konverter `boot`, `app`, `routes`, config og Civication boot sist.
-9. **Rydding:** Når alle relevante filer er TS, vurder å stramme `strict`, fjerne `allowJs` gradvis og eventuelt bytte til ESM/bundler som egen større arkitekturendring.
+2. **Node-only scripts:** Konverter små ikke-Civication `scripts/**/*.js`-valideringer når runner/transpile for Node er bestemt.
+3. **Ikke-Civication core/utilities:** Konverter rene utility-/core-filer, men bare med generert `.js` output eller etter build-PR.
+4. **Data loaders:** Konverter loaders med tydelige datatyper og fetch-resultater.
+5. **UI/DOM:** Konverter DOM-tunge UI-filer med eksplisitte elementtyper og side-spesifikke smoke checks.
+6. **Boot/runtime/globals:** Konverter `boot`, `app`, `routes`, config og øvrig runtime/global oppstart sent, etter at build/transpile, global type-deklarering og røyk-/typecheck er stabile.
+7. **Civication (deferred):** Civication holdes utenfor TypeScript-migrering inntil videre. Når beslutningen endres, planlegg egne små Civication-batcher; browser-loadede Civication-filer skal fortsatt ikke renames, flyttes eller build-kobles uten separat runtime-/build-beslutning.
+8. **Rydding:** Når alle relevante filer er TS, vurder å stramme `strict`, fjerne `allowJs` gradvis og eventuelt bytte til ESM/bundler som egen større arkitekturendring.
 
 ## Forslag til små migrerings-PR-er
 
@@ -247,7 +262,7 @@ Minimum før første faktiske rename:
    - Ingen `.js` → `.ts` rename ennå hvis runtime ikke er klar.
 
 4. **PR 4: Første Node-only script-batch**
-   - Konverter 3-6 små `scripts/validate-civication-*.js`-filer.
+   - Konverter 3-6 små ikke-Civication `scripts/*.js`-filer, for eksempel i18n-/place-valideringer.
    - Kjør typecheck og relevante Node-valideringer.
 
 5. **PR 5: Flere Node-only scripts**
@@ -262,6 +277,6 @@ Minimum før første faktiske rename:
    - Konverter utvalgte loaders med tydelige datatyper, for eksempel `js/events/events_loader.js`, `js/brands/brands_loader.js` og `js/emnerLoader.js`.
    - Verifiser fetch-kontrakter og global eksponering.
 
-8. **PR 8: Første Civication core batch**
-   - Konverter et lite sett Civication core/utility-filer, for eksempel `js/Civication/core/civicationCalendar.js`, `js/Civication/core/civicationTaskEngine.js` og `js/Civication/utils/storyResolver.js`.
-   - Ikke konverter Civication boot eller UI i samme PR.
+8. **PR 8: Civication-beslutning før eventuell migrering**
+   - Ikke konverter Civication i denne fasen. Dokumenter først en ny beslutning dersom Civication ikke lenger skal holdes deferred.
+   - Ved eventuell senere migrering må browser-loadede Civication-filer fortsatt ikke renames, flyttes eller build-kobles uten separat runtime-/build-beslutning.
