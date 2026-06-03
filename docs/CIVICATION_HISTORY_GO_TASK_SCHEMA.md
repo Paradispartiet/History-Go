@@ -163,9 +163,9 @@ Normalisering returnerer et objekt med faste nøkler. Manglende felt blir `null`
 
 ## Klassifisering
 
-`isHistoryGoTaskPayload(payload)` er konservativ. Den returnerer `true` når payloaden har en støttet History Go-`task_kind` og støttet `target_type`, eller når støttet `target_type` kombineres med en støttet `completion_mode`.
+`isHistoryGoTaskPayload(payload)` er konservativ. Den returnerer bare `true` når payloaden har et konkret mål-ID-felt som normaliseres til `target_id`, og i tillegg har en støttet History Go-`task_kind` og støttet `target_type`, eller når støttet `target_type` kombineres med en støttet `completion_mode`.
 
-Dette hindrer at generiske Civication-payloads blir behandlet som History Go-broer ved et uhell.
+Det konkrete målet kan komme fra eksplisitt `target_id`/`targetId`, eller fra et av de støttede mål-ID-feltene (`place_id`, `person_id`, `category_id`, `quiz_id`, `emne_id`, `debate_id`, `conflict_id` eller `unlock_id`). Dette hindrer tomme eller generiske payloads fra å bli behandlet som deep-linkbare History Go-oppgaver ved et uhell.
 
 ## Avgrensning for denne PR-en
 
