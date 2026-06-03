@@ -190,26 +190,33 @@ function run() {
     const missing = [];
     const warnings = [];
     const errors = [];
+    const errorsAlreadyReportedGlobally = new Set();
+    const addPlaceError = (type, options = {}) => {
+      errors.push(type);
+      if (options.alreadyReportedGlobally) errorsAlreadyReportedGlobally.add(type);
+    };
     const req = [...REQUIRED_PLACE_FIELDS.filter((field) => field !== 'id'), ...RECOMMENDED_PLACE_FIELDS, 'popupDesc','image','cardImage','emne_ids','quiz_profile'];
     for (const field of req) if (place[field] == null || (typeof place[field] === 'string' && !place[field].trim())) missing.push(field);
-    if (missing.includes('desc')) warnings.push('missing_desc');
-    if (missing.includes('popupDesc')) warnings.push('missing_popupDesc');
-    if (missing.includes('image')) warnings.push('missing_image');
-    if (missing.includes('cardImage')) warnings.push('missing_cardImage');
-    if (missing.includes('emne_ids')) warnings.push('missing_emne_ids');
-    if (missing.includes('quiz_profile')) warnings.push('missing_quiz_profile');
+    for (const field of missing) warnings.push(`missing_${field}`);
 
     const categoryStatus = getPlaceCategoryPolicyStatus(place.category);
-    if (categoryStatus === 'unknown') errors.push('invalid_category');
+    if (categoryStatus === 'unknown') addPlaceError('invalid_category');
     else if (categoryStatus === 'legacy_or_secondary') warnings.push('legacy_secondary_category');
-    if (!(typeof place.lat === 'number' && Number.isFinite(place.lat) && place.lat >= -90 && place.lat <= 90)) errors.push('invalid_lat');
-    if (!(typeof place.lon === 'number' && Number.isFinite(place.lon) && place.lon >= -180 && place.lon <= 180)) errors.push('invalid_lon');
+    if (!(typeof place.lat === 'number' && Number.isFinite(place.lat) && place.lat >= -90 && place.lat <= 90)) addPlaceError('invalid_lat');
+    if (!(typeof place.lon === 'number' && Number.isFinite(place.lon) && place.lon >= -180 && place.lon <= 180)) addPlaceError('invalid_lon');
 
-    if (nonEmpty(place.image)) checkAsset(place.image, { id, field: 'image', file: place._file });
-    if (nonEmpty(place.cardImage)) checkAsset(place.cardImage, { id, field: 'cardImage', file: place._file });
+    const checkPlaceAsset = (field) => {
+      if (!nonEmpty(place[field])) return;
+      if (!checkAsset(place[field], { id, field, file: place._file })) {
+        addPlaceError(`missing_asset_${field}`, { alreadyReportedGlobally: true });
+      }
+    };
+
+    checkPlaceAsset('image');
+    checkPlaceAsset('cardImage');
     if (place.popupImage != null) {
       if (!nonEmpty(place.popupImage)) warnings.push('missing_popupImage');
-      else checkAsset(place.popupImage, { id, field: 'popupImage', file: place._file });
+      else checkPlaceAsset('popupImage');
     }
 
     const hasLinks = nonEmpty(place.officialUrl) || nonEmpty(place.wikipedia) || nonEmpty(place.statsUrl) || nonEmpty(place.link);
@@ -235,7 +242,9 @@ function run() {
     if (place.groundhopper == null) warnings.push('missing_groundhopper');
 
     for (const w of warnings) { addWarning(w, `${id}: ${w}`, { id, file: place._file }); pushMissing(w, id); }
-    for (const e of errors) addError(e, `${id}: ${e}`, { id, file: place._file });
+    for (const e of errors) {
+      if (!errorsAlreadyReportedGlobally.has(e)) addError(e, `${id}: ${e}`, { id, file: place._file });
+    }
 
     state.places.push({ id, file: place._file, missing, warnings, errors, coverageScore: Math.max(0, 100 - (warnings.length * 4 + errors.length * 12)) });
   }

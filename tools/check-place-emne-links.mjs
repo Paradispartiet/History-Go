@@ -26,14 +26,47 @@ function collectIdsDeep(node, out) {
   for (const value of Object.values(node)) collectIdsDeep(value, out);
 }
 
+function walkFiles(dir, out = []) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkFiles(fullPath, out);
+    else out.push(fullPath);
+  }
+  return out;
+}
+
 function extractCanonicalIdFromEmnerPath(emnerRelPath) {
   const base = path.basename(emnerRelPath);
   const m = base.match(/^emner_(.+?)(?:_canonical.*)?\.json$/);
   return m ? m[1] : null;
 }
 
+function normalizeSubjectId(raw) {
+  return String(raw || '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/æ/g, 'ae')
+    .replace(/ø/g, 'o')
+    .replace(/å/g, 'a')
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
+function loadFagkartMapSubjectIds() {
+  const fagkartMapPath = path.join(root, 'data/fag/fagkart_map.json');
+  if (!fs.existsSync(fagkartMapPath)) return new Set();
+  const data = JSON.parse(fs.readFileSync(fagkartMapPath, 'utf8'));
+  const subjects = data && typeof data === 'object' && !Array.isArray(data)
+    ? (data.subjects && typeof data.subjects === 'object' && !Array.isArray(data.subjects) ? data.subjects : data)
+    : {};
+  return new Set(Object.keys(subjects).map(normalizeSubjectId).filter(Boolean));
+}
+
 function loadEmnerIdsFromPath(emnerRelPath) {
-  const emnerPath = path.join(root, 'data/fag', emnerRelPath);
+  const emnerPath = path.isAbsolute(emnerRelPath) ? emnerRelPath : path.join(root, 'data/fag', emnerRelPath);
   const emnerData = JSON.parse(fs.readFileSync(emnerPath, 'utf8'));
   const emner = toArray(emnerData);
   const ids = new Set();
@@ -41,18 +74,40 @@ function loadEmnerIdsFromPath(emnerRelPath) {
   return ids;
 }
 
+function addSubjectIndex(index, subjectId, ids) {
+  const normalizedSubjectId = normalizeSubjectId(subjectId);
+  if (!normalizedSubjectId || index.has(normalizedSubjectId)) return;
+  index.set(normalizedSubjectId, ids);
+}
+
 function buildSubjectEmneIndex() {
   const index = new Map();
+  const fagkartMapSubjects = loadFagkartMapSubjectIds();
 
   for (const [subjectId, cfg] of Object.entries(fagManifest)) {
     const emnerRel = cfg?.emner;
     if (!emnerRel) continue;
     const ids = loadEmnerIdsFromPath(emnerRel);
-    index.set(subjectId, ids);
+    addSubjectIndex(index, subjectId, ids);
 
     const canonicalFromFile = extractCanonicalIdFromEmnerPath(emnerRel);
-    if (canonicalFromFile && canonicalFromFile !== subjectId && !index.has(canonicalFromFile)) {
-      index.set(canonicalFromFile, ids);
+    if (canonicalFromFile) addSubjectIndex(index, canonicalFromFile, ids);
+  }
+
+  const fagRoot = path.join(root, 'data/fag');
+  const canonicalEmnerFiles = walkFiles(fagRoot).filter((file) =>
+    /emner.*_canonical.*\.json$/i.test(path.basename(file))
+  );
+
+  for (const file of canonicalEmnerFiles) {
+    const canonicalFromFile = extractCanonicalIdFromEmnerPath(file);
+    if (!canonicalFromFile || index.has(canonicalFromFile)) continue;
+    const ids = loadEmnerIdsFromPath(file);
+    addSubjectIndex(index, canonicalFromFile, ids);
+
+    const folderSubject = normalizeSubjectId(path.basename(path.dirname(file)));
+    if (folderSubject && (folderSubject === canonicalFromFile || fagkartMapSubjects.has(folderSubject))) {
+      addSubjectIndex(index, folderSubject, ids);
     }
   }
 

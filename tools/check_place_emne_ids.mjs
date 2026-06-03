@@ -31,7 +31,8 @@ function collectCanonicalEmneIds() {
   );
 
   const ids = new Set();
-  const duplicateCanonicalEmneIds = [];
+  const idFiles = new Map();
+
   for (const file of files) {
     const data = readJson(file);
     const entries = toArray(data);
@@ -40,15 +41,16 @@ function collectCanonicalEmneIds() {
       const rawId = typeof item.id === 'string' ? item.id : (typeof item.emne_id === 'string' ? item.emne_id : '');
       const id = rawId.trim();
       if (!id) continue;
-      if (ids.has(id)) {
-        duplicateCanonicalEmneIds.push({
-          file: formatRel(file),
-          emne_id: id
-        });
-      }
       ids.add(id);
+      if (!idFiles.has(id)) idFiles.set(id, new Set());
+      idFiles.get(id).add(formatRel(file));
     }
   }
+
+  const duplicateCanonicalEmneIds = [...idFiles.entries()]
+    .filter(([, idFileSet]) => idFileSet.size >= 2)
+    .map(([emneId, idFileSet]) => ({ emne_id: emneId, files: [...idFileSet].sort() }))
+    .sort((a, b) => a.emne_id.localeCompare(b.emne_id));
 
   return { ids, files, duplicateCanonicalEmneIds };
 }
@@ -112,10 +114,19 @@ function main() {
     }
   }
 
+  const duplicatePlaceIdsWithinFile = [];
   const duplicatePlaceIds = [...placeIdOccurrences.entries()]
-    .filter(([, files]) => files.length > 1)
-    .map(([placeId, files]) => ({ place_id: placeId, files: [...new Set(files)].sort() }))
+    .map(([placeId, files]) => {
+      const fileCounts = new Map();
+      for (const file of files) fileCounts.set(file, (fileCounts.get(file) || 0) + 1);
+      for (const [file, count] of fileCounts.entries()) {
+        if (count > 1) duplicatePlaceIdsWithinFile.push({ place_id: placeId, file, count });
+      }
+      return { place_id: placeId, files: [...fileCounts.keys()].sort() };
+    })
+    .filter(({ files }) => files.length >= 2)
     .sort((a, b) => a.place_id.localeCompare(b.place_id));
+  duplicatePlaceIdsWithinFile.sort((a, b) => a.place_id.localeCompare(b.place_id) || a.file.localeCompare(b.file));
 
   console.log('=== Place emne_id validation ===');
   console.log(`Active place files: ${activeFiles.length}`);
@@ -135,10 +146,14 @@ function main() {
   if (duplicatePlaceIds.length) console.log(JSON.stringify(duplicatePlaceIds, null, 2));
   console.log('');
 
+  console.log(`Duplicate place ids within same active file: ${duplicatePlaceIdsWithinFile.length}`);
+  if (duplicatePlaceIdsWithinFile.length) console.log(JSON.stringify(duplicatePlaceIdsWithinFile, null, 2));
+  console.log('');
+
   console.log(`Duplicate canonical emne_ids across canonical files: ${duplicateCanonicalEmneIds.length}`);
   if (duplicateCanonicalEmneIds.length) console.log(JSON.stringify(duplicateCanonicalEmneIds, null, 2));
 
-  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length || duplicateCanonicalEmneIds.length) {
+  if (missingEmneIds.length || duplicateEmneIdsPerPlace.length || duplicatePlaceIds.length || duplicatePlaceIdsWithinFile.length || duplicateCanonicalEmneIds.length) {
     process.exit(1);
   }
 }
