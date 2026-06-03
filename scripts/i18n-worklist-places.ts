@@ -20,9 +20,9 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { createPlaceManifestLoader } = require("./i18n-place-manifest-loader");
+const { createPlaceManifestLoader, resolveRepoRoot } = require("./i18n-place-manifest-loader");
 
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = resolveRepoRoot(__dirname);
 const DEFAULT_LANG = "en";
 const DEFAULT_ONLY = new Set(["missing", "stale", "missingSourceHash"]);
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-worklist");

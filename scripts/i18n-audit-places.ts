@@ -9,15 +9,15 @@
 
   TypeScript migration note:
   - This source is typechecked by tsconfig.scripts.json.
-  - No emitted JS/run target is configured yet.
+  - It is emitted by tsconfig.scripts.build.json for Node script builds.
 */
 
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { createPlaceManifestLoader } = require("./i18n-place-manifest-loader");
+const { createPlaceManifestLoader, resolveRepoRoot } = require("./i18n-place-manifest-loader");
 
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = resolveRepoRoot(__dirname);
 const DEFAULT_LANGS = ["en"];
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-audit");
 

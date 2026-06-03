@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.scripts.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false,
+    "noEmit": false,
+    "outDir": "dist/scripts",
+    "rootDir": "scripts",
+    "declaration": false,
+    "sourceMap": false
+  },
+  "include": [
+    "scripts/i18n-audit-places.ts",
+    "scripts/i18n-quality-places.ts",
+    "scripts/i18n-stamp-places.ts",
+    "scripts/i18n-worklist-places.ts",
+    "scripts/i18n-place-manifest-loader.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".cache",
+    "js/**",
+    "js/Civication/**",
+    "scripts/*civication*.js",
+    "scripts/*civication*.ts",
+    "scripts/*civication*.mts",
+    "scripts/*civication*.cts",
+    "scripts/**/*civication*.js",
+    "scripts/**/*civication*.ts",
+    "scripts/**/*civication*.mts",
+    "scripts/**/*civication*.cts"
+  ]
+}
