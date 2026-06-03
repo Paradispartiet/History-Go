@@ -847,7 +847,7 @@ async function renderLeftRoutesList() {
   }).join("");
 
   box.onclick = (e) => {
-    const item = e.target.closest(".left-route-item");
+    const item = /** @type {Element} */ (e.target).closest(".left-route-item");
     if (!item) return;
 
     const routeId = item.getAttribute("data-route");
@@ -866,7 +866,7 @@ async function renderLeftRoutesList() {
 function initLeftRoutesPanel() {
   _ensureRoutePanelStyles();
 
-  const sel = document.getElementById("leftPanelMode");
+  const sel = /** @type {HTMLSelectElement} */ (document.getElementById("leftPanelMode"));
   if (!sel) return;
 
   sel.addEventListener("change", () => setLeftPanelMode(sel.value));

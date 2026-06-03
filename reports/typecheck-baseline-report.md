@@ -1,21 +1,20 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-03T03:58:57.592Z
+- Generated at (UTC): 2026-06-03T04:12:43.105Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 136
-- Files with diagnostics: 52
-- Groups with diagnostics: 10
+- Total diagnostic lines found: 112
+- Files with diagnostics: 47
+- Groups with diagnostics: 9
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 11 | 46 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/dom.js |
-| js/Civication/** | 18 | 43 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
-| other | 15 | 28 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
-| js/hgKnowledgeEngine.js | 1 | 5 | js/hgKnowledgeEngine.js |
+| js/ui/** | 10 | 42 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
+| js/Civication/** | 17 | 37 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
+| other | 13 | 19 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
 | js/boot.js | 1 | 4 | js/boot.js |
 | js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
 | js/profile.js | 1 | 3 | js/profile.js |
@@ -28,16 +27,11 @@
 | --- | ---: | --- |
 | js/ui/place-card.js | 23 | js/ui/** |
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
-| js/Civication/ui/CivicationMap.js | 5 | js/Civication/** |
-| js/hgKnowledgeEngine.js | 5 | js/hgKnowledgeEngine.js |
-| js/nextUpRuntime.js | 5 | other |
-| js/Civication/systems/civicationBlockedJobMessages.js | 4 | js/Civication/** |
 | js/boot.js | 4 | js/boot.js |
-| js/routes.js | 4 | other |
-| js/ui/badge-modal.js | 4 | js/ui/** |
 | js/Civication/systems/day/dayNarrativeConsequencesUI.js | 3 | js/Civication/** |
 | js/Civication/ui/CivicationEmptyPanels.js | 3 | js/Civication/** |
 | js/Civication/ui/CivicationInboxTopActionUI.js | 3 | js/Civication/** |
+| js/Civication/ui/CivicationMap.js | 3 | js/Civication/** |
 | js/onboarding/onboardingEngine.js | 3 | other |
 | js/profile.js | 3 | js/profile.js |
 | js/state/state.js | 3 | js/state/** |
@@ -46,11 +40,16 @@
 | js/ui/search.js | 3 | js/ui/** |
 | js/ui/wonderkammer-entry.js | 3 | js/ui/** |
 | js/Civication/core/civicationJobs.js | 2 | js/Civication/** |
+| js/Civication/core/civicationState.js | 2 | js/Civication/** |
+| js/Civication/systems/civicationBrandEmployerBridge.js | 2 | js/Civication/** |
+| js/Civication/systems/day/dayFactionConflictSystem.js | 2 | js/Civication/** |
+| js/Civication/systems/day/dayRuntimeDebugPanel.js | 2 | js/Civication/** |
+| js/Civication/systems/day/dayWeeklyReview.js | 2 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 84 |
+| TS2339 | 60 |
 | TS2345 | 11 |
 | TS2322 | 10 |
 | TS2451 | 6 |
@@ -68,9 +67,9 @@
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (46 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/Civication/systems/day/dayPatches.js` (6), `js/Civication/ui/CivicationMap.js` (5), `js/hgKnowledgeEngine.js` (5), `js/nextUpRuntime.js` (5).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/hgKnowledgeEngine.js`.
+1. Start with **js/ui/** (42 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/systems/day/dayNarrativeConsequencesUI.js` (3), `js/Civication/ui/CivicationEmptyPanels.js` (3).
+3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
@@ -82,10 +81,6 @@ js/Civication/core/civicationJobs.js(462,24): error TS2345: Argument of type '{ 
 js/Civication/core/civicationState.js(389,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationState.js(389,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/systems/civicationActivePositionRecovery.js(170,5): error TS2322: Type 'boolean' is not assignable to type 'CiviFn'.
-js/Civication/systems/civicationBlockedJobMessages.js(15,21): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
-js/Civication/systems/civicationBlockedJobMessages.js(16,37): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
-js/Civication/systems/civicationBlockedJobMessages.js(24,21): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
-js/Civication/systems/civicationBlockedJobMessages.js(24,67): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationBrandEmployerBridge.js(98,34): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationBrandEmployerBridge.js(100,19): error TS2339: Property 'CivicationState' does not exist on type 'typeof globalThis'.
 js/Civication/systems/civicationDailyMailBuilder.js(1260,11): error TS2322: Type '{ slot: string; date?: string; phase?: string; phase_label?: any; advances_role_plan?: boolean; }' is not assignable to type '{ date: string; phase: string; phase_label: any; slot: string; advances_role_plan: boolean; }'.
@@ -115,8 +110,6 @@ js/Civication/ui/CivicationHome.js(348,5): error TS2322: Type '{ frogner: { id: 
 js/Civication/ui/CivicationInboxTopActionUI.js(194,18): error TS2339: Property 'onclick' does not exist on type 'Element'.
 js/Civication/ui/CivicationInboxTopActionUI.js(197,28): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
 js/Civication/ui/CivicationInboxTopActionUI.js(501,24): error TS2339: Property '__civiInboxSectionsWrapped' does not exist on type '() => void'.
-js/Civication/ui/CivicationMap.js(13,671): error TS2339: Property 'getAttribute' does not exist on type 'EventTarget'.
-js/Civication/ui/CivicationMap.js(13,729): error TS2339: Property 'setAttribute' does not exist on type 'EventTarget'.
 js/Civication/ui/CivicationMap.js(50,525): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationMap.js(95,934): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/ui/CivicationMap.js(95,958): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
@@ -143,16 +136,22 @@ js/dataHub.js(67,38): error TS2769: No overload matches this call.
     Type 'string' is not assignable to type 'RequestCache'.
 js/emnerLoader.js(26,41): error TS2339: Property 'src' does not exist on type 'HTMLOrSVGScriptElement'.
   Property 'src' does not exist on type 'SVGScriptElement'.
-js/hgKnowledgeEngine.js(182,27): error TS2339: Property 'emne_id' does not exist on type 'unknown'.
-js/hgKnowledgeEngine.js(184,38): error TS2339: Property 'core_concepts' does not exist on type 'unknown'.
-js/hgKnowledgeEngine.js(184,68): error TS2339: Property 'keywords' does not exist on type 'unknown'.
-js/hgKnowledgeEngine.js(261,46): error TS2339: Property 'title' does not exist on type 'Place'.
-js/hgKnowledgeEngine.js(271,27): error TS2339: Property 'emne_id' does not exist on type 'unknown'.
 js/hgchips.js(65,21): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
 js/learningLog.js(130,7): error TS2353: Object literal may only specify known properties, and 'LEARNING' does not exist in type 'CiviLearningLogFn'.
 js/nature_place_map_bridge.js(269,31): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
-js/nextUpRuntime.js(477,11): error TS2339: Property 'type' does not exist on type 'HTMLElement'.
-js/nextUpRuntime.js(638,31): error TS2339: Property 'dataset' does not exist on type 'Element'.
-js/nextUpRuntime.js(651,44): error TS2339: Property 'dataset' does not exist on type 'Element'.
-js/nextUpRuntime.js(770,19): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/onboarding/onboardingEngine.js(131,18): error TS2339: Property 'filter' does not exist on type 'unknown'.
+js/onboarding/onboardingEngine.js(138,18): error TS2339: Property 'some' does not exist on type 'unknown'.
+js/onboarding/onboardingEngine.js(344,43): error TS2339: Property 'filter' does not exist on type 'unknown'.
+js/profile.js(61,5): error TS2451: Cannot redeclare block-scoped variable 'PEOPLE'.
+js/profile.js(62,5): error TS2451: Cannot redeclare block-scoped variable 'PLACES'.
+js/profile.js(63,5): error TS2451: Cannot redeclare block-scoped variable 'BADGES'.
+js/profileIdentity.js(373,52): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/profileIdentity.js(377,25): error TS2339: Property 'detail' does not exist on type 'Event'.
+js/state/persistence.js(149,24): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'number'.
+  Type 'string' is not assignable to type 'number'.
+js/state/state.js(21,5): error TS2451: Cannot redeclare block-scoped variable 'PLACES'.
+js/state/state.js(22,5): error TS2451: Cannot redeclare block-scoped variable 'PEOPLE'.
+js/state/state.js(23,5): error TS2451: Cannot redeclare block-scoped variable 'BADGES'.
+js/stories/stories_utils.js(46,16): error TS2339: Property 'dataset' does not exist on type 'Element'.
+js/stories/stories_utils.js(48,14): error TS2339: Property 'dataset' does not exist on type 'Element'.
 ```

@@ -16,11 +16,11 @@ const info =
   const points = Number(info.points || 0);
   const { label } = deriveTierFromPoints(badge, points);
 
-  const imgEl   = modal.querySelector(".badge-img");
+  const imgEl   = /** @type {HTMLImageElement} */ (modal.querySelector(".badge-img"));
   const titleEl = modal.querySelector(".badge-title");
   const levelEl = modal.querySelector(".badge-level");
   const textEl  = modal.querySelector(".badge-progress-text");
-  const barEl   = modal.querySelector(".badge-progress-bar");
+  const barEl   = /** @type {HTMLElement} */ (modal.querySelector(".badge-progress-bar"));
 
   if (imgEl)  imgEl.src = (badge.image || badge.icon || badge.img || badge.imageCard || "");
   if (titleEl) titleEl.textContent = badge.name;
@@ -41,7 +41,7 @@ const info =
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
 
-  const closeBtn = modal.querySelector(".close-btn");
+  const closeBtn = /** @type {HTMLElement} */ (modal.querySelector(".close-btn"));
   if (closeBtn) {
     closeBtn.onclick = () => {
       modal.style.display = "none";

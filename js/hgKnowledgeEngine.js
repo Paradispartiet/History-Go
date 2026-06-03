@@ -178,7 +178,7 @@
     const emneById = new Map();
     const subjectConcepts = new Set();
 
-    for (const emne of emnerAll) {
+    for (const emne of /** @type {any[]} */ (emnerAll)) {
       const eid = s(emne?.emne_id);
       if (eid) emneById.set(eid, emne);
       unique([].concat(toArray(emne?.core_concepts), toArray(emne?.keywords)).map(s)).forEach((c) => subjectConcepts.add(c));
@@ -258,7 +258,7 @@
         visitedSignals += 1;
         signalBreakdown.visitedPlaces.push({
           placeId: normalizedPlaceId,
-          placeName: s(place?.name || place?.title || place?.id || normalizedPlaceId),
+          placeName: s(place?.name || /** @type {any} */ (place)?.title || place?.id || normalizedPlaceId),
           emne_id: emneId,
           source: "visited_places",
           score: 1
@@ -267,7 +267,7 @@
     }
 
     const learningEntries = toObject(state.knowledgeLearning?.learning);
-    for (const emne of emnerAll) {
+    for (const emne of /** @type {any[]} */ (emnerAll)) {
       const eid = s(emne?.emne_id);
       if (!eid || !emneById.has(eid)) continue;
       const learned = toObject(learningEntries[eid]);
@@ -360,7 +360,7 @@
       let understoodEmner = 0;
       let appliedEmner = 0;
       let knownEmner = 0;
-      for (const emne of emnerAll) {
+      for (const emne of /** @type {any[]} */ (emnerAll)) {
         const eid = s(emne?.emne_id);
         if (!eid) continue;
         const node = toObject(learningEntries[eid]);

@@ -469,7 +469,7 @@
       shell.appendChild(panel);
     }
 
-    let btn = document.getElementById(BUTTON_ID);
+    let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById(BUTTON_ID));
     if (!btn) {
       btn = document.createElement("button");
       btn.id = BUTTON_ID;
@@ -631,7 +631,7 @@
     `).join("") + pathStatus;
     panel.querySelector("[data-nextup-path-clear]")?.addEventListener("click", () => { clearActiveNextUpPath(); renderNextUpV2(readTri(), { logShow: false }); });
 
-    panel.querySelectorAll("[data-nextup-mode]").forEach(btn => {
+    panel.querySelectorAll("[data-nextup-mode]").forEach((/** @type {HTMLElement} */ btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -644,7 +644,7 @@
       });
     });
 
-    panel.querySelectorAll("[data-nextup-index]").forEach(btn => {
+    panel.querySelectorAll("[data-nextup-index]").forEach((/** @type {HTMLElement} */ btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -766,7 +766,7 @@
     return { activePath, summary, step_count: summary.step_count, dominant_types: summary.dominant_types, emne_ids: summary.emne_ids, place_ids: summary.place_ids, last_step: steps[steps.length - 1] || null };
   };
 
-  window.addEventListener("hg:mpNextUp", (e) => {
+  window.addEventListener("hg:mpNextUp", (/** @type {CustomEvent} */ e) => {
     const tri = e.detail?.tri || {};
     const becauseLine = e.detail?.becauseLine || "";
 
