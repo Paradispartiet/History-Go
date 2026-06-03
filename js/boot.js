@@ -135,7 +135,7 @@ async function boot() {
   window.OPEN_MODE = localStorage.getItem("HG_OPEN_MODE") === "1";
   window.TEST_MODE = window.OPEN_MODE;
 
-  const openEl = document.getElementById("openToggle");
+  const openEl = /** @type {HTMLInputElement} */ (document.getElementById("openToggle"));
   if (openEl) {
     openEl.checked = window.OPEN_MODE;
 
@@ -378,7 +378,7 @@ async function boot() {
 
   if (window.DataHub?.loadLesespor) {
     try {
-      await window.DataHub.loadLesespor({ cache: "no-store" });
+      await /** @type {any} */ (window.DataHub.loadLesespor)({ cache: "no-store" });
     } catch (e) {
       console.error("[DataHub.loadLesespor]", e);
     }
@@ -414,7 +414,7 @@ async function boot() {
     // ved kall-tid, ikke ved init-tid.
     const bind = (fn) => (typeof fn === "function") ? fn : undefined;
     const lazy = (name) => (...args) => {
-      const f = window[name];
+      const f = /** @type {any} */ (window[name]);
       if (typeof f === "function") return f(...args);
     };
 

@@ -119,7 +119,7 @@ function ensureStatusPanel() {
   }
 
   // CHIP (alltid synlig default i dev)
-  let chip = document.getElementById("hgStatusChip");
+  let chip = /** @type {HTMLButtonElement|null} */ (document.getElementById("hgStatusChip"));
   if (!chip) {
     chip = document.createElement("button");
     chip.id = "hgStatusChip";
@@ -184,8 +184,8 @@ function ensureStatusPanel() {
     <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
   `;
 
-  const closeBtn = panel.querySelector("#hgStatusClose");
-  const head = panel.querySelector("#hgStatusHead");
+  const closeBtn = /** @type {HTMLElement} */ (panel.querySelector("#hgStatusClose"));
+  const head = /** @type {HTMLElement} */ (panel.querySelector("#hgStatusHead"));
 
   function setOpen(open) {
     localStorage.setItem("hg_modstatus_open", open ? "1" : "0");
@@ -213,7 +213,7 @@ function ensureStatusPanel() {
   // iPad: trykk på header for å lukke
   head.style.cursor = "pointer";
   head.onclick = (e) => {
-    if (e.target && e.target.id === "hgStatusClose") return;
+    if (e.target && /** @type {Element} */ (e.target).id === "hgStatusClose") return;
     setOpen(false);
   };
 
@@ -281,7 +281,7 @@ function renderStatusPanel() {
 
   function hookEvents() {
     TRACKED.forEach(ev =>
-      window.addEventListener(ev, e => {
+      window.addEventListener(ev, (/** @type {CustomEvent} */ e) => {
         state.eventsLog.push({ t: Date.now(), name: ev, detail: e?.detail });
         if (state.eventsLog.length > 200) state.eventsLog.shift();
       })
@@ -325,7 +325,7 @@ function renderStatusPanel() {
     if (!state.moduleStatus.HG) api.warn("HG", "Avventer posisjon");
     if (!state.moduleStatus.DomainRegistry) api.warn("DomainRegistry", "Avventer posisjon");
 
-    window.addEventListener("hg:geo", (e) => {
+    window.addEventListener("hg:geo", (/** @type {CustomEvent} */ e) => {
       const d = e?.detail || {};
       const st = d.status;
 

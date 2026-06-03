@@ -13,8 +13,8 @@
 
   let PLACES = [];
   let visited = {};
-  let catColor = () => "#ffffff";
-  let onPlaceClick = () => {};
+  let catColor = (/** @type {any} */ _cat) => "#ffffff";
+  let onPlaceClick = (/** @type {any} */ _id) => {};
 
   let userMarker = null;
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
@@ -293,14 +293,14 @@
     };
 
     wrap.addEventListener("click", onStyleTogglePress);
-    wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
+    wrap.querySelectorAll(".hg-map-style-btn").forEach((/** @type {HTMLElement} */ btn) => {
       btn.addEventListener("touchend", onStyleTogglePress, { passive: false });
     });
 
     controls.insertBefore(wrap, controls.firstChild);
     renderMapStyleToggle();
 
-    const mapEl = document.getElementById(containerId);
+    const mapEl = /** @type {HTMLElement & { __hgResizeBound?: boolean }} */ (document.getElementById(containerId));
     if (mapEl && !mapEl.__hgResizeBound) {
       window.addEventListener("orientationchange", resize, { passive: true });
       window.addEventListener("resize", resize, { passive: true });
@@ -311,7 +311,7 @@
   function renderMapStyleToggle() {
     const wrap = document.querySelector(".hg-map-style-toggle");
     if (!wrap) return;
-    wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
+    wrap.querySelectorAll(".hg-map-style-btn").forEach((/** @type {HTMLElement} */ btn) => {
       const isActive = btn.dataset.mode === mapStyleMode;
       btn.classList.toggle("is-active", isActive);
       btn.setAttribute("aria-pressed", isActive ? "true" : "false");

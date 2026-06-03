@@ -10,7 +10,7 @@ function getToastDuration(msg) {
 
 function showToast(msg, ms = null) {
   const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
-  const t = el.toast;
+  const t = /** @type {HTMLElement & { _hide?: any }} */ (el.toast);
   if (!t) return;
 
   clearTimeout(t._hide);

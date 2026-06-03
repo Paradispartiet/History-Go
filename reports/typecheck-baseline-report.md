@@ -1,22 +1,22 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-02T22:32:30.061Z
+- Generated at (UTC): 2026-06-03T03:58:57.592Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 162
-- Files with diagnostics: 56
+- Total diagnostic lines found: 136
+- Files with diagnostics: 52
 - Groups with diagnostics: 10
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 12 | 51 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/dom.js |
-| other | 18 | 45 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/diagnosticConsole.js |
+| js/ui/** | 11 | 46 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/dom.js |
 | js/Civication/** | 18 | 43 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
-| js/boot.js | 1 | 8 | js/boot.js |
+| other | 15 | 28 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
 | js/hgKnowledgeEngine.js | 1 | 5 | js/hgKnowledgeEngine.js |
+| js/boot.js | 1 | 4 | js/boot.js |
 | js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
 | js/profile.js | 1 | 3 | js/profile.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
@@ -27,16 +27,12 @@
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
 | js/ui/place-card.js | 23 | js/ui/** |
-| js/boot.js | 8 | js/boot.js |
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
-| js/console/diagnosticConsole.js | 6 | other |
-| js/i18n.js | 6 | other |
 | js/Civication/ui/CivicationMap.js | 5 | js/Civication/** |
 | js/hgKnowledgeEngine.js | 5 | js/hgKnowledgeEngine.js |
-| js/map.js | 5 | other |
 | js/nextUpRuntime.js | 5 | other |
-| js/ui/toast.js | 5 | js/ui/** |
 | js/Civication/systems/civicationBlockedJobMessages.js | 4 | js/Civication/** |
+| js/boot.js | 4 | js/boot.js |
 | js/routes.js | 4 | other |
 | js/ui/badge-modal.js | 4 | js/ui/** |
 | js/Civication/systems/day/dayNarrativeConsequencesUI.js | 3 | js/Civication/** |
@@ -46,11 +42,15 @@
 | js/profile.js | 3 | js/profile.js |
 | js/state/state.js | 3 | js/state/** |
 | js/stories/stories_utils.js | 3 | other |
+| js/ui/popup-utils.js | 3 | js/ui/** |
+| js/ui/search.js | 3 | js/ui/** |
+| js/ui/wonderkammer-entry.js | 3 | js/ui/** |
+| js/Civication/core/civicationJobs.js | 2 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 106 |
+| TS2339 | 84 |
 | TS2345 | 11 |
 | TS2322 | 10 |
 | TS2451 | 6 |
@@ -58,20 +58,19 @@
 | TS2304 | 4 |
 | TS2769 | 4 |
 | TS2363 | 3 |
-| TS2349 | 3 |
 | TS2739 | 2 |
-| TS2554 | 2 |
 | TS2552 | 2 |
 | TS2740 | 1 |
 | TS2488 | 1 |
 | TS2353 | 1 |
 | TS2741 | 1 |
+| TS2349 | 1 |
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (51 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/boot.js` (8), `js/Civication/systems/day/dayPatches.js` (6), `js/console/diagnosticConsole.js` (6), `js/i18n.js` (6).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/Civication/**`, `js/boot.js`.
+1. Start with **js/ui/** (46 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/Civication/systems/day/dayPatches.js` (6), `js/Civication/ui/CivicationMap.js` (5), `js/hgKnowledgeEngine.js` (5), `js/nextUpRuntime.js` (5).
+3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/hgKnowledgeEngine.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
 ## Raw output excerpt (first 80 lines)
@@ -128,22 +127,10 @@ js/Civication/ui/CivicationUI.js(1374,7): error TS2322: Type 'number' is not ass
 js/app.js(121,20): error TS2339: Property 'dataset' does not exist on type 'Element'.
 js/audits/imageRoles.audit.js(62,79): error TS2739: Type 'Blob' is missing the following properties from type 'File': lastModified, name, webkitRelativePath
 js/audits/imageRoles.audit.js(63,67): error TS2739: Type 'Blob' is missing the following properties from type 'File': lastModified, name, webkitRelativePath
-js/boot.js(140,12): error TS2339: Property 'checked' does not exist on type 'HTMLElement'.
-js/boot.js(143,35): error TS2339: Property 'checked' does not exist on type 'HTMLElement'.
-js/boot.js(381,28): error TS2349: This expression is not callable.
-  Type '{}' has no call signatures.
-js/boot.js(418,43): error TS2349: This expression is not callable.
-  Type 'never' has no call signatures.
 js/boot.js(452,14): error TS2304: Cannot find name 'wire'.
 js/boot.js(452,35): error TS2304: Cannot find name 'wire'.
 js/boot.js(454,14): error TS2304: Cannot find name 'renderGallery'.
 js/boot.js(454,44): error TS2304: Cannot find name 'renderGallery'.
-js/console/diagnosticConsole.js(126,10): error TS2339: Property 'type' does not exist on type 'HTMLElement'.
-js/console/diagnosticConsole.js(207,12): error TS2339: Property 'onclick' does not exist on type 'Element'.
-js/console/diagnosticConsole.js(214,8): error TS2339: Property 'style' does not exist on type 'Element'.
-js/console/diagnosticConsole.js(215,8): error TS2339: Property 'onclick' does not exist on type 'Element'.
-js/console/diagnosticConsole.js(285,68): error TS2339: Property 'detail' does not exist on type 'Event'.
-js/console/diagnosticConsole.js(329,20): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/console/legacyExtensions.js(101,77): error TS2339: Property 'url' does not exist on type 'URL | Request'.
   Property 'url' does not exist on type 'URL'.
 js/console/verify.js(140,12): error TS2339: Property 'onclick' does not exist on type 'Element'.
@@ -156,4 +143,16 @@ js/dataHub.js(67,38): error TS2769: No overload matches this call.
     Type 'string' is not assignable to type 'RequestCache'.
 js/emnerLoader.js(26,41): error TS2339: Property 'src' does not exist on type 'HTMLOrSVGScriptElement'.
   Property 'src' does not exist on type 'SVGScriptElement'.
+js/hgKnowledgeEngine.js(182,27): error TS2339: Property 'emne_id' does not exist on type 'unknown'.
+js/hgKnowledgeEngine.js(184,38): error TS2339: Property 'core_concepts' does not exist on type 'unknown'.
+js/hgKnowledgeEngine.js(184,68): error TS2339: Property 'keywords' does not exist on type 'unknown'.
+js/hgKnowledgeEngine.js(261,46): error TS2339: Property 'title' does not exist on type 'Place'.
+js/hgKnowledgeEngine.js(271,27): error TS2339: Property 'emne_id' does not exist on type 'unknown'.
+js/hgchips.js(65,21): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
+js/learningLog.js(130,7): error TS2353: Object literal may only specify known properties, and 'LEARNING' does not exist in type 'CiviLearningLogFn'.
+js/nature_place_map_bridge.js(269,31): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
+js/nextUpRuntime.js(477,11): error TS2339: Property 'type' does not exist on type 'HTMLElement'.
+js/nextUpRuntime.js(638,31): error TS2339: Property 'dataset' does not exist on type 'Element'.
+js/nextUpRuntime.js(651,44): error TS2339: Property 'dataset' does not exist on type 'Element'.
+js/nextUpRuntime.js(770,19): error TS2339: Property 'detail' does not exist on type 'Event'.
 ```
