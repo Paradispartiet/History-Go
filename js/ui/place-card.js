@@ -210,7 +210,7 @@ window.openPlaceCard = async function (place) {
     try {
       const fullPlace = await window.DataHub.loadFullPlace(placeId, { cache: "default" });
       if (fullPlace && typeof fullPlace === "object") {
-        place = { ...place, ...fullPlace };
+        place = /** @type {PlaceCardPlace} */ ({ ...place, ...fullPlace });
         const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
         const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
         if (idx >= 0) placesArr[idx] = place;
@@ -221,7 +221,7 @@ window.openPlaceCard = async function (place) {
   }
   if (!Array.isArray(window.LESESPOR) && window.DataHub?.loadLesespor) {
     try {
-      await window.DataHub.loadLesespor({ cache: "default" });
+      await /** @type {any} */ (window.DataHub.loadLesespor)({ cache: "default" });
     } catch (e) {
       console.warn("[openPlaceCard.loadLesespor]", e);
     }
@@ -300,9 +300,9 @@ if (!card.dataset.pcIconsBound) {
     closeAllLists();
 
     const currentPlaceId = String(card?.dataset?.currentPlaceId || "").trim();
-    const currentPlace = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
+    const currentPlace = /** @type {PlaceCardPlace} */ ((Array.isArray(window.PLACES) ? window.PLACES : []).find(
       p => String(p?.id || "").trim() === currentPlaceId
-    ) || place;
+    ) || place);
 
     if (kind === "leksikon") {
       if (currentPlaceId && typeof window.HGLeksikon?.openPlace === "function") {
@@ -473,9 +473,9 @@ if (!card) return;
     miniImgEl.src = frontImgEl?.src || String(place.image ?? "");
    }
   
-  if (titleEl) titleEl.textContent = place.name || "";
+  if (titleEl) titleEl.textContent = String(place.name || "");
   const categoryLabel = (window.CATEGORY_LIST || []).find(c => String(c?.id || "").trim() === String(place.category || "").trim())?.name || place.category || "";
-  const sportProfile = (place?.category === "sport" && place?.sport_profile && typeof place.sport_profile === "object") ? place.sport_profile : null;
+  const sportProfile = /** @type {any} */ ((place?.category === "sport" && place?.sport_profile && typeof place.sport_profile === "object") ? place.sport_profile : null);
   if (metaEl) {
     const metaLines = [categoryLabel];
     if (sportProfile && sportProfile.groundhopper_relevant !== false) {
@@ -494,7 +494,7 @@ if (!card) return;
     });
     metaEl.replaceChildren(...lineNodes);
   }
-  if (descEl)  descEl.textContent  = place.desc || "";
+  if (descEl)  descEl.textContent  = String(place.desc || "");
   if (lesesporEl) lesesporEl.innerHTML = "";
 
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
@@ -573,9 +573,9 @@ if (peopleEl) {
   const popupPersons = Array.isArray(persons) ? persons : [];
   const personIdsInList = new Set(popupPersons.map(p => String(p?.id || "").trim()).filter(Boolean));
   const placeId = String(place?.id || "").trim();
-  const peopleById = new Map(PEOPLE_LIST.map(p => [String(p?.id || "").trim(), p]).filter(([id]) => id));
+  const peopleById = new Map(PEOPLE_LIST.map(p => /** @type {[string, any]} */ ([String(p?.id || "").trim(), p])).filter(([id]) => id));
   const placesList = Array.isArray(window.PLACES) ? window.PLACES : [];
-  const placesById = new Map(placesList.map(p => [String(p?.id || "").trim(), p]).filter(([id]) => id));
+  const placesById = new Map(placesList.map(p => /** @type {[string, any]} */ ([String(p?.id || "").trim(), p])).filter(([id]) => id));
 
   const placeRels = (typeof getRelationsForPlace === "function") ? getRelationsForPlace(place.id) : [];
   const curatedPlaceRels = (typeof filterCuratedRels === "function") ? filterCuratedRels(placeRels) : placeRels;
@@ -1221,7 +1221,7 @@ async function loadCanonicalSocialEvents() {
 
 // --- EVENTS BOX (ikke runding) ---
 if (eventsBox) {
-  const socialData = await loadPlaceSocialData(place.id);
+  const socialData = await loadPlaceSocialData(String(place.id));
   const canonicalEvents = await loadCanonicalSocialEvents();
 
   const defaultSocialData = {
@@ -1549,16 +1549,16 @@ if (btnUnlock) {
     }
 
     const isGroundhopperRelevant = typeof window.HG_isGroundhopperPlace === "function"
-      ? !!window.HG_isGroundhopperPlace(place)
-      : !!(place?.category === "sport" && place?.sport_profile?.groundhopper_relevant !== false);
+      ? !!window.HG_isGroundhopperPlace(/** @type {any} */ (place))
+      : !!(place?.category === "sport" && /** @type {any} */ (place?.sport_profile)?.groundhopper_relevant !== false);
 
     if (typeof window.saveVisitedFromQuiz === "function") {
-      window.saveVisitedFromQuiz(place.id);
+      window.saveVisitedFromQuiz(String(place.id));
     } else {
       window.visited = window.visited || {};
       window.visited[/** @type {string} */ (place.id)] = true;
       if (typeof window.HG_updateGroundhopperFromPlace === "function") {
-        window.HG_updateGroundhopperFromPlace(place);
+        window.HG_updateGroundhopperFromPlace(/** @type {any} */ (place));
       }
       if (typeof window.saveVisited === "function") window.saveVisited();
     }
@@ -1578,10 +1578,10 @@ if (btnUnlock) {
     if (badgeId) {
       window.merits = window.merits || {};
       window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
-      window.merits[badgeId].points++;
+      /** @type {any} */ (window.merits[badgeId]).points++;
       if (typeof window.saveMerits === "function") window.saveMerits();
       if (typeof window.updateMeritLevel === "function") {
-        window.updateMeritLevel(badgeId, window.merits[badgeId].points);
+        window.updateMeritLevel(badgeId, /** @type {any} */ (window.merits[badgeId]).points);
       }
     }
 
