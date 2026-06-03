@@ -83,7 +83,8 @@
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
     card.addEventListener("click", (e) => {
-      if (e.target.closest(".nature-unlock-close")) return;
+      const target = e.target;
+      if (target instanceof Element && target.closest(".nature-unlock-close")) return;
       // Åpne badge-modalen hvis tilgjengelig
       const catId = String(detail?.categoryId || "").trim();
       if (catId && typeof window.handleBadgeClick === "function") {
@@ -96,7 +97,8 @@
   }
 
   window.addEventListener("hg:badge-tier-unlock", (e) => {
-    try { showBadgeUnlock(e?.detail); } catch (err) {
+    const event = /** @type {CustomEvent} */ (e);
+    try { showBadgeUnlock(event.detail); } catch (err) {
       if (window.DEBUG) console.warn("[BadgeUnlockToast]", err);
     }
   });

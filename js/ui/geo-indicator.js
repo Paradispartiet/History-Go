@@ -14,6 +14,7 @@ function setGeo(status) {
 }
 
 window.addEventListener("hg:geo", (e) => {
-  const st = e?.detail?.status || "unknown";
+  const event = /** @type {CustomEvent} */ (e);
+  const st = event.detail?.status || "unknown";
   setGeo(st);
 });
