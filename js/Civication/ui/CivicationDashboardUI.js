@@ -105,7 +105,7 @@
   }
 
   function getActivePosition() {
-    return window.CivicationState?.getActivePosition?.() || null;
+    return /** @type {any} */ (window.CivicationState?.getActivePosition?.() || null);
   }
 
   function getCiviState() {
@@ -122,7 +122,7 @@
       const points = asNumber(merits?.[active.career_id]?.points, 0);
 
       const badge = Array.isArray(window.BADGES)
-        ? window.BADGES.find(function (b) {
+        ? window.BADGES.find(function (/** @type {any} */ b) {
             return b && String(b.id) === String(active.career_id);
           })
         : null;
@@ -133,7 +133,7 @@
           : 0;
 
       const career = Array.isArray(window.HG_CAREERS)
-        ? window.HG_CAREERS.find(function (c) {
+        ? window.HG_CAREERS.find(function (/** @type {any} */ c) {
             return c && String(c.career_id) === String(active.career_id);
           })
         : null;
@@ -146,7 +146,7 @@
   }
 
   function getHomeLabel() {
-    const home = window.CivicationHome?.getState?.();
+    const home = /** @type {any} */ (window.CivicationHome?.getState?.());
     const current = home?.home || null;
 
     if (current?.status === "settled") {
@@ -186,7 +186,7 @@
   }
 
   function getPendingLabel(inbox) {
-    const pending = window.HG_CiviEngine?.getPendingEvent?.();
+    const pending = /** @type {any} */ (window.HG_CiviEngine?.getPendingEvent?.());
     const fallbackItem = Array.isArray(inbox) ? inbox.find(isOpenInboxItem) : null;
     const event = pending?.event || fallbackItem?.event || fallbackItem || null;
 

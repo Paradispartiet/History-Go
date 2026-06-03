@@ -536,7 +536,7 @@ function makePopup(html, extraClass = "", onClose = null) {
   let _closed = false;
 
   // klikkbare personer fra Vunderkamre
-  el.querySelectorAll("[data-person]").forEach(btn => {
+  el.querySelectorAll("[data-person]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const pid = String(btn.dataset.person || "").trim();
       const pr = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find(x => String(x.id).trim() === pid);
@@ -548,7 +548,7 @@ function makePopup(html, extraClass = "", onClose = null) {
   });
 
   // klikkbare steder (chips i stories-seksjon m.m.)
-  el.querySelectorAll("[data-place]").forEach(btn => {
+  el.querySelectorAll("[data-place]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const plid = String(btn.dataset.place || "").trim();
       const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(x => String(x.id).trim() === plid);
@@ -560,7 +560,7 @@ function makePopup(html, extraClass = "", onClose = null) {
   });
 
   // klikkbare Wonderkammer-entries
-el.querySelectorAll("[data-wk]").forEach(btn => {
+el.querySelectorAll("[data-wk]").forEach((/** @type {HTMLElement} */ btn) => {
   btn.onclick = () => {
     const id = String(btn.dataset.wk || "").trim();
     if (!id) return;
@@ -590,7 +590,7 @@ el.querySelectorAll("[data-wk]").forEach(btn => {
   }
 
   el.addEventListener("click", e => {
-    if (e.target.closest("[data-close-popup]")) finishClose();
+    if (/** @type {Element} */ (e.target).closest("[data-close-popup]")) finishClose();
   });
 
   el.addEventListener("click", e => {

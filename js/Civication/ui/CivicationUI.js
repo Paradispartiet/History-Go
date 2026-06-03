@@ -81,7 +81,7 @@ function refreshCivicationAfterAnswer(previousEventId) {
   const delays = [80, 220, 500, 900];
   delays.forEach(function (delay) {
     window.setTimeout(function () {
-      const pending = window.HG_CiviEngine?.getPendingEvent?.();
+      const pending = /** @type {CiviUiInboxItem|null|undefined} */ (window.HG_CiviEngine?.getPendingEvent?.());
       const nextId = String(pending?.event?.id || "").trim() || null;
 
       if (!previousEventId || nextId !== previousEventId || !nextId) {
@@ -104,10 +104,10 @@ function wireCivicationActions() {
 
   if (btnAccept) {
     btnAccept.onclick = () => {
-      const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+      const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (window.CivicationJobs?.getLatestPendingOffer?.());
       if (!offer) return;
 
-      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+      const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.CivicationJobs?.acceptOffer?.(offer.offer_key));
       if (!res?.ok) return;
 
       window.dispatchEvent(new Event("updateProfile"));
@@ -116,7 +116,7 @@ function wireCivicationActions() {
 
   if (btnDecline) {
     btnDecline.onclick = () => {
-      const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+      const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (window.CivicationJobs?.getLatestPendingOffer?.());
       if (!offer) return;
 
       window.CivicationJobs?.declineOffer?.(offer.offer_key);
@@ -184,14 +184,14 @@ async function renderCivication() {
       const points = Number(merits[active.career_id]?.points || 0);
 
       const badge = Array.isArray(window.BADGES)
-        ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
+        ? window.BADGES.find((/** @type {any} */ b) => b && String(b.id) === String(active.career_id))
         : null;
 
       const tierIndex =
         badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
 
       const career = Array.isArray(window.HG_CAREERS)
-        ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
+        ? window.HG_CAREERS.find((/** @type {any} */ c) => c && String(c.career_id) === String(active.career_id))
         : null;
 
       const weekly =
@@ -304,14 +304,14 @@ async function renderCivication() {
       const points = Number(merits[active.career_id]?.points || 0);
 
       const badge = Array.isArray(window.BADGES)
-        ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
+        ? window.BADGES.find((/** @type {any} */ b) => b && String(b.id) === String(active.career_id))
         : null;
 
       const tierIndex =
         badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
 
       const career = Array.isArray(window.HG_CAREERS)
-        ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
+        ? window.HG_CAREERS.find((/** @type {any} */ c) => c && String(c.career_id) === String(active.career_id))
         : null;
 
       const weekly = career ? window.calculateWeeklySalary(career, tierIndex) : NaN;
@@ -392,7 +392,7 @@ window.addEventListener("civiPublicUpdated", renderPublicFeed);
 
 function syncRoleBaseline() {
 
- const active = window.CivicationState?.getActivePosition?.();
+ const active = /** @type {CiviUiActivePosition|null|undefined} */ (window.CivicationState?.getActivePosition?.());
 
  if (!active || !active.career_id) {
   window.CivicationPsyche?.clearRoleBaseline?.();
@@ -411,7 +411,7 @@ window.CivicationConflicts
     console.log("Active conflict:", conflict);
   });
   const badge = Array.isArray(window.BADGES)
-    ? window.BADGES.find(b => b && String(b.id) === String(careerId))
+    ? window.BADGES.find((/** @type {any} */ b) => b && String(b.id) === String(careerId))
     : null;
 
   if (!badge) {
@@ -482,7 +482,7 @@ function renderHomeStatus() {
   const el = document.getElementById("homeStatusContent");
   if (!el) return;
 
-  const home = window.CivicationHome?.getState?.();
+  const home = /** @type {any} */ (window.CivicationHome?.getState?.());
   if (!home) return;
 
   if (home.home?.status !== "settled") {
@@ -688,12 +688,12 @@ function renderWorkdayPanel() {
   const host = document.getElementById("civiWorkdayPanel");
   if (!host) return;
 
-  const active = window.CivicationState?.getActivePosition?.();
-  const state = window.CivicationState?.getState?.() || {};
-  const career = state?.career || {};
+  const active = /** @type {CiviUiActivePosition|null|undefined} */ (window.CivicationState?.getActivePosition?.());
+  const state = /** @type {CiviUiState} */ (window.CivicationState?.getState?.() || {});
+  const career = /** @type {any} */ (state?.career || {});
   const progress = career?.progress || {};
   const contract = career?.contract || {};
-  const pending = window.HG_CiviEngine?.getPendingEvent?.();
+  const pending = /** @type {CiviUiInboxItem|null|undefined} */ (window.HG_CiviEngine?.getPendingEvent?.());
   const ev = pending?.event || null;
 
   const clock =
@@ -1131,7 +1131,7 @@ function renderCivicationInbox() {
 
     if (!subj || !text || !btnA || !btnB || !btnC || !btnOK || !fb) return;
 
-    const pending = window.HG_CiviEngine?.getPendingEvent?.();
+    const pending = /** @type {CiviUiInboxItem|null|undefined} */ (window.HG_CiviEngine?.getPendingEvent?.());
 
     if (!pending?.event) {
       box.style.display = "none";
@@ -1151,10 +1151,11 @@ function renderCivicationInbox() {
       ? `<span class="civi-mail-sender">${senderPrefix}${placeLine}</span><br>📬 ${ev.subject || "—"}`
       : `📬 ${ev.subject || "—"}${placeLine}`;
 
-    text.textContent =
+    text.textContent = /** @type {string} */ (
       Array.isArray(ev.situation)
         ? ev.situation.join(" ")
-        : (ev.situation || "—");
+        : (ev.situation || "—")
+    );
 
     fb.style.display = "none";
     btnOK.style.display = "none";
@@ -1168,7 +1169,7 @@ function renderCivicationInbox() {
       btn.textContent = label;
       btn.style.display = "";
       btn.onclick = () => {
-        const res = window.HG_CiviEngine?.answer?.(ev.id, id);
+        const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
         if (!res?.ok) return;
 
         // V2 blueprint: hvis valget har triggers_on_choice, enkø
@@ -1329,7 +1330,7 @@ function renderCivicationInbox() {
     b.textContent = String(c.label || id);
 
     b.onclick = () => {
-      const res = window.HG_CiviEngine?.answer?.(ev.id, id);
+      const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
       if (!res?.ok) return;
 
       // V2 blueprint: enkø thread-mail hvis choice har triggers_on_choice
@@ -1387,15 +1388,15 @@ function renderPerception() {
   const el = document.getElementById("identityPerception");
   if (!el) return;
 
-  const snapshot = window.CivicationPsyche?.getSnapshot?.();
+  const snapshot = /** @type {CiviUiPsycheSnapshot|null|undefined} */ (window.CivicationPsyche?.getSnapshot?.());
   const capital = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
-  const identity = window.HG_IdentityCore?.getProfile?.() || {};
+  const identity = /** @type {any} */ (window.HG_IdentityCore?.getProfile?.() || {});
 
-  const lines = window.HG_IdentityCore?.generatePerceptionProfile?.({
+  const lines = /** @type {any[]} */ (window.HG_IdentityCore?.generatePerceptionProfile?.({
     ...capital,
     ...snapshot,
     dominant: identity.dominant
-  }) || [];
+  }) || []);
 
   el.innerHTML = lines
     .map(l => `<div class="perception-line">${l}</div>`)

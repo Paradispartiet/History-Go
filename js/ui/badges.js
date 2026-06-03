@@ -96,7 +96,7 @@ function getBadgeForPlace(place) {
   const categoryId = String(place?.category || "").trim();
   if (!categoryId) return null;
 
-  return getBadgesList().find(badge =>
+  return getBadgesList().find((/** @type {any} */ badge) =>
     String(badge?.id || "").trim() === categoryId
   ) || null;
 }
@@ -201,7 +201,7 @@ function applyPlaceCardBadgeRound(place) {
   const incomingPlaceId = String(place?.id || "").trim();
   if (incomingPlaceId && currentPlaceId && incomingPlaceId !== currentPlaceId) return;
 
-  const badge = getBadgeForPlace(place);
+  const badge = /** @type {any} */ (getBadgeForPlace(place));
   const badgeName = badgeText(badge?.name || badge?.title || badge?.id) || "Badge";
   const img = badgeImagePath(badge?.image || badge?.icon);
   const emojiIcon = !img ? badgeText(badge?.icon) : "";
@@ -229,7 +229,7 @@ function bindPlaceCardBadgeToggle() {
   __placeCardBadgeToggleBound = true;
 
   document.addEventListener("click", (e) => {
-    const badgeIcon = e.target?.closest?.("#pcBadgesIcon");
+    const badgeIcon = /** @type {Element|null} */ (e.target)?.closest?.("#pcBadgesIcon");
     if (!badgeIcon) return;
 
     const badgePopup = document.querySelector(".hg-popup.placecard-round-popup .pc-round-popup-badges")?.closest(".hg-popup");

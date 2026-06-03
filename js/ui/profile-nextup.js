@@ -87,7 +87,7 @@
     const mount = document.getElementById("profileNextUp");
     if (!section || !mount) return;
 
-    const { tri, because, activePath } = readNextUp();
+    const { tri, because, activePath } = /** @type {any} */ (readNextUp());
 
     const spatial = tri.spatial || null;
     const wk = tri.wk || null;
@@ -155,7 +155,7 @@
       ` : ""}
     `;
 
-    mount.querySelectorAll("[data-nextup-place]").forEach(btn => {
+    mount.querySelectorAll("[data-nextup-place]").forEach((/** @type {HTMLElement} */ btn) => {
       btn.addEventListener("click", () => openPlace(btn.dataset.nextupPlace));
     });
   }

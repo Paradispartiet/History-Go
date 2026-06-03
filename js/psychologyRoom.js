@@ -153,7 +153,7 @@
   }
 
   function bindBack() {
-    document.querySelectorAll("[data-psych-back]").forEach((button) => {
+    document.querySelectorAll("[data-psych-back]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const target = button.dataset.psychBack || "home";
         if (target === "phenomena") renderPhenomenaList();
@@ -163,7 +163,7 @@
       });
     });
 
-    document.querySelectorAll("[data-psych-back-path]").forEach((button) => {
+    document.querySelectorAll("[data-psych-back-path]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const path = findById(dataCache?.paths || [], button.dataset.psychBackPath);
         if (path) renderPathDetail(path);
@@ -489,7 +489,7 @@
     const tests = dataCache?.tests || [];
     setContent(shell(`${backButton()}<section class="psychology-room-list">${tests.map(test => `<button class="psychology-room-list-item psychology-room-card" type="button" data-test-id="${escapeHtml(test.id)}"><strong>${escapeHtml(test.title)}</strong><span>${escapeHtml(test.description)}</span></button>`).join("") || `<p class="psychology-room-muted">Ingen tester funnet.</p>`}</section>`));
     bindBack();
-    document.querySelectorAll("[data-test-id]").forEach(button => {
+    document.querySelectorAll("[data-test-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const test = tests.find(item => item.id === button.dataset.testId);
         if (test) renderTest(test);
@@ -522,7 +522,7 @@
     const exercises = dataCache?.exercises || [];
     setContent(shell(`${backButton()}<section class="psychology-room-list">${exercises.map(exercise => `<button class="psychology-room-list-item psychology-room-card" type="button" data-exercise-id="${escapeHtml(exercise.id)}"><strong>${escapeHtml(exercise.title)}</strong><span>${escapeHtml(exercise.description)}</span></button>`).join("") || `<p class="psychology-room-muted">Ingen øvelser funnet.</p>`}</section>`));
     bindBack();
-    document.querySelectorAll("[data-exercise-id]").forEach(button => {
+    document.querySelectorAll("[data-exercise-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const exercise = exercises.find(item => item.id === button.dataset.exerciseId);
         if (exercise) renderExercise(exercise);
@@ -548,7 +548,7 @@
     const phenomena = dataCache?.phenomena || [];
     setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>Fenomenleksikon</h3><p class="psychology-room-muted">Psykologiske fenomener og kognitive mønstre som kan hjelpe deg å forstå egne reaksjoner.</p></section><section class="psychology-room-list">${phenomena.map((item) => `<button class="psychology-room-list-item psychology-room-card" type="button" data-phenomenon-id="${escapeHtml(item.id)}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.short || "")}</span>${renderTags(item.appears_when)}</button>`).join("") || `<p class="psychology-room-muted">Ingen fenomener funnet.</p>`}</section>`));
     bindBack();
-    document.querySelectorAll("[data-phenomenon-id]").forEach((button) => {
+    document.querySelectorAll("[data-phenomenon-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const item = findById(phenomena, button.dataset.phenomenonId);
         if (item) renderPhenomenonDetail(item);
@@ -567,7 +567,7 @@
     const tools = dataCache?.tools || [];
     setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>CBT-verktøy</h3><p class="psychology-room-muted">Kognitive og atferdsbaserte verktøy for strukturert selvhjelp. I denne versjonen kan verktøyene leses; interaktiv utfylling kommer senere.</p></section><section class="psychology-room-list">${tools.map((tool) => `<button class="psychology-room-list-item psychology-room-card" type="button" data-tool-id="${escapeHtml(tool.id)}"><strong>${escapeHtml(tool.title)}</strong><span>${escapeHtml(tool.short || "")}</span>${renderTags([label(tool.type), `${Number(tool.duration_minutes || 0)} min`])}</button>`).join("") || `<p class="psychology-room-muted">Ingen verktøy funnet.</p>`}</section>`));
     bindBack();
-    document.querySelectorAll("[data-tool-id]").forEach((button) => {
+    document.querySelectorAll("[data-tool-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const tool = findById(tools, button.dataset.toolId);
         if (tool) renderToolDetail(tool);
@@ -593,7 +593,7 @@
       return `<button class="psychology-room-list-item psychology-room-card" type="button" data-path-id="${escapeHtml(path.id)}"><strong>${escapeHtml(path.title)}</strong><span>${escapeHtml(path.description || "")}</span>${renderTags([`${total} dager`, status, ...(path.focus || [])])}</button>`;
     }).join("") || `<p class="psychology-room-muted">Ingen løp funnet.</p>`}</section>`));
     bindBack();
-    document.querySelectorAll("[data-path-id]").forEach((button) => {
+    document.querySelectorAll("[data-path-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const path = findById(paths, button.dataset.pathId);
         if (path) renderPathDetail(path);
@@ -640,15 +640,15 @@
     bindBack();
     document.querySelector("[data-start-path]")?.addEventListener("click", () => startPath(path));
     document.querySelector("[data-save-day-reflection]")?.addEventListener("click", () => {
-      const dayNo = Number(document.querySelector("[data-save-day-reflection]")?.dataset.saveDayReflection || currentDay);
-      const reflection = String(document.getElementById("psychologyRoomDayReflection")?.value || "").trim();
+      const dayNo = Number(/** @type {HTMLElement|null} */ (document.querySelector("[data-save-day-reflection]"))?.dataset.saveDayReflection || currentDay);
+      const reflection = String(/** @type {HTMLTextAreaElement|null} */ (document.getElementById("psychologyRoomDayReflection"))?.value || "").trim();
       saveDayReflection(path.id, dayNo, reflection);
       window.showToast?.("Dag-refleksjon lagret");
       renderPathDetail(path);
     });
-    document.querySelectorAll("[data-complete-path-day]").forEach((button) => {
+    document.querySelectorAll("[data-complete-path-day]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
-        const reflection = String(document.getElementById("psychologyRoomDayReflection")?.value || "").trim();
+        const reflection = String(/** @type {HTMLTextAreaElement|null} */ (document.getElementById("psychologyRoomDayReflection"))?.value || "").trim();
         completePathDay(path, Number(button.dataset.completePathDay), reflection);
       });
     });
