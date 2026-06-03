@@ -361,7 +361,8 @@
 
     const close = () => modal.remove();
     modal.addEventListener("click", (e) => {
-      if (e.target === modal || e.target?.hasAttribute?.("data-location-close")) close();
+      const target = e.target;
+      if (target === modal || (target instanceof Element && target.hasAttribute("data-location-close"))) close();
     });
     modal.querySelector("[data-location-use-gps]")?.addEventListener("click", () => {
       clearLocationOverride();

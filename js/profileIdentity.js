@@ -369,12 +369,14 @@
     refreshLoginButton(getCachedAhaAuthState());
   });
   window.addEventListener("historygo:aha-readback", (event) => {
+    const customEvent = /** @type {CustomEvent} */ (event);
     applyProfileToDom();
-    refreshLoginButton(getCachedAhaAuthState(event.detail || {}));
+    refreshLoginButton(getCachedAhaAuthState(customEvent.detail || {}));
   });
 
   window.addEventListener("aha:auth-ready", async (event) => {
-    const state = event.detail || { signed_in: false, profile_id: null, source_app: "historygo" };
+    const customEvent = /** @type {CustomEvent} */ (event);
+    const state = customEvent.detail || { signed_in: false, profile_id: null, source_app: "historygo" };
     const buttonState = { ...state };
 
     try {

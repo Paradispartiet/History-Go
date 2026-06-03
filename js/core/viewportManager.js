@@ -21,7 +21,7 @@
       tag === "INPUT" ||
       tag === "TEXTAREA" ||
       tag === "SELECT" ||
-      el.isContentEditable === true
+      (el instanceof HTMLElement && el.isContentEditable === true)
     );
   }
 
