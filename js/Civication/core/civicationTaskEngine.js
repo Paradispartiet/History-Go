@@ -119,7 +119,9 @@
     const isHistoryGoKind = HISTORY_GO_TASK_KINDS.indexOf(normalized.task_kind) !== -1;
     const isHistoryGoTarget = HISTORY_GO_TARGET_TYPES.indexOf(normalized.target_type) !== -1;
     const isHistoryGoCompletion = HISTORY_GO_COMPLETION_MODES.indexOf(normalized.completion_mode) !== -1;
+    const hasConcreteTarget = !!normalized.target_id;
 
+    if (!hasConcreteTarget) return false;
     if (isHistoryGoKind && isHistoryGoTarget) return true;
     return isHistoryGoTarget && isHistoryGoCompletion;
   }
