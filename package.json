@@ -15,7 +15,8 @@
     "leksikon:ids:check": "node tools/check_leksikon_duplicate_ids.mjs",
     "places:aliases:check": "node tools/check_place_id_aliases.mjs",
     "check:stories": "node tools/check_stories_integrity.mjs",
-    "places:import": "node tools/importPlaces.mjs"
+    "places:import": "node tools/importPlaces.mjs",
+    "test": "for f in tests/*.test.js tests/*.test.cjs; do node \"$f\"; done"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
