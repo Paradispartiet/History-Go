@@ -251,6 +251,27 @@ Ikke:
 - ikke la `mailPlans` eller `jobbmails` eie `job_learning_progress`
 - ikke la History Go task payloads avgjøre career outcome eller job mastery alene
 
+## 8b. Dual-gate job eligibility og fired category reentry lock
+
+Jobbtilgang vurderes gjennom to porter (eies av `CivicationJobEligibilityRuntime`, ikke av career outcome):
+
+- `knowledge_gate` = History Go / quiz / merits / kunnskap.
+  - Kontraktsklar, men ikke håndhevet ennå. Har et tilbud eksplisitte kunnskapskrav, leses de tolerant; mangler de, returneres `not_configured`/`unknown` og tilbudet blokkeres ikke. Konkrete quizkrav per jobb kommer i en senere PR.
+- `learning_gate` = Civication / `job_learning_progress` / mastered roles / unlocked skills.
+  - Bruker `CivicationJobLearningRuntime.getCareerLearningSignals(...)`. Det er kun et signal: det promoterer aldri automatisk og skriver aldri `career_outcome_state`.
+
+Eligibility-helperen (`getJobOfferEligibility`) skiller disse to portene og legger til `careerStateModifier`, `reentryLock`, `offerRoute`, `eligible`, `reasons` og `blockers`.
+
+`career_reentry_locks` er en egen state-slice i `hg_civi_state_v1`, keyet på kategori (f.eks. `naeringsliv`, `media`). Hver lock har `status` (`locked`/`cleared`), `reason`, `locked_at`, `fired_category`, `fired_role_id`, `clear_condition` og clear-felt. Eligibility blokkerer kun `status: "locked"`.
+
+Fired-regelen: **Får du sparken i én kategori, må du jobbe i en annen kategori før samme kategori åpnes igjen.**
+
+- FIRED i en aktiv jobb oppretter en lock for jobbens kategori (tolerant resolver: `category` → `career_id` → `career` → `naer_*`-prefiks). Kan ikke kategori løses, opprettes ingen lock (ingen crash, ingen blokkering av alt).
+- Locken blokkerer nye jobbtilbud i samme kategori. Andre kategorier er fortsatt tilgjengelige.
+- Locken cleares først når spilleren har aktiv jobb i en annen kategori OG besvarer minst én plan-fremmende jobbmail der (samme smale signal som job learning: `source_type: "planned"` eller `daily_mail_meta.advances_role_plan`, aldri terminal/outcome-mail).
+- `STAGNATED` gir ingen kategori-lock; den kan bare gi `offerRoute: "exit_from_stagnation"`. `PROMOTED` gir heller ingen lock.
+- FIRED sletter aldri quiz/merits, `job_learning_progress`, mastered roles, `unlocked_skills`/`unlocked_teaches` eller job history. Locken berører kun fremtidige jobbtilbud i samme kategori.
+
 ## 9. Åpne neste steg
 
 Dette dokumentet implementerer ingenting. Mulige neste steg er:
