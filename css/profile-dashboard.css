@@ -184,46 +184,59 @@ body.profile-page{
   padding:10px 17px;
 }
 
-.profile-status-panel{
-  display:grid;
-  gap:12px;
-  align-content:start;
+.profile-header-status{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+  max-width:640px;
 }
 
-.profile-status-title{
-  font-size:13px;
-  color:rgba(255,255,255,.62);
-  text-transform:uppercase;
-  letter-spacing:.10em;
-  font-weight:850;
-}
-
-.profile-stat-row.profile-stat-row-v2{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:10px;
-}
-
-.profile-stat-row-v2 .profile-stat-card{
-  min-height:108px;
-  align-items:flex-start;
+.profile-header-status .profile-stat-card{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
   text-align:left;
-  padding:16px;
-  border-radius:18px;
+  padding:8px 11px;
+  border-radius:999px;
   background:rgba(0,0,0,.20);
   border:1px solid rgba(255,255,255,.105);
+  color:#fff;
 }
 
-.profile-stat-row-v2 .profile-stat-card span{
-  font-size:38px;
-  letter-spacing:-.05em;
+.profile-header-status .profile-stat-icon,
+.profile-header-status .pc-icon{
+  width:18px;
+  height:18px;
+  flex:0 0 auto;
+  font-size:15px;
+  line-height:1;
 }
 
-.profile-stat-row-v2 .profile-stat-card small{
-  font-size:13px;
-  font-weight:800;
+.profile-header-status .profile-stat-icon{
+  display:inline-grid;
+  place-items:center;
+}
+
+.profile-header-status .pc-icon{
+  display:block;
+}
+
+.profile-header-status .profile-stat-value{
+  font-size:18px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+
+.profile-header-status .profile-stat-card small{
+  font-size:11px;
+  line-height:1;
+  font-weight:850;
   text-transform:uppercase;
   letter-spacing:.05em;
+  color:rgba(255,255,255,.72);
 }
 
 .profile-dashboard-grid{
@@ -525,24 +538,24 @@ body.profile-page{
     font-size:34px;
   }
 
-  .profile-stat-row.profile-stat-row-v2,
   .profile-mini-grid{
     grid-template-columns:repeat(2, minmax(0,1fr));
   }
 
-  .profile-stat-row-v2 .profile-stat-card{
-    min-height:96px;
-  }
-
-  .profile-stat-row-v2 .profile-stat-card span{
-    font-size:32px;
+  .profile-header-status{
+    gap:7px;
+    margin-top:14px;
   }
 }
 
 @media (max-width: 430px){
-  .profile-stat-row.profile-stat-row-v2,
   .profile-mini-grid{
     grid-template-columns:1fr;
+  }
+
+  .profile-header-status .profile-stat-card{
+    flex:1 1 calc(50% - 7px);
+    justify-content:center;
   }
 }
 
