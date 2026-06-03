@@ -114,7 +114,7 @@
       .slice(0, MAX_PER_SECTION)
       .map(row => row.item);
 
-    let places = (window.PLACES || [])
+    let placeMatches = (window.PLACES || [])
       .filter(place => !place.hidden)
       .map(place => {
         const cat = getCategory(place.category);
@@ -128,13 +128,13 @@
 
     const pos = (typeof window.getPos === "function") ? window.getPos() : null;
     if (pos) {
-      places = places.map(row => ({
+      placeMatches = placeMatches.map(row => ({
         ...row,
         distance: distance(pos.lat, pos.lon, row.item.lat, row.item.lon)
       }));
     }
 
-    places = places
+    const places = placeMatches
       .sort((a, b) => b.score - a.score || a.distance - b.distance || String(a.item.name || "").localeCompare(String(b.item.name || ""), "nb"))
       .slice(0, MAX_PER_SECTION)
       .map(row => row.item);
