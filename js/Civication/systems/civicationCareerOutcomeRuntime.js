@@ -34,6 +34,19 @@
     }
   };
 
+  // Short, data-driven copy for surfacing outcome consequences in the day-phase UI.
+  const STATUS_LABELS = {
+    PROMOTED: "Forfremmelse klar",
+    STAGNATED: "Stagnasjon: mindre autonomi, mer press",
+    FIRED: "Arbeidsforhold avsluttet"
+  };
+
+  const STATUS_DETAILS = {
+    PROMOTED: "Jobbsporet er fullført som forfremmelse. Neste steg er ny rolle eller mer ansvar.",
+    STAGNATED: "Rollen er gått inn i rutine. De samme sakene kommer tilbake.",
+    FIRED: "Arbeidsforholdet er avsluttet. Videre meldinger går via NAV eller livssituasjon."
+  };
+
   function norm(value) {
     return String(value || "").trim();
   }
@@ -554,6 +567,87 @@
     return true;
   }
 
+  // Pure, DOM-free view model for the day-phase UI. Reads career_outcome_state
+  // and mail_branch_state.flags, tolerates empty or partial state, and returns a
+  // simple status list the UI can render without any further outcome logic.
+  function getOutcomeViewModel(state) {
+    const s = state && typeof state === "object" ? state : {};
+    const outcome = s[STATE_KEY] && typeof s[STATE_KEY] === "object" ? s[STATE_KEY] : {};
+    const status = norm(outcome.status).toUpperCase();
+
+    const flagList = Array.isArray(s.mail_branch_state?.flags)
+      ? s.mail_branch_state.flags.map(norm)
+      : [];
+    const flagSet = new Set(flagList);
+
+    const stagnated = flagSet.has("career_stagnated");
+    const eveningPressure = flagSet.has("evening_pressure");
+    const morningChoicesExpand = flagSet.has("morning_choices_expand");
+
+    const hasOutcome = TERMINAL_STATUSES.includes(status);
+    const statusLabel = hasOutcome ? (STATUS_LABELS[status] || "") : "";
+    const statusDetail = hasOutcome ? (STATUS_DETAILS[status] || norm(outcome.reason)) : "";
+
+    const indicators = [];
+
+    if (hasOutcome) {
+      indicators.push({
+        id: "outcome_status",
+        kind: status.toLowerCase(),
+        label: statusLabel,
+        text: statusDetail
+      });
+    }
+
+    if (stagnated) {
+      indicators.push({
+        id: "stagnation",
+        kind: "stagnated",
+        label: "Rutine og stagnasjon",
+        text: "Rollen utvikler seg ikke lenger. Autonomien er redusert og presset øker."
+      });
+    }
+
+    if (eveningPressure) {
+      indicators.push({
+        id: "evening_pressure",
+        kind: "evening_pressure",
+        label: "Kveldspress",
+        text: "Jobben følger med hjem. Forvent press og henvendelser på kvelden."
+      });
+    }
+
+    if (morningChoicesExpand) {
+      indicators.push({
+        id: "morning_choices_expand",
+        kind: "morning_choices_expand",
+        label: "Urolig morgen",
+        text: "Morgenen er mer åpen og urolig. Flere valg venter når dagen starter."
+      });
+    }
+
+    return {
+      hasOutcome,
+      hasAnything: hasOutcome || stagnated || eveningPressure || morningChoicesExpand,
+      status: hasOutcome ? status : "",
+      statusLabel,
+      statusDetail,
+      reason: norm(outcome.reason),
+      stagnationLevel: Math.max(0, Number(outcome.stagnation_level || 0)),
+      rolePlanId: norm(outcome.role_plan_id),
+      roleScope: norm(outcome.role_scope),
+      flags: {
+        career_stagnated: stagnated,
+        evening_pressure: eveningPressure,
+        morning_choices_expand: morningChoicesExpand
+      },
+      stagnated,
+      eveningPressure,
+      morningChoicesExpand,
+      indicators
+    };
+  }
+
   function boot() {
     patchMailRuntime();
     patchEventEngineBuildMailPool();
@@ -571,6 +665,7 @@
     applyOutcomeState,
     decideOutcome,
     getOutcomeRules,
+    getOutcomeViewModel,
     inspect() {
       return {
         patched: window.CivicationMailRuntime?.[PATCHED_FLAG] === true,

@@ -81,6 +81,45 @@
       + "</section>";
   }
 
+  function getOutcomeViewModel() {
+    const runtime = window.CivicationCareerOutcomeRuntime;
+    if (!runtime?.getOutcomeViewModel) return null;
+    const state = window.CivicationState?.getState?.() || {};
+    return runtime.getOutcomeViewModel(state);
+  }
+
+  function getAutonomyNote() {
+    const psyche = window.CivicationPsyche;
+    if (!psyche?.getAutonomy) return "";
+    const active = window.CivicationState?.getActivePosition?.();
+    const value = Number(psyche.getAutonomy(active?.career_id ?? null));
+    if (!Number.isFinite(value)) return "";
+    return " Autonomi nå: " + Math.round(value) + ".";
+  }
+
+  function buildOutcomeBanner(viewModel) {
+    if (!viewModel || !viewModel.hasAnything || !Array.isArray(viewModel.indicators) || !viewModel.indicators.length) {
+      return "";
+    }
+
+    const itemsHtml = viewModel.indicators
+      .map(function (indicator) {
+        const extra = indicator.kind === "stagnated" ? getAutonomyNote() : "";
+        return ""
+          + "<li class=\"civi-outcome-indicator\" data-outcome-kind=\"" + escapeHtml(indicator.kind) + "\">"
+          + "<span class=\"civi-outcome-indicator-label\">" + escapeHtml(indicator.label) + "</span>"
+          + "<span class=\"civi-outcome-indicator-text\">" + escapeHtml(indicator.text + extra) + "</span>"
+          + "</li>";
+      })
+      .join("");
+
+    return ""
+      + "<section class=\"civi-outcome-banner\" aria-label=\"Karrierestatus\">"
+      + "<div class=\"civi-outcome-kicker\">Karrierestatus</div>"
+      + "<ul class=\"civi-outcome-list\">" + itemsHtml + "</ul>"
+      + "</section>";
+  }
+
   function ensurePanel() {
     const panels = document.querySelector(".civi-panels");
     let panel = document.getElementById(PANEL_ID);
@@ -130,12 +169,14 @@
     const canAdvance = inspection.canAdvance === true && !!nextPhase;
     const buttonText = nextPhase ? "Gå til neste fase" : "Dagen er ferdig";
     const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
+    const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
 
     panel.innerHTML = ""
       + "<div class=\"civi-day-phase-head\">"
       + "<div class=\"civi-day-phase-kicker\">Dagens fase</div>"
       + "<h3 class=\"civi-day-phase-title\">" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</h3>"
       + "</div>"
+      + outcomeBanner
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
       + "<p class=\"civi-day-phase-status\">" + escapeHtml(getStatusText(inspection)) + "</p>"
       + "<p class=\"civi-day-phase-status muted\">" + escapeHtml(getLoopHint(inspection)) + "</p>"

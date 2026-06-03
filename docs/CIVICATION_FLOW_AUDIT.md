@@ -397,3 +397,12 @@ Minste riktige endring: `promoted.score_gte` satt til `2` i `arbeider_plan.json`
 - **History Go completion bridge**: koble faktiske History Go-signaler (quiz/unlock/place/story/debate) til åpne Civication-tasks (jf. seksjon 5).
 - **Daily phase UI**: tydelig dag-/fase-visning for workday/evening, slik at stagnasjonens `evening_pressure`/`morning_choices_expand` blir synlig for spilleren.
 - **Mer innhold per rolle**: flere planlagte steg/varianter per rolle slik at progresjon til terminaltilstand føles meningsfull, ikke bare mekanisk oppnåelig.
+
+## 8. Outcome-konsekvenser synlige i day phase UI (2026-06-03)
+
+Et første steg på «Daily phase UI» fra seksjon 7. Ingen ny arc, message director, score-/outcome_rules-endring eller mailPlan-endring — kun visning av eksisterende state.
+
+- Ny ren helper `CivicationCareerOutcomeRuntime.getOutcomeViewModel(state)` leser `career_outcome_state` og `mail_branch_state.flags`, tåler tom/delvis state, og returnerer en DOM-fri view model med kort statuslabel og en indikatorliste. PROMOTED → «Forfremmelse klar», STAGNATED → «Stagnasjon: mindre autonomi, mer press», FIRED → «Arbeidsforhold avsluttet».
+- `CivicationDayPhaseUI` rendrer view-modellen som en kort «Karrierestatus»-seksjon i dagsfase-panelet. `career_stagnated` viser rutine/stagnasjon (med autonomi-tall fra `CivicationPsyche` når tilgjengelig), `evening_pressure` viser kveldspress («jobben følger med hjem»), og `morning_choices_expand` viser en urolig-morgen-indikator. Sistnevnte er bevisst kun en synlig status som forbereder neste PR; faktisk utvidet morgenvalglogikk er ikke bygget her.
+- Test: `tests/civication-career-outcome-view-model.test.js` dekker tom/delvis state, kort statuslabel per terminaltilstand, korrekt lesing av de tre flaggene, og en ende-til-ende-sjekk på at STAGNATED `applyOutcomeState` fortsatt setter flaggene og at view-modellen reflekterer dem. Koblet inn i `npm run test:civication`.
+- Gjenstår fortsatt: faktisk utvidet morgenvalglogikk, History Go completion bridge, og at outcome-status også vises robust etter FIRED når aktiv jobb (og dermed dagsfase-panelet) er ryddet bort.
