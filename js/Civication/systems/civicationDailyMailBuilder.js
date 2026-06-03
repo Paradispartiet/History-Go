@@ -1254,7 +1254,7 @@
         const injectable = await findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, getActive(), getState());
         if (injectable) {
           const fallbackPhase = injectable.preferredPhases[0] || "afternoon";
-          const injectedEvent = storyletToEvent(getActive(), { id: fallbackPhase, label: fallbackPhase }, { slot: "injected_narrative" }, injectable.stream, injectable.storylet, Date.now());
+          const injectedEvent = /** @type {any} */ (storyletToEvent(getActive(), { id: fallbackPhase, label: fallbackPhase }, { slot: "injected_narrative" }, injectable.stream, injectable.storylet, Date.now()));
           injectedEvent.injected_by_choice = true;
           injectedEvent.injected_at = new Date().toISOString();
           injectedEvent.daily_mail_meta = {

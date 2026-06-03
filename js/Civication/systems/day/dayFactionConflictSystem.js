@@ -100,6 +100,7 @@
     const focus = listify(row?.focus_families);
     const text = `${normStr(row?.id)} ${normStr(row?.name)} ${focus.join(" ")}`.toLowerCase();
 
+    /** @type {{ faction: { id: string }, score: number } | null} */
     let best = null;
     Object.values(FACTIONS).forEach((faction) => {
       let score = 0;

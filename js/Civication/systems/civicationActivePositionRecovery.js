@@ -156,7 +156,7 @@
   }
 
   function patchSetActivePosition() {
-    var api = window.CivicationState;
+    var api = /** @type {any} */ (window.CivicationState);
     if (!api || typeof api.setActivePosition !== "function") return false;
     if (api.__activePositionRecoveryPatched) return true;
 
