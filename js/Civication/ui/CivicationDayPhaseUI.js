@@ -155,6 +155,99 @@
       + "</section>";
   }
 
+  // Safe category labels. Known Civication categories get a curated label; unknown
+  // keys are humanized gently so the system tolerates more categories later.
+  const CATEGORY_LABELS = {
+    naeringsliv: "Næringsliv",
+    media: "Media",
+    vitenskap: "Vitenskap",
+    by: "By"
+  };
+
+  function humanizeCategoryKey(key) {
+    return String(key || "")
+      .trim()
+      .replace(/[_-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .replace(/^./, function (letter) { return letter.toUpperCase(); });
+  }
+
+  function getCategoryLabel(key) {
+    const normalized = String(key || "").trim().toLowerCase();
+    if (!normalized) return "";
+    return CATEGORY_LABELS[normalized] || humanizeCategoryKey(key);
+  }
+
+  function buildReentryLockDetail(label, firedRoleTitle) {
+    if (firedRoleTitle) {
+      return "Du fikk sparken som " + firedRoleTitle + ". " + label
+        + " åpnes igjen når du har jobbet én runde i en annen kategori.";
+    }
+    return "Du kan ikke gå rett tilbake til " + label.toLowerCase()
+      + " etter at du fikk sparken der. Ta en jobb i en annen kategori og fullfør "
+      + "én arbeidsrunde for å åpne kategorien igjen.";
+  }
+
+  // Reads active reentry locks directly from runtime/state. A locked-category offer can
+  // be refused in CivicationJobs.pushOffer before it is ever stored, so the UI cannot rely
+  // on a blocked offer existing — it must read career_reentry_locks itself. Only entries
+  // with status === "locked" are shown; cleared entries never produce a banner.
+  function getReentryLockViewModel() {
+    const runtime = window.CivicationJobEligibilityRuntime;
+    if (!runtime || typeof runtime.getReentryLocks !== "function") {
+      return { hasLocks: false, items: [] };
+    }
+
+    const state = window.CivicationState?.getState?.() || {};
+    let locks = null;
+    try { locks = runtime.getReentryLocks(state); } catch (_e) { locks = null; }
+    if (!locks || typeof locks !== "object") return { hasLocks: false, items: [] };
+
+    const items = [];
+    for (const [key, lock] of Object.entries(locks)) {
+      if (!lock || typeof lock !== "object") continue;
+      if (String(lock.status || "").trim().toLowerCase() !== "locked") continue;
+
+      const category = String(lock.fired_category || key || "").trim().toLowerCase();
+      if (!category) continue;
+      const label = getCategoryLabel(category);
+      if (!label) continue;
+
+      const firedRoleTitle = String(lock.fired_role_title || "").trim();
+      items.push({
+        category,
+        label,
+        reason: String(lock.reason || "").trim() || "fired",
+        firedRoleTitle: firedRoleTitle || null,
+        detail: buildReentryLockDetail(label, firedRoleTitle)
+      });
+    }
+
+    return { hasLocks: items.length > 0, items };
+  }
+
+  function buildReentryLockBanner(viewModel) {
+    if (!viewModel || !viewModel.hasLocks || !Array.isArray(viewModel.items) || !viewModel.items.length) {
+      return "";
+    }
+
+    const itemsHtml = viewModel.items
+      .map(function (item) {
+        return ""
+          + "<li class=\"civi-reentry-lock-item\" data-reentry-lock-category=\"" + escapeHtml(item.category) + "\">"
+          + "<span class=\"civi-reentry-lock-label\">" + escapeHtml(item.label) + "</span>"
+          + "<span class=\"civi-reentry-lock-detail\">" + escapeHtml(item.detail) + "</span>"
+          + "</li>";
+      })
+      .join("");
+
+    return ""
+      + "<section class=\"civi-reentry-lock-banner\" aria-label=\"Midlertidig låst kategori\">"
+      + "<div class=\"civi-reentry-lock-kicker\">Midlertidig låst kategori</div>"
+      + "<ul class=\"civi-reentry-lock-list\">" + itemsHtml + "</ul>"
+      + "</section>";
+  }
+
   function getAutonomyNote() {
     const psyche = window.CivicationPsyche;
     if (!psyche?.getAutonomy) return "";
@@ -238,6 +331,7 @@
     const buttonText = nextPhase ? "Gå til neste fase" : "Dagen er ferdig";
     const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
     const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
+    const reentryLockBanner = buildReentryLockBanner(getReentryLockViewModel());
     const learningBanner = buildLearningBanner(getLearningViewModel());
 
     panel.innerHTML = ""
@@ -246,6 +340,7 @@
       + "<h3 class=\"civi-day-phase-title\">" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</h3>"
       + "</div>"
       + outcomeBanner
+      + reentryLockBanner
       + learningBanner
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
       + "<p class=\"civi-day-phase-status\">" + escapeHtml(getStatusText(inspection)) + "</p>"
