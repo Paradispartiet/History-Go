@@ -6,6 +6,12 @@
   "families": [
     {
       "id": "arbeider_intro",
+      "purpose": "Etablere overgangen fra ny på gulvet til første reelle skift, der spilleren lærer at arbeid starter som rytme, oppmøte, praktisk tilpasning og sosial lesning.",
+      "learning_focus": [
+        "arbeidsrytme",
+        "sosial lesning",
+        "taus kunnskap"
+      ],
       "mails": [
         {
           "id": "arbeider_job_intro_001",
@@ -17,25 +23,48 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Første fulle skift",
+          "summary": "Du er gjennom den første introduksjonen, men må nå vise at du kan gå inn i skiftets faktiske rytme.",
+          "purpose": "Lære spilleren at oppmøte og flyt er sosial legitimitet, ikke bare tidsregistrering.",
+          "stakes": "Hvis du glir inn i rytmen, blir du lettere å stole på. Hvis du stopper opp for å kreve oversikt, kan du få klarhet, men også gjøre friksjonen synlig.",
           "situation": [
             "Du er ikke helt ny lenger, men heller ikke inne i rytmen.",
             "Dagen består av konkrete oppgaver, små avbrudd og et tempo du ennå lærer å lese.",
             "Det er nå du merker at arbeidet ikke bare handler om å gjøre, men om å henge med."
           ],
+          "task_domain": "oppmøte_og_skiftflyt",
+          "competency": "arbeidsrytme",
+          "pressure": "lav_formell_klarhet_hoyt_praktisk_press",
+          "choice_axis": "tilpasning_vs_klarhet",
+          "consequence_axis": "sosial_legitimitet_vs_synlig_friksjon",
+          "narrative_arc": "fra ny person til en som kan tre inn i rytmen uten å bli forklart alt først",
+          "learning_focus": [
+            "arbeid må læres som rytme før det kan forstås som system",
+            "praktisk legitimitet skapes gjennom små tegn på pålitelighet"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Følge flyten tett og lære mens du gjør",
+              "reply": "Jeg følger flyten og lærer mens jeg gjør.",
               "effect": 0,
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "feedback": "Du går inn i rytmen uten å lage mer friksjon enn nødvendig."
             },
             {
               "id": "B",
               "label": "Be om tydeligere oversikt før du går i gang",
+              "reply": "Jeg trenger litt tydeligere oversikt før jeg går i gang.",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du skaper klarhet, men gjør samtidig strukturen litt synlig."
             }
           ]
@@ -50,25 +79,48 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Ingen forklarer helheten",
+          "summary": "Du får konkrete beskjeder, men må selv lære hvorfor oppgavene kommer i akkurat denne rekkefølgen.",
+          "purpose": "Vise at lokal drift bæres av taus kunnskap, ikke av fullstendige forklaringer.",
+          "stakes": "Å observere kan gi dypere mønsterforståelse, men å spørre kan gjøre prioriteringene tydeligere og deg mer synlig.",
           "situation": [
             "Du får vite hva som skal gjøres, men ikke hvorfor rekkefølgen er som den er.",
             "Alle rundt deg handler som om sammenhengen er åpenbar.",
             "Du kjenner at arbeidet bæres av taus kunnskap."
           ],
+          "task_domain": "lokal_drift",
+          "competency": "rutineforståelse",
+          "pressure": "uklar_helhet",
+          "choice_axis": "observasjon_vs_forklaring",
+          "consequence_axis": "taus_læring_vs_synlig_behov_for_struktur",
+          "narrative_arc": "spilleren begynner å forstå at arbeidsplassen lærer bort gjennom rytme og tegn, ikke bare instruks",
+          "learning_focus": [
+            "rekkefølge er en kunnskapsform",
+            "taus kunnskap må ofte leses før den kan formuleres"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Observere og lese mønsteret selv",
+              "reply": "Jeg observerer litt og prøver å lese mønsteret.",
               "effect": 0,
-              "tags": ["craft", "avoidance"],
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
               "feedback": "Du lærer systemet innenfra, sakte og uten å forstyrre det."
             },
             {
               "id": "B",
               "label": "Spørre hva som styrer prioriteringene",
+              "reply": "Hva er det som styrer prioriteringene her?",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du ber om forståelse, ikke bare ordre. Det merkes."
             }
           ]
@@ -83,25 +135,48 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "bjarne_naboarbeider",
+          "place_id": "schous_bryggeri",
           "subject": "Du merker blikkene før ordene",
+          "summary": "Du forstår at arbeidsplassen vurderer tempo, ro og tilpasning før noen sier det høyt.",
+          "purpose": "Lære spilleren at sosial lesning er en del av arbeidet, ikke en privat sidekompetanse.",
+          "stakes": "Å følge rytmen gir lavere friksjon, mens å la kvaliteten styre tempoet kan bygge faglig integritet og samtidig skape risiko.",
           "situation": [
             "Ingen gransker deg direkte, men alle registrerer om du sinker eller glir med.",
             "Arbeidsplassen lærer deg før den forklarer deg noe.",
             "Du kjenner at tilpasning er en egen oppgave i tillegg til selve jobben."
           ],
+          "task_domain": "sosial_tilpasning",
+          "competency": "sosial lesning",
+          "pressure": "uformell_vurdering",
+          "choice_axis": "tilpasning_vs_faglig_ro",
+          "consequence_axis": "lav_synlighet_vs_integritet_under_observasjon",
+          "narrative_arc": "spilleren merker at gulvet vurderer folk gjennom rytme, blikk og små avvik",
+          "learning_focus": [
+            "arbeidsmiljø må leses som mønstre",
+            "tempo fungerer som sosial måling"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Tilpasse deg stille og følge rytmen",
+              "reply": "Jeg følger rytmen og holder meg lavt.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du blir mindre synlig og lettere å plassere."
             },
             {
               "id": "B",
               "label": "La tempoet styres av at du gjør ting ordentlig",
+              "reply": "Jeg holder tempoet der jeg fortsatt får gjort det ordentlig.",
               "effect": 1,
-              "tags": ["craft", "risk"],
+              "tags": [
+                "craft",
+                "risk"
+              ],
               "feedback": "Du lar arbeidet, ikke blikkene, avgjøre farten."
             }
           ]
@@ -110,6 +185,12 @@
     },
     {
       "id": "drift_basics",
+      "purpose": "Lære spilleren at drift er koordinering av små avhengigheter, og at systemet ofte holdes sammen av arbeid som ikke beskrives godt.",
+      "learning_focus": [
+        "praktisk drift",
+        "rutineforståelse",
+        "avvikshåndtering"
+      ],
       "mails": [
         {
           "id": "arbeider_job_drift_001",
@@ -121,25 +202,48 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Småtingene som holder dagen oppe",
+          "summary": "Dagen bæres av mange små oppgaver som bare blir synlige hvis de glipper.",
+          "purpose": "Vise at praktisk drift er avhengighet mellom små detaljer, ikke én stor hovedoppgave.",
+          "stakes": "Å ta småtingene tidlig beskytter flyten senere, men å skyve dem kan gi kortsiktig tempo og langsiktig gjeld.",
           "situation": [
             "Det er ikke én stor oppgave som tynger dagen, men mange små som må sitte.",
             "Hvis én del glipper, må noen andre bære det senere.",
             "Du lærer at drift er summen av alt som ikke får lov til å stoppe."
           ],
+          "task_domain": "praktisk_drift",
+          "competency": "avvikshåndtering",
+          "pressure": "mange_små_avhengigheter",
+          "choice_axis": "forebygging_vs_kortsiktig_tempo",
+          "consequence_axis": "usynlig_stabilitet_vs_oppsamlet_driftgjeld",
+          "narrative_arc": "spilleren ser at de små oppgavene er systemets skjulte bærebjelker",
+          "learning_focus": [
+            "drift er summen av små ting som ikke kan glippe",
+            "forebyggende arbeid blir ofte usynlig når det lykkes"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Ta de små tingene med en gang",
+              "reply": "Jeg tar de små tingene med en gang.",
               "effect": 1,
-              "tags": ["process", "craft"],
+              "tags": [
+                "process",
+                "craft"
+              ],
               "feedback": "Du bygger dagen nedenfra. Det synes sjelden, men det virker."
             },
             {
               "id": "B",
               "label": "Skyve det usynlige og holde tempoet oppe",
+              "reply": "Jeg holder tempoet og skyver det usynlige litt.",
               "effect": 0,
-              "tags": ["shortcut", "visibility"],
+              "tags": [
+                "shortcut",
+                "visibility"
+              ],
               "feedback": "Dagen ser raskere ut. Det usette blir liggende og vente."
             }
           ]
@@ -154,25 +258,48 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Når noe mangler, fyller noen det inn",
+          "summary": "En dårlig beskrevet rutine virker likevel fordi noen nær gulvet fyller hullene.",
+          "purpose": "Gjøre spilleren oppmerksom på at formelle systemer ofte er avhengige av praktisk kompensasjon.",
+          "stakes": "Å notere hullet kan forbedre systemet, men også gjøre mangelen synlig. Å løse det stille får dagen videre, men lar feilen stå.",
           "situation": [
             "En rutine er dårlig beskrevet, men dagen forventer likevel at den skjer riktig.",
             "Slike hull blir sjelden tema; de bare absorberes av noen nærmest dem.",
             "Du ser hvor mye arbeid som egentlig består i å kompensere for strukturens mangler."
           ],
+          "task_domain": "rutine_og_systemhull",
+          "competency": "rutineforståelse",
+          "pressure": "mangelfull_formalisering",
+          "choice_axis": "systemforbedring_vs_stille_kompensasjon",
+          "consequence_axis": "institusjonell_læring_vs_personavhengig_løsning",
+          "narrative_arc": "spilleren forstår at organisasjonen ofte fungerer fordi arbeidere reparerer hull i strukturen",
+          "learning_focus": [
+            "rutiner er ikke alltid komplette",
+            "praktisk arbeid absorberer ofte organisatoriske mangler"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Tette hullet og notere hva som mangler",
+              "reply": "Jeg tetter hullet nå og noterer hva som faktisk mangler.",
               "effect": 1,
-              "tags": ["process", "legitimacy"],
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
               "feedback": "Du holder driften oppe uten å late som systemet er komplett."
             },
             {
               "id": "B",
               "label": "Bare løse det der og da uten å si noe",
+              "reply": "Jeg løser det der og da uten å gjøre mer ut av det.",
               "effect": 0,
-              "tags": ["craft", "avoidance"],
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
               "feedback": "Du får dagen til å gå rundt. Hullet blir stående."
             }
           ]
@@ -181,6 +308,12 @@
     },
     {
       "id": "oppgaveflyt",
+      "purpose": "Lære spilleren at flyt ikke bare handler om fart, men om rekkefølge, overgangskostnader og kontroll over arbeidsdagens form.",
+      "learning_focus": [
+        "prioritering",
+        "arbeidsrytme",
+        "praktisk drift"
+      ],
       "mails": [
         {
           "id": "arbeider_job_flyt_001",
@@ -192,25 +325,48 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "frode_formann",
+          "place_id": "lilleborg_fabrikker",
           "subject": "For mange små skifter",
+          "summary": "Du blir flyttet mellom små oppgaver og merker at selve skiftene spiser arbeidsdagen.",
+          "purpose": "Vise at oppgaveflyt handler om overgangskostnader, ikke bare lydighet mot neste beskjed.",
+          "stakes": "Å be om å fullføre én ting kan skape bedre arbeid, men også gjøre deg mindre bevegelig i systemets øyne.",
           "situation": [
             "Du blir sendt mellom oppgaver raskere enn du rekker å lande i noen av dem.",
             "Hver overgang virker liten, men summen gjør dagen porøs.",
             "Flyt handler ikke bare om fart, men om hvor mange ganger du må begynne på nytt."
           ],
+          "task_domain": "oppgaveflyt",
+          "competency": "prioritering",
+          "pressure": "hyppige_avbrudd",
+          "choice_axis": "sammenheng_vs_lydig_bevegelighet",
+          "consequence_axis": "arbeidsro_vs_sosial_friksjon",
+          "narrative_arc": "spilleren lærer at flyt er en struktur i tiden, ikke bare tempo i kroppen",
+          "learning_focus": [
+            "overganger har kostnader",
+            "å fullføre arbeid er også å forsvare arbeidets form"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Be om å fullføre én ting før neste",
+              "reply": "Kan jeg fullføre én ting før jeg går videre til neste?",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du prøver å skape sammenheng i en dag som helst skal være friksjonsfri."
             },
             {
               "id": "B",
               "label": "Hoppe lydig mellom oppgavene",
+              "reply": "Jeg hopper videre og tar neste beskjed.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du følger flyten slik den er gitt, selv om den koster mer enn den ser ut til."
             }
           ]
@@ -225,25 +381,48 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Alt haster litt, derfor haster ingenting klart",
+          "summary": "Flere små press konkurrerer, og du må skape rekkefølge uten å ha fått tydelig prioritering.",
+          "purpose": "Lære spilleren at uklare prioriteringer er en arbeidsbelastning i seg selv.",
+          "stakes": "Å lage egen rekkefølge gir kontroll, men også synlighet. Å følge siste impuls gjør deg fleksibel, men mindre forankret.",
           "situation": [
             "Det er ingen enkeltoppgave som skriker høyest, men alle kommer med et lite press.",
             "Du kjenner hvordan arbeidsdagen fylles av små forskyvninger snarere enn tydelige beslutninger.",
             "Det gjør det vanskelig å vite når man faktisk ligger bak."
           ],
+          "task_domain": "prioritering_under_press",
+          "competency": "arbeidsrytme",
+          "pressure": "uklare_prioriteringer",
+          "choice_axis": "egen_rekkefølge_vs_reaktiv_tilpasning",
+          "consequence_axis": "autonomi_vs_fleksibel_utskiftbarhet",
+          "narrative_arc": "spilleren begynner å lage en indre orden der systemet bare gir impulser",
+          "learning_focus": [
+            "uklar prioritering er også arbeidspress",
+            "rekkefølge kan bli en form for lavmælt autonomi"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Lage din egen rekkefølge og stå i den",
+              "reply": "Jeg lager en rekkefølge og står i den.",
               "effect": 1,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du setter en intern struktur i et ytre kaos. Det gjør deg mer synlig."
             },
             {
               "id": "B",
               "label": "La siste impuls styre det neste du gjør",
+              "reply": "Jeg tar det siste som kom inn og går videre derfra.",
               "effect": 0,
-              "tags": ["avoidance", "legitimacy"],
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
               "feedback": "Du blir lett å bevege, men vanskelig å forankre."
             }
           ]
@@ -252,6 +431,12 @@
     },
     {
       "id": "drift_press",
+      "purpose": "Vise hvordan akkumulert press smalner handlingsrommet og gjør kvalitet, rydding og normal forsiktighet til noe som oppleves som luksus.",
+      "learning_focus": [
+        "avvikshåndtering",
+        "pressmestring",
+        "praktisk drift"
+      ],
       "mails": [
         {
           "id": "arbeider_job_press_001",
@@ -263,25 +448,48 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Dagen tåler ikke flere avvik",
+          "summary": "Små forsinkelser har samlet seg, og skiftet begynner å behandle vanlige hensyn som forstyrrende.",
+          "purpose": "Lære spilleren at press ikke bare øker tempoet; det endrer hva som regnes som legitimt hensyn.",
+          "stakes": "Å prioritere det mest nødvendige kan redde dagen, men smalner standarden. Å holde bred kvalitet kan beskytte arbeidet, men øke friksjonen.",
           "situation": [
             "Flere små forsinkelser har samlet seg i løpet av skiftet.",
             "Det er ikke krise ennå, men alle jobber som om den står i døråpningen.",
             "Du merker at selv normale hensyn begynner å se ut som luksus."
           ],
+          "task_domain": "drift_under_press",
+          "competency": "avvikshåndtering",
+          "pressure": "akkumulert_forsinkelse",
+          "choice_axis": "nødvendig_innsnevring_vs_bred_kvalitet",
+          "consequence_axis": "kort_siktig_stabilisering_vs_lang_siktig_kvalitetskostnad",
+          "narrative_arc": "spilleren møter arbeidets presspunkt der alt fortsatt fungerer, men bare ved å bli smalere",
+          "learning_focus": [
+            "press endrer hva som teller som rimelig kvalitet",
+            "å redde dagen kan også bygge en senere kostnad"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Stramme inn og prioritere det mest nødvendige",
+              "reply": "Jeg strammer inn og prioriterer det mest nødvendige.",
               "effect": 0,
-              "tags": ["process", "visibility"],
+              "tags": [
+                "process",
+                "visibility"
+              ],
               "feedback": "Du holder ting oppe ved å gjøre dagen smalere."
             },
             {
               "id": "B",
               "label": "Prøve å bevare samme standard over hele linjen",
+              "reply": "Jeg prøver å holde samme standard over hele linjen.",
               "effect": 1,
-              "tags": ["craft", "risk"],
+              "tags": [
+                "craft",
+                "risk"
+              ],
               "feedback": "Du nekter å la presset bestemme alt. Det koster i et annet regnskap."
             }
           ]
@@ -296,25 +504,48 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "solveig_kollega",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Ingen har tid til å rydde ordentlig",
+          "summary": "Orden og etterarbeid skyves fremover fordi tempoet virker viktigere enn å lukke oppgavene rent.",
+          "purpose": "Vise at rydding og orden er drift, ikke pynt, og at manglende etterarbeid blir gjeld i systemet.",
+          "stakes": "Å rydde nå beskytter senere arbeid, men kan se ut som treghet. Å skyve videre redder tempoet, men lar andre arve uklarheten.",
           "situation": [
             "Det som normalt skulle vært lukket og ryddet, blir bare skjøvet i riktig retning.",
             "Presset gjør at orden blir midlertidig og gjeld bygges i systemet.",
             "Du kjenner at det er forskjell på å få dagen videre og å få den ren."
           ],
+          "task_domain": "orden_og_etterarbeid",
+          "competency": "praktisk drift",
+          "pressure": "tidsmangel",
+          "choice_axis": "lukke_arbeidet_vs_skyve_restene",
+          "consequence_axis": "ren_drift_vs_arvet_uklarhet",
+          "narrative_arc": "spilleren ser at orden ofte bare verdsettes når den mangler",
+          "learning_focus": [
+            "rydding er forebyggende drift",
+            "det som skyves videre blir ofte en annens arbeid"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Ta ryddingen nå før det vokser",
+              "reply": "Jeg tar ryddingen nå før det vokser.",
               "effect": 1,
-              "tags": ["craft", "process"],
+              "tags": [
+                "craft",
+                "process"
+              ],
               "feedback": "Du velger å betale noe av gjelden med én gang."
             },
             {
               "id": "B",
               "label": "Skyve restene videre til neste ledd",
+              "reply": "Jeg skyver restene videre og holder tempoet.",
               "effect": 0,
-              "tags": ["shortcut", "avoidance"],
+              "tags": [
+                "shortcut",
+                "avoidance"
+              ],
               "feedback": "Du redder tempoet. Noen andre arver uklarheten."
             }
           ]
@@ -323,6 +554,12 @@
     },
     {
       "id": "forbedring_uten_mandat",
+      "purpose": "Lære spilleren at arbeidere kan se presise forbedringer uten å ha formell rett til å endre systemet.",
+      "learning_focus": [
+        "praktisk problemløsing",
+        "organisatorisk lesning",
+        "initiativ under lav formell makt"
+      ],
       "mails": [
         {
           "id": "arbeider_job_forbedring_001",
@@ -334,25 +571,48 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable",
+          "from": "frode_formann",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Du ser en bedre måte",
+          "summary": "Du ser en liten forbedring i flyten, men har ikke mandat til å endre rutinen.",
+          "purpose": "Vise at praktisk innsikt nedenfra ofte mangler kanal oppover.",
+          "stakes": "Å foreslå forbedringen kan gjøre erfaring om til struktur, men også gjøre deg synlig. Å bruke innsikten lokalt beskytter deg, men lar systemet være uendret.",
           "situation": [
             "Det finnes en liten justering som kunne spart tid eller feil, men det er ikke din beslutning å endre den.",
             "Systemet er fullt av slike små innsikter som mangler et språk oppover.",
             "Du må velge om du bare skal se det, eller forsøke å løfte det inn i arbeidet."
           ],
+          "task_domain": "forbedring_uten_mandat",
+          "competency": "praktisk problemløsing",
+          "pressure": "lav_formell_makt",
+          "choice_axis": "synlig_initiativ_vs_lokal_tilpasning",
+          "consequence_axis": "mulig_strukturendring_vs_trygg_personlig_effektivitet",
+          "narrative_arc": "spilleren ser at innsikt ikke automatisk gir autoritet",
+          "learning_focus": [
+            "praktisk innsikt trenger mandat eller kanal for å bli systemendring",
+            "initiativ nedenfra er både kompetanse og risiko"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Foreslå endringen og begrunne den konkret",
+              "reply": "Jeg foreslår endringen og begrunner den konkret.",
               "effect": 1,
-              "tags": ["process", "legitimacy"],
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
               "feedback": "Du forsøker å gjøre erfaring om til struktur. Det er sjelden nøytralt."
             },
             {
               "id": "B",
               "label": "Bare bruke innsikten selv når du kan",
+              "reply": "Jeg bruker innsikten selv når jeg kan, uten å gjøre den større.",
               "effect": 0,
-              "tags": ["craft", "avoidance"],
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
               "feedback": "Du forbedrer arbeidet lokalt, uten å røre systemet rundt deg."
             }
           ]
@@ -367,25 +627,48 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable",
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Forbedringen dør i lufta",
+          "summary": "Et forbedringsforslag blir sosialt anerkjent, men organisatorisk liggende.",
+          "purpose": "Lære spilleren at organisasjoner kan absorbere forslag som høflighet uten å gjøre dem til endring.",
+          "stakes": "Å følge opp gjør forslaget vanskeligere å overse, men kan oppleves som press. Å la det ligge beskytter kapasiteten, men lar tregheten vinne.",
           "situation": [
             "Du nevner en løsning, men den blir møtt med et nikk som ikke betyr handling.",
             "Arbeidsplassen er full av ideer som anerkjennes sosialt og forsvinner organisatorisk.",
             "Du må velge om du skal slippe det, eller gjøre innsikten vanskeligere å overse."
           ],
+          "task_domain": "forbedringsforslag",
+          "competency": "organisatorisk lesning",
+          "pressure": "symbolsk_anerkjennelse_uten_endring",
+          "choice_axis": "oppfolging_vs_kapasitetsvern",
+          "consequence_axis": "organisatorisk_trykk_vs_personlig_utholdenhet",
+          "narrative_arc": "spilleren lærer at anerkjennelse ikke er det samme som endring",
+          "learning_focus": [
+            "organisasjoner kan nøytralisere forslag gjennom høflighet",
+            "å følge opp er en egen form for arbeid"
+          ],
           "choices": [
             {
               "id": "A",
               "label": "Følge opp og gjøre forslaget konkret igjen",
+              "reply": "Jeg følger opp og gjør forslaget konkret igjen.",
               "effect": 1,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du nekter å la idéen bli et tomt høflighetsrituale."
             },
             {
               "id": "B",
               "label": "La det ligge og bruke energien på dagens arbeid",
+              "reply": "Jeg lar det ligge og bruker energien på dagens arbeid.",
               "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
               "feedback": "Du beskytter kapasiteten din, men lar også tregheten vinne."
             }
           ]
