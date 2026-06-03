@@ -1,5 +1,128 @@
 (function () {
   const LS_TASKS = "hg_civi_tasks_v1";
+
+  const HISTORY_GO_TARGET_TYPES = [
+    "place",
+    "person",
+    "knowledge",
+    "debate",
+    "unlock"
+  ];
+
+  const HISTORY_GO_TASK_KINDS = [
+    "history_go_place",
+    "history_go_person",
+    "history_go_knowledge",
+    "history_go_debate",
+    "history_go_unlock"
+  ];
+
+  const HISTORY_GO_COMPLETION_MODES = [
+    "open_place",
+    "visit_place",
+    "place_quiz",
+    "read_story",
+    "open_person",
+    "person_quiz",
+    "read_profile",
+    "quiz_completed",
+    "correct_answer",
+    "read_leksikon",
+    "debate_participated",
+    "position_chosen",
+    "unlocked"
+  ];
+
+  function cleanString(value) {
+    if (value == null) return null;
+    const text = String(value).trim();
+    return text || null;
+  }
+
+  function cleanReturnContext(value) {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+    return { ...value };
+  }
+
+  function firstString() {
+    for (let i = 0; i < arguments.length; i += 1) {
+      const text = cleanString(arguments[i]);
+      if (text) return text;
+    }
+
+    return null;
+  }
+
+  function normalizeTargetType(taskKind, targetType) {
+    const cleanTargetType = cleanString(targetType);
+    if (HISTORY_GO_TARGET_TYPES.indexOf(cleanTargetType) !== -1) {
+      return cleanTargetType;
+    }
+
+    if (taskKind === "history_go_place") return "place";
+    if (taskKind === "history_go_person") return "person";
+    if (taskKind === "history_go_knowledge") return "knowledge";
+    if (taskKind === "history_go_debate") return "debate";
+    if (taskKind === "history_go_unlock") return "unlock";
+
+    return cleanTargetType;
+  }
+
+  function normalizeHistoryGoTaskPayload(payload) {
+    const source = payload && typeof payload === "object" ? payload : {};
+    const taskKind = cleanString(source.task_kind);
+    const targetType = normalizeTargetType(taskKind, source.target_type);
+    const placeId = firstString(source.place_id, source.placeId);
+    const personId = firstString(source.person_id, source.personId);
+    const categoryId = firstString(source.category_id, source.categoryId);
+    const quizId = firstString(source.quiz_id, source.quizId);
+    const emneId = firstString(source.emne_id, source.emneId);
+    const debateId = firstString(source.debate_id, source.debateId);
+    const conflictId = firstString(source.conflict_id, source.conflictId);
+    const unlockId = firstString(source.unlock_id, source.unlockId);
+
+    return {
+      task_kind: taskKind,
+      target_type: targetType,
+      target_id: firstString(
+        source.target_id,
+        source.targetId,
+        placeId,
+        personId,
+        quizId,
+        categoryId,
+        emneId,
+        debateId,
+        conflictId,
+        unlockId
+      ),
+      place_id: placeId,
+      person_id: personId,
+      category_id: categoryId,
+      quiz_id: quizId,
+      emne_id: emneId,
+      debate_id: debateId,
+      conflict_id: conflictId,
+      unlock_id: unlockId,
+      required_kind: firstString(source.required_kind, source.requiredKind),
+      completion_mode: firstString(source.completion_mode, source.completionMode),
+      title: cleanString(source.title),
+      description: cleanString(source.description),
+      return_context: cleanReturnContext(source.return_context || source.returnContext)
+    };
+  }
+
+  function isHistoryGoTaskPayload(payload) {
+    if (!payload || typeof payload !== "object") return false;
+
+    const normalized = normalizeHistoryGoTaskPayload(payload);
+    const isHistoryGoKind = HISTORY_GO_TASK_KINDS.indexOf(normalized.task_kind) !== -1;
+    const isHistoryGoTarget = HISTORY_GO_TARGET_TYPES.indexOf(normalized.target_type) !== -1;
+    const isHistoryGoCompletion = HISTORY_GO_COMPLETION_MODES.indexOf(normalized.completion_mode) !== -1;
+
+    if (isHistoryGoKind && isHistoryGoTarget) return true;
+    return isHistoryGoTarget && isHistoryGoCompletion;
+  }
   function dispatchProfileUpdate() {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
   }
@@ -190,7 +313,9 @@
       knowledge_targets: deriveKnowledgeTargets(mailEvent, active),
       quiz_targets: deriveQuizTargets(mailEvent, active),
       time_window: windowInfo,
-      task_payload: mailEvent?.task_payload || null
+      task_payload: isHistoryGoTaskPayload(mailEvent?.task_payload)
+        ? normalizeHistoryGoTaskPayload(mailEvent.task_payload)
+        : mailEvent?.task_payload || null
     };
 
     const next = getStore();
@@ -263,6 +388,8 @@
   window.CivicationTaskEngine = {
     getStore,
     setStore,
+    normalizeHistoryGoTaskPayload,
+    isHistoryGoTaskPayload,
     getTaskById,
     getTaskByMailId,
     createTaskForMail,
