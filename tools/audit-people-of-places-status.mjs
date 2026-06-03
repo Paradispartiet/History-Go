@@ -41,7 +41,7 @@ function isGeographicPeopleFile(sourceFile) {
 
 function schemaKind(sourceFile, people) {
   if (sourceFile.endsWith('people_naeringsliv.json')) return 'source_place_id_schema';
-  if (sourceFile.endsWith('people_filantroper.json')) return 'collectionGroup_filantroper_schema';
+  if (people.length > 0 && people.every((person) => person?.collectionGroup === 'filantroper')) return 'collectionGroup_filantroper_schema';
   const sourcePlaceCount = people.filter((person) => person && Object.prototype.hasOwnProperty.call(person, 'source_place_id')).length;
   const placeIdCount = people.filter((person) => person && Object.prototype.hasOwnProperty.call(person, 'placeId')).length;
   const mediaCount = people.filter((person) => person?.media && typeof person.media === 'object').length;
@@ -111,7 +111,7 @@ function schemaNotesForFile(sourceFile, people, categoryGuess, kind) {
   if (sourceFile.endsWith('people_naeringsliv.json')) {
     if (withSourcePlaceId === people.length && withPlaceId === 0) notes.push('ok: særskilt næringsliv-schema med source_place_id');
     else notes.push('schema_review: næringsliv blander source_place_id/placeId-mønstre');
-  } else if (sourceFile.endsWith('people_filantroper.json')) {
+  } else if (kind === 'collectionGroup_filantroper_schema') {
     const wrongGroup = people.filter((p) => p?.collectionGroup !== 'filantroper').length;
     if (wrongGroup === 0) notes.push('ok: filantroper vurderes etter collectionGroup, ikke category');
     else notes.push(`schema_review: ${wrongGroup} mangler collectionGroup=filantroper`);
@@ -121,7 +121,7 @@ function schemaNotesForFile(sourceFile, people, categoryGuess, kind) {
 
   const categoryMismatches = people.filter((p) => {
     if (!p?.category || !categoryGuess) return false;
-    if (sourceFile.endsWith('people_filantroper.json') && p.collectionGroup === 'filantroper') return false;
+    if (kind === 'collectionGroup_filantroper_schema' && p.collectionGroup === 'filantroper') return false;
     return canonicalCategory(p.category) !== canonicalCategory(categoryGuess);
   }).length;
   if (categoryMismatches > 0) notes.push(`category_mismatch=${categoryMismatches}`);
@@ -226,7 +226,7 @@ for (const filePath of peopleFiles) {
     }
 
     if (person?.category && categoryGuess && canonicalCategory(person.category) !== canonicalCategory(categoryGuess)) {
-      if (!(sourceFile.endsWith('people_filantroper.json') && person.collectionGroup === 'filantroper')) {
+      if (!(kind === 'collectionGroup_filantroper_schema' && person.collectionGroup === 'filantroper')) {
         categorySchemaMismatches.push({ sourceFile, personId, personName, category: person.category, expected: categoryGuess, reason: 'category_does_not_match_file_category' });
       }
     }

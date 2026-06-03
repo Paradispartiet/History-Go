@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-03T05:31:33.215Z
+Generert: 2026-06-03T06:29:47.593Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-03T05:31:33.215Z |
+| generatedAt | 2026-06-03T06:29:47.593Z |
 | peopleFilesRead | 19 |
 | totalPeople | 350 |
 | uniquePeopleIds | 350 |
@@ -14,8 +14,8 @@ Generert: 2026-06-03T05:31:33.215Z
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 2 |
 | peopleWithEmptyPlacesArray | 2 |
-| flatPeopleFiles | 1 |
-| geographicPeopleFiles | 18 |
+| flatPeopleFiles | 0 |
+| geographicPeopleFiles | 19 |
 | categoriesRepresented | 15 |
 
 ## People-filer
@@ -23,6 +23,7 @@ Generert: 2026-06-03T05:31:33.215Z
 | Fil | Kategori | Geo | People | Dups i fil | Mangler id | Mangler navn | Mangler category | Mangler hovedanker | Invalid refs | Schema |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | data/people/by/oslo/people_by_oslo.json | by | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 8 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/oslo/people_film_tv_oslo.json | film_tv | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 2 | 0 | standard_placeId_schema |
@@ -34,7 +35,6 @@ Generert: 2026-06-03T05:31:33.215Z
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 15 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/people_filantroper.json | filantroper | nei | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/politikk/oslo/people_politikk_oslo.json | politikk | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json | populaerkultur | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/popkultur/oslo/people_popkultur_oslo.json | populaerkultur | ja | 14 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -47,7 +47,7 @@ Generert: 2026-06-03T05:31:33.215Z
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
 | by | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| filantroper | 17 | 1 | 0 | geographic_split | Kategorien er flat, har mange entries og alle entries har gyldig hovedanker. |
+| filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 18 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | historie | 65 | 0 | 1 | schema_review | Noen entries mangler gyldig hovedanker og bør vurderes før neste innholdsrunde. |
 | kunst | 12 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -64,15 +64,15 @@ Generert: 2026-06-03T05:31:33.215Z
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 18
-- Fortsatt flate filer: 1
+- Allerede geografisk strukturert: 19
+- Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
-- Hold for schema review: data/people/people_filantroper.json (collectionGroup_filantroper_schema)
+- Hold for schema review: ingen
 
 ### Anbefalte geografiske split-kandidater
 
-- filantroper: 17 entries (data/people/people_filantroper.json)
+- Ingen basert på nåværende auditlogikk.
 
 ## Place-ref audit
 
@@ -98,6 +98,7 @@ Entries med svak/manglende places[] etter auditreglene: 2
 ## Schema-status
 
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; categories=by
+- data/people/filantroper/oslo/people_filantroper_oslo.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; collectionGroup=17/17; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=8/8; source_place_id=0/8; placesArray=8/8; categories=film_tv
 - data/people/film_tv/oslo/people_film_tv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=film_tv
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=63/65; source_place_id=0/65; placesArray=65/65; categories=historie
@@ -109,7 +110,6 @@ Entries med svak/manglende places[] etter auditreglene: 2
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=musikk
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur
-- data/people/people_filantroper.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; collectionGroup=17/17; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/politikk/oslo/people_politikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=0/22; placesArray=22/22; categories=politikk
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=populaerkultur
 - data/people/popkultur/oslo/people_popkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=14/14; source_place_id=0/14; placesArray=14/14; categories=populaerkultur
@@ -705,10 +705,10 @@ Mangler filer for image/cardImage/media: 552
 
 ```json
 {
-  "type": "geographic_split",
-  "category": "filantroper",
-  "reason": "filantroper er største flate kategori med gyldige hovedankere og vanlig people-schema.",
-  "safeBatchSize": 17,
+  "type": "schema_cleanup",
+  "category": "historie",
+  "reason": "historie bør ha schema review før split eller ekspansjon.",
+  "safeBatchSize": 65,
   "blockers": []
 }
 ```

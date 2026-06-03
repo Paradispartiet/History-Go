@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-06-03T05:31:32.762Z
+Generated: 2026-06-03T06:29:47.265Z
 
 ## Sammendrag
 - People-filer lest: **19**
@@ -168,23 +168,23 @@ Generated: 2026-06-03T05:31:32.762Z
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: ellef_ringnes (Ellef Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: amund_ringnes (Amund Ringnes) -> ringnes_bryggeri x2
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: halvor_schou (Halvor Schou) -> schous_bryggeri x2
-- data/people/people_filantroper.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
-- data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
-- data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
-- data/people/people_filantroper.json :: christian_ringnes (Christian Ringnes) -> ekebergparken x2
-- data/people/people_filantroper.json :: rolf_stenersen (Rolf Stenersen) -> tjuvholmen x2
-- data/people/people_filantroper.json :: niels_onstad (Niels Onstad) -> astrup_fearnley x2
-- data/people/people_filantroper.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
-- data/people/people_filantroper.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> bankplassen x2
-- data/people/people_filantroper.json :: eckbos_legat (Eckbos Legat) -> universitetsplassen x2
-- data/people/people_filantroper.json :: olav_thon (Olav Thon) -> universitetets_gamle_hovedbygning x2
-- data/people/people_filantroper.json :: fred_kavli (Fred Kavli) -> universitetets_gamle_hovedbygning x2
-- data/people/people_filantroper.json :: anders_jahre (Anders Jahre) -> universitetets_gamle_hovedbygning x2
-- data/people/people_filantroper.json :: jens_henrik_nordlie (Jens Henrik Nordlie) -> stortinget x2
-- data/people/people_filantroper.json :: jens_christian_hauge (Jens Christian Hauge) -> stortinget x2
-- data/people/people_filantroper.json :: finn_skedsmo (Finn Skedsmo) -> stortinget x2
-- data/people/people_filantroper.json :: kavlifondet (Kavlifondet) -> universitetets_gamle_hovedbygning x2
-- data/people/people_filantroper.json :: gjensidigestiftelsen (Gjensidigestiftelsen) -> bankplassen x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: christian_ringnes (Christian Ringnes) -> ekebergparken x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: rolf_stenersen (Rolf Stenersen) -> tjuvholmen x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: niels_onstad (Niels Onstad) -> astrup_fearnley x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> bankplassen x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: eckbos_legat (Eckbos Legat) -> universitetsplassen x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: olav_thon (Olav Thon) -> universitetets_gamle_hovedbygning x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: fred_kavli (Fred Kavli) -> universitetets_gamle_hovedbygning x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: anders_jahre (Anders Jahre) -> universitetets_gamle_hovedbygning x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: jens_henrik_nordlie (Jens Henrik Nordlie) -> stortinget x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: jens_christian_hauge (Jens Christian Hauge) -> stortinget x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: finn_skedsmo (Finn Skedsmo) -> stortinget x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: kavlifondet (Kavlifondet) -> universitetets_gamle_hovedbygning x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: gjensidigestiftelsen (Gjensidigestiftelsen) -> bankplassen x2
 - data/people/natur/oslo/people_natur_oslo.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
 - data/people/natur/oslo/people_natur_oslo.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
 - data/people/natur/oslo/people_natur_oslo.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
