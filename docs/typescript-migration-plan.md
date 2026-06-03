@@ -7,8 +7,9 @@ Denne planen beskriver hvordan History Go kan migreres fra TypeScript-sjekket Ja
 - **Prosjektbeslutning:** Civication holdes utenfor TypeScript-migrering inntil videre. Det skal fortsatt jobbes aktivt videre med Civication-funksjoner i JavaScript, og Civication kan fortsatt være `checkJs`-/JSDoc-typekontrollert JavaScript under dagens TypeScript-sjekk.
 - Repoet kjører i dag JavaScript med TypeScript-kontroll via `allowJs: true` og `checkJs: true` i `tsconfig.json`.
 - `npm run typecheck` kjører `tsc -p tsconfig.json` med `noEmit: true`, altså ren statisk sjekk uten byggede filer.
-- Per denne planen gir `npm run typecheck` 0 TypeScript-diagnostics.
+- `npm run typecheck:scripts` kjører `tsc -p tsconfig.scripts.json` for en avgrenset Node-only script-flate. Denne sjekken er separat fra browser-runtime og Civication.
 - `tsconfig.json` inkluderer `js/**/*.js`, `scripts/**/*.js`, rot-`*.js`, `schemas/**/*.ts` og `schemas/**/*.d.ts`.
+- `tsconfig.scripts.json` inkluderer foreløpig ikke-Civication `scripts/i18n-*.js`, `scripts/audit-wonderkammer-data.mjs` og fremtidige `scripts/**/*.ts`/`.mts`/`.cts`, men ekskluderer `js/**`, `js/Civication/**` og `scripts/*civication*.*`/`scripts/**/*civication*.*`.
 - `tools/**/*.mjs` er ikke en del av dagens TypeScript-sjekk, selv om flere npm-scripts peker dit.
 - Det finnes TypeScript-devdependency, men ingen bundler, ingen `build`-script, ingen `dist`-produksjon og ingen emit/transpile-steg i `package.json`.
 - Browser-appen lastes hovedsakelig med klassiske `<script src="...js">`-tagger fra HTML, ikke via native ESM-importer eller en bundler.
@@ -32,7 +33,7 @@ Det mangler foreløpig:
 
 - `npm run build`
 - bundler-konfigurasjon
-- TypeScript emit til `dist/`, `build/` eller tilsvarende
+- TypeScript emit til `dist/`, `build/` eller tilsvarende for app-runtime
 - HTML-integrasjon mot generert JavaScript
 
 ### Browser-runtime
@@ -69,6 +70,25 @@ Vurdering:
 - Første migreringsområde bør være Node-only scripts som ikke lastes fra HTML og ikke er Civication-funksjonskode.
 - `scripts/**/*.js` er allerede inkludert i `tsconfig.json`, men kjøres av Node, ikke browser.
 - De bør bare konverteres når Node-kjøring av `.ts` er avklart, for eksempel via TypeScript emit til `.js` eller en egen Node-runner-strategi.
+
+
+## Valgt strategi for Node-only scripts
+
+Denne PR-en legger til en egen scripts-konfig, `tsconfig.scripts.json`, og et separat npm-script, `npm run typecheck:scripts`. Strategien er bevisst smal:
+
+- **Egen konfig i stedet for app-emit:** `tsconfig.scripts.json` er separat fra browser-runtime og bruker Node-kompatibel `module`/`moduleResolution` (`NodeNext`) med kun Node-typer. Den arver ikke DOM-/Bundler-valgene i `tsconfig.json`, fordi scripts skal kunne migreres uten å dra inn browser-runtime.
+- **Ren typecheck nå:** Konfigen har `noEmit: true`. Det legges ikke til `build:scripts` ennå, fordi dagens `.js`-scripts bruker `__dirname`/relative repo-stier, og et outDir-basert emit-steg må innføres sammen med første faktiske `.ts`-konvertering og verifisert run-kommando.
+- **Gradvis migrering:** `allowJs: true` og `checkJs: true` beholdes, slik at eksisterende `.js`/`.mjs`-scripts kan sjekkes mens nye eller konverterte `scripts/**/*.ts`, `scripts/**/*.mts` og `scripts/**/*.cts` kan legges til senere.
+- **Ingen app-påvirkning:** Konfigen inkluderer ikke `js/**`, inkluderer ikke `js/Civication/**`, endrer ikke HTML/script-tags og produserer ingen filer som kan lastes av browseren.
+- **Civication holdes utenfor:** Civication-relaterte scripts er eksplisitt ekskludert med `scripts/*civication*.*`/`scripts/**/*civication*.*` og skal ikke være første migreringsbatch.
+
+Første faktiske `.js` → `.ts`-batch for scripts bør derfor gjøre dette i en egen PR:
+
+1. konverter kun en liten ikke-Civication script-gruppe, helst i18n-/place-scripts,
+2. behold eller oppdater `npm run typecheck:scripts`,
+3. avklar run-kontrakt per script: enten kjør kilde-`.js` videre til scriptet er konvertert, eller legg til et trygt `build:scripts`/outDir-oppsett som bevarer repo-root-resolusjon og kjører generert `.js`,
+4. kjør den konverterte scriptkommandoen eksplisitt med Node i tillegg til `npm run typecheck:scripts`,
+5. ikke endre browser-loadede filer, HTML, CSS, data eller Civication.
 
 ### 2. Ikke-Civication utility/core-filer
 
@@ -210,8 +230,9 @@ Kandidater:
 3. `scripts/i18n-stamp-places.js`
 4. `scripts/i18n-worklist-places.js`
 5. `scripts/i18n-place-manifest-loader.js`
+6. `scripts/audit-wonderkammer-data.mjs` (kan typecheckes med scripts-konfigen, men bør holdes som egen ESM-kandidat dersom første batch bare skal være CommonJS/i18n)
 
-Disse bør bare konverteres når Node-kjøring av `.ts` er avklart, for eksempel via TypeScript emit til `.js` eller en egen Node-runner-strategi. Civication-relaterte scripts bør ikke brukes som første batch nå. Hvis man ikke ønsker runtime-runner-endringer for scripts ennå, bør første batch i stedet være rene typeforberedelser: shared `.d.ts`/`.ts`-typer i `schemas/` og JSDoc-opprydding uten rename.
+Disse bør bare konverteres når Node-kjøring av `.ts` er avklart for den konkrete batchen. Dagens scripts-konfig gir en trygg typecheck-flate, men ingen emit. Dersom første batch trenger kjørbar `.ts`-output, bør den samme PR-en legge til et avgrenset `build:scripts`-oppsett med `outDir` og dokumentere nøyaktig om Node skal kjøre generert `.js` fra `build/scripts` eller en annen trygg output-sti. Civication-relaterte scripts bør ikke brukes som første batch nå. Hvis man ikke ønsker runtime-runner-endringer for scripts ennå, bør første batch i stedet være rene typeforberedelser: shared `.d.ts`/`.ts`-typer i `schemas/` og JSDoc-opprydding uten rename.
 
 ## Hva som må være på plass før første `.js` → `.ts`-konvertering
 
@@ -221,7 +242,7 @@ Minimum før første faktiske rename:
 2. **Output-kontrakt:** For browserfiler må generert `.js` ende på samme stier som HTML forventer, eller HTML-endringen må tas i en separat planlagt PR.
 3. **Oppdatert `tsconfig`:** Inkluder relevante `.ts`-filer uten å miste `allowJs/checkJs` for resten av migreringen.
 4. **Global typeflate:** Lag eller utvid deklarasjoner for `window`-globals som deles mellom klassiske browser-scripts.
-5. **Valideringskommandoer:** `npm run typecheck` og `git diff --check` må fortsatt være grønne. For scripts bør relevante Node-kommandoer kjøres per filgruppe.
+5. **Valideringskommandoer:** `npm run typecheck`, `npm run typecheck:scripts` og `git diff --check` må fortsatt kjøres. For scripts bør relevante Node-kommandoer kjøres per filgruppe.
 6. **Ingen runtime-endring i rename-PR:** Første migrerings-PR bør kun endre filendelse/typing/build-konfig, ikke appflyt eller logikk.
 7. **Rollback-plan:** Hver batch må være liten nok til å kunne revertes uten å påvirke andre migreringsbatcher.
 
@@ -238,7 +259,7 @@ Minimum før første faktiske rename:
 ## Anbefalt migreringsrekkefølge
 
 1. **Plan og typegrunnlag:** Behold alle `.js`; legg til/rydd shared schema- og global-typer der det trengs.
-2. **Node-only scripts:** Konverter små ikke-Civication `scripts/**/*.js`-valideringer når runner/transpile for Node er bestemt.
+2. **Node-only scripts:** Bruk `tsconfig.scripts.json` til å typechecke små ikke-Civication `scripts/**/*.js`-valideringer. Konverter først når runner/transpile for den konkrete Node-batchen er bestemt.
 3. **Ikke-Civication core/utilities:** Konverter rene utility-/core-filer, men bare med generert `.js` output eller etter build-PR.
 4. **Data loaders:** Konverter loaders med tydelige datatyper og fetch-resultater.
 5. **UI/DOM:** Konverter DOM-tunge UI-filer med eksplisitte elementtyper og side-spesifikke smoke checks.
@@ -252,31 +273,36 @@ Minimum før første faktiske rename:
    - Legg til denne planen.
    - Ingen runtime-endringer.
 
-2. **PR 2: TypeScript build-/runner-beslutning**
-   - Legg til minimal konfig for `.ts`-input uten å flytte appen.
-   - Avklar om Node-only scripts skal bruke emit eller runner.
+2. **PR 2: TypeScript scripts-typecheck**
+   - Legg til `tsconfig.scripts.json` for avgrenset Node-only script-typecheck.
+   - Legg til `npm run typecheck:scripts`.
+   - Ikke legg til app-emit, bundler eller browser-runtime-endringer.
+
+3. **PR 3: TypeScript build-/runner-beslutning for første script-batch**
+   - Avklar om konverterte Node-only scripts skal bruke emit til en trygg output-sti eller en annen Node-runner-strategi.
+   - Legg bare til `build:scripts` når output og run-kommando er tydelig dokumentert.
    - Behold eksisterende browser-runtime uendret.
 
-3. **PR 3: Shared globals og schema-typer**
+4. **PR 4: Shared globals og schema-typer**
    - Legg til/utvid globale deklarasjoner for `window`-API-er som brukes mellom script-tags.
    - Ingen `.js` → `.ts` rename ennå hvis runtime ikke er klar.
 
-4. **PR 4: Første Node-only script-batch**
+5. **PR 5: Første Node-only script-batch**
    - Konverter 3-6 små ikke-Civication `scripts/*.js`-filer, for eksempel i18n-/place-valideringer.
    - Kjør typecheck og relevante Node-valideringer.
 
-5. **PR 5: Flere Node-only scripts**
+6. **PR 6: Flere Node-only scripts**
    - Konverter gjenværende avgrensede `scripts/*.js`-filer.
    - Hold `tools/*.mjs` separat fordi de ikke er i dagens `tsconfig.json` og allerede bruker ESM.
 
-6. **PR 6: Første browser-safe core batch etter build**
+7. **PR 7: Første browser-safe core batch etter build**
    - Konverter en liten gruppe ikke-DOM core-filer, for eksempel `js/core/placeIdAliases.js`, `js/core/categories.js` og `js/time-resolver.js`.
    - Sørg for at generert `.js` bevarer samme stier for HTML.
 
-7. **PR 7: Data loader batch**
+8. **PR 8: Data loader batch**
    - Konverter utvalgte loaders med tydelige datatyper, for eksempel `js/events/events_loader.js`, `js/brands/brands_loader.js` og `js/emnerLoader.js`.
    - Verifiser fetch-kontrakter og global eksponering.
 
-8. **PR 8: Civication-beslutning før eventuell migrering**
+9. **PR 9: Civication-beslutning før eventuell migrering**
    - Ikke konverter Civication i denne fasen. Dokumenter først en ny beslutning dersom Civication ikke lenger skal holdes deferred.
    - Ved eventuell senere migrering må browser-loadede Civication-filer fortsatt ikke renames, flyttes eller build-kobles uten separat runtime-/build-beslutning.

@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "typecheck": "tsc -p tsconfig.json",
+    "typecheck:scripts": "tsc -p tsconfig.scripts.json",
     "places:index:build": "node tools/build_places_index.mjs",
     "places:index:check": "node tools/check_places_index_sync.mjs",
     "health:places": "node tools/placeHealthReport.mjs",
