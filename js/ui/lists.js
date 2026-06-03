@@ -178,7 +178,7 @@ function renderNearbyPlaces() {
   listEl.innerHTML = "";
 
   if (!items.length) {
-    renderBadgeFilterEmpty(listEl, "steder");
+    renderBadgeFilterEmpty(listEl, tUI("ui.noun.places", "steder"));
     return;
   }
 
@@ -303,7 +303,7 @@ function renderNearbyPeople() {
   }
 
   if (!decorated.length) {
-    renderBadgeFilterEmpty(listEl, "personer");
+    renderBadgeFilterEmpty(listEl, tUI("ui.noun.people", "personer"));
     return;
   }
 
@@ -568,7 +568,7 @@ function renderNearbyNature() {
   }
 
   if (!all.length) {
-    renderBadgeFilterEmpty(listEl, "naturfunn");
+    renderBadgeFilterEmpty(listEl, tUI("ui.noun.natureFinds", "naturfunn"));
     return;
   }
 

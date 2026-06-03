@@ -657,13 +657,13 @@ async function enhanceQuizButton(btn, targetId) {
       if (info.isComplete) {
         btn.textContent = `Ta quiz igjen · ${info.totalSets}/${info.totalSets} sett`;
         btn.classList.add("quiz-done");
-        btn.title = `Alle ${info.totalSets} sett er fullført.`;
+        btn.title = tfUI("ui.badge.allSetsCompletedTitle", "Alle {count} sett er fullført.", { count: info.totalSets });
       } else if (info.completedSets > 0) {
         btn.textContent = `Fortsett quiz · ${info.completedSets}/${info.totalSets} sett`;
-        btn.title = tfUI("ui.quiz.remainingSets", "{count} sett gjenstår", { count: info.remainingSets });
+        btn.title = tfUI("ui.badge.setsRemainingTitle", "{count} sett gjenstår.", { count: info.remainingSets });
       } else {
         btn.textContent = `Ta quiz · ${info.totalSets} sett`;
-        btn.title = `${info.totalSets} sett totalt.`;
+        btn.title = tfUI("ui.badge.totalSetsTitle", "{count} sett totalt.", { count: info.totalSets });
       }
       return;
     }
@@ -1347,10 +1347,10 @@ window.showPersonPopup = function(person) {
       <div class="hg-section">
         <h3>${hgEsc(tUI("ui.person.conversationNotes", "Samtale & notat"))}</h3>
         <div class="hg-actions-row">
-          <button class="hg-ghost-btn" data-chat-person="${person.id}">
-            💬 Snakk med ${person.name}
+          <button class="hg-ghost-btn" data-chat-person="${hgEscAttr(person.id)}">
+            💬 ${hgEsc(tfUI("ui.person.talkWith", "Snakk med {name}", { name: person.name }))}
           </button>
-          <button class="hg-ghost-btn" data-note-person="${person.id}">
+          <button class="hg-ghost-btn" data-note-person="${hgEscAttr(person.id)}">
             📝 ${hgEsc(tUI("ui.person.note", "Notat"))}
           </button>
         </div>
@@ -1731,7 +1731,7 @@ const HGNavigator = (() => {
       type: "concept",
       emne_id: best.emne_id,
       label: best.title || tUI("ui.nextup.reason.understandMore", "Forstå mer"),
-      why: `Begreper ×${bestScore}`
+      why: tfUI("ui.nextup.conceptsCount", "Begreper ×{count}", { count: bestScore })
     };
   }
 
