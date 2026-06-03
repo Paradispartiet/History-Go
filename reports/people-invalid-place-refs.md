@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-03T10:12:35.667Z
+Generated: 2026-06-03T11:01:21.829Z
 
 ## Sammendrag
-- People-filer lest: **27**
-- People lest: **406**
+- People-filer lest: **24**
+- People lest: **394**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **406**
+- Duplikate interne place-referanser: **394**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -181,9 +181,6 @@ Generated: 2026-06-03T10:12:35.667Z
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json :: halvor_schou (Halvor Schou) -> schous_bryggeri x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: tony_elliott (Tony Elliott) -> lisbon_mercado_da_ribeira x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: jose_avillez (José Avillez) -> lisbon_mercado_da_ribeira x2
-- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: paddy_cosgrave (Paddy Cosgrave) -> lisbon_altice_arena_web_summit x2
-- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: miguel_fontes (Miguel Fontes) -> lisbon_startup_lisboa_rua_da_prata x2
-- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: manuel_aires_mateus (Manuel Aires Mateus) -> lisbon_edp_headquarters x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
@@ -415,14 +412,5 @@ Generated: 2026-06-03T10:12:35.667Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: bruno_nogueira (Bruno Nogueira) -> lisbon_rtp x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: filomena_cautela (Filomena Cautela) -> lisbon_rtp x2
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
-- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: eusebio (Eusébio) -> lisbon_estadio_da_luz x2
-- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: mario_moniz_pereira (Mário Moniz Pereira) -> lisbon_pista_moniz_pereira x2
-- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: jose_alvalade (José Alvalade) -> lisbon_estadio_jose_alvalade x2
-- data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: goncalo_ribeiro_telles (Gonçalo Ribeiro Telles) -> lisbon_jardim_gulbenkian x2
-- data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: felix_de_avelar_brotero (Félix de Avelar Brotero) -> lisbon_jardim_botanico x2
-- data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json :: francisco_caldeira_cabral (Francisco Caldeira Cabral) -> lisbon_jardim_botanico x2
-- data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: manuel_reis_fragil (Manuel Reis) -> lisbon_bairro_alto x2
-- data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: dj_marfox (DJ Marfox) -> lisbon_desterro x2
-- data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json :: natxo_checa (Natxo Checa) -> lisbon_galeria_ze_dos_bois x2
 
 ## Anbefalt neste ryddebatch
