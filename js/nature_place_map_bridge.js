@@ -284,8 +284,9 @@
   }
 
   document.addEventListener("click", async (e) => {
-    const faunaBtn = e.target.closest("[data-fauna]");
-    if (!faunaBtn) return;
+    const target = e.target;
+    const faunaBtn = target instanceof Element ? target.closest("[data-fauna]") : null;
+    if (!(faunaBtn instanceof HTMLElement)) return;
     e.preventDefault();
     e.stopPropagation();
 

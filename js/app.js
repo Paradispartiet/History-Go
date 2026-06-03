@@ -117,7 +117,7 @@ function loadScriptOnce(src) {
     if (!src) return resolve();
 
     const existing = document.querySelector(`script[src="${src}"]`);
-    if (existing) {
+    if (existing instanceof HTMLScriptElement) {
       if (existing.dataset.loaded === "1") return resolve();
       existing.addEventListener("load", resolve, { once: true });
       existing.addEventListener("error", reject, { once: true });

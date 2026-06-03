@@ -107,7 +107,7 @@
   `;
 
   const list = panel.querySelector("#verifyList");
-  const closeBtn = panel.querySelector("#verifyClose");
+  const closeBtn = /** @type {HTMLElement | null} */ (panel.querySelector("#verifyClose"));
 
   function updateStatus() {
     if (!list) return;
