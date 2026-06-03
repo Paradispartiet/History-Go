@@ -63,6 +63,12 @@ Appfilene i `js/` ser ut til å være globale/browser-script-filer med JSDoc-typ
 
 Node-scripts i `scripts/` og `tools/` bruker nå en blanding av `.ts`, `.js` og `.mjs`. `tools/*.mjs` har ESM-importer, men er ikke inkludert i dagens `tsconfig.json`.
 
+## Shared schema-/typegrunnlag for i18n/place-scripts
+
+Det finnes nå et lite shared TypeScript-only grunnlag for places-i18n-former i `schemas/i18n.ts`. Filen beskriver eksisterende dataformer for oversettelsesfiler og genererte worklist-rapporter, inkludert `JsonObject`, `PlaceSourcePayload`, `PlaceTranslationEntry`, `PlaceTranslationMap`, `I18nWorklistItem` og `I18nWorklistReport`.
+
+Dette er kun typegrunnlag: filen inneholder ingen runtime-logikk, ingen imports inn i browser-runtime og ingen Civication-kobling. Dagens `scripts/i18n-*.ts` bruker fortsatt sine lokale typealiaser for å unngå en bred refaktorering i samme PR. Neste mulige steg er en egen smal PR som erstatter lokale typealiaser i i18n-scripts med type-only imports fra `schemas/i18n.ts`, dersom scripts-builden samtidig justeres slik at shared schema-typer utenfor `scripts/` håndteres eksplisitt.
+
 ## Filgrupper og anbefalt migreringsrekkefølge
 
 ### 1. Node-only scripts
