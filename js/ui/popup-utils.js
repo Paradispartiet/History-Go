@@ -331,7 +331,10 @@ function getPeopleForPlace(placeId) {
     return fields.flatMap(value => Array.isArray(value) ? value : [value]).map(_s).filter(Boolean);
   };
 
-  const peopleById = new Map(peopleArr.map(p => [_s(p?.id), p]).filter(([id]) => id));
+  const peopleEntries = peopleArr
+    .map(p => /** @type {readonly [any, any]} */ ([_s(p?.id), p]))
+    .filter(([id]) => id);
+  const peopleById = new Map(peopleEntries);
   const seen = new Set();
   const out = [];
 
@@ -1533,7 +1536,6 @@ const peopleHere = (typeof getPeopleForPlace === "function")
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
-      ${typeof wkDocHtml === "string" ? wkDocHtml : ""}
       ${wkHtml}
       ${chambersHtml}
     
