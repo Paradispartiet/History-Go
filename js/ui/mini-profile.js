@@ -7,6 +7,13 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
@@ -60,7 +67,7 @@ function initMiniProfile() {
 
   if (pos && pos.title) {
     const careerName = pos.career_name || pos.career_id || tUI("ui.miniprofile.careerFallback", "Karriere");
-    posEl.textContent = `💼 ${pos.title} · ${careerName}`;
+    posEl.textContent = tfUI("ui.miniprofile.careerLine", "💼 {position} · {career}", { position: pos.title, career: careerName });
     posEl.style.display = "";
   } else {
     posEl.style.display = "none";

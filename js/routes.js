@@ -572,7 +572,7 @@ async function focusRouteOnMap(routeId, startIndex = 0) {
       if (Number.isFinite(routeStats?.distance_m) && Number.isFinite(routeStats?.duration_s)) {
         const km = (routeStats.distance_m / 1000).toFixed(1);
         const min = Math.round(routeStats.duration_s / 60);
-        _toast(`Fottur vist: ${km} km · ca ${min} min`);
+        _toast(tfUI("ui.routes.hikingRouteEstimate", "Fottur vist: {km} km · ca {min} min", { km, min }));
       } else {
         _toast(tUI("ui.routes.hikingRouteShown", "Fottur vist på kartet"));
       }
@@ -708,9 +708,9 @@ async function showWalkingRouteToPlace(place) {
   if (Number.isFinite(out.distance_m) && Number.isFinite(out.duration_s)) {
     const km = (out.distance_m / 1000).toFixed(1);
     const min = Math.round(out.duration_s / 60);
-    _toast(`Gårute: ${km} km · ca ${min} min`);
+    _toast(tfUI("ui.routes.walkingRouteEstimateAlt", "Gårute: {km} km · ca {min} min", { km, min }));
   } else {
-    _toast(`Gårute til ${place.name || tUI("ui.routes.placeFallback", "sted")}`);
+    _toast(tfUI("ui.routes.walkingRouteToPlace", "Gårute til {place}", { place: place.name || tUI("ui.routes.placeFallback", "sted") }));
   }
 }
 

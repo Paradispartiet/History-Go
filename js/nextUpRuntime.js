@@ -24,6 +24,13 @@
     }
   }
 
+  function tfUI(key, fallback = "", vars = {}) {
+    const template = tUI(key, fallback);
+    return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+      Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+    );
+  }
+
   const NEXTUP_MODES = [
     { mode: "nearest", labelKey: "ui.nextup.mode.nearest", label: "Nærmest", chipKey: "ui.nextup.mode.nearest", chip: "Nærmest" },
     { mode: "learn", labelKey: "ui.nextup.mode.learnMost", label: "Lær mest", chipKey: "ui.nextup.mode.learnMost", chip: "Lær mest" },
@@ -623,7 +630,7 @@
     const pathStatus = summary?.step_count >= 4
       ? `<div class="nextup-path-status"><div class="nextup-path-title">Du er i gang med en rute · Fortsett?</div><div class="nextup-path-meta">${esc(summary.title || "")} · ${summary.step_count} steg</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
       : summary?.step_count >= 2
-        ? `<div class="nextup-path-status"><div class="nextup-path-title">Rute startet: ${summary.step_count} steg</div><div class="nextup-path-meta">Tema: ${esc((summary.emne_ids || []).slice(0,2).join(" / ") || (summary.dominant_types || []).join(" / "))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
+        ? `<div class="nextup-path-status"><div class="nextup-path-title">${esc(tfUI("ui.nextup.routeStarted", "Rute startet: {count} steg", { count: summary.step_count }))}</div><div class="nextup-path-meta">${esc(tfUI("ui.nextup.theme", "Tema: {theme}", { theme: (summary.emne_ids || []).slice(0,2).join(" / ") || (summary.dominant_types || []).join(" / ") }))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>${esc(tUI("ui.nextup.reset", "Nullstill"))}</button></div>`
         : `<div class="nextup-path-status"><div class="nextup-path-meta">${esc(tUI("ui.nextup.routeBuilderEmpty", "NextUp kan bygge en rute når du har nok steder, quizzer eller forslag."))}</div></div>`;
 
     if (!suggestions.length) {

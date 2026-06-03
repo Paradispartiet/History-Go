@@ -6,6 +6,13 @@ function tUI(key, fallback = "") {
   }
 }
 
+function tfUI(key, fallback = "", vars = {}) {
+  const template = tUI(key, fallback);
+  return String(template).replace(/\{(\w+)\}/g, (_, name) =>
+    Object.prototype.hasOwnProperty.call(vars, name) ? String(vars[name]) : `{${name}}`
+  );
+}
+
 async function handleBadgeClick(badgeEl) {
   const badgeId = badgeEl.getAttribute("data-badge-id");
   const modal = document.getElementById("badgeModal");
@@ -35,7 +42,7 @@ const info =
 
   // Kanonisk: vis nivå ut fra tiers+points (ikke lagret level-tekst)
   if (levelEl) levelEl.textContent = label || tUI("ui.badge.modalTitleFallback", "Nybegynner");
-  if (textEl)  textEl.textContent = `${points} poeng`;
+  if (textEl)  textEl.textContent = tfUI("ui.badge.progressPoints", "{points} poeng", { points });
 
   // Progressbar
   if (barEl && Array.isArray(badge.tiers) && badge.tiers.length) {
