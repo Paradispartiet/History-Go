@@ -96,11 +96,42 @@
     return runtime.getJobLearningViewModel(state, active);
   }
 
+  function formatUnlockedLearningList(items) {
+    const seen = new Set();
+    const uniqueItems = (Array.isArray(items) ? items : [])
+      .map(function (item) { return String(item || "").trim(); })
+      .filter(function (item) {
+        if (!item) return false;
+        const key = item.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+    if (!uniqueItems.length) return "";
+
+    const visible = uniqueItems.slice(0, 3);
+    const remaining = uniqueItems.length - visible.length;
+    return visible.join(", ") + (remaining > 0 ? " +" + remaining + " til" : "");
+  }
+
+  function buildUnlockedLearningLine(viewModel) {
+    const skills = formatUnlockedLearningList(viewModel?.unlockedSkills);
+    if (skills) return "Du tok med deg: " + skills;
+
+    const teaches = formatUnlockedLearningList(viewModel?.unlockedTeaches);
+    if (teaches) return "Du lærte: " + teaches;
+
+    return "";
+  }
+
   // Job learning is shown separately from career outcome (Forfremmelse / Stagnasjon /
   // Arbeidsforhold avsluttet). Staying in a job that still teaches is framed as
   // potentially positive, not as stagnation.
   function buildLearningBanner(viewModel) {
     if (!viewModel || !viewModel.hasLearningState || !viewModel.learningLabel) return "";
+
+    const unlockedLine = buildUnlockedLearningLine(viewModel);
 
     return ""
       + "<section class=\"civi-learning-banner\" aria-label=\"Læringsstatus\">"
@@ -108,6 +139,7 @@
       + "<p class=\"civi-learning-status\" data-learning-status=\"" + escapeHtml(viewModel.learningStatus) + "\">"
       + "<span class=\"civi-learning-label\">Læring: " + escapeHtml(viewModel.learningLabel) + "</span>"
       + "<span class=\"civi-learning-detail\">" + escapeHtml(viewModel.learningDetail) + "</span>"
+      + (unlockedLine ? "<span class=\"civi-learning-detail civi-learning-unlocked\">" + escapeHtml(unlockedLine) + "</span>" : "")
       + "</p>"
       + "</section>";
   }
