@@ -344,3 +344,56 @@ Denne auditten bekrefter at eksisterende Jobbmail outcome-flow allerede finnes e
 - Personlige/life-meldinger forblir personlige meldinger og får ikke outcome-behandling.
 
 Existing Jobbmail outcome-flow preserved. No new message director. No TypeScript migration. No game-balance changes.
+
+## 7. Outcome-reachability-verifisering (2026-06-03)
+
+Denne seksjonen dokumenterer en oppfølgende kontroll: er de eksisterende terminaltilstandene faktisk oppnåelige i ekte spillflyt, eller bare når man kaller `decideOutcome` med kunstig score? Ingen ny arc, ingen ny message director, intet parallelt progresjonssystem. Bruker fortsatt `CivicationMailRuntime`, `CivicationDailyMailBuilder`, `CivicationCareerOutcomeRuntime`, `CivicationEventEngine`, `CivicationEventChannels` og eksisterende mailPlans/mailFamilies.
+
+### Eksisterende struktur (uendret)
+
+- Score utvikles kun i `CivicationEventEngine.answer()`. Per svar: `score = state.score + effect`, deretter klemt til `[-5, 2]` (`civicationEventEngine.js`, linjene `if (score > 2) score = 2; if (score < -5) score = -5;`).
+- Umiddelbart etter klemmingen: hvis `score <= -2` settes `score = 0` og `strikes += 1` (`strikes === 1 → WARNING`, `strikes >= 2 → FIRED`).
+- Konsekvens: **høyeste score som faktisk kan lagres i state er `2`**, og enhver score-dipp til `-2` nullstilles til `0`. `decideOutcome` leser `metrics.score = Number(state.score || 0)`, altså den samme klemte skalaen.
+- `CivicationCareerOutcomeRuntime` produserer fortsatt én terminal outcome-mail ved ferdig rolePlan og styres av `plan.outcome_rules` (med `DEFAULT_OUTCOME_RULES` som fallback, der `promoted.score_gte = 2`).
+
+### Bekreftet reachability-feil
+
+PROMOTED var **ikke oppnåelig** i ekte spill for tre næringsliv-planer, fordi `promoted.score_gte` lå over EventEngine sitt score-tak (`2`):
+
+| Plan | `promoted.score_gte` før | Oppnåelig før? |
+| --- | ---: | --- |
+| `arbeider_plan.json` (`arbeider_naeringsliv_v2`) | 5 | Nei |
+| `ekspeditor_plan.json` (`ekspeditor_naeringsliv_v1`) | 4 | Nei |
+| `formann_plan.json` (`formann_naeringsliv_v1`) | 6 | Nei |
+| `fagarbeider_plan.json` (`fagarbeider_naeringsliv_v3`) | — (bruker default `2`) | Ja |
+
+`avdelingsleder`, `controller`, `finansanalytiker`, `finansdirektor`, `mellomleder` og `okonomi_og_finanssjef` har ingen `outcome_rules` og arvet derfor allerede den oppnåelige default-grensen (`2`).
+
+### Justerte planer
+
+Minste riktige endring: `promoted.score_gte` satt til `2` i `arbeider_plan.json`, `ekspeditor_plan.json` og `formann_plan.json`. `fired`- og `stagnated`-reglene er **ikke** rørt, og spillbalansen er ikke endret bredt. Runtime-logikken (inkludert score-klemmingen) er bevisst ikke endret, fordi å heve taket ville påvirket strikes/warning/fired-terskler og hele spill-loopen.
+
+### Hvorfor scoregrensene nå matcher EventEngine
+
+- `2` er nøyaktig taket `EventEngine.answer()` kan lagre, og er den samme verdien som `DEFAULT_OUTCOME_RULES.promoted.score_gte`.
+- En ren gjennomspilling (kun positive svar) lander på score `2`, `strikes = 0`, ingen warning → `completion_ratio_gte: 1`, `score_gte: 2`, `strikes_lte: 0`, `allow_warning: false` er alle oppfylt → PROMOTED.
+
+### STAGNATED og FIRED fortsatt gyldige
+
+- STAGNATED: en nøytral gjennomspilling fullfører planen med svak score (`0`), `strikes = 0`, ingen warning → verken forfremmelse eller oppsigelse → STAGNATED. Konsekvensene (`career_stagnated`, `evening_pressure`, `morning_choices_expand`, lavere autonomi) er uendret.
+- FIRED: gjentatte negative svar driver EventEngine sin egen `stability` til `FIRED` (ved `strikes >= 2`). `fired.stability_values: ["FIRED"]` fanger dette selv om `score_lte`/`strikes_gte` isolert sett ikke er direkte oppnåelige (score nullstilles ved `-2`). FIRED-pathen er altså intakt via stability-signalet.
+
+### Verifisering (tester)
+
+`tests/civication-career-outcomes.test.js` er beholdt uendret. Ny ende-til-ende-test `tests/civication-career-outcome-reachability.test.js`:
+
+- Leser score-taket/-gulvet og strike-terskelen direkte fra `civicationEventEngine.js`-kilden (så testen sporer motoren i stedet for en magisk konstant).
+- Simulerer realistisk score-utvikling over de faktiske plan-sekvensene (ren/nøytral/negativ gjennomspilling) i stedet for bare å kalle `decideOutcome` med kunstig score.
+- Dekker: reachable PROMOTED, reachable STAGNATED, reachable FIRED, lukket terminal plan undertrykker legacy-fallback, fersk terminal plan gir nøyaktig én Jobbmail-outcome-mail, `role_outcome`/`job_outcome` klassifiseres som Jobbmail (`CivicationEventChannels.getMessageChannel === "job"`, `isPrivateMessage === false`), og personlig/life-melding med feilaktig `career_outcome_meta` får **ikke** outcome-behandling og forblir privat.
+- Testen feiler hvis en plan igjen får `promoted.score_gte` over motorens tak (verifisert ved å midlertidig sette `arbeider` tilbake til `5`).
+
+### Hva gjenstår
+
+- **History Go completion bridge**: koble faktiske History Go-signaler (quiz/unlock/place/story/debate) til åpne Civication-tasks (jf. seksjon 5).
+- **Daily phase UI**: tydelig dag-/fase-visning for workday/evening, slik at stagnasjonens `evening_pressure`/`morning_choices_expand` blir synlig for spilleren.
+- **Mer innhold per rolle**: flere planlagte steg/varianter per rolle slik at progresjon til terminaltilstand føles meningsfull, ikke bare mekanisk oppnåelig.
