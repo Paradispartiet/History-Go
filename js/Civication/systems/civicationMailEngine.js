@@ -41,6 +41,50 @@
     };
   }
 
+
+  function normalizeText(value) {
+    return String(value || "").trim().toLowerCase();
+  }
+
+  function isJobRelatedMail(event) {
+    const ev = event || {};
+    if (typeof window.CivicationEventChannels?.getMessageChannel === "function") {
+      return window.CivicationEventChannels.getMessageChannel(ev) === "job";
+    }
+
+    const explicit = normalizeText(ev.channel || ev.messageChannel);
+    const type = normalizeText(ev.mail_type || ev.type || ev.kind);
+    const mailClass = normalizeText(ev.mail_class);
+    const sourceType = normalizeText(ev.source_type);
+    const track = normalizeText(ev.track || ev.arc);
+
+    return (
+      explicit === "job" ||
+      explicit === "jobmail" ||
+      type === "job" ||
+      type === "jobmail" ||
+      track === "career" ||
+      track === "job" ||
+      mailClass === "job_message" ||
+      mailClass === "opportunity_blocked" ||
+      mailClass === "career_outcome" ||
+      mailClass === "daily_workday" ||
+      sourceType === "blocked_job" ||
+      sourceType === "workday" ||
+      sourceType === "daily_generated" ||
+      sourceType === "daily_extra" ||
+      sourceType === "brand_progression" ||
+      sourceType === "role_outcome" ||
+      !!ev.role_content_meta ||
+      !!ev.mail_plan_meta ||
+      !!ev.career_outcome_meta ||
+      !!ev.career_id ||
+      !!ev.role_key ||
+      !!ev.brand_id ||
+      !!ev.brand_name
+    );
+  }
+
   function ensureMeta(store) {
     if (!store.meta || typeof store.meta !== "object") store.meta = {};
     if (!store.meta.delivery || typeof store.meta.delivery !== "object") {
@@ -249,6 +293,9 @@
       if (guardType) store.meta.delivery.byType[guardType] = envelope.createdAt;
       if (guardType && guardWeek) store.meta.delivery.byWeek[guardType + "::" + guardWeek] = envelope.createdAt;
       saveStore(store);
+      if (isJobRelatedMail(envelope.event)) {
+        window.CivicationState?.markJobMailUnread?.(envelope.id || envelope.event?.id);
+      }
       return { ok: true, mail: envelope };
     },
     markRead(mailId) {

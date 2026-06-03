@@ -109,10 +109,11 @@
 
     <!-- Civication inngang -->
     <a href="/History-Go/Civication.html"
-       class="iconbtn"
+       class="iconbtn civication-nav-link"
        aria-label="Civication"
        title="Civication">
-       🏛
+       <span aria-hidden="true">🏛</span>
+       <span id="civicationUnreadBadge" class="nav-unread-badge" hidden aria-hidden="true"></span>
     </a>
 
     <button id="btnLesespor"
@@ -513,6 +514,7 @@
 <script src="js/Civication/core/civicationState.js"></script>
 <script src="js/Civication/tiersCivi.js"></script>
 <script src="js/Civication/core/civicationJobs.js"></script>
+<script src="js/Civication/ui/CivicationBadge.js"></script>
 
 <script src="js/Civication/core/civicationEconomyEngine.js"></script>
 <script src="js/Civication/civicationObligationEngine.js"></script>

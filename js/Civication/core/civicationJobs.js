@@ -6,6 +6,12 @@
   function dispatchProfileUpdate() {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
   }
+
+  function dispatchInboxUpdate() {
+    ["updateInbox", "updateCivicationBadge"].forEach(function (eventName) {
+      try { window.dispatchEvent(new Event(eventName)); } catch {}
+    });
+  }
   const DEFAULT_OBLIGATION_IDS = [
     "weekly_login",
     "event_response",
@@ -477,6 +483,11 @@
     return {
       id: `job_intro_${slugify(offer?.offer_key || roleName)}_${Date.now()}`,
       source: "Civication",
+      channel: "job",
+      mail_type: "job",
+      mail_class: "job_message",
+      career_id: offer?.career_id || null,
+      role_key: offer?.offer_key || null,
       subject: `Velkommen inn i ${roleName}`,
       situation: [
         `Du går nå inn i ${roleName}. Dette er den første tydelige overgangen fra quizkunnskap til faktisk rolleliv i Civication.`,
@@ -494,8 +505,7 @@
         }
       ],
       feedback: "Du har tatt steget inn i rollen.",
-      onboarding_tag: "first_job_intro",
-      mail_class: "onboarding"
+      onboarding_tag: "first_job_intro"
     };
   }
 
@@ -504,6 +514,11 @@
     return {
       id: `phase_first_day_${slugify(offer?.offer_key || roleName)}_${Date.now()}`,
       source: "Civication",
+      channel: "job",
+      mail_type: "job",
+      mail_class: "job_message",
+      career_id: offer?.career_id || null,
+      role_key: offer?.offer_key || null,
       subject: `Første dag i ${roleName}`,
       stage: "stable",
       situation: [
@@ -535,8 +550,7 @@
         }
       ],
       feedback: "Første dag er satt i bevegelse.",
-      onboarding_tag: "first_job_day",
-      mail_class: "onboarding"
+      onboarding_tag: "first_job_day"
     };
   }
 
@@ -550,6 +564,10 @@
     ];
 
     prependInboxEvents(events);
+    events.forEach(function (event) {
+      window.CivicationState?.markJobMailUnread?.(event?.id);
+    });
+    dispatchInboxUpdate();
     markFirstJobSequenceDone(offer.offer_key);
   }
 
@@ -675,7 +693,9 @@
 
     offers.unshift(offer);
     setOffers(offers);
+    window.CivicationState?.markJobOfferUnread?.(offer.offer_key);
     dispatchProfileUpdate();
+    dispatchInboxUpdate();
 
     return { ok: true, offer: offer };
   }
@@ -723,6 +743,7 @@
     });
 
     setOffers(nextOffers);
+    window.CivicationState?.markJobOffersRead?.([offer.offer_key]);
 
     window.CivicationState?.setActivePosition?.({
       career_id: offer.career_id,
@@ -797,8 +818,10 @@
     };
 
     setOffers(offers);
+    window.CivicationState?.markJobOffersRead?.([offer.offer_key]);
 
     dispatchProfileUpdate();
+    dispatchInboxUpdate();
     return { ok: true, offer: offers[idx] };
   }
 

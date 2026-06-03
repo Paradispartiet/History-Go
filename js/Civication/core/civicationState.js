@@ -88,6 +88,14 @@
     obligations: [],
     reputation: 70,
     salaryModifier: 1
+  },
+
+  civication_unread: {
+    unreadCivicationCount: 0,
+    unreadJobMailCount: 0,
+    unreadJobOfferKeys: [],
+    unreadJobMailIds: [],
+    hasNewJobOffer: false
   }
 };
 
@@ -140,6 +148,104 @@ function setPulse(p) {
     const next = deepMerge(current, patch || {});
     localStorage.setItem(LS_STATE, JSON.stringify(next));
     return next;
+  }
+
+
+  function normalizeUnreadState(input) {
+    const raw = input && typeof input === "object" ? input : {};
+    const offerKeys = Array.from(new Set(Array.isArray(raw.unreadJobOfferKeys)
+      ? raw.unreadJobOfferKeys.map(String).filter(Boolean)
+      : []));
+    const mailIds = Array.from(new Set(Array.isArray(raw.unreadJobMailIds)
+      ? raw.unreadJobMailIds.map(String).filter(Boolean)
+      : []));
+    return {
+      unreadCivicationCount: offerKeys.length + mailIds.length,
+      unreadJobMailCount: mailIds.length,
+      unreadJobOfferKeys: offerKeys,
+      unreadJobMailIds: mailIds,
+      hasNewJobOffer: offerKeys.length > 0
+    };
+  }
+
+  function dispatchCivicationBadgeUpdate() {
+    ["updateProfile", "updateInbox", "updateCivicationBadge"].forEach(function (eventName) {
+      try { window.dispatchEvent(new Event(eventName)); } catch (e) {}
+    });
+  }
+
+  function getCivicationUnreadState() {
+    return normalizeUnreadState(getState().civication_unread);
+  }
+
+  function setCivicationUnreadState(nextUnread, options) {
+    const opts = options && typeof options === "object" ? options : {};
+    const current = getCivicationUnreadState();
+    const next = normalizeUnreadState(nextUnread);
+    const changed = JSON.stringify(current) !== JSON.stringify(next);
+    setState({ civication_unread: next });
+    if (changed && !opts.silent) dispatchCivicationBadgeUpdate();
+    return next;
+  }
+
+  function getUnreadCivicationCount() {
+    return getCivicationUnreadState().unreadCivicationCount;
+  }
+
+  function markJobOfferUnread(offerKey) {
+    const key = String(offerKey || "").trim();
+    if (!key) return getCivicationUnreadState();
+    const current = getCivicationUnreadState();
+    if (current.unreadJobOfferKeys.includes(key)) return current;
+    return setCivicationUnreadState({
+      ...current,
+      unreadJobOfferKeys: current.unreadJobOfferKeys.concat(key)
+    });
+  }
+
+  function markJobMailUnread(mailId) {
+    const id = String(mailId || "").trim();
+    if (!id) return getCivicationUnreadState();
+    const current = getCivicationUnreadState();
+    if (current.unreadJobMailIds.includes(id)) return current;
+    return setCivicationUnreadState({
+      ...current,
+      unreadJobMailIds: current.unreadJobMailIds.concat(id)
+    });
+  }
+
+  function markJobOffersRead(offerKeys) {
+    const current = getCivicationUnreadState();
+    const keys = Array.isArray(offerKeys)
+      ? offerKeys.map(String).filter(Boolean)
+      : current.unreadJobOfferKeys;
+    const remove = new Set(keys);
+    return setCivicationUnreadState({
+      ...current,
+      unreadJobOfferKeys: current.unreadJobOfferKeys.filter(function (key) { return !remove.has(key); })
+    });
+  }
+
+  function markJobMailsRead(mailIds) {
+    const current = getCivicationUnreadState();
+    const ids = Array.isArray(mailIds)
+      ? mailIds.map(String).filter(Boolean)
+      : current.unreadJobMailIds;
+    const remove = new Set(ids);
+    return setCivicationUnreadState({
+      ...current,
+      unreadJobMailIds: current.unreadJobMailIds.filter(function (id) { return !remove.has(id); })
+    });
+  }
+
+  function clearCivicationUnread() {
+    return setCivicationUnreadState({
+      unreadCivicationCount: 0,
+      unreadJobMailCount: 0,
+      unreadJobOfferKeys: [],
+      unreadJobMailIds: [],
+      hasNewJobOffer: false
+    });
   }
 
   function getInbox() {
@@ -447,7 +553,16 @@ window.weeksPassedBetweenWeekKeys = weeksPassedBetweenWeekKeys;
   setOnboardingState,
   getMailBranchState,
   setMailBranchState,
-  clearMailBranchState
+  clearMailBranchState,
+  getCivicationUnreadState,
+  setCivicationUnreadState,
+  getUnreadCivicationCount,
+  markJobOfferUnread,
+  markJobMailUnread,
+  markJobOffersRead,
+  markJobMailsRead,
+  clearCivicationUnread,
+  dispatchCivicationBadgeUpdate
 };
 
 })();
