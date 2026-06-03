@@ -98,6 +98,28 @@
             <div class="profile-kicker-row"><span class="profile-pill gold">History Go</span><span class="profile-pill">Profil</span></div>
             <h1 id="profileName">Logg inn</h1>
             <p class="profile-sub">Din spillerprofil, kunnskapsreise og samling i ett kompakt dashboard.</p>
+            <div class="profile-header-status" role="list" aria-label="Profilstatus">
+              <div class="profile-stat-card" role="listitem" aria-label="0 steder" title="Antall steder du har låst opp.">
+                <span class="profile-stat-icon" aria-hidden="true">📍</span>
+                <span id="statVisited" class="profile-stat-value">0</span>
+                <small id="statVisitedLabel">Steder</small>
+              </div>
+              <div class="profile-stat-card" role="listitem" aria-label="0 quizsett" title="Antall fullførte quizenheter. Set-baserte quizer teller per sett.">
+                <span class="profile-stat-icon" aria-hidden="true">❔</span>
+                <span id="statQuizzes" class="profile-stat-value">0</span>
+                <small id="statQuizzesLabel">Quizsett</small>
+              </div>
+              <div class="profile-stat-card" role="listitem" aria-label="0 streak" title="Antall dager på rad med aktivitet.">
+                <span class="profile-stat-icon" aria-hidden="true">🔥</span>
+                <span id="statStreak" class="profile-stat-value">0</span>
+                <small data-i18n="ui.profile.statStreak">Streak</small>
+              </div>
+              <div class="profile-stat-card profile-pc" role="listitem" aria-label="0 PC" title="ParadiseCoin-saldoen din.">
+                <img src="bilder/ui/pc-icon.svg" class="pc-icon" alt="" aria-hidden="true">
+                <span id="pcValue" class="profile-stat-value">0</span>
+                <small>PC</small>
+              </div>
+            </div>
             <div class="profile-hero-actions-v2">
               <button id="editProfileBtn" class="btn">Endre profil</button>
               <button id="btnOpenAHA" class="btn">Åpne AHA-EchoNet</button>
@@ -105,15 +127,6 @@
             </div>
           </div>
         </div>
-        <aside class="profile-status-panel" aria-label="Profilstatus">
-          <div class="profile-status-title">Status nå</div>
-          <div class="profile-stat-row profile-stat-row-v2">
-            <div class="profile-stat-card"><span id="statVisited">0</span><small id="statVisitedLabel">Steder</small></div>
-            <div class="profile-stat-card"><span id="statQuizzes">0</span><small id="statQuizzesLabel">Quizsett</small></div>
-            <div class="profile-stat-card"><span id="statStreak">0</span><small>Streak</small></div>
-            <div class="profile-stat-card profile-pc"><img src="bilder/ui/pc-icon.svg" class="pc-icon" alt=""><span id="pcValue">0</span><small>PC</small></div>
-          </div>
-        </aside>
       </div>
     </section>
 

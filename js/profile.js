@@ -53,6 +53,15 @@ function _tf(key, fallback = "", vars = {}) {
   });
 }
 
+function updateStatusBadgeA11y(valueEl, label, title) {
+  const value = String(valueEl?.textContent || "0");
+  const card = valueEl?.closest?.(".profile-stat-card");
+  if (!card) return;
+
+  card.setAttribute("aria-label", `${value} ${label}`);
+  card.setAttribute("title", title);
+}
+
 // Sørg for at globale popup-funksjoner finnes i app.js
 window.showPersonPopup = window.showPersonPopup || (() => {});
 window.showPlacePopup  = window.showPlacePopup  || (() => {});
@@ -131,25 +140,44 @@ function renderProfileCard() {
   document.getElementById("statQuizzes").textContent = String(quizUnitCount);
   document.getElementById("statStreak").textContent = String(streak);
 
+  const visitedLabelText = _t("ui.tabs.places", "Steder");
+  const quizLabelText = _t("ui.profile.statQuizSets", "Quizsett");
+  const streakLabelText = _t("ui.profile.statStreak", "Streak");
+  const pcLabelText = _t("ui.profile.statPC", "PC");
+
   const visitedLabel = document.getElementById("statVisitedLabel");
-  if (visitedLabel) visitedLabel.textContent = _t("ui.tabs.places", "Steder");
+  if (visitedLabel) visitedLabel.textContent = visitedLabelText;
 
   const quizzesLabel = document.getElementById("statQuizzesLabel");
-  if (quizzesLabel) quizzesLabel.textContent = _t("ui.profile.statQuizSets", "Quizsett");
+  if (quizzesLabel) quizzesLabel.textContent = quizLabelText;
 
   const visitedEl = document.getElementById("statVisited");
-  if (visitedEl) visitedEl.title = _t("ui.profile.statPlacesTitle", "Antall steder du har låst opp.");
-
   const quizzesEl = document.getElementById("statQuizzes");
-  if (quizzesEl) quizzesEl.title = _t("ui.profile.statQuizTitle", "Antall fullførte quizenheter. Set-baserte quizer teller per sett.");
+  const streakEl = document.getElementById("statStreak");
 
-  renderPC();
+  updateStatusBadgeA11y(
+    visitedEl,
+    visitedLabelText,
+    _t("ui.profile.statPlacesTitle", "Antall steder du har låst opp.")
+  );
+  updateStatusBadgeA11y(
+    quizzesEl,
+    quizLabelText,
+    _t("ui.profile.statQuizTitle", "Antall fullførte quizenheter. Set-baserte quizer teller per sett.")
+  );
+  updateStatusBadgeA11y(
+    streakEl,
+    streakLabelText,
+    _t("ui.profile.statStreakTitle", "Antall dager på rad med aktivitet.")
+  );
+
+  renderPC(pcLabelText);
 }
 
 // ------------------------------------------------------------
 // PARADISECOIN (PC) – PROFIL
 // ------------------------------------------------------------
-function renderPC() {
+function renderPC(labelText = _t("ui.profile.statPC", "PC")) {
   const el = document.getElementById("pcValue");
   if (!el) return;
 
@@ -161,6 +189,11 @@ function renderPC() {
         );
 
   el.textContent = String(pc);
+  updateStatusBadgeA11y(
+    el,
+    labelText,
+    _t("ui.profile.statPCTitle", "ParadiseCoin-saldoen din.")
+  );
 }
 
 function renderNextUpProfileCard() {
