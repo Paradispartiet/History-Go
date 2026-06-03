@@ -27,8 +27,73 @@ const DEFAULT_LANG = "en";
 const DEFAULT_ONLY = new Set(["missing", "stale", "missingSourceHash"]);
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-worklist");
 
+type JsonObject = Record<string, any>;
 
-function parseArgs(argv) {
+type SourcePayload = { name: string; desc: string; popupDesc: string };
+
+type TranslationStatus = "missing" | "missingSourceHash" | "stale" | "ok";
+
+type WorklistArgs = {
+  lang: string;
+  limit: number | null;
+  out: string | null;
+  only: Set<string>;
+};
+
+type MasterPlace = {
+  id: string;
+  sourceFile: string;
+  sourceHash: string;
+  category: string;
+  year: unknown;
+  source: SourcePayload;
+};
+
+type MasterPlaces = { byId: Map<string, MasterPlace>; duplicateIds: string[] };
+
+type WorklistItem = {
+  id: string;
+  lang: string;
+  status: TranslationStatus;
+  sourceFile: string;
+  sourceHash: string;
+  category: string;
+  year: unknown;
+  source: SourcePayload;
+  existingTranslation: {
+    _sourceHash: any;
+    _status: any;
+    name: any;
+    desc: any;
+    popupDesc: any;
+  } | null;
+  requiredOutputShape: {
+    _sourceHash: string;
+    _status: string;
+    name: string;
+    desc: string;
+    popupDesc: string;
+  };
+};
+
+type Worklist = {
+  generatedAt: string;
+  lang: string;
+  sourceLanguage: string;
+  master: string;
+  translationFile: string;
+  policy: JsonObject;
+  counts: {
+    masterPlaces: number;
+    duplicateMasterIds: number;
+    matchingItemsBeforeLimit: number;
+    emittedItems: number;
+  };
+  duplicateMasterIds: string[];
+  items: WorklistItem[];
+};
+
+function parseArgs(argv: string[]): WorklistArgs {
   const args = {
     lang: DEFAULT_LANG,
     limit: null,
@@ -71,19 +136,19 @@ function parseArgs(argv) {
   return args;
 }
 
-function readJson(relativePath) {
+function readJson(relativePath: string): any {
   const filePath = path.join(ROOT, relativePath);
   const raw = fs.readFileSync(filePath, "utf8");
   return JSON.parse(raw);
 }
 
-function tryReadJson(relativePath) {
+function tryReadJson(relativePath: string): any | null {
   const filePath = path.join(ROOT, relativePath);
   if (!fs.existsSync(filePath)) return null;
   return readJson(relativePath);
 }
 
-function writeJson(relativePath, data) {
+function writeJson(relativePath: string, data: any): void {
   const filePath = path.isAbsolute(relativePath)
     ? relativePath
     : path.join(ROOT, relativePath);
@@ -92,14 +157,14 @@ function writeJson(relativePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf8");
 }
 
-function normalizeText(value) {
+function normalizeText(value: unknown): string {
   return String(value || "")
     .replace(/\r\n/g, "\n")
     .replace(/[ \t]+/g, " ")
     .trim();
 }
 
-function sourcePayload(place) {
+function sourcePayload(place: JsonObject): SourcePayload {
   return {
     name: normalizeText(place.name),
     desc: normalizeText(place.desc),
@@ -107,7 +172,7 @@ function sourcePayload(place) {
   };
 }
 
-function sourceHash(place) {
+function sourceHash(place: JsonObject): string {
   return crypto
     .createHash("sha256")
     .update(JSON.stringify(sourcePayload(place)))
@@ -115,16 +180,16 @@ function sourceHash(place) {
     .slice(0, 16);
 }
 
-function extractRows(data, relativePath) {
+function extractRows(data: any, relativePath: string): JsonObject[] {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data?.places)) return data.places;
   console.warn(`[i18n-worklist] ${relativePath} is not an array and has no .places array. Skipping.`);
   return [];
 }
 
-function loadMasterPlaces() {
-  const byId = new Map();
-  const duplicateIds = [];
+function loadMasterPlaces(): MasterPlaces {
+  const byId = new Map<string, MasterPlace>();
+  const duplicateIds: string[] = [];
   const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
 
   for (const relativePath of placeFiles) {
@@ -156,7 +221,7 @@ function loadMasterPlaces() {
   return { byId, duplicateIds };
 }
 
-function classifyTranslation(masterPlace, translation) {
+function classifyTranslation(masterPlace: MasterPlace, translation: JsonObject | null): TranslationStatus {
   if (!translation) return "missing";
 
   const trHash = String(translation._sourceHash || "").trim();
@@ -166,11 +231,11 @@ function classifyTranslation(masterPlace, translation) {
   return "ok";
 }
 
-function buildWorklist(lang, only, limit) {
+function buildWorklist(lang: string, only: Set<string>, limit: number | null): Worklist {
   const master = loadMasterPlaces();
   const translationPath = `data/i18n/content/places/${lang}.json`;
-  const translations = tryReadJson(translationPath) || {};
-  const items = [];
+  const translations: Record<string, JsonObject> = tryReadJson(translationPath) || {};
+  const items: WorklistItem[] = [];
 
   for (const [id, place] of master.byId.entries()) {
     const existing = translations[id] || null;
@@ -231,8 +296,8 @@ function buildWorklist(lang, only, limit) {
   };
 }
 
-function printSummary(worklist) {
-  const byStatus = worklist.items.reduce((acc, item) => {
+function printSummary(worklist: Worklist): void {
+  const byStatus = worklist.items.reduce((acc: Record<string, number>, item) => {
     acc[item.status] = (acc[item.status] || 0) + 1;
     return acc;
   }, {});
@@ -254,7 +319,7 @@ function printSummary(worklist) {
   }
 }
 
-function main() {
+function main(): void {
   const args = parseArgs(process.argv.slice(2));
   const worklist = buildWorklist(args.lang, args.only, args.limit);
 
