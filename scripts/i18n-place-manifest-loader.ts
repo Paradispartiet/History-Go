@@ -3,14 +3,33 @@ const path = require("path");
 
 type PlaceManifest = { files?: unknown[] };
 
+const REPO_MARKER_PATH = path.join("data", "places", "manifest.json");
+
 type PlaceManifestLoader = {
   manifestPath: string;
   readJson: (relativePath: string) => any;
   loadManifestPlaceFiles: () => string[];
 };
 
+function resolveRepoRoot(startDir: string): string {
+  let currentDir = path.resolve(startDir);
+
+  while (true) {
+    if (fs.existsSync(path.join(currentDir, REPO_MARKER_PATH))) {
+      return currentDir;
+    }
+
+    const parentDir = path.dirname(currentDir);
+    if (parentDir === currentDir) {
+      return path.resolve(startDir, "..");
+    }
+
+    currentDir = parentDir;
+  }
+}
+
 function createPlaceManifestLoader(rootDir: string, label: string): PlaceManifestLoader {
-  const MANIFEST_PATH = "data/places/manifest.json";
+  const MANIFEST_PATH = REPO_MARKER_PATH;
 
   function readJson(relativePath: string): any {
     const filePath = path.join(rootDir, relativePath);
@@ -62,5 +81,6 @@ function createPlaceManifestLoader(rootDir: string, label: string): PlaceManifes
 }
 
 module.exports = {
-  createPlaceManifestLoader
+  createPlaceManifestLoader,
+  resolveRepoRoot
 };
