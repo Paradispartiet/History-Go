@@ -133,6 +133,136 @@ function wireCivicationActions() {
 }
 
 // ============================================================
+// JOBBTILBUD ELIGIBILITY (knowledge gate / learning gate / blockers)
+// ============================================================
+// Liten, ren visning av offer.eligibility som PR 989/991 legger på jobbtilbud via
+// CivicationJobs.pushOffer. Dette er KUN visning av eksisterende eligibility-data — ingen
+// ny jobbmatchinglogikk, ingen nye regler. Gamle tilbud uten eligibility faller stille
+// tilbake til hasEligibility:false og rendrer ingen linje.
+
+/** @typedef {{ kind: string, status: string, label: string, text: string }} CiviOfferEligibilityItem */
+
+// Knowledge gate-statuser som faktisk skal vises. not_required / not_configured (og ukjente
+// statuser) vises bevisst ikke — de skal ikke lage støy i UI.
+const OFFER_KNOWLEDGE_TEXT = {
+  passed: "Kunnskap: relevant quiz/progresjon er på plass.",
+  missing: "Kunnskap: denne jobben bygger på quiz du kan styrke.",
+  unknown: "Kunnskap: krav finnes, men progresjonen kan ikke bekreftes ennå."
+};
+
+// Learning gate-statuser som skal vises. not_required / not_configured (og ukjente) skjules.
+const OFFER_LEARNING_TEXT = {
+  ready_for_next_step: "Erfaring: ferdighetene dine kan brukes videre.",
+  strong: "Erfaring: sterkt grunnlag fra mestrede roller.",
+  building: "Erfaring: du bygger fortsatt grunnlaget."
+};
+
+/**
+ * @param {unknown} value
+ * @returns {string}
+ */
+function normOfferStatus(value) {
+  return typeof value === "string" ? value.trim().toLowerCase() : "";
+}
+
+/**
+ * Plukk første korte, ikke-tomme reason. Brukes til å la en konkret reason erstatte den
+ * generiske erfaringsteksten når den finnes og ikke er en lang tekstblokk.
+ * @param {unknown} reasons
+ * @returns {string}
+ */
+function pickShortOfferReason(reasons) {
+  if (!Array.isArray(reasons)) return "";
+  for (const r of reasons) {
+    const text = typeof r === "string" ? r.trim() : "";
+    if (text && text.length <= 90) return text;
+  }
+  return "";
+}
+
+/**
+ * Pure view model for et jobbtilbuds eligibility. Tåler manglende offer/eligibility,
+ * gamle tilbud uten eligibility, tomme arrays, undefined og ukjente statuser uten å kaste.
+ * @param {any} offer
+ * @returns {{ hasEligibility: boolean, items: CiviOfferEligibilityItem[], blockers: string[] }}
+ */
+function getOfferEligibilityViewModel(offer) {
+  const empty = { hasEligibility: false, items: /** @type {CiviOfferEligibilityItem[]} */ ([]), blockers: /** @type {string[]} */ ([]) };
+  if (!offer || typeof offer !== "object") return empty;
+  const el = /** @type {Record<string, unknown>} */ (offer.eligibility);
+  if (!el || typeof el !== "object") return empty;
+
+  /** @type {CiviOfferEligibilityItem[]} */
+  const items = [];
+
+  // Knowledge gate. soft_required + missing er en forklaring, ikke en hard blokkering —
+  // den vises som en vanlig linje, aldri som blocker.
+  const knowledge = normOfferStatus(el.knowledge_gate);
+  if (OFFER_KNOWLEDGE_TEXT[knowledge]) {
+    items.push({ kind: "knowledge", status: knowledge, label: "Kunnskap", text: OFFER_KNOWLEDGE_TEXT[knowledge] });
+  }
+
+  // Learning gate. Foretrekk en kort, konkret reason når den finnes.
+  const learning = normOfferStatus(el.learning_gate);
+  if (OFFER_LEARNING_TEXT[learning]) {
+    const reason = pickShortOfferReason(el.reasons);
+    items.push({ kind: "learning", status: learning, label: "Erfaring", text: reason || OFFER_LEARNING_TEXT[learning] });
+  }
+
+  // Blockers: filtrer bort tomme/undefined slik at kortet aldri viser «undefined».
+  const blockers = Array.isArray(el.blockers)
+    ? el.blockers.map((b) => (typeof b === "string" ? b.trim() : "")).filter(Boolean)
+    : [];
+
+  return { hasEligibility: items.length > 0 || blockers.length > 0, items, blockers };
+}
+
+/**
+ * @param {unknown} value
+ * @returns {string}
+ */
+function escapeOfferHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/**
+ * Bygger en liten eligibility-blokk for et jobbtilbud-kort. Returnerer "" når det ikke er
+ * noe å vise (gamle tilbud uten eligibility, eller bare not_required/not_configured-støy).
+ * @param {any} offer
+ * @returns {string}
+ */
+function buildOfferEligibilityHtml(offer) {
+  const vm = getOfferEligibilityViewModel(offer);
+  if (!vm.hasEligibility) return "";
+
+  const rows = [];
+  for (const item of vm.items) {
+    rows.push(
+      "<div class=\"civi-offer-eligibility-row\" data-eligibility-kind=\"" + escapeOfferHtml(item.kind)
+      + "\" data-eligibility-status=\"" + escapeOfferHtml(item.status) + "\">"
+      + "<span class=\"civi-offer-eligibility-label\">" + escapeOfferHtml(item.label) + "</span>"
+      + "<span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(item.text) + "</span>"
+      + "</div>"
+    );
+  }
+  for (const blocker of vm.blockers) {
+    rows.push(
+      "<div class=\"civi-offer-eligibility-row\" data-eligibility-kind=\"blocker\">"
+      + "<span class=\"civi-offer-eligibility-label\">Blokkert</span>"
+      + "<span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(blocker) + "</span>"
+      + "</div>"
+    );
+  }
+
+  return "<div class=\"civi-offer-eligibility\" aria-label=\"Hvorfor finnes dette jobbtilbudet\">" + rows.join("") + "</div>";
+}
+
+// ============================================================
 // RENDER MAIN CIVICATION PANEL
 // ============================================================
 /**
@@ -334,6 +464,7 @@ async function renderCivication() {
             <div>${offer.career_name || offer.career_id || ""}</div>
             <div>Terskel: ${offer.threshold}</div>
             <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
+            ${buildOfferEligibilityHtml(offer)}
 
             <div style="display:flex;gap:10px;margin-top:10px;">
               <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
@@ -1601,5 +1732,7 @@ window.CivicationUI = {
   renderWorkdayPanel,
   renderCapital,
   renderPerception,
-  buildCiviEventViewModel
+  buildCiviEventViewModel,
+  getOfferEligibilityViewModel,
+  buildOfferEligibilityHtml
 };

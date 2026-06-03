@@ -280,6 +280,8 @@ Fired-regelen: **Får du sparken i én kategori, må du jobbe i en annen kategor
 
 UI skal lese aktive `career_reentry_locks` direkte fra state/runtime, fordi locked-category offers kan bli stoppet i `pushOffer` før de lagres.
 
+Jobbtilbud kan vise `offer.eligibility` som forklaring på `knowledge_gate`, `learning_gate` og eventuelle blockers. Dette er visning av eksisterende eligibility-data, ikke ny jobbmatchinglogikk. UI-helperen (`CivicationUI.getOfferEligibilityViewModel(offer)`) leser kun `offer.eligibility`, viser ikke `not_required`/`not_configured`, gjør aldri `soft_required + missing` til en hard blokkering, og tåler gamle tilbud uten eligibility uten å rendre støy.
+
 ## 9. Åpne neste steg
 
 Dette dokumentet implementerer ingenting. Mulige neste steg er:
