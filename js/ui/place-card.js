@@ -820,8 +820,8 @@ if (natureEl) {
           const img = a.imageCard || a.image || a.img || "";
           if (!img) return "";
           return `
-            <button class="pc-flora" data-flora="${a.id}" aria-label="${escapePlaceCardHTML(a.name || "")}">
-              <img src="${img}" class="pc-person-img" alt="">
+            <button class="pc-flora" data-flora="${escapePlaceCardHTML(a.id)}" aria-label="${escapePlaceCardHTML(a.name || "")}">
+              <img src="${escapePlaceCardHTML(img)}" class="pc-person-img" alt="">
             </button>
           `;
         }).join("")}
