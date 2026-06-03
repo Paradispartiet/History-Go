@@ -215,7 +215,7 @@
   }
 
   function clearSearch({ blur = false } = {}) {
-    const input = document.getElementById("globalSearch");
+    const input = /** @type {HTMLInputElement} */ (document.getElementById("globalSearch"));
     if (input) {
       input.value = "";
       if (blur) input.blur();
@@ -299,7 +299,7 @@
 
     if (personId) {
       const person = (window.PEOPLE || []).find(p => String(p.id) === String(personId));
-      const input = document.getElementById("globalSearch");
+      const input = /** @type {HTMLInputElement} */ (document.getElementById("globalSearch"));
       input?.blur?.();
       showSearchBox(false);
       if (person) window.showPersonPopup?.(person);
@@ -307,7 +307,7 @@
     }
 
     if (categoryId) {
-      const input = document.getElementById("globalSearch");
+      const input = /** @type {HTMLInputElement} */ (document.getElementById("globalSearch"));
       if (input) input.value = categoryId;
       const places = (window.PLACES || []).filter(p => p.category === categoryId && !p.hidden);
       renderSearchResults({ people: [], places, categories: [] }, categoryId);

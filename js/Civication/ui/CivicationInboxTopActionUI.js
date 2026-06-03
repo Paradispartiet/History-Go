@@ -176,7 +176,7 @@
     const title = card.querySelector(".civi-top-action-title");
     const summary = card.querySelector(".civi-top-action-summary");
     const chip = card.querySelector(".civi-top-action-chip");
-    const btn = card.querySelector("[data-civi-top-action]");
+    const btn = /** @type {HTMLElement} */ (card.querySelector("[data-civi-top-action]"));
 
     card.classList.toggle("is-urgent", model.mode === "urgent");
     card.classList.toggle("is-calm", model.mode !== "urgent");
@@ -193,7 +193,7 @@
 
     if (btn) btn.onclick = handler;
     card.onclick = function (event) {
-      const target = event.target;
+      const target = /** @type {Element} */ (event.target);
       if (target && target.closest("button")) return;
       handler();
     };
@@ -496,7 +496,7 @@
   }
 
   function wrapLegacyInboxRenderer() {
-    const originalRender = window.renderCivicationInbox;
+    const originalRender = /** @type {any} */ (window.renderCivicationInbox);
     if (typeof originalRender !== "function") return;
     if (originalRender.__civiInboxSectionsWrapped) return;
 

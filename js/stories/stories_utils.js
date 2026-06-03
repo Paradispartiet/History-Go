@@ -41,7 +41,7 @@
 
     const btn = el.querySelector(".hg-story-more");
     btn.addEventListener("click", () => {
-      const text = el.querySelector(".hg-story-text");
+      const text = /** @type {HTMLElement} */ (el.querySelector(".hg-story-text"));
 
       if (text.dataset.expanded) {
         text.textContent = shorten(story.story);

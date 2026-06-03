@@ -352,11 +352,11 @@
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
       popupFn(html, "wonderkammer-entry-popup");
-      const root = document.querySelector(".hg-popup.wonderkammer-entry-popup");
+      const root = /** @type {HTMLElement} */ (document.querySelector(".hg-popup.wonderkammer-entry-popup"));
       if (root && !root.dataset.wkNavBound) {
         root.dataset.wkNavBound = "1";
         root.addEventListener("click", (e) => {
-          const btn = e.target.closest("[data-wk-nav]");
+          const btn = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest("[data-wk-nav]"));
           if (!btn || !root.contains(btn)) return;
           const nextId = norm(btn.dataset.wkNav);
           if (!nextId) return;

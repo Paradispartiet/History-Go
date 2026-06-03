@@ -164,7 +164,7 @@
   }
 
   function patchRenderer(name, injector) {
-    const original = window[name];
+    const original = /** @type {any} */ (window)[name];
     if (typeof original !== "function" || original.__civiNarrativeWrapped) return;
 
     const wrapped = function () {
@@ -174,7 +174,7 @@
     };
 
     wrapped.__civiNarrativeWrapped = true;
-    window[name] = wrapped;
+    /** @type {any} */ (window)[name] = wrapped;
   }
 
   function setup() {
