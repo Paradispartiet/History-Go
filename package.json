@@ -6,6 +6,7 @@
     "typecheck": "tsc -p tsconfig.json",
     "typecheck:scripts": "tsc -p tsconfig.scripts.json",
     "build:scripts": "tsc -p tsconfig.scripts.build.json",
+    "i18n:places:audit": "npm run build:scripts && node dist/scripts/i18n-audit-places.js",
     "places:index:build": "node tools/build_places_index.mjs",
     "places:index:check": "node tools/check_places_index_sync.mjs",
     "health:places": "node tools/placeHealthReport.mjs",

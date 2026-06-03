@@ -227,7 +227,7 @@ Den første ikke-Civication Node-only script-batchen er nå konvertert til TypeS
 4. `scripts/i18n-worklist-places.ts`
 5. `scripts/i18n-place-manifest-loader.ts`
 
-Disse filene typecheckes med `npm run typecheck:scripts` og bygges med `npm run build:scripts` til `dist/scripts`. Civication-relaterte scripts bør fortsatt ikke brukes som neste migreringsbatch nå.
+Disse filene typecheckes med `npm run typecheck:scripts` og bygges med `npm run build:scripts` til `dist/scripts`. Første eksplisitte dist-kjørte kommando er nå koblet til npm som `npm run i18n:places:audit`, som bygger scripts først og kjører `dist/scripts/i18n-audit-places.js`. Civication-relaterte scripts bør fortsatt ikke brukes som neste migreringsbatch nå.
 
 ## Hva som må være på plass før første `.js` → `.ts`-konvertering
 
