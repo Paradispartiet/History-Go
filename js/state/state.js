@@ -18,9 +18,13 @@
 // ==============================
 let MAP = null;
 
-let PLACES     = [];
-let PEOPLE     = [];
-let BADGES     = [];
+// var (not let) so TypeScript merges these intentional page globals with the
+// matching declarations in js/profile.js; the two files are never co-loaded
+// (state.js -> index.html, profile.js -> profile.html), so this only silences
+// the cross-file checkJs TS2451 and changes nothing at runtime.
+var PLACES     = [];
+var PEOPLE     = [];
+var BADGES     = [];
 let RELATIONS  = [];
 
 let TAGS_REGISTRY = null;

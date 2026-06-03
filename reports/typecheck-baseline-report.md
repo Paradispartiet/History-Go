@@ -1,36 +1,33 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-03T08:54:53.998Z
+- Generated at (UTC): 2026-06-03T09:03:27.897Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 92
-- Files with diagnostics: 41
-- Groups with diagnostics: 9
+- Total diagnostic lines found: 84
+- Files with diagnostics: 39
+- Groups with diagnostics: 8
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/ui/** | 9 | 37 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
+| js/ui/** | 9 | 35 | js/ui/badge-unlock-toast.js<br>js/ui/dom.js<br>js/ui/geo-indicator.js |
 | js/Civication/** | 14 | 28 | js/Civication/core/civicationJobs.js<br>js/Civication/core/civicationState.js<br>js/Civication/systems/civicationActivePositionRecovery.js |
 | other | 11 | 13 | js/app.js<br>js/audits/imageRoles.audit.js<br>js/console/legacyExtensions.js |
 | js/boot.js | 1 | 4 | js/boot.js |
-| js/state/** | 2 | 4 | js/state/persistence.js<br>js/state/state.js |
-| js/profile.js | 1 | 3 | js/profile.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
+| js/state/** | 1 | 1 | js/state/persistence.js |
 | root files | 1 | 1 | knowledge.js |
 | scripts/** | 1 | 1 | scripts/verify-civication-boot-smoke.js |
 
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/ui/place-card.js | 23 | js/ui/** |
+| js/ui/place-card.js | 21 | js/ui/** |
 | js/Civication/systems/day/dayPatches.js | 6 | js/Civication/** |
 | js/boot.js | 4 | js/boot.js |
 | js/Civication/ui/CivicationMap.js | 3 | js/Civication/** |
-| js/profile.js | 3 | js/profile.js |
-| js/state/state.js | 3 | js/state/** |
 | js/ui/popup-utils.js | 3 | js/ui/** |
 | js/Civication/core/civicationJobs.js | 2 | js/Civication/** |
 | js/Civication/core/civicationState.js | 2 | js/Civication/** |
@@ -45,14 +42,15 @@
 | js/ui/lists.js | 2 | js/ui/** |
 | js/ui/nature-unlock-toast.js | 2 | js/ui/** |
 | js/ui/person-place-unlock-toast.js | 2 | js/ui/** |
+| js/Civication/systems/civicationActivePositionRecovery.js | 1 | js/Civication/** |
+| js/Civication/systems/civicationDailyMailBuilder.js | 1 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
 | TS2339 | 41 |
 | TS2345 | 11 |
-| TS2322 | 10 |
-| TS2451 | 6 |
+| TS2322 | 9 |
 | TS2362 | 4 |
 | TS2304 | 4 |
 | TS2769 | 4 |
@@ -61,13 +59,12 @@
 | TS2552 | 2 |
 | TS2488 | 1 |
 | TS2353 | 1 |
-| TS2741 | 1 |
 | TS2349 | 1 |
 | TS2307 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/ui/** (37 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (23), `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/ui/CivicationMap.js` (3), `js/profile.js` (3).
+1. Start with **js/ui/** (35 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (21), `js/Civication/systems/day/dayPatches.js` (6), `js/boot.js` (4), `js/Civication/ui/CivicationMap.js` (3), `js/ui/popup-utils.js` (3).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `js/Civication/**`, `other`, `js/boot.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
@@ -129,16 +126,10 @@ js/emnerLoader.js(26,41): error TS2339: Property 'src' does not exist on type 'H
 js/hgchips.js(65,21): error TS2488: Type 'unknown' must have a '[Symbol.iterator]()' method that returns an iterator.
 js/learningLog.js(130,7): error TS2353: Object literal may only specify known properties, and 'LEARNING' does not exist in type 'CiviLearningLogFn'.
 js/nature_place_map_bridge.js(269,31): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
-js/profile.js(61,5): error TS2451: Cannot redeclare block-scoped variable 'PEOPLE'.
-js/profile.js(62,5): error TS2451: Cannot redeclare block-scoped variable 'PLACES'.
-js/profile.js(63,5): error TS2451: Cannot redeclare block-scoped variable 'BADGES'.
 js/profileIdentity.js(373,52): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/profileIdentity.js(377,25): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/state/persistence.js(149,24): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'number'.
   Type 'string' is not assignable to type 'number'.
-js/state/state.js(21,5): error TS2451: Cannot redeclare block-scoped variable 'PLACES'.
-js/state/state.js(22,5): error TS2451: Cannot redeclare block-scoped variable 'PEOPLE'.
-js/state/state.js(23,5): error TS2451: Cannot redeclare block-scoped variable 'BADGES'.
 js/ui/badge-unlock-toast.js(86,20): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
 js/ui/badge-unlock-toast.js(99,30): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/ui/dom.js(33,16): error TS2339: Property 'detail' does not exist on type 'Event'.
@@ -149,8 +140,14 @@ js/ui/nature-unlock-toast.js(118,20): error TS2339: Property 'closest' does not 
 js/ui/nature-unlock-toast.js(166,27): error TS2339: Property 'detail' does not exist on type 'Event'.
 js/ui/person-place-unlock-toast.js(84,20): error TS2339: Property 'closest' does not exist on type 'EventTarget'.
 js/ui/person-place-unlock-toast.js(111,31): error TS2339: Property 'detail' does not exist on type 'Event'.
-js/ui/place-card.js(216,23): error TS2741: Property 'id' is missing in type 'Record<string, unknown>' but required in type 'Place'.
 js/ui/place-card.js(224,28): error TS2349: This expression is not callable.
   Type '{}' has no call signatures.
 js/ui/place-card.js(322,43): error TS2345: Argument of type 'Place | Record<string, unknown>' is not assignable to parameter of type 'Record<string, unknown> | PlaceCardPlace'.
+  Type 'Place' is not assignable to type 'Record<string, unknown> | PlaceCardPlace'.
+    Type 'Place' is not assignable to type 'PlaceCardPlace'.
+      Type 'Place' is not assignable to type 'Record<string, unknown>'.
+        Index signature for type 'string' is missing in type 'Place'.
+js/ui/place-card.js(325,67): error TS2345: Argument of type 'Place | Record<string, unknown>' is not assignable to parameter of type 'Record<string, unknown> | PlaceCardPlace'.
+  Type 'Place' is not assignable to type 'Record<string, unknown> | PlaceCardPlace'.
+    Type 'Place' is not assignable to type 'PlaceCardPlace'.
 ```

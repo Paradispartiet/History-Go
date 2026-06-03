@@ -75,11 +75,11 @@ async function ensureBadgesLoaded() {
     .catch(() => loadBadgesFromLegacy())
     .then((badges) => {
       window.BADGES = Array.isArray(badges) ? badges : [];
-      return window.BADGES;
+      return /** @type {any} */ (window.BADGES);
     })
     .catch(() => {
       window.BADGES = [];
-      return window.BADGES;
+      return /** @type {any} */ (window.BADGES);
     })
     .finally(() => {
       __badgesLoadPromise = null;
