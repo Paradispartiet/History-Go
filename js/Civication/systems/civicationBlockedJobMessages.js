@@ -1,4 +1,4 @@
-(function initCivicationBlockedJobMessages(globalScope) {
+(function initCivicationBlockedJobMessages(/** @type {any} */ globalScope) {
   const STORAGE_KEY = 'hg_blocked_job_messages_v1';
   const COOLDOWN_MS = 24 * 60 * 60 * 1000;
 
