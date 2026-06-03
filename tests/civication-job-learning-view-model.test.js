@@ -239,6 +239,74 @@ async function run() {
   assert.strictEqual(pMulti.job_learning_progress.naer_other.steps, 4, 'unrelated role progress is preserved');
   assert.strictEqual(pMulti.job_learning_progress.naer_prog.steps, 1, 'target role progress is added');
 
+  // ==========================================================================
+  // Career readiness from job learning (view model only, not career outcome).
+  // ==========================================================================
+  assert.strictEqual(typeof Runtime.getCareerLearningSignals, 'function', 'career learning signals helper is exported');
+  assert.strictEqual(typeof Runtime.getUnlockedJobSkills, 'function', 'unlocked job skills helper is exported');
+  assert.strictEqual(typeof Runtime.getMasteredJobRoles, 'function', 'mastered job roles helper is exported');
+
+  const emptySignals = Runtime.getCareerLearningSignals({}, activeP);
+  assert.strictEqual(emptySignals.readinessLevel, 'none', 'empty state has no career readiness');
+  assert.deepStrictEqual(emptySignals.masteredRoles, [], 'empty state has no mastered roles');
+  assert.deepStrictEqual(emptySignals.unlockedSkills, [], 'empty state has no unlocked skills');
+  assert.strictEqual(vmOf({}, activeP).careerReadiness.level, 'none', 'view model exposes safe default readiness');
+
+  const buildingState = { job_learning_progress: { naer_prog: { steps: 1, mastered: false } } };
+  const buildingSignals = Runtime.getCareerLearningSignals(buildingState, activeP);
+  assert.strictEqual(buildingSignals.readinessLevel, 'building', 'progress without mastery is building readiness');
+  assert.strictEqual(buildingState.career_outcome_state, undefined, 'building readiness does not set PROMOTED');
+
+  const masteredSkillState = {
+    job_learning_progress: {
+      naer_prog: {
+        steps: thr,
+        mastered: true,
+        unlocked_skills: ['arbeidsrytme', 'praktisk drift', 'rutineforståelse']
+      }
+    }
+  };
+  const masteredSignals = Runtime.getCareerLearningSignals(masteredSkillState, activeP);
+  assert.strictEqual(masteredSignals.readinessLevel, 'ready_for_next_step', 'mastery creates next-step readiness');
+  assert.deepStrictEqual(masteredSignals.unlockedSkills, ['arbeidsrytme', 'praktisk drift', 'rutineforståelse'], 'signals expose unlocked skills');
+  assert.strictEqual(masteredSignals.currentRoleMastered, true, 'signals know the active role is mastered');
+  assert.strictEqual(vmOf(masteredSkillState, activeP).careerReadiness.level, 'ready_for_next_step', 'view model exposes next-step readiness');
+
+  const strongState = {
+    job_learning_progress: {
+      naer_prog: { steps: thr, mastered: true, unlocked_skills: ['arbeidsrytme', 'praktisk drift', 'rutineforståelse'] },
+      naer_other: { steps: thr, mastered: true, unlocked_skills: ['kundedialog', 'prioritering', 'teamarbeid'] }
+    }
+  };
+  const strongSignals = Runtime.getCareerLearningSignals(strongState, activeP);
+  assert.strictEqual(strongSignals.readinessLevel, 'strong', 'multiple mastered roles / many skills create strong readiness');
+  assert.deepStrictEqual(Runtime.getMasteredJobRoles(strongState, activeP), ['naer_prog', 'naer_other'], 'mastered roles are collected from progress state');
+  assert.deepStrictEqual(
+    Runtime.getUnlockedJobSkills(strongState),
+    ['arbeidsrytme', 'praktisk drift', 'rutineforståelse', 'kundedialog', 'prioritering', 'teamarbeid'],
+    'unlocked skills are collected across roles'
+  );
+
+  const promotedWithoutMastery = Runtime.getCareerLearningSignals(
+    { job_learning_progress: { naer_prog: { steps: 1, mastered: false } }, career_outcome_state: { status: 'PROMOTED' } },
+    activeP
+  );
+  assert.strictEqual(promotedWithoutMastery.readinessLevel, 'building', 'PROMOTED does not create next-step readiness by itself');
+
+  const masteryWithoutPromotedState = { job_learning_progress: { naer_prog: { steps: thr, mastered: true } } };
+  const masteryWithoutPromoted = Runtime.getCareerLearningSignals(masteryWithoutPromotedState, activeP);
+  assert.strictEqual(masteryWithoutPromoted.readinessLevel, 'ready_for_next_step', 'mastery can create readiness without career outcome');
+  assert.strictEqual(masteryWithoutPromotedState.career_outcome_state, undefined, 'mastery readiness does not write career_outcome_state');
+
+  const outcomeState = { status: 'PROMOTED', resolved: true };
+  const preserveState = {
+    job_learning_progress: { naer_prog: { steps: thr, mastered: true } },
+    career_outcome_state: outcomeState
+  };
+  const beforeOutcome = JSON.stringify(preserveState.career_outcome_state);
+  Runtime.getCareerLearningSignals(preserveState, activeP);
+  assert.strictEqual(JSON.stringify(preserveState.career_outcome_state), beforeOutcome, 'career readiness helper never mutates career_outcome_state');
+
   // ===========================================================================
   // Learning step from answered job mails (idempotent, never the outcome mail).
   // ===========================================================================

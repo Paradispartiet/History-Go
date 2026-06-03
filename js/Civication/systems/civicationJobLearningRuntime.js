@@ -45,6 +45,20 @@
     routine: "Rutine uten utvikling"
   };
 
+  const CAREER_READINESS_LABELS = {
+    none: "Ingen karrieregrunnlag fra jobblæring ennå",
+    building: "Du bygger ferdigheter som kan brukes videre",
+    ready_for_next_step: "Du har ferdigheter som kan brukes videre",
+    strong: "Sterk læring fra tidligere roller"
+  };
+
+  const CAREER_READINESS_DETAILS = {
+    none: "Mestre en rolle eller lås opp ferdigheter før jobblæringen gir et tydelig karrieregrunnlag.",
+    building: "Du har begynt å bygge erfaring i rollen, men har ikke mestret en rolle ennå.",
+    ready_for_next_step: "Du har mestret rollen og tatt med deg ferdigheter som kan kvalifisere for mer ansvar.",
+    strong: "Du har flere mestrede roller eller mange overførbare ferdigheter som kan støtte videre karrierevalg."
+  };
+
   const LEARNING_DETAILS = {
     still_learning: "Rollen har fortsatt noe å lære deg. Å bli værende kan være verdt det en stund til.",
     nearing_mastery: "Du har lært det meste rollen kan lære deg. Snart er det lite nytt igjen.",
@@ -211,6 +225,102 @@
   function masteryThresholdFor(active) {
     const profile = getLearningProfile(active);
     return Math.max(1, Number(profile?.mastery_threshold) || DEFAULT_MASTERY_THRESHOLD);
+  }
+
+  function uniqueStrings(items) {
+    const seen = new Set();
+    const out = [];
+    for (const item of Array.isArray(items) ? items : []) {
+      const value = norm(item);
+      if (!value) continue;
+      const key = value.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(value);
+    }
+    return out;
+  }
+
+  function getUnlockedJobSkills(state) {
+    const map = getProgressMap(state);
+    const skills = [];
+    for (const rawEntry of Object.values(map)) {
+      const entry = normalizeProgressEntry(rawEntry);
+      skills.push(...entry.unlocked_skills);
+    }
+    return uniqueStrings(skills);
+  }
+
+  function getMasteredJobRoles(state, active) {
+    const map = getProgressMap(state);
+    const mastered = [];
+
+    for (const [key, rawEntry] of Object.entries(map)) {
+      const entry = normalizeProgressEntry(rawEntry);
+      if (entry.mastered === true) mastered.push(key);
+    }
+
+    // Legacy/in-flight state may have enough active-role steps for mastery before a
+    // stored `mastered` flag exists. Surface that as a learning signal for the active
+    // role only; never infer mastery from career_outcome_state.
+    const activeKey = resolveLearningRoleKey(active);
+    if (activeKey && isJobMastered(state, active)) mastered.push(activeKey);
+
+    return uniqueStrings(mastered);
+  }
+
+  function getCurrentRoleUnlockedSkills(state, active) {
+    const entry = getJobLearningProgress(state, active);
+    return entry ? uniqueStrings(entry.unlocked_skills) : [];
+  }
+
+  function hasAnyJobLearningProgress(state) {
+    const map = getProgressMap(state);
+    return Object.values(map).some(function (rawEntry) {
+      const entry = normalizeProgressEntry(rawEntry);
+      return entry.steps > 0 || entry.mastered === true || entry.unlocked_skills.length > 0 || entry.unlocked_teaches.length > 0;
+    });
+  }
+
+  function deriveCareerReadinessLevel(state, masteredRoles, unlockedSkills) {
+    const masteredCount = masteredRoles.length;
+    const skillCount = unlockedSkills.length;
+    if (masteredCount > 1 || skillCount >= 6) return "strong";
+    if (masteredCount >= 1 || skillCount >= 3) return "ready_for_next_step";
+    if (hasAnyJobLearningProgress(state)) return "building";
+    return "none";
+  }
+
+  // A narrow, pure career-readiness signal built only from job_learning_progress.
+  // This is not a career outcome and never reads/writes career_outcome_state:
+  // PROMOTED/STAGNATED/FIRED remain owned by CivicationCareerOutcomeRuntime.
+  function getCareerLearningSignals(state, active) {
+    const s = state && typeof state === "object" ? state : {};
+    const activePosition = active !== undefined ? active : getActive();
+    const masteredRoles = getMasteredJobRoles(s, activePosition);
+    const unlockedSkills = getUnlockedJobSkills(s);
+    const currentRoleKey = resolveLearningRoleKey(activePosition);
+    const currentRoleUnlockedSkills = getCurrentRoleUnlockedSkills(s, activePosition);
+    const profile = getLearningProfile(activePosition);
+    const profileSkills = Array.isArray(profile?.transferable_skills) ? profile.transferable_skills : [];
+    const currentRoleMastered = !!currentRoleKey && masteredRoles.includes(currentRoleKey);
+    const currentRoleHasTransferableSkills = currentRoleUnlockedSkills.length > 0 || uniqueStrings(profileSkills).length > 0;
+    const readinessLevel = deriveCareerReadinessLevel(s, masteredRoles, unlockedSkills);
+
+    return {
+      hasCareerLearningSignals: readinessLevel !== "none",
+      masteredRoles,
+      unlockedSkills,
+      currentRoleMastered,
+      currentRoleHasTransferableSkills,
+      readinessLevel,
+      readinessLabel: CAREER_READINESS_LABELS[readinessLevel] || "",
+      readinessDetail: CAREER_READINESS_DETAILS[readinessLevel] || ""
+    };
+  }
+
+  function getJobLearningCareerReadiness(state, active) {
+    return getCareerLearningSignals(state, active);
   }
 
   // Stored progress entry for the active role, normalized — or null when there is no
@@ -421,6 +531,12 @@
         teaches: Array.isArray(profile?.teaches) ? profile.teaches.slice(0, 6) : [],
         unlockedTeaches,
         unlockedSkills,
+        careerReadiness: {
+          level: "none",
+          label: CAREER_READINESS_LABELS.none,
+          detail: CAREER_READINESS_DETAILS.none
+        },
+        careerLearningSignals: getCareerLearningSignals(s, activePosition),
         indicators: []
       };
     }
@@ -442,6 +558,8 @@
       }
     ];
 
+    const careerLearningSignals = getCareerLearningSignals(s, activePosition);
+
     return {
       hasLearningState: true,
       learningStatus,
@@ -456,6 +574,12 @@
       teaches: Array.isArray(profile?.teaches) ? profile.teaches.slice(0, 6) : [],
       unlockedTeaches,
       unlockedSkills,
+      careerReadiness: {
+        level: careerLearningSignals.readinessLevel,
+        label: careerLearningSignals.readinessLabel,
+        detail: careerLearningSignals.readinessDetail
+      },
+      careerLearningSignals,
       indicators
     };
   }
@@ -538,6 +662,10 @@
     getLearningProfile,
     registerProfiles,
     normalizeLearningValue,
+    getUnlockedJobSkills,
+    getMasteredJobRoles,
+    getCareerLearningSignals,
+    getJobLearningCareerReadiness,
     // Persisted per-role learning progress (PR 980).
     resolveLearningRoleKey,
     getJobLearningProgress,
