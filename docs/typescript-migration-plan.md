@@ -84,6 +84,7 @@ Scripts-migreringen har nå to separate steg, og begge er avgrenset fra browser-
 
 - **Typecheck:** `npm run typecheck:scripts` bruker `tsconfig.scripts.json` med `noEmit: true` for en separat Node-only script-flate.
 - **Build:** `npm run build:scripts` bruker `tsconfig.scripts.build.json` for å emitte kun de konverterte ikke-Civication TypeScript-scriptfilene under `scripts/` til `dist/scripts`.
+- **Samlet places-sjekk:** `npm run i18n:places:check` kjører `typecheck:scripts`, `build:scripts`, `i18n:places:audit`, `i18n:places:quality` og `i18n:places:worklist` i én kommando for places-i18n-scriptsporet.
 - **Bygde filer:** Build-konfigen produserer `dist/scripts/i18n-audit-places.js`, `dist/scripts/i18n-quality-places.js`, `dist/scripts/i18n-stamp-places.js`, `dist/scripts/i18n-worklist-places.js` og `dist/scripts/i18n-place-manifest-loader.js`.
 - **Ingen app-påvirkning:** Build-konfigen inkluderer ikke `js/**`, inkluderer ikke `js/Civication/**`, endrer ikke HTML/script-tags og produserer ikke browser-runtime-output.
 - **Node-kompatibilitet:** Scripts-builden beholder Node-kompatibel `module`/`moduleResolution` (`NodeNext`) og CommonJS-formen som de konverterte scriptfilene bruker med `require`/`module.exports`.
