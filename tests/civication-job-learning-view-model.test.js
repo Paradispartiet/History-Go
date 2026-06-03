@@ -20,7 +20,7 @@ function loadScript(relPath) {
   vm.runInThisContext(code, { filename: relPath });
 }
 
-function run() {
+async function run() {
   let state = {};
   let activePosition = null;
 
@@ -239,12 +239,89 @@ function run() {
   assert.strictEqual(pMulti.job_learning_progress.naer_other.steps, 4, 'unrelated role progress is preserved');
   assert.strictEqual(pMulti.job_learning_progress.naer_prog.steps, 1, 'target role progress is added');
 
+  // ===========================================================================
+  // Learning step from answered job mails (idempotent, never the outcome mail).
+  // ===========================================================================
+
+  // Gating: only plan-advancing job mails grant learning; outcome mails never do.
+  assert.strictEqual(Runtime.shouldMailGrantLearning({ source_type: 'planned' }), true, 'planned mail grants learning');
+  assert.strictEqual(
+    Runtime.shouldMailGrantLearning({ daily_mail_meta: { advances_role_plan: true } }),
+    true,
+    'daily mail flagged to advance the plan grants learning'
+  );
+  assert.strictEqual(Runtime.shouldMailGrantLearning({ source_type: 'legacy_pack' }), false, 'legacy mail does not grant learning');
+  assert.strictEqual(Runtime.shouldMailGrantLearning({ source_type: 'role_outcome' }), false, 'terminal outcome mail never grants learning');
+  assert.strictEqual(
+    Runtime.shouldMailGrantLearning({ source_type: 'planned', mail_class: 'career_outcome' }),
+    false,
+    'career_outcome mail never grants learning even if marked planned'
+  );
+
+  // recordJobLearningForAnsweredMail: qualifying mail grants exactly one step and is
+  // idempotent per mail id; never writes career_outcome_state.
+  const jobMail = { id: 'naer_prog_mail_1', source_type: 'planned', mail_type: 'job' };
+  let recState = {};
+  const rec1 = Runtime.recordJobLearningForAnsweredMail(recState, activeP, jobMail, { day: 2 });
+  assert(rec1, 'qualifying mail produces a patch');
+  assert.strictEqual(rec1.job_learning_progress.naer_prog.steps, 1, 'grants one learning step');
+  assert.strictEqual(rec1.job_learning_progress.naer_prog.last_updated_day, 2, 'records the day');
+  assert(rec1.job_learning_progress.naer_prog.counted_mail_ids.includes('naer_prog_mail_1'), 'mail id is recorded');
+  assert.strictEqual(rec1.career_outcome_state, undefined, 'recording never writes career_outcome_state');
+
+  recState = { ...recState, ...rec1 };
+  const recDup = Runtime.recordJobLearningForAnsweredMail(recState, activeP, jobMail, { day: 3 });
+  assert.strictEqual(recDup, null, 'same mail id does not grant a second step (idempotent)');
+
+  const recOther = Runtime.recordJobLearningForAnsweredMail(recState, activeP, { id: 'naer_prog_mail_2', source_type: 'planned' }, { day: 3 });
+  assert.strictEqual(recOther.job_learning_progress.naer_prog.steps, 2, 'a different mail id grants the next step');
+
+  assert.strictEqual(
+    Runtime.recordJobLearningForAnsweredMail({}, activeP, { id: 'x', source_type: 'role_outcome' }, {}),
+    null,
+    'outcome mail does not grant a step'
+  );
+  assert.strictEqual(
+    Runtime.recordJobLearningForAnsweredMail({}, null, jobMail, {}),
+    null,
+    'no active role => no learning step'
+  );
+
+  // End-to-end through a patched event engine: answering a planned job mail advances
+  // stored learning, and re-answering the same mail does not double count.
+  let engineState = {};
+  let enginePending = { status: 'pending', event: { id: 'naer_prog_e2e', source_type: 'planned', mail_type: 'job' } };
+  const engineActive = activeP;
+  global.CivicationState.getState = () => engineState;
+  global.CivicationState.setState = (patch) => { engineState = { ...engineState, ...patch }; return patch; };
+  global.CivicationState.getActivePosition = () => engineActive;
+  global.CivicationCalendar = { getClock: () => ({ dayIndex: 5 }) };
+
+  class FakeEngine {
+    getPendingEvent() { return enginePending; }
+    async answer() { return { ok: true }; }
+  }
+  global.CivicationEventEngine = FakeEngine;
+
+  assert.strictEqual(Runtime.patchEventEngineAnswer(), true, 'answer patch applies once');
+  assert.strictEqual(Runtime.patchEventEngineAnswer(), false, 'answer patch is idempotent');
+
+  const engine = new FakeEngine();
+  await engine.answer('naer_prog_e2e', 'A');
+  assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 'answering a planned job mail advances learning');
+  assert.strictEqual(engineState.job_learning_progress.naer_prog.last_updated_day, 5, 'uses the calendar day');
+
+  await engine.answer('naer_prog_e2e', 'A');
+  assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 're-answering the same mail does not double count');
+
+  enginePending = { status: 'pending', event: { id: 'naer_prog_outcome', source_type: 'role_outcome', mail_class: 'career_outcome' } };
+  await engine.answer('naer_prog_outcome', 'A');
+  assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 'answering the outcome mail does not grant a learning step');
+
   console.log('PASS: Civication job learning view-model tests completed.');
 }
 
-try {
-  run();
-} catch (error) {
+run().catch((error) => {
   console.error(error);
   process.exit(1);
-}
+});

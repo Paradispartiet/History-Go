@@ -77,6 +77,10 @@
     return window.CivicationState?.getState?.() || {};
   }
 
+  function setState(patch) {
+    return window.CivicationState?.setState?.(patch || {}) || null;
+  }
+
   function getActive() {
     return window.CivicationState?.getActivePosition?.() || null;
   }
@@ -193,7 +197,9 @@
       learned_at: e.learned_at || null,
       last_updated_day: (e.last_updated_day === 0 || e.last_updated_day) ? e.last_updated_day : null,
       unlocked_teaches: Array.isArray(e.unlocked_teaches) ? e.unlocked_teaches.filter((x) => typeof x === "string") : [],
-      unlocked_skills: Array.isArray(e.unlocked_skills) ? e.unlocked_skills.filter((x) => typeof x === "string") : []
+      unlocked_skills: Array.isArray(e.unlocked_skills) ? e.unlocked_skills.filter((x) => typeof x === "string") : [],
+      // Mail ids already counted toward learning, so re-answers/replays never double count.
+      counted_mail_ids: Array.isArray(e.counted_mail_ids) ? e.counted_mail_ids.filter((x) => typeof x === "string") : []
     };
   }
 
@@ -273,6 +279,55 @@
     };
 
     return { [PROGRESS_KEY]: map };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Wiring: grant +1 learning step when a job mail that advances the role plan is
+  // answered. Deliberately narrow (PR scope): only mails that ALREADY count as role
+  // plan progression, idempotent per mail id, and never the terminal outcome mail.
+  // ---------------------------------------------------------------------------
+
+  // Does answering this mail represent real learning in the active role? We reuse the
+  // exact same signal the role plan uses to advance ("planned" source, or a daily mail
+  // flagged to advance the plan), and explicitly exclude the terminal outcome mail.
+  function shouldMailGrantLearning(eventObj) {
+    const sourceType = norm(eventObj?.source_type || eventObj?.role_content_meta?.source_type);
+    if (sourceType === "role_outcome") return false;
+    if (norm(eventObj?.mail_class) === "career_outcome") return false;
+    if (sourceType === "planned") return true;
+    return eventObj?.daily_mail_meta?.advances_role_plan === true;
+  }
+
+  function currentLearningDay() {
+    try {
+      const clock = window.CivicationCalendar?.getClock?.();
+      const day = Number(clock?.dayIndex);
+      return Number.isFinite(day) ? day : null;
+    } catch (_err) {
+      return null;
+    }
+  }
+
+  // Build a state patch granting one learning step for an answered mail, or null when
+  // the mail does not qualify, there is no role, or the mail was already counted.
+  function recordJobLearningForAnsweredMail(state, active, eventObj, options) {
+    if (!shouldMailGrantLearning(eventObj)) return null;
+
+    const key = resolveLearningRoleKey(active);
+    if (!key) return null;
+
+    const mailId = norm(eventObj?.id);
+    const prev = normalizeProgressEntry(getProgressMap(state)[key]);
+    if (mailId && prev.counted_mail_ids.includes(mailId)) return null; // idempotent
+
+    const opts = options && typeof options === "object" ? options : {};
+    const patch = markJobLearningStep(state, active, { delta: 1, day: opts.day, now: opts.now });
+
+    if (mailId) {
+      const entry = patch[PROGRESS_KEY][key];
+      entry.counted_mail_ids = [...new Set([...prev.counted_mail_ids, mailId])].slice(-200);
+    }
+    return patch;
   }
 
   function stagnationFlagSet(state) {
@@ -412,8 +467,45 @@
     }
   }
 
+  // Patch CivicationEventEngine.answer to record a learning step after a successful
+  // answer to a qualifying job mail. Mirrors how CivicationCareerOutcomeRuntime patches
+  // answer; never touches career_outcome_state. Idempotent and guarded.
+  function patchEventEngineAnswer() {
+    const proto = window.CivicationEventEngine?.prototype;
+    if (!proto || proto.__civicationJobLearningAnswerPatched === true) return false;
+    if (typeof proto.answer !== "function") return false;
+
+    const original = proto.answer;
+    proto.answer = async function jobLearningAnswer(eventId, choiceId) {
+      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
+      const eventObj = pending?.event || null;
+      // Capture the active role before answering, in case the answer flow clears it.
+      const active = getActive();
+
+      const result = await original.call(this, eventId, choiceId);
+
+      if (result?.ok !== false && eventObj && active) {
+        try {
+          const patch = recordJobLearningForAnsweredMail(getState(), active, eventObj, { day: currentLearningDay() });
+          if (patch) {
+            setState(patch);
+            try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
+          }
+        } catch (_err) {
+          // Learning progress is best-effort: never break the answer flow.
+        }
+      }
+
+      return result;
+    };
+
+    proto.__civicationJobLearningAnswerPatched = true;
+    return true;
+  }
+
   function boot() {
     loadProfilesData();
+    patchEventEngineAnswer();
   }
 
   window.CivicationJobLearningRuntime = {
@@ -428,6 +520,10 @@
     isJobMastered,
     ensureJobLearningProgressEntry,
     markJobLearningStep,
+    // Wiring from answered job mails to learning steps (PR: step from job mails).
+    shouldMailGrantLearning,
+    recordJobLearningForAnsweredMail,
+    patchEventEngineAnswer,
     PROGRESS_KEY,
     DEFAULT_PROFILE,
     DEFAULT_MASTERY_THRESHOLD,
@@ -435,6 +531,7 @@
       return {
         profiles: Object.keys(PROFILE_REGISTRY),
         default_mastery_threshold: DEFAULT_MASTERY_THRESHOLD,
+        answer_patched: window.CivicationEventEngine?.prototype?.__civicationJobLearningAnswerPatched === true,
         sample: getJobLearningViewModel(getState(), getActive())
       };
     }
