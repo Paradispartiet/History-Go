@@ -81,7 +81,8 @@
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
     card.addEventListener("click", (e) => {
-      if (e.target.closest(".nature-unlock-close")) return;
+      const target = e.target;
+      if (target instanceof Element && target.closest(".nature-unlock-close")) return;
       if (!id) return dismiss();
       try {
         if (kind === "person") {
@@ -108,7 +109,8 @@
   }
 
   window.addEventListener("hg:target-unlock", (e) => {
-    try { showTargetUnlock(e?.detail); } catch (err) {
+    const event = /** @type {CustomEvent} */ (e);
+    try { showTargetUnlock(event.detail); } catch (err) {
       if (window.DEBUG) console.warn("[TargetUnlockToast]", err);
     }
   });

@@ -442,7 +442,7 @@ async function ensureNatureToPlacesMap() {
     try {
       const url = new URL("data/natur/nature_unlock_map.json", document.baseURI).toString();
       const r = await fetch(url, { cache: "no-store" });
-      if (!r.ok) throw new Error(r.status);
+      if (!r.ok) throw new Error(String(r.status));
       const data = await r.json();
       const PLACE_IDS = new Set((window.PLACES || []).map(p => String(p.id || "").trim()).filter(Boolean));
       for (const [quizOrPlaceId, hit] of Object.entries(data || {})) {
@@ -544,7 +544,7 @@ function renderNearbyNature() {
     `;
     listEl.querySelector('[data-onb-action="open-places"]')?.addEventListener("click", () => {
       const placesTab = document.querySelector('[data-leftmode="nearby"]');
-      if (placesTab) placesTab.click();
+      if (placesTab instanceof HTMLElement) placesTab.click();
     });
     return;
   }

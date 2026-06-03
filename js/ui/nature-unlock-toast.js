@@ -115,7 +115,8 @@
 
     card.querySelector(".nature-unlock-close").addEventListener("click", dismiss);
     card.addEventListener("click", (e) => {
-      if (e.target.closest(".nature-unlock-close")) return;
+      const target = e.target;
+      if (target instanceof Element && target.closest(".nature-unlock-close")) return;
       if (obj && typeof window.openNatureCard === "function") {
         window.openNatureCard({ ...obj, _kind: kind });
         dismiss();
@@ -163,7 +164,8 @@
   }
 
   window.addEventListener("hg:nature", (e) => {
-    try { handleUnlock(e?.detail); } catch (err) {
+    const event = /** @type {CustomEvent} */ (e);
+    try { handleUnlock(event.detail); } catch (err) {
       if (window.DEBUG) console.warn("[NatureUnlockToast]", err);
     }
   });

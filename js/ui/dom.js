@@ -30,7 +30,8 @@ window.el = el;
 // GEO STATUS UI
 // ==============================
 window.addEventListener("hg:geo", (e) => {
-  const st = e.detail?.status;
+  const event = /** @type {CustomEvent} */ (e);
+  const st = event.detail?.status;
   const icon = document.getElementById("geoStatus");
   if (!icon) return;
 
