@@ -87,6 +87,49 @@ function ls(name, fallback = {}) {
 }
 
 
+/**
+ * @param {string} storageKey
+ * @returns {Set<string>}
+ */
+function readProgressIdSet(storageKey) {
+  const raw = ls(storageKey, {});
+  /** @type {Set<string>} */
+  const ids = new Set();
+  const addId = (value) => {
+    if (value == null) return;
+    if (["boolean", "function", "object", "symbol"].includes(typeof value)) return;
+    const id = String(value).trim();
+    if (id) ids.add(id);
+  };
+
+  if (Array.isArray(raw)) {
+    raw.forEach(addId);
+    return ids;
+  }
+
+  if (raw && typeof raw === "object") {
+    Object.entries(raw).forEach(([id, value]) => {
+      if (value) addId(id);
+    });
+  }
+
+  return ids;
+}
+
+/**
+ * @returns {Set<string>}
+ */
+function getVisitedPlaceIds() {
+  return readProgressIdSet("visited_places");
+}
+
+/**
+ * @returns {Set<string>}
+ */
+function getCollectedPeopleIds() {
+  return readProgressIdSet("people_collected");
+}
+
 function getCompletedQuizUnitCount() {
   const quizProgress = ls("quiz_progress", {});
   const quizHistory = (window.HGLearningLog?.getQuizHistory?.() ?? []);
@@ -114,10 +157,18 @@ function getCompletedQuizUnitCount() {
 }
 
 function getCompletedPlaceCount() {
-  const { byQuiz } = getUnlockState();
-  const unlockedIds = Object.keys(byQuiz || {});
-  const placeIds = new Set((Array.isArray(PLACES) ? PLACES : []).map(p => String(p?.id || "").trim()));
-  return unlockedIds.filter(id => placeIds.has(String(id || "").trim())).length;
+  const visitedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getVisitedPlaceIds()));
+  const placeIds = new Set((Array.isArray(PLACES) ? PLACES : [])
+    .map(p => String(p?.id || "").trim())
+    .filter(Boolean));
+
+  if (!placeIds.size) return visitedIds.size;
+
+  let count = 0;
+  visitedIds.forEach(id => {
+    if (placeIds.has(id)) count += 1;
+  });
+  return count;
 }
 
 
@@ -136,9 +187,12 @@ function renderProfileCard() {
 
   const profileNameEl = document.getElementById("profileName");
   if (profileNameEl) profileNameEl.textContent = userName;
-  document.getElementById("statVisited").textContent = String(placeCount);
-  document.getElementById("statQuizzes").textContent = String(quizUnitCount);
-  document.getElementById("statStreak").textContent = String(streak);
+  const visitedEl = document.getElementById("statVisited");
+  if (visitedEl) visitedEl.textContent = String(placeCount);
+  const quizzesEl = document.getElementById("statQuizzes");
+  if (quizzesEl) quizzesEl.textContent = String(quizUnitCount);
+  const streakEl = document.getElementById("statStreak");
+  if (streakEl) streakEl.textContent = String(streak);
 
   const visitedLabelText = _t("ui.tabs.places", "Steder");
   const quizLabelText = _t("ui.profile.statQuizSets", "Quizsett");
@@ -150,10 +204,6 @@ function renderProfileCard() {
 
   const quizzesLabel = document.getElementById("statQuizzesLabel");
   if (quizzesLabel) quizzesLabel.textContent = quizLabelText;
-
-  const visitedEl = document.getElementById("statVisited");
-  const quizzesEl = document.getElementById("statQuizzes");
-  const streakEl = document.getElementById("statStreak");
 
   updateStatusBadgeA11y(
     visitedEl,
@@ -552,12 +602,10 @@ function renderPeopleCollection() {
   const grid = document.getElementById("peopleGrid");
   if (!grid) return;
 
-  const { byQuiz } = getUnlockState();
-  const ids = Object.keys(byQuiz || {});
+  const collectedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getCollectedPeopleIds()));
 
-  const peopleUnlocked = ids
-    .map(id => PEOPLE.find(p => String(p.id).trim() === String(id).trim()))
-    .filter(Boolean);
+  const peopleUnlocked = PEOPLE
+    .filter(p => collectedIds.has(String(p?.id || "").trim()));
 
   if (!peopleUnlocked.length) {
     grid.innerHTML = `<div class="muted">${_esc(_t("ui.profile.noPeopleUnlocked", "Ingen personer låst opp ennå."))}</div>`;
@@ -589,15 +637,10 @@ function renderPlacesCollection() {
   const grid = document.getElementById("collectionGrid");
   if (!grid) return;
 
-  const { byQuiz } = getUnlockState();
-  const visited = byQuiz || {};
-  const validPlaceIds = new Set((Array.isArray(PLACES) ? PLACES : []).map(p => String(p?.id || "").trim()));
+  const visitedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getVisitedPlaceIds()));
 
-  const places = Object.keys(visited)
-    .map(id => String(id || "").trim())
-    .filter(id => validPlaceIds.has(id))
-    .map(id => PLACES.find(p => String(p.id).trim() === id))
-    .filter(Boolean);
+  const places = PLACES
+    .filter(p => visitedIds.has(String(p?.id || "").trim()));
 
   if (!places.length) {
     grid.innerHTML = `<div class="muted">${_esc(_t("ui.profile.noPlacesVisited", "Ingen steder besøkt ennå."))}</div>`;
@@ -630,13 +673,12 @@ function renderTimeline() {
   const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
 
-  const { byQuiz } = getUnlockState();
-  const visited = byQuiz;
-  const collected = byQuiz;
+  const visitedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getVisitedPlaceIds()));
+  const collectedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getCollectedPeopleIds()));
 
   // TIMELINE = KUN BILDE (ikke kort)
   const items = [
-    ...PLACES.filter(p => visited[p.id]).map(p => ({
+    ...PLACES.filter(p => visitedIds.has(String(p?.id || "").trim())).map(p => ({
       type:"place",
       id:p.id,
       name:p.name,
@@ -644,7 +686,7 @@ function renderTimeline() {
       image: p.image || `bilder/places/${p.id}.PNG`
     })),
 
-    ...PEOPLE.filter(p => collected[p.id]).map(p => ({
+    ...PEOPLE.filter(p => collectedIds.has(String(p?.id || "").trim())).map(p => ({
       type:"person",
       id:p.id,
       name:p.name,
@@ -689,12 +731,11 @@ function renderCollectionCards() {
   const body = document.getElementById("collectionCardsBody");
   if (!body) return;
 
-  const { byQuiz } = getUnlockState();
-  const visited = byQuiz;
-  const collected = byQuiz;
+  const visitedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getVisitedPlaceIds()));
+  const collectedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getCollectedPeopleIds()));
 
   const placeCards = PLACES
-    .filter(p => visited[p.id])
+    .filter(p => visitedIds.has(String(p?.id || "").trim()))
     .map(p => ({
       id: p.id,
       name: p.name,
@@ -703,7 +744,7 @@ function renderCollectionCards() {
     }));
 
   const personCards = PEOPLE
-    .filter(p => collected[p.id])
+    .filter(p => collectedIds.has(String(p?.id || "").trim()))
     .map(p => ({
       id: p.id,
       name: p.name,
@@ -1307,12 +1348,11 @@ function setupProfileMap() {
 function updateProfileMarkers() {
   if (!PROFILE_LAYER || !PLACES.length) return;
 
-  const { byQuiz } = getUnlockState();
-  const visited = byQuiz;
+  const visitedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getVisitedPlaceIds()));
 
   PROFILE_LAYER.clearLayers();
 
-  PLACES.filter(p => visited[p.id]).forEach(p => {
+  PLACES.filter(p => visitedIds.has(String(p?.id || "").trim())).forEach(p => {
     const mk = L.circleMarker([p.lat, p.lon], {
       radius: 9,
       color: "#ffd700",
