@@ -175,6 +175,18 @@ function renderNearbyPlaces() {
     return distanceTieBreak();
   });
 
+  const renderSignature = JSON.stringify({
+    ids: items.map(p => String(p.id || "").trim()),
+    filterMode,
+    sortMode,
+    badge: window.HG_NEARBY_BADGE_FILTER || "all",
+    freshPlaceId,
+    distances: items.map(p => p._d ?? null)
+  });
+
+  if (listEl.dataset.renderSignature === renderSignature) return;
+  listEl.dataset.renderSignature = renderSignature;
+
   listEl.innerHTML = "";
 
   if (!items.length) {
