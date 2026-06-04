@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "by_radgiver_plan_v1",
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "description": "Dramaturgisk plan for Byrådgiver og planlegger: fra stedsanalyse og målkonflikter til planfaglige anbefalinger som veier areal, medvirkning, bykvalitet og gjennomføring.",
+  "arc": {
+    "from": "Du får analyser, innspill, kart og politiske mål som alle peker i hver sin retning, og må begynne å gjøre konfliktene lesbare.",
+    "to": "Du forstår at planfaglig rådgivning handler om å anbefale tydelige avveiinger, ikke å late som alle gode mål kan oppfylles samtidig.",
+    "core_questions": [
+      "Hva sier stedet imot målbildet?",
+      "Hvilke gode formål kjemper om samme areal?",
+      "Hvordan tar du medvirkning alvorlig uten å gi alle ønsker lik vekt?",
+      "Når blir gjennomførbarhet en trussel mot bykvalitet?",
+      "Hvordan skriver du en anbefaling som gjør konflikten tydelig nok til at noen kan ta ansvar?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "by_planfag_kompromiss_loop", "evening_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere at stedsanalysen kan motsi ønsket målbildet.",
+      "allowed_families": ["stedsanalyse_og_malbildet"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren møte første tydelige arealkonflikt mellom flere gode formål.",
+      "allowed_families": ["arealbruk_og_prioritering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere medvirkning som planfaglig materiale, ikke bare vedlegg.",
+      "allowed_families": ["medvirkning_og_planfag"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Vise hvordan gjennomførbarhet kan begynne å spise av bykvaliteten.",
+      "allowed_families": ["bykvalitet_og_gjennomforing"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste om spilleren gjør målkonflikten synlig i stedet for å skrive den bort.",
+      "allowed_families": ["stedsanalyse_og_malbildet", "arealbruk_og_prioritering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "La lokal erfaring utfordre en planfaglig standardløsning.",
+      "allowed_families": ["medvirkning_og_planfag"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La budsjett, framdrift og realiserbarhet true et viktig bykvalitetspunkt.",
+      "allowed_families": ["bykvalitet_og_gjennomforing", "arealbruk_og_prioritering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Avrunde rollen: en god anbefaling viser konflikten tydelig og prioriterer ansvarlig.",
+      "allowed_families": ["stedsanalyse_og_malbildet", "medvirkning_og_planfag", "bykvalitet_og_gjennomforing"],
+      "fallback_types": ["job"]
+    }
+  ]
+}
