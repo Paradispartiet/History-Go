@@ -1,0 +1,407 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "kart_og_grunnlag",
+      "purpose": "Lære spilleren at kart, grunnlag og digitale lag må kontrolleres mot stedet før de blir planpremiss.",
+      "learning_focus": ["kartforståelse", "grunnlagskontroll", "stedlig usikkerhet"],
+      "mails": [
+        {
+          "id": "by_assistent_job_kart_001",
+          "mail_type": "job",
+          "mail_family": "kart_og_grunnlag",
+          "role_scope": "by_assistent",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid_byplan",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Kartlaget ser ryddig ut, men kanten stemmer ikke",
+          "summary": "Du oppdager at kartlaget viser en ryddig overgang der stedet faktisk har en uklar kant mellom fortau, parkering og inngangssone.",
+          "purpose": "Etablere at kartgrunnlag må testes mot byrommets faktiske friksjon.",
+          "stakes": "Hvis du lar kartet stå rent, blir analysen enklere. Hvis du markerer usikkerheten, blir grunnlaget mer sant.",
+          "situation": [
+            "Kartet viser en tydelig linje.",
+            "Bildene fra stedet viser sykler, varelevering og folk som venter akkurat der linjen later som alt er avklart.",
+            "Du må velge om dette er en detalj eller et tidlig tegn på at grunnlaget forenkler for mye."
+          ],
+          "task_domain": "kartgrunnlag",
+          "competency": "grunnlagskritikk",
+          "pressure": "ryddig_kart_vs_rotete_sted",
+          "choice_axis": "markere_usikkerhet_vs_beholde_ryddighet",
+          "consequence_axis": "sannhet_vs_flyt",
+          "narrative_arc": "by-assistenten lærer at kartet ikke er stedet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Marker usikkerheten i grunnlaget og be om sjekk på stedet",
+              "reply": "Jeg markerer usikkerheten i grunnlaget og ber om sjekk på stedet.",
+              "effect": 1,
+              "tags": ["map", "accuracy", "place"],
+              "feedback": "Du gjør kartet litt mindre pent og mye mer brukbart."
+            },
+            {
+              "id": "B",
+              "label": "La kartlaget stå siden avviket virker lite",
+              "reply": "Jeg lar kartlaget stå siden avviket virker lite.",
+              "effect": -1,
+              "tags": ["shortcut", "risk"],
+              "feedback": "Analysen flyter videre, men en rotete kant blir behandlet som om den var avklart."
+            }
+          ]
+        },
+        {
+          "id": "by_assistent_job_kart_002",
+          "mail_type": "job",
+          "mail_family": "kart_og_grunnlag",
+          "role_scope": "by_assistent",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "ingrid_byplan",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Tre kartlag sier tre litt ulike ting",
+          "summary": "Adressegrunnlag, grøntstruktur og trafikkdata stemmer nesten, men ikke helt, over samme område.",
+          "purpose": "Trene spilleren i å gjøre grunnlagsusikkerhet synlig før den blir skjult premiss.",
+          "stakes": "Velger du ett lag raskt, sparer du tid. Sammenholder du dem, kan du hindre at feil premiss styrer senere arbeid.",
+          "situation": [
+            "Alle tre lagene er offisielle nok til å virke trygge.",
+            "Likevel forskyver de samme kanten litt forskjellig.",
+            "Du skjønner at ingen kommer til å oppdage usikkerheten hvis du ikke skriver den ned nå."
+          ],
+          "task_domain": "grunnlagskontroll",
+          "competency": "kartkritisk_sammenstilling",
+          "pressure": "flere_datakilder",
+          "choice_axis": "sammenholde_kilder_vs_velge_raskt",
+          "consequence_axis": "premisskontroll_vs_tempo",
+          "narrative_arc": "by-assistenten begynner å forstå at teknisk grunnlag også er tolkning",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sammenhold lagene og noter avviket tydelig",
+              "reply": "Jeg sammenholder lagene og noterer avviket tydelig.",
+              "effect": 1,
+              "tags": ["data", "map", "quality"],
+              "feedback": "Du lar usikkerheten følge saken videre i stedet for å forsvinne i kartet."
+            },
+            {
+              "id": "B",
+              "label": "Bruk det mest oppdaterte laget og gå videre",
+              "reply": "Jeg bruker det mest oppdaterte laget og går videre.",
+              "effect": 0,
+              "tags": ["flow", "assumption"],
+              "feedback": "Det kan være riktig, men du gjør valget uten å vise hva det bygger på."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "befaring_og_observasjon",
+      "purpose": "Lære spilleren at befaring handler om å se hva stedet faktisk gjør, ikke bare bekrefte planen.",
+      "learning_focus": ["befaring", "observasjon", "hverdagsbruk"],
+      "mails": [
+        {
+          "id": "by_assistent_job_befaring_001",
+          "mail_type": "job",
+          "mail_family": "befaring_og_observasjon",
+          "role_scope": "by_assistent",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas_arkitekt",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "På befaring ser du snarveien ingen tegnet inn",
+          "summary": "Folk krysser plassen diagonalt gjennom et felt som planen behandler som oppholdssone.",
+          "purpose": "Vise at faktisk bevegelse kan motsi planlagt funksjon.",
+          "stakes": "Hvis du bare tar bilde av overflaten, mister dere bruksmønsteret. Hvis du noterer snarveien, kan løsningen måtte endres.",
+          "situation": [
+            "Plassen er tegnet som rolig oppholdssone.",
+            "På ti minutter ser du flere krysse samme diagonale linje.",
+            "Det ser ikke dramatisk ut, men bakken forteller noe planen ikke sier."
+          ],
+          "task_domain": "befaring",
+          "competency": "stedslig_observasjon",
+          "pressure": "planlagt_funksjon_vs_faktisk_bevegelse",
+          "choice_axis": "notere_bruksmønster_vs_beskrive_form",
+          "consequence_axis": "hverdagsblikk_vs_overflate",
+          "narrative_arc": "by-assistenten lærer å se rytmen i stedet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Noter snarveien som faktisk bruksmønster",
+              "reply": "Jeg noterer snarveien som faktisk bruksmønster.",
+              "effect": 1,
+              "tags": ["observation", "movement", "place"],
+              "feedback": "Du tar med deg byens rytme, ikke bare plassen som motiv."
+            },
+            {
+              "id": "B",
+              "label": "Ta generelle bilder og holde deg til befaringlisten",
+              "reply": "Jeg tar generelle bilder og holder meg til befaringlisten.",
+              "effect": 0,
+              "tags": ["documentation", "safe"],
+              "feedback": "Du dokumenterer stedet, men ikke nødvendigvis det stedet prøver å fortelle."
+            }
+          ]
+        },
+        {
+          "id": "by_assistent_job_befaring_002",
+          "mail_type": "job",
+          "mail_family": "befaring_og_observasjon",
+          "role_scope": "by_assistent",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas_arkitekt",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Det som virker stygt, viser seg å fungere",
+          "summary": "Et lite, rotete hjørne brukes aktivt av folk som venter, møtes og tar pauser.",
+          "purpose": "Teste om spilleren klarer å skille estetisk førsteinntrykk fra faktisk bylivskvalitet.",
+          "stakes": "Hvis du beskriver hjørnet som rot, kan en fungerende bruk fjernes. Hvis du beskriver bruken, blir analysen mindre ren og mer presis.",
+          "situation": [
+            "Hjørnet ser tilfeldig ut: benker som ikke matcher, sykler, en slitt kant, litt skygge.",
+            "Likevel er det det eneste stedet folk faktisk blir stående.",
+            "Du må beskrive noe som ikke ser planlagt ut, men fungerer."
+          ],
+          "task_domain": "stedsanalyse",
+          "competency": "bruk_foran_førsteinntrykk",
+          "pressure": "estetisk_rot_vs_sosial_funksjon",
+          "choice_axis": "beskrive_faktisk_bruk_vs_rydde_i_språket",
+          "consequence_axis": "bylivskvalitet_vs_formrenhet",
+          "narrative_arc": "by-assistenten lærer at rot noen ganger er et tegn på liv",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskriv bruken presist selv om stedet ser rotete ut",
+              "reply": "Jeg beskriver bruken presist selv om stedet ser rotete ut.",
+              "effect": 1,
+              "tags": ["use", "place", "analysis"],
+              "feedback": "Du lar bylivet korrigere det visuelle førsteinntrykket."
+            },
+            {
+              "id": "B",
+              "label": "Beskriv hjørnet som oppryddingsbehov",
+              "reply": "Jeg beskriver hjørnet som oppryddingsbehov.",
+              "effect": -1,
+              "tags": ["aesthetic", "risk"],
+              "feedback": "Du gjør stedet penere i teksten, men mindre sant."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medvirkning_og_innspill",
+      "purpose": "Lære spilleren å sortere innbyggerinnspill uten å redusere dem til støy eller pynt.",
+      "learning_focus": ["medvirkning", "innspill", "mønsterlesning"],
+      "mails": [
+        {
+          "id": "by_assistent_job_medvirkning_001",
+          "mail_type": "job",
+          "mail_family": "medvirkning_og_innspill",
+          "role_scope": "by_assistent",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maria_medvirkning",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Fem innspill handler egentlig om samme utrygghet",
+          "summary": "Innspillene bruker ulike ord, men peker mot samme mørke ganglinje gjennom området.",
+          "purpose": "Lære spilleren å se mønster uten å glatte bort stemmene.",
+          "stakes": "Hvis du sorterer for grovt, mister dere stemmene. Hvis du lar alt stå enkeltvis, forsvinner mønsteret.",
+          "situation": [
+            "Én skriver om mørke.",
+            "Én skriver om ungdomsgjenger.",
+            "Én skriver at hun heller går rundt hele kvartalet.",
+            "Du ser at det ikke bare er fem meninger, men ett mulig byproblem."
+          ],
+          "task_domain": "medvirkningssortering",
+          "competency": "mønsterlesning",
+          "pressure": "stemmer_vs_sammendrag",
+          "choice_axis": "samle_mønster_vs_beholde_alt_flat",
+          "consequence_axis": "brukbar_analyse_vs_tap_av_stemme",
+          "narrative_arc": "by-assistenten lærer å oversette innspill uten å avvæpne dem",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Samle innspillene som ett mønster og bevare eksemplene",
+              "reply": "Jeg samler innspillene som ett mønster og bevarer eksemplene.",
+              "effect": 1,
+              "tags": ["participation", "pattern", "care"],
+              "feedback": "Du gjør innspillene faglig brukbare uten å gjøre menneskene usynlige."
+            },
+            {
+              "id": "B",
+              "label": "Liste innspillene hver for seg uten tolkning",
+              "reply": "Jeg lister innspillene hver for seg uten tolkning.",
+              "effect": 0,
+              "tags": ["safe", "documentation"],
+              "feedback": "Du bevarer alt, men hjelper ikke saken med å forstå hva som går igjen."
+            }
+          ]
+        },
+        {
+          "id": "by_assistent_job_medvirkning_002",
+          "mail_type": "job",
+          "mail_family": "medvirkning_og_innspill",
+          "role_scope": "by_assistent",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "maria_medvirkning",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Et sint innspill har et presist poeng inni seg",
+          "summary": "Et innspill er skrevet hardt og urettferdig, men peker på en faktisk konflikt mellom varelevering og trygg skolevei.",
+          "purpose": "Teste om spilleren klarer å skille tone fra saklig byproblem.",
+          "stakes": "Avviser du tonen, mister du poenget. Tar du alt bokstavelig, overtar sinnet analysen.",
+          "situation": [
+            "Innspillet er irritert, nesten anklagende.",
+            "Likevel beskriver det et tidspunkt og et sted der lastebiler krysser barnas ganglinje.",
+            "Du må finne saken uten å la tonen styre alt."
+          ],
+          "task_domain": "innspillsanalyse",
+          "competency": "sak_fra_tone",
+          "pressure": "sint_stemme_med_reelt_problem",
+          "choice_axis": "hente_ut_sak_vs_avvise_tone",
+          "consequence_axis": "rett_problem_vs_sosial_støy",
+          "narrative_arc": "by-assistenten lærer at dårlig formulerte innspill kan bære presis erfaring",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Trekk ut det konkrete byproblemet og noter tonen separat",
+              "reply": "Jeg trekker ut det konkrete byproblemet og noterer tonen separat.",
+              "effect": 1,
+              "tags": ["participation", "judgement", "safety"],
+              "feedback": "Du lar erfaringen komme frem uten å la sinnet skrive analysen."
+            },
+            {
+              "id": "B",
+              "label": "Tone ned innspillet fordi det er for lite konstruktivt",
+              "reply": "Jeg toner ned innspillet fordi det er for lite konstruktivt.",
+              "effect": -1,
+              "tags": ["avoidance", "risk"],
+              "feedback": "Du får et roligere sammendrag, men kanskje også en blindere plan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rom_og_bruk",
+      "purpose": "Lære spilleren å forstå byrom gjennom faktisk bruk, ikke bare program, estetikk eller planlagt funksjon.",
+      "learning_focus": ["byrom", "faktisk bruk", "arkitektur og byliv"],
+      "mails": [
+        {
+          "id": "by_assistent_job_rom_001",
+          "mail_type": "job",
+          "mail_family": "rom_og_bruk",
+          "role_scope": "by_assistent",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas_arkitekt",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Benken står riktig, men ingen bruker den",
+          "summary": "En ny benk er plassert etter planen, men folk velger heller kanten ved trappen.",
+          "purpose": "Vise at byromskvalitet må måles mot bruk, ikke bare plassering.",
+          "stakes": "Hvis du beskriver benken som ferdig tiltak, overser du bruken. Hvis du beskriver avviket, kan det stille spørsmål ved løsningen.",
+          "situation": [
+            "Benken står der den skulle.",
+            "Sikten er god, materialet er fint, og alt ser gjennomført ut.",
+            "Likevel setter folk seg på trappekanten, der det er sol og mer liv."
+          ],
+          "task_domain": "byromsbruk",
+          "competency": "faktisk_bruk",
+          "pressure": "planlagt_tiltak_vs_levd_preferanse",
+          "choice_axis": "beskrive_avvik_vs_registrere_tiltak",
+          "consequence_axis": "brukbarhet_vs_ferdigstillelse",
+          "narrative_arc": "by-assistenten ser at byrommet svarer gjennom bruk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskriv at folk bruker trappekanten og hvorfor",
+              "reply": "Jeg beskriver at folk bruker trappekanten og hvorfor.",
+              "effect": 1,
+              "tags": ["public_space", "use", "observation"],
+              "feedback": "Du lar brukerne evaluere tiltaket gjennom handlingene sine."
+            },
+            {
+              "id": "B",
+              "label": "Registrer benken som gjennomført tiltak",
+              "reply": "Jeg registrerer benken som gjennomført tiltak.",
+              "effect": 0,
+              "tags": ["completion", "surface"],
+              "feedback": "Tiltaket er gjennomført, men du vet fortsatt ikke om det virker."
+            }
+          ]
+        },
+        {
+          "id": "by_assistent_job_rom_002",
+          "mail_type": "job",
+          "mail_family": "rom_og_bruk",
+          "role_scope": "by_assistent",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid_byplan",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Du ser nå at arkitektur og byliv ikke kan skilles",
+          "summary": "Kartet, befaringen, innspillene og bruken peker sammen mot en bedre forståelse av stedet.",
+          "purpose": "Avrunde by-assistentrollen ved å samle de fire læringssporene.",
+          "stakes": "Du kan levere et pent sammendrag, eller et nyttig notat som bevarer konflikt, bruk og usikkerhet.",
+          "situation": [
+            "Kartgrunnlaget hadde en uklar kant.",
+            "Befaringen viste snarveier og opphold som ikke var tegnet inn.",
+            "Innspillene pekte på trygghet, og faktisk bruk viste hvor folk helst ville være.",
+            "Nå skal du samle det uten å gjøre stedet flatere enn det er."
+          ],
+          "task_domain": "stedsnotat",
+          "competency": "sammenstilt_stedsforståelse",
+          "pressure": "pent_sammendrag_vs_nyttig_sannhet",
+          "choice_axis": "bevare_kompleksitet_vs_glatte_ut",
+          "consequence_axis": "læring_vs_rapportro",
+          "narrative_arc": "by-assistenten forstår at små observasjoner kan bære en hel stedsanalyse",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv et notat som bevarer konflikt, bruk og usikkerhet",
+              "reply": "Jeg skriver et notat som bevarer konflikt, bruk og usikkerhet.",
+              "effect": 1,
+              "tags": ["mastery", "place", "analysis"],
+              "feedback": "Du gjør stedet mer forståelig uten å gjøre det enklere enn det er."
+            },
+            {
+              "id": "B",
+              "label": "Skriv et ryddig sammendrag med hovedpunktene",
+              "reply": "Jeg skriver et ryddig sammendrag med hovedpunktene.",
+              "effect": 0,
+              "tags": ["summary", "safe"],
+              "feedback": "Sammendraget blir lett å lese, men mister noe av stedets motstand."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
