@@ -7,82 +7,98 @@
   "families": [
     {
       "id": "apning_og_lukking",
+      "purpose": "Gi ekspeditørrollen tydelige hendelser der åpning, lukking, kunder og neste skift kolliderer.",
+      "learning_focus": ["stengetid", "lukkerutine", "praktisk ansvar"],
       "mails": [
         {
-          "id": "ekspeditor_039",
+          "id": "ekspeditor_event_lukking_001",
           "mail_type": "event",
           "mail_family": "apning_og_lukking",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 39",
-          "summary": "Ekspeditør-situasjon 39",
+          "phase": "advanced",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "warning",
+          "from": "marit_butikkleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Alarmen skal på, men kunden står fortsatt inne",
+          "summary": "En kunde bruker lenger tid enn lovet rett før stengetid, og lukkerutinen begynner å sprekke.",
+          "purpose": "Teste servicegrense under konkret stengetidspress.",
+          "stakes": "Tydelig ramme kan redde lukking. Grenseløs service kan gi rot, forsinkelse og dårlig overlevering.",
           "situation": [
-            "Du står i apning og lukking og må ta et konkret valg i butikkdriften."
+            "Døren er låst for nye kunder, men én kunde står fortsatt inne og sammenligner varer.",
+            "Alarmrutinen må startes snart, og du har fortsatt kassepunkt igjen.",
+            "Kunden sier at hun bare trenger to minutter til."
           ],
-          "task_domain": "customer_service",
-          "competency": "prioritering",
-          "pressure": "tidspress",
-          "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
-          "consequence_axis": "tempo_vs_tillit",
-          "narrative_arc": "forste_uke_pa_gulvet",
+          "task_domain": "lukking",
+          "competency": "servicegrense_under_press",
+          "pressure": "stengetid_og_alarmrutine",
+          "choice_axis": "tydelig_ramme_vs_grenseløs_service",
+          "consequence_axis": "lukkerutine_vs_kundeopplevelse",
+          "narrative_arc": "ekspeditøren må gjøre vennlighet forenlig med ansvar for butikken",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Gi kunden én tydelig frist og hjelpe henne til beslutning",
+              "reply": "Vi stenger nå, men jeg kan hjelpe deg å velge raskt.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["boundary", "service", "clarity"],
+              "feedback": "Du gjør grensen praktisk og hjelper kunden innenfor den."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
+              "label": "La kunden bruke tiden hun trenger og ta lukking etterpå",
+              "reply": "Jeg lar kunden bruke tiden hun trenger og tar lukking etterpå.",
               "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "tags": ["delay", "service", "risk"],
+              "feedback": "Kunden får rom, men butikken mister rytmen i en rutine som ikke tåler mye glidning."
             }
           ]
         },
         {
-          "id": "ekspeditor_044",
+          "id": "ekspeditor_event_lukking_002",
           "mail_type": "event",
           "mail_family": "apning_og_lukking",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 44",
-          "summary": "Ekspeditør-situasjon 44",
+          "phase": "advanced",
+          "priority": 58,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "ole_skiftleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Åpningen starter med en feil du kunne ha oppdaget i går",
+          "summary": "Morgenskiftet melder at en feil fra lukking gjør første time tregere.",
+          "purpose": "Knytte lukkevalg til neste dags konkrete konsekvens.",
+          "stakes": "Du kan ta ansvar og lære av feilen, eller forklare den som smårot ingen burde gjøre stort nummer av.",
           "situation": [
-            "Du står i apning og lukking og må ta et konkret valg i butikkdriften."
+            "Morgenskiftet skriver at returområdet ikke var klart.",
+            "Det stoppet ikke butikken, men gjorde første time mer rotete.",
+            "Du kjenner igjen akkurat den lille tingen du vurderte å la stå."
           ],
-          "task_domain": "shrinkage_control",
-          "competency": "prioritering",
-          "pressure": "kollegapress",
-          "choice_axis": "snarvei_vs_standard",
-          "consequence_axis": "komfort_vs_laring",
-          "narrative_arc": "forste_uke_pa_gulvet",
+          "task_domain": "overlevering",
+          "competency": "ansvar_for_neste_skift",
+          "pressure": "konsekvens_dagen_etter",
+          "choice_axis": "ta_læring_vs_bagatellisere",
+          "consequence_axis": "tillit_vs_gjentakelse",
+          "narrative_arc": "ekspeditøren ser at usynlig arbeid får etterslep når det ikke gjøres",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Ta ansvar og justere egen lukkerutine",
+              "reply": "Jeg tar ansvar og justerer egen lukkerutine.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["accountability", "team", "learning"],
+              "feedback": "Du gjør en liten feil om til en bedre standard."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
-              "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "label": "Forklare at dette var smårot under tidspress",
+              "reply": "Jeg forklarer at dette var smårot under tidspress.",
+              "effect": 0,
+              "tags": ["defense", "pressure"],
+              "feedback": "Forklaringen kan være sann, men den gir ikke neste skift en bedre morgen."
             }
           ]
         }
@@ -90,43 +106,52 @@
     },
     {
       "id": "lager_og_bestilling",
+      "purpose": "Gi konkrete hendelser der lagerfeil plutselig blir synlig for kunder, kolleger og drift.",
+      "learning_focus": ["lageravvik", "vareflyt", "systemfeil"],
       "mails": [
         {
-          "id": "ekspeditor_040",
+          "id": "ekspeditor_event_lager_001",
           "mail_type": "event",
           "mail_family": "lager_og_bestilling",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 40",
-          "summary": "Ekspeditør-situasjon 40",
+          "phase": "mid",
+          "priority": 59,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "warning",
+          "from": "lageransvarlig_jon",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Tre kunder spør etter samme vare som systemet sier finnes",
+          "summary": "Et lageravvik går fra enkeltsak til mønster i løpet av én time.",
+          "purpose": "Vise når lagerstatus blir en hendelse, ikke bare en detalj.",
+          "stakes": "Å stoppe opp og spore avviket tar tid, men hindrer flere dårlige kundemøter.",
           "situation": [
-            "Du står i lager og bestilling og må ta et konkret valg i butikkdriften."
+            "Første kunde var kanskje tilfeldig.",
+            "Andre kunde gjorde deg usikker.",
+            "Når tredje kunde spør etter samme vare, er det ikke lenger bare en tom hylle."
           ],
-          "task_domain": "cash_desk",
-          "competency": "kommunikasjon",
-          "pressure": "kollegapress",
-          "choice_axis": "unngå_konflikt_vs_ta_samtalen",
-          "consequence_axis": "synlighet_vs_presisjon",
-          "narrative_arc": "kundenes_blikk",
+          "task_domain": "lageravvik",
+          "competency": "mønsterblikk",
+          "pressure": "gjentatt_kundemangel",
+          "choice_axis": "stoppe_og_spore_vs_håndtere_enkeltsaker",
+          "consequence_axis": "forebygging_vs_reaktiv_service",
+          "narrative_arc": "ekspeditøren oppdager lagerfeil gjennom kundestrømmen",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Stoppe opp og få lagerstatus sjekket fysisk",
+              "reply": "Jeg stopper opp og får lagerstatus sjekket fysisk.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["pattern", "stock", "process"],
+              "feedback": "Du gjør tre kundespørsmål om til ett faktisk driftsproblem."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
+              "label": "Fortsette å beklage til hver kunde og holde køen i gang",
+              "reply": "Jeg beklager til hver kunde og holder køen i gang.",
               "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "tags": ["tempo", "avoidance"],
+              "feedback": "Køen flyter, men samme feil får møte flere mennesker."
             }
           ]
         }
@@ -134,43 +159,52 @@
     },
     {
       "id": "salg_og_veiledning",
+      "purpose": "Gi hendelser der salgsmål, kampanje og reell veiledning blir synlige under press.",
+      "learning_focus": ["kampanjepress", "veiledning", "tillit"],
       "mails": [
         {
-          "id": "ekspeditor_041",
+          "id": "ekspeditor_event_salg_001",
           "mail_type": "event",
           "mail_family": "salg_og_veiledning",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 41",
-          "summary": "Ekspeditør-situasjon 41",
+          "phase": "mid",
+          "priority": 57,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "marit_butikkleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Kampanjen starter før dere har fått god nok produktinfo",
+          "summary": "Kundene spør om kampanjevaren, men interninformasjonen er tynnere enn salgsplakaten.",
+          "purpose": "Teste ærlig veiledning når salgssystemet går raskere enn kunnskapen.",
+          "stakes": "Du kan selge på plakatens trygghet, eller bremse litt og innrømme hva dere faktisk vet.",
           "situation": [
-            "Du står i salg og veiledning og må ta et konkret valg i butikkdriften."
+            "Plakaten lover mye med store bokstaver.",
+            "Produktinformasjonen dere har fått, er kort og uklar.",
+            "Kunden spør konkret om noe du ikke kan svare sikkert på."
           ],
-          "task_domain": "returns",
-          "competency": "kvalitet",
-          "pressure": "kundepress",
-          "choice_axis": "snarvei_vs_standard",
-          "consequence_axis": "komfort_vs_laring",
-          "narrative_arc": "varene_som_system",
+          "task_domain": "kampanjeveiledning",
+          "competency": "ærlighet_under_salgspress",
+          "pressure": "kampanje_uten_kunnskap",
+          "choice_axis": "salgstrygghet_vs_ærlig_usikkerhet",
+          "consequence_axis": "kort_salg_vs_lang_tillit",
+          "narrative_arc": "ekspeditøren møter gapet mellom salgsbudskap og faktisk kunnskap",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Si hva du vet, og sjekk resten før du anbefaler",
+              "reply": "Jeg sier hva jeg vet, og sjekker resten før jeg anbefaler.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["honesty", "quality", "trust"],
+              "feedback": "Du gjør veiledningen tregere og mer troverdig."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
-              "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "label": "Støtte deg på kampanjeteksten og selge trygt",
+              "reply": "Jeg støtter meg på kampanjeteksten og selger trygt.",
+              "effect": 0,
+              "tags": ["sales", "risk"],
+              "feedback": "Salget høres sikkert ut, men kunnskapen bak er tynnere enn stemmen din."
             }
           ]
         }
@@ -178,43 +212,52 @@
     },
     {
       "id": "ny_kollega_og_tillit",
+      "purpose": "Gi hendelser der kollegial tillit blir testet av synlige feil og dårlig timing.",
+      "learning_focus": ["kollegatillit", "opplæring", "synlig feil"],
       "mails": [
         {
-          "id": "ekspeditor_042",
+          "id": "ekspeditor_event_kollega_001",
           "mail_type": "event",
           "mail_family": "ny_kollega_og_tillit",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 42",
-          "summary": "Ekspeditør-situasjon 42",
+          "phase": "early",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "ny_kollega_mina",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Den nye gjør feil foran kunden",
+          "summary": "En ny kollega gir feil beskjed til kunden, og kunden ser på deg for bekreftelse.",
+          "purpose": "Teste om spilleren beskytter læring og kunde samtidig.",
+          "stakes": "Retter du hardt, taper kollegaen ansikt. Lar du det passere, taper kunden klarhet.",
           "situation": [
-            "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften."
+            "Mina svarer før hun er sikker.",
+            "Du hører feilen med en gang.",
+            "Kunden ser på deg for å skjønne om svaret stemmer."
           ],
-          "task_domain": "stock_flow",
-          "competency": "samarbeid",
-          "pressure": "måltallspress",
-          "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
-          "consequence_axis": "tempo_vs_tillit",
-          "narrative_arc": "snarveien",
+          "task_domain": "kollegafeil",
+          "competency": "korrigering_uten_ydmykelse",
+          "pressure": "kunde_ser_feilen",
+          "choice_axis": "rette_tydelig_vs_skjermende_uklarhet",
+          "consequence_axis": "læring_vs_ansiktstap",
+          "narrative_arc": "ekspeditøren må rette kurs uten å gjøre ny kollega mindre",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Korriger rolig og gjør det til felles avklaring",
+              "reply": "Jeg korrigerer rolig og gjør det til en felles avklaring.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["training", "customer", "care"],
+              "feedback": "Du redder kundens klarhet uten å gjøre kollegaen til problemet."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
+              "label": "La svaret stå for å ikke ydmyke henne foran kunden",
+              "reply": "Jeg lar svaret stå for å ikke ydmyke henne foran kunden.",
               "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "tags": ["avoidance", "team", "risk"],
+              "feedback": "Du beskytter ansiktet hennes, men kunden går videre med svakere informasjon."
             }
           ]
         }
@@ -222,43 +265,52 @@
     },
     {
       "id": "forste_ansvar",
+      "purpose": "Gi hendelser der ekspeditøren må bære første synlige ansvar før rollen er formelt større.",
+      "learning_focus": ["første ansvar", "synlig avvik", "dømmekraft"],
       "mails": [
         {
-          "id": "ekspeditor_043",
+          "id": "ekspeditor_event_ansvar_001",
           "mail_type": "event",
           "mail_family": "forste_ansvar",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 43",
-          "summary": "Ekspeditør-situasjon 43",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "warning",
+          "from": "ole_skiftleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "En klage peker mot økten du hadde ansvar for",
+          "summary": "En kunde klager på en feil fra tidsrommet der du sto alene ved disken.",
+          "purpose": "Teste om spilleren tar ansvar uten å gjøre saken personlig defensiv.",
+          "stakes": "Undersøker du åpent, bygger du tillit. Går du i forsvar, blir feilen vanskeligere å lære av.",
           "situation": [
-            "Du står i forste ansvar og må ta et konkret valg i butikkdriften."
+            "Klagen er ikke dramatisk, men den er tydelig nok.",
+            "Tidsrommet peker mot deg.",
+            "Du husker ikke saken fullt ut, men du husker presset rundt den."
           ],
-          "task_domain": "campaign_setup",
-          "competency": "ansvar",
-          "pressure": "tidspress",
-          "choice_axis": "unngå_konflikt_vs_ta_samtalen",
-          "consequence_axis": "synlighet_vs_presisjon",
-          "narrative_arc": "fra_ansatt_til_fagperson",
+          "task_domain": "kundeavvik",
+          "competency": "ansvar_uten_forsvar",
+          "pressure": "klage_med_eget_tidsrom",
+          "choice_axis": "undersøke_åpent_vs_forklare_bort",
+          "consequence_axis": "tillit_vs_tåklegging",
+          "narrative_arc": "ekspeditøren lærer at ansvar er håndtering før det er skyld",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Undersøk saken åpent og se hva du kan lære",
+              "reply": "Jeg undersøker saken åpent og ser hva jeg kan lære.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["accountability", "learning", "trust"],
+              "feedback": "Du behandler klagen som spor, ikke dom."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
+              "label": "Forklar at det var rush og vanskelig å unngå feil",
+              "reply": "Jeg forklarer at det var rush og vanskelig å unngå feil.",
               "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "tags": ["defense", "pressure"],
+              "feedback": "Forklaringen kan stemme, men den lukker læringen for tidlig."
             }
           ]
         }
