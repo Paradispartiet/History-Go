@@ -9,8 +9,10 @@ const planPath = path.join(repoRoot, 'data/Civication/mailPlans/naeringsliv/form
 const jobPath = path.join(repoRoot, 'data/Civication/mailFamilies/naeringsliv/job/formann_job.json');
 const peoplePath = path.join(repoRoot, 'data/Civication/mailFamilies/naeringsliv/people/formann_people.json');
 
-const JOB_FAMILY = 'first_week_praksisfortellinger_formann_job';
-const PRIVATE_FAMILY = 'first_week_praksisfortellinger_formann_private';
+const FIRST_JOB_FAMILY = 'first_week_praksisfortellinger_formann_job';
+const FIRST_PRIVATE_FAMILY = 'first_week_praksisfortellinger_formann_private';
+const JOB_FAMILY = 'second_week_praksisfortellinger_formann_job';
+const PRIVATE_FAMILY = 'second_week_praksisfortellinger_formann_private';
 
 function readJson(filePath) {
   assert(fs.existsSync(filePath), `${path.relative(repoRoot, filePath)} should exist`);
@@ -48,17 +50,28 @@ function assertPackageMail(mail, expected) {
 
 const plan = readJson(planPath);
 const firstWeek = plan.sequence.slice(0, 10);
-assert.strictEqual(firstWeek.length, 10, 'formann first week should exist as ten package steps');
+assert.strictEqual(firstWeek.length, 10, 'formann first week should still exist as ten package steps');
 firstWeek.forEach((step, index) => {
   const expectedType = index % 2 === 0 ? 'job' : 'people';
-  const expectedFamily = expectedType === 'job' ? JOB_FAMILY : PRIVATE_FAMILY;
-  assert.strictEqual(step.step, index + 1, `step ${index + 1} should keep package ordering`);
-  assert.strictEqual(step.phase, 'intro', `step ${index + 1} should stay in intro phase`);
-  assert.strictEqual(step.type, expectedType, `step ${index + 1} should alternate job/people`);
-  assert.deepStrictEqual(step.allowed_families, [expectedFamily], `step ${index + 1} should point at the formann first-week family`);
-  assert.deepStrictEqual(step.fallback_types, [], `step ${index + 1} should keep fallback out of package progression`);
+  const expectedFamily = expectedType === 'job' ? FIRST_JOB_FAMILY : FIRST_PRIVATE_FAMILY;
+  assert.strictEqual(step.step, index + 1, `first-week step ${index + 1} should keep package ordering`);
+  assert.strictEqual(step.type, expectedType, `first-week step ${index + 1} should alternate job/people`);
+  assert.deepStrictEqual(step.allowed_families, [expectedFamily], `first-week step ${index + 1} should point at the formann first-week family`);
+  assert.deepStrictEqual(step.fallback_types, [], `first-week step ${index + 1} should keep fallback out of package progression`);
 });
-assert(plan.sequence.length >= 10, 'formann progression should include the first package steps');
+
+const secondWeek = plan.sequence.slice(10, 20);
+assert.strictEqual(secondWeek.length, 10, 'formann second week should exist directly after first week as ten package steps');
+secondWeek.forEach((step, index) => {
+  const expectedStep = index + 11;
+  const expectedType = index % 2 === 0 ? 'job' : 'people';
+  const expectedFamily = expectedType === 'job' ? JOB_FAMILY : PRIVATE_FAMILY;
+  assert.strictEqual(step.step, expectedStep, `week 2 step ${expectedStep} should keep package ordering`);
+  assert.strictEqual(step.phase, 'intro', `week 2 step ${expectedStep} should stay in intro phase`);
+  assert.strictEqual(step.type, expectedType, `week 2 step ${expectedStep} should alternate job/people`);
+  assert.deepStrictEqual(step.allowed_families, [expectedFamily], `week 2 step ${expectedStep} should point at the formann second-week family`);
+  assert.deepStrictEqual(step.fallback_types, [], `week 2 step ${expectedStep} should keep fallback out of package progression`);
+});
 
 const jobCatalog = readJson(jobPath);
 const peopleCatalog = readJson(peoplePath);
@@ -66,8 +79,8 @@ const jobFamily = jobCatalog.families.find(family => family.id === JOB_FAMILY);
 const privateFamily = peopleCatalog.families.find(family => family.id === PRIVATE_FAMILY);
 assert(jobFamily, 'job family should exist');
 assert(privateFamily, 'private family should exist');
-assert.strictEqual(jobFamily.mails.length, 5, 'package should include five job threads');
-assert.strictEqual(privateFamily.mails.length, 5, 'package should include five private/personlige threads');
+assert.strictEqual(jobFamily.mails.length, 5, 'second package should include five job threads');
+assert.strictEqual(privateFamily.mails.length, 5, 'second package should include five private/personlige threads');
 
 for (const mail of jobFamily.mails) {
   assertPackageMail(mail, {
@@ -133,4 +146,4 @@ execFileSync(process.execPath, [path.join(repoRoot, 'tests/civication-praksisfor
 execFileSync(process.execPath, [path.join(repoRoot, 'tests/civication-first-week-praksisfortellinger.test.js')], { stdio: 'inherit' });
 execFileSync(process.execPath, [path.join(repoRoot, 'tests/civication-fagarbeider-first-week-praksisfortellinger.test.js')], { stdio: 'inherit' });
 
-console.log('civication formann first week praksisfortellinger ok');
+console.log('Civication formann second-week Praksisfortellinger OK');
