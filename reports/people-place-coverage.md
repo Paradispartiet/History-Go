@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-06-04T09:56:05.788Z
+Generert: 2026-06-04T10:20:33.582Z
 
 ## Sammendrag
 
-- People totalt: **408**
-- Places totalt: **472**
-- Places med people: **150**
-- Places uten people: **322**
-- People-place-lenker: **593**
+- People totalt: **412**
+- Places totalt: **476**
+- Places med people: **153**
+- Places uten people: **323**
+- People-place-lenker: **597**
 - People koblet til flere gyldige steder: **153**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **408**
-- People uten image: **98**
-- People uten cardImage: **98**
+- Duplikate place-referanser inne på people: **412**
+- People uten image: **102**
+- People uten cardImage: **102**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
@@ -28,7 +28,7 @@ Generert: 2026-06-04T09:56:05.788Z
 | litteratur | 31 | 21 | 10 | 50 | 44 |
 | media | 11 | 8 | 3 | 38 | 37 |
 | musikk | 13 | 9 | 4 | 27 | 18 |
-| naeringsliv | 44 | 12 | 32 | 29 | 28 |
+| naeringsliv | 48 | 15 | 33 | 33 | 32 |
 | natur | 63 | 5 | 58 | 13 | 13 |
 | politikk | 15 | 7 | 8 | 73 | 60 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
@@ -53,6 +53,7 @@ Generert: 2026-06-04T09:56:05.788Z
 - natur: 20
 - regissor: 20
 - by: 18
+- naeringsliv: 18
 - populaerkultur: 18
 - tv: 18
 - filantrop: 17
@@ -61,7 +62,6 @@ Generert: 2026-06-04T09:56:05.788Z
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
-- naeringsliv: 14
 - arkitektur: 11
 - cinematek: 11
 - humor: 11
@@ -224,7 +224,7 @@ Generert: 2026-06-04T09:56:05.788Z
 - arpad_szenes (Árpád Szenes) -> lisbon_museu_arpad_szenes_vieira_da_silva
 - rafael_bordalo_pinheiro (Rafael Bordalo Pinheiro) -> lisbon_museu_bordalo_pinheiro
 - amadeo_de_souza_cardoso (Amadeo de Souza-Cardoso) -> lisbon_fundacao_calouste_gulbenkian
-- ... 308 flere
+- ... 312 flere
 
 ## Anbefalt første people-batch
 
