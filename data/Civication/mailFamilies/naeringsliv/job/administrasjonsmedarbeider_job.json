@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "administrasjonsmedarbeider",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "bilag_og_spor",
+      "purpose": "Lære spilleren at bilag, fakturaer og dokumentasjon er spor etter faktiske valg, ikke bare papir.",
+      "learning_focus": ["bilag", "dokumentasjon", "nøyaktighet"],
+      "mails": [
+        {
+          "id": "admin_job_bilag_001",
+          "mail_type": "job",
+          "mail_family": "bilag_og_spor",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_okonomi",
+          "place_id": "kontor_naeringsliv",
+          "subject": "Bilaget mangler akkurat den ene opplysningen som gjør det brukbart",
+          "summary": "Et bilag er nesten komplett, men mangler kostnadssted og kan derfor ikke føres trygt.",
+          "purpose": "Vise at nesten-riktig dokumentasjon ikke er administrativ orden.",
+          "stakes": "Fører du raskt, holder du flyt. Ber du om presisering, forsinker du, men gjør sporet riktig.",
+          "situation": [
+            "Bilaget ser ved første øyekast greit ut.",
+            "Summen stemmer, datoen stemmer, men kostnadsstedet mangler.",
+            "Du vet at det er fristende å gjette, fordi alle andre deler av saken virker enkle."
+          ],
+          "task_domain": "bilagsføring",
+          "competency": "nøyaktighet",
+          "pressure": "nesten_komplett_grunnlag",
+          "choice_axis": "presisjon_vs_flyt",
+          "consequence_axis": "sporbarhet_vs_tempo",
+          "narrative_arc": "administrasjon begynner med å ta små mangler på alvor",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om riktig kostnadssted før du fører bilaget",
+              "reply": "Jeg ber om riktig kostnadssted før jeg fører bilaget.",
+              "effect": 1,
+              "tags": ["quality", "documentation", "traceability"],
+              "feedback": "Du gjør bilaget litt tregere og langt mer brukbart senere."
+            },
+            {
+              "id": "B",
+              "label": "Føre bilaget på mest sannsynlig kostnadssted",
+              "reply": "Jeg fører bilaget på mest sannsynlig kostnadssted.",
+              "effect": -1,
+              "tags": ["shortcut", "risk", "tempo"],
+              "feedback": "Arbeidet glir videre, men sporbarheten bygger på antakelse."
+            }
+          ]
+        },
+        {
+          "id": "admin_job_bilag_002",
+          "mail_type": "job",
+          "mail_family": "bilag_og_spor",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_okonomi",
+          "place_id": "kontor_naeringsliv",
+          "subject": "To fakturaer ser nesten like ut",
+          "summary": "Du finner to fakturaer med samme leverandør og nesten samme beløp, men ulike datoer.",
+          "purpose": "Trene mønsterblikk og kontroll mot dobbeltføring.",
+          "stakes": "En ekstra sjekk kan forhindre feilbetaling. En rask føring sparer minutter, men kan koste penger.",
+          "situation": [
+            "Leverandøren er den samme.",
+            "Beløpene er nesten like, og teksten i fakturaene er vag.",
+            "Det kan være to reelle kjøp. Det kan også være en kopi som har fått nytt liv."
+          ],
+          "task_domain": "fakturakontroll",
+          "competency": "mønsterblikk",
+          "pressure": "mulig_dobbeltføring",
+          "choice_axis": "kontroll_vs_tempo",
+          "consequence_axis": "økonomisk_presisjon_vs_flyt",
+          "narrative_arc": "spilleren lærer at administrativt blikk handler om å kjenne igjen mønstre",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekk mot bestilling og tidligere føring før du godkjenner",
+              "reply": "Jeg sjekker mot bestilling og tidligere føring før jeg godkjenner.",
+              "effect": 1,
+              "tags": ["control", "finance", "quality"],
+              "feedback": "Du bruker tid før pengene går ut, ikke etterpå."
+            },
+            {
+              "id": "B",
+              "label": "Godkjenn fordi leverandør og ordre virker kjent",
+              "reply": "Jeg godkjenner fordi leverandør og ordre virker kjent.",
+              "effect": -1,
+              "tags": ["shortcut", "risk"],
+              "feedback": "Det kjente kan være riktig. Det kan også være nettopp derfor feilen glipper forbi deg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frist_og_purring",
+      "purpose": "Vise at frister ikke håndhever seg selv: administrasjon må følge opp uten å gjøre relasjoner unødvendig harde.",
+      "learning_focus": ["frister", "purring", "oppfølging"],
+      "mails": [
+        {
+          "id": "admin_job_frist_001",
+          "mail_type": "job",
+          "mail_family": "frist_og_purring",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_okonomi",
+          "place_id": "kontor_naeringsliv",
+          "subject": "Fristen nærmer seg, og grunnlaget mangler fortsatt",
+          "summary": "Du trenger tall fra driften før rapporten kan lukkes, men ingen har svart.",
+          "purpose": "Vise purring som nødvendig administrativt arbeid.",
+          "stakes": "Purrer du tydelig, kan relasjonen bli litt kaldere. Venter du, blir rapporten svakere.",
+          "situation": [
+            "Rapporten er nesten klar, men mangler ett tall fra driften.",
+            "Du har spurt én gang allerede.",
+            "Fristen er nær nok til at høflig venting begynner å bli en risiko."
+          ],
+          "task_domain": "fristoppfølging",
+          "competency": "rolig_purring",
+          "pressure": "fristnært_manglende_grunnlag",
+          "choice_axis": "tydelig_purring_vs_vente_lenger",
+          "consequence_axis": "rapportkvalitet_vs_relativ_ro",
+          "narrative_arc": "administrasjonsrollen får ansvar for at andres forsinkelser ikke blir systemets hukommelse",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Purre tydelig og forklare hvorfor tallet trengs nå",
+              "reply": "Jeg purrer tydelig og forklarer hvorfor tallet trengs nå.",
+              "effect": 1,
+              "tags": ["deadline", "clarity", "process"],
+              "feedback": "Du gjør fristen praktisk, ikke bare høflig."
+            },
+            {
+              "id": "B",
+              "label": "Vente litt til for å unngå mas",
+              "reply": "Jeg venter litt til for å unngå mas.",
+              "effect": -1,
+              "tags": ["avoidance", "delay"],
+              "feedback": "Relasjonen slipper friksjon nå, men rapporten får mindre tid til å bli riktig."
+            }
+          ]
+        },
+        {
+          "id": "admin_job_frist_002",
+          "mail_type": "job",
+          "mail_family": "frist_og_purring",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari_drift",
+          "place_id": "kontor_naeringsliv",
+          "subject": "De svarer alltid først når du maser andre gang",
+          "summary": "Du ser et mønster: noen leverer bare når purringen blir tydelig nok.",
+          "purpose": "Løfte purring fra enkel frist til systemmønster.",
+          "stakes": "Gjør du mønsteret synlig, kan det forbedres. Fortsetter du å bære det selv, holder du flyten men skjuler problemet.",
+          "situation": [
+            "Dette er ikke første gang samme del av driften leverer sent.",
+            "Alle er vennlige når de svarer, men svarene kommer først etter at du bruker ekstra tid.",
+            "Du kjenner forskjellen på å hjelpe systemet og å bli systemets støtdemper."
+          ],
+          "task_domain": "gjentatt_fristmønster",
+          "competency": "systematisk_oppfølging",
+          "pressure": "usynlig_ekstraarbeid",
+          "choice_axis": "synliggjøre_mønster_vs_bære_stille",
+          "consequence_axis": "læring_vs_skjult_slitasje",
+          "narrative_arc": "administrasjonsmedarbeideren ser at frister også handler om kultur",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Synliggjør mønsteret og foreslå fast leveringsrutine",
+              "reply": "Jeg synliggjør mønsteret og foreslår fast leveringsrutine.",
+              "effect": 1,
+              "tags": ["systems", "improvement", "visibility"],
+              "feedback": "Du løfter purringen fra person til prosess."
+            },
+            {
+              "id": "B",
+              "label": "Fortsett å håndtere det stille siden det fungerer nok",
+              "reply": "Jeg fortsetter å håndtere det stille siden det fungerer nok.",
+              "effect": 0,
+              "tags": ["maintenance", "hidden_work"],
+              "feedback": "Systemet fungerer fordi du bærer svakheten uten at den får navn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system_vs_drift",
+      "purpose": "Lære spilleren å oversette mellom kontorets kategorier og driftens ujevne virkelighet.",
+      "learning_focus": ["systemforståelse", "drift", "oversettelse"],
+      "mails": [
+        {
+          "id": "admin_job_system_001",
+          "mail_type": "job",
+          "mail_family": "system_vs_drift",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "early",
+          "priority": 59,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari_drift",
+          "place_id": "kontor_naeringsliv",
+          "subject": "Systemet har ikke en kategori for det som faktisk skjedde",
+          "summary": "Driften sender inn en sak som ikke passer i skjemaet, men må registreres riktig likevel.",
+          "purpose": "Vise konflikt mellom levende praksis og faste kategorier.",
+          "stakes": "Tvinger du saken inn i feil kategori, blir rapporten penere og mindre sann. Ber du om presisering, tar det mer tid.",
+          "situation": [
+            "Skjemaet ber deg velge én kategori.",
+            "Driften beskriver noe som egentlig er en blanding av feilvare, hasteinnkjøp og dårlig overlevering.",
+            "Systemet liker rene bokser. Virkeligheten nekter å stå stille."
+          ],
+          "task_domain": "saksregistrering",
+          "competency": "systemoversettelse",
+          "pressure": "kategori_mangler",
+          "choice_axis": "presis_oversettelse_vs_pen_registrering",
+          "consequence_axis": "sannhet_vs_rapportflyt",
+          "narrative_arc": "spilleren lærer at administrasjon må forstå før den registrerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om presisering og registrere saken mest mulig riktig",
+              "reply": "Jeg ber om presisering og registrerer saken mest mulig riktig.",
+              "effect": 1,
+              "tags": ["systems", "accuracy", "operations"],
+              "feedback": "Du gjør systemet litt mindre glatt og mye mer sant."
+            },
+            {
+              "id": "B",
+              "label": "Velg nærmeste kategori og få saken videre",
+              "reply": "Jeg velger nærmeste kategori og får saken videre.",
+              "effect": 0,
+              "tags": ["flow", "approximation"],
+              "feedback": "Saken flyter videre, men mister litt av det som gjorde den viktig."
+            }
+          ]
+        },
+        {
+          "id": "admin_job_system_002",
+          "mail_type": "job",
+          "mail_family": "system_vs_drift",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_okonomi",
+          "place_id": "kontor_naeringsliv",
+          "subject": "Rapporten er penere enn virkeligheten",
+          "summary": "Tallene kan presenteres ryddig, men du vet at ryddigheten skjuler et driftsproblem.",
+          "purpose": "Teste om spilleren lar systemets orden skjule relevant friksjon.",
+          "stakes": "Legger du inn merknad, blir rapporten mindre glatt men mer nyttig. Lar du den stå pen, blir saken enklere oppover.",
+          "situation": [
+            "Rapporten balanserer teknisk.",
+            "Likevel vet du at ett tall ser bedre ut fordi et avvik ble håndtert uformelt i driften.",
+            "Ingen spør etter forklaring, men rapporten kommer til å bli lest som om tallet står alene."
+          ],
+          "task_domain": "rapportering",
+          "competency": "administrativ_dømmekraft",
+          "pressure": "pen_rapport_vs_sann_friksjon",
+          "choice_axis": "merknad_vs_glatt_rapport",
+          "consequence_axis": "læring_vs_pyntet_styring",
+          "narrative_arc": "administrasjonsmedarbeideren forstår at orden også kan skjule ansvar",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg inn kort merknad om avviket bak tallet",
+              "reply": "Jeg legger inn kort merknad om avviket bak tallet.",
+              "effect": 1,
+              "tags": ["reporting", "truth", "learning"],
+              "feedback": "Du gjør rapporten mindre blank og mer brukbar."
+            },
+            {
+              "id": "B",
+              "label": "La rapporten stå ryddig siden tallene stemmer",
+              "reply": "Jeg lar rapporten stå ryddig siden tallene stemmer.",
+              "effect": 0,
+              "tags": ["presentation", "risk"],
+              "feedback": "Tallene stemmer. Det gjør ikke nødvendigvis bildet de skaper."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avvik_og_ansvar",
+      "purpose": "Vise at avvik må spores før ansvar kan forstås, og at stille opprydding noen ganger skjuler læring.",
+      "learning_focus": ["avvik", "ansvar", "eskalering"],
+      "mails": [
+        {
+          "id": "admin_job_avvik_001",
+          "mail_type": "job",
+          "mail_family": "avvik_og_ansvar",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "elin_okonomi",
+          "place_id": "kontor_naeringsliv",
+          "subject": "Avviket kan ryddes stille, men da lærer ingen noe",
+          "summary": "Du kan fikse et lite administrativt avvik selv, eller gjøre det synlig som mønster.",
+          "purpose": "Teste grensen mellom hjelpsom opprydding og skjult systemsvakhet.",
+          "stakes": "Rydder du stille, bevarer du ro. Synliggjør du, kan det bli friksjon og læring.",
+          "situation": [
+            "Feilen er liten nok til at du kan rette den selv.",
+            "Den er også kjent nok til at du har sett samme type feil før.",
+            "Hvis du bare rydder, forsvinner både feilen og muligheten til å endre årsaken."
+          ],
+          "task_domain": "avviksoppfølging",
+          "competency": "ansvarssporing",
+          "pressure": "stille_opprydding",
+          "choice_axis": "synliggjøre_mønster_vs_rydde_stille",
+          "consequence_axis": "læring_vs_ro",
+          "narrative_arc": "spilleren lærer at lav støy ikke alltid betyr godt system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rett feilen og noter mønsteret tydelig",
+              "reply": "Jeg retter feilen og noterer mønsteret tydelig.",
+              "effect": 1,
+              "tags": ["quality", "learning", "visibility"],
+              "feedback": "Du rydder og lar feilen etterlate seg læring."
+            },
+            {
+              "id": "B",
+              "label": "Rett feilen stille og la dagen gå videre",
+              "reply": "Jeg retter feilen stille og lar dagen gå videre.",
+              "effect": 0,
+              "tags": ["maintenance", "hidden_work"],
+              "feedback": "Dagen blir roligere. Systemet blir ikke nødvendigvis klokere."
+            }
+          ]
+        },
+        {
+          "id": "admin_job_avvik_002",
+          "mail_type": "job",
+          "mail_family": "avvik_og_ansvar",
+          "role_scope": "administrasjonsmedarbeider",
+          "phase": "climax",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_okonomi",
+          "place_id": "kontor_naeringsliv",
+          "subject": "Du ser forskjellen på å ha orden og å forstå ordenen",
+          "summary": "Et sammensatt avvik viser at administrativ modenhet handler om å forstå årsak, ikke bare rette skjema.",
+          "purpose": "Avrunde rollen med moden administrativ dømmekraft.",
+          "stakes": "Du kan gjøre avviket pent, eller gjøre det forståelig. Det siste tar mer arbeid, men gir bedre styring.",
+          "situation": [
+            "Avviket går gjennom bilag, drift og rapportering samtidig.",
+            "Det lar seg rydde teknisk, men årsaken forsvinner hvis ingen følger sporet bakover.",
+            "Du skjønner at administrasjon ikke bare handler om orden, men om at ordenen skal forklare noe sant."
+          ],
+          "task_domain": "sammensatt_avvik",
+          "competency": "administrativ_modenhet",
+          "pressure": "kompleks_sak",
+          "choice_axis": "forstå_årsak_vs_rydde_skjema",
+          "consequence_axis": "styring_vs_overflateorden",
+          "narrative_arc": "administrasjonsmedarbeideren ser rollen som virksomhetens presise hukommelse",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følg årsakssporet og dokumenter hva som faktisk skjedde",
+              "reply": "Jeg følger årsakssporet og dokumenterer hva som faktisk skjedde.",
+              "effect": 1,
+              "tags": ["mastery", "systems", "documentation"],
+              "feedback": "Du gjør ordenen til forståelse, ikke bare ryddighet."
+            },
+            {
+              "id": "B",
+              "label": "Rydd skjemaet og få saken avsluttet",
+              "reply": "Jeg rydder skjemaet og får saken avsluttet.",
+              "effect": 0,
+              "tags": ["closure", "surface_order"],
+              "feedback": "Saken ser ferdig ut. Den er ikke nødvendigvis forstått."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
