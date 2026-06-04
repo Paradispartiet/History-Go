@@ -1,0 +1,121 @@
+/* ============================================================
+   CIVICATION – FAST HEADER/FOOTER + SCROLLBART MIDTFELT
+   ------------------------------------------------------------
+   Begrenser scroll til hovedfeltet mellom toppbar og footer.
+   Tar høyde for iPad/Safari safe-area med viewport-fit=cover.
+============================================================ */
+
+:root{
+  --civi-shell-header-h: 76px;
+  --civi-shell-footer-h: 72px;
+  --civi-safe-top: env(safe-area-inset-top, 0px);
+  --civi-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --civi-safe-left: env(safe-area-inset-left, 0px);
+  --civi-safe-right: env(safe-area-inset-right, 0px);
+}
+
+html,
+body{
+  height: 100%;
+  overflow: hidden;
+}
+
+body.civi-app{
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+body.civi-app .topbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--civi-shell-header-h) + var(--civi-safe-top));
+  padding-top: calc(12px + var(--civi-safe-top));
+  padding-left: max(16px, var(--civi-safe-left));
+  padding-right: max(16px, var(--civi-safe-right));
+  z-index: 100;
+}
+
+body.civi-app .civi-footer{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--civi-shell-footer-h) + var(--civi-safe-bottom));
+  padding-bottom: max(10px, var(--civi-safe-bottom));
+  padding-left: max(12px, var(--civi-safe-left));
+  padding-right: max(12px, var(--civi-safe-right));
+  z-index: 100;
+}
+
+body.civi-app main,
+body.civi-app #app,
+body.civi-app #mainContent,
+body.civi-app .civi-world{
+  position: fixed;
+  top: calc(var(--civi-shell-header-h) + var(--civi-safe-top));
+  right: 0;
+  bottom: calc(var(--civi-shell-footer-h) + var(--civi-safe-bottom));
+  left: 0;
+  min-height: 0;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 16px;
+  scroll-padding-bottom: 16px;
+}
+
+body.civi-app .civi-panels{
+  padding-bottom: 28px;
+}
+
+body.civi-app #civiMapWorld,
+body.civi-app .map-container{
+  position: fixed;
+  top: calc(var(--civi-shell-header-h) + var(--civi-safe-top));
+  right: 0;
+  bottom: calc(var(--civi-shell-footer-h) + var(--civi-safe-bottom));
+  left: 0;
+  height: auto;
+  max-height: none;
+}
+
+body.civi-app #placeCard,
+body.civi-app .placeCard,
+body.civi-app .place-card{
+  max-height: calc(100dvh - var(--civi-shell-header-h) - var(--civi-shell-footer-h) - var(--civi-safe-top) - var(--civi-safe-bottom));
+  scroll-margin-top: 16px;
+  scroll-margin-bottom: 16px;
+}
+
+@supports (height: 100dvh){
+  html,
+  body.civi-app{
+    height: 100dvh;
+  }
+}
+
+@media (max-width: 920px){
+  :root{
+    --civi-shell-header-h: 132px;
+  }
+
+  body.civi-app .topbar{
+    padding-top: calc(10px + var(--civi-safe-top));
+    padding-left: max(12px, var(--civi-safe-left));
+    padding-right: max(12px, var(--civi-safe-right));
+  }
+}
+
+@media (max-width: 560px){
+  :root{
+    --civi-shell-header-h: 184px;
+    --civi-shell-footer-h: 78px;
+  }
+}

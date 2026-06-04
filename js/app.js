@@ -4,23 +4,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   const releaseQueuedToasts = gateToastsUntilAppReady();
 
   try {
-    await safeRun("boot", window.boot);
-    await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
+    // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
+    await safeRun("loadBootFast", () => loadScriptOnce("js/boot-fast.js"));
+    await safeRun("loadMapView", () => loadScriptOnce("js/views/MapView.js"));
+    await safeRun("loadAppRouter", () => loadScriptOnce("js/router/AppRouter.js"));
 
-    // Globalt søk lå i repoet, men var ikke lastet inn av index.html.
-    // Lastes etter boot slik at window.PLACES / window.PEOPLE / kategorier finnes.
-    await safeRun("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
+    // Critical boot gjør bare index brukbar: kart + places_index + markører.
+    // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
+    await safeRun("bootCritical", window.bootCritical || window.boot);
+    await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
 
     await safeRun("initMiniProfile", window.initMiniProfile);
     await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
     await safeRun("initLeftPanel", window.initLeftPanel);
-    await safeRun("HGRoutes.init", () => window.HGRoutes?.init?.());
+    await safeRun("wireBackgroundLeftPanelRerenders", wireBackgroundLeftPanelRerenders);
 
     markAppReady();
     releaseQueuedToasts();
 
+    await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
+
+    // Ikke blokker app-ready på søk/ruter/tunge data.
+    runAfterReady("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
+    runAfterReady("HGRoutes.init", () => window.HGRoutes?.init?.());
+    runAfterReady("bootBackground", window.bootBackground);
+
     if (window.HGPos?.request) {
-      safeRun("HGPos.request", window.HGPos.request);
+      runAfterReady("HGPos.request", window.HGPos.request);
     }
   } catch (e) {
     markAppFailed(e);
@@ -79,7 +89,38 @@ function gateToastsUntilAppReady() {
         originalShowToast.apply(window, args);
       }, 260 + index * 350);
     });
-  };
+  }
+}
+
+function routeToPlace(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return;
+
+  const next = `#/place/${encodeURIComponent(id)}`;
+  if (window.HGAppRouter?.navigate) {
+    window.HGAppRouter.navigate(next);
+    return;
+  }
+
+  if (location.hash !== next) location.hash = next;
+}
+
+function wireBackgroundLeftPanelRerenders() {
+  if (window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__ === true) return;
+  window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__ = true;
+
+  const activeMode = () =>
+    document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
+
+  window.addEventListener("hg:people-ready", () => {
+    if (activeMode() === "people" && typeof window.renderNearbyPeople === "function") {
+      window.renderNearbyPeople();
+    }
+  });
+
+  window.addEventListener("hg:backgroundReady", () => {
+    window.rerenderActiveLeftPanelMode?.();
+  });
 }
 
 function wireMapPlacePopupInMapMode() {
@@ -92,23 +133,7 @@ function wireMapPlacePopupInMapMode() {
 
     if (!place) return;
 
-    const isMapMode =
-      window.LayerManager?.getMode?.() === "map" ||
-      document.body?.classList.contains("map-only") ||
-      document.body?.classList.contains("mode-map");
-
-    if (isMapMode && typeof window.showPlacePopup === "function") {
-      window.showPlacePopup(place);
-      return;
-    }
-
-    if (typeof window.openPlaceCard !== "function") return;
-
-    const opened = window.openPlaceCard(place);
-
-    Promise.resolve(opened).finally(() => {
-      window.bottomSheetController?.open?.();
-    });
+    routeToPlace(place.id);
   });
 }
 
@@ -134,6 +159,14 @@ function loadScriptOnce(src) {
     script.onerror = () => reject(new Error(`Kunne ikke laste ${src}`));
     document.body.appendChild(script);
   });
+}
+
+function runAfterReady(label, fn) {
+  Promise.resolve()
+    .then(() => safeRun(label, fn))
+    .catch((e) => {
+      console.warn(`[${label}] background failed`, e);
+    });
 }
 
 async function safeRun(label, fn) {

@@ -1,0 +1,238 @@
+{
+  "schema": "civication_badge_role_mappings_v1",
+  "version": 1,
+  "note": "Badges er progresjon/titler. Role scope er spillbar jobbtype. Flere badge-titler kan derfor dele samme role_scope når de bruker samme type mailPlan, mailFamilies og jobLearningProfile. Dette er bevisst for å unngå én tung rolle per badge-tittel.",
+  "careers": {
+    "naeringsliv": {
+      "badge_source": "data/badges/naeringsliv.json",
+      "mapping_principle": "Badge-tier gir stillingstittel. Resolveren oversetter stillingstittelen til en spillbar role_scope. Bare lag ny rolle når tittelen krever annen spillmekanikk, annen mailhverdag eller annen læring.",
+      "roles": {
+        "ekspeditor": {
+          "role_id": "naer_ekspeditor",
+          "role_type": "frontlinje_handel",
+          "description": "Kundemøte, kasse, service, varer og butikkfront.",
+          "badge_titles": [
+            "Ekspeditør / butikkmedarbeider"
+          ]
+        },
+        "arbeider": {
+          "role_id": "naer_arbeider",
+          "role_type": "gulv_og_drift",
+          "description": "Lager, drift, praktisk arbeid, rutiner og grunnleggende arbeidsflyt.",
+          "badge_titles": [
+            "Lager- og driftsmedarbeider"
+          ]
+        },
+        "administrasjonsmedarbeider": {
+          "role_id": "naer_administrasjonsmedarbeider",
+          "role_type": "administrasjon_og_kontor",
+          "description": "Bilag, frister, dokumentasjon, enkle økonomispor og administrativ orden.",
+          "badge_titles": [
+            "Økonomi- og administrasjonsmedarbeider"
+          ]
+        },
+        "fagarbeider": {
+          "role_id": "naer_fagarbeider",
+          "role_type": "fag_og_kvalitet",
+          "description": "Faglig presisjon, standarder, kvalitet, opplæring og praktisk kompetanse.",
+          "badge_titles": [
+            "Fagarbeider"
+          ]
+        },
+        "formann": {
+          "role_id": "naer_formann",
+          "role_type": "gulvnaer_ledelse",
+          "description": "Skift, arbeidslag, praktisk ledelse, sikkerhet, tempo og ansvar nær gulvet.",
+          "badge_titles": [
+            "Skiftleder",
+            "Formann / arbeidsleder"
+          ]
+        },
+        "controller": {
+          "role_id": "naer_controller",
+          "role_type": "okonomistyring_og_kontroll",
+          "description": "Tall, avvik, budsjett, rapportering, kontroll, prognoser og økonomisk risiko.",
+          "badge_titles": [
+            "Controller",
+            "Finansanalytiker",
+            "Økonomi- og finanssjef",
+            "Finansdirektør"
+          ]
+        },
+        "avdelingsleder": {
+          "role_id": "naer_avdelingsleder",
+          "role_type": "avdeling_og_operativ_ledelse",
+          "description": "Avdeling, folk, mål, budsjett, kapasitet, personalansvar og operativ ledelse.",
+          "badge_titles": [
+            "Avdelingsleder",
+            "Driftsleder",
+            "Produksjonsleder",
+            "Butikksjef / enhetsleder",
+            "Daglig leder"
+          ]
+        },
+        "mellomleder": {
+          "role_id": "naer_mellomleder",
+          "role_type": "strategisk_ledelse_og_eierskap_fallback",
+          "description": "Foreløpig samlet spillbar fallback for høyere strategiske/eierpregede næringslivstitler inntil disse eventuelt får egen kapital-/eierrolle.",
+          "badge_titles": [
+            "Gründer",
+            "Bedriftseier",
+            "Konserndirektør",
+            "Konsernsjef",
+            "Investor",
+            "Kapitalforvalter",
+            "Industribygger",
+            "Industrieier"
+          ]
+        }
+      },
+      "title_to_role_scope": {
+        "Ekspeditør / butikkmedarbeider": "ekspeditor",
+        "Lager- og driftsmedarbeider": "arbeider",
+        "Økonomi- og administrasjonsmedarbeider": "administrasjonsmedarbeider",
+        "Fagarbeider": "fagarbeider",
+        "Skiftleder": "formann",
+        "Formann / arbeidsleder": "formann",
+        "Controller": "controller",
+        "Avdelingsleder": "avdelingsleder",
+        "Driftsleder": "avdelingsleder",
+        "Finansanalytiker": "controller",
+        "Produksjonsleder": "avdelingsleder",
+        "Butikksjef / enhetsleder": "avdelingsleder",
+        "Økonomi- og finanssjef": "controller",
+        "Daglig leder": "avdelingsleder",
+        "Finansdirektør": "controller",
+        "Gründer": "mellomleder",
+        "Bedriftseier": "mellomleder",
+        "Konserndirektør": "mellomleder",
+        "Konsernsjef": "mellomleder",
+        "Investor": "mellomleder",
+        "Kapitalforvalter": "mellomleder",
+        "Industribygger": "mellomleder",
+        "Industrieier": "mellomleder"
+      },
+      "future_split_candidates": [
+        {
+          "role_scope": "kapital_og_eierskap",
+          "candidate_badge_titles": [
+            "Gründer",
+            "Bedriftseier",
+            "Investor",
+            "Kapitalforvalter",
+            "Industribygger",
+            "Industrieier"
+          ],
+          "reason": "Kan få egen spillmekanikk senere for kapital, eierskap, risiko, investering og selskapsbygging. Foreløpig brukes mellomleder som enkel fallback."
+        },
+        {
+          "role_scope": "konsernledelse",
+          "candidate_badge_titles": [
+            "Konserndirektør",
+            "Konsernsjef"
+          ],
+          "reason": "Kan få egen strategisk ledelsesrolle senere. Foreløpig brukes mellomleder som enkel fallback."
+        }
+      ]
+    },
+    "by": {
+      "badge_source": "data/badges/by.json",
+      "implementation_status": "planned_mapping_only",
+      "mapping_principle": "By-badges er progresjon/titler innen by og arkitektur. Role scope skal være få spillbare jobbtyper: assistanse/prosjektarbeid, plan- og byggesaksbehandling, byplanlegging, arkitektur og byutviklingsledelse. Runtime/resolver bør ikke aktiveres for disse før tilhørende mailPlans, mailFamilies og jobLearningProfiles finnes.",
+      "roles": {
+        "by_assistent": {
+          "role_id": "by_assistent",
+          "role_type": "assistanse_og_prosjektgrunnlag",
+          "implementation_status": "planned",
+          "description": "Tidlige roller med støttearbeid, enkel dokumentasjon, kartgrunnlag, befaring, notater og praktisk prosjektforståelse.",
+          "badge_titles": [
+            "Studentassistent",
+            "Praktikant (arkitektur/plan)",
+            "Prosjektmedarbeider"
+          ]
+        },
+        "by_saksbehandler": {
+          "role_id": "by_saksbehandler",
+          "role_type": "plan_og_byggesak",
+          "implementation_status": "planned",
+          "description": "Saksbehandling, regelverk, nabohensyn, byggesak, dokumentasjon og forvaltningens møte med konkrete steder.",
+          "badge_titles": [
+            "Saksbehandler (plan/bygg)",
+            "Førstekonsulent"
+          ]
+        },
+        "by_radgiver_plan": {
+          "role_id": "by_radgiver_plan",
+          "role_type": "radgivning_og_byplanfag",
+          "implementation_status": "planned",
+          "description": "Rådgivning, analyser, byutviklingsnotater, medvirkning, planfaglige vurderinger og tverrfaglig oversettelse.",
+          "badge_titles": [
+            "Rådgiver (byutvikling)",
+            "Seniorrådgiver (byutvikling)",
+            "Arealplanlegger",
+            "Byplanlegger"
+          ]
+        },
+        "by_prosjektleder": {
+          "role_id": "by_prosjektleder",
+          "role_type": "byutviklingsprosjekt_og_koordinering",
+          "implementation_status": "planned",
+          "description": "Prosjektledelse, koordinering, framdrift, politiske bestillinger, økonomi, aktører og konflikter mellom ideal og gjennomføring.",
+          "badge_titles": [
+            "Prosjektleder (byutvikling)",
+            "Seksjonsleder",
+            "Fagsjef (plan/bygg)",
+            "Direktør (byutvikling)"
+          ]
+        },
+        "by_arkitekt": {
+          "role_id": "by_arkitekt",
+          "role_type": "arkitektur_og_byform",
+          "implementation_status": "planned",
+          "description": "Arkitektur, form, rom, materialitet, estetikk, program, stedstilpasning og spenningen mellom byggverk og byliv.",
+          "badge_titles": [
+            "Arkitekt",
+            "Seniorarkitekt",
+            "Byarkitekt"
+          ]
+        }
+      },
+      "title_to_role_scope": {
+        "Studentassistent": "by_assistent",
+        "Praktikant (arkitektur/plan)": "by_assistent",
+        "Prosjektmedarbeider": "by_assistent",
+        "Saksbehandler (plan/bygg)": "by_saksbehandler",
+        "Førstekonsulent": "by_saksbehandler",
+        "Rådgiver (byutvikling)": "by_radgiver_plan",
+        "Seniorrådgiver (byutvikling)": "by_radgiver_plan",
+        "Arealplanlegger": "by_radgiver_plan",
+        "Byplanlegger": "by_radgiver_plan",
+        "Prosjektleder (byutvikling)": "by_prosjektleder",
+        "Seksjonsleder": "by_prosjektleder",
+        "Arkitekt": "by_arkitekt",
+        "Seniorarkitekt": "by_arkitekt",
+        "Fagsjef (plan/bygg)": "by_prosjektleder",
+        "Byarkitekt": "by_arkitekt",
+        "Direktør (byutvikling)": "by_prosjektleder"
+      },
+      "future_split_candidates": [
+        {
+          "role_scope": "by_myndighet_og_politikk",
+          "candidate_badge_titles": [
+            "Seksjonsleder",
+            "Fagsjef (plan/bygg)",
+            "Direktør (byutvikling)"
+          ],
+          "reason": "Kan senere få egen spillmekanikk for politisk bestilling, forvaltningsmakt, budsjett og offentlig ansvar. Foreløpig samles de i by_prosjektleder."
+        },
+        {
+          "role_scope": "byarkitekt_fagmyndighet",
+          "candidate_badge_titles": [
+            "Byarkitekt"
+          ],
+          "reason": "Kan senere få egen rolle som fagmyndighet for helhetlig byform, arkitekturpolitikk og offentlig bykvalitet. Foreløpig samles den i by_arkitekt."
+        }
+      ]
+    }
+  }
+}

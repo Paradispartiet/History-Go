@@ -38,7 +38,8 @@
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
     naer_formann: "formann",
-    naer_controller: "controller"
+    naer_controller: "controller",
+    naer_avdelingsleder: "avdelingsleder"
   };
 
   const ROLE_SCOPE_BY_TITLE = {
@@ -50,7 +51,23 @@
     fagarbeider: "fagarbeider",
     mellomleder: "mellomleder",
     formann: "formann",
-    controller: "controller"
+    controller: "controller",
+    finansanalytiker: "controller",
+    okonomi_og_finanssjef: "controller",
+    finansdirektor: "controller",
+    avdelingsleder: "avdelingsleder",
+    driftsleder: "avdelingsleder",
+    produksjonsleder: "avdelingsleder",
+    butikksjef_enhetsleder: "avdelingsleder",
+    daglig_leder: "avdelingsleder",
+    grunder: "mellomleder",
+    bedriftseier: "mellomleder",
+    konserndirektor: "mellomleder",
+    konsernsjef: "mellomleder",
+    investor: "mellomleder",
+    kapitalforvalter: "mellomleder",
+    industribygger: "mellomleder",
+    industrieier: "mellomleder"
   };
 
   const jsonCache = new Map();
@@ -120,6 +137,7 @@
     if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";
     if (roleKey === "naer_formann" || roleKey === "formann") return "formann";
     if (roleKey === "naer_controller" || roleKey === "controller" || roleKey.includes("controller")) return "controller";
+    if (roleKey === "naer_avdelingsleder" || roleKey === "avdelingsleder" || roleKey.includes("avdelingsleder")) return "avdelingsleder";
 
     return titleKey;
   }

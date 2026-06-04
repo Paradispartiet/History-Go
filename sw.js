@@ -3,7 +3,7 @@
    Oppdatert: 2026-05-02
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-05-24-v1.2.735";
+const SW_VERSION = "hg-sw-2026-06-04-v1.2.739";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -26,6 +26,7 @@ const PRECACHE_URLS = [
   "css/components.css",
   "css/effects.css",
   "css/footer.css",
+  "css/fixed-shell.css",
   "css/layout.css",
   "css/map.css",
   "css/merits.css",

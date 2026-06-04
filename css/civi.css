@@ -14,6 +14,11 @@
   /* Tekst */
   --ink: #ffffff;        /* main text */
   --ink2:#e7e7e7;        /* secondary text */
+  --civi-font-base: 16px;
+  --civi-font-small: 13px;
+  --civi-font-meta: 12px;
+  --civi-font-card-title: 18px;
+  --civi-line-base: 1.45;
 
   /* Linjer/borders */
   --line:  rgba(255,255,255,0.14);
@@ -69,7 +74,8 @@ body.civi-app{
 
   color:var(--ink);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  line-height:1.35;
+  font-size: var(--civi-font-base);
+  line-height: var(--civi-line-base);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -865,7 +871,7 @@ body.civi-mapmode .civi-panels{
 
 .civi-inbox-subheading{
   margin: 12px 2px 8px;
-  font-size: 12px;
+  font-size: var(--civi-font-small);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;

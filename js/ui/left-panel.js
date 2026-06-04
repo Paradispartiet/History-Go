@@ -549,3 +549,5 @@ window.setNearbyCollapsed = function (hidden) {
 
 window.initLeftPanel = initLeftPanel;
 window.initPlaceCardCollapse = initPlaceCardCollapse;
+window.rerenderActiveLeftPanelMode = rerenderActiveLeftPanelMode;
+window.renderActiveLeftPanelModeNow = renderActiveLeftPanelModeNow;

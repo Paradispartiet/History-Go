@@ -70,12 +70,30 @@
     }, { job: [], private: [], system: [], unknown: [] });
   }
 
+  const inboxFilters = window.CivicationInboxItemFilters || (window.CivicationInboxItemFilters = {
+    eventOf: function (item) { return item?.event || item || null; },
+    normalize: function (value) { return String(value || "").trim().toLowerCase(); },
+    isOpenInboxItem: function (item) {
+      if (!item) return false;
+      if (item.deleted === true || item.archived === true || item.resolved === true) return false;
+      const status = String(item.status || "pending").trim().toLowerCase();
+      return status === "pending" || status === "open";
+    },
+    hasChoices: function (item) {
+      const ev = item?.event || item || null;
+      return Array.isArray(ev?.choices) && ev.choices.length > 0;
+    },
+    isActionableInboxItem: function (item) {
+      return this.isOpenInboxItem(item) && this.hasChoices(item);
+    }
+  });
+
   function eventOf(item) {
-    return item?.event || item || null;
+    return inboxFilters.eventOf(item);
   }
 
   function normalize(value) {
-    return String(value || "").trim().toLowerCase();
+    return inboxFilters.normalize(value);
   }
 
   function escapeHtml(value) {
@@ -92,14 +110,15 @@
   }
 
   function isOpenItem(item) {
-    if (!item) return false;
-    const status = normalize(item?.status || "pending");
-    return (status === "pending" || status === "open") && item.resolved !== true;
+    return inboxFilters.isOpenInboxItem(item);
   }
 
   function hasChoices(item) {
-    const ev = eventOf(item);
-    return Array.isArray(ev?.choices) && ev.choices.length > 0;
+    return inboxFilters.hasChoices(item);
+  }
+
+  function isActionableInboxItem(item) {
+    return inboxFilters.isActionableInboxItem(item);
   }
 
   function titleOf(item) {
@@ -154,9 +173,7 @@
     const split = splitInbox();
     return (split.messages || [])
       .concat(split.unknown || [], split.workday || [])
-      .filter(function (item) {
-        return isOpenItem(item) && hasChoices(item);
-      });
+      .filter(isActionableInboxItem);
   }
 
   function pendingMilestones() {
@@ -335,17 +352,22 @@
   function renderInboxCard(item, channelLabel) {
     const lines = bodyLinesOf(item);
     const pending = isOpenItem(item);
+    const statusLabel = pending ? "Åpen" : "Avklart";
+    const meta = metaOf(item, channelLabel);
 
     return `
       <article class="civi-inbox-card ${pending ? "is-pending" : "is-resolved"}">
         <div class="civi-inbox-card-head">
-          <div>
-            <strong>${escapeHtml(titleOf(item))}</strong>
-            <div class="muted">Fra: ${escapeHtml(fromOf(item))}</div>
+          <div class="civi-inbox-card-title-wrap">
+            <div class="civi-inbox-card-kickers">
+              <span class="civi-inbox-channel-chip">${escapeHtml(channelLabel)}</span>
+              <span class="civi-inbox-status">${escapeHtml(statusLabel)}</span>
+            </div>
+            <h4>${escapeHtml(titleOf(item))}</h4>
+            <p class="civi-inbox-sender">Fra: ${escapeHtml(fromOf(item))}</p>
           </div>
-          <span class="civi-inbox-status">${pending ? "Åpen" : "Avklart"}</span>
         </div>
-        <div class="muted">${escapeHtml(metaOf(item, channelLabel))}</div>
+        ${meta ? `<div class="civi-inbox-meta muted">${escapeHtml(meta)}</div>` : ""}
         ${lines.length ? `<div class="civi-inbox-body">${lines.map(function (line) {
           return `<p>${escapeHtml(line)}</p>`;
         }).join("")}</div>` : ""}
@@ -356,7 +378,7 @@
 
   function isResolved(item) {
     const status = normalize(item?.status);
-    return item?.resolved === true || status === "resolved" || status === "answered";
+    return item?.resolved === true || status === "resolved" || status === "answered" || status === "closed";
   }
 
   function renderInboxSection(label, intro, items, emptyText) {
@@ -365,7 +387,7 @@
 
     const openItems = visible.filter(isOpenItem);
 
-    const resolvedItems = visible.filter(isResolved);
+    const resolvedItems = visible.filter(function (item) { return !isOpenItem(item) || isResolved(item); });
     const pendingCount = openItems.length;
 
     return `
@@ -383,7 +405,14 @@
             : `<div class="civi-inbox-empty muted">${escapeHtml(emptyText)}</div>`
           }
           ${resolvedItems.length
-            ? `<p class="civi-inbox-subheading muted">Avklart</p>${resolvedItems.map(function (item) { return renderInboxCard(item, label); }).join("")}`
+            ? `
+              <details class="civi-inbox-history">
+                <summary>Vis gamle meldinger (${resolvedItems.length})</summary>
+                <div class="civi-inbox-history-list">
+                  ${resolvedItems.map(function (item) { return renderInboxCard(item, label); }).join("")}
+                </div>
+              </details>
+            `
             : ""
           }
         </div>

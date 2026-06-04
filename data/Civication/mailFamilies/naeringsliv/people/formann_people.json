@@ -5,6 +5,1226 @@
   "mail_type": "people",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_formann_private",
+      "purpose": "Private/personlige Praksisfortellinger for formann uke 1: rollen tas med hjem, men skilles fra jobbmail i egen privat kanal.",
+      "learning_focus": [
+        "rolleidentitet",
+        "relasjoner",
+        "hvile",
+        "kontrollbehov"
+      ],
+      "mails": [
+        {
+          "id": "personal_formann_week1_role_home",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 129,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Rollen du tar med hjem",
+          "summary": "Fra: Privat notat\nEmne: Etter første dag\nBody:\nDu går hjem med tavla fortsatt i hodet.\nIkke som et bilde. Mer som et rom der alle fortsatt står og venter på fordeling.\nArvids rygg. Noor som prøvde å følge med. Simen som ble irritert da han fikk restpunkt. Kari som sa “forsvarlig” med ledelsesstemme.\nDu er ferdig på jobb. Rollen er ikke helt ferdig med deg.",
+          "purpose": "Praksisfortellinger – formann pakke 1: Første uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Etter første dag\nBody:\nDu går hjem med tavla fortsatt i hodet.\nIkke som et bilde. Mer som et rom der alle fortsatt står og venter på fordeling.\nArvids rygg. Noor som prøvde å følge med. Simen som ble irritert da han fikk restpunkt. Kari som sa “forsvarlig” med ledelsesstemme.\nDu er ferdig på jobb. Rollen er ikke helt ferdig med deg.",
+            "Fra: Jonas\nEmne: Så nå er du sjef?\nBody:\nSå nå er du sjef?\nSkal jeg begynne å sende deg søknader om å få henge?"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare med humor",
+              "reply": "Jeg svarer at jeg er sjef for tavla, ikke verden.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_role_home_humor",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "stress": -1,
+                  "self_awareness": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "relationship_jonas",
+                  "mood"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Svare ærlig",
+              "reply": "Jeg svarer at det er rarere enn jeg trodde å ha ansvar for andre.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_role_home_honest",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "energy": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "self_awareness",
+                  "relationship_jonas"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare",
+              "reply": "Jeg lar meldingen ligge og prøver å koble av.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_role_home_no_reply",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_jonas": -1,
+                  "guilt": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "energy",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_friend_power",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 127,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som tror du har fått makt",
+          "summary": "Fra: Sara\nEmne: Hvordan er det å være formann?\nBody:\nHvordan er det egentlig?\nFøles det som mer makt, eller mest som flere ting som kan gå galt?",
+          "purpose": "Praksisfortellinger – formann pakke 1: Første uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Sara\nEmne: Hvordan er det å være formann?\nBody:\nHvordan er det egentlig?\nFøles det som mer makt, eller mest som flere ting som kan gå galt?",
+            "Fra: Jonas\nEmne: Sjefslivet\nBody:\nJeg ser for meg at du går rundt med kaffekopp og peker på ting.\nIkke ødelegg bildet."
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare ansvaret",
+              "reply": "Jeg skriver at det føles mer som ansvar enn makt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_friend_power_explained",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "energy": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "role_explained",
+                  "relationship_sara",
+                  "self_awareness",
+                  "stress",
+                  "energy"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spille med",
+              "reply": "Jeg spiller med på sjefsbildet og tuller med kaffekopp og peking.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_friend_power_joke",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "self_awareness": -1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "joke_over_role",
+                  "relationship_jonas",
+                  "mood",
+                  "self_awareness",
+                  "stress"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Trekke deg unna",
+              "reply": "Jeg svarer kort og bytter tema.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_friend_power_avoid",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_sara": -1,
+                  "relationship_jonas": 0,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "role_avoidance_private",
+                  "energy",
+                  "relationship_sara",
+                  "relationship_jonas",
+                  "stagnation_private"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_dinner_as_shift",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 126,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Middagen du styrer som et skift",
+          "summary": "Fra: Sara\nEmne: Middag i kveld?\nBody:\nSkal vi lage middag sammen i kveld?\nJeg kan handle, du kan lage, eller motsatt. Ikke gjør det til et prosjekt.",
+          "purpose": "Praksisfortellinger – formann pakke 1: Første uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Sara\nEmne: Middag i kveld?\nBody:\nSkal vi lage middag sammen i kveld?\nJeg kan handle, du kan lage, eller motsatt. Ikke gjør det til et prosjekt.",
+            "Fra: Privat notat\nEmne: Etter jobb\nBody:\nDu merker at du begynner å fordele oppgaver i hodet.\nHandle. Kutte. Rydde. Spise. Vaske.\nSelv middag begynner å ligne en liten tavle."
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Slippe kontrollen",
+              "reply": "Jeg sier at Sara kan bestemme, og lar kvelden være enkel.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_dinner_as_shift_release",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 2,
+                  "stress": -1,
+                  "control": -1,
+                  "energy": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "release_control",
+                  "relationship_sara",
+                  "stress",
+                  "control",
+                  "energy"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Organisere alt",
+              "reply": "Jeg planlegger handling, matlaging og rydding så det går effektivt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_dinner_as_shift_home_shift",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "relationship_sara": -1,
+                  "stress": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "home_as_shift",
+                  "control",
+                  "relationship_sara",
+                  "stress",
+                  "stagnation_private"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Avlyse",
+              "reply": "Jeg sier at jeg ikke orker å lage eller organisere noe i kveld.",
+              "effect": 0,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_dinner_as_shift_cancel",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_sara": -1,
+                  "guilt": 1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "rest_with_relation_cost",
+                  "energy",
+                  "relationship_sara",
+                  "guilt",
+                  "stress"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_answering_like_formann",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Meldingen du svarer som formann",
+          "summary": "Fra: Jonas\nEmne: Lørdag\nBody:\nHva gjør vi lørdag?\nFilm, øl, mat, ingenting? Jeg trenger en avgjørelse fra tavlemonarken.",
+          "purpose": "Praksisfortellinger – formann pakke 1: Første uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Jonas\nEmne: Lørdag\nBody:\nHva gjør vi lørdag?\nFilm, øl, mat, ingenting? Jeg trenger en avgjørelse fra tavlemonarken.",
+            "Fra: Privat notat\nEmne: Svarutkast\nBody:\nDu begynner å skrive:\n“Prioritering: mat først, så film. Oppmøte 19.00.”\nDu stopper før du sender.\nKanskje."
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare normalt",
+              "reply": "Jeg svarer enkelt og menneskelig: mat og film kl. 19 hvis han vil.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_answering_like_formann_normal",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "self_awareness": 1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "normal_private_tone",
+                  "relationship_jonas",
+                  "self_awareness",
+                  "stress"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Svare styrende",
+              "reply": "Jeg sender et effektivt, nesten arbeidsmessig svar.",
+              "effect": 0,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_answering_like_formann_work_tone",
+              "effects": {
+                "stats": {
+                  "control": 1,
+                  "relationship_jonas": -1,
+                  "stagnation_private": 1,
+                  "self_awareness": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "work_tone_leaks",
+                  "control",
+                  "relationship_jonas",
+                  "stagnation_private",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Utsette svaret",
+              "reply": "Jeg lar meldingen ligge fordi jeg ikke orker flere avgjørelser.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_answering_like_formann_fatigue",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_jonas": -1,
+                  "guilt": 1,
+                  "decision_fatigue": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "decision_fatigue",
+                  "energy",
+                  "relationship_jonas",
+                  "guilt",
+                  "decision_fatigue"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_weekend_without_board",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 124,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten tavle",
+          "summary": "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nFredag kommer med en merkelig frihet.\nIngen tavle.\nIngen soner.\nIngen som spør hvem som skal hvor.\nLikevel står hodet og fordeler helgen som om den også må bemannes.",
+          "purpose": "Praksisfortellinger – formann pakke 1: Første uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nFredag kommer med en merkelig frihet.\nIngen tavle.\nIngen soner.\nIngen som spør hvem som skal hvor.\nLikevel står hodet og fordeler helgen som om den også må bemannes.",
+            "Fra: Sara\nEmne: Helg\nBody:\nHva trenger du denne helgen?\nIkke hva burde du gjøre.\nHva trenger du?",
+            "Fra: Jonas\nEmne: Tavlefri?\nBody:\nEr du tavlefri i helgen, eller skal du fordele snacks og sofaplass også?"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme én hel dag",
+              "reply": "Jeg bestemmer at én dag skal være uten planer, fordeling eller ansvar.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_weekend_without_board_board_free",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 3,
+                  "stress": -2,
+                  "autonomy_private": 2,
+                  "relationship_sara": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "board_free_recovery",
+                  "energy_weekend",
+                  "stress",
+                  "autonomy_private",
+                  "relationship_sara"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Være sosial, men enkelt",
+              "reply": "Jeg møter Jonas eller Sara uten å lage opplegg ut av det.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_weekend_without_board_simple_social",
+              "effects": {
+                "stats": {
+                  "relationship_private": 2,
+                  "mood": 1,
+                  "energy_weekend": -1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "simple_social_repair",
+                  "relationship_private",
+                  "mood",
+                  "energy_weekend",
+                  "stress"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Planlegge hele helgen",
+              "reply": "Jeg lager plan for alt jeg skal rekke i helgen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_weekend_without_board_weekend_shift",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "energy_weekend": -2,
+                  "stress": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "weekend_as_shift",
+                  "control",
+                  "energy_weekend",
+                  "stress",
+                  "stagnation_private"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "La alt stå åpent",
+              "reply": "Jeg bestemmer meg ikke og lar alle avtaler henge.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "triggers_on_choice": "personal_formann_week1_weekend_without_board_open_board",
+              "effects": {
+                "stats": {
+                  "guilt": 2,
+                  "control": -1,
+                  "stagnation_private": 2,
+                  "energy_weekend": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "open_board_weekend",
+                  "guilt",
+                  "control",
+                  "stagnation_private",
+                  "energy_weekend"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "personal_formann_week1_role_home_humor",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Tavlemonark",
+          "summary": "Tavlemonark.",
+          "situation": [
+            "Tavlemonark.\nDet høres faktisk farligere ut enn sjef."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_role_home_honest",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Skjønner",
+          "summary": "Det gir mening.",
+          "situation": [
+            "Det gir mening.\nDet er sikkert annerledes å kjenne jobben, men plutselig måtte bestemme over folk som også kjenner den."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_role_home_no_reply",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ubesvart",
+          "summary": "Du lar meldingen ligge.",
+          "situation": [
+            "Du lar meldingen ligge.\nDet er ikke feil.\nMen det er enda en liten ting som ikke er avsluttet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_friend_power_explained",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Det gir mening",
+          "summary": "Det gir mening.",
+          "situation": [
+            "Det gir mening.\nMakt uten kontroll er kanskje bare ansvar i dårlig lys."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_friend_power_joke",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Visste det",
+          "summary": "Visste det.",
+          "situation": [
+            "Visste det.\nDu har blitt peke-fyr."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_friend_power_avoid",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Temaet",
+          "summary": "Du slipper å forklare.",
+          "situation": [
+            "Du slipper å forklare.\nMen rollen blir ikke mindre virkelig av at du ikke beskriver den."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_dinner_as_shift_release",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Enkelt",
+          "summary": "Det var fint at du ikke gjorde dette til et opplegg.",
+          "situation": [
+            "Det var fint at du ikke gjorde dette til et opplegg.\nBare middag. Det holdt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_dinner_as_shift_home_shift",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du er fortsatt på jobb",
+          "summary": "Du vet at du organiserte middagen som et skift, ikke sant?",
+          "situation": [
+            "Du vet at du organiserte middagen som et skift, ikke sant?\nDet var effektivt. Ikke nødvendigvis hyggelig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_dinner_as_shift_cancel",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Skjønner",
+          "summary": "Skjønner.",
+          "situation": [
+            "Skjønner.\nMen da må du si det tidligere neste gang. Jeg hadde begynt å handle."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_answering_like_formann_normal",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Der ja",
+          "summary": "Mat og film kl. 19.",
+          "situation": [
+            "Mat og film kl. 19.\nSe, du kan være vanlig person også."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_answering_like_formann_work_tone",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Haha?",
+          "summary": "Dette var enten veldig effektivt eller litt skummelt.",
+          "situation": [
+            "Dette var enten veldig effektivt eller litt skummelt.\nJeg møter 19.00, formann."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_answering_like_formann_fatigue",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Enda en avgjørelse",
+          "summary": "Det er ikke invitasjonen som er tung.",
+          "situation": [
+            "Det er ikke invitasjonen som er tung.\nDet er at den også krever en beslutning."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_weekend_without_board_board_free",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ingen tavle",
+          "summary": "Dagen ser nesten tom ut.",
+          "situation": [
+            "Dagen ser nesten tom ut.\nSå merker du at tom ikke betyr bortkastet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_weekend_without_board_simple_social",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Enkelt",
+          "summary": "Det var ikke effektivt.",
+          "situation": [
+            "Det var ikke effektivt.\nDet var kanskje derfor det hjalp."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_weekend_without_board_weekend_shift",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du gjorde det igjen",
+          "summary": "Du gjorde helgen til en arbeidsplan.",
+          "situation": [
+            "Du gjorde helgen til en arbeidsplan.\nJeg sier ikke at det er feil.\nBare at jeg tror du er mer sliten enn planen din innrømmer."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week1_weekend_without_board_open_board",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Åpent",
+          "summary": "Alt er mulig.",
+          "situation": [
+            "Alt er mulig.\nDet er også derfor ingenting føles avklart."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "erfaren_som_tester_deg",
       "mails": [
         {
@@ -28,14 +1248,20 @@
               "id": "A",
               "label": "Gå i direkte samtale og invitere til tydelig faglig ærlighet",
               "effect": 1,
-              "tags": ["care", "legitimacy"],
+              "tags": [
+                "care",
+                "legitimacy"
+              ],
               "feedback": "Du møter testen med åpenhet og gjør forholdet mindre rent hierarkisk."
             },
             {
               "id": "B",
               "label": "Holde deg i rollen og la praksisen gradvis bevise deg",
               "effect": 0,
-              "tags": ["control", "distance"],
+              "tags": [
+                "control",
+                "distance"
+              ],
               "feedback": "Du beskytter autoriteten og lar tilliten komme tregere."
             }
           ]
@@ -61,14 +1287,20 @@
               "id": "A",
               "label": "Vise at du ser nyansen og svare med presisjon heller enn makt",
               "effect": 1,
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "feedback": "Du gjør ledelse til lesning, ikke bare markering."
             },
             {
               "id": "B",
               "label": "Markere tydeligere for å stoppe prøvingen før den vokser",
               "effect": 0,
-              "tags": ["control", "risk"],
+              "tags": [
+                "control",
+                "risk"
+              ],
               "feedback": "Du setter grensen raskt og gjør rommet litt hardere."
             }
           ]
@@ -99,14 +1331,20 @@
               "id": "A",
               "label": "Bruke tid på å forklare både rytme og begrunnelser",
               "effect": 1,
-              "tags": ["care", "process"],
+              "tags": [
+                "care",
+                "process"
+              ],
               "feedback": "Du gjør opplæringen saktere og dypere."
             },
             {
               "id": "B",
               "label": "La læringen skje gjennom tempo, observasjon og etteraping",
               "effect": 0,
-              "tags": ["speed", "distance"],
+              "tags": [
+                "speed",
+                "distance"
+              ],
               "feedback": "Du holder farten oppe og lar noe av forståelsen bli tilfeldig."
             }
           ]
@@ -132,14 +1370,20 @@
               "id": "A",
               "label": "Stoppe opp og avklare usikkerheten eksplisitt",
               "effect": 1,
-              "tags": ["care", "visibility"],
+              "tags": [
+                "care",
+                "visibility"
+              ],
               "feedback": "Du gjør læringsrommet tydeligere og tempoet mykere."
             },
             {
               "id": "B",
               "label": "Stramme rytmen og få vedkommende med gjennom bevegelse",
               "effect": 0,
-              "tags": ["process", "risk"],
+              "tags": [
+                "process",
+                "risk"
+              ],
               "feedback": "Du holder dagen sammen og lar noe av tvilen ligge under overflaten."
             }
           ]
@@ -170,14 +1414,20 @@
               "id": "A",
               "label": "Sette ord på slitasjen og justere forventningene tydelig",
               "effect": 1,
-              "tags": ["care", "visibility"],
+              "tags": [
+                "care",
+                "visibility"
+              ],
               "feedback": "Du gir slit et språk og gjør ledelse mindre lik stilltiende pressing."
             },
             {
               "id": "B",
               "label": "Bære laget videre uten å gjøre slitasjen til eget tema",
               "effect": 0,
-              "tags": ["strain", "control"],
+              "tags": [
+                "strain",
+                "control"
+              ],
               "feedback": "Du kjøper arbeidsro og gjør trettheten mindre synlig enn den er."
             }
           ]
@@ -208,15 +1458,1222 @@
               "id": "A",
               "label": "Stå roligere i din egen vurdering av hva laget trenger",
               "effect": 1,
-              "tags": ["legitimacy", "risk"],
+              "tags": [
+                "legitimacy",
+                "risk"
+              ],
               "feedback": "Du lar ikke blikket ovenfra alene bestemme hvordan du leder nedenfra."
             },
             {
               "id": "B",
               "label": "Justere deg mer mot det ledelsen ser etter",
               "effect": 0,
-              "tags": ["visibility", "control"],
+              "tags": [
+                "visibility",
+                "control"
+              ],
               "feedback": "Du blir lettere å lese oppover og litt fjernere å kjenne igjen på gulvet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "second_week_praksisfortellinger_formann_private",
+      "purpose": "Private/personlige Praksisfortellinger for formann uke 2: ansvar i kroppen, beslutningstretthet, rollegrense og hvile.",
+      "learning_focus": [
+        "privat restitusjon",
+        "rollegrense",
+        "relasjoner",
+        "beslutningstretthet"
+      ],
+      "mails": [
+        {
+          "id": "personal_formann_week2_monday_responsibility_body",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 128,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Mandagskvelden med ansvar i kroppen",
+          "summary": "Fra: Privat notat\nEmne: Mandag kveld\nBody:\nDu kjenner det i kjeven før du kjenner det i tankene.\nIkke frykt. Ikke egentlig sinne.\nMer en slags beredskap. Som om noen fortsatt kan komme bort og si at fordelingen var feil.\nDu er hjemme, men kroppen står fortsatt ved tavla.",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Mandag kveld\nBody:\nDu kjenner det i kjeven før du kjenner det i tankene.\nIkke frykt. Ikke egentlig sinne.\nMer en slags beredskap. Som om noen fortsatt kan komme bort og si at fordelingen var feil.\nDu er hjemme, men kroppen står fortsatt ved tavla.",
+            "Fra: Sara\nEmne: Hvordan gikk mandag?\nBody:\nHvordan gikk det i dag?\nDu skrev forrige uke at rollen føltes mer som ansvar enn makt. Føles det fortsatt sånn?"
+          ],
+          "task_domain": "privat_restitusjon_rollegrense",
+          "choice_axis": "nærhet_hvile_kontroll_ansvar",
+          "consequence_axis": "relasjon_restitusjon_rolletrykk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare ærlig om beredskap",
+              "reply": "Jeg skriver at det er vanskelig å skru av følelsen av å være ansvarlig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "honest_responsibility_afterwork_thread",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "energy": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_honest",
+                  "relationship_sara",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spøke det bort",
+              "reply": "Jeg svarer at tavla fortsatt bor i hodet, men at jeg overlever.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "humor_release_thread",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "self_awareness": 0,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_humor",
+                  "relationship_sara",
+                  "mood"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare",
+              "reply": "Jeg lar meldingen ligge og prøver å ikke tenke mer på jobben.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "silence_after_responsibility_thread",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_sara": -1,
+                  "guilt": 1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_silence",
+                  "energy",
+                  "relationship_sara"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week2_friend_wants_decision",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 127,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som vil ha en avgjørelse",
+          "summary": "Fra: Jonas\nEmne: Lørdag, faktisk avgjørelse\nBody:\nOk, tavlemonark.\nLørdag: film, øl, mat eller ingenting?\nJeg trenger en faktisk avgjørelse, ikke en arbeidsgruppe.",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Jonas\nEmne: Lørdag, faktisk avgjørelse\nBody:\nOk, tavlemonark.\nLørdag: film, øl, mat eller ingenting?\nJeg trenger en faktisk avgjørelse, ikke en arbeidsgruppe.",
+            "Fra: Privat notat\nEmne: Enda en beslutning\nBody:\nDet er ikke vanskelig å velge film eller mat.\nDet vanskelige er at alt i deg har brukt dagen på å velge, fordele, svare og stå i små reaksjoner.\nNå spør en venn om noe hyggelig, og kroppen hører bare: avgjørelse."
+          ],
+          "task_domain": "privat_restitusjon_rollegrense",
+          "choice_axis": "nærhet_hvile_kontroll_ansvar",
+          "consequence_axis": "relasjon_restitusjon_rolletrykk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Velge konkret",
+              "reply": "Jeg velger mat og film kl. 19.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "small_clear_private_decision_thread",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "control": 1,
+                  "decision_fatigue": -1,
+                  "energy": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_decision",
+                  "relationship_jonas",
+                  "control"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be Jonas velge",
+              "reply": "Jeg sier at Jonas kan velge, fordi jeg ikke orker flere avgjørelser.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "delegated_private_choice_thread",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "decision_fatigue": -1,
+                  "control": -1,
+                  "self_awareness": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_delegates",
+                  "relationship_jonas",
+                  "decision_fatigue"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Utsette",
+              "reply": "Jeg svarer at vi kan se det an.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "private_decision_avoidance_thread",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": -1,
+                  "guilt": 1,
+                  "stagnation_private": 1,
+                  "decision_fatigue": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_avoidance",
+                  "relationship_jonas",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week2_answers_like_team",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 126,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "mamma",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du svarer alle som om de er laget ditt",
+          "summary": "Fra: Mamma\nEmne: Kan du hjelpe søndag?\nBody:\nHei,\nKan du hjelpe meg med noen ting søndag?\nDet er ikke tungt, men jeg trenger litt oversikt og noen som kan få det gjort.",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Mamma\nEmne: Kan du hjelpe søndag?\nBody:\nHei,\nKan du hjelpe meg med noen ting søndag?\nDet er ikke tungt, men jeg trenger litt oversikt og noen som kan få det gjort.",
+            "Fra: Sara\nEmne: Du skriver annerledes\nBody:\nDu skriver litt annerledes om dagen.\nIkke feil. Bare mer sånn: “vi må avklare kapasitet”.\nJeg vet ikke om jeg liker at jobben har begynt å få språket ditt."
+          ],
+          "task_domain": "privat_restitusjon_rollegrense",
+          "choice_axis": "nærhet_hvile_kontroll_ansvar",
+          "consequence_axis": "relasjon_restitusjon_rolletrykk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare personlig, ikke som formann",
+              "reply": "Jeg svarer mamma og Sara med vanlige ord, ikke arbeidsformuleringer.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "private_language_reclaimed_thread",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "relationship_family": 1,
+                  "self_awareness": 2,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_language",
+                  "relationship_sara",
+                  "relationship_family"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Svare effektivt og styrende",
+              "reply": "Jeg svarer med tydelig plan, tidspunkt og oppgavefordeling.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "private_life_managed_thread",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "relationship_sara": -1,
+                  "relationship_family": 0,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_managed",
+                  "control",
+                  "relationship_sara"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare før senere",
+              "reply": "Jeg utsetter svarene fordi jeg ikke orker å være verken privat eller formann akkurat nå.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "role_fatigue_silence_thread",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "guilt": 2,
+                  "relationship_sara": -1,
+                  "relationship_family": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_fatigue",
+                  "energy",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week2_sleep_after_near_miss",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Søvnen etter nestenulykken",
+          "summary": "Fra: Privat notat\nEmne: Kveld\nBody:\nNoor ble ikke skadet.\nDet er fakta.\nLikevel spiller hodet av det lille øyeblikket flere ganger: foten, balansen, utstyret i ganglinja, lyden av folk som stoppet.\nDet skjedde nesten ingenting.\nNesten ingenting kan være mye.",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Kveld\nBody:\nNoor ble ikke skadet.\nDet er fakta.\nLikevel spiller hodet av det lille øyeblikket flere ganger: foten, balansen, utstyret i ganglinja, lyden av folk som stoppet.\nDet skjedde nesten ingenting.\nNesten ingenting kan være mye.",
+            "Fra: Sara\nEmne: Du virker fjern\nBody:\nDu virker litt fjern i kveld.\nSkjedde det noe på jobb?"
+          ],
+          "task_domain": "privat_restitusjon_rollegrense",
+          "choice_axis": "nærhet_hvile_kontroll_ansvar",
+          "consequence_axis": "relasjon_restitusjon_rolletrykk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fortelle om nestenulykken",
+              "reply": "Jeg forteller Sara at ingen ble skadet, men at det satte seg mer enn jeg ventet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "shared_near_miss_weight_thread",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "stress": -1,
+                  "self_awareness": 2,
+                  "sleep_quality": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_near_miss_shared",
+                  "relationship_sara",
+                  "stress"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at alt er greit",
+              "reply": "Jeg sier at alt er greit, og prøver å la det ligge.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "suppressed_near_miss_thread",
+              "effects": {
+                "stats": {
+                  "stress": 1,
+                  "self_awareness": -1,
+                  "sleep_quality": -1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_suppressed",
+                  "stress",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Skrive det ned",
+              "reply": "Jeg skriver ned hva som skjedde og hva jeg gjorde riktig og feil.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "private_incident_processing_thread",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "sleep_quality": 1,
+                  "self_awareness": 2,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_processing",
+                  "control",
+                  "sleep_quality"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_formann_week2_weekend_not_responsible",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 124,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten å være ansvarlig",
+          "summary": "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nHelgen starter uten tavle.\nMen ikke uten mønster.\nDu leter nesten etter hva som må fordeles, hvem som trenger noe, hva som kan gå galt.\nDet er uvant å ikke være den som skal få alt til å henge sammen.",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nHelgen starter uten tavle.\nMen ikke uten mønster.\nDu leter nesten etter hva som må fordeles, hvem som trenger noe, hva som kan gå galt.\nDet er uvant å ikke være den som skal få alt til å henge sammen.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen: kan vi gjøre noe der du ikke organiserer alt?\nBare være der.\nIkke lede, ikke fordele, ikke optimalisere.",
+            "Fra: Jonas\nEmne: Tavlefri-test\nBody:\nJeg foreslår en test:\nDu får ikke planlegge mer enn én ting denne helgen.\nAlt annet må være normalt menneske-kaos."
+          ],
+          "task_domain": "privat_restitusjon_rollegrense",
+          "choice_axis": "nærhet_hvile_kontroll_ansvar",
+          "consequence_axis": "relasjon_restitusjon_rolletrykk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme ansvarsfri tid",
+              "reply": "Jeg setter av én dag uten praktiske oppgaver, avtaler eller ansvar for andre.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "responsibility_free_recovery_thread",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 3,
+                  "stress": -2,
+                  "autonomy_private": 2,
+                  "control": -1,
+                  "relationship_private": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_recovery",
+                  "energy_weekend",
+                  "stress"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gjøre én enkel sosial ting",
+              "reply": "Jeg møter Sara eller Jonas uten å lage plan for hele dagen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "simple_presence_thread",
+              "effects": {
+                "stats": {
+                  "relationship_private": 2,
+                  "mood": 1,
+                  "energy_weekend": 1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_presence",
+                  "relationship_private",
+                  "mood"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruke helgen til å få kontroll",
+              "reply": "Jeg lager liste over alt som må gjøres og prøver å få orden på livet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "control_instead_of_rest_thread",
+              "effects": {
+                "stats": {
+                  "control": 3,
+                  "energy_weekend": -2,
+                  "stress": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_control",
+                  "control",
+                  "energy_weekend"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "La alt flyte uten å velge",
+              "reply": "Jeg lar helgen stå åpen uten å bestemme noe.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "unstructured_drift_thread",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 0,
+                  "guilt": 2,
+                  "control": -2,
+                  "stagnation_private": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_private"
+                ],
+                "set_flags": [
+                  "formann_week2_private_drift",
+                  "guilt",
+                  "control"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "honest_responsibility_afterwork_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Det høres tungt ut",
+          "summary": "Fra: Sara\nEmne: Det høres tungt ut\nBody:\nDet høres tungt ut.\nIkke dramatisk tungt. Bare sånn som blir tungt hvis det aldri får slutte.",
+          "situation": [
+            "Fra: Sara\nEmne: Det høres tungt ut\nBody:\nDet høres tungt ut.\nIkke dramatisk tungt. Bare sånn som blir tungt hvis det aldri får slutte."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "humor_release_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Tavla igjen",
+          "summary": "Fra: Sara\nEmne: Tavla igjen\nBody:\nDu og den tavla.\nMen ja. Jeg skjønner at du tuller litt fordi det faktisk sitter i kroppen.",
+          "situation": [
+            "Fra: Sara\nEmne: Tavla igjen\nBody:\nDu og den tavla.\nMen ja. Jeg skjønner at du tuller litt fordi det faktisk sitter i kroppen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "silence_after_responsibility_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ikke svare",
+          "summary": "Fra: Privat notat\nEmne: Ikke svare\nBody:\nDu svarer ikke.\nDet gjør kvelden enklere.\nIkke nødvendigvis roligere.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Ikke svare\nBody:\nDu svarer ikke.\nDet gjør kvelden enklere.\nIkke nødvendigvis roligere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "small_clear_private_decision_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Endelig",
+          "summary": "Fra: Jonas\nEmne: Endelig\nBody:\nMat og film kl. 19.\nSe der. Du kan bestemme ting uten vernevest også.",
+          "situation": [
+            "Fra: Jonas\nEmne: Endelig\nBody:\nMat og film kl. 19.\nSe der. Du kan bestemme ting uten vernevest også."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "delegated_private_choice_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Jeg tar den",
+          "summary": "Fra: Jonas\nEmne: Jeg tar den\nBody:\nGreit. Jeg velger.\nDu får fri fra komiteen.",
+          "situation": [
+            "Fra: Jonas\nEmne: Jeg tar den\nBody:\nGreit. Jeg velger.\nDu får fri fra komiteen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "private_decision_avoidance_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Klassisk",
+          "summary": "Fra: Jonas\nEmne: Klassisk\nBody:\n“Se det an” er ikke en plan.\nMen ok.",
+          "situation": [
+            "Fra: Jonas\nEmne: Klassisk\nBody:\n“Se det an” er ikke en plan.\nMen ok."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "private_language_reclaimed_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Der var du",
+          "summary": "Fra: Sara\nEmne: Der var du\nBody:\nDer var du litt mer deg.\nIkke at formann-deg er falsk. Bare litt slitsom å få melding fra.",
+          "situation": [
+            "Fra: Sara\nEmne: Der var du\nBody:\nDer var du litt mer deg.\nIkke at formann-deg er falsk. Bare litt slitsom å få melding fra."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "private_life_managed_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Nettopp",
+          "summary": "Fra: Sara\nEmne: Nettopp\nBody:\nJa, dette var det jeg mente.\nDet er ryddig.\nMen det føles som å bli satt på en vaktliste.",
+          "situation": [
+            "Fra: Sara\nEmne: Nettopp\nBody:\nJa, dette var det jeg mente.\nDet er ryddig.\nMen det føles som å bli satt på en vaktliste."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "role_fatigue_silence_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "To ubesvarte",
+          "summary": "Fra: Privat notat\nEmne: To ubesvarte\nBody:\nTo meldinger ligger der.\nIkke som kriser.\nSom små rom du ikke orker å gå inn i.",
+          "situation": [
+            "Fra: Privat notat\nEmne: To ubesvarte\nBody:\nTo meldinger ligger der.\nIkke som kriser.\nSom små rom du ikke orker å gå inn i."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "shared_near_miss_weight_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Det skjønner jeg",
+          "summary": "Fra: Sara\nEmne: Det skjønner jeg\nBody:\nDet skjønner jeg.\nAnsvar er kanskje tyngst når man ser hva som kunne skjedd, ikke bare det som skjedde.",
+          "situation": [
+            "Fra: Sara\nEmne: Det skjønner jeg\nBody:\nDet skjønner jeg.\nAnsvar er kanskje tyngst når man ser hva som kunne skjedd, ikke bare det som skjedde."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "suppressed_near_miss_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Greit",
+          "summary": "Fra: Privat notat\nEmne: Greit\nBody:\nDu sier greit.\nHodet ber om en mer presis rapport.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Greit\nBody:\nDu sier greit.\nHodet ber om en mer presis rapport."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "private_incident_processing_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Notat",
+          "summary": "Fra: Privat notat\nEmne: Notat\nBody:\nNår det står på skjermen, blir det mindre uformelig.\nIkke mindre alvorlig.\nBare mulig å legge fra seg.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Notat\nBody:\nNår det står på skjermen, blir det mindre uformelig.\nIkke mindre alvorlig.\nBare mulig å legge fra seg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "responsibility_free_recovery_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ikke ansvarlig",
+          "summary": "Fra: Privat notat\nEmne: Ikke ansvarlig\nBody:\nDet tar tid før kroppen skjønner at ingen venter på fordeling.\nSå, litt etter litt, begynner dagen å tilhøre deg.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Ikke ansvarlig\nBody:\nDet tar tid før kroppen skjønner at ingen venter på fordeling.\nSå, litt etter litt, begynner dagen å tilhøre deg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "simple_presence_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Dette var bedre",
+          "summary": "Fra: Sara\nEmne: Dette var bedre\nBody:\nDette var bedre.\nIkke fordi vi gjorde så mye.\nFordi du ikke prøvde å holde styr på alt.",
+          "situation": [
+            "Fra: Sara\nEmne: Dette var bedre\nBody:\nDette var bedre.\nIkke fordi vi gjorde så mye.\nFordi du ikke prøvde å holde styr på alt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "control_instead_of_rest_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Orden",
+          "summary": "Fra: Privat notat\nEmne: Orden\nBody:\nDu fikk mer orden.\nMen du fikk ikke helt fri.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Orden\nBody:\nDu fikk mer orden.\nMen du fikk ikke helt fri."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "unstructured_drift_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_formann_private",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Åpent",
+          "summary": "Fra: Privat notat\nEmne: Åpent\nBody:\nDu slipper å planlegge.\nMen du slipper ikke følelsen av at noe burde vært valgt.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Åpent\nBody:\nDu slipper å planlegge.\nMen du slipper ikke følelsen av at noe burde vært valgt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
             }
           ]
         }

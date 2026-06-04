@@ -210,6 +210,7 @@ Vurdering:
 
 - Den første ikke-Civication places-i18n-scriptgruppen er nå konvertert til `.ts`, typecheckes og bygges separat, og kjøres via npm fra generert `dist/scripts`-output.
 - Flere Node-scripts er fortsatt tryggere å konvertere før browser-runtime fordi de ikke brytes av HTML script-tags.
+- Neste ikke-Civication TypeScript-spor inkluderer nå Node-only `tools/`, med en separat og smal tools-konfig slik at denne løypen ikke blandes inn i i18n places-scripts-løypen.
 - Civication-relaterte scripts og generatorer bør likevel ikke være første migreringsbatch nå, siden Civication bevisst holdes i JavaScript.
 - Audit-filer under `js/audits/` er derimot browser-loadede i `index.html` og bør behandles som browser-runtime inntil build finnes.
 
@@ -253,15 +254,21 @@ Den første ikke-Civication Node-only script-batchen er nå konvertert til TypeS
 
 Disse filene typecheckes med `npm run typecheck:scripts` og bygges med `npm run build:scripts` til `dist/scripts`. De kan kjøres via npm med `npm run i18n:places:audit`, `npm run i18n:places:quality` og `npm run i18n:places:worklist`, og hele løypen kan valideres samlet med `npm run i18n:places:check`. Worklist-scriptet skriver `reports/i18n-places-worklist.json`. Både `dist/` og `reports/i18n-places-worklist.json` er generert output og skal ikke committes, med mindre prosjektet senere bestemmer en annen policy for worklist-rapporten. Civication-relaterte scripts bør fortsatt ikke brukes som neste migreringsbatch nå.
 
+## Første Node-only `tools/`-kandidat
+
+Det neste ikke-Civication TypeScript-sporet er Node-only `tools/`. Første kandidat i denne løypen er `tools/check_place_emne_ids.mts`, konvertert fra `tools/check_place_emne_ids.mjs`. Toolen validerer place-data mot canonical emne-data og er ikke Civication-relatert, ikke browser-loadet og ikke del av i18n places-scripts-løypen.
+
+Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. Build-output går til `dist/tools`; fordi kildefilen er `.mts`, emitter TypeScript NodeNext en Node-kompatibel `.mjs`-fil. `npm run places:emner:check` bygger tools-output og kjører `node dist/tools/check_place_emne_ids.mjs`. Tools-sporet kan nå valideres samlet med `npm run tools:check`, som kjører typecheck, build og `places:emner:check`. `dist/` er fortsatt generert output og skal ikke committes. Civication er fortsatt deferred.
+
 ## Hva som må være på plass før første `.js` → `.ts`-konvertering
 
 Minimum før første faktiske rename:
 
-1. **Transpile-/run-strategi:** For Node-only i18n-place-scripts finnes nå `npm run build:scripts` med `tsc`-emit til `dist/scripts`; browser-runtime trenger fortsatt en separat strategi før browser-loadede filer konverteres.
+1. **Transpile-/run-strategi:** For Node-only i18n-place-scripts finnes nå `npm run build:scripts` med `tsc`-emit til `dist/scripts`; for Node-only tools finnes `npm run build:tools` med `tsc`-emit til `dist/tools`. Browser-runtime trenger fortsatt en separat strategi før browser-loadede filer konverteres.
 2. **Output-kontrakt:** For browserfiler må generert `.js` ende på samme stier som HTML forventer, eller HTML-endringen må tas i en separat planlagt PR.
 3. **Oppdatert `tsconfig`:** Inkluder relevante `.ts`-filer uten å miste `allowJs/checkJs` for resten av migreringen.
 4. **Global typeflate:** Lag eller utvid deklarasjoner for `window`-globals som deles mellom klassiske browser-scripts.
-5. **Valideringskommandoer:** `npm run typecheck`, `npm run typecheck:scripts`, `npm run build:scripts` og `git diff --check` må fortsatt kjøres etter relevante endringer. For scripts bør relevante Node-kommandoer kjøres per filgruppe.
+5. **Valideringskommandoer:** `npm run typecheck`, `npm run typecheck:scripts`, `npm run build:scripts`, `npm run typecheck:tools`, `npm run build:tools` og `git diff --check` må fortsatt kjøres etter relevante endringer. For scripts og tools bør relevante Node-kommandoer kjøres per filgruppe.
 6. **Ingen runtime-endring i rename-PR:** Første migrerings-PR bør kun endre filendelse/typing/build-konfig, ikke appflyt eller logikk.
 7. **Rollback-plan:** Hver batch må være liten nok til å kunne revertes uten å påvirke andre migreringsbatcher.
 
@@ -277,9 +284,9 @@ Minimum før første faktiske rename:
 
 ## Anbefalt migreringsrekkefølge
 
-1. **Flere Node-only scripts eller `schemas/`:** Etter fullført places-i18n scripts-løype bør neste TypeScript-spor enten være flere små ikke-Civication Node-only scripts med samme typecheck/build/npm-mønster, eller shared schema-/typegrunnlag i `schemas/`.
+1. **Node-only `tools/` eller `schemas/`:** Etter fullført places-i18n scripts-løype er neste TypeScript-spor små ikke-Civication Node-only tools med egen `typecheck:tools`/`build:tools`-konfig, eller shared schema-/typegrunnlag i `schemas/`.
 2. **Plan og typegrunnlag:** Behold alle browser-loadede `.js`; legg til/rydd shared schema- og global-typer der det trengs.
-3. **Node-only scripts:** Bruk `tsconfig.scripts.json` til typecheck og `tsconfig.scripts.build.json` til build av konverterte ikke-Civication scripts. Hold Civication-relaterte scripts deferred.
+3. **Node-only scripts og tools:** Bruk `tsconfig.scripts.json`/`tsconfig.scripts.build.json` for konverterte ikke-Civication scripts, og `tsconfig.tools.json`/`tsconfig.tools.build.json` for konverterte ikke-Civication tools. Hold Civication-relaterte scripts og tools deferred.
 4. **Ikke-Civication core/utilities:** Konverter rene utility-/core-filer først senere, og bare med generert `.js` output eller etter separat build-/runtime-PR.
 5. **Data loaders:** Konverter loaders med tydelige datatyper og fetch-resultater etter at browser-runtime-strategi finnes.
 6. **UI/DOM:** Konverter DOM-tunge UI-filer med eksplisitte elementtyper og side-spesifikke smoke checks etter at build/transpile og runtime-kontrakter er stabile.
@@ -317,9 +324,10 @@ Minimum før første faktiske rename:
    - Konverter neste små ikke-Civication `scripts/*.js`-filer etter samme typecheck/build-mønster.
    - Kjør typecheck, scripts-build og relevante Node-valideringer.
 
-7. **PR 7: Flere Node-only scripts**
-   - Konverter gjenværende avgrensede `scripts/*.js`-filer.
-   - Hold `tools/*.mjs` separat fordi de ikke er i dagens `tsconfig.json` og allerede bruker ESM.
+7. **PR 7: Første Node-only tools-løype**
+   - Konverter én avgrenset ikke-Civication `tools/*.mjs`-fil, med `tools/check_place_emne_ids.mts` som første kandidat.
+   - Bruk egen `tsconfig.tools.json`/`tsconfig.tools.build.json`, bygg til `dist/tools`, og kjør relevant npm-kommando fra generert output.
+   - Ikke bland tools-løypen inn i i18n places-scripts-løypen.
 
 8. **PR 8: Første browser-safe core batch etter build**
    - Konverter en liten gruppe ikke-DOM core-filer, for eksempel `js/core/placeIdAliases.js`, `js/core/categories.js` og `js/time-resolver.js`.

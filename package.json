@@ -6,6 +6,9 @@
     "typecheck": "tsc -p tsconfig.json",
     "typecheck:scripts": "tsc -p tsconfig.scripts.json",
     "build:scripts": "tsc -p tsconfig.scripts.build.json",
+    "typecheck:tools": "tsc -p tsconfig.tools.json",
+    "build:tools": "tsc -p tsconfig.tools.build.json",
+    "tools:check": "npm run typecheck:tools && npm run build:tools && npm run places:emner:check",
     "i18n:places:check": "npm run typecheck:scripts && npm run build:scripts && npm run i18n:places:audit && npm run i18n:places:quality && npm run i18n:places:worklist",
     "i18n:places:audit": "npm run build:scripts && node dist/scripts/i18n-audit-places.js",
     "i18n:places:quality": "npm run build:scripts && node dist/scripts/i18n-quality-places.js",
@@ -14,10 +17,10 @@
     "places:index:check": "node tools/check_places_index_sync.mjs",
     "health:places": "node tools/placeHealthReport.mjs",
     "typecheck:report": "node tools/typecheck-baseline-report.mjs",
-    "test:civication": "node tests/civication-praksisfortellinger-registry-audit.test.js && node tests/civication-praksisfortellinger-cross-role.test.js && node tests/civication-fagarbeider-first-week-praksisfortellinger.test.js && node tests/civication-fagarbeider-second-week-praksisfortellinger.test.js && node tests/civication-fagarbeider-two-week-flow.test.js && node tests/civication-first-week-praksisfortellinger.test.js && node tests/civication-second-week-praksisfortellinger.test.js && node tests/civication-praksisfortellinger-two-week-flow.test.js && node tests/civication-career-outcomes.test.js && node tests/civication-career-outcome-reachability.test.js && node tests/civication-career-outcome-view-model.test.js && node tests/civication-job-learning-view-model.test.js && node tests/civication-day-phase-ui-learning-banner.test.js && node tests/civication-day-phase-ui-reentry-lock.test.js && node tests/civication-job-eligibility.test.js && node tests/civication-job-offer-eligibility-ui.test.js && npm run audit:job-learning-profiles && npm run audit:job-knowledge-requirements",
+    "test:civication": "node tests/civication-praksisfortellinger-registry-audit.test.js && node tests/civication-praksisfortellinger-cross-role.test.js && node tests/civication-formann-first-week-praksisfortellinger.test.js && node tests/civication-formann-second-week-praksisfortellinger.test.js && node tests/civication-formann-two-week-flow.test.js && node tests/civication-fagarbeider-first-week-praksisfortellinger.test.js && node tests/civication-fagarbeider-second-week-praksisfortellinger.test.js && node tests/civication-fagarbeider-two-week-flow.test.js && node tests/civication-first-week-praksisfortellinger.test.js && node tests/civication-second-week-praksisfortellinger.test.js && node tests/civication-praksisfortellinger-two-week-flow.test.js && node tests/civication-career-outcomes.test.js && node tests/civication-career-outcome-reachability.test.js && node tests/civication-career-outcome-view-model.test.js && node tests/civication-job-learning-view-model.test.js && node tests/civication-day-phase-ui-learning-banner.test.js && node tests/civication-day-phase-ui-reentry-lock.test.js && node tests/civication-job-eligibility.test.js && node tests/civication-job-offer-eligibility-ui.test.js && npm run audit:job-learning-profiles && npm run audit:job-knowledge-requirements",
     "health:data": "node tools/dataHealthReport.mjs",
     "health": "npm run health:data",
-    "places:emner:check": "node tools/check_place_emne_ids.mjs",
+    "places:emner:check": "npm run build:tools && node dist/tools/check_place_emne_ids.mjs",
     "i18n:dupkeys:check": "node tools/check_duplicate_json_keys.mjs",
     "leksikon:ids:check": "node tools/check_leksikon_duplicate_ids.mjs",
     "places:aliases:check": "node tools/check_place_id_aliases.mjs",
@@ -25,7 +28,8 @@
     "places:import": "node tools/importPlaces.mjs",
     "audit:job-learning-profiles": "node scripts/auditJobLearningProfiles.js",
     "audit:job-knowledge-requirements": "node scripts/auditJobKnowledgeRequirements.js",
-    "audit:civication-map": "node scripts/audit-civication-historygo-map.mjs"
+    "audit:civication-map": "node scripts/audit-civication-historygo-map.mjs",
+    "civication:badge-role-audit": "node scripts/civication-badge-role-audit.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",

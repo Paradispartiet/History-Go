@@ -226,20 +226,15 @@ function renderNearbyPlaces() {
     `;
 
     item.addEventListener("click", () => {
-      const map = window.HGMap?.getMap?.() || window.MAP;
+      const placeId = String(place.id || "").trim();
+      if (!placeId) return;
 
-      if (map && Number.isFinite(place.lon) && Number.isFinite(place.lat)) {
-        map.flyTo({
-          center: [place.lon, place.lat],
-          zoom: Math.max(map.getZoom?.() || 13, 16),
-          speed: 1.1,
-          essential: true
-        });
+      const next = `#/place/${encodeURIComponent(placeId)}`;
+      if (window.HGAppRouter?.navigate) {
+        window.HGAppRouter.navigate(next);
+      } else if (location.hash !== next) {
+        location.hash = next;
       }
-
-      setTimeout(() => {
-        window.openPlaceCard?.(place);
-      }, 820);
     });
 
     listEl.appendChild(item);
