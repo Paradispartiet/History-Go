@@ -1,24 +1,20 @@
 /* Civication – History Go miniatyr-kartlag + zoomkontroller */
 
-/* SVG-kartet selv skal ikke fange klikk; bare miniatyrene er interaktive.
-   (Sone-laget er en egen HTML-overlay og påvirkes ikke.) */
 #civiMapWorld svg { pointer-events: none; }
 
-/* ------------------------------------------------------------------ */
-/* Miniatyrbygg                                                        */
-/* ------------------------------------------------------------------ */
 .civi-hg-place-miniature {
   pointer-events: auto;
   cursor: pointer;
 }
+
 .civi-hg-place-miniature:focus { outline: none; }
+
 .civi-hg-place-miniature:hover,
 .civi-hg-place-miniature:focus-visible {
-  filter: brightness(1.18) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+  filter: brightness(1.15) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
 }
 
-/* Diorama-flater */
-.civi-hg-mini-shadow { fill: rgba(0, 0, 0, 0.30); }
+.civi-hg-mini-shadow { fill: rgba(0, 0, 0, 0.26); }
 .civi-hg-base   { fill: #c9b79c; stroke: #6f5a44; stroke-width: 0.6; }
 .civi-hg-face   { fill: #b59a78; }
 .civi-hg-roof   { fill: #7d5b46; stroke: #4f3a2c; stroke-width: 0.5; }
@@ -39,7 +35,6 @@
 .civi-hg-trunk  { fill: #6f5236; }
 .civi-hg-sand   { fill: #d9c69a; }
 .civi-hg-street { fill: #6e6f73; }
-.civi-hg-streetline { stroke: rgba(255, 230, 160, 0.7); stroke-width: 0.5; stroke-dasharray: 2 2; }
 .civi-hg-water  { fill: #3d7299; }
 .civi-hg-waterline { stroke: rgba(220, 244, 255, 0.5); stroke-width: 0.5; }
 .civi-hg-quay   { fill: #8a7d68; }
@@ -49,32 +44,10 @@
   stroke-width: 0.5;
 }
 
-/* ------------------------------------------------------------------ */
-/* Etiketter – skjult som standard, vist ved hover/fokus eller høy zoom */
-/* ------------------------------------------------------------------ */
 .civi-hg-place-label {
-  fill: #f6f8fc;
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  font-size: 8px;
-  font-weight: 700;
-  paint-order: stroke;
-  stroke: rgba(0, 0, 0, 0.7);
-  stroke-width: 2px;
-  opacity: 0;
-  transition: opacity 0.12s ease;
-  pointer-events: none;
-}
-.civi-hg-place-miniature:hover .civi-hg-place-label,
-.civi-hg-place-miniature:focus .civi-hg-place-label {
-  opacity: 1;
-}
-#civi-map-hg-places[data-civi-zoom-level="high"] .civi-hg-place-label {
-  opacity: 0.95;
+  display: none !important;
 }
 
-/* ------------------------------------------------------------------ */
-/* Zoomkontroller                                                      */
-/* ------------------------------------------------------------------ */
 .civi-map-zoom-controls {
   position: absolute;
   right: 16px;
@@ -85,6 +58,7 @@
   z-index: 6;
   pointer-events: none;
 }
+
 .civi-map-zoom-btn {
   pointer-events: auto;
   width: 44px;
@@ -104,5 +78,4 @@
 .civi-map-zoom-btn:hover { background: rgba(28, 28, 28, 0.82); }
 .civi-map-zoom-btn:active { transform: translateY(1px); }
 
-/* I kartmodus skal kartlaget prioriteres for interaksjon. */
 body.civi-mapmode #civiMapWorld { touch-action: none; }
