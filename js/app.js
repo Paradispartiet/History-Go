@@ -4,23 +4,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   const releaseQueuedToasts = gateToastsUntilAppReady();
 
   try {
-    await safeRun("boot", window.boot);
+    // Critical boot gjør bare index brukbar: kart + places_index + markører.
+    // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
+    await safeRun("bootCritical", window.bootCritical || window.boot);
     await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
-
-    // Globalt søk lå i repoet, men var ikke lastet inn av index.html.
-    // Lastes etter boot slik at window.PLACES / window.PEOPLE / kategorier finnes.
-    await safeRun("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
 
     await safeRun("initMiniProfile", window.initMiniProfile);
     await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
     await safeRun("initLeftPanel", window.initLeftPanel);
-    await safeRun("HGRoutes.init", () => window.HGRoutes?.init?.());
 
     markAppReady();
     releaseQueuedToasts();
 
+    await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
+
+    // Ikke blokker app-ready på søk/ruter/tunge data.
+    runAfterReady("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
+    runAfterReady("HGRoutes.init", () => window.HGRoutes?.init?.());
+    runAfterReady("bootBackground", window.bootBackground);
+
     if (window.HGPos?.request) {
-      safeRun("HGPos.request", window.HGPos.request);
+      runAfterReady("HGPos.request", window.HGPos.request);
     }
   } catch (e) {
     markAppFailed(e);
@@ -79,7 +83,7 @@ function gateToastsUntilAppReady() {
         originalShowToast.apply(window, args);
       }, 260 + index * 350);
     });
-  };
+  }
 }
 
 function wireMapPlacePopupInMapMode() {
@@ -134,6 +138,14 @@ function loadScriptOnce(src) {
     script.onerror = () => reject(new Error(`Kunne ikke laste ${src}`));
     document.body.appendChild(script);
   });
+}
+
+function runAfterReady(label, fn) {
+  Promise.resolve()
+    .then(() => safeRun(label, fn))
+    .catch((e) => {
+      console.warn(`[${label}] background failed`, e);
+    });
 }
 
 async function safeRun(label, fn) {
