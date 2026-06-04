@@ -947,6 +947,1127 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_private",
+      "description": "Civication – Innkommende pakke 2: Andre uke. Private meldinger der jobben tar plass i hvile, økonomi, relasjoner og helg.",
+      "thread_binding": {
+        "story_thread_id": "second_week_praksisfortellinger_private",
+        "job_thread_id": "privat"
+      },
+      "mails": [
+        {
+          "id": "personal_week2_weekend_not_restful",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen du ikke rakk å ha",
+          "summary": "Fra Privat notat — Emne: Mandag morgen",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Privat notat — Emne: Mandag morgen\n\nDu våkner med følelsen av at helgen ikke helt ble en helg.\n\nNoe ble gjort. Noen ble fornøyd. Noe ble utsatt.\n\nDet ligger igjen en liten rest av søndag i kroppen.",
+            "Fra Sara — Emne: Hvordan gikk helgen?\n\nHei,\n\nFikk du hvilt noe i helgen, eller ble det bare ting du måtte gjøre?\n\nJeg spør ikke for å mase. Du virket bare ganske ferdig sist vi snakket."
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare ærlig",
+              "reply": "Jeg svarer at helgen ble mer plikt enn hvile.",
+              "effect": 1,
+              "tags": [
+                "relationship",
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_not_restful_honest",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "honest_private_contact",
+                  "relationship_sara",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 1,
+                  "economicRoom": -1,
+                  "integrity": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Svare kort at det gikk fint",
+              "reply": "Jeg svarer at helgen var grei, selv om det ikke helt stemmer.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_not_restful_flat",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "private_flatness",
+                  "stagnation_private"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": -1,
+                  "economicRoom": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare nå",
+              "reply": "Jeg lar meldingen ligge til senere.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_not_restful_later",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "short_focus_private_cost",
+                  "relationship_sara"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": -1,
+                  "economicRoom": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_fee_arrived",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system_okonomi",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Purringen som kom likevel",
+          "summary": "Fra System / Økonomi — Emne: Purring",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra System / Økonomi — Emne: Purring\n\nDu har mottatt en purring.\n\nOpprinnelig beløp: 684 kr\nGebyr: 70 kr\nNytt beløp: 754 kr",
+            "Fra Privat notat — Emne: Dette var den regningen\n\nDette var regningen du vurderte å vente med.\n\nDet var ikke et stort beløp. Det var bare nok til å minne deg på at små utsettelser også har en pris."
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Betale hele beløpet",
+              "reply": "Jeg betaler hele beløpet nå.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_fee_arrived_paid",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "costly_resolution",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -2,
+                  "integrity": 1
+                },
+                "capital": {
+                  "economic": -7.54
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Utsette igjen",
+              "reply": "Jeg lar purringen ligge.",
+              "effect": 0,
+              "tags": [
+                "avoidance",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_fee_arrived_delayed",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "worsening_pressure",
+                  "stress_up"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -3,
+                  "integrity": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Lage betalingsplan",
+              "reply": "Jeg setter opp en plan for når den skal betales og kutter noe annet denne uka.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_fee_arrived_plan",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "partial_control"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 2
+                },
+                "capital": {
+                  "economic": -3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_jonas_interview",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Intervjuet til Jonas",
+          "summary": "Fra Jonas — Emne: Jeg fikk intervju",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Jonas — Emne: Jeg fikk intervju\n\nHei!\n\nJeg fikk intervju på den søknaden.\n\nVet ikke om teksten hjalp eller om de bare trengte folk, men uansett: intervju på fredag.\n\nNå er jeg selvfølgelig stressa på en ny måte.",
+            "Fra Jonas — Emne: Spørsmål\n\nHar du fem minutter en kveld denne uka til å høre på hvordan jeg presenterer meg?\n\nTrenger ikke være i dag. Bare før fredag."
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avtale konkret tid",
+              "reply": "Jeg foreslår en konkret tid torsdag kveld i 20 minutter.",
+              "effect": 1,
+              "tags": [
+                "relationship",
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_jonas_interview_time",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "support_with_boundary",
+                  "healthy_boundaries",
+                  "relationship_jonas"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 2,
+                  "economicRoom": -1,
+                  "integrity": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at du ikke har kapasitet",
+              "reply": "Jeg sier at jeg ikke har kapasitet denne uka, men ønsker ham lykke til.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_jonas_interview_no",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "honest_no",
+                  "relationship_jonas"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": 0,
+                  "trust": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Svare med generelle tips",
+              "reply": "Jeg sender noen korte intervjutips uten å avtale tid.",
+              "effect": 0,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_jonas_interview_tips",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "low_cost_support"
+                ]
+              },
+              "effects": {}
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_dinner_concrete",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Middagen som må avtales ordentlig",
+          "summary": "Fra Sara — Emne: Neste uke?",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Sara — Emne: Neste uke?\n\nHei,\n\nSkal vi faktisk finne en dag neste uke?\n\nIkke “snart”, men en dag.\n\nJeg prøver ikke å presse deg. Jeg vil bare vite om vi faktisk skal sees, eller om vi bare sier at vi skal det.",
+            "Fra Privat notat — Emne: Konkret eller vagt\n\nDette er et lite valg, men ikke et uviktig et.\n\nNoen relasjoner forsvinner ikke i én stor konflikt. De blir bare utsatt mange nok ganger."
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Foreslå konkret dag",
+              "reply": "Jeg foreslår tirsdag kl. 18.",
+              "effect": 1,
+              "tags": [
+                "relationship",
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_dinner_concrete_day",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "concrete_repair",
+                  "relationship_sara"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 2,
+                  "integrity": 1,
+                  "economicRoom": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si ærlig at du ikke vet",
+              "reply": "Jeg sier at jeg ikke klarer å avtale noe akkurat nå.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_dinner_concrete_honest",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "honest_distance",
+                  "relationship_sara"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": -1,
+                  "economicRoom": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Svare “vi finner ut av det”",
+              "reply": "Jeg svarer at vi finner ut av det.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_dinner_concrete_vague",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "vague_avoidance",
+                  "week2_low_visibility",
+                  "relationship_sara",
+                  "stagnation_private"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": -2,
+                  "economicRoom": -3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_test",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen som test",
+          "summary": "Fra Privat notat — Emne: Fredag ettermiddag",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Privat notat — Emne: Fredag ettermiddag\n\nDet er fredag.\n\nDu har kommet deg gjennom enda en uke.\n\nDet finnes ting du burde gjøre. Folk du burde svare. Noe du burde rydde. Noe du burde betale. Noen du burde møte.\n\nDet finnes også en kropp som ikke er en kalender.",
+            "Fra Mamma — Emne: Søndag?\n\nHei,\n\nBare sjekker om du kommer innom denne helgen eller ikke.\n\nHvis ikke er det greit, men da må jeg planlegge litt annerledes.",
+            "Fra Jonas — Emne: Etter intervjuet\n\nIntervjuet er ferdig.\n\nTror det gikk ganske bra. Eller middels. Eller bra. Vanskelig å vite.\n\nUansett: takk for hjelpen denne uka, hvis jeg ikke har sagt det ordentlig."
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme helgen",
+              "reply": "Jeg bestemmer meg for én helt skjermet hviledag og svarer folk tydelig.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_test_rest",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "rest_with_boundary",
+                  "healthy_boundaries",
+                  "relationship_family",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": 1,
+                  "trust": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Fylle helgen med plikter",
+              "reply": "Jeg sier ja til det meste og prøver å få unna alt.",
+              "effect": 1,
+              "tags": [
+                "relationship",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_test_full",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "approval_with_exhaustion",
+                  "overloaded_helper",
+                  "relationship_family",
+                  "relationship_jonas",
+                  "stress_up",
+                  "overload_risk"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 2,
+                  "economicRoom": -6
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ta én relasjon ordentlig",
+              "reply": "Jeg velger én person å følge opp ordentlig og lar resten vente.",
+              "effect": 1,
+              "tags": [
+                "relationship",
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_test_one",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "focused_private_care",
+                  "relationship_selected"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 2,
+                  "economicRoom": -1,
+                  "integrity": 1
+                }
+              }
+            },
+            {
+              "id": "D",
+              "label": "Ikke planlegge noe",
+              "reply": "Jeg lar alt stå åpent og bestemmer meg senere.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_week2_weekend_test_open",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "open_loop_weekend",
+                  "week2_low_visibility",
+                  "stagnation_private"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -4,
+                  "integrity": -1
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "personal_week2_weekend_not_restful_honest",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Skjønner",
+          "summary": "Ja, den følelsen kjenner jeg.",
+          "situation": [
+            "Ja, den følelsen kjenner jeg.\n\nDet er rart med fridager som teknisk sett er fri, men som ikke kjennes frie. Kanskje du skal skjerme én kveld denne uka, helt uten avtaler."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_not_restful_flat",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ok",
+          "summary": "Bra.",
+          "situation": [
+            "Bra.\n\nDa håper jeg uka blir roligere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_not_restful_later",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Senere",
+          "summary": "Meldingen blir liggende.",
+          "situation": [
+            "Meldingen blir liggende.\n\nDet er ikke dramatisk. Bare enda en liten ting som venter."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_fee_arrived_paid",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system_okonomi",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Betaling registrert",
+          "summary": "Betaling registrert.",
+          "situation": [
+            "Betaling registrert.\n\nStatus: Betalt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_fee_arrived_delayed",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Senere igjen",
+          "summary": "Du lukker meldingen.",
+          "situation": [
+            "Du lukker meldingen.\n\nBeløpet er ikke borte. Det har bare flyttet seg lenger inn i uka."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_fee_arrived_plan",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Litt orden",
+          "summary": "Du har ikke mer penger.",
+          "situation": [
+            "Du har ikke mer penger.\n\nMen du har litt mer orden.\n\nDet hjelper mer enn det burde."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_jonas_interview_time",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Perfekt",
+          "summary": "Torsdag funker.",
+          "situation": [
+            "Torsdag funker.\n\nOg 20 minutter er nok. Det hjelper egentlig bare å si det høyt til noen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_jonas_interview_no",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Skjønner",
+          "summary": "Ja, skjønner.",
+          "situation": [
+            "Ja, skjønner.\n\nJeg øver alene. Det går sikkert greit."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_jonas_interview_tips",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Takk",
+          "summary": "Takk, det var faktisk nyttig.",
+          "situation": [
+            "Takk, det var faktisk nyttig.\n\nSkal prøve å ikke høres ut som jeg leser fra et skjema."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_dinner_concrete_day",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Tirsdag",
+          "summary": "Tirsdag kl. 18 funker.",
+          "situation": [
+            "Tirsdag kl. 18 funker.\n\nFint. Da har vi en faktisk avtale."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_dinner_concrete_honest",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ok",
+          "summary": "Ok.",
+          "situation": [
+            "Ok.\n\nJeg setter pris på at du sier det rett ut.\n\nMen da venter jeg ikke på et tidspunkt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_dinner_concrete_vague",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ja",
+          "summary": "Ja.",
+          "situation": [
+            "Ja.\n\nVi gjør vel det."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_test_rest",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "En dag fri",
+          "summary": "Du gjør dagen mindre tilgjengelig.",
+          "situation": [
+            "Du gjør dagen mindre tilgjengelig.\n\nDet føles nesten egoistisk.\n\nSå begynner det å føles nødvendig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_test_full",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Alt fikk plass",
+          "summary": "Alt fikk plass.",
+          "situation": [
+            "Alt fikk plass.\n\nDet betyr ikke at du fikk plass."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_test_one",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Én ting ordentlig",
+          "summary": "Du gjør ikke alt.",
+          "situation": [
+            "Du gjør ikke alt.\n\nMen det du gjør, gjør du ordentlig.\n\nDet gir en annen ro enn å svare halvt på fem ting."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_week2_weekend_test_open",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Åpent",
+          "summary": "Alt er fortsatt mulig.",
+          "situation": [
+            "Alt er fortsatt mulig.\n\nDet er også problemet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "uformell_leder_intro",
       "purpose": "Vise at arbeidsplassen har et uformelt hierarki som kan styre sterkere enn formell stilling.",
       "learning_focus": [
