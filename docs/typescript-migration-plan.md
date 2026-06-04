@@ -269,7 +269,7 @@ Disse filene typecheckes med `npm run typecheck:scripts` og bygges med `npm run 
 
 Det neste ikke-Civication TypeScript-sporet er Node-only `tools/`. Første kandidat i denne løypen er `tools/check_place_emne_ids.mts`, konvertert fra `tools/check_place_emne_ids.mjs`. Toolen validerer place-data mot canonical emne-data og er ikke Civication-relatert, ikke browser-loadet og ikke del av i18n places-scripts-løypen. `tools/check_duplicate_json_keys.mts` inngår nå også i den samme tools-løypen etter konvertering fra `tools/check_duplicate_json_keys.mjs`; den sjekker duplicate JSON keys i i18n place-filer og er fortsatt en Node-only tool uten Civication-kobling.
 
-Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. Build-output går til `dist/tools`; fordi kildefilene er `.mts`, emitter TypeScript NodeNext Node-kompatible `.mjs`-filer. `npm run places:emner:check` bygger tools-output og kjører `node dist/tools/check_place_emne_ids.mjs`. `npm run i18n:dupkeys:check` bygger nå tools-output først og kjører `node dist/tools/check_duplicate_json_keys.mjs`.
+Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. `tsconfig.tools.json` inkluderer nå både `tools/check_place_emne_ids.mts` og `tools/check_duplicate_json_keys.mts`, slik at duplicate JSON keys-sjekken typecheckes i samme Node-only tools-spor som emne-ID-valideringen. Build-output går til `dist/tools`; fordi kildefilene er `.mts`, emitter TypeScript NodeNext Node-kompatible `.mjs`-filer. `npm run places:emner:check` bygger tools-output og kjører `node dist/tools/check_place_emne_ids.mjs`. `npm run i18n:dupkeys:check` bygger nå tools-output først og kjører `node dist/tools/check_duplicate_json_keys.mjs`.
 
 `npm run tools:check` finnes nå som samlet validering for Node-only tools-sporet. Kommandoen kjører i rekkefølge `npm run typecheck:tools`, `npm run build:tools`, `npm run places:emner:check` og `npm run i18n:dupkeys:check`, slik at tools-løypen kan verifiseres med én npm-entrypoint uten å blande inn i18n places-scripts, browser-runtime eller Civication. Duplicate JSON keys-sjekken er dermed inkludert i tools-samlesjekken. Hvis `places:emner:check` eller `i18n:dupkeys:check` returnerer non-zero på grunn av eksisterende dataavvik, skal det behandles som et data-audit-resultat og ikke som en TypeScript- eller build-feil.
 
@@ -339,9 +339,9 @@ Minimum før første faktiske rename:
    - Konverter neste små ikke-Civication `scripts/*.js`-filer etter samme typecheck/build-mønster.
    - Kjør typecheck, scripts-build og relevante Node-valideringer.
 
-7. **PR 7: Første Node-only tools-løype**
-   - Konverter én avgrenset ikke-Civication `tools/*.mjs`-fil, med `tools/check_place_emne_ids.mts` som første kandidat.
-   - Bruk egen `tsconfig.tools.json`/`tsconfig.tools.build.json`, bygg til `dist/tools`, og kjør relevant npm-kommando fra generert output.
+7. **PR 7: Node-only tools-løype**
+   - Første kandidat var `tools/check_place_emne_ids.mts`; `tools/check_duplicate_json_keys.mts` inngår nå også etter konvertering fra `tools/check_duplicate_json_keys.mjs`.
+   - Bruk egen `tsconfig.tools.json`/`tsconfig.tools.build.json`, bygg til `dist/tools`, og kjør relevante npm-kommandoer fra generert output.
    - Dokumenter og bruk `npm run tools:check` som samlet validering for tools-sporet når kommandoen finnes.
    - Ikke bland tools-løypen inn i i18n places-scripts-løypen, browser-runtime eller Civication.
    - Velg neste tools-kandidat eksplisitt etter verifisering av bruk i `package.json`.
