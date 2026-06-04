@@ -569,6 +569,7 @@
   // ---------------------------------------------------------------------------
   function drawFrame() {
     frameQueued = false;
+    if (window.__civiThreeActive) return; // 3D-kartet tegner; ikke mal skjult Canvas
     if (!baseCtx || !placesCtx) return;
     drawBase();
     drawPlaces();
@@ -684,6 +685,7 @@
   }
 
   function onPointerDown(e) {
+    if (window.__civiThreeActive) return; // 3D-kartet er aktivt; Canvas er fallback
     if (!flagOn() || !inMapMode()) return;
     if (ignoreTarget(e.target)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -760,6 +762,7 @@
   }
 
   function onWheel(e) {
+    if (window.__civiThreeActive) return; // 3D-kartet er aktivt; Canvas er fallback
     if (!flagOn() || !inMapMode()) return;
     e.preventDefault();
     const { px, py } = relPos(e);
