@@ -32,6 +32,13 @@
   const MAP_W = 20;
   const MAP_D = 20;
 
+  // Terreng-/byhøyder (verdensenheter).
+  const GROUND_Y = 0.10;     // topp av bydels-slab; bygg/trær står her
+  const MARKA_H = 0.75;      // Marka-platået i nord
+  const EKEBERG_H = 0.55;    // Ekebergåsen i sørøst
+  const MAX_BUILDINGS = 1200;
+  const MAX_TREES = 520;
+
   const VIEW = 11;           // ortografisk halv-høyde ved zoom = 1
   const MIN_ZOOM = 0.7;
   const MAX_ZOOM = 6.0;
@@ -226,85 +233,343 @@
     geo.rotateX(-Math.PI / 2); // legg flatt i XZ, ekstruder oppover (+Y)
     const mesh = new THREE.Mesh(geo, mat(color));
     mesh.position.y = yBase || 0;
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    return mesh;
+  }
+
+  // Deterministisk RNG (mulberry32) for stabil by-layout.
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function pointInPoly(x, y, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const xi = poly[i][0], yi = poly[i][1], xj = poly[j][0], yj = poly[j][1];
+      const hit = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+      if (hit) inside = !inside;
+    }
+    return inside;
+  }
+  function polyBBox(poly) {
+    let minX = 1, minY = 1, maxX = 0, maxY = 0;
+    poly.forEach(([x, y]) => { minX = Math.min(minX, x); maxX = Math.max(maxX, x); minY = Math.min(minY, y); maxY = Math.max(maxY, y); });
+    return { minX, minY, maxX, maxY };
+  }
+
+  // Liten boks-bygning på normalisert posisjon (verdensenheter for w/h/d).
+  function addBox(group, nx, ny, w, h, d, color, baseY, rotY) {
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(color));
+    mesh.position.set(nx2x(nx), (baseY == null ? GROUND_Y : baseY) + h / 2, ny2z(ny));
+    if (rotY) mesh.rotation.y = rotY;
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    group.add(mesh);
     return mesh;
   }
 
   function buildBoard() {
-    // Hevet brett / «modellplate».
-    const board = new THREE.Mesh(
-      new THREE.BoxGeometry(MAP_W + 2.4, 0.8, MAP_D + 2.4),
-      mat(0x12161d)
-    );
-    board.position.y = -0.45;
+    // Hevet brett / «modellplate» med en liten sokkel.
+    const board = new THREE.Mesh(new THREE.BoxGeometry(MAP_W + 3, 1.0, MAP_D + 3), mat(0x0f1319));
+    board.position.y = -0.55;
+    board.receiveShadow = true;
     scene.add(board);
 
-    // Vannflate (fjord) som tynt blått dekke litt under bakken.
+    // Fjordvann – Phong gir en svak «våt» glans.
     const water = new THREE.Mesh(
-      new THREE.PlaneGeometry(MAP_W + 2.4, MAP_D + 2.4),
-      mat(0x27567a)
+      new THREE.PlaneGeometry(MAP_W + 3, MAP_D + 3),
+      new THREE.MeshPhongMaterial({ color: 0x245579, shininess: 60, specular: 0x335a78 })
     );
     water.rotation.x = -Math.PI / 2;
-    water.position.y = -0.02;
+    water.position.y = 0.0;
+    water.receiveShadow = true;
     scene.add(water);
   }
 
   function buildLandscape() {
     const land = window.CIVI_OSLO_LANDSCAPE || {};
-    // Marka/terreng og åsrygger som lave grønne flater.
-    if (land.markaNorth) scene.add(extrudeShape(land.markaNorth, 0.25, 0x2c4a35, 0));
-    if (land.ekebergRidge) scene.add(extrudeShape(land.ekebergRidge, 0.45, 0x456b4d, 0));
-    if (land.cityBasin) scene.add(extrudeShape(land.cityBasin, 0.12, 0x25333f, 0));
+    // Marka som hevet skogsplatå i nord, Ekeberg som ås i sørøst.
+    if (land.markaNorth) scene.add(extrudeShape(land.markaNorth, MARKA_H, 0x2f5238, 0));
+    if (land.ekebergRidge) scene.add(extrudeShape(land.ekebergRidge, EKEBERG_H, 0x3f6347, 0));
+    if (land.cityBasin) scene.add(extrudeShape(land.cityBasin, 0.05, 0x223040, 0));
 
     // Bygdøy-halvøy.
     const BYGDOY = [[0.13,0.65],[0.27,0.62],[0.34,0.66],[0.33,0.74],[0.25,0.79],[0.16,0.77],[0.10,0.70]];
-    scene.add(extrudeShape(BYGDOY, 0.22, 0x3f6b46, 0));
+    scene.add(extrudeShape(BYGDOY, 0.2, 0x3f6b46, 0));
 
-    // Bydelsflater som litt høyere blokker.
+    // Øyer i fjorden som små grønne kuler.
+    const islands = [[0.465,0.760,0.55],[0.415,0.800,0.42],[0.520,0.815,0.5],[0.395,0.745,0.36]];
+    islands.forEach(([nx, ny, r]) => {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(r, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), mat(0x4f7a52));
+      m.position.set(nx2x(nx), 0.02, ny2z(ny));
+      m.scale.y = 0.5;
+      m.castShadow = true; m.receiveShadow = true;
+      scene.add(m);
+    });
+
+    // Tynne bydels-slabs som farget grunn.
     (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
       const fill = (d.style && d.style.fill) || "#cabda9";
-      scene.add(extrudeShape(d.shape, 0.35, new THREE.Color(fill).getHex(), 0.12));
+      const slab = extrudeShape(d.shape, GROUND_Y, new THREE.Color(fill).getHex(), 0);
+      scene.add(slab);
     });
   }
 
   function buildLights() {
-    scene.add(new THREE.HemisphereLight(0xbcd3e6, 0x2a2f25, 0.95));
-    const sun = new THREE.DirectionalLight(0xfff1dd, 1.05);
-    sun.position.set(-8, 14, 6); // konsekvent lys oppe-til-venstre
+    scene.add(new THREE.HemisphereLight(0xcfe2f2, 0x33402f, 0.85));
+    const sun = new THREE.DirectionalLight(0xfff2e0, 1.45);
+    sun.position.set(-16, 26, 12); // konsekvent lys oppe-til-venstre
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    const sc = sun.shadow.camera;
+    sc.left = -18; sc.right = 18; sc.top = 18; sc.bottom = -18; sc.near = 1; sc.far = 80;
+    sun.shadow.bias = -0.0004;
+    sun.shadow.normalBias = 0.6;
     scene.add(sun);
+    const fill = new THREE.DirectionalLight(0xbcd0e6, 0.35);
+    fill.position.set(12, 10, -10);
+    scene.add(fill);
   }
 
-  // Geometri/høyde per asset-type for place-klossene.
-  function placeMeshFor(p) {
+  // Høyde-/bredde-område per bydel for det prosedyrale bybildet.
+  function districtBuildProfile(id) {
+    switch (id) {
+      case "sentrum": return { hMin: 0.8, hMax: 2.7, fw: 0.22, dens: 0.9 };
+      case "gamle_oslo": return { hMin: 0.6, hMax: 2.0, fw: 0.24, dens: 0.78 };
+      case "grunerlokka": return { hMin: 0.5, hMax: 1.0, fw: 0.2, dens: 0.85 };
+      case "st_hanshaugen": return { hMin: 0.5, hMax: 1.0, fw: 0.2, dens: 0.78 };
+      case "sagene": return { hMin: 0.45, hMax: 0.95, fw: 0.2, dens: 0.78 };
+      case "frogner": return { hMin: 0.4, hMax: 0.9, fw: 0.24, dens: 0.6 };
+      case "ullern": return { hMin: 0.35, hMax: 0.8, fw: 0.24, dens: 0.5 };
+      case "alna": return { hMin: 0.4, hMax: 1.0, fw: 0.4, dens: 0.55 };
+      case "nordstrand": return { hMin: 0.3, hMax: 0.65, fw: 0.24, dens: 0.45 };
+      case "stovner": return { hMin: 0.3, hMax: 0.7, fw: 0.26, dens: 0.45 };
+      default: return { hMin: 0.4, hMax: 0.9, fw: 0.22, dens: 0.6 };
+    }
+  }
+
+  // Teppe av småbygg inni hver bydel – instansert for ytelse.
+  function buildCity() {
+    const rng = mulberry32(20240601);
+    const inst = [];
+    (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
+      const poly = d.shape;
+      if (!poly || !poly.length) return;
+      const bb = polyBBox(poly);
+      const prof = districtBuildProfile(d.id);
+      const step = 0.0135;
+      for (let gy = bb.minY; gy <= bb.maxY; gy += step) {
+        for (let gx = bb.minX; gx <= bb.maxX; gx += step) {
+          if (rng() > prof.dens) continue;
+          const jx = gx + (rng() - 0.5) * step * 0.7;
+          const jy = gy + (rng() - 0.5) * step * 0.7;
+          if (!pointInPoly(jx, jy, poly)) continue;
+          const h = prof.hMin + rng() * (prof.hMax - prof.hMin);
+          const fw = prof.fw * (0.7 + rng() * 0.6);
+          const fd = prof.fw * (0.7 + rng() * 0.6);
+          inst.push({ x: nx2x(jx), z: ny2z(jy), h, fw, fd, rot: (rng() - 0.5) * 0.6, tone: rng() });
+          if (inst.length >= MAX_BUILDINGS) break;
+        }
+        if (inst.length >= MAX_BUILDINGS) break;
+      }
+    });
+    if (!inst.length) return;
+
+    const geo = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+    const mesh = new THREE.InstancedMesh(geo, material, inst.length);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    const m = new THREE.Matrix4();
+    const q = new THREE.Quaternion();
+    const up = new THREE.Vector3(0, 1, 0);
+    const pos = new THREE.Vector3();
+    const scl = new THREE.Vector3();
+    const col = new THREE.Color();
+    inst.forEach((b, i) => {
+      q.setFromAxisAngle(up, b.rot);
+      pos.set(b.x, GROUND_Y + b.h / 2, b.z);
+      scl.set(b.fw, b.h, b.fd);
+      m.compose(pos, q, scl);
+      mesh.setMatrixAt(i, m);
+      // Varme, avmettede modellmaling-toner.
+      col.setHSL(0.085 + b.tone * 0.05, 0.16 + b.tone * 0.12, 0.42 + b.tone * 0.2);
+      mesh.setColorAt(i, col);
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    scene.add(mesh);
+  }
+
+  // Trær i Marka, på Ekeberg og i grønne bydeler.
+  function buildTrees() {
+    const land = window.CIVI_OSLO_LANDSCAPE || {};
+    const rng = mulberry32(73331);
+    const regions = [];
+    if (land.markaNorth) regions.push({ poly: land.markaNorth, baseY: MARKA_H, n: 260 });
+    if (land.ekebergRidge) regions.push({ poly: land.ekebergRidge, baseY: EKEBERG_H, n: 90 });
+    const greenDistricts = ["nordstrand", "stovner"];
+    (window.CIVI_MAP_DISTRICTS || []).forEach((d) => {
+      if (greenDistricts.includes(d.id)) regions.push({ poly: d.shape, baseY: GROUND_Y, n: 40 });
+    });
+
+    const pts = [];
+    regions.forEach((reg) => {
+      const bb = polyBBox(reg.poly);
+      let placed = 0, guard = 0;
+      while (placed < reg.n && guard < reg.n * 25 && pts.length < MAX_TREES) {
+        guard++;
+        const x = bb.minX + rng() * (bb.maxX - bb.minX);
+        const y = bb.minY + rng() * (bb.maxY - bb.minY);
+        if (!pointInPoly(x, y, reg.poly)) continue;
+        pts.push({ x: nx2x(x), z: ny2z(y), baseY: reg.baseY, h: 0.4 + rng() * 0.35, tone: rng() });
+        placed++;
+      }
+    });
+    if (!pts.length) return;
+
+    const geo = new THREE.ConeGeometry(0.16, 1, 7);
+    const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+    const mesh = new THREE.InstancedMesh(geo, material, pts.length);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    const m = new THREE.Matrix4();
+    const q = new THREE.Quaternion();
+    const pos = new THREE.Vector3();
+    const scl = new THREE.Vector3();
+    const col = new THREE.Color();
+    pts.forEach((t, i) => {
+      pos.set(t.x, t.baseY + t.h / 2, t.z);
+      scl.set(0.8 + t.tone * 0.6, t.h, 0.8 + t.tone * 0.6);
+      m.compose(pos, q, scl);
+      mesh.setMatrixAt(i, m);
+      col.setHSL(0.30, 0.42, 0.26 + t.tone * 0.12);
+      mesh.setColorAt(i, col);
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    scene.add(mesh);
+  }
+
+  // Håndmodellerte Oslo-landemerker.
+  function buildLandmarks() {
+    const g = new THREE.Group();
+
+    // Barcode – rad med slanke høyhus ved Bjørvika.
+    for (let i = 0; i < 9; i++) {
+      const t = i / 8;
+      const nx = 0.574 + t * 0.036;
+      const ny = 0.582 + t * 0.052;
+      const h = 1.5 + ((i % 3) * 0.45) + (i === 4 ? 0.6 : 0);
+      addBox(g, nx, ny, 0.16, h, 0.5, 0x34465b, GROUND_Y, 0.5);
+    }
+    // Høyhus ved Oslo S (Plaza/Posthuset).
+    addBox(g, 0.553, 0.586, 0.26, 2.6, 0.26, 0x3a4a5e, GROUND_Y);
+    addBox(g, 0.536, 0.58, 0.32, 2.05, 0.32, 0x47566a, GROUND_Y);
+
+    // Operaen – hvit skrå rampe ved vannet.
+    buildOpera(g);
+
+    // Akershus festning – steinmasse + tårn med spisstak.
+    addBox(g, 0.5, 0.646, 0.95, 0.5, 0.95, 0x8a8276, GROUND_Y);
+    addBox(g, 0.5, 0.646, 0.3, 1.05, 0.3, 0x948b7d, GROUND_Y);
+    const spire = new THREE.Mesh(new THREE.ConeGeometry(0.26, 0.5, 4), mat(0x4f4a40));
+    spire.position.set(nx2x(0.5), GROUND_Y + 1.05 + 0.25, ny2z(0.646));
+    spire.rotation.y = Math.PI / 4;
+    spire.castShadow = true;
+    g.add(spire);
+
+    // Rådhuset – to teglsteinstårn + lavere mellombygg.
+    addBox(g, 0.463, 0.61, 0.3, 1.7, 0.5, 0x9c5a3c, GROUND_Y);
+    addBox(g, 0.49, 0.61, 0.3, 1.7, 0.5, 0x9c5a3c, GROUND_Y);
+    addBox(g, 0.4765, 0.612, 0.62, 0.8, 0.5, 0xab6647, GROUND_Y);
+
+    // Slottet – gul klassisk blokk på en grønn høyde.
+    addBox(g, 0.45, 0.55, 1.0, 0.5, 0.5, 0xe6cf92, GROUND_Y);
+    addBox(g, 0.45, 0.55, 0.34, 0.7, 0.5, 0xefd9a0, GROUND_Y);
+
+    // Holmenkollen – skihopp i åsen nordvest.
+    const hkBase = MARKA_H;
+    addBox(g, 0.30, 0.165, 0.14, 1.7, 0.14, 0xdfe4e9, hkBase);
+    const inrun = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.08, 2.0), mat(0xc7ced6));
+    inrun.position.set(nx2x(0.30), hkBase + 1.0, ny2z(0.205));
+    inrun.rotation.x = -0.62;
+    inrun.castShadow = true;
+    g.add(inrun);
+
+    scene.add(g);
+  }
+
+  function buildOpera(group) {
+    const L = 1.7, Hh = 1.0, depth = 1.5;
+    const shape = new THREE.Shape();
+    shape.moveTo(0, 0);
+    shape.lineTo(L, 0);
+    shape.lineTo(0, Hh);
+    shape.closePath();
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: depth, bevelEnabled: false });
+    geo.translate(-L / 2, 0, -depth / 2);
+    const mesh = new THREE.Mesh(geo, mat(0xeae6dc));
+    mesh.position.set(nx2x(0.548), 0.02, ny2z(0.636));
+    mesh.rotation.y = -0.5;
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    group.add(mesh);
+  }
+
+  // Interaktive History Go-places: bygning + lysende kategori-fyr.
+  function placeGroupFor(p) {
     const asset = resolveAssetType(p);
     const accent = categoryColor(p.category);
     let geo, color = accent, h;
 
-    if (asset === "skyline") { h = 1.5; geo = new THREE.BoxGeometry(0.34, h, 0.34); }
-    else if (asset === "civic") { h = 0.95; geo = new THREE.BoxGeometry(0.62, h, 0.62); }
-    else if (asset === "fortress") { h = 0.7; geo = new THREE.BoxGeometry(0.6, h, 0.6); color = 0x9aa0a4; }
-    else if (asset === "station") { h = 0.5; geo = new THREE.BoxGeometry(0.7, h, 0.45); color = 0x8a96a0; }
-    else if (asset === "museum" || asset === "library" || asset === "theatre") { h = 0.8; geo = new THREE.BoxGeometry(0.56, h, 0.5); }
-    else if (asset === "church") { h = 1.1; geo = new THREE.CylinderGeometry(0.16, 0.22, h, 6); }
-    else if (asset === "stadium") { h = 0.32; geo = new THREE.CylinderGeometry(0.42, 0.42, h, 16); color = 0x5fa36a; }
-    else if (asset === "park") { h = 0.16; geo = new THREE.CylinderGeometry(0.4, 0.4, h, 12); color = 0x6aa66f; }
-    else if (asset === "waterfront") { h = 0.34; geo = new THREE.BoxGeometry(0.66, h, 0.32); color = 0x3d7299; }
-    else if (asset === "street") { h = 0.12; geo = new THREE.BoxGeometry(0.6, h, 0.24); color = 0x6e6f73; }
-    else { h = 0.6; geo = new THREE.BoxGeometry(0.44, h, 0.44); }
+    if (asset === "skyline") { h = 1.6; geo = new THREE.BoxGeometry(0.34, h, 0.34); }
+    else if (asset === "civic") { h = 1.0; geo = new THREE.BoxGeometry(0.6, h, 0.6); }
+    else if (asset === "fortress") { h = 0.75; geo = new THREE.BoxGeometry(0.6, h, 0.6); color = 0x9aa0a4; }
+    else if (asset === "station") { h = 0.55; geo = new THREE.BoxGeometry(0.7, h, 0.45); color = 0x8a96a0; }
+    else if (asset === "museum" || asset === "library" || asset === "theatre") { h = 0.85; geo = new THREE.BoxGeometry(0.56, h, 0.5); }
+    else if (asset === "church") { h = 1.2; geo = new THREE.CylinderGeometry(0.14, 0.22, h, 6); }
+    else if (asset === "stadium") { h = 0.34; geo = new THREE.CylinderGeometry(0.44, 0.44, h, 18); color = 0x5fa36a; }
+    else if (asset === "park") { h = 0.18; geo = new THREE.CylinderGeometry(0.42, 0.42, h, 14); color = 0x6aa66f; }
+    else if (asset === "waterfront") { h = 0.4; geo = new THREE.BoxGeometry(0.66, h, 0.32); color = 0x3d7299; }
+    else if (asset === "street") { h = 0.16; geo = new THREE.BoxGeometry(0.6, h, 0.24); color = 0x6e6f73; }
+    else { h = 0.65; geo = new THREE.BoxGeometry(0.46, h, 0.46); }
 
-    const mesh = new THREE.Mesh(geo, mat(color));
-    mesh.userData = { placeId: p.id, h };
-    return mesh;
+    const group = new THREE.Group();
+    const body = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color: new THREE.Color(color), emissive: new THREE.Color(accent), emissiveIntensity: 0.18 }));
+    body.castShadow = true;
+    body.receiveShadow = true;
+    body.userData = { placeId: p.id };
+    group.add(body);
+
+    // Lysende fyr på toppen så places skiller seg fra bybildet.
+    const beacon = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 10, 8),
+      new THREE.MeshBasicMaterial({ color: new THREE.Color(accent) })
+    );
+    beacon.position.y = h / 2 + 0.22;
+    beacon.userData = { placeId: p.id };
+    group.add(beacon);
+
+    group.userData = { placeId: p.id, h };
+    return group;
   }
 
   function rebuildPlaces() {
     if (!scene || !THREE) return;
     if (!placeGroup) { placeGroup = new THREE.Group(); scene.add(placeGroup); }
-    // Rydd
     for (let i = placeGroup.children.length - 1; i >= 0; i--) {
-      const m = placeGroup.children[i];
-      placeGroup.remove(m);
-      if (m.geometry) m.geometry.dispose();
-      if (m.material) m.material.dispose();
+      const node = placeGroup.children[i];
+      placeGroup.remove(node);
+      node.traverse((m) => {
+        if (m.geometry) m.geometry.dispose();
+        if (m.material) m.material.dispose();
+      });
     }
     hitTargets = [];
     if (!_places) return;
@@ -313,9 +578,9 @@
     visibleSet(_places, zoom).forEach((p) => {
       const proj = project(p);
       if (!proj) return;
-      const mesh = placeMeshFor(p);
-      mesh.position.set(nx2x(proj.x), 0.12 + mesh.userData.h / 2, ny2z(proj.y));
-      placeGroup.add(mesh);
+      const node = placeGroupFor(p);
+      node.position.set(nx2x(proj.x), GROUND_Y, ny2z(proj.y));
+      placeGroup.add(node);
       hitTargets.push({ id: p.id, place: p });
     });
     dirty = true;
@@ -437,10 +702,13 @@
     const { px, py } = relPos(e);
     const ndc = new THREE.Vector2((px / W) * 2 - 1, -(py / H) * 2 + 1);
     raycaster.setFromCamera(ndc, camera);
-    const hits = raycaster.intersectObjects(placeGroup.children, false);
-    if (hits.length && hits[0].object.userData && hits[0].object.userData.placeId) {
-      const id = hits[0].object.userData.placeId;
-      window.location.href = `index.html#/place/${encodeURIComponent(id)}`;
+    const hits = raycaster.intersectObjects(placeGroup.children, true);
+    if (hits.length) {
+      let o = hits[0].object;
+      while (o && !(o.userData && o.userData.placeId)) o = o.parent;
+      if (o && o.userData && o.userData.placeId) {
+        window.location.href = `index.html#/place/${encodeURIComponent(o.userData.placeId)}`;
+      }
     }
   }
 
@@ -500,18 +768,29 @@
       return;
     }
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.domElement.className = "civi-three-canvas";
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
     host.appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x0d1117, 40, 80);
+    scene.background = new THREE.Color(0x0b1016);
+    scene.fog = new THREE.Fog(0x0b1016, 46, 92);
     camera = new THREE.OrthographicCamera(-VIEW, VIEW, VIEW, -VIEW, 0.1, 200);
     raycaster = new THREE.Raycaster();
 
     buildLights();
     buildBoard();
     buildLandscape();
+    buildCity();
+    buildTrees();
+    buildLandmarks();
+
+    zoom = 1.35; // start litt inn-zoomet for mer trøkk
 
     // Marker host slik at CSS skjuler 2D-canvasene, og signaliser at 3D er aktiv.
     host.classList.add("is-three-map");
