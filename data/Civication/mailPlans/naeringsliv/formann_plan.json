@@ -239,6 +239,153 @@
         "second_week_praksisfortellinger_formann_private"
       ],
       "fallback_types": []
+    },
+    {
+      "step": 21,
+      "type": "job",
+      "phase": "early",
+      "allowed_families": [
+        "fordeling_av_skift",
+        "produksjonsro"
+      ],
+      "fallback_types": [
+        "people",
+        "event",
+        "conflict"
+      ]
+    },
+    {
+      "step": 22,
+      "type": "people",
+      "phase": "early",
+      "allowed_families": [
+        "erfaren_som_tester_deg",
+        "nyansatt_som_folger_deg"
+      ],
+      "fallback_types": [
+        "job",
+        "story"
+      ]
+    },
+    {
+      "step": 23,
+      "type": "event",
+      "phase": "early",
+      "allowed_families": [
+        "kritisk_bemanningssprekk"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "people"
+      ]
+    },
+    {
+      "step": 24,
+      "type": "job",
+      "phase": "mid",
+      "allowed_families": [
+        "oppfolging_pa_gulvet",
+        "stans_og_omdirigering"
+      ],
+      "fallback_types": [
+        "people",
+        "event",
+        "conflict"
+      ]
+    },
+    {
+      "step": 25,
+      "type": "conflict",
+      "phase": "mid",
+      "allowed_families": [
+        "tempo_mot_forsvarlighet_intro",
+        "lojalitet_mot_laget_intro"
+      ],
+      "fallback_types": [
+        "job",
+        "people",
+        "event"
+      ]
+    },
+    {
+      "step": 26,
+      "type": "people",
+      "phase": "mid",
+      "allowed_families": [
+        "taus_slitasje_i_laget",
+        "blikk_fra_ledelsen"
+      ],
+      "fallback_types": [
+        "job",
+        "story"
+      ]
+    },
+    {
+      "step": 27,
+      "type": "story",
+      "phase": "advanced",
+      "allowed_families": [
+        "gulvets_mellomposisjon"
+      ],
+      "fallback_types": [
+        "job",
+        "people",
+        "event"
+      ]
+    },
+    {
+      "step": 28,
+      "type": "job",
+      "phase": "advanced",
+      "allowed_families": [
+        "ansvar_for_flyt"
+      ],
+      "fallback_types": [
+        "people",
+        "event",
+        "conflict"
+      ]
+    },
+    {
+      "step": 29,
+      "type": "event",
+      "phase": "advanced",
+      "allowed_families": [
+        "maskinstans_med_ansvar"
+      ],
+      "fallback_types": [
+        "conflict",
+        "job",
+        "people"
+      ]
+    },
+    {
+      "step": 30,
+      "type": "conflict",
+      "phase": "mastery",
+      "allowed_families": [
+        "tempo_mot_forsvarlighet_early",
+        "lojalitet_mot_laget_early"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
+    },
+    {
+      "step": 31,
+      "type": "story",
+      "phase": "climax",
+      "allowed_families": [
+        "ansvar_uten_herredomme"
+      ],
+      "fallback_types": [
+        "event",
+        "conflict",
+        "job"
+      ]
     }
   ]
 }
