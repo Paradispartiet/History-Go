@@ -31,16 +31,17 @@
 
     if (current === next) {
       render();
-      return;
+      return false;
     }
 
     if (replace) {
       history.replaceState(null, "", next);
       render();
-      return;
+      return true;
     }
 
     location.hash = next;
+    return true;
   }
 
   function render() {
