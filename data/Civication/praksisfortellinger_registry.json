@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "description": "Registry for Civication Praksisfortellinger packages by role.",
+  "roles": [
+    {
+      "role_id": "arbeider",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/arbeider_intro_v2.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json",
+      "expected_signals": [
+        "quality",
+        "clarity",
+        "trust_manager",
+        "trust_colleague",
+        "autonomy",
+        "stagnation",
+        "future_risk",
+        "promotion_path",
+        "overload_risk"
+      ],
+      "packages": [
+        {
+          "package_id": "arbeider_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_job",
+          "private_family": "first_week_praksisfortellinger_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-first-week-praksisfortellinger.test.js"
+        },
+        {
+          "package_id": "arbeider_week_2",
+          "week": 2,
+          "step_start": 11,
+          "step_end": 20,
+          "job_family": "second_week_praksisfortellinger_job",
+          "private_family": "second_week_praksisfortellinger_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-second-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": [
+        "tests/civication-praksisfortellinger-two-week-flow.test.js"
+      ]
+    },
+    {
+      "role_id": "fagarbeider",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+      "expected_signals": [
+        "quality",
+        "safety",
+        "speed",
+        "body_strain",
+        "energy",
+        "future_risk",
+        "learning_progress",
+        "trust_colleague",
+        "trust_manager",
+        "stagnation"
+      ],
+      "packages": [
+        {
+          "package_id": "fagarbeider_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "private_family": "first_week_praksisfortellinger_fagarbeider_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js"
+        },
+        {
+          "package_id": "fagarbeider_week_2",
+          "week": 2,
+          "step_start": 11,
+          "step_end": 20,
+          "job_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "private_family": "second_week_praksisfortellinger_fagarbeider_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": [
+        "tests/civication-fagarbeider-two-week-flow.test.js"
+      ]
+    }
+  ],
+  "cross_role_tests": [
+    "tests/civication-praksisfortellinger-cross-role.test.js"
+  ]
+}
