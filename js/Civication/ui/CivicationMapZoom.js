@@ -49,6 +49,7 @@
 
   function applyNow() {
     applyQueued = false;
+    if (window.CIVICATION_CANVAS_MAP_ENABLED === true) return;
 
     const svg = svgEl();
     if (!svg) return;
@@ -244,6 +245,8 @@
   }
 
   function init() {
+    // Canvas-kartet har egne zoomkontroller. Ikke kjør to zoomsystemer samtidig.
+    if (window.CIVICATION_CANVAS_MAP_ENABLED === true) return;
     ensureControls();
     bind();
     requestApply();

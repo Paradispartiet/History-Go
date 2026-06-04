@@ -316,6 +316,8 @@
   }
 
   function render() {
+    // Canvas-kartet tegner places selv. Ikke bygg SVG-places når det er aktivt.
+    if (window.CIVICATION_CANVAS_MAP_ENABLED === true) return;
     const svg = svgEl();
     if (!svg) return;
     if (!_places) {
