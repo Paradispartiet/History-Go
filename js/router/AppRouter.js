@@ -19,13 +19,27 @@
     };
   }
 
+  function normalizeHash(hash) {
+    return String(hash || DEFAULT_ROUTE).startsWith("#")
+      ? String(hash || DEFAULT_ROUTE)
+      : `#${hash}`;
+  }
+
   function navigate(hash, { replace = false } = {}) {
-    const next = String(hash || DEFAULT_ROUTE).startsWith("#") ? String(hash || DEFAULT_ROUTE) : `#${hash}`;
+    const next = normalizeHash(hash);
+    const current = location.hash ? normalizeHash(location.hash) : "";
+
+    if (current === next) {
+      render();
+      return;
+    }
+
     if (replace) {
       history.replaceState(null, "", next);
       render();
       return;
     }
+
     location.hash = next;
   }
 

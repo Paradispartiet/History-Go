@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("initMiniProfile", window.initMiniProfile);
     await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
     await safeRun("initLeftPanel", window.initLeftPanel);
+    await safeRun("wireBackgroundLeftPanelRerenders", wireBackgroundLeftPanelRerenders);
 
     markAppReady();
     releaseQueuedToasts();
@@ -91,6 +92,37 @@ function gateToastsUntilAppReady() {
   }
 }
 
+function routeToPlace(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return;
+
+  const next = `#/place/${encodeURIComponent(id)}`;
+  if (window.HGAppRouter?.navigate) {
+    window.HGAppRouter.navigate(next);
+    return;
+  }
+
+  if (location.hash !== next) location.hash = next;
+}
+
+function wireBackgroundLeftPanelRerenders() {
+  if (window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__ === true) return;
+  window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__ = true;
+
+  const activeMode = () =>
+    document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
+
+  window.addEventListener("hg:people-ready", () => {
+    if (activeMode() === "people" && typeof window.renderNearbyPeople === "function") {
+      window.renderNearbyPeople();
+    }
+  });
+
+  window.addEventListener("hg:backgroundReady", () => {
+    window.rerenderActiveLeftPanelMode?.();
+  });
+}
+
 function wireMapPlacePopupInMapMode() {
   if (!window.HGMap || typeof window.HGMap.setOnPlaceClick !== "function") return;
 
@@ -101,23 +133,7 @@ function wireMapPlacePopupInMapMode() {
 
     if (!place) return;
 
-    const isMapMode =
-      window.LayerManager?.getMode?.() === "map" ||
-      document.body?.classList.contains("map-only") ||
-      document.body?.classList.contains("mode-map");
-
-    if (isMapMode && typeof window.showPlacePopup === "function") {
-      window.showPlacePopup(place);
-      return;
-    }
-
-    if (typeof window.openPlaceCard !== "function") return;
-
-    const opened = window.openPlaceCard(place);
-
-    Promise.resolve(opened).finally(() => {
-      window.bottomSheetController?.open?.();
-    });
+    routeToPlace(place.id);
   });
 }
 

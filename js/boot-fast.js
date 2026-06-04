@@ -195,9 +195,16 @@
 
     window.HGMap.setPlaces(window.PLACES);
     window.HGMap.setOnPlaceClick((id) => {
-      const p = (window.PLACES || []).find((x) => String(x?.id || "").trim() === String(id || "").trim());
+      const placeId = String(id || "").trim();
+      const p = (window.PLACES || []).find((x) => String(x?.id || "").trim() === placeId);
       if (!p) return;
-      if (typeof window.openPlaceCard === "function") window.openPlaceCard(p);
+
+      const next = `#/place/${encodeURIComponent(placeId)}`;
+      if (window.HGAppRouter?.navigate) {
+        window.HGAppRouter.navigate(next);
+      } else if (location.hash !== next) {
+        location.hash = next;
+      }
     });
     window.HGMap.refreshMarkers?.();
   }
