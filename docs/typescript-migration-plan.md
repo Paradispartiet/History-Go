@@ -258,7 +258,7 @@ Disse filene typecheckes med `npm run typecheck:scripts` og bygges med `npm run 
 
 Det neste ikke-Civication TypeScript-sporet er Node-only `tools/`. Første kandidat i denne løypen er `tools/check_place_emne_ids.mts`, konvertert fra `tools/check_place_emne_ids.mjs`. Toolen validerer place-data mot canonical emne-data og er ikke Civication-relatert, ikke browser-loadet og ikke del av i18n places-scripts-løypen.
 
-Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. Build-output går til `dist/tools`; fordi kildefilen er `.mts`, emitter TypeScript NodeNext en Node-kompatibel `.mjs`-fil. `npm run places:emner:check` bygger tools-output og kjører `node dist/tools/check_place_emne_ids.mjs`. `dist/` er fortsatt generert output og skal ikke committes. Civication er fortsatt deferred.
+Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. Build-output går til `dist/tools`; fordi kildefilen er `.mts`, emitter TypeScript NodeNext en Node-kompatibel `.mjs`-fil. `npm run places:emner:check` bygger tools-output og kjører `node dist/tools/check_place_emne_ids.mjs`. Tools-sporet kan nå valideres samlet med `npm run tools:check`, som kjører typecheck, build og `places:emner:check`. `dist/` er fortsatt generert output og skal ikke committes. Civication er fortsatt deferred.
 
 ## Hva som må være på plass før første `.js` → `.ts`-konvertering
 
