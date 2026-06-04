@@ -1074,6 +1074,1144 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_job",
+      "description": "Civication – Innkommende pakke 2: Andre uke. Jobbmail der arbeidsplassen begynner å merke spilleren: notater brukes, feil får eiere, lojalitet testes og vurdering begynner.",
+      "thread_binding": {
+        "story_thread_id": "second_week_praksisfortellinger",
+        "job_thread_id": "saksstotte_fellesinnboks"
+      },
+      "mails": [
+        {
+          "id": "job_week2_monday_note_used",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "subject": "Mandagsmøtet – notatet blir brukt",
+          "summary": "Fra Marianne — Emne: Notatet ditt i mandagsmøtet",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Marianne — Emne: Notatet ditt i mandagsmøtet\n\nHei,\n\nJeg har sett litt mer på prioriteringsnotatet ditt fra fredag.\n\nDet er nyttig, særlig fordi du skiller mellom saker som haster, saker som er gamle, og saker som bare virker viktige fordi noen har purret mange ganger.\n\nJeg vil gjerne bruke det som utgangspunkt i mandagsmøtet. Du trenger ikke presentere noe stort, men det hadde vært fint om du sier kort hvordan du tenkte da du delte sakene inn.\n\nBare to-tre minutter.\n\nMvh\nMarianne",
+            "Fra Eirik — Emne: To-tre minutter\n\nBare så du vet:\n\n“To-tre minutter” kan bety to-tre minutter hvis alt går rolig.\n\nMen hvis noen føler at notatet ditt flytter ansvar, blir det fort ti minutter og tre nye oppgaver.\n\nIkke vær redd for å forklare vurderingene dine. Bare pass på at du ikke blir den som plutselig skal eie hele prioriteringsmodellen.\n\n– Eirik",
+            "Fra Nora — Emne: Mandagsmøtet\n\nHei,\n\nJeg synes notatet ditt var godt.\n\nHvis du får spørsmål om de gamle sakene, ville jeg sagt at problemet ikke er enkeltpersoner, men manglende felles kriterier. Det er mer presist, og det gjør at vi kanskje faktisk kan endre rutinen.\n\nHilsen\nNora",
+            "Fra System — Emne: Møte starter om 15 minutter\n\nMandagsmøte\nTid: 09:30–10:00\nAgenda:\n1. Restanser\n2. Prioritering\n3. Fordeling av ansvar\n4. Eventuelt"
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta eierskap til notatet",
+              "reply": "Jeg forklarer vurderingene tydelig og sier at notatet kan brukes som startpunkt for en bedre rutine.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_monday_note_used_ownership",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "visibility_with_responsibility",
+                  "week2_visible_responsibility",
+                  "stress_up",
+                  "promotion_path",
+                  "overload_risk"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 2,
+                  "integrity": 2,
+                  "economicRoom": -3,
+                  "visibility": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Dempe betydningen",
+              "reply": "Jeg sier at notatet bare var en foreløpig oversikt og at andre bør vurdere fordelingen videre.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_monday_note_used_lower",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "safe_but_less_visible",
+                  "week2_low_visibility",
+                  "stress_down",
+                  "stagnation"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -2,
+                  "integrity": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Flytte det til fellesskapet",
+              "reply": "Jeg sier at notatet viser behov for felles kriterier, ikke at én person skal eie prioriteringen.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_monday_note_used_shared",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "shared_responsibility",
+                  "week2_shared_criteria"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 3,
+                  "trust": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_week2_user_waited",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "subject": "Brukeren som har ventet",
+          "summary": "Fra System — Emne: Henvendelse markert som hast",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra System — Emne: Henvendelse markert som hast\n\nSak 144-B har fått ny henvendelse fra bruker.\n\nStatus:\n- Tidligere svar sendt\n- Bruker oppgir at saken ikke er løst\n- Ventetid: 23 dager\n- Prioritet: høy",
+            "Fra Marianne — Emne: 144-B igjen\n\nHei,\n\nBruker har svart i 144-B.\n\nKan du se på den først i dag? Det er viktig at vi svarer ryddig, men også at vi ikke lover mer enn vi faktisk kan gjøre.\n\nSend meg gjerne forslag før du sender.\n\nMvh\nMarianne",
+            "Fra Nora — Emne: Brukerens siste svar\n\nHei,\n\nJeg leste svaret fra bruker.\n\nDet er litt frustrasjon der, men også ganske forståelig. De har blitt sendt rundt. Jeg tror det viktigste er å anerkjenne ventetiden uten å legge oss flate for alt.\n\nNoe sånt som: “Vi ser at saken har tatt lenger tid enn ønskelig, og vi skal sørge for at den behandles riktig videre.”\n\nHilsen\nNora",
+            "Fra Eirik — Emne: 144-B\n\nBare vær obs:\n\nHvis du skriver for varmt, kan det leses som at vi innrømmer feil.\nHvis du skriver for kaldt, kommer bruker bare tilbake sintere.\n\nDette er en sånn sak hvor tonen gjør halve jobben.\n\n– Eirik"
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Empatisk svar",
+              "reply": "Jeg skriver et svar som tydelig anerkjenner ventetiden og forklarer hva som skjer videre.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_user_waited_empathy",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "empathy_with_responsibility",
+                  "stress_up",
+                  "future_risk"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 2,
+                  "trust": 2,
+                  "economicRoom": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Formelt svar",
+              "reply": "Jeg skriver et kort, korrekt svar uten å gå inn i frustrasjonen.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_user_waited_formal",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "safe_but_cold",
+                  "future_risk",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -2,
+                  "trust": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Videresende saken",
+              "reply": "Jeg sender saken videre til riktig avdeling uten å svare bruker selv.",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_user_waited_forward",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "avoidance_future_risk",
+                  "stress_down",
+                  "future_risk"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -3,
+                  "integrity": -1,
+                  "trust": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_week2_colleague_cover",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "eirik",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "subject": "Kollegaen som trenger dekning",
+          "summary": "Fra Eirik — Emne: Kan du ta en kjapp ting?",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Eirik — Emne: Kan du ta en kjapp ting?\n\nHei,\n\nLitt krise.\n\nJeg har dobbeltbooket meg med et møte og en oppfølging i to saker. Den ene saken er egentlig ikke stor, men det må sendes et kort svar før kl. 12.\n\nKunne du tatt den for meg?\n\nJeg vet du har nok, men dette er en sånn ting som ser verre ut enn den er hvis den blir liggende.\n\n– Eirik",
+            "Fra System — Emne: Oppgave nær frist\n\nSak 203-F nærmer seg intern frist.\n\nFrist: 12:00\nStatus: Ikke besvart\nEier: Eirik",
+            "Fra Nora — Emne: 203-F\n\nHei,\n\nBare så du vet: 203-F er egentlig Eiriks sak.\n\nDet er ikke farlig om du hjelper, men pass på at det ikke ser ut som du overtar den. Vi har hatt litt problemer med at saker flyter over på folk som bare er flinke til å svare.\n\nHilsen\nNora"
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dekke for Eirik stille",
+              "reply": "Jeg svarer på saken uten å gjøre noe nummer ut av det.",
+              "effect": 1,
+              "tags": [
+                "relationship",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_colleague_cover_silent",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "loyalty_with_hidden_cost",
+                  "stress_up",
+                  "overload_risk"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 2,
+                  "economicRoom": -2,
+                  "integrity": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Hjelpe, men registrere riktig eier",
+              "reply": "Jeg hjelper med svaret, men lar saken stå på Eirik og skriver at jeg har bistått.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_colleague_cover_healthy",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "healthy_help",
+                  "healthy_boundaries"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 1,
+                  "integrity": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Si nei",
+              "reply": "Jeg sier at jeg ikke kan ta saken fordi jeg har egne frister.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_colleague_cover_no",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "boundary_with_friction",
+                  "stress_down",
+                  "relationship_eirik"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 2,
+                  "trust": -1,
+                  "economicRoom": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_week2_routine_becomes_politics",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "subject": "Når rutine blir politikk",
+          "summary": "Fra Marianne — Emne: Enkel prioriteringsrutine",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Marianne — Emne: Enkel prioriteringsrutine\n\nHei,\n\nEtter møtet mandag har jeg tenkt at vi kanskje bør lage en enkel rutine for fellesinnboksen.\n\nIkke noe stort prosjekt. Bare noen kriterier for hva som skal tas først, og hvem som skal avklare saker som ligger mellom avdelinger.\n\nKan du og Nora lage et lite forslag?\n\nMvh\nMarianne",
+            "Fra Nora — Emne: Rutineforslaget\n\nHei,\n\nJeg kan jobbe med deg på dette.\n\nJeg tror forslaget må være veldig enkelt, ellers dør det før det begynner. Kanskje tre kategorier og én regel for hvem som avklarer ansvar.\n\nHvis vi lager et perfekt system, kommer ingen til å bruke det.\n\nHilsen\nNora",
+            "Fra Eirik — Emne: Bare pass på\n\nRutiner er aldri bare rutiner.\n\nHvis dere skriver at “eldste saker skal prioriteres”, får noen flere gamle saker.\nHvis dere skriver at “saker med uklar eier skal avklares”, må noen faktisk avklare dem.\nHvis dere skriver “felles ansvar”, betyr det ofte ingen ansvar.\n\nBare pass på at dere lager noe folk faktisk kan leve med.\n\n– Eirik",
+            "Fra Kjetil, senior saksbehandler — Emne: Angående ny rutine\n\nHei,\n\nJeg hørte at det vurderes en ny rutine for fellesinnboksen.\n\nFint med initiativ, men vi bør være forsiktige med å lage for mange formelle steg. Mye av dette løses best med erfaring og skjønn. Det kan bli mer administrasjon enn arbeid hvis alt skal kategoriseres.\n\nMvh\nKjetil"
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage tydelig rutine",
+              "reply": "Jeg lager et tydelig forslag med tre kategorier, ansvarspunkt og frist for avklaring.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_routine_becomes_politics_clear",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "real_change_with_resistance"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 4,
+                  "trust": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lage myk anbefaling",
+              "reply": "Jeg lager en enkel anbefaling uten faste krav.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_routine_becomes_politics_soft",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "comfortable_but_weak",
+                  "week2_low_visibility",
+                  "stagnation"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Foreslå prøveperiode",
+              "reply": "Jeg foreslår at rutinen testes i én uke før den blir fast.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_routine_becomes_politics_trial",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "experimental_change",
+                  "healthy_boundaries"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 2,
+                  "trust": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_week2_second_week_review",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "subject": "Andre ukes vurdering",
+          "summary": "Fra Marianne — Emne: To uker inne",
+          "purpose": "Praksisfortelling fra andre uke i saksstøtte/mottak/fellesinnboks.",
+          "stakes": "Valget flytter tillit, kvalitet, autonomi, stress, risiko eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra Marianne — Emne: To uker inne\n\nHei,\n\nDu har snart vært her i to uker, og jeg vil gjerne ta en kort fot i bakken.\n\nIkke en formell vurdering. Bare litt om hvordan du synes det går, hva du trenger mer av, og hva du selv ser at du begynner å få tak på.\n\nSend meg gjerne noen punkter før du går i dag.\n\nMvh\nMarianne",
+            "Fra Eirik — Emne: To-ukersgreia\n\nDette er ikke en eksamen.\n\nMen det er heller ikke ingenting.\n\nHvis du sier at alt går fint, får du mer av det samme.\nHvis du sier at du trenger avklaringer, kan du få bedre rammer.\nHvis du sier for mye, kan du få mer ansvar enn du ba om.\n\nVelkommen til nivå to.\n\n– Eirik",
+            "Fra Nora — Emne: Hvis du vil nevne noe\n\nHei,\n\nHvis du skal nevne én ting, ville jeg nevnt at fellesinnboksen trenger tydeligere kriterier.\n\nIkke som kritikk. Bare som læring fra de to første ukene.\n\nDet er sant, og det er nyttig.\n\nHilsen\nNora"
+          ],
+          "task_domain": "saksstotte_fellesinnboks",
+          "choice_axis": "ansvar_grenser_synlighet",
+          "consequence_axis": "tillit_press_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om mer ansvar",
+              "reply": "Jeg skriver at jeg begynner å få oversikt og gjerne kan ta mer ansvar for fellesinnboksen.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_second_week_review_more",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "promotion_track_pressure",
+                  "week2_visible_responsibility",
+                  "promotion_path",
+                  "stress_up",
+                  "overload_risk"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "visibility": 2,
+                  "trust": 2,
+                  "economicRoom": -4,
+                  "integrity": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be om tydeligere rammer",
+              "reply": "Jeg skriver at jeg lærer mye, men trenger tydeligere rammer for prioritering og ansvar.",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_second_week_review_frames",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "boundary_professionalism",
+                  "healthy_boundaries",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 4,
+                  "economicRoom": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Si at alt går fint",
+              "reply": "Jeg skriver at alt går fint, og at jeg bare fortsetter.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_second_week_review_fine",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "stable_stagnation",
+                  "week2_low_visibility",
+                  "stress_down",
+                  "stagnation"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -3,
+                  "integrity": -1
+                }
+              }
+            },
+            {
+              "id": "D",
+              "label": "Si at det er for mye",
+              "reply": "Jeg skriver at arbeidsmengden og uklarheten har vært mer krevende enn forventet.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "job_week2_second_week_review_too_much",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [],
+                "set_flags": [
+                  "support_with_reputation_cost",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "economicRoom": -4,
+                  "trust": -1,
+                  "integrity": 1
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "job_week2_monday_note_used_ownership",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Godt forklart",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nTakk for god gjennomgang i møtet.\n\nJeg synes du forklarte vurderingene dine ryddig. Vi bruker notatet ditt som utgangspunkt denne uka, og så ser vi om vi kan få på plass en enkel rutine før fredag.\n\nKan du og Nora se litt på dette sammen?\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_monday_note_used_lower",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Videre vurdering",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nGreit.\n\nDa tar vi notatet som en foreløpig oversikt. Jeg ber Nora se videre på prioriteringene, så kan du fortsette med sakene fra forrige uke.\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_monday_note_used_shared",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Det var riktig formulert",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nDet du sa i møtet var lurt.\n\nNår du gjorde det til et spørsmål om felles kriterier, ble det vanskeligere for folk å høre det som kritikk. Det er sånn man faktisk får endret små rutiner her.\n\nHilsen\nNora"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_user_waited_empathy",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God tone",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nDette var et godt forslag.\n\nJeg ville justert én formulering så vi ikke lover behandlingstid vi ikke kontrollerer, men tonen er riktig. Det er viktig at bruker merker at noen faktisk har lest saken.\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_user_waited_formal",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Litt kaldt?",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nSvaret er ikke feil.\n\nMen jeg tror kanskje bruker kommer tilbake igjen. Noen ganger må vi svare på følelsen også, ikke bare på saken.\n\nHilsen\nNora"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_user_waited_forward",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Hvor ble 144-B sendt?",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nSer at 144-B er videresendt.\n\nDet kan være riktig, men i slike saker bør bruker få en kort beskjed samtidig. Ellers oppleves det bare som enda en runde i systemet.\n\nKan du følge opp?\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_colleague_cover_silent",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "eirik",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Takk",
+          "summary": "Du reddet meg der.",
+          "situation": [
+            "Du reddet meg der.\n\nJeg skylder deg en. Seriøst.\n\nBare si fra hvis jeg skal ta noe for deg senere.\n\n– Eirik"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_colleague_cover_healthy",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ryddig",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nDet var ryddig gjort.\n\nDu hjalp uten å gjøre deg selv til eier av saken. Det høres enkelt ut, men det er faktisk en ganske viktig ferdighet her.\n\nHilsen\nNora"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_colleague_cover_no",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "eirik",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Skjønner",
+          "summary": "Ok.",
+          "situation": [
+            "Ok.\n\nSkjønner.\n\nJeg finner ut av det.\n\n– Eirik"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_routine_becomes_politics_clear",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kjetil",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Re: forslag",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nForslaget er ryddig, men jeg er litt bekymret for at dette blir for mekanisk.\n\nNoen saker krever skjønn, og det er vanskelig å skrive inn i en rutine.\n\nMvh\nKjetil"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_routine_becomes_politics_soft",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Kanskje litt for forsiktig",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nDette er trygt, men jeg er usikker på om det endrer noe.\n\nDet ligner litt på det vi allerede gjør når vi gjør det riktig. Problemet er jo dagene vi ikke gjør det.\n\nHilsen\nNora"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_routine_becomes_politics_trial",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God idé",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nPrøveperiode er en god løsning.\n\nDa slipper vi å gjøre dette større enn nødvendig, men vi får samtidig testet om det faktisk hjelper.\n\nKan dere lage et forslag som gjelder for neste uke?\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_second_week_review_more",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Neste steg",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nDet er fint å høre.\n\nJeg synes du har vist god forståelse for både sakene og rytmen her. La oss se på om du kan få en litt tydeligere rolle rundt fellesinnboksen neste uke.\n\nGod helg!\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_second_week_review_frames",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Rammer",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nDet er en helt rimelig tilbakemelding.\n\nVi kan ta en kort gjennomgang mandag og tydeliggjøre hva du skal eie selv, og hva som skal avklares med meg eller Nora.\n\nGod helg!\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_second_week_review_fine",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Fint",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nFint.\n\nDa fortsetter vi som nå, og så tar vi ting underveis.\n\nGod helg.\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        },
+        {
+          "id": "job_week2_second_week_review_too_much",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_job",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marianne_avdelingsleder",
+          "place_id": "fellesinnboksen",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nTakk for at du sier fra.\n\nDa må vi se litt på arbeidsmengden og hva du blir satt til. Det er bedre å justere tidlig enn at det bygger seg opp.\n\nVi tar det mandag.\n\nGod helg.\n\nMvh\nMarianne"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "arbeider_intro_v2",
       "description": "Første dager på Lilleborg fabrikker. Fra Egil, Marit og Roger.",
       "mails": [
