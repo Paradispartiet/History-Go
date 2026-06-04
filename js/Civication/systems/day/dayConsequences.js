@@ -274,14 +274,20 @@
     if (!eventObj || !choice) return null;
 
     const roleScope = activeRoleScope();
-    if (roleScope !== "mellomleder") return null;
+    const hasExplicitNextBias = !!(choice?.next_bias && typeof choice.next_bias === "object");
+
+    if (roleScope !== "mellomleder" && !hasExplicitNextBias) return null;
 
     const branch = mergeBranchState(inferBranchBias(eventObj, choice, result));
-    const psyche = applyPsycheDelta(inferPsycheDelta(eventObj, choice, result));
-    const capital = applyCapitalDelta(
-      inferCapitalDelta(eventObj, choice, result),
-      `mellomleder_${normStr(eventObj.mail_family || eventObj.mail_type || "mail")}`
-    );
+    const psyche = roleScope === "mellomleder"
+      ? applyPsycheDelta(inferPsycheDelta(eventObj, choice, result))
+      : null;
+    const capital = roleScope === "mellomleder"
+      ? applyCapitalDelta(
+          inferCapitalDelta(eventObj, choice, result),
+          `mellomleder_${normStr(eventObj.mail_family || eventObj.mail_type || "mail")}`
+        )
+      : null;
 
     let burnout = null;
     let collapse = null;
