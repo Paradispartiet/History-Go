@@ -1,0 +1,29 @@
+/* Civication – Canvas-basert kartmotor.
+   #civiMapWorld er fortsatt kartcontaineren. Canvas-lagene dekker hele flaten. */
+
+#civiMapWorld.is-canvas-map {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.civi-map-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+/* Places-canvas skal ligge over base-canvas. */
+.civi-map-base-canvas { z-index: 1; }
+.civi-map-places-canvas { z-index: 2; }
+
+/* Zoomkontrollene skal fortsatt være synlige over canvas. */
+#civiMapWorld.is-canvas-map .civi-map-zoom-controls { z-index: 6; }
+
+/* Når canvas-kartet er aktivt: skjul gammel SVG visuelt dersom den finnes. */
+#civiMapWorld.is-canvas-map svg {
+  display: none;
+}

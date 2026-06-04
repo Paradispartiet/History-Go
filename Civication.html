@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/civi-mini.css" />
   <link rel="stylesheet" href="css/civi-system-map.css" />
   <link rel="stylesheet" href="css/civi-map-miniatures.css" />
+  <link rel="stylesheet" href="css/civi-canvas-map.css" />
   <link rel="stylesheet" href="css/fixed-shell.css" />
 </head>
 
@@ -245,10 +246,13 @@
   <script src="js/Civication/ui/CivicationPublicLayer.js"></script>
   <script src="js/Civication/ui/CivicationMapZonesFallback.js"></script>
   <script src="js/Civication/ui/CivicationMapModel.js"></script>
+  <!-- Canvas-kart er standard for Civication. Må settes før SVG-kartscriptet kjører. -->
+  <script>window.CIVICATION_CANVAS_MAP_ENABLED = true;</script>
   <script src="js/Civication/ui/CivicationMap.js"></script>
   <script src="js/Civication/ui/CivicationSystemMap.js"></script>
   <script src="js/Civication/ui/CivicationMapZoom.js"></script>
   <script src="js/Civication/ui/CivicationHistoryGoPlaceLayer.js"></script>
+  <script src="js/Civication/ui/CivicationCanvasMap.js"></script>
 
   <!-- UI support -->
   <script src="js/Civication/systems/civicationNPCs.js"></script>
