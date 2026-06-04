@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-03T11:38:36.256Z
+Generert: 2026-06-04T08:47:30.670Z
 
 ## Sammendrag
 
