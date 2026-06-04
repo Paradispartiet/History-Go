@@ -188,27 +188,66 @@
     ctx.restore();
   }
 
+  // Stiliserte Oslo-former (normaliserte 0–1-koordinater). Lette polygoner/
+  // ellipser/linjer – ingen tunge gradients, skygger eller blur.
+  const BYGDOY_PENINSULA = [[0.13,0.65],[0.27,0.62],[0.34,0.66],[0.33,0.74],[0.25,0.79],[0.16,0.77],[0.10,0.70]];
+  const BJORVIKA_INLET = [[0.52,0.60],[0.61,0.60],[0.64,0.66],[0.60,0.73],[0.54,0.72],[0.50,0.66]];
+  const AKERSHUS_POINT = [[0.47,0.61],[0.525,0.62],[0.545,0.66],[0.505,0.69],[0.455,0.67]];
+  const FJORD_ISLANDS = [
+    { id: "hovedoya",   rx: 0.032, ry: 0.018 },
+    { id: "_lindoya",   x: 0.415, y: 0.800, rx: 0.024, ry: 0.013 },
+    { id: "_gressholmen",x: 0.520, y: 0.815, rx: 0.028, ry: 0.015 },
+    { id: "_nakkholmen", x: 0.395, y: 0.745, rx: 0.018, ry: 0.011 }
+  ];
+
+  function anchorXY(id) {
+    const a = (window.CIVI_OSLO_GEO_ANCHORS || []).find((an) => an.id === id);
+    return a ? { x: a.x, y: a.y } : null;
+  }
+
+  function fillEllipseWorld(ctx, cx, cy, rx, ry, fill, stroke, lineWidth) {
+    const s = worldToScreen(cx, cy);
+    ctx.beginPath();
+    ctx.ellipse(s.x, s.y, Math.max(0.5, rx * state.zoom * W), Math.max(0.5, ry * state.zoom * H), 0, 0, Math.PI * 2);
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lineWidth || 1; ctx.stroke(); }
+  }
+
   function drawBase() {
     const ctx = baseCtx;
     if (!ctx) return;
     ctx.clearRect(0, 0, W, H);
 
-    // Mørk bakgrunn (dekker hele flaten uavhengig av transform).
+    const land = window.CIVI_OSLO_LANDSCAPE || {};
+
+    // 1) Bakgrunn (dekker hele flaten uavhengig av transform).
     ctx.fillStyle = "#11171f";
     ctx.fillRect(0, 0, W, H);
 
-    const land = window.CIVI_OSLO_LANDSCAPE || {};
-
-    // Marka / terreng
-    if (land.markaNorth) fillPoly(ctx, land.markaNorth, "#2c4a35");
-    if (land.cityBasin) fillPoly(ctx, land.cityBasin, "#25333f");
-    if (land.ekebergRidge) fillPoly(ctx, land.ekebergRidge, "#456b4d");
-
-    // Fjord / vann
+    // 2) Fjord / vann – Oslofjorden sør og sørvest.
     if (land.fjord) fillPoly(ctx, land.fjord, "#27567a");
-    if (land.innerFjordArm) fillPoly(ctx, land.innerFjordArm, "rgba(95,151,189,0.55)");
+    if (land.innerFjordArm) fillPoly(ctx, land.innerFjordArm, "rgba(95,151,189,0.45)");
+    // Bjørvika som innskåret vann/bykant.
+    fillPoly(ctx, BJORVIKA_INLET, "#1f4a64");
 
-    // Bydeler som polygons
+    // 3) Øyer og halvøyer.
+    fillPoly(ctx, BYGDOY_PENINSULA, "#3f6b46", "rgba(20,40,28,0.5)", 1);     // Bygdøy
+    FJORD_ISLANDS.forEach((isl) => {
+      const c = isl.x != null ? { x: isl.x, y: isl.y } : anchorXY(isl.id);
+      if (c) fillEllipseWorld(ctx, c.x, c.y, isl.rx, isl.ry, "#4f7a52", "rgba(20,40,28,0.45)", 1);
+    });
+
+    // 4) Marka / åsrygger.
+    if (land.markaNorth) fillPoly(ctx, land.markaNorth, "#2c4a35");
+    if (land.ekebergRidge) fillPoly(ctx, land.ekebergRidge, "#456b4d");   // Ekebergåsen sørøst
+    // Sognsvann i marka (lite vann).
+    const sogn = anchorXY("sognsvann");
+    if (sogn) fillEllipseWorld(ctx, sogn.x, sogn.y, 0.018, 0.012, "#2f5d7e");
+
+    // 5) Bybassenget.
+    if (land.cityBasin) fillPoly(ctx, land.cityBasin, "#25333f");
+
+    // 6) Bydelsflater.
     (window.CIVI_MAP_DISTRICTS || [])
       .slice()
       .sort((a, b) => (a.visualWeight || 0) - (b.visualWeight || 0))
@@ -217,21 +256,35 @@
         fillPoly(ctx, d.shape, st.fill || "#cabda9", "rgba(255,255,255,0.10)", 1);
       });
 
-    // Hovedkorridorer / veier
+    // 7) Hovedveier / korridorer (stiliserte linjer, ikke detaljert veinett).
     const idx = zoneIndex();
     (window.CIVI_OSLO_CORRIDORS || []).forEach((c) => {
       const ids = c.ring || [c.from, ...(c.via || []), c.to];
       const pts = ids.map((id) => idx[id] && idx[id].center).filter(Boolean);
-      strokePolyline(ctx, pts, c.style === "ring" ? "rgba(246,234,208,0.22)" : "rgba(224,236,245,0.30)", c.style === "ring" ? 2.4 : 3);
+      strokePolyline(ctx, pts, c.style === "ring" ? "rgba(246,234,208,0.22)" : "rgba(224,236,245,0.28)", c.style === "ring" ? 2.4 : 3);
     });
+    // Enkel jernbaneakse fra Oslo S.
+    const osloS = anchorXY("oslo_s");
+    if (osloS) {
+      ctx.save();
+      ctx.setLineDash([6, 5]);
+      strokePolyline(ctx, [[0.31, 0.585], [0.44, 0.583], [osloS.x, osloS.y], [0.66, 0.60], [0.80, 0.625]],
+        "rgba(210,200,180,0.30)", 1.6);
+      ctx.restore();
+    }
 
-    // Akerselva
+    // 8) Akerselva.
     if (land.akerselva) {
-      strokePolyline(ctx, land.akerselva, "rgba(222,244,255,0.30)", 9);
+      strokePolyline(ctx, land.akerselva, "rgba(222,244,255,0.28)", 9);
       strokePolyline(ctx, land.akerselva, "#7dc0df", 4.5);
     }
 
-    // Få faste basekart-labels (ikke place-navn)
+    // 9) Få landemerkeområder.
+    fillPoly(ctx, AKERSHUS_POINT, "#7d7363", "rgba(40,34,26,0.55)", 1);     // Akershus festning
+    const bjorvika = anchorXY("bjorvika");
+    if (bjorvika) fillEllipseWorld(ctx, bjorvika.x, bjorvika.y, 0.02, 0.013, "rgba(120,150,180,0.35)");
+
+    // Få faste basekart-labels (ikke place-navn).
     const labelScale = clamp(state.zoom, 0.8, 2.2);
     drawBaseLabel(ctx, "Fjorden", 0.57, 0.90, 18 * labelScale);
     drawBaseLabel(ctx, "Marka", 0.15, 0.10, 18 * labelScale);
@@ -268,16 +321,27 @@
 
   function projectOsloLatLonToCiviXY(place) {
     const civiMap = place.civiMap || {};
+    // 1) Manuell plassering vinner alltid.
     if (typeof civiMap.x === "number" && typeof civiMap.y === "number" &&
         civiMap.x >= 0 && civiMap.x <= 1 && civiMap.y >= 0 && civiMap.y <= 1) {
       return { x: civiMap.x, y: civiMap.y, source: "manual" };
     }
     if (place.lat == null || place.lon == null) return null;
 
+    // 2) Kalibrert Oslo-projeksjon (IDW over geo-ankere).
+    const cal = window.CivicationOsloMapCalibration;
+    if (cal && typeof cal.projectLatLonWithAnchors === "function") {
+      try {
+        const r = cal.projectLatLonWithAnchors(place.lat, place.lon);
+        if (r) return { x: r.x, y: r.y, source: r.source || "calibrated" };
+      } catch (e) { /* faller gjennom til bounding-box */ }
+    }
+
+    // 3) Fallback: gammel ren bounding-box-projeksjon.
     const x = clamp((place.lon - OSLO_BOUNDS.minLon) / (OSLO_BOUNDS.maxLon - OSLO_BOUNDS.minLon), 0.04, 0.96);
     const rawY = 1 - ((place.lat - OSLO_BOUNDS.minLat) / (OSLO_BOUNDS.maxLat - OSLO_BOUNDS.minLat));
     const y = clamp(0.18 + rawY * 0.74, 0.08, 0.94);
-    return { x, y, source: "projected" };
+    return { x, y, source: "fallback" };
   }
 
   function resolveAssetType(place) {
@@ -469,7 +533,8 @@
   }
 
   function placeScale() {
-    return clamp(0.62 + state.zoom * 0.12, 0.62, 1.55);
+    // Litt mindre ved lav zoom, litt større ved høy zoom – forankret i landskapet.
+    return clamp(0.52 + state.zoom * 0.13, 0.52, 1.7);
   }
 
   function drawPlaces() {
@@ -763,6 +828,45 @@
   // Hvis dokumentet allerede er lastet (script kjøres sent).
   if (document.readyState !== "loading") init();
 
+  // ---------------------------------------------------------------------------
+  // Debug for plassering
+  // ---------------------------------------------------------------------------
+  function getCalibrationAnchors() {
+    const cal = window.CivicationOsloMapCalibration;
+    if (cal && typeof cal.getAnchors === "function") return cal.getAnchors();
+    return (window.CIVI_OSLO_GEO_ANCHORS || []).slice();
+  }
+
+  function getProjectionDebug(placeId) {
+    const id = String(placeId == null ? "" : placeId);
+    const place = (_places || []).find((p) => String(p.id) === id);
+    if (!place) return { id, found: false };
+
+    const civiMap = place.civiMap || {};
+    const manual = typeof civiMap.x === "number" && typeof civiMap.y === "number" &&
+      civiMap.x >= 0 && civiMap.x <= 1 && civiMap.y >= 0 && civiMap.y <= 1;
+
+    const cal = window.CivicationOsloMapCalibration;
+    let detail = null;
+    if (!manual && place.lat != null && place.lon != null && cal && typeof cal.projectDetailed === "function") {
+      try { detail = cal.projectDetailed(place.lat, place.lon); } catch (e) { detail = null; }
+    }
+
+    const projected = projectOsloLatLonToCiviXY(place);
+    return {
+      id: place.id,
+      name: place.name,
+      found: true,
+      lat: place.lat,
+      lon: place.lon,
+      source: projected ? projected.source : null,
+      baseline: detail ? detail.baseline : (cal && cal.projectLatLonBoundingBox && place.lat != null ? cal.projectLatLonBoundingBox(place.lat, place.lon) : null),
+      calibrated: detail ? { x: detail.x, y: detail.y } : null,
+      final: projected ? { x: projected.x, y: projected.y } : null,
+      nearestAnchors: detail ? detail.nearest : (manual ? [] : null)
+    };
+  }
+
   window.CivicationCanvasMap = {
     init,
     render,
@@ -771,6 +875,8 @@
     zoomOut,
     getZoom,
     getVisiblePlaces: () => visiblePlaces.slice(),
-    getHitTargets: () => hitTargets.slice()
+    getHitTargets: () => hitTargets.slice(),
+    getProjectionDebug,
+    getCalibrationAnchors
   };
 })();
