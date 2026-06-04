@@ -4,6 +4,9 @@
 (function () {
   "use strict";
 
+  /** @typedef {import("../../schemas/place").Place} Place */
+  /** @typedef {{ showMap: () => void, show: () => void, openPlace: (placeId?: unknown) => boolean, openQuiz: (targetId?: unknown) => boolean }} MapViewApi */
+
   function getPlaceCard() {
     return document.getElementById("placeCard");
   }
@@ -45,6 +48,9 @@
     window.MAP?.resize?.();
   }
 
+  /** @param {unknown} placeId
+   * @returns {Place | null}
+   */
   function findPlace(placeId) {
     const id = String(placeId || "").trim();
     if (!id) return null;
@@ -53,6 +59,7 @@
       .find((p) => String(p?.id || "").trim() === id) || null;
   }
 
+  /** @param {Place | null | undefined} place */
   function focusPlaceOnMap(place) {
     const map = window.HGMap?.getMap?.() || window.MAP;
     if (!map || !Number.isFinite(place?.lon) || !Number.isFinite(place?.lat)) return;
@@ -65,6 +72,7 @@
     });
   }
 
+  /** @type {MapViewApi} */
   const MapView = {
     showMap() {
       closeQuizModals();

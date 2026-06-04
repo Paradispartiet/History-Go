@@ -5,15 +5,21 @@
 (function () {
   "use strict";
 
+  /** @typedef {{ replace?: boolean }} NavigateOptions */
+  /** @typedef {{ raw: string, name: string, params: string[] }} AppRoute */
+  /** @typedef {{ start: () => void, navigate: (hash: string, options?: NavigateOptions) => boolean, render: () => void, parseHash: (hash?: string) => AppRoute, normalizeHash: (hash?: string) => string, mapPath: () => string, placePath: (placeId?: unknown) => string, quizPath: (targetId?: unknown) => string, toMap: (options?: NavigateOptions) => boolean, toPlace: (placeId?: unknown, options?: NavigateOptions) => boolean, toQuiz: (targetId?: unknown, options?: NavigateOptions) => boolean }} AppRouterApi */
+
   const DEFAULT_ROUTE = "#/map";
   let started = false;
 
+  /** @param {string} [hash] */
   function normalizeHash(hash) {
     return String(hash || DEFAULT_ROUTE).startsWith("#")
       ? String(hash || DEFAULT_ROUTE)
       : `#${hash}`;
   }
 
+  /** @param {unknown} value */
   function encodeRoutePart(value) {
     return encodeURIComponent(String(value || "").trim());
   }
@@ -22,16 +28,21 @@
     return "#/map";
   }
 
+  /** @param {unknown} placeId */
   function placePath(placeId) {
     const id = encodeRoutePart(placeId);
     return id ? `#/place/${id}` : mapPath();
   }
 
+  /** @param {unknown} targetId */
   function quizPath(targetId) {
     const id = encodeRoutePart(targetId);
     return id ? `#/quiz/${id}` : mapPath();
   }
 
+  /** @param {string} [hash]
+   * @returns {AppRoute}
+   */
   function parseHash(hash) {
     const raw = normalizeHash(hash || location.hash || DEFAULT_ROUTE);
     const clean = raw.startsWith("#") ? raw.slice(1) : raw;
@@ -43,6 +54,9 @@
     };
   }
 
+  /** @param {string} hash
+   * @param {NavigateOptions} [options]
+   */
   function navigate(hash, { replace = false } = {}) {
     const next = normalizeHash(hash);
     const current = location.hash ? normalizeHash(location.hash) : "";
@@ -62,14 +76,21 @@
     return true;
   }
 
+  /** @param {NavigateOptions} [options] */
   function toMap(options = {}) {
     return navigate(mapPath(), options);
   }
 
+  /** @param {unknown} placeId
+   * @param {NavigateOptions} [options]
+   */
   function toPlace(placeId, options = {}) {
     return navigate(placePath(placeId), options);
   }
 
+  /** @param {unknown} targetId
+   * @param {NavigateOptions} [options]
+   */
   function toQuiz(targetId, options = {}) {
     return navigate(quizPath(targetId), options);
   }
@@ -122,6 +143,7 @@
     render();
   }
 
+  /** @type {AppRouterApi} */
   window.HGAppRouter = {
     start,
     navigate,

@@ -50,6 +50,7 @@ type DataHubApi = {
   loadQuizCategory?: (categoryId: string, opts?: DataHubFetchOptions) => Promise<unknown[]>;
   loadNature?: () => Promise<void>;
   loadNatureGroup?: (groupPath: string) => Promise<unknown[]>;
+  loadLesespor?: (opts?: DataHubFetchOptions) => Promise<unknown>;
   normalizeTags?: (rawTags: unknown, tagsRegistry: unknown) => unknown[];
 
   mergeDeep?: (base: unknown, extra: unknown) => unknown;

@@ -99,6 +99,26 @@ declare global {
     HGGraphBuilder?: any;
     HGGraphExporter?: any;
     HGImageRolesAudit?: any;
+
+    HGAppRouter?: {
+      start?: () => void;
+      navigate?: (hash: string, options?: { replace?: boolean }) => boolean;
+      render?: () => void;
+      parseHash?: (hash?: string) => { raw: string; name: string; params: string[] };
+      normalizeHash?: (hash?: string) => string;
+      mapPath?: () => string;
+      placePath?: (placeId?: unknown) => string;
+      quizPath?: (targetId?: unknown) => string;
+      toMap?: (options?: { replace?: boolean }) => boolean;
+      toPlace?: (placeId?: unknown, options?: { replace?: boolean }) => boolean;
+      toQuiz?: (targetId?: unknown, options?: { replace?: boolean }) => boolean;
+    };
+    HGMapView?: {
+      showMap?: () => void;
+      show?: () => void;
+      openPlace?: (placeId?: unknown) => boolean;
+      openQuiz?: (targetId?: unknown) => boolean;
+    };
     HGInsights?: any;
     HGLeksikon?: any;
     HGLesespor?: any;
@@ -188,6 +208,12 @@ declare global {
     __HGCHIPS_UNLOCKS_WIRED__?: any;
     __HG_APP_LOAD_ERROR__?: any;
     __HG_APP_READY__?: any;
+
+    __HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__?: any;
+    bootBackground?: any;
+    bootCritical?: any;
+    renderGallery?: any;
+    wire?: any;
     __HG_CANONICAL_SOCIAL_EVENTS__?: any;
     __HG_I18N_CONTENT_PATCHED?: any;
     __HG_LAST_ERROR__?: any;
@@ -300,6 +326,9 @@ declare global {
   var catIdFromDisplay: any;
   var maplibregl: any;
   var openPlaceCard: any;
+
+  var renderGallery: any;
+  var wire: any;
   var showPersonPopup: any;
   var showPlacePopup: any;
   var visited: any;
