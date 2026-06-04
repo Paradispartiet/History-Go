@@ -1,15 +1,15 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-06-04T09:56:05.573Z
+Generert: 2026-06-04T10:20:33.370Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-06-04T09:56:05.573Z |
+| generatedAt | 2026-06-04T10:20:33.370Z |
 | peopleFilesRead | 27 |
-| totalPeople | 408 |
-| uniquePeopleIds | 408 |
+| totalPeople | 412 |
+| uniquePeopleIds | 412 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
@@ -35,7 +35,7 @@ Generert: 2026-06-04T09:56:05.573Z
 | data/people/media/oslo/people_media_oslo.json | media | ja | 19 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | musikk | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/musikk/oslo/people_musikk_oslo.json | musikk | ja | 15 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | naeringsliv | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | naeringsliv | ja | 11 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | naeringsliv | ja | 22 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | natur | ja | 3 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/natur/oslo/people_natur_oslo.json | natur | ja | 16 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -62,7 +62,7 @@ Generert: 2026-06-04T09:56:05.573Z
 | litteratur | 39 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 25 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| naeringsliv | 29 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| naeringsliv | 33 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 27 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | populaerkultur | 20 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -110,7 +110,7 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/media/oslo/people_media_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=19/19; source_place_id=0/19; placesArray=19/19; categories=media
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=musikk
 - data/people/musikk/oslo/people_musikk_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=musikk
-- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=naeringsliv
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=11/11; source_place_id=0/11; placesArray=11/11; categories=naeringsliv
 - data/people/naeringsliv/oslo/people_naeringsliv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=22/22; source_place_id=22/22; placesArray=22/22; categories=naeringsliv; schema_review: source_place_id brukes utenfor særskilt næringsliv-schema
 - data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=natur
 - data/people/natur/oslo/people_natur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=16/16; source_place_id=0/16; placesArray=16/16; categories=natur

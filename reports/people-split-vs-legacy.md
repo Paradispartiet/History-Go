@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-04T09:56:05.395Z
+Generert: 2026-06-04T10:20:33.190Z
 
 ## Sammendrag
 
@@ -10,14 +10,14 @@ Generert: 2026-06-04T09:56:05.395Z
 - Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
-- Split people: **408**
-- Split unike ID-er: **408**
+- Split people: **412**
+- Split unike ID-er: **412**
 - Split-filer: **27**
 - Runtime-/manifestfiler: **27**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
-- ID-er bare i split: **314**
+- ID-er bare i split: **318**
 - Duplikate ID-er på tvers av split-filer: **0**
 - Split-filer ikke listet i manifest: **0**
 - Manifest-filer som mangler på disk: **0**
@@ -40,7 +40,7 @@ Generert: 2026-06-04T09:56:05.395Z
 | data/people/media/oslo/people_media_oslo.json | ja | 19 | 0 |  |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | ja | 10 | 0 |  |
 | data/people/musikk/oslo/people_musikk_oslo.json | ja | 15 | 0 |  |
-| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 7 | 0 |  |
+| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 11 | 0 |  |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | ja | 22 | 0 |  |
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | ja | 3 | 0 |  |
 | data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
@@ -101,6 +101,7 @@ Generert: 2026-06-04T09:56:05.395Z
 - anton_martin_schweigaard_okonomi | Anton Martin Schweigaard | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json
 - antonio_champalimaud | António Champalimaud | data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json
 - antonio_de_oliveira_salazar | António de Oliveira Salazar | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json
+- antonio_horta_osorio | António Horta-Osório | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - antonio_lopes_ribeiro | António Lopes Ribeiro | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
 - antonio_pedro_vasconcelos | António-Pedro Vasconcelos | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
 - antonio_zambujo | António Zambujo | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
@@ -288,6 +289,7 @@ Generert: 2026-06-04T09:56:05.395Z
 - martin_tranmael | Martin Tranmæl | data/people/historie/oslo/people_historie_oslo.json
 - michael_sars | Michael Sars | data/people/natur/oslo/people_natur_oslo.json
 - miguel_amaro | Miguel Amaro | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
+- miguel_guedes_de_sousa | Miguel Guedes de Sousa | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - mikkjel_fonhus | Mikkjel Fønhus | data/people/natur/oslo/people_natur_oslo.json
 - misia | Mísia | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
 - morten_harket | Morten Harket | data/people/musikk/oslo/people_musikk_oslo.json
@@ -319,6 +321,7 @@ Generert: 2026-06-04T09:56:05.395Z
 - oystein_wiik | Øystein Wiik | data/people/popkultur/oslo/people_popkultur_oslo.json
 - paddy_cosgrave | Paddy Cosgrave | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - pal_bang_hansen | Pål Bang-Hansen | data/people/film_tv/oslo/people_film_tv_oslo.json
+- paula_amorim | Paula Amorim | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - paulo_rocha | Paulo Rocha | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
 - peder_anker | Peder Anker | data/people/historie/oslo/people_historie_oslo.json
 - peder_clausson_friis | Peder Claussøn Friis | data/people/historie/oslo/people_historie_oslo.json
@@ -383,6 +386,7 @@ Generert: 2026-06-04T09:56:05.395Z
 - vidkun_quisling | Vidkun Quisling | data/people/historie/oslo/people_historie_oslo.json
 - viggo_hansteen | Viggo Hansteen | data/people/historie/oslo/people_historie_oslo.json
 - vilhelm_bjerknes | Vilhelm Bjerknes | data/people/vitenskap/oslo/people_vitenskap_oslo.json
+- vitor_constancio | Vítor Constâncio | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - waldemar_christopher_brogger | Waldemar Christopher Brøgger | data/people/vitenskap/oslo/people_vitenskap_oslo.json
 - warlocks_oslo | Warlocks | data/people/subkultur/oslo/people_subkultur_oslo.json
 - wenche_foss | Wenche Foss | data/people/popkultur/oslo/people_popkultur_oslo.json
