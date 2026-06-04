@@ -7,43 +7,52 @@
   "families": [
     {
       "id": "ny_kollega_og_tillit",
+      "purpose": "Løfte kollegarelasjoner fra enkel hjelp til forståelse av hvordan tillit og butikkultur overføres i små situasjoner.",
+      "learning_focus": ["tillit", "butikkultur", "uformell opplæring"],
       "mails": [
         {
-          "id": "ekspeditor_035",
+          "id": "ekspeditor_story_kollega_001",
           "mail_type": "story",
           "mail_family": "ny_kollega_og_tillit",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 35",
-          "summary": "Ekspeditør-situasjon 35",
+          "phase": "mid",
+          "priority": 54,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marit_butikkleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Du merker at butikkultur ikke står i noen perm",
+          "summary": "Det den nye kollegaen lærer, kommer mest fra små blikk, snarveier og hvordan folk hjelper hverandre når køen presser.",
+          "purpose": "Gi spilleren en story-forståelse av uformell kunnskap i butikkrollen.",
+          "stakes": "Du kan gjøre kulturen mer tydelig, eller la den forbli noe folk må gjette seg til.",
           "situation": [
-            "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften."
+            "Den nye kollegaen spør mindre enn før, men du ser at hun ikke nødvendigvis forstår mer.",
+            "Hun har bare begynt å lese folk, snarveier og stemninger slik alle andre gjør.",
+            "Du skjønner at butikkultur læres i mellomrommene mellom kundene."
           ],
-          "task_domain": "customer_service",
-          "competency": "prioritering",
-          "pressure": "tidspress",
-          "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
-          "consequence_axis": "tempo_vs_tillit",
-          "narrative_arc": "forste_uke_pa_gulvet",
+          "task_domain": "butikkultur",
+          "competency": "uformell_kunnskap",
+          "pressure": "taus_læring",
+          "choice_axis": "gjøre_kultur_tydelig_vs_la_den_læres_stille",
+          "consequence_axis": "trygg_læring_vs_tilpasning",
+          "narrative_arc": "ekspeditøren ser at arbeidets regler ofte ligger i kroppene, ikke i manualene",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Sette ord på noen av de uskrevne reglene",
+              "reply": "Jeg setter ord på noen av de uskrevne reglene.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["learning", "team", "visibility"],
+              "feedback": "Du gjør kulturen litt mindre tilfeldig for den som kommer ny inn."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
-              "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "label": "La henne lære rytmen slik du selv gjorde",
+              "reply": "Jeg lar henne lære rytmen slik jeg selv gjorde.",
+              "effect": 0,
+              "tags": ["tradition", "distance"],
+              "feedback": "Hun blir en del av gulvet, men må betale mer av usikkerheten selv."
             }
           ]
         }
@@ -51,43 +60,52 @@
     },
     {
       "id": "forste_ansvar",
+      "purpose": "Løfte første ansvar fra konkrete oppgaver til rolleidentitet: når begynner andre å se deg som en som kan bære noe?",
+      "learning_focus": ["rolleidentitet", "ansvar", "synlighet"],
       "mails": [
         {
-          "id": "ekspeditor_036",
+          "id": "ekspeditor_story_ansvar_001",
           "mail_type": "story",
           "mail_family": "forste_ansvar",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 36",
-          "summary": "Ekspeditør-situasjon 36",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ole_skiftleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Ansvar kommer ofte før noen sier at du har fått det",
+          "summary": "Du merker at folk sender flere små avgjørelser til deg uten at rollen din formelt er endret.",
+          "purpose": "Gi spilleren forståelse av hvordan uformelt ansvar oppstår gradvis.",
+          "stakes": "Tar du ansvar, blir du mer synlig. Lar du alt gå videre, blir du tryggere, men mindre nødvendig.",
           "situation": [
-            "Du står i forste ansvar og må ta et konkret valg i butikkdriften."
+            "Ingen har gitt deg ny tittel.",
+            "Likevel kommer spørsmålene litt oftere til deg: pris, retur, lager, en kunde som må roes ned.",
+            "Du skjønner at ansvar ikke alltid annonseres. Noen ganger samler det seg bare rundt deg."
           ],
-          "task_domain": "cash_desk",
-          "competency": "kommunikasjon",
-          "pressure": "kollegapress",
-          "choice_axis": "unngå_konflikt_vs_ta_samtalen",
-          "consequence_axis": "synlighet_vs_presisjon",
-          "narrative_arc": "kundenes_blikk",
+          "task_domain": "rolleutvikling",
+          "competency": "selvstendig_dømmekraft",
+          "pressure": "uformelt_ansvar",
+          "choice_axis": "tre_inn_i_ansvar_vs_holde_rollen_liten",
+          "consequence_axis": "synlighet_vs_trygghet",
+          "narrative_arc": "ekspeditøren går fra utfører til referansepunkt",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Tre inn i ansvaret og gjøre mønsteret synlig",
+              "reply": "Jeg trer inn i ansvaret og gjør mønsteret synlig.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["responsibility", "growth", "visibility"],
+              "feedback": "Du lar rollen vokse uten å late som veksten ikke skjer."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
-              "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "label": "Holde deg til oppgavene du formelt har fått",
+              "reply": "Jeg holder meg til oppgavene jeg formelt har fått.",
+              "effect": 0,
+              "tags": ["safety", "boundary"],
+              "feedback": "Du beskytter grensene dine, men gjør også rommet for læring smalere."
             }
           ]
         }
@@ -95,43 +113,52 @@
     },
     {
       "id": "apning_og_lukking",
+      "purpose": "Gi story-forståelse av at åpning og lukking er usynlig arbeid som gjør andres dag lettere eller tyngre.",
+      "learning_focus": ["usynlig arbeid", "neste skift", "rytme"],
       "mails": [
         {
-          "id": "ekspeditor_037",
+          "id": "ekspeditor_story_lukking_001",
           "mail_type": "story",
           "mail_family": "apning_og_lukking",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 37",
-          "summary": "Ekspeditør-situasjon 37",
+          "phase": "advanced",
+          "priority": 52,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morgenansvarlig_tone",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Det beste lukke-arbeidet merkes ofte bare som en lettere morgen",
+          "summary": "Du ser at åpning og lukking ikke er ytterkantene av jobben, men bindeleddet mellom folk som sjelden møtes.",
+          "purpose": "Løfte lukking til et narrativt poeng om arbeid som omsorg over tid.",
+          "stakes": "Du kan se dette som faglig standard, eller som ekstraarbeid som lett blir tatt for gitt.",
           "situation": [
-            "Du står i apning og lukking og må ta et konkret valg i butikkdriften."
+            "Morgenskiftet starter i rommet du forlot kvelden før.",
+            "Hvis du gjorde jobben godt, skjer det nesten ingenting: ingen leter, ingen banner, ingen må rette småting før første kunde.",
+            "Du skjønner at noe av jobben bare blir synlig når den ikke er gjort."
           ],
-          "task_domain": "returns",
-          "competency": "kvalitet",
-          "pressure": "kundepress",
-          "choice_axis": "snarvei_vs_standard",
-          "consequence_axis": "komfort_vs_laring",
-          "narrative_arc": "varene_som_system",
+          "task_domain": "lukkerutine",
+          "competency": "usynlig_kvalitet",
+          "pressure": "arbeid_uten_applaus",
+          "choice_axis": "faglig_standard_vs_ekstra_belastning",
+          "consequence_axis": "kollegial_tillit_vs_usynlig_slitasje",
+          "narrative_arc": "ekspeditøren forstår at god lukking er service til neste skift",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Se åpning og lukking som del av faglig standard",
+              "reply": "Jeg ser åpning og lukking som del av faglig standard.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["craft", "team", "quality"],
+              "feedback": "Du gir det usynlige arbeidet verdighet i ditt eget blikk."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
-              "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "label": "Passe på at usynlig kvalitet ikke bare blir gratis ekstraarbeid",
+              "reply": "Jeg passer på at usynlig kvalitet ikke bare blir gratis ekstraarbeid.",
+              "effect": 0,
+              "tags": ["boundary", "self_preservation"],
+              "feedback": "Du beskytter deg mot at standard blir stilltiende overbelastning."
             }
           ]
         }
@@ -139,43 +166,52 @@
     },
     {
       "id": "lager_og_bestilling",
+      "purpose": "Løfte lager og bestilling fra praktisk støttearbeid til forståelse av hvordan butikken skaper eller mister fremtidig tillit.",
+      "learning_focus": ["vareflyt", "fremtidig kunde", "skjult struktur"],
       "mails": [
         {
-          "id": "ekspeditor_038",
+          "id": "ekspeditor_story_lager_001",
           "mail_type": "story",
           "mail_family": "lager_og_bestilling",
           "role_scope": "ekspeditor",
-          "subject": "Ekspeditør-situasjon 38",
-          "summary": "Ekspeditør-situasjon 38",
+          "phase": "mid",
+          "priority": 53,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marit_butikkleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Kunden møter hylla, men hylla er egentlig fortiden",
+          "summary": "Du forstår at det kunden ser i dag, ofte ble avgjort av bestilling, plassering og små lagergrep tidligere.",
+          "purpose": "Gi spilleren en større forståelse av vareflyt som tid, ikke bare beholdning.",
+          "stakes": "Du kan bruke dette blikket aktivt, eller bli stående i frontlinjen og bare håndtere manglene når de oppstår.",
           "situation": [
-            "Du står i lager og bestilling og må ta et konkret valg i butikkdriften."
+            "Kunden spør hvorfor varen alltid er borte når hun kommer.",
+            "Svaret ligger ikke i akkurat dette øyeblikket, men i bestilling, rytme, plassering og hvem som så mønsteret tidlig nok.",
+            "Du skjønner at frontlinjen ofte får skylden for beslutninger som skjedde før kunden kom."
           ],
-          "task_domain": "stock_flow",
-          "competency": "samarbeid",
-          "pressure": "måltallspress",
-          "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
-          "consequence_axis": "tempo_vs_tillit",
-          "narrative_arc": "snarveien",
+          "task_domain": "vareflyt",
+          "competency": "systemforståelse_i_front",
+          "pressure": "gjentatt_mangel",
+          "choice_axis": "forstå_mønster_vs_håndtere_enkeltsak",
+          "consequence_axis": "forebygging_vs_reaktiv_service",
+          "narrative_arc": "ekspeditøren ser at hylla er resultat av tidligere drift",
           "choices": [
             {
               "id": "A",
-              "label": "Følg rutine og forklar valget tydelig",
+              "label": "Bruke mønsteret til å varsle tidligere neste gang",
+              "reply": "Jeg bruker mønsteret til å varsle tidligere neste gang.",
               "effect": 1,
-              "tags": [
-                "kvalitet",
-                "kunde"
-              ],
-              "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+              "tags": ["systems", "anticipation", "quality"],
+              "feedback": "Du flytter service fra beklagelse til forebygging."
             },
             {
               "id": "B",
-              "label": "Velg raskeste løsning og håp det går bra",
-              "effect": -1,
-              "tags": [
-                "tempo",
-                "snarvei"
-              ],
-              "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+              "label": "Holde fokuset på å hjelpe kunden her og nå",
+              "reply": "Jeg holder fokuset på å hjelpe kunden her og nå.",
+              "effect": 0,
+              "tags": ["service", "present"],
+              "feedback": "Du løser øyeblikket, men lar mønsteret bli liggende i bakgrunnen."
             }
           ]
         }
