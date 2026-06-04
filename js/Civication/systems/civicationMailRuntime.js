@@ -52,7 +52,22 @@
     mellomleder: "mellomleder",
     formann: "formann",
     controller: "controller",
-    avdelingsleder: "avdelingsleder"
+    finansanalytiker: "controller",
+    okonomi_og_finanssjef: "controller",
+    finansdirektor: "controller",
+    avdelingsleder: "avdelingsleder",
+    driftsleder: "avdelingsleder",
+    produksjonsleder: "avdelingsleder",
+    butikksjef_enhetsleder: "avdelingsleder",
+    daglig_leder: "avdelingsleder",
+    grunder: "mellomleder",
+    bedriftseier: "mellomleder",
+    konserndirektor: "mellomleder",
+    konsernsjef: "mellomleder",
+    investor: "mellomleder",
+    kapitalforvalter: "mellomleder",
+    industribygger: "mellomleder",
+    industrieier: "mellomleder"
   };
 
   const jsonCache = new Map();
