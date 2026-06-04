@@ -11,8 +11,11 @@ Denne planen beskriver hvordan History Go kan migreres fra TypeScript-sjekket Ja
 - `npm run build:scripts` kjører `tsc -p tsconfig.scripts.build.json` og bygger de konverterte ikke-Civication i18n-place-scriptfilene til `dist/scripts`.
 - `tsconfig.json` inkluderer `js/**/*.js`, `scripts/**/*.js`, rot-`*.js`, `schemas/**/*.ts` og `schemas/**/*.d.ts`.
 - `tsconfig.scripts.json` inkluderer foreløpig ikke-Civication `scripts/i18n-*.js`, `scripts/audit-wonderkammer-data.mjs` og fremtidige `scripts/**/*.ts`/`.mts`/`.cts`, men ekskluderer `js/**`, `js/Civication/**` og `scripts/*civication*.*`/`scripts/**/*civication*.*`.
-- `tools/**/*.mjs` er ikke en del av dagens TypeScript-sjekk, selv om flere npm-scripts peker dit.
-- Det finnes TypeScript-devdependency og et smalt `build:scripts`-script for Node-only scripts, men fortsatt ingen bundler eller browser-runtime-emit i `package.json`.
+- `tools/check_place_emne_ids.mts` er første konverterte ikke-Civication Node-only tool og typecheckes separat fra både scripts-sporet, browser-runtime og Civication. Øvrige `tools/**/*.mjs` er ikke en del av tools-typechecken før de eksplisitt velges og konverteres.
+- `npm run typecheck:tools` finnes og kjører `tsc -p tsconfig.tools.json` for den smale tools-flaten.
+- `npm run build:tools` finnes og kjører `tsc -p tsconfig.tools.build.json`, med emit til `dist/tools`.
+- `npm run places:emner:check` bygger tools først og kjører deretter `node dist/tools/check_place_emne_ids.mjs`.
+- Det finnes TypeScript-devdependency og smale `build:scripts`-/`build:tools`-script for Node-only scripts og tools, men fortsatt ingen bundler eller browser-runtime-emit i `package.json`.
 - Browser-appen lastes hovedsakelig med klassiske `<script src="...js">`-tagger fra HTML, ikke via native ESM-importer eller en bundler.
 
 ## Kan appen kjøre `.ts` direkte?
@@ -211,7 +214,7 @@ Vurdering:
 - Den første ikke-Civication places-i18n-scriptgruppen er nå konvertert til `.ts`, typecheckes og bygges separat, og kjøres via npm fra generert `dist/scripts`-output.
 - Flere Node-scripts er fortsatt tryggere å konvertere før browser-runtime fordi de ikke brytes av HTML script-tags.
 - Neste ikke-Civication TypeScript-spor inkluderer nå Node-only `tools/`, med en separat og smal tools-konfig slik at denne løypen ikke blandes inn i i18n places-scripts-løypen.
-- Civication-relaterte scripts og generatorer bør likevel ikke være første migreringsbatch nå, siden Civication bevisst holdes i JavaScript.
+- Civication-relaterte scripts, tools og generatorer bør likevel ikke være migreringsbatch nå, siden Civication bevisst holdes i JavaScript.
 - Audit-filer under `js/audits/` er derimot browser-loadede i `index.html` og bør behandles som browser-runtime inntil build finnes.
 
 ### 7. Civication-filer (deferred)
@@ -256,9 +259,11 @@ Disse filene typecheckes med `npm run typecheck:scripts` og bygges med `npm run 
 
 ## Første Node-only `tools/`-kandidat
 
-Det neste ikke-Civication TypeScript-sporet er Node-only `tools/`. Første kandidat i denne løypen er `tools/check_place_emne_ids.mts`, konvertert fra `tools/check_place_emne_ids.mjs`. Toolen validerer place-data mot canonical emne-data og er ikke Civication-relatert, ikke browser-loadet og ikke del av i18n places-scripts-løypen.
+Det nye ikke-Civication TypeScript-sporet for Node-only `tools/` er startet. `tools/check_place_emne_ids.mts` er første konverterte Node-only tool, konvertert fra `tools/check_place_emne_ids.mjs`. Toolen validerer place-data mot canonical emne-data og er ikke Civication-relatert, ikke browser-loadet og ikke del av i18n places-scripts-løypen.
 
-Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. Build-output går til `dist/tools`; fordi kildefilen er `.mts`, emitter TypeScript NodeNext en Node-kompatibel `.mjs`-fil. `npm run places:emner:check` bygger tools-output og kjører `node dist/tools/check_place_emne_ids.mjs`. `dist/` er fortsatt generert output og skal ikke committes. Civication er fortsatt deferred.
+Tools-løypen bruker egen smal konfig: `npm run typecheck:tools` kjører `tsconfig.tools.json`, og `npm run build:tools` kjører `tsconfig.tools.build.json`. `tsconfig.tools.json` er separat fra scripts-sporet og inkluderer foreløpig bare `tools/check_place_emne_ids.mts`; `tsconfig.tools.build.json` bygger til `dist/tools`. Fordi kildefilen er `.mts`, emitter TypeScript NodeNext en Node-kompatibel `.mjs`-fil. `npm run places:emner:check` bygger tools-output først og kjører deretter `node dist/tools/check_place_emne_ids.mjs`.
+
+Tools-sporet skal holdes separat fra i18n places-scripts, browser-runtime og Civication. Civication-relaterte tools og scripts er fortsatt deferred, selv om de ligger i Node-only flater. `dist/` er fortsatt generert output og skal ikke committes. Neste tools-kandidat bør velges eksplisitt først etter at bruken i `package.json` er verifisert, slik at npm-kontrakter, build-output og valideringskommando for akkurat den toolen dokumenteres før konvertering.
 
 ## Hva som må være på plass før første `.js` → `.ts`-konvertering
 
@@ -284,7 +289,7 @@ Minimum før første faktiske rename:
 
 ## Anbefalt migreringsrekkefølge
 
-1. **Node-only `tools/` eller `schemas/`:** Etter fullført places-i18n scripts-løype er neste TypeScript-spor små ikke-Civication Node-only tools med egen `typecheck:tools`/`build:tools`-konfig, eller shared schema-/typegrunnlag i `schemas/`.
+1. **Node-only `tools/` eller `schemas/`:** Etter fullført places-i18n scripts-løype er Node-only tools-sporet startet med `tools/check_place_emne_ids.mts`. Neste tools-kandidat skal velges eksplisitt etter verifisering av bruken i `package.json`, eller så kan neste spor være shared schema-/typegrunnlag i `schemas/`.
 2. **Plan og typegrunnlag:** Behold alle browser-loadede `.js`; legg til/rydd shared schema- og global-typer der det trengs.
 3. **Node-only scripts og tools:** Bruk `tsconfig.scripts.json`/`tsconfig.scripts.build.json` for konverterte ikke-Civication scripts, og `tsconfig.tools.json`/`tsconfig.tools.build.json` for konverterte ikke-Civication tools. Hold Civication-relaterte scripts og tools deferred.
 4. **Ikke-Civication core/utilities:** Konverter rene utility-/core-filer først senere, og bare med generert `.js` output eller etter separat build-/runtime-PR.
@@ -325,9 +330,10 @@ Minimum før første faktiske rename:
    - Kjør typecheck, scripts-build og relevante Node-valideringer.
 
 7. **PR 7: Første Node-only tools-løype**
-   - Konverter én avgrenset ikke-Civication `tools/*.mjs`-fil, med `tools/check_place_emne_ids.mts` som første kandidat.
-   - Bruk egen `tsconfig.tools.json`/`tsconfig.tools.build.json`, bygg til `dist/tools`, og kjør relevant npm-kommando fra generert output.
-   - Ikke bland tools-løypen inn i i18n places-scripts-løypen.
+   - Status: `tools/check_place_emne_ids.mts` er første konverterte ikke-Civication Node-only tool.
+   - Bruk egen `tsconfig.tools.json`/`tsconfig.tools.build.json`, bygg til `dist/tools`, og kjør `npm run places:emner:check` fra generert output.
+   - Ikke bland tools-løypen inn i i18n places-scripts-løypen, browser-runtime eller Civication.
+   - Velg neste tools-kandidat eksplisitt etter verifisering av bruken i `package.json`.
 
 8. **PR 8: Første browser-safe core batch etter build**
    - Konverter en liten gruppe ikke-DOM core-filer, for eksempel `js/core/placeIdAliases.js`, `js/core/categories.js` og `js/time-resolver.js`.
