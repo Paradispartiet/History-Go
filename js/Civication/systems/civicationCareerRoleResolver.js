@@ -23,7 +23,8 @@
     mellomleder: 'naer_mellomleder',
     by_assistent: 'by_assistent',
     by_saksbehandler: 'by_saksbehandler',
-    by_radgiver_plan: 'by_radgiver_plan'
+    by_radgiver_plan: 'by_radgiver_plan',
+    by_prosjektleder: 'by_prosjektleder'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -37,7 +38,8 @@
     naer_mellomleder: 'mellomleder',
     by_assistent: 'by_assistent',
     by_saksbehandler: 'by_saksbehandler',
-    by_radgiver_plan: 'by_radgiver_plan'
+    by_radgiver_plan: 'by_radgiver_plan',
+    by_prosjektleder: 'by_prosjektleder'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -89,7 +91,11 @@
     radgiver_byutvikling: 'by_radgiver_plan',
     seniorradgiver_byutvikling: 'by_radgiver_plan',
     arealplanlegger: 'by_radgiver_plan',
-    byplanlegger: 'by_radgiver_plan'
+    byplanlegger: 'by_radgiver_plan',
+    prosjektleder_byutvikling: 'by_prosjektleder',
+    seksjonsleder: 'by_prosjektleder',
+    fagsjef_plan_bygg: 'by_prosjektleder',
+    direktor_byutvikling: 'by_prosjektleder'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -105,10 +111,12 @@
       if (roleKey === 'by_assistent') return 'by_assistent';
       if (roleKey === 'by_saksbehandler') return 'by_saksbehandler';
       if (roleKey === 'by_radgiver_plan') return 'by_radgiver_plan';
+      if (roleKey === 'by_prosjektleder') return 'by_prosjektleder';
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('studentassistent') || titleKey.includes('praktikant') || titleKey.includes('prosjektmedarbeider')) return 'by_assistent';
       if (titleKey.includes('saksbehandler') || titleKey.includes('forstekonsulent')) return 'by_saksbehandler';
       if (titleKey.includes('radgiver') || titleKey.includes('arealplanlegger') || titleKey.includes('byplanlegger')) return 'by_radgiver_plan';
+      if (titleKey.includes('prosjektleder') || titleKey.includes('seksjonsleder') || titleKey.includes('fagsjef') || titleKey.includes('direktor')) return 'by_prosjektleder';
     }
 
     if (careerId === 'naeringsliv') {
@@ -157,6 +165,7 @@
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
+    if (roleKey.includes('by_prosjektleder')) return 'by_prosjektleder';
     if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
     if (roleKey.includes('arbeider')) return 'arbeider';
     if (roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
