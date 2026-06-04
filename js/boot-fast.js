@@ -48,6 +48,11 @@
   let criticalDone = false;
   let backgroundStarted = false;
 
+  /**
+   * @param {string} url
+   * @param {{ cache?: RequestCache }} [options]
+   * @returns {Promise<any>}
+   */
   async function fetchJSON(url, { cache = "default" } = {}) {
     try {
       const res = await fetch(BASE + url, { cache });
@@ -152,7 +157,7 @@
     window.OPEN_MODE = localStorage.getItem("HG_OPEN_MODE") === "1";
     window.TEST_MODE = window.OPEN_MODE;
 
-    const openEl = document.getElementById("openToggle");
+    const openEl = /** @type {HTMLInputElement | null} */ (document.getElementById("openToggle"));
     if (openEl) {
       openEl.checked = window.OPEN_MODE;
       if (openEl.dataset.hgOpenModeBound !== "1") {
@@ -344,8 +349,12 @@
     if (window.QuizEngine) {
       runSafe("QuizEngine.init", () => {
         const bind = (fn) => (typeof fn === "function") ? fn : undefined;
+        /**
+         * @param {string} name
+         * @returns {(...args: any[]) => any}
+         */
         const lazy = (name) => (...args) => {
-          const f = window[name];
+          const f = /** @type {any} */ (window)[name];
           if (typeof f === "function") return f(...args);
         };
 

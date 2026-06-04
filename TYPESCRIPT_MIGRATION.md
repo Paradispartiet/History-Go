@@ -821,3 +821,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime output, inbox-envelope object values, ordering, duplicate filtering, the `window.HG_CiviEngine?.setInbox?.(next)` write, fallback-to-`[]` behavior, job flow, offer flow, state, UI, schema declarations, data files, and `tsconfig.json` remain unchanged.
 - The two `pushOffer()` diagnostics for optional brand/employer context are deliberately deferred to a later dedicated offer-contract phase; `pushOffer()`, promotion thresholds, offer storage, accept/decline behavior, active-position logic, and first-job onboarding semantics were not changed.
 - Regenerated `reports/typecheck-baseline-report.md`: total diagnostics are now 1517, `js/Civication/**` diagnostics are now 262, and `js/Civication/core/civicationJobs.js` diagnostics are now 2.
+
+## Phase 72: app shell / router typecheck baseline
+
+- Re-ran the development-only TypeScript baseline after the index app shell, AppRouter, MapView, boot-fast, and image-stability patches were merged.
+- Confirmed the app-shell/router target files now have no remaining TypeScript diagnostics: `js/app.js`, `js/boot-fast.js`, `js/router/AppRouter.js`, and `js/views/MapView.js`.
+- Added narrow JSDoc typedefs for the new app router and map view contracts without changing hash parsing, navigation, rendering, card opening, quiz opening, map focus, DOM selectors, or app flow.
+- Added narrow JSDoc typing in `js/boot-fast.js` for the existing JSON fetch options, open-mode input element, and lazy callback bridge used during background boot.
+- Added minimal declarations for the app-shell/router globals (`bootCritical`, `bootBackground`, `HGAppRouter`, `HGMapView`, and related shell bridge globals) plus the existing `DataHub.loadLesespor` contract.
+- Regenerated `reports/typecheck-baseline-report.md`: the current baseline is 51 diagnostic lines across 13 files, with remaining diagnostics outside the app-shell/router target files.
+- Runtime behavior is unchanged: no router, boot, layout, CSS, data, HTML, or app-flow changes were made; `profile.html` and `Civication.html` were not touched.
