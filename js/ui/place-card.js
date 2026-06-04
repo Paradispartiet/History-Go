@@ -1441,10 +1441,14 @@ if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 // --- Quiz (ny motor) ---
 if (btnQuiz) {
   btnQuiz.onclick = () => {
-    if (window.QuizEngine && typeof window.QuizEngine.start === "function") {
-      window.QuizEngine.start(place.id);
-    } else {
-      window.showToast?.(tt("ui.quiz.moduleNotLoaded", "Quiz-modul ikke lastet"));
+    const targetId = String(place.id || "").trim();
+    if (!targetId) return;
+
+    const next = `#/quiz/${encodeURIComponent(targetId)}`;
+    if (window.HGAppRouter?.navigate) {
+      window.HGAppRouter.navigate(next);
+    } else if (location.hash !== next) {
+      location.hash = next;
     }
   };
 }
