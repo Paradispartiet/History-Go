@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "by_assistent_v1",
+  "category": "by",
+  "role_scope": "by_assistent",
+  "description": "Dramaturgisk plan for By-assistent: fra enkle kart- og notatoppgaver til forståelse av hvordan sted, bruk, medvirkning og byform må leses sammen.",
+  "arc": {
+    "from": "Du får små støtteoppgaver: kartgrunnlag, befaring, notater og innspill som ser tekniske ut, men egentlig handler om hvordan byen brukes.",
+    "to": "Du forstår at byarbeid begynner med å se stedet presist før planer, begreper og løsninger får lov til å overta.",
+    "core_questions": [
+      "Hva viser kartet, og hva skjuler det?",
+      "Hva sier stedet imot når planen virker ryddig?",
+      "Når er et innspill en enkelthistorie, og når er det et mønster?",
+      "Hvordan brukes et byrom annerledes enn det var tenkt?",
+      "Hvordan gjør du små observasjoner faglig brukbare uten å overtolke dem?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "by_assistant_notat_loop", "evening_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere kart og grunnlag som noe som må kontrolleres mot sted, ikke bare samles.",
+      "allowed_families": ["kart_og_grunnlag"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren møte første befaring og oppdage at stedet motsier det ryddige grunnlaget.",
+      "allowed_families": ["befaring_og_observasjon"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere medvirkningsinnspill som rått materiale som må sorteres varsomt.",
+      "allowed_families": ["medvirkning_og_innspill"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Vise forskjellen mellom planlagt funksjon og faktisk bruk av byrom.",
+      "allowed_families": ["rom_og_bruk"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste om spilleren gjør usikkerhet i kartgrunnlaget synlig før den blir planpremiss.",
+      "allowed_families": ["kart_og_grunnlag", "befaring_og_observasjon"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "La flere innspill peke mot samme byproblem uten at de blir glattet bort i sammendraget.",
+      "allowed_families": ["medvirkning_og_innspill"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La faktisk byromsbruk utfordre en pen løsning.",
+      "allowed_families": ["rom_og_bruk", "befaring_og_observasjon"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Avrunde rollen: små observasjoner blir faglig verdi når de bevarer stedets motstand.",
+      "allowed_families": ["kart_og_grunnlag", "medvirkning_og_innspill", "rom_og_bruk"],
+      "fallback_types": ["job"]
+    }
+  ]
+}
