@@ -1137,6 +1137,1465 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_fagarbeider_job",
+      "description": "Praksisfortellinger – fagarbeider pakke 2: Andre uke, jobbmail om opplæring, avvik, materiell, HMS og faglig vurdering.",
+      "thread_binding": "choice_triggers",
+      "mails": [
+        {
+          "id": "job_fagarbeider_week2_training_hour",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 210,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Opplæringstimen – det Amir faktisk ser etter",
+          "summary": "Fra: Rune\nEmne: Opplæring med Amir\nBody:\nHei,\n\nSom avtalt setter jeg deg opp med Amir en time i dag.\n\nTema:\n- midlertidig sikring\n- når avvik skal registreres\n- forskjellen på “trygt nok nå” og “ferdig”\n- hvordan vi skriver korte, nyttige logger\n\nDette er ikke fordi du gjorde noe galt. Det er fordi du stilte riktig spørsmål fredag.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 2: Andre uke.",
+          "stakes": "Valget flytter faglig vurdering, sikkerhet, tempo, kropp, relasjoner, risiko eller stagnasjon videre i uke 2.",
+          "situation": [
+            "Fra: Rune\nEmne: Opplæring med Amir\nBody:\nHei,\n\nSom avtalt setter jeg deg opp med Amir en time i dag.\n\nTema:\n- midlertidig sikring\n- når avvik skal registreres\n- forskjellen på “trygt nok nå” og “ferdig”\n- hvordan vi skriver korte, nyttige logger\n\nDette er ikke fordi du gjorde noe galt. Det er fordi du stilte riktig spørsmål fredag.\n\n– Rune",
+            "Fra: Amir\nEmne: Før vi begynner\nBody:\nHei,\n\nVi tar en runde etter morgenmøtet.\n\nDet viktigste jeg kan lære deg er egentlig ikke hvilken skrue som skal hvor. Det lærer du.\n\nDet viktigste er å se forskjell på:\n- noe som er stygt\n- noe som er slitt\n- noe som er midlertidig greit\n- noe som faktisk kan svikte\n\nFolk blander de fire hele tiden.\n\n– Amir",
+            "Fra: System\nEmne: Opplæringsmodul: midlertidig sikring\nBody:\nTema aktivert:\n- visuell kontroll\n- belastning\n- brukertrafikk\n- midlertidig tiltak\n- dokumentasjon\n- oppfølgingsbehov\n\nMerk:\nMidlertidig sikring skal alltid ha vurdering av varighet og risiko.",
+            "Fra: Amir\nEmne: Eksempel\nBody:\nSe på reolen ved verkstedgangen.\n\nDen er ikke pen. Det betyr ingenting.\nDen er litt skjev. Det kan bety noe.\nDen står i en gang folk bruker. Det betyr mer.\nDen har tunge ting øverst. Det betyr mest.\n\nFagblikk handler om å vite hva som betyr noe først."
+          ],
+          "task_domain": "praktisk_drift_og_sikkerhet",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagidentitet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lære systematisk",
+              "reply": "Jeg spør Amir om hvordan han prioriterer risiko, og noterer forskjellen mellom stygt, slitt, midlertidig og farlig.",
+              "effect": 1,
+              "tags": [
+                "learning",
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "deep_learning_with_effort",
+              "effects": {
+                "stats": {
+                  "learning_progress": 2,
+                  "safety": 2,
+                  "quality": 2,
+                  "stress": 1,
+                  "trust_colleague": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_safe_learner"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Fokusere på å få metoden raskt nok",
+              "reply": "Jeg spør mest om hvordan jeg kan gjøre vurderingene raskere uten å bruke for mye tid.",
+              "effect": 0,
+              "tags": [
+                "speed"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "practical_speed_learning",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "learning_progress": 1,
+                  "quality": 0,
+                  "future_risk": 1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_speed_focus"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Late som du forstår mer enn du gjør",
+              "reply": "Jeg nikker og sier at det gir mening, selv om jeg ikke helt skjønner forskjellen i praksis.",
+              "effect": 0,
+              "tags": [
+                "stagnation"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "surface_understanding",
+              "effects": {
+                "stats": {
+                  "stress": -1,
+                  "learning_progress": -1,
+                  "stagnation": 2,
+                  "surface_confidence": 1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_surface_confidence"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week2_returning_deviation",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 208,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Avviket som kom tilbake",
+          "summary": "Fra: System\nEmne: Ny melding på tidligere sak\nBody:\nArbeidsordre 18-442 har fått ny melding.\n\nSted: Lagerrom B\nStatus: tidligere midlertidig sikret\nNy observasjon: hylle siger igjen ved belastning\nPrioritet: høyere enn tidligere",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 2: Andre uke.",
+          "stakes": "Valget flytter faglig vurdering, sikkerhet, tempo, kropp, relasjoner, risiko eller stagnasjon videre i uke 2.",
+          "situation": [
+            "Fra: System\nEmne: Ny melding på tidligere sak\nBody:\nArbeidsordre 18-442 har fått ny melding.\n\nSted: Lagerrom B\nStatus: tidligere midlertidig sikret\nNy observasjon: hylle siger igjen ved belastning\nPrioritet: høyere enn tidligere",
+            "Fra: Rune\nEmne: Lagerrom B igjen\nBody:\nHei,\n\nLagerrom B er meldt inn på nytt.\n\nKan du ta en ny vurdering i dag? Nå må vi finne ut om dette bare trenger bedre feste, eller om hele løsningen bør byttes.\n\nSiden du så på den forrige uke, er det fint om du følger opp.\n\n– Rune",
+            "Fra: Amir\nEmne: Den hylla\nBody:\nDer har du forskjellen på lukket og løst.\n\nHvis noe er midlertidig, må det ha en plan. Ellers kommer det tilbake som om ingen har sett det før.\n\nTa bilder igjen. Sjekk belastningen. Og skriv tydelig hva som faktisk må gjøres.\n\n– Amir",
+            "Fra: Bruker / lageransvarlig\nEmne: Hylle\nBody:\nHei,\n\nVi trenger egentlig bare at hylla kan brukes. Vi har ikke så mye ekstra plass, så hvis dere kan fikse den uten å sperre av halve rommet, er det fint."
+          ],
+          "task_domain": "praktisk_drift_og_sikkerhet",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagidentitet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage full utbedringsanbefaling",
+              "reply": "Jeg anbefaler å ta hylla ut av bruk til nytt feste eller ny løsning er på plass.",
+              "effect": 1,
+              "tags": [
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "safety_over_convenience",
+              "effects": {
+                "stats": {
+                  "safety": 3,
+                  "quality": 2,
+                  "customer_satisfaction": -1,
+                  "stress": 2,
+                  "trust_manager": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_safety_first"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Sikre bedre midlertidig",
+              "reply": "Jeg sikrer hylla bedre midlertidig og registrerer oppfølging neste uke.",
+              "effect": 0,
+              "tags": [
+                "temporary"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "better_temporary_fix",
+              "effects": {
+                "stats": {
+                  "safety": 1,
+                  "speed": 1,
+                  "quality": 0,
+                  "future_risk": 1,
+                  "customer_satisfaction": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_temporary_pattern"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Lukke saken igjen",
+              "reply": "Jeg strammer opp og lukker saken som utført.",
+              "effect": 0,
+              "tags": [
+                "speed",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "repeated_quick_close",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "stress": -1,
+                  "quality": -2,
+                  "future_risk": 3,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_quick_close_risk"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week2_missing_material",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 206,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Materialet som mangler",
+          "summary": "Fra: Rune\nEmne: Rekkverk ved baktrapp\nBody:\nHei,\n\nVi har fått melding om løst rekkverk ved baktrappa.\n\nKan du se på det i dag? Hvis det bare trenger nye festeskruer, ta det med en gang.\n\nDette bør helst være løst før slutten av dagen.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 2: Andre uke.",
+          "stakes": "Valget flytter faglig vurdering, sikkerhet, tempo, kropp, relasjoner, risiko eller stagnasjon videre i uke 2.",
+          "situation": [
+            "Fra: Rune\nEmne: Rekkverk ved baktrapp\nBody:\nHei,\n\nVi har fått melding om løst rekkverk ved baktrappa.\n\nKan du se på det i dag? Hvis det bare trenger nye festeskruer, ta det med en gang.\n\nDette bør helst være løst før slutten av dagen.\n\n– Rune",
+            "Fra: System\nEmne: Lagerstatus\nBody:\nMaterialbehov:\n- kraftige festeskruer\n- murplugg\n- skiver\n\nLagerstatus:\n- festeskruer: 2 igjen\n- murplugg: 0\n- skiver: lavt",
+            "Fra: Amir\nEmne: Baktrappa\nBody:\nIkke bruk feil plugg der.\n\nJeg vet det er frist, men baktrappa får mye belastning. Hvis vi mangler riktig materiell, må det registreres.\n\nImprovisasjon kan være fag. Men bare hvis du vet hva du improviserer med.\n\n– Amir",
+            "Fra: Rune\nEmne: Re: baktrapp\nBody:\nBare oppdater meg hvis vi mangler materiell.\n\nVi kan bestille, men jeg trenger å vite om det stopper jobben eller om det finnes trygg midlertidig løsning.\n\n– Rune"
+          ],
+          "task_domain": "praktisk_drift_og_sikkerhet",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagidentitet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Improvisere med det som finnes",
+              "reply": "Jeg bruker det vi har på lager og får rekkverket til å sitte midlertidig.",
+              "effect": 0,
+              "tags": [
+                "speed",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "improvised_solution",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "customer_satisfaction": 1,
+                  "safety": -1,
+                  "future_risk": 2,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_improvised_material"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Stoppe og bestille riktig materiell",
+              "reply": "Jeg registrerer at jobben ikke kan gjøres riktig med dagens materiell og ber om bestilling.",
+              "effect": 1,
+              "tags": [
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "material_limit_made_visible",
+              "effects": {
+                "stats": {
+                  "safety": 3,
+                  "quality": 2,
+                  "speed": -2,
+                  "trust_manager": 0,
+                  "customer_satisfaction": -1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_material_limits_visible"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Lage trygg midlertidig sperring",
+              "reply": "Jeg sperrer området delvis, sikrer rekkverket midlertidig og registrerer behov for riktig materiell.",
+              "effect": 1,
+              "tags": [
+                "clarity"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "safe_temporary_limit",
+              "effects": {
+                "stats": {
+                  "safety": 2,
+                  "quality": 1,
+                  "stress": 1,
+                  "customer_satisfaction": 0,
+                  "clarity": 2
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_temporary_with_clear_limit"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week2_safety_stops_speed",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 204,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Når sikkerhet stopper tempoet",
+          "summary": "Fra: System\nEmne: HMS-varsel\nBody:\nRegistrert observasjon:\n- vått gulv ved teknisk rom\n- kabel over ganglinje\n- trafikk av ansatte gjennom området\n\nRisiko:\n- snubling\n- glidning\n- skade på kabel",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 2: Andre uke.",
+          "stakes": "Valget flytter faglig vurdering, sikkerhet, tempo, kropp, relasjoner, risiko eller stagnasjon videre i uke 2.",
+          "situation": [
+            "Fra: System\nEmne: HMS-varsel\nBody:\nRegistrert observasjon:\n- vått gulv ved teknisk rom\n- kabel over ganglinje\n- trafikk av ansatte gjennom området\n\nRisiko:\n- snubling\n- glidning\n- skade på kabel",
+            "Fra: Rune\nEmne: Teknisk rom\nBody:\nHei,\n\nKan du se på området ved teknisk rom?\n\nDet skal komme folk inn og ut der i løpet av dagen. Hvis det bare er å flytte kabelen og tørke opp, gjør det. Hvis området bør sperres, si fra.\n\n– Rune",
+            "Fra: Bruker / intern ansatt\nEmne: Må gjennom der\nBody:\nHei,\n\nVi må gjennom teknisk rom før lunsj. Det er eneste raske vei til lageret akkurat nå.\n\nKan dere ikke bare legge kabelen litt til siden?",
+            "Fra: Amir\nEmne: Vått gulv + kabel\nBody:\nVått gulv og kabel er en sånn kombinasjon folk undervurderer fordi det ser hverdagslig ut.\n\nHvis noen snubler, er det ingen som sier “men det sparte oss to minutter”.\n\n– Amir"
+          ],
+          "task_domain": "praktisk_drift_og_sikkerhet",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagidentitet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytte kabelen raskt og holde området åpent",
+              "reply": "Jeg flytter kabelen til siden, tørker litt og lar området være åpent.",
+              "effect": 0,
+              "tags": [
+                "speed",
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "unsafe_speed",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "customer_satisfaction": 1,
+                  "safety": -2,
+                  "future_risk": 2,
+                  "trust_manager": 0
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_unsafe_speed"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Sperre området midlertidig",
+              "reply": "Jeg sperrer området til gulvet er tørt og kabelen er sikret.",
+              "effect": 1,
+              "tags": [
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "safety_blocks_flow",
+              "effects": {
+                "stats": {
+                  "safety": 3,
+                  "quality": 2,
+                  "customer_satisfaction": -2,
+                  "conflict": 1,
+                  "trust_manager": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_safety_blocks_flow"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Lage alternativ passasje og varsle",
+              "reply": "Jeg sperrer det farligste området, lager alternativ passasje og varsler de ansatte.",
+              "effect": 1,
+              "tags": [
+                "safety",
+                "clarity"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "safety_with_practical_solution",
+              "effects": {
+                "stats": {
+                  "safety": 2,
+                  "quality": 2,
+                  "customer_satisfaction": 0,
+                  "stress": 1,
+                  "clarity": 2
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_practical_safety"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week2_second_week_review",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 202,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Andre ukes faglige vurdering",
+          "summary": "Fra: Rune\nEmne: To uker inne\nBody:\nHei,\n\nDu har vært her i to uker nå, og jeg vil gjerne ha en kort egenvurdering før du tar helg.\n\nIkke noe formelt. Bare:\n- hva du føler du begynner å få tak på\n- hva du trenger mer opplæring i\n- om det er noe du mener vi bør følge opp fra uka\n\nDet er nyttig å høre hvordan du vurderer arbeidet, ikke bare hva som er lukket i systemet.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 2: Andre uke.",
+          "stakes": "Valget flytter faglig vurdering, sikkerhet, tempo, kropp, relasjoner, risiko eller stagnasjon videre i uke 2.",
+          "situation": [
+            "Fra: Rune\nEmne: To uker inne\nBody:\nHei,\n\nDu har vært her i to uker nå, og jeg vil gjerne ha en kort egenvurdering før du tar helg.\n\nIkke noe formelt. Bare:\n- hva du føler du begynner å få tak på\n- hva du trenger mer opplæring i\n- om det er noe du mener vi bør følge opp fra uka\n\nDet er nyttig å høre hvordan du vurderer arbeidet, ikke bare hva som er lukket i systemet.\n\n– Rune",
+            "Fra: Amir\nEmne: Egenvurdering\nBody:\nNår Rune spør hva du får tak på, ikke bare skriv “oppgavene”.\n\nSkriv heller hva slags vurderinger du begynner å skjønne.\n\nFor eksempel:\n- når noe er midlertidig\n- når materiell stopper jobben\n- når sikkerhet må gå foran flyt\n- når du må dokumentere selv om det er irriterende\n\nDet er der faget ligger.\n\n– Amir",
+            "Fra: System\nEmne: Uke 2 – saker\nBody:\nSaker registrert denne uka:\n- opplæring midlertidig sikring\n- Lagerrom B oppfølging\n- baktrapp / materiellmangel\n- teknisk rom / HMS-observasjon\n- egenvurdering"
+          ],
+          "task_domain": "praktisk_drift_og_sikkerhet",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagidentitet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive faglig egenvurdering",
+              "reply": "Jeg skriver at jeg begynner å forstå forskjellen mellom lukket, midlertidig sikret og faglig ferdig.",
+              "effect": 1,
+              "tags": [
+                "craft"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "craft_identity_strengthened",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "safety": 2,
+                  "learning_progress": 2,
+                  "trust_manager": 2,
+                  "stress": 1,
+                  "promotion_path": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_craft_identity"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive at du får ting gjort",
+              "reply": "Jeg skriver at jeg begynner å få opp tempo og lukke flere saker.",
+              "effect": 0,
+              "tags": [
+                "speed"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "speed_identity",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "trust_manager": 1,
+                  "quality": -1,
+                  "future_risk": 2,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_fast_closer_path"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Be om mer opplæring",
+              "reply": "Jeg skriver at jeg trenger mer trening i avvik, materiellvurdering og når arbeid må stoppes.",
+              "effect": 1,
+              "tags": [
+                "learning"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "learning_request",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "safety": 2,
+                  "learning_progress": 2,
+                  "trust_manager": 0,
+                  "autonomy": 1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_safe_learner_path"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Si at alt går greit",
+              "reply": "Jeg skriver at det meste går greit og at jeg bare trenger mer tid.",
+              "effect": 0,
+              "tags": [
+                "stagnation"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "quiet_stagnation",
+              "effects": {
+                "stats": {
+                  "stress": -1,
+                  "stagnation": 2,
+                  "learning_progress": 0,
+                  "trust_manager": 0,
+                  "autonomy": -1
+                }
+              },
+              "next_bias": {
+                "set_flags": [
+                  "fagarbeider_week2_low_visibility"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "prefer_mail_types": [
+                  "people"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "deep_learning_with_effort",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Bra spørsmål",
+          "summary": "Fra: Amir\nEmne: Bra spørsmål\nBody:\nDet var bra spørsmål.\n\nDet er sånn du lærer faget. Ikke ved å pugge alle svar, men ved å skjønne hva du ser etter.\n\nDu kommer til å bruke litt lenger tid i starten. Det er greit hvis vurderingene blir bedre.\n\n– Amir",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Amir\nEmne: Bra spørsmål\nBody:\nDet var bra spørsmål.\n\nDet er sånn du lærer faget. Ikke ved å pugge alle svar, men ved å skjønne hva du ser etter.\n\nDu kommer til å bruke litt lenger tid i starten. Det er greit hvis vurderingene blir bedre.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "practical_speed_learning",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Tempo",
+          "summary": "Fra: Amir\nEmne: Tempo\nBody:\nTempo kommer.\n\nMen hvis du starter med tempo, blir snarveiene vaner før du vet hva de koster.\n\nLær rekkefølgen først. Så kan du bli rask.\n\n– Amir",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Amir\nEmne: Tempo\nBody:\nTempo kommer.\n\nMen hvis du starter med tempo, blir snarveiene vaner før du vet hva de koster.\n\nLær rekkefølgen først. Så kan du bli rask.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "safety_over_convenience",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Tydelig vurdering",
+          "summary": "Fra: Rune\nEmne: Tydelig vurdering\nBody:\nHei,\n\nDette er en tydelig vurdering.\n\nDet skaper litt praktisk trøbbel, men hvis hylla faktisk siger ved belastning, må vi håndtere det ordentlig nå.\n\nJeg tar det videre.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: Tydelig vurdering\nBody:\nHei,\n\nDette er en tydelig vurdering.\n\nDet skaper litt praktisk trøbbel, men hvis hylla faktisk siger ved belastning, må vi håndtere det ordentlig nå.\n\nJeg tar det videre.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "better_temporary_fix",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Midlertidig igjen",
+          "summary": "Fra: Amir\nEmne: Midlertidig igjen\nBody:\nDet er bedre enn sist.\n\nMen pass på at “midlertidig med oppfølging” faktisk får oppfølging.\n\nHvis ikke er det bare en penere måte å skyve problemet på.\n\n– Amir",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Amir\nEmne: Midlertidig igjen\nBody:\nDet er bedre enn sist.\n\nMen pass på at “midlertidig med oppfølging” faktisk får oppfølging.\n\nHvis ikke er det bare en penere måte å skyve problemet på.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "repeated_quick_close",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Sak lukket",
+          "summary": "Fra: System\nEmne: Sak lukket\nBody:\nArbeidsordre 18-442 er lukket som utført.\n\nMerk:\nSaken har tidligere vært meldt inn på nytt etter midlertidig tiltak.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Sak lukket\nBody:\nArbeidsordre 18-442 er lukket som utført.\n\nMerk:\nSaken har tidligere vært meldt inn på nytt etter midlertidig tiltak."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "improvised_solution",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Hvilke plugger brukte du?",
+          "summary": "Fra: Amir\nEmne: Hvilke plugger brukte du?\nBody:\nHvilke plugger brukte du?\n\nJeg spør ikke for å ta deg. Jeg spør fordi akkurat der betyr materialet noe.\n\nHvis det er midlertidig, må det stå som midlertidig.\n\n– Amir",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Amir\nEmne: Hvilke plugger brukte du?\nBody:\nHvilke plugger brukte du?\n\nJeg spør ikke for å ta deg. Jeg spør fordi akkurat der betyr materialet noe.\n\nHvis det er midlertidig, må det stå som midlertidig.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "material_limit_made_visible",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Materiell",
+          "summary": "Fra: Rune\nEmne: Materiell\nBody:\nGreit.\n\nDa bestiller vi riktig materiell. Det er bedre å vite at jobben stopper på deler enn at den ser ferdig ut med feil deler.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: Materiell\nBody:\nGreit.\n\nDa bestiller vi riktig materiell. Det er bedre å vite at jobben stopper på deler enn at den ser ferdig ut med feil deler.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "safe_temporary_limit",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God løsning",
+          "summary": "Fra: Rune\nEmne: God løsning\nBody:\nDette var riktig nivå.\n\nDu gjorde det trygt nok nå, men uten å late som det var ferdig. Det er ofte den beste løsningen når materiell mangler.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: God løsning\nBody:\nDette var riktig nivå.\n\nDu gjorde det trygt nok nå, men uten å late som det var ferdig. Det er ofte den beste løsningen når materiell mangler.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "unsafe_speed",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Observasjon lukket",
+          "summary": "Fra: System\nEmne: Observasjon lukket\nBody:\nObservasjon lukket som utbedret.\n\nMerk:\nIngen sperring registrert.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Observasjon lukket\nBody:\nObservasjon lukket som utbedret.\n\nMerk:\nIngen sperring registrert."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "safety_blocks_flow",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Sperringen",
+          "summary": "Fra: Rune\nEmne: Sperringen\nBody:\nDet ble litt misnøye, men vurderingen var riktig.\n\nHvis området både er vått og har kabel i ganglinja, sperrer vi. Det må folk bare tåle.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: Sperringen\nBody:\nDet ble litt misnøye, men vurderingen var riktig.\n\nHvis området både er vått og har kabel i ganglinja, sperrer vi. Det må folk bare tåle.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "safety_with_practical_solution",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Bra løsning",
+          "summary": "Fra: Amir\nEmne: Bra løsning\nBody:\nDet der var bra.\n\nDu stoppet ikke bare folk. Du ga dem en annen vei.\n\nSikkerhet fungerer bedre når folk skjønner hva de skal gjøre i stedet.\n\n– Amir",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Amir\nEmne: Bra løsning\nBody:\nDet der var bra.\n\nDu stoppet ikke bare folk. Du ga dem en annen vei.\n\nSikkerhet fungerer bedre når folk skjønner hva de skal gjøre i stedet.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "craft_identity_strengthened",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God egenvurdering",
+          "summary": "Fra: Rune\nEmne: God egenvurdering\nBody:\nDette var en god egenvurdering.\n\nSærlig det du skriver om forskjellen mellom lukket og faglig ferdig. Det er viktig.\n\nNeste uke kan du få litt mer selvstendig ansvar på enklere saker, så tar vi de mer risikoutsatte sammen.\n\nGod helg.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: God egenvurdering\nBody:\nDette var en god egenvurdering.\n\nSærlig det du skriver om forskjellen mellom lukket og faglig ferdig. Det er viktig.\n\nNeste uke kan du få litt mer selvstendig ansvar på enklere saker, så tar vi de mer risikoutsatte sammen.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "speed_identity",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Tempo",
+          "summary": "Fra: Rune\nEmne: Tempo\nBody:\nFint at du får opp tempo.\n\nBare pass på at tempoet ikke blir viktigere enn vurderingen. Vi trenger saker lukket, men vi trenger dem faktisk løst også.\n\nGod helg.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: Tempo\nBody:\nFint at du får opp tempo.\n\nBare pass på at tempoet ikke blir viktigere enn vurderingen. Vi trenger saker lukket, men vi trenger dem faktisk løst også.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "learning_request",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Mer opplæring",
+          "summary": "Fra: Rune\nEmne: Mer opplæring\nBody:\nDet er en ryddig tilbakemelding.\n\nJeg setter deg opp på to vurderingsoppgaver sammen med Amir neste uke. Det er bedre å bygge dette riktig nå enn å late som alt sitter.\n\nGod helg.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: Mer opplæring\nBody:\nDet er en ryddig tilbakemelding.\n\nJeg setter deg opp på to vurderingsoppgaver sammen med Amir neste uke. Det er bedre å bygge dette riktig nå enn å late som alt sitter.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "quiet_stagnation",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Greit",
+          "summary": "Fra: Rune\nEmne: Greit\nBody:\nGreit.\n\nDa fortsetter vi omtrent som nå, og så tar vi ting etter hvert.\n\nGod helg.\n\n– Rune",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: Rune\nEmne: Greit\nBody:\nGreit.\n\nDa fortsetter vi omtrent som nå, og så tar vi ting etter hvert.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {}
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week2_outcome_craft_identity",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 2",
+          "summary": "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu begynner å bli en fagarbeider som ikke bare gjør arbeid, men forstår hva arbeidet skal tåle etter at du har gått.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu begynner å bli en fagarbeider som ikke bare gjør arbeid, men forstår hva arbeidet skal tåle etter at du har gått."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {
+                  "quality": 4,
+                  "safety": 4,
+                  "learning_progress": 3,
+                  "trust_manager": 2,
+                  "trust_colleague": 2,
+                  "stress": 2,
+                  "promotion_path": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week2_outcome_fast_but_fragile",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 2",
+          "summary": "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu får ting unna, men sporene etter arbeidet ditt begynner å komme tilbake som nye saker.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu får ting unna, men sporene etter arbeidet ditt begynner å komme tilbake som nye saker."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {
+                  "speed": 4,
+                  "trust_manager": 1,
+                  "quality": -2,
+                  "safety": -2,
+                  "future_risk": 4,
+                  "stagnation": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week2_outcome_safe_learner_week2",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 2",
+          "summary": "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu lærer at trygghet ikke er treghet. Det er presisjon før tempo.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu lærer at trygghet ikke er treghet. Det er presisjon før tempo."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {
+                  "clarity": 4,
+                  "safety": 4,
+                  "learning_progress": 4,
+                  "autonomy": 2,
+                  "stress": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week2_outcome_overused_body_week2",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 2",
+          "summary": "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu blir nyttig. På jobb. Hjemme. For folk. For systemet. Kroppen begynner å spørre hvem som er nyttig for deg.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu blir nyttig. På jobb. Hjemme. For folk. For systemet. Kroppen begynner å spørre hvem som er nyttig for deg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {
+                  "body_strain": 5,
+                  "energy": -4,
+                  "relationship_private": 2,
+                  "trust_colleague": 1,
+                  "overload_risk": 4,
+                  "stress": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week2_outcome_quiet_surface_week2",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "arbeid",
+          "place_id": "naeringsliv",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 2",
+          "summary": "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu unngår friksjonen. Men friksjonen er også der læringen skulle festet seg.",
+          "purpose": "Konsekvensmelding for fagarbeider uke 2.",
+          "stakes": "Konsekvensen bekrefter valgt spor uten fallback.",
+          "situation": [
+            "Fra: System\nEmne: Ukeutfall fagarbeider uke 2\nBody:\nDu unngår friksjonen. Men friksjonen er også der læringen skulle festet seg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrert",
+              "reply": "Jeg tar med meg konsekvensen videre.",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Registrert.",
+              "effects": {
+                "stats": {
+                  "stagnation": 4,
+                  "learning_progress": -1,
+                  "autonomy": -2,
+                  "guilt": 2,
+                  "stress": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "fagarbeider_intro_v2",
       "description": "Første dager som fagarbeider. Tor (verksmester) gir mentor-oppdrag, Egil tester kompetanse, Liv (lærling) banker på.",
       "mails": [
