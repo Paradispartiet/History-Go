@@ -5,6 +5,1134 @@
   "mail_type": "job",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_mellomleder_job",
+      "purpose": "Praksisfortellinger – Mellomleder pakke 1: Første uke med rapportering, kapasitet, tempo, tilbakemelding og krysspress mellom tall og mennesker.",
+      "learning_focus": [
+        "organisatorisk_oversettelse",
+        "kapasitetsvurdering",
+        "rapportering",
+        "tilbakemelding",
+        "teamtillit"
+      ],
+      "week_outcomes": [
+        {
+          "id": "honest_translator",
+          "condition": "Spilleren rapporterer ærlig, skiller tall fra virkelighet, løfter kapasitet presist og beskytter teamet uten å skjule krav.",
+          "effects": {
+            "clarity": 4,
+            "trust_team": 3,
+            "trust_manager": 3,
+            "manager_pressure": 2,
+            "stress": 2,
+            "quality": 2
+          },
+          "story": "Du begynner å bli en mellomleder som oversetter virkeligheten uten å pynte den bort. Det gjør deg nyttig, men også synlig."
+        },
+        {
+          "id": "smooth_buffer",
+          "condition": "Spilleren glatter rapporter, skriver at alt er stabilt og holder presset unna seg selv.",
+          "effects": {
+            "manager_pressure": -2,
+            "stress": -1,
+            "stagnation": 4,
+            "trust_team": -2,
+            "future_risk": 3
+          },
+          "story": "Du lager ro oppover. Men roen bygges av ting som ikke blir sagt."
+        },
+        {
+          "id": "pressure_transmitter",
+          "condition": "Spilleren sender presset nedover, krever mer tempo og legger problemet på teamets prioritering.",
+          "effects": {
+            "speed": 3,
+            "manager_pressure": -1,
+            "trust_team": -4,
+            "conflict": 3,
+            "future_risk": 3,
+            "quality": -1
+          },
+          "story": "Du blir effektiv som kanal for krav. Spørsmålet er om du leder, eller bare videreformidler press."
+        },
+        {
+          "id": "team_defender",
+          "condition": "Spilleren forsvarer teamets kapasitet, forklarer belastning og nekter å late som tallene sier alt.",
+          "effects": {
+            "trust_team": 4,
+            "clarity": 3,
+            "manager_pressure": 3,
+            "conflict": 1,
+            "stress": 2
+          },
+          "story": "Teamet merker at du ser dem. Ledelsen merker at du ikke bare sender krav nedover. Begge deler koster."
+        },
+        {
+          "id": "vague_middle",
+          "condition": "Spilleren svarer vagt, utsetter private valg, unngår tydelige rapporter og lar problemer henge.",
+          "effects": {
+            "stagnation": 4,
+            "authority": -2,
+            "decision_fatigue": 2,
+            "future_risk": 2,
+            "trust_team": -1
+          },
+          "story": "Du blir stående midt imellom uten å oversette nok. Da blir mellomrommet ikke en rolle, men et sted å bli slitt."
+        }
+      ],
+      "mails": [
+        {
+          "id": "job_mellomleder_week1_first_monday_report",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Første mandagsrapport – tallene ser roligere ut enn folkene",
+          "summary": "Fra: Ingrid, områdesjef\nEmne: Første mandagsrapport\nBody:\nHei,\n\nVelkommen inn i rollen.\n\nJeg vil gjerne at du sender en kort mandagsrapport før kl. 12. Ikke noe omfattende, bare en status på:\n\n- bemanning\n- leveranse\n- avvik\n- stemning i avdelingen\n- eventuelle risikoer for uka\n\nTallene ser foreløpig greie ut, men jeg vil gjerne høre din vurdering også. Det er viktig at vi får tidlige signaler før ting vokser.\n\nMvh\nIngrid",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, press, konflikt, risiko eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Ingrid, områdesjef\nEmne: Første mandagsrapport\nBody:\nHei,\n\nVelkommen inn i rollen.\n\nJeg vil gjerne at du sender en kort mandagsrapport før kl. 12. Ikke noe omfattende, bare en status på:\n\n- bemanning\n- leveranse\n- avvik\n- stemning i avdelingen\n- eventuelle risikoer for uka\n\nTallene ser foreløpig greie ut, men jeg vil gjerne høre din vurdering også. Det er viktig at vi får tidlige signaler før ting vokser.\n\nMvh\nIngrid",
+            "Fra: Rana, teamkoordinator\nEmne: Før du sender rapporten\nBody:\nHei,\n\nBare så du vet: tallene ser bedre ut enn uka føltes.\n\nVi traff leveranse fordi folk tok ekstra, ikke fordi kapasiteten egentlig var god. Det er særlig to personer som har strukket seg mye.\n\nJeg sier ikke at du skal lage drama i rapporten. Men ikke skriv at alt er normalt uten å nevne hvordan det ble normalt.\n\n– Rana",
+            "Fra: System\nEmne: Ukesstatus – foreløpige tall\nBody:\nBemanning: 94 %\nLeveranse: 101 %\nAvvik: lavt\nSykefravær: stabilt\nOvertid: moderat\nStemningsdata: ikke registrert\n\nMerk: Leveranse over mål kan skjule økt belastning dersom overtid og uformell innsats ikke forklares.",
+            "Fra: Mads, sidestilt leder\nEmne: Mandagsrapporten\nBody:\nHei,\n\nBare et lite ønske: hvis du nevner kapasitet, pass på at det ikke høres ut som vi ber om flere folk uten grunnlag. Ingrid er veldig opptatt av at rapportene er nøkterne.\n\nDet er best å holde seg til det vi faktisk kan dokumentere.\n\n– Mads"
+          ],
+          "task_domain": "organisatorisk_oversettelse",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive nøkternt med tydelig belastningssignal",
+              "reply": "Jeg skriver at leveransen er god, men at den delvis er oppnådd gjennom ekstra innsats og bør følges med på.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "trust_team": 2,
+                  "trust_manager": 1,
+                  "manager_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_monday_report_honest",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_honest_reporting",
+                  "clarity",
+                  "trust_team"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive at alt ser stabilt ut",
+              "reply": "Jeg skriver at bemanning, leveranse og avvik ser stabile ut.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "stress": -1,
+                  "trust_team": -1,
+                  "stagnation": 2,
+                  "future_risk": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_monday_report_smooth",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_smooth_report",
+                  "stagnation",
+                  "future_risk"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Løfte kapasitet tydelig",
+              "reply": "Jeg skriver at leveransen skjuler en reell kapasitetsrisiko.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "trust_team": 1,
+                  "manager_pressure": 2,
+                  "conflict": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_monday_report_capacity",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_capacity_warning",
+                  "clarity",
+                  "manager_pressure"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_mellomleder_week1_capacity_not_in_sheet",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 124,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Kapasiteten som mangler i regnearket",
+          "summary": "Fra: System\nEmne: Bemanningsoversikt\nBody:\nDagens bemanning:\n\n- 8 av 8 på jobb\n- ingen registrert sykefravær\n- én nyansatt under opplæring\n- én erfaren medarbeider med redusert tempo etter forrige uke\n\nPlanlagt kapasitet: 100 %",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, press, konflikt, risiko eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: System\nEmne: Bemanningsoversikt\nBody:\nDagens bemanning:\n\n- 8 av 8 på jobb\n- ingen registrert sykefravær\n- én nyansatt under opplæring\n- én erfaren medarbeider med redusert tempo etter forrige uke\n\nPlanlagt kapasitet: 100 %",
+            "Fra: Rana\nEmne: Kapasitet\nBody:\nBare så du vet:\n\n“8 av 8 på jobb” betyr ikke 100 % kapasitet i dag.\n\nNadia er fortsatt ny. Thomas er her, men ganske sliten. Og Ida tar mye uformell opplæring som ikke vises i noen plan.\n\nHvis du styrer etter arket alene, kommer dagen til å se bedre ut enn den er.\n\n– Rana",
+            "Fra: Ingrid\nEmne: Dagens leveranse\nBody:\nHei,\n\nSiden bemanningen er full i dag, bør vi kunne holde normal leveranse uten ekstra tiltak.\n\nGi beskjed hvis du ser noe som tilsier noe annet.\n\nMvh\nIngrid",
+            "Fra: Thomas\nEmne: Bare nevner det\nBody:\nHei,\n\nJeg er på jobb og kan ta mitt, men jeg er litt lavere i tempo enn vanlig.\n\nVil helst ikke at det skal bli en stor greie, men sier fra før det blir synlig på feil måte.\n\n– Thomas"
+          ],
+          "task_domain": "organisatorisk_oversettelse",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Justere planen etter faktisk kapasitet",
+              "reply": "Jeg justerer oppgavene etter opplæring, slitasje og faktisk kapasitet, og sender Ingrid en kort forklaring.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "team_trust": 2,
+                  "clarity": 2,
+                  "manager_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_capacity_not_in_sheet_real",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_real_capacity",
+                  "quality",
+                  "team_trust"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Holde planen fordi alle er til stede",
+              "reply": "Jeg holder normal plan fordi bemanningen teknisk sett er full.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "flow": 1,
+                  "manager_pressure": -1,
+                  "team_trust": -2,
+                  "future_risk": 2,
+                  "stagnation": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_capacity_not_in_sheet_sheet",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_sheet_over_reality",
+                  "future_risk",
+                  "stagnation"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spørre teamet før justering",
+              "reply": "Jeg tar en kort runde med teamet før jeg justerer dagens prioritering.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "team_trust": 2,
+                  "clarity": 1,
+                  "flow": -1,
+                  "stress": 1,
+                  "autonomy": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_capacity_not_in_sheet_input",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_team_input",
+                  "autonomy",
+                  "team_trust"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_mellomleder_week1_peace_below_speed_above",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Når avdelingen ber om ro og ledelsen ber om fart",
+          "summary": "Fra: Ingrid\nEmne: Tempo resten av uka\nBody:\nHei,\n\nVi må se om avdelingen kan hente inn litt tempo resten av uka.\n\nTallene er ikke kritiske, men vi ligger lavere enn forventet på gjennomføring per time. Jeg vil gjerne ha et forslag fra deg til hvordan vi kan løfte tempo uten at det skaper nye avvik.\n\nMvh\nIngrid",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, press, konflikt, risiko eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Ingrid\nEmne: Tempo resten av uka\nBody:\nHei,\n\nVi må se om avdelingen kan hente inn litt tempo resten av uka.\n\nTallene er ikke kritiske, men vi ligger lavere enn forventet på gjennomføring per time. Jeg vil gjerne ha et forslag fra deg til hvordan vi kan løfte tempo uten at det skaper nye avvik.\n\nMvh\nIngrid",
+            "Fra: Rana\nEmne: Teamet trenger litt ro\nBody:\nHei,\n\nJeg skjønner at tallene må opp.\n\nMen teamet trenger litt ro nå. Nadia lærer fortsatt, Thomas er sliten, og folk kjenner at alt blir målt tett.\n\nHvis vi presser mer akkurat nå, får vi kanskje opp tempoet, men jeg tror kvaliteten ryker først.\n\n– Rana",
+            "Fra: System\nEmne: Midtukeindikator\nBody:\nTempo: 93 % av mål\nKvalitet: stabil\nAvvik: lavt\nOpplæringstid: høy\nUformell støtte: høy\nTeamkommentarer: “mye å følge med på”",
+            "Fra: Mads\nEmne: Bare et tips\nBody:\nHei,\n\nI slike situasjoner pleier jeg å foreslå “fokusert tempoøkning” på ett område. Det høres bedre ut enn å si at vi ikke har kapasitet.\n\nBare pass på at du ikke lover mer enn teamet kan levere.\n\n– Mads"
+          ],
+          "task_domain": "organisatorisk_oversettelse",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Foreslå avgrenset tempoøkning",
+              "reply": "Jeg foreslår å øke tempo på ett avgrenset område, men skjerme opplæring og kvalitet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "flow": 2,
+                  "clarity": 2,
+                  "trust_manager": 1,
+                  "team_trust": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_peace_below_speed_above_bounded",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_bounded_speed",
+                  "flow",
+                  "clarity"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Presse teamet bredt",
+              "reply": "Jeg ber teamet øke tempo på alle områder resten av uka.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "speed": 3,
+                  "manager_pressure": -1,
+                  "team_trust": -2,
+                  "future_risk": 2,
+                  "quality": -1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_peace_below_speed_above_pressure",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_broad_pressure",
+                  "speed",
+                  "future_risk"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Forsvare teamets behov for ro",
+              "reply": "Jeg skriver til Ingrid at tempoet ikke bør presses nå fordi opplæring og kvalitet er mer sårbart.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "team_trust": 2,
+                  "quality": 2,
+                  "manager_pressure": 2,
+                  "flow": -1,
+                  "clarity": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_peace_below_speed_above_defend",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_defends_team",
+                  "quality",
+                  "team_trust"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_mellomleder_week1_difficult_feedback",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 112,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Den vanskelige tilbakemeldingen",
+          "summary": "Fra: Ingrid\nEmne: Oppfølging av Thomas\nBody:\nHei,\n\nJeg ser at Thomas har hatt lavere tempo flere dager.\n\nDu nevnte at han virker sliten. Det kan være riktig, men vi må også følge opp forventningene til rollen hans.\n\nKan du ta en kort samtale med ham i dag?\n\nFokus:\n\n- hvordan han opplever belastningen\n- hva han trenger\n- hva vi forventer videre\n\nMvh\nIngrid",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, press, konflikt, risiko eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Ingrid\nEmne: Oppfølging av Thomas\nBody:\nHei,\n\nJeg ser at Thomas har hatt lavere tempo flere dager.\n\nDu nevnte at han virker sliten. Det kan være riktig, men vi må også følge opp forventningene til rollen hans.\n\nKan du ta en kort samtale med ham i dag?\n\nFokus:\n\n- hvordan han opplever belastningen\n- hva han trenger\n- hva vi forventer videre\n\nMvh\nIngrid",
+            "Fra: Rana\nEmne: Thomas\nBody:\nBare vær litt varsom med Thomas.\n\nHan er ikke lat. Han er sliten. Det er ikke det samme.\n\nMen han trenger nok en tydelig prat, for han kommer ikke til å be om justering før han er helt tom.\n\n– Rana",
+            "Fra: Thomas\nEmne: Er det noe?\nBody:\nHei,\n\nRana sa du kanskje ville ta en prat.\n\nEr dette fordi tempoet mitt er lavere?\n\nBare greit å vite hva samtalen handler om.\n\n– Thomas",
+            "Fra: System\nEmne: Samtalemal\nBody:\nAnbefalt struktur:\n\n1. Beskriv observasjon konkret.\n2. Spør om personens vurdering.\n3. Avklar støttebehov.\n4. Avklar forventning.\n5. Avtal oppfølging.\n\nUnngå:\n\n- antydninger\n- generelle karakteristikker\n- uklare krav\n- støtte uten forventning\n- forventning uten støtte"
+          ],
+          "task_domain": "organisatorisk_oversettelse",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta samtalen balansert",
+              "reply": "Jeg sier konkret hva jeg har sett, spør Thomas hvordan han har det, og avtaler både støtte og forventning.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "trust_team": 2,
+                  "clarity": 3,
+                  "quality": 2,
+                  "stress": 1,
+                  "manager_pressure": 0
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_difficult_feedback_balanced",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_balanced_feedback",
+                  "clarity",
+                  "quality"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Pakke det inn for mye",
+              "reply": "Jeg gjør samtalen veldig myk og unngår tydelig forventning.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "trust_team": 1,
+                  "clarity": -1,
+                  "future_risk": 1,
+                  "stagnation": 1,
+                  "stress": -1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_difficult_feedback_soft",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_soft_feedback",
+                  "stagnation",
+                  "future_risk"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Gjøre det hardt og resultatstyrt",
+              "reply": "Jeg sier tydelig at tempoet må opp, og at lavere leveranse ikke kan fortsette.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "clarity": 1,
+                  "manager_pressure": -1,
+                  "trust_team": -2,
+                  "conflict": 2,
+                  "future_risk": 2
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_difficult_feedback_hard",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_hard_feedback",
+                  "conflict",
+                  "future_risk"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_mellomleder_week1_first_week_in_the_middle",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 106,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Første uke i klemmen",
+          "summary": "Fra: Ingrid\nEmne: Før helg – kort oppsummering\nBody:\nHei,\n\nFør du går i dag, send meg en kort oppsummering av første uke i rollen.\n\nJeg vil gjerne vite:\n\n- hva som fungerer\n- hvor du ser risiko\n- om kapasitet og tempo er riktig vurdert\n- om noen trenger støtte\n- hva du trenger tydeligere mandat til\n\nVær konkret. Ikke for lang, men ikke glatt.\n\nMvh\nIngrid",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, press, konflikt, risiko eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Ingrid\nEmne: Før helg – kort oppsummering\nBody:\nHei,\n\nFør du går i dag, send meg en kort oppsummering av første uke i rollen.\n\nJeg vil gjerne vite:\n\n- hva som fungerer\n- hvor du ser risiko\n- om kapasitet og tempo er riktig vurdert\n- om noen trenger støtte\n- hva du trenger tydeligere mandat til\n\nVær konkret. Ikke for lang, men ikke glatt.\n\nMvh\nIngrid",
+            "Fra: Rana\nEmne: Hvis du skal oppsummere uka\nBody:\nHvis du skal oppsummere uka, håper jeg du skriver at teamet leverer, men at det ikke skjer gratis.\n\nIkke for å klage.\n\nBare fordi folk blir slitne av å være forklaringen som aldri nevnes.\n\n– Rana",
+            "Fra: Mads\nEmne: Fredagsoppsummering\nBody:\nEt tips:\n\nIkke skriv deg inn i et hjørne.\n\nHvis du sier “kapasitetsproblem”, må du kunne dokumentere det.\nHvis du sier “alt greit”, blir det vanskeligere å forklare senere.\nHvis du sier “midlertidig belastning”, kjøper folk ofte litt tid.\n\n– Mads",
+            "Fra: System\nEmne: Uke 1 – signaler\nBody:\nRegistrerte signaler:\n\n- leveranse over mål\n- tempo under forventning enkelte dager\n- opplæringstid høy\n- uformell støtte høy\n- én vanskelig tilbakemelding\n- belastningssignal fra teamet\n- private open loops"
+          ],
+          "task_domain": "organisatorisk_oversettelse",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive konkret og balansert",
+              "reply": "Jeg skriver at leveransen er god, men at kapasitet, opplæring og belastning må følges konkret neste uke.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "trust_manager": 2,
+                  "trust_team": 2,
+                  "manager_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_week_in_the_middle_balanced",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_balanced_summary",
+                  "trust_manager",
+                  "trust_team"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive glatt oppover",
+              "reply": "Jeg skriver at uka har gått stabilt, og at teamet finner rytmen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "stress": -1,
+                  "trust_team": -2,
+                  "stagnation": 2,
+                  "future_risk": 2
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_week_in_the_middle_smooth",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_smooth_upward",
+                  "stagnation"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Presse problemet oppover",
+              "reply": "Jeg skriver tydelig at bemanning og opplæringspress gjør dagens mål urealistiske uten risiko for kvalitet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "manager_pressure": 3,
+                  "trust_team": 1,
+                  "conflict": 1,
+                  "stress": 2
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_week_in_the_middle_push",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_pushes_upward",
+                  "conflict"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Legge presset nedover",
+              "reply": "Jeg skriver at teamet må bli bedre på tempo, prioritering og selvstendighet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder"
+              ],
+              "feedback": "Konsekvensen er registrert i første ukes videre spor.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "authority": 1,
+                  "trust_team": -3,
+                  "conflict": 2,
+                  "future_risk": 2
+                }
+              },
+              "triggers_on_choice": "job_mellomleder_week1_first_week_in_the_middle_blame",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_mellomleder_job"
+                ],
+                "set_flags": [
+                  "mellomleder_week1_blames_team",
+                  "authority",
+                  "future_risk"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "job_mellomleder_week1_first_monday_report_honest",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Mandagsrapport – mottatt",
+          "summary": "Fra: Ingrid\nEmne: Mandagsrapport – mottatt\nBody:\nHei,\n\nDette var en god formulering. Du overdriver ikke, men du viser at leveransen har en kostnad. Det er nettopp slike tidlige signaler jeg trenger.\n\nFølg med på belastningen gjennom uka.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Mandagsrapport – mottatt\nBody:\nHei,\n\nDette var en god formulering. Du overdriver ikke, men du viser at leveransen har en kostnad. Det er nettopp slike tidlige signaler jeg trenger.\n\nFølg med på belastningen gjennom uka.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_first_monday_report_smooth",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Rana",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Stabil rapport",
+          "summary": "Fra: Rana\nEmne: Stabil rapport\nBody:\nSå rapporten ble “stabil”.\n\nDet er sikkert enklest.\n\nMen folk merker når innsatsen deres blir usynlig i rapportene.\n\n– Rana",
+          "situation": [
+            "Fra: Rana\nEmne: Stabil rapport\nBody:\nSå rapporten ble “stabil”.\n\nDet er sikkert enklest.\n\nMen folk merker når innsatsen deres blir usynlig i rapportene.\n\n– Rana"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_first_monday_report_capacity",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Kapasitetsrisiko",
+          "summary": "Fra: Ingrid\nEmne: Kapasitetsrisiko\nBody:\nHei,\n\nJeg ser vurderingen din.\n\nKan du konkretisere om dette handler om varig kapasitetsmangel, midlertidig belastning eller fordeling internt? Jeg trenger at slike signaler skilles tydelig.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Kapasitetsrisiko\nBody:\nHei,\n\nJeg ser vurderingen din.\n\nKan du konkretisere om dette handler om varig kapasitetsmangel, midlertidig belastning eller fordeling internt? Jeg trenger at slike signaler skilles tydelig.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_capacity_not_in_sheet_real",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Faktisk kapasitet",
+          "summary": "Fra: Ingrid\nEmne: Faktisk kapasitet\nBody:\nHei,\n\nTakk for presis vurdering.\n\nDet er riktig å skille mellom fysisk tilstedeværelse og faktisk kapasitet. Følg med på om dette er en enkeltdag eller et mønster.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Faktisk kapasitet\nBody:\nHei,\n\nTakk for presis vurdering.\n\nDet er riktig å skille mellom fysisk tilstedeværelse og faktisk kapasitet. Følg med på om dette er en enkeltdag eller et mønster.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_capacity_not_in_sheet_sheet",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Rana",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Arket",
+          "summary": "Fra: Rana\nEmne: Arket\nBody:\nDu fulgte arket.\n\nDet er greit på papiret.\n\nMen papir går ikke rundt og forklarer Nadia ting, og papir kjenner ikke at Thomas er sliten.\n\n– Rana",
+          "situation": [
+            "Fra: Rana\nEmne: Arket\nBody:\nDu fulgte arket.\n\nDet er greit på papiret.\n\nMen papir går ikke rundt og forklarer Nadia ting, og papir kjenner ikke at Thomas er sliten.\n\n– Rana"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_capacity_not_in_sheet_input",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Thomas",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Takk for runden",
+          "summary": "Fra: Thomas\nEmne: Takk for runden\nBody:\nTakk for at du spurte uten å gjøre det til en sak.\n\nDet er lettere å si fra tidlig når det ikke automatisk blir dramatikk.\n\n– Thomas",
+          "situation": [
+            "Fra: Thomas\nEmne: Takk for runden\nBody:\nTakk for at du spurte uten å gjøre det til en sak.\n\nDet er lettere å si fra tidlig når det ikke automatisk blir dramatikk.\n\n– Thomas"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_peace_below_speed_above_bounded",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Avgrenset tempo",
+          "summary": "Fra: Ingrid\nEmne: Avgrenset tempo\nBody:\nHei,\n\nDette er en fornuftig avgrensning.\n\nVi prøver dette ut resten av uka. Det er bedre med én tydelig justering enn en generell beskjed om å løpe fortere.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Avgrenset tempo\nBody:\nHei,\n\nDette er en fornuftig avgrensning.\n\nVi prøver dette ut resten av uka. Det er bedre med én tydelig justering enn en generell beskjed om å løpe fortere.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_peace_below_speed_above_pressure",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Rana",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Slik det landet",
+          "summary": "Fra: Rana\nEmne: Slik det landet\nBody:\nTeamet hørte “alt må gå raskere”.\n\nDu mente sikkert ikke at kvalitet og opplæring skulle vike.\n\nMen det er ofte sånn slike beskjeder lander.\n\n– Rana",
+          "situation": [
+            "Fra: Rana\nEmne: Slik det landet\nBody:\nTeamet hørte “alt må gå raskere”.\n\nDu mente sikkert ikke at kvalitet og opplæring skulle vike.\n\nMen det er ofte sånn slike beskjeder lander.\n\n– Rana"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_peace_below_speed_above_defend",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ett tiltak",
+          "summary": "Fra: Ingrid\nEmne: Ett tiltak\nBody:\nHei,\n\nJeg forstår vurderingen.\n\nSamtidig må vi kunne vise at vi gjør noe. Kan du formulere ett tiltak som ikke svekker opplæring eller kvalitet?\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Ett tiltak\nBody:\nHei,\n\nJeg forstår vurderingen.\n\nSamtidig må vi kunne vise at vi gjør noe. Kan du formulere ett tiltak som ikke svekker opplæring eller kvalitet?\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_difficult_feedback_balanced",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Thomas",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Takk for praten",
+          "summary": "Fra: Thomas\nEmne: Takk for praten\nBody:\nTakk for at du tok det ordentlig.\n\nDet var ikke gøy, men det var ryddig. Jeg trengte kanskje at noen sa det før jeg bare fortsatte å late som alt var normalt.\n\n– Thomas",
+          "situation": [
+            "Fra: Thomas\nEmne: Takk for praten\nBody:\nTakk for at du tok det ordentlig.\n\nDet var ikke gøy, men det var ryddig. Jeg trengte kanskje at noen sa det før jeg bare fortsatte å late som alt var normalt.\n\n– Thomas"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_difficult_feedback_soft",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Hva ble avtalt?",
+          "summary": "Fra: Ingrid\nEmne: Hva ble avtalt?\nBody:\nHei,\n\nFint at du tok samtalen.\n\nMen hva ble egentlig avtalt videre? Jeg trenger at slike samtaler ender i noe mer konkret enn “vi følger med”.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Hva ble avtalt?\nBody:\nHei,\n\nFint at du tok samtalen.\n\nMen hva ble egentlig avtalt videre? Jeg trenger at slike samtaler ender i noe mer konkret enn “vi følger med”.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_difficult_feedback_hard",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Rana",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Slik han hørte det",
+          "summary": "Fra: Rana\nEmne: Slik han hørte det\nBody:\nHan hørte deg.\n\nMen jeg tror han hørte mest krav, ikke at du faktisk prøvde å forstå belastningen.\n\nDet kan få ham til å skjerpe seg litt.\n\nEller tie mer.\n\n– Rana",
+          "situation": [
+            "Fra: Rana\nEmne: Slik han hørte det\nBody:\nHan hørte deg.\n\nMen jeg tror han hørte mest krav, ikke at du faktisk prøvde å forstå belastningen.\n\nDet kan få ham til å skjerpe seg litt.\n\nEller tie mer.\n\n– Rana"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_first_week_in_the_middle_balanced",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God helg",
+          "summary": "Fra: Ingrid\nEmne: God helg\nBody:\nHei,\n\nDette var en god første oppsummering.\n\nDu skiller mellom leveranse, kapasitet og belastning uten å gjøre det større enn det er. Neste uke vil jeg at du følger særlig med på om dette er midlertidig eller mønster.\n\nGod helg.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: God helg\nBody:\nHei,\n\nDette var en god første oppsummering.\n\nDu skiller mellom leveranse, kapasitet og belastning uten å gjøre det større enn det er. Neste uke vil jeg at du følger særlig med på om dette er midlertidig eller mønster.\n\nGod helg.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_first_week_in_the_middle_smooth",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Rana",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Teamet finner rytmen",
+          "summary": "Fra: Rana\nEmne: Teamet finner rytmen\nBody:\n“Teamet finner rytmen.”\n\nDet høres fint ut.\n\nDet er bare ikke helt det samme som at folk har kapasitet.\n\n– Rana",
+          "situation": [
+            "Fra: Rana\nEmne: Teamet finner rytmen\nBody:\n“Teamet finner rytmen.”\n\nDet høres fint ut.\n\nDet er bare ikke helt det samme som at folk har kapasitet.\n\n– Rana"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_first_week_in_the_middle_push",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ingrid",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Signal registrert",
+          "summary": "Fra: Ingrid\nEmne: Signal registrert\nBody:\nHei,\n\nDette er tydelig.\n\nJeg trenger mer konkret grunnlag før vi konkluderer, men signalet er registrert. Ta med eksempler mandag.\n\nGod helg.\n\nMvh\nIngrid",
+          "situation": [
+            "Fra: Ingrid\nEmne: Signal registrert\nBody:\nHei,\n\nDette er tydelig.\n\nJeg trenger mer konkret grunnlag før vi konkluderer, men signalet er registrert. Ta med eksempler mandag.\n\nGod helg.\n\nMvh\nIngrid"
+          ],
+          "choices": []
+        },
+        {
+          "id": "job_mellomleder_week1_first_week_in_the_middle_blame",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_mellomleder_job",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Rana",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Hvor oppsummeringen landet",
+          "summary": "Fra: Rana\nEmne: Hvor oppsummeringen landet\nBody:\nJeg så hvor oppsummeringen landet.\n\nKanskje noe av det stemmer.\n\nMen hvis første uke ender med at teamet “må skjerpe seg”, kommer folk til å merke hvem du skjermer.\n\n– Rana",
+          "situation": [
+            "Fra: Rana\nEmne: Hvor oppsummeringen landet\nBody:\nJeg så hvor oppsummeringen landet.\n\nKanskje noe av det stemmer.\n\nMen hvis første uke ender med at teamet “må skjerpe seg”, kommer folk til å merke hvem du skjermer.\n\n– Rana"
+          ],
+          "choices": []
+        }
+      ]
+    },
+    {
       "id": "mellomleder_fraksjonsvalg",
       "mails": [
         {
