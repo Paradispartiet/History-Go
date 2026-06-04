@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-04T10:58:00.588Z
+Generert: 2026-06-04T21:31:39.445Z
 
 ## Sammendrag
 
@@ -10,14 +10,14 @@ Generert: 2026-06-04T10:58:00.588Z
 - Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
-- Split people: **416**
-- Split unike ID-er: **416**
+- Split people: **420**
+- Split unike ID-er: **420**
 - Split-filer: **27**
 - Runtime-/manifestfiler: **27**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
-- ID-er bare i split: **322**
+- ID-er bare i split: **326**
 - Duplikate ID-er på tvers av split-filer: **0**
 - Split-filer ikke listet i manifest: **0**
 - Manifest-filer som mangler på disk: **0**
@@ -40,7 +40,7 @@ Generert: 2026-06-04T10:58:00.588Z
 | data/people/media/oslo/people_media_oslo.json | ja | 19 | 0 |  |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | ja | 10 | 0 |  |
 | data/people/musikk/oslo/people_musikk_oslo.json | ja | 15 | 0 |  |
-| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 15 | 0 |  |
+| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 19 | 0 |  |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | ja | 22 | 0 |  |
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | ja | 3 | 0 |  |
 | data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
@@ -153,6 +153,7 @@ Generert: 2026-06-04T10:58:00.588Z
 - christopher_nielsen | Christopher Nielsen | data/people/subkultur/oslo/people_subkultur_oslo.json
 - cj_hambro | C.J. Hambro | data/people/historie/oslo/people_historie_oslo.json
 - dag_o_hessen | Dag O. Hessen | data/people/natur/oslo/people_natur_oslo.json
+- dionisio_pestana | Dionísio Pestana | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - dj_marfox | DJ Marfox | data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json
 - don_martin | Don Martin | data/people/subkultur/oslo/people_subkultur_oslo.json
 - eca_de_queiros | Eça de Queirós | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json
@@ -171,6 +172,7 @@ Generert: 2026-06-04T10:58:00.588Z
 - felix_de_avelar_brotero | Félix de Avelar Brotero | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json
 - fernanda_nissen | Fernanda Nissen | data/people/politikk/oslo/people_politikk_oslo.json
 - fernando_pessoa | Fernando Pessoa | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json
+- fernando_pinto | Fernando Pinto | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - filomena_cautela | Filomena Cautela | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json
 - finn_skedsmo | Finn Skedsmo | data/people/filantroper/oslo/people_filantroper_oslo.json
 - francisco_caldeira_cabral | Francisco Caldeira Cabral | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json
@@ -216,6 +218,7 @@ Generert: 2026-06-04T10:58:00.588Z
 - herman_jose | Herman José | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json
 - herman_schou_bryggeri | Herman Schou | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json
 - hjalmar_andersen | Hjalmar Andersen | data/people/sport/oslo/people_sport_oslo.json
+- humberto_delgado | Humberto Delgado | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - haaken_hasberg_gran | Haaken Hasberg Gran | data/people/natur/oslo/people_natur_oslo.json
 - haakon_haakonsson | Håkon Håkonsson | data/people/historie/oslo/people_historie_oslo.json
 - haakon_lie | Haakon Lie | data/people/politikk/oslo/people_politikk_oslo.json
@@ -244,6 +247,7 @@ Generert: 2026-06-04T10:58:00.588Z
 - jose_alberto_carvalho | José Alberto Carvalho | data/people/media/europe/portugal/lisbon/people_media_lisbon.json
 - jose_alvalade | José Alvalade | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json
 - jose_avillez | José Avillez | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
+- jose_luis_constantino_dias | José Luís Constantino Dias | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - jose_rodrigues_dos_santos | José Rodrigues dos Santos | data/people/media/europe/portugal/lisbon/people_media_lisbon.json
 - jose_saramago | José Saramago | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json
 - julio_isidro | Júlio Isidro | data/people/media/europe/portugal/lisbon/people_media_lisbon.json
