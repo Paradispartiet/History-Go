@@ -4,6 +4,17 @@
 (function () {
   "use strict";
 
+  if (window.CIVICATION_CANVAS_MAP_ENABLED === true) {
+    window.CivicationMapZoom = {
+      init() {},
+      reset() {},
+      zoomIn() {},
+      zoomOut() {},
+      getZoom() { return 1; }
+    };
+    return;
+  }
+
   const MIN_ZOOM = 1;
   const MAX_ZOOM = 6.5;
   const DEFAULT_ZOOM = 1;
@@ -49,7 +60,6 @@
 
   function applyNow() {
     applyQueued = false;
-    if (window.CIVICATION_CANVAS_MAP_ENABLED === true) return;
 
     const svg = svgEl();
     if (!svg) return;
@@ -245,8 +255,6 @@
   }
 
   function init() {
-    // Canvas-kartet har egne zoomkontroller. Ikke kjør to zoomsystemer samtidig.
-    if (window.CIVICATION_CANVAS_MAP_ENABLED === true) return;
     ensureControls();
     bind();
     requestApply();
