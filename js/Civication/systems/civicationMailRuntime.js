@@ -34,6 +34,7 @@
   const ROLE_SCOPE_BY_ROLE_ID = {
     naer_arbeider: "arbeider",
     naer_ekspeditor: "ekspeditor",
+    naer_administrasjonsmedarbeider: "administrasjonsmedarbeider",
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
     naer_formann: "formann"
@@ -43,6 +44,8 @@
     arbeider: "arbeider",
     ekspeditor: "ekspeditor",
     ekspeditor_butikkmedarbeider: "ekspeditor",
+    administrasjonsmedarbeider: "administrasjonsmedarbeider",
+    okonomi_og_administrasjonsmedarbeider: "administrasjonsmedarbeider",
     fagarbeider: "fagarbeider",
     mellomleder: "mellomleder",
     formann: "formann"
@@ -110,6 +113,7 @@
     const roleKey = slugify(active?.role_key || "");
     if (roleKey === "naer_ekspeditor" || roleKey === "ekspeditor" || roleKey.includes("ekspedit")) return "ekspeditor";
     if (roleKey === "naer_arbeider" || roleKey === "arbeider") return "arbeider";
+    if (roleKey === "naer_administrasjonsmedarbeider" || roleKey === "administrasjonsmedarbeider" || roleKey.includes("administrasjon")) return "administrasjonsmedarbeider";
     if (roleKey === "naer_fagarbeider" || roleKey === "fagarbeider") return "fagarbeider";
     if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";
     if (roleKey === "naer_formann" || roleKey === "formann") return "formann";
