@@ -139,6 +139,47 @@
       "flow_tests": [
         "tests/civication-formann-two-week-flow.test.js"
       ]
+    },
+    {
+      "role_id": "mellomleder",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
+      "expected_signals": [
+        "clarity",
+        "trust_team",
+        "trust_manager",
+        "team_trust",
+        "manager_pressure",
+        "stress",
+        "quality",
+        "flow",
+        "speed",
+        "future_risk",
+        "stagnation",
+        "conflict",
+        "authority",
+        "autonomy",
+        "decision_fatigue",
+        "energy"
+      ],
+      "packages": [
+        {
+          "package_id": "mellomleder_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_mellomleder_job",
+          "private_family": "first_week_praksisfortellinger_mellomleder_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-mellomleder-first-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": [
+        "tests/civication-mellomleder-first-week-praksisfortellinger.test.js"
+      ]
     }
   ],
   "cross_role_tests": [
