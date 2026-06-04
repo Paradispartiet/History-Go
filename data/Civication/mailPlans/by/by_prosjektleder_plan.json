@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "by_prosjektleder_v1",
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "description": "Dramaturgisk plan for By-prosjektleder: fra mandat og aktører til gjennomføring, risiko, tillit og bykvalitet.",
+  "arc": {
+    "from": "Du får et byutviklingsprosjekt med politisk ambisjon, mange aktører og uklare avveiinger som må gjøres styrbare uten å skjule konflikten.",
+    "to": "Du forstår at byprosjektledelse handler om å holde framdrift, kvalitet, tillit og ansvar sammen gjennom beslutninger som noen faktisk kan eie.",
+    "core_questions": [
+      "Er mandatet tydelig nok til å styre faglig arbeid?",
+      "Hvem må samordnes, og hvem må faktisk ta ansvar?",
+      "Når må risiko varsles før den er helt sikker?",
+      "Når må framdrift bremses for å beskytte bykvalitet?",
+      "Hvordan gjennomfører du uten å gjøre medvirkning og bylivskvalitet til pynt?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "by_prosjekt_framdrift_loop", "evening_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere at politisk bestilling må presiseres før prosjektet kan styres godt.",
+      "allowed_families": ["politisk_bestilling_og_mandat"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren møte aktørbildet og skille dialog fra beslutningsansvar.",
+      "allowed_families": ["aktorer_og_koordinering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere tidlig risiko som må varsles før alt er bevist.",
+      "allowed_families": ["framdrift_budsjett_og_risiko"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Vise at gjennomføring kan svekke bykvalitet hvis kvaliteten ikke følges aktivt.",
+      "allowed_families": ["kvalitet_tillit_og_gjennomforing"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste om spilleren avklarer mandat og ansvar før prosjektet skyves videre.",
+      "allowed_families": ["politisk_bestilling_og_mandat", "aktorer_og_koordinering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "La budsjett og framdrift presse et faglig kvalitetspunkt.",
+      "allowed_families": ["framdrift_budsjett_og_risiko"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La medvirkning og tillit stå på spill når gjennomføringen strammes inn.",
+      "allowed_families": ["kvalitet_tillit_og_gjennomforing", "aktorer_og_koordinering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Avrunde rollen: god prosjektledelse viser pris, risiko, ansvar og kvalitet før beslutning.",
+      "allowed_families": ["politisk_bestilling_og_mandat", "framdrift_budsjett_og_risiko", "kvalitet_tillit_og_gjennomforing"],
+      "fallback_types": ["job"]
+    }
+  ]
+}
