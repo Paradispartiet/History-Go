@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_saksbehandler",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "dokumentasjon_og_mangler",
+      "purpose": "Lære spilleren at dokumentasjonsmangler ikke bare er formaliteter, men kan gjøre en plan- eller byggesak utrygg å vurdere.",
+      "learning_focus": ["dokumentasjonskontroll", "mangelbrev", "vurderbarhet"],
+      "mails": [
+        {
+          "id": "by_saks_job_dok_001",
+          "mail_type": "job",
+          "mail_family": "dokumentasjon_og_mangler",
+          "role_scope": "by_saksbehandler",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "anne_planseksjon",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "Søknaden er nesten komplett, men ikke vurderbar",
+          "summary": "En byggesak har tegninger, nabovarsel og beskrivelse, men mangler høydeangivelsen som avgjør virkningen mot gata.",
+          "purpose": "Etablere at nesten komplett dokumentasjon kan være utilstrekkelig når mangelen treffer selve vurderingspunktet.",
+          "stakes": "Sender du saken videre, holder du flyt. Ber du om presisering, forsinker du, men gjør vurderingen tryggere.",
+          "situation": [
+            "Sakslisten er full, og denne saken ser først lett ut.",
+            "Tegningene ligger der, nabovarselet ligger der, beskrivelsen ligger der.",
+            "Men høydeangivelsen mot gata mangler, og akkurat den avgjør om tiltaket virker lite eller dominerende."
+          ],
+          "task_domain": "saksforberedelse",
+          "competency": "vurderbarhetskontroll",
+          "pressure": "frist_og_nesten_komplett_sak",
+          "choice_axis": "be_om_mangel_vs_sende_videre",
+          "consequence_axis": "rettssikker_vurdering_vs_saksflyt",
+          "narrative_arc": "saksbehandleren lærer at formalia kan være reell bykunnskap",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send mangelbrev og forklar hvorfor høyden er nødvendig",
+              "reply": "Jeg sender mangelbrev og forklarer hvorfor høyden er nødvendig.",
+              "effect": 1,
+              "tags": ["documentation", "quality", "law"],
+              "feedback": "Du forsinker saken, men gjør den mulig å vurdere på riktig grunnlag."
+            },
+            {
+              "id": "B",
+              "label": "Vurder saken ut fra materialet som allerede ligger inne",
+              "reply": "Jeg vurderer saken ut fra materialet som allerede ligger inne.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Saken flyter videre, men det mest avgjørende premisset er fortsatt uklart."
+            }
+          ]
+        },
+        {
+          "id": "by_saks_job_dok_002",
+          "mail_type": "job",
+          "mail_family": "dokumentasjon_og_mangler",
+          "role_scope": "by_saksbehandler",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "anne_planseksjon",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "Mangler i dokumentasjonen og nabomerknaden peker samme vei",
+          "summary": "Manglende snitt og en nabomerknad om innsyn ser først ut som to ulike ting, men handler om samme virkning.",
+          "purpose": "Trene spilleren i å koble formell mangel til stedlig konsekvens.",
+          "stakes": "Hvis du behandler dem separat, blir saken ryddig. Hvis du ser koblingen, blir vurderingen mer presis.",
+          "situation": [
+            "Søknaden mangler snitt gjennom terrenget.",
+            "En nabo skriver uklart om at tiltaket 'kommer oppå dem'.",
+            "Formelt er det én mangel og én merknad. Faglig kan det være samme spørsmål."
+          ],
+          "task_domain": "mangel_og_virkning",
+          "competency": "sammenhengende_saksblikk",
+          "pressure": "formell_ryddighet_vs_reell_kobling",
+          "choice_axis": "koble_mangel_og_virkning_vs_behandle_separat",
+          "consequence_axis": "presis_vurdering_vs_administrativ_orden",
+          "narrative_arc": "saksbehandleren ser at dokumentasjon og nabolag ikke er separate lag",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Koble mangelen og merknaden i vurderingsnotatet",
+              "reply": "Jeg kobler mangelen og merknaden i vurderingsnotatet.",
+              "effect": 1,
+              "tags": ["judgement", "place", "documentation"],
+              "feedback": "Du gjør saken mindre mekanisk og mer stedssensitiv."
+            },
+            {
+              "id": "B",
+              "label": "Behandle mangelen og nabomerknaden som to separate punkter",
+              "reply": "Jeg behandler mangelen og nabomerknaden som to separate punkter.",
+              "effect": 0,
+              "tags": ["structure", "safe"],
+              "feedback": "Notatet blir ryddig, men sammenhengen mellom papir og virkning blir svakere."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nabomerknader_og_sted",
+      "purpose": "Lære spilleren å lese nabomerknader saklig og stedlig, uten å redusere dem til støy eller følelser.",
+      "learning_focus": ["nabomerknader", "stedlig erfaring", "saklig sortering"],
+      "mails": [
+        {
+          "id": "by_saks_job_nabo_001",
+          "mail_type": "job",
+          "mail_family": "nabomerknader_og_sted",
+          "role_scope": "by_saksbehandler",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "anne_planseksjon",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "Naboen skriver følelsesladet, men beskriver en faktisk virkning",
+          "summary": "En nabomerknad er irritert og lite juridisk, men peker på tap av lys i en smal bakgård.",
+          "purpose": "Vise at form og tone ikke må få skjule reell stedlig konsekvens.",
+          "stakes": "Avviser du tonen, kan du miste virkningen. Tar du alt bokstavelig, kan følelsen overstyre vurderingen.",
+          "situation": [
+            "Merknaden er skrevet i sinne.",
+            "Den bruker store ord og lite presis juss.",
+            "Likevel beskriver den en bakgård der ett ekstra volum kan ta det lille lyset som finnes."
+          ],
+          "task_domain": "nabomerknad",
+          "competency": "sak_fra_tone",
+          "pressure": "følelsesladet_merknad",
+          "choice_axis": "hente_ut_virkning_vs_avvise_tone",
+          "consequence_axis": "stedlig_rettferdighet_vs_formell_ro",
+          "narrative_arc": "saksbehandleren lærer at naboer ofte beskriver virkninger før de beskriver regler",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Trekk ut den konkrete lysvirkningen og vurder den saklig",
+              "reply": "Jeg trekker ut den konkrete lysvirkningen og vurderer den saklig.",
+              "effect": 1,
+              "tags": ["neighbour", "place", "judgement"],
+              "feedback": "Du lar erfaringen bli vurderbar uten at sinnet styrer saken."
+            },
+            {
+              "id": "B",
+              "label": "Tone ned merknaden fordi den er for lite presis",
+              "reply": "Jeg toner ned merknaden fordi den er for lite presis.",
+              "effect": -1,
+              "tags": ["formalism", "risk"],
+              "feedback": "Saken blir roligere på papiret, men kanskje mindre oppmerksom på stedet."
+            }
+          ]
+        },
+        {
+          "id": "by_saks_job_nabo_002",
+          "mail_type": "job",
+          "mail_family": "nabomerknader_og_sted",
+          "role_scope": "by_saksbehandler",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maria_medvirkning",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "Tre naboer beskriver samme konflikt med tre ulike språk",
+          "summary": "Én skriver om støy, én om trygghet og én om varelevering, men alle peker mot samme trange passasje.",
+          "purpose": "Avrunde forståelsen av nabomerknader som stedlig mønster, ikke bare enkeltstemmer.",
+          "stakes": "Samler du mønsteret, blir vurderingen sterkere. Skiller du alt, blir saken mer formelt ryddig, men mindre stedlig presis.",
+          "situation": [
+            "Merknadene ser først forskjellige ut.",
+            "Når du legger dem over kart og befaring, møtes de i samme smale passasje.",
+            "Saken handler ikke bare om hvem som klager, men om hva stedet tåler."
+          ],
+          "task_domain": "nabomønster",
+          "competency": "stedlig_mønsterlesning",
+          "pressure": "mange_stemmer_samme_sted",
+          "choice_axis": "samle_mønster_vs_skille_punkter",
+          "consequence_axis": "stedlig_presisjon_vs_formell_oppramsing",
+          "narrative_arc": "saksbehandleren ser at stedets konflikt kan være fordelt mellom flere stemmer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Samle merknadene som ett stedlig vurderingstema",
+              "reply": "Jeg samler merknadene som ett stedlig vurderingstema.",
+              "effect": 1,
+              "tags": ["neighbour", "pattern", "place"],
+              "feedback": "Du gjør stemmene til et lesbart byproblem uten å slette forskjellene."
+            },
+            {
+              "id": "B",
+              "label": "Behandle merknadene punktvis hver for seg",
+              "reply": "Jeg behandler merknadene punktvis hver for seg.",
+              "effect": 0,
+              "tags": ["structure", "safe"],
+              "feedback": "Du svarer ryddig, men sammenhengen i stedet blir mindre tydelig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regelverk_og_skjonn",
+      "purpose": "Lære spilleren at regler må anvendes på konkrete steder, og at skjønn må begrunnes for å være rettferdig.",
+      "learning_focus": ["regelverk", "skjønn", "likebehandling"],
+      "mails": [
+        {
+          "id": "by_saks_job_regel_001",
+          "mail_type": "job",
+          "mail_family": "regelverk_og_skjonn",
+          "role_scope": "by_saksbehandler",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "juridisk_rådgiver_erik",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "Regelen er klar, men saken ligner ikke helt på eksemplene",
+          "summary": "Tiltaket holder seg innenfor en enkel grense, men virkningen mot byrommet er større enn tallet antyder.",
+          "purpose": "Teste om spilleren siterer regelen eller anvender den med stedlig vurdering.",
+          "stakes": "Holder du deg til tallet, blir saken enkel. Ser du virkningen, må begrunnelsen bli tydeligere.",
+          "situation": [
+            "Måltallet ligger innenfor grensen.",
+            "Likevel ligger tiltaket i et hjørne der volumet virker større enn samme tall ville gjort et annet sted.",
+            "Du må vurdere om klar regel er hele svaret eller bare starten."
+          ],
+          "task_domain": "regelverksanvendelse",
+          "competency": "begrunnet_skjønn",
+          "pressure": "klar_regel_sammensatt_sted",
+          "choice_axis": "anvende_regel_vs_sitere_regel",
+          "consequence_axis": "rettferdig_skjønn_vs_mekanisk_likhet",
+          "narrative_arc": "saksbehandleren lærer at like tall kan virke ulikt i byen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk regelen, men begrunn den stedlige virkningen tydelig",
+              "reply": "Jeg bruker regelen, men begrunner den stedlige virkningen tydelig.",
+              "effect": 1,
+              "tags": ["law", "judgement", "place"],
+              "feedback": "Du gjør skjønnet synlig i stedet for å skjule det bak tallet."
+            },
+            {
+              "id": "B",
+              "label": "Legg avgjørende vekt på at tiltaket er innenfor grensen",
+              "reply": "Jeg legger avgjørende vekt på at tiltaket er innenfor grensen.",
+              "effect": 0,
+              "tags": ["formal", "simple"],
+              "feedback": "Vurderingen blir lett å forsvare formelt, men svakere på stedlig virkning."
+            }
+          ]
+        },
+        {
+          "id": "by_saks_job_regel_002",
+          "mail_type": "job",
+          "mail_family": "regelverk_og_skjonn",
+          "role_scope": "by_saksbehandler",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "juridisk_rådgiver_erik",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "To saker er like på papiret, men ikke i gata",
+          "summary": "To tiltak har samme størrelse og regelgrunnlag, men ett ligger mot åpent byrom og ett mot en trang skolevei.",
+          "purpose": "Trene spilleren i likebehandling som begrunnet forskjellsforståelse, ikke automatisk likt utfall.",
+          "stakes": "Behandler du dem likt, ser det rettferdig ut. Begrunner du forskjellen, tar du risikoen ved skjønn.",
+          "situation": [
+            "Begge sakene har samme tall og samme hjemmel.",
+            "Det ene stedet tåler volumet godt.",
+            "Det andre skyver mer trafikk mot en trang skolevei."
+          ],
+          "task_domain": "likebehandling",
+          "competency": "stedstilpasset_skjønn",
+          "pressure": "likt_papir_ulik_virkning",
+          "choice_axis": "begrunne_forskjell_vs_behandle_likt",
+          "consequence_axis": "reell_likebehandling_vs_mekanisk_likhet",
+          "narrative_arc": "saksbehandleren lærer at rettferdighet ikke alltid ser identisk ut",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Begrunn forskjellen ut fra stedlig virkning",
+              "reply": "Jeg begrunner forskjellen ut fra stedlig virkning.",
+              "effect": 1,
+              "tags": ["fairness", "place", "judgement"],
+              "feedback": "Du gjør likebehandling mer krevende og mer rettferdig."
+            },
+            {
+              "id": "B",
+              "label": "Behandle sakene likt for å unngå ulik praksis",
+              "reply": "Jeg behandler sakene likt for å unngå ulik praksis.",
+              "effect": -1,
+              "tags": ["formalism", "risk"],
+              "feedback": "Det ser ryddig ut, men stedet der virkningen er større blir ikke tatt på alvor."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frist_og_forvaltning",
+      "purpose": "Lære spilleren å holde saksflyt uten å miste grundighet, rettssikkerhet og begrunnelse.",
+      "learning_focus": ["frist", "forvaltning", "rettssikkerhet"],
+      "mails": [
+        {
+          "id": "by_saks_job_frist_001",
+          "mail_type": "job",
+          "mail_family": "frist_og_forvaltning",
+          "role_scope": "by_saksbehandler",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "anne_planseksjon",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "Fristen presser saken før vurderingen er ferdig",
+          "summary": "Du kan rekke fristen med en kort vurdering, men den stedlige virkningen er fortsatt svakt belyst.",
+          "purpose": "Vise at frister både beskytter og presser forvaltningen.",
+          "stakes": "Kort vurdering holder flyt. Ekstra avklaring gir bedre kvalitet, men skaper friksjon i saksløpet.",
+          "situation": [
+            "Fristen nærmer seg, og saken har allerede ligget lenge.",
+            "Det juridiske hovedsporet er klart nok til et kort notat.",
+            "Men den stedlige virkningen mot fortauet er fortsatt uklar."
+          ],
+          "task_domain": "fristhåndtering",
+          "competency": "forvaltningsbalanse",
+          "pressure": "frist_vs_grundighet",
+          "choice_axis": "be_om_avklaring_vs_lukke_sak",
+          "consequence_axis": "rettssikkerhet_vs_saksflyt",
+          "narrative_arc": "saksbehandleren lærer at fart og kvalitet må holdes sammen aktivt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om rask avklaring og dokumenter hvorfor den trengs",
+              "reply": "Jeg ber om rask avklaring og dokumenterer hvorfor den trengs.",
+              "effect": 1,
+              "tags": ["deadline", "quality", "rights"],
+              "feedback": "Du lar fristen presse formen, men ikke blinde vurderingen."
+            },
+            {
+              "id": "B",
+              "label": "Lukk saken med kort vurdering for å holde frist",
+              "reply": "Jeg lukker saken med kort vurdering for å holde frist.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Du holder fristen, men vurderingen får mindre bæreevne hvis den utfordres."
+            }
+          ]
+        },
+        {
+          "id": "by_saks_job_frist_002",
+          "mail_type": "job",
+          "mail_family": "frist_og_forvaltning",
+          "role_scope": "by_saksbehandler",
+          "phase": "advanced",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "anne_planseksjon",
+          "place_id": "oslo_byggesak_sentrum",
+          "subject": "En god begrunnelse gjør saken raskere neste gang",
+          "summary": "Du ser at tydelig struktur i vurderingen gjør både søker, naboer og neste saksbehandler mindre avhengige av gjetning.",
+          "purpose": "Avrunde forvaltningslæring: grundighet kan også være effektivitet når den gjør saken lesbar.",
+          "stakes": "Du kan skrive kort og komme videre, eller skrive tydelig nok til at saken tåler gjenlesning.",
+          "situation": [
+            "Saken er nesten ferdig.",
+            "Det er fristende å skrive det korteste som holder.",
+            "Men du vet at uklare vurderinger ofte kommer tilbake som klager, spørsmål og ny tidsbruk."
+          ],
+          "task_domain": "begrunnelse",
+          "competency": "lesbar_forvaltning",
+          "pressure": "kort_tekst_vs_tydelig_sak",
+          "choice_axis": "tydelig_begrunnelse_vs_minimumstekst",
+          "consequence_axis": "langsiktig_effektivitet_vs_kort_flyt",
+          "narrative_arc": "saksbehandleren lærer at presisjon kan spare tid ved å gjøre vurderingen etterprøvbar",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv tydelig begrunnelse med regel, sted og virkning samlet",
+              "reply": "Jeg skriver tydelig begrunnelse med regel, sted og virkning samlet.",
+              "effect": 1,
+              "tags": ["reasoning", "law", "place"],
+              "feedback": "Du gjør saken tregere nå, men mer robust senere."
+            },
+            {
+              "id": "B",
+              "label": "Skriv minimumsteksten som dekker vurderingspunktet",
+              "reply": "Jeg skriver minimumsteksten som dekker vurderingspunktet.",
+              "effect": 0,
+              "tags": ["tempo", "minimum"],
+              "feedback": "Teksten holder kanskje, men den hjelper færre med å forstå hvorfor."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
