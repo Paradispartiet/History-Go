@@ -56,12 +56,12 @@
       urgentAction: "Åpne oppgave",
       forceUrgent: function () {
         const split = splitInbox();
-        if ((split.workday || []).some(function (item) { return item && item.status === "pending"; })) return true;
+        if ((split.workday || []).some(isActionableInboxItem)) return true;
         return hasBodyAction("civiWorkdaySection");
       },
       summary: function () {
         const split = splitInbox();
-        const pending = (split.workday || []).find(function (item) { return item && item.status === "pending"; });
+        const pending = (split.workday || []).find(isActionableInboxItem);
         const ev = pending?.event || null;
         if (ev?.subject) return String(ev.subject);
         const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.());
@@ -69,7 +69,7 @@
       },
       details: function () {
         const split = splitInbox();
-        const workday = (split.workday || []).filter(function (item) { return item && item.status === "pending"; });
+        const workday = (split.workday || []).filter(isActionableInboxItem);
         const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.()) || null;
         const first = workday[0]?.event || workday[0] || null;
         return [
@@ -94,13 +94,20 @@
       urgentAction: "Svar nå",
       forceUrgent: function () {
         const split = splitInbox();
-        return ((split.messages || []).length + (split.unknown || []).length + (split.milestones || []).length) > 0;
+        const actionable = (split.messages || []).concat(split.unknown || [], split.workday || []).filter(isActionableInboxItem);
+        const milestones = (split.milestones || []).filter(isOpenInboxItem);
+        return actionable.length > 0 || milestones.length > 0;
       },
       summary: function () {
         const split = splitInbox();
-        const inbox = (split.messages || []).concat(split.unknown || [], split.milestones || []);
+        const actionable = (split.messages || []).concat(split.unknown || [], split.workday || []).filter(isActionableInboxItem);
+        const openInfo = (split.messages || []).concat(split.unknown || [], split.system || []).filter(function (item) {
+          return isOpenInboxItem(item) && !hasChoices(item);
+        });
+        const milestones = (split.milestones || []).filter(isOpenInboxItem);
+        const inbox = actionable.concat(openInfo, milestones);
         if (!inbox.length) return "Ingen åpne meldinger.";
-        const first = inbox[0]?.event || inbox[0] || null;
+        const first = eventOf(inbox[0]);
         const title = first?.subject || first?.title || first?.kind || "Åpen hendelse";
         return `${inbox.length} melding${inbox.length === 1 ? "" : "er"} · ${title}`;
       }
@@ -393,6 +400,39 @@
     return splitter(inbox);
   }
 
+
+  function eventOf(item) {
+    return item?.event || item || null;
+  }
+
+  function normalize(value) {
+    return String(value || "").trim().toLowerCase();
+  }
+
+  function isOpenInboxItem(item) {
+    if (!item) return false;
+    if (item.deleted === true || item.archived === true || item.resolved === true) return false;
+    const status = normalize(item.status || "pending");
+    return status === "pending" || status === "open";
+  }
+
+  function hasChoices(item) {
+    const ev = eventOf(item);
+    return Array.isArray(ev?.choices) && ev.choices.length > 0;
+  }
+
+  function isActionableInboxItem(item) {
+    return isOpenInboxItem(item) && hasChoices(item);
+  }
+
+  window.CivicationInboxItemFilters = window.CivicationInboxItemFilters || {
+    eventOf,
+    normalize,
+    isOpenInboxItem,
+    hasChoices,
+    isActionableInboxItem
+  };
+
   function textOf(id) {
     const el = document.getElementById(id);
     return String(el?.textContent || "").replace(/\s+/g, " ").trim();
@@ -514,11 +554,9 @@
   function getTopAction() {
     const split = splitInbox();
 
-    const milestonePending = (split.milestones || []).find(function (item) {
-      return item && item.status === "pending";
-    });
+    const milestonePending = (split.milestones || []).find(isOpenInboxItem);
     if (milestonePending) {
-      const ev = milestonePending.event || milestonePending;
+      const ev = eventOf(milestonePending);
       return {
         mode: "urgent",
         tone: "milestone",
@@ -529,14 +567,26 @@
       };
     }
 
-    const inbox = (split.messages || []).concat(split.unknown || []);
-    if (inbox.length) {
-      const first = inbox[0]?.event || inbox[0] || null;
+    const actionable = (split.messages || []).concat(split.unknown || [], split.workday || []).filter(isActionableInboxItem);
+    if (actionable.length) {
+      const first = eventOf(actionable[0]);
       return {
         mode: "urgent",
         title: "Krever svar",
         summary: `${first?.subject || first?.title || "Du har en åpen hendelse i inbox."} · ${first?.kind || "Innkommende"}`,
         action: "Svar nå",
+        sectionKey: "civiInboxSection"
+      };
+    }
+
+    const openInfoMessages = (split.messages || []).concat(split.unknown || [], split.system || []).filter(isOpenInboxItem);
+    if (openInfoMessages.length) {
+      const first = eventOf(openInfoMessages[0]);
+      return {
+        mode: "info",
+        title: "Ny melding",
+        summary: `${first?.subject || first?.title || "Du har en ny melding i inbox."} · ${first?.kind || "Innkommende"}`,
+        action: "Åpne innkommende",
         sectionKey: "civiInboxSection"
       };
     }
