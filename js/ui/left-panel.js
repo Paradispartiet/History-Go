@@ -379,6 +379,19 @@ function initLeftPanel() {
     }
   });
 
+  // Re-render people når bakgrunnslasting har hentet persondata.
+  window.addEventListener("hg:people-ready", () => {
+    const active = hgActiveLeftPanelMode();
+    if (active === "people" && typeof renderNearbyPeople === "function") {
+      renderNearbyPeople();
+    }
+  });
+
+  // Re-render aktiv left-panel-modus når all background boot er ferdig.
+  window.addEventListener("hg:backgroundReady", () => {
+    rerenderActiveLeftPanelMode();
+  });
+
   // Re-render natur når en unlock skjer fra quiz (HGNatureUnlocks dispatcher hg:nature).
   window.addEventListener("hg:nature", () => {
     const active = hgActiveLeftPanelMode();

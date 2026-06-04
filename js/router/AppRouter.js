@@ -19,14 +19,26 @@
     };
   }
 
+  function normalizeHash(hash) {
+    return String(hash || DEFAULT_ROUTE).startsWith("#") ? String(hash || DEFAULT_ROUTE) : `#${hash}`;
+  }
+
   function navigate(hash, { replace = false } = {}) {
-    const next = String(hash || DEFAULT_ROUTE).startsWith("#") ? String(hash || DEFAULT_ROUTE) : `#${hash}`;
+    const next = normalizeHash(hash);
+
+    if (location.hash === next) {
+      render();
+      return false;
+    }
+
     if (replace) {
       history.replaceState(null, "", next);
       render();
-      return;
+      return true;
     }
+
     location.hash = next;
+    return true;
   }
 
   function render() {

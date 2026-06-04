@@ -197,6 +197,14 @@
     window.HGMap.setOnPlaceClick((id) => {
       const p = (window.PLACES || []).find((x) => String(x?.id || "").trim() === String(id || "").trim());
       if (!p) return;
+
+      const router = /** @type {any} */ (window).HGAppRouter;
+      const placeId = String(p.id || "").trim();
+      if (placeId && router?.navigate) {
+        router.navigate(`#/place/${encodeURIComponent(placeId)}`);
+        return;
+      }
+
       if (typeof window.openPlaceCard === "function") window.openPlaceCard(p);
     });
     window.HGMap.refreshMarkers?.();

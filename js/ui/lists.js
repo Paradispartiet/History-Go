@@ -226,6 +226,14 @@ function renderNearbyPlaces() {
     `;
 
     item.addEventListener("click", () => {
+      const id = String(place?.id || "").trim();
+
+      const router = /** @type {any} */ (window).HGAppRouter;
+      if (id && router?.navigate) {
+        router.navigate(`#/place/${encodeURIComponent(id)}`);
+        return;
+      }
+
       const map = window.HGMap?.getMap?.() || window.MAP;
 
       if (map && Number.isFinite(place.lon) && Number.isFinite(place.lat)) {

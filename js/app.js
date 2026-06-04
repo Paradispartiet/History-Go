@@ -106,6 +106,13 @@ function wireMapPlacePopupInMapMode() {
       document.body?.classList.contains("map-only") ||
       document.body?.classList.contains("mode-map");
 
+    const router = /** @type {any} */ (window).HGAppRouter;
+    const placeId = String(place.id || "").trim();
+    if (placeId && router?.navigate) {
+      router.navigate(`#/place/${encodeURIComponent(placeId)}`);
+      return;
+    }
+
     if (isMapMode && typeof window.showPlacePopup === "function") {
       window.showPlacePopup(place);
       return;

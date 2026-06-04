@@ -1441,8 +1441,17 @@ if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 // --- Quiz (ny motor) ---
 if (btnQuiz) {
   btnQuiz.onclick = () => {
+    const targetId = String(place?.id || "").trim();
+    if (!targetId) return;
+
+    const router = /** @type {any} */ (window).HGAppRouter;
+    if (router?.navigate) {
+      router.navigate(`#/quiz/${encodeURIComponent(targetId)}`);
+      return;
+    }
+
     if (window.QuizEngine && typeof window.QuizEngine.start === "function") {
-      window.QuizEngine.start(place.id);
+      window.QuizEngine.start(targetId);
     } else {
       window.showToast?.(tt("ui.quiz.moduleNotLoaded", "Quiz-modul ikke lastet"));
     }
