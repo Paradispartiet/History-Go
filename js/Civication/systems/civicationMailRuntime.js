@@ -37,7 +37,8 @@
     naer_administrasjonsmedarbeider: "administrasjonsmedarbeider",
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
-    naer_formann: "formann"
+    naer_formann: "formann",
+    naer_controller: "controller"
   };
 
   const ROLE_SCOPE_BY_TITLE = {
@@ -48,7 +49,8 @@
     okonomi_og_administrasjonsmedarbeider: "administrasjonsmedarbeider",
     fagarbeider: "fagarbeider",
     mellomleder: "mellomleder",
-    formann: "formann"
+    formann: "formann",
+    controller: "controller"
   };
 
   const jsonCache = new Map();
@@ -117,6 +119,7 @@
     if (roleKey === "naer_fagarbeider" || roleKey === "fagarbeider") return "fagarbeider";
     if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";
     if (roleKey === "naer_formann" || roleKey === "formann") return "formann";
+    if (roleKey === "naer_controller" || roleKey === "controller" || roleKey.includes("controller")) return "controller";
 
     return titleKey;
   }
