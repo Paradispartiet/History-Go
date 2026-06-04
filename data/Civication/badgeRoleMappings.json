@@ -1,0 +1,139 @@
+{
+  "schema": "civication_badge_role_mappings_v1",
+  "version": 1,
+  "note": "Badges er progresjon/titler. Role scope er spillbar jobbtype. Flere badge-titler kan derfor dele samme role_scope når de bruker samme type mailPlan, mailFamilies og jobLearningProfile. Dette er bevisst for å unngå én tung rolle per badge-tittel.",
+  "careers": {
+    "naeringsliv": {
+      "badge_source": "data/badges/naeringsliv.json",
+      "mapping_principle": "Badge-tier gir stillingstittel. Resolveren oversetter stillingstittelen til en spillbar role_scope. Bare lag ny rolle når tittelen krever annen spillmekanikk, annen mailhverdag eller annen læring.",
+      "roles": {
+        "ekspeditor": {
+          "role_id": "naer_ekspeditor",
+          "role_type": "frontlinje_handel",
+          "description": "Kundemøte, kasse, service, varer og butikkfront.",
+          "badge_titles": [
+            "Ekspeditør / butikkmedarbeider"
+          ]
+        },
+        "arbeider": {
+          "role_id": "naer_arbeider",
+          "role_type": "gulv_og_drift",
+          "description": "Lager, drift, praktisk arbeid, rutiner og grunnleggende arbeidsflyt.",
+          "badge_titles": [
+            "Lager- og driftsmedarbeider"
+          ]
+        },
+        "administrasjonsmedarbeider": {
+          "role_id": "naer_administrasjonsmedarbeider",
+          "role_type": "administrasjon_og_kontor",
+          "description": "Bilag, frister, dokumentasjon, enkle økonomispor og administrativ orden.",
+          "badge_titles": [
+            "Økonomi- og administrasjonsmedarbeider"
+          ]
+        },
+        "fagarbeider": {
+          "role_id": "naer_fagarbeider",
+          "role_type": "fag_og_kvalitet",
+          "description": "Faglig presisjon, standarder, kvalitet, opplæring og praktisk kompetanse.",
+          "badge_titles": [
+            "Fagarbeider"
+          ]
+        },
+        "formann": {
+          "role_id": "naer_formann",
+          "role_type": "gulvnaer_ledelse",
+          "description": "Skift, arbeidslag, praktisk ledelse, sikkerhet, tempo og ansvar nær gulvet.",
+          "badge_titles": [
+            "Skiftleder",
+            "Formann / arbeidsleder"
+          ]
+        },
+        "controller": {
+          "role_id": "naer_controller",
+          "role_type": "okonomistyring_og_kontroll",
+          "description": "Tall, avvik, budsjett, rapportering, kontroll, prognoser og økonomisk risiko.",
+          "badge_titles": [
+            "Controller",
+            "Finansanalytiker",
+            "Økonomi- og finanssjef",
+            "Finansdirektør"
+          ]
+        },
+        "avdelingsleder": {
+          "role_id": "naer_avdelingsleder",
+          "role_type": "avdeling_og_operativ_ledelse",
+          "description": "Avdeling, folk, mål, budsjett, kapasitet, personalansvar og operativ ledelse.",
+          "badge_titles": [
+            "Avdelingsleder",
+            "Driftsleder",
+            "Produksjonsleder",
+            "Butikksjef / enhetsleder",
+            "Daglig leder"
+          ]
+        },
+        "mellomleder": {
+          "role_id": "naer_mellomleder",
+          "role_type": "strategisk_ledelse_og_eierskap_fallback",
+          "description": "Foreløpig samlet spillbar fallback for høyere strategiske/eierpregede næringslivstitler inntil disse eventuelt får egen kapital-/eierrolle.",
+          "badge_titles": [
+            "Gründer",
+            "Bedriftseier",
+            "Konserndirektør",
+            "Konsernsjef",
+            "Investor",
+            "Kapitalforvalter",
+            "Industribygger",
+            "Industrieier"
+          ]
+        }
+      },
+      "title_to_role_scope": {
+        "Ekspeditør / butikkmedarbeider": "ekspeditor",
+        "Lager- og driftsmedarbeider": "arbeider",
+        "Økonomi- og administrasjonsmedarbeider": "administrasjonsmedarbeider",
+        "Fagarbeider": "fagarbeider",
+        "Skiftleder": "formann",
+        "Formann / arbeidsleder": "formann",
+        "Controller": "controller",
+        "Avdelingsleder": "avdelingsleder",
+        "Driftsleder": "avdelingsleder",
+        "Finansanalytiker": "controller",
+        "Produksjonsleder": "avdelingsleder",
+        "Butikksjef / enhetsleder": "avdelingsleder",
+        "Økonomi- og finanssjef": "controller",
+        "Daglig leder": "avdelingsleder",
+        "Finansdirektør": "controller",
+        "Gründer": "mellomleder",
+        "Bedriftseier": "mellomleder",
+        "Konserndirektør": "mellomleder",
+        "Konsernsjef": "mellomleder",
+        "Investor": "mellomleder",
+        "Kapitalforvalter": "mellomleder",
+        "Industribygger": "mellomleder",
+        "Industrieier": "mellomleder"
+      },
+      "future_split_candidates": [
+        {
+          "role_scope": "kapital_og_eierskap",
+          "candidate_badge_titles": [
+            "Gründer",
+            "Bedriftseier",
+            "Investor",
+            "Kapitalforvalter",
+            "Industribygger",
+            "Industrieier"
+          ],
+          "reason": "Kan få egen spillmekanikk senere for kapital, eierskap, risiko, investering og selskapsbygging. Foreløpig brukes mellomleder som enkel fallback."
+        },
+        {
+          "role_scope": "konsernledelse",
+          "candidate_badge_titles": [
+            "Konserndirektør",
+            "Konsernsjef"
+          ],
+          "reason": "Kan få egen strategisk ledelsesrolle senere. Foreløpig brukes mellomleder som enkel fallback."
+        }
+      ]
+    }
+  }
+}
