@@ -12,7 +12,6 @@
   - It is emitted by tsconfig.scripts.build.json for Node script builds.
 */
 
-// @ts-ignore Type-only schema import lives outside the scripts emit root.
 import type { JsonObject, PlaceSourcePayload, PlaceTranslationMap } from "../schemas/i18n";
 
 const fs = require("fs");
