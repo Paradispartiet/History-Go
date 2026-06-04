@@ -12,6 +12,9 @@
   - It is emitted by tsconfig.scripts.build.json for Node script builds.
 */
 
+// @ts-ignore Type-only schema import lives outside the scripts emit root.
+import type { JsonObject, PlaceSourcePayload, PlaceTranslationMap } from "../schemas/i18n";
+
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
@@ -20,8 +23,6 @@ const { createPlaceManifestLoader, resolveRepoRoot } = require("./i18n-place-man
 const ROOT = resolveRepoRoot(__dirname);
 const DEFAULT_LANGS = ["en"];
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-audit");
-
-type JsonObject = Record<string, any>;
 
 type MasterPlace = JsonObject & {
   id?: unknown;
@@ -66,7 +67,7 @@ function normalizeText(value: unknown): string {
     .trim();
 }
 
-function sourcePayload(place: JsonObject): { name: string; desc: string; popupDesc: string } {
+function sourcePayload(place: JsonObject): PlaceSourcePayload {
   return {
     name: normalizeText(place.name),
     desc: normalizeText(place.desc),
@@ -121,7 +122,7 @@ function loadMasterPlaces(): MasterPlaces {
 
 function auditLanguage(lang: string, master: MasterPlaces) {
   const relativePath = `data/i18n/content/places/${lang}.json`;
-  const translations = tryReadJson(relativePath) || {};
+  const translations: PlaceTranslationMap = tryReadJson(relativePath) || {};
   const translationIds = new Set(Object.keys(translations));
 
   const missing = [];

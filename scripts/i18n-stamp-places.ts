@@ -12,6 +12,8 @@
     node scripts/i18n-stamp-places.js en
 */
 
+import type { JsonObject, PlaceSourcePayload, PlaceTranslationMap } from "../schemas/i18n";
+
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
@@ -20,8 +22,6 @@ const { createPlaceManifestLoader, resolveRepoRoot } = require("./i18n-place-man
 const ROOT = resolveRepoRoot(__dirname);
 const DEFAULT_LANGS = ["en"];
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-stamp");
-
-type JsonObject = Record<string, any>;
 
 type MasterPlace = JsonObject & {
   _sourceFile: string;
@@ -48,7 +48,7 @@ function normalizeText(value: unknown): string {
     .trim();
 }
 
-function sourcePayload(place: JsonObject): { name: string; desc: string; popupDesc: string } {
+function sourcePayload(place: JsonObject): PlaceSourcePayload {
   return {
     name: normalizeText(place.name),
     desc: normalizeText(place.desc),
@@ -105,7 +105,7 @@ function stampLanguage(lang: string, masterById: Map<string, MasterPlace>): Stam
     return { lang, changed: 0, missingMaster: 0, total: 0 };
   }
 
-  const translations: Record<string, JsonObject> = readJson(relativePath);
+  const translations: PlaceTranslationMap = readJson(relativePath);
   let changed = 0;
   let missingMaster = 0;
   let total = 0;

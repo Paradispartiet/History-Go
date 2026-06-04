@@ -17,6 +17,14 @@
     node scripts/i18n-worklist-places.js en --out=tmp/i18n/places-en-worklist.json
 */
 
+import type {
+  I18nWorklistItem,
+  I18nWorklistReport,
+  JsonObject,
+  PlaceSourcePayload,
+  PlaceTranslationMap
+} from "../schemas/i18n";
+
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
@@ -26,10 +34,6 @@ const ROOT = resolveRepoRoot(__dirname);
 const DEFAULT_LANG = "en";
 const DEFAULT_ONLY = new Set(["missing", "stale", "missingSourceHash"]);
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-worklist");
-
-type JsonObject = Record<string, any>;
-
-type SourcePayload = { name: string; desc: string; popupDesc: string };
 
 type TranslationStatus = "missing" | "missingSourceHash" | "stale" | "ok";
 
@@ -46,52 +50,10 @@ type MasterPlace = {
   sourceHash: string;
   category: string;
   year: unknown;
-  source: SourcePayload;
+  source: PlaceSourcePayload;
 };
 
 type MasterPlaces = { byId: Map<string, MasterPlace>; duplicateIds: string[] };
-
-type WorklistItem = {
-  id: string;
-  lang: string;
-  status: TranslationStatus;
-  sourceFile: string;
-  sourceHash: string;
-  category: string;
-  year: unknown;
-  source: SourcePayload;
-  existingTranslation: {
-    _sourceHash: any;
-    _status: any;
-    name: any;
-    desc: any;
-    popupDesc: any;
-  } | null;
-  requiredOutputShape: {
-    _sourceHash: string;
-    _status: string;
-    name: string;
-    desc: string;
-    popupDesc: string;
-  };
-};
-
-type Worklist = {
-  generatedAt: string;
-  lang: string;
-  sourceLanguage: string;
-  master: string;
-  translationFile: string;
-  policy: JsonObject;
-  counts: {
-    masterPlaces: number;
-    duplicateMasterIds: number;
-    matchingItemsBeforeLimit: number;
-    emittedItems: number;
-  };
-  duplicateMasterIds: string[];
-  items: WorklistItem[];
-};
 
 function parseArgs(argv: string[]): WorklistArgs {
   const args = {
@@ -164,7 +126,7 @@ function normalizeText(value: unknown): string {
     .trim();
 }
 
-function sourcePayload(place: JsonObject): SourcePayload {
+function sourcePayload(place: JsonObject): PlaceSourcePayload {
   return {
     name: normalizeText(place.name),
     desc: normalizeText(place.desc),
@@ -231,11 +193,11 @@ function classifyTranslation(masterPlace: MasterPlace, translation: JsonObject |
   return "ok";
 }
 
-function buildWorklist(lang: string, only: Set<string>, limit: number | null): Worklist {
+function buildWorklist(lang: string, only: Set<string>, limit: number | null): I18nWorklistReport {
   const master = loadMasterPlaces();
   const translationPath = `data/i18n/content/places/${lang}.json`;
-  const translations: Record<string, JsonObject> = tryReadJson(translationPath) || {};
-  const items: WorklistItem[] = [];
+  const translations: PlaceTranslationMap = tryReadJson(translationPath) || {};
+  const items: I18nWorklistItem[] = [];
 
   for (const [id, place] of master.byId.entries()) {
     const existing = translations[id] || null;
@@ -296,7 +258,7 @@ function buildWorklist(lang: string, only: Set<string>, limit: number | null): W
   };
 }
 
-function printSummary(worklist: Worklist): void {
+function printSummary(worklist: I18nWorklistReport): void {
   const byStatus = worklist.items.reduce((acc: Record<string, number>, item) => {
     acc[item.status] = (acc[item.status] || 0) + 1;
     return acc;
