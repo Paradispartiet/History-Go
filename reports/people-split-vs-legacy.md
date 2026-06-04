@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-04T08:47:30.670Z
+Generert: 2026-06-04T09:56:05.395Z
 
 ## Sammendrag
 
@@ -10,14 +10,14 @@ Generert: 2026-06-04T08:47:30.670Z
 - Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
-- Split people: **403**
-- Split unike ID-er: **403**
+- Split people: **408**
+- Split unike ID-er: **408**
 - Split-filer: **27**
 - Runtime-/manifestfiler: **27**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
-- ID-er bare i split: **309**
+- ID-er bare i split: **314**
 - Duplikate ID-er på tvers av split-filer: **0**
 - Split-filer ikke listet i manifest: **0**
 - Manifest-filer som mangler på disk: **0**
@@ -40,7 +40,7 @@ Generert: 2026-06-04T08:47:30.670Z
 | data/people/media/oslo/people_media_oslo.json | ja | 19 | 0 |  |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | ja | 10 | 0 |  |
 | data/people/musikk/oslo/people_musikk_oslo.json | ja | 15 | 0 |  |
-| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 2 | 0 |  |
+| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 7 | 0 |  |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | ja | 22 | 0 |  |
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | ja | 3 | 0 |  |
 | data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
@@ -182,6 +182,7 @@ Generert: 2026-06-04T08:47:30.670Z
 - georg_ossian_sars | Georg Ossian Sars | data/people/natur/oslo/people_natur_oslo.json
 - georg_sverdrup | Georg Sverdrup | data/people/historie/oslo/people_historie_oslo.json
 - gjensidigestiftelsen | Gjensidigestiftelsen | data/people/filantroper/oslo/people_filantroper_oslo.json
+- goncalo_fortes | Gonçalo Fortes | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - goncalo_ribeiro_telles | Gonçalo Ribeiro Telles | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json
 - gregers_gram | Gregers Gram | data/people/historie/oslo/people_historie_oslo.json
 - gunnar_jahn_statistikk_og_styring | Gunnar Jahn | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json
@@ -280,11 +281,13 @@ Generert: 2026-06-04T08:47:30.670Z
 - maria_helena_vieira_da_silva | Maria Helena Vieira da Silva | data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json
 - maria_quisling | Maria Quisling | data/people/historie/oslo/people_historie_oslo.json
 - maria_severa | Maria Severa | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
+- mariano_kostelec | Mariano Kostelec | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - mario_moniz_pereira | Mário Moniz Pereira | data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json
 - mario_soares | Mário Soares | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json
 - mariza | Mariza | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
 - martin_tranmael | Martin Tranmæl | data/people/historie/oslo/people_historie_oslo.json
 - michael_sars | Michael Sars | data/people/natur/oslo/people_natur_oslo.json
+- miguel_amaro | Miguel Amaro | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - mikkjel_fonhus | Mikkjel Fønhus | data/people/natur/oslo/people_natur_oslo.json
 - misia | Mísia | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
 - morten_harket | Morten Harket | data/people/musikk/oslo/people_musikk_oslo.json
@@ -314,11 +317,13 @@ Generert: 2026-06-04T08:47:30.670Z
 - oslo_skoiteklub | Oslo Skøiteklub | data/people/sport/oslo/people_sport_oslo.json
 - ove_bang | Ove Bang | data/people/by/oslo/people_by_oslo.json
 - oystein_wiik | Øystein Wiik | data/people/popkultur/oslo/people_popkultur_oslo.json
+- paddy_cosgrave | Paddy Cosgrave | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - pal_bang_hansen | Pål Bang-Hansen | data/people/film_tv/oslo/people_film_tv_oslo.json
 - paulo_rocha | Paulo Rocha | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
 - peder_anker | Peder Anker | data/people/historie/oslo/people_historie_oslo.json
 - peder_clausson_friis | Peder Claussøn Friis | data/people/historie/oslo/people_historie_oslo.json
 - pedro_costa | Pedro Costa | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json
+- pedro_fonseca | Pedro Fonseca | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - per_egil_hegge | Per Egil Hegge | data/people/media/oslo/people_media_oslo.json
 - per_kleiva | Per Kleiva | data/people/kunst/oslo/people_kunst_oslo.json
 - peter_christen_asbjornsen | Peter Christen Asbjørnsen | data/people/natur/oslo/people_natur_oslo.json
