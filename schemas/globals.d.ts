@@ -18,6 +18,12 @@ type DataHubEnrichedAllResult = {
   enrichedPeopleById: Map<string, unknown>;
 };
 
+type DataHubLesesporResult = {
+  items: unknown[];
+  byPlace?: Record<string, unknown[]>;
+  manifest?: unknown;
+};
+
 type DataHubApi = {
   fetchJSON?: <T = unknown>(url: string, opts?: DataHubFetchOptions) => Promise<T>;
   clearCache?: (prefix?: string) => void;
@@ -50,7 +56,7 @@ type DataHubApi = {
   loadQuizCategory?: (categoryId: string, opts?: DataHubFetchOptions) => Promise<unknown[]>;
   loadNature?: () => Promise<void>;
   loadNatureGroup?: (groupPath: string) => Promise<unknown[]>;
-  loadLesespor?: (opts?: DataHubFetchOptions) => Promise<unknown>;
+  loadLesespor?: (opts?: DataHubFetchOptions) => Promise<DataHubLesesporResult>;
   normalizeTags?: (rawTags: unknown, tagsRegistry: unknown) => unknown[];
 
   mergeDeep?: (base: unknown, extra: unknown) => unknown;
