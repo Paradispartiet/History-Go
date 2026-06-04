@@ -786,7 +786,8 @@ body.civi-mapmode .civi-panels{
   paint-order:stroke;
   stroke:rgba(0,0,0,.58);
   stroke-width:2.4px;
-  letter-spacing:.2px;
+  letter-spacing:.3px;
+  font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
   text-shadow:0 2px 8px rgba(0,0,0,.45);
 }
 #civiMapWorld .civi-map-label-river{
@@ -851,6 +852,16 @@ body.civi-mapmode .civi-panels{
 #civiMapWorld .civi-map-villa-texture{fill:rgba(51,61,70,.13);stroke:rgba(219,228,236,.13)}
 #civiMapWorld .civi-map-green-texture{fill:none;stroke:rgba(176,203,174,.2);stroke-width:.9;stroke-linecap:round}
 #civiMapWorld .civi-map-function-hint{opacity:.35;stroke-width:1.1;fill-opacity:.35;stroke-linecap:round}
+
+/* Civication Map v2.7 – atmosfære, dybde og mykere bykropp */
+#civiMapWorld #civi-map-districts polygon{stroke-linejoin:round}
+#civiMapWorld .civi-map-grain{mix-blend-mode:soft-light;opacity:.38;pointer-events:none}
+#civiMapWorld .civi-map-vignette{pointer-events:none}
+#civiMapWorld .civi-map-core-glow{pointer-events:none}
+#civiMapWorld .civi-map-fjord-base{filter:drop-shadow(0 -2px 6px rgba(8,20,30,.35))}
+@media (prefers-reduced-motion: reduce){
+  #civiMapWorld .civi-map-grain{display:none}
+}
 
 .civi-inbox-subheading{
   margin: 12px 2px 8px;
