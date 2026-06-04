@@ -1,0 +1,406 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "politisk_bestilling_og_mandat",
+      "purpose": "Lære spilleren at politiske bestillinger må presiseres før de kan styre faglig arbeid og ansvarlig gjennomføring.",
+      "learning_focus": ["mandatavklaring", "politisk oversettelse", "ansvarlig styring"],
+      "mails": [
+        {
+          "id": "by_prosjekt_job_mandat_001",
+          "mail_type": "job",
+          "mail_family": "politisk_bestilling_og_mandat",
+          "role_scope": "by_prosjektleder",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kommunalsjef_lena",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Bestillingen er tydelig politisk, men uklar som prosjektmandat",
+          "summary": "Prosjektet skal levere grønnere byrom, mer bolig og bedre framkommelighet, men mandatet sier ikke hva som skal prioriteres når målene kolliderer.",
+          "purpose": "Etablere at prosjektledelse begynner med å gjøre mål og avveiinger styrbare.",
+          "stakes": "Går du videre uten presisering, virker prosjektet handlekraftig. Ber du om avklaring, blir starten tyngre, men risikoen mindre.",
+          "situation": [
+            "Den politiske bestillingen har god energi og brede formuleringer.",
+            "Alle nikker når ordene grønnere, mer levende og mer tilgjengelig brukes.",
+            "Men ingen har sagt hva som veier tyngst når grøntdraget, boligvolumet og vareleveringen krever samme areal."
+          ],
+          "task_domain": "mandat",
+          "competency": "politisk_oversettelse",
+          "pressure": "ambisjon_uten_prioritering",
+          "choice_axis": "presisere_mandat_vs_starte_raskt",
+          "consequence_axis": "styrbarhet_vs_framdriftsinntrykk",
+          "narrative_arc": "prosjektlederen lærer at uklare mål blir senere konflikt hvis de ikke oversettes tidlig",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om mandatpresisering der målkonfliktene listes tydelig",
+              "reply": "Jeg ber om mandatpresisering der målkonfliktene listes tydelig.",
+              "effect": 1,
+              "tags": ["mandate", "governance", "quality"],
+              "feedback": "Du gjør oppstarten mindre glatt, men prosjektet mer styrbart."
+            },
+            {
+              "id": "B",
+              "label": "Starte arbeidet og håndtere prioriteringene underveis",
+              "reply": "Jeg starter arbeidet og håndterer prioriteringene underveis.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Prosjektet får fart, men uklarheten flytter bare lenger inn i prosessen."
+            }
+          ]
+        },
+        {
+          "id": "by_prosjekt_job_mandat_002",
+          "mail_type": "job",
+          "mail_family": "politisk_bestilling_og_mandat",
+          "role_scope": "by_prosjektleder",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "kommunalsjef_lena",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Mandatet brukes nå ulikt av tre aktører",
+          "summary": "Utbygger, fagmiljø og politisk nivå viser til samme mandat, men trekker tre forskjellige retninger ut av det.",
+          "purpose": "Teste om spilleren rydder i mandatet før konflikten blir aktørkamp.",
+          "stakes": "Hvis du lar alle bruke mandatet fritt, beholder du dialogen. Hvis du presiserer, må noen gi slipp på sin tolkning.",
+          "situation": [
+            "Utbygger leser mandatet som gjennomføringssignal.",
+            "Fagmiljøet leser det som kvalitetsløfte.",
+            "Politisk nivå omtaler det som en helhetlig byutviklingssatsing.",
+            "Alle har litt rett, og nettopp derfor begynner prosjektet å skli."
+          ],
+          "task_domain": "mandatstyring",
+          "competency": "tolkningsavklaring",
+          "pressure": "samme_mandat_ulike_interesser",
+          "choice_axis": "avklare_tolkning_vs_beholde_romslighet",
+          "consequence_axis": "ansvar_vs_dialogro",
+          "narrative_arc": "prosjektlederen lærer at romslige ord kan bli konfliktskygge",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage et mandatnotat som skiller mål, føringer og åpne avveiinger",
+              "reply": "Jeg lager et mandatnotat som skiller mål, føringer og åpne avveiinger.",
+              "effect": 1,
+              "tags": ["mandate", "clarity", "leadership"],
+              "feedback": "Du gjør prosjektet mindre behagelig og mer etterprøvbart."
+            },
+            {
+              "id": "B",
+              "label": "La mandatet være romslig for å bevare samarbeid",
+              "reply": "Jeg lar mandatet være romslig for å bevare samarbeid.",
+              "effect": 0,
+              "tags": ["dialogue", "ambiguity"],
+              "feedback": "Samarbeidet holdes åpent, men konflikten får vokse i stillhet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aktorer_og_koordinering",
+      "purpose": "Lære spilleren at aktørkoordinering er styring av avhengigheter og ansvar, ikke bare flere møter.",
+      "learning_focus": ["aktørbilde", "koordinering", "ansvarsavklaring"],
+      "mails": [
+        {
+          "id": "by_prosjekt_job_aktor_001",
+          "mail_type": "job",
+          "mail_family": "aktorer_og_koordinering",
+          "role_scope": "by_prosjektleder",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "prosjektkoordinator_amin",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Alle vil ha møte, men ingen eier avhengigheten",
+          "summary": "Fagmiljø, utbygger og drift peker på hverandre før en beslutning om midlertidig trafikkføring.",
+          "purpose": "Etablere forskjellen mellom dialog og ansvarsavklaring.",
+          "stakes": "Flere møter kan dempe uro. Tydelig ansvar kan skape friksjon, men gjør framdrift mulig.",
+          "situation": [
+            "Trafikkgrepet må avklares før neste fase kan starte.",
+            "Alle mener noen andre må levere grunnlaget først.",
+            "Det er lett å kalle inn til nytt møte, men vanskeligere å peke på hvem som faktisk må avklare hva."
+          ],
+          "task_domain": "aktørkoordinering",
+          "competency": "ansvarsavklaring",
+          "pressure": "møter_vs_beslutningsansvar",
+          "choice_axis": "plassere_ansvar_vs_forlenge_dialog",
+          "consequence_axis": "framdrift_vs_relajsonsro",
+          "narrative_arc": "prosjektlederen lærer at koordinering uten ansvar bare flytter arbeid rundt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage ansvarslogg med eier, frist og nødvendig grunnlag",
+              "reply": "Jeg lager ansvarslogg med eier, frist og nødvendig grunnlag.",
+              "effect": 1,
+              "tags": ["coordination", "responsibility", "progress"],
+              "feedback": "Du gjør avhengighetene synlige nok til at noen må eie dem."
+            },
+            {
+              "id": "B",
+              "label": "Kalle inn til nytt koordineringsmøte for å samle aktørene",
+              "reply": "Jeg kaller inn til nytt koordineringsmøte for å samle aktørene.",
+              "effect": 0,
+              "tags": ["meeting", "dialogue"],
+              "feedback": "Møtet kan hjelpe, men bare hvis ansvar ikke forsvinner i samtalen igjen."
+            }
+          ]
+        },
+        {
+          "id": "by_prosjekt_job_aktor_002",
+          "mail_type": "job",
+          "mail_family": "aktorer_og_koordinering",
+          "role_scope": "by_prosjektleder",
+          "phase": "advanced",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "maria_medvirkning",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Medvirkning og utbyggerdialog begynner å gli sammen",
+          "summary": "Et felles møte er praktisk, men kan gjøre innbyggernes innspill til forhandlingsstoff med utbygger før de er faglig vurdert.",
+          "purpose": "Teste om spilleren holder aktørroller tydelige når prosessen blir effektivisert.",
+          "stakes": "Felles møte sparer tid. Separate spor beskytter tillit og faglig uavhengighet.",
+          "situation": [
+            "Utbygger ønsker å høre direkte hva innbyggerne reagerer på.",
+            "Innbyggerne ønsker å bli tatt på alvor, ikke bare håndtert i samme rom som prosjektparten.",
+            "Du må velge om effektiv koordinering også kan svekke tilliten."
+          ],
+          "task_domain": "aktørroller",
+          "competency": "tillitsvern",
+          "pressure": "effektiv_dialog_vs_rolleblanding",
+          "choice_axis": "holde_spor_adskilt_vs_samle_møte",
+          "consequence_axis": "tillit_vs_effektivitet",
+          "narrative_arc": "prosjektlederen lærer at alle møter ikke er samme type dialog",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Holde medvirkning og utbyggerdialog som separate spor med tydelig kobling etterpå",
+              "reply": "Jeg holder medvirkning og utbyggerdialog som separate spor med tydelig kobling etterpå.",
+              "effect": 1,
+              "tags": ["participation", "trust", "roles"],
+              "feedback": "Du bruker mer tid, men beskytter forskjellen mellom å bli hørt og å bli forhandlet med."
+            },
+            {
+              "id": "B",
+              "label": "Samle aktørene i ett felles møte for å få raskere avklaringer",
+              "reply": "Jeg samler aktørene i ett felles møte for å få raskere avklaringer.",
+              "effect": -1,
+              "tags": ["efficiency", "risk"],
+              "feedback": "Prosessen kan gå fortere, men noen kan oppleve at medvirkning blir utbyggerdialog."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "framdrift_budsjett_og_risiko",
+      "purpose": "Lære spilleren å varsle risiko tidlig og holde budsjett, framdrift og faglig kvalitet i samme styringsbilde.",
+      "learning_focus": ["risikostyring", "budsjett", "framdrift"],
+      "mails": [
+        {
+          "id": "by_prosjekt_job_risiko_001",
+          "mail_type": "job",
+          "mail_family": "framdrift_budsjett_og_risiko",
+          "role_scope": "by_prosjektleder",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "okonomi_sigrid",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Risikoen er ikke sikker nok til å stoppe noe, men tydelig nok til å varsles",
+          "summary": "Kostnadsestimatet for grunnarbeid er usikkert, og usikkerheten kan senere presse grøntdrag og førsteetasjekvalitet.",
+          "purpose": "Lære spilleren å varsle tidlig risiko uten å overdrive sikkerhet.",
+          "stakes": "Varsler du nå, kan prosjektet virke mer usikkert. Venter du, kan kvaliteten bli sparepost senere.",
+          "situation": [
+            "Tallene er ikke dramatiske ennå.",
+            "Men flere forutsetninger er svake, særlig rundt grunnarbeid og teknisk infrastruktur.",
+            "Hvis kostnaden kommer sent, vet du hva som ryker først: kvalitetene som var lettest å kalle fleksible."
+          ],
+          "task_domain": "risikonotat",
+          "competency": "tidlig_varsling",
+          "pressure": "usikker_risiko_vs_rapportro",
+          "choice_axis": "varsle_usikkerhet_vs_vente_pa_sikkerhet",
+          "consequence_axis": "kvalitetsvern_vs_styringsro",
+          "narrative_arc": "prosjektlederen lærer at risiko må inn i styringen før den er ferdig bevist",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Varsle usikkerheten og knytte den til mulige kvalitetskutt",
+              "reply": "Jeg varsler usikkerheten og knytter den til mulige kvalitetskutt.",
+              "effect": 1,
+              "tags": ["risk", "budget", "quality"],
+              "feedback": "Du gjør rapporten mindre rolig, men mer ærlig."
+            },
+            {
+              "id": "B",
+              "label": "Avvente til kostnadsbildet er mer sikkert",
+              "reply": "Jeg avventer til kostnadsbildet er mer sikkert.",
+              "effect": -1,
+              "tags": ["delay", "risk"],
+              "feedback": "Rapporten holder roen nå, men prosjektet kan miste handlingsrom senere."
+            }
+          ]
+        },
+        {
+          "id": "by_prosjekt_job_risiko_002",
+          "mail_type": "job",
+          "mail_family": "framdrift_budsjett_og_risiko",
+          "role_scope": "by_prosjektleder",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "okonomi_sigrid",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Framdriftsplanen holder bare hvis kvalitetssjekken kortes ned",
+          "summary": "Prosjektet kan nå neste milepæl dersom kvalitetssikringen av byromsgrepet reduseres til en enklere sjekk.",
+          "purpose": "Teste om spilleren beskytter nødvendig faglig kontroll mot framdriftspress.",
+          "stakes": "Korter du ned, holder planen. Holder du på sjekken, må du forklare hvorfor milepælen glipper.",
+          "situation": [
+            "Framdriftsplanen er allerede stram.",
+            "Ingen foreslår å droppe kvalitetssikring helt, bare gjøre den enklere.",
+            "Du vet likevel at akkurat denne sjekken kan avgjøre om byrommet virker i praksis."
+          ],
+          "task_domain": "framdriftsstyring",
+          "competency": "kvalitetsprioritering",
+          "pressure": "milepæl_vs_faglig_sjekk",
+          "choice_axis": "beholde_sjekk_vs_korte_ned",
+          "consequence_axis": "kvalitet_vs_framdrift",
+          "narrative_arc": "prosjektlederen lærer at framdrift kan spise kontroll uten å kalle det kutt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beholde kvalitetssjekken og varsle konsekvens for milepæl",
+              "reply": "Jeg beholder kvalitetssjekken og varsler konsekvens for milepæl.",
+              "effect": 1,
+              "tags": ["quality", "progress", "warning"],
+              "feedback": "Du gjør framdriften vanskeligere, men beskytter det prosjektet skal lykkes med."
+            },
+            {
+              "id": "B",
+              "label": "Korte ned kvalitetssjekken for å nå milepælen",
+              "reply": "Jeg korter ned kvalitetssjekken for å nå milepælen.",
+              "effect": -1,
+              "tags": ["tempo", "quality_risk"],
+              "feedback": "Planen holder, men en viktig faglig kontroll blir svakere."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kvalitet_tillit_og_gjennomforing",
+      "purpose": "Lære spilleren at gjennomføring uten bykvalitet og tillit kan gi teknisk vellykket, men bymessig svakt prosjekt.",
+      "learning_focus": ["bykvalitet", "tillit", "gjennomføring"],
+      "mails": [
+        {
+          "id": "by_prosjekt_job_kvalitet_001",
+          "mail_type": "job",
+          "mail_family": "kvalitet_tillit_og_gjennomforing",
+          "role_scope": "by_prosjektleder",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_byutvikling",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Bylivskvaliteten er fortsatt i dokumentet, men ikke i leveransen",
+          "summary": "Førsteetasjer, grøntdrag og oppholdsrom står fortsatt i planmaterialet, men i gjennomføringsmøtene omtales de som fleksible poster.",
+          "purpose": "Vise at kvalitet må følges gjennom prosessen, ikke bare defineres i starten.",
+          "stakes": "Tar du det opp nå, skaper du styringsfriksjon. Venter du, kan kvaliteten forsvinne uten formelt vedtak.",
+          "situation": [
+            "Ingen sier at kvalitetene skal fjernes.",
+            "De blir bare omtalt som noe som kan justeres senere.",
+            "Du ser at prosjektet kan lykkes administrativt og samtidig bli svakere som by."
+          ],
+          "task_domain": "kvalitetsoppfølging",
+          "competency": "kvalitetsvern_i_gjennomforing",
+          "pressure": "fleksible_poster_vs_bærende_kvalitet",
+          "choice_axis": "løfte_kvalitet_risiko_vs_avvente",
+          "consequence_axis": "byliv_vs_styringsro",
+          "narrative_arc": "prosjektlederen lærer at kvalitet ofte forsvinner gjennom små praktiske forskyvninger",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Løft kvalitetene som styringspunkt og be om eksplisitt avklaring",
+              "reply": "Jeg løfter kvalitetene som styringspunkt og ber om eksplisitt avklaring.",
+              "effect": 1,
+              "tags": ["quality", "governance", "city_life"],
+              "feedback": "Du gjør det vanskeligere å kutte kvalitet uten at noen tar ansvar."
+            },
+            {
+              "id": "B",
+              "label": "Avvente til det finnes et konkret kuttforslag",
+              "reply": "Jeg avventer til det finnes et konkret kuttforslag.",
+              "effect": -1,
+              "tags": ["delay", "risk"],
+              "feedback": "Du unngår friksjon nå, men kvaliteten kan miste status før den formelt utfordres."
+            }
+          ]
+        },
+        {
+          "id": "by_prosjekt_job_kvalitet_002",
+          "mail_type": "job",
+          "mail_family": "kvalitet_tillit_og_gjennomforing",
+          "role_scope": "by_prosjektleder",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kommunalsjef_lena",
+          "place_id": "oslo_byutvikling_programomrade",
+          "subject": "Sluttstatusen må vise både framdrift, pris og tillit",
+          "summary": "Prosjektet kan rapporteres som på sporet, men bare hvis statusen ikke synliggjør svekket medvirkning, kvalitetsrisiko og uløste avveiinger.",
+          "purpose": "Avrunde rollen med moden styringsrapportering: framdrift, risiko, bykvalitet og tillit i samme bilde.",
+          "stakes": "Skriver du pent, blir prosjektet lettere å selge. Skriver du presist, må beslutningstakerne eie prisen på framdriften.",
+          "situation": [
+            "Milepælene er nesten nådd.",
+            "Men medvirkningen har påvirket mindre enn lovet, og kvalitetskravene presses i gjennomføring.",
+            "Du skal skrive en status som kan leses oppover uten å gjøre virkeligheten penere enn den er."
+          ],
+          "task_domain": "styringsrapportering",
+          "competency": "beslutningsmoden_status",
+          "pressure": "pen_framdrift_vs_presis_pris",
+          "choice_axis": "vise_pris_og_risiko_vs_fokusere_framdrift",
+          "consequence_axis": "ansvar_vs_salgbarhet",
+          "narrative_arc": "prosjektlederen lærer at en god statusrapport gjør beslutningen mer ansvarlig, ikke bare mer behagelig",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv status som viser framdrift, kvalitetsrisiko og tillitsbrudd samlet",
+              "reply": "Jeg skriver status som viser framdrift, kvalitetsrisiko og tillitsbrudd samlet.",
+              "effect": 1,
+              "tags": ["mastery", "reporting", "accountability"],
+              "feedback": "Du gjør prosjektet mindre glatt, men mer ansvarlig å styre."
+            },
+            {
+              "id": "B",
+              "label": "Skriv status med hovedvekt på nådde milepæler og videre oppfølging",
+              "reply": "Jeg skriver status med hovedvekt på nådde milepæler og videre oppfølging.",
+              "effect": 0,
+              "tags": ["progress", "safe"],
+              "feedback": "Rapporten blir lettere å sende videre, men den skjuler noe av prisen på framdriften."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
