@@ -4,12 +4,1141 @@
   "role_scope": "fagarbeider",
   "mail_type": "job",
   "description": "V2 fagarbeider_intro: tre intro-mails som etablerer fagarbeiderens nye rolle (mentor, kunnskapsbærer, ansvar uten myndighet). 6 thread-followups for samtale-oppførsel.",
-
   "families": [
+    {
+      "id": "first_week_praksisfortellinger_fagarbeider_job",
+      "description": "Praksisfortellinger – fagarbeider pakke 1: Første uke. Jobbmail om befaring, snarveier, kunde-press, kollegalojalitet og fagstolthet.",
+      "thread_binding": {
+        "story_thread_id": "first_week_praksisfortellinger_fagarbeider",
+        "people_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "job_fagarbeider_week1_first_inspection",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 119,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_arbeidsleder",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Første befaring – det som ser enkelt ut",
+          "summary": "Fra: Rune, arbeidsleder\nEmne: Første oppdrag – enkel befaring\nBody:\nHei,\n\nVelkommen på første ordentlige dag.\n\nVi starter rolig. Det ligger en enkel befaring på deg i dag: lagerrom B, høyre seksjon. Det er meldt om en løs hylle, litt skjev belastning og mulig skade på festet.\n\nDet høres mer dramatisk ut enn det er. Ta en titt, vurder om det kan strammes opp, og send en kort vurdering før lunsj.\n\nIkke bruk hele dagen på det. Dette er mest for å få deg inn i rutinene.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 1: Første uke.",
+          "stakes": "Valget flytter tempo, kvalitet, sikkerhet, relasjon, energi, slitasje, risiko eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Rune, arbeidsleder\nEmne: Første oppdrag – enkel befaring\nBody:\nHei,\n\nVelkommen på første ordentlige dag.\n\nVi starter rolig. Det ligger en enkel befaring på deg i dag: lagerrom B, høyre seksjon. Det er meldt om en løs hylle, litt skjev belastning og mulig skade på festet.\n\nDet høres mer dramatisk ut enn det er. Ta en titt, vurder om det kan strammes opp, og send en kort vurdering før lunsj.\n\nIkke bruk hele dagen på det. Dette er mest for å få deg inn i rutinene.\n\n– Rune",
+            "Fra: Amir, fagarbeider\nEmne: Lagerrom B\nBody:\nHei,\n\nSå at du fikk lagerrom B.\n\nBare så du vet: den hylla har vært “midlertidig fikset” før. Hvis det bare er en løs skrue, fint. Men sjekk veggfestet og ikke bare selve hylla.\n\nDet er typisk sånn ting som ser greit ut når den er tom, og så svikter når noen stabler for tungt igjen.\n\nJeg ville tatt bilder før du gjør noe.\n\n– Amir",
+            "Fra: System\nEmne: Arbeidsordre 18-442\nBody:\nArbeidsordre: 18-442\nSted: Lagerrom B\nKategori: Vedlikehold\nPrioritet: Normal\nFrist for første vurdering: 12:00\n\nRegistrer:\n- vurdering\n- tiltak\n- bilde ved behov\n- om saken må eskaleres",
+            "Fra: Rune\nEmne: Re: Første oppdrag\nBody:\nBare en presisering:\n\nHvis det ser greit ut, trenger vi ikke gjøre dette større enn nødvendig.\n\nMen hvis du mener det er risiko, må du si fra. Det viktigste er at vi ikke bruker tid feil, men heller ikke overser noe som blir et problem senere.\n\n– Rune"
+          ],
+          "task_domain": "praktisk_drift_service_vedlikehold",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagstolthet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stramme opp raskt",
+              "reply": "Jeg strammer hylla, registrerer “utført” og går videre.",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du blir belønnet for tempo, men risikoen blir liggende i veggen.",
+              "triggers_on_choice": "quick_fix_future_risk",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "stress": -1,
+                  "quality": -1,
+                  "future_risk": 2,
+                  "trust_manager": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_fagarbeider_private"
+                ],
+                "set_flags": [
+                  "quick_fix_future_risk",
+                  "future_risk"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Undersøke grundig",
+              "reply": "Jeg sjekker festet, tar bilder og registrerer at hylla ikke bør belastes før nytt feste er vurdert.",
+              "effect": 0,
+              "tags": [
+                "craft",
+                "safety"
+              ],
+              "feedback": "Du bygger faglig tillit, men tempoet presses.",
+              "triggers_on_choice": "craft_quality_pressure",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "safety": 2,
+                  "stress": 1,
+                  "trust_manager": 0,
+                  "trust_colleague": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spørre før tiltak",
+              "reply": "Jeg sender bilder til Rune og spør om han vil at jeg skal sikre midlertidig eller bestille nytt feste.",
+              "effect": 0,
+              "tags": [
+                "process",
+                "safety"
+              ],
+              "feedback": "Du avklarer mandat og unngår både overarbeid og slurv.",
+              "triggers_on_choice": "safe_clarification",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "autonomy": 1,
+                  "stress": 0,
+                  "trust_manager": 0,
+                  "safety": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week1_shortcut_everyone_uses",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 116,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_arbeidsleder",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Snarveien som alle bruker",
+          "summary": "Fra: Rune\nEmne: Småreparasjoner ved inngang C\nBody:\nHei,\n\nDet ligger tre småreparasjoner ved inngang C.\n\nDet er litt knirk i dørpumpa, en list som løsner, og et deksel som må festes.\n\nTa dem i løpet av formiddagen hvis du rekker. Dette er typisk sånne oppgaver hvor vi bare trenger at det ser ordentlig ut og fungerer.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 1: Første uke.",
+          "stakes": "Valget flytter tempo, kvalitet, sikkerhet, relasjon, energi, slitasje, risiko eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Rune\nEmne: Småreparasjoner ved inngang C\nBody:\nHei,\n\nDet ligger tre småreparasjoner ved inngang C.\n\nDet er litt knirk i dørpumpa, en list som løsner, og et deksel som må festes.\n\nTa dem i løpet av formiddagen hvis du rekker. Dette er typisk sånne oppgaver hvor vi bare trenger at det ser ordentlig ut og fungerer.\n\n– Rune",
+            "Fra: Amir\nEmne: Inngang C\nBody:\nDørpumpa ved C er irriterende.\n\nBare så du vet: mange strammer den bare litt og går videre. Det funker en uke. Kanskje to.\n\nHvis du justerer den riktig, må du teste døra noen ganger og sjekke lukkehastighet. Tar lenger tid, men da slipper vi samme melding neste uke.\n\n– Amir",
+            "Fra: System\nEmne: Tre åpne småoppgaver\nBody:\nOppgaver:\n- C-12: justere dørpumpe\n- C-13: feste løs list\n- C-14: feste deksel\n\nSamlet estimert tid: 45 minutter\nAnbefalt rekkefølge: ikke angitt"
+          ],
+          "task_domain": "praktisk_drift_service_vedlikehold",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagstolthet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre standard snarvei",
+              "reply": "Jeg gjør det slik de fleste gjør: strammer raskt, fester synlig og går videre.",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "stagnation"
+              ],
+              "feedback": "Du passer inn i tempoet, men lærer lite.",
+              "triggers_on_choice": "normal_shortcut",
+              "effects": {
+                "stats": {
+                  "speed": 2,
+                  "stress": -1,
+                  "quality": -1,
+                  "future_risk": 1,
+                  "stagnation": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gjøre dørpumpa ordentlig",
+              "reply": "Jeg bruker ekstra tid på dørpumpa og tester den skikkelig før jeg lukker saken.",
+              "effect": 0,
+              "tags": [
+                "craft",
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "craft_over_speed",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "safety": 1,
+                  "stress": 1,
+                  "trust_colleague": 1,
+                  "speed": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spørre om prioritet",
+              "reply": "Jeg spør Rune om han vil at alle tre skal lukkes raskt, eller om dørpumpa skal gjøres skikkelig.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "priority_clarification",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "trust_manager": 0,
+                  "autonomy": 1,
+                  "stress": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week1_customer_wants_fast",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 114,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_arbeidsleder",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Kunden som vil ha det raskt",
+          "summary": "Fra: Rune\nEmne: Haster litt – møterom 2\nBody:\nHei,\n\nDet er meldt om en løs kabelkanal i møterom 2.\n\nRommet skal brukes kl. 13, så dette må helst være fikset før det. Det er ikke stort, men kunden er litt stresset fordi de har eksterne gjester.\n\nTa en titt og se hva du får gjort.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 1: Første uke.",
+          "stakes": "Valget flytter tempo, kvalitet, sikkerhet, relasjon, energi, slitasje, risiko eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Rune\nEmne: Haster litt – møterom 2\nBody:\nHei,\n\nDet er meldt om en løs kabelkanal i møterom 2.\n\nRommet skal brukes kl. 13, så dette må helst være fikset før det. Det er ikke stort, men kunden er litt stresset fordi de har eksterne gjester.\n\nTa en titt og se hva du får gjort.\n\n– Rune",
+            "Fra: Kunde / intern bruker\nEmne: Møterom 2\nBody:\nHei,\n\nVi trenger egentlig bare at det ser pent ut før møtet. Det henger litt løst ved skjermen, men det er ikke nødvendig å gjøre noe omfattende.\n\nHvis det bare kan festes raskt, er det supert.",
+            "Fra: Amir\nEmne: Kabelkanalen\nBody:\nIkke bare teip den.\n\nJeg vet det er frist, men hvis kabelkanalen henger fordi festet er dårlig, kommer den ned igjen. Og da gjerne midt i et møte.\n\nSjekk om det er belastning på kablene.\n\n– Amir"
+          ],
+          "task_domain": "praktisk_drift_service_vedlikehold",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagstolthet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fikse kosmetisk raskt",
+              "reply": "Jeg fester kabelkanalen raskt så rommet ser klart ut til møtet.",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "risk",
+                "tempo"
+              ],
+              "feedback": "Det ser ferdig ut. Det betyr ikke nødvendigvis at det er ferdig.",
+              "triggers_on_choice": "looks_done_not_done",
+              "effects": {
+                "stats": {
+                  "customer_satisfaction": 1,
+                  "speed": 2,
+                  "future_risk": 2,
+                  "quality": -1,
+                  "stress": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Sikre ordentlig og melde begrensning",
+              "reply": "Jeg sikrer kanalen ordentlig, men sier at rommet bør sjekkes igjen etter møtet.",
+              "effect": 0,
+              "tags": [
+                "craft",
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "professional_limited_fix",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "safety": 2,
+                  "customer_satisfaction": 0,
+                  "stress": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Stoppe bruk av rommet",
+              "reply": "Jeg vurderer at rommet ikke bør brukes før kabelopphenget er helt sjekket.",
+              "effect": 0,
+              "tags": [
+                "safety",
+                "conflict"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "safety_conflict",
+              "effects": {
+                "stats": {
+                  "safety": 3,
+                  "customer_satisfaction": -2,
+                  "conflict": 2,
+                  "trust_manager": -1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week1_loyalty_and_safety",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 112,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_arbeidsleder",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Kollegalojalitet og sikkerhet",
+          "summary": "Fra: Amir\nEmne: Lite spørsmål\nBody:\nHei,\n\nDu husker dekselet ved inngang C?\n\nJeg ser at det ene festet ikke sitter helt som det skal. Tror det var jeg som tok den litt raskt forrige uke.\n\nDet er ikke farlig akkurat nå, men det bør fikses før noen begynner å dra i det.\n\nKunne du strammet det når du går forbi? Trenger ikke registrere ny sak, bare få det på plass.\n\n– Amir",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 1: Første uke.",
+          "stakes": "Valget flytter tempo, kvalitet, sikkerhet, relasjon, energi, slitasje, risiko eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Amir\nEmne: Lite spørsmål\nBody:\nHei,\n\nDu husker dekselet ved inngang C?\n\nJeg ser at det ene festet ikke sitter helt som det skal. Tror det var jeg som tok den litt raskt forrige uke.\n\nDet er ikke farlig akkurat nå, men det bør fikses før noen begynner å dra i det.\n\nKunne du strammet det når du går forbi? Trenger ikke registrere ny sak, bare få det på plass.\n\n– Amir",
+            "Fra: System\nEmne: HMS-rutine\nBody:\nMindre feil og avvik skal registreres dersom:\n- de kan påvirke sikkerhet\n- de skyldes feil montering\n- de kan gjenta seg\n- de krever oppfølging senere",
+            "Fra: Rune\nEmne: Dagens prioritering\nBody:\nHei,\n\nI dag må vi holde tempo. Det er mange småsaker.\n\nHvis noe er enkelt å rette, rett det. Hvis det er avvik, registrer det. Bruk skjønn.\n\n– Rune"
+          ],
+          "task_domain": "praktisk_drift_service_vedlikehold",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagstolthet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rette stille for Amir",
+              "reply": "Jeg fikser festet uten å registrere avvik.",
+              "effect": 0,
+              "tags": [
+                "relationship",
+                "risk"
+              ],
+              "feedback": "Du hjelper kollegaen, men skjuler også et mønster.",
+              "triggers_on_choice": "loyal_quick_fix",
+              "effects": {
+                "stats": {
+                  "trust_colleague": 2,
+                  "speed": 1,
+                  "safety": 1,
+                  "clarity": -1,
+                  "future_risk": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Registrere avvik nøkternt",
+              "reply": "Jeg fikser festet og registrerer kort at det var feil montering som er utbedret.",
+              "effect": 0,
+              "tags": [
+                "safety",
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "transparent_safety",
+              "effects": {
+                "stats": {
+                  "safety": 2,
+                  "clarity": 2,
+                  "trust_colleague": -1,
+                  "trust_manager": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spørre Amir først",
+              "reply": "Jeg sier til Amir at jeg kan fikse det, men at det egentlig bør registreres kort.",
+              "effect": 0,
+              "tags": [
+                "relationship",
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "relational_transparency",
+              "effects": {
+                "stats": {
+                  "trust_colleague": 1,
+                  "clarity": 1,
+                  "safety": 1,
+                  "conflict": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_fagarbeider_week1_craft_pride_or_just_done",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 110,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_arbeidsleder",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Fagstolthet eller bare ferdig?",
+          "summary": "Fra: Rune\nEmne: Før helg\nBody:\nHei,\n\nFør du går i dag, send meg gjerne en kort oppsummering av uka.\n\nBare:\n- hva du har gjort\n- hva som bør følges opp\n- om det er noe du trenger mer opplæring i\n\nDu har kommet fint i gang, men første uke handler mest om å se hvordan ting faktisk fungerer.\n\n– Rune",
+          "purpose": "Praksisfortellinger – fagarbeider pakke 1: Første uke.",
+          "stakes": "Valget flytter tempo, kvalitet, sikkerhet, relasjon, energi, slitasje, risiko eller stagnasjon videre i uken.",
+          "situation": [
+            "Fra: Rune\nEmne: Før helg\nBody:\nHei,\n\nFør du går i dag, send meg gjerne en kort oppsummering av uka.\n\nBare:\n- hva du har gjort\n- hva som bør følges opp\n- om det er noe du trenger mer opplæring i\n\nDu har kommet fint i gang, men første uke handler mest om å se hvordan ting faktisk fungerer.\n\n– Rune",
+            "Fra: Amir\nEmne: Fredagstips\nBody:\nFredagstips:\n\nIkke skriv at alt er ferdig hvis noe bare er midlertidig trygt.\nIkke skriv at noe er farlig hvis det egentlig bare bør følges opp.\nIkke skriv “ok” når du mener “jeg rakk ikke å sjekke ordentlig”.\n\nOrdene dine blir arbeidsloggen til neste person.\n\n– Amir",
+            "Fra: System\nEmne: Åpne saker denne uka\nBody:\nSaker du har vært innom:\n- Lagerrom B\n- Inngang C\n- Møterom 2\n- Deksel / mindre avvik\n\nStatus:\n- noen lukket\n- noen midlertidig sikret\n- noen krever oppfølging"
+          ],
+          "task_domain": "praktisk_drift_service_vedlikehold",
+          "choice_axis": "tempo_kvalitet_sikkerhet_restitusjon",
+          "consequence_axis": "fagstolthet_risiko_kropp_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive faglig tydelig oppsummering",
+              "reply": "Jeg skiller mellom utført, midlertidig sikret og bør følges opp.",
+              "effect": 0,
+              "tags": [
+                "craft",
+                "safety"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "craft_identity",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "safety": 2,
+                  "trust_manager": 1,
+                  "stress": 1,
+                  "promotion_path": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive at det meste er ferdig",
+              "reply": "Jeg skriver kort at det meste er lukket og at resten kan tas ved behov.",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "stagnation"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "looks_productive",
+              "effects": {
+                "stats": {
+                  "stress": -1,
+                  "speed": 1,
+                  "quality": -1,
+                  "future_risk": 2,
+                  "stagnation": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Be om mer opplæring",
+              "reply": "Jeg skriver at jeg trenger mer opplæring i vurdering av midlertidige sikringer og avvik.",
+              "effect": 0,
+              "tags": [
+                "process",
+                "learning"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor.",
+              "triggers_on_choice": "learning_orientation",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "safety": 1,
+                  "trust_manager": 0,
+                  "autonomy": 1,
+                  "stress": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "quick_fix_future_risk",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Raskt levert",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nFint at du fikk den unna raskt.\n\nVi trenger folk som får ting gjort uten å gjøre alle småoppgaver til prosjekter.\n\nHold samme tempo videre i dag.\n\n– Rune\n\nUndertekst:\nDu blir belønnet for tempo, men risikoen blir liggende i veggen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "craft_quality_pressure",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amir",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Bra du sjekket festet",
+          "summary": "Bra.",
+          "situation": [
+            "Bra.\n\nDet der var akkurat det jeg mente. En løs hylle er sjelden bare en løs hylle hvis noen allerede har “fikset” den én gang.\n\nDu kommer sikkert til å høre at du brukte litt lang tid, men det var riktig vurdering.\n\n– Amir\n\nUndertekst:\nDu bygger faglig tillit, men tempoet presses."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "safe_clarification",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Re: bilder",
+          "summary": "Bra at du sendte bilder.",
+          "situation": [
+            "Bra at du sendte bilder.\n\nSikre midlertidig nå, og legg inn behov for nytt feste. Ikke bruk mer tid på full utbedring i dag.\n\nDette er riktig nivå.\n\n– Rune\n\nUndertekst:\nDu avklarer mandat og unngår både overarbeid og slurv."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "normal_shortcut",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Fint",
+          "summary": "Bra.",
+          "situation": [
+            "Bra.\n\nDa er de tre lukket. Fint å få unna sånne småting før de hoper seg opp.\n\n– Rune\n\nUndertekst:\nDu passer inn i tempoet, men lærer lite."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "craft_over_speed",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amir",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Den døra",
+          "summary": "Så du testet den flere ganger.",
+          "situation": [
+            "Så du testet den flere ganger.\n\nBra. Det er sånn man slipper at samme jobb kommer tilbake som “ny” oppgave hver uke.\n\nDet tar mer tid nå, men mindre tid senere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "priority_clarification",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Prioritering",
+          "summary": "Gjør dørpumpa ordentlig, og ta de to andre hvis du rekker.",
+          "situation": [
+            "Gjør dørpumpa ordentlig, og ta de to andre hvis du rekker.\n\nHvis noe faktisk påvirker bruk, går det foran kosmetikk.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "looks_done_not_done",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kunde_intern_bruker",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Takk",
+          "summary": "Takk, nå ser det mye bedre ut.",
+          "situation": [
+            "Takk, nå ser det mye bedre ut.\n\nDa bruker vi rommet som planlagt.\n\nUndertekst:\nDet ser ferdig ut. Det betyr ikke nødvendigvis at det er ferdig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "professional_limited_fix",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Riktig nivå",
+          "summary": "Bra vurdert.",
+          "situation": [
+            "Bra vurdert.\n\nDet viktigste var at rommet kunne brukes trygt nå, uten at vi later som hele installasjonen er ferdig vurdert.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "safety_conflict",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Møterom 2",
+          "summary": "Hei,",
+          "situation": [
+            "Hei,\n\nJeg forstår vurderingen, men dette skapte en del styr.\n\nHvis du stopper bruk av et rom, må du være veldig tydelig på hvorfor. Sikkerhet går først, men vi må kunne forklare det konkret.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "loyal_quick_fix",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amir",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Takk",
+          "summary": "Takk.",
+          "situation": [
+            "Takk.\n\nJeg setter pris på det. Hadde ikke ork til at det ble en egen greie.\n\n– Amir\n\nUndertekst:\nDu hjelper kollegaen, men skjuler også et mønster."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "transparent_safety",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amir",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Så du registrerte det",
+          "summary": "Så du la det inn som avvik.",
+          "situation": [
+            "Så du la det inn som avvik.\n\nGreit nok. Du skrev det i hvert fall nøkternt.\n\nJeg skulle bare ønske alt ikke måtte inn i systemet hele tiden.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "relational_transparency",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amir",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Fair",
+          "summary": "Fair.",
+          "situation": [
+            "Fair.\n\nGjør det kort da. Ikke skriv en roman om det.\n\n– Amir"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "craft_identity",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God oppsummering",
+          "summary": "Dette var en ryddig oppsummering.",
+          "situation": [
+            "Dette var en ryddig oppsummering.\n\nSærlig skillet mellom utført og midlertidig sikret er viktig. Det gjør det lettere å planlegge neste uke.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "looks_productive",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Greit",
+          "summary": "Greit.",
+          "situation": [
+            "Greit.\n\nDa tar vi eventuelle rester når de dukker opp igjen.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "learning_orientation",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Opplæring",
+          "summary": "Det er en god ting å si fra om.",
+          "situation": [
+            "Det er en god ting å si fra om.\n\nJeg setter deg opp med Amir en time mandag, så går dere gjennom midlertidig sikring og avvik sammen.\n\nGod helg.\n\n– Rune"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week1_outcome_craft_pride",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 1",
+          "summary": "Du begynner å se arbeidet bak arbeidet. Ikke bare det som er gjort, men det som må holde etter at du har gått.",
+          "situation": [
+            "Du begynner å se arbeidet bak arbeidet. Ikke bare det som er gjort, men det som må holde etter at du har gått."
+          ],
+          "effects": {
+            "stats": {
+              "quality": 4,
+              "safety": 4,
+              "trust_colleague": 2,
+              "trust_manager": 1,
+              "stress": 2,
+              "promotion_path": 1
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "week_outcome"
+              ],
+              "feedback": "Ukeutfallet er registrert."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week1_outcome_fast_closer",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 1",
+          "summary": "Du får ting unna. Spørsmålet er hvor mye som faktisk er løst, og hvor mye som bare ser løst ut.",
+          "situation": [
+            "Du får ting unna. Spørsmålet er hvor mye som faktisk er løst, og hvor mye som bare ser løst ut."
+          ],
+          "effects": {
+            "stats": {
+              "speed": 4,
+              "trust_manager": 2,
+              "quality": -2,
+              "future_risk": 3,
+              "stagnation": 1
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "week_outcome"
+              ],
+              "feedback": "Ukeutfallet er registrert."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week1_outcome_safe_learner",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 1",
+          "summary": "Du lærer langsommere enn den som bare gjør, men tryggere enn den som later som.",
+          "situation": [
+            "Du lærer langsommere enn den som bare gjør, men tryggere enn den som later som."
+          ],
+          "effects": {
+            "stats": {
+              "clarity": 4,
+              "safety": 3,
+              "autonomy": 2,
+              "stress": 0,
+              "trust_manager": 1
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "week_outcome"
+              ],
+              "feedback": "Ukeutfallet er registrert."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_week1_outcome_overused_body",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_fagarbeider_job",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ukeutfall fagarbeider uke 1",
+          "summary": "Du blir nyttig for mange. Kroppen betaler mellomlegget.",
+          "situation": [
+            "Du blir nyttig for mange. Kroppen betaler mellomlegget."
+          ],
+          "effects": {
+            "stats": {
+              "relationship_private": 2,
+              "trust_colleague": 1,
+              "body_strain": 4,
+              "energy": -3,
+              "overload_risk": 2
+            }
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "week_outcome"
+              ],
+              "feedback": "Ukeutfallet er registrert."
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "fagarbeider_intro_v2",
       "description": "Første dager som fagarbeider. Tor (verksmester) gir mentor-oppdrag, Egil tester kompetanse, Liv (lærling) banker på.",
-
       "mails": [
         {
           "id": "fagarbeider_intro_v2_001",
@@ -21,25 +1150,25 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
-
           "from": "tor_verksmester",
           "place_id": "lilleborg_fabrikker",
           "subject": "Opplæring av Liv — du tar den",
           "purpose": "Etablere fagarbeideren som kunnskapsbærer og mentor, ikke bare som en mer erfaren arbeider.",
           "stakes": "Spilleren må velge mellom strukturert opplæring som bygger formell tillit og praktisk læring som bygger håndverksmessig nærhet.",
-
           "situation": [
             "Tor sender en kort, formell beskjed på morgenen.",
             "«Liv går andre året på lærlingordningen. Hun har vært på kontrollrommet med Egil, men trenger å se B-linja fra fagarbeider-perspektiv. Du har ansvar fra mandag.»",
             "Det er et signal — ledelsen regner med at du er kunnskapsbærer nå."
           ],
-
           "choices": [
             {
               "id": "A",
               "label": "«Greit. Jeg lager en kjøreplan før mandag.»",
               "reply": "Greit. Jeg lager en kjøreplan før mandag.",
-              "tags": ["craft", "process"],
+              "tags": [
+                "craft",
+                "process"
+              ],
               "effect": 0,
               "feedback": "Tor noterer deg som forutsigbar. Det er valuta her.",
               "triggers_on_choice": "tor_thread_kjoreplan_a"
@@ -48,14 +1177,16 @@
               "id": "B",
               "label": "«Greit. Jeg tar henne med på linja og forklarer underveis.»",
               "reply": "Greit. Jeg tar henne med på linja og forklarer underveis.",
-              "tags": ["craft", "informal"],
+              "tags": [
+                "craft",
+                "informal"
+              ],
               "effect": 1,
               "feedback": "Du foretrekker praksis. Tor sier ingenting, men registrerer det.",
               "triggers_on_choice": "tor_thread_kjoreplan_b"
             }
           ]
         },
-
         {
           "id": "fagarbeider_intro_v2_002",
           "mail_type": "job",
@@ -66,25 +1197,25 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
-
           "from": "egil_kontrollrom",
           "place_id": "lilleborg_fabrikker",
           "subject": "Doseringen på linje C — husker du?",
           "purpose": "Vise at fagarbeiderens autoritet ligger i presis erfaringskunnskap som andre faktisk trenger.",
           "stakes": "Spilleren må velge mellom å gi et sikkert faglig svar på avstand eller gjøre seg synlig ved å gå inn i problemet direkte.",
-
           "situation": [
             "Egil skriver kort etter lunsj.",
             "«Du jobbet på C i fjor. Jeg har en ny som ikke får doseringen til å sitte. Husker du om det er flyteverdien eller temperaturen som trenger justering først?»",
             "Egil pleier ikke spørre. Det er en form for respekt — og et lite test."
           ],
-
           "choices": [
             {
               "id": "A",
               "label": "«Temperaturen først. Stabiliser før du rører flyt.»",
               "reply": "Temperaturen først. Stabiliser før du rører flyt.",
-              "tags": ["craft", "legitimacy"],
+              "tags": [
+                "craft",
+                "legitimacy"
+              ],
               "effect": 0,
               "feedback": "Du svarer presist. Egil har fått det han trengte.",
               "triggers_on_choice": "egil_thread_dosering_a"
@@ -93,14 +1224,16 @@
               "id": "B",
               "label": "«Avhenger av batchen. Vil du jeg skal komme bort?»",
               "reply": "Avhenger av batchen. Vil du jeg skal komme bort?",
-              "tags": ["craft", "visibility"],
+              "tags": [
+                "craft",
+                "visibility"
+              ],
               "effect": 1,
               "feedback": "Du tar ansvar utover svaret. Egil takker.",
               "triggers_on_choice": "egil_thread_dosering_b"
             }
           ]
         },
-
         {
           "id": "fagarbeider_intro_v2_003",
           "mail_type": "job",
@@ -111,25 +1244,25 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
-
           "from": "liv_laerling",
           "place_id": "lilleborg_fabrikker",
           "subject": "Et dumt spørsmål kanskje",
           "purpose": "Etablere lærlingrelasjonen og vise at fagarbeiderens viktigste kunnskap ofte er taus, kroppslig og vanskelig å forklare.",
           "stakes": "Spilleren må velge mellom å åpne den ekte håndverkskunnskapen for Liv eller gi henne en tryggere, men fattigere regel.",
-
           "situation": [
             "Liv sender en mail på kvelden, åpenbart etter å ha tenkt seg om en stund.",
             "«Hei. Jeg så at du justerte trykket på pumpen i dag uten å se på måleren. Hvordan vet du når noe er feil hvis du ikke leser av? Beklager hvis det er dumt å spørre.»",
             "Det er ikke dumt. Det er presis det fagarbeideren skal lære videre."
           ],
-
           "choices": [
             {
               "id": "A",
               "label": "«Det er ikke dumt. Lyden er den første måleren. Skal forklare i morgen.»",
               "reply": "Det er ikke dumt. Lyden er den første måleren. Skal forklare i morgen.",
-              "tags": ["craft", "mentor"],
+              "tags": [
+                "craft",
+                "mentor"
+              ],
               "effect": 0,
               "feedback": "Du tar læreroppgaven seriøst. Liv skriver «Tusen takk!» tilbake.",
               "triggers_on_choice": "liv_thread_pumpe_a"
@@ -138,7 +1271,10 @@
               "id": "B",
               "label": "«Måleren skal alltid leses. Bare gjør det rutinemessig.»",
               "reply": "Måleren skal alltid leses. Bare gjør det rutinemessig.",
-              "tags": ["process", "avoidance"],
+              "tags": [
+                "process",
+                "avoidance"
+              ],
               "effect": 1,
               "feedback": "Trygt råd, men du har gjemt din egen praksis. Liv lærer ikke det du faktisk gjør.",
               "triggers_on_choice": "liv_thread_pumpe_b"
@@ -146,7 +1282,6 @@
           ]
         }
       ],
-
       "threads": [
         {
           "id": "tor_thread_kjoreplan_a",
@@ -168,7 +1303,9 @@
               "id": "A",
               "label": "«Skal gjøre det.»",
               "reply": "Skal gjøre det.",
-              "tags": ["legitimacy"],
+              "tags": [
+                "legitimacy"
+              ],
               "effect": 0,
               "feedback": "Avtalen står. Tor noterer."
             }
@@ -194,13 +1331,15 @@
               "id": "A",
               "label": "«OK. Stikkordsliste til fredag.»",
               "reply": "OK. Stikkordsliste til fredag.",
-              "tags": ["humility", "process"],
+              "tags": [
+                "humility",
+                "process"
+              ],
               "effect": 0,
               "feedback": "Du finner kompromisset uten kamp."
             }
           ]
         },
-
         {
           "id": "egil_thread_dosering_a",
           "from": "egil_kontrollrom",
@@ -221,7 +1360,10 @@
               "id": "A",
               "label": "«Si bare ifra hvis det går igjen.»",
               "reply": "Si bare ifra hvis det går igjen.",
-              "tags": ["legitimacy", "relations"],
+              "tags": [
+                "legitimacy",
+                "relations"
+              ],
               "effect": 0,
               "feedback": "Du holder døra åpen. Egil minner seg om hvem han kan ringe."
             }
@@ -247,13 +1389,15 @@
               "id": "A",
               "label": "«På vei.»",
               "reply": "På vei.",
-              "tags": ["legitimacy", "visibility"],
+              "tags": [
+                "legitimacy",
+                "visibility"
+              ],
               "effect": 0,
               "feedback": "Du dukker opp der du trengs. Det blir lagt merke til av flere enn Egil."
             }
           ]
         },
-
         {
           "id": "liv_thread_pumpe_a",
           "from": "liv_laerling",
@@ -274,7 +1418,10 @@
               "id": "A",
               "label": "«Gjerne. Tar den fredag etter skiftet.»",
               "reply": "Gjerne. Tar den fredag etter skiftet.",
-              "tags": ["mentor", "relations"],
+              "tags": [
+                "mentor",
+                "relations"
+              ],
               "effect": 0,
               "feedback": "Du sier ja. Liv har en mentor — for første gang."
             }
@@ -300,7 +1447,9 @@
               "id": "A",
               "label": "«Si fra hvis du blir usikker på noe.»",
               "reply": "Si fra hvis du blir usikker på noe.",
-              "tags": ["avoidance"],
+              "tags": [
+                "avoidance"
+              ],
               "effect": 0,
               "feedback": "Du holder døra på gløtt, men du har lukket et lite vindu."
             }
