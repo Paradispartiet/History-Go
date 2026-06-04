@@ -92,6 +92,42 @@
       "flow_tests": [
         "tests/civication-fagarbeider-two-week-flow.test.js"
       ]
+    },
+    {
+      "role_id": "formann",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/formann_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/formann_job.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
+      "expected_signals": [
+        "team_trust",
+        "authority",
+        "safety",
+        "flow",
+        "speed",
+        "manager_pressure",
+        "future_risk",
+        "body_strain_team",
+        "conflict",
+        "clarity",
+        "stagnation"
+      ],
+      "packages": [
+        {
+          "package_id": "formann_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_formann_job",
+          "private_family": "first_week_praksisfortellinger_formann_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-formann-first-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": [
+        "tests/civication-formann-first-week-praksisfortellinger.test.js"
+      ]
     }
   ],
   "cross_role_tests": [

@@ -74,6 +74,41 @@ const ROLES = {
       'stagnation'
     ],
     forbiddenFamilyNeedles: ['arbeider']
+  
+  },
+  formann: {
+    active: {
+      career_id: 'naeringsliv',
+      title: 'Formann / praktisk arbeidsleder / gulvansvarlig',
+      role_key: 'formann',
+      role_id: 'naer_formann'
+    },
+    planPath: 'data/Civication/mailPlans/naeringsliv/formann_plan.json',
+    jobPath: 'data/Civication/mailFamilies/naeringsliv/job/formann_job.json',
+    peoplePath: 'data/Civication/mailFamilies/naeringsliv/people/formann_people.json',
+    packageSteps: 10,
+    packageFamilies: [
+      'first_week_praksisfortellinger_formann_job',
+      'first_week_praksisfortellinger_formann_private'
+    ],
+    expectedStepFamilies: index => index % 2 === 0
+      ? 'first_week_praksisfortellinger_formann_job'
+      : 'first_week_praksisfortellinger_formann_private',
+    expectedSignals: [
+      'team_trust',
+      'authority',
+      'safety',
+      'flow',
+      'speed',
+      'manager_pressure',
+      'future_risk',
+      'body_strain_team',
+      'conflict',
+      'clarity',
+      'stagnation'
+    ],
+    forbiddenFamilyNeedles: ['arbeider', 'fagarbeider']
+
   }
 };
 
@@ -251,18 +286,23 @@ function assertPlansAndIsolation() {
     }
   }
 
-  const arbeiderPackageIds = new Set(ROLES.arbeider.packageFamilies);
-  for (const familyId of ROLES.fagarbeider.packageFamilies) {
-    assert(!arbeiderPackageIds.has(familyId), `${familyId} should not collide with arbeider package family ids`);
+  const seenFamilies = new Map();
+  const seenMailIds = new Map();
+  const seenThreadIds = new Map();
+  for (const role of Object.keys(ROLES)) {
+    for (const familyId of ROLES[role].packageFamilies) {
+      assert(!seenFamilies.has(familyId), `${familyId} should not collide with ${seenFamilies.get(familyId)} package family ids`);
+      seenFamilies.set(familyId, role);
+    }
+    for (const mail of allPackageMails(role)) {
+      assert(!seenMailIds.has(mail.id), `mail id ${mail.id} should not collide across roles (${seenMailIds.get(mail.id)}, ${role})`);
+      seenMailIds.set(mail.id, role);
+    }
+    for (const thread of allPackageThreads(role)) {
+      assert(!seenThreadIds.has(thread.id), `consequence thread id ${thread.id} should not collide across roles (${seenThreadIds.get(thread.id)}, ${role})`);
+      seenThreadIds.set(thread.id, role);
+    }
   }
-
-  const arbeiderMailIds = new Set(allPackageMails('arbeider').map(mail => mail.id));
-  const fagarbeiderMailIds = new Set(allPackageMails('fagarbeider').map(mail => mail.id));
-  for (const id of fagarbeiderMailIds) assert(!arbeiderMailIds.has(id), `mail/thread id ${id} should not collide across roles`);
-
-  const arbeiderThreadIds = new Set(allPackageThreads('arbeider').map(thread => thread.id));
-  const fagarbeiderThreadIds = new Set(allPackageThreads('fagarbeider').map(thread => thread.id));
-  for (const id of fagarbeiderThreadIds) assert(!arbeiderThreadIds.has(id), `consequence thread id ${id} should not collide across roles`);
 }
 
 
@@ -324,12 +364,14 @@ function makeHarness(active) {
 
 async function assertRuntimeRole(role) {
   const config = ROLES[role];
-  const otherRole = role === 'arbeider' ? 'fagarbeider' : 'arbeider';
+  const otherRoles = Object.keys(ROLES).filter(item => item !== role);
   const engine = makeHarness(config.active);
   const candidates = await global.CivicationMailRuntime.debugCandidates();
   assert(candidates.length > 0, `${role} candidates should be available through runtime`);
   assert(candidates.every(mail => mail.role_scope === role), `${role} candidates should stay scoped to ${role}`);
-  assert(candidates.every(mail => !includesOtherRoleFamily(mail.mail_family, otherRole)), `${role} candidates should not include ${otherRole} families`);
+  for (const otherRole of otherRoles) {
+    assert(candidates.every(mail => !includesOtherRoleFamily(mail.mail_family, otherRole)), `${role} candidates should not include ${otherRole} families`);
+  }
 
   assert.strictEqual(pendingEvent(), null, `${role} harness should start without pending inbox items`);
   const opened = await engine.onAppOpen({ force: true });
