@@ -145,7 +145,7 @@ a:hover{
   inset:0;
   z-index:0;
   overflow:hidden;
-  background:#aeb7bd url("../bilder/kart/oslo_bakgrunn.jpg") center center / cover no-repeat;
+  background:transparent;
 }
 
 #civiMapWorld svg{
@@ -862,18 +862,6 @@ body.civi-mapmode .civi-panels{
 @media (prefers-reduced-motion: reduce){
   #civiMapWorld .civi-map-grain{display:none}
 }
-
-/* Civication Map v2.8 – ekte kartbakgrunn danner grunnlaget */
-/* Fotoet/kartet i #civiMapWorld er basen; de stiliserte lagene legges
-   gjennomsiktig oppå som spill-lag (soner, korridorer, landemerker, etiketter). */
-#civiMapWorld #civi-map-terrain{opacity:.18}
-#civiMapWorld #civi-map-water{opacity:.22}
-#civiMapWorld #civi-map-districts{opacity:.42}
-#civiMapWorld #civi-map-blocks{opacity:.40}
-#civiMapWorld #civi-map-functions{opacity:.55}
-#civiMapWorld #civi-map-corridors{opacity:.60}
-#civiMapWorld #civi-map-street-axes{opacity:.50}
-#civiMapWorld .civi-map-grain{opacity:.22}
 
 .civi-inbox-subheading{
   margin: 12px 2px 8px;
