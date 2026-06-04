@@ -8,6 +8,8 @@
     node scripts/i18n-quality-places.js en --fail-on-warning
 */
 
+import type { JsonObject, PlaceSourcePayload, PlaceTranslationMap } from "../schemas/i18n";
+
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
@@ -18,13 +20,11 @@ const lang = (process.argv.find(a => !a.startsWith("--") && a !== __filename && 
 const failOnWarning = process.argv.includes("--fail-on-warning");
 const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-quality");
 
-type JsonObject = Record<string, any>;
-
 type MasterEntry = {
   id: string;
   file: string;
   hash: string;
-  source: { name: string; desc: string; popupDesc: string };
+  source: PlaceSourcePayload;
 };
 
 type Issue = { severity: "error" | "warning"; code: string; text: string };
@@ -53,7 +53,7 @@ function paras(x: unknown): number {
   return String(x || "").split(/\n\s*\n/g).map(p => p.trim()).filter(Boolean).length;
 }
 
-function payload(p: JsonObject): { name: string; desc: string; popupDesc: string } {
+function payload(p: JsonObject): PlaceSourcePayload {
   return {
     name: norm(p.name),
     desc: norm(p.desc),
@@ -90,7 +90,7 @@ function add(list: Issue[], severity: Issue["severity"], code: string, text: str
 
 const master = loadMaster();
 const trPath = `data/i18n/content/places/${lang}.json`;
-const translations: Record<string, JsonObject> = tryReadJson(trPath);
+const translations: PlaceTranslationMap = tryReadJson(trPath);
 const results: ResultRow[] = [];
 let errors = 0;
 let warnings = 0;
