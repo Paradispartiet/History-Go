@@ -112,6 +112,59 @@
       ]
     },
     {
+      "id": "salg_og_veiledning",
+      "purpose": "Løfte salg og veiledning til rolleforståelse: ekspeditøren flytter ikke bare varer, men former tillit, behov og langsiktig kundemøte.",
+      "learning_focus": ["rolleidentitet", "kundetillit", "veiledning_vs_salg"],
+      "mails": [
+        {
+          "id": "ekspeditor_story_salg_001",
+          "mail_type": "story",
+          "mail_family": "salg_og_veiledning",
+          "role_scope": "ekspeditor",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marit_butikkleder",
+          "place_id": "storgata_handelsmiljo",
+          "subject": "Du begynner å skjønne forskjellen på å selge og å veilede",
+          "summary": "Du ser at kunden ikke bare kjøper varen, men også tilliten til at noen hjalp henne riktig.",
+          "purpose": "Gi planens story-steg et tydelig vendepunkt rundt salg, veiledning og identitet.",
+          "stakes": "Du kan bli raskere til å flytte varer, eller bedre til å forstå behov. Begge deler ser ut som arbeid, men de lærer deg ulike ting.",
+          "situation": [
+            "Etter flere kundemøter merker du et mønster: noen kunder trenger et produkt, andre trenger et spørsmål som gjør valget klarere.",
+            "Salgstallene ser bare varen som gikk ut døren.",
+            "Du begynner å se øyeblikket før salget, der tillit enten blir bygget eller brukt opp."
+          ],
+          "task_domain": "salg_og_veiledning",
+          "competency": "rolleforståelse_i_front",
+          "pressure": "salgsmål_og_tillit",
+          "choice_axis": "flytte_varer_vs_forstå_behov",
+          "consequence_axis": "kort_salg_vs_lang_tillit",
+          "narrative_arc": "ekspeditøren forstår at god veiledning er en egen faglighet i frontlinjen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Se veiledning som en egen faglighet, ikke bare salgsteknikk",
+              "reply": "Jeg ser veiledning som en egen faglighet, ikke bare salgsteknikk.",
+              "effect": 1,
+              "tags": ["craft", "trust", "guidance"],
+              "feedback": "Du gjør frontlinjearbeidet dypere enn kampanjetallene alene."
+            },
+            {
+              "id": "B",
+              "label": "Fokusere på å bli raskere og tryggere i salget",
+              "reply": "Jeg fokuserer på å bli raskere og tryggere i salget.",
+              "effect": 0,
+              "tags": ["sales", "efficiency"],
+              "feedback": "Du blir mer effektiv, men risikerer at behovene bak kjøpet blir mindre synlige."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "apning_og_lukking",
       "purpose": "Gi story-forståelse av at åpning og lukking er usynlig arbeid som gjør andres dag lettere eller tyngre.",
       "learning_focus": ["usynlig arbeid", "neste skift", "rytme"],
