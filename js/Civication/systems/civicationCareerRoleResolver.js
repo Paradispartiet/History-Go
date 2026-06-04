@@ -21,7 +21,8 @@
     controller: 'naer_controller',
     avdelingsleder: 'naer_avdelingsleder',
     mellomleder: 'naer_mellomleder',
-    by_assistent: 'by_assistent'
+    by_assistent: 'by_assistent',
+    by_saksbehandler: 'by_saksbehandler'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -33,7 +34,8 @@
     naer_controller: 'controller',
     naer_avdelingsleder: 'avdelingsleder',
     naer_mellomleder: 'mellomleder',
-    by_assistent: 'by_assistent'
+    by_assistent: 'by_assistent',
+    by_saksbehandler: 'by_saksbehandler'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -79,7 +81,9 @@
   const BY_ROLE_SCOPE_BY_TITLE = {
     studentassistent: 'by_assistent',
     praktikant_arkitektur_plan: 'by_assistent',
-    prosjektmedarbeider: 'by_assistent'
+    prosjektmedarbeider: 'by_assistent',
+    saksbehandler_plan_bygg: 'by_saksbehandler',
+    forstekonsulent: 'by_saksbehandler'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -93,8 +97,10 @@
 
     if (careerId === 'by') {
       if (roleKey === 'by_assistent') return 'by_assistent';
+      if (roleKey === 'by_saksbehandler') return 'by_saksbehandler';
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('studentassistent') || titleKey.includes('praktikant') || titleKey.includes('prosjektmedarbeider')) return 'by_assistent';
+      if (titleKey.includes('saksbehandler') || titleKey.includes('forstekonsulent')) return 'by_saksbehandler';
     }
 
     if (careerId === 'naeringsliv') {
@@ -141,6 +147,7 @@
     }
 
     if (roleKey.includes('by_assistent')) return 'by_assistent';
+    if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
     if (roleKey.includes('arbeider')) return 'arbeider';
     if (roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
