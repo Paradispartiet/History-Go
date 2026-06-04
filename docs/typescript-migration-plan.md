@@ -67,7 +67,7 @@ Node-scripts i `scripts/` og `tools/` bruker nå en blanding av `.ts`, `.js` og 
 
 Det finnes nå et lite shared TypeScript-only grunnlag for places-i18n-former i `schemas/i18n.ts`. Filen beskriver eksisterende dataformer for oversettelsesfiler og genererte worklist-rapporter, inkludert `JsonObject`, `PlaceSourcePayload`, `PlaceTranslationEntry`, `PlaceTranslationMap`, `I18nWorklistItem` og `I18nWorklistReport`.
 
-Dette er kun typegrunnlag: filen inneholder ingen runtime-logikk, ingen imports inn i browser-runtime og ingen Civication-kobling. Dagens `scripts/i18n-*.ts` bruker fortsatt sine lokale typealiaser for å unngå en bred refaktorering i samme PR. Neste mulige steg er en egen smal PR som erstatter lokale typealiaser i i18n-scripts med type-only imports fra `schemas/i18n.ts`, dersom scripts-builden samtidig justeres slik at shared schema-typer utenfor `scripts/` håndteres eksplisitt.
+Dette er kun typegrunnlag: filen inneholder ingen runtime-logikk, ingen imports inn i browser-runtime og ingen Civication-kobling. Dagens i18n-scripts bruker `import type` fra `schemas/i18n.ts` for shared schema-typing, slik at typeinformasjonen fjernes ved emit og ikke blir en Node-runtime-import. `schemas/i18n.ts` skal derfor ikke importeres som runtime-modul i scripts; imports mot denne filen skal være type-only, og `// @ts-ignore` skal ikke gjeninnføres for å skjule type-only import-problemer.
 
 ## Filgrupper og anbefalt migreringsrekkefølge
 
@@ -93,9 +93,14 @@ Vurdering:
 Scripts-migreringen har nå to separate steg, og begge er avgrenset fra browser-runtime og Civication:
 
 - **Typecheck:** `npm run typecheck:scripts` bruker `tsconfig.scripts.json` med `noEmit: true` for en separat Node-only script-flate.
-- **Build:** `npm run build:scripts` bruker `tsconfig.scripts.build.json` for å emitte kun de konverterte ikke-Civication TypeScript-scriptfilene under `scripts/` til `dist/scripts`.
+- **Build:** `npm run build:scripts` bruker `tsconfig.scripts.build.json` for å emitte kun den konverterte ikke-Civication TypeScript-scriptflaten til `dist/`.
+- **Shared schema-typing:** Build-konfigen inkluderer både de konkrete `scripts/*.ts`-entrypointene for places-i18n og `schemas/i18n.ts`, fordi i18n-scripts henter shared schema-typer derfra med `import type`.
+- **`rootDir: "."`:** Siden builden har TypeScript-kilder i både `scripts/` og `schemas/`, må felles kilde-rot være repo-roten (`.`). Hvis `rootDir` bare var `scripts`, ville `schemas/i18n.ts` ligge utenfor buildens root når typefilen inngår i programmet.
+- **`outDir: "dist"`:** Output går fortsatt til `dist/`, og kombinasjonen av `rootDir: "."` og `outDir: "dist"` bevarer undermappestrukturen slik at script-entrypointene fortsatt havner som `dist/scripts/*.js`.
 - **Samlet places-sjekk:** `npm run i18n:places:check` kjører `typecheck:scripts`, `build:scripts`, `i18n:places:audit`, `i18n:places:quality` og `i18n:places:worklist` i én kommando for places-i18n-scriptsporet.
-- **Bygde filer:** Build-konfigen produserer `dist/scripts/i18n-audit-places.js`, `dist/scripts/i18n-quality-places.js`, `dist/scripts/i18n-stamp-places.js`, `dist/scripts/i18n-worklist-places.js` og `dist/scripts/i18n-place-manifest-loader.js`.
+- **Bygde filer:** Build-konfigen produserer script-output som npm-kommandoene kjører fra `dist/scripts`, inkludert `dist/scripts/i18n-audit-places.js`, `dist/scripts/i18n-quality-places.js`, `dist/scripts/i18n-stamp-places.js`, `dist/scripts/i18n-worklist-places.js` og `dist/scripts/i18n-place-manifest-loader.js`.
+- **Npm-entrypoints:** Places-kommandoene kjører fortsatt `node dist/scripts/i18n-audit-places.js`, `node dist/scripts/i18n-quality-places.js` og `node dist/scripts/i18n-worklist-places.js --out reports/i18n-places-worklist.json` etter scripts-builden.
+- **Ingen runtime-import av schema:** `schemas/i18n.ts` skal ikke importeres som runtime-modul i scripts. Bruk `import type` for schema-typene, slik at importen ikke finnes i emitert JavaScript; ikke gjeninnfør `// @ts-ignore` for type-only imports.
 - **Ingen app-påvirkning:** Build-konfigen inkluderer ikke `js/**`, inkluderer ikke `js/Civication/**`, endrer ikke HTML/script-tags og produserer ikke browser-runtime-output.
 - **Node-kompatibilitet:** Scripts-builden beholder Node-kompatibel `module`/`moduleResolution` (`NodeNext`) og CommonJS-formen som de konverterte scriptfilene bruker med `require`/`module.exports`.
 - **Civication holdes utenfor:** Civication-relaterte scripts er fortsatt eksplisitt ekskludert med `scripts/*civication*.*`/`scripts/**/*civication*.*`, og Civication-migrering er fortsatt deferred.
@@ -106,7 +111,7 @@ Places-i18n scripts-løypen er fullført for første ikke-Civication TypeScript 
 Neste TypeScript-spor bør være ett av disse to, ikke browser-runtime og ikke Civication ennå:
 
 1. flere små ikke-Civication Node-only scripts etter samme typecheck/build/npm-mønster, eller
-2. shared schema-/typegrunnlag i `schemas/` som kan brukes av både scripts og senere runtime-migrering.
+2. videre shared schema-/typegrunnlag i `schemas/` som kan brukes av både scripts og senere runtime-migrering.
 
 Neste script-PR-er bør fortsatt:
 
