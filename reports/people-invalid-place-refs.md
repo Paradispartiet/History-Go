@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-04T10:58:00.494Z
+Generated: 2026-06-04T21:31:39.320Z
 
 ## Sammendrag
 - People-filer lest: **27**
-- People lest: **416**
+- People lest: **420**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **416**
+- Duplikate interne place-referanser: **420**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -194,6 +194,10 @@ Generated: 2026-06-04T10:58:00.494Z
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: catarina_portas (Catarina Portas) -> lisbon_a_vida_portuguesa_chiado x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: francisco_de_almeida_grandella (Francisco de Almeida Grandella) -> lisbon_armazens_do_chiado x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: adriano_telles (Adriano Telles) -> lisbon_a_brasileira x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: humberto_delgado (Humberto Delgado) -> lisbon_aeroporto_humberto_delgado_tap_headquarters x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: fernando_pinto (Fernando Pinto) -> lisbon_aeroporto_humberto_delgado_tap_headquarters x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: dionisio_pestana (Dionísio Pestana) -> lisbon_pestana_palace_hotel x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: jose_luis_constantino_dias (José Luís Constantino Dias) -> lisbon_pestana_palace_hotel x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
