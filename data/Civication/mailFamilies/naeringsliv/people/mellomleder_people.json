@@ -1090,6 +1090,1078 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_mellomleder_private",
+      "purpose": "Praksisfortellinger – Mellomleder pakke 2: Andre uke, private tråder om når oppfølgingsspråk, møteord og bufferrollen følger spilleren hjem.",
+      "learning_focus": [
+        "skille oppfølging fra menneskelig nærvær",
+        "svare uten jobbspråk",
+        "sette konkrete private grenser",
+        "ikke være buffer overalt"
+      ],
+      "week_outcomes": [
+        {
+          "id": "boundary_learner_private",
+          "condition": "Spilleren klarer å skille jobbens språk fra private relasjoner, svare menneskelig og skjerme helgen fra rapporttenkning.",
+          "effects": {
+            "relationship_private": 4,
+            "energy_weekend": 3,
+            "stress": -3,
+            "self_awareness": 3,
+            "autonomy_private": 2
+          },
+          "story": "Du lærer at ikke alt skal følges opp. Noe skal bare leves. Det gjør deg ikke mindre ansvarlig. Det gjør deg mindre utslitt."
+        }
+      ],
+      "mails": [
+        {
+          "id": "personal_mellomleder_week2_after_promising_action",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 140,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Mandagskvelden etter å ha lovet tiltak",
+          "summary": "Fra: Privat notat\nEmne: Mandag kveld\nBody:\nTiltak høres tørt ut.\n\nMen du kjenner at ordet ikke er tørt i kroppen.\n\nFor hvert tiltak ligger det noen som håper at noe faktisk endrer seg. Og noen som håper at alt kan fortsette som før, bare med bedre formuleringer.\n\nDu har skrevet tre punkter.\n\nNå må de bety noe.",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 2: Andre uke.",
+          "stakes": "Valget flytter organisatorisk oversettelse, tillit, kapasitetsforståelse, lederpress, kvalitet, privat grensesetting eller risiko videre i andre uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Mandag kveld\nBody:\nTiltak høres tørt ut.\n\nMen du kjenner at ordet ikke er tørt i kroppen.\n\nFor hvert tiltak ligger det noen som håper at noe faktisk endrer seg. Og noen som håper at alt kan fortsette som før, bare med bedre formuleringer.\n\nDu har skrevet tre punkter.\n\nNå må de bety noe.",
+            "Fra: Sara\nEmne: Hvordan gikk starten på uka?\nBody:\nHvordan gikk det i dag?\n\nDu virker sånn “jeg har sagt noe som må følges opp”-sliten."
+          ],
+          "task_domain": "privat_rollegrense",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_grenser_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fortelle at tiltakene må bli virkelige",
+              "reply": "Jeg skriver at det verste med tiltak er at folk merker om de bare er ord.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_after_promising_action_real",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "energy": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_after_promising_action_real",
+                  "relationship_sara",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Tulle det bort",
+              "reply": "Jeg svarer at jeg har blitt en person som sier “tiltak” uten ironi.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_after_promising_action_joke",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "stress": 0,
+                  "self_awareness": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_after_promising_action_joke",
+                  "relationship_sara",
+                  "mood"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare før sent",
+              "reply": "Jeg lar meldingen ligge fordi jeg ikke orker å forklare enda en ting.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_after_promising_action_late",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_sara": -1,
+                  "guilt": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_after_promising_action_late",
+                  "energy",
+                  "relationship_sara"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_mellomleder_week2_friend_not_a_followup_case",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 141,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som ikke vil bli fulgt opp",
+          "summary": "Fra: Jonas\nEmne: Ikke lag tiltak på meg\nBody:\nDu spurte i går om “hva jeg trenger fremover”.\n\nDet er sikkert godt ment.\n\nMen jeg er ikke en medarbeider i utviklingssamtale.\n\nJeg ville egentlig bare si at jeg hadde en drittdag.",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 2: Andre uke.",
+          "stakes": "Valget flytter organisatorisk oversettelse, tillit, kapasitetsforståelse, lederpress, kvalitet, privat grensesetting eller risiko videre i andre uke.",
+          "situation": [
+            "Fra: Jonas\nEmne: Ikke lag tiltak på meg\nBody:\nDu spurte i går om “hva jeg trenger fremover”.\n\nDet er sikkert godt ment.\n\nMen jeg er ikke en medarbeider i utviklingssamtale.\n\nJeg ville egentlig bare si at jeg hadde en drittdag.",
+            "Fra: Privat notat\nEmne: Oppfølging\nBody:\nDu merker det nå.\n\nDu har begynt å lytte etter tiltak.\n\nProblem. Årsak. Behov. Oppfølging.\n\nNoen ganger vil folk bare bli hørt uten at du gjør dem om til et forbedringspunkt."
+          ],
+          "task_domain": "privat_rollegrense",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_grenser_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare enkelt og menneskelig",
+              "reply": "Jeg skriver at han har rett, og spør om han bare vil fortelle uten at jeg prøver å fikse det.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_friend_not_a_followup_case_human",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 2,
+                  "self_awareness": 2,
+                  "control": -1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_friend_not_a_followup_case_human",
+                  "relationship_jonas",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklare at du bare prøvde å hjelpe",
+              "reply": "Jeg skriver at jeg bare mente å være støttende, og at han misforstod litt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_friend_not_a_followup_case_defend",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": -1,
+                  "control": 1,
+                  "conflict": 1,
+                  "self_awareness": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_friend_not_a_followup_case_defend",
+                  "relationship_jonas",
+                  "control"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare",
+              "reply": "Jeg lar meldingen ligge fordi den treffer for presist.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_friend_not_a_followup_case_silent",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "guilt": 2,
+                  "relationship_jonas": -2,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_friend_not_a_followup_case_silent",
+                  "energy",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_mellomleder_week2_meeting_words_at_home",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 142,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du bruker møteord hjemme",
+          "summary": "Fra: Sara\nEmne: Du gjorde det igjen\nBody:\nDu sa nettopp “la oss lande forventningene for kvelden”.\n\nJeg vet du var trøtt.\n\nMen jeg vil bare påpeke at det er en grusom setning.",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 2: Andre uke.",
+          "stakes": "Valget flytter organisatorisk oversettelse, tillit, kapasitetsforståelse, lederpress, kvalitet, privat grensesetting eller risiko videre i andre uke.",
+          "situation": [
+            "Fra: Sara\nEmne: Du gjorde det igjen\nBody:\nDu sa nettopp “la oss lande forventningene for kvelden”.\n\nJeg vet du var trøtt.\n\nMen jeg vil bare påpeke at det er en grusom setning.",
+            "Fra: Privat notat\nEmne: Møteord\nBody:\nNoen setninger kommer ut før du rekker å stoppe dem.\n\nLande forventninger.\n\nAvklare behov.\n\nSe på handlingsrommet.\n\nDu savner nesten den personen som bare sa: “Hva skal vi spise?”"
+          ],
+          "task_domain": "privat_rollegrense",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_grenser_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Le av det og snakke normalt",
+              "reply": "Jeg sier at hun har rett, og spør helt enkelt hva hun vil spise.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_meeting_words_at_home_human",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 2,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_meeting_words_at_home_human",
+                  "relationship_sara",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forsvare språket",
+              "reply": "Jeg sier at jeg bare prøver å være tydelig og unngå misforståelser.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_meeting_words_at_home_defend",
+              "effects": {
+                "stats": {
+                  "control": 1,
+                  "relationship_sara": -1,
+                  "stagnation_private": 1,
+                  "self_awareness": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_meeting_words_at_home_defend",
+                  "control",
+                  "relationship_sara"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bli stille",
+              "reply": "Jeg blir stille fordi jeg ikke orker å overvåke språket mitt også.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_meeting_words_at_home_silent",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_sara": -1,
+                  "guilt": 1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_meeting_words_at_home_silent",
+                  "energy",
+                  "relationship_sara"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_mellomleder_week2_private_talk_delayed",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 143,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Den private samtalen du utsetter",
+          "summary": "Fra: Sara\nEmne: Kan vi snakke litt senere?\nBody:\nIkke noe dramatisk.\n\nMen jeg vil gjerne snakke litt om hvordan denne uka har vært. Du er her, men du forsvinner litt inn i hodet.\n\nDet trenger ikke bli langt.",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 2: Andre uke.",
+          "stakes": "Valget flytter organisatorisk oversettelse, tillit, kapasitetsforståelse, lederpress, kvalitet, privat grensesetting eller risiko videre i andre uke.",
+          "situation": [
+            "Fra: Sara\nEmne: Kan vi snakke litt senere?\nBody:\nIkke noe dramatisk.\n\nMen jeg vil gjerne snakke litt om hvordan denne uka har vært. Du er her, men du forsvinner litt inn i hodet.\n\nDet trenger ikke bli langt.",
+            "Fra: Privat notat\nEmne: Samtale\nBody:\n“Kan vi snakke” er ikke en farlig setning.\n\nLikevel reagerer kroppen som om noen har sendt møteinnkalling.\n\nDu har hatt nok av samtaler som skal være tydelige, støttende, avklarende og ikke for lange.\n\nNå ber en du er glad i om noe enklere.\n\nDet føles ikke enklere."
+          ],
+          "task_domain": "privat_rollegrense",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_grenser_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta samtalen enkelt",
+              "reply": "Jeg sier ja, legger bort telefonen og prøver å svare uten jobbspråk.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_private_talk_delayed_now",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 3,
+                  "self_awareness": 2,
+                  "energy": -1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_private_talk_delayed_now",
+                  "relationship_sara",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be om å ta det senere, men konkret",
+              "reply": "Jeg sier at jeg er for sliten nå, men foreslår en konkret tid i morgen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_private_talk_delayed_concrete",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "autonomy_private": 1,
+                  "energy": 1,
+                  "guilt": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_private_talk_delayed_concrete",
+                  "relationship_sara",
+                  "autonomy_private"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Utsette vagt",
+              "reply": "Jeg sier at vi kan ta det en annen gang.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_private_talk_delayed_vague",
+              "effects": {
+                "stats": {
+                  "relationship_sara": -2,
+                  "guilt": 2,
+                  "stagnation_private": 2,
+                  "energy": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_private_talk_delayed_vague",
+                  "relationship_sara",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_mellomleder_week2_weekend_without_buffering",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 144,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten å være buffer",
+          "summary": "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på å ta imot trykk fra én kant og gjøre det mulig å bære fra en annen.\n\nDempe. Oversette. Sortere. Formulere.\n\nDet er en nyttig evne.\n\nDet er også en farlig vane.\n\nHvis du blir buffer overalt, finnes det ingen side av livet der noe bare får være sant.",
+          "purpose": "Praksisfortellinger – Mellomleder pakke 2: Andre uke.",
+          "stakes": "Valget flytter organisatorisk oversettelse, tillit, kapasitetsforståelse, lederpress, kvalitet, privat grensesetting eller risiko videre i andre uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på å ta imot trykk fra én kant og gjøre det mulig å bære fra en annen.\n\nDempe. Oversette. Sortere. Formulere.\n\nDet er en nyttig evne.\n\nDet er også en farlig vane.\n\nHvis du blir buffer overalt, finnes det ingen side av livet der noe bare får være sant.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen vil jeg ikke at du skal være mellomleder for stemningen.\n\nHvis noe er fint, kan det være fint.\n\nHvis noe er vanskelig, kan det være vanskelig.\n\nDu trenger ikke oversette alt til en håndterbar versjon.",
+            "Fra: Jonas\nEmne: Regel for helga\nBody:\nRegel:\n\nDu får ikke si “la oss se på handlingsrommet”.\n\nIkke én gang."
+          ],
+          "task_domain": "privat_rollegrense",
+          "choice_axis": "tall_mennesker_kapasitet_tillit_press",
+          "consequence_axis": "oversettelse_tillit_risiko_grenser_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Være til stede uten å dempe alt",
+              "reply": "Jeg bestemmer meg for å ikke glatte over alt i helgen, men svare enklere og sannere.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_weekend_without_buffering_present",
+              "effects": {
+                "stats": {
+                  "relationship_private": 3,
+                  "self_awareness": 2,
+                  "stress": -2,
+                  "control": -1,
+                  "energy_weekend": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_weekend_without_buffering_present",
+                  "relationship_private",
+                  "self_awareness"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skjerme en helt arbeidsfri dag",
+              "reply": "Jeg setter av én dag uten jobbmail, rapporttenkning og planer for forbedring.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_weekend_without_buffering_free_day",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 3,
+                  "stress": -2,
+                  "autonomy_private": 2,
+                  "guilt": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_weekend_without_buffering_free_day",
+                  "energy_weekend",
+                  "stress"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Planlegge helgen for å få kontroll",
+              "reply": "Jeg lager en strukturert plan for hvile, sosial tid og praktiske oppgaver.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_weekend_without_buffering_plan",
+              "effects": {
+                "stats": {
+                  "control": 3,
+                  "energy_weekend": -1,
+                  "stress": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_weekend_without_buffering_plan",
+                  "control",
+                  "energy_weekend"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "La alt flyte og svare vagt",
+              "reply": "Jeg bestemmer ingenting og svarer uklart på alle helgeforslag.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "mellomleder",
+                "week2"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "personal_mellomleder_week2_weekend_without_buffering_vague",
+              "effects": {
+                "stats": {
+                  "guilt": 2,
+                  "relationship_private": -1,
+                  "stagnation_private": 2,
+                  "control": -1,
+                  "energy_weekend": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_mellomleder_private"
+                ],
+                "set_flags": [
+                  "mellomleder_mellomleder_week2_weekend_without_buffering_vague",
+                  "guilt",
+                  "relationship_private"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "personal_mellomleder_week2_after_promising_action_real",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Hvordan gikk starten på uka?",
+          "summary": "Fra: Sara\nEmne: Re: Hvordan gikk starten på uka?\nBody:\nDet skjønner jeg.\n\nDet er kanskje forskjellen på plan og ansvar. Planen ligger i dokumentet. Ansvaret kommer hjem med deg.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Hvordan gikk starten på uka?\nBody:\nDet skjønner jeg.\n\nDet er kanskje forskjellen på plan og ansvar. Planen ligger i dokumentet. Ansvaret kommer hjem med deg."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_after_promising_action_joke",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Tiltak",
+          "summary": "Fra: Sara\nEmne: Re: Tiltak\nBody:\nDet er alvorlig.\n\nNeste steg er at du sier “lavthengende frukt” og mener det.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Tiltak\nBody:\nDet er alvorlig.\n\nNeste steg er at du sier “lavthengende frukt” og mener det."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_after_promising_action_late",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Privat notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Senere svar",
+          "summary": "Fra: Privat notat\nEmne: Senere svar\nBody:\nDu svarer senere.\n\nDa blir svaret kortere enn spørsmålet fortjente.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Senere svar\nBody:\nDu svarer senere.\n\nDa blir svaret kortere enn spørsmålet fortjente."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_friend_not_a_followup_case_human",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Ikke lag tiltak på meg",
+          "summary": "Fra: Jonas\nEmne: Re: Ikke lag tiltak på meg\nBody:\nJa.\n\nDet var egentlig alt.\n\nIkke løsning. Bare litt plass.",
+          "situation": [
+            "Fra: Jonas\nEmne: Re: Ikke lag tiltak på meg\nBody:\nJa.\n\nDet var egentlig alt.\n\nIkke løsning. Bare litt plass."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_friend_not_a_followup_case_defend",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Støtte",
+          "summary": "Fra: Jonas\nEmne: Re: Støtte\nBody:\nMulig.\n\nMen det er fortsatt litt slitsomt å bli svart som om jeg er en situasjon.",
+          "situation": [
+            "Fra: Jonas\nEmne: Re: Støtte\nBody:\nMulig.\n\nMen det er fortsatt litt slitsomt å bli svart som om jeg er en situasjon."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_friend_not_a_followup_case_silent",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Privat notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ubesvart",
+          "summary": "Fra: Privat notat\nEmne: Ubesvart\nBody:\nDu lar være å svare.\n\nDet er også en slags oppfølging.\n\nBare den dårligste.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Ubesvart\nBody:\nDu lar være å svare.\n\nDet er også en slags oppfølging.\n\nBare den dårligste."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_meeting_words_at_home_human",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Du gjorde det igjen",
+          "summary": "Fra: Sara\nEmne: Re: Du gjorde det igjen\nBody:\nDer.\n\nDet var en setning fra et menneske.\n\nVi kan jobbe med deg.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Du gjorde det igjen\nBody:\nDer.\n\nDet var en setning fra et menneske.\n\nVi kan jobbe med deg."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_meeting_words_at_home_defend",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Tydelighet",
+          "summary": "Fra: Sara\nEmne: Re: Tydelighet\nBody:\nJa.\n\nMen noen ganger blir du så tydelig at det ikke er noe varmt igjen i setningen.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Tydelighet\nBody:\nJa.\n\nMen noen ganger blir du så tydelig at det ikke er noe varmt igjen i setningen."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_meeting_words_at_home_silent",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Privat notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Stillhet",
+          "summary": "Fra: Privat notat\nEmne: Stillhet\nBody:\nDu sier ingenting.\n\nDet er i det minste ikke møteord.\n\nMen det er heller ikke helt kontakt.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Stillhet\nBody:\nDu sier ingenting.\n\nDet er i det minste ikke møteord.\n\nMen det er heller ikke helt kontakt."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_private_talk_delayed_now",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Kan vi snakke litt senere?",
+          "summary": "Fra: Sara\nEmne: Re: Kan vi snakke litt senere?\nBody:\nDette var alt jeg mente.\n\nIkke en stor samtale.\n\nBare følelsen av at du faktisk var i rommet.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Kan vi snakke litt senere?\nBody:\nDette var alt jeg mente.\n\nIkke en stor samtale.\n\nBare følelsen av at du faktisk var i rommet."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_private_talk_delayed_concrete",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: I morgen",
+          "summary": "Fra: Sara\nEmne: Re: I morgen\nBody:\nGreit.\n\nDet er lettere når du sier når, ikke bare “senere”.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: I morgen\nBody:\nGreit.\n\nDet er lettere når du sier når, ikke bare “senere”."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_private_talk_delayed_vague",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Senere",
+          "summary": "Fra: Sara\nEmne: Re: Senere\nBody:\nOk.\n\nDa antar jeg at det betyr ikke i dag.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Senere\nBody:\nOk.\n\nDa antar jeg at det betyr ikke i dag."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_weekend_without_buffering_present",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Helg",
+          "summary": "Fra: Sara\nEmne: Re: Helg\nBody:\nDet merkes.\n\nIkke fordi du sier så mye mer.\n\nMen fordi du ikke pakker alt inn før det kommer ut.",
+          "situation": [
+            "Fra: Sara\nEmne: Re: Helg\nBody:\nDet merkes.\n\nIkke fordi du sier så mye mer.\n\nMen fordi du ikke pakker alt inn før det kommer ut."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_weekend_without_buffering_free_day",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Privat notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Arbeidsfri dag",
+          "summary": "Fra: Privat notat\nEmne: Arbeidsfri dag\nBody:\nDagen blir ikke produktiv.\n\nDet er nesten ubehagelig.\n\nSå begynner det å hjelpe.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Arbeidsfri dag\nBody:\nDagen blir ikke produktiv.\n\nDet er nesten ubehagelig.\n\nSå begynner det å hjelpe."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_weekend_without_buffering_plan",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Re: Regel for helga",
+          "summary": "Fra: Jonas\nEmne: Re: Regel for helga\nBody:\nDu laget altså en handlingsplan for å være mindre handlingsplan-person.\n\nDet er imponerende på feil måte.",
+          "situation": [
+            "Fra: Jonas\nEmne: Re: Regel for helga\nBody:\nDu laget altså en handlingsplan for å være mindre handlingsplan-person.\n\nDet er imponerende på feil måte."
+          ],
+          "choices": []
+        },
+        {
+          "id": "personal_mellomleder_week2_weekend_without_buffering_vague",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_mellomleder_private",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Privat notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Uklare svar",
+          "summary": "Fra: Privat notat\nEmne: Uklare svar\nBody:\nDu slipper å velge.\n\nMen du slipper ikke følelsen av at alle venter på et svar.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Uklare svar\nBody:\nDu slipper å velge.\n\nMen du slipper ikke følelsen av at alle venter på et svar."
+          ],
+          "choices": []
+        }
+      ]
+    },
+    {
       "id": "rapportering_og_styring",
       "mails": [
         {

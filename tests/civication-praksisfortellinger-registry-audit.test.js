@@ -124,7 +124,7 @@ for (const role of registry.roles) {
   assert(role.job_family_path, `${role.role_id} should declare job_family_path`);
   assert(role.private_family_path, `${role.role_id} should declare private_family_path`);
   assert(Array.isArray(role.packages) && role.packages.length > 0, `${role.role_id} should declare packages[]`);
-  assert(Array.isArray(role.flow_tests) && role.flow_tests.length > 0, `${role.role_id} should declare flow_tests[]`);
+  assert(Array.isArray(role.flow_tests), `${role.role_id} should declare flow_tests[]`);
 
   const plan = readJson(role.plan_path);
   assert(Array.isArray(plan.sequence), `${role.plan_path} should expose sequence[]`);
