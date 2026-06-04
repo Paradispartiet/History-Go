@@ -1,28 +1,33 @@
 // CivicationMapZoom.js
-// Zoom/pan for det eksisterende Civication-SVG-kartet. Endrer KUN SVG viewBox,
-// transformerer ikke hele siden. Ingen eksterne kartbibliotek.
-// Eksponerer window.CivicationMapZoom = { init, reset, zoomIn, zoomOut, getZoom }.
+// Smooth zoom/pan for det eksisterende Civication-SVG-kartet.
+// Endrer kun SVG viewBox, og sender rolige/debounced zoom-events etter interaksjon.
 (function () {
   "use strict";
 
   const MIN_ZOOM = 1;
-  const MAX_ZOOM = 4;
+  const MAX_ZOOM = 6.5;
   const DEFAULT_ZOOM = 1;
-  const STEP = 1.3;
+  const STEP = 1.22;
+  const ZOOM_EVENT_DELAY_MS = 160;
 
-  // Senter lagres som fraksjon (0..1) av full kartflate, slik at det overlever
-  // re-render (CivicationMap.render bygger ny SVG med full viewBox).
   const STATE = { zoom: DEFAULT_ZOOM, cx: 0.5, cy: 0.5 };
 
-  const pointers = new Map(); // pointerId -> {x,y}
-  let pinchPrev = null;       // {dist, cx, cy} forrige pinch-måling
-  let panPrev = null;         // {x,y} forrige pan-punkt
+  const pointers = new Map();
+  let pinchPrev = null;
+  let panPrev = null;
   let bound = false;
+  let applyQueued = false;
+  let zoomEventTimer = null;
+  let lastZoomEventBucket = null;
+  let lastZoomEventValue = DEFAULT_ZOOM;
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
   function host() { return document.getElementById("civiMapWorld"); }
-  function svgEl() { const h = host(); return h ? h.querySelector("svg") : null; }
+  function svgEl() {
+    const h = host();
+    return h ? h.querySelector("svg") : null;
+  }
   function inMapMode() { return document.body.classList.contains("civi-mapmode"); }
 
   function dims() {
@@ -30,63 +35,93 @@
     return { w: (h && h.clientWidth) || 960, h: (h && h.clientHeight) || 640 };
   }
 
-  function apply() {
+  function zoomBucket(zoom) {
+    if (zoom > 2.2) return "high";
+    if (zoom > 1.4) return "mid";
+    return "low";
+  }
+
+  function setHostZoomLevel(zoom) {
+    const h = host();
+    if (!h) return;
+    h.setAttribute("data-civi-zoom-level", zoomBucket(zoom));
+  }
+
+  function applyNow() {
+    applyQueued = false;
+
     const svg = svgEl();
     if (!svg) return;
-    const { w, h } = dims();
-    const z = clamp(STATE.zoom, MIN_ZOOM, MAX_ZOOM);
-    STATE.zoom = z;
 
-    const vw = w / z;
-    const vh = h / z;
+    const { w, h } = dims();
+    const zoom = clamp(STATE.zoom, MIN_ZOOM, MAX_ZOOM);
+    STATE.zoom = zoom;
+
+    const vw = w / zoom;
+    const vh = h / zoom;
     const halfW = vw / 2;
     const halfH = vh / 2;
 
-    // Hold viewBox innenfor kartflaten slik at kartet ikke forsvinner.
     const cx = clamp(STATE.cx * w, halfW, w - halfW);
     const cy = clamp(STATE.cy * h, halfH, h - halfH);
     STATE.cx = w ? cx / w : 0.5;
     STATE.cy = h ? cy / h : 0.5;
 
     svg.setAttribute("viewBox", `${cx - halfW} ${cy - halfH} ${vw} ${vh}`);
+    setHostZoomLevel(zoom);
+    scheduleZoomEvent();
+  }
 
-    const hostEl = host();
-    if (hostEl) {
-      const level = z > 2.6 ? "high" : z > 1.4 ? "mid" : "low";
-      hostEl.setAttribute("data-civi-zoom-level", level);
-    }
-    dispatchZoom();
+  function requestApply() {
+    if (applyQueued) return;
+    applyQueued = true;
+    requestAnimationFrame(applyNow);
   }
 
   function dispatchZoom() {
+    const bucket = zoomBucket(STATE.zoom);
+    const zoomChangedEnough = Math.abs(STATE.zoom - lastZoomEventValue) >= 0.08;
+    if (bucket === lastZoomEventBucket && !zoomChangedEnough) return;
+
+    lastZoomEventBucket = bucket;
+    lastZoomEventValue = STATE.zoom;
+
     try {
       window.dispatchEvent(new CustomEvent("civi:mapZoomChanged", { detail: { zoom: STATE.zoom } }));
     } catch (e) {}
   }
 
-  // px,py = peker-posisjon som fraksjon (0..1) av containeren.
+  function scheduleZoomEvent() {
+    clearTimeout(zoomEventTimer);
+    zoomEventTimer = setTimeout(dispatchZoom, ZOOM_EVENT_DELAY_MS);
+  }
+
   function zoomTo(newZoom, px, py) {
-    const oldZ = STATE.zoom;
-    const z = clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
-    if (z === oldZ) return;
+    const oldZoom = STATE.zoom;
+    const zoom = clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+    if (Math.abs(zoom - oldZoom) < 0.002) return;
 
     if (typeof px === "number" && typeof py === "number") {
-      // Punktet under pekeren i full-flate-fraksjon (før zoom):
-      const ovw = 1 / oldZ;
-      const pointX = STATE.cx - ovw / 2 + px * ovw;
-      const pointY = STATE.cy - ovw / 2 + py * ovw;
-      // Behold punktet under pekeren tilnærmet fast etter zoom:
-      const nvw = 1 / z;
-      STATE.cx = pointX - (px - 0.5) * nvw;
-      STATE.cy = pointY - (py - 0.5) * nvw;
+      const oldView = 1 / oldZoom;
+      const pointX = STATE.cx - oldView / 2 + px * oldView;
+      const pointY = STATE.cy - oldView / 2 + py * oldView;
+      const newView = 1 / zoom;
+      STATE.cx = pointX - (px - 0.5) * newView;
+      STATE.cy = pointY - (py - 0.5) * newView;
     }
-    STATE.zoom = z;
-    apply();
+
+    STATE.zoom = zoom;
+    requestApply();
   }
 
   function zoomIn() { zoomTo(STATE.zoom * STEP, 0.5, 0.5); }
   function zoomOut() { zoomTo(STATE.zoom / STEP, 0.5, 0.5); }
-  function reset() { STATE.zoom = DEFAULT_ZOOM; STATE.cx = 0.5; STATE.cy = 0.5; apply(); }
+  function reset() {
+    STATE.zoom = DEFAULT_ZOOM;
+    STATE.cx = 0.5;
+    STATE.cy = 0.5;
+    requestApply();
+  }
   function getZoom() { return STATE.zoom; }
 
   function relPos(e) {
@@ -100,7 +135,7 @@
   }
 
   function onWheel(e) {
-    if (!inMapMode()) return; // ikke blokker vanlig scrolling utenfor kartmodus
+    if (!inMapMode()) return;
     e.preventDefault();
     const { px, py } = relPos(e);
     const factor = e.deltaY < 0 ? STEP : 1 / STEP;
@@ -112,14 +147,14 @@
     if (!w || !h) return;
     STATE.cx -= (dxPx / w) / STATE.zoom;
     STATE.cy -= (dyPx / h) / STATE.zoom;
-    apply();
+    requestApply();
   }
 
   function onPointerDown(e) {
     if (!inMapMode()) return;
-    // Ikke start pan på interaktive kontroller / miniatyrer.
-    const t = /** @type {Element} */ (e.target);
-    if (t && t.closest && t.closest(".civi-map-zoom-controls, .civi-hg-place-miniature, .civi-system-hud, .civi-system-panel, .civi-zone-node")) return;
+    const target = /** @type {Element} */ (e.target);
+    if (target && target.closest && target.closest(".civi-map-zoom-controls, .civi-hg-place-miniature, .civi-system-hud, .civi-system-panel, .civi-zone-node")) return;
+
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size === 1) {
       panPrev = { x: e.clientX, y: e.clientY };
@@ -146,7 +181,9 @@
   }
 
   function onPointerMove(e) {
+    if (!inMapMode()) return;
     if (!pointers.has(e.pointerId)) return;
+
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
     if (pointers.size >= 2) {
@@ -175,6 +212,7 @@
       panPrev = { x: p.x, y: p.y };
     } else if (pointers.size === 0) {
       panPrev = null;
+      scheduleZoomEvent();
     }
   }
 
@@ -208,13 +246,12 @@
   function init() {
     ensureControls();
     bind();
-    apply(); // re-apply lagret zoom på (ny) SVG
+    requestApply();
   }
 
   document.addEventListener("DOMContentLoaded", init);
-  // CivicationMap.render bygger SVG på nytt med full viewBox – gjenopprett zoom.
   window.addEventListener("civi:mapRendered", init);
-  window.addEventListener("resize", () => setTimeout(apply, 80));
+  window.addEventListener("resize", () => setTimeout(requestApply, 80));
 
   window.CivicationMapZoom = { init, reset, zoomIn, zoomOut, getZoom };
 })();
