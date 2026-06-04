@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node"
+    ],
+    "allowJs": false,
+    "checkJs": false,
+    "noEmit": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "esModuleInterop": true
+  },
+  "include": [
+    "tools/check_place_emne_ids.mts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".cache",
+    "js/**",
+    "js/Civication/**",
+    "tools/*civication*.js",
+    "tools/*civication*.ts",
+    "tools/*civication*.mts",
+    "tools/*civication*.cts",
+    "tools/**/*civication*.js",
+    "tools/**/*civication*.ts",
+    "tools/**/*civication*.mts",
+    "tools/**/*civication*.cts"
+  ]
+}
