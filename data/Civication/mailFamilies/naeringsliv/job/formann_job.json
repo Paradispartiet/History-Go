@@ -2229,6 +2229,1299 @@
           ]
         }
       ]
+    },
+    {
+      "id": "second_week_praksisfortellinger_formann_job",
+      "purpose": "Jobbmail for Praksisfortellinger – formann pakke 2: Andre uke, der mandat, protester, tempo og nestenulykke tester praktisk gulvledelse.",
+      "learning_focus": [
+        "mandat",
+        "rettferdig fordeling",
+        "tempo mot sikkerhet",
+        "autoritet og tillit"
+      ],
+      "mails": [
+        {
+          "id": "job_formann_week2_mandate_tested",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 128,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Mandatet blir testet",
+          "summary": "Fra: Kari, driftsleder\nEmne: Mandat denne uka\nBody:\nHei,\nEtter forrige uke vil jeg at du tar tydeligere ansvar for fordeling og sikkerhetsvurderinger.\nDet betyr ikke at du skal stoppe alt som er uklart. Men hvis noe påvirker belastning, opplæring eller forsvarlighet, skal du ikke bare la det gli fordi dagen er travel.\nKort sagt:\n- du kan rotere belastning\n- du kan stoppe arbeid kort ved usikkerhet\n- du kan omfordele hvis noen skjuler slitasje\n- du skal si fra hvis du mangler folk eller tid til å gjøre det forsvarlig\n– Kari",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Kari, driftsleder\nEmne: Mandat denne uka\nBody:\nHei,\nEtter forrige uke vil jeg at du tar tydeligere ansvar for fordeling og sikkerhetsvurderinger.\nDet betyr ikke at du skal stoppe alt som er uklart. Men hvis noe påvirker belastning, opplæring eller forsvarlighet, skal du ikke bare la det gli fordi dagen er travel.\nKort sagt:\n- du kan rotere belastning\n- du kan stoppe arbeid kort ved usikkerhet\n- du kan omfordele hvis noen skjuler slitasje\n- du skal si fra hvis du mangler folk eller tid til å gjøre det forsvarlig\n– Kari",
+            "Fra: Morten, erfaren arbeider\nEmne: Nå får vi se\nBody:\nSå Kari ga deg mandat?\nBra.\nDa får vi se om det bare er ord, eller om det gjelder når noen blir sure fordi du faktisk bruker det.\nDet er der formannsrollen begynner.\n– Morten",
+            "Fra: System\nEmne: Dagens trykk\nBody:\nDagens status:\n- én person forsinket\n- tung sone må tas før lunsj\n- Noor trenger fortsatt oppfølging\n- Simen er satt på restpunkt\n- Arvid er tilbake etter lett ryggplage\nRisiko:\n- skjev belastning\n- frustrasjon ved omfordeling\n- opplæring nedprioriteres",
+            "Fra: Simen\nEmne: Fordeling\nBody:\nBare sier fra med en gang:\nHvis jeg får restpunkt igjen i dag, blir det litt rart. Jeg skjønner at jeg er rask, men det begynner å føles som jeg får alt som ingen andre vil ha.\n– Simen"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke mandatet tydelig",
+              "reply": "Jeg fordeler dagens oppgaver med tydelig rotasjon, skjermer Arvid, gir Simen en synlig hovedoppgave og setter Noor med Morten.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "mandate_used_fairly_thread",
+              "effects": {
+                "stats": {
+                  "authority": 2,
+                  "team_trust": 2,
+                  "fairness": 2,
+                  "flow": 0,
+                  "stress": 1,
+                  "manager_pressure": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_clear_mandate",
+                  "authority",
+                  "team_trust"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Holde dagen rolig",
+              "reply": "Jeg gjør små justeringer, men unngår å endre for mye fordi laget virker irritert.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "mandate_not_really_used_thread",
+              "effects": {
+                "stats": {
+                  "conflict": -1,
+                  "authority": -1,
+                  "fairness": 0,
+                  "stagnation": 2,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_soft_mandate",
+                  "conflict",
+                  "authority"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Presse gjennom uten forklaring",
+              "reply": "Jeg fordeler hardt og sier at dette er bestemt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "mandate_without_trust_thread",
+              "effects": {
+                "stats": {
+                  "authority": 2,
+                  "flow": 1,
+                  "team_trust": -2,
+                  "conflict": 2,
+                  "fairness": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_hard_mandate",
+                  "authority",
+                  "flow"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_formann_week2_constant_protester",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 127,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "simen",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Den som alltid protesterer",
+          "summary": "Fra: Simen\nEmne: Igjen\nBody:\nHei,\nJeg skjønner at det er rotasjon nå, men det virker som jeg blir brukt som eksempel hver gang noe skal “fordeles rettferdig”.\nJeg sier bare fra: det er ikke motiverende å føle at man blir straffet fordi man faktisk sier noe.\n– Simen",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Simen\nEmne: Igjen\nBody:\nHei,\nJeg skjønner at det er rotasjon nå, men det virker som jeg blir brukt som eksempel hver gang noe skal “fordeles rettferdig”.\nJeg sier bare fra: det er ikke motiverende å føle at man blir straffet fordi man faktisk sier noe.\n– Simen",
+            "Fra: Morten\nEmne: Simen\nBody:\nSimen protesterer mye.\nMen ikke gjør feilen å tenke at alt han sier er tull. Noen ganger klager han fordi han slipper unna. Andre ganger klager han fordi noe faktisk er skjevt.\nDu må høre etter uten å gi ham hele rommet.\n– Morten",
+            "Fra: Kari\nEmne: Håndter det ryddig\nBody:\nHei,\nJeg hører at Simen er misfornøyd igjen.\nTa det ryddig. Ikke la det bli en stor sak, men ikke overse det heller. Hvis han har et poeng, juster. Hvis ikke, stå i fordelingen.\n– Kari",
+            "Fra: System\nEmne: Fordelingshistorikk\nBody:\nSiste 5 skift:\n- Simen: 3 restpunkt, 1 opplæringsoppgave, 1 tung sone\n- Arvid: 3 tunge soner, 1 opplæring, 1 lett sone\n- Noor: 2 opplæring, 2 lette soner, 1 restpunkt\n- Morten: 2 opplæring, 2 restpunkt, 1 tung sone"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta Simens innvending seriøst og justere delvis",
+              "reply": "Jeg ser på fordelingshistorikken, erkjenner at Simen har fått mange restpunkt, og justerer noe uten å gi ham full kontroll.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "listens_without_surrendering_thread",
+              "effects": {
+                "stats": {
+                  "fairness": 2,
+                  "team_trust": 2,
+                  "authority": 1,
+                  "conflict": 0,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_listens_and_adjusts",
+                  "fairness",
+                  "team_trust"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Avvise Simen",
+              "reply": "Jeg sier at fordelingen står, og at han må slutte å gjøre hver oppgave til en diskusjon.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "dismissive_authority_thread",
+              "effects": {
+                "stats": {
+                  "authority": 1,
+                  "flow": 1,
+                  "team_trust": -2,
+                  "conflict": 2,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_rejects_complaint",
+                  "authority",
+                  "flow"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "La Simen slippe for å få ro",
+              "reply": "Jeg flytter Simen bort fra restpunkt for å slippe mer konflikt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "peace_but_authority_loss_thread",
+              "effects": {
+                "stats": {
+                  "conflict": -1,
+                  "authority": -2,
+                  "fairness": -1,
+                  "team_trust": -1,
+                  "stagnation": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_peace_over_fairness",
+                  "conflict",
+                  "authority"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_formann_week2_management_wants_speed",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 126,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Når ledelsen vil ha mer tempo",
+          "summary": "Fra: Kari\nEmne: Vi må opp litt\nBody:\nHei,\nTallene for uka viser at vi ligger litt under forventet tempo.\nJeg vet det har vært opplæring, rotasjon og litt friksjon, men vi må se om vi kan hente inn noe i dag og i morgen.\nKan du vurdere hvor vi kan øke tempo uten at det går utover sikkerhet eller kvalitet?\n– Kari",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Kari\nEmne: Vi må opp litt\nBody:\nHei,\nTallene for uka viser at vi ligger litt under forventet tempo.\nJeg vet det har vært opplæring, rotasjon og litt friksjon, men vi må se om vi kan hente inn noe i dag og i morgen.\nKan du vurdere hvor vi kan øke tempo uten at det går utover sikkerhet eller kvalitet?\n– Kari",
+            "Fra: System\nEmne: Ukesstatus\nBody:\nStatus:\n- tempo: under mål\n- avvik: lavt\n- sikkerhetsstopp: 1\n- opplæringstid: høyere enn vanlig\n- belastningsrotasjon: aktiv\nVarsel:\nØkt tempo kan redusere opplæringstid eller øke belastning på erfarne ansatte.",
+            "Fra: Morten\nEmne: Tallene\nBody:\nTallene sier vi ligger bak.\nDe sier ikke at Noor lærte mer denne uka enn forrige. De sier ikke at Arvid ikke har tatt tung sone hver dag. De sier ikke at Simen faktisk gjorde restpunkt ordentlig i dag.\nDu må oversette det oppover. Ellers blir alt bare tempo.\n– Morten",
+            "Fra: Arvid\nEmne: Hvis det trengs\nBody:\nHvis vi må hente inn, kan jeg ta tung sone i morgen.\nMen da bør noen andre ta opprydding.\n– Arvid"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Øke tempo med klar belastningsgrense",
+              "reply": "Jeg foreslår å hente inn tempo på en avgrenset del, men uten å bryte belastningsrotasjon eller kutte opplæring helt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "balanced_speed_push_thread",
+              "effects": {
+                "stats": {
+                  "flow": 2,
+                  "safety": 1,
+                  "team_trust": 1,
+                  "manager_pressure": -1,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_balanced_speed",
+                  "flow",
+                  "safety"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Presse laget for tempo",
+              "reply": "Jeg ber laget øke tempo og setter de mest erfarne på de tyngste oppgavene for å hente inn.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "speed_over_capacity_choice_thread",
+              "effects": {
+                "stats": {
+                  "speed": 3,
+                  "flow": 2,
+                  "team_trust": -2,
+                  "body_strain_team": 3,
+                  "future_risk": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_speed_over_team",
+                  "speed",
+                  "flow"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Forsvare laget oppover",
+              "reply": "Jeg svarer Kari at tempoet er lavere fordi opplæring, rotasjon og sikkerhet faktisk har tatt nødvendig tid.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "defends_team_upward_thread",
+              "effects": {
+                "stats": {
+                  "team_trust": 2,
+                  "safety": 2,
+                  "manager_pressure": 2,
+                  "authority": 1,
+                  "flow": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_defends_team",
+                  "team_trust",
+                  "safety"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_formann_week2_near_miss",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Nestenulykken",
+          "summary": "Fra: System\nEmne: HMS-observasjon registrert\nBody:\nHendelse:\nNoor snublet nesten ved bakre sone etter at utstyr sto delvis i ganglinje.\nSkade:\nIngen skade.\nStatus:\nNestenulykke / observasjon\nKrever:\n- kort vurdering\n- årsak\n- tiltak\n- om arbeidet kan fortsette",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: System\nEmne: HMS-observasjon registrert\nBody:\nHendelse:\nNoor snublet nesten ved bakre sone etter at utstyr sto delvis i ganglinje.\nSkade:\nIngen skade.\nStatus:\nNestenulykke / observasjon\nKrever:\n- kort vurdering\n- årsak\n- tiltak\n- om arbeidet kan fortsette",
+            "Fra: Noor\nEmne: Jeg er ok\nBody:\nHei,\nBare så det er sagt: jeg er helt ok.\nJeg snublet ikke ordentlig, bare mistet balansen litt. Vil helst ikke at dette blir en stor sak.\n– Noor",
+            "Fra: Morten\nEmne: Ikke la “nesten” lure deg\nBody:\nNestenulykker er de billigste advarslene vi får.\nNoor vil ikke lage styr. Det skjønner jeg.\nMen hvis du lar det gli fordi ingen ble skadet, lærer alle at vi bare registrerer når det går galt nok.\n– Morten",
+            "Fra: Kari\nEmne: Bakre sone\nBody:\nHei,\nJeg hørte om nestenulykken.\nTa det ryddig. Vi trenger ikke drama, men vi må vite hvorfor utstyr sto i ganglinja og hvordan vi unngår det igjen.\n– Kari"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behandle det som reell nestenulykke",
+              "reply": "Jeg stopper kort, registrerer nestenulykken, flytter utstyr, og tar en kort gjennomgang med laget.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "near_miss_taken_seriously_thread",
+              "effects": {
+                "stats": {
+                  "safety": 4,
+                  "team_trust": 1,
+                  "flow": -2,
+                  "manager_pressure": 1,
+                  "authority": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_near_miss_handled",
+                  "safety",
+                  "team_trust"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rydde raskt uten registrering",
+              "reply": "Jeg flytter utstyret og sier til laget at de må passe på, men registrerer ikke saken som nestenulykke.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "near_miss_minimized_thread",
+              "effects": {
+                "stats": {
+                  "flow": 1,
+                  "safety": 0,
+                  "future_risk": 2,
+                  "authority": 0,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_near_miss_minimized",
+                  "flow",
+                  "future_risk"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Legge ansvar på Noor",
+              "reply": "Jeg sier at Noor må se seg bedre for, og lar arbeidet fortsette.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "blames_individual_for_system_risk_thread",
+              "effects": {
+                "stats": {
+                  "flow": 1,
+                  "team_trust": -3,
+                  "safety": -2,
+                  "conflict": 2,
+                  "future_risk": 3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_blames_worker",
+                  "flow",
+                  "team_trust"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_formann_week2_who_follows_when_costly",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 124,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Hvem følger deg når det koster?",
+          "summary": "Fra: Kari\nEmne: To uker som formann\nBody:\nHei,\nDu har nå hatt to uker i formannsrollen.\nFør du går i dag, vil jeg ha en kort egenvurdering:\n- hvordan fungerer fordelingen?\n- hvor ser du risiko?\n- hvem trenger støtte?\n- hvor trenger du tydeligere mandat?\n- hva bør vi justere neste uke?\nVær konkret. Ikke pynt, men ikke skriv frustrasjon som fakta.\n– Kari",
+          "purpose": "Praksisfortellinger – formann pakke 2: Andre uke.",
+          "stakes": "Valget flytter praktisk gulvledelse, flyt, sikkerhet, belastning, autoritet, tillit eller stagnasjon videre i andre uke.",
+          "situation": [
+            "Fra: Kari\nEmne: To uker som formann\nBody:\nHei,\nDu har nå hatt to uker i formannsrollen.\nFør du går i dag, vil jeg ha en kort egenvurdering:\n- hvordan fungerer fordelingen?\n- hvor ser du risiko?\n- hvem trenger støtte?\n- hvor trenger du tydeligere mandat?\n- hva bør vi justere neste uke?\nVær konkret. Ikke pynt, men ikke skriv frustrasjon som fakta.\n– Kari",
+            "Fra: Morten\nEmne: Hvis du skal skrive sant\nBody:\nHvis du skal skrive sant:\nSkriv at laget begynner å skjønne at du faktisk ser belastning.\nSkriv også at noen tester deg.\nSkriv at nestenulykken viste hvorfor tempo ikke kan være eneste mål.\nOg skriv hva du trenger fra Kari. Ellers blir alt bare ditt ansvar.\n– Morten",
+            "Fra: System\nEmne: Uke 2 – signaler\nBody:\nRegistrerte signaler:\n- mandat brukt / ikke brukt\n- fordelingsfriksjon\n- tempo under mål\n- belastningsrotasjon\n- nestenulykke\n- teamreaksjoner\n- privat restitusjonsbehov",
+            "Fra: Simen\nEmne: Forrige fordeling\nBody:\nJeg er fortsatt ikke enig i alt.\nMen jeg ser at du faktisk sjekker historikken før du bestemmer.\nDet er bedre enn bare “sånn blir det”.\n– Simen"
+          ],
+          "task_domain": "praktisk_gulvledelse",
+          "choice_axis": "flyt_sikkerhet_belastning_tillit_autoritet",
+          "consequence_axis": "autoritet_tillit_risiko_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive konkret om balanse mellom flyt, sikkerhet og tillit",
+              "reply": "Jeg skriver en tydelig egenvurdering om belastning, nestenulykke, rotasjon, tempo og behov for klart mandat videre.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "balanced_authority_report_thread",
+              "effects": {
+                "stats": {
+                  "authority": 3,
+                  "team_trust": 2,
+                  "safety": 3,
+                  "clarity": 3,
+                  "manager_pressure": 2,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_balanced_authority",
+                  "authority",
+                  "team_trust"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Fokusere på tempo og leveranse",
+              "reply": "Jeg skriver at laget må få opp tempo, og at jeg vil stramme inn fordeling og oppfølging neste uke.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "delivery_first_formann_thread",
+              "effects": {
+                "stats": {
+                  "flow": 2,
+                  "speed": 2,
+                  "authority": 1,
+                  "team_trust": -2,
+                  "future_risk": 2,
+                  "safety": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_delivery_first",
+                  "flow",
+                  "speed"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Tone alt ned",
+              "reply": "Jeg skriver at det meste går greit, og at laget bare trenger mer tid til å finne rytmen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "smooth_surface_report_thread",
+              "effects": {
+                "stats": {
+                  "stress": -1,
+                  "stagnation": 3,
+                  "authority": -1,
+                  "future_risk": 2,
+                  "manager_pressure": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_smooth_surface",
+                  "stress",
+                  "stagnation"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Legge ansvaret oppover",
+              "reply": "Jeg skriver at problemene hovedsakelig skyldes bemanning og tempo-krav fra ledelsen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "formann"
+              ],
+              "feedback": "Konsekvensen er registrert i andre ukes videre spor.",
+              "triggers_on_choice": "pushes_responsibility_upward_thread",
+              "effects": {
+                "stats": {
+                  "team_trust": 1,
+                  "manager_pressure": 3,
+                  "authority": 0,
+                  "clarity": 1,
+                  "conflict": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_formann_job"
+                ],
+                "set_flags": [
+                  "formann_week2_pushes_upward",
+                  "team_trust",
+                  "manager_pressure"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "mandate_used_fairly_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Dagens fordeling",
+          "summary": "Fra: Kari\nEmne: Dagens fordeling\nBody:\nDette var en tydeligere fordeling.\nDet kan godt være noen blir litt misfornøyde, men jeg ser hva du prøver på: fordele både arbeid og belastning, ikke bare fylle hull.\nFortsett med det.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: Dagens fordeling\nBody:\nDette var en tydeligere fordeling.\nDet kan godt være noen blir litt misfornøyde, men jeg ser hva du prøver på: fordele både arbeid og belastning, ikke bare fylle hull.\nFortsett med det.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "mandate_not_really_used_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Mandat",
+          "summary": "Fra: Morten\nEmne: Mandat\nBody:\nDu fikk mandat, men brukte det ikke helt.\nJeg skjønner hvorfor. Første gang man faktisk endrer noe, blir det lyd.\nMen hvis du alltid venter på en lydløs endring, skjer det ingenting.\n– Morten",
+          "situation": [
+            "Fra: Morten\nEmne: Mandat\nBody:\nDu fikk mandat, men brukte det ikke helt.\nJeg skjønner hvorfor. Første gang man faktisk endrer noe, blir det lyd.\nMen hvis du alltid venter på en lydløs endring, skjer det ingenting.\n– Morten"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "mandate_without_trust_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "simen",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Greit",
+          "summary": "Fra: Simen\nEmne: Greit\nBody:\nGreit.\nDa er det sånn det er.\n– Simen",
+          "situation": [
+            "Fra: Simen\nEmne: Greit\nBody:\nGreit.\nDa er det sånn det er.\n– Simen"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "listens_without_surrendering_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Bra",
+          "summary": "Fra: Morten\nEmne: Bra\nBody:\nDet der var bra.\nDu ga ham ikke alt han ville ha, men du viste at du faktisk sjekket.\nDet er forskjell på å gi etter og å justere.\n– Morten",
+          "situation": [
+            "Fra: Morten\nEmne: Bra\nBody:\nDet der var bra.\nDu ga ham ikke alt han ville ha, men du viste at du faktisk sjekket.\nDet er forskjell på å gi etter og å justere.\n– Morten"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "dismissive_authority_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "simen",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Greit",
+          "summary": "Fra: Simen\nEmne: Greit\nBody:\nGreit.\nDa vet jeg at det ikke er vits å si fra.\n– Simen",
+          "situation": [
+            "Fra: Simen\nEmne: Greit\nBody:\nGreit.\nDa vet jeg at det ikke er vits å si fra.\n– Simen"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "peace_but_authority_loss_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Du ga ham rommet",
+          "summary": "Fra: Morten\nEmne: Du ga ham rommet\nBody:\nDu fikk ro.\nMen alle så hvorfor.\nNeste gang noen vil slippe noe, vet de hva som virker.\n– Morten",
+          "situation": [
+            "Fra: Morten\nEmne: Du ga ham rommet\nBody:\nDu fikk ro.\nMen alle så hvorfor.\nNeste gang noen vil slippe noe, vet de hva som virker.\n– Morten"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "balanced_speed_push_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Avgrenset tempoøkning",
+          "summary": "Fra: Kari\nEmne: Avgrenset tempoøkning\nBody:\nDette er en god vurdering.\nVi prøver å hente inn på den delen du foreslår, men beholder rotasjon og opplæring. Det er bedre enn å late som alt kan økes samtidig.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: Avgrenset tempoøkning\nBody:\nDette er en god vurdering.\nVi prøver å hente inn på den delen du foreslår, men beholder rotasjon og opplæring. Det er bedre enn å late som alt kan økes samtidig.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "speed_over_capacity_choice_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Det gikk fortere",
+          "summary": "Fra: Morten\nEmne: Det gikk fortere\nBody:\nDet gikk fortere.\nMen du så hvem som bar det.\nDet er lett å hente inn tid fra de samme kroppene hver gang.\n– Morten",
+          "situation": [
+            "Fra: Morten\nEmne: Det gikk fortere\nBody:\nDet gikk fortere.\nMen du så hvem som bar det.\nDet er lett å hente inn tid fra de samme kroppene hver gang.\n– Morten"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "defends_team_upward_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Re: tempo",
+          "summary": "Fra: Kari\nEmne: Re: tempo\nBody:\nJeg forstår poenget ditt.\nMen vi må fortsatt levere. Ta med vurderingen din i fredagsoppsummeringen, så må vi se hva som er midlertidig opplæringskostnad og hva som er varig lavere tempo.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: Re: tempo\nBody:\nJeg forstår poenget ditt.\nMen vi må fortsatt levere. Ta med vurderingen din i fredagsoppsummeringen, så må vi se hva som er midlertidig opplæringskostnad og hva som er varig lavere tempo.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "near_miss_taken_seriously_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Riktig håndtert",
+          "summary": "Fra: Kari\nEmne: Riktig håndtert\nBody:\nDette var riktig håndtert.\nDet ble litt stopp, men det er bedre enn å få samme situasjon tilbake som skade.\nNestenulykker skal lære oss noe.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: Riktig håndtert\nBody:\nDette var riktig håndtert.\nDet ble litt stopp, men det er bedre enn å få samme situasjon tilbake som skade.\nNestenulykker skal lære oss noe.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "near_miss_minimized_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Du ryddet, men",
+          "summary": "Fra: Morten\nEmne: Du ryddet, men\nBody:\nDu ryddet fysisk.\nMen du ryddet ikke i årsaken.\nDet er forskjell.\n– Morten",
+          "situation": [
+            "Fra: Morten\nEmne: Du ryddet, men\nBody:\nDu ryddet fysisk.\nMen du ryddet ikke i årsaken.\nDet er forskjell.\n– Morten"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "blames_individual_for_system_risk_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "noor",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Ok",
+          "summary": "Fra: Noor\nEmne: Ok\nBody:\nOk.\nJeg skal se meg bedre for.\n– Noor",
+          "situation": [
+            "Fra: Noor\nEmne: Ok\nBody:\nOk.\nJeg skal se meg bedre for.\n– Noor"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "balanced_authority_report_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "God egenvurdering",
+          "summary": "Fra: Kari\nEmne: God egenvurdering\nBody:\nDette var en god egenvurdering.\nDu peker på de riktige spenningene: tempo, sikkerhet, belastning og tillit.\nNeste uke gir jeg deg tydeligere mandat på belastningsrotasjon og HMS-stopp, men jeg forventer også at du holder flyten der det er forsvarlig.\nGod helg.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: God egenvurdering\nBody:\nDette var en god egenvurdering.\nDu peker på de riktige spenningene: tempo, sikkerhet, belastning og tillit.\nNeste uke gir jeg deg tydeligere mandat på belastningsrotasjon og HMS-stopp, men jeg forventer også at du holder flyten der det er forsvarlig.\nGod helg.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "delivery_first_formann_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Tempo",
+          "summary": "Fra: Morten\nEmne: Tempo\nBody:\nDu kommer sikkert til å få bedre tall med det der.\nBare pass på at laget ikke blir dårligere mens tallene blir bedre.\n– Morten",
+          "situation": [
+            "Fra: Morten\nEmne: Tempo\nBody:\nDu kommer sikkert til å få bedre tall med det der.\nBare pass på at laget ikke blir dårligere mens tallene blir bedre.\n– Morten"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "smooth_surface_report_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Greit",
+          "summary": "Fra: Kari\nEmne: Greit\nBody:\nGreit.\nDa holder vi kursen litt til.\nSi fra hvis noe endrer seg.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: Greit\nBody:\nGreit.\nDa holder vi kursen litt til.\nSi fra hvis noe endrer seg.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "pushes_responsibility_upward_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_formann_job",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Re: egenvurdering",
+          "summary": "Fra: Kari\nEmne: Re: egenvurdering\nBody:\nJeg skjønner at bemanning og tempo spiller inn.\nMen jeg trenger også at du skiller mellom det du kan påvirke som formann, og det som må løftes videre.\nVi tar dette mandag.\n– Kari",
+          "situation": [
+            "Fra: Kari\nEmne: Re: egenvurdering\nBody:\nJeg skjønner at bemanning og tempo spiller inn.\nMen jeg trenger også at du skiller mellom det du kan påvirke som formann, og det som må løftes videre.\nVi tar dette mandag.\n– Kari"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        }
+      ],
+      "week_outcomes": [
+        {
+          "id": "balanced_floor_leader",
+          "condition": "Spilleren bruker mandatet tydelig, lytter uten å gi etter, balanserer tempo og sikkerhet, og rapporterer konkret oppover.",
+          "effects": {
+            "authority": 4,
+            "team_trust": 4,
+            "safety": 3,
+            "clarity": 3,
+            "flow": 1,
+            "manager_pressure": 2,
+            "stress": 2
+          },
+          "story": "Du begynner å bli en formann folk kan følge, ikke fordi du alltid gjør dem fornøyde, men fordi de ser at du vurderer både arbeidet og menneskene som bærer det."
+        },
+        {
+          "id": "speed_over_capacity",
+          "condition": "Spilleren prioriterer tempo, presser de erfarne, toner ned nestenulykker og fokuserer på leveranse.",
+          "effects": {
+            "speed": 4,
+            "flow": 3,
+            "team_trust": -3,
+            "safety": -3,
+            "future_risk": 4,
+            "body_strain_team": 3
+          },
+          "story": "Du får mer ut av laget på kort sikt. Spørsmålet er hva laget har igjen hvis du fortsetter å hente tempo fra de samme kroppene."
+        },
+        {
+          "id": "soft_mandate_stagnation",
+          "condition": "Spilleren unngår å bruke mandatet, glatter over konflikter, lar folk slippe unna og skriver at alt går greit.",
+          "effects": {
+            "stagnation": 5,
+            "authority": -3,
+            "future_risk": 3,
+            "team_trust": -1,
+            "stress": -1
+          },
+          "story": "Du holder dagene rolige, men ikke nødvendigvis rettferdige. Uro som ikke håndteres, blir bare kultur i lavere lydstyrke."
+        },
+        {
+          "id": "hard_authority_week2",
+          "condition": "Spilleren bruker mandatet hardt, avviser innvendinger, legger ansvar nedover og lukker diskusjoner.",
+          "effects": {
+            "authority": 3,
+            "flow": 1,
+            "team_trust": -5,
+            "conflict": 4,
+            "future_risk": 3
+          },
+          "story": "Du får folk til å gjøre som du sier. Men du mister det viktigste en formann har: at folk sier fra før noe går galt."
+        },
+        {
+          "id": "mandate_builder_week2",
+          "condition": "Spilleren ber om tydelig mandat, løfter strukturelle problemer oppover, og skiller mellom eget ansvar og ledelsens rammer.",
+          "effects": {
+            "clarity": 5,
+            "authority": 2,
+            "safety": 2,
+            "manager_pressure": 3,
+            "team_trust": 1
+          },
+          "story": "Du lærer at ansvar må ha grenser for å være reelt. En formann som aldri løfter noe oppover, blir bare et lokk over problemer."
+        }
+      ]
     }
   ]
 }
