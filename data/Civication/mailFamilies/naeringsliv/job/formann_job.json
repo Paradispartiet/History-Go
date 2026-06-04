@@ -1,11 +1,14 @@
 {
   "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
   "category": "naeringsliv",
   "role_scope": "formann",
   "mail_type": "job",
   "families": [
     {
       "id": "fordeling_av_skift",
+      "purpose": "Lære spilleren at skiftfordeling er praktisk ledelse: rytme, rettferdighet, kapasitet og sosial lesning i samme valg.",
+      "learning_focus": ["arbeidsfordeling", "belastning", "gulvautoritet"],
       "mails": [
         {
           "id": "formann_job_skift_001",
@@ -17,16 +20,29 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Skiftet settes før resten av dagen får språk",
+          "summary": "Du må fordele laget før presset begynner å vise seg tydelig.",
+          "purpose": "Etablere at skiftfordeling er både produksjonsgrep og sosialt signal.",
+          "stakes": "Maksimal flyt kan gi output, men ujevn belastning. Jevnere fordeling beskytter laget, men kan koste tempo.",
           "situation": [
             "Som formann merker du at dagen ofte avgjøres i hvordan folk plasseres før arbeidet virkelig starter.",
             "Fordelingen handler ikke bare om kompetanse, men om rytme, slit og hvem som tåler å bære hva akkurat i dag.",
             "Du må velge om du går for maksimal flyt eller mer rettferdig belastning i laget."
           ],
+          "task_domain": "skiftfordeling",
+          "competency": "arbeidsfordeling",
+          "pressure": "dagens_belastning",
+          "choice_axis": "flyt_vs_rettferdig_belastning",
+          "consequence_axis": "produksjonsro_vs_lagstillit",
+          "narrative_arc": "første formannsvalg der folk leser plasseringen som signal",
+          "learning_focus": ["skiftplanen er et sosialt signal", "rettferdighet og flyt kolliderer tidlig"],
           "choices": [
             {
               "id": "A",
               "label": "Fordele laget etter flyt og kapasitet her og nå",
+              "reply": "Jeg fordeler laget etter flyt og kapasitet her og nå.",
               "effect": 1,
               "tags": ["process", "control"],
               "feedback": "Du prioriterer produksjonsro og gjør deg tydelig som styrende ledd på gulvet."
@@ -34,6 +50,7 @@
             {
               "id": "B",
               "label": "Fordele mer jevnt for å beskytte laget over tid",
+              "reply": "Jeg fordeler mer jevnt for å beskytte laget over tid.",
               "effect": 0,
               "tags": ["care", "legitimacy"],
               "feedback": "Du bygger tillit i laget og risikerer samtidig mer friksjon i tempoet."
@@ -50,16 +67,29 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Ingen protesterer høyt, men alle leser plasseringen sin",
+          "summary": "Skiftplanen blir lest som tillit, rang og belastning før noen sier noe høyt.",
+          "purpose": "Vise at formannens fordeling skaper fortellinger i laget.",
+          "stakes": "Forklaring kan gi legitimitet, men også åpne diskusjon. Kort plan gir fart, men lar tolkningene leve fritt.",
           "situation": [
             "Du kjenner hvordan folk oppfatter skiftplanen som et signal om verdi, tillit og rang i det stille.",
             "En plassering kan oppleves som støtte, avlastning eller som at noen blir ofret for at dagen skal gå rundt.",
             "Spørsmålet er om du skal forklare mer eller la planen tale for seg selv."
           ],
+          "task_domain": "skiftforklaring",
+          "competency": "legitim_fordeling",
+          "pressure": "taus_tolkning_i_laget",
+          "choice_axis": "forklare_vs_få_i_gang",
+          "consequence_axis": "legitimitet_vs_tempo",
+          "narrative_arc": "formannen lærer at taushet rundt plan også er kommunikasjon",
+          "learning_focus": ["plasseringer får sosial mening", "forklaring kan være ledelse"],
           "choices": [
             {
               "id": "A",
               "label": "Forklare logikken bak plasseringene tydelig",
+              "reply": "Jeg forklarer logikken bak plasseringene tydelig.",
               "effect": 1,
               "tags": ["visibility", "legitimacy"],
               "feedback": "Du bruker autoriteten til å gjøre fordelingen mindre taus og mer begrunnet."
@@ -67,9 +97,57 @@
             {
               "id": "B",
               "label": "Holde planen kort og få folk raskt i gang",
+              "reply": "Jeg holder planen kort og får folk raskt i gang.",
               "effect": 0,
               "tags": ["process", "distance"],
               "feedback": "Du får fart på starten og lar tolkningen leve videre mellom folk."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_skift_003",
+          "mail_type": "job",
+          "mail_family": "fordeling_av_skift",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "solveig_erfaren",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Den samme personen havner alltid i det tunge hjørnet",
+          "summary": "Du ser at flyten blir god når én erfaren tar den tunge delen, men mønsteret begynner å bli skjevt.",
+          "purpose": "Teste om spilleren ser langsiktig belastning bak kortsiktig effektivitet.",
+          "stakes": "Holder du mønsteret, går dagen lettere. Bryter du det, blir flyten mer urolig, men laget mindre ensidig belastet.",
+          "situation": [
+            "Den erfarne gjør den tunge delen raskere enn alle andre.",
+            "Det er også derfor hun stadig havner der.",
+            "Du merker at effektivitet kan bli en penere form for skjev belastning."
+          ],
+          "task_domain": "belastningsfordeling",
+          "competency": "langsiktig_lagblikk",
+          "pressure": "effektivitet_som_skjevhet",
+          "choice_axis": "effektivitet_vs_bærekraft",
+          "consequence_axis": "dagens_output_vs_lagets_tillit",
+          "narrative_arc": "formannen ser når kompetanse blir brukt som slitasjegrunn",
+          "learning_focus": ["de flinkeste kan bli mest belastet", "bærekraft krever fordeling av tyngde"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rullere belastningen selv om flyten blir litt svakere",
+              "reply": "Jeg rullerer belastningen, selv om flyten blir litt svakere.",
+              "effect": 1,
+              "tags": ["care", "fairness", "risk"],
+              "feedback": "Du gjør laget mer bærekraftig og dagen litt mindre glatt."
+            },
+            {
+              "id": "B",
+              "label": "La den erfarne ta den tunge delen igjen for å sikre dagen",
+              "reply": "Jeg lar den erfarne ta den tunge delen igjen for å sikre dagen.",
+              "effect": 0,
+              "tags": ["output", "strain"],
+              "feedback": "Dagen sitter bedre. Mønsteret setter seg også litt dypere."
             }
           ]
         }
@@ -77,6 +155,8 @@
     },
     {
       "id": "produksjonsro",
+      "purpose": "Lære spilleren at produksjonsro er aktivt arbeid: små avbrudd, uklarheter og friksjoner må dempes før de blir systemfeil.",
+      "learning_focus": ["produksjonsro", "forebygging", "driftsblikk"],
       "mails": [
         {
           "id": "formann_job_ro_001",
@@ -88,16 +168,29 @@
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Det du egentlig selger er ro nok til at arbeidet flyter",
+          "summary": "Små forstyrrelser kan spre seg, men for mye kontroll kan også kvele laget.",
+          "purpose": "Etablere produksjonsro som aktiv formannskompetanse.",
+          "stakes": "Tidlig inngrep beskytter flyt, men kan gjøre deg kontrollerende. Mer rom gir tillit, men tåler mer ujevnhet.",
           "situation": [
             "Mye av formannsrollen består i å stoppe små forstyrrelser før de sprer seg til hele linjen.",
             "Når arbeidet flyter, ser ingen helt hva som ble avverget underveis.",
             "Du må velge om du går tett på de små tegnene eller lar dagen gå mer av seg selv."
           ],
+          "task_domain": "produksjonsro",
+          "competency": "forebyggende_ledelse",
+          "pressure": "små_forstyrrelser",
+          "choice_axis": "tidlig_inngrep_vs_tillit",
+          "consequence_axis": "stabil_flyt_vs_rom_for_laget",
+          "narrative_arc": "formannen lærer at ro ofte er resultat av usynlige justeringer",
+          "learning_focus": ["ro er arbeid", "forstyrrelser må leses tidlig"],
           "choices": [
             {
               "id": "A",
               "label": "Gå tett på og rydde opp i små forstyrrelser tidlig",
+              "reply": "Jeg går tett på og rydder opp i små forstyrrelser tidlig.",
               "effect": 1,
               "tags": ["process", "craft"],
               "feedback": "Du beskytter rytmen og gjør formannsrollen mer usynlig effektiv."
@@ -105,9 +198,104 @@
             {
               "id": "B",
               "label": "La laget løse mer selv før du griper inn",
+              "reply": "Jeg lar laget løse mer selv før jeg griper inn.",
               "effect": 0,
               "tags": ["trust", "risk"],
               "feedback": "Du gir mer rom og tåler samtidig et mer ujevnt bilde av kontroll."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_ro_002",
+          "mail_type": "job",
+          "mail_family": "produksjonsro",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari_kontor",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "En liten uklarhet begynner å lage kø i arbeidet",
+          "summary": "To personer tolker samme beskjed ulikt, og arbeidet begynner å vente på avklaring.",
+          "purpose": "Vise at uklar kommunikasjon raskt blir driftsstans på gulvet.",
+          "stakes": "Avklarer du tydelig, tar du eierskap. Lar du dem ordne det selv, kan laget lære eller låse seg.",
+          "situation": [
+            "Ingen har gjort noe dramatisk feil.",
+            "To ulike tolkninger av samme beskjed gjør likevel at arbeidet begynner å gå i rykk.",
+            "Du ser at uklarhet har en fysisk form: folk venter."
+          ],
+          "task_domain": "avklaring",
+          "competency": "tydelig_kommunikasjon",
+          "pressure": "uklar_beskjed",
+          "choice_axis": "tydelig_avklaring_vs_lokal_læring",
+          "consequence_axis": "kontroll_vs_selvstendighet",
+          "narrative_arc": "formannen ser språk bli til flyt eller stopp",
+          "learning_focus": ["uklarhet koster tid", "avklaring er praktisk ledelse"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avklar beskjeden tydelig og samle praksis rundt den",
+              "reply": "Jeg avklarer beskjeden tydelig og samler praksis rundt den.",
+              "effect": 1,
+              "tags": ["clarity", "control"],
+              "feedback": "Du gjør språket praktisk igjen før det blir større stans."
+            },
+            {
+              "id": "B",
+              "label": "La laget finne ut av det for å bygge selvstendighet",
+              "reply": "Jeg lar laget finne ut av det for å bygge selvstendighet.",
+              "effect": 0,
+              "tags": ["trust", "risk"],
+              "feedback": "Du gir rom for læring, men lar usikkerheten vare litt lenger."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_ro_003",
+          "mail_type": "job",
+          "mail_family": "produksjonsro",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Dagen flyter, men litt for stille",
+          "summary": "Alt ser rolig ut på overflaten, men du merker at folk slutter å si fra om små problemer.",
+          "purpose": "Skille ekte produksjonsro fra taushet under press.",
+          "stakes": "Å åpne for problemer kan skape støy nå. Å la stillheten stå kan gjøre feil dyrere senere.",
+          "situation": [
+            "Tallene ser bedre ut enn stemningen føles.",
+            "Folk svarer kortere og melder færre småting enn vanlig.",
+            "Du kjenner forskjellen mellom ro og undertrykt friksjon."
+          ],
+          "task_domain": "produksjonsklima",
+          "competency": "stemningslesning",
+          "pressure": "taus_flyt",
+          "choice_axis": "åpne_for_signaler_vs_beskytte_ro",
+          "consequence_axis": "tidlig_varsling_vs_overflatisk_stabilitet",
+          "narrative_arc": "formannen lærer at stillhet ikke alltid er kontroll",
+          "learning_focus": ["ro kan skjule press", "gode signaler må inviteres frem"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne kort for små varsler før de blir store",
+              "reply": "Jeg åpner kort for små varsler før de blir store.",
+              "effect": 1,
+              "tags": ["care", "visibility"],
+              "feedback": "Du lager litt støy for å beskytte den ekte roen."
+            },
+            {
+              "id": "B",
+              "label": "La den gode flyten stå og ikke pirke i stemningen",
+              "reply": "Jeg lar den gode flyten stå og pirker ikke i stemningen.",
+              "effect": 0,
+              "tags": ["avoidance", "output"],
+              "feedback": "Dagen holder seg pen. Noe under den får mindre språk."
             }
           ]
         }
@@ -115,6 +303,8 @@
     },
     {
       "id": "oppfolging_pa_gulvet",
+      "purpose": "Lære spilleren at formannsoppfølging skjer i rommet: lyder, rytme, blikk og små avvik sier ofte mer enn rapporter.",
+      "learning_focus": ["gulvnær ledelse", "observasjon", "tilgjengelig autoritet"],
       "mails": [
         {
           "id": "formann_job_gulv_001",
@@ -126,16 +316,29 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Du kan ikke lede gulvet bare fra oversikten",
+          "summary": "Tallene gir overblikk, men gulvet viser hvordan arbeidet faktisk bæres.",
+          "purpose": "Etablere forskjellen mellom styringspunkt og fysisk nærvær.",
+          "stakes": "Går du ut, får du bedre lesning men mindre kontrollpunkt. Blir du stående, beholder du overblikk og mister noen signaler.",
           "situation": [
             "Papiret sier én ting, men lyden, tempoet og blikkene på gulvet sier noe mer presist om hvordan dagen faktisk går.",
             "Som formann må du være nær nok til å lese det som ikke blir sagt i rapportene.",
             "Spørsmålet er om du blir stående i overblikket eller går mer fysisk inn i rommet."
           ],
+          "task_domain": "gulvoppfølging",
+          "competency": "situasjonslesning",
+          "pressure": "avstand_til_gulvet",
+          "choice_axis": "nærvær_vs_overblikk",
+          "consequence_axis": "tilgjengelighet_vs_kontroll",
+          "narrative_arc": "formannen lærer at ledelse på gulvet må sanses, ikke bare registreres",
+          "learning_focus": ["gulvet gir andre data enn rapporten", "nærvær endrer autoritet"],
           "choices": [
             {
               "id": "A",
               "label": "Være mer til stede ute på gulvet gjennom økten",
+              "reply": "Jeg er mer til stede ute på gulvet gjennom økten.",
               "effect": 1,
               "tags": ["visibility", "care"],
               "feedback": "Du gjør deg mer tilgjengelig og mer ansvarlig for stemningen der arbeidet faktisk skjer."
@@ -143,9 +346,104 @@
             {
               "id": "B",
               "label": "Holde deg mer i styringspunktet og følge helheten",
+              "reply": "Jeg holder meg mer i styringspunktet og følger helheten.",
               "effect": 0,
               "tags": ["control", "distance"],
               "feedback": "Du bevarer overblikket og mister noe av kontakten med detaljene på gulvet."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_gulv_002",
+          "mail_type": "job",
+          "mail_family": "oppfolging_pa_gulvet",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "solveig_erfaren",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "En ny person kopierer den verste snarveien først",
+          "summary": "Du ser at en nyansatt lærer praksis fra det som går raskest, ikke fra det som er riktigst.",
+          "purpose": "Vise at oppfølging også er å styre hva som blir modell for andre.",
+          "stakes": "Korrigerer du nå, kan det virke smålig. Lar du det gå, lærer snarveien seg videre.",
+          "situation": [
+            "Den nye gjør akkurat det den erfarne gjorde rett før.",
+            "Problemet er at den erfarne gjorde en snarvei fordi dagen var presset.",
+            "Du ser hvordan dårlig praksis kan få opplæringens form."
+          ],
+          "task_domain": "opplæring_i_praksis",
+          "competency": "modellkontroll",
+          "pressure": "snarvei_som_læring",
+          "choice_axis": "korrigere_tidlig_vs_la_praksis_glippe",
+          "consequence_axis": "standard_vs_sosial_ro",
+          "narrative_arc": "formannen ser at gulvet lærer av handlinger raskere enn instrukser",
+          "learning_focus": ["snarveier kan bli opplæring", "standard må vises i praksis"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Korriger rolig og forklar hvorfor det ikke skal læres slik",
+              "reply": "Jeg korrigerer rolig og forklarer hvorfor det ikke skal læres slik.",
+              "effect": 1,
+              "tags": ["training", "quality"],
+              "feedback": "Du stopper snarveien før den rekker å bli kultur."
+            },
+            {
+              "id": "B",
+              "label": "La det passere siden dagen er presset",
+              "reply": "Jeg lar det passere siden dagen er presset.",
+              "effect": -1,
+              "tags": ["shortcut", "avoidance"],
+              "feedback": "Dagen flyter videre, og den nye lærer noe du ikke egentlig ville lære bort."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_gulv_003",
+          "mail_type": "job",
+          "mail_family": "oppfolging_pa_gulvet",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 53,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Du hører feilen før noen melder den",
+          "summary": "Lyden fra arbeidet endrer seg litt, og du skjønner at noe er på vei ut av rytme.",
+          "purpose": "Vise kroppslig og praktisk situasjonslesning i formannsrollen.",
+          "stakes": "Tidlig inngrep kan redde flyt, men kan også se overfølsomt ut. Venter du, blir feilen lettere å bevise og dyrere å rette.",
+          "situation": [
+            "Det er ikke et varsel i systemet.",
+            "Det er en lyd, et tempo, en liten ujevnhet i måten folk flytter seg på.",
+            "Du kjenner at gulvet sier fra før rapporten gjør det."
+          ],
+          "task_domain": "tidlig_avvik",
+          "competency": "praktisk_mønsterblikk",
+          "pressure": "uklart_signal",
+          "choice_axis": "tidlig_inngrep_vs_beviselig_feil",
+          "consequence_axis": "forebygging_vs_legitimitet",
+          "narrative_arc": "formannen stoler på erfaringssans før systemet bekrefter den",
+          "learning_focus": ["erfaring merker avvik tidlig", "forebygging kan være vanskelig å bevise"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå inn tidlig og sjekke før det blir tydelig feil",
+              "reply": "Jeg går inn tidlig og sjekker før det blir tydelig feil.",
+              "effect": 1,
+              "tags": ["craft", "prevention"],
+              "feedback": "Du handler på mønsterblikket før feilen får språk."
+            },
+            {
+              "id": "B",
+              "label": "Vente til noen melder det tydeligere",
+              "reply": "Jeg venter til noen melder det tydeligere.",
+              "effect": 0,
+              "tags": ["legitimacy", "delay"],
+              "feedback": "Du får mer belegg før du griper inn. Feilen får også mer tid."
             }
           ]
         }
@@ -153,6 +451,8 @@
     },
     {
       "id": "stans_og_omdirigering",
+      "purpose": "Vise at formannen må få arbeid i bevegelse igjen når små stans gjør ansvar, retning og tillit akutt.",
+      "learning_focus": ["stans", "omdirigering", "ansvar under press"],
       "mails": [
         {
           "id": "formann_job_stans_001",
@@ -164,16 +464,29 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable_warning",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Når noe stopper, er det du som må få bevegelsen til å finne ny vei",
+          "summary": "En mindre stans gjør at flere små ledd plutselig mister retning samtidig.",
+          "purpose": "Teste lokal omdirigering før systemet får tid til å svare.",
+          "stakes": "Rask styring gir bevegelse, men samler ansvar hos deg. Forankring tar tid, men gjør laget mer medeiende.",
           "situation": [
             "En mindre stans gjør at flere små ledd plutselig mister retning samtidig.",
             "Ingen over deg er nær nok til å se hele øyeblikket slik du gjør, og de under deg trenger rask avklaring mer enn fine ord.",
             "Du må velge om du skal omdirigere hardt eller bruke mer tid på å forankre endringen i laget."
           ],
+          "task_domain": "omdirigering",
+          "competency": "rask_prioritering",
+          "pressure": "lokal_stans",
+          "choice_axis": "rask_styring_vs_forankring",
+          "consequence_axis": "bevegelse_vs_eierskap",
+          "narrative_arc": "formannen blir punktet der stans må bli ny retning",
+          "learning_focus": ["stans krever praktisk retning", "omdirigering er sosialt synlig"],
           "choices": [
             {
               "id": "A",
               "label": "Omdirigere raskt og samle avgjørelsen hos deg",
+              "reply": "Jeg omdirigerer raskt og samler avgjørelsen hos meg.",
               "effect": 1,
               "tags": ["control", "visibility"],
               "feedback": "Du skaper bevegelse fort og gjør ansvaret tydelig plassert hos deg."
@@ -181,9 +494,104 @@
             {
               "id": "B",
               "label": "Bruke noen ekstra minutter på å forankre skiftet i laget",
+              "reply": "Jeg bruker noen ekstra minutter på å forankre skiftet i laget.",
               "effect": 0,
               "tags": ["care", "legitimacy"],
               "feedback": "Du får mindre fart med én gang og mer bærekraft i hvordan folk følger deg."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_stans_002",
+          "mail_type": "job",
+          "mail_family": "stans_og_omdirigering",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "kari_kontor",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "To små stans skjer samtidig",
+          "summary": "Du kan ikke løse begge stoppene først, og valget ditt blir lest som prioritering av folk og funksjoner.",
+          "purpose": "Vise at prioritering under stans også skaper sosial mening.",
+          "stakes": "Velger du kritisk funksjon, virker du kaldere. Velger du laget som roper høyest, kan viktigere flyt glippe.",
+          "situation": [
+            "Én stans er teknisk viktigst.",
+            "Den andre lager mest uro i laget akkurat nå.",
+            "Begge grupper ser på deg for å forstå hva som teller."
+          ],
+          "task_domain": "prioritert_stans",
+          "competency": "kritisk_prioritering",
+          "pressure": "samtidige_avvik",
+          "choice_axis": "kritisk_funksjon_vs_sosial_ro",
+          "consequence_axis": "systemflyt_vs_lagstemning",
+          "narrative_arc": "formannen lærer at prioritering alltid blir tolket",
+          "learning_focus": ["ikke alle stans er like kritiske", "prioritering må kunne forklares"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta den teknisk kritiske stansen først og forklare hvorfor",
+              "reply": "Jeg tar den teknisk kritiske stansen først og forklarer hvorfor.",
+              "effect": 1,
+              "tags": ["priority", "clarity"],
+              "feedback": "Du lar kritikalitet styre, men gjør rangeringen lesbar for laget."
+            },
+            {
+              "id": "B",
+              "label": "Ta den synligste uroen først for å roe gulvet",
+              "reply": "Jeg tar den synligste uroen først for å roe gulvet.",
+              "effect": 0,
+              "tags": ["care", "risk"],
+              "feedback": "Du demper rommet, men den tekniske stansen får vokse litt i stillhet."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_stans_003",
+          "mail_type": "job",
+          "mail_family": "stans_og_omdirigering",
+          "role_scope": "formann",
+          "phase": "advanced",
+          "priority": 58,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Du må omdirigere uten å gjøre noen til problemet",
+          "summary": "En person har gjort en feil som krever omlegging, men å peke for hardt kan låse laget.",
+          "purpose": "Trene omdirigering med ansvar uten ydmykelse.",
+          "stakes": "Du kan gjøre årsaken tydelig og risikere skam, eller skjerme personen og gjøre mønsteret uklart.",
+          "situation": [
+            "Feilen har et navn, men navnet er ikke hele årsaken.",
+            "Laget trenger ny retning raskt.",
+            "Personen som glapp, ser allerede mindre ut i kroppen."
+          ],
+          "task_domain": "omlegging_etter_feil",
+          "competency": "ansvar_uten_ydmykelse",
+          "pressure": "feil_med_person",
+          "choice_axis": "tydelig_ansvar_vs_skjerming",
+          "consequence_axis": "læring_vs_låsing",
+          "narrative_arc": "formannen lærer å rette kurs uten å knuse tillit",
+          "learning_focus": ["feil må brukes uten ydmykelse", "omdirigering kan være opplæring"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar feilen som mønster og legg om arbeidet tydelig",
+              "reply": "Jeg forklarer feilen som mønster og legger om arbeidet tydelig.",
+              "effect": 1,
+              "tags": ["learning", "process"],
+              "feedback": "Du gjør feilen brukbar uten å gjøre personen alene til sak."
+            },
+            {
+              "id": "B",
+              "label": "Skjerme personen og bare flytte folk raskt videre",
+              "reply": "Jeg skjermer personen og flytter folk raskt videre.",
+              "effect": 0,
+              "tags": ["care", "avoidance"],
+              "feedback": "Du beskytter ansiktet, men mønsteret får mindre språk."
             }
           ]
         }
@@ -191,6 +599,8 @@
     },
     {
       "id": "ansvar_for_flyt",
+      "purpose": "Vise at formannens ansvar for flyt handler om å gripe inn før avgjørelser blir komfortable, men uten å gjøre laget passivt.",
+      "learning_focus": ["flytansvar", "dømmekraft", "inngrep"],
       "mails": [
         {
           "id": "formann_job_ansvar_001",
@@ -202,16 +612,29 @@
           "cooldown": 3,
           "repeatable": false,
           "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
           "subject": "Flyten bæres av at noen gjør avgjørelsene før de blir behagelige",
+          "summary": "Du må gripe inn før alle er enige, ellers blir nøling en egen kostnad.",
+          "purpose": "Etablere at flytansvar ofte er tidlig og litt ubehagelig beslutning.",
+          "stakes": "Rask avgjørelse beskytter flyt, men samler reaksjonene hos deg. Mer samtykke gir legitimitet, men kan koste rytme.",
           "situation": [
             "Du merker at rollen din blir skarpest når ingen andre helt vil eie de små, nødvendige inngrepene i tide.",
             "Som formann er du nær nok til å se når nøling blir dyrt, men også nær nok til å få reaksjonene rett tilbake.",
             "Du må velge hvor hardt du vil bruke den retten til å gripe inn."
           ],
+          "task_domain": "flytansvar",
+          "competency": "beslutning_under_press",
+          "pressure": "nøling_i_laget",
+          "choice_axis": "rask_avgjørelse_vs_samtykke",
+          "consequence_axis": "flyt_vs_eierskap",
+          "narrative_arc": "formannen kjenner kostnaden ved å være den som bestemmer før det er bekvemt",
+          "learning_focus": ["flyt krever tidlige inngrep", "beslutning skaper reaksjon"],
           "choices": [
             {
               "id": "A",
               "label": "Ta avgjørelsene raskt og stå i reaksjonene etterpå",
+              "reply": "Jeg tar avgjørelsene raskt og står i reaksjonene etterpå.",
               "effect": 1,
               "tags": ["risk", "control"],
               "feedback": "Du beskytter flyten og gjør deg mer synlig som den som faktisk styrer."
@@ -219,9 +642,104 @@
             {
               "id": "B",
               "label": "Søke mer samtykke før du griper inn",
+              "reply": "Jeg søker mer samtykke før jeg griper inn.",
               "effect": 0,
               "tags": ["legitimacy", "process"],
               "feedback": "Du bygger mer eierskap og åpner samtidig for at tempoet glipper."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_ansvar_002",
+          "mail_type": "job",
+          "mail_family": "ansvar_for_flyt",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 60,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kari_kontor",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Alle gjør litt riktig, og helheten blir likevel feil",
+          "summary": "Hver enkelt følger sin del, men helheten mister rytme fordi ingen eier overgangene.",
+          "purpose": "Vise at flyt ofte ligger mellom oppgavene, ikke inni dem.",
+          "stakes": "Tar du overgangene tydelig, blir rollen mer styrende. Lar du delene jobbe selv, kan ansvaret for helheten forsvinne.",
+          "situation": [
+            "Ingen enkeltperson gjør noe åpenbart galt.",
+            "Likevel glipper overgangen mellom to deler av arbeidet.",
+            "Du ser at flyt ikke eies av dem som bare ser sin egen oppgave."
+          ],
+          "task_domain": "overgangsansvar",
+          "competency": "helhetsblikk",
+          "pressure": "fragmentert_ansvar",
+          "choice_axis": "eie_overgangene_vs_la_delene_styre",
+          "consequence_axis": "helhet_vs_lokal_autonomi",
+          "narrative_arc": "formannen lærer at helheten kan feile selv når delene er riktige",
+          "learning_focus": ["overganger må eies", "helhetsansvar er eget arbeid"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta tydelig ansvar for overgangene mellom oppgavene",
+              "reply": "Jeg tar tydelig ansvar for overgangene mellom oppgavene.",
+              "effect": 1,
+              "tags": ["systems", "control"],
+              "feedback": "Du gjør helheten synlig og tar på deg mer av ansvaret for den."
+            },
+            {
+              "id": "B",
+              "label": "La hver del justere seg selv litt lenger",
+              "reply": "Jeg lar hver del justere seg selv litt lenger.",
+              "effect": 0,
+              "tags": ["autonomy", "risk"],
+              "feedback": "Du gir rom lokalt, men helheten fortsetter å mangle eier."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_ansvar_003",
+          "mail_type": "job",
+          "mail_family": "ansvar_for_flyt",
+          "role_scope": "formann",
+          "phase": "advanced",
+          "priority": 56,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "rune_drift",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Flyten er god, men bare fordi du bærer for mye selv",
+          "summary": "Dagen ser stabil ut, men du merker at for mye av koordineringen har havnet i hodet ditt.",
+          "purpose": "Vise risikoen ved at god formannsledelse blir for personavhengig.",
+          "stakes": "Fordeler du ansvar, kan flyten bli mer ujevn nå. Bærer du alt selv, blir systemet sårbart og du mer slitt.",
+          "situation": [
+            "Arbeidet flyter nesten for pent.",
+            "Grunnen er ikke at systemet er sterkt, men at du husker for mange små koblinger selv.",
+            "Du kjenner forskjellen mellom å lede og å bli systemets minne."
+          ],
+          "task_domain": "personavhengig_flyt",
+          "competency": "delegert_koordinering",
+          "pressure": "skjult_overbæring",
+          "choice_axis": "dele_ansvar_vs_bære_selv",
+          "consequence_axis": "robusthet_vs_kortsiktig_stabilitet",
+          "narrative_arc": "formannen lærer at flyt må bli felles, ikke bare personlig kapasitet",
+          "learning_focus": ["for mye kontroll kan gjøre systemet svakt", "robust flyt krever delt ansvar"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dele mer av koordineringen selv om dagen blir mer ujevn",
+              "reply": "Jeg deler mer av koordineringen, selv om dagen blir mer ujevn.",
+              "effect": 1,
+              "tags": ["delegation", "robustness"],
+              "feedback": "Du gjør systemet mindre avhengig av deg og tåler litt mer uorden nå."
+            },
+            {
+              "id": "B",
+              "label": "Bære koordineringen selv for å holde dagen stabil",
+              "reply": "Jeg bærer koordineringen selv for å holde dagen stabil.",
+              "effect": 0,
+              "tags": ["control", "strain"],
+              "feedback": "Dagen fungerer. Du blir mer av infrastrukturen enn rollen burde kreve."
             }
           ]
         }
