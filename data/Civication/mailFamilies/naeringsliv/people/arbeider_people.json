@@ -5,6 +5,948 @@
   "mail_type": "people",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_private",
+      "description": "Private/personlige meldinger for første uke, eksplisitt separert fra Jobbmail med channel/messageChannel private.",
+      "thread_binding": {
+        "people_thread_id": "first_week_private"
+      },
+      "mails": [
+        {
+          "id": "personal_one_small_thing",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 109,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Kan du bare hjelpe meg med én liten ting?",
+          "summary": "Fra Jonas — Emne: Du, kjapt spørsmål\n\nHei, er du på jobb nå?\n\nJeg vet det er litt dårlig timing, men jeg lurte på om du kunne se på den søknadsteksten jeg sendte i går. Det er bare et par avsnitt. Trenger ikke være nøye, bare si om den høres helt idiotisk ut.\n\nJeg skal sende den i dag.",
+          "purpose": "Privat forstyrrelse i samme uke/fase som jobbmailen, uten å bli Jobbmail.",
+          "stakes": "Valget flytter relasjon, energi, stress, skyld eller privat stagnasjon.",
+          "situation": [
+            "Fra Jonas — Emne: Du, kjapt spørsmål\n\nHei, er du på jobb nå?\n\nJeg vet det er litt dårlig timing, men jeg lurte på om du kunne se på den søknadsteksten jeg sendte i går. Det er bare et par avsnitt. Trenger ikke være nøye, bare si om den høres helt idiotisk ut.\n\nJeg skal sende den i dag.",
+            "Fra Jonas — Emne: Glemte å si\n\nDet er kanskje litt mer enn et par avsnitt.\n\nMen du trenger ikke rette alt. Bare se om starten funker. Og kanskje slutten. Og om jeg virker desperat.\n\nJeg gjør det sikkert vanskeligere enn det er."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hjelpe med en gang",
+              "reply": "Jeg hjelper Jonas med en gang, selv om jeg egentlig er på jobb.",
+              "effect": 0,
+              "tags": [
+                "relationship",
+                "risk"
+              ],
+              "feedback": "Jonas blir tryggere, men fokuset ditt lekker ut av arbeidsdagen.",
+              "triggers_on_choice": "personal_one_small_thing_helped",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "relationship_jonas",
+                  "focus_loss",
+                  "stress_private"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "trust": 1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Sette grense",
+              "reply": "Jeg svarer at jeg ikke kan nå, men at teksten sikkert er god nok til å sende.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Du beskytter fokus, men relasjonen får en liten kulde.",
+              "triggers_on_choice": "personal_one_small_thing_boundary",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "boundary_setting",
+                  "relationship_jonas_minus"
+                ]
+              },
+              "effects": {
+                "psyche": {
+                  "integrity": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_dinner_no_energy",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 108,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Middag du egentlig ikke har energi til",
+          "summary": "Fra Sara — Emne: Middag i kveld?\n\nHei. Jeg vet det er første uke og sikkert mye, men vil du spise middag i kveld? Bare enkel mat. Jeg har lyst til å høre hvordan det går.",
+          "purpose": "Privat forstyrrelse i samme uke/fase som jobbmailen, uten å bli Jobbmail.",
+          "stakes": "Valget flytter relasjon, energi, stress, skyld eller privat stagnasjon.",
+          "situation": [
+            "Fra Sara — Emne: Middag i kveld?\n\nHei. Jeg vet det er første uke og sikkert mye, men vil du spise middag i kveld? Bare enkel mat. Jeg har lyst til å høre hvordan det går.",
+            "Fra Sara — Emne: Eller blir det stress?\n\nHvis det blir for mye, si det. Jeg tåler et nei. Jeg vil bare helst ikke gjette om du faktisk vil eller bare svarer hyggelig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dra på middag",
+              "reply": "Jeg drar på middag selv om energien er lav.",
+              "effect": 1,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Du får et godt øyeblikk, men kvelden koster energi.",
+              "triggers_on_choice": "personal_dinner_go",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "relationship_sara",
+                  "energy_minus",
+                  "mood_plus"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si ærlig nei",
+              "reply": "Jeg sier ærlig at jeg ikke har energi i kveld.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Du får hvile og litt skyldfølelse, men uten å lyve.",
+              "triggers_on_choice": "personal_dinner_honest_no",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "boundary_setting",
+                  "energy_plus",
+                  "guilt"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Utsette vagt",
+              "reply": "Jeg svarer vagt og håper hun forstår av seg selv.",
+              "effect": -1,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Du slipper beslutningen nå, men flytter ubehaget til senere.",
+              "triggers_on_choice": "personal_dinner_vague",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "stagnation_private",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_bill_due",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 107,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system_okonomi",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Regningen som må betales",
+          "summary": "Fra System / Økonomi — Emne: Forfall i dag\n\nPåminnelse: faktura på 684 kr har forfall i dag. Ved forsinket betaling kan gebyr tilkomme.",
+          "purpose": "Privat forstyrrelse i samme uke/fase som jobbmailen, uten å bli Jobbmail.",
+          "stakes": "Valget flytter relasjon, energi, stress, skyld eller privat stagnasjon.",
+          "situation": [
+            "Fra System / Økonomi — Emne: Forfall i dag\n\nPåminnelse: faktura på 684 kr har forfall i dag. Ved forsinket betaling kan gebyr tilkomme.",
+            "Privat notat — Du hadde egentlig tenkt å vente til lønn, men det er enklere å glemme regningen enn å fjerne den."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Betale nå",
+              "reply": "Jeg betaler 684 kr nå.",
+              "effect": 1,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Stresset synker, men handlingsrommet blir mindre.",
+              "triggers_on_choice": "personal_bill_pay_now",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "money_minus_684",
+                  "stress_down"
+                ]
+              },
+              "effects": {
+                "capital": {
+                  "economic": -0.08
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Vente",
+              "reply": "Jeg venter og håper det går greit noen dager.",
+              "effect": -1,
+              "tags": [
+                "avoidance",
+                "risk"
+              ],
+              "feedback": "Du beholder pengene akkurat nå, men risiko og stress øker.",
+              "triggers_on_choice": "personal_bill_wait",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "future_fee",
+                  "stress_up"
+                ]
+              },
+              "effects": {
+                "capital": {
+                  "economic": 0.02
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Betale delvis / notere",
+              "reply": "Jeg betaler 300 kr eller legger inn tydelig varsel så den ikke forsvinner.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Du får litt kontroll, men risikoen er ikke borte.",
+              "triggers_on_choice": "personal_bill_partial",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "future_fee",
+                  "control"
+                ]
+              },
+              "effects": {
+                "capital": {
+                  "economic": -0.03
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_friend_replies_late",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 106,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som svarer for sent",
+          "summary": "Fra Jonas — Emne: Sorry, så dette nå\n\nJeg så ikke meldingen din i går. Beklager. Hvordan gikk resten av dagen?",
+          "purpose": "Privat forstyrrelse i samme uke/fase som jobbmailen, uten å bli Jobbmail.",
+          "stakes": "Valget flytter relasjon, energi, stress, skyld eller privat stagnasjon.",
+          "situation": [
+            "Fra Jonas — Emne: Sorry, så dette nå\n\nJeg så ikke meldingen din i går. Beklager. Hvordan gikk resten av dagen?",
+            "Fra Jonas — Emne: Ikke meningen å være rar\n\nJeg blir litt borte når jeg stresser. Det betyr ikke at jeg ikke bryr meg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare ordentlig",
+              "reply": "Jeg svarer ordentlig og gir ham en reell åpning.",
+              "effect": 1,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Relasjonen vedlikeholdes, men det koster litt energi.",
+              "triggers_on_choice": "personal_friend_late_full",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "relationship_jonas",
+                  "energy_minus"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Kort svar",
+              "reply": "Jeg sender et kort svar uten å gjøre det til en samtale.",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Du holder kontakten nøytral uten ny belastning.",
+              "triggers_on_choice": "personal_friend_late_short",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "neutral_private"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "La det ligge",
+              "reply": "Jeg lar meldingen ligge til senere.",
+              "effect": -1,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Du sparer energi nå, men skylden legger seg i bakgrunnen.",
+              "triggers_on_choice": "personal_friend_late_ignore",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "relationship_jonas_minus",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_family_expectation",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 105,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "mamma",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Familien som forventer at du stiller opp",
+          "summary": "Fra Mamma — Emne: Lørdag\n\nHei. Kan du komme innom på lørdag og hjelpe med noen ting? Det tar sikkert ikke så lang tid.",
+          "purpose": "Privat forstyrrelse i samme uke/fase som jobbmailen, uten å bli Jobbmail.",
+          "stakes": "Valget flytter relasjon, energi, stress, skyld eller privat stagnasjon.",
+          "situation": [
+            "Fra Mamma — Emne: Lørdag\n\nHei. Kan du komme innom på lørdag og hjelpe med noen ting? Det tar sikkert ikke så lang tid.",
+            "Fra Mamma — Emne: Bare hvis du kan\n\nMen det hadde vært fint. Du vet hvordan det blir hvis ingen tar det."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si ja",
+              "reply": "Jeg sier ja, selv om jeg egentlig trenger helg.",
+              "effect": 1,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Familien blir fornøyd, men helgen mister luft.",
+              "triggers_on_choice": "personal_family_yes",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "relationship_family",
+                  "energy_weekend_minus"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si nei tydelig",
+              "reply": "Jeg sier nei tydelig og foreslår et annet tidspunkt.",
+              "effect": 0,
+              "tags": [
+                "process",
+                "risk"
+              ],
+              "feedback": "Du beskytter helgen og autonomien, men skaper skyld og friksjon.",
+              "triggers_on_choice": "personal_family_no",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "boundary_setting",
+                  "energy_weekend_plus",
+                  "guilt"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Si kanskje",
+              "reply": "Jeg sier kanskje for å slippe reaksjonen nå.",
+              "effect": -1,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Du utsetter konflikten og lager privat stagnasjon.",
+              "triggers_on_choice": "personal_family_maybe",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_job"
+                ],
+                "set_flags": [
+                  "stagnation_private",
+                  "guilt"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "personal_one_small_thing_helped",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Seriøst, det hjalp",
+          "summary": "Tusen takk. Jeg byttet starten sånn du foreslo.",
+          "situation": [
+            "Tusen takk. Jeg byttet starten sånn du foreslo.\n\nDet er rart hvor mye lettere det er å sende noe når noen andre bare har sett på det først. Jeg skylder deg en kaffe."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_one_small_thing_boundary",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Skjønner",
+          "summary": "Ja, null stress.",
+          "situation": [
+            "Ja, null stress.\n\nJeg sender den bare. Det går sikkert fint."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "boundary"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_dinner_go",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Hyggelig at du kom",
+          "summary": "Det var fint å se deg, selv om du var trøtt. Jeg tror du trengte å snakke litt om noe annet.",
+          "situation": [
+            "Det var fint å se deg, selv om du var trøtt. Jeg tror du trengte å snakke litt om noe annet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 1,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_dinner_honest_no",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Takk for ærlig svar",
+          "summary": "Det er helt greit. Vi tar det en annen dag. Sov litt i stedet, ok?",
+          "situation": [
+            "Det er helt greit. Vi tar det en annen dag. Sov litt i stedet, ok?"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_dinner_vague",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ok?",
+          "summary": "Jeg skjønner ikke helt om du mener ja eller nei, men vi lar det være.",
+          "situation": [
+            "Jeg skjønner ikke helt om du mener ja eller nei, men vi lar det være."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": -1,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_bill_pay_now",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system_okonomi",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Betaling registrert",
+          "summary": "Betaling registrert. Neste økonomivarsel fjernes fra ukens kø.",
+          "situation": [
+            "Betaling registrert. Neste økonomivarsel fjernes fra ukens kø."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 1,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_bill_wait",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system_okonomi",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Forfall passert",
+          "summary": "Faktura står fortsatt åpen. Eventuelt gebyr beregnes ved neste kontroll.",
+          "situation": [
+            "Faktura står fortsatt åpen. Eventuelt gebyr beregnes ved neste kontroll."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": -1,
+              "tags": [
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_bill_partial",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Notat lagret",
+          "summary": "Du har i det minste gjort regningen synlig. Den er ikke løst, men den er heller ikke helt borte.",
+          "situation": [
+            "Du har i det minste gjort regningen synlig. Den er ikke løst, men den er heller ikke helt borte."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_friend_late_full",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Takk for at du svarte",
+          "summary": "Det hjelper faktisk at du sier det rett ut. Jeg prøver å være litt mer til stede.",
+          "situation": [
+            "Det hjelper faktisk at du sier det rett ut. Jeg prøver å være litt mer til stede."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 1,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_friend_late_short",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Fair",
+          "summary": "Skjønner. Vi snakkes når det passer.",
+          "situation": [
+            "Skjønner. Vi snakkes når det passer."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "process"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_friend_late_ignore",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Ubesvart",
+          "summary": "Meldingen blir liggende. Den tar mindre plass nå, men forsvinner ikke helt.",
+          "situation": [
+            "Meldingen blir liggende. Den tar mindre plass nå, men forsvinner ikke helt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": -1,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_family_yes",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "mamma",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Så fint",
+          "summary": "Takk. Da regner jeg med deg. Det blir godt å få det gjort.",
+          "situation": [
+            "Takk. Da regner jeg med deg. Det blir godt å få det gjort."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 1,
+              "tags": [
+                "relationship"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_family_no",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "mamma",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Åja",
+          "summary": "Ok. Jeg får se om jeg finner en annen løsning. Det hadde bare vært fint om du kunne.",
+          "situation": [
+            "Ok. Jeg får se om jeg finner en annen løsning. Det hadde bare vært fint om du kunne."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "risk"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "personal_family_maybe",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_private",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "mamma",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Når vet du det?",
+          "summary": "Kan du si fra snart? Jeg må vite om jeg skal spørre noen andre.",
+          "situation": [
+            "Kan du si fra snart? Jeg må vite om jeg skal spørre noen andre."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": -1,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Konsekvensen er registrert i ukens videre spor."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "uformell_leder_intro",
       "purpose": "Vise at arbeidsplassen har et uformelt hierarki som kan styre sterkere enn formell stilling.",
       "learning_focus": [
