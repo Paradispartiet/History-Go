@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-04T10:20:33.064Z
+Generated: 2026-06-04T10:58:00.494Z
 
 ## Sammendrag
 - People-filer lest: **27**
-- People lest: **412**
+- People lest: **416**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **412**
+- Duplikate interne place-referanser: **416**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -190,6 +190,10 @@ Generated: 2026-06-04T10:20:33.064Z
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: antonio_horta_osorio (António Horta-Osório) -> lisbon_santander_portugal_headquarters x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: paula_amorim (Paula Amorim) -> lisbon_jncquoi_avenida_da_liberdade x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: miguel_guedes_de_sousa (Miguel Guedes de Sousa) -> lisbon_jncquoi_avenida_da_liberdade x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: alexandre_soares_dos_santos (Alexandre Soares dos Santos) -> lisbon_jeronimo_martins_headquarters x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: catarina_portas (Catarina Portas) -> lisbon_a_vida_portuguesa_chiado x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: francisco_de_almeida_grandella (Francisco de Almeida Grandella) -> lisbon_armazens_do_chiado x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: adriano_telles (Adriano Telles) -> lisbon_a_brasileira x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2

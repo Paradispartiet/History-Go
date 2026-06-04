@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-06-04T10:20:33.190Z
+Generert: 2026-06-04T10:58:00.588Z
 
 ## Sammendrag
 
@@ -10,14 +10,14 @@ Generert: 2026-06-04T10:20:33.190Z
 - Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
-- Split people: **412**
-- Split unike ID-er: **412**
+- Split people: **416**
+- Split unike ID-er: **416**
 - Split-filer: **27**
 - Runtime-/manifestfiler: **27**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
-- ID-er bare i split: **318**
+- ID-er bare i split: **322**
 - Duplikate ID-er på tvers av split-filer: **0**
 - Split-filer ikke listet i manifest: **0**
 - Manifest-filer som mangler på disk: **0**
@@ -40,7 +40,7 @@ Generert: 2026-06-04T10:20:33.190Z
 | data/people/media/oslo/people_media_oslo.json | ja | 19 | 0 |  |
 | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json | ja | 10 | 0 |  |
 | data/people/musikk/oslo/people_musikk_oslo.json | ja | 15 | 0 |  |
-| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 11 | 0 |  |
+| data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json | ja | 15 | 0 |  |
 | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json | ja | 22 | 0 |  |
 | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json | ja | 3 | 0 |  |
 | data/people/natur/oslo/people_natur_oslo.json | ja | 16 | 0 |  |
@@ -76,6 +76,8 @@ Generert: 2026-06-04T10:20:33.190Z
 
 ## ID-er bare i split-filene
 
+- adriano_telles | Adriano Telles | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
+- alexandre_soares_dos_santos | Alexandre Soares dos Santos | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - alexis_de_chateauneuf | Alexis de Chateauneuf | data/people/historie/oslo/people_historie_oslo.json
 - alf_bjercke_industri_og_kvalitet | Alf Bjercke | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json
 - alfred_nobel | Alfred Nobel | data/people/filantroper/oslo/people_filantroper_oslo.json
@@ -135,6 +137,7 @@ Generert: 2026-06-04T10:20:33.190Z
 - carminho | Carminho | data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json
 - carsten_anker | Carsten Anker | data/people/historie/oslo/people_historie_oslo.json
 - catarina_furtado | Catarina Furtado | data/people/media/europe/portugal/lisbon/people_media_lisbon.json
+- catarina_portas | Catarina Portas | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - cecilie_leganger | Cecilie Leganger | data/people/sport/oslo/people_sport_oslo.json
 - celeste_caeiro | Celeste Caeiro | data/people/politikk/europe/portugal/lisbon/people_politikk_lisbon.json
 - christen_smith_schous_bryggeri | Christen Smith | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json
@@ -171,6 +174,7 @@ Generert: 2026-06-04T10:20:33.190Z
 - filomena_cautela | Filomena Cautela | data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json
 - finn_skedsmo | Finn Skedsmo | data/people/filantroper/oslo/people_filantroper_oslo.json
 - francisco_caldeira_cabral | Francisco Caldeira Cabral | data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json
+- francisco_de_almeida_grandella | Francisco de Almeida Grandella | data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json
 - fred_kavli | Fred Kavli | data/people/filantroper/oslo/people_filantroper_oslo.json
 - fred_olsen_shipping | Fred. Olsen | data/people/naeringsliv/oslo/people_naeringsliv_oslo.json
 - fredrik_barth | Fredrik Barth | data/people/vitenskap/oslo/people_vitenskap_oslo.json
