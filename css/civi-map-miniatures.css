@@ -1,0 +1,108 @@
+/* Civication – History Go miniatyr-kartlag + zoomkontroller */
+
+/* SVG-kartet selv skal ikke fange klikk; bare miniatyrene er interaktive.
+   (Sone-laget er en egen HTML-overlay og påvirkes ikke.) */
+#civiMapWorld svg { pointer-events: none; }
+
+/* ------------------------------------------------------------------ */
+/* Miniatyrbygg                                                        */
+/* ------------------------------------------------------------------ */
+.civi-hg-place-miniature {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.civi-hg-place-miniature:focus { outline: none; }
+.civi-hg-place-miniature:hover,
+.civi-hg-place-miniature:focus-visible {
+  filter: brightness(1.18) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+}
+
+/* Diorama-flater */
+.civi-hg-mini-shadow { fill: rgba(0, 0, 0, 0.30); }
+.civi-hg-base   { fill: #c9b79c; stroke: #6f5a44; stroke-width: 0.6; }
+.civi-hg-face   { fill: #b59a78; }
+.civi-hg-roof   { fill: #7d5b46; stroke: #4f3a2c; stroke-width: 0.5; }
+.civi-hg-window { fill: #cfe6f5; stroke: rgba(40, 60, 75, 0.45); stroke-width: 0.3; }
+.civi-hg-door   { fill: #4a382c; }
+.civi-hg-detail { stroke: #5a4636; stroke-width: 0.9; stroke-linecap: round; fill: none; }
+.civi-hg-step   { fill: #b7a489; }
+.civi-hg-awning { stroke: #b8443c; stroke-width: 1.2; fill: none; stroke-linecap: round; }
+.civi-hg-flag   { fill: #c64b43; }
+.civi-hg-rail   { stroke: #8a96a0; stroke-width: 0.8; stroke-linecap: round; }
+.civi-hg-stone  { fill: #9aa0a4; stroke: #5b6064; stroke-width: 0.5; }
+.civi-hg-field  { fill: #5fa36a; }
+.civi-hg-fieldline { stroke: rgba(255, 255, 255, 0.7); stroke-width: 0.5; }
+.civi-hg-fieldline-stroke { fill: none; stroke: rgba(255, 255, 255, 0.7); stroke-width: 0.5; }
+.civi-hg-goal   { fill: rgba(255, 255, 255, 0.5); stroke: #4d5a52; stroke-width: 0.4; }
+.civi-hg-green  { fill: #6aa66f; }
+.civi-hg-tree   { fill: #4f8a55; }
+.civi-hg-trunk  { fill: #6f5236; }
+.civi-hg-sand   { fill: #d9c69a; }
+.civi-hg-street { fill: #6e6f73; }
+.civi-hg-streetline { stroke: rgba(255, 230, 160, 0.7); stroke-width: 0.5; stroke-dasharray: 2 2; }
+.civi-hg-water  { fill: #3d7299; }
+.civi-hg-waterline { stroke: rgba(220, 244, 255, 0.5); stroke-width: 0.5; }
+.civi-hg-quay   { fill: #8a7d68; }
+
+.civi-hg-mini-ring {
+  stroke: rgba(0, 0, 0, 0.45);
+  stroke-width: 0.5;
+}
+
+/* ------------------------------------------------------------------ */
+/* Etiketter – skjult som standard, vist ved hover/fokus eller høy zoom */
+/* ------------------------------------------------------------------ */
+.civi-hg-place-label {
+  fill: #f6f8fc;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.7);
+  stroke-width: 2px;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+}
+.civi-hg-place-miniature:hover .civi-hg-place-label,
+.civi-hg-place-miniature:focus .civi-hg-place-label {
+  opacity: 1;
+}
+#civi-map-hg-places[data-civi-zoom-level="high"] .civi-hg-place-label {
+  opacity: 0.95;
+}
+
+/* ------------------------------------------------------------------ */
+/* Zoomkontroller                                                      */
+/* ------------------------------------------------------------------ */
+.civi-map-zoom-controls {
+  position: absolute;
+  right: 16px;
+  bottom: calc(var(--footer-h, 64px) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 6;
+  pointer-events: none;
+}
+.civi-map-zoom-btn {
+  pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(8, 8, 8, 0.72);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+.civi-map-zoom-btn:hover { background: rgba(28, 28, 28, 0.82); }
+.civi-map-zoom-btn:active { transform: translateY(1px); }
+
+/* I kartmodus skal kartlaget prioriteres for interaksjon. */
+body.civi-mapmode #civiMapWorld { touch-action: none; }
