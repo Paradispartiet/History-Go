@@ -134,6 +134,105 @@
           "reason": "Kan få egen strategisk ledelsesrolle senere. Foreløpig brukes mellomleder som enkel fallback."
         }
       ]
+    },
+    "by": {
+      "badge_source": "data/badges/by.json",
+      "implementation_status": "planned_mapping_only",
+      "mapping_principle": "By-badges er progresjon/titler innen by og arkitektur. Role scope skal være få spillbare jobbtyper: assistanse/prosjektarbeid, plan- og byggesaksbehandling, byplanlegging, arkitektur og byutviklingsledelse. Runtime/resolver bør ikke aktiveres for disse før tilhørende mailPlans, mailFamilies og jobLearningProfiles finnes.",
+      "roles": {
+        "by_assistent": {
+          "role_id": "by_assistent",
+          "role_type": "assistanse_og_prosjektgrunnlag",
+          "implementation_status": "planned",
+          "description": "Tidlige roller med støttearbeid, enkel dokumentasjon, kartgrunnlag, befaring, notater og praktisk prosjektforståelse.",
+          "badge_titles": [
+            "Studentassistent",
+            "Praktikant (arkitektur/plan)",
+            "Prosjektmedarbeider"
+          ]
+        },
+        "by_saksbehandler": {
+          "role_id": "by_saksbehandler",
+          "role_type": "plan_og_byggesak",
+          "implementation_status": "planned",
+          "description": "Saksbehandling, regelverk, nabohensyn, byggesak, dokumentasjon og forvaltningens møte med konkrete steder.",
+          "badge_titles": [
+            "Saksbehandler (plan/bygg)",
+            "Førstekonsulent"
+          ]
+        },
+        "by_radgiver_plan": {
+          "role_id": "by_radgiver_plan",
+          "role_type": "radgivning_og_byplanfag",
+          "implementation_status": "planned",
+          "description": "Rådgivning, analyser, byutviklingsnotater, medvirkning, planfaglige vurderinger og tverrfaglig oversettelse.",
+          "badge_titles": [
+            "Rådgiver (byutvikling)",
+            "Seniorrådgiver (byutvikling)",
+            "Arealplanlegger",
+            "Byplanlegger"
+          ]
+        },
+        "by_prosjektleder": {
+          "role_id": "by_prosjektleder",
+          "role_type": "byutviklingsprosjekt_og_koordinering",
+          "implementation_status": "planned",
+          "description": "Prosjektledelse, koordinering, framdrift, politiske bestillinger, økonomi, aktører og konflikter mellom ideal og gjennomføring.",
+          "badge_titles": [
+            "Prosjektleder (byutvikling)",
+            "Seksjonsleder",
+            "Fagsjef (plan/bygg)",
+            "Direktør (byutvikling)"
+          ]
+        },
+        "by_arkitekt": {
+          "role_id": "by_arkitekt",
+          "role_type": "arkitektur_og_byform",
+          "implementation_status": "planned",
+          "description": "Arkitektur, form, rom, materialitet, estetikk, program, stedstilpasning og spenningen mellom byggverk og byliv.",
+          "badge_titles": [
+            "Arkitekt",
+            "Seniorarkitekt",
+            "Byarkitekt"
+          ]
+        }
+      },
+      "title_to_role_scope": {
+        "Studentassistent": "by_assistent",
+        "Praktikant (arkitektur/plan)": "by_assistent",
+        "Prosjektmedarbeider": "by_assistent",
+        "Saksbehandler (plan/bygg)": "by_saksbehandler",
+        "Førstekonsulent": "by_saksbehandler",
+        "Rådgiver (byutvikling)": "by_radgiver_plan",
+        "Seniorrådgiver (byutvikling)": "by_radgiver_plan",
+        "Arealplanlegger": "by_radgiver_plan",
+        "Byplanlegger": "by_radgiver_plan",
+        "Prosjektleder (byutvikling)": "by_prosjektleder",
+        "Seksjonsleder": "by_prosjektleder",
+        "Arkitekt": "by_arkitekt",
+        "Seniorarkitekt": "by_arkitekt",
+        "Fagsjef (plan/bygg)": "by_prosjektleder",
+        "Byarkitekt": "by_arkitekt",
+        "Direktør (byutvikling)": "by_prosjektleder"
+      },
+      "future_split_candidates": [
+        {
+          "role_scope": "by_myndighet_og_politikk",
+          "candidate_badge_titles": [
+            "Seksjonsleder",
+            "Fagsjef (plan/bygg)",
+            "Direktør (byutvikling)"
+          ],
+          "reason": "Kan senere få egen spillmekanikk for politisk bestilling, forvaltningsmakt, budsjett og offentlig ansvar. Foreløpig samles de i by_prosjektleder."
+        },
+        {
+          "role_scope": "byarkitekt_fagmyndighet",
+          "candidate_badge_titles": [
+            "Byarkitekt"
+          ],
+          "reason": "Kan senere få egen rolle som fagmyndighet for helhetlig byform, arkitekturpolitikk og offentlig bykvalitet. Foreløpig samles den i by_arkitekt."
+        }
+      ]
     }
   }
 }
