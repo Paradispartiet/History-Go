@@ -22,7 +22,8 @@
     avdelingsleder: 'naer_avdelingsleder',
     mellomleder: 'naer_mellomleder',
     by_assistent: 'by_assistent',
-    by_saksbehandler: 'by_saksbehandler'
+    by_saksbehandler: 'by_saksbehandler',
+    by_radgiver_plan: 'by_radgiver_plan'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -35,7 +36,8 @@
     naer_avdelingsleder: 'avdelingsleder',
     naer_mellomleder: 'mellomleder',
     by_assistent: 'by_assistent',
-    by_saksbehandler: 'by_saksbehandler'
+    by_saksbehandler: 'by_saksbehandler',
+    by_radgiver_plan: 'by_radgiver_plan'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -83,7 +85,11 @@
     praktikant_arkitektur_plan: 'by_assistent',
     prosjektmedarbeider: 'by_assistent',
     saksbehandler_plan_bygg: 'by_saksbehandler',
-    forstekonsulent: 'by_saksbehandler'
+    forstekonsulent: 'by_saksbehandler',
+    radgiver_byutvikling: 'by_radgiver_plan',
+    seniorradgiver_byutvikling: 'by_radgiver_plan',
+    arealplanlegger: 'by_radgiver_plan',
+    byplanlegger: 'by_radgiver_plan'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -98,9 +104,11 @@
     if (careerId === 'by') {
       if (roleKey === 'by_assistent') return 'by_assistent';
       if (roleKey === 'by_saksbehandler') return 'by_saksbehandler';
+      if (roleKey === 'by_radgiver_plan') return 'by_radgiver_plan';
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('studentassistent') || titleKey.includes('praktikant') || titleKey.includes('prosjektmedarbeider')) return 'by_assistent';
       if (titleKey.includes('saksbehandler') || titleKey.includes('forstekonsulent')) return 'by_saksbehandler';
+      if (titleKey.includes('radgiver') || titleKey.includes('arealplanlegger') || titleKey.includes('byplanlegger')) return 'by_radgiver_plan';
     }
 
     if (careerId === 'naeringsliv') {
@@ -148,6 +156,7 @@
 
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
+    if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
     if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
     if (roleKey.includes('arbeider')) return 'arbeider';
     if (roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
