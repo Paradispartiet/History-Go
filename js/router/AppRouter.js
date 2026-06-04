@@ -8,8 +8,32 @@
   const DEFAULT_ROUTE = "#/map";
   let started = false;
 
+  function normalizeHash(hash) {
+    return String(hash || DEFAULT_ROUTE).startsWith("#")
+      ? String(hash || DEFAULT_ROUTE)
+      : `#${hash}`;
+  }
+
+  function encodeRoutePart(value) {
+    return encodeURIComponent(String(value || "").trim());
+  }
+
+  function mapPath() {
+    return "#/map";
+  }
+
+  function placePath(placeId) {
+    const id = encodeRoutePart(placeId);
+    return id ? `#/place/${id}` : mapPath();
+  }
+
+  function quizPath(targetId) {
+    const id = encodeRoutePart(targetId);
+    return id ? `#/quiz/${id}` : mapPath();
+  }
+
   function parseHash(hash) {
-    const raw = String(hash || "").trim() || DEFAULT_ROUTE;
+    const raw = normalizeHash(hash || location.hash || DEFAULT_ROUTE);
     const clean = raw.startsWith("#") ? raw.slice(1) : raw;
     const parts = clean.split("/").filter(Boolean).map(decodeURIComponent);
     return {
@@ -17,12 +41,6 @@
       name: parts[0] || "map",
       params: parts.slice(1)
     };
-  }
-
-  function normalizeHash(hash) {
-    return String(hash || DEFAULT_ROUTE).startsWith("#")
-      ? String(hash || DEFAULT_ROUTE)
-      : `#${hash}`;
   }
 
   function navigate(hash, { replace = false } = {}) {
@@ -44,23 +62,35 @@
     return true;
   }
 
+  function toMap(options = {}) {
+    return navigate(mapPath(), options);
+  }
+
+  function toPlace(placeId, options = {}) {
+    return navigate(placePath(placeId), options);
+  }
+
+  function toQuiz(targetId, options = {}) {
+    return navigate(quizPath(targetId), options);
+  }
+
   function render() {
     const route = parseHash(location.hash);
 
     if (route.name === "" || route.name === "map") {
-      window.HGMapView?.show?.();
+      window.HGMapView?.showMap?.();
       return;
     }
 
     if (route.name === "place") {
       const ok = window.HGMapView?.openPlace?.(route.params[0]);
-      if (!ok) window.HGMapView?.show?.();
+      if (!ok) window.HGMapView?.showMap?.();
       return;
     }
 
     if (route.name === "quiz") {
       const ok = window.HGMapView?.openQuiz?.(route.params[0]);
-      if (!ok) window.HGMapView?.show?.();
+      if (!ok) window.HGMapView?.showMap?.();
       return;
     }
 
@@ -96,6 +126,13 @@
     start,
     navigate,
     render,
-    parseHash
+    parseHash,
+    normalizeHash,
+    mapPath,
+    placePath,
+    quizPath,
+    toMap,
+    toPlace,
+    toQuiz
   };
 })();
