@@ -8,11 +8,44 @@ const MAX_RAW_LINES = 80;
 
 const DIAG_RE = /^(.+?)\((\d+),(\d+)\):\s+error\s+(TS\d+):\s+(.*)$/;
 
-function normalizePath(filePath) {
+type TypecheckRunResult = {
+  code: number;
+  stdout: string;
+  stderr: string;
+};
+
+type ParsedDiagnostic = {
+  file: string;
+  line: number;
+  column: number;
+  code: string;
+  message: string;
+};
+
+type UnknownDiagnosticLine = string;
+
+type BuildReportArgs = {
+  exitCode: number;
+  combinedOutput: string;
+  parsed: ParsedDiagnostic[];
+  unknownLines: UnknownDiagnosticLine[];
+};
+
+type GroupSummary = {
+  files: Set<string>;
+  count: number;
+};
+
+type FileSummary = {
+  count: number;
+  group: string;
+};
+
+function normalizePath(filePath: string): string {
   return filePath.replace(/\\/g, '/').replace(/^\.\//, '');
 }
 
-function mapGroup(filePath) {
+function mapGroup(filePath: string): string {
   const p = normalizePath(filePath);
   if (p.startsWith('schemas/')) return 'schemas/**';
   if (p.startsWith('js/state/')) return 'js/state/**';
@@ -29,8 +62,8 @@ function mapGroup(filePath) {
   return 'other';
 }
 
-function runTypecheck() {
-  return new Promise((resolve, reject) => {
+function runTypecheck(): Promise<TypecheckRunResult> {
+  return new Promise<TypecheckRunResult>((resolve, reject) => {
     const child = spawn('npm', ['run', 'typecheck']);
     let stdout = '';
     let stderr = '';
@@ -46,28 +79,28 @@ function runTypecheck() {
   });
 }
 
-function escapeCell(value) {
+function escapeCell(value: string | number): string {
   return String(value).replace(/\|/g, '\\|');
 }
 
-function uniqueExampleFiles(files, limit = 3) {
+function uniqueExampleFiles(files: Iterable<string>, limit = 3): string {
   return [...files].sort().slice(0, limit).join('<br>') || '-';
 }
 
-function buildReport({ exitCode, combinedOutput, parsed, unknownLines }) {
-  const byFile = new Map();
-  const byGroup = new Map();
-  const byCode = new Map();
+function buildReport({ exitCode, combinedOutput, parsed, unknownLines }: BuildReportArgs): string {
+  const byFile = new Map<string, FileSummary>();
+  const byGroup = new Map<string, GroupSummary>();
+  const byCode = new Map<string, number>();
 
   for (const d of parsed) {
     const file = normalizePath(d.file);
     const group = mapGroup(file);
 
     if (!byFile.has(file)) byFile.set(file, { count: 0, group });
-    byFile.get(file).count += 1;
+    byFile.get(file)!.count += 1;
 
-    if (!byGroup.has(group)) byGroup.set(group, { files: new Set(), count: 0 });
-    const g = byGroup.get(group);
+    if (!byGroup.has(group)) byGroup.set(group, { files: new Set<string>(), count: 0 });
+    const g = byGroup.get(group)!;
     g.files.add(file);
     g.count += 1;
 
@@ -142,18 +175,18 @@ ${rawBlock}
 `;
 }
 
-async function main() {
+async function main(): Promise<void> {
   const { code, stdout, stderr } = await runTypecheck();
   const combinedOutput = `${stdout}${stdout && stderr ? '\n' : ''}${stderr}`;
   const lines = combinedOutput.split(/\r?\n/);
 
-  const parsed = [];
-  const unknownLines = [];
+  const parsed: ParsedDiagnostic[] = [];
+  const unknownLines: UnknownDiagnosticLine[] = [];
 
   for (const line of lines) {
     const m = line.match(DIAG_RE);
     if (m) {
-      parsed.push({ file: m[1], line: Number(m[2]), column: Number(m[3]), code: m[4], message: m[5] });
+      parsed.push({ file: m[1]!, line: Number(m[2]), column: Number(m[3]), code: m[4]!, message: m[5]! });
       continue;
     }
     if (line.includes('error TS')) unknownLines.push(line);
