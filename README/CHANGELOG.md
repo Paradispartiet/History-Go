@@ -1,4 +1,34 @@
 # 🧭 HISTORY GO — CHANGELOG
+
+## 2026-06-05 — Index app shell / fast boot / router
+
+**Status:** Stabil index-appstruktur etablert  
+**Fokus:** Raskere første skjerm, tydeligere app-shell og tryggere intern navigasjon
+
+### Endret
+- `index.html` er dokumentert som hoved-app-shell for kart, nearby, place card og quiz.
+- Index-start er delt i `bootCritical()` og `bootBackground()`:
+  - `bootCritical()` gjør kart/places/appklar raskt.
+  - `bootBackground()` laster people, relations, Wonderkammer, nature, Lesespor, stories, events, brands og sekundære data etterpå.
+- `AppRouter` eier foreløpig index-rutene:
+  - `#/map`
+  - `#/place/:id`
+  - `#/quiz/:id`
+- `MapView` styrer route-state for map/place/quiz uten å flytte profil eller Civication inn i index.
+- Bildehåndtering i index er stabilisert for å redusere blink/flimmer ved samme placeCard/nearby-render.
+- TypeScript/JSDoc-baseline er oppdatert for app-shell/router og Lesespor/Leksikon-resultattyping.
+
+### Ikke endret
+- `profile.html` er fortsatt egen side.
+- `Civication.html` og `js/Civication/**` er fortsatt egne systemer og ble ikke flyttet inn i index-router.
+- Ingen stor SPA-/framework-refaktor er gjort.
+
+### Dokumentasjon
+- Se [`docs/APP_STRUCTURE_INDEX.md`](../docs/APP_STRUCTURE_INDEX.md)
+- Se også [`README/SYSTEM_MAP.md`](./SYSTEM_MAP.md)
+
+---
+
 ## v4.0 — Knowledge & Insight Build
 **Status:** Stabil kjerne · Systemintegrasjon fullført  
 **Fokus:** Fra “quiz + kart” → komplett kunnskaps- og innsiktssystem  
