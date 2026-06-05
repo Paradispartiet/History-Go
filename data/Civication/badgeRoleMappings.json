@@ -233,6 +233,110 @@
           "reason": "Kan senere få egen rolle som fagmyndighet for helhetlig byform, arkitekturpolitikk og offentlig bykvalitet. Foreløpig samles den i by_arkitekt."
         }
       ]
+    },
+    "sport": {
+      "badge_source": "data/badges/sport.json",
+      "implementation_status": "planned_mapping_only",
+      "mapping_principle": "Sport-badges er progresjon/titler innen idrett, lek og konkurranse. Role scope skal være få spillbare jobbtyper: utøverutvikling, lagkaptein/ansvar i gruppe, trenerarbeid, sportslig ledelse og stjerne-/legendestatus. Runtime/resolver bør ikke aktiveres for disse før tilhørende mailPlans, mailFamilies og jobLearningProfiles finnes.",
+      "roles": {
+        "sport_utover": {
+          "role_id": "sport_utover",
+          "role_type": "utoverutvikling_og_konkurranse",
+          "implementation_status": "planned",
+          "description": "Spillbar jobbtype for utøverløpet: trening, konkurranse, disiplin, prestasjon, kropp, lagmiljø og utvikling fra mosjonist til landslagsnivå.",
+          "badge_titles": [
+            "Mosjonist",
+            "Aktiv utøver",
+            "Konkurranseutøver",
+            "Klubbspiller",
+            "Eliteseriespiller",
+            "Profesjonell utøver",
+            "Landslagsutøver"
+          ]
+        },
+        "sport_kaptein": {
+          "role_id": "sport_kaptein",
+          "role_type": "kaptein_og_lagansvar",
+          "implementation_status": "planned",
+          "description": "Spillbar jobbtype for ansvar i laget: garderobe, normer, lagmoral, konflikt, prestasjonspress og bro mellom trener og spillere.",
+          "badge_titles": [
+            "Kaptein"
+          ]
+        },
+        "sport_trener": {
+          "role_id": "sport_trener",
+          "role_type": "trenerarbeid_og_spillerutvikling",
+          "implementation_status": "planned",
+          "description": "Spillbar jobbtype for trenerrollen: øktplanlegging, kampforberedelse, utvikling, uttak, kommunikasjon, disiplin og omsorg for spillere.",
+          "badge_titles": [
+            "Trener",
+            "Hovedtrener"
+          ]
+        },
+        "sport_sportsledelse": {
+          "role_id": "sport_sportsledelse",
+          "role_type": "sportslig_ledelse_og_klubbstrategi",
+          "implementation_status": "planned",
+          "description": "Spillbar jobbtype for sportslig ledelse: klubbstrategi, rekruttering, trenervalg, spillerlogistikk, økonomiske rammer og langsiktig prestasjonskultur.",
+          "badge_titles": [
+            "Sportssjef"
+          ]
+        },
+        "sport_legende": {
+          "role_id": "sport_legende",
+          "role_type": "stjerne_legende_og_offentlig_symbol",
+          "implementation_status": "planned",
+          "description": "Spillbar jobbtype for toppstatus: forventninger, forbildeansvar, media, arv, symbolverdi, merkevare og avstanden mellom menneske og ikon.",
+          "badge_titles": [
+            "Olympisk Mester",
+            "Idrettsstjerne",
+            "Idrettslegende"
+          ]
+        }
+      },
+      "title_to_role_scope": {
+        "Mosjonist": "sport_utover",
+        "Aktiv utøver": "sport_utover",
+        "Konkurranseutøver": "sport_utover",
+        "Klubbspiller": "sport_utover",
+        "Eliteseriespiller": "sport_utover",
+        "Profesjonell utøver": "sport_utover",
+        "Landslagsutøver": "sport_utover",
+        "Kaptein": "sport_kaptein",
+        "Trener": "sport_trener",
+        "Hovedtrener": "sport_trener",
+        "Sportssjef": "sport_sportsledelse",
+        "Olympisk Mester": "sport_legende",
+        "Idrettsstjerne": "sport_legende",
+        "Idrettslegende": "sport_legende"
+      },
+      "future_split_candidates": [
+        {
+          "role_scope": "sport_eliteutover",
+          "candidate_badge_titles": [
+            "Eliteseriespiller",
+            "Profesjonell utøver",
+            "Landslagsutøver"
+          ],
+          "reason": "Kan senere skilles ut dersom toppidrett trenger egne mekanikker for kontrakt, uttak, mediepress, skadehåndtering og prestasjon under offentlig blikk. Foreløpig samles de i sport_utover."
+        },
+        {
+          "role_scope": "sport_topptrener",
+          "candidate_badge_titles": [
+            "Hovedtrener"
+          ],
+          "reason": "Kan senere få egen rolle dersom hovedtreneransvar trenger egen spillmekanikk for stab, kampplan, ledelse, uttak og klubbpress. Foreløpig samles den i sport_trener."
+        },
+        {
+          "role_scope": "sport_offentlig_ikon",
+          "candidate_badge_titles": [
+            "Olympisk Mester",
+            "Idrettsstjerne",
+            "Idrettslegende"
+          ],
+          "reason": "Kan senere få egen spillmekanikk for etterliv, sponsorpress, forbildeansvar, medier og kulturell symbolstatus. Foreløpig samles de i sport_legende."
+        }
+      ]
     }
   }
 }
