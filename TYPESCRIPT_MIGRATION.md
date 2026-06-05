@@ -831,3 +831,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added minimal declarations for the app-shell/router globals (`bootCritical`, `bootBackground`, `HGAppRouter`, `HGMapView`, and related shell bridge globals) plus the existing `DataHub.loadLesespor` contract.
 - Regenerated `reports/typecheck-baseline-report.md`: the current baseline is 51 diagnostic lines across 13 files, with remaining diagnostics outside the app-shell/router target files.
 - Runtime behavior is unchanged: no router, boot, layout, CSS, data, HTML, or app-flow changes were made; `profile.html` and `Civication.html` were not touched.
+
+## Phase 89: Lesespor DataHub result declaration pass
+
+- Added a narrow declaration-only result shape for DataHub.loadLesespor() in schemas/globals.d.ts.
+- The declared result matches the existing runtime return shape from js/dataHub.js: items, byPlace and manifest.
+- This removes the leksikon_loader.js unknown.items diagnostics without changing runtime behavior.
+- No Civication files, runtime logic, router, boot, CSS, HTML, data files or app flow were changed.
