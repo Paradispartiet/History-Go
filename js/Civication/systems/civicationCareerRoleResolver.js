@@ -29,7 +29,8 @@
     by_radgiver_plan: 'by_radgiver_plan',
     by_prosjektleder: 'by_prosjektleder',
     by_arkitekt: 'by_arkitekt',
-    sport_utover: 'sport_utover'
+    sport_utover: 'sport_utover',
+    sport_kaptein: 'sport_kaptein'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -46,7 +47,8 @@
     by_radgiver_plan: 'by_radgiver_plan',
     by_prosjektleder: 'by_prosjektleder',
     by_arkitekt: 'by_arkitekt',
-    sport_utover: 'sport_utover'
+    sport_utover: 'sport_utover',
+    sport_kaptein: 'sport_kaptein'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -115,7 +117,8 @@
     klubbspiller: 'sport_utover',
     eliteseriespiller: 'sport_utover',
     profesjonell_utover: 'sport_utover',
-    landslagsutover: 'sport_utover'
+    landslagsutover: 'sport_utover',
+    kaptein: 'sport_kaptein'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -129,8 +132,10 @@
 
     if (careerId === 'sport') {
       if (roleKey === 'sport_utover') return 'sport_utover';
+      if (roleKey === 'sport_kaptein') return 'sport_kaptein';
       if (SPORT_ROLE_SCOPE_BY_TITLE[titleKey]) return SPORT_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('mosjonist') || titleKey.includes('utover') || titleKey.includes('konkurranseutover') || titleKey.includes('klubbspiller') || titleKey.includes('eliteseriespiller') || titleKey.includes('landslagsutover')) return 'sport_utover';
+      if (titleKey.includes('kaptein')) return 'sport_kaptein';
     }
 
     if (careerId === 'by') {
@@ -191,6 +196,7 @@
     }
 
     if (roleKey.includes('sport_utover')) return 'sport_utover';
+    if (roleKey.includes('sport_kaptein')) return 'sport_kaptein';
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
