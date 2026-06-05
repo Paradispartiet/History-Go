@@ -12,20 +12,79 @@ import {
   RECOMMENDED_PLACE_FIELDS
 } from "./placeSchemaPolicy.mjs";
 
+type ImportOptions = {
+  file: string;
+  dryRun: boolean;
+  help?: boolean;
+};
+
+type JsonObject = Record<string, unknown>;
+
+type PlaceRow = JsonObject & {
+  id?: unknown;
+  name?: unknown;
+  category?: unknown;
+  lat?: unknown;
+  lon?: unknown;
+  year?: unknown;
+  desc?: unknown;
+  r?: unknown;
+};
+
+type ImportPlaceRow = PlaceRow & {
+  targetFile?: unknown;
+};
+
+type PlaceManifest = {
+  files?: unknown;
+};
+
+type ManifestLoadResult = {
+  entries: unknown[];
+  entryToPath: Map<string, string>;
+};
+
+type ExistingPlacesLoadResult = {
+  existingIds: Set<string>;
+  fileData: Map<string, { filePath: string; data: unknown; places: PlaceRow[] }>;
+};
+
+type PreparedImportPlace = {
+  targetFile: string;
+  place: PlaceRow;
+};
+
+type PreparedImportResult = {
+  errors: string[];
+  warnings: string[];
+  preparedPlaces: PreparedImportPlace[];
+  targetFiles: string[];
+};
+
+type ImportReportArgs = {
+  dryRun: boolean;
+  importCount: number;
+  targetFiles: string[];
+  ids: string[];
+  warnings: string[];
+  errors: string[];
+  changedFiles?: string[];
+};
+
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, "data", "places", "manifest.json");
 const DEFAULT_IMPORT_PATH = path.join(ROOT, "data", "import", "new-places.json");
 
-function rel(filePath) {
+function rel(filePath: string): string {
   return path.relative(ROOT, filePath).replaceAll(path.sep, "/");
 }
 
-function usage() {
+function usage(): void {
   console.log(`Usage: node tools/importPlaces.mjs [--file <path>] [--dry-run]\n\nOptions:\n  --file <path>  Import JSON array to read (default: data/import/new-places.json)\n  --dry-run      Validate and report without writing files\n  --help         Show this help`);
 }
 
-function parseArgs(argv) {
-  const options = {
+function parseArgs(argv: string[]): ImportOptions {
+  const options: ImportOptions = {
     file: DEFAULT_IMPORT_PATH,
     dryRun: false
   };
@@ -52,11 +111,15 @@ function parseArgs(argv) {
   return options;
 }
 
-function readJson(filePath) {
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function readJson(filePath: string): unknown {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
-function resolveManifestEntry(entry) {
+function resolveManifestEntry(entry: unknown): string {
   const clean = String(entry || "").trim();
   if (!clean) return "";
   if (clean.startsWith("data/")) return path.join(ROOT, clean);
@@ -64,26 +127,26 @@ function resolveManifestEntry(entry) {
   return path.join(ROOT, "data", "places", clean);
 }
 
-function asPlacesArray(data, filePath, errors) {
-  if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.places)) return data.places;
+function asPlacesArray(data: unknown, filePath: string, errors: string[]): PlaceRow[] {
+  if (Array.isArray(data)) return data as PlaceRow[];
+  if (isPlainObject(data) && Array.isArray(data.places)) return data.places as PlaceRow[];
   errors.push(`${rel(filePath)}: expected JSON array or object with places[]`);
   return [];
 }
 
-function isPlainObject(value) {
+function isPlainObject(value: unknown): value is JsonObject {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-function isFiniteNumber(value) {
+function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
 
-function isNonEmptyString(value) {
+function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-function slugifyPlaceId(value) {
+function slugifyPlaceId(value: unknown): string {
   return String(value || "")
     .trim()
     .toLowerCase()
@@ -98,7 +161,7 @@ function slugifyPlaceId(value) {
     .replace(/^_+|_+$/g, "");
 }
 
-function uniqueGeneratedId(baseId, usedIds) {
+function uniqueGeneratedId(baseId: string, usedIds: Set<string>): string {
   const fallbackBase = baseId || "place";
   if (!usedIds.has(fallbackBase)) return fallbackBase;
 
@@ -109,16 +172,16 @@ function uniqueGeneratedId(baseId, usedIds) {
   return `${fallbackBase}_${suffix}`;
 }
 
-function formatList(items, emptyLabel = "(none)") {
+function formatList(items: string[], emptyLabel = "(none)"): string {
   return items.length ? items.map((item) => `- ${item}`).join("\n") : emptyLabel;
 }
 
-function loadManifest(errors) {
-  let manifest;
+function loadManifest(errors: string[]): ManifestLoadResult {
+  let manifest: PlaceManifest;
   try {
-    manifest = readJson(MANIFEST_PATH);
+    manifest = readJson(MANIFEST_PATH) as PlaceManifest;
   } catch (error) {
-    errors.push(`${rel(MANIFEST_PATH)}: could not read/parse JSON (${error.message})`);
+    errors.push(`${rel(MANIFEST_PATH)}: could not read/parse JSON (${errorMessage(error)})`);
     return { entries: [], entryToPath: new Map() };
   }
 
@@ -127,7 +190,7 @@ function loadManifest(errors) {
     errors.push(`${rel(MANIFEST_PATH)}: missing files[]`);
   }
 
-  const entryToPath = new Map();
+  const entryToPath = new Map<string, string>();
   for (const entry of entries) {
     const cleanEntry = String(entry || "").trim();
     if (!cleanEntry) {
@@ -140,9 +203,9 @@ function loadManifest(errors) {
   return { entries, entryToPath };
 }
 
-function loadExistingPlaces(entryToPath, errors) {
-  const existingIds = new Set();
-  const fileData = new Map();
+function loadExistingPlaces(entryToPath: Map<string, string>, errors: string[]): ExistingPlacesLoadResult {
+  const existingIds = new Set<string>();
+  const fileData = new Map<string, { filePath: string; data: unknown; places: PlaceRow[] }>();
 
   for (const [entry, filePath] of entryToPath.entries()) {
     if (!fs.existsSync(filePath)) {
@@ -150,11 +213,11 @@ function loadExistingPlaces(entryToPath, errors) {
       continue;
     }
 
-    let data;
+    let data: unknown;
     try {
       data = readJson(filePath);
     } catch (error) {
-      errors.push(`${rel(filePath)}: could not read/parse JSON (${error.message})`);
+      errors.push(`${rel(filePath)}: could not read/parse JSON (${errorMessage(error)})`);
       continue;
     }
 
@@ -170,12 +233,12 @@ function loadExistingPlaces(entryToPath, errors) {
   return { existingIds, fileData };
 }
 
-function validateAndPrepareImport(importItems, entryToPath, existingIds) {
-  const errors = [];
-  const warnings = [];
+function validateAndPrepareImport(importItems: unknown[], entryToPath: Map<string, string>, existingIds: Set<string>): PreparedImportResult {
+  const errors: string[] = [];
+  const warnings: string[] = [];
   const usedIds = new Set(existingIds);
-  const preparedPlaces = [];
-  const targetFiles = new Set();
+  const preparedPlaces: PreparedImportPlace[] = [];
+  const targetFiles = new Set<string>();
 
   importItems.forEach((item, index) => {
     const context = `import[${index}]`;
@@ -185,7 +248,8 @@ function validateAndPrepareImport(importItems, entryToPath, existingIds) {
       return;
     }
 
-    const targetFile = String(item.targetFile || "").trim();
+    const importItem = item as ImportPlaceRow;
+    const targetFile = String(importItem.targetFile || "").trim();
     if (!targetFile) {
       errors.push(`${context}: missing targetFile`);
     } else if (!entryToPath.has(targetFile)) {
@@ -194,7 +258,7 @@ function validateAndPrepareImport(importItems, entryToPath, existingIds) {
       targetFiles.add(targetFile);
     }
 
-    const place = { ...item };
+    const place: PlaceRow = { ...importItem };
     delete place.targetFile;
 
     if (!isNonEmptyString(place.id)) {
@@ -202,11 +266,12 @@ function validateAndPrepareImport(importItems, entryToPath, existingIds) {
       place.id = generatedId;
       warnings.push(`${context}: generated id "${generatedId}" from name`);
     } else {
-      place.id = String(place.id).trim();
-      if (existingIds.has(place.id)) {
-        errors.push(`${context}: id "${place.id}" already exists`);
-      } else if (usedIds.has(place.id)) {
-        errors.push(`${context}: duplicate import id "${place.id}"`);
+      const normalizedId = String(place.id).trim();
+      place.id = normalizedId;
+      if (existingIds.has(normalizedId)) {
+        errors.push(`${context}: id "${normalizedId}" already exists`);
+      } else if (usedIds.has(normalizedId)) {
+        errors.push(`${context}: duplicate import id "${normalizedId}"`);
       }
     }
 
@@ -262,9 +327,9 @@ function validateAndPrepareImport(importItems, entryToPath, existingIds) {
   return { errors, warnings, preparedPlaces, targetFiles: [...targetFiles].sort() };
 }
 
-function writeImports(preparedPlaces, fileData) {
-  const changedFiles = new Set();
-  const byTarget = new Map();
+function writeImports(preparedPlaces: PreparedImportPlace[], fileData: ExistingPlacesLoadResult["fileData"]): string[] {
+  const changedFiles = new Set<string>();
+  const byTarget = new Map<string, PlaceRow[]>();
 
   for (const prepared of preparedPlaces) {
     if (!byTarget.has(prepared.targetFile)) byTarget.set(prepared.targetFile, []);
@@ -281,7 +346,7 @@ function writeImports(preparedPlaces, fileData) {
   return [...changedFiles].sort();
 }
 
-function printReport({ dryRun, importCount, targetFiles, ids, warnings, errors, changedFiles = [] }) {
+function printReport({ dryRun, importCount, targetFiles, ids, warnings, errors, changedFiles = [] }: ImportReportArgs): void {
   console.log("History Go Places Import");
   console.log(`Mode: ${dryRun ? "dry-run" : "import"}`);
   console.log(`Import entries: ${importCount}`);
@@ -314,12 +379,12 @@ function printReport({ dryRun, importCount, targetFiles, ids, warnings, errors, 
   }
 }
 
-function main() {
-  let options;
+function main(): void {
+  let options: ImportOptions;
   try {
     options = parseArgs(process.argv.slice(2));
   } catch (error) {
-    console.error(error.message);
+    console.error(errorMessage(error));
     usage();
     process.exitCode = 1;
     return;
@@ -330,25 +395,27 @@ function main() {
     return;
   }
 
-  const setupErrors = [];
+  const setupErrors: string[] = [];
   const { entryToPath } = loadManifest(setupErrors);
   const { existingIds, fileData } = loadExistingPlaces(entryToPath, setupErrors);
 
-  let importItems = [];
+  let importItemsJson: unknown = [];
   try {
-    importItems = readJson(options.file);
+    importItemsJson = readJson(options.file);
   } catch (error) {
-    setupErrors.push(`${rel(options.file)}: could not read/parse JSON (${error.message})`);
+    setupErrors.push(`${rel(options.file)}: could not read/parse JSON (${errorMessage(error)})`);
   }
 
-  if (!Array.isArray(importItems)) {
+  let importItems: unknown[] = [];
+  if (!Array.isArray(importItemsJson)) {
     setupErrors.push(`${rel(options.file)}: expected JSON array`);
-    importItems = [];
+  } else {
+    importItems = importItemsJson;
   }
 
   const prepared = validateAndPrepareImport(importItems, entryToPath, existingIds);
   const errors = [...setupErrors, ...prepared.errors];
-  const ids = prepared.preparedPlaces.map(({ place }) => place.id).filter(Boolean);
+  const ids = prepared.preparedPlaces.map(({ place }) => place.id).filter(isNonEmptyString);
 
   if (errors.length) {
     printReport({
@@ -363,7 +430,7 @@ function main() {
     return;
   }
 
-  let changedFiles = [];
+  let changedFiles: string[] = [];
   if (!options.dryRun) {
     changedFiles = writeImports(prepared.preparedPlaces, fileData);
   }

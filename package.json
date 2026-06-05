@@ -25,7 +25,7 @@
     "leksikon:ids:check": "npm run build:tools && node dist/tools/check_leksikon_duplicate_ids.mjs",
     "places:aliases:check": "npm run build:tools && node dist/tools/check_place_id_aliases.mjs",
     "check:stories": "npm run build:tools && node dist/tools/check_stories_integrity.mjs",
-    "places:import": "node tools/importPlaces.mjs",
+    "places:import": "npm run build:tools && node dist/tools/importPlaces.mjs",
     "audit:job-learning-profiles": "node scripts/auditJobLearningProfiles.js",
     "audit:job-knowledge-requirements": "node scripts/auditJobKnowledgeRequirements.js",
     "audit:civication-map": "node scripts/audit-civication-historygo-map.mjs",
