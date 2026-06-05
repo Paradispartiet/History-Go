@@ -44,6 +44,8 @@ body.profile-page{
 }
 
 body.profile-page{
+  display: flex;
+  flex-direction: column;
   overflow-y: hidden;
 }
 
@@ -117,6 +119,8 @@ body.profile-page.map-only #profileMain{
 
 .profile-page .site-header{
   display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
@@ -239,7 +243,9 @@ button.primary.small:hover{
 #profileMain.profile-dashboard{
   width: min(var(--profile-max-w), calc(100vw - 24px));
   max-width: calc(100vw - 24px);
-  height: calc(100dvh - var(--profile-header-h));
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
   margin: 12px auto 16px;
   padding: 0;
 
@@ -1176,7 +1182,7 @@ button.primary.small:hover{
 
 @media (max-width: 640px){
   #profileMain.profile-dashboard{
-    height: calc(100dvh - 74px);
+    min-height: 0;
   }
 
   .profile-section{
