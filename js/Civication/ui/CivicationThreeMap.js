@@ -26,9 +26,17 @@
   // ---------------------------------------------------------------------------
   const OSLO_FILTER = { minLat: 59.75, maxLat: 60.10, minLon: 10.45, maxLon: 11.00 };
 
-  const LOW_ZOOM_LIMIT = 18;
-  const MID_ZOOM_LIMIT = 45;
-  const HIGH_ZOOM_LIMIT = 80;
+  // Del 5 – Zoombasert LOD for History Go-place-miniatyrer. Maks antall synlige
+  // place-miniatyrer per nivå, og hvor små de tegnes. Lav zoom skal være ryddig
+  // (landemerkene dominerer); høyere zoom åpner for flere lokale steder.
+  const PLACE_LOD_LIMITS = { low: 26, mid: 90, high: 190, veryHigh: 240 };
+  const PLACE_LOD_SCALE = { low: 0.34, mid: 0.40, high: 0.46, veryHigh: 0.50 };
+  function placeLodLevel(z) {
+    if (z > 4.0) return "veryHigh";
+    if (z > 2.6) return "high";
+    if (z > 1.4) return "mid";
+    return "low";
+  }
 
   // Verdensmål: normalisert 0–1 mappes inn på et brett på MAP_W x MAP_D enheter.
   const MAP_W = 20;
@@ -111,6 +119,8 @@
   let camera = null;
   let raycaster = null;
   let placeGroup = null;
+  let landmarkGroup = null;
+  let INVISIBLE_HIT_MAT = null;
 
   let W = 0, H = 0;
   let zoom = 1;
@@ -121,13 +131,17 @@
 
   let _places = null;
   let _loadStarted = false;
-  let _lastBucket = null;
+  let _lastLod = null;
   let hitTargets = [];
+  let _visibleMiniatures = [];
+  let _landmarkPlaceMap = {};
 
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
     trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
-    localObjects: 0, parkObjects: 0, waterfrontObjects: 0
+    localObjects: 0, parkObjects: 0, waterfrontObjects: 0,
+    visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
+    placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: []
   };
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -207,16 +221,32 @@
       default: return "default";
     }
   }
-  function priorityOf(p) {
+  // Del 6 – Prioritering av History Go-places. Høyere score = vises tidligere
+  // ved lav zoom og overlever LOD-grensene. Lav score til generiske
+  // gatepunkter og små lokale punkter uten egen visuell type.
+  function priorityOfPlace(p) {
     const cm = p.civiMap || {};
-    if (typeof cm.priority === "number") return cm.priority;
-    const hay = `${p.id || ""} ${p.name || ""}`.toLowerCase();
-    const asset = resolveAssetType(p);
     let s = 0;
-    if (asset === "stadium" || asset === "skyline" || asset === "civic") s += 6;
-    if (/sentrum|oslo_s|bjorvika|bjørvika|barcode|aker_brygge|akershus|bislett|national|storting|radhus|rådhus/.test(hay)) s += 4;
-    if (p.raw.frontImage || p.raw.cardImage) s += 2;
-    if (p.raw.quiz_profile) s += 1;
+    if (typeof cm.priority === "number") s += cm.priority * 4 + 10;
+    if (matchLandmarkForPlace(p)) s += 14;            // tilsvarer håndmodellert landemerke
+    const type = resolvePlaceMiniatureType(p);
+    if (type === "stadium" || type === "ice_arena") s += 8;
+    else if (type === "museum" || type === "gallery" || type === "theatre" ||
+             type === "music_venue" || type === "cinema" || type === "library") s += 6;
+    else if (type === "fortress" || type === "civic" || type === "church") s += 5;
+    else if (type === "station" || type === "university") s += 5;
+    else if (type === "park" || type === "square" || type === "waterfront") s += 4;
+    if (p.raw.frontImage || p.raw.cardImage || p.raw.image) s += 3;
+    if (p.raw.quiz_profile) s += 2;
+    const proj = project(p);
+    if (proj) {
+      const dCentre = Math.hypot(proj.x - 0.52, proj.y - 0.60); // sentrum/Karl Johan-aksen
+      if (dCentre < 0.10) s += 4; else if (dCentre < 0.20) s += 2;
+      if (proj.x > 0.55 && proj.x < 0.64 && proj.y > 0.59 && proj.y < 0.69) s += 2; // Bjørvika
+    }
+    try { if (window.visited && window.visited[p.id]) s += 3; } catch (e) { /* collected ukjent */ }
+    if (type === "street") s -= 3;        // generiske gatepunkter
+    else if (type === "default") s -= 2;  // punkter uten egen visuell type
     return s;
   }
   function categoryColor(category) {
@@ -230,20 +260,6 @@
     return colors[category] != null ? colors[category] : 0xc6c2bc;
   }
 
-  function zoomBucket(z) {
-    if (z > 2.6) return "high";
-    if (z > 1.4) return "mid";
-    return "low";
-  }
-  function visibleSet(places, z) {
-    const sorted = places.slice().sort((a, b) => priorityOf(b) - priorityOf(a));
-    const bucket = zoomBucket(z);
-    let limit = LOW_ZOOM_LIMIT;
-    if (bucket === "high") limit = HIGH_ZOOM_LIMIT;
-    else if (bucket === "mid") limit = MID_ZOOM_LIMIT;
-    return sorted.slice(0, Math.min(sorted.length, limit));
-  }
-
   function setPlaces(list) {
     const seen = new Set();
     const out = [];
@@ -255,7 +271,7 @@
       out.push(p);
     });
     _places = out;
-    _lastBucket = null;
+    _lastLod = null;
     rebuildPlaces();
   }
   function ensureLoaded() {
@@ -1083,6 +1099,60 @@
     { id: "frognerparken", x: 0.302, y: 0.462, r: 0.038 }
   ];
 
+  // --- Del 2 – Mapping: History Go-place <-> håndmodellert landemerke ---------
+  // Hindrer at et place som ALLEREDE finnes som håndmodellert landemerke får en
+  // ekstra generisk place-miniatyr oppå modellen. Nøklene er landmark-id-er fra
+  // OSLO_KEY_LANDMARKS; verdiene er place-id-/navn-aliaser. Trenger ikke være
+  // perfekt – skal bare hindre åpenbare duplikater.
+  const HAND_MODELED_PLACE_ALIASES = {
+    holmenkollen: ["holmenkollen", "holmenkollbakken"],
+    ullevaal: ["ullevaal", "ullevaal_stadion"],
+    bislett: ["bislett", "bislett_stadion"],
+    jordal: ["jordal", "jordal_amfi"],
+    slottet: ["slottet", "det_kongelige_slott", "kongelige_slott"],
+    akershus: ["akershus", "akershus_festning"],
+    radhuset: ["radhuset", "oslo_radhus", "oslo_rådhus"],
+    operaen: ["operaen", "oslo_opera", "den_norske_opera", "operahuset"],
+    barcode: ["barcode", "bjorvika_barcode"],
+    oslo_s: ["oslo_s", "oslo_sentralstasjon"],
+    aker_brygge: ["aker_brygge", "tjuvholmen"],
+    frognerparken: ["frognerparken", "vigelandsparken"],
+    munch: ["munch", "munch_museet", "munchmuseet"],
+    nationaltheatret: ["nationaltheatret", "national_theatret"],
+    stortinget: ["stortinget"],
+    deichman: ["deichman", "deichmanske", "deichman_bjorvika"],
+    oslo_plaza: ["oslo_plaza", "radisson_plaza"],
+    posthuset: ["posthuset", "postgirobygget"],
+    toyen_torg: ["toyen_torg"],
+    kampen: ["kampen"]
+  };
+
+  function normId(s) {
+    return String(s == null ? "" : s).trim().toLowerCase().replace(/[\s-]+/g, "_");
+  }
+
+  // Returnerer landmark-id hvis place matcher et håndmodellert landemerke, ellers null.
+  // Korte aliaser krever eksakt id/navn-treff; lange (>= 9 tegn) tillater delstreng,
+  // så fulle navn som «Den Norske Opera» fanges uten å overmatche småsteder.
+  function matchLandmarkForPlace(p) {
+    const id = normId(p.id);
+    const name = normId(p.name);
+    const keys = Object.keys(HAND_MODELED_PLACE_ALIASES);
+    for (let k = 0; k < keys.length; k++) {
+      const aliases = HAND_MODELED_PLACE_ALIASES[keys[k]];
+      for (let i = 0; i < aliases.length; i++) {
+        const a = aliases[i];
+        if (id === a || name === a) return keys[k];
+        if (a.length >= 9 && (id.indexOf(a) !== -1 || name.indexOf(a) !== -1)) return keys[k];
+      }
+    }
+    return null;
+  }
+
+  function getLandmarkEntry(landmarkId) {
+    return OSLO_KEY_LANDMARKS.find((e) => e.id === landmarkId) || null;
+  }
+
   // --- Del 4 – Landemerke-archetypes (enkle, gjenkjennelige miniatyrer) ------
   // Hver returnerer { group, h } med bunn på lokal y=0.
 
@@ -1571,6 +1641,7 @@
       _stats.landmarks++;
       _stats.landmarkCountByType[entry.type] = (_stats.landmarkCountByType[entry.type] || 0) + 1;
     });
+    landmarkGroup = g;
     scene.add(g);
   }
 
@@ -1590,35 +1661,248 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Del 5 – Interaktive History Go-places (arketyp + dempet kategori-fyr)
+  // Del 3 – Place miniature archetypes (History Go-place-miniatyrer)
   // ---------------------------------------------------------------------------
-  function placeGroupFor(p, markerOpts) {
-    const asset = resolveAssetType(p);
-    const accent = categoryColor(p.category);
-    // Kropp i varm stein lett trukket mot kategorifargen (tydelig, ikke neon).
-    const bodyColor = mixHex(PAL.stone, accent, 0.4);
-    const arch = archetypeForAsset(asset);
-    const built = ARCHETYPES[arch]({ color: bodyColor });
-    const group = built.group;
-    // Diskrete markører: bevisst små bygg/beacons oppå byen som IKKE skal
-    // konkurrere visuelt med de håndmodellerte landemerkene. Holdt små, men
-    // fortsatt klikkbare og lette å se ved zoom.
-    const markerScale = markerOpts && markerOpts.scale ? markerOpts.scale : 0.52;
-    group.scale.setScalar(markerScale);
-    group.traverse((m) => { if (m.isMesh) m.userData = { placeId: p.id }; });
+  // Små, stedstilpassede 3D-miniatyrer for faktiske places. Enkel Three.js-
+  // geometri (primitiver), få mesh per miniature, ingen eksterne modeller, ingen
+  // teksturer, ingen tekstlabels. Underordnet de håndmodellerte landemerkene.
+  // Hver bygger returnerer { group, h } med bunn på lokal y=0.
+  const PLACE_MINIATURE_TYPES = {
+    museum(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.34;
+      g.add(box(0.5, h, 0.4, c));
+      const roof = box(0.56, 0.04, 0.46, shade(c, -0.12)); roof.position.y = h; g.add(roof);
+      for (let i = -1; i <= 1; i++) { const col = cyl(0.03, 0.03, h * 0.9, 6, shade(c, 0.12)); col.position.set(i * 0.14, 0, 0.2); g.add(col); }
+      return { group: g, h };
+    },
+    gallery(o) {
+      const g = new THREE.Group(), c = shade(o.color, 0.08), h = 0.3;
+      g.add(box(0.46, h, 0.4, c));
+      const sky = box(0.2, 0.06, 0.2, shade(c, 0.16)); sky.position.set(0, h, 0); sky.rotation.y = Math.PI / 4; g.add(sky);
+      return { group: g, h };
+    },
+    theatre(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.38;
+      g.add(box(0.46, h, 0.38, c));
+      const front = box(0.5, h * 0.5, 0.08, shade(c, 0.1)); front.position.set(0, 0, 0.2); g.add(front);
+      const canopy = box(0.52, 0.04, 0.12, shade(c, -0.14)); canopy.position.set(0, h * 0.48, 0.26); g.add(canopy);
+      return { group: g, h };
+    },
+    music_venue(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.36;
+      g.add(box(0.46, h, 0.42, c));
+      const stage = box(0.3, h * 0.5, 0.14, shade(c, -0.1)); stage.position.set(0, h * 0.25, 0.24); g.add(stage);
+      const cap = box(0.5, 0.04, 0.46, shade(c, -0.12)); cap.position.y = h; g.add(cap);
+      return { group: g, h };
+    },
+    cinema(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.36;
+      g.add(box(0.44, h, 0.4, c));
+      const marquee = box(0.5, 0.12, 0.1, shade(c, 0.14)); marquee.position.set(0, h * 0.55, 0.22); g.add(marquee);
+      return { group: g, h };
+    },
+    library(o) {
+      const g = new THREE.Group(), c = shade(o.color, 0.06), h = 0.42;
+      g.add(box(0.44, h, 0.4, c));
+      const cap = box(0.48, 0.05, 0.44, shade(c, -0.1)); cap.position.y = h; g.add(cap);
+      return { group: g, h };
+    },
+    church(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.34;
+      g.add(box(0.26, h, 0.36, c));
+      const tower = box(0.14, h * 1.5, 0.14, shade(c, 0.05)); tower.position.set(0, 0, -0.12); g.add(tower);
+      const spire = coneMesh(0.1, 0.3, 4, shade(c, -0.2)); spire.position.set(0, h * 1.5, -0.12); spire.rotation.y = Math.PI / 4; g.add(spire);
+      return { group: g, h: h * 1.5 + 0.3 };
+    },
+    school(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.32;
+      const a = box(0.5, h, 0.32, c); a.position.x = -0.08; g.add(a);
+      const r = gableRoof(0.52, 0.08, 0.34, shade(c, -0.14)); r.position.set(-0.08, h, 0); g.add(r);
+      const b = box(0.24, h, 0.24, c); b.position.set(0.24, 0, 0.08); g.add(b);
+      return { group: g, h };
+    },
+    university(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.4;
+      g.add(box(0.62, h, 0.36, c));
+      const wingL = box(0.18, h * 0.9, 0.5, shade(c, -0.04)); wingL.position.set(-0.3, 0, 0.04); g.add(wingL);
+      const wingR = box(0.18, h * 0.9, 0.5, shade(c, -0.04)); wingR.position.set(0.3, 0, 0.04); g.add(wingR);
+      const cap = box(0.66, 0.05, 0.4, shade(c, -0.12)); cap.position.y = h; g.add(cap);
+      return { group: g, h };
+    },
+    station(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.3;
+      g.add(box(0.8, h, 0.4, c));
+      const hall = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.78, 12, 1, false, 0, Math.PI), toMat(shade(c, 0.12)));
+      hall.rotation.z = Math.PI / 2; hall.position.set(0, h, 0); g.add(hall);
+      return { group: g, h: h + 0.2 };
+    },
+    stadium(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.26;
+      const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.44, h, 18), toMat(c));
+      ring.position.y = h / 2; ring.scale.x = 1.3; ring.castShadow = true; ring.receiveShadow = true; g.add(ring);
+      const pitch = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, h * 0.6, 18), toMat(0x4f8f55));
+      pitch.position.y = h * 0.6; pitch.scale.x = 1.3; pitch.receiveShadow = true; g.add(pitch);
+      return { group: g, h };
+    },
+    sports_field(o) {
+      const g = new THREE.Group(), h = 0.05;
+      const field = box(0.6, h, 0.42, 0x5a9a57); field.position.y = h / 2; g.add(field);
+      const line = box(0.02, h + 0.01, 0.4, 0xdfe6df); line.position.y = (h + 0.01) / 2; g.add(line);
+      return { group: g, h };
+    },
+    ice_arena(o) {
+      const g = new THREE.Group(), c = shade(o.color, 0.1), h = 0.24;
+      const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.44, h, 20), toMat(c));
+      shell.scale.set(1.2, 1, 1); shell.position.y = h / 2; shell.castShadow = true; shell.receiveShadow = true; g.add(shell);
+      const roof = new THREE.Mesh(new THREE.SphereGeometry(0.42, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), toMat(shade(c, 0.08)));
+      roof.scale.set(1.2, 0.4, 1); roof.position.y = h; g.add(roof);
+      return { group: g, h: h + 0.16 };
+    },
+    park(o) {
+      const g = new THREE.Group(), h = 0.06;
+      const lawn = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.38, h, 14), toMat(0x6aa66f));
+      lawn.position.y = h / 2; lawn.receiveShadow = true; g.add(lawn);
+      [[-0.12, 0.08], [0.12, -0.06], [0.02, 0.16]].forEach(([x, z]) => { const tr = coneMesh(0.1, 0.3, 7, 0x3f7a46); tr.position.set(x, h, z); g.add(tr); });
+      return { group: g, h: h + 0.3 };
+    },
+    playground(o) {
+      const g = new THREE.Group(), h = 0.04;
+      const sand = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.32, h, 14), toMat(0xd8c48c));
+      sand.position.y = h / 2; sand.receiveShadow = true; g.add(sand);
+      const frame = box(0.06, 0.18, 0.22, 0xb45a48); frame.position.set(-0.06, 0, 0); g.add(frame);
+      const slide = box(0.18, 0.03, 0.06, 0xd0c2a8); slide.position.set(0.06, 0.1, 0); slide.rotation.z = 0.5; g.add(slide);
+      return { group: g, h: 0.2 };
+    },
+    square(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.02;
+      const plaza = box(0.6, h, 0.6, shade(c, 0.12)); plaza.position.y = h / 2; plaza.receiveShadow = true; g.add(plaza);
+      [[-0.34, -0.2], [0.34, -0.2], [0.0, 0.36]].forEach(([x, z], i) => {
+        const bh = 0.26 + (i % 2) * 0.1; const b = box(0.22, bh, 0.2, c); b.position.set(x, bh / 2, z); g.add(b);
+        const r = gableRoof(0.24, 0.07, 0.22, shade(c, -0.15)); r.position.set(x, bh, z); g.add(r);
+      });
+      return { group: g, h: 0.36 };
+    },
+    street(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.22;
+      const strip = box(0.6, 0.02, 0.18, shade(c, -0.06)); strip.position.y = 0.01; g.add(strip);
+      [-0.18, 0.06, 0.28].forEach((x, i) => { const bh = h - (i % 2) * 0.06; const b = box(0.14, bh, 0.16, i % 2 ? shade(c, 0.06) : c); b.position.set(x, bh / 2, -0.06); g.add(b); });
+      return { group: g, h };
+    },
+    waterfront(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.07;
+      const quay = box(0.6, h, 0.3, 0xb7a98c); quay.position.y = h / 2; quay.receiveShadow = true; g.add(quay);
+      const b = box(0.3, 0.26, 0.2, c); b.position.set(-0.08, h + 0.13, -0.02); g.add(b);
+      const pier = box(0.08, 0.03, 0.3, 0xa89878); pier.position.set(0.22, h * 0.6, 0.18); g.add(pier);
+      return { group: g, h: h + 0.26 };
+    },
+    fortress(o) {
+      const g = new THREE.Group(), c = shade(o.color, -0.04), h = 0.3;
+      const base = box(0.56, 0.06, 0.56, shade(c, 0.05)); base.position.y = 0.03; g.add(base);
+      const body = box(0.4, h, 0.4, c); body.position.y = 0.06 + h / 2; g.add(body);
+      const keep = box(0.16, h * 0.8, 0.16, shade(c, 0.04)); keep.position.set(-0.12, 0.06 + h * 0.4, -0.1); g.add(keep);
+      const sp = coneMesh(0.12, 0.2, 4, shade(c, -0.18)); sp.position.set(-0.12, 0.06 + h * 0.8, -0.1); sp.rotation.y = Math.PI / 4; g.add(sp);
+      return { group: g, h: h + 0.26 };
+    },
+    civic(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.4;
+      g.add(box(0.5, h * 0.7, 0.5, c));
+      g.add(box(0.3, h, 0.3, shade(c, 0.06)));
+      const cap = box(0.34, 0.05, 0.34, shade(c, -0.1)); cap.position.y = h; g.add(cap);
+      return { group: g, h };
+    },
+    subculture(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.3;
+      g.add(box(0.42, h, 0.38, c));
+      const tag = box(0.44, h * 0.4, 0.06, shade(c, 0.16)); tag.position.set(0, h * 0.5, 0.2); tag.rotation.z = 0.12; g.add(tag);
+      return { group: g, h };
+    },
+    industrial(o) {
+      const g = new THREE.Group(), c = shade(o.color, -0.06), h = 0.26;
+      g.add(box(0.7, h, 0.46, c));
+      const r = gableRoof(0.72, 0.07, 0.48, shade(c, -0.08)); r.position.y = h; g.add(r);
+      return { group: g, h };
+    },
+    commerce(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.3;
+      g.add(box(0.42, h, 0.36, c));
+      const awning = box(0.46, 0.03, 0.12, shade(c, 0.16)); awning.position.set(0, h * 0.55, 0.22); g.add(awning);
+      return { group: g, h };
+    },
+    apartment(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.5;
+      g.add(box(0.42, h, 0.42, c));
+      const cap = box(0.46, 0.04, 0.46, shade(c, -0.12)); cap.position.y = h; g.add(cap);
+      return { group: g, h };
+    },
+    default(o) {
+      const g = new THREE.Group(), c = o.color, h = 0.32;
+      g.add(box(0.38, h, 0.38, c));
+      const cap = box(0.4, 0.04, 0.4, shade(c, -0.1)); cap.position.y = h; g.add(cap);
+      return { group: g, h };
+    }
+  };
 
-    // Liten lysende fyr på toppen så places fortsatt skiller seg fra bybildet
-    // ved zoom – mindre enn før for å gi landemerkene forrang.
-    const beacon = new THREE.Mesh(
-      new THREE.SphereGeometry(markerOpts && markerOpts.nearLandmark ? 0.045 : 0.06, 8, 6),
-      new THREE.MeshBasicMaterial({ color: new THREE.Color(accent) })
-    );
-    beacon.position.y = built.h + 0.14;
-    beacon.userData = { placeId: p.id };
-    group.add(beacon);
+  // Del 4 – Type-resolver for places. Prioritert: civiMap.assetType -> mapAssetType
+  // -> kategori/quiz_profile-nøkkelord -> id/navn-heuristikk -> default.
+  function resolvePlaceMiniatureType(p) {
+    const cm = p.civiMap || {};
+    const explicit = String(cm.assetType || (p.raw && p.raw.mapAssetType) || "").trim().toLowerCase();
+    if (explicit && PLACE_MINIATURE_TYPES[explicit]) return explicit;
 
-    group.userData = { placeId: p.id, h: built.h };
-    return group;
+    const cat = String(p.category || "").toLowerCase();
+    const qp = (p.raw && p.raw.quiz_profile) || {};
+    const ptype = String(qp.place_type || "").toLowerCase();
+    const subtype = String(qp.subtype || "").toLowerCase();
+    const hay = `${p.id || ""} ${p.name || ""} ${ptype} ${subtype}`.toLowerCase();
+
+    // Sterke nøkkelord på tvers av kategorier.
+    if (/ishall|ishockey|amfi|skoyte|skøyte|isbane|kunstisbane/.test(hay)) return "ice_arena";
+    if (/stadion|stadium|arena/.test(hay)) return "stadium";
+    if (/lekeplass|playground|sandlek/.test(hay)) return "playground";
+    if (/museum|museet/.test(hay)) return "museum";
+    if (/galleri|gallery|kunsthall/.test(hay)) return "gallery";
+    if (/bibliotek|library|deichman/.test(hay)) return "library";
+    if (/kino|cinema|filmteater/.test(hay)) return "cinema";
+    if (/teater|theatre|theater|revyscene|revy/.test(hay)) return "theatre";
+    if (/kirke|kapell|domkirke|katedral|church|moske|synagoge/.test(hay)) return "church";
+    if (/universitet|hogskole|høgskole|university|fakultet|campus/.test(hay)) return "university";
+    if (/skole|gymnas|videregaende|videregående|school/.test(hay)) return "school";
+    if (/stasjon|t-bane|jernbane|holdeplass|station|terminal|metro/.test(hay)) return "station";
+    if (/festning|slott|borg|skanse|fortress|fort\b/.test(hay)) return "fortress";
+    if (/brygge|havn|kai|fjord|vann|dam|tjern|elv|strand|waterfront|marina/.test(hay)) return "waterfront";
+    if (/park|hage|skog|lund|mark|allmenning|grøntdrag/.test(hay)) return "park";
+    if (/torg|plass\b|square/.test(hay)) return "square";
+    if (/fabrikk|lager|industri|verksted|verk\b|mølle|mølla|depot|warehouse/.test(hay)) return "industrial";
+    if (/butikk|marked|kjopesenter|kjøpesenter|handel|shop|mall|basar/.test(hay)) return "commerce";
+    if (/scene|konsert|musikkklubb|spellemann|rockefeller|spektrum|venue/.test(hay)) return "music_venue";
+    if (/gate\b|veien|allé|alle\b|street/.test(hay)) return "street";
+
+    // Kategori-basert.
+    switch (cat) {
+      case "sport":
+        if (/jordal|ishall|amfi/.test(hay)) return "ice_arena";
+        if (/stadion|arena/.test(hay)) return "stadium";
+        return "sports_field";
+      case "kunst": return /galleri/.test(hay) ? "gallery" : "museum";
+      case "litteratur": return "library";
+      case "musikk": return "music_venue";
+      case "film": case "film_tv": return "cinema";
+      case "popkultur": return "music_venue";
+      case "subkultur": return "subculture";
+      case "natur": return "park";
+      case "politikk": case "media": return "civic";
+      case "vitenskap": case "psykologi": return "university";
+      case "naeringsliv": return "commerce";
+      case "by": return "apartment";
+    }
+
+    // quiz_profile.place_type fallback.
+    if (/park/.test(ptype)) return "park";
+    if (/kirke/.test(ptype)) return "church";
+    if (/museum/.test(ptype)) return "museum";
+    if (/stadion/.test(ptype)) return "stadium";
+
+    return "default";
   }
 
   function mixHex(a, b, t) {
@@ -1626,19 +1910,35 @@
     return ca.lerp(cb, t).getHex();
   }
 
-
-  function placeMarkerScaleFor(proj) {
-    const bucket = zoomBucket(zoom);
-    let s = bucket === "low" ? 0.42 : (bucket === "mid" ? 0.50 : 0.56);
-    if (landmarkClearanceAt(proj.x, proj.y)) s *= 0.78;
-    return s;
+  // Dempet palett: farge antyder kategori, men trekkes mot varm stein så
+  // miniatyrene leser som del av dioramaet (ikke neon). Grøntflater forblir grønne.
+  function placeColorFor(p, type) {
+    const accent = categoryColor(p.category);
+    if (type === "park" || type === "sports_field") return mixHex(0x6f9d63, accent, 0.18);
+    return mixHex(PAL.stone, accent, 0.34);
   }
 
+  // Del 8 – En klikkbar place-miniatyr. userData.placeId på gruppe og alle mesh.
+  // Ingen tekstlabels, ingen beacons; place-miniatyrer kaster ikke skygge (iPad-ytelse).
+  function buildPlaceMiniature(p, opts) {
+    const type = (opts && opts.type) || resolvePlaceMiniatureType(p);
+    const color = placeColorFor(p, type);
+    const make = PLACE_MINIATURE_TYPES[type] || PLACE_MINIATURE_TYPES.default;
+    const built = make({ color });
+    const group = built.group;
+    const scale = (opts && opts.scale) || 0.4;
+    group.scale.setScalar(scale);
+    group.traverse((m) => { if (m.isMesh) { m.castShadow = false; m.userData = { placeId: p.id }; } });
+    group.userData = { placeId: p.id, miniatureType: type, h: built.h };
+    return group;
+  }
+
+  // Del 7 – flytt place vekk fra håndmodellerte landemerkers clear zones.
   function avoidLandmarkMarkerPosition(proj) {
     const hit = landmarkClearanceAt(proj.x, proj.y);
     if (!hit) return { x: proj.x, y: proj.y, nearLandmark: false };
     const zone = hit.zone;
-    const minDist = zone.r * 0.84;
+    const minDist = zone.r * 0.94;
     const angle = hit.dist > 0.0001
       ? Math.atan2(proj.y - zone.y, proj.x - zone.x)
       : (hashStr(zone.id) % 628) / 100;
@@ -1649,6 +1949,24 @@
     };
   }
 
+  function placeScaleFor(lod, nx, ny) {
+    let s = PLACE_LOD_SCALE[lod] || 0.4;
+    if (landmarkClearanceAt(nx, ny)) s *= 0.8; // dempes ved landemerker (forrang)
+    return s;
+  }
+
+  // Del 5 – view-frustum/screen-distance culling for høy/svært høy zoom.
+  function inCameraView(nx, ny, margin) {
+    if (!camera) return true;
+    const v = new THREE.Vector3(nx2x(nx), GROUND_Y, ny2z(ny));
+    v.project(camera);
+    const m = margin == null ? 1.18 : margin;
+    return Math.abs(v.x) <= m && Math.abs(v.y) <= m;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Del 5/7/8 – Bygg synlige place-miniatyrer (LOD + overlap-nudge + hit targets)
+  // ---------------------------------------------------------------------------
   function rebuildPlaces() {
     if (!scene || !THREE) return;
     if (!placeGroup) { placeGroup = new THREE.Group(); scene.add(placeGroup); }
@@ -1657,22 +1975,102 @@
       placeGroup.remove(node);
       node.traverse((m) => {
         if (m.geometry) m.geometry.dispose();
-        if (m.material) m.material.dispose();
+        if (m.material && m.material !== INVISIBLE_HIT_MAT) m.material.dispose();
       });
     }
     hitTargets = [];
-    if (!_places) { _stats.placeMarkers = 0; return; }
+    _visibleMiniatures = [];
+    _landmarkPlaceMap = {};
+    _stats.placeMiniatureTypes = {};
+    _stats.hiddenDuplicateLandmarkPlaces = 0;
+    _stats.culledPlaces = 0;
+    _stats.nudgedPlaces = 0;
+    _stats.clickableLandmarkPlaces = [];
+    if (!_places) { _stats.placeMarkers = 0; _stats.visiblePlaceMiniatures = 0; return; }
 
-    _lastBucket = zoomBucket(zoom);
-    visibleSet(_places, zoom).forEach((p) => {
+    const lod = placeLodLevel(zoom);
+    _lastLod = lod;
+    _stats.placeLodLevel = lod;
+    if (camera) camera.updateMatrixWorld();
+
+    // Del 2 – skill ut places som tilsvarer håndmodellerte landemerker; de får
+    // ingen ekstra generisk marker, kun en usynlig hit target ved landemerket.
+    const landmarkMatched = [];
+    const candidates = [];
+    _places.forEach((p) => {
+      const lm = matchLandmarkForPlace(p);
+      if (lm && getLandmarkEntry(lm)) landmarkMatched.push({ place: p, landmarkId: lm });
+      else candidates.push(p);
+    });
+
+    landmarkMatched.forEach(({ place, landmarkId }) => {
+      const e = getLandmarkEntry(landmarkId);
+      const baseY = e.baseY == null ? GROUND_Y : e.baseY;
+      const hit = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 1.0), INVISIBLE_HIT_MAT);
+      hit.position.set(nx2x(e.x), baseY + 0.5, ny2z(e.y));
+      hit.userData = { placeId: place.id, landmarkId };
+      placeGroup.add(hit);
+      hitTargets.push({ id: place.id, place, landmarkId, viaLandmark: true });
+      _landmarkPlaceMap[landmarkId] = place.id;
+      _stats.clickableLandmarkPlaces.push({ placeId: place.id, landmarkId });
+    });
+    _stats.hiddenDuplicateLandmarkPlaces = landmarkMatched.length;
+
+    // Del 6 – prioriter og projiser; Del 5 – LOD-grense + frustum-culling.
+    const scored = [];
+    candidates.forEach((p) => {
       const proj = project(p);
       if (!proj) return;
-      const adjusted = avoidLandmarkMarkerPosition(proj);
-      const node = placeGroupFor(p, { scale: placeMarkerScaleFor(proj), nearLandmark: adjusted.nearLandmark });
-      node.position.set(nx2x(adjusted.x), GROUND_Y, ny2z(adjusted.y));
-      placeGroup.add(node);
-      hitTargets.push({ id: p.id, place: p });
+      scored.push({ p, proj, prio: priorityOfPlace(p) });
     });
+    scored.sort((a, b) => b.prio - a.prio);
+
+    const limit = PLACE_LOD_LIMITS[lod] || 26;
+    const cull = (lod === "high" || lod === "veryHigh");
+    const placedNorm = [];
+    let drawn = 0;
+
+    for (let i = 0; i < scored.length && drawn < limit; i++) {
+      const entry = scored[i];
+      const proj = entry.proj;
+      if (cull && !inCameraView(proj.x, proj.y)) { _stats.culledPlaces++; continue; }
+
+      // Del 7 – unngå landemerker, deretter nudge bort fra andre miniatyrer.
+      const avoided = avoidLandmarkMarkerPosition(proj);
+      const scale = placeScaleFor(lod, avoided.x, avoided.y);
+      const sep = 0.016 + scale * 0.03;
+
+      let nx = avoided.x, ny = avoided.y, nudged = false;
+      for (let attempt = 0; attempt < 6; attempt++) {
+        let hitQ = null, md = Infinity;
+        for (let j = 0; j < placedNorm.length; j++) {
+          const q = placedNorm[j];
+          const d = Math.hypot(nx - q.x, ny - q.y);
+          if (d < sep && d < md) { md = d; hitQ = q; }
+        }
+        if (!hitQ) break;
+        const dx = nx - hitQ.x, dy = ny - hitQ.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const push = (sep - md) + 0.004;
+        nx = clamp(nx + (dx / len) * push, 0.03, 0.97);
+        ny = clamp(ny + (dy / len) * push, 0.04, 0.96);
+        nudged = true;
+      }
+      if (nudged) _stats.nudgedPlaces++;
+      placedNorm.push({ x: nx, y: ny });
+
+      const type = resolvePlaceMiniatureType(entry.p);
+      const node = buildPlaceMiniature(entry.p, { type, scale });
+      node.position.set(nx2x(nx), GROUND_Y, ny2z(ny));
+      placeGroup.add(node);
+
+      hitTargets.push({ id: entry.p.id, place: entry.p, type, viaLandmark: false });
+      _visibleMiniatures.push({ id: entry.p.id, name: entry.p.name, type, priority: entry.prio, x: Number(nx.toFixed(4)), y: Number(ny.toFixed(4)), nudged });
+      _stats.placeMiniatureTypes[type] = (_stats.placeMiniatureTypes[type] || 0) + 1;
+      drawn++;
+    }
+
+    _stats.visiblePlaceMiniatures = drawn;
     _stats.placeMarkers = hitTargets.length;
     dirty = true;
   }
@@ -1717,7 +2115,7 @@
     const nz = clamp(z, MIN_ZOOM, MAX_ZOOM);
     if (Math.abs(nz - zoom) < 0.0005) return;
     zoom = nz;
-    if (zoomBucket(zoom) !== _lastBucket) rebuildPlaces();
+    if (placeLodLevel(zoom) !== _lastLod) rebuildPlaces();
     updateCamera();
   }
   function zoomIn() { setZoom(zoom * ZOOM_STEP); }
@@ -1780,6 +2178,9 @@
     else if (pointers.size === 0) {
       panPrev = null;
       if (wasSingle && start && !moved && active && inMapMode()) handleTap(e);
+      // Ved høy/svært høy zoom avhenger synlige places av kameraets utsnitt:
+      // rebuild ved endt gest så frustum-culling/nearby-prioritering oppdateres.
+      else if (moved && active && (_lastLod === "high" || _lastLod === "veryHigh")) rebuildPlaces();
       downPt = null; moved = false;
     }
   }
@@ -1788,17 +2189,35 @@
     e.preventDefault();
     setZoom(zoom * (e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP));
   }
+  function openPlace(placeId) {
+    if (placeId == null) return;
+    window.location.href = `index.html#/place/${encodeURIComponent(placeId)}`;
+  }
+
   function handleTap(e) {
     if (!placeGroup) return;
     const { px, py } = relPos(e);
     const ndc = new THREE.Vector2((px / W) * 2 - 1, -(py / H) * 2 + 1);
     raycaster.setFromCamera(ndc, camera);
+
+    // Del 8 – primært: place-miniatyrer + usynlige landmark-hit targets.
     const hits = raycaster.intersectObjects(placeGroup.children, true);
     if (hits.length) {
       let o = hits[0].object;
       while (o && !(o.userData && o.userData.placeId)) o = o.parent;
-      if (o && o.userData && o.userData.placeId) {
-        window.location.href = `index.html#/place/${encodeURIComponent(o.userData.placeId)}`;
+      if (o && o.userData && o.userData.placeId) { openPlace(o.userData.placeId); return; }
+    }
+
+    // Fallback: klikk på selve det håndmodellerte landemerket som matcher et place.
+    if (landmarkGroup) {
+      const lmHits = raycaster.intersectObjects(landmarkGroup.children, true);
+      if (lmHits.length) {
+        let o = lmHits[0].object;
+        while (o && !(o.userData && o.userData.landmarkId)) o = o.parent;
+        if (o && o.userData && o.userData.landmarkId) {
+          const placeId = _landmarkPlaceMap[o.userData.landmarkId];
+          if (placeId) openPlace(placeId);
+        }
       }
     }
   }
@@ -1873,6 +2292,8 @@
     scene.fog = new THREE.Fog(PAL.background, 44, 96);
     camera = new THREE.OrthographicCamera(-VIEW, VIEW, VIEW, -VIEW, 0.1, 200);
     raycaster = new THREE.Raycaster();
+    // Delt, usynlig (men raycastbar) material for landmark-hit targets.
+    INVISIBLE_HIT_MAT = new THREE.MeshBasicMaterial({ visible: false });
 
     buildLights();
     buildBoard();
@@ -1909,7 +2330,10 @@
     const proj = project(p);
     return {
       id: p.id, name: p.name, found: true, lat: p.lat, lon: p.lon,
-      asset: resolveAssetType(p), archetype: archetypeForAsset(resolveAssetType(p)), priority: priorityOf(p),
+      asset: resolveAssetType(p), archetype: archetypeForAsset(resolveAssetType(p)),
+      miniatureType: resolvePlaceMiniatureType(p),
+      landmarkMatch: matchLandmarkForPlace(p),
+      priority: priorityOfPlace(p),
       normalized: proj, world: proj ? { x: nx2x(proj.x), z: ny2z(proj.y) } : null
     };
   }
@@ -1919,6 +2343,13 @@
     if (renderer) rendererType = (renderer.capabilities && renderer.capabilities.isWebGL2) ? "webgl2" : "webgl";
     return {
       placeMarkers: _stats.placeMarkers,
+      visiblePlaceMiniatures: _stats.visiblePlaceMiniatures || 0,
+      placeMiniatureTypes: Object.assign({}, _stats.placeMiniatureTypes),
+      hiddenDuplicateLandmarkPlaces: _stats.hiddenDuplicateLandmarkPlaces || 0,
+      placeLodLevel: _stats.placeLodLevel || null,
+      culledPlaces: _stats.culledPlaces || 0,
+      nudgedPlaces: _stats.nudgedPlaces || 0,
+      clickableLandmarkPlaces: (_stats.clickableLandmarkPlaces || []).map((x) => Object.assign({}, x)),
       genericBuildings: _stats.genericBuildings,
       instancedBuildings: _stats.instancedBuildings,
       highRiseCount: _stats.highRiseCount,
@@ -1958,6 +2389,8 @@
     getProjectionDebug,
     getSceneStats,
     getDistrictVisualProfiles,
-    getLandmarkPositions
+    getLandmarkPositions,
+    getVisiblePlaceMiniatures: () => _visibleMiniatures.map((m) => Object.assign({}, m)),
+    getPlaceMiniatureTypeStats: () => Object.assign({}, _stats.placeMiniatureTypes)
   };
 })();
