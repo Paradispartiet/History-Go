@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-06-04T21:31:39.320Z
+Generated: 2026-06-05T06:51:50.504Z
 
 ## Sammendrag
 - People-filer lest: **27**
-- People lest: **420**
+- People lest: **424**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **420**
+- Duplikate interne place-referanser: **424**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -198,6 +198,10 @@ Generated: 2026-06-04T21:31:39.320Z
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: fernando_pinto (Fernando Pinto) -> lisbon_aeroporto_humberto_delgado_tap_headquarters x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: dionisio_pestana (Dionísio Pestana) -> lisbon_pestana_palace_hotel x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: jose_luis_constantino_dias (José Luís Constantino Dias) -> lisbon_pestana_palace_hotel x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: joao_luis_carrilho_da_graca (João Luís Carrilho da Graça) -> lisbon_terminal_de_cruzeiros x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: rui_alegre (Rui Alegre) -> lisbon_terminal_de_cruzeiros x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: manuel_tainha (Manuel Tainha) -> lisbon_pestana_palace_hotel x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: eduardo_souto_de_moura (Eduardo Souto de Moura) -> lisbon_bairro_alto_hotel_praca_luis_de_camoes x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
