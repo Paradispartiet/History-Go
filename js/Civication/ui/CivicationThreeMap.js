@@ -141,7 +141,8 @@
     trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
     localObjects: 0, parkObjects: 0, waterfrontObjects: 0,
     visiblePlaceMiniatures: 0, placeMiniatureTypes: {}, hiddenDuplicateLandmarkPlaces: 0,
-    placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: []
+    placeLodLevel: null, culledPlaces: 0, nudgedPlaces: 0, clickableLandmarkPlaces: [],
+    miniatureMeshTotal: 0, detailedMiniatures: 0, lowDetailMiniatures: 0
   };
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -1667,177 +1668,534 @@
   // geometri (primitiver), få mesh per miniature, ingen eksterne modeller, ingen
   // teksturer, ingen tekstlabels. Underordnet de håndmodellerte landemerkene.
   // Hver bygger returnerer { group, h } med bunn på lokal y=0.
+  //
+  // Del 1 – Felles detalj-helpere. Alle legger primitive mesh i en gruppe
+  // (lokal origo, bunn y=0). De holdes lette og kalles typisk bare når LOD gir
+  // nok detalj. Ingen tekst – «skilt» er blanke flater (addMiniSignShape).
+  function lodDetail(lod) {
+    if (lod === "veryHigh") return 3;
+    if (lod === "high") return 2;
+    if (lod === "mid") return 1;
+    return 0; // low: kun kropp + silhuett
+  }
+  // Del 9 – dempet detaljpalett avledet av kroppsfargen.
+  function winMat(c) { return mixHex(0x7e94a6, c, 0.14); } // dempet blå/grå vinduer
+  function doorMat(c) { return shade(c, -0.24); }          // mørkere dør
+
+  function addWindows(g, c, opts) {
+    const o = opts || {};
+    const cols = o.cols || 3, rows = o.rows || 1;
+    const y0 = o.y0 != null ? o.y0 : 0.12, dy = o.dy != null ? o.dy : 0.11;
+    const spanX = o.spanX != null ? o.spanX : 0.32, z = o.z != null ? o.z : 0.2;
+    const w = o.w != null ? o.w : 0.05, wh = o.wh != null ? o.wh : 0.06, depth = o.depth || 0.02;
+    const mat = winMat(c);
+    let n = 0;
+    for (let r = 0; r < rows; r++) {
+      for (let i = 0; i < cols; i++) {
+        const x = cols > 1 ? -spanX / 2 + spanX * (i / (cols - 1)) : 0;
+        const win = box(w, wh, depth, mat);
+        win.position.set(x, y0 + r * dy, z);
+        if (o.rot) win.rotation.y = o.rot;
+        g.add(win); n++;
+      }
+    }
+    return n;
+  }
+  function addWindowBands(g, c, opts) {
+    // Brede, rolige vindusbånd (få mesh) – f.eks. bibliotek/galleri.
+    const o = opts || {};
+    const rows = o.rows || 2, y0 = o.y0 != null ? o.y0 : 0.12, dy = o.dy != null ? o.dy : 0.12;
+    const w = o.w != null ? o.w : 0.34, z = o.z != null ? o.z : 0.205;
+    const mat = winMat(c);
+    let n = 0;
+    for (let r = 0; r < rows; r++) {
+      const band = box(w, o.bh || 0.05, 0.02, mat);
+      band.position.set(0, y0 + r * dy, z); g.add(band); n++;
+    }
+    return n;
+  }
+  function addDoor(g, c, opts) {
+    const o = opts || {};
+    const w = o.w || 0.1, hh = o.h || 0.14, z = o.z != null ? o.z : 0.2;
+    const d = box(w, hh, o.depth || 0.03, doorMat(c));
+    d.position.set(o.x || 0, hh / 2, z);
+    g.add(d); return 1;
+  }
+  function addSteps(g, c, opts) {
+    const o = opts || {};
+    const n = o.n || 2, w = o.w || 0.4, z = o.z != null ? o.z : 0.24, mat = shade(c, 0.06);
+    for (let i = 0; i < n; i++) {
+      const s = box(w - i * 0.07, 0.025, 0.05 + (n - i) * 0.02, mat);
+      s.position.set(0, 0.013 + i * 0.025, z + i * 0.03);
+      g.add(s);
+    }
+    return n;
+  }
+  function addColumns(g, c, opts) {
+    const o = opts || {};
+    const n = o.n || 3, h = o.h || 0.28, z = o.z != null ? o.z : 0.2, spanX = o.spanX || 0.36, r = o.r || 0.024;
+    const mat = shade(c, 0.12);
+    for (let i = 0; i < n; i++) {
+      const x = n > 1 ? -spanX / 2 + spanX * (i / (n - 1)) : 0;
+      const col = cyl(r, r, h, 6, mat);
+      col.position.set(x, h / 2, z);
+      g.add(col);
+    }
+    return n;
+  }
+  function addRoofDetails(g, c, opts) {
+    const o = opts || {};
+    const w = o.w || 0.5, d = o.d || 0.4, y = o.y != null ? o.y : 0.32;
+    let n = 0;
+    const cap = box(w + 0.06, 0.04, d + 0.06, shade(c, -0.13)); // takgesims
+    cap.position.y = y; g.add(cap); n++;
+    if (o.penthouse) {
+      const ph = box(w * 0.38, 0.06, d * 0.38, shade(c, -0.05)); // lite takoppbygg
+      ph.position.set(o.phx || 0, y + 0.05, o.phz || 0); g.add(ph); n++;
+    }
+    return n;
+  }
+  function addChimney(g, c, opts) {
+    const o = opts || {};
+    const w = o.w || 0.04, h = o.h || 0.12;
+    const ch = box(w, h, w, shade(c, -0.2));
+    ch.position.set(o.x != null ? o.x : 0.1, (o.base || 0.3) + h / 2, o.z != null ? o.z : -0.08);
+    g.add(ch); return 1;
+  }
+  function addAwning(g, c, opts) {
+    const o = opts || {};
+    const a = box(o.w || 0.46, 0.03, o.d || 0.12, shade(c, 0.16));
+    a.position.set(o.x || 0, o.y != null ? o.y : 0.18, o.z != null ? o.z : 0.22);
+    if (o.tilt) a.rotation.x = o.tilt;
+    g.add(a); return 1;
+  }
+  function addSmallTrees(g, pts, opts) {
+    const o = opts || {};
+    const baseY = o.y != null ? o.y : 0.05, th = o.h || 0.2;
+    pts.forEach(([x, z], i) => {
+      const tr = coneMesh(o.r || 0.07, th, 6, i % 2 ? 0x3f7a46 : 0x4a8a50);
+      tr.position.set(x, baseY + th / 2, z);
+      g.add(tr);
+    });
+    return pts.length;
+  }
+  function addTinyBenches(g, pts, c, y) {
+    pts.forEach(([x, z]) => {
+      const b = box(0.08, 0.02, 0.03, shade(c, -0.1));
+      b.position.set(x, (y != null ? y : 0.02) + 0.01, z);
+      g.add(b);
+    });
+    return pts.length;
+  }
+  function addFieldLines(g, opts) {
+    const o = opts || {};
+    const y = o.y != null ? o.y : 0.055, d = o.d || 0.4, lc = 0xe8eee8;
+    let n = 0;
+    const mid = box(0.018, 0.004, d, lc); mid.position.set(0, y, 0); g.add(mid); n++;
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.006, 6, 16), toMat(lc));
+    ring.rotation.x = Math.PI / 2; ring.position.set(0, y, 0); g.add(ring); n++;
+    if (o.goals) {
+      [-1, 1].forEach((s) => { const goal = box(0.1, 0.04, 0.015, 0xf0f0ec); goal.position.set(0, y + 0.02, s * (d / 2 - 0.015)); g.add(goal); n++; });
+    }
+    return n;
+  }
+  function addQuayDetails(g, c, opts) {
+    const o = opts || {};
+    let n = 0;
+    const pier = box(0.1, 0.03, o.pierLen || 0.3, shade(0xb7a98c, -0.06)); // brygge
+    pier.position.set(o.pierX != null ? o.pierX : 0.22, o.y != null ? o.y : 0.045, 0.16); g.add(pier); n++;
+    [[-0.2, 0.1], [0.02, 0.1]].forEach(([x, z]) => { // pullerter
+      const b = cyl(0.018, 0.022, 0.05, 6, shade(c, -0.2));
+      b.position.set(x, (o.y != null ? o.y : 0.06) + 0.025, z); g.add(b); n++;
+    });
+    return n;
+  }
+  function addMiniBoat(g, y) {
+    const boat = new THREE.Group();
+    boat.add(box(0.12, 0.03, 0.05, 0xd8d0bf));
+    const mast = box(0.01, 0.09, 0.01, 0xe8e2d4); mast.position.y = 0.06; boat.add(mast);
+    boat.position.set(0.2, y != null ? y : 0.05, 0.2);
+    boat.rotation.y = 0.3;
+    g.add(boat);
+    return 2;
+  }
+  function addMiniSignShape(g, c, opts) {
+    // Blankt skilt uten tekst (stolpe + flate).
+    const o = opts || {};
+    let n = 0;
+    const h = o.h || 0.16, z = o.z != null ? o.z : 0.26, x = o.x || 0;
+    const post = cyl(0.012, 0.012, h, 5, shade(c, -0.1));
+    post.position.set(x, h / 2, z); g.add(post); n++;
+    const panel = box(o.w || 0.12, o.ph || 0.07, 0.012, mixHex(0xb9c2cb, c, 0.12));
+    panel.position.set(x, h, z); g.add(panel); n++;
+    return n;
+  }
+
   const PLACE_MINIATURE_TYPES = {
+    // Del 3 – kultur: bred front, søyler, trapp, takgesims.
     museum(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.34;
-      g.add(box(0.5, h, 0.4, c));
-      const roof = box(0.56, 0.04, 0.46, shade(c, -0.12)); roof.position.y = h; g.add(roof);
-      for (let i = -1; i <= 1; i++) { const col = cyl(0.03, 0.03, h * 0.9, 6, shade(c, 0.12)); col.position.set(i * 0.14, 0, 0.2); g.add(col); }
+      const g = new THREE.Group(), c = mixHex(o.color, PAL.culture, 0.12), h = 0.32, d = lodDetail(o.lod);
+      g.add(box(0.56, h, 0.4, c));                                    // bred front
+      if (d >= 1) {
+        addRoofDetails(g, c, { w: 0.56, d: 0.4, y: h });             // takgesims
+        addColumns(g, c, { n: 4, h: h * 0.86, z: 0.21, spanX: 0.4 });// søylefront
+        addSteps(g, c, { n: 2, w: 0.42, z: 0.24 });                  // inngangstrapp
+        addDoor(g, c, { z: 0.205, h: 0.15 });
+      }
+      if (d >= 2) addWindows(g, c, { cols: 3, y0: 0.2, z: -0.205, spanX: 0.36 });
       return { group: g, h };
     },
+    // Del 3 – lav moderne blokk med rotert glasstak/lysgård og sidefløy.
     gallery(o) {
-      const g = new THREE.Group(), c = shade(o.color, 0.08), h = 0.3;
-      g.add(box(0.46, h, 0.4, c));
-      const sky = box(0.2, 0.06, 0.2, shade(c, 0.16)); sky.position.set(0, h, 0); sky.rotation.y = Math.PI / 4; g.add(sky);
-      return { group: g, h };
+      const g = new THREE.Group(), c = shade(o.color, 0.08), h = 0.26, d = lodDetail(o.lod);
+      g.add(box(0.52, h, 0.42, c));                                   // lav blokk
+      const sky = box(0.26, 0.07, 0.26, mixHex(0x9fb6c4, c, 0.2)); sky.position.set(0.04, h + 0.02, 0); sky.rotation.y = Math.PI / 4; g.add(sky); // skrå glasstak
+      if (d >= 1) {
+        const wing = box(0.2, h * 0.7, 0.3, shade(c, -0.05)); wing.position.set(-0.34, (h * 0.7) / 2, 0.04); g.add(wing); // sidefløy
+        addRoofDetails(g, c, { w: 0.52, d: 0.42, y: h });
+      }
+      if (d >= 2) addWindowBands(g, c, { rows: 2, w: 0.36, y0: 0.1, z: 0.215 });
+      return { group: g, h: h + 0.06 };
     },
+    // Del 3 – tydelig inngangsfront, scenekasse/snorloft og baldakin.
     theatre(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.38;
+      const g = new THREE.Group(), c = mixHex(o.color, PAL.culture, 0.1), h = 0.38, d = lodDetail(o.lod);
       g.add(box(0.46, h, 0.38, c));
-      const front = box(0.5, h * 0.5, 0.08, shade(c, 0.1)); front.position.set(0, 0, 0.2); g.add(front);
-      const canopy = box(0.52, 0.04, 0.12, shade(c, -0.14)); canopy.position.set(0, h * 0.48, 0.26); g.add(canopy);
-      return { group: g, h };
+      const fly = box(0.3, h * 1.18, 0.26, shade(c, -0.06)); fly.position.set(0, (h * 1.18) / 2, -0.08); g.add(fly); // scenekasse/snorloft
+      if (d >= 1) {
+        const front = box(0.5, h * 0.5, 0.08, shade(c, 0.1)); front.position.set(0, h * 0.25, 0.2); g.add(front); // inngangsfront
+        addAwning(g, c, { w: 0.52, d: 0.13, y: h * 0.5, z: 0.26 });  // baldakin
+        addDoor(g, c, { z: 0.245, h: 0.14, w: 0.12 });
+      }
+      if (d >= 2) {
+        addColumns(g, c, { n: 2, h: h * 0.46, z: 0.24, spanX: 0.34, r: 0.022 });
+        addWindows(g, c, { cols: 3, y0: h * 0.7, z: 0.195, spanX: 0.3, w: 0.045 });
+      }
+      return { group: g, h: h * 1.18 };
     },
+    // Del 3 – mørkere scenehus med scenetårn, sidevolum og inngangsmarkise.
     music_venue(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.36;
-      g.add(box(0.46, h, 0.42, c));
-      const stage = box(0.3, h * 0.5, 0.14, shade(c, -0.1)); stage.position.set(0, h * 0.25, 0.24); g.add(stage);
-      const cap = box(0.5, 0.04, 0.46, shade(c, -0.12)); cap.position.y = h; g.add(cap);
-      return { group: g, h };
+      const g = new THREE.Group(), c = shade(o.color, -0.1), h = 0.34, d = lodDetail(o.lod);
+      g.add(box(0.44, h, 0.42, c));                                   // mørkt scenehus
+      const tower = box(0.3, h * 1.25, 0.28, shade(c, -0.05)); tower.position.set(-0.02, (h * 1.25) / 2, -0.06); g.add(tower); // scenetårn
+      if (d >= 1) {
+        const side = box(0.16, h * 0.7, 0.3, shade(c, 0.04)); side.position.set(0.3, (h * 0.7) / 2, 0.05); g.add(side); // sidevolum
+        addAwning(g, c, { w: 0.26, d: 0.12, y: h * 0.42, z: 0.24, x: -0.04 }); // inngangsmarkise
+        addDoor(g, c, { z: 0.215, x: -0.04, h: 0.13 });
+      }
+      if (d >= 2) {
+        addWindows(g, c, { cols: 2, y0: h * 0.7, z: 0.215, spanX: 0.2, w: 0.04 });
+        addMiniSignShape(g, c, { x: 0.16, z: 0.24, h: 0.14, w: 0.1, ph: 0.06 });
+      }
+      return { group: g, h: h * 1.25 };
     },
+    // Del 3 – marquee-form (uten tekst) og kino-front.
     cinema(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.36;
+      const g = new THREE.Group(), c = mixHex(o.color, PAL.culture, 0.08), h = 0.34, d = lodDetail(o.lod);
       g.add(box(0.44, h, 0.4, c));
-      const marquee = box(0.5, 0.12, 0.1, shade(c, 0.14)); marquee.position.set(0, h * 0.55, 0.22); g.add(marquee);
-      return { group: g, h };
+      const marquee = box(0.54, 0.12, 0.14, shade(c, 0.14)); marquee.position.set(0, h * 0.62, 0.22); g.add(marquee); // marquee
+      if (d >= 1) {
+        const blade = box(0.08, h * 0.7, 0.06, shade(c, 0.18)); blade.position.set(0.2, h * 0.85, 0.24); g.add(blade); // vertikalt skilt (blankt)
+        addAwning(g, c, { w: 0.5, d: 0.1, y: h * 0.42, z: 0.24 });
+        addDoor(g, c, { z: 0.205, w: 0.14, h: 0.14 });
+      }
+      if (d >= 2) {
+        addWindows(g, c, { cols: 3, y0: h * 0.32, z: 0.205, spanX: 0.3, w: 0.05 });
+        const poster = box(0.05, 0.09, 0.012, mixHex(0xb9c2cb, c, 0.1)); poster.position.set(-0.18, h * 0.32, 0.205); g.add(poster); // blank plakatflate
+      }
+      return { group: g, h: h + 0.07 };
     },
+    // Del 3 – rolig offentlig bygg med taklys/atrium og brede vindusbånd.
     library(o) {
-      const g = new THREE.Group(), c = shade(o.color, 0.06), h = 0.42;
-      g.add(box(0.44, h, 0.4, c));
-      const cap = box(0.48, 0.05, 0.44, shade(c, -0.1)); cap.position.y = h; g.add(cap);
-      return { group: g, h };
+      const g = new THREE.Group(), c = mixHex(o.color, PAL.culture, 0.1), h = 0.4, d = lodDetail(o.lod);
+      g.add(box(0.5, h, 0.42, c));
+      const atrium = box(0.22, 0.05, 0.22, mixHex(0xbcd0d8, c, 0.3)); atrium.position.set(0, h + 0.025, 0); g.add(atrium); // taklys/atrium
+      if (d >= 1) {
+        addRoofDetails(g, c, { w: 0.5, d: 0.42, y: h });
+        addSteps(g, c, { n: 2, w: 0.36, z: 0.24 });
+        addDoor(g, c, { z: 0.215, h: 0.15, w: 0.12 });
+      }
+      if (d >= 2) addWindowBands(g, c, { rows: 2, w: 0.4, y0: 0.13, dy: 0.13, z: 0.215 });
+      return { group: g, h: h + 0.05 };
     },
+    // Del 5 – skip + tårn + spir + inngangsfront.
     church(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.34;
-      g.add(box(0.26, h, 0.36, c));
-      const tower = box(0.14, h * 1.5, 0.14, shade(c, 0.05)); tower.position.set(0, 0, -0.12); g.add(tower);
-      const spire = coneMesh(0.1, 0.3, 4, shade(c, -0.2)); spire.position.set(0, h * 1.5, -0.12); spire.rotation.y = Math.PI / 4; g.add(spire);
+      const g = new THREE.Group(), c = mixHex(o.color, PAL.culture, 0.1), h = 0.34, d = lodDetail(o.lod);
+      g.add(box(0.3, h, 0.44, c));                                    // skip
+      const tower = box(0.16, h * 1.5, 0.16, shade(c, 0.05)); tower.position.set(0, (h * 1.5) / 2, -0.18); g.add(tower);
+      const spire = coneMesh(0.11, 0.3, 4, shade(c, -0.2)); spire.position.set(0, h * 1.5 + 0.15, -0.18); spire.rotation.y = Math.PI / 4; g.add(spire);
+      if (d >= 1) {
+        const roof = gableRoof(0.32, 0.1, 0.44, shade(c, -0.16)); roof.position.set(0, h, 0); g.add(roof); // saltak på skip
+        const porch = box(0.18, h * 0.5, 0.08, shade(c, 0.04)); porch.position.set(0, h * 0.25, 0.24); g.add(porch); // inngangsfront
+        addDoor(g, c, { z: 0.285, h: 0.13, w: 0.08 });
+      }
+      if (d >= 2) addWindows(g, c, { cols: 2, rows: 2, y0: h * 0.4, dy: 0.1, z: 0.155, spanX: 0.16, w: 0.03, wh: 0.07 });
       return { group: g, h: h * 1.5 + 0.3 };
     },
+    // Del 4 – lav skolefløy, skolegård og enkel takform.
     school(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.32;
-      const a = box(0.5, h, 0.32, c); a.position.x = -0.08; g.add(a);
-      const r = gableRoof(0.52, 0.08, 0.34, shade(c, -0.14)); r.position.set(-0.08, h, 0); g.add(r);
-      const b = box(0.24, h, 0.24, c); b.position.set(0.24, 0, 0.08); g.add(b);
+      const g = new THREE.Group(), c = o.color, h = 0.3, d = lodDetail(o.lod);
+      const a = box(0.52, h, 0.3, c); a.position.set(-0.06, h / 2, 0); g.add(a); // lav fløy
+      const r = box(0.56, 0.04, 0.34, shade(c, -0.13)); r.position.set(-0.06, h, 0); g.add(r); // enkel takform
+      if (d >= 1) {
+        const yard = box(0.34, 0.02, 0.34, shade(c, 0.14)); yard.position.set(0.3, 0.01, 0.06); g.add(yard); // skolegård
+        const b = box(0.24, h * 0.8, 0.24, shade(c, -0.03)); b.position.set(0.28, (h * 0.8) / 2, 0.04); g.add(b); // mindre fløy
+        addDoor(g, c, { x: -0.06, z: 0.155, h: 0.13 });
+      }
+      if (d >= 2) {
+        addWindows(g, c, { cols: 4, y0: h * 0.55, z: 0.155, spanX: 0.4, w: 0.045 });
+        addMiniSignShape(g, c, { x: 0.42, z: 0.18, h: 0.16, w: 0.02, ph: 0.04 }); // flaggstang-aktig (blank)
+      }
       return { group: g, h };
     },
+    // Del 4 – bredt institusjonsbygg med fløyer, inngangsparti og gårdsrom.
     university(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.4;
-      g.add(box(0.62, h, 0.36, c));
-      const wingL = box(0.18, h * 0.9, 0.5, shade(c, -0.04)); wingL.position.set(-0.3, 0, 0.04); g.add(wingL);
-      const wingR = box(0.18, h * 0.9, 0.5, shade(c, -0.04)); wingR.position.set(0.3, 0, 0.04); g.add(wingR);
-      const cap = box(0.66, 0.05, 0.4, shade(c, -0.12)); cap.position.y = h; g.add(cap);
+      const g = new THREE.Group(), c = mixHex(o.color, PAL.culture, 0.08), h = 0.4, d = lodDetail(o.lod);
+      g.add(box(0.62, h, 0.32, c));
+      const wingL = box(0.18, h * 0.9, 0.46, shade(c, -0.04)); wingL.position.set(-0.3, (h * 0.9) / 2, 0.1); g.add(wingL);
+      const wingR = box(0.18, h * 0.9, 0.46, shade(c, -0.04)); wingR.position.set(0.3, (h * 0.9) / 2, 0.1); g.add(wingR); // fløyer
+      if (d >= 1) {
+        const court = box(0.26, 0.02, 0.34, shade(c, 0.12)); court.position.set(0, 0.01, 0.16); g.add(court); // indre gårdsrom
+        const entry = box(0.22, h * 0.6, 0.1, shade(c, 0.06)); entry.position.set(0, h * 0.3, 0.04); g.add(entry); // inngangsparti
+        addDoor(g, c, { z: 0.095, h: 0.14, w: 0.1 });
+      }
+      if (d >= 2) addWindows(g, c, { cols: 4, y0: 0.16, z: 0.165, spanX: 0.44, w: 0.045 });
       return { group: g, h };
     },
+    // Del 7 – lang hall, takbue og spor-/plattformantydning.
     station(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.3;
-      g.add(box(0.8, h, 0.4, c));
-      const hall = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.78, 12, 1, false, 0, Math.PI), toMat(shade(c, 0.12)));
-      hall.rotation.z = Math.PI / 2; hall.position.set(0, h, 0); g.add(hall);
+      const g = new THREE.Group(), c = o.color, h = 0.3, d = lodDetail(o.lod);
+      g.add(box(0.8, h, 0.4, c));                                     // lang hall
+      const hall = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.82, 14, 1, false, 0, Math.PI), toMat(shade(c, 0.12)));
+      hall.rotation.z = Math.PI / 2; hall.position.set(0, h, 0); g.add(hall); // takbue
+      if (d >= 1) {
+        const platform = box(0.86, 0.03, 0.12, shade(c, 0.08)); platform.position.set(0, 0.015, 0.26); g.add(platform); // plattform
+        const rail1 = box(0.86, 0.01, 0.015, PAL.rail); rail1.position.set(0, 0.02, 0.22); g.add(rail1);
+        const rail2 = box(0.86, 0.01, 0.015, PAL.rail); rail2.position.set(0, 0.02, 0.3); g.add(rail2); // spor
+      }
+      if (d >= 2) {
+        addWindows(g, c, { cols: 5, y0: h * 0.5, z: 0.205, spanX: 0.6, w: 0.05 });
+        addDoor(g, c, { z: 0.205, h: 0.16, w: 0.12 });
+      }
       return { group: g, h: h + 0.2 };
     },
+    // Del 6 – tribunering + tydelig bane, lysmaster ved høy zoom.
     stadium(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.26;
-      const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.44, h, 18), toMat(c));
-      ring.position.y = h / 2; ring.scale.x = 1.3; ring.castShadow = true; ring.receiveShadow = true; g.add(ring);
-      const pitch = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, h * 0.6, 18), toMat(0x4f8f55));
-      pitch.position.y = h * 0.6; pitch.scale.x = 1.3; pitch.receiveShadow = true; g.add(pitch);
-      return { group: g, h };
+      const g = new THREE.Group(), c = o.color, h = 0.26, d = lodDetail(o.lod);
+      const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.44, h, 20), toMat(c));
+      ring.position.y = h / 2; ring.scale.x = 1.3; ring.castShadow = true; ring.receiveShadow = true; g.add(ring); // tribunering
+      const pitch = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, h * 0.5, 20), toMat(0x4f8f55));
+      pitch.position.y = h * 0.55; pitch.scale.x = 1.3; pitch.receiveShadow = true; g.add(pitch); // bane
+      if (d >= 1) {
+        const tier = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.4, h * 0.7, 20, 1, true), toMat(shade(c, 0.08)));
+        tier.position.y = h * 0.7; tier.scale.x = 1.3; g.add(tier); // indre tribunerad
+      }
+      if (d >= 2) {
+        addFieldLines(g, { y: h * 0.82, d: 0.34, goals: true });
+        [[-0.5, -0.28], [0.5, -0.28], [-0.5, 0.28], [0.5, 0.28]].forEach(([x, z]) => {
+          const mast = box(0.02, 0.18, 0.02, shade(c, 0.2)); mast.position.set(x, 0.09, z); g.add(mast); // lysmaster
+        });
+      }
+      return { group: g, h: h + 0.1 };
     },
+    // Del 6 – grønn bane med enkle linjer/mål.
     sports_field(o) {
-      const g = new THREE.Group(), h = 0.05;
-      const field = box(0.6, h, 0.42, 0x5a9a57); field.position.y = h / 2; g.add(field);
-      const line = box(0.02, h + 0.01, 0.4, 0xdfe6df); line.position.y = (h + 0.01) / 2; g.add(line);
-      return { group: g, h };
+      const g = new THREE.Group(), h = 0.05, d = lodDetail(o.lod);
+      const field = box(0.62, h, 0.42, 0x5a9a57); field.position.y = h / 2; g.add(field);
+      if (d >= 1) addFieldLines(g, { y: h + 0.005, d: 0.4, goals: true });
+      if (d >= 2) {
+        const stand = box(0.5, 0.06, 0.06, shade(0x5a9a57, -0.2)); stand.position.set(0, 0.03, -0.26); g.add(stand); // liten tribune
+        addTinyBenches(g, [[0, -0.24]], 0x8a7a5c, 0.06);
+      }
+      return { group: g, h: 0.08 };
     },
+    // Del 6 – lav avrundet ishall med kuppel og lys isflate-antydning.
     ice_arena(o) {
-      const g = new THREE.Group(), c = shade(o.color, 0.1), h = 0.24;
+      const g = new THREE.Group(), c = shade(o.color, 0.1), h = 0.24, d = lodDetail(o.lod);
       const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.44, h, 20), toMat(c));
       shell.scale.set(1.2, 1, 1); shell.position.y = h / 2; shell.castShadow = true; shell.receiveShadow = true; g.add(shell);
       const roof = new THREE.Mesh(new THREE.SphereGeometry(0.42, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), toMat(shade(c, 0.08)));
-      roof.scale.set(1.2, 0.4, 1); roof.position.y = h; g.add(roof);
-      return { group: g, h: h + 0.16 };
+      roof.scale.set(1.2, 0.42, 1); roof.position.y = h; g.add(roof); // avrundet kuppel
+      if (d >= 1) {
+        const ice = box(0.4, 0.02, 0.16, mixHex(0xcfe6ef, c, 0.2)); ice.position.set(0, 0.01, 0.5); g.add(ice); // lys isflate (forplass)
+        const entry = box(0.18, h * 0.7, 0.08, shade(c, -0.06)); entry.position.set(0, (h * 0.7) / 2, 0.46); g.add(entry); // inngang
+      }
+      if (d >= 2) {
+        addWindows(g, c, { cols: 3, y0: h * 0.5, z: 0.42, spanX: 0.4, w: 0.05 });
+        addDoor(g, c, { z: 0.5, h: 0.12 });
+      }
+      return { group: g, h: h + 0.18 };
     },
-    park(o) {
-      const g = new THREE.Group(), h = 0.06;
-      const lawn = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.38, h, 14), toMat(0x6aa66f));
-      lawn.position.y = h / 2; lawn.receiveShadow = true; g.add(lawn);
-      [[-0.12, 0.08], [0.12, -0.06], [0.02, 0.16]].forEach(([x, z]) => { const tr = coneMesh(0.1, 0.3, 7, 0x3f7a46); tr.position.set(x, h, z); g.add(tr); });
-      return { group: g, h: h + 0.3 };
-    },
+    // Del 6 – sandflate, lekestruktur, sklie og huske.
     playground(o) {
-      const g = new THREE.Group(), h = 0.04;
-      const sand = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.32, h, 14), toMat(0xd8c48c));
-      sand.position.y = h / 2; sand.receiveShadow = true; g.add(sand);
-      const frame = box(0.06, 0.18, 0.22, 0xb45a48); frame.position.set(-0.06, 0, 0); g.add(frame);
-      const slide = box(0.18, 0.03, 0.06, 0xd0c2a8); slide.position.set(0.06, 0.1, 0); slide.rotation.z = 0.5; g.add(slide);
-      return { group: g, h: 0.2 };
+      const g = new THREE.Group(), h = 0.04, d = lodDetail(o.lod);
+      const sand = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.34, h, 16), toMat(0xd8c48c));
+      sand.position.y = h / 2; sand.receiveShadow = true; g.add(sand); // sandflate
+      if (d >= 1) {
+        const frame = box(0.06, 0.2, 0.24, 0xb45a48); frame.position.set(-0.08, 0.1, 0); g.add(frame); // klatrestativ
+        const slide = box(0.2, 0.03, 0.06, 0xd0c2a8); slide.position.set(0.04, 0.1, 0); slide.rotation.z = 0.5; g.add(slide); // sklie
+        const swing = box(0.18, 0.02, 0.04, 0x8a6a4a); swing.position.set(0.16, 0.18, 0.1); g.add(swing); // huske
+      }
+      if (d >= 2) {
+        addSmallTrees(g, [[-0.22, 0.18]], { h: 0.18, r: 0.06, y: 0.04 });
+        addTinyBenches(g, [[0.2, -0.16]], 0x8a7a5c, 0.04);
+      }
+      return { group: g, h: 0.22 };
     },
+    // Del 6 – grønn flate, små trær, sti og benk.
+    park(o) {
+      const g = new THREE.Group(), h = 0.06, d = lodDetail(o.lod);
+      const lawn = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.4, h, 16), toMat(0x6aa66f));
+      lawn.position.y = h / 2; lawn.receiveShadow = true; g.add(lawn); // grønn flate
+      addSmallTrees(g, [[-0.14, 0.08], [0.14, -0.04]], { h: 0.26, r: 0.1, y: h }); // silhuett-trær
+      if (d >= 1) {
+        addSmallTrees(g, [[0.04, 0.18]], { h: 0.24, r: 0.09, y: h });
+        const path = box(0.5, 0.01, 0.07, shade(0xc9b092, 0.04)); path.position.set(0, h + 0.005, -0.1); path.rotation.y = 0.3; g.add(path); // liten sti
+      }
+      if (d >= 2) addTinyBenches(g, [[-0.18, -0.12], [0.2, 0.1]], 0x8a7a5c, h);
+      return { group: g, h: h + 0.26 };
+    },
+    // Del 7 – åpen plass, lave bygg rundt, liten statue/tre/benk.
     square(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.02;
-      const plaza = box(0.6, h, 0.6, shade(c, 0.12)); plaza.position.y = h / 2; plaza.receiveShadow = true; g.add(plaza);
-      [[-0.34, -0.2], [0.34, -0.2], [0.0, 0.36]].forEach(([x, z], i) => {
-        const bh = 0.26 + (i % 2) * 0.1; const b = box(0.22, bh, 0.2, c); b.position.set(x, bh / 2, z); g.add(b);
-        const r = gableRoof(0.24, 0.07, 0.22, shade(c, -0.15)); r.position.set(x, bh, z); g.add(r);
-      });
-      return { group: g, h: 0.36 };
+      const g = new THREE.Group(), c = o.color, h = 0.02, d = lodDetail(o.lod);
+      const plaza = box(0.62, h, 0.62, shade(c, 0.12)); plaza.position.y = h / 2; plaza.receiveShadow = true; g.add(plaza); // åpen plass
+      [[-0.36, -0.22], [0.36, -0.22]].forEach(([x, z], i) => {
+        const bh = 0.26 + i * 0.06; const b = box(0.22, bh, 0.2, c); b.position.set(x, bh / 2, z); g.add(b);
+      }); // lave bygg rundt
+      if (d >= 1) {
+        const b = box(0.24, 0.3, 0.2, shade(c, -0.04)); b.position.set(0, 0.15, 0.4); g.add(b);
+        const statueBase = cyl(0.05, 0.06, 0.06, 8, PAL.stone); statueBase.position.set(0, 0.03, 0); g.add(statueBase);
+        const statue = box(0.04, 0.14, 0.04, shade(PAL.stone, -0.1)); statue.position.set(0, 0.13, 0); g.add(statue); // liten statue
+      }
+      if (d >= 2) {
+        addSmallTrees(g, [[-0.18, 0.18]], { h: 0.2, r: 0.08, y: 0.02 });
+        addTinyBenches(g, [[0.16, 0.12]], c, 0.02);
+      }
+      return { group: g, h: 0.32 };
     },
+    // Del 7 – smal gateflate med husrekker på sidene.
     street(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.22;
-      const strip = box(0.6, 0.02, 0.18, shade(c, -0.06)); strip.position.y = 0.01; g.add(strip);
-      [-0.18, 0.06, 0.28].forEach((x, i) => { const bh = h - (i % 2) * 0.06; const b = box(0.14, bh, 0.16, i % 2 ? shade(c, 0.06) : c); b.position.set(x, bh / 2, -0.06); g.add(b); });
+      const g = new THREE.Group(), c = o.color, h = 0.22, d = lodDetail(o.lod);
+      const strip = box(0.62, 0.02, 0.18, shade(c, -0.08)); strip.position.y = 0.01; g.add(strip); // gateflate
+      [-0.2, 0.04, 0.26].forEach((x, i) => { const bh = h - (i % 2) * 0.06; const b = box(0.14, bh, 0.16, i % 2 ? shade(c, 0.06) : c); b.position.set(x, bh / 2, -0.12); g.add(b); }); // husrekke
+      if (d >= 1) [-0.2, 0.26].forEach((x) => { const r = gableRoof(0.15, 0.05, 0.17, shade(c, -0.14)); r.position.set(x, h - 0.02, -0.12); g.add(r); });
+      if (d >= 2) [-0.08, 0.2].forEach((x, i) => { const bh = 0.16 - i * 0.03; const b = box(0.14, bh, 0.14, i % 2 ? c : shade(c, 0.05)); b.position.set(x, bh / 2, 0.12); g.add(b); }); // motsatt side
       return { group: g, h };
     },
+    // Del 7 – kai, brygge, lite bygg og en liten båt.
     waterfront(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.07;
-      const quay = box(0.6, h, 0.3, 0xb7a98c); quay.position.y = h / 2; quay.receiveShadow = true; g.add(quay);
-      const b = box(0.3, 0.26, 0.2, c); b.position.set(-0.08, h + 0.13, -0.02); g.add(b);
-      const pier = box(0.08, 0.03, 0.3, 0xa89878); pier.position.set(0.22, h * 0.6, 0.18); g.add(pier);
+      const g = new THREE.Group(), c = mixHex(o.color, 0xc9b894, 0.2), h = 0.07, d = lodDetail(o.lod);
+      const quay = box(0.62, h, 0.3, 0xb7a98c); quay.position.y = h / 2; quay.receiveShadow = true; g.add(quay); // kai
+      const b = box(0.3, 0.26, 0.2, c); b.position.set(-0.1, h + 0.13, -0.03); g.add(b); // lite bygg
+      if (d >= 1) addQuayDetails(g, c, { y: h, pierLen: 0.3, pierX: 0.22 }); // brygge + pullerter
+      if (d >= 2) {
+        addMiniBoat(g, h + 0.02);
+        const crane = box(0.03, 0.2, 0.03, shade(c, -0.1)); crane.position.set(0.1, h + 0.1, -0.08); g.add(crane);
+      }
       return { group: g, h: h + 0.26 };
     },
+    // Del 5 – steinbase, hjørnetårn, mur og borggård (skiller seg fra civic).
     fortress(o) {
-      const g = new THREE.Group(), c = shade(o.color, -0.04), h = 0.3;
-      const base = box(0.56, 0.06, 0.56, shade(c, 0.05)); base.position.y = 0.03; g.add(base);
-      const body = box(0.4, h, 0.4, c); body.position.y = 0.06 + h / 2; g.add(body);
-      const keep = box(0.16, h * 0.8, 0.16, shade(c, 0.04)); keep.position.set(-0.12, 0.06 + h * 0.4, -0.1); g.add(keep);
-      const sp = coneMesh(0.12, 0.2, 4, shade(c, -0.18)); sp.position.set(-0.12, 0.06 + h * 0.8, -0.1); sp.rotation.y = Math.PI / 4; g.add(sp);
-      return { group: g, h: h + 0.26 };
+      const g = new THREE.Group(), c = shade(o.color, -0.04), h = 0.3, d = lodDetail(o.lod);
+      const base = box(0.6, 0.06, 0.6, shade(c, 0.06)); base.position.y = 0.03; g.add(base); // steinbase
+      [[-0.24, -0.24], [0.24, -0.24], [-0.24, 0.24], [0.24, 0.24]].forEach(([x, z]) => {
+        const t = cyl(0.07, 0.08, h * 1.1, 7, shade(c, 0.03)); t.position.set(x, 0.06 + (h * 1.1) / 2, z); g.add(t); // hjørnetårn
+      });
+      if (d >= 1) {
+        const wallN = box(0.5, h * 0.7, 0.07, c); wallN.position.set(0, 0.06 + (h * 0.7) / 2, -0.24); g.add(wallN);
+        const wallS = box(0.5, h * 0.7, 0.07, c); wallS.position.set(0, 0.06 + (h * 0.7) / 2, 0.24); g.add(wallS);
+        const wallW = box(0.07, h * 0.7, 0.5, c); wallW.position.set(-0.24, 0.06 + (h * 0.7) / 2, 0); g.add(wallW);
+        const wallE = box(0.07, h * 0.7, 0.5, c); wallE.position.set(0.24, 0.06 + (h * 0.7) / 2, 0); g.add(wallE); // mur rundt borggård
+        addDoor(g, c, { z: 0.275, h: 0.12, w: 0.1 }); // port
+      }
+      if (d >= 2) {
+        const keep = box(0.18, h * 0.9, 0.18, shade(c, 0.04)); keep.position.set(0, 0.06 + (h * 0.9) / 2, 0); g.add(keep); // indre kjernetårn
+        const sp = coneMesh(0.13, 0.18, 4, shade(c, -0.18)); sp.position.set(0, 0.06 + h * 0.9 + 0.09, 0); sp.rotation.y = Math.PI / 4; g.add(sp);
+      }
+      return { group: g, h: h * 1.1 + 0.2 };
     },
+    // Del 2 – offentlig kjernebygg med base, tårnvolum, trapp og søyler.
     civic(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.4;
-      g.add(box(0.5, h * 0.7, 0.5, c));
-      g.add(box(0.3, h, 0.3, shade(c, 0.06)));
-      const cap = box(0.34, 0.05, 0.34, shade(c, -0.1)); cap.position.y = h; g.add(cap);
+      const g = new THREE.Group(), c = o.color, h = 0.4, d = lodDetail(o.lod);
+      g.add(box(0.52, h * 0.7, 0.5, c));                              // bred base
+      const tower = box(0.3, h, 0.3, shade(c, 0.06)); tower.position.set(0, h / 2, 0); g.add(tower); // tårnvolum
+      if (d >= 1) {
+        addRoofDetails(g, c, { w: 0.3, d: 0.3, y: h });
+        addSteps(g, c, { n: 2, w: 0.4, z: 0.28 });
+        addDoor(g, c, { z: 0.255, h: 0.15 });
+      }
+      if (d >= 2) {
+        addColumns(g, c, { n: 3, h: h * 0.5, z: 0.25, spanX: 0.3, r: 0.022 });
+        addWindows(g, c, { cols: 3, y0: h * 0.85, z: 0.155, spanX: 0.22, w: 0.04 });
+      }
       return { group: g, h };
     },
+    // Del 8 – råere form: skate-/rampe-, mur- og sceneaktige volum (uten neon).
     subculture(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.3;
-      g.add(box(0.42, h, 0.38, c));
-      const tag = box(0.44, h * 0.4, 0.06, shade(c, 0.16)); tag.position.set(0, h * 0.5, 0.2); tag.rotation.z = 0.12; g.add(tag);
+      const g = new THREE.Group(), c = shade(o.color, -0.04), h = 0.28, d = lodDetail(o.lod);
+      const body = box(0.42, h, 0.38, c); body.position.y = h / 2; body.rotation.y = 0.08; g.add(body);
+      const ramp = box(0.3, 0.04, 0.2, shade(c, 0.06)); ramp.position.set(0.06, 0.12, 0.26); ramp.rotation.x = -0.5; g.add(ramp); // skate-/rampeform
+      if (d >= 1) {
+        const stage = box(0.26, h * 0.4, 0.12, shade(c, -0.1)); stage.position.set(-0.08, (h * 0.4) / 2 + 0.04, 0.22); g.add(stage); // scenevolum
+        const wall = box(0.04, h * 0.7, 0.36, shade(c, 0.04)); wall.position.set(-0.24, (h * 0.7) / 2, 0); g.add(wall); // mur
+      }
+      if (d >= 2) {
+        const quarter = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.24, 10, 1, true, 0, Math.PI / 2), toMat(shade(c, 0.1)));
+        quarter.rotation.z = Math.PI; quarter.position.set(-0.18, 0.12, 0.24); g.add(quarter); // quarter-pipe
+        const tag = box(0.18, 0.12, 0.012, mixHex(0xb9c2cb, c, 0.1)); tag.position.set(0, h * 0.55, 0.2); tag.rotation.z = 0.1; g.add(tag); // blank flate
+      }
       return { group: g, h };
     },
+    // Del 8 – lav lagerhall med port, pipe og ventilasjonsblokker.
     industrial(o) {
-      const g = new THREE.Group(), c = shade(o.color, -0.06), h = 0.26;
-      g.add(box(0.7, h, 0.46, c));
-      const r = gableRoof(0.72, 0.07, 0.48, shade(c, -0.08)); r.position.y = h; g.add(r);
-      return { group: g, h };
+      const g = new THREE.Group(), c = mixHex(o.color, 0x8d8780, 0.3), h = 0.24, d = lodDetail(o.lod);
+      g.add(box(0.7, h, 0.46, c));                                    // lagerhall
+      const r = gableRoof(0.72, 0.07, 0.48, shade(c, -0.1)); r.position.y = h; g.add(r);
+      if (d >= 1) {
+        const gate = box(0.2, h * 0.8, 0.04, shade(c, -0.22)); gate.position.set(-0.12, (h * 0.8) / 2, 0.23); g.add(gate); // port
+        addChimney(g, c, { x: 0.26, z: -0.12, base: h + 0.05, h: 0.18, w: 0.05 }); // pipe
+      }
+      if (d >= 2) {
+        [-0.04, 0.12, 0.28].forEach((x) => { const v = box(0.08, 0.06, 0.1, shade(c, 0.04)); v.position.set(x, h + 0.05, 0); g.add(v); }); // ventilasjonsblokker
+        addWindows(g, c, { cols: 3, y0: h * 0.55, z: 0.235, spanX: 0.3, w: 0.05 });
+      }
+      return { group: g, h: h + 0.07 };
     },
+    // Del 2 – butikkfront: baldakin, dør, butikkvinduer og blankt skilt.
     commerce(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.3;
+      const g = new THREE.Group(), c = o.color, h = 0.3, d = lodDetail(o.lod);
       g.add(box(0.42, h, 0.36, c));
-      const awning = box(0.46, 0.03, 0.12, shade(c, 0.16)); awning.position.set(0, h * 0.55, 0.22); g.add(awning);
+      if (d >= 1) {
+        addAwning(g, c, { w: 0.46, d: 0.12, y: h * 0.5, z: 0.2 });
+        addDoor(g, c, { z: 0.185, h: 0.12 });
+        const cap = box(0.44, 0.04, 0.38, shade(c, -0.1)); cap.position.y = h; g.add(cap); // takkant
+      }
+      if (d >= 2) {
+        addWindows(g, c, { cols: 3, y0: h * 0.32, z: 0.185, spanX: 0.3, w: 0.06, wh: 0.07 });
+        addMiniSignShape(g, c, { x: 0, z: 0.22, h: 0.12, w: 0.16, ph: 0.05 });
+      }
       return { group: g, h };
     },
+    // Del 2 – boligblokk (lett): takkant, dør og vindusrytme.
     apartment(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.5;
+      const g = new THREE.Group(), c = o.color, h = 0.5, d = lodDetail(o.lod);
       g.add(box(0.42, h, 0.42, c));
-      const cap = box(0.46, 0.04, 0.46, shade(c, -0.12)); cap.position.y = h; g.add(cap);
+      if (d >= 1) {
+        const cap = box(0.46, 0.04, 0.46, shade(c, -0.12)); cap.position.y = h; g.add(cap); // takkant
+        addDoor(g, c, { z: 0.215, h: 0.13 });
+      }
+      if (d >= 2) addWindows(g, c, { cols: 2, rows: 2, y0: 0.16, dy: 0.16, z: 0.215, spanX: 0.22, w: 0.06, wh: 0.07 });
       return { group: g, h };
     },
+    // Del 2 – generisk småbygg (svært lett): takkant, dør, et par vinduer.
     default(o) {
-      const g = new THREE.Group(), c = o.color, h = 0.32;
+      const g = new THREE.Group(), c = o.color, h = 0.32, d = lodDetail(o.lod);
       g.add(box(0.38, h, 0.38, c));
-      const cap = box(0.4, 0.04, 0.4, shade(c, -0.1)); cap.position.y = h; g.add(cap);
+      if (d >= 1) {
+        const cap = box(0.4, 0.04, 0.4, shade(c, -0.1)); cap.position.y = h; g.add(cap); // takkant
+        addDoor(g, c, { z: 0.195, h: 0.12 });
+      }
+      if (d >= 2) addWindows(g, c, { cols: 2, y0: h * 0.55, z: 0.195, spanX: 0.18, w: 0.05 });
       return { group: g, h };
     }
   };
@@ -1922,9 +2280,10 @@
   // Ingen tekstlabels, ingen beacons; place-miniatyrer kaster ikke skygge (iPad-ytelse).
   function buildPlaceMiniature(p, opts) {
     const type = (opts && opts.type) || resolvePlaceMiniatureType(p);
+    const lod = (opts && opts.lod) || _lastLod || "high";
     const color = placeColorFor(p, type);
     const make = PLACE_MINIATURE_TYPES[type] || PLACE_MINIATURE_TYPES.default;
-    const built = make({ color });
+    const built = make({ color, lod });
     const group = built.group;
     const scale = (opts && opts.scale) || 0.4;
     group.scale.setScalar(scale);
@@ -1986,6 +2345,9 @@
     _stats.culledPlaces = 0;
     _stats.nudgedPlaces = 0;
     _stats.clickableLandmarkPlaces = [];
+    _stats.miniatureMeshTotal = 0;
+    _stats.detailedMiniatures = 0;
+    _stats.lowDetailMiniatures = 0;
     if (!_places) { _stats.placeMarkers = 0; _stats.visiblePlaceMiniatures = 0; return; }
 
     const lod = placeLodLevel(zoom);
@@ -2060,9 +2422,15 @@
       placedNorm.push({ x: nx, y: ny });
 
       const type = resolvePlaceMiniatureType(entry.p);
-      const node = buildPlaceMiniature(entry.p, { type, scale });
+      const node = buildPlaceMiniature(entry.p, { type, scale, lod });
       node.position.set(nx2x(nx), GROUND_Y, ny2z(ny));
       placeGroup.add(node);
+
+      // Del 12 – mesh-budsjett-statistikk per miniatyr.
+      let meshCount = 0;
+      node.traverse((m) => { if (m.isMesh) meshCount++; });
+      _stats.miniatureMeshTotal += meshCount;
+      if (meshCount >= 6) _stats.detailedMiniatures++; else _stats.lowDetailMiniatures++;
 
       hitTargets.push({ id: entry.p.id, place: entry.p, type, viaLandmark: false });
       _visibleMiniatures.push({ id: entry.p.id, name: entry.p.name, type, priority: entry.prio, x: Number(nx.toFixed(4)), y: Number(ny.toFixed(4)), nudged });
@@ -2345,6 +2713,10 @@
       placeMarkers: _stats.placeMarkers,
       visiblePlaceMiniatures: _stats.visiblePlaceMiniatures || 0,
       placeMiniatureTypes: Object.assign({}, _stats.placeMiniatureTypes),
+      averageMeshesPerMiniature: _stats.visiblePlaceMiniatures
+        ? Number((_stats.miniatureMeshTotal / _stats.visiblePlaceMiniatures).toFixed(2)) : 0,
+      detailedMiniatures: _stats.detailedMiniatures || 0,
+      lowDetailMiniatures: _stats.lowDetailMiniatures || 0,
       hiddenDuplicateLandmarkPlaces: _stats.hiddenDuplicateLandmarkPlaces || 0,
       placeLodLevel: _stats.placeLodLevel || null,
       culledPlaces: _stats.culledPlaces || 0,
