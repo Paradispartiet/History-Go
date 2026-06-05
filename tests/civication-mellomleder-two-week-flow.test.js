@@ -277,6 +277,15 @@ function assertRawChannel(mail, expectedChannel) {
   assert.strictEqual(mail.mail_class, 'private_message', `${mail.id} should keep mail_class=private_message`);
 }
 
+
+function assertMellomlederRuntimeEvent(event, context) {
+  assert.strictEqual(event.role_scope, 'mellomleder', `${context}: runtime event should stay scoped to mellomleder`);
+  assert(!/arbeider|fagarbeider|formann|ekspeditør|ekspeditor/i.test(event.id), `${context}: runtime event should not mix in another role id`);
+  if (event.mail_family) {
+    assert(/mellomleder/i.test(event.mail_family), `${context}: runtime event should stay in a mellomleder family`);
+  }
+}
+
 function makeHarness() {
   global.window = global;
   global.localStorage = makeStorage();
@@ -349,6 +358,7 @@ async function playStyle(name, choiceMap) {
     assert(pending, `${name}: pending planned mail missing before ${expected.id}`);
     assert.strictEqual(pending.id, expected.id, `${name}: runtime should present ${expected.id} in the two-week order`);
     assert.strictEqual(pending.mail_type, expected.type, `${name}: ${expected.id} should keep mail_type`);
+    assertMellomlederRuntimeEvent(pending, `${name}: ${expected.id}`);
     assert.strictEqual(global.CivicationEventChannels.getMessageChannel(pending), expected.channel, `${name}: ${expected.id} should classify to ${expected.channel}`);
     assertLongCorrespondence(pending, expected.minSituation);
     assert.deepStrictEqual(pending.mail_plan_meta.fallback_types, [], `${name}: ${expected.id} should not rely on fallback progression`);
@@ -378,6 +388,7 @@ async function playStyle(name, choiceMap) {
     assert(thread, `${name}: thread consequence missing after ${pending.id}`);
     assert.strictEqual(thread.id, choice.triggers_on_choice, `${name}: ${pending.id} should enqueue selected consequence thread`);
     assert.strictEqual(thread.source_type, 'thread', `${name}: ${thread.id} must use existing thread runtime`);
+    assertMellomlederRuntimeEvent(thread, `${name}: ${thread.id}`);
     assert.strictEqual(global.CivicationEventChannels.getMessageChannel(thread), expected.channel, `${name}: ${thread.id} should inherit ${expected.channel} channel`);
     assert.strictEqual(thread.mail_type, expected.type, `${name}: ${thread.id} should inherit ${expected.type} mail_type`);
     assert(Array.isArray(thread.situation) && thread.situation.length >= 1, `${name}: ${thread.id} should be playable as thread situation array`);
