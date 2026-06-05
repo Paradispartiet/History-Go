@@ -2,11 +2,41 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
+type JsonObject = Record<string, unknown>;
+type PlaceManifest = JsonObject & {
+  files?: unknown[];
+};
+type PlaceRow = JsonObject & {
+  id?: unknown;
+  name?: unknown;
+  lat?: unknown;
+  lon?: unknown;
+  r?: unknown;
+  category?: unknown;
+  year?: unknown;
+  desc?: unknown;
+  image?: unknown;
+  cardImage?: unknown;
+  frontImage?: unknown;
+  hidden?: unknown;
+  stub?: unknown;
+};
+type LightField = keyof PlaceRow;
+type LightPlace = Partial<Record<LightField, unknown>>;
+type IndexDiff = {
+  idx: number;
+  placeId: unknown;
+  type: string;
+  field?: string;
+  expected: unknown;
+  actual: unknown;
+};
+
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, 'data/places/manifest.json');
 const ACTUAL_INDEX_PATH = path.join(ROOT, 'data/places/places_index.json');
 
-const LIGHT_FIELDS = [
+const LIGHT_FIELDS: LightField[] = [
   'id',
   'name',
   'lat',
@@ -24,30 +54,46 @@ const LIGHT_FIELDS = [
 
 const MAX_DIFFS = 20;
 
-function pickLight(place) {
-  const out = {};
+function hasObjectType(value: unknown): value is JsonObject {
+  return Boolean(value) && typeof value === 'object';
+}
+
+function isJsonObject(value: unknown): value is JsonObject {
+  return hasObjectType(value) && !Array.isArray(value);
+}
+
+function isPlaceManifest(value: unknown): value is PlaceManifest {
+  return isJsonObject(value) && (!Object.prototype.hasOwnProperty.call(value, 'files') || Array.isArray(value.files));
+}
+
+function isPlaceRow(value: unknown): value is PlaceRow {
+  return isJsonObject(value);
+}
+
+function pickLight(place: PlaceRow): LightPlace {
+  const out: LightPlace = {};
   for (const key of LIGHT_FIELDS) {
     if (Object.prototype.hasOwnProperty.call(place, key)) out[key] = place[key];
   }
   return out;
 }
 
-async function readJson(filePath) {
+async function readJson(filePath: string): Promise<unknown> {
   const raw = await fs.readFile(filePath, 'utf8');
-  return JSON.parse(raw);
+  return JSON.parse(raw) as unknown;
 }
 
-function formatValue(value) {
+function formatValue(value: unknown): string | undefined {
   if (value === undefined) return 'undefined';
   return JSON.stringify(value);
 }
 
-function compareEntries(expectedEntry, actualEntry, idx, diffs) {
-  const expectedId = expectedEntry && typeof expectedEntry === 'object' ? expectedEntry.id : undefined;
-  const actualId = actualEntry && typeof actualEntry === 'object' ? actualEntry.id : undefined;
+function compareEntries(expectedEntry: unknown, actualEntry: unknown, idx: number, diffs: IndexDiff[]): void {
+  const expectedId = hasObjectType(expectedEntry) ? expectedEntry.id : undefined;
+  const actualId = hasObjectType(actualEntry) ? actualEntry.id : undefined;
   const placeId = expectedId ?? actualId;
 
-  if (!actualEntry || typeof actualEntry !== 'object' || Array.isArray(actualEntry)) {
+  if (!isJsonObject(actualEntry)) {
     diffs.push({
       idx,
       placeId,
@@ -58,7 +104,7 @@ function compareEntries(expectedEntry, actualEntry, idx, diffs) {
     return;
   }
 
-  if (!expectedEntry || typeof expectedEntry !== 'object' || Array.isArray(expectedEntry)) {
+  if (!isJsonObject(expectedEntry)) {
     diffs.push({
       idx,
       placeId,
@@ -125,18 +171,18 @@ function compareEntries(expectedEntry, actualEntry, idx, diffs) {
   }
 }
 
-async function buildExpectedIndex() {
+async function buildExpectedIndex(): Promise<LightPlace[]> {
   const manifest = await readJson(MANIFEST_PATH);
-  const files = Array.isArray(manifest?.files) ? manifest.files : [];
-  const out = [];
+  const files = isPlaceManifest(manifest) && Array.isArray(manifest.files) ? manifest.files : [];
+  const out: LightPlace[] = [];
 
   for (const rel of files) {
-    const fullPath = path.join(ROOT, 'data', rel);
+    const fullPath = path.join(ROOT, 'data', rel as string);
     const data = await readJson(fullPath);
-    const places = Array.isArray(data) ? data : (Array.isArray(data?.places) ? data.places : []);
+    const places = Array.isArray(data) ? data : (isJsonObject(data) && Array.isArray(data.places) ? data.places : []);
 
     for (const place of places) {
-      if (!place || typeof place !== 'object') continue;
+      if (!isPlaceRow(place)) continue;
       out.push(pickLight(place));
     }
   }
@@ -144,11 +190,11 @@ async function buildExpectedIndex() {
   return out;
 }
 
-async function main() {
+async function main(): Promise<void> {
   const expectedIndex = await buildExpectedIndex();
   const actualIndex = await readJson(ACTUAL_INDEX_PATH);
 
-  const diffs = [];
+  const diffs: IndexDiff[] = [];
 
   if (!Array.isArray(actualIndex)) {
     console.error('places_index sync check failed.');
@@ -191,7 +237,7 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((err) => {
+main().catch((err: unknown) => {
   console.error('places_index sync check failed.');
   console.error(err);
   process.exit(1);
