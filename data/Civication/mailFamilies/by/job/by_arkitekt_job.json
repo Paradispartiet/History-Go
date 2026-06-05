@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "volum_skala_og_sted",
+      "purpose": "Lære spilleren at volum, høyde og skala må vurderes i faktisk gaterom, ikke bare som objekt eller modell.",
+      "learning_focus": ["volum", "skala", "gaterom"],
+      "mails": [
+        {
+          "id": "by_arkitekt_job_volum_001",
+          "mail_type": "job",
+          "mail_family": "volum_skala_og_sted",
+          "role_scope": "by_arkitekt",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "atelierleder_nora",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Volumet ser rolig ut i modellen, men tungt i gata",
+          "summary": "Bygget fungerer som objekt på skjerm, men i gaterommet gjør høyden og fasaderytmen fortauet mørkere og smalere.",
+          "purpose": "Etablere at arkitektur må vurderes i byrommet, ikke bare som form.",
+          "stakes": "Lar du volumet stå, bevarer du konseptet. Justerer du det, mister prosjektet litt kraft som objekt, men kan fungere bedre som by.",
+          "situation": [
+            "Modellen er ren og overbevisende.",
+            "Fra gatenivå ser samme volum mer massivt ut, særlig der fortauet allerede er smalt.",
+            "Du må vurdere om bygget er godt fordi det ser sterkt ut, eller fordi det skaper et godt sted."
+          ],
+          "task_domain": "volumstudie",
+          "competency": "skala_og_gaterom",
+          "pressure": "modellstyrke_vs_gatevirkning",
+          "choice_axis": "justere_volum_vs_beholde_objekt",
+          "consequence_axis": "byromskvalitet_vs_formkraft",
+          "narrative_arc": "arkitekten lærer at skala først blir sann i møte med kroppen på fortauet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Juster volumet mot gata og forklar tapet i objektkraft",
+              "reply": "Jeg justerer volumet mot gata og forklarer tapet i objektkraft.",
+              "effect": 1,
+              "tags": ["scale", "street", "quality"],
+              "feedback": "Du lar gaterommet korrigere modellen."
+            },
+            {
+              "id": "B",
+              "label": "Behold volumet og styrk argumentet for helhetlig form",
+              "reply": "Jeg beholder volumet og styrker argumentet for helhetlig form.",
+              "effect": -1,
+              "tags": ["form", "object", "risk"],
+              "feedback": "Bygget blir tydeligere som objekt, men svakere i møtet med gata."
+            }
+          ]
+        },
+        {
+          "id": "by_arkitekt_job_volum_002",
+          "mail_type": "job",
+          "mail_family": "volum_skala_og_sted",
+          "role_scope": "by_arkitekt",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "atelierleder_nora",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Tettheten er riktig strategisk, men overgangen er for brå",
+          "summary": "Prosjektet følger fortettingsmålet, men møter lavere nabobebyggelse uten nok mellomledd i høyde, rytme og kant.",
+          "purpose": "Trene spilleren i å skille god tetthet fra dårlig overgang.",
+          "stakes": "Beholder du full tetthet, holder du måltall. Arbeider du med overgangen, kan volumet bli svakere på papir og sterkere som sted.",
+          "situation": [
+            "Planstrategien støtter høyere utnyttelse her.",
+            "Men nabobebyggelsen er lavere, mer oppdelt og tettere på fortauet.",
+            "Problemet er ikke bare høyden, men fraværet av en romlig samtale mellom nytt og gammelt."
+          ],
+          "task_domain": "skalaovergang",
+          "competency": "tetthet_med_overgang",
+          "pressure": "fortetting_vs_naboskala",
+          "choice_axis": "bearbeide_overgang_vs_beholde_utnyttelse",
+          "consequence_axis": "stedstilpasning_vs_maloppnaelse",
+          "narrative_arc": "arkitekten lærer at tetthet krever presise overganger for å bli bykvalitet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bearbeid høyde, rytme og kant mot nabobebyggelsen",
+              "reply": "Jeg bearbeider høyde, rytme og kant mot nabobebyggelsen.",
+              "effect": 1,
+              "tags": ["density", "transition", "context"],
+              "feedback": "Du gjør fortettingen mer stedlig og mindre brutal."
+            },
+            {
+              "id": "B",
+              "label": "Behold utnyttelsen og vis til strategisk fortettingsmål",
+              "reply": "Jeg beholder utnyttelsen og viser til strategisk fortettingsmål.",
+              "effect": 0,
+              "tags": ["density", "strategy"],
+              "feedback": "Argumentet er gyldig, men overgangen er fortsatt uløst."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forsteetasje_program_og_byliv",
+      "purpose": "Lære spilleren at førsteetasjen er byggets viktigste forhandling med byen, og at program, innganger og synlighet former byliv.",
+      "learning_focus": ["førsteetasje", "program", "byliv"],
+      "mails": [
+        {
+          "id": "by_arkitekt_job_forste_001",
+          "mail_type": "job",
+          "mail_family": "forsteetasje_program_og_byliv",
+          "role_scope": "by_arkitekt",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "bylivsansvarlig_sara",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Førsteetasjen er effektiv, men stenger gata",
+          "summary": "Programmet løser logistikk og teknikk godt, men gir lange lukkede flater mot fortauet der planen egentlig lover byliv.",
+          "purpose": "Etablere at førsteetasje og program er bylivsstruktur, ikke bare planløsning.",
+          "stakes": "Flytter du funksjonene, blir prosjektet mindre effektivt. Lar du dem stå, blir gaten svakere.",
+          "situation": [
+            "Varemottak, tekniske rom og interne funksjoner ligger effektivt mot gaten.",
+            "På plantegningen ser det ryddig ut.",
+            "På fortauet betyr det førti meter uten blikk, inngang eller aktivitet."
+          ],
+          "task_domain": "førsteetasje",
+          "competency": "program_og_byliv",
+          "pressure": "effektivt_program_vs_levende_kant",
+          "choice_axis": "omarbeide_forsteetasje_vs_beholde_effektivitet",
+          "consequence_axis": "byliv_vs_logistikk",
+          "narrative_arc": "arkitekten lærer at bylivet ofte avgjøres i den nederste etasjen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Omarbeid førsteetasjen med flere åpninger, innganger og synlige funksjoner",
+              "reply": "Jeg omarbeider førsteetasjen med flere åpninger, innganger og synlige funksjoner.",
+              "effect": 1,
+              "tags": ["ground_floor", "city_life", "program"],
+              "feedback": "Du gjør bygget mindre effektivt internt, men mer generøst mot byen."
+            },
+            {
+              "id": "B",
+              "label": "Behold effektiv plan og kompenser med fasadekvalitet",
+              "reply": "Jeg beholder effektiv plan og kompenserer med fasadekvalitet.",
+              "effect": -1,
+              "tags": ["facade", "efficiency", "risk"],
+              "feedback": "En pen lukket flate er fortsatt en lukket flate."
+            }
+          ]
+        },
+        {
+          "id": "by_arkitekt_job_forste_002",
+          "mail_type": "job",
+          "mail_family": "forsteetasje_program_og_byliv",
+          "role_scope": "by_arkitekt",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "bylivsansvarlig_sara",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Signaturinngangen er vakker, men feil sted",
+          "summary": "Hovedinngangen markerer bygget godt i komposisjonen, men ligger utenfor den faktiske ganglinjen og svekker bylivsstrømmen.",
+          "purpose": "Teste om spilleren lar faktisk bruk endre et sterkt arkitektonisk grep.",
+          "stakes": "Flytter du inngangen, mister fasaden et viktig motiv. Lar du den stå, blir byggets møte med byen mindre naturlig.",
+          "situation": [
+            "Inngangen er godt komponert og gir bygget identitet.",
+            "Men befaring og ganglinjer viser at folk vil nærme seg fra motsatt hjørne.",
+            "Et sterkt arkitektonisk punkt risikerer å bli et sted folk går forbi."
+          ],
+          "task_domain": "inngang_og_ganglinje",
+          "competency": "brukskorrigert_form",
+          "pressure": "komposisjon_vs_bevegelse",
+          "choice_axis": "flytte_inngang_vs_beholde_signaturpunkt",
+          "consequence_axis": "bylivsflyt_vs_formmotiv",
+          "narrative_arc": "arkitekten lærer at inngangen tilhører både bygget og byen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytt inngangen mot faktisk ganglinje og omarbeid fasadekomposisjonen",
+              "reply": "Jeg flytter inngangen mot faktisk ganglinje og omarbeider fasadekomposisjonen.",
+              "effect": 1,
+              "tags": ["entrance", "movement", "city_life"],
+              "feedback": "Du lar byens bevegelse tegne om byggets viktigste møtepunkt."
+            },
+            {
+              "id": "B",
+              "label": "Behold inngangen og styrk den som arkitektonisk markør",
+              "reply": "Jeg beholder inngangen og styrker den som arkitektonisk markør.",
+              "effect": 0,
+              "tags": ["composition", "signature"],
+              "feedback": "Grepet blir tydeligere, men kanskje mindre brukt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "materialitet_og_varighet",
+      "purpose": "Lære spilleren at materialitet må tåle vær, bruk, aldring og økonomisk press, ikke bare se god ut i presentasjon.",
+      "learning_focus": ["materialitet", "varighet", "detaljering"],
+      "mails": [
+        {
+          "id": "by_arkitekt_job_material_001",
+          "mail_type": "job",
+          "mail_family": "materialitet_og_varighet",
+          "role_scope": "by_arkitekt",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "prosjekterende_mikkel",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Materialet ser varmt ut i render, men tåler dårlig sokkelen",
+          "summary": "Fasadematerialet gir riktig uttrykk, men i førsteetasjesonen vil salt, slag og fukt raskt gjøre kvaliteten svakere.",
+          "purpose": "Vise at materialitet må vurderes gjennom bruk og tid, ikke bare visuell intensjon.",
+          "stakes": "Beholder du materialet, holder du uttrykket. Endrer du sokkelen, mister du noe av helheten, men styrker varigheten.",
+          "situation": [
+            "Renderen ser overbevisende ut.",
+            "Men sokkelen står tett på fortau, sykler, brøyting og våt vinter.",
+            "Det som ser varmt ut nå, kan se slitent ut før bygget har rukket å bli en del av byen."
+          ],
+          "task_domain": "materialvalg",
+          "competency": "varig_materialitetsblikk",
+          "pressure": "visuell_effekt_vs_hverdagsbruk",
+          "choice_axis": "endre_sokkelmateriale_vs_beholde_uttrykk",
+          "consequence_axis": "varighet_vs_helhetlig_bilde",
+          "narrative_arc": "arkitekten lærer at materialitet først blir kvalitet når den tåler virkeligheten",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Endre sokkelmaterialet og forklar hvorfor varighet veier tyngre her",
+              "reply": "Jeg endrer sokkelmaterialet og forklarer hvorfor varighet veier tyngre her.",
+              "effect": 1,
+              "tags": ["material", "durability", "ground_floor"],
+              "feedback": "Du lar detaljen beskytte byggets langsiktige kvalitet."
+            },
+            {
+              "id": "B",
+              "label": "Behold materialet og spesifiser bedre overflatebehandling",
+              "reply": "Jeg beholder materialet og spesifiserer bedre overflatebehandling.",
+              "effect": 0,
+              "tags": ["surface", "mitigation"],
+              "feedback": "Du demper risikoen, men løser ikke helt konflikten mellom bilde og bruk."
+            }
+          ]
+        },
+        {
+          "id": "by_arkitekt_job_material_002",
+          "mail_type": "job",
+          "mail_family": "materialitet_og_varighet",
+          "role_scope": "by_arkitekt",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "prosjekterende_mikkel",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Kostnadskuttet treffer akkurat detaljen som gjør bygget godt i hånden",
+          "summary": "Et enklere rekkverk og billigere kantdetalj sparer penger, men svekker møtet mellom kropp, materiale og offentlig rom.",
+          "purpose": "Teste om spilleren klarer å forsvare små detaljer som faktisk bærer brukskvalitet.",
+          "stakes": "Aksepterer du kuttet, sparer prosjektet penger. Forsvarer du detaljen, må du forklare hvorfor en liten ting ikke er pynt.",
+          "situation": [
+            "Budsjettet presses, og kuttet virker lite.",
+            "Det handler ikke om hovedformen, men om rekkverk, håndkontakt og overgang mot trapp.",
+            "Akkurat der merker folk om arkitekturen er tenkt som bilde eller virkelighet."
+          ],
+          "task_domain": "detaljering",
+          "competency": "hverdagskvalitet",
+          "pressure": "kostnad_vs_brukskvalitet",
+          "choice_axis": "forsvare_detalj_vs_godta_kutt",
+          "consequence_axis": "lang_kvalitet_vs_kort_besparelse",
+          "narrative_arc": "arkitekten lærer at detaljer kan være små i budsjettet og store i bruken",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forsvar detaljen som del av offentlig brukskvalitet",
+              "reply": "Jeg forsvarer detaljen som del av offentlig brukskvalitet.",
+              "effect": 1,
+              "tags": ["detail", "quality", "public_space"],
+              "feedback": "Du gjør en liten detalj faglig synlig før den blir usynlig kutt."
+            },
+            {
+              "id": "B",
+              "label": "Godta kuttet og bevare hovedgrepet",
+              "reply": "Jeg godtar kuttet og bevarer hovedgrepet.",
+              "effect": -1,
+              "tags": ["budget", "risk"],
+              "feedback": "Hovedgrepet står, men hverdagsmøtet med bygget blir fattigere."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "signatur_og_stedstilpasning",
+      "purpose": "Lære spilleren at et sterkt arkitektonisk grep må forhandle med stedets logikk og gjøre byen rundt seg bedre.",
+      "learning_focus": ["signaturgrep", "stedstilpasning", "arkitektonisk argumentasjon"],
+      "mails": [
+        {
+          "id": "by_arkitekt_job_signatur_001",
+          "mail_type": "job",
+          "mail_family": "signatur_og_stedstilpasning",
+          "role_scope": "by_arkitekt",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "atelierleder_nora",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Grepet er sterkt, men stedet begynner å forsvinne bak det",
+          "summary": "Et tydelig arkitektonisk motiv gir prosjektet identitet, men overskygger naborytme, terreng og små romlige overganger.",
+          "purpose": "Etablere at signatur ikke er kvalitet hvis den gjør stedet svakere.",
+          "stakes": "Demper du grepet, mister prosjektet særpreg. Beholder du det, kan bygget dominere mer enn det bidrar.",
+          "situation": [
+            "Grepet er godt tegnet og lett å huske.",
+            "Det gir prosjektet en klar identitet i presentasjonene.",
+            "Men jo tydeligere det blir, desto mindre plass får stedets eksisterende rytme og overganger."
+          ],
+          "task_domain": "konseptutvikling",
+          "competency": "stedstilpasset_signatur",
+          "pressure": "arkitektonisk_identitet_vs_stedets_logikk",
+          "choice_axis": "demp_grep_vs_forsterk_signatur",
+          "consequence_axis": "stedstilpasning_vs_særpreg",
+          "narrative_arc": "arkitekten lærer at tydelighet må være i samtale med stedet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Demp signaturgrepet og la stedets rytme styre mer av fasaden",
+              "reply": "Jeg demper signaturgrepet og lar stedets rytme styre mer av fasaden.",
+              "effect": 1,
+              "tags": ["context", "signature", "facade"],
+              "feedback": "Du gjør bygget mindre høylytt og mer presist."
+            },
+            {
+              "id": "B",
+              "label": "Forsterk grepet og argumenter for ny identitet på stedet",
+              "reply": "Jeg forsterker grepet og argumenterer for ny identitet på stedet.",
+              "effect": 0,
+              "tags": ["identity", "statement"],
+              "feedback": "Du gir stedet et tydelig nytt bilde, men risikerer å svare mindre på det som allerede finnes."
+            }
+          ]
+        },
+        {
+          "id": "by_arkitekt_job_signatur_002",
+          "mail_type": "job",
+          "mail_family": "signatur_og_stedstilpasning",
+          "role_scope": "by_arkitekt",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "byarkitektkontoret",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Sluttgrepet må vise at bygget gjør stedet bedre",
+          "summary": "Prosjektet kan presenteres som et sterkt bygg, men må nå begrunnes som et bidrag til skala, byliv, materialitet og sammenheng rundt seg.",
+          "purpose": "Avrunde rollen med moden arkitektonisk argumentasjon der bygget vurderes som del av byen.",
+          "stakes": "Presenterer du bygget som objekt, blir argumentet enklere. Viser du hvordan det forbedrer stedet, må du samle alle vanskelige avveiinger.",
+          "situation": [
+            "Volumet er justert, førsteetasjen er omarbeidet, og materialene er strammere spesifisert.",
+            "Signaturgrepet finnes fortsatt, men mindre alene enn før.",
+            "Nå må du formulere hvorfor prosjektet er god arkitektur fordi byen rundt blir bedre."
+          ],
+          "task_domain": "arkitekturfaglig_begrunnelse",
+          "competency": "helhetlig_byarkitektur",
+          "pressure": "bygg_som_objekt_vs_by_som_sammenheng",
+          "choice_axis": "begrunne_bybidrag_vs_presentere_form",
+          "consequence_axis": "moden_arkitektur_vs_salgbar_identitet",
+          "narrative_arc": "arkitekten lærer at bygget først er ferdig forstått når stedet rundt er med i argumentet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Begrunn prosjektet gjennom skala, førsteetasje, materialitet og stedlig bidrag",
+              "reply": "Jeg begrunner prosjektet gjennom skala, førsteetasje, materialitet og stedlig bidrag.",
+              "effect": 1,
+              "tags": ["mastery", "architecture", "city"],
+              "feedback": "Du presenterer bygget som byarkitektur, ikke bare som form."
+            },
+            {
+              "id": "B",
+              "label": "Presenter prosjektet rundt hovedgrepet og det arkitektoniske uttrykket",
+              "reply": "Jeg presenterer prosjektet rundt hovedgrepet og det arkitektoniske uttrykket.",
+              "effect": 0,
+              "tags": ["presentation", "form"],
+              "feedback": "Prosjektet blir lett å forstå som bilde, men mindre presist som bybidrag."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
