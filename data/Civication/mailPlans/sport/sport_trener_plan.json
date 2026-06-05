@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "sport_trener_v1",
+  "category": "sport",
+  "role_scope": "sport_trener",
+  "description": "Dramaturgisk plan for Sport-trener: fra øktplan og læring til uttak, roller, kampplan, justering, omsorg, disiplin og langsiktig spillerutvikling.",
+  "arc": {
+    "from": "Du starter med ansvar for økter, spillere og kamper, men oppdager raskt at trening ikke bare er aktivitet og kamp ikke bare er resultat.",
+    "to": "Du forstår at trenerarbeid handler om å bygge mennesker, roller og prestasjon over tid gjennom tydelige læringsmål, rettferdige forklaringer, kampnære valg og standarder som spillerne kan vokse i.",
+    "core_questions": [
+      "Hva skal økta faktisk lære spillerne?",
+      "Hvordan gjør du uttak uten å gjøre spilleren til uttaket?",
+      "Når må kampplanen forenkles, og når må den justeres?",
+      "Hvordan holder du omsorg og krav sammen?",
+      "Når blir trenerens kontrollbehov et hinder for spillerne?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "sport_trener_resultat_loop", "evening_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere at økta må ha læringsmål, ikke bare aktivitet og intensitet.",
+      "allowed_families": ["oktplan_og_laring"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren møte første uttak der rolle, motivasjon og rettferdighet må forklares.",
+      "allowed_families": ["uttak_roller_og_tillit"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Vise at kampplan må være enkel nok til å tåle press og tydelig nok til å hjelpe.",
+      "allowed_families": ["kampplan_press_og_justering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere balansen mellom omsorg, krav og standard i spillerutvikling.",
+      "allowed_families": ["omsorg_disiplin_og_utvikling"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste om treneren holder læringsplanen når spillerne ønsker mer synlig intensitet.",
+      "allowed_families": ["oktplan_og_laring", "omsorg_disiplin_og_utvikling"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "La uttak, tillit og resultatkrav trekke i ulike retninger.",
+      "allowed_families": ["uttak_roller_og_tillit"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La kamptrykk teste trenerens evne til å justere uten panikk eller overkontroll.",
+      "allowed_families": ["kampplan_press_og_justering", "uttak_roller_og_tillit"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Avrunde rollen: moden trenerledelse holder læring, uttak, kampplan, omsorg og krav sammen.",
+      "allowed_families": ["oktplan_og_laring", "kampplan_press_og_justering", "omsorg_disiplin_og_utvikling"],
+      "fallback_types": ["job"]
+    }
+  ]
+}
