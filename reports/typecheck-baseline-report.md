@@ -1,19 +1,18 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-04T20:43:30.031Z
+- Generated at (UTC): 2026-06-05T04:12:41.459Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 51
-- Files with diagnostics: 13
-- Groups with diagnostics: 2
+- Total diagnostic lines found: 49
+- Files with diagnostics: 12
+- Groups with diagnostics: 1
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | js/Civication/** | 12 | 49 | js/Civication/civicationCommercial.js<br>js/Civication/systems/civicationJobEligibilityRuntime.js<br>js/Civication/ui/CivicationCanvasMap.js |
-| other | 1 | 2 | js/leksikon/leksikon_loader.js |
 
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
@@ -28,14 +27,13 @@
 | js/Civication/civicationCommercial.js | 2 | js/Civication/** |
 | js/Civication/ui/CivicationInboxTopActionUI.js | 2 | js/Civication/** |
 | js/Civication/ui/CivicationMiniSectionsUI.js | 2 | js/Civication/** |
-| js/leksikon/leksikon_loader.js | 2 | other |
 | js/Civication/ui/CivicationDayPhaseUI.js | 1 | js/Civication/** |
 | js/Civication/ui/CivicationMap.js | 1 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 38 |
+| TS2339 | 36 |
 | TS2551 | 10 |
 | TS2367 | 2 |
 | TS2322 | 1 |
@@ -43,15 +41,8 @@
 ## Priority recommendations (mechanical)
 1. Start with **js/Civication/** (49 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/Civication/ui/CivicationCanvasMap.js` (16), `js/Civication/systems/civicationJobEligibilityRuntime.js` (5), `js/Civication/ui/CivicationThreeMap.js` (5), `js/Civication/ui/CivicationUI.js` (5), `js/Civication/ui/CivicationHistoryGoPlaceLayer.js` (4).
-3. Defer broader/sensitive areas until hotspot reduction is complete: `other`.
+3. Defer broader/sensitive areas until hotspot reduction is complete: none identified.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
-
-
-## Phase 72 app shell/router notes
-- Target files checked: `js/app.js`, `js/boot-fast.js`, `js/router/AppRouter.js`, and `js/views/MapView.js`.
-- Current generated baseline has no diagnostics in those four target files.
-- Remaining diagnostics are outside the app-shell/router scope: 49 diagnostic lines in `js/Civication/**` and 2 diagnostic lines in `js/leksikon/leksikon_loader.js`.
-- Phase 72 changes are JSDoc/declaration-only and do not change runtime behavior, router flow, boot order, layout, CSS, data, or HTML.
 
 ## Raw output excerpt (first 80 lines)
 ```
@@ -96,17 +87,22 @@ js/Civication/ui/CivicationMapZoom.js(8,12): error TS2551: Property 'CivicationM
 js/Civication/ui/CivicationMapZoom.js(267,10): error TS2551: Property 'CivicationMapZoom' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationMap'?
 js/Civication/ui/CivicationMiniSectionsUI.js(428,10): error TS2339: Property 'CivicationInboxItemFilters' does not exist on type 'Window & typeof globalThis'.
 js/Civication/ui/CivicationMiniSectionsUI.js(428,46): error TS2339: Property 'CivicationInboxItemFilters' does not exist on type 'Window & typeof globalThis'.
-js/Civication/ui/CivicationThreeMap.js(18,14): error TS2551: Property 'CivicationThreeMap' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationMap'?
-js/Civication/ui/CivicationThreeMap.js(115,24): error TS2339: Property 'CivicationOsloMapCalibration' does not exist on type 'Window & typeof globalThis'.
-js/Civication/ui/CivicationThreeMap.js(755,16): error TS2339: Property 'CIVICATION_THREE_MAP_ENABLED' does not exist on type 'Window & typeof globalThis'.
-js/Civication/ui/CivicationThreeMap.js(797,12): error TS2339: Property '__civiThreeActive' does not exist on type 'Window & typeof globalThis'.
-js/Civication/ui/CivicationThreeMap.js(828,10): error TS2551: Property 'CivicationThreeMap' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationMap'?
+js/Civication/ui/CivicationThreeMap.js(20,14): error TS2551: Property 'CivicationThreeMap' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationMap'?
+js/Civication/ui/CivicationThreeMap.js(143,24): error TS2339: Property 'CivicationOsloMapCalibration' does not exist on type 'Window & typeof globalThis'.
+js/Civication/ui/CivicationThreeMap.js(1105,16): error TS2339: Property 'CIVICATION_THREE_MAP_ENABLED' does not exist on type 'Window & typeof globalThis'.
+js/Civication/ui/CivicationThreeMap.js(1147,12): error TS2339: Property '__civiThreeActive' does not exist on type 'Window & typeof globalThis'.
+js/Civication/ui/CivicationThreeMap.js(1193,10): error TS2551: Property 'CivicationThreeMap' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationMap'?
 js/Civication/ui/CivicationUI.js(1218,25): error TS2339: Property 'daily_mail_meta' does not exist on type 'unknown'.
 js/Civication/ui/CivicationUI.js(1219,24): error TS2339: Property 'role_content_meta' does not exist on type 'unknown'.
 js/Civication/ui/CivicationUI.js(1220,24): error TS2339: Property 'life_mail_meta' does not exist on type 'unknown'.
 js/Civication/ui/CivicationUI.js(1221,28): error TS2339: Property 'mail_plan_meta' does not exist on type 'unknown'.
 js/Civication/ui/CivicationUI.js(1222,33): error TS2339: Property 'career_outcome_meta' does not exist on type 'unknown'.
-js/leksikon/leksikon_loader.js(155,35): error TS2339: Property 'items' does not exist on type 'unknown'.
-js/leksikon/leksikon_loader.js(155,77): error TS2339: Property 'items' does not exist on type 'unknown'.
 npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
 ```
+
+## Phase 89: Lesespor DataHub result declaration pass
+
+- Added a narrow declaration-only result shape for DataHub.loadLesespor() in schemas/globals.d.ts.
+- The declared result matches the existing runtime return shape from js/dataHub.js: items, byPlace and manifest.
+- This removes the leksikon_loader.js unknown.items diagnostics without changing runtime behavior.
+- No Civication files, runtime logic, router, boot, CSS, HTML, data files or app flow were changed.
