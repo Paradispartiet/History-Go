@@ -162,6 +162,15 @@ a:hover{
   display:block;
 }
 
+/* Standardkartet ligger bak Civication-panelene. Gjør kun denne
+   visningen mørkere; kartmodus beholder detaljkartet ufiltrert. */
+body.civi-app:not(.civi-mapmode) #civiMapWorld > svg,
+body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-map-base-canvas,
+body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-map-places-canvas,
+body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-three-canvas{
+  filter:brightness(0.42) saturate(0.78) contrast(1.08);
+}
+
 /* ------------------------------------------------------------
    PANELS
 ------------------------------------------------------------ */
