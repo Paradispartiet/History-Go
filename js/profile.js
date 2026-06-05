@@ -1280,8 +1280,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!btnOpenAHA) return;
       try {
         const state = stateOverride || await window.HistoryGoAHAAuth?.refresh?.();
-        btnOpenAHA.textContent = state?.signed_in ? _t("ui.aha.connected", "AHA koblet") : _t("ui.aha.login", "Logg inn");
+        const signedIn = Boolean(state?.signed_in);
+        btnOpenAHA.hidden = signedIn;
+        btnOpenAHA.setAttribute("aria-hidden", signedIn ? "true" : "false");
+        btnOpenAHA.textContent = _t("ui.aha.login", "Logg inn");
       } catch {
+        btnOpenAHA.hidden = false;
+        btnOpenAHA.setAttribute("aria-hidden", "false");
         btnOpenAHA.textContent = _t("ui.aha.login", "Logg inn");
       }
     };
