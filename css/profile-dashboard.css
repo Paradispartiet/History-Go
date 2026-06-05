@@ -99,19 +99,22 @@ body.profile-page,
 
 
 .profile-page .site-header .profile-hero-v2{
-  flex:1 1 620px;
+  flex:1 1 auto;
+  min-width:0;
   width:auto;
-  max-width:min(860px, calc(100vw - 24px));
+  max-width:760px;
   margin:0;
-  border-radius:var(--profile-header-radius);
+  padding:0;
+  display:block;
+  border-radius:999px;
   box-shadow:0 8px 20px rgba(0,0,0,.22);
 }
 
 .profile-hero-v2::after{
   content:"";
   position:absolute;
-  inset:auto -6% -70% 52%;
-  height:120px;
+  inset:auto -6% -110% 52%;
+  height:86px;
   background:radial-gradient(circle, rgba(246,200,0,.14), transparent 70%);
   pointer-events:none;
 }
@@ -121,29 +124,29 @@ body.profile-page,
   z-index:1;
   display:flex;
   align-items:center;
-  gap:8px;
-  padding:7px 10px;
+  gap:6px;
+  padding:5px 8px;
 }
 
 .profile-identity-block{
   display:flex;
   flex-wrap:nowrap;
-  gap:8px;
+  gap:6px;
   align-items:center;
   min-width:0;
   width:100%;
 }
 
 .profile-avatar-orb{
-  width:38px;
-  height:38px;
-  flex:0 0 38px;
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
   display:grid;
   place-items:center;
-  border-radius:12px;
+  border-radius:999px;
   background:linear-gradient(145deg, rgba(246,200,0,.96), rgba(255,183,3,.74));
   color:#0b0e14;
-  font-size:14px;
+  font-size:12px;
   font-weight:900;
   box-shadow:0 6px 14px rgba(0,0,0,.22), inset 0 0 0 1px rgba(255,255,255,.28);
 }
@@ -152,9 +155,9 @@ body.profile-page,
   display:flex;
   flex-wrap:nowrap;
   align-items:center;
-  gap:8px;
+  gap:6px;
   min-width:0;
-  width:100%;
+  width:auto;
 }
 
 .profile-kicker-row{
@@ -187,12 +190,13 @@ body.profile-page,
 }
 
 .profile-hero-v2 #profileName{
-  flex:1 1 150px;
-  min-width:80px;
+  flex:1 1 auto;
+  min-width:48px;
+  max-width:180px;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
-  font-size:clamp(.98rem, .92rem + .25vw, 1.12rem);
+  font-size:clamp(.82rem, .78rem + .2vw, .96rem);
   line-height:1.05;
   letter-spacing:-.025em;
   font-weight:900;
@@ -225,9 +229,9 @@ body.profile-page,
 .profile-hero-actions-v2 .secondary,
 .profile-page .site-header .profile-hero-actions-v2 .secondary{
   border-radius:999px;
-  min-height:30px;
-  padding:6px 10px;
-  font-size:12px;
+  min-height:24px;
+  padding:5px 8px;
+  font-size:11px;
   line-height:1;
 }
 
@@ -241,9 +245,9 @@ body.profile-page,
 
 .profile-icon-button,
 .profile-hero-actions-v2 .profile-icon-button{
-  width:30px;
-  min-width:30px;
-  min-height:30px;
+  width:28px;
+  min-width:28px;
+  min-height:28px;
   padding:0;
   display:inline-grid;
   place-items:center;
@@ -276,7 +280,7 @@ body.profile-page,
   display:flex;
   flex-wrap:nowrap;
   justify-content:flex-end;
-  gap:4px;
+  gap:3px;
   margin-top:0;
   max-width:none;
 }
@@ -285,9 +289,9 @@ body.profile-page,
   min-height:28px;
   display:inline-flex;
   align-items:center;
-  gap:3px;
+  gap:2px;
   text-align:left;
-  padding:4px 6px;
+  padding:3px 5px;
   border-radius:999px;
   background:linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.06));
   border:1px solid rgba(255,255,255,.13);
@@ -297,10 +301,10 @@ body.profile-page,
 
 .profile-header-status .profile-stat-icon,
 .profile-header-status .pc-icon{
-  width:15px;
-  height:15px;
+  width:13px;
+  height:13px;
   flex:0 0 auto;
-  font-size:13px;
+  font-size:11px;
   line-height:1;
 }
 
@@ -314,7 +318,7 @@ body.profile-page,
 }
 
 .profile-header-status .profile-stat-value{
-  font-size:13px;
+  font-size:11px;
   line-height:1;
   font-weight:900;
   letter-spacing:-.04em;
@@ -653,8 +657,14 @@ body.profile-page,
 }
 
 @media (max-width: 700px){
+  .profile-page .site-header .profile-hero-v2{
+    flex:1 1 100%;
+    max-width:none;
+    border-radius:var(--profile-header-radius);
+  }
+
   .profile-hero-v2-inner{
-    padding:8px 10px;
+    padding:7px 9px;
   }
 
   .profile-identity-block,
@@ -663,11 +673,11 @@ body.profile-page,
   }
 
   .profile-avatar-orb{
-    width:36px;
-    height:36px;
-    flex-basis:36px;
-    border-radius:12px;
-    font-size:13px;
+    width:34px;
+    height:34px;
+    flex-basis:34px;
+    border-radius:999px;
+    font-size:12px;
   }
 
   .profile-header-status,
