@@ -1202,6 +1202,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     };
 
+    const safeLoad = async (name, loader) => {
+      try {
+        if (typeof loader !== "function") return [];
+        const data = await loader();
+        if (Array.isArray(data)) return data;
+        if (Array.isArray(data?.badges)) return data.badges;
+        return [];
+      } catch (e) {
+        console.warn(`[profile] ${name} load failed; using []`, e);
+        return [];
+      }
+    };
+
+    // Render localStorage-backed stats immediately, before any data files load.
+    safeCall("renderProfileCard", renderProfileCard);
+    safeCall("renderPC", renderPC);
+
     // Kart først
     safeCall("setupProfileMap", setupProfileMap);
 
@@ -1210,16 +1227,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       await window.ensureCiviCareerRulesLoaded?.();
     }
 
-    // LAST DATA via DataHub
+    // LAST DATA via DataHub. Each loader falls back independently so one
+    // missing file (for example data/badges.json) does not stop profile boot.
     const [people, places, badges] = await Promise.all([
-      (window.DataHub?.loadPeopleBase?.() || window.DataHub?.loadPeople?.()),
-      (window.DataHub?.loadPlacesBase?.() || window.DataHub?.loadPlaces?.()),
-      window.DataHub?.loadBadges?.()
+      safeLoad("people", () => window.DataHub?.loadPeopleBase
+        ? window.DataHub.loadPeopleBase()
+        : window.DataHub?.loadPeople?.()),
+      safeLoad("places", () => window.DataHub?.loadPlacesBase
+        ? window.DataHub.loadPlacesBase()
+        : window.DataHub?.loadPlaces?.()),
+      safeLoad("badges", () => window.DataHub?.loadBadges?.())
     ]);
 
-    PEOPLE = Array.isArray(people) ? people : [];
-    PLACES = Array.isArray(places) ? places : [];
-    BADGES = Array.isArray(/** @type {any} */ (badges)?.badges) ? /** @type {any} */ (badges).badges : (Array.isArray(badges) ? badges : []);
+    PEOPLE = people;
+    PLACES = places;
+    BADGES = badges;
 
     window.PEOPLE = PEOPLE;
     window.PLACES = PLACES;
