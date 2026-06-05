@@ -36,6 +36,7 @@
   }
 
   function showExploreBase() {
+    window.HGProfileView?.hide?.();
     document.body?.classList.remove("hg-view-profile", "hg-view-civication", "hg-view-quiz");
     document.body?.classList.add("hg-view-map");
 
