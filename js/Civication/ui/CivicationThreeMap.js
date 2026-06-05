@@ -44,15 +44,17 @@
   const MAX_ROOFS = 900;
   const MAX_TREES = 620;
 
-  const VIEW = 11;           // ortografisk halv-høyde ved zoom = 1
+  const VIEW = 10.6;         // ortografisk halv-høyde ved zoom = 1
   const MIN_ZOOM = 0.7;
   const MAX_ZOOM = 6.0;
   const ZOOM_STEP = 1.22;
   const MAX_DPR = 2;
 
   // Kamera-basis (gir ca. 48° tilt – rolig diorama-/modellbordvinkel).
-  const CAM_BASE = { x: 0, y: 17, z: 15 };
+  const CAM_BASE = { x: 0.15, y: 16.5, z: 14.2 };
   const TILT = Math.atan2(CAM_BASE.y, CAM_BASE.z); // radianer
+  const START_ZOOM = 1.24;   // startutsnitt: fjord + sentrum + nord/vest-landemerker
+  const START_PAN = { x: 0.25, z: -0.35 };
 
   // Fargepalett – varm modellmaling, dyp fjord, dempet industri, grønn Marka.
   const PAL = {
@@ -471,8 +473,8 @@
     // -> Slottet. Litt tydeligere og lysere enn de andre veiene, men fortsatt
     // subtil og lav på terrenget (ikke moderne kart-overlay).
     g.add(buildRoadRibbon(
-      [[0.535, 0.587], [0.515, 0.58], [0.495, 0.575], [0.46, 0.575], [0.435, 0.566], [0.41, 0.56]],
-      0.014, 0xefe4cb, baseY + 0.008
+      [[0.538, 0.588], [0.515, 0.58], [0.495, 0.575], [0.46, 0.575], [0.435, 0.566], [0.405, 0.558]],
+      0.018, 0xf5ead0, baseY + 0.006
     ));
 
     // Ring 1 – svak sentrumssløyfe rundt kjernen.
@@ -483,20 +485,20 @@
 
     // Ring 2 – større bue nord for sentrum.
     g.add(buildRoadRibbon(
-      [[0.28, 0.53], [0.38, 0.47], [0.50, 0.45], [0.62, 0.46], [0.70, 0.50]],
-      0.009, shade(PAL.road, -0.06), baseY
+      [[0.28, 0.535], [0.38, 0.47], [0.50, 0.45], [0.62, 0.46], [0.70, 0.505]],
+      0.010, shade(PAL.road, -0.01), baseY
     ));
 
     // E18 / havneakse langs fjorden vest–øst.
     g.add(buildRoadRibbon(
       [[0.30, 0.685], [0.40, 0.667], [0.47, 0.657], [0.54, 0.66], [0.62, 0.66], [0.70, 0.675]],
-      0.011, PAL.road, baseY
+      0.008, shade(PAL.road, -0.10), baseY - 0.002
     ));
 
     // Trondheimsveien / nordøst-akse mot Grünerløkka/Tøyen.
     g.add(buildRoadRibbon(
       [[0.53, 0.585], [0.56, 0.54], [0.59, 0.50], [0.625, 0.46], [0.65, 0.42]],
-      0.009, PAL.road, baseY
+      0.008, shade(PAL.road, -0.04), baseY
     ));
 
     scene.add(g);
@@ -551,6 +553,24 @@
     return col;
   }
 
+
+  function landmarkClearanceAt(nx, ny) {
+    let best = null;
+    LANDMARK_CLEAR_ZONES.forEach((z) => {
+      const dist = Math.hypot(nx - z.x, ny - z.y);
+      if (dist <= z.r && (!best || dist < best.dist)) best = { zone: z, dist };
+    });
+    return best;
+  }
+
+  function clearZoneBuildingFactor(nx, ny) {
+    const hit = landmarkClearanceAt(nx, ny);
+    if (!hit) return 1;
+    const t = hit.dist / Math.max(0.0001, hit.zone.r);
+    if (t < 0.46) return 0;
+    return clamp(0.42 + t * 0.52, 0.42, 0.88);
+  }
+
   function buildCity() {
     const districts = window.CIVI_MAP_DISTRICTS || [];
     const blocks = [];
@@ -574,12 +594,16 @@
           const nx = cx + lx * ca - ly * sa;
           const ny = cy + lx * sa + ly * ca;
           if (!pointInPoly(nx, ny, poly)) continue;
-          if (rng() > prof.dens) continue;
+          const clearFactor = clearZoneBuildingFactor(nx, ny);
+          if (clearFactor <= 0) continue;
+          if (rng() > prof.dens * clearFactor) continue;
           // Kvartal: fotavtrykk fyller mesteparten av cellen, litt variasjon.
-          const fw = prof.cell * (0.62 + rng() * 0.30) * MAP_W;
-          const fd = prof.cell * (0.62 + rng() * 0.30) * MAP_D;
-          const h = prof.hMin + Math.pow(rng(), 1.4) * (prof.hMax - prof.hMin);
-          const roof = (rng() < prof.roof) && Math.min(fw, fd) < 0.62;
+          // I clear zones tones generisk bymasse ned i høyde/fotavtrykk slik at
+          // håndmodellene får luft uten at byen blir helt tom rundt dem.
+          const fw = prof.cell * (0.62 + rng() * 0.30) * MAP_W * (0.78 + clearFactor * 0.22);
+          const fd = prof.cell * (0.62 + rng() * 0.30) * MAP_D * (0.78 + clearFactor * 0.22);
+          const h = (prof.hMin + Math.pow(rng(), 1.4) * (prof.hMax - prof.hMin)) * (0.58 + clearFactor * 0.42);
+          const roof = (rng() < prof.roof * clearFactor) && Math.min(fw, fd) < 0.62;
           blocks.push({
             x: nx2x(nx), z: ny2z(ny), fw, fd, h, rot: ang + (rng() - 0.5) * 0.12,
             tone: rng(), toneKind: prof.tone, roof
@@ -837,27 +861,62 @@
   // Normalisert x/y (samme system som resten av kartet). baseY default = GROUND_Y.
   // opts videresendes til byggeren (farge/høyde/varianter). Endre tallene her
   // for å flytte/skalere et landemerke uten å røre byggekoden.
+  //
+  // Lesbarhetsaudit / visuell prioritet:
+  // priority 1 skal leses umiddelbart i vanlig spillkamera:
+  // - Holmenkollen
+  // - Barcode/Bjørvika/Operaen
+  // - Slottet/Karl Johan
+  // - Akershus/Rådhuset
+  // - Ullevaal/Bislett/Jordal
+  // priority 2 skal støtte mini-Oslo ved litt zoom, uten å konkurrere like hardt:
+  // - Oslo S/Plaza/Posthuset
+  // - Aker Brygge
+  // - Tøyen torg
+  // - Kampen
+  // - Frognerparken
+  // - Nationaltheatret/Stortinget/Deichman/Munch
+  const LANDMARK_VISUAL_PRIORITY = {
+    holmenkollen: 1, barcode: 1, operaen: 1, slottet: 1, akershus: 1, radhuset: 1,
+    ullevaal: 1, bislett: 1, jordal: 1,
+    oslo_s: 2, oslo_plaza: 2, posthuset: 2, aker_brygge: 2, toyen_torg: 2, kampen: 2,
+    frognerparken: 2, nationaltheatret: 2, stortinget: 2, deichman: 2, munch: 2
+  };
+
   const OSLO_KEY_LANDMARKS = [
-    { id: "holmenkollen",     type: "ski_jump",          x: 0.28,  y: 0.10,  scale: 1.0, baseY: MARKA_H, rot: 0.3 },
-    { id: "ullevaal",         type: "football_stadium",  x: 0.42,  y: 0.26,  scale: 1.0 },
-    { id: "frognerparken",    type: "park_monument",     x: 0.30,  y: 0.465, scale: 1.0 },
-    { id: "bislett",          type: "athletics_stadium", x: 0.43,  y: 0.46,  scale: 1.0 },
-    { id: "slottet",          type: "palace",            x: 0.41,  y: 0.56,  scale: 1.0 },
-    { id: "nationaltheatret", type: "theatre",           x: 0.46,  y: 0.575, scale: 0.92 },
-    { id: "stortinget",       type: "civic_low",         x: 0.495, y: 0.575, scale: 1.0 },
-    { id: "posthuset",        type: "post_tower",        x: 0.521, y: 0.574, scale: 1.0, opts: { h: 1.95, color: 0x707783 } },
-    { id: "oslo_s",           type: "station_hall",      x: 0.535, y: 0.587, scale: 1.0, rot: 0.05, opts: { color: 0x9aa6b0, h: 0.4 } },
-    { id: "oslo_plaza",       type: "plaza_tower",       x: 0.547, y: 0.580, scale: 1.0, opts: { h: 2.7, w: 0.26, d: 0.3, color: 0x3b4b5f, crown: true } },
-    { id: "radhuset",         type: "city_hall",         x: 0.47,  y: 0.61,  scale: 1.0 },
-    { id: "deichman",         type: "culture_block",     x: 0.512, y: 0.612, scale: 0.9, opts: { color: 0xc9bfae, h: 0.85 } },
-    { id: "akershus",         type: "fortress",          x: 0.50,  y: 0.64,  scale: 1.0 },
-    { id: "aker_brygge",      type: "waterfront",        x: 0.39,  y: 0.65,  scale: 1.0, rot: 0.2 },
-    { id: "barcode",          type: "barcode_row",       x: 0.57,  y: 0.625, scale: 1.0, rot: 0.42 },
-    { id: "munch",            type: "culture_block",     x: 0.598, y: 0.638, scale: 1.0, rot: -0.3, opts: { color: 0x5f6772, h: 1.35, lean: true } },
-    { id: "operaen",          type: "opera",             x: 0.58,  y: 0.655, scale: 1.0, rot: -0.2, baseY: 0.04 },
-    { id: "toyen_torg",       type: "town_square",       x: 0.625, y: 0.52,  scale: 1.0 },
-    { id: "kampen",           type: "wooden_houses",     x: 0.66,  y: 0.555, scale: 1.0 },
-    { id: "jordal",           type: "ice_arena",         x: 0.69,  y: 0.56,  scale: 1.0 }
+    { id: "holmenkollen",     type: "ski_jump",          x: 0.285, y: 0.108, scale: 1.08, baseY: MARKA_H, rot: 0.18 },
+    { id: "ullevaal",         type: "football_stadium",  x: 0.416, y: 0.255, scale: 1.26, rot: -0.08, opts: { h: 0.46 } },
+    { id: "frognerparken",    type: "park_monument",     x: 0.302, y: 0.462, scale: 1.08, rot: 0.12 },
+    { id: "bislett",          type: "athletics_stadium", x: 0.425, y: 0.458, scale: 1.04, rot: 0.16, opts: { h: 0.28 } },
+    { id: "slottet",          type: "palace",            x: 0.404, y: 0.558, scale: 1.12, rot: -0.05 },
+    { id: "nationaltheatret", type: "theatre",           x: 0.458, y: 0.574, scale: 0.82 },
+    { id: "stortinget",       type: "civic_low",         x: 0.492, y: 0.574, scale: 0.88, opts: { h: 0.5 } },
+    { id: "posthuset",        type: "post_tower",        x: 0.516, y: 0.570, scale: 0.86, opts: { h: 1.62, color: 0x777f88 } },
+    { id: "oslo_s",           type: "station_hall",      x: 0.535, y: 0.590, scale: 1.05, rot: 0.02, opts: { color: 0xa2adb4, h: 0.34 } },
+    { id: "oslo_plaza",       type: "plaza_tower",       x: 0.550, y: 0.577, scale: 0.9, opts: { h: 2.25, w: 0.24, d: 0.28, color: 0x3f5063, crown: true } },
+    { id: "radhuset",         type: "city_hall",         x: 0.464, y: 0.613, scale: 1.08, rot: -0.03 },
+    { id: "deichman",         type: "culture_block",     x: 0.516, y: 0.613, scale: 0.78, opts: { color: 0xd0c8b9, h: 0.72 } },
+    { id: "akershus",         type: "fortress",          x: 0.505, y: 0.646, scale: 1.13, rot: 0.13 },
+    { id: "aker_brygge",      type: "waterfront",        x: 0.386, y: 0.655, scale: 1.12, rot: 0.28 },
+    { id: "barcode",          type: "barcode_row",       x: 0.573, y: 0.622, scale: 0.94, rot: 0.46, opts: { hScale: 0.9 } },
+    { id: "munch",            type: "culture_block",     x: 0.600, y: 0.636, scale: 0.88, rot: -0.32, opts: { color: 0x6b737c, h: 1.08, lean: true } },
+    { id: "operaen",          type: "opera",             x: 0.584, y: 0.657, scale: 1.12, rot: -0.18, baseY: 0.035 },
+    { id: "toyen_torg",       type: "town_square",       x: 0.626, y: 0.518, scale: 0.92, rot: -0.08, opts: { h: 0.28, color: 0xd8a675 } },
+    { id: "kampen",           type: "wooden_houses",     x: 0.662, y: 0.552, scale: 0.9, rot: 0.18, opts: { h: 0.36, warm: true } },
+    { id: "jordal",           type: "ice_arena",         x: 0.690, y: 0.562, scale: 1.05, rot: -0.12, opts: { color: 0xd9e3e6, ice: 0x9fd3e8 } }
+  ];
+
+  const LANDMARK_CLEAR_ZONES = [
+    { id: "slottet", x: 0.404, y: 0.558, r: 0.037 },
+    { id: "akershus", x: 0.505, y: 0.646, r: 0.035 },
+    { id: "radhuset", x: 0.464, y: 0.613, r: 0.032 },
+    { id: "operaen", x: 0.584, y: 0.657, r: 0.034 },
+    { id: "barcode", x: 0.573, y: 0.622, r: 0.030 },
+    { id: "ullevaal", x: 0.416, y: 0.255, r: 0.041 },
+    { id: "bislett", x: 0.425, y: 0.458, r: 0.032 },
+    { id: "jordal", x: 0.690, y: 0.562, r: 0.030 },
+    { id: "toyen_torg", x: 0.626, y: 0.518, r: 0.028 },
+    { id: "frognerparken", x: 0.302, y: 0.462, r: 0.038 }
   ];
 
   // --- Del 4 – Landemerke-archetypes (enkle, gjenkjennelige miniatyrer) ------
@@ -952,8 +1011,9 @@
   // Barcode – distinkt «strekkode»-rad med smale, ulike tårn. Dette er kartets
   // hovedområde for høyhus. Variert høyde, bredde og fargetone, tydelig mellomrom
   // mellom slankene, holdt nær Bjørvika/Oslo S. Ikke for mange/brede tårn.
-  function createBarcodeRow() {
+  function createBarcodeRow(o) {
     const g = new THREE.Group();
+    const hScale = (o && o.hScale) || 1;
     const cols = [0x37495d, 0x3f5266, 0x435a6e, 0x4a5d6f, 0x3a4e62];
     // Forhåndsbestemt variasjon (deterministisk, leses som ulike tårn).
     const slabs = [
@@ -963,12 +1023,12 @@
     ];
     let x = -0.72;
     slabs.forEach((s, i) => {
-      const tw = createPlazaTower({ h: s.h, w: s.w, d: 0.5, color: cols[i % cols.length] });
+      const tw = createPlazaTower({ h: s.h * hScale, w: s.w, d: 0.5, color: cols[i % cols.length] });
       tw.group.position.set(x, 0, (i % 2) * 0.05 - 0.025);
       g.add(tw.group);
       x += s.w + 0.04;
     });
-    return { group: g, h: 2.05 };
+    return { group: g, h: 2.05 * hScale };
   }
 
   // Operaen – lav, hvit og bred kileform som heller skrått ned mot fjorden
@@ -1178,16 +1238,18 @@
 
   // Tøyen torg – åpen lokal plass: en tydelig brolagt torgflate med lave bygg
   // rundt på tre–fire sider, og et lite torgtre/paviljong i midten.
-  function createTownSquare() {
+  function createTownSquare(o) {
     const g = new THREE.Group();
+    const baseColor = (o && o.color) || 0xc6b896;
+    const heightFactor = ((o && o.h) || 0.42) / 0.42;
     // Åpen, brolagt torgflate.
-    const plaza = box(0.95, 0.03, 0.95, 0xc6b896); plaza.position.y = 0.015; plaza.receiveShadow = true; g.add(plaza);
-    const inlay = box(0.5, 0.035, 0.5, shade(0xc6b896, -0.07)); inlay.position.y = 0.018; inlay.rotation.y = Math.PI / 4; g.add(inlay);
+    const plaza = box(0.95, 0.03, 0.95, baseColor); plaza.position.y = 0.015; plaza.receiveShadow = true; g.add(plaza);
+    const inlay = box(0.5, 0.035, 0.5, shade(baseColor, -0.07)); inlay.position.y = 0.018; inlay.rotation.y = Math.PI / 4; g.add(inlay);
 
     // Lave bygg rundt torget (rammer plassen inn).
     const cols = [0xcdb89c, 0xc4b59a, 0xd0c1a4, 0xc9b59b];
     [[-0.62, -0.5], [0.0, -0.66], [0.62, -0.5], [0.66, 0.3], [-0.66, 0.3], [0.0, 0.66]].forEach(([x, z], i) => {
-      const h = 0.42 + (i % 3) * 0.12, c = cols[i % cols.length];
+      const h = (0.42 + (i % 3) * 0.12) * heightFactor, c = cols[i % cols.length];
       const b = box(0.32, h, 0.3, c); b.position.set(x, h / 2, z); g.add(b);
       const r = gableRoof(0.34, 0.09, 0.32, shade(c, -0.16)); r.position.set(x, h, z); g.add(r);
     });
@@ -1201,8 +1263,9 @@
 
   // Kampen – lav, tett klynge av små trehus/småhus i varme farger, med
   // saltak og små hager. Tydelig småhuspreg, ingen høyde.
-  function createWoodenHousesCluster() {
+  function createWoodenHousesCluster(o) {
     const g = new THREE.Group();
+    const heightFactor = ((o && o.h) || 0.38) / 0.38;
     const cols = [0xc96f53, 0xd98b5e, 0xb5654a, 0xd9a86b, 0xc77f55, 0xcf9a62];
     const roofCols = [0x7a4636, 0x8a5a3e, 0x6f4334];
     const rng = mulberry32(0xCA3);
@@ -1211,7 +1274,7 @@
     yard.position.y = 0.015; yard.receiveShadow = true; g.add(yard);
     for (let i = 0; i < 12; i++) {
       const x = (rng() - 0.5) * 1.25, z = (rng() - 0.5) * 1.25;
-      const h = 0.22 + rng() * 0.16, c = cols[i % cols.length];
+      const h = (0.22 + rng() * 0.16) * heightFactor, c = cols[i % cols.length];
       const rot = (rng() - 0.5) * 0.5;
       const b = box(0.2, h, 0.22, c); b.position.set(x, 0.03 + h / 2, z); b.rotation.y = rot; g.add(b);
       const r = gableRoof(0.24, 0.12, 0.26, roofCols[i % roofCols.length]); r.position.set(x, 0.03 + h, z); r.rotation.y = rot; g.add(r);
@@ -1221,14 +1284,16 @@
 
   // Jordal Amfi – ishall/amfi: rund, lav, kuppelaktig form med buet tak.
   // Skiller seg fra fotball-/friidrettsstadion (ingen åpen bane) – tett shell.
-  function createIceArena() {
+  function createIceArena(o) {
     const g = new THREE.Group();
-    const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.58, 0.34, 26), toMat(0xc1c8ce));
+    const shellColor = (o && o.color) || 0xc1c8ce;
+    const iceColor = (o && o.ice) || 0xd6dce1;
+    const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.58, 0.34, 26), toMat(shellColor));
     shell.scale.set(1.22, 1, 1); shell.position.y = 0.17; shell.castShadow = true; shell.receiveShadow = true; g.add(shell);
     // Buet, lukket tak (kuppel) – gjør den klart til ishall, ikke stadion.
     const roof = new THREE.Mesh(
       new THREE.SphereGeometry(0.56, 22, 11, 0, Math.PI * 2, 0, Math.PI / 2),
-      toMat(0xd6dce1)
+      toMat(iceColor)
     );
     roof.scale.set(1.22, 0.42, 1); roof.position.y = 0.34; roof.castShadow = true; roof.receiveShadow = true; g.add(roof);
     return { group: g, h: 0.58 };
@@ -1346,13 +1411,24 @@
   }
 
   function getLandmarkPositions() {
-    return OSLO_KEY_LANDMARKS.map((e) => ({ id: e.id, type: e.type, x: e.x, y: e.y }));
+    return OSLO_KEY_LANDMARKS.map((e) => {
+      const clearZone = LANDMARK_CLEAR_ZONES.find((z) => z.id === e.id);
+      return {
+        id: e.id,
+        type: e.type,
+        x: e.x,
+        y: e.y,
+        scale: e.scale == null ? 1 : e.scale,
+        priority: LANDMARK_VISUAL_PRIORITY[e.id] || null,
+        clearZoneRadius: clearZone ? clearZone.r : null
+      };
+    });
   }
 
   // ---------------------------------------------------------------------------
   // Del 5 – Interaktive History Go-places (arketyp + dempet kategori-fyr)
   // ---------------------------------------------------------------------------
-  function placeGroupFor(p) {
+  function placeGroupFor(p, markerOpts) {
     const asset = resolveAssetType(p);
     const accent = categoryColor(p.category);
     // Kropp i varm stein lett trukket mot kategorifargen (tydelig, ikke neon).
@@ -1363,13 +1439,14 @@
     // Diskrete markører: bevisst små bygg/beacons oppå byen som IKKE skal
     // konkurrere visuelt med de håndmodellerte landemerkene. Holdt små, men
     // fortsatt klikkbare og lette å se ved zoom.
-    group.scale.setScalar(0.52);
+    const markerScale = markerOpts && markerOpts.scale ? markerOpts.scale : 0.52;
+    group.scale.setScalar(markerScale);
     group.traverse((m) => { if (m.isMesh) m.userData = { placeId: p.id }; });
 
     // Liten lysende fyr på toppen så places fortsatt skiller seg fra bybildet
     // ved zoom – mindre enn før for å gi landemerkene forrang.
     const beacon = new THREE.Mesh(
-      new THREE.SphereGeometry(0.07, 8, 6),
+      new THREE.SphereGeometry(markerOpts && markerOpts.nearLandmark ? 0.045 : 0.06, 8, 6),
       new THREE.MeshBasicMaterial({ color: new THREE.Color(accent) })
     );
     beacon.position.y = built.h + 0.14;
@@ -1383,6 +1460,29 @@
   function mixHex(a, b, t) {
     const ca = new THREE.Color(a), cb = new THREE.Color(b);
     return ca.lerp(cb, t).getHex();
+  }
+
+
+  function placeMarkerScaleFor(proj) {
+    const bucket = zoomBucket(zoom);
+    let s = bucket === "low" ? 0.42 : (bucket === "mid" ? 0.50 : 0.56);
+    if (landmarkClearanceAt(proj.x, proj.y)) s *= 0.78;
+    return s;
+  }
+
+  function avoidLandmarkMarkerPosition(proj) {
+    const hit = landmarkClearanceAt(proj.x, proj.y);
+    if (!hit) return { x: proj.x, y: proj.y, nearLandmark: false };
+    const zone = hit.zone;
+    const minDist = zone.r * 0.84;
+    const angle = hit.dist > 0.0001
+      ? Math.atan2(proj.y - zone.y, proj.x - zone.x)
+      : (hashStr(zone.id) % 628) / 100;
+    return {
+      x: clamp(zone.x + Math.cos(angle) * minDist, 0.03, 0.97),
+      y: clamp(zone.y + Math.sin(angle) * minDist, 0.04, 0.96),
+      nearLandmark: true
+    };
   }
 
   function rebuildPlaces() {
@@ -1403,8 +1503,9 @@
     visibleSet(_places, zoom).forEach((p) => {
       const proj = project(p);
       if (!proj) return;
-      const node = placeGroupFor(p);
-      node.position.set(nx2x(proj.x), GROUND_Y, ny2z(proj.y));
+      const adjusted = avoidLandmarkMarkerPosition(proj);
+      const node = placeGroupFor(p, { scale: placeMarkerScaleFor(proj), nearLandmark: adjusted.nearLandmark });
+      node.position.set(nx2x(adjusted.x), GROUND_Y, ny2z(adjusted.y));
       placeGroup.add(node);
       hitTargets.push({ id: p.id, place: p });
     });
@@ -1457,7 +1558,7 @@
   }
   function zoomIn() { setZoom(zoom * ZOOM_STEP); }
   function zoomOut() { setZoom(zoom / ZOOM_STEP); }
-  function reset() { zoom = 1; panX = 0; panZ = 0; updateCamera(); }
+  function reset() { zoom = START_ZOOM; panX = START_PAN.x; panZ = START_PAN.z; updateCamera(); }
   function getZoom() { return zoom; }
 
   function panBy(dxPx, dyPx) {
@@ -1616,7 +1717,9 @@
     buildTrees();
     buildLandmarks();
 
-    zoom = 1.35; // start litt inn-zoomet for mer trøkk
+    zoom = START_ZOOM;
+    panX = START_PAN.x;
+    panZ = START_PAN.z;
 
     // Marker host slik at CSS skjuler 2D-canvasene, og signaliser at 3D er aktiv.
     host.classList.add("is-three-map");
@@ -1658,6 +1761,10 @@
       landmarks: _stats.landmarks,
       landmarkCountByType: Object.assign({}, _stats.landmarkCountByType),
       roadSegments: _stats.roadSegments,
+      clearZones: LANDMARK_CLEAR_ZONES.map((z) => Object.assign({}, z)),
+      clearZoneCount: LANDMARK_CLEAR_ZONES.length,
+      startZoom: START_ZOOM,
+      cameraBase: Object.assign({}, CAM_BASE),
       rendererType,
       renderer: rendererType,
       zoom: Number(zoom.toFixed(3)),
