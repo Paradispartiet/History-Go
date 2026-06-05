@@ -160,6 +160,6 @@ assert.strictEqual(pkg.step_end, 20, 'mellomleder_week_2 should end at step 20')
 assert.strictEqual(pkg.job_family, JOB_FAMILY, 'mellomleder_week_2 should point at second-week job family');
 assert.strictEqual(pkg.private_family, PRIVATE_FAMILY, 'mellomleder_week_2 should point at second-week private family');
 assert.strictEqual(pkg.test_file, 'tests/civication-mellomleder-second-week-praksisfortellinger.test.js', 'mellomleder_week_2 should point at this test file');
-assert.deepStrictEqual(role.flow_tests, [], 'mellomleder should not declare a two-week-flow test yet');
+assert.deepStrictEqual(role.flow_tests, ['tests/civication-mellomleder-two-week-flow.test.js'], 'mellomleder should declare the two-week-flow test after week 2');
 
 console.log('Mellomleder second-week Praksisfortellinger package OK');
