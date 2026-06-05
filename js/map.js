@@ -23,6 +23,9 @@
   const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
 
   const SRC = "hg-places";
+  const STANDARD_DIM_SRC = "hg-standard-map-dim-src";
+  const STANDARD_DIM_LAYER = "hg-standard-map-dim";
+  const STANDARD_DIM_OPACITY = 0.58;
   const L_GLOW = "hg-places-glow";
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
@@ -88,6 +91,7 @@
     MAP.on("load", () => {
       mapReady = true;
       ensureMapStyleToggle(containerId);
+      applyStandardMapDarkening();
       drawPlaceMarkers();
       MAP.resize();
     });
@@ -214,6 +218,7 @@
       isApplyingStyle = false;
       saveMapStyleMode(mapStyleMode);
       mapReady = true;
+      applyStandardMapDarkening();
       drawPlaceMarkers();
       moveMarkersOnTop();
       MAP.resize();
@@ -250,6 +255,7 @@
       saveMapStyleMode(mapStyleMode);
       mapReady = true;
       console.debug("[HGMap] redrawing place markers after style switch");
+      applyStandardMapDarkening();
       drawPlaceMarkers();
       moveMarkersOnTop();
       MAP.resize();
@@ -316,6 +322,50 @@
       btn.classList.toggle("is-active", isActive);
       btn.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
+  }
+
+
+  function applyStandardMapDarkening() {
+    if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD) return;
+    if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
+      runWhenStyleReady(applyStandardMapDarkening);
+      return;
+    }
+
+    if (!MAP.getSource(STANDARD_DIM_SRC)) {
+      MAP.addSource(STANDARD_DIM_SRC, {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Polygon",
+              coordinates: [[
+                [-180, -85],
+                [180, -85],
+                [180, 85],
+                [-180, 85],
+                [-180, -85]
+              ]]
+            }
+          }]
+        }
+      });
+    }
+
+    if (!MAP.getLayer(STANDARD_DIM_LAYER)) {
+      MAP.addLayer({
+        id: STANDARD_DIM_LAYER,
+        type: "fill",
+        source: STANDARD_DIM_SRC,
+        paint: {
+          "fill-color": "#000000",
+          "fill-opacity": STANDARD_DIM_OPACITY
+        }
+      });
+    }
   }
 
   function setUser(lat, lon, { fly = false } = {}) {
@@ -395,6 +445,7 @@
     if (!features.length) return;
 
     const fc = { type: "FeatureCollection", features };
+    applyStandardMapDarkening();
     const src = MAP.getSource(SRC);
     if (src) {
       src.setData(fc);
