@@ -1,0 +1,142 @@
+.aha-sync-hub-card {
+  background: var(--surface, #fff);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  color: var(--text, #111827);
+  margin: 12px;
+  max-width: 620px;
+  padding: 16px;
+}
+
+.aha-sync-hub-card-head,
+.aha-sync-manual-row {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.aha-sync-eyebrow {
+  color: var(--muted, #64748b);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.aha-sync-hub-card h2,
+.aha-sync-section h3 {
+  margin: 0 0 8px;
+}
+
+.aha-sync-muted,
+.aha-sync-disabled-reason p {
+  color: var(--muted, #64748b);
+  margin: 0;
+}
+
+.aha-sync-status-pill,
+.aha-sync-check-state {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+
+.aha-sync-status-pill.is-blocked,
+.aha-sync-checklist .is-blocked .aha-sync-check-state {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.aha-sync-checklist .is-ready .aha-sync-check-state {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.aha-sync-checklist .is-review .aha-sync-check-state {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.aha-sync-prepare-button,
+.aha-sync-manual-button {
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-top: 12px;
+  padding: 10px 14px;
+}
+
+.aha-sync-prepare-button {
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+}
+
+.aha-sync-manual-button:disabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.aha-sync-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.aha-sync-section {
+  background: rgba(148, 163, 184, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.aha-sync-list,
+.aha-sync-module-list,
+.aha-sync-checklist {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.aha-sync-module-list,
+.aha-sync-checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.aha-sync-module-list li,
+.aha-sync-checklist li {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.aha-sync-checklist li {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.aha-sync-module-list .is-empty {
+  color: var(--muted, #64748b);
+}
+
+.aha-sync-validation-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.aha-sync-errors li,
+.aha-sync-gate-reasons li {
+  color: #991b1b;
+}
+
+.aha-sync-warnings li {
+  color: #92400e;
+}
