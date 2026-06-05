@@ -11,7 +11,7 @@ export const OFFICIAL_HISTORY_GO_CATEGORIES = [
   "politikk",
   "populaerkultur",
   "subkultur"
-];
+] as const;
 
 export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = [
   "litteratur",
@@ -20,7 +20,7 @@ export const LEGACY_OR_SECONDARY_PLACE_CATEGORIES = [
   "film_tv",
   "media",
   "psykologi"
-];
+] as const;
 
 export const REQUIRED_PLACE_FIELDS = [
   "id",
@@ -28,13 +28,13 @@ export const REQUIRED_PLACE_FIELDS = [
   "category",
   "lat",
   "lon"
-];
+] as const;
 
 export const RECOMMENDED_PLACE_FIELDS = [
   "r",
   "year",
   "desc"
-];
+] as const;
 
 export const OPTIONAL_PLACE_FIELDS = [
   "popupDesc",
@@ -52,16 +52,18 @@ export const OPTIONAL_PLACE_FIELDS = [
   "wikipedia",
   "statsUrl",
   "link"
-];
+] as const;
 
-export const OFFICIAL_HISTORY_GO_CATEGORY_SET = new Set(OFFICIAL_HISTORY_GO_CATEGORIES);
-export const LEGACY_OR_SECONDARY_PLACE_CATEGORY_SET = new Set(LEGACY_OR_SECONDARY_PLACE_CATEGORIES);
-export const KNOWN_PLACE_CATEGORY_SET = new Set([
+export type PlaceCategoryPolicyStatus = "official" | "legacy_or_secondary" | "unknown";
+
+export const OFFICIAL_HISTORY_GO_CATEGORY_SET = new Set<string>(OFFICIAL_HISTORY_GO_CATEGORIES);
+export const LEGACY_OR_SECONDARY_PLACE_CATEGORY_SET = new Set<string>(LEGACY_OR_SECONDARY_PLACE_CATEGORIES);
+export const KNOWN_PLACE_CATEGORY_SET = new Set<string>([
   ...OFFICIAL_HISTORY_GO_CATEGORIES,
   ...LEGACY_OR_SECONDARY_PLACE_CATEGORIES
 ]);
 
-export function getPlaceCategoryPolicyStatus(category) {
+export function getPlaceCategoryPolicyStatus(category: unknown): PlaceCategoryPolicyStatus {
   const normalized = String(category || "").trim();
   if (OFFICIAL_HISTORY_GO_CATEGORY_SET.has(normalized)) return "official";
   if (LEGACY_OR_SECONDARY_PLACE_CATEGORY_SET.has(normalized)) return "legacy_or_secondary";
