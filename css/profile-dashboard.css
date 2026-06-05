@@ -13,6 +13,7 @@ body.profile-page,
 .profile-dashboard-v2,
 .profile-page .site-header{
   --profile-card-bg: linear-gradient(180deg, rgba(12,18,28,.94), rgba(8,11,17,.90));
+  --profile-header-bg: #000;
   --profile-card-bg-soft: rgba(255,255,255,.055);
   --profile-card-border: rgba(255,255,255,.105);
   --profile-card-border-strong: rgba(246,200,0,.28);
@@ -59,13 +60,20 @@ body.profile-page,
   padding:0 0 28px;
 }
 
-.profile-dashboard-v2 .profile-section,
-.profile-page .site-header .profile-section{
+.profile-dashboard-v2 .profile-section{
   overflow:visible;
   border-radius:var(--profile-dashboard-radius);
   background:var(--profile-card-bg);
   border:1px solid var(--profile-card-border);
   box-shadow:0 18px 46px rgba(0,0,0,.34);
+}
+
+.profile-page .site-header .profile-section{
+  overflow:visible;
+  border-radius:var(--profile-header-radius);
+  background:var(--profile-header-bg);
+  border:0;
+  box-shadow:none;
 }
 
 .profile-dashboard-v2 .section-head{
@@ -88,10 +96,12 @@ body.profile-page,
   position:relative;
   min-height:0;
   padding:0;
-  overflow:hidden !important;
-  border-color:rgba(255,255,255,.12) !important;
+  overflow:hidden;
+  border:0;
+  outline:0;
   border-radius:var(--profile-header-radius);
-  background:linear-gradient(145deg, rgba(12,18,28,.92), rgba(6,9,14,.86)) !important;
+  background:var(--profile-header-bg);
+  box-shadow:none;
 }
 
 
@@ -104,9 +114,10 @@ body.profile-page,
   padding:0;
   display:block;
   border-radius:999px;
-  box-shadow:0 8px 20px rgba(0,0,0,.22);
+  box-shadow:none;
 }
 
+.profile-hero-v2::before,
 .profile-hero-v2::after{
   content:none;
 }
@@ -759,8 +770,8 @@ body.profile-page,
   .groundhopper-achievements{grid-template-columns:1fr;}
 }
 
-.profile-dashboard-v2{flex:1 1 auto;min-height:0;height:auto;display:flex;flex-direction:column;overflow:hidden;margin-top:8px}
-.profile-dashboard-v2 .profile-shell{height:100%;display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
+.profile-dashboard-v2{flex:1 1 auto;min-height:0;height:auto;display:flex;flex-direction:column;overflow:hidden;margin-top:8px;margin-bottom:0}
+.profile-dashboard-v2 .profile-shell{height:100%;display:flex;flex-direction:column;gap:12px;padding-bottom:12px}
 .profile-page .site-header + #profileMain.profile-dashboard{margin-top:4px}
 .profile-tabs{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:2px 2px 8px}
 .profile-tab{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;border-radius:12px;padding:10px 14px;min-height:44px;font-weight:700;white-space:nowrap}
