@@ -17,7 +17,7 @@ body.profile-page,
   --profile-card-border: rgba(255,255,255,.105);
   --profile-card-border-strong: rgba(246,200,0,.28);
   --profile-dashboard-radius: 24px;
-  --profile-header-radius: 18px;
+  --profile-header-radius: 16px;
 }
 
 .profile-dashboard-v2 a.btn,
@@ -99,12 +99,12 @@ body.profile-page,
 
 
 .profile-page .site-header .profile-hero-v2{
-  flex:0 0 min(var(--profile-max-w), calc(100vw - 24px));
-  width:min(var(--profile-max-w), calc(100vw - 24px));
-  max-width:calc(100vw - 24px);
-  margin:4px auto 0;
+  flex:1 1 520px;
+  width:auto;
+  max-width:min(720px, calc(100vw - 24px));
+  margin:0;
   border-radius:var(--profile-header-radius);
-  box-shadow:0 12px 30px rgba(0,0,0,.28);
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
 }
 
 .profile-hero-v2::after{
@@ -121,41 +121,41 @@ body.profile-page,
   z-index:1;
   display:flex;
   align-items:center;
-  gap:14px;
-  padding:14px 16px;
+  gap:10px;
+  padding:10px 12px;
 }
 
 .profile-identity-block{
   display:flex;
-  gap:14px;
+  gap:10px;
   align-items:center;
   min-width:0;
   width:100%;
 }
 
 .profile-avatar-orb{
-  width:64px;
-  height:64px;
-  flex:0 0 64px;
+  width:50px;
+  height:50px;
+  flex:0 0 50px;
   display:grid;
   place-items:center;
-  border-radius:18px;
+  border-radius:15px;
   background:linear-gradient(145deg, rgba(246,200,0,.96), rgba(255,183,3,.74));
   color:#0b0e14;
-  font-size:24px;
+  font-size:18px;
   font-weight:900;
-  box-shadow:0 12px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.28);
+  box-shadow:0 8px 18px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.28);
 }
 
 .profile-hero-copy{
   display:grid;
-  grid-template-columns:minmax(180px,1fr) auto;
+  grid-template-columns:minmax(120px,1fr) auto auto;
   grid-template-areas:
-    "kicker status"
-    "name actions"
-    "sub actions";
-  column-gap:18px;
-  row-gap:4px;
+    "kicker status actions"
+    "name status actions"
+    "sub status actions";
+  column-gap:10px;
+  row-gap:2px;
   align-items:center;
   min-width:0;
   width:100%;
@@ -172,13 +172,13 @@ body.profile-page,
 .profile-pill{
   display:inline-flex;
   align-items:center;
-  min-height:22px;
-  padding:4px 8px;
+  min-height:18px;
+  padding:3px 7px;
   border-radius:999px;
   background:rgba(255,255,255,.075);
   border:1px solid rgba(255,255,255,.11);
   color:rgba(255,255,255,.78);
-  font-size:10px;
+  font-size:9px;
   font-weight:800;
   letter-spacing:.06em;
   text-transform:uppercase;
@@ -193,22 +193,22 @@ body.profile-page,
 .profile-hero-v2 #profileName{
   grid-area:name;
   min-width:0;
-  font-size:clamp(1.2rem, 1rem + .9vw, 1.55rem);
-  line-height:1.05;
+  font-size:clamp(1.1rem, 1rem + .55vw, 1.35rem);
+  line-height:1.08;
   letter-spacing:-.035em;
   margin:0;
 }
 
 .profile-hero-v2 .profile-sub{
   grid-area:sub;
-  max-width:520px;
+  max-width:260px;
   margin:0;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
-  font-size:12px;
-  line-height:1.35;
-  color:rgba(255,255,255,.72);
+  font-size:10px;
+  line-height:1.2;
+  color:rgba(255,255,255,.58);
 }
 
 .profile-hero-actions-v2{
@@ -216,7 +216,7 @@ body.profile-page,
   display:flex;
   flex-wrap:wrap;
   justify-content:flex-end;
-  gap:7px;
+  gap:6px;
   margin-top:0;
 }
 
@@ -224,10 +224,49 @@ body.profile-page,
 .profile-hero-actions-v2 .secondary,
 .profile-page .site-header .profile-hero-actions-v2 .secondary{
   border-radius:999px;
-  min-height:36px;
-  padding:8px 12px;
-  font-size:13px;
+  min-height:34px;
+  padding:7px 11px;
+  font-size:12px;
   line-height:1;
+}
+
+.profile-hero-actions-v2 .profile-login-button{
+  background:linear-gradient(180deg, #ffe36f, #f6c800);
+  border:1px solid rgba(255,255,255,.22);
+  color:#10151d;
+  font-weight:900;
+  box-shadow:0 6px 14px rgba(246,200,0,.18);
+}
+
+.profile-hero-actions-v2 .profile-icon-button{
+  width:34px;
+  min-width:34px;
+  min-height:34px;
+  padding:0;
+  display:inline-grid;
+  place-items:center;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:900;
+}
+
+.profile-hero-actions-v2 .profile-edit-button{
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.profile-hero-actions-v2 .profile-room-button{
+  background:linear-gradient(180deg, rgba(255,114,188,.92), rgba(219,49,143,.72));
+  color:#fff;
+  border:1px solid rgba(255,190,224,.42);
+  box-shadow:0 6px 14px rgba(219,49,143,.22), inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.profile-hero-actions-v2 .profile-map-button{
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
 }
 
 .profile-header-status{
@@ -235,22 +274,23 @@ body.profile-page,
   display:flex;
   flex-wrap:wrap;
   justify-content:flex-end;
-  gap:6px;
+  gap:5px;
   margin-top:0;
-  max-width:520px;
+  max-width:220px;
 }
 
 .profile-header-status .profile-stat-card{
-  min-height:30px;
+  min-height:28px;
   display:inline-flex;
   align-items:center;
-  gap:5px;
+  gap:4px;
   text-align:left;
-  padding:5px 8px;
+  padding:4px 7px;
   border-radius:999px;
-  background:rgba(0,0,0,.22);
-  border:1px solid rgba(255,255,255,.105);
+  background:linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.13);
   color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
 }
 
 .profile-header-status .profile-stat-icon,
@@ -272,7 +312,7 @@ body.profile-page,
 }
 
 .profile-header-status .profile-stat-value{
-  font-size:14px;
+  font-size:13px;
   line-height:1;
   font-weight:900;
   letter-spacing:-.04em;
@@ -571,7 +611,7 @@ body.profile-page,
 
 @media (max-width: 700px){
   .profile-hero-v2-inner{
-    padding:12px;
+    padding:9px 10px;
   }
 
   .profile-identity-block{
@@ -591,11 +631,11 @@ body.profile-page,
   }
 
   .profile-avatar-orb{
-    width:56px;
-    height:56px;
-    flex-basis:56px;
-    border-radius:16px;
-    font-size:21px;
+    width:46px;
+    height:46px;
+    flex-basis:46px;
+    border-radius:14px;
+    font-size:17px;
   }
 
   .profile-header-status,
@@ -619,7 +659,7 @@ body.profile-page,
   }
 
   .profile-header-status .profile-stat-card{
-    flex:1 1 calc(50% - 7px);
+    flex:0 0 auto;
     justify-content:center;
   }
 }
@@ -684,7 +724,7 @@ body.profile-page,
 
 .profile-dashboard-v2{flex:1 1 auto;min-height:0;height:auto;display:flex;flex-direction:column;overflow:hidden;margin-top:8px}
 .profile-dashboard-v2 .profile-shell{height:100%;display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
-.profile-page .site-header + #profileMain.profile-dashboard{margin-top:8px}
+.profile-page .site-header + #profileMain.profile-dashboard{margin-top:4px}
 .profile-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px}
 .profile-tab{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;border-radius:12px;padding:10px 14px;min-height:44px;font-weight:700;white-space:nowrap}
 .profile-tab.is-active{background:rgba(246,200,0,.2);border-color:rgba(246,200,0,.45);color:#ffe671}
