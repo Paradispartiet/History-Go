@@ -1,5 +1,13 @@
 # 🧭 HISTORY GO — CHANGELOG
 
+## 2026-06-05 — ProfileView experiment paused
+
+- Internal `#/profile` summary was removed/neutralized.
+- miniProfile remains the quick profile status in index.
+- `profile.html` remains the canonical full profile page.
+- map/place/quiz router remains unchanged.
+
+
 ## 2026-06-05 — Index app shell / fast boot / router
 
 **Status:** Stabil index-appstruktur etablert  

@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
     await safeRun("loadBootFast", () => loadScriptOnce("js/boot-fast.js"));
     await safeRun("loadMapView", () => loadScriptOnce("js/views/MapView.js"));
-    await safeRun("loadProfileView", () => loadScriptOnce("js/views/ProfileView.js"));
     await safeRun("loadAppRouter", () => loadScriptOnce("js/router/AppRouter.js"));
 
     // Critical boot gjør bare index brukbar: kart + places_index + markører.
