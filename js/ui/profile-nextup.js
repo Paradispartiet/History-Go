@@ -36,8 +36,9 @@
     let section = document.getElementById("profileNextUpSection");
     if (section) return section;
 
-    const profileCard = document.getElementById("profileCard");
-    if (!profileCard) return null;
+    const profileShell = document.querySelector("#profileMain .profile-shell");
+    const profileTabs = profileShell?.querySelector(".profile-tabs");
+    if (!profileShell) return null;
 
     section = document.createElement("section");
     section.id = "profileNextUpSection";
@@ -52,7 +53,11 @@
       <div id="profileNextUp" class="profile-nextup-card"></div>
     `;
 
-    profileCard.insertAdjacentElement("afterend", section);
+    if (profileTabs) {
+      profileTabs.insertAdjacentElement("beforebegin", section);
+    } else {
+      profileShell.prepend(section);
+    }
     return section;
   }
 
