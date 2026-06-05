@@ -4,7 +4,7 @@
   "category": "naeringsliv",
   "role_scope": "avdelingsleder",
   "title": "Avdelingsleder",
-  "description": "Dramaturgisk plan for Avdelingsleder i Næringsliv & industri: fra ny leder under krysspress til ansvarlig oversetter mellom drift, mennesker og styringslinjer.",
+  "description": "Dramaturgisk plan for Avdelingsleder i Næringsliv & industri: første uke starter med praksisfortellinger om mål vs. mennesker, budsjett vs. kapasitet, sykefravær, nøkkelpersonbelastning, rapportering og privat rolle-lekkasje; deretter videre avdelingslederbue.",
   "arc": {
     "from": "Ny eller nylig etablert avdelingsleder som står mellom KPI-press, bemanning, sidestilt politikk og teamets kapasitet.",
     "to": "Avdelingsleder som bruker rapportering, prioritering og relasjonell ledelse til å holde både leveranse og bærekraft samlet.",
@@ -19,6 +19,106 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
+      "step_goal": "Mandag jobbmail: Mandagsmålet – alt er viktig",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Mandag privat: Rollen som høres større ut enn den føles",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Tirsdag jobbmail: Budsjettet som allerede er brukt",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Tirsdag privat: Familien som tror du bestemmer mer nå",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Onsdag jobbmail: Sykefraværet som ikke er et tall",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Onsdag privat: Du begynner å prioritere hjemme også",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Torsdag jobbmail: Den ansatte alle vil skjerme",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Torsdag privat: Meldingen du leser som en personalsak",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Fredag jobbmail: Første uke med avdelingsansvar",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Fredag privat: Helgen uten ledermøte",
+      "allowed_families": [
+        "first_week_praksisfortellinger_avdelingsleder_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "intro",
       "allowed_families": [
         "avdelingsleder_intro_v2",
         "avdelingsleder_rolleforstaelse"
@@ -26,10 +126,11 @@
       "fallback_types": [
         "people",
         "job"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     },
     {
-      "step": 2,
+      "step": 12,
       "type": "job",
       "phase": "early",
       "allowed_families": [
@@ -39,10 +140,11 @@
       "fallback_types": [
         "job",
         "conflict"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     },
     {
-      "step": 3,
+      "step": 13,
       "type": "people",
       "phase": "early",
       "allowed_families": [
@@ -52,10 +154,11 @@
       "fallback_types": [
         "job",
         "conflict"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     },
     {
-      "step": 4,
+      "step": 14,
       "type": "conflict",
       "phase": "mid",
       "allowed_families": [
@@ -64,10 +167,11 @@
       "fallback_types": [
         "people",
         "event"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     },
     {
-      "step": 5,
+      "step": 15,
       "type": "story",
       "phase": "mid",
       "allowed_families": [
@@ -76,10 +180,11 @@
       "fallback_types": [
         "job",
         "people"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     },
     {
-      "step": 6,
+      "step": 16,
       "type": "event",
       "phase": "advanced",
       "allowed_families": [
@@ -88,10 +193,11 @@
       "fallback_types": [
         "conflict",
         "people"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     },
     {
-      "step": 7,
+      "step": 17,
       "type": "job",
       "phase": "advanced",
       "allowed_families": [
@@ -99,7 +205,8 @@
       ],
       "fallback_types": [
         "story"
-      ]
+      ],
+      "step_goal": "Videre avdelingslederbue etter første praksisfortellingsuke."
     }
   ]
 }

@@ -4,14 +4,906 @@
   "role_scope": "avdelingsleder",
   "mail_type": "job",
   "families": [
-    {"id":"avdelingsleder_planlegging","mails":[
-      {"id":"avdelingsleder_planlegging_001","mail_type":"job","mail_family":"avdelingsleder_planlegging","role_scope":"avdelingsleder","subject":"\"Vi må alle bidra litt ekstra\" denne perioden","summary":"Uklart krav om ekstra innsats treffer et allerede presset team.","situation":["Ledelsen ber om fleksibilitet uten tydelig varighet.","Du må velge mellom tempo nå eller bæreevne over tid."],"task_domain":"staffing","competency":"planlegging_og_bemanning","pressure":"plan_vs_kapasitet","choice_axis":"tempo_vs_holdbarhet","consequence_axis":"kort_sikt_vs_lang_sikt","narrative_arc":"planlegging","choices":[{"id":"A","label":"Be om konkret prioritering og tidsavgrensning før du sier ja.","effect":1,"tags":["clarity"],"feedback":"Du gjør ekstraarbeid styrbart i stedet for grenseløst."},{"id":"B","label":"Sett i gang ekstra innsats umiddelbart.","effect":0,"tags":["tempo"],"feedback":"Du redder uka, men normaliserer overbelastning."}]}
-    ]},
-    {"id":"avdelingsleder_fraksjonsvalg","mails":[
-      {"id":"avdelingsleder_fraksjonsvalg_001","mail_type":"job","mail_family":"avdelingsleder_fraksjonsvalg","role_scope":"avdelingsleder","subject":"Hvem er du når presset drar i hver retning?","summary":"Du tvinges til å velge hvilken legitimitet du bygger rollen på.","situation":["Produksjon vil ha tempo, HR vil ha ro, økonomi vil ha kontroll.","Ingen av valgene er nøytrale."],"task_domain":"leadership_positioning","competency":"styring_og_tillit","pressure":"krysspress","choice_axis":"resultat_vs_mennesker","consequence_axis":"status_vs_legitimitet","narrative_arc":"fraksjonsvalg","choices":[{"id":"A","label":"Prioriter kontroll og tydelige styringslinjer.","effect":1,"tags":["control"],"feedback":"Du bygger forutsigbarhet, men kan miste fleksibilitet."},{"id":"B","label":"Prioriter teamkapasitet og bærekraftig leveranse.","effect":1,"tags":["people"],"feedback":"Du bygger tillit, men må tåle svakere kortsiktige tall."}]}
-    ]},
-    {"id":"avdelingsleder_mastery","mails":[
-      {"id":"avdelingsleder_mastery_001","mail_type":"job","mail_family":"avdelingsleder_mastery","role_scope":"avdelingsleder","subject":"Din rapport avgjør neste kvartals rammer","summary":"Du må velge om rapporten skal beskytte deg eller forbedre systemet.","situation":["Styret får ett dokument fra avdelingen din.","Små formuleringer avgjør hvem som får ansvar og ressurser."],"task_domain":"executive_reporting","competency":"systemoversettelse","pressure":"rapportering_vs_sannhet","choice_axis":"selvbeskyttelse_vs_laring","consequence_axis":"ro_vs_endring","narrative_arc":"mastery","choices":[{"id":"A","label":"Dokumenter årsaker og tiltak tydelig, også ubehagelige funn.","effect":1,"tags":["integrity","learning"],"feedback":"Du øker beslutningskvaliteten, men skaper mer oppfølging."},{"id":"B","label":"Lever pen rapport med minimale avvikskommentarer.","effect":0,"tags":["image"],"feedback":"Du kjøper kortsiktig ro, men skyver risiko frem i tid."}]}
-    ]}
+    {
+      "id": "first_week_praksisfortellinger_avdelingsleder_job",
+      "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke med mål vs. mennesker, budsjett vs. kapasitet, sykefravær, nøkkelpersonbelastning og styrbar rapportering.",
+      "learning_focus": [
+        "prioritering",
+        "budsjett_som_kapasitet",
+        "sykefravaersmonster",
+        "personalansvar",
+        "mandat_og_rapportering"
+      ],
+      "week_outcomes": [
+        {
+          "id": "responsible_prioritizer",
+          "condition": "Spilleren prioriterer tydelig, sier hva som må vente, forklarer budsjett som kapasitet, ser sykefravær som mønster og skjermer nøkkelpersoner.",
+          "effects": {
+            "clarity": 5,
+            "manager_trust": 4,
+            "team_trust": 4,
+            "budget_clarity": 3,
+            "quality": 2,
+            "manager_pressure": 2,
+            "stress": 2
+          },
+          "story": "Du begynner å lede avdelingen ved å velge, ikke bare ved å følge opp alt. Folk merker at prioriteringene dine har kostnader, men også at de er virkelige."
+        },
+        {
+          "id": "polished_department_reporter",
+          "condition": "Spilleren skriver pene rapporter, holder alt stabilt i språket og unngår å vise hva leveransen faktisk koster.",
+          "effects": {
+            "manager_pressure": -2,
+            "stress": -1,
+            "stagnation": 5,
+            "team_trust": -3,
+            "future_risk": 4
+          },
+          "story": "Avdelingen ser styrbar ut. Det gjør rapportene lettere å lese og virkeligheten vanskeligere å endre."
+        },
+        {
+          "id": "budget_first_leader",
+          "condition": "Spilleren prioriterer budsjettkontroll, raske kostnadskutt og leveranse foran opplæring, sykefravær og belastning.",
+          "effects": {
+            "budget_control": 5,
+            "delivery": 2,
+            "team_trust": -4,
+            "sickness_risk": 4,
+            "future_risk": 4,
+            "quality": -2
+          },
+          "story": "Tallene kan bedre seg raskt. Men avdelingen lærer at kostnader først blir viktige når de står i regnskapet, ikke når de sitter i kroppen."
+        },
+        {
+          "id": "people_capacity_leader",
+          "condition": "Spilleren beskytter opplæring, ser sykefravær tidlig, skjermer nøkkelpersoner og gjør menneskelig kapasitet til styringsgrunnlag.",
+          "effects": {
+            "team_trust": 5,
+            "quality": 3,
+            "sickness_risk": -3,
+            "manager_pressure": 3,
+            "budget_pressure": 2,
+            "clarity": 3
+          },
+          "story": "Du gjør kapasitet synlig før den går i stykker. Det skaper friksjon oppover, men tillit nedover."
+        },
+        {
+          "id": "mandate_seeker",
+          "condition": "Spilleren ber om tydelig mandat til å prioritere ned mål, løfter reelle ressurskonflikter og skiller mellom ansvar og kontroll.",
+          "effects": {
+            "authority": 3,
+            "clarity": 4,
+            "manager_pressure": 4,
+            "team_trust": 2,
+            "stress": 2
+          },
+          "story": "Du lærer at avdelingsansvar uten mandat blir ansvarsteater. En god leder ber ikke bare om mer frihet, men om tydeligere grenser for hva som faktisk skal gjøres."
+        }
+      ],
+      "mails": [
+        {
+          "id": "job_avdelingsleder_week1_monday_everything_important",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_job",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Mandagsmålet – alt er viktig",
+          "summary": "Inger ber om en kort ukeprioritering der leveranse, budsjett, sykefravær, opplæring, avvik og medarbeideroppfølging alle kjemper om førsteplassen.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Inger, regionleder\nEmne: Ukeprioritering\nBody:\nHei,\n\nVelkommen inn i første fulle uke som avdelingsleder.\n\nJeg vil gjerne at du sender en kort ukeprioritering før kl. 11. Denne uka må vi ha særlig fokus på leveransegrad, budsjettkontroll, sykefravær, opplæring av nye, kvalitet i avvikshåndtering og medarbeideroppfølging. Skriv hva du prioriterer først, hva du følger med på, og hva som eventuelt må vente.\n\nMvh\nInger",
+            "Fra: Rana, teamkoordinator\nEmne: Før du prioriterer\nBody:\nHvis alt står som “høy prioritet”, kommer folk til å høre at ingenting egentlig er prioritert. Denne avdelingen har vært vant til at nye mål bare legges oppå gamle mål.\n\n– Rana",
+            "Fra: System\nEmne: Avdelingsstatus\nBody:\nLeveransegrad: 96 %\nBudsjett: 3 % over periodisert ramme\nSykefravær: svakt stigende\nOpplæring: 2 nye ansatte\nAvvik: lavt, men flere sene registreringer\nMedarbeidertrykk: uformelt høyt\n\nVarsel: Flere samtidige toppprioriteringer kan øke skjult belastning.",
+            "Fra: Mads, sidestilt avdelingsleder\nEmne: Ukeprioritering\nBody:\nInger liker tydelige prioriteringer, men ikke signaler om at vi ikke håndterer trykket. Jeg ville formulert det som “stram prioritering innenfor eksisterende rammer”.\n\n– Mads"
+          ],
+          "task_domain": "ukeprioritering",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "alt_viktig_vs_reell_prioritering",
+          "consequence_axis": "tydelighet_vs_skult_belastning",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioritere tydelig og skrive hva som må vente",
+              "reply": "Jeg skriver at leveranse, sykefravær og opplæring må prioriteres først, og at noe mindre kritisk administrasjon må vente.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Inger svarer at dette er en tydelig prioritering fordi du faktisk sier hva som må vente.",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "team_trust": 2,
+                  "manager_trust": 1,
+                  "manager_pressure": 2,
+                  "budget_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_clear_priorities",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_clear_priorities"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive at alle målene følges tett",
+              "reply": "Jeg skriver at avdelingen følger alle hovedmål tett denne uka, uten å rangere dem tydelig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Rana minner deg om at “alle hovedmål følges tett” betyr at folk selv må finne ut hva som viker.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "stress": -1,
+                  "stagnation": 2,
+                  "team_trust": -1,
+                  "future_risk": 2
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_everything_priority",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_everything_priority"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Prioritere leveranse og budsjett først",
+              "reply": "Jeg skriver at leveranse og budsjett må prioriteres først for å stabilisere avdelingen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Mads mener ledelsen vil forstå det, men advarer om at formuleringen setter uka for teamet.",
+              "effects": {
+                "stats": {
+                  "delivery": 3,
+                  "budget_control": 2,
+                  "team_trust": -2,
+                  "sickness_risk": 2,
+                  "quality": -1,
+                  "manager_trust": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_hard_delivery_priority",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_hard_delivery_priority"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_avdelingsleder_week1_budget_already_spent",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_job",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 124,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Budsjettet som allerede er brukt",
+          "summary": "Øyvind ber om forklaring på et budsjettavvik som egentlig handler om innleie, overtid, opplæring og kapasitet.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Øyvind, økonomicontroller\nEmne: Periodisert budsjett – avvik\nBody:\nAvdelingen ligger foreløpig 3 % over periodisert ramme. Det er ikke kritisk, men vi bør ha en forklaring før månedsslutt. Særlig gjelder dette innleie, overtid, opplæringstid og utstyrskostnader. Kan du sende kort vurdering av årsak og tiltak?\n\nMvh\nØyvind",
+            "Fra: Rana\nEmne: Budsjettet\nBody:\nHvis budsjettet ser dårlig ut, kommer noen til å foreslå mindre innleie og mindre opplæring. Uten innleien hadde vi ikke holdt leveransen. Uten opplæring blir de nye gående og trenge hjelp dobbelt så lenge.\n\n– Rana",
+            "Fra: Inger\nEmne: Budsjettavvik\nBody:\nIkke overforklar, men vær tydelig på om dette er midlertidig oppstartskostnad, svak kostnadsstyring, nødvendig driftstiltak eller noe som krever ny prioritering.\n\nMvh\nInger",
+            "Fra: System\nEmne: Kostnadsbilde\nBody:\nInnleie: høy\nOvertid: moderat\nOpplæring: høy\nUtstyr: litt over plan\nLeveranse: nesten på mål\nKvalitet: stabil\nFravær: svakt stigende\n\nAnalyse: Kostnadene kan reduseres raskt, men tiltak kan påvirke opplæring, leveranse og belastning."
+          ],
+          "task_domain": "budsjett_og_kapasitet",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "kostnadskutt_vs_nodvendig_investering",
+          "consequence_axis": "styring_vs_flyttet_kostnad",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare budsjettavviket som nødvendig, men midlertidig investering",
+              "reply": "Jeg skriver at avviket skyldes innleie og opplæring som har holdt leveranse og kvalitet oppe, men foreslår konkret nedtrapping hvis kapasiteten stabiliseres.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Øyvind sier vurderingen skiller kostnad som svikt fra kostnad som nødvendig driftstiltak.",
+              "effects": {
+                "stats": {
+                  "budget_clarity": 3,
+                  "manager_trust": 2,
+                  "team_trust": 2,
+                  "budget_pressure": 1,
+                  "quality": 2,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_budget_as_capacity",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_budget_as_capacity"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Love rask kostnadsreduksjon",
+              "reply": "Jeg skriver at avdelingen skal stramme inn innleie og overtid allerede denne uka.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Rana advarer om at kuttet kan se bra ut på rapporten, men betales i tempo, feil eller rygg.",
+              "effects": {
+                "stats": {
+                  "budget_control": 3,
+                  "manager_pressure": -1,
+                  "team_trust": -2,
+                  "future_risk": 3,
+                  "quality": -1,
+                  "sickness_risk": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_fast_budget_cut",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_fast_budget_cut"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Skyve forklaringen til senere",
+              "reply": "Jeg skriver at avviket følges og at jeg kommer tilbake med mer presis vurdering mot slutten av uka.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Inger svarer at budsjettavvik er lettere å håndtere mens dere fortsatt kan styre.",
+              "effects": {
+                "stats": {
+                  "stress": -1,
+                  "budget_pressure": 1,
+                  "stagnation": 2,
+                  "manager_trust": -1,
+                  "future_risk": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_budget_delay",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_budget_delay"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_avdelingsleder_week1_sick_leave_not_number",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_job",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 118,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Sykefraværet som ikke er et tall",
+          "summary": "Fraværet stiger litt, og Inger ber deg lese mønsteret før det blir dramatisk.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Inger\nEmne: Sykefravær\nBody:\nJeg ser at sykefraværet i avdelingen har steget litt. Det er ikke dramatisk, men jeg vil at du ser på mønsteret nå, ikke senere. Er dette tilfeldig variasjon, belastningsmønster, bestemte team eller oppgaver, og trengs tiltak?\n\nMvh\nInger",
+            "Fra: Rana\nEmne: Fravær\nBody:\nDet er ikke tilfeldig. Ikke helt. Folk har vært slitne lenge, men sykefravær blir først synlig når kroppen eller hodet ikke klarer å forhandle mer.\n\n– Rana",
+            "Fra: System\nEmne: Fraværsdata\nBody:\nSykefravær siste 4 uker:\nUke 1: 4,1 %\nUke 2: 4,8 %\nUke 3: 5,6 %\nUke 4: 6,2 %\n\nMønster: korttidsfravær øker, to gjentatte personer, høyest fravær etter helger med ekstra innleie/overtid, opplæring og restoppgaver overlapper ofte.",
+            "Fra: Øyvind\nEmne: Fravær og kost\nBody:\nHvis sykefraværet fortsetter opp, blir det dyrere enn dagens innleie. Det kan være relevant i vurderingen av budsjettavviket.\n\nMvh\nØyvind"
+          ],
+          "task_domain": "sykefravaer_og_belastning",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "prosent_vs_monster",
+          "consequence_axis": "tidlig_tiltak_vs_individualisering",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rapportere fravær som belastningssignal",
+              "reply": "Jeg skriver at fraværet ser ut til å henge sammen med belastning, opplæring og restoppgaver, og foreslår tiltak før det øker.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Inger svarer at dette er riktig nivå: ikke dramatisk, men et mønster som må styres.",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "team_trust": 2,
+                  "manager_trust": 2,
+                  "sickness_risk": -1,
+                  "budget_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_sick_leave_pattern",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_sick_leave_pattern"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rapportere som foreløpig variasjon",
+              "reply": "Jeg skriver at fraværet har steget, men at det foreløpig kan være normal variasjon.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Rana sier at normal variasjon ofte ligner på folk som har sagt fra uten at det ble registrert.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "stress": -1,
+                  "stagnation": 2,
+                  "future_risk": 2,
+                  "team_trust": -1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_sick_leave_minimized",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_sick_leave_minimized"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fokusere på nærværsoppfølging av enkeltpersoner",
+              "reply": "Jeg foreslår samtaler med de to som har gjentatt korttidsfravær.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Rana minner om at samtaler kan være riktig, men at avdelingen også må se på hvorfor akkurat de ble borte.",
+              "effects": {
+                "stats": {
+                  "authority": 1,
+                  "clarity": 1,
+                  "team_trust": -1,
+                  "conflict": 1,
+                  "future_risk": 1,
+                  "manager_trust": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_individualize_absence",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_individualize_absence"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_avdelingsleder_week1_employee_everyone_protects",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_job",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 112,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Den ansatte alle vil skjerme",
+          "summary": "Ida har båret opplæring, kvalitet og uformell støtte så lenge at omsorg, særbehandling og rettferdighet kolliderer.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Rana\nEmne: Ida\nBody:\nVi må snakke litt om Ida. Hun har båret utrolig mye opplæring og uformell støtte. Alle liker henne. Alle stoler på henne. Men hun begynner å bli kortere i tonen. Hvis vi ikke skjermer henne litt, mister vi mer enn tempo.\n\n– Rana",
+            "Fra: Inger\nEmne: Nøkkelpersoner\nBody:\nJeg hører at Ida er en nøkkelperson i avdelingen. Det er bra, men også en risiko. Nøkkelpersoner skal ikke bli skjulte systemer. Kan du vurdere om oppgaver rundt opplæring/støtte bør fordeles bredere?\n\nMvh\nInger",
+            "Fra: Ida\nEmne: Ikke gjør dette stort\nBody:\nRana nevnte kanskje at jeg er litt sliten. Jeg kan fortsatt ta opplæring hvis det trengs. Jeg vil bare slippe at alt havner hos meg automatisk.\n\n– Ida",
+            "Fra: System\nEmne: Uformell støtte\nBody:\nIda har siste to uker fulgt opp 2 nyansatte, tatt ekstra kvalitetssjekk, svart på flest interne spørsmål, dekket opp ved fravær og ikke registrert overtid tilsvarende faktisk støttearbeid.\n\nRisiko: Skjult nøkkelpersonbelastning."
+          ],
+          "task_domain": "personalansvar_og_fordeling",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "omsorg_vs_rettferdighet",
+          "consequence_axis": "skjerming_vs_skjult_system",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fordele støttearbeidet bredere og skjerme Ida delvis",
+              "reply": "Jeg lager en roterende støtteplan og fjerner Ida fra automatisk opplæringsansvar resten av uka.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Ida takker fordi støttearbeidet ikke er usynlig lenger.",
+              "effects": {
+                "stats": {
+                  "fairness": 3,
+                  "team_trust": 3,
+                  "quality": 1,
+                  "flow": -1,
+                  "manager_pressure": 1,
+                  "sickness_risk": -1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_protect_key_person",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_protect_key_person"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be Ida holde ut litt til",
+              "reply": "Jeg ber Ida ta opplæring ut uka, men lover å se på fordelingen neste uke.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Rana sier Ida får ting til å fungere helt til det ikke gjør det.",
+              "effects": {
+                "stats": {
+                  "flow": 2,
+                  "quality": 1,
+                  "team_trust": -2,
+                  "future_risk": 2,
+                  "sickness_risk": 2,
+                  "stagnation": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_key_person_overused",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_key_person_overused"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Gjøre det til formell personalsamtale med Ida",
+              "reply": "Jeg kaller inn Ida til en formell samtale om belastning og rolleavklaring.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Ida skjønner hvorfor, men sier at et fordelingsproblem plutselig ble en samtale om henne.",
+              "effects": {
+                "stats": {
+                  "clarity": 2,
+                  "authority": 1,
+                  "team_trust": -1,
+                  "stress": 1,
+                  "conflict": 1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_formalize_ida",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_formalize_ida"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "job_avdelingsleder_week1_first_week_department_responsibility",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_job",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 106,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Første uke med avdelingsansvar",
+          "summary": "Fredag ber Inger om en styrbar oppsummering av prioriteringer, budsjett, fravær, nøkkelpersonbelastning og mandat.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Inger\nEmne: Før helg – første uke\nBody:\nFør du går i dag, send meg en kort oppsummering av første uke. Jeg vil vite hvilke prioriteringer som faktisk ble gjort, hvordan budsjettavviket bør forstås, hva du ser i sykefraværet, om nøkkelpersonbelastningen er håndtert, og hva du trenger mandat eller støtte til neste uke. Jeg trenger ikke en pen uke. Jeg trenger en styrbar uke.\n\nMvh\nInger",
+            "Fra: Rana\nEmne: Hvis du skal skrive sant\nBody:\nSkriv at folk leverer, men at leveransen har en kostnad. Skriv at Ida ikke kan være avdelingens usynlige støtteapparat. Skriv at fraværet ikke bare er fravær. Og skriv hva du faktisk vil prioritere ned.\n\n– Rana",
+            "Fra: Øyvind\nEmne: Budsjettlinjen\nBody:\nSkill mellom tiltak som kan redusere kost raskt, tiltak som bare flytter kostnaden til fravær/feil/overtid, og kostnad som er midlertidig investering.\n\nMvh\nØyvind",
+            "Fra: System\nEmne: Uke 1 – avdelingssignaler\nBody:\nLeveranse fortsatt under press, budsjett 3 % over periodisert ramme, fravær stigende, opplæring høy, nøkkelpersonbelastning på Ida, prioriteringsbehov tydelig og privat arbeidsspråk lekker hjem."
+          ],
+          "task_domain": "ukeoppsummering_og_mandat",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "pen_rapport_vs_styrbar_sannhet",
+          "consequence_axis": "ansvar_vs_ansvarsteater",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive tydelig styringsoppsummering med reelle prioriteringer",
+              "reply": "Jeg skriver at avdelingen må prioritere leveranse, fraværsforebygging og opplæring, og at enkelte administrative mål må nedprioriteres midlertidig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Inger svarer at dette er styring, ikke bare rapportering, og setter mandatgjennomgang mandag.",
+              "effects": {
+                "stats": {
+                  "clarity": 4,
+                  "manager_trust": 3,
+                  "team_trust": 3,
+                  "budget_clarity": 2,
+                  "manager_pressure": 2,
+                  "stress": 2
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_responsible_priority",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_responsible_priority"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive en pen og stabil oppsummering",
+              "reply": "Jeg skriver at avdelingen er under kontroll, med enkelte oppfølgingspunkter på budsjett, fravær og opplæring.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Rana minner om at “under kontroll” ofte betyr at folk fortsatt bærer ting som ikke står i oppsummeringen.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "stress": -1,
+                  "stagnation": 3,
+                  "team_trust": -2,
+                  "future_risk": 3
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_polished_summary",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_polished_summary"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Love budsjettkutt og strammere drift",
+              "reply": "Jeg skriver at avdelingen skal redusere innleie/overtid og stramme inn på ressursbruk neste uke.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Øyvind ber deg følge med på om reduksjonen fjerner kostnad eller flytter den til fravær, avvik og etterslep.",
+              "effects": {
+                "stats": {
+                  "budget_control": 4,
+                  "manager_trust": 1,
+                  "team_trust": -3,
+                  "future_risk": 3,
+                  "sickness_risk": 2,
+                  "quality": -1
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_budget_first",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_budget_first"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Be om tydeligere mandat for prioritering ned",
+              "reply": "Jeg skriver at avdelingen trenger tydelig mandat til å prioritere ned enkelte mål for å beskytte kapasitet, opplæring og fraværsforebygging.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder"
+              ],
+              "feedback": "Inger svarer at vurderingen er rimelig og ber deg ta med konkrete forslag mandag.",
+              "effects": {
+                "stats": {
+                  "clarity": 3,
+                  "authority": 2,
+                  "manager_pressure": 3,
+                  "team_trust": 2,
+                  "stress": 2
+                }
+              },
+              "triggers_on_choice": "job_avdelingsleder_week1_needs_prioritization_mandate",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_job"
+                ],
+                "set_flags": [
+                  "job_avdelingsleder_week1_needs_prioritization_mandate"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avdelingsleder_planlegging",
+      "mails": [
+        {
+          "id": "avdelingsleder_planlegging_001",
+          "mail_type": "job",
+          "mail_family": "avdelingsleder_planlegging",
+          "role_scope": "avdelingsleder",
+          "subject": "\"Vi må alle bidra litt ekstra\" denne perioden",
+          "summary": "Uklart krav om ekstra innsats treffer et allerede presset team.",
+          "situation": [
+            "Ledelsen ber om fleksibilitet uten tydelig varighet.",
+            "Du må velge mellom tempo nå eller bæreevne over tid."
+          ],
+          "task_domain": "staffing",
+          "competency": "planlegging_og_bemanning",
+          "pressure": "plan_vs_kapasitet",
+          "choice_axis": "tempo_vs_holdbarhet",
+          "consequence_axis": "kort_sikt_vs_lang_sikt",
+          "narrative_arc": "planlegging",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om konkret prioritering og tidsavgrensning før du sier ja.",
+              "effect": 1,
+              "tags": [
+                "clarity"
+              ],
+              "feedback": "Du gjør ekstraarbeid styrbart i stedet for grenseløst."
+            },
+            {
+              "id": "B",
+              "label": "Sett i gang ekstra innsats umiddelbart.",
+              "effect": 0,
+              "tags": [
+                "tempo"
+              ],
+              "feedback": "Du redder uka, men normaliserer overbelastning."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avdelingsleder_fraksjonsvalg",
+      "mails": [
+        {
+          "id": "avdelingsleder_fraksjonsvalg_001",
+          "mail_type": "job",
+          "mail_family": "avdelingsleder_fraksjonsvalg",
+          "role_scope": "avdelingsleder",
+          "subject": "Hvem er du når presset drar i hver retning?",
+          "summary": "Du tvinges til å velge hvilken legitimitet du bygger rollen på.",
+          "situation": [
+            "Produksjon vil ha tempo, HR vil ha ro, økonomi vil ha kontroll.",
+            "Ingen av valgene er nøytrale."
+          ],
+          "task_domain": "leadership_positioning",
+          "competency": "styring_og_tillit",
+          "pressure": "krysspress",
+          "choice_axis": "resultat_vs_mennesker",
+          "consequence_axis": "status_vs_legitimitet",
+          "narrative_arc": "fraksjonsvalg",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioriter kontroll og tydelige styringslinjer.",
+              "effect": 1,
+              "tags": [
+                "control"
+              ],
+              "feedback": "Du bygger forutsigbarhet, men kan miste fleksibilitet."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter teamkapasitet og bærekraftig leveranse.",
+              "effect": 1,
+              "tags": [
+                "people"
+              ],
+              "feedback": "Du bygger tillit, men må tåle svakere kortsiktige tall."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avdelingsleder_mastery",
+      "mails": [
+        {
+          "id": "avdelingsleder_mastery_001",
+          "mail_type": "job",
+          "mail_family": "avdelingsleder_mastery",
+          "role_scope": "avdelingsleder",
+          "subject": "Din rapport avgjør neste kvartals rammer",
+          "summary": "Du må velge om rapporten skal beskytte deg eller forbedre systemet.",
+          "situation": [
+            "Styret får ett dokument fra avdelingen din.",
+            "Små formuleringer avgjør hvem som får ansvar og ressurser."
+          ],
+          "task_domain": "executive_reporting",
+          "competency": "systemoversettelse",
+          "pressure": "rapportering_vs_sannhet",
+          "choice_axis": "selvbeskyttelse_vs_laring",
+          "consequence_axis": "ro_vs_endring",
+          "narrative_arc": "mastery",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumenter årsaker og tiltak tydelig, også ubehagelige funn.",
+              "effect": 1,
+              "tags": [
+                "integrity",
+                "learning"
+              ],
+              "feedback": "Du øker beslutningskvaliteten, men skaper mer oppfølging."
+            },
+            {
+              "id": "B",
+              "label": "Lever pen rapport med minimale avvikskommentarer.",
+              "effect": 0,
+              "tags": [
+                "image"
+              ],
+              "feedback": "Du kjøper kortsiktig ro, men skyver risiko frem i tid."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

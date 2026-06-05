@@ -4,9 +4,793 @@
   "role_scope": "avdelingsleder",
   "mail_type": "people",
   "families": [
-    {"id":"avdelingsleder_rapportering_og_styring","mails":[
-      {"id":"avdelingsleder_people_001","mail_type":"people","mail_family":"avdelingsleder_rapportering_og_styring","role_scope":"avdelingsleder","subject":"Tallene er riktige, men virkeligheten er ufullstendig","summary":"Du må velge om rapporten skal vise friksjonen bak KPI-en.","situation":["En controller ber om kort avviksforklaring.","Du vet at ett tall skjuler et mønster av overtid."],"task_domain":"reporting_ethics","competency":"rapportering","pressure":"styringssignal_vs_sannhet","choice_axis":"kompakt_vs_forklarende","consequence_axis":"ro_vs_beslutningskvalitet","narrative_arc":"rapportering","choices":[{"id":"A","label":"Legg ved kort risikokommentar om overtid og kapasitet.","effect":1,"tags":["truth"],"feedback":"Du gjør beslutningsgrunnlaget mer robust."},{"id":"B","label":"Hold kommentaren minimal for å unngå støy.","effect":0,"tags":["politics"],"feedback":"Rapporten blir pen, men mindre nyttig."}]}
-    ]},
-    {"id":"avdelingsleder_administrasjon_og_hverdagsmakt","mails":[{"id":"avdelingsleder_people_002","mail_type":"people","mail_family":"avdelingsleder_administrasjon_og_hverdagsmakt","role_scope":"avdelingsleder","subject":"Små tjenester blir store mønstre","summary":"Du ser at ekstraoppgaver alltid havner hos samme to ansatte.","situation":["Ingen klager formelt.","Likevel bygger uformell skjevfordeling misnøye."],"task_domain":"workload_distribution","competency":"styring_og_tillit","pressure":"uformell_makt","choice_axis":"harmoni_vs_rettferdighet","consequence_axis":"fred_vs_langsiktig_tillit","narrative_arc":"hverdagsmakt","choices":[{"id":"A","label":"Synliggjør fordelingen og roter ansvar bevisst.","effect":1,"tags":["fairness"],"feedback":"Du lager friksjon nå, men forebygger større konflikt."},{"id":"B","label":"La det stå siden leveransen fortsatt holder.","effect":0,"tags":["avoidance"],"feedback":"Du kjøper ro i dag, men gjeld i tillit."}]}]}
+    {
+      "id": "first_week_praksisfortellinger_avdelingsleder_private",
+      "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke privat, der lederrollen lekker inn i familie, vennskap, hjemmekveld og helg.",
+      "learning_focus": [
+        "rolleforstaelse",
+        "ansvar_vs_kontroll",
+        "arbeidssprak_hjemme",
+        "relasjonell_tilstedevaerelse",
+        "restitusjon"
+      ],
+      "week_outcomes": [
+        {
+          "id": "private_leadership_leak",
+          "condition": "Spilleren gjør privatlivet til prioritering, oppfølging, risikovurdering og plan, og klarer ikke skille lederrollen fra relasjoner.",
+          "effects": {
+            "relationship_private": -3,
+            "stress": 2,
+            "control": 3,
+            "energy_weekend": -2,
+            "stagnation_private": 3
+          },
+          "story": "Du tar lederrollen med hjem som om den fortsatt har møteplikt. Det gjør deg ryddig, men mindre nær."
+        }
+      ],
+      "mails": [
+        {
+          "id": "personal_avdelingsleder_week1_role_sounds_bigger",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_private",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 129,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "people",
+          "messageChannel": "people",
+          "mail_class": "people_message",
+          "subject": "Rollen som høres større ut enn den føles",
+          "summary": "Avdelingsleder høres ut som mer makt, men dagen kjennes som mer ansvar for ting du ikke fullt ut kontrollerer.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Etter første dag\nBody:\nAvdelingsleder. Ordet høres bredere ut enn dagen føltes. Som om du nå har fått en nøkkel til et større rom, men rommet er fullt av ting som allerede er i bevegelse: budsjett, fravær, folk, mål, forventninger, gamle prioriteringer, nye krav. Du har mer myndighet. Ikke nødvendigvis mer kontroll.",
+            "Fra: Jonas\nEmne: Så nå er du ordentlig sjef?\nBody:\nSå nå er du ordentlig sjef? Har du kontor? Budsjett? Folk som sier “det må avklares med avdelingsleder”? Viktigst: kan du bestemme at vi får fri på mandager?"
+          ],
+          "task_domain": "rolleforstaelse_privat",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "maktbilde_vs_ansvar",
+          "consequence_axis": "nærhet_vs_forklaring",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare at rollen er mer ansvar enn kontroll",
+              "reply": "Jeg svarer at det føles mindre som makt og mer som å ha ansvar for flere ting som ikke helt lar seg styre.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Jonas sier det hørtes veldig leder ut, på “du kommer til å si kapasitet i søvne”-måten.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "energy": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_responsibility_not_control",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_responsibility_not_control"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spille med på sjefsbildet",
+              "reply": "Jeg svarer at jeg nå bestemmer over kaffekoppen min og omtrent tre e-poster.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Jonas kaller kaffekopp og tre e-poster begynnelsen på alle imperier.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "stress": 0,
+                  "self_awareness": 0
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_boss_joke",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_boss_joke"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ikke orke å forklare",
+              "reply": "Jeg svarer kort at det bare er mye akkurat nå.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Du slipper å forklare rollen, men rollen slipper ikke taket i deg.",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_jonas": -1,
+                  "stagnation_private": 1,
+                  "guilt": 1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_too_tired_to_explain",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_too_tired_to_explain"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_avdelingsleder_week1_family_thinks_power",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_private",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 123,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "people",
+          "messageChannel": "people",
+          "mail_class": "people_message",
+          "subject": "Familien som tror du bestemmer mer nå",
+          "summary": "Mamma tolker ny lederrolle som status og frihet, mens du kjenner avstanden mellom ansvar og kontroll.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Mamma\nEmne: Ny jobbrolle\nBody:\nSå fint med den nye lederrollen. Det må være godt å kunne bestemme litt mer nå, og slippe å bare gjøre det andre sier. Du må huske å ikke jobbe for mye.",
+            "Fra: Privat notat\nEmne: Bestemme mer\nBody:\n“Bestemme mer.” Det er ikke feil. Men du kan ikke bestemme at tiden blir større, at budsjettet bøyer seg, at folk ikke blir slitne, eller at alle mål slutter å konkurrere med hverandre."
+          ],
+          "task_domain": "rolle_og_familie",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "status_utenfra_vs_ansvar_innenfra",
+          "consequence_axis": "forklaring_vs_minste_sannhet",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare rolig at ansvar ikke er det samme som frihet",
+              "reply": "Jeg skriver at jeg bestemmer mer, men at det også betyr ansvar for flere ting som ikke alltid lar seg løse.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Mamma forstår og ber deg ikke ta ansvar for alt som om det er ditt alene.",
+              "effects": {
+                "stats": {
+                  "relationship_family": 1,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "energy": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_responsibility_not_freedom",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_responsibility_not_freedom"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bare si at det går fint",
+              "reply": "Jeg svarer at det går fint og at rollen er spennende.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Det var ikke løgn, bare den minste sanne versjonen.",
+              "effects": {
+                "stats": {
+                  "relationship_family": 0,
+                  "stress": -1,
+                  "stagnation_private": 1,
+                  "self_awareness": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_smallest_true_version",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_smallest_true_version"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spøke det bort",
+              "reply": "Jeg svarer at jeg nå bestemmer over møter, kaffe og litt dårlig samvittighet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Mamma ber deg ikke la den dårlige samvittigheten få kontorplass.",
+              "effects": {
+                "stats": {
+                  "relationship_family": 1,
+                  "mood": 1,
+                  "stress": 0,
+                  "self_awareness": 0
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_bad_conscience_joke",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_bad_conscience_joke"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_avdelingsleder_week1_prioritizes_home",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_private",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 117,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "people",
+          "messageChannel": "people",
+          "mail_class": "people_message",
+          "subject": "Du begynner å prioritere hjemme også",
+          "summary": "Prioriteringsspråket fra jobb flytter inn i privatlivet når Sara spør hva dere skal gjøre i kveld.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Sara\nEmne: I kveld\nBody:\nSkal vi lage middag, gå en tur, rydde litt eller bare lande? Og ikke svar som om dette er en ressursprioritering.",
+            "Fra: Privat notat\nEmne: Hjemmeprioritering\nBody:\nDu rakk nesten å tenke: Middag: nødvendig. Tur: helse. Rydding: etterslep. Hvile: forebyggende tiltak. Så ble du litt redd for deg selv."
+          ],
+          "task_domain": "arbeidssprak_hjemme",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "optimalisering_vs_tilstedevaerelse",
+          "consequence_axis": "kontroll_vs_restitusjon",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Velge enkelt uten å optimalisere",
+              "reply": "Jeg sier at vi bare lager middag og lar resten være.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Sara sier at det var et menneskesvar, og at middag holder.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 2,
+                  "stress": -1,
+                  "control": -1,
+                  "energy": 1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_simple_human_choice",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_simple_human_choice"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lage plan for alt",
+              "reply": "Jeg foreslår middag, kort tur og ti minutter rydding etterpå.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Sara sier det var effektivt, og akkurat en ressursprioritering.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "relationship_sara": -1,
+                  "stress": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_resource_prioritization_home",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_resource_prioritization_home"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Si at du ikke orker noe",
+              "reply": "Jeg sier at jeg ikke orker middag, tur eller rydding, bare stillhet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Sara sier at du må si det som et behov, ikke som om hele kvelden ble kansellert.",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "relationship_sara": -1,
+                  "guilt": 1,
+                  "stress": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_need_not_cancellation",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_need_not_cancellation"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_avdelingsleder_week1_reads_private_as_hr",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_private",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 111,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "people",
+          "messageChannel": "people",
+          "mail_class": "people_message",
+          "subject": "Meldingen du leser som en personalsak",
+          "summary": "Etter en dag med personalansvar begynner du å lese Jonas som signal, mønster og oppfølgingsbehov.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Jonas\nEmne: Litt borte\nBody:\nDu har vært litt borte denne uka. Ikke sånn dramatisk. Bare som om du leser alt jeg skriver og vurderer om det er et signal. Jeg trenger ikke analyse. Bare sier fra.",
+            "Fra: Privat notat\nEmne: Signal\nBody:\nDu rakk å tenke: Er dette en relasjonell risiko? Bør det følges opp? Har dette vært et mønster? Så skjønte du at Jonas bare skrev at han savner deg litt."
+          ],
+          "task_domain": "relasjonell_lekkasje",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "analyse_vs_vennskap",
+          "consequence_axis": "lederrolle_vs_nærvær",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare som venn, ikke leder",
+              "reply": "Jeg skriver at han har rett, og at jeg har vært fjern fordi hodet har vært fullt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Jonas sier at der var du: ikke tiltak, ikke oppfølging, bare svar.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 2,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_friend_not_leader",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_friend_not_leader"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Svare ryddig, men distansert",
+              "reply": "Jeg skriver at jeg ser poenget hans og skal prøve å være mer til stede fremover.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Jonas sier det var et veldig pent svar, som om han sendte inn et avvik.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": -1,
+                  "control": 1,
+                  "stagnation_private": 1,
+                  "self_awareness": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_polite_deviation_reply",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_polite_deviation_reply"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Utsette svaret",
+              "reply": "Jeg lar meldingen ligge fordi den krever mer nærvær enn jeg har akkurat nå.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Du utsetter svaret. Det er også et svar, bare ikke et godt et.",
+              "effects": {
+                "stats": {
+                  "energy": 1,
+                  "guilt": 2,
+                  "relationship_jonas": -2,
+                  "stagnation_private": 1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_delayed_reply",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_delayed_reply"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "personal_avdelingsleder_week1_weekend_without_leadership_meeting",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_avdelingsleder_private",
+          "role_scope": "avdelingsleder",
+          "phase": "intro",
+          "priority": 105,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "people",
+          "messageChannel": "people",
+          "mail_class": "people_message",
+          "subject": "Helgen uten ledermøte",
+          "summary": "Etter en uke med avdelingsansvar må du øve på å ikke gjøre helgen til en ledergruppe i miniatyr.",
+          "purpose": "Praksisfortellinger – Avdelingsleder pakke 1: Første uke.",
+          "stakes": "Valget flytter tydelighet, tillit, kapasitet, budsjettpress, sykefravær, mandat eller privat restitusjon videre i uken.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nHelgen kommer uten ledermøte. Likevel leter hodet etter agenda: Hva må prioriteres? Hvilke ressurser har vi? Hvor er risikoen? Hvem trenger oppfølging? Hva må vente? Du har fått ansvar for en avdeling. Det betyr ikke at alt i livet skal bli en avdeling.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen vil jeg helst ikke ha en plan med mål, tiltak og evaluering. Jeg vil ha mat, søvn, kanskje en tur, og at du ikke ser på meg som et punkt under “relasjonell oppfølging”.",
+            "Fra: Jonas\nEmne: Lederfri sone\nBody:\nForslag: Vi innfører lederfri sone lørdag. Ingen “mandat”. Ingen “ressurser”. Ingen “kapasitet”. Bare vanlig menneske med snacks."
+          ],
+          "task_domain": "lederfri_restitusjon",
+          "competency": "avdelingsledelse",
+          "pressure": "maal_vs_mennesker_budsjett_vs_kapasitet",
+          "choice_axis": "planlegging_vs_fri_sone",
+          "consequence_axis": "kontroll_vs_naervaer",
+          "narrative_arc": "avdelingsleder_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme én hel lederfri dag",
+              "reply": "Jeg bestemmer at én dag skal være uten jobbmail, rapporter, prioriteringslister eller mentale ledermøter.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Dagen blir ikke styrt. Først føles det nesten uforsvarlig, så nødvendig.",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 3,
+                  "stress": -2,
+                  "autonomy_private": 2,
+                  "relationship_private": 1,
+                  "control": -1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_leader_free_day",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_leader_free_day"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Være sosial uten å organisere alt",
+              "reply": "Jeg møter Sara eller Jonas og lar planen være enkel.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Sara sier det var fint fordi du ikke prøvde å lede kvelden.",
+              "effects": {
+                "stats": {
+                  "relationship_private": 2,
+                  "mood": 1,
+                  "stress": -1,
+                  "energy_weekend": 0
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_social_without_organizing",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_social_without_organizing"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Planlegge helgen som restitusjonstiltak",
+              "reply": "Jeg lager en plan for hvile, praktiske ting og sosial tid slik at helgen brukes godt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Jonas sier du gjorde hvile til et avdelingsprosjekt, nesten vakkert og mest bekymringsfullt.",
+              "effects": {
+                "stats": {
+                  "control": 3,
+                  "stress": 1,
+                  "energy_weekend": -1,
+                  "stagnation_private": 1
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_rest_as_department_project",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_rest_as_department_project"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "La alt stå åpent",
+              "reply": "Jeg svarer uklart på alt og bestemmer meg ikke for noe.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "avdelingsleder",
+                "privat"
+              ],
+              "feedback": "Du slipper å lage plan, men ikke følelsen av at noen venter på en beslutning.",
+              "effects": {
+                "stats": {
+                  "guilt": 2,
+                  "relationship_private": -1,
+                  "stagnation_private": 2,
+                  "control": -1,
+                  "energy_weekend": 0
+                }
+              },
+              "triggers_on_choice": "personal_avdelingsleder_week1_no_decision_weekend",
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_avdelingsleder_private"
+                ],
+                "set_flags": [
+                  "personal_avdelingsleder_week1_no_decision_weekend"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avdelingsleder_rapportering_og_styring",
+      "mails": [
+        {
+          "id": "avdelingsleder_people_001",
+          "mail_type": "people",
+          "mail_family": "avdelingsleder_rapportering_og_styring",
+          "role_scope": "avdelingsleder",
+          "subject": "Tallene er riktige, men virkeligheten er ufullstendig",
+          "summary": "Du må velge om rapporten skal vise friksjonen bak KPI-en.",
+          "situation": [
+            "En controller ber om kort avviksforklaring.",
+            "Du vet at ett tall skjuler et mønster av overtid."
+          ],
+          "task_domain": "reporting_ethics",
+          "competency": "rapportering",
+          "pressure": "styringssignal_vs_sannhet",
+          "choice_axis": "kompakt_vs_forklarende",
+          "consequence_axis": "ro_vs_beslutningskvalitet",
+          "narrative_arc": "rapportering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg ved kort risikokommentar om overtid og kapasitet.",
+              "effect": 1,
+              "tags": [
+                "truth"
+              ],
+              "feedback": "Du gjør beslutningsgrunnlaget mer robust."
+            },
+            {
+              "id": "B",
+              "label": "Hold kommentaren minimal for å unngå støy.",
+              "effect": 0,
+              "tags": [
+                "politics"
+              ],
+              "feedback": "Rapporten blir pen, men mindre nyttig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avdelingsleder_administrasjon_og_hverdagsmakt",
+      "mails": [
+        {
+          "id": "avdelingsleder_people_002",
+          "mail_type": "people",
+          "mail_family": "avdelingsleder_administrasjon_og_hverdagsmakt",
+          "role_scope": "avdelingsleder",
+          "subject": "Små tjenester blir store mønstre",
+          "summary": "Du ser at ekstraoppgaver alltid havner hos samme to ansatte.",
+          "situation": [
+            "Ingen klager formelt.",
+            "Likevel bygger uformell skjevfordeling misnøye."
+          ],
+          "task_domain": "workload_distribution",
+          "competency": "styring_og_tillit",
+          "pressure": "uformell_makt",
+          "choice_axis": "harmoni_vs_rettferdighet",
+          "consequence_axis": "fred_vs_langsiktig_tillit",
+          "narrative_arc": "hverdagsmakt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Synliggjør fordelingen og roter ansvar bevisst.",
+              "effect": 1,
+              "tags": [
+                "fairness"
+              ],
+              "feedback": "Du lager friksjon nå, men forebygger større konflikt."
+            },
+            {
+              "id": "B",
+              "label": "La det stå siden leveransen fortsatt holder.",
+              "effect": 0,
+              "tags": [
+                "avoidance"
+              ],
+              "feedback": "Du kjøper ro i dag, men gjeld i tillit."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
