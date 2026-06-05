@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// tools/placeHealthReport.mjs
+// tools/placeHealthReport.mts
 // Read-only health report for data/places/manifest.json and all declared place files.
 // Reports structural errors, content/asset warnings and canonical emne warnings without modifying source data.
 
@@ -12,11 +12,62 @@ import {
   REQUIRED_PLACE_FIELDS
 } from "./placeSchemaPolicy.mjs";
 
+type JsonObject = { [key: string]: unknown };
+
+type PlaceRow = JsonObject & {
+  id?: unknown;
+  name?: unknown;
+  category?: unknown;
+  lat?: unknown;
+  lon?: unknown;
+  r?: unknown;
+  year?: unknown;
+  desc?: unknown;
+  popupDesc?: unknown;
+  image?: unknown;
+  frontImage?: unknown;
+  cardImage?: unknown;
+  popupImage?: unknown;
+  emne_ids?: unknown;
+  hidden?: unknown;
+  stub?: unknown;
+};
+
+type PlaceManifest = JsonObject & {
+  files?: unknown;
+};
+
+type CanonicalEmneEntry = JsonObject & {
+  emne_id?: unknown;
+};
+
+type CanonicalEmneRegistryEntry = {
+  sourcePath: string;
+  family: string;
+};
+
+type PlaceHealthStats = {
+  files: number;
+  places: number;
+  hidden: number;
+  stubs: number;
+  emneIds: number;
+  canonicalEmneIds: number;
+  unknownEmneIds: number;
+  wrongPrefixEmneIds: number;
+  allowlistedCrossDisciplinaryEmneIds: number;
+  filesWithCanonicalEmner: number;
+};
+
+type ReadJsonOptions = {
+  reportError?: boolean;
+};
+
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, "data", "places", "manifest.json");
 const FAG_ROOT = path.join(ROOT, "data", "fag");
 
-const CATEGORY_EMNE_PREFIXES = {
+const CATEGORY_EMNE_PREFIXES: Record<string, string[]> = {
   historie: ["em_his_"],
   vitenskap: ["em_vit_"],
   kunst: ["em_kunst_"],
@@ -50,7 +101,7 @@ const CATEGORY_EMNE_PREFIXES = {
 // Batch 34 cleaned up miscategorized pop-culture places and weak pop-culture
 // links. politikk -> populaerkultur, natur -> kunst and subkultur ->
 // naeringsliv remain outside the allowlist.
-const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES = {
+const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES: Record<string, string[]> = {
   natur: ["by", "historie"],
   litteratur: ["by"],
   naeringsliv: ["by", "historie"],
@@ -62,7 +113,7 @@ const ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES = {
   subkultur: ["by", "musikk", "historie", "kunst"]
 };
 
-const CANONICAL_FAMILY_BY_FAG_DIR = {
+const CANONICAL_FAMILY_BY_FAG_DIR: Record<string, string> = {
   TV_og_Film: "film_tv",
   by: "by",
   historie: "historie",
@@ -80,9 +131,9 @@ const CANONICAL_FAMILY_BY_FAG_DIR = {
   vitenskap: "vitenskap"
 };
 
-const errors = [];
-const warnings = [];
-const stats = {
+const errors: string[] = [];
+const warnings: string[] = [];
+const stats: PlaceHealthStats = {
   files: 0,
   places: 0,
   hidden: 0,
@@ -95,22 +146,27 @@ const stats = {
   filesWithCanonicalEmner: 0
 };
 
-function rel(filePath) {
+function isJsonObject(value: unknown): value is JsonObject {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+
+function rel(filePath: string): string {
   return path.relative(ROOT, filePath).replaceAll(path.sep, "/");
 }
 
-function readJson(filePath, { reportError = true } = {}) {
+function readJson(filePath: string, { reportError = true }: ReadJsonOptions = {}): unknown {
   try {
-    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    return JSON.parse(fs.readFileSync(filePath, "utf8")) as unknown;
   } catch (error) {
     if (reportError) {
-      errors.push(`${rel(filePath)}: could not read/parse JSON (${error.message})`);
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push(`${rel(filePath)}: could not read/parse JSON (${message})`);
     }
     return null;
   }
 }
 
-function walkFiles(dirPath, predicate, found = []) {
+function walkFiles(dirPath: string, predicate: (filePath: string) => boolean, found: string[] = []): string[] {
   if (!fs.existsSync(dirPath)) return found;
   for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
     const fullPath = path.join(dirPath, entry.name);
@@ -123,19 +179,19 @@ function walkFiles(dirPath, predicate, found = []) {
   return found;
 }
 
-function canonicalFamilyFromPath(filePath) {
+function canonicalFamilyFromPath(filePath: string): string {
   const relativeParts = rel(filePath).split("/");
   const fagIndex = relativeParts.indexOf("fag");
   const fagDir = fagIndex >= 0 ? relativeParts[fagIndex + 1] : "";
   return CANONICAL_FAMILY_BY_FAG_DIR[fagDir] || "";
 }
 
-function isAllowedCrossDisciplinaryEmneFamily(category, canonicalFamily) {
+function isAllowedCrossDisciplinaryEmneFamily(category: string, canonicalFamily: string): boolean {
   return (ALLOWED_CROSS_DISCIPLINARY_EMNE_FAMILIES[category] || []).includes(canonicalFamily);
 }
 
-function loadCanonicalEmneRegistry() {
-  const registry = new Map();
+function loadCanonicalEmneRegistry(): Map<string, CanonicalEmneRegistryEntry> {
+  const registry = new Map<string, CanonicalEmneRegistryEntry>();
   const canonicalFiles = walkFiles(
     FAG_ROOT,
     (filePath) => /(^|\/)emner_.*_canonical_v4_5\.json$/.test(filePath.replaceAll(path.sep, "/"))
@@ -152,7 +208,8 @@ function loadCanonicalEmneRegistry() {
     let fileContributed = false;
 
     for (const item of data) {
-      const emneId = String(item?.emne_id || "").trim();
+      const canonicalItem = item as CanonicalEmneEntry;
+      const emneId = String(canonicalItem?.emne_id || "").trim();
       if (!emneId) continue;
       fileContributed = true;
       registry.set(emneId, { sourcePath: rel(filePath), family: canonicalFamilyFromPath(filePath) });
@@ -163,13 +220,14 @@ function loadCanonicalEmneRegistry() {
 
   for (const filePath of domainMatrixFiles) {
     const data = readJson(filePath, { reportError: false });
-    if (!data || typeof data !== "object" || Array.isArray(data)) continue;
+    if (!isJsonObject(data)) continue;
     if (!Array.isArray(data.domains)) continue;
 
     let fileContributed = false;
 
     for (const domain of data.domains) {
-      if (!Array.isArray(domain?.emne_ids)) continue;
+      if (!isJsonObject(domain)) continue;
+      if (!Array.isArray(domain.emne_ids)) continue;
       for (const raw of domain.emne_ids) {
         const emneId = String(raw || "").trim();
         if (!emneId) continue;
@@ -184,7 +242,7 @@ function loadCanonicalEmneRegistry() {
   return registry;
 }
 
-function resolveManifestEntry(entry) {
+function resolveManifestEntry(entry: unknown): string {
   const clean = String(entry || "").trim();
   if (!clean) return "";
   if (clean.startsWith("data/")) return path.join(ROOT, clean);
@@ -192,34 +250,34 @@ function resolveManifestEntry(entry) {
   return path.join(ROOT, "data", "places", clean);
 }
 
-function asPlacesArray(data, filePath) {
+function asPlacesArray(data: unknown, filePath: string): unknown[] {
   if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.places)) return data.places;
+  if (isJsonObject(data) && Array.isArray(data.places)) return data.places;
   errors.push(`${rel(filePath)}: expected JSON array or object with places[]`);
   return [];
 }
 
-function isFiniteNumber(value) {
+function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
 
-function isNonEmptyString(value) {
+function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-function pathExistsFromRoot(assetPath) {
+function pathExistsFromRoot(assetPath: unknown): boolean {
   if (!isNonEmptyString(assetPath)) return false;
   return fs.existsSync(path.join(ROOT, assetPath));
 }
 
-function validateTextField(place, field, context, { warnOnly = false } = {}) {
+function validateTextField(place: PlaceRow, field: keyof PlaceRow, context: string, { warnOnly = false } = {}): void {
   if (!isNonEmptyString(place[field])) {
     const message = `${context}: missing ${field}`;
     (warnOnly ? warnings : errors).push(message);
   }
 }
 
-function validateEmneIds(place, context, canonicalEmneRegistry) {
+function validateEmneIds(place: PlaceRow, context: string, canonicalEmneRegistry: Map<string, CanonicalEmneRegistryEntry>): void {
   if (place.emne_ids == null) return;
 
   if (!Array.isArray(place.emne_ids)) {
@@ -265,15 +323,21 @@ function validateEmneIds(place, context, canonicalEmneRegistry) {
   });
 }
 
-function validatePlace(place, context, seenIds, canonicalEmneRegistry) {
-  if (!place || typeof place !== "object" || Array.isArray(place)) {
+function validatePlace(
+  place: unknown,
+  context: string,
+  seenIds: Map<string, string>,
+  canonicalEmneRegistry: Map<string, CanonicalEmneRegistryEntry>
+): void {
+  if (!isJsonObject(place)) {
     errors.push(`${context}: place entry must be an object`);
     return;
   }
 
-  const id = String(place.id || "").trim();
-  const hidden = place.hidden === true;
-  const stub = place.stub === true;
+  const placeRow: PlaceRow = place;
+  const id = String(placeRow.id || "").trim();
+  const hidden = placeRow.hidden === true;
+  const stub = placeRow.stub === true;
 
   stats.places += 1;
   if (hidden) stats.hidden += 1;
@@ -289,64 +353,64 @@ function validatePlace(place, context, seenIds, canonicalEmneRegistry) {
 
   for (const field of REQUIRED_PLACE_FIELDS) {
     if (["id", "lat", "lon"].includes(field)) continue;
-    validateTextField(place, field, context);
+    validateTextField(placeRow, field, context);
   }
 
-  const categoryStatus = getPlaceCategoryPolicyStatus(place.category);
+  const categoryStatus = getPlaceCategoryPolicyStatus(placeRow.category);
   if (categoryStatus === "unknown") {
-    errors.push(`${context}: invalid category "${place.category}"`);
+    errors.push(`${context}: invalid category "${placeRow.category}"`);
   } else if (categoryStatus === "legacy_or_secondary") {
-    warnings.push(`${context}: legacy/secondary category "${place.category}"`);
+    warnings.push(`${context}: legacy/secondary category "${placeRow.category}"`);
   }
 
-  if (!isFiniteNumber(place.lat) || place.lat < -90 || place.lat > 90) {
-    errors.push(`${context}: invalid lat "${place.lat}"`);
+  if (!isFiniteNumber(placeRow.lat) || placeRow.lat < -90 || placeRow.lat > 90) {
+    errors.push(`${context}: invalid lat "${placeRow.lat}"`);
   }
 
-  if (!isFiniteNumber(place.lon) || place.lon < -180 || place.lon > 180) {
-    errors.push(`${context}: invalid lon "${place.lon}"`);
+  if (!isFiniteNumber(placeRow.lon) || placeRow.lon < -180 || placeRow.lon > 180) {
+    errors.push(`${context}: invalid lon "${placeRow.lon}"`);
   }
 
-  if (place.r != null && (!isFiniteNumber(place.r) || place.r <= 0)) {
-    errors.push(`${context}: invalid r "${place.r}"`);
+  if (placeRow.r != null && (!isFiniteNumber(placeRow.r) || placeRow.r <= 0)) {
+    errors.push(`${context}: invalid r "${placeRow.r}"`);
   }
 
-  if (place.year != null && !Number.isFinite(Number(place.year))) {
+  if (placeRow.year != null && !Number.isFinite(Number(placeRow.year))) {
     warnings.push(`${context}: year should be numeric when present`);
   }
 
-  validateEmneIds(place, context, canonicalEmneRegistry);
+  validateEmneIds(placeRow, context, canonicalEmneRegistry);
 
   if (stub || hidden) return;
 
-  validateTextField(place, "desc", context, { warnOnly: true });
-  validateTextField(place, "popupDesc", context, { warnOnly: true });
+  validateTextField(placeRow, "desc", context, { warnOnly: true });
+  validateTextField(placeRow, "popupDesc", context, { warnOnly: true });
 
-  if (!isNonEmptyString(place.image)) {
+  if (!isNonEmptyString(placeRow.image)) {
     warnings.push(`${context}: missing image`);
-  } else if (!pathExistsFromRoot(place.image)) {
-    warnings.push(`${context}: image file not found (${place.image})`);
+  } else if (!pathExistsFromRoot(placeRow.image)) {
+    warnings.push(`${context}: image file not found (${placeRow.image})`);
   }
 
-  if (!isNonEmptyString(place.cardImage)) {
+  if (!isNonEmptyString(placeRow.cardImage)) {
     warnings.push(`${context}: missing cardImage`);
-  } else if (!pathExistsFromRoot(place.cardImage)) {
-    warnings.push(`${context}: cardImage file not found (${place.cardImage})`);
+  } else if (!pathExistsFromRoot(placeRow.cardImage)) {
+    warnings.push(`${context}: cardImage file not found (${placeRow.cardImage})`);
   }
 
-  if (place.frontImage != null && !pathExistsFromRoot(place.frontImage)) {
-    warnings.push(`${context}: frontImage file not found (${place.frontImage})`);
+  if (placeRow.frontImage != null && !pathExistsFromRoot(placeRow.frontImage)) {
+    warnings.push(`${context}: frontImage file not found (${placeRow.frontImage})`);
   }
 
-  if (place.popupImage != null && !pathExistsFromRoot(place.popupImage)) {
-    warnings.push(`${context}: popupImage file not found (${place.popupImage})`);
+  if (placeRow.popupImage != null && !pathExistsFromRoot(placeRow.popupImage)) {
+    warnings.push(`${context}: popupImage file not found (${placeRow.popupImage})`);
   }
 }
 
-function main() {
+function main(): void {
   const canonicalEmneRegistry = loadCanonicalEmneRegistry();
-  const manifest = readJson(MANIFEST_PATH);
-  const files = Array.isArray(manifest?.files) ? manifest.files : [];
+  const manifest = readJson(MANIFEST_PATH) as PlaceManifest | null;
+  const files = manifest && Array.isArray(manifest.files) ? manifest.files : [];
 
   if (!canonicalEmneRegistry.size) {
     warnings.push(`${rel(FAG_ROOT)}: no canonical emne registry files found`);
@@ -356,7 +420,7 @@ function main() {
     errors.push(`${rel(MANIFEST_PATH)}: missing files[]`);
   }
 
-  const seenIds = new Map();
+  const seenIds = new Map<string, string>();
 
   for (const entry of files) {
     const filePath = resolveManifestEntry(entry);
@@ -375,8 +439,8 @@ function main() {
     const places = asPlacesArray(data, filePath);
 
     places.forEach((place, index) => {
-      const id = place?.id ? `#${place.id}` : `[${index}]`;
-      validatePlace(place, `${rel(filePath)} ${id}`, seenIds, canonicalEmneRegistry);
+      const placeId = isJsonObject(place) && place.id ? `#${place.id}` : `[${index}]`;
+      validatePlace(place, `${rel(filePath)} ${placeId}`, seenIds, canonicalEmneRegistry);
     });
   }
 
