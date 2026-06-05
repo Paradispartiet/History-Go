@@ -186,6 +186,10 @@
     });
   }
 
+  function isActive() {
+    return document.body?.classList.contains("hg-view-profile") || location.hash === "#/profile";
+  }
+
   function ensureView() {
     let view = document.getElementById(VIEW_ID);
     if (view) return view;
@@ -247,10 +251,21 @@
       view.setAttribute("aria-hidden", "true");
     },
 
+    refresh() {
+      if (!isActive()) return;
+      const view = ensureView();
+      renderSummary(view);
+    },
+
     openFullProfile() {
       window.location.href = "profile.html";
     }
   };
 
   window.HGProfileView = ProfileView;
+
+  window.addEventListener("updateProfile", () => window.HGProfileView?.refresh?.());
+  window.addEventListener("hg:appReady", () => window.HGProfileView?.refresh?.());
+  window.addEventListener("hg:backgroundReady", () => window.HGProfileView?.refresh?.());
+  window.addEventListener("hg:people-ready", () => window.HGProfileView?.refresh?.());
 })();
