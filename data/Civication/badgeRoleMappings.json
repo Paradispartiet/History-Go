@@ -236,13 +236,13 @@
     },
     "sport": {
       "badge_source": "data/badges/sport.json",
-      "implementation_status": "planned_mapping_only",
-      "mapping_principle": "Sport-badges er progresjon/titler innen idrett, lek og konkurranse. Role scope skal være få spillbare jobbtyper: utøverutvikling, lagkaptein/ansvar i gruppe, trenerarbeid, sportslig ledelse og stjerne-/legendestatus. Runtime/resolver bør ikke aktiveres for disse før tilhørende mailPlans, mailFamilies og jobLearningProfiles finnes.",
+      "implementation_status": "partially_implemented",
+      "mapping_principle": "Sport-badges er progresjon/titler innen idrett, lek og konkurranse. Role scope er få spillbare jobbtyper: utøverutvikling, lagkaptein/ansvar i gruppe, trenerarbeid, sportslig ledelse og stjerne-/legendestatus. Bare role scopes med implementation_status implemented skal aktiveres i resolver/runtime; resten står som planlagt mapping inntil tilhørende mailPlans, mailFamilies og jobLearningProfiles finnes.",
       "roles": {
         "sport_utover": {
           "role_id": "sport_utover",
           "role_type": "utoverutvikling_og_konkurranse",
-          "implementation_status": "planned",
+          "implementation_status": "implemented",
           "description": "Spillbar jobbtype for utøverløpet: trening, konkurranse, disiplin, prestasjon, kropp, lagmiljø og utvikling fra mosjonist til landslagsnivå.",
           "badge_titles": [
             "Mosjonist",
