@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_kaptein",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "garderobe_normer_og_kultur",
+      "purpose": "Lære spilleren at lagkultur formes av små reaksjoner, normer og grenser før konfliktene blir synlige.",
+      "learning_focus": ["garderobekultur", "normsetting", "lagmoral"],
+      "mails": [
+        {
+          "id": "sport_kaptein_job_gard_001",
+          "mail_type": "job",
+          "mail_family": "garderobe_normer_og_kultur",
+          "role_scope": "sport_kaptein",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "assistenttrener_lina",
+          "place_id": "sport_garderobe",
+          "subject": "En spøk i garderoben begynner å bli en norm",
+          "summary": "Noen på laget ler bort småfeil og svakhet på en måte som virker uskyldig, men som gjør at yngre spillere blir stillere.",
+          "purpose": "Etablere at kapteinen må gripe inn i små kulturtegn før de blir fast standard.",
+          "stakes": "Lar du det ligge, bevarer du stemningen. Tar du det opp, skaper du friksjon, men beskytter lagets trygghet.",
+          "situation": [
+            "Ingen sier noe direkte stygt.",
+            "Det er bare små kommentarer etter feil, noen blikk, litt latter.",
+            "Du merker at én av de yngre spillerne slutter å spørre om hjelp."
+          ],
+          "task_domain": "garderobekultur",
+          "competency": "tidlig_normsetting",
+          "pressure": "god_stemning_vs_sunn_grense",
+          "choice_axis": "ta_normen_tidlig_vs_la_det_gå",
+          "consequence_axis": "trygg_kultur_vs_komfortabel_stillhet",
+          "narrative_arc": "kapteinen lærer at lagkultur bygges i de små reaksjonene alle later som ikke teller",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta det rolig i garderoben og sette en tydeligere standard",
+              "reply": "Jeg tar det rolig i garderoben og setter en tydeligere standard.",
+              "effect": 1,
+              "tags": ["culture", "leadership", "boundary"],
+              "feedback": "Du gjør stemningen litt mindre enkel, men laget litt tryggere."
+            },
+            {
+              "id": "B",
+              "label": "La det ligge siden ingen egentlig mener noe vondt",
+              "reply": "Jeg lar det ligge siden ingen egentlig mener noe vondt.",
+              "effect": -1,
+              "tags": ["silence", "risk"],
+              "feedback": "Du bevarer roen, men lar normen vokse uten navn."
+            }
+          ]
+        },
+        {
+          "id": "sport_kaptein_job_gard_002",
+          "mail_type": "job",
+          "mail_family": "garderobe_normer_og_kultur",
+          "role_scope": "sport_kaptein",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "lagkontakt_samir",
+          "place_id": "sport_garderobe",
+          "subject": "De beste spillerne møter sent, og resten ser det",
+          "summary": "Noen nøkkelspillere tøyer oppmøtetidene fordi de presterer godt, men laget begynner å lese det som at standarden ikke gjelder alle.",
+          "purpose": "Teste om kapteinen setter normer også overfor spillere med status.",
+          "stakes": "Tar du det opp, risikerer du konflikt med sterke spillere. Lar du det gå, blir standarden hul.",
+          "situation": [
+            "De som kommer sent, er også blant dem som avgjør kamper.",
+            "Treneren sier lite så lenge de leverer.",
+            "Men resten av laget ser nøyaktig hvem reglene bøyer seg rundt."
+          ],
+          "task_domain": "lagstandard",
+          "competency": "rettferdig_normsetting",
+          "pressure": "statusspillere_vs_felles_standard",
+          "choice_axis": "sette_grense_vs_beskytte_stjerner",
+          "consequence_axis": "tillit_vs_kortsiktig_prestasjon",
+          "narrative_arc": "kapteinen lærer at en standard først er virkelig når den også gjelder de beste",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta det med spillerne først og gjøre standarden felles igjen",
+              "reply": "Jeg tar det med spillerne først og gjør standarden felles igjen.",
+              "effect": 1,
+              "tags": ["standard", "fairness", "leadership"],
+              "feedback": "Du risikerer friksjon med status, men styrker lagets tillit."
+            },
+            {
+              "id": "B",
+              "label": "La treneren håndtere det hvis det faktisk blir et problem",
+              "reply": "Jeg lar treneren håndtere det hvis det faktisk blir et problem.",
+              "effect": 0,
+              "tags": ["avoidance", "coach"],
+              "feedback": "Du unngår konflikt nå, men laget ser at kapteinen venter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trener_bro_og_beskjed",
+      "purpose": "Lære spilleren å være bro mellom trener og spillergruppe uten å bli budbringer alene eller illojal mot noen av sidene.",
+      "learning_focus": ["trenerdialog", "beskjed oppover", "oversettelse"],
+      "mails": [
+        {
+          "id": "sport_kaptein_job_bro_001",
+          "mail_type": "job",
+          "mail_family": "trener_bro_og_beskjed",
+          "role_scope": "sport_kaptein",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "hovedtrener_erik",
+          "place_id": "sport_treningsfelt",
+          "subject": "Trenerkravet er riktig, men spillergruppen hører det feil",
+          "summary": "Treneren krever høyere intensitet, men gruppa oppfatter det som mistillit etter en tung uke.",
+          "purpose": "Etablere kapteinen som oversetter av krav, ikke bare transportør av beskjed.",
+          "stakes": "Gjentar du trenerens ord, er du lojal oppover. Oversetter du kravet, kan laget forstå det uten å gå i forsvar.",
+          "situation": [
+            "Treneren har et poeng: intensiteten er for lav.",
+            "Men spillerne hører bare kritikk etter en uke med slitasje og motgang.",
+            "Du må få kravet inn i gruppa uten å gjøre deg til trenerens høyttaler."
+          ],
+          "task_domain": "trenerbro",
+          "competency": "kravoversettelse",
+          "pressure": "trenerkrav_vs_spillerforsvar",
+          "choice_axis": "oversette_krav_vs_gjenta_beskjed",
+          "consequence_axis": "forstått_standard_vs_formell_lojalitet",
+          "narrative_arc": "kapteinen lærer at en beskjed må lande i laget før den virker",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oversett kravet til konkret treningsatferd laget kan eie",
+              "reply": "Jeg oversetter kravet til konkret treningsatferd laget kan eie.",
+              "effect": 1,
+              "tags": ["coach", "communication", "team"],
+              "feedback": "Du gjør kravet mindre personlig og mer gjennomførbart."
+            },
+            {
+              "id": "B",
+              "label": "Si tydelig at treneren forventer høyere intensitet",
+              "reply": "Jeg sier tydelig at treneren forventer høyere intensitet.",
+              "effect": 0,
+              "tags": ["coach", "direct"],
+              "feedback": "Beskjeden er klar, men den kan fortsatt lande som kjeft."
+            }
+          ]
+        },
+        {
+          "id": "sport_kaptein_job_bro_002",
+          "mail_type": "job",
+          "mail_family": "trener_bro_og_beskjed",
+          "role_scope": "sport_kaptein",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "hovedtrener_erik",
+          "place_id": "sport_treningsfelt",
+          "subject": "Spillergruppen er frustrert, men frustrasjonen er for uklar",
+          "summary": "Flere spillere mumler om belastning og uttak, men ingen vil si det direkte til trenerteamet.",
+          "purpose": "Teste om kapteinen gjør uklar misnøye til konkret informasjon uten å sladre eller splitte laget.",
+          "stakes": "Tier du, bevarer du tillit nedover. Tar du det opp riktig, kan trenerteamet faktisk justere noe.",
+          "situation": [
+            "Det er ikke opprør, bare lavmælt frustrasjon.",
+            "Noen mener belastningen er feil, andre mener uttakene er uklare.",
+            "Hvis du tar alt videre som klaging, mister du gruppa. Hvis du ikke tar noe videre, mister treneren virkeligheten."
+          ],
+          "task_domain": "beskjed_oppover",
+          "competency": "konkretisering_av_frustrasjon",
+          "pressure": "lojalitet_nedover_vs_ansvar_oppover",
+          "choice_axis": "lage_konkret_tilbakemelding_vs_tie",
+          "consequence_axis": "justerbar_kunnskap_vs_garderobetrykk",
+          "narrative_arc": "kapteinen lærer at beskjed oppover kan være laglojalitet når den er presis",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Samle konkrete punkter og ta dem med treneren uten navn og drama",
+              "reply": "Jeg samler konkrete punkter og tar dem med treneren uten navn og drama.",
+              "effect": 1,
+              "tags": ["feedback", "coach", "trust"],
+              "feedback": "Du gjør mumling om til informasjon det går an å handle på."
+            },
+            {
+              "id": "B",
+              "label": "La spillerne ta det selv hvis de mener det alvorlig",
+              "reply": "Jeg lar spillerne ta det selv hvis de mener det alvorlig.",
+              "effect": -1,
+              "tags": ["silence", "avoidance"],
+              "feedback": "Du krever voksenhet av gruppa, men lar trykket fortsette uformelt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kamp_press_og_ansvar",
+      "purpose": "Lære spilleren at kapteinsansvar i kamp handler om timing, ro og små beskjeder samtidig som egen prestasjon må holdes levende.",
+      "learning_focus": ["kampansvar", "press", "ledelse i spill"],
+      "mails": [
+        {
+          "id": "sport_kaptein_job_kamp_001",
+          "mail_type": "job",
+          "mail_family": "kamp_press_og_ansvar",
+          "role_scope": "sport_kaptein",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "hovedtrener_erik",
+          "place_id": "sport_konkurransearena",
+          "subject": "Laget mister roen, og du kjenner at egen prestasjon glipper",
+          "summary": "Under kamp begynner laget å stresse, og du prøver å rydde for alle samtidig som du selv gjør flere feil.",
+          "purpose": "Vise at kapteinen må lede uten å overta alle andres roller.",
+          "stakes": "Prøver du å fikse alt, kan du samle laget kort, men miste egen oppgave. Holder du deg til presise beskjeder, kan du lede uten å spre deg for tynt.",
+          "situation": [
+            "Motstanderen får momentum.",
+            "Du ser tre ting som må rettes, og alle ser mot deg etter svar.",
+            "Samtidig merker du at du begynner å spille på andres uro i stedet for din egen oppgave."
+          ],
+          "task_domain": "kampkaptein",
+          "competency": "rolig_prioritering",
+          "pressure": "lagets_uro_vs_egen_oppgave",
+          "choice_axis": "gi_få_presise_beskjeder_vs_prøve_å_fikse_alt",
+          "consequence_axis": "ro_og_prestasjon_vs_overansvar",
+          "narrative_arc": "kapteinen lærer at ledelse i kamp ofte er å si mindre og riktigere",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi to presise beskjeder og vende tilbake til egen oppgave",
+              "reply": "Jeg gir to presise beskjeder og vender tilbake til egen oppgave.",
+              "effect": 1,
+              "tags": ["match", "leadership", "focus"],
+              "feedback": "Du leder laget uten å forlate din egen kamp."
+            },
+            {
+              "id": "B",
+              "label": "Ta mer ansvar og prøve å dra laget inn i kampen selv",
+              "reply": "Jeg tar mer ansvar og prøver å dra laget inn i kampen selv.",
+              "effect": 0,
+              "tags": ["hero", "pressure"],
+              "feedback": "Du viser vilje, men gjør deg selv til løsningen på for mange problemer."
+            }
+          ]
+        },
+        {
+          "id": "sport_kaptein_job_kamp_002",
+          "mail_type": "job",
+          "mail_family": "kamp_press_og_ansvar",
+          "role_scope": "sport_kaptein",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "assistenttrener_lina",
+          "place_id": "sport_konkurransearena",
+          "subject": "Dommerfeilen tenner laget, men kampen glipper",
+          "summary": "En feil avgjørelse gjør laget rasende. Som kaptein kan du samle protesten, eller styre energien tilbake til spillet.",
+          "purpose": "Teste kapteinens evne til å regulere kollektiv reaksjon uten å akseptere urett passivt.",
+          "stakes": "Protest kan markere grense. Regulering kan redde kampen. Feil valg kan koste både fokus og respekt.",
+          "situation": [
+            "Avgjørelsen er dårlig, og alle vet det.",
+            "Laget ser mot deg: skal dere stå opp for dere selv, eller komme dere videre?",
+            "Du kjenner også sinnet, men du ser at kampen fortsatt lever."
+          ],
+          "task_domain": "kampregulering",
+          "competency": "kollektiv_ro",
+          "pressure": "rettferdig_sinne_vs_kampfokus",
+          "choice_axis": "kort_markering_og_fokus_vs_lang_protest",
+          "consequence_axis": "respekt_og_ro_vs_tapt_kontroll",
+          "narrative_arc": "kapteinen lærer å bære lagets sinne uten å la det styre kampen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Markere kort til dommer og samle laget tilbake i oppgaven",
+              "reply": "Jeg markerer kort til dommer og samler laget tilbake i oppgaven.",
+              "effect": 1,
+              "tags": ["match", "composure", "captain"],
+              "feedback": "Du viser at laget har grense, men lar ikke uretten eie resten av kampen."
+            },
+            {
+              "id": "B",
+              "label": "Stå hardt i protesten for å vise at laget ikke godtar det",
+              "reply": "Jeg står hardt i protesten for å vise at laget ikke godtar det.",
+              "effect": -1,
+              "tags": ["protest", "risk"],
+              "feedback": "Du markerer tydelig, men kampen glir lenger bort fra dere."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "konflikt_stotte_og_grense",
+      "purpose": "Lære spilleren å balansere støtte og krav når enkeltspillere, lagstandard og prestasjon trekker i ulike retninger.",
+      "learning_focus": ["konflikt", "støtte", "grense"],
+      "mails": [
+        {
+          "id": "sport_kaptein_job_konflikt_001",
+          "mail_type": "job",
+          "mail_family": "konflikt_stotte_og_grense",
+          "role_scope": "sport_kaptein",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "lagkontakt_samir",
+          "place_id": "sport_garderobe",
+          "subject": "En spiller trenger støtte, men laget begynner å betale prisen",
+          "summary": "En viktig spiller sliter og får mye rom, men fravær, dårlig humør og uklare beskjeder begynner å påvirke resten av gruppa.",
+          "purpose": "Etablere balansen mellom omsorg for enkeltspiller og ansvar for lagstandard.",
+          "stakes": "Gir du mer rom, kan spilleren føle støtte. Setter du grense, kan det oppleves hardt, men beskytte laget.",
+          "situation": [
+            "Du vet at spilleren har det vanskelig.",
+            "Samtidig merker du at laget begynner å tilpasse seg uforutsigbarheten hans.",
+            "Ingen vil være kalde, men flere begynner å miste tillit til standarden."
+          ],
+          "task_domain": "spilleroppfølging",
+          "competency": "omsorg_med_grense",
+          "pressure": "enkeltspiller_vs_lagstandard",
+          "choice_axis": "støtte_med_tydelig_avtale_vs_gi_mer_rom",
+          "consequence_axis": "omsorg_og_standard_vs_passiv_tilpasning",
+          "narrative_arc": "kapteinen lærer at omsorg blir sterkere når den får tydelige rammer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta en støttende prat og lage tydelig avtale om forventninger",
+              "reply": "Jeg tar en støttende prat og lager tydelig avtale om forventninger.",
+              "effect": 1,
+              "tags": ["support", "boundary", "team"],
+              "feedback": "Du gir støtte uten å la laget miste standarden."
+            },
+            {
+              "id": "B",
+              "label": "Gi spilleren mer rom og skjerme ham fra press en stund",
+              "reply": "Jeg gir spilleren mer rom og skjermer ham fra press en stund.",
+              "effect": 0,
+              "tags": ["care", "risk"],
+              "feedback": "Det kan hjelpe mennesket, men laget trenger etter hvert klarere rammer."
+            }
+          ]
+        },
+        {
+          "id": "sport_kaptein_job_konflikt_002",
+          "mail_type": "job",
+          "mail_family": "konflikt_stotte_og_grense",
+          "role_scope": "sport_kaptein",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "hovedtrener_erik",
+          "place_id": "sport_garderobe",
+          "subject": "Du må si sannheten uten å miste garderoben",
+          "summary": "Laget har begynt å skylde på ytre ting, men du ser at standard, oppmøte og egenansvar også har falt.",
+          "purpose": "Avrunde kapteinsrollen med moden lojalitet: sannhet, tillit, krav og egen prestasjon sammen.",
+          "stakes": "Sier du det tydelig, kan du miste stemningen. Pakker du det inn, kan laget fortsette å lyve behagelig for seg selv.",
+          "situation": [
+            "Det er lett å skylde på dommere, skader og tilfeldigheter.",
+            "Alt det spiller inn, men du vet også at laget har sluppet på standarden.",
+            "Som kaptein må du finne språket som sier sannheten uten å ydmyke gruppa."
+          ],
+          "task_domain": "lagansvar",
+          "competency": "lojal_sannhet",
+          "pressure": "lagstemning_vs_nødvendig_krav",
+          "choice_axis": "si_sannhet_med_ansvar_vs_skåne_gruppa",
+          "consequence_axis": "moden_lagkultur_vs_behagelig_forklaring",
+          "narrative_arc": "kapteinen lærer at lojalitet ikke er å beskytte laget mot alt ubehag",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si sannheten konkret, ta din del av ansvaret og sette ny standard",
+              "reply": "Jeg sier sannheten konkret, tar min del av ansvaret og setter ny standard.",
+              "effect": 1,
+              "tags": ["mastery", "truth", "captaincy"],
+              "feedback": "Du gjør laget mindre komfortabelt og mer voksent."
+            },
+            {
+              "id": "B",
+              "label": "Skåne gruppa og fokusere på neste kamp",
+              "reply": "Jeg skåner gruppa og fokuserer på neste kamp.",
+              "effect": -1,
+              "tags": ["avoidance", "comfort"],
+              "feedback": "Stemningen overlever, men forklaringen blir litt for behagelig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
