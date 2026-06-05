@@ -74,9 +74,8 @@
   <!-- HEADER -->
   <header class="site-header">
     <a href="index.html" class="back-link" aria-label="Til forsiden">←</a>
-    <div class="brand">
-      <img src="bilder/logo_historygo.PNG" class="brand-logo">
-      <span class="brand-name" data-i18n="ui.profile.title">Min profil</span>
+    <div class="brand" aria-label="Min profil">
+      <img src="bilder/logo_historygo.PNG" class="brand-logo" alt="History Go">
     </div>
 
     <div class="actions">
@@ -89,9 +88,7 @@
         <div class="profile-identity-block">
           <div class="profile-avatar-orb" aria-hidden="true">HG</div>
           <div class="profile-hero-copy">
-            <div class="profile-kicker-row"><span class="profile-pill gold">History Go</span><span class="profile-pill">Profil</span></div>
-            <h1 id="profileName">Logg inn</h1>
-            <p class="profile-sub" aria-live="polite">Dashboard</p>
+            <div id="profileName" class="profile-name-line" aria-live="polite">Logg inn</div>
             <div class="profile-header-status" role="list" aria-label="Profilstatus">
               <div class="profile-stat-card" role="listitem" aria-label="0 steder" title="Antall steder du har låst opp.">
                 <span class="profile-stat-icon" aria-hidden="true">📍</span>
@@ -111,9 +108,8 @@
               </div>
             </div>
             <div class="profile-hero-actions-v2">
-              <button id="btnOpenAHA" class="btn profile-login-button" type="button">Logg inn</button>
               <button id="editProfileBtn" class="btn profile-icon-button profile-edit-button" type="button" aria-label="Endre profil" title="Endre profil">⚙️</button>
-              <button class="secondary profile-icon-button profile-map-button" type="button" aria-label="Fortsett på kartet" title="Fortsett på kartet" onclick="window.location.href='index.html'">→</button>
+              <button id="btnOpenAHA" class="btn profile-login-button" type="button">Logg inn</button>
             </div>
           </div>
         </div>
@@ -139,7 +135,7 @@
     <section class="profile-tab-panels">
       <div class="profile-tab-panel is-active" data-panel="oversikt">
         <div class="profile-dashboard-grid">
-          <section class="profile-section profile-focus-card" id="latestKnowledgeSection"> <div class="section-head"><h2>Fortsett reisen</h2><span class="section-meta">Neste retning, siste kunnskap og AHA-spor.</span></div>
+          <section class="profile-section profile-focus-card" id="latestKnowledgeSection"> <div class="section-head profile-journey-head"><h2 data-i18n="ui.profile.continueJourney" data-hg-i18n-text="ui.profile.continueJourney" data-hg-i18n-text-value="Fortsett reisen">Fortsett reisen</h2><button class="secondary profile-icon-button profile-journey-map-button" type="button" aria-label="Fortsett på kartet" title="Fortsett på kartet" onclick="window.location.href='index.html'">→</button><span class="section-meta">Neste retning, siste kunnskap og AHA-spor.</span></div>
             <div class="profile-focus-body">
               <div id="nextUpProfileCard" class="nextup-profile-card" style="display:none;"><div class="nextup-profile-title">Din retning nå</div><div id="nextUpProfileMeta" class="nextup-profile-meta"></div><div id="nextUpProfileChoices" class="nextup-profile-choice-row"></div><div id="nextUpProfilePath" class="nextup-profile-path"></div></div>
               <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="lkTopic"></div><div class="lk-text" id="lkText"></div><div class="lk-category" id="lkCategory"></div></div>
