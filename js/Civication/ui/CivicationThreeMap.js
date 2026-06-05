@@ -467,10 +467,12 @@
     const rail = [[0.40, 0.605], [0.47, 0.60], [0.535, 0.598], [0.60, 0.605], [0.665, 0.615]];
     g.add(buildRoadRibbon(rail, 0.009, PAL.rail, baseY + 0.005));
 
-    // Karl Johans gate – lysere byakse Oslo S -> Stortinget/Nationaltheatret -> Slottet.
+    // Karl Johans gate – byens paradeakse Oslo S -> Stortinget/Nationaltheatret
+    // -> Slottet. Litt tydeligere og lysere enn de andre veiene, men fortsatt
+    // subtil og lav på terrenget (ikke moderne kart-overlay).
     g.add(buildRoadRibbon(
       [[0.535, 0.587], [0.515, 0.58], [0.495, 0.575], [0.46, 0.575], [0.435, 0.566], [0.41, 0.56]],
-      0.012, 0xe8dcc2, baseY + 0.006
+      0.014, 0xefe4cb, baseY + 0.008
     ));
 
     // Ring 1 – svak sentrumssløyfe rundt kjernen.
@@ -836,7 +838,7 @@
   // opts videresendes til byggeren (farge/høyde/varianter). Endre tallene her
   // for å flytte/skalere et landemerke uten å røre byggekoden.
   const OSLO_KEY_LANDMARKS = [
-    { id: "holmenkollen",     type: "ski_jump",          x: 0.28,  y: 0.10,  scale: 1.0, baseY: MARKA_H, rot: 0.4 },
+    { id: "holmenkollen",     type: "ski_jump",          x: 0.28,  y: 0.10,  scale: 1.0, baseY: MARKA_H, rot: 0.3 },
     { id: "ullevaal",         type: "football_stadium",  x: 0.42,  y: 0.26,  scale: 1.0 },
     { id: "frognerparken",    type: "park_monument",     x: 0.30,  y: 0.465, scale: 1.0 },
     { id: "bislett",          type: "athletics_stadium", x: 0.43,  y: 0.46,  scale: 1.0 },
@@ -845,14 +847,14 @@
     { id: "stortinget",       type: "civic_low",         x: 0.495, y: 0.575, scale: 1.0 },
     { id: "posthuset",        type: "post_tower",        x: 0.521, y: 0.574, scale: 1.0, opts: { h: 1.95, color: 0x707783 } },
     { id: "oslo_s",           type: "station_hall",      x: 0.535, y: 0.587, scale: 1.0, rot: 0.05, opts: { color: 0x9aa6b0, h: 0.4 } },
-    { id: "oslo_plaza",       type: "plaza_tower",       x: 0.547, y: 0.580, scale: 1.0, opts: { h: 2.7, w: 0.26, d: 0.3, color: 0x3b4b5f } },
+    { id: "oslo_plaza",       type: "plaza_tower",       x: 0.547, y: 0.580, scale: 1.0, opts: { h: 2.7, w: 0.26, d: 0.3, color: 0x3b4b5f, crown: true } },
     { id: "radhuset",         type: "city_hall",         x: 0.47,  y: 0.61,  scale: 1.0 },
     { id: "deichman",         type: "culture_block",     x: 0.512, y: 0.612, scale: 0.9, opts: { color: 0xc9bfae, h: 0.85 } },
     { id: "akershus",         type: "fortress",          x: 0.50,  y: 0.64,  scale: 1.0 },
     { id: "aker_brygge",      type: "waterfront",        x: 0.39,  y: 0.65,  scale: 1.0, rot: 0.2 },
     { id: "barcode",          type: "barcode_row",       x: 0.57,  y: 0.625, scale: 1.0, rot: 0.42 },
     { id: "munch",            type: "culture_block",     x: 0.598, y: 0.638, scale: 1.0, rot: -0.3, opts: { color: 0x5f6772, h: 1.35, lean: true } },
-    { id: "operaen",          type: "opera",             x: 0.58,  y: 0.655, scale: 1.0, rot: -0.5, baseY: 0.04 },
+    { id: "operaen",          type: "opera",             x: 0.58,  y: 0.655, scale: 1.0, rot: -0.2, baseY: 0.04 },
     { id: "toyen_torg",       type: "town_square",       x: 0.625, y: 0.52,  scale: 1.0 },
     { id: "kampen",           type: "wooden_houses",     x: 0.66,  y: 0.555, scale: 1.0 },
     { id: "jordal",           type: "ice_arena",         x: 0.69,  y: 0.56,  scale: 1.0 }
@@ -861,17 +863,43 @@
   // --- Del 4 – Landemerke-archetypes (enkle, gjenkjennelige miniatyrer) ------
   // Hver returnerer { group, h } med bunn på lokal y=0.
 
-  // 1. Holmenkollen – stilisert skihopp: bakke, tårn, skrå inrun, kul.
+  // 1. Holmenkollen – gjenkjennelig skihopp: grønn landingsås, lyst ståltårn,
+  // skrått tilløp/inrun med utkraget hoppkant og et lite tribuneamfi nederst.
+  // Leses som skihopp fra standardvinkelen: tårn bak (nord), bakken ned mot
+  // publikum (sør/+z). Ikonisk, men holdt lav nok til ikke å dominere kartet.
   function createSkiJump() {
     const g = new THREE.Group();
-    const hill = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.5, 0.3, 16), toMat(0x3c6b43));
-    hill.position.y = 0.15; hill.scale.set(1, 1, 1.4); hill.receiveShadow = true; g.add(hill);
-    const tower = box(0.16, 1.9, 0.22, 0xe2e7ec); tower.position.set(0, 0.95, -0.72); g.add(tower);
-    const inrun = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.06, 2.1), toMat(0xd6dde4));
-    inrun.position.set(0, 1.02, 0.12); inrun.rotation.x = -0.66; inrun.castShadow = true; g.add(inrun);
-    const knoll = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.05, 0.85), toMat(0xe8eef3));
-    knoll.position.set(0, 0.3, 0.95); knoll.rotation.x = -0.18; knoll.receiveShadow = true; g.add(knoll);
-    return { group: g, h: 2.1 };
+    const steel = 0xdfe5ea, snow = 0xeff4f9, green = 0x49823f;
+
+    // Grønn landingsås – bred kile som heller ned mot publikum.
+    const hill = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.5, 0.3, 18), toMat(green));
+    hill.scale.set(1, 1, 1.55); hill.position.set(0, 0.15, 0.2); hill.receiveShadow = true; g.add(hill);
+
+    // Tribune-/utsiktsamfi nederst foran (halv ring).
+    const stand = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.6, 0.76, 0.2, 18, 1, false, 0, Math.PI), toMat(0xb7bdc2)
+    );
+    stand.position.set(0, 0.1, 1.0); stand.castShadow = true; stand.receiveShadow = true; g.add(stand);
+
+    // Snøhvit landingsbakke som heller ned mot fronten.
+    const landing = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.05, 1.25), toMat(snow));
+    landing.position.set(0, 0.5, 0.5); landing.rotation.x = 0.5; landing.castShadow = true; landing.receiveShadow = true; g.add(landing);
+
+    // Lyst ståltårn bak (konstruksjonsfarge).
+    const tower = box(0.22, 1.5, 0.28, steel); tower.position.set(0, 0.92, -0.78); g.add(tower);
+    [-0.13, 0.13].forEach((x) => {
+      const leg = box(0.05, 1.42, 0.06, shade(steel, -0.1));
+      leg.position.set(x, 0.71, -0.78); leg.rotation.z = x > 0 ? -0.11 : 0.11; g.add(leg);
+    });
+
+    // Skrått tilløp/inrun fra tårntoppen ned til hoppkanten.
+    const inrun = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.06, 1.4), toMat(snow));
+    inrun.position.set(0, 1.06, -0.18); inrun.rotation.x = 0.66; inrun.castShadow = true; g.add(inrun);
+
+    // Utkraget hoppkant (ikonisk overheng).
+    const lip = box(0.3, 0.09, 0.34, steel); lip.position.set(0, 0.62, 0.42); g.add(lip);
+
+    return { group: g, h: 1.7 };
   }
 
   // 2/3. Smalt høyt tårn (Plaza) og lavere bredt tårn (Posthuset).
@@ -879,53 +907,96 @@
     const g = new THREE.Group();
     const h = o.h || 2.6, w = o.w || 0.3, d = o.d || 0.34, c = o.color || 0x3b4b5f;
     g.add(box(w, h, d, c));
-    const cap = box(w * 0.78, 0.08, d * 0.78, shade(c, 0.12)); cap.position.y = h; g.add(cap);
-    const glass = box(w * 0.6, h * 0.9, 0.02, shade(c, 0.2)); glass.position.set(0, h * 0.5, d / 2); g.add(glass);
+    const cap = box(w * 0.82, 0.08, d * 0.82, shade(c, 0.12)); cap.position.y = h; g.add(cap);
+    // Glassbånd på de to fronene som vender mot kameraet.
+    const glass = box(w * 0.62, h * 0.9, 0.02, shade(c, 0.22)); glass.position.set(0, h * 0.5, d / 2); g.add(glass);
+    // Plaza får en slank topp-setback + antenne så den leses som ÉT høyt tårn.
+    if (o.crown) {
+      const top = box(w * 0.6, 0.18, d * 0.6, shade(c, 0.06)); top.position.set(0, h + 0.08, 0); g.add(top);
+      const mast = cyl(0.012, 0.012, 0.34, 6, shade(c, 0.3)); mast.position.y = h + 0.17; g.add(mast);
+    }
     return { group: g, h };
   }
   function createPostTower(o) {
-    return createPlazaTower({ h: (o && o.h) || 1.95, w: 0.5, d: 0.44, color: (o && o.color) || 0x707783 });
+    // Lavere og bredere enn Plaza – tydelig flatt, massivt kontortårn.
+    const t = createPlazaTower({ h: (o && o.h) || 1.95, w: 0.52, d: 0.46, color: (o && o.color) || 0x707783 });
+    const c = (o && o.color) || 0x707783;
+    const podium = box(0.66, 0.34, 0.6, shade(c, -0.06)); podium.position.set(0, 0.17, 0.04); t.group.add(podium);
+    return t;
   }
 
-  // Oslo S – lav/lang stasjonshall med buet glasstak.
+  // Oslo S – lav/lang stasjonsform med tydelig hallpreg: et bredt, lavt
+  // terminalbygg med buet glasstak (perronghall) langs lengden og en liten
+  // sentral inngangsgavl. Lavt, men langt – forklarer transitt, ikke høyde.
   function createStationHall(o) {
     const g = new THREE.Group();
     const c = (o && o.color) || 0x9aa6b0, h = (o && o.h) || 0.4;
-    g.add(box(1.1, h, 0.5, c));
+
+    // Lavt, langt terminalbygg.
+    const body = box(1.25, h, 0.52, c); body.position.set(0, h / 2, 0); g.add(body);
+
+    // Buet glass-perronghall langs lengden (halv sylinder).
     const hall = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.26, 0.26, 1.05, 16, 1, false, 0, Math.PI),
-      toMat(shade(c, 0.14))
+      new THREE.CylinderGeometry(0.24, 0.24, 1.15, 16, 1, false, 0, Math.PI),
+      toMat(shade(c, 0.16))
     );
-    hall.rotation.z = Math.PI / 2; hall.position.set(0, h, 0); hall.castShadow = true; hall.receiveShadow = true; g.add(hall);
-    return { group: g, h: h + 0.26 };
+    hall.rotation.z = Math.PI / 2; hall.position.set(0, h, -0.02); hall.castShadow = true; hall.receiveShadow = true; g.add(hall);
+
+    // Liten sentral inngangsgavl mot byen (+z).
+    const entry = box(0.34, h * 0.95, 0.12, shade(c, -0.08)); entry.position.set(0, h * 0.475, 0.28); g.add(entry);
+    const gable = gableRoof(0.36, 0.12, 0.14, shade(c, -0.14)); gable.position.set(0, h * 0.95, 0.28); g.add(gable);
+
+    return { group: g, h: h + 0.24 };
   }
 
-  // Barcode – distinkt rad med smale, varierte tårn (hovedområde for høyhus).
+  // Barcode – distinkt «strekkode»-rad med smale, ulike tårn. Dette er kartets
+  // hovedområde for høyhus. Variert høyde, bredde og fargetone, tydelig mellomrom
+  // mellom slankene, holdt nær Bjørvika/Oslo S. Ikke for mange/brede tårn.
   function createBarcodeRow() {
     const g = new THREE.Group();
-    const cols = [0x37495d, 0x3f5266, 0x435a6e, 0x46596b];
-    for (let i = 0; i < 9; i++) {
-      const t = i / 8;
-      const h = 1.3 + ((i % 3) * 0.4) + (i === 4 ? 0.55 : 0);
-      const tw = createPlazaTower({ h, w: 0.17, d: 0.5, color: cols[i % cols.length] });
-      tw.group.position.set(-0.72 + i * 0.18, 0, t * 0.06);
+    const cols = [0x37495d, 0x3f5266, 0x435a6e, 0x4a5d6f, 0x3a4e62];
+    // Forhåndsbestemt variasjon (deterministisk, leses som ulike tårn).
+    const slabs = [
+      { h: 1.45, w: 0.16 }, { h: 1.9, w: 0.18 }, { h: 1.25, w: 0.14 },
+      { h: 2.05, w: 0.2 }, { h: 1.6, w: 0.15 }, { h: 1.35, w: 0.17 },
+      { h: 1.95, w: 0.16 }, { h: 1.5, w: 0.19 }
+    ];
+    let x = -0.72;
+    slabs.forEach((s, i) => {
+      const tw = createPlazaTower({ h: s.h, w: s.w, d: 0.5, color: cols[i % cols.length] });
+      tw.group.position.set(x, 0, (i % 2) * 0.05 - 0.025);
       g.add(tw.group);
-    }
-    return { group: g, h: 2.25 };
+      x += s.w + 0.04;
+    });
+    return { group: g, h: 2.05 };
   }
 
-  // Operaen – lav hvit skråform ved vannet.
+  // Operaen – lav, hvit og bred kileform som heller skrått ned mot fjorden
+  // (+z). Den skrå takflaten kan vandres på; et lavt glass-/scenetårn bryter
+  // ryggen og en hvit marmorplass møter vannkanten. Lav, bred, lett geometri.
   function createOpera() {
     const g = new THREE.Group();
-    const L = 1.8, Hh = 0.95, depth = 1.5;
+    const white = 0xece9e1, glass = 0xb6c5cd;
+
+    // Tverrsnitt (X-Y): rygg ved x=0 (høyde H), heller ned til x=depth (y=0).
+    const L = 1.95, depth = 1.35, H = 0.6;
     const shape = new THREE.Shape();
-    shape.moveTo(0, 0); shape.lineTo(L, 0); shape.lineTo(0, Hh); shape.closePath();
-    const geo = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
-    geo.translate(-L / 2, 0, -depth / 2);
-    const mesh = new THREE.Mesh(geo, toMat(0xeae6dc));
-    mesh.castShadow = true; mesh.receiveShadow = true;
-    g.add(mesh);
-    return { group: g, h: Hh };
+    shape.moveTo(0, 0); shape.lineTo(depth, 0); shape.lineTo(0, H); shape.closePath();
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: L, bevelEnabled: false });
+    geo.translate(0, 0, -L / 2);   // sentrer langs bredden (ekstrudering)
+    geo.rotateY(-Math.PI / 2);     // skråflaten vender mot +z (vannet)
+    geo.translate(0, 0, -depth / 2);
+    const roof = new THREE.Mesh(geo, toMat(white));
+    roof.castShadow = true; roof.receiveShadow = true; g.add(roof);
+
+    // Lavt glass-/scenetårn som bryter ryggen.
+    const tower = box(0.5, 0.46, 0.34, glass); tower.position.set(0, 0.23, -depth / 2 - 0.04); g.add(tower);
+
+    // Hvit marmorplass mot vannkanten.
+    const apron = box(L * 0.94, 0.03, 0.42, 0xdedacf);
+    apron.position.set(0, 0, depth / 2 + 0.18); apron.receiveShadow = true; g.add(apron);
+
+    return { group: g, h: H };
   }
 
   // Munch / Deichman – egne kulturblokker (Munch får en svak knekk på toppen).
@@ -941,48 +1012,107 @@
     return { group: g, h };
   }
 
-  // Akershus festning – borgmurer, tårn med spiss, tydelig odde mot fjorden.
+  // Akershus festning – lav, massiv borg på en festningsodde mot fjorden:
+  // tydelig ringmur rundt en borggård, tre tårn (ett høyt hovedtårn med spiss
+  // + to lavere hjørnetårn). Steinmateriale, klart adskilt fra vanlige bygg.
   function createFortress() {
     const g = new THREE.Group();
-    const stone = 0x8a8276, dark = 0x6f6a5e;
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.25, 0.16, 5), toMat(0x9b9482));
-    base.position.y = 0.08; base.rotation.y = 0.45; base.receiveShadow = true; g.add(base);
-    const wallH = 0.5, sz = 0.55, t = 0.12;
-    [[0, sz, 1.15, t], [0, -sz, 1.15, t], [sz, 0, t, 1.15], [-sz, 0, t, 1.15]].forEach(([x, z, w, d]) => {
-      const wmesh = box(w, wallH, d, stone); wmesh.position.x = x; wmesh.position.z = z; g.add(wmesh);
+    const stone = 0x938a7c, wall = 0x8c8478, dark = 0x6b665a;
+
+    // Festningsodde / bastion-sokkel (5-kant) som stikker ut mot fjorden.
+    const baseH = 0.12;
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(1.15, 1.42, baseH, 5), toMat(0x8f8775));
+    base.position.y = baseH / 2; base.rotation.y = 0.4; base.receiveShadow = true; g.add(base);
+
+    // Borggård-gulv.
+    const yard = box(1.12, 0.04, 1.12, shade(stone, 0.07)); yard.position.set(0, baseH + 0.02, 0); g.add(yard);
+
+    // Ringmur (fire lave, massive murer) med murkrone.
+    const wallH = 0.44, span = 0.62, th = 0.15;
+    [[0, -span, 1.36, th], [0, span, 1.36, th], [-span, 0, th, 1.36], [span, 0, th, 1.36]].forEach(([x, z, w, d]) => {
+      const m = box(w, wallH, d, wall); m.position.set(x, baseH + wallH / 2, z); g.add(m);
+      const crown = box(w + 0.02, 0.05, d + 0.02, shade(wall, -0.1)); crown.position.set(x, baseH + wallH, z); g.add(crown);
     });
-    const keep = box(0.34, 1.1, 0.34, shade(stone, 0.05)); keep.position.x = -0.15; keep.position.z = -0.1; g.add(keep);
-    const spire = coneMesh(0.26, 0.5, 4, dark); spire.position.set(-0.15, 1.1, -0.1); spire.rotation.y = Math.PI / 4; g.add(spire);
-    const t2 = box(0.24, 0.8, 0.24, stone); t2.position.x = 0.26; t2.position.z = 0.22; g.add(t2);
-    const sp2 = coneMesh(0.2, 0.36, 4, dark); sp2.position.set(0.26, 0.8, 0.22); sp2.rotation.y = Math.PI / 4; g.add(sp2);
-    return { group: g, h: 1.76 };
+
+    // Hovedtårn (keep) med høy spiss.
+    const keepH = 0.95;
+    const keep = box(0.4, keepH, 0.4, shade(stone, 0.04)); keep.position.set(-0.16, baseH + keepH / 2, -0.12); g.add(keep);
+    const spire = coneMesh(0.3, 0.5, 4, dark); spire.position.set(-0.16, baseH + keepH, -0.12); spire.rotation.y = Math.PI / 4; g.add(spire);
+
+    // To lavere, runde hjørnetårn.
+    [[0.46, 0.42], [0.46, -0.42]].forEach(([x, z]) => {
+      const th2 = 0.66;
+      const t = cyl(0.16, 0.18, th2, 12, stone); t.position.set(x, baseH + th2 / 2, z); g.add(t);
+      const sp = coneMesh(0.2, 0.3, 12, dark); sp.position.set(x, baseH + th2, z); g.add(sp);
+    });
+
+    return { group: g, h: baseH + keepH + 0.5 };
   }
 
-  // Rådhuset – to tydelige tårn + lavere mellombygg (teglrødt).
+  // Rådhuset – Oslos ikoniske dobbelttårn: to massive rektangulære tegltårn
+  // og en lavere, bred mellombygning med forplass mot fjorden. Mørkere
+  // rød/brun steinpalett gjør det gjenkjennelig som rådhus, ikke to bokser.
   function createCityHall(o) {
     const g = new THREE.Group();
-    const c = (o && o.color) || 0x9c5a3c;
-    const mid = box(0.9, 0.85, 0.55, shade(c, 0.05)); g.add(mid);
-    [-0.32, 0.32].forEach((x) => {
-      const tw = box(0.34, 1.7, 0.4, c); tw.position.set(x, 0.85, -0.02); g.add(tw);
-      const cap = box(0.38, 0.06, 0.44, shade(c, -0.12)); cap.position.set(x, 1.7, -0.02); g.add(cap);
+    const c = (o && o.color) || 0x9c4f33, dark = shade(c, -0.09);
+
+    // Lav, bred mellombygning.
+    const midH = 0.72;
+    const mid = box(1.12, midH, 0.58, shade(c, 0.04)); mid.position.set(0, midH / 2, 0); g.add(mid);
+    const midCap = box(1.16, 0.05, 0.62, dark); midCap.position.set(0, midH, 0); g.add(midCap);
+
+    // To massive rektangulære tårn (litt ulik høyde, som de ekte).
+    [[-0.35, 1.5], [0.35, 1.66]].forEach(([x, h]) => {
+      const tw = box(0.42, h, 0.48, c); tw.position.set(x, h / 2, -0.04); g.add(tw);
+      const cap = box(0.46, 0.07, 0.52, dark); cap.position.set(x, h, -0.04); g.add(cap);
+      // Antydet vindusrille på fronten.
+      const win = box(0.3, h * 0.82, 0.02, shade(c, 0.13)); win.position.set(x, h * 0.52, 0.22); g.add(win);
     });
-    return { group: g, h: 1.7 };
+
+    // Forplass mot fjorden (sør/+z).
+    const court = box(0.92, 0.025, 0.5, 0xb6a07e); court.position.set(0, 0, 0.52); court.receiveShadow = true; g.add(court);
+
+    return { group: g, h: 1.66 };
   }
 
-  // Slottet – symmetrisk lav bygning med fløyer + liten plass/park foran, på høyde.
+  // Slottet – lavt, symmetrisk og horisontalt: hovedkropp + to fremskutte
+  // sidefløyer, midtrisalitt med søylehint, gesims, og en plass/akse foran
+  // (mot Karl Johan). Står på en enkel grønn slottsbakke. Lys gulaktig stein,
+  // bevisst lave proporsjoner – ingen høyhusfølelse.
   function createPalace() {
     const g = new THREE.Group();
-    const c = 0xe6cf92, top = 0.2;
-    const hill = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.9, 0.2, 20), toMat(0x6f9460));
-    hill.position.y = 0.1; hill.receiveShadow = true; g.add(hill);
-    const main = box(1.0, 0.55, 0.5, c); main.position.y = top + 0.275; g.add(main);
-    [-0.5, 0.5].forEach((x) => { const w = box(0.3, 0.5, 0.7, shade(c, -0.04)); w.position.set(x, top + 0.25, 0.18); g.add(w); });
-    const risalitt = box(0.34, 0.62, 0.16, shade(c, 0.04)); risalitt.position.set(0, top + 0.31, 0.28); g.add(risalitt);
-    const cap = box(1.04, 0.06, 0.54, shade(c, -0.12)); cap.position.y = top + 0.55; g.add(cap);
-    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.03, 18), toMat(0x86a36f));
-    plaza.position.set(0, top, 0.72); plaza.receiveShadow = true; g.add(plaza);
-    return { group: g, h: 0.81 };
+    const c = 0xe7d3a0, top = 0.18, bodyH = 0.5;
+
+    // Slottsbakke (grønn høyde) rundt bygget.
+    const hill = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 2.05, 0.18, 22), toMat(0x6f9460));
+    hill.position.y = 0.09; hill.receiveShadow = true; g.add(hill);
+    // Enkle parktrær på bakken.
+    [[-1.0, -0.3], [1.05, -0.2], [-0.95, 0.55], [1.0, 0.5]].forEach(([x, z]) => {
+      const tr = coneMesh(0.13, 0.42, 7, 0x3f7a46); tr.position.set(x, top, z); g.add(tr);
+    });
+
+    // Hovedkropp – lav, bred, horisontal.
+    const main = box(1.3, bodyH, 0.46, c); main.position.set(0, top + bodyH / 2, 0); g.add(main);
+    // Gesims/tak.
+    const cap = box(1.36, 0.06, 0.5, shade(c, -0.13)); cap.position.set(0, top + bodyH, 0); g.add(cap);
+
+    // To fremskutte sidefløyer.
+    [-0.62, 0.62].forEach((x) => {
+      const wing = box(0.34, bodyH * 0.92, 0.6, shade(c, -0.03));
+      wing.position.set(x, top + bodyH * 0.46, 0.08); g.add(wing);
+      const wcap = box(0.38, 0.05, 0.64, shade(c, -0.14)); wcap.position.set(x, top + bodyH * 0.92, 0.08); g.add(wcap);
+    });
+
+    // Midtrisalitt med søylehint.
+    const ris = box(0.42, bodyH * 1.12, 0.16, shade(c, 0.05)); ris.position.set(0, top + bodyH * 0.56, 0.26); g.add(ris);
+    for (let i = -1; i <= 1; i++) {
+      const col = cyl(0.028, 0.028, bodyH * 0.8, 8, shade(c, 0.13)); col.position.set(i * 0.13, top, 0.33); g.add(col);
+    }
+
+    // Plass/akse foran (mot Karl Johan).
+    const plaza = box(0.56, 0.025, 0.74, 0xcdbb97); plaza.position.set(0, top, 0.62); plaza.receiveShadow = true; g.add(plaza);
+
+    return { group: g, h: top + bodyH + 0.06 };
   }
 
   // Nationaltheatret – lav kulturbygning med klassisk søylefront.
@@ -1013,96 +1143,157 @@
     return { group: g, h: h + drumH + 0.18 };
   }
 
-  // Aker Brygge / Tjuvholmen – lav vannkantbebyggelse med kai og brygge.
+  // Aker Brygge / Tjuvholmen – tydelig vannkant/kai: en lang brygge-/kaikant,
+  // en rad lave bryggeblokker med varierte saltak mot promenaden, en treplanke-
+  // promenade, og småbåt-brygger som stikker ut i fjorden. Vannnær, ikke boligblokk.
   function createWaterfrontBlocks() {
     const g = new THREE.Group();
-    const quay = box(1.4, 0.06, 0.5, 0xb7a98c); g.add(quay);
-    const cols = [0xd9cab0, 0xc7b9a0, 0xcad2d6, 0xd0c2a8];
-    for (let i = 0; i < 5; i++) {
-      const h = 0.4 + (i % 3) * 0.12, c = cols[i % cols.length];
-      const b = box(0.2, h, 0.34, c); b.position.set(-0.5 + i * 0.26, 0.06 + h / 2, -0.05); g.add(b);
-      const glass = box(0.16, h * 0.7, 0.02, 0x9fc3d6); glass.position.set(-0.5 + i * 0.26, 0.06 + h * 0.35, 0.12); g.add(glass);
+    const quayH = 0.07;
+
+    // Kaikant / brygge-platting langs fjorden.
+    const quay = box(1.5, quayH, 0.46, 0xb7a98c); quay.position.set(0, quayH / 2, 0); quay.receiveShadow = true; g.add(quay);
+    // Trekledd promenade-stripe mot vannet (+z).
+    const promenade = box(1.5, 0.02, 0.16, 0xc8b48f); promenade.position.set(0, quayH, 0.22); g.add(promenade);
+
+    // Rad med lave bryggeblokker, varierte saltak og glassfasade mot vannet.
+    const cols = [0xd9cab0, 0xc7b9a0, 0xcdd5d9, 0xd0c2a8, 0xd6c9b2];
+    for (let i = 0; i < 6; i++) {
+      const h = 0.34 + (i % 3) * 0.13, c = cols[i % cols.length], x = -0.62 + i * 0.25;
+      const b = box(0.21, h, 0.32, c); b.position.set(x, quayH + h / 2, -0.07); g.add(b);
+      const r = gableRoof(0.23, 0.1, 0.34, shade(c, -0.16)); r.position.set(x, quayH + h, -0.07); g.add(r);
+      const glass = box(0.16, h * 0.66, 0.02, 0x9fc3d6); glass.position.set(x, quayH + h * 0.4, 0.1); g.add(glass);
     }
-    const pier = box(0.16, 0.05, 0.6, 0xa89878); pier.position.set(0.42, 0, 0.45); g.add(pier);
+
+    // Småbåt-brygger som stikker ut i fjorden.
+    [-0.35, 0.18, 0.6].forEach((x) => {
+      const pier = box(0.1, 0.04, 0.42, 0xa89878); pier.position.set(x, quayH * 0.6, 0.42); g.add(pier);
+    });
+    // Et par små båter ved bryggene.
+    [[-0.35, 0.58], [0.6, 0.55]].forEach(([x, z]) => {
+      const boat = box(0.08, 0.05, 0.16, 0xe4e0d6); boat.position.set(x, quayH * 0.4, z); g.add(boat);
+    });
+
     return { group: g, h: 0.6 };
   }
 
-  // Tøyen torg – lite lokalt torg: åpen plaza-flate + 3–5 lave blokker rundt.
+  // Tøyen torg – åpen lokal plass: en tydelig brolagt torgflate med lave bygg
+  // rundt på tre–fire sider, og et lite torgtre/paviljong i midten.
   function createTownSquare() {
     const g = new THREE.Group();
-    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.03, 4), toMat(0xc2b393));
-    plaza.rotation.y = Math.PI / 4; plaza.position.y = 0.015; plaza.receiveShadow = true; g.add(plaza);
-    const cols = [0xcdb89c, 0xc4b59a, 0xd0c1a4];
-    [[-0.55, -0.4], [0.0, -0.62], [0.55, -0.4], [0.6, 0.28], [-0.6, 0.28]].forEach(([x, z], i) => {
-      const h = 0.45 + (i % 2) * 0.15, c = cols[i % cols.length];
-      const b = box(0.34, h, 0.34, c); b.position.x = x; b.position.z = z; g.add(b);
-      const r = gableRoof(0.36, 0.1, 0.36, shade(c, -0.16)); r.position.set(x, h, z); g.add(r);
+    // Åpen, brolagt torgflate.
+    const plaza = box(0.95, 0.03, 0.95, 0xc6b896); plaza.position.y = 0.015; plaza.receiveShadow = true; g.add(plaza);
+    const inlay = box(0.5, 0.035, 0.5, shade(0xc6b896, -0.07)); inlay.position.y = 0.018; inlay.rotation.y = Math.PI / 4; g.add(inlay);
+
+    // Lave bygg rundt torget (rammer plassen inn).
+    const cols = [0xcdb89c, 0xc4b59a, 0xd0c1a4, 0xc9b59b];
+    [[-0.62, -0.5], [0.0, -0.66], [0.62, -0.5], [0.66, 0.3], [-0.66, 0.3], [0.0, 0.66]].forEach(([x, z], i) => {
+      const h = 0.42 + (i % 3) * 0.12, c = cols[i % cols.length];
+      const b = box(0.32, h, 0.3, c); b.position.set(x, h / 2, z); g.add(b);
+      const r = gableRoof(0.34, 0.09, 0.32, shade(c, -0.16)); r.position.set(x, h, z); g.add(r);
     });
-    return { group: g, h: 0.7 };
+
+    // Lite torgtre i midten.
+    const trunk = cyl(0.025, 0.03, 0.12, 6, 0x7a5a3a); trunk.position.set(0, 0.03, 0); g.add(trunk);
+    const crown = coneMesh(0.14, 0.34, 8, 0x4f8a4a); crown.position.set(0, 0.15, 0); g.add(crown);
+
+    return { group: g, h: 0.66 };
   }
 
-  // Kampen – lav, tett trehus-/småhusstruktur, varmere farger.
+  // Kampen – lav, tett klynge av små trehus/småhus i varme farger, med
+  // saltak og små hager. Tydelig småhuspreg, ingen høyde.
   function createWoodenHousesCluster() {
     const g = new THREE.Group();
-    const cols = [0xc96f53, 0xd98b5e, 0xb5654a, 0xd9a86b, 0xc77f55];
+    const cols = [0xc96f53, 0xd98b5e, 0xb5654a, 0xd9a86b, 0xc77f55, 0xcf9a62];
+    const roofCols = [0x7a4636, 0x8a5a3e, 0x6f4334];
     const rng = mulberry32(0xCA3);
-    for (let i = 0; i < 11; i++) {
-      const x = (rng() - 0.5) * 1.1, z = (rng() - 0.5) * 1.1;
-      const h = 0.26 + rng() * 0.18, c = cols[i % cols.length];
-      const b = box(0.22, h, 0.24, c); b.position.x = x; b.position.z = z; g.add(b);
-      const r = gableRoof(0.26, 0.12, 0.28, shade(c, -0.2)); r.position.set(x, h, z); r.rotation.y = (rng() - 0.5) * 0.4; g.add(r);
+    // Liten grønn hageflate under husene.
+    const yard = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.92, 0.03, 14), toMat(0x7fa05f));
+    yard.position.y = 0.015; yard.receiveShadow = true; g.add(yard);
+    for (let i = 0; i < 12; i++) {
+      const x = (rng() - 0.5) * 1.25, z = (rng() - 0.5) * 1.25;
+      const h = 0.22 + rng() * 0.16, c = cols[i % cols.length];
+      const rot = (rng() - 0.5) * 0.5;
+      const b = box(0.2, h, 0.22, c); b.position.set(x, 0.03 + h / 2, z); b.rotation.y = rot; g.add(b);
+      const r = gableRoof(0.24, 0.12, 0.26, roofCols[i % roofCols.length]); r.position.set(x, 0.03 + h, z); r.rotation.y = rot; g.add(r);
     }
     return { group: g, h: 0.5 };
   }
 
-  // Jordal Amfi – rund/oval lav ishall-/amfi-form (ikke fotballstadion).
+  // Jordal Amfi – ishall/amfi: rund, lav, kuppelaktig form med buet tak.
+  // Skiller seg fra fotball-/friidrettsstadion (ingen åpen bane) – tett shell.
   function createIceArena() {
     const g = new THREE.Group();
-    const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.6, 0.4, 24), toMat(0xbfc6cc));
-    shell.scale.set(1.3, 1, 1); shell.position.y = 0.2; shell.castShadow = true; shell.receiveShadow = true; g.add(shell);
+    const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.58, 0.34, 26), toMat(0xc1c8ce));
+    shell.scale.set(1.22, 1, 1); shell.position.y = 0.17; shell.castShadow = true; shell.receiveShadow = true; g.add(shell);
+    // Buet, lukket tak (kuppel) – gjør den klart til ishall, ikke stadion.
     const roof = new THREE.Mesh(
-      new THREE.SphereGeometry(0.58, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2),
-      toMat(0xd2d8dd)
+      new THREE.SphereGeometry(0.56, 22, 11, 0, Math.PI * 2, 0, Math.PI / 2),
+      toMat(0xd6dce1)
     );
-    roof.scale.set(1.3, 0.4, 1); roof.position.y = 0.4; roof.castShadow = true; g.add(roof);
-    return { group: g, h: 0.6 };
+    roof.scale.set(1.22, 0.42, 1); roof.position.y = 0.34; roof.castShadow = true; roof.receiveShadow = true; g.add(roof);
+    return { group: g, h: 0.58 };
   }
 
-  // Ullevaal – tydelig (større) stadion med grønn bane inni.
+  // Ullevaal – kartets største stadion: rektangulær bowl med fire tribuner
+  // rundt en grønn bane, og lysmaster i hjørnene. Tydelig fotballstadion.
   function createFootballStadium(o) {
     const g = new THREE.Group();
-    const c = (o && o.color) || 0xc9cdd2, h = (o && o.h) || 0.44, sx = (o && o.sx) || 1.35;
-    const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.66, h, 28), toMat(c));
-    ring.scale.x = sx; ring.position.y = h / 2; ring.castShadow = true; ring.receiveShadow = true; g.add(ring);
-    const pitch = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.44, h * 0.5, 28), toMat(0x4f8f55));
-    pitch.scale.x = sx; pitch.position.y = h * 0.55; pitch.receiveShadow = true; g.add(pitch);
-    return { group: g, h };
+    const c = (o && o.color) || 0xcaced2, h = (o && o.h) || 0.46;
+    const W2 = 0.92, D2 = 0.7, th = 0.16; // halv bredde/dybde, tribunetykkelse
+    // Fire rette tribuner danner en rektangulær bowl.
+    [[0, -D2, W2 * 2, th], [0, D2, W2 * 2, th], [-W2, 0, th, D2 * 2 - th], [W2, 0, th, D2 * 2 - th]].forEach(([x, z, w, d]) => {
+      const stand = box(w, h, d, c); stand.position.set(x, h / 2, z); g.add(stand);
+      const cap = box(w, 0.04, d, shade(c, -0.1)); cap.position.set(x, h, z); g.add(cap);
+    });
+    // Grønn bane i midten.
+    const pitch = box(W2 * 1.5, 0.05, D2 * 1.4, 0x4f8f55); pitch.position.set(0, 0.025, 0); pitch.receiveShadow = true; g.add(pitch);
+    const line = box(0.02, 0.06, D2 * 1.4, 0xdfe6df); line.position.set(0, 0.03, 0); g.add(line);
+    // Lysmaster i hjørnene.
+    [[-W2, -D2], [W2, -D2], [-W2, D2], [W2, D2]].forEach(([x, z]) => {
+      const mast = cyl(0.02, 0.02, h + 0.22, 6, 0x9aa0a6); mast.position.set(x, (h + 0.22) / 2, z); g.add(mast);
+    });
+    return { group: g, h: h + 0.22 };
   }
 
-  // Bislett – mindre sentrumsnær arena med løpebane + bane.
+  // Bislett – lavere, oval friidrettsstadion: rødlig løpebane rundt grønt
+  // infield, klart rundere/lavere enn Ullevaal.
   function createAthleticsStadium(o) {
     const g = new THREE.Group();
-    const c = (o && o.color) || 0xbf6a52, h = (o && o.h) || 0.32;
-    const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.48, h, 24), toMat(c));
-    ring.scale.x = 1.2; ring.position.y = h / 2; ring.castShadow = true; ring.receiveShadow = true; g.add(ring);
-    const track = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, h * 0.6, 24), toMat(0xb24a3a));
-    track.scale.x = 1.2; track.position.y = h * 0.55; g.add(track);
-    const pitch = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, h * 0.62, 24), toMat(0x4f8f55));
-    pitch.scale.x = 1.2; pitch.position.y = h * 0.56; g.add(pitch);
+    const c = (o && o.color) || 0xc0907a, h = (o && o.h) || 0.3, sx = 1.28;
+    const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.52, h, 28), toMat(c));
+    ring.scale.x = sx; ring.position.y = h / 2; ring.castShadow = true; ring.receiveShadow = true; g.add(ring);
+    // Rødlig løpebane.
+    const track = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.36, h * 0.55, 28), toMat(0xb24a3a));
+    track.scale.x = sx; track.position.y = h * 0.6; track.receiveShadow = true; g.add(track);
+    // Grønt infield.
+    const pitch = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, h * 0.58, 28), toMat(0x4f8f55));
+    pitch.scale.x = sx; pitch.position.y = h * 0.62; pitch.receiveShadow = true; g.add(pitch);
     return { group: g, h };
   }
 
-  // Frognerparken / Vigeland – grøntflate med akse og monument-markør.
+  // Frognerparken / Vigeland – grønt parkrom med en tydelig midtakse, rader av
+  // små trær langs aksen, og en monolitt-markør (høy, smal tilspisset søyle) på
+  // en plinth i enden. Klart parkrom med monument, ikke bare tilfeldig grønt.
   function createParkMonumentAxis() {
     const g = new THREE.Group();
-    const lawn = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.4, 0.05, 6), toMat(0x6aa66f));
+    const lawn = new THREE.Mesh(new THREE.CylinderGeometry(1.35, 1.45, 0.05, 22), toMat(0x6aa66f));
     lawn.position.y = 0.025; lawn.receiveShadow = true; g.add(lawn);
-    const axis = box(0.16, 0.02, 1.8, 0xd9cdba); axis.position.y = 0.05; g.add(axis);
-    const mono = cyl(0.06, 0.09, 0.8, 10, 0xd9cdba); mono.position.z = -0.5; g.add(mono);
-    [[-0.6, 0.4], [0.6, 0.4], [-0.7, -0.3], [0.7, -0.3]].forEach(([x, z]) => {
-      const tr = coneMesh(0.12, 0.4, 7, 0x3f7a46); tr.position.x = x; tr.position.z = z; g.add(tr);
+
+    // Tydelig midtakse (gangvei) med trapp/plass-følelse.
+    const axis = box(0.2, 0.025, 1.9, 0xd9cdba); axis.position.y = 0.05; g.add(axis);
+
+    // Monolitten – plinth + høy, smal tilspisset søyle i aksens ende.
+    const plinth = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.26, 0.12, 16), toMat(0xcdbfa8));
+    plinth.position.set(0, 0.06, -0.7); plinth.receiveShadow = true; g.add(plinth);
+    const mono = cyl(0.05, 0.1, 0.85, 14, 0xe2d8c6); mono.position.set(0, 0.12, -0.7); g.add(mono);
+    const tip = coneMesh(0.05, 0.16, 14, 0xe2d8c6); tip.position.set(0, 0.12 + 0.85, -0.7); g.add(tip);
+
+    // Trerader langs aksen (rammer parkrommet inn).
+    [[-0.42, 0.55], [0.42, 0.55], [-0.42, 0.0], [0.42, 0.0], [-0.5, -0.45], [0.5, -0.45]].forEach(([x, z]) => {
+      const tr = coneMesh(0.11, 0.38, 7, 0x3f7a46); tr.position.set(x, 0.05, z); g.add(tr);
     });
-    return { group: g, h: 0.85 };
+
+    return { group: g, h: 1.0 };
   }
 
   const KEY_LANDMARK_BUILDERS = {
@@ -1169,17 +1360,19 @@
     const arch = archetypeForAsset(asset);
     const built = ARCHETYPES[arch]({ color: bodyColor });
     const group = built.group;
-    // Diskrete markører: små bygg/beacons oppå byen som ikke konkurrerer med
-    // de håndmodellerte landemerkene.
-    group.scale.setScalar(0.7);
+    // Diskrete markører: bevisst små bygg/beacons oppå byen som IKKE skal
+    // konkurrere visuelt med de håndmodellerte landemerkene. Holdt små, men
+    // fortsatt klikkbare og lette å se ved zoom.
+    group.scale.setScalar(0.52);
     group.traverse((m) => { if (m.isMesh) m.userData = { placeId: p.id }; });
 
-    // Liten lysende fyr på toppen så places skiller seg fra bybildet.
+    // Liten lysende fyr på toppen så places fortsatt skiller seg fra bybildet
+    // ved zoom – mindre enn før for å gi landemerkene forrang.
     const beacon = new THREE.Mesh(
-      new THREE.SphereGeometry(0.1, 10, 8),
+      new THREE.SphereGeometry(0.07, 8, 6),
       new THREE.MeshBasicMaterial({ color: new THREE.Color(accent) })
     );
-    beacon.position.y = built.h + 0.18;
+    beacon.position.y = built.h + 0.14;
     beacon.userData = { placeId: p.id };
     group.add(beacon);
 
