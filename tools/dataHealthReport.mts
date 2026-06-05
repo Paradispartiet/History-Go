@@ -9,11 +9,76 @@ import {
   RECOMMENDED_PLACE_FIELDS
 } from './placeSchemaPolicy.mjs';
 
+type JsonObject = { [key: string]: unknown };
+
+type DataHealthError = JsonObject & {
+  type: string;
+  message: string;
+};
+
+type DataHealthWarning = JsonObject & {
+  type: string;
+  message: string;
+};
+
+type PlaceRow = JsonObject & {
+  id: string;
+  _file: string;
+};
+
+type PlaceManifest = JsonObject & {
+  files?: unknown;
+};
+
+type OptionalManifest = {
+  path: string;
+  data: unknown;
+  files: unknown[];
+};
+
+type PlaceHealthRow = {
+  id: string;
+  file: string;
+  missing: string[];
+  warnings: string[];
+  errors: string[];
+  coverageScore: number;
+};
+
+type DataHealthSummary = {
+  totalPlaces: number;
+  filesChecked: number;
+  hardErrors: number;
+  warnings: number;
+  notConfigured: string[];
+  topMissingPlaces: {
+    id: string;
+    issues: number;
+    warnings: number;
+    errors: number;
+  }[];
+};
+
+type DataHealthState = {
+  generatedAt: string;
+  sourceManifests: string[];
+  filesChecked: Set<string>;
+  errors: DataHealthError[];
+  warnings: DataHealthWarning[];
+  places: PlaceHealthRow[];
+  missingByType: Map<string, string[]>;
+  notConfigured: Set<string>;
+};
+
+type PlaceErrorOptions = {
+  alreadyReportedGlobally?: boolean;
+};
+
 const ROOT = process.cwd();
 const REPORT_MD = path.join(ROOT, 'reports', 'data-health-summary.md');
 const REPORT_JSON = path.join(ROOT, 'reports', 'data-health-full.json');
 
-const state = {
+const state: DataHealthState = {
   generatedAt: new Date().toISOString(),
   sourceManifests: [],
   filesChecked: new Set(),
@@ -24,34 +89,35 @@ const state = {
   notConfigured: new Set()
 };
 
-const rel = (p) => path.relative(ROOT, p).replaceAll(path.sep, '/');
-const isObj = (v) => v && typeof v === 'object' && !Array.isArray(v);
-const nonEmpty = (v) => typeof v === 'string' && v.trim().length > 0;
-const pushMissing = (type, placeId) => {
+const rel = (p: string): string => path.relative(ROOT, p).replaceAll(path.sep, '/');
+const isObj = (v: unknown): v is JsonObject => !!v && typeof v === 'object' && !Array.isArray(v);
+const nonEmpty = (v: unknown): v is string => typeof v === 'string' && v.trim().length > 0;
+const pushMissing = (type: string, placeId: string): void => {
   if (!state.missingByType.has(type)) state.missingByType.set(type, []);
-  state.missingByType.get(type).push(placeId);
+  state.missingByType.get(type)?.push(placeId);
 };
-const addError = (type, message, context = {}) => state.errors.push({ type, message, ...context });
-const addWarning = (type, message, context = {}) => state.warnings.push({ type, message, ...context });
+const addError = (type: string, message: string, context: JsonObject = {}): number => state.errors.push({ type, message, ...context });
+const addWarning = (type: string, message: string, context: JsonObject = {}): number => state.warnings.push({ type, message, ...context });
+const asJsonObject = (value: unknown): JsonObject => value as JsonObject;
 
-function readJson(absPath, sourceLabel) {
+function readJson(absPath: string, sourceLabel: string): unknown {
   state.filesChecked.add(rel(absPath));
   try {
-    return JSON.parse(fs.readFileSync(absPath, 'utf8'));
+    return JSON.parse(fs.readFileSync(absPath, 'utf8')) as unknown;
   } catch (error) {
-    addError('invalid_json', `Could not parse JSON: ${rel(absPath)}`, { file: rel(absPath), detail: String(error.message || error), source: sourceLabel });
+    addError('invalid_json', `Could not parse JSON: ${rel(absPath)}`, { file: rel(absPath), detail: String(error instanceof Error ? (error.message || error) : error), source: sourceLabel });
     return null;
   }
 }
 
-function resolveManifestPath(entry, base = 'data/places') {
+function resolveManifestPath(entry: unknown, base = 'data/places'): string | null {
   const clean = String(entry || '').trim();
   if (!clean) return null;
   if (clean.startsWith('data/')) return path.join(ROOT, clean);
   return path.join(ROOT, base, clean.replace(/^\//, ''));
 }
 
-function extractPlaceIdsFromUnknown(data, acc = new Set()) {
+function extractPlaceIdsFromUnknown(data: unknown, acc = new Set<string>()): Set<string> {
   if (Array.isArray(data)) {
     for (const x of data) extractPlaceIdsFromUnknown(x, acc);
     return acc;
@@ -65,7 +131,7 @@ function extractPlaceIdsFromUnknown(data, acc = new Set()) {
   return acc;
 }
 
-function checkAsset(assetPath, ctx) {
+function checkAsset(assetPath: unknown, ctx: JsonObject): boolean {
   if (!nonEmpty(assetPath)) return false;
   const p = path.join(ROOT, assetPath.trim());
   if (!fs.existsSync(p)) {
@@ -76,13 +142,13 @@ function checkAsset(assetPath, ctx) {
   return true;
 }
 
-function collectPlaces() {
+function collectPlaces(): Map<string, PlaceRow> {
   const manifestPath = path.join(ROOT, 'data/places/manifest.json');
   state.sourceManifests.push('data/places/manifest.json');
-  const manifest = readJson(manifestPath, 'places_manifest');
+  const manifest = readJson(manifestPath, 'places_manifest') as PlaceManifest | null;
   if (!manifest || !Array.isArray(manifest.files)) return new Map();
 
-  const byId = new Map();
+  const byId = new Map<string, PlaceRow>();
   for (const entry of manifest.files) {
     const abs = resolveManifestPath(entry, 'data');
     if (!abs || !fs.existsSync(abs)) {
@@ -90,7 +156,7 @@ function collectPlaces() {
       continue;
     }
     const fileData = readJson(abs, 'place_file');
-    const rows = Array.isArray(fileData) ? fileData : Array.isArray(fileData?.places) ? fileData.places : null;
+    const rows = Array.isArray(fileData) ? fileData : isObj(fileData) && Array.isArray(fileData.places) ? fileData.places : null;
     if (!rows) {
       addError('invalid_place_file_shape', `Expected array or {places[]} in ${rel(abs)}`, { file: rel(abs) });
       continue;
@@ -106,16 +172,16 @@ function collectPlaces() {
         continue;
       }
       if (byId.has(id)) {
-        addError('duplicate_place_id', `Duplicate place id: ${id}`, { id, firstFile: byId.get(id)._file, secondFile: rel(abs) });
+        addError('duplicate_place_id', `Duplicate place id: ${id}`, { id, firstFile: byId.get(id)?._file, secondFile: rel(abs) });
         continue;
       }
-      byId.set(id, { ...place, _file: rel(abs) });
+      byId.set(id, { ...place, id, _file: rel(abs) });
     }
   }
   return byId;
 }
 
-function loadOptionalManifest(file, key = 'files') {
+function loadOptionalManifest(file: string, key = 'files'): OptionalManifest | null {
   const p = path.join(ROOT, file);
   if (!fs.existsSync(p)) {
     state.notConfigured.add(file);
@@ -124,10 +190,11 @@ function loadOptionalManifest(file, key = 'files') {
   state.sourceManifests.push(file);
   const data = readJson(p, file);
   if (!data) return null;
-  return { path: file, data, files: Array.isArray(data[key]) ? data[key] : [] };
+  const dataObject = asJsonObject(data);
+  return { path: file, data, files: Array.isArray(dataObject[key]) ? dataObject[key] as unknown[] : [] };
 }
 
-function run() {
+function run(): void {
   const placesById = collectPlaces();
   const placeIds = new Set(placesById.keys());
 
@@ -137,7 +204,7 @@ function run() {
   const wonderManifest = loadOptionalManifest('data/wonderkammer/index.json');
   const quizManifest = loadOptionalManifest('data/quiz/manifest.json');
 
-  const i18n = {};
+  const i18n: Record<string, unknown> = {};
   for (const lang of ['en', 'pt', 'es']) {
     const p = path.join(ROOT, `data/i18n/content/places/${lang}.json`);
     if (fs.existsSync(p)) {
@@ -149,7 +216,7 @@ function run() {
     }
   }
 
-  const peopleRefs = new Set();
+  const peopleRefs = new Set<string>();
   if (peopleManifest) {
     for (const file of peopleManifest.files) {
       const abs = resolveManifestPath(file, 'data');
@@ -157,26 +224,27 @@ function run() {
       const rows = readJson(abs, 'people_file');
       if (!Array.isArray(rows)) continue;
       for (const row of rows) {
-        for (const k of ['place_id', 'placeId']) if (nonEmpty(row?.[k])) peopleRefs.add(String(row[k]).trim());
+        if (!isObj(row)) continue;
+        for (const k of ['place_id', 'placeId']) if (nonEmpty(row[k])) peopleRefs.add(String(row[k]).trim());
       }
     }
   }
 
-  const leksikonRefs = new Set();
+  const leksikonRefs = new Set<string>();
   if (leksikonManifest) {
     for (const file of leksikonManifest.files) {
-      const abs = path.join(ROOT, file);
+      const abs = path.join(ROOT, file as string);
       if (!fs.existsSync(abs)) { addError('missing_manifest_file', `Missing leksikon file ${file}`, { manifest: leksikonManifest.path }); continue; }
       const rows = readJson(abs, 'leksikon_file');
       if (!Array.isArray(rows)) continue;
-      for (const row of rows) if (nonEmpty(row?.place_id)) leksikonRefs.add(String(row.place_id).trim());
+      for (const row of rows) if (isObj(row) && nonEmpty(row.place_id)) leksikonRefs.add(String(row.place_id).trim());
     }
   }
 
-  const wonderRefs = new Set();
+  const wonderRefs = new Set<string>();
   if (wonderManifest) {
     for (const file of wonderManifest.files) {
-      const abs = path.join(ROOT, file);
+      const abs = path.join(ROOT, file as string);
       if (!fs.existsSync(abs)) { addError('missing_manifest_file', `Missing wonderkammer file ${file}`, { manifest: wonderManifest.path }); continue; }
       const data = readJson(abs, 'wonderkammer_file');
       extractPlaceIdsFromUnknown(data, wonderRefs);
@@ -187,15 +255,15 @@ function run() {
   for (const ref of leksikonRefs) if (!placeIds.has(ref)) addError('invalid_leksikon_place_ref', `Leksikon references unknown place id ${ref}`, { id: ref });
 
   for (const [id, place] of placesById) {
-    const missing = [];
-    const warnings = [];
-    const errors = [];
-    const errorsAlreadyReportedGlobally = new Set();
-    const addPlaceError = (type, options = {}) => {
+    const missing: string[] = [];
+    const warnings: string[] = [];
+    const errors: string[] = [];
+    const errorsAlreadyReportedGlobally = new Set<string>();
+    const addPlaceError = (type: string, options: PlaceErrorOptions = {}): void => {
       errors.push(type);
       if (options.alreadyReportedGlobally) errorsAlreadyReportedGlobally.add(type);
     };
-    const req = [...REQUIRED_PLACE_FIELDS.filter((field) => field !== 'id'), ...RECOMMENDED_PLACE_FIELDS, 'popupDesc','image','cardImage','emne_ids','quiz_profile'];
+    const req = [...REQUIRED_PLACE_FIELDS.filter((field: string) => field !== 'id'), ...RECOMMENDED_PLACE_FIELDS, 'popupDesc','image','cardImage','emne_ids','quiz_profile'];
     for (const field of req) if (place[field] == null || (typeof place[field] === 'string' && !place[field].trim())) missing.push(field);
     for (const field of missing) warnings.push(`missing_${field}`);
 
@@ -205,7 +273,7 @@ function run() {
     if (!(typeof place.lat === 'number' && Number.isFinite(place.lat) && place.lat >= -90 && place.lat <= 90)) addPlaceError('invalid_lat');
     if (!(typeof place.lon === 'number' && Number.isFinite(place.lon) && place.lon >= -180 && place.lon <= 180)) addPlaceError('invalid_lon');
 
-    const checkPlaceAsset = (field) => {
+    const checkPlaceAsset = (field: string): void => {
       if (!nonEmpty(place[field])) return;
       if (!checkAsset(place[field], { id, field, file: place._file })) {
         addPlaceError(`missing_asset_${field}`, { alreadyReportedGlobally: true });
@@ -226,15 +294,16 @@ function run() {
     if (!peopleRefs.has(id)) warnings.push('missing_people_linkage');
     if (!leksikonRefs.has(id)) warnings.push('missing_leksikon');
 
-    if (sprakManifest && isObj(sprakManifest.data.place_files)) {
-      if (!sprakManifest.data.place_files[id]) warnings.push('missing_spraakleksikon');
+    const sprakPlaceFiles = sprakManifest ? asJsonObject(sprakManifest.data).place_files : undefined;
+    if (sprakManifest && isObj(sprakPlaceFiles)) {
+      if (!sprakPlaceFiles[id]) warnings.push('missing_spraakleksikon');
     } else {
       warnings.push('spraakleksikon_not_configured');
     }
 
     for (const lang of ['en','pt','es']) {
       if (i18n[lang] === null) warnings.push(`i18n_${lang}_not_configured`);
-      else if (!i18n[lang][id]) warnings.push(`missing_i18n_${lang}`);
+      else if (!asJsonObject(i18n[lang])[id]) warnings.push(`missing_i18n_${lang}`);
     }
 
     if (!wonderRefs.has(id) && !place.wonderkammer) warnings.push('missing_wonderkammer');
@@ -249,7 +318,7 @@ function run() {
     state.places.push({ id, file: place._file, missing, warnings, errors, coverageScore: Math.max(0, 100 - (warnings.length * 4 + errors.length * 12)) });
   }
 
-  const summary = {
+  const summary: DataHealthSummary = {
     totalPlaces: state.places.length,
     filesChecked: state.filesChecked.size,
     hardErrors: state.errors.length,
@@ -258,7 +327,7 @@ function run() {
     topMissingPlaces: state.places.slice().sort((a,b)=>(b.warnings.length+b.errors.length)-(a.warnings.length+a.errors.length)).slice(0,20).map(p=>({id:p.id, issues:p.warnings.length+p.errors.length, warnings:p.warnings.length, errors:p.errors.length}))
   };
 
-  const missingByType = Object.fromEntries(Array.from(state.missingByType.entries()).map(([k,v])=>[k, Array.from(new Set(v)).sort()]));
+  const missingByType: Record<string, string[]> = Object.fromEntries(Array.from(state.missingByType.entries()).map(([k,v])=>[k, Array.from(new Set(v)).sort()]));
 
   const recommendedNextBatches = summary.topMissingPlaces.slice(0,20).map(x=>x.id);
 
