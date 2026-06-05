@@ -325,15 +325,22 @@ History Go er delt i tydelige lag:
 - Init map
 - Init epoker
 - Init DataHub.loadNature
+- Splitte rask index-start fra bakgrunnslast
 
-**Fil**
+**Filer**
 - js/boot.js
+- js/boot-fast.js
 
 **Eier**
 - boot()
+- bootCritical()
+- bootBackground()
 - PEOPLE_FILES
 - EPOKER_FILES
 - buildEpokerRuntimeIndex
+
+**Se også**
+- [Index app structure](../docs/APP_STRUCTURE_INDEX.md)
 
 ---
 
@@ -343,9 +350,22 @@ History Go er delt i tydelige lag:
 - DOMContentLoaded
 - safeRun
 - Sammenkobling av systemet
+- Starte index-router etter critical boot
+- La background boot kjøre uten å blokkere app-ready
 
-**Fil**
+**Filer**
 - js/app.js
+- js/router/AppRouter.js
+- js/views/MapView.js
+
+**Eier**
+- markAppReady
+- HGAppRouter
+- HGMapView
+- Index-rutene `#/map`, `#/place/:id`, `#/quiz/:id`
+
+**Se også**
+- [Index app structure](../docs/APP_STRUCTURE_INDEX.md)
 
 ---
 
