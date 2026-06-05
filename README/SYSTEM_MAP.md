@@ -194,12 +194,19 @@ History Go er delt i tydelige lag:
 ### 6.7 Mini-profil
 - js/ui/mini-profile.js
 - Eier: initMiniProfile, quiz-historikk, Civication inbox-visning
+- Rolle: rask profilstatus i `index.html`
 
-### 6.8 Søk
+### 6.8 Full profilside
+- profile.html
+- js/profile.js
+- Eier: full profil, samling, merker, profilkart, historikk og profilpaneler
+- Rolle: canonical profilside; ikke en intern APP SHELL-view
+
+### 6.9 Søk
 - js/ui/search.js
 - Eier: global search-widget
 
-### 6.9 Chips
+### 6.10 Chips
 - js/hgchips.js
 
 ---

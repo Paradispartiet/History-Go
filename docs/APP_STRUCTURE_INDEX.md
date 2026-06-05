@@ -15,9 +15,12 @@ It owns:
 - the nearby/left panel
 - the place card / bottom sheet
 - the quiz modal flow
+- miniProfile as a quick profile status surface
 - the lightweight hash router for index-only routes
 
-`profile.html` and `Civication.html` are still separate pages. They are not internal index views yet.
+`index.html` keeps miniProfile for quick status. `profile.html` is the canonical full profile page. `#/profile` is not an internal view now; it redirects/navigates to `profile.html`. Profile migration into index is paused because miniProfile already covers quick status.
+
+`Civication.html` is still a separate page. It is not an internal index view.
 
 ## Boot model
 
@@ -58,7 +61,7 @@ Background boot should be defensive. One failing background module should not pr
 
 ## Router model
 
-The index app uses `js/router/AppRouter.js` for index-only hash routes.
+The index app uses `js/router/AppRouter.js` for index-only hash routes. `#/profile` is intentionally not listed as an index route because it navigates to `profile.html`.
 
 Supported routes:
 
@@ -95,7 +98,7 @@ MapView should stay thin. It should coordinate existing DOM/runtime behavior, no
 
 Do not move these into the index router without a separate migration plan:
 
-- `profile.html`
+- `profile.html` (canonical full profile page)
 - `js/profile.js`
 - `Civication.html`
 - `js/Civication/**`
@@ -110,11 +113,13 @@ Good next steps:
 - keep index route helpers centralized in `AppRouter`
 - add small route/state fixes in `MapView` when needed
 - document new index-only behavior here
+- keep miniProfile as quick status in index and `profile.html` as the full profile
 
 Avoid:
 
 - large router rewrites
 - moving profile/Civication into index as part of unrelated patches
+- restarting ProfileView migration while miniProfile already covers quick profile status
 - changing boot order without checking loading behavior
 - mixing app-structure work with data migrations or UI redesigns
 

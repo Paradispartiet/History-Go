@@ -1,6 +1,6 @@
 // js/router/AppRouter.js
-// Lett hash-router for index.html. Første scope: map/place/quiz/profile-placeholder.
-// Full profile.html og Civication.html beholdes som egne sider foreløpig.
+// Lett hash-router for index.html. Scope: map/place/quiz.
+// Full profile.html og Civication.html beholdes som egne sider.
 
 (function () {
   "use strict";
@@ -115,13 +115,9 @@
       return;
     }
 
-    // ProfileView er foreløpig bare en intern placeholder. profile.html er fortsatt full fallback.
+    // #/profile is not an internal index view. Full profile lives on profile.html.
     if (route.name === "profile") {
-      if (typeof window.HGProfileView?.show === "function") {
-        window.HGProfileView.show();
-      } else {
-        window.location.href = "profile.html";
-      }
+      window.location.href = "profile.html";
       return;
     }
 

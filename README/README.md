@@ -15,16 +15,18 @@ History GO er designet for byvandring, samling og læring: du oppdager steder p�
 
 ## Status / sider
 - **Hovedapp:** `index.html` (kart + utforsk + quiz + popups + ruter + progresjon)
-- **Profil:** `profile.html`
+- **Profil:** `profile.html` (canonical full profilside)
 - **Kunnskap:** `knowledge.html`
 - **Notater:** `notater.html`
 - **Emner/pensum:** `emner.html`
 - **AHA:** `AHA/index.html` (import + innsiktskammer + meta)
 
 ### Index appstruktur
-- `index.html` er hoved-app-shell for kart, nearby, place card og quiz.
+- `index.html` er hoved-app-shell for kart, nearby, place card, quiz og miniProfile.
+- miniProfile gir rask profilstatus i index.
+- `profile.html` er full profil for samling, merker, profilkart, historikk og profilpaneler.
 - Index bruker split boot: `bootCritical()` for raskt kart/places og `bootBackground()` for people/relations/wonderkammer/nature/stories/events/brands.
-- Index-routeren eier foreløpig bare `#/map`, `#/place/:id` og `#/quiz/:id`.
+- Index-routeren eier `#/map`, `#/place/:id` og `#/quiz/:id`; `#/profile` er ikke en intern summary-view og navigerer til `profile.html`.
 - `profile.html` og `Civication.html` er fortsatt egne sider og skal ikke flyttes inn uten egen fase.
 - Se også: [`docs/APP_STRUCTURE_INDEX.md`](../docs/APP_STRUCTURE_INDEX.md)
 
