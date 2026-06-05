@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_trener",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "oktplan_og_laring",
+      "purpose": "Lære spilleren at trenerarbeid begynner med læringsmål, presis øktstruktur og tålmodig utvikling, ikke bare høy aktivitet.",
+      "learning_focus": ["øktplanlegging", "læringsmål", "spillerutvikling"],
+      "mails": [
+        {
+          "id": "sport_trener_job_okt_001",
+          "mail_type": "job",
+          "mail_family": "oktplan_og_laring",
+          "role_scope": "sport_trener",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sportslig_koordinator_ida",
+          "place_id": "sport_treningsfelt",
+          "subject": "Økta ser rolig ut, men den har et presist læringsmål",
+          "summary": "Spillerne forventer høy intensitet, men økta er lagt opp for å trene timing, avstand og valg i et smalt tema.",
+          "purpose": "Etablere at treneren må tåle at god læring ikke alltid ser dramatisk ut.",
+          "stakes": "Gjør du økta mer intensiv, får du energi og fornøyde spillere. Holder du læringsmålet, bygger du noe som varer lenger.",
+          "situation": [
+            "Spillerne kommer ut med forventning om tempo og konkurranse.",
+            "Planen din er enklere: et avgrenset tema, mange repetisjoner og stopp for korte korrigeringer.",
+            "Du merker at økta kan oppfattes som for rolig hvis du ikke eier læringsmålet tydelig."
+          ],
+          "task_domain": "øktplanlegging",
+          "competency": "pedagogisk_presisjon",
+          "pressure": "synlig_intensitet_vs_læring_over_tid",
+          "choice_axis": "holde_læringsmål_vs_skru_opp_aktivitet",
+          "consequence_axis": "utvikling_vs_øyeblikkelig_energi",
+          "narrative_arc": "treneren lærer at en god økt må lære spillerne noe, ikke bare slite dem ut",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hold læringsmålet og forklar hvorfor økta er smal",
+              "reply": "Jeg holder læringsmålet og forklarer hvorfor økta er smal.",
+              "effect": 1,
+              "tags": ["training", "learning", "coaching"],
+              "feedback": "Du gjør økta mindre spektakulær og mer utviklende."
+            },
+            {
+              "id": "B",
+              "label": "Legg inn mer konkurranse for å få opp energi og trykk",
+              "reply": "Jeg legger inn mer konkurranse for å få opp energi og trykk.",
+              "effect": 0,
+              "tags": ["intensity", "motivation"],
+              "feedback": "Du får bedre trøkk, men læringsmålet blir mer uklart."
+            }
+          ]
+        },
+        {
+          "id": "sport_trener_job_okt_002",
+          "mail_type": "job",
+          "mail_family": "oktplan_og_laring",
+          "role_scope": "sport_trener",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "sportslig_koordinator_ida",
+          "place_id": "sport_treningsfelt",
+          "subject": "Spillerne kjeder seg med repetisjonene, men feilen er fortsatt der",
+          "summary": "Du ser at gruppa vil videre, men samme beslutningsfeil dukker opp hver gang tempoet øker.",
+          "purpose": "Teste trenerens evne til å stå i nødvendig repetisjon uten å miste spillergruppen.",
+          "stakes": "Går du videre, holder du motivasjonen. Blir du i temaet, kan spillerne faktisk løse feilen som stopper dem i kamp.",
+          "situation": [
+            "Spillerne forstår øvelsen, men ikke godt nok til å gjøre den under press.",
+            "De begynner å bli utålmodige, og du kjenner fristelsen til å bytte tema.",
+            "Men hver gang tempoet går opp, kommer samme feil tilbake."
+          ],
+          "task_domain": "repetisjon_og_variasjon",
+          "competency": "læringsutholdenhet",
+          "pressure": "spillerutålmodighet_vs_nødvendig_repetisjon",
+          "choice_axis": "bli_i_tema_vs_bytte_tema",
+          "consequence_axis": "dyp_læring_vs_motivasjonsro",
+          "narrative_arc": "treneren lærer at repetisjon må varieres, ikke forlates, når læringen ikke sitter",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bli i temaet, men variere øvelsen og forklare kampkoblingen",
+              "reply": "Jeg blir i temaet, men varierer øvelsen og forklarer kampkoblingen.",
+              "effect": 1,
+              "tags": ["learning", "repetition", "variation"],
+              "feedback": "Du beskytter læringen uten å gjøre økta mekanisk."
+            },
+            {
+              "id": "B",
+              "label": "Bytte tema for å få opp energi og flyt i gruppa",
+              "reply": "Jeg bytter tema for å få opp energi og flyt i gruppa.",
+              "effect": -1,
+              "tags": ["avoidance", "tempo"],
+              "feedback": "Gruppa våkner, men feilen får bli med videre."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uttak_roller_og_tillit",
+      "purpose": "Lære spilleren at uttak og roller alltid kommuniserer verdi, og at tillit krever forklaring, rettferdighet og presise krav.",
+      "learning_focus": ["uttak", "rolleforklaring", "tillit"],
+      "mails": [
+        {
+          "id": "sport_trener_job_uttak_001",
+          "mail_type": "job",
+          "mail_family": "uttak_roller_og_tillit",
+          "role_scope": "sport_trener",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "assistenttrener_lina",
+          "place_id": "sport_garderobe",
+          "subject": "Uttaket er riktig sportslig, men rollen må forklares",
+          "summary": "En spiller mister startplassen av taktiske grunner, men kommer til å høre det som en dom over egen verdi hvis du ikke forklarer rollen presist.",
+          "purpose": "Etablere at uttak er pedagogisk kommunikasjon, ikke bare sportslig beslutning.",
+          "stakes": "Sier du lite, virker du tydelig og effektiv. Forklarer du godt, bruker du mer tid, men beskytter tillit og utvikling.",
+          "situation": [
+            "Du har en taktisk grunn til å endre startlaget.",
+            "Spilleren som ryker ut, har trent bra og kommer til å kjenne det som et signal.",
+            "Du må forklare forskjellen mellom verdi, rolle og kampplan."
+          ],
+          "task_domain": "uttak",
+          "competency": "rolleforklaring",
+          "pressure": "prestasjonsvalg_vs_tillit",
+          "choice_axis": "forklare_rolle_vs_bare_ta_uttak",
+          "consequence_axis": "tillit_vs_effektivitet",
+          "narrative_arc": "treneren lærer at et riktig uttak kan bli feil ledelse hvis rollen ikke forklares",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar rollen ærlig og konkret før uttaket blir garderobesnakk",
+              "reply": "Jeg forklarer rollen ærlig og konkret før uttaket blir garderobesnakk.",
+              "effect": 1,
+              "tags": ["selection", "trust", "role"],
+              "feedback": "Du gjør skuffelsen tydeligere, men mindre giftig."
+            },
+            {
+              "id": "B",
+              "label": "Holde uttaket kort og la prestasjonene avgjøre videre",
+              "reply": "Jeg holder uttaket kort og lar prestasjonene avgjøre videre.",
+              "effect": 0,
+              "tags": ["selection", "direct"],
+              "feedback": "Beslutningen er tydelig, men spilleren må selv gjette hva den betyr."
+            }
+          ]
+        },
+        {
+          "id": "sport_trener_job_uttak_002",
+          "mail_type": "job",
+          "mail_family": "uttak_roller_og_tillit",
+          "role_scope": "sport_trener",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "assistenttrener_lina",
+          "place_id": "sport_garderobe",
+          "subject": "Foreldrene spør om rettferdighet, men saken handler om rolle",
+          "summary": "En spiller får mindre spilletid, og omgivelsene beskriver det som urettferdig selv om vurderingen handler om kampbilde og rollekrav.",
+          "purpose": "Teste om treneren klarer å stå i rettferdighet uten å love likhet.",
+          "stakes": "Gir du mer spilletid for å roe presset, mister rollekravene verdi. Står du i vurderingen, må du forklare rettferdighet som noe annet enn lik fordeling.",
+          "situation": [
+            "Spilleren jobber godt og fortjener respekt.",
+            "Likevel passer rollen dårligere i akkurat denne kampplanen.",
+            "Omgivelsene ber om rettferdighet, men mener egentlig mer spilletid."
+          ],
+          "task_domain": "spilletid",
+          "competency": "rettferdig_rolleledelse",
+          "pressure": "likhetspress_vs_rollekrav",
+          "choice_axis": "stå_i_rollebegrunnelse_vs_kompensere_med_spilletid",
+          "consequence_axis": "tillit_til_standard_vs_kort_ro",
+          "narrative_arc": "treneren lærer at rettferdighet ikke alltid er lik fordeling",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stå i rollebegrunnelsen og gi spilleren konkret utviklingsvei",
+              "reply": "Jeg står i rollebegrunnelsen og gir spilleren konkret utviklingsvei.",
+              "effect": 1,
+              "tags": ["fairness", "role", "development"],
+              "feedback": "Du gjør skuffelsen faglig håndterbar uten å selge ut standarden."
+            },
+            {
+              "id": "B",
+              "label": "Gi noe mer spilletid for å dempe presset rundt spilleren",
+              "reply": "Jeg gir noe mer spilletid for å dempe presset rundt spilleren.",
+              "effect": -1,
+              "tags": ["pressure", "compromise"],
+              "feedback": "Det roer situasjonen, men gjør rollekravet mindre troverdig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kampplan_press_og_justering",
+      "purpose": "Lære spilleren at kampplaner må være tydelige, enkle under press og justerbare uten at treneren gjør panikkgrep.",
+      "learning_focus": ["kampplan", "justering", "press"],
+      "mails": [
+        {
+          "id": "sport_trener_job_kamp_001",
+          "mail_type": "job",
+          "mail_family": "kampplan_press_og_justering",
+          "role_scope": "sport_trener",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "analyseansvarlig_noah",
+          "place_id": "sport_konkurransearena",
+          "subject": "Kampplanen er smart, men spillerne trenger færre beskjeder",
+          "summary": "Analysen viser mange muligheter, men laget kan bare bære noen få klare prinsipper når presset kommer.",
+          "purpose": "Vise at god kampplan ikke er mest mulig informasjon, men riktig informasjon.",
+          "stakes": "Gir du hele planen, viser du faglig kontroll. Forenkler du, gir du spillerne større sjanse til å bruke den.",
+          "situation": [
+            "Analysen er god, og du ser flere svakheter hos motstanderen.",
+            "Men spillerne skal ikke bestå en teoriprøve; de skal ta valg under press.",
+            "Du må velge hva laget faktisk skal bære med seg ut."
+          ],
+          "task_domain": "kampforberedelse",
+          "competency": "praktisk_taktisk_kommunikasjon",
+          "pressure": "faglig_kompleksitet_vs_spillerbruk",
+          "choice_axis": "forenkle_prinsipper_vs_gi_full_plan",
+          "consequence_axis": "brukbarhet_vs_kontrollfølelse",
+          "narrative_arc": "treneren lærer at en kampplan er god først når spillerne kan bruke den",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kutte planen ned til tre prinsipper spillerne kan bruke under press",
+              "reply": "Jeg kutter planen ned til tre prinsipper spillerne kan bruke under press.",
+              "effect": 1,
+              "tags": ["tactics", "clarity", "match"],
+              "feedback": "Du gir fra deg litt kontroll på papiret og mer kontroll i kampen."
+            },
+            {
+              "id": "B",
+              "label": "Presentere hele analysen så laget forstår alle mulighetene",
+              "reply": "Jeg presenterer hele analysen så laget forstår alle mulighetene.",
+              "effect": -1,
+              "tags": ["analysis", "overload"],
+              "feedback": "Planen er faglig rik, men spillerne kan bli taktisk mette før kampen starter."
+            }
+          ]
+        },
+        {
+          "id": "sport_trener_job_kamp_002",
+          "mail_type": "job",
+          "mail_family": "kampplan_press_og_justering",
+          "role_scope": "sport_trener",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "analyseansvarlig_noah",
+          "place_id": "sport_konkurransearena",
+          "subject": "Planen virker ikke, men første justering kan være panikk",
+          "summary": "Laget sliter i starten, og du ser en mulig endring, men er usikker på om problemet er plan, gjennomføring eller nerver.",
+          "purpose": "Teste om treneren skiller nødvendig justering fra kontrollbehov under press.",
+          "stakes": "Endrer du raskt, viser du handlekraft. Venter du med tydelig observasjon, kan laget finne rytmen, men risikoen øker.",
+          "situation": [
+            "De første minuttene ser dårlige ut.",
+            "Du kjenner publikums uro, benkens blikk og ditt eget behov for å gjøre noe.",
+            "Men du vet ennå ikke sikkert om kampplanen er feil, eller om laget ikke har rukket å lande."
+          ],
+          "task_domain": "kampjustering",
+          "competency": "pressrolig_beslutning",
+          "pressure": "handlekraft_vs_panikkgrep",
+          "choice_axis": "observere_og_presisere_vs_endre_raskt",
+          "consequence_axis": "rolig_læring_vs_overkontroll",
+          "narrative_arc": "treneren lærer at ikke alle tidlige problemer krever nytt system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi én presisering, observere fem minutter og justere på grunnlag",
+              "reply": "Jeg gir én presisering, observerer fem minutter og justerer på grunnlag.",
+              "effect": 1,
+              "tags": ["match", "adjustment", "composure"],
+              "feedback": "Du viser laget at planen kan justeres uten at treneren mister roen."
+            },
+            {
+              "id": "B",
+              "label": "Endre raskt for å bryte kampbildet før det setter seg",
+              "reply": "Jeg endrer raskt for å bryte kampbildet før det setter seg.",
+              "effect": 0,
+              "tags": ["action", "risk"],
+              "feedback": "Det kan virke, men spillerne lærer også at planen varer til første uro."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "omsorg_disiplin_og_utvikling",
+      "purpose": "Lære spilleren å holde omsorg og krav sammen slik at standardene blir menneskelige uten å bli utydelige.",
+      "learning_focus": ["omsorg", "disiplin", "utvikling"],
+      "mails": [
+        {
+          "id": "sport_trener_job_omsorg_001",
+          "mail_type": "job",
+          "mail_family": "omsorg_disiplin_og_utvikling",
+          "role_scope": "sport_trener",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "spillerutvikler_amina",
+          "place_id": "sport_treningsfelt",
+          "subject": "Spilleren trenger støtte, men standarden glipper rundt ham",
+          "summary": "En spiller har en vanskelig periode, og du har gitt mye rom. Nå begynner resten av gruppa å oppfatte kravene som uklare.",
+          "purpose": "Etablere omsorg med ramme som trenerferdighet.",
+          "stakes": "Gir du mer rom, viser du omsorg. Setter du en tydelig avtale, kan spilleren føle press, men gruppa forstår standarden.",
+          "situation": [
+            "Spilleren har reelle grunner til å trenge støtte.",
+            "Samtidig har fravær, lav intensitet og dårlig oppfølging begynt å påvirke gruppa.",
+            "Du må gjøre støtte konkret uten å gjøre standarden tilfeldig."
+          ],
+          "task_domain": "spilleroppfølging",
+          "competency": "omsorg_med_krav",
+          "pressure": "menneske_vs_standard",
+          "choice_axis": "støtte_med_avtale_vs_mer_rom",
+          "consequence_axis": "utviklende_trygghet_vs_utydelig_omsorg",
+          "narrative_arc": "treneren lærer at omsorg blir sterkere når den får en tydelig ramme",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage en støttende, tydelig avtale med konkrete forventninger",
+              "reply": "Jeg lager en støttende, tydelig avtale med konkrete forventninger.",
+              "effect": 1,
+              "tags": ["care", "standard", "development"],
+              "feedback": "Du gir spilleren trygghet uten å gjøre kravene usynlige."
+            },
+            {
+              "id": "B",
+              "label": "Gi spilleren mer rom og ta standarden senere",
+              "reply": "Jeg gir spilleren mer rom og tar standarden senere.",
+              "effect": 0,
+              "tags": ["care", "delay"],
+              "feedback": "Det kan være menneskelig riktig kort, men gruppa trenger snart tydeligere rammer."
+            }
+          ]
+        },
+        {
+          "id": "sport_trener_job_omsorg_002",
+          "mail_type": "job",
+          "mail_family": "omsorg_disiplin_og_utvikling",
+          "role_scope": "sport_trener",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sportslig_koordinator_ida",
+          "place_id": "sport_treningsfelt",
+          "subject": "Nå må du vise hva slags trenerstandard laget skal vokse i",
+          "summary": "Laget har lært øktmål, roller og kampplan, men neste steg krever en tydelig standard som holder både mennesker og prestasjon sammen.",
+          "purpose": "Avrunde rollen med moden trenerledelse: læring, uttak, kampplan, omsorg og krav i samme struktur.",
+          "stakes": "Gjør du standarden for myk, mister laget retning. Gjør du den for hard, mister du mennesker. Formulerer du den presist, kan laget vokse i den.",
+          "situation": [
+            "Du har sett hva spillerne tåler, hva de misforstår, og hva de trenger for å lære.",
+            "Nå holder det ikke å være snill eller streng etter situasjonen.",
+            "Du må formulere en trenerstandard som er krevende, menneskelig og tydelig nok til å brukes."
+          ],
+          "task_domain": "trenerstandard",
+          "competency": "moden_trenerledelse",
+          "pressure": "krav_vs_omsorg",
+          "choice_axis": "formulere_krevende_omsorg_vs_velge_hard_eller_mykt",
+          "consequence_axis": "utviklingskultur_vs_reaktiv_ledelse",
+          "narrative_arc": "treneren lærer at god ledelse ikke er snill eller hard, men presis og ansvarlig",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Formuler standarden som tydelige krav med menneskelig oppfølging",
+              "reply": "Jeg formulerer standarden som tydelige krav med menneskelig oppfølging.",
+              "effect": 1,
+              "tags": ["mastery", "coaching", "standard"],
+              "feedback": "Du lager en kultur spillerne kan vokse i, ikke bare reagere på."
+            },
+            {
+              "id": "B",
+              "label": "Stramme inn kravene og la spillerne tilpasse seg nivået",
+              "reply": "Jeg strammer inn kravene og lar spillerne tilpasse seg nivået.",
+              "effect": 0,
+              "tags": ["discipline", "hardline"],
+              "feedback": "Du får tydelighet, men ikke nødvendigvis utviklingskultur."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
