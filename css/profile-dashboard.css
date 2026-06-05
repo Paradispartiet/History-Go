@@ -99,12 +99,12 @@ body.profile-page,
 
 
 .profile-page .site-header .profile-hero-v2{
-  flex:1 1 520px;
+  flex:1 1 620px;
   width:auto;
-  max-width:min(720px, calc(100vw - 24px));
+  max-width:min(860px, calc(100vw - 24px));
   margin:0;
   border-radius:var(--profile-header-radius);
-  box-shadow:0 10px 24px rgba(0,0,0,.24);
+  box-shadow:0 8px 20px rgba(0,0,0,.22);
 }
 
 .profile-hero-v2::after{
@@ -121,42 +121,38 @@ body.profile-page,
   z-index:1;
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:10px 12px;
+  gap:8px;
+  padding:7px 10px;
 }
 
 .profile-identity-block{
   display:flex;
-  gap:10px;
+  flex-wrap:nowrap;
+  gap:8px;
   align-items:center;
   min-width:0;
   width:100%;
 }
 
 .profile-avatar-orb{
-  width:50px;
-  height:50px;
-  flex:0 0 50px;
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
   display:grid;
   place-items:center;
-  border-radius:15px;
+  border-radius:12px;
   background:linear-gradient(145deg, rgba(246,200,0,.96), rgba(255,183,3,.74));
   color:#0b0e14;
-  font-size:18px;
+  font-size:14px;
   font-weight:900;
-  box-shadow:0 8px 18px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.28);
+  box-shadow:0 6px 14px rgba(0,0,0,.22), inset 0 0 0 1px rgba(255,255,255,.28);
 }
 
 .profile-hero-copy{
-  display:grid;
-  grid-template-columns:minmax(120px,1fr) auto auto;
-  grid-template-areas:
-    "kicker status actions"
-    "name status actions"
-    "sub status actions";
-  column-gap:10px;
-  row-gap:2px;
+  display:flex;
+  flex-wrap:nowrap;
   align-items:center;
+  gap:8px;
   min-width:0;
   width:100%;
 }
@@ -191,11 +187,15 @@ body.profile-page,
 }
 
 .profile-hero-v2 #profileName{
-  grid-area:name;
-  min-width:0;
-  font-size:clamp(1.1rem, 1rem + .55vw, 1.35rem);
-  line-height:1.08;
-  letter-spacing:-.035em;
+  flex:1 1 150px;
+  min-width:80px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:clamp(.98rem, .92rem + .25vw, 1.12rem);
+  line-height:1.05;
+  letter-spacing:-.025em;
+  font-weight:900;
   margin:0;
 }
 
@@ -212,11 +212,12 @@ body.profile-page,
 }
 
 .profile-hero-actions-v2{
-  grid-area:actions;
+  flex:0 0 auto;
   display:flex;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
+  align-items:center;
   justify-content:flex-end;
-  gap:6px;
+  gap:5px;
   margin-top:0;
 }
 
@@ -224,8 +225,8 @@ body.profile-page,
 .profile-hero-actions-v2 .secondary,
 .profile-page .site-header .profile-hero-actions-v2 .secondary{
   border-radius:999px;
-  min-height:34px;
-  padding:7px 11px;
+  min-height:30px;
+  padding:6px 10px;
   font-size:12px;
   line-height:1;
 }
@@ -238,15 +239,16 @@ body.profile-page,
   box-shadow:0 6px 14px rgba(246,200,0,.18);
 }
 
+.profile-icon-button,
 .profile-hero-actions-v2 .profile-icon-button{
-  width:34px;
-  min-width:34px;
-  min-height:34px;
+  width:30px;
+  min-width:30px;
+  min-height:30px;
   padding:0;
   display:inline-grid;
   place-items:center;
   border-radius:999px;
-  font-size:16px;
+  font-size:15px;
   font-weight:900;
 }
 
@@ -270,22 +272,22 @@ body.profile-page,
 }
 
 .profile-header-status{
-  grid-area:status;
+  flex:0 0 auto;
   display:flex;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
   justify-content:flex-end;
-  gap:5px;
+  gap:4px;
   margin-top:0;
-  max-width:220px;
+  max-width:none;
 }
 
 .profile-header-status .profile-stat-card{
   min-height:28px;
   display:inline-flex;
   align-items:center;
-  gap:4px;
+  gap:3px;
   text-align:left;
-  padding:4px 7px;
+  padding:4px 6px;
   border-radius:999px;
   background:linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.06));
   border:1px solid rgba(255,255,255,.13);
@@ -325,6 +327,47 @@ body.profile-page,
   text-transform:uppercase;
   letter-spacing:.05em;
   color:rgba(255,255,255,.72);
+}
+
+
+.profile-tabs-room-button,
+.profile-room-button{
+  flex:0 0 auto;
+  width:36px;
+  min-width:36px;
+  min-height:36px;
+  margin-left:2px;
+  background:linear-gradient(180deg, rgba(255,114,188,.92), rgba(219,49,143,.72));
+  color:#fff;
+  border:1px solid rgba(255,190,224,.42);
+  box-shadow:0 6px 14px rgba(219,49,143,.22), inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.profile-journey-head{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  align-items:center;
+  gap:8px;
+}
+
+.profile-journey-head .section-meta{
+  margin-left:auto;
+}
+
+.profile-journey-map-button{
+  width:30px;
+  min-width:30px;
+  min-height:30px;
+  padding:0;
+  border-radius:999px;
+  display:inline-grid;
+  place-items:center;
+  font-size:17px;
+  font-weight:900;
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
 }
 
 .profile-dashboard-grid{
@@ -611,31 +654,20 @@ body.profile-page,
 
 @media (max-width: 700px){
   .profile-hero-v2-inner{
-    padding:9px 10px;
+    padding:8px 10px;
   }
 
-  .profile-identity-block{
-    align-items:flex-start;
-    gap:10px;
-  }
-
+  .profile-identity-block,
   .profile-hero-copy{
-    grid-template-columns:1fr;
-    grid-template-areas:
-      "kicker"
-      "name"
-      "sub"
-      "status"
-      "actions";
-    row-gap:6px;
+    flex-wrap:wrap;
   }
 
   .profile-avatar-orb{
-    width:46px;
-    height:46px;
-    flex-basis:46px;
-    border-radius:14px;
-    font-size:17px;
+    width:36px;
+    height:36px;
+    flex-basis:36px;
+    border-radius:12px;
+    font-size:13px;
   }
 
   .profile-header-status,
@@ -725,7 +757,7 @@ body.profile-page,
 .profile-dashboard-v2{flex:1 1 auto;min-height:0;height:auto;display:flex;flex-direction:column;overflow:hidden;margin-top:8px}
 .profile-dashboard-v2 .profile-shell{height:100%;display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
 .profile-page .site-header + #profileMain.profile-dashboard{margin-top:4px}
-.profile-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px}
+.profile-tabs{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:2px 2px 8px}
 .profile-tab{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;border-radius:12px;padding:10px 14px;min-height:44px;font-weight:700;white-space:nowrap}
 .profile-tab.is-active{background:rgba(246,200,0,.2);border-color:rgba(246,200,0,.45);color:#ffe671}
 .profile-tab-panels{min-height:0;flex:1 1 auto}

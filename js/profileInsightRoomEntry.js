@@ -45,31 +45,28 @@
   }
 
   function addButton() {
-    if (document.getElementById("btnOpenPsychologyRoom")) return;
+    let button = document.getElementById("btnOpenPsychologyRoom");
+    const tabs = document.querySelector('.profile-tabs[role="tablist"][aria-label="Profilfaner"]')
+      || document.querySelector(".profile-tabs");
+    if (!tabs) return;
 
-    const actions = document.querySelector("header #profileCard .profile-hero-actions-v2")
-      || document.querySelector("#profileCard .profile-hero-actions-v2")
-      || document.querySelector(".profile-hero-actions-v2");
-    if (!actions) return;
+    if (!button) {
+      button = document.createElement("button");
+      button.id = "btnOpenPsychologyRoom";
+      button.type = "button";
+      button.textContent = "R";
+      button.setAttribute("aria-label", "Psykologrommet");
+      button.title = "Åpne screening, refleksjon og innsiktsprofil";
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openRoom();
+      });
+    }
 
-    const button = document.createElement("button");
-    button.id = "btnOpenPsychologyRoom";
-    button.type = "button";
-    button.className = "btn profile-icon-button profile-room-button";
-    button.textContent = "R";
-    button.setAttribute("aria-label", "Psykologrommet");
-    button.title = "Åpne screening, refleksjon og innsiktsprofil";
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      openRoom();
-    });
-
-    const ahaButton = document.getElementById("btnOpenAHA");
-    if (ahaButton && ahaButton.parentElement === actions) {
-      ahaButton.insertAdjacentElement("afterend", button);
-    } else {
-      actions.appendChild(button);
+    button.className = "btn profile-icon-button profile-room-button profile-tabs-room-button";
+    if (button.parentElement !== tabs) {
+      tabs.appendChild(button);
     }
   }
 

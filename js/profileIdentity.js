@@ -307,6 +307,12 @@
   }
 
   function bindLoginButton() {
+    const primaryAhaButton = document.getElementById("btnOpenAHA");
+    if (primaryAhaButton) {
+      document.getElementById("loginAhaBtn")?.remove();
+      return;
+    }
+
     const editBtn = document.getElementById("editProfileBtn");
     if (!editBtn || document.getElementById("loginAhaBtn")) {
       refreshLoginButton();
