@@ -77,6 +77,30 @@
     culture: 0xe6d5c2
   };
 
+
+  // Bydelsprofiler: mer enn bare høyde/tetthet. Profilene styrer kvartalsrytme,
+  // takform, fargefamilie, grønnandel og små lokale objekt-typer uten å øke
+  // generisk bymasse. Sub-profiler (Bjørvika/Tøyen/Kampen/Aker Brygge osv.)
+  // velges av posisjon inne i større kartdistrikter.
+  const DISTRICT_VISUAL_PROFILES = {
+    sentrum: { hMin: 0.62, hMax: 1.22, cell: 0.016, gap: 0.007, dens: 0.84, footprint: 0.78, roof: 0.12, roofStyle: "flat", tone: "centrum", green: 0.08, blockRotation: -0.04, smallHouse: 0.02, localObject: "axis" },
+    bjorvika: { hMin: 0.72, hMax: 1.35, cell: 0.018, gap: 0.009, dens: 0.70, footprint: 0.82, roof: 0.02, roofStyle: "flat", tone: "glass", green: 0.06, blockRotation: 0.46, smallHouse: 0.00, localObject: "promenade" },
+    grunerlokka: { hMin: 0.46, hMax: 0.90, cell: 0.016, gap: 0.006, dens: 0.82, footprint: 0.76, roof: 0.56, roofStyle: "mixed", tone: "brick", green: 0.22, blockRotation: 0.12, smallHouse: 0.07, localObject: "courtyard" },
+    frogner: { hMin: 0.42, hMax: 0.82, cell: 0.022, gap: 0.010, dens: 0.58, footprint: 0.70, roof: 0.45, roofStyle: "mixed", tone: "light_plaster", green: 0.34, blockRotation: -0.11, smallHouse: 0.10, localObject: "park_tree" },
+    majorstuen: { hMin: 0.48, hMax: 0.90, cell: 0.020, gap: 0.009, dens: 0.66, footprint: 0.74, roof: 0.36, roofStyle: "mixed", tone: "light_plaster", green: 0.24, blockRotation: -0.02, smallHouse: 0.06, localObject: "square" },
+    st_hanshaugen: { hMin: 0.46, hMax: 0.86, cell: 0.016, gap: 0.007, dens: 0.76, footprint: 0.74, roof: 0.50, roofStyle: "mixed", tone: "warm_block", green: 0.25, blockRotation: 0.04, smallHouse: 0.04, localObject: "hill_park" },
+    gamle_oslo: { hMin: 0.50, hMax: 1.05, cell: 0.018, gap: 0.008, dens: 0.70, footprint: 0.78, roof: 0.20, roofStyle: "mixed", tone: "worker_brick", green: 0.14, blockRotation: 0.18, smallHouse: 0.04, localObject: "yard" },
+    toyen: { hMin: 0.48, hMax: 0.88, cell: 0.018, gap: 0.009, dens: 0.66, footprint: 0.72, roof: 0.28, roofStyle: "mixed", tone: "toyen_warm", green: 0.24, blockRotation: -0.08, smallHouse: 0.06, localObject: "town_square" },
+    kampen: { hMin: 0.28, hMax: 0.52, cell: 0.018, gap: 0.010, dens: 0.58, footprint: 0.64, roof: 0.88, roofStyle: "gable", tone: "wooden_warm", green: 0.30, blockRotation: 0.30, smallHouse: 0.80, localObject: "red_roof" },
+    sagene: { hMin: 0.42, hMax: 0.82, cell: 0.016, gap: 0.007, dens: 0.74, footprint: 0.74, roof: 0.56, roofStyle: "mixed", tone: "worker_brick", green: 0.24, blockRotation: 0.10, smallHouse: 0.08, localObject: "river_yard" },
+    bygdoy: { hMin: 0.24, hMax: 0.45, cell: 0.030, gap: 0.016, dens: 0.30, footprint: 0.56, roof: 0.70, roofStyle: "gable", tone: "villa_green", green: 0.65, blockRotation: -0.08, smallHouse: 0.70, localObject: "villa" },
+    ekeberg: { hMin: 0.22, hMax: 0.44, cell: 0.031, gap: 0.017, dens: 0.24, footprint: 0.52, roof: 0.52, roofStyle: "gable", tone: "villa_green", green: 0.72, blockRotation: 0.18, smallHouse: 0.60, localObject: "lookout" },
+    ullern: { hMin: 0.30, hMax: 0.62, cell: 0.026, gap: 0.014, dens: 0.42, footprint: 0.60, roof: 0.56, roofStyle: "gable", tone: "villa_green", green: 0.45, blockRotation: -0.10, smallHouse: 0.48, localObject: "villa" },
+    alna: { hMin: 0.30, hMax: 0.66, cell: 0.034, gap: 0.014, dens: 0.54, footprint: 0.88, roof: 0.08, roofStyle: "flat", tone: "industri", green: 0.08, blockRotation: 0.04, smallHouse: 0.00, localObject: "industrial_shed" },
+    nordstrand: { hMin: 0.26, hMax: 0.55, cell: 0.027, gap: 0.015, dens: 0.36, footprint: 0.58, roof: 0.70, roofStyle: "gable", tone: "villa_green", green: 0.55, blockRotation: 0.16, smallHouse: 0.56, localObject: "villa" },
+    aker_brygge: { hMin: 0.36, hMax: 0.62, cell: 0.020, gap: 0.011, dens: 0.50, footprint: 0.68, roof: 0.05, roofStyle: "flat", tone: "waterfront", green: 0.06, blockRotation: 0.26, smallHouse: 0.00, localObject: "pier" }
+  };
+
   // ---------------------------------------------------------------------------
   // Tilstand
   // ---------------------------------------------------------------------------
@@ -102,7 +126,8 @@
 
   const _stats = {
     placeMarkers: 0, instancedBuildings: 0, genericBuildings: 0, highRiseCount: 0,
-    trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {}
+    trees: 0, landmarks: 0, roadSegments: 0, landmarkCountByType: {},
+    localObjects: 0, parkObjects: 0, waterfrontObjects: 0
   };
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -430,6 +455,7 @@
     });
 
     buildAxes();
+    buildGreenSpaces();
   }
 
   function districtTint(d) {
@@ -501,6 +527,121 @@
       0.008, shade(PAL.road, -0.04), baseY
     ));
 
+    // Få, lokale forbindelser som hjelper nabolagslesing uten Google Maps-preg.
+    g.add(buildRoadRibbon([[0.555, 0.455], [0.585, 0.485], [0.625, 0.518]], 0.007, shade(PAL.road, -0.02), baseY));
+    g.add(buildRoadRibbon([[0.362, 0.445], [0.350, 0.505], [0.335, 0.575], [0.315, 0.640]], 0.007, shade(PAL.road, 0.01), baseY));
+    g.add(buildRoadRibbon([[0.425, 0.458], [0.445, 0.490], [0.455, 0.515]], 0.006, shade(PAL.road, -0.03), baseY));
+    g.add(buildRoadRibbon([[0.386, 0.655], [0.464, 0.613], [0.505, 0.646]], 0.010, 0xd8ceb9, baseY + 0.004));
+    g.add(buildRoadRibbon([[0.626, 0.518], [0.662, 0.552], [0.690, 0.562]], 0.007, shade(PAL.road, -0.06), baseY));
+
+    scene.add(g);
+  }
+
+
+  function addModelBox(g, nx, ny, w, d, h, c, y, rot) {
+    const m = box(w, h, d, c);
+    m.position.set(nx2x(nx), (y || GROUND_Y) + h / 2, ny2z(ny));
+    if (rot) m.rotation.y = rot;
+    g.add(m);
+    return m;
+  }
+
+  function addTreeCluster(g, nx, ny, n, r, y) {
+    const rng = mulberry32(hashStr(`tree:${nx}:${ny}:${n}`));
+    for (let i = 0; i < n; i++) {
+      const a = rng() * Math.PI * 2, rr = r * (0.25 + rng() * 0.75);
+      const tr = coneMesh(0.09 + rng() * 0.04, 0.34 + rng() * 0.22, 7, 0x3f7a46 + Math.floor(rng() * 0x101000));
+      tr.position.set(nx2x(nx + Math.cos(a) * rr), (y || GROUND_Y) + 0.03, ny2z(ny + Math.sin(a) * rr));
+      g.add(tr);
+    }
+  }
+
+  function buildGreenSpaces() {
+    const g = new THREE.Group();
+    const baseY = GROUND_Y + 0.052;
+    _stats.parkObjects = 0;
+
+    const parks = [
+      { id: "st_hanshaugen", x: 0.455, y: 0.515, r: 0.48, sx: 1.15, sz: 0.82, c: 0x6fa66a },
+      { id: "toyenparken", x: 0.625, y: 0.485, r: 0.43, sx: 1.05, sz: 0.80, c: 0x78a86b },
+      { id: "botanisk", x: 0.610, y: 0.505, r: 0.25, sx: 0.9, sz: 0.9, c: 0x88b879 }
+    ];
+    parks.forEach((p0) => {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(p0.r, p0.r * 1.08, 0.05, 18), toMat(p0.c));
+      m.scale.set(p0.sx, 1, p0.sz);
+      m.position.set(nx2x(p0.x), baseY + 0.025, ny2z(p0.y));
+      m.receiveShadow = true;
+      g.add(m);
+      _stats.parkObjects++;
+    });
+
+    // Grønne skuldre langs Akerselva – tydelig blå/grønn korridor gjennom Sagene/Løkka.
+    const land = window.CIVI_OSLO_LANDSCAPE || {};
+    if (land.akerselva) {
+      g.add(extrudeShape(ribbonPolygon(land.akerselva, 0.035), 0.012, 0x5f8f59, baseY - 0.018, { cast: false, receive: false }));
+      _stats.parkObjects++;
+    }
+
+    addTreeCluster(g, 0.455, 0.515, 8, 0.018, baseY);
+    addTreeCluster(g, 0.625, 0.485, 7, 0.018, baseY);
+    addTreeCluster(g, 0.610, 0.505, 6, 0.014, baseY);
+    scene.add(g);
+  }
+
+  function buildLocalObjects() {
+    const g = new THREE.Group();
+    _stats.localObjects = 0;
+    _stats.waterfrontObjects = 0;
+
+    // Aker Brygge/Tjuvholmen og havnepromenaden: lave kaier, små brygger/båter.
+    [[0.36,0.675,0.55,0.055,0.02,0.28],[0.405,0.665,0.48,0.050,0.02,0.22],[0.535,0.672,0.42,0.045,0.02,0.02],[0.610,0.665,0.46,0.050,0.02,-0.22]].forEach(([x,y,w,d,h,r]) => {
+      addModelBox(g, x, y, w, d, h, 0xc9b894, GROUND_Y + 0.045, r);
+      _stats.localObjects++; _stats.waterfrontObjects++;
+    });
+    [[0.34,0.705],[0.375,0.710],[0.415,0.700],[0.585,0.695],[0.625,0.700],[0.47,0.785],[0.525,0.825]].forEach(([x,y], i) => {
+      const boat = new THREE.Group();
+      boat.add(box(0.13, 0.035, 0.05, i % 2 ? 0xded8c8 : 0xb24a3a));
+      const mast = box(0.012, 0.11, 0.012, 0xe8e2d4); mast.position.y = 0.05; boat.add(mast);
+      boat.position.set(nx2x(x), WATER_Y + 0.035, ny2z(y));
+      boat.rotation.y = (i % 3 - 1) * 0.45;
+      g.add(boat);
+      _stats.localObjects++; _stats.waterfrontObjects++;
+    });
+
+    // Lokale torg/overganger – uten labels, bare modellbordflater.
+    [[0.626,0.518,0xd8a675],[0.555,0.485,0xc08d6a],[0.372,0.505,0xd5c4a5],[0.455,0.455,0xc9b79c]].forEach(([x,y,c]) => {
+      addModelBox(g, x, y, 0.38, 0.28, 0.018, c, GROUND_Y + 0.055, -0.08);
+      _stats.localObjects++;
+    });
+
+    // Kampen: små varme trehus-/saltak-objekter på skrå rytme.
+    [[0.650,0.548],[0.668,0.535],[0.678,0.560],[0.642,0.570]].forEach(([x,y], i) => {
+      const house = new THREE.Group();
+      house.add(box(0.18, 0.20, 0.14, i % 2 ? 0xc98b58 : 0xd0a06e));
+      const roof = gableRoof(0.20, 0.08, 0.16, 0x8f3b28); roof.position.y = 0.20; house.add(roof);
+      house.position.set(nx2x(x), GROUND_Y + 0.07, ny2z(y));
+      house.rotation.y = 0.35 + i * 0.13;
+      g.add(house);
+      _stats.localObjects++;
+    });
+
+    // Alna: flate industriskur/lagerhaller med brede gråbrune flater.
+    [[0.735,0.505,0.48,0.30],[0.790,0.545,0.55,0.26],[0.700,0.585,0.42,0.28]].forEach(([x,y,w,d], i) => {
+      addModelBox(g, x, y, w, d, 0.16 + i * 0.025, i % 2 ? 0x8d8780 : 0x777c7d, GROUND_Y + 0.055, 0.04);
+      _stats.localObjects++;
+    });
+
+    // Bygdøy/Ekeberg: spredte villa-/utsiktsobjekter og grønne flekker.
+    [[0.215,0.705],[0.250,0.735],[0.175,0.760],[0.675,0.720],[0.715,0.795]].forEach(([x,y], i) => {
+      const villa = new THREE.Group();
+      villa.add(box(0.16, 0.14, 0.13, 0xd8ccb6));
+      const roof = gableRoof(0.17, 0.06, 0.14, 0x765c3f); roof.position.y = 0.14; villa.add(roof);
+      villa.position.set(nx2x(x), GROUND_Y + 0.07, ny2z(y));
+      villa.rotation.y = i * 0.27;
+      g.add(villa);
+      _stats.localObjects++;
+    });
+
     scene.add(g);
   }
 
@@ -527,29 +668,50 @@
   // Del 2 – Prosedyralt, kvartalsbygd byteppe (InstancedMesh)
   // ---------------------------------------------------------------------------
   function districtBuildProfile(id) {
-    // cell/gap er i normaliserte enheter (kvartal + gate). flat = flate tak.
-    // Oslo-profil: lav/middels kvartalsby, ikke Manhattan. Høyhus reserveres
-    // for de eksplisitte landemerkene (Barcode/Oslo S), ikke den generiske massen.
-    switch (id) {
-      case "sentrum":      return { hMin: 0.7, hMax: 1.45, cell: 0.016, gap: 0.006, dens: 0.90, roof: 0.10, tone: "centrum" };
-      case "gamle_oslo":   return { hMin: 0.55, hMax: 1.25, cell: 0.017, gap: 0.007, dens: 0.78, roof: 0.22, tone: "centrum" };
-      case "grunerlokka":  return { hMin: 0.5, hMax: 0.95, cell: 0.016, gap: 0.006, dens: 0.86, roof: 0.64, tone: "block" };
-      case "st_hanshaugen":return { hMin: 0.5, hMax: 0.92, cell: 0.016, gap: 0.006, dens: 0.80, roof: 0.60, tone: "block" };
-      case "sagene":       return { hMin: 0.45, hMax: 0.9, cell: 0.016, gap: 0.006, dens: 0.78, roof: 0.64, tone: "block" };
-      case "frogner":      return { hMin: 0.45, hMax: 0.9, cell: 0.021, gap: 0.009, dens: 0.62, roof: 0.50, tone: "block" };
-      case "ullern":       return { hMin: 0.35, hMax: 0.78, cell: 0.025, gap: 0.012, dens: 0.50, roof: 0.56, tone: "green" };
-      case "alna":         return { hMin: 0.32, hMax: 0.7, cell: 0.032, gap: 0.013, dens: 0.56, roof: 0.08, tone: "industri" };
-      case "nordstrand":   return { hMin: 0.3, hMax: 0.6, cell: 0.026, gap: 0.014, dens: 0.40, roof: 0.72, tone: "green" };
-      case "stovner":      return { hMin: 0.3, hMax: 0.7, cell: 0.027, gap: 0.013, dens: 0.42, roof: 0.56, tone: "green" };
-      default:             return { hMin: 0.4, hMax: 0.85, cell: 0.018, gap: 0.007, dens: 0.6, roof: 0.42, tone: "block" };
+    return DISTRICT_VISUAL_PROFILES[id] || DISTRICT_VISUAL_PROFILES.sentrum;
+  }
+
+  function districtVisualProfileForPoint(id, nx, ny) {
+    const land = window.CIVI_OSLO_LANDSCAPE || {};
+    if (pointInPoly(nx, ny, BYGDOY)) return DISTRICT_VISUAL_PROFILES.bygdoy;
+    if (land.ekebergRidge && pointInPoly(nx, ny, land.ekebergRidge)) return DISTRICT_VISUAL_PROFILES.ekeberg;
+    if (id === "gamle_oslo") {
+      if (nx >= 0.555 && nx <= 0.64 && ny >= 0.595 && ny <= 0.68) return DISTRICT_VISUAL_PROFILES.bjorvika;
+      if (nx >= 0.605 && nx <= 0.655 && ny >= 0.49 && ny <= 0.545) return DISTRICT_VISUAL_PROFILES.toyen;
+      if (nx >= 0.640 && nx <= 0.690 && ny >= 0.525 && ny <= 0.575) return DISTRICT_VISUAL_PROFILES.kampen;
     }
+    if (id === "frogner" && nx <= 0.42 && ny >= 0.63) return DISTRICT_VISUAL_PROFILES.aker_brygge;
+    if (id === "frogner" && nx >= 0.33 && nx <= 0.43 && ny <= 0.59) return DISTRICT_VISUAL_PROFILES.majorstuen;
+    return DISTRICT_VISUAL_PROFILES[id] || DISTRICT_VISUAL_PROFILES.sentrum;
+  }
+
+  function getDistrictVisualProfiles() {
+    const out = {};
+    Object.keys(DISTRICT_VISUAL_PROFILES).forEach((id) => { out[id] = Object.assign({}, DISTRICT_VISUAL_PROFILES[id]); });
+    return out;
   }
 
   function buildingColor(col, tone, t) {
     if (tone === "industri") col.setHSL(0.09 + t * 0.04, 0.05 + t * 0.05, 0.40 + t * 0.16);
+    else if (tone === "glass") col.setHSL(0.56 + t * 0.04, 0.10 + t * 0.08, 0.58 + t * 0.22);
+    else if (tone === "waterfront") col.setHSL(0.12 + t * 0.05, 0.08 + t * 0.07, 0.58 + t * 0.18);
+    else if (tone === "brick") col.setHSL(0.055 + t * 0.025, 0.24 + t * 0.12, 0.43 + t * 0.16);
+    else if (tone === "worker_brick") col.setHSL(0.06 + t * 0.035, 0.18 + t * 0.10, 0.40 + t * 0.17);
+    else if (tone === "toyen_warm") col.setHSL(0.05 + t * 0.09, 0.20 + t * 0.14, 0.46 + t * 0.18);
+    else if (tone === "wooden_warm") col.setHSL(0.04 + t * 0.06, 0.30 + t * 0.18, 0.42 + t * 0.20);
+    else if (tone === "light_plaster") col.setHSL(0.095 + t * 0.035, 0.12 + t * 0.09, 0.58 + t * 0.16);
+    else if (tone === "warm_block") col.setHSL(0.075 + t * 0.04, 0.18 + t * 0.1, 0.48 + t * 0.18);
+    else if (tone === "villa_green") col.setHSL(0.105 + t * 0.05, 0.13 + t * 0.09, 0.52 + t * 0.18);
     else if (tone === "centrum") col.setHSL(0.085 + t * 0.04, 0.13 + t * 0.1, 0.50 + t * 0.20);
     else if (tone === "green") col.setHSL(0.10 + t * 0.05, 0.14 + t * 0.1, 0.46 + t * 0.18);
     else col.setHSL(0.075 + t * 0.05, 0.16 + t * 0.1, 0.44 + t * 0.20); // block
+    return col;
+  }
+
+  function roofColor(col, b) {
+    if (b.roofTone === "wooden_warm") col.setHSL(0.045 + b.tone * 0.025, 0.42, 0.27 + b.tone * 0.08);
+    else if (b.roofTone === "villa_green") col.setHSL(0.06 + b.tone * 0.03, 0.24, 0.32 + b.tone * 0.09);
+    else col.setHSL(0.055 + b.tone * 0.03, 0.30, 0.30 + b.tone * 0.1);
     return col;
   }
 
@@ -577,15 +739,15 @@
     districts.forEach((d) => {
       const poly = d.shape;
       if (!poly || !poly.length) return;
-      const prof = districtBuildProfile(d.id);
+      const baseProf = districtBuildProfile(d.id);
       const rng = mulberry32(hashStr(d.id) ^ 0x5151);
       const cx = (d.center && d.center[0]) || 0.5;
       const cy = (d.center && d.center[1]) || 0.5;
-      const ang = ((hashStr(d.id) % 100) / 100 - 0.5) * 0.5; // svak kvartalsrotasjon
-      const ca = Math.cos(ang), sa = Math.sin(ang);
+      const angBase = baseProf.blockRotation != null ? baseProf.blockRotation : ((hashStr(d.id) % 100) / 100 - 0.5) * 0.5;
+      const ca = Math.cos(angBase), sa = Math.sin(angBase);
       const bb = polyBBox(poly);
-      const stepX = prof.cell + prof.gap;
-      const stepY = prof.cell + prof.gap;
+      const stepX = baseProf.cell + baseProf.gap;
+      const stepY = baseProf.cell + baseProf.gap;
       const pad = stepX;
       for (let gy = bb.minY - pad; gy <= bb.maxY + pad; gy += stepY) {
         for (let gx = bb.minX - pad; gx <= bb.maxX + pad; gx += stepX) {
@@ -594,19 +756,22 @@
           const nx = cx + lx * ca - ly * sa;
           const ny = cy + lx * sa + ly * ca;
           if (!pointInPoly(nx, ny, poly)) continue;
+          const prof = districtVisualProfileForPoint(d.id, nx, ny);
           const clearFactor = clearZoneBuildingFactor(nx, ny);
           if (clearFactor <= 0) continue;
           if (rng() > prof.dens * clearFactor) continue;
-          // Kvartal: fotavtrykk fyller mesteparten av cellen, litt variasjon.
-          // I clear zones tones generisk bymasse ned i høyde/fotavtrykk slik at
-          // håndmodellene får luft uten at byen blir helt tom rundt dem.
-          const fw = prof.cell * (0.62 + rng() * 0.30) * MAP_W * (0.78 + clearFactor * 0.22);
-          const fd = prof.cell * (0.62 + rng() * 0.30) * MAP_D * (0.78 + clearFactor * 0.22);
-          const h = (prof.hMin + Math.pow(rng(), 1.4) * (prof.hMax - prof.hMin)) * (0.58 + clearFactor * 0.42);
-          const roof = (rng() < prof.roof * clearFactor) && Math.min(fw, fd) < 0.62;
+          if (rng() < prof.green * 0.18) continue; // små lommer/bakgårder/parker uten flere mesh
+          // Kvartal: profilert fotavtrykk + litt variasjon. Småhusprofiler gir
+          // lavere, smalere volum med salttak (Kampen/Bygdøy/Nordstrand).
+          const small = rng() < prof.smallHouse;
+          const fw = prof.cell * (prof.footprint * (0.82 + rng() * 0.28)) * MAP_W * (0.78 + clearFactor * 0.22) * (small ? 0.68 : 1);
+          const fd = prof.cell * (prof.footprint * (0.82 + rng() * 0.28)) * MAP_D * (0.78 + clearFactor * 0.22) * (small ? 0.72 : 1);
+          const h = (prof.hMin + Math.pow(rng(), 1.4) * (prof.hMax - prof.hMin)) * (0.58 + clearFactor * 0.42) * (small ? 0.82 : 1);
+          const roof = (small || rng() < prof.roof * clearFactor) && Math.min(fw, fd) < 0.66;
+          const ang = prof.blockRotation != null ? prof.blockRotation : angBase;
           blocks.push({
-            x: nx2x(nx), z: ny2z(ny), fw, fd, h, rot: ang + (rng() - 0.5) * 0.12,
-            tone: rng(), toneKind: prof.tone, roof
+            x: nx2x(nx), z: ny2z(ny), fw, fd, h, rot: ang + (rng() - 0.5) * (small ? 0.34 : 0.12),
+            tone: rng(), toneKind: prof.tone, roof, roofTone: prof.tone, small
           });
           if (blocks.length >= MAX_BUILDINGS) break;
         }
@@ -649,8 +814,7 @@
         scl.set(b.fw, rh, b.fd);
         m.compose(pos, q, scl);
         roofMesh.setMatrixAt(ri, m);
-        col.setHSL(0.055 + b.tone * 0.03, 0.30, 0.30 + b.tone * 0.1); // terrakotta/grå tak
-        roofMesh.setColorAt(ri, col);
+        roofMesh.setColorAt(ri, roofColor(col, b));
         ri++;
       }
     });
@@ -1715,6 +1879,7 @@
     buildLandscape();
     buildCity();
     buildTrees();
+    buildLocalObjects();
     buildLandmarks();
 
     zoom = START_ZOOM;
@@ -1758,6 +1923,10 @@
       instancedBuildings: _stats.instancedBuildings,
       highRiseCount: _stats.highRiseCount,
       trees: _stats.trees,
+      localObjects: _stats.localObjects,
+      parkObjects: _stats.parkObjects,
+      waterfrontObjects: _stats.waterfrontObjects,
+      districtProfiles: Object.keys(DISTRICT_VISUAL_PROFILES).length,
       landmarks: _stats.landmarks,
       landmarkCountByType: Object.assign({}, _stats.landmarkCountByType),
       roadSegments: _stats.roadSegments,
@@ -1788,6 +1957,7 @@
     getHitTargets: () => hitTargets.slice(),
     getProjectionDebug,
     getSceneStats,
+    getDistrictVisualProfiles,
     getLandmarkPositions
   };
 })();
