@@ -25,7 +25,7 @@
   const SRC = "hg-places";
   const STANDARD_DIM_SRC = "hg-standard-map-dim-src";
   const STANDARD_DIM_LAYER = "hg-standard-map-dim";
-  const STANDARD_DIM_OPACITY = 0.58;
+  const STANDARD_DIM_OPACITY = 0.22;
   const L_GLOW = "hg-places-glow";
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
@@ -325,6 +325,66 @@
   }
 
 
+  function setPaintPropertyIfSupported(layerId, property, value) {
+    if (!MAP || !MAP.getLayer(layerId)) return;
+    try {
+      MAP.setPaintProperty(layerId, property, value);
+    } catch {}
+  }
+
+  function tuneStandardBaseMapStyle() {
+    if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD || !MAP.getStyle) return;
+    const style = MAP.getStyle();
+    const layers = Array.isArray(style?.layers) ? style.layers : [];
+
+    for (const layer of layers) {
+      const id = layer?.id;
+      if (!id || id.startsWith("hg-")) continue;
+      const sourceLayer = String(layer["source-layer"] || id).toLowerCase();
+      const layerType = layer.type;
+
+      if (layerType === "background") {
+        setPaintPropertyIfSupported(id, "background-color", "#101721");
+        continue;
+      }
+
+      if (layerType === "fill") {
+        if (/water|ocean|river|lake/.test(sourceLayer)) {
+          setPaintPropertyIfSupported(id, "fill-color", "#0b3551");
+          setPaintPropertyIfSupported(id, "fill-opacity", 0.96);
+        } else if (/park|wood|forest|landcover|landuse|green|grass|cemetery/.test(sourceLayer)) {
+          setPaintPropertyIfSupported(id, "fill-color", "#173726");
+          setPaintPropertyIfSupported(id, "fill-opacity", 0.78);
+        } else if (/building/.test(sourceLayer)) {
+          setPaintPropertyIfSupported(id, "fill-color", "#26313d");
+          setPaintPropertyIfSupported(id, "fill-opacity", 0.64);
+        } else if (/land|earth/.test(sourceLayer)) {
+          setPaintPropertyIfSupported(id, "fill-color", "#18212c");
+        }
+        continue;
+      }
+
+      if (layerType === "line") {
+        if (/road|transport|rail|tunnel|bridge/.test(sourceLayer)) {
+          setPaintPropertyIfSupported(id, "line-color", "#53677d");
+          setPaintPropertyIfSupported(id, "line-opacity", 0.72);
+        } else if (/water|river|stream/.test(sourceLayer)) {
+          setPaintPropertyIfSupported(id, "line-color", "#1e5c7e");
+          setPaintPropertyIfSupported(id, "line-opacity", 0.84);
+        }
+        continue;
+      }
+
+      if (layerType === "symbol" && layer.layout?.["text-field"]) {
+        setPaintPropertyIfSupported(id, "text-color", "#eef5ff");
+        setPaintPropertyIfSupported(id, "text-halo-color", "rgba(5,10,18,0.92)");
+        setPaintPropertyIfSupported(id, "text-halo-width", 1.25);
+        setPaintPropertyIfSupported(id, "text-halo-blur", 0.25);
+        setPaintPropertyIfSupported(id, "text-opacity", 0.96);
+      }
+    }
+  }
+
   function applyStandardMapDarkening() {
     if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD) return;
     if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
@@ -355,17 +415,21 @@
       });
     }
 
+    tuneStandardBaseMapStyle();
+
     if (!MAP.getLayer(STANDARD_DIM_LAYER)) {
       MAP.addLayer({
         id: STANDARD_DIM_LAYER,
         type: "fill",
         source: STANDARD_DIM_SRC,
         paint: {
-          "fill-color": "#000000",
+          "fill-color": "#07101d",
           "fill-opacity": STANDARD_DIM_OPACITY
         }
       });
     }
+
+    moveMarkersOnTop();
   }
 
   function setUser(lat, lon, { fly = false } = {}) {
@@ -409,6 +473,66 @@
     if (MAP.getSource(SRC)) MAP.removeSource(SRC);
   }
 
+  function isStandardMapStyle() {
+    return mapStyleMode === STYLE_MODE_STANDARD;
+  }
+
+  function getPlaceMarkerBorder(isVisited) {
+    if (isStandardMapStyle()) return isVisited ? "#ffe45f" : "#f8fbff";
+    return isVisited ? "#ffd700" : "#111111";
+  }
+
+  function getPlaceMarkerStrokeWidth() {
+    return isStandardMapStyle() ? 2.4 : 1.8;
+  }
+
+  function getPlaceGlowPaint() {
+    if (!isStandardMapStyle()) {
+      return {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
+        "circle-color": "rgba(0,0,0,0.12)",
+        "circle-blur": 0.8
+      };
+    }
+
+    return {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 6, 12, 8, 14, 11, 16, 16, 18, 22],
+      "circle-color": ["get", "fill"],
+      "circle-opacity": 0.28,
+      "circle-blur": 0.65
+    };
+  }
+
+  function getPlaceLabelPaint() {
+    if (!isStandardMapStyle()) {
+      return {
+        "text-color": "rgba(20,20,20,0.92)",
+        "text-halo-color": "rgba(255,255,255,0.95)",
+        "text-halo-width": 1.4,
+        "text-halo-blur": 0.25,
+        "text-opacity": [
+          "interpolate", ["linear"], ["zoom"],
+          PLACE_LABEL_MIN_ZOOM, 0.0,
+          PLACE_LABEL_MIN_ZOOM + 1.2, 0.55,
+          PLACE_LABEL_MIN_ZOOM + 2.0, 1.0
+        ]
+      };
+    }
+
+    return {
+      "text-color": "rgba(250,252,255,0.98)",
+      "text-halo-color": "rgba(3,8,15,0.96)",
+      "text-halo-width": 2.2,
+      "text-halo-blur": 0.18,
+      "text-opacity": [
+        "interpolate", ["linear"], ["zoom"],
+        PLACE_LABEL_MIN_ZOOM - 0.2, 0.0,
+        PLACE_LABEL_MIN_ZOOM + 0.8, 0.78,
+        PLACE_LABEL_MIN_ZOOM + 1.6, 1.0
+      ]
+    };
+  }
+
   function drawPlaceMarkers() {
     if (!MAP) return;
     if (!Array.isArray(PLACES) || PLACES.length === 0) return;
@@ -427,7 +551,7 @@
       const isVisited = !!visited[p.id];
       const base = catColor(p.category);
       const fill = isVisited ? lighten(base, 0.25) : base;
-      const border = isVisited ? "#ffd700" : "#111111";
+      const border = getPlaceMarkerBorder(isVisited);
 
       features.push({
         type: "Feature",
@@ -460,11 +584,7 @@
       id: L_GLOW,
       type: "circle",
       source: SRC,
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
-        "circle-color": "rgba(0,0,0,0.12)",
-        "circle-blur": 0.8
-      }
+      paint: getPlaceGlowPaint()
     });
 
     MAP.addLayer({
@@ -482,7 +602,7 @@
         ],
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
-        "circle-stroke-width": 1.8,
+        "circle-stroke-width": getPlaceMarkerStrokeWidth(),
         "circle-opacity": 1
       }
     });
@@ -500,18 +620,7 @@
         "text-allow-overlap": false,
         "text-ignore-placement": false
       },
-      paint: {
-        "text-color": "rgba(20,20,20,0.92)",
-        "text-halo-color": "rgba(255,255,255,0.95)",
-        "text-halo-width": 1.4,
-        "text-halo-blur": 0.25,
-        "text-opacity": [
-          "interpolate", ["linear"], ["zoom"],
-          PLACE_LABEL_MIN_ZOOM, 0.0,
-          PLACE_LABEL_MIN_ZOOM + 1.2, 0.55,
-          PLACE_LABEL_MIN_ZOOM + 2.0, 1.0
-        ]
-      }
+      paint: getPlaceLabelPaint()
     });
 
     MAP.addLayer({
