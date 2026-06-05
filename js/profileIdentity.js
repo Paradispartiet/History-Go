@@ -129,12 +129,6 @@
         : "Din spillerprofil, kunnskapsreise og samling i ett kompakt dashboard.";
     }
 
-    document.querySelectorAll(".profile-avatar-orb").forEach((/** @type {HTMLElement} */ el) => {
-      el.textContent = initialsFromName(displayName);
-      el.style.background = `linear-gradient(135deg, ${profile.color}, rgba(255,255,255,.18))`;
-      el.style.boxShadow = `0 0 0 2px ${profile.color}55, 0 18px 50px rgba(0,0,0,.22)`;
-    });
-
     document.querySelectorAll(".profile-pill.gold").forEach((/** @type {HTMLElement} */ el) => {
       el.style.borderColor = `${profile.color}99`;
       el.style.color = profile.color;
