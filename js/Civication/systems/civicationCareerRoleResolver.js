@@ -5,6 +5,9 @@
 
   function slugify(value) {
     return normalize(value)
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'o')
+      .replace(/å/g, 'a')
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '_')
