@@ -6,6 +6,13 @@
   "use strict";
 
   const VIEW_ID = "profileView";
+  const FULL_PROFILE_URL = "profile.html";
+  const PROFILE_QUICK_LINKS = [
+    { label: "Åpne full profil", href: FULL_PROFILE_URL },
+    { label: "Se merker", href: `${FULL_PROFILE_URL}#merits` },
+    { label: "Se samling", href: `${FULL_PROFILE_URL}#collectionCardsSection` },
+    { label: "Se profilkart", href: `${FULL_PROFILE_URL}#map` }
+  ];
 
   function closeQuizModals() {
     document.getElementById("quizModal")?.remove?.();
@@ -186,6 +193,15 @@
     });
   }
 
+  function renderQuickLinks() {
+    return PROFILE_QUICK_LINKS.map(
+      (link) => `
+        <a class="hg-profile-view__quick-link" href="${link.href}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 0 0.75rem; border-radius: 999px; border: 1px solid rgba(17,24,39,0.2); color: #111827; background: rgba(255,255,255,0.72); font-size: 0.92rem; font-weight: 700; text-decoration: none;">
+          ${link.label}
+        </a>`
+    ).join("");
+  }
+
   function isActive() {
     return document.body?.classList.contains("hg-view-profile") || location.hash === "#/profile";
   }
@@ -213,9 +229,12 @@
           <dt>Siste quiz</dt>
           <dd data-profile-summary-value="lastQuiz" style="margin: 0; font-weight: 800; text-align: right;">Ingen quiz ennå</dd>
         </dl>
-        <a class="hg-profile-view__full-link" href="profile.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 1rem; border-radius: 999px; background: #111827; color: #fff; font-weight: 700; text-decoration: none;">
+        <a class="hg-profile-view__full-link" href="${FULL_PROFILE_URL}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 1rem; border-radius: 999px; background: #111827; color: #fff; font-weight: 700; text-decoration: none;">
           Åpne full profil
         </a>
+        <nav class="hg-profile-view__quick-links" aria-label="Profil snarveier" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem;">
+          ${renderQuickLinks()}
+        </nav>
       </section>
     `;
 
@@ -258,7 +277,7 @@
     },
 
     openFullProfile() {
-      window.location.href = "profile.html";
+      window.location.href = FULL_PROFILE_URL;
     }
   };
 
