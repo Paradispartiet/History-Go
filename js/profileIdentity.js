@@ -10,7 +10,7 @@
   const AHA_PROFILE_ID_KEY = "aha_profile_id";
   const LEGACY_NAME_KEY = "user_name";
   const LEGACY_COLOR_KEY = "user_color";
-  const DEFAULT_DISPLAY_NAME = "Logg inn";
+  const DEFAULT_DISPLAY_NAME = "Gjest";
   const DEFAULT_COLOR = "#f6c800";
   const COLOR_OPTIONS = ["#f6c800", "#8fd3ff", "#ff8fb3", "#a9f5b5", "#c7a7ff", "#ffb86b"];
 
@@ -59,7 +59,8 @@
   }
 
   function getDisplayName() {
-    return getAhaDisplayName() || DEFAULT_DISPLAY_NAME;
+    const displayName = getAhaDisplayName();
+    return displayName && displayName !== "Logg inn" ? displayName : DEFAULT_DISPLAY_NAME;
   }
 
   function initialsFromName(name) {

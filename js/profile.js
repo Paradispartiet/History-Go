@@ -177,10 +177,11 @@ function getCompletedPlaceCount() {
 // ------------------------------------------------------------
 function renderProfileCard() {
   const streak = Number(localStorage.getItem("user_streak") || 0);
-  const userName =
+  const rawUserName =
     window.HGUserProfile?.getDisplayName?.() ||
     localStorage.getItem("user_name") ||
-    "Logg inn";
+    "Gjest";
+  const userName = rawUserName === "Logg inn" ? "Gjest" : rawUserName;
 
   const placeCount = getCompletedPlaceCount();
   const quizUnitCount = getCompletedQuizUnitCount();
@@ -1149,10 +1150,11 @@ function renderAhaSummary() {
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
 function openProfileModal() {
-  const name =
+  const rawName =
     window.HGUserProfile?.getDisplayName?.() ||
     localStorage.getItem("user_name") ||
-    "Logg inn";
+    "Gjest";
+  const name = rawName === "Logg inn" ? "Gjest" : rawName;
   const color = localStorage.getItem("user_color") || "#f6c800";
 
   const modal = document.createElement("div");
@@ -1173,7 +1175,7 @@ function openProfileModal() {
 
   /** @type {HTMLElement} */ (modal.querySelector("#cancelProfile")).onclick = () => modal.remove();
   /** @type {HTMLElement} */ (modal.querySelector("#saveProfile")).onclick = () => {
-    const newName = /** @type {HTMLInputElement} */ (modal.querySelector("#newName")).value.trim() || "Logg inn";
+    const newName = /** @type {HTMLInputElement} */ (modal.querySelector("#newName")).value.trim() || "Gjest";
     const newColor = /** @type {HTMLInputElement} */ (modal.querySelector("#newColor")).value;
 
     localStorage.setItem("user_name", newName);

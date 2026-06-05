@@ -120,11 +120,12 @@ body.profile-page.map-only #profileMain{
 .profile-page .site-header{
   display: flex;
   flex: 0 0 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 10px;
-  padding: 14px 18px;
+  min-height: var(--profile-header-h);
+  padding: 10px 18px;
   background: linear-gradient(
     180deg,
     rgba(10,25,41,.95),
@@ -132,6 +133,30 @@ body.profile-page.map-only #profileMain{
     transparent
   );
   border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.profile-header-left{
+  display:flex;
+  flex:0 0 auto;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.profile-page .site-header .actions{
+  flex:0 0 auto;
+  margin-left:0;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.profile-header-map-button{
+  color:#fff;
+}
+
+.profile-header-map-button svg{
+  display:block;
 }
 
 .back-link{
@@ -1177,6 +1202,21 @@ button.primary.small:hover{
   .section-head{
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 700px){
+  .profile-page .site-header{
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  .profile-header-left{
+    flex:1 1 auto;
+  }
+
+  .profile-page .site-header .actions{
+    margin-left:auto;
   }
 }
 
