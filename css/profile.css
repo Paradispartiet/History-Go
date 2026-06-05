@@ -67,6 +67,7 @@ body.profile-page{
 
 .profile-page .site-header,
 .profile-page #profileMain,
+.profile-page .site-footer,
 .profile-page .map-controls,
 #badgeModal,
 #toast{
@@ -109,7 +110,8 @@ body.profile-page.map-only .site-header{
   display: none;
 }
 
-body.profile-page.map-only #profileMain{
+body.profile-page.map-only #profileMain,
+body.profile-page.map-only .site-footer{
   display: none;
 }
 
@@ -126,12 +128,7 @@ body.profile-page.map-only #profileMain{
   gap: 10px;
   min-height: var(--profile-header-h);
   padding: 10px 18px;
-  background: linear-gradient(
-    180deg,
-    rgba(10,25,41,.95),
-    rgba(10,25,41,.65) 70%,
-    transparent
-  );
+  background: #000;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -282,6 +279,54 @@ button.primary.small:hover{
   grid-auto-rows: min-content;
   gap: var(--profile-gap);
 }
+
+
+/* ============================================================
+   FOOTER – PROFILE VERSION
+   ============================================================ */
+
+.profile-page .site-footer{
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-soft);
+}
+
+.profile-page .site-footer-inner{
+  width: min(var(--profile-max-w), calc(100vw - 24px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.profile-page .site-footer-brand{
+  font-weight: 800;
+  color: #fff;
+}
+
+.profile-page .site-footer-links{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.profile-page .site-footer a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  opacity: .82;
+}
+
+.profile-page .site-footer a:hover{
+  opacity: 1;
+}
+
 
 
 
