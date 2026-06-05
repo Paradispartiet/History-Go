@@ -4,6 +4,77 @@
   "label": "By – observasjonslinser",
   "lenses": [
     {
+      "lens_id": "by_byliv",
+      "title": "Hva skjer i byrommet her?",
+      "prompt": "Velg det du faktisk ser eller merker akkurat nå.",
+      "type": "multi_select",
+      "allow_note": true,
+      "note_label": "Kort observasjon fra stedet (valgfritt)",
+      "note_max_len": 280,
+      "related_emner": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang",
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_offentlige_rom_motesteder"
+      ],
+      "concepts": [
+        "opphold",
+        "gjennomgang",
+        "hverdagsbruk",
+        "offentlig_rom",
+        "byliv"
+      ],
+      "tags": [
+        "by",
+        "observasjon",
+        "byliv",
+        "offentlig_rom"
+      ],
+      "options": [
+        {
+          "id": "opphold",
+          "label": "Folk oppholder seg her"
+        },
+        {
+          "id": "gjennomgang",
+          "label": "Folk går bare gjennom"
+        },
+        {
+          "id": "lek",
+          "label": "Lek / barn i bruk"
+        },
+        {
+          "id": "ro",
+          "label": "Rolig tempo"
+        },
+        {
+          "id": "utsikt",
+          "label": "Utsikt / orientering"
+        },
+        {
+          "id": "natur",
+          "label": "Trær, fugler eller naturspor"
+        },
+        {
+          "id": "kulturminne",
+          "label": "Historisk bygg / kulturminne"
+        },
+        {
+          "id": "moteplass",
+          "label": "Møteplass"
+        },
+        {
+          "id": "skjult_historie",
+          "label": "Noe her virker skjult eller lite forklart"
+        },
+        {
+          "id": "kontrast",
+          "label": "Kontrast mellom gammelt og nytt"
+        }
+      ]
+    },
+
+    {
       "lens_id": "by_brukere_hvem",
       "title": "Hvem bruker dette stedet mest?",
       "prompt": "Velg ett eller flere ord som passer.",
