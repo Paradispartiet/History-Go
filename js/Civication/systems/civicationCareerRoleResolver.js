@@ -28,7 +28,8 @@
     by_saksbehandler: 'by_saksbehandler',
     by_radgiver_plan: 'by_radgiver_plan',
     by_prosjektleder: 'by_prosjektleder',
-    by_arkitekt: 'by_arkitekt'
+    by_arkitekt: 'by_arkitekt',
+    sport_utover: 'sport_utover'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -44,7 +45,8 @@
     by_saksbehandler: 'by_saksbehandler',
     by_radgiver_plan: 'by_radgiver_plan',
     by_prosjektleder: 'by_prosjektleder',
-    by_arkitekt: 'by_arkitekt'
+    by_arkitekt: 'by_arkitekt',
+    sport_utover: 'sport_utover'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -106,6 +108,16 @@
     byarkitekt: 'by_arkitekt'
   };
 
+  const SPORT_ROLE_SCOPE_BY_TITLE = {
+    mosjonist: 'sport_utover',
+    aktiv_utover: 'sport_utover',
+    konkurranseutover: 'sport_utover',
+    klubbspiller: 'sport_utover',
+    eliteseriespiller: 'sport_utover',
+    profesjonell_utover: 'sport_utover',
+    landslagsutover: 'sport_utover'
+  };
+
   function resolveCareerRoleScope(activePosition) {
     const careerId = normalize(activePosition?.career_id);
     const roleKey = slugify(activePosition?.role_key);
@@ -114,6 +126,12 @@
 
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
     if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
+
+    if (careerId === 'sport') {
+      if (roleKey === 'sport_utover') return 'sport_utover';
+      if (SPORT_ROLE_SCOPE_BY_TITLE[titleKey]) return SPORT_ROLE_SCOPE_BY_TITLE[titleKey];
+      if (titleKey.includes('mosjonist') || titleKey.includes('utover') || titleKey.includes('konkurranseutover') || titleKey.includes('klubbspiller') || titleKey.includes('eliteseriespiller') || titleKey.includes('landslagsutover')) return 'sport_utover';
+    }
 
     if (careerId === 'by') {
       if (roleKey === 'by_assistent') return 'by_assistent';
@@ -172,6 +190,7 @@
       ) return 'mellomleder';
     }
 
+    if (roleKey.includes('sport_utover')) return 'sport_utover';
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
