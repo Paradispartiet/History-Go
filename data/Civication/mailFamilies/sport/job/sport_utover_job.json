@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "trening_rytme_og_disiplin",
+      "purpose": "Lære spilleren at idrettslig utvikling bygges gjennom rytme, gjentakelse og presisjon, ikke bare motivasjon og harde økter.",
+      "learning_focus": ["treningsrytme", "disiplin", "utvikling"],
+      "mails": [
+        {
+          "id": "sport_utover_job_trening_001",
+          "mail_type": "job",
+          "mail_family": "trening_rytme_og_disiplin",
+          "role_scope": "sport_utover",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "subject": "Du vil vise framgang, men økta handler om kjedelig presisjon",
+          "summary": "Treneren legger opp en økt med enkle repetisjoner, mens du kjenner behovet for å vise at du egentlig er klar for mer.",
+          "purpose": "Etablere disiplin som evnen til å gjøre grunnarbeid presist, ikke bare presse seg hardt.",
+          "stakes": "Jager du bekreftelse, kan du se bedre ut i økta. Holder du deg til oppgaven, bygger du grunnlaget som varer lenger.",
+          "situation": [
+            "Økta ser nesten for enkel ut.",
+            "Du kjenner at de andre følger med, og du vil gjerne vise mer fart, kraft eller teknikk enn oppgaven ber om.",
+            "Treneren sier at målet er rytme, ikke show."
+          ],
+          "task_domain": "treningsdisiplin",
+          "competency": "presis_gjentakelse",
+          "pressure": "motivasjon_vs_rutine",
+          "choice_axis": "følge_øktmål_vs_jage_bekreftelse",
+          "consequence_axis": "langsiktig_utvikling_vs_kort_synlighet",
+          "narrative_arc": "utøveren lærer at kjedelig presisjon er en form for alvor",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følg øktmålet og gjør repetisjonene presist",
+              "reply": "Jeg følger øktmålet og gjør repetisjonene presist.",
+              "effect": 1,
+              "tags": ["training", "discipline", "development"],
+              "feedback": "Du ser kanskje mindre spektakulær ut, men bygger noe som tåler flere økter."
+            },
+            {
+              "id": "B",
+              "label": "Skru opp intensiteten for å vise nivået ditt",
+              "reply": "Jeg skrur opp intensiteten for å vise nivået mitt.",
+              "effect": -1,
+              "tags": ["ego", "intensity", "risk"],
+              "feedback": "Du får oppmerksomhet, men svarer mer på blikkene enn på oppgaven."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_job_trening_002",
+          "mail_type": "job",
+          "mail_family": "trening_rytme_og_disiplin",
+          "role_scope": "sport_utover",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "subject": "Framgangen synes ikke, men tallene sier at du tåler mer",
+          "summary": "Du føler at du står stille, men treningsloggen viser bedre belastningstoleranse, jevnere intensitet og færre fall i kvalitet mot slutten.",
+          "purpose": "Trene spilleren i å lese utvikling før den blir synlig som resultat.",
+          "stakes": "Endrer du opplegg for å kjenne mer framgang, kan du bryte rytmen. Holder du kursen, må du tåle usynlig utvikling litt til.",
+          "situation": [
+            "Du har ikke fått den tydelige prestasjonsøkningen du håpet på.",
+            "Likevel viser loggen at øktene dine er jevnere og at du tåler mer uten å falle teknisk sammen.",
+            "Det er utvikling, men ikke den typen som gir applaus ennå."
+          ],
+          "task_domain": "utviklingslogg",
+          "competency": "tålmodig_progresjon",
+          "pressure": "usynlig_framgang_vs_behov_for_bekreftelse",
+          "choice_axis": "holde_plan_vs_jage_ny_metode",
+          "consequence_axis": "stabil_utvikling_vs_avbrutt_rytme",
+          "narrative_arc": "utøveren lærer å stole på prosess før resultat",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hold planen og bruk loggen som tegn på utvikling",
+              "reply": "Jeg holder planen og bruker loggen som tegn på utvikling.",
+              "effect": 1,
+              "tags": ["process", "patience", "training"],
+              "feedback": "Du lar utvikling være noe som bygges før det vises."
+            },
+            {
+              "id": "B",
+              "label": "Be om hardere økter for å få tydeligere framgang",
+              "reply": "Jeg ber om hardere økter for å få tydeligere framgang.",
+              "effect": 0,
+              "tags": ["intensity", "impatience"],
+              "feedback": "Det kan gi følelse av framgang, men ikke nødvendigvis bedre utvikling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kropp_belastning_og_skade",
+      "purpose": "Lære spilleren at kroppen er både redskap og grense, og at belastning må styres før små signaler blir skade.",
+      "learning_focus": ["kropp", "belastning", "skadeforebygging"],
+      "mails": [
+        {
+          "id": "sport_utover_job_kropp_001",
+          "mail_type": "job",
+          "mail_family": "kropp_belastning_og_skade",
+          "role_scope": "sport_utover",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "fysio_elias",
+          "place_id": "sport_treningsfelt",
+          "subject": "Småplagen er ikke skade ennå, men kroppen varsler",
+          "summary": "Du kjenner en liten irritasjon som ikke stopper deg, men som kommer tilbake hver gang intensiteten øker.",
+          "purpose": "Etablere forskjellen mellom tøffhet og ansvarlig kroppslytting.",
+          "stakes": "Presser du videre, viser du vilje. Justerer du belastningen, risikerer du å virke forsiktig, men beskytter utviklingen.",
+          "situation": [
+            "Det gjør ikke ordentlig vondt.",
+            "Det er bare en liten ting som dukker opp når tempoet blir høyt.",
+            "Du vet at slike små ting ofte blir definert som karaktertest før de blir skade."
+          ],
+          "task_domain": "belastningsstyring",
+          "competency": "kroppslytting",
+          "pressure": "ambisjon_vs_signal",
+          "choice_axis": "justere_belastning_vs_presse_videre",
+          "consequence_axis": "langsiktig_utvikling_vs_kort_tøffhet",
+          "narrative_arc": "utøveren lærer at kroppen gir informasjon før den gir stopp",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Meld fra og juster belastningen før det blir skade",
+              "reply": "Jeg melder fra og justerer belastningen før det blir skade.",
+              "effect": 1,
+              "tags": ["body", "recovery", "prevention"],
+              "feedback": "Du behandler kroppen som del av utviklingen, ikke som hinder for den."
+            },
+            {
+              "id": "B",
+              "label": "Presse gjennom siden det ikke er en ordentlig skade",
+              "reply": "Jeg presser gjennom siden det ikke er en ordentlig skade.",
+              "effect": -1,
+              "tags": ["pain", "risk", "ego"],
+              "feedback": "Du viser vilje, men lar kroppen rope høyere neste gang."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_job_kropp_002",
+          "mail_type": "job",
+          "mail_family": "kropp_belastning_og_skade",
+          "role_scope": "sport_utover",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "fysio_elias",
+          "place_id": "sport_treningsfelt",
+          "subject": "Du kan spille viktig kamp, men restitusjonen sier nei",
+          "summary": "Laget trenger deg, og kampen betyr mye, men belastningsdata og kroppen din peker mot tydelig overbelastning.",
+          "purpose": "Teste om spilleren klarer å skille laglojalitet fra å ofre kroppen feil.",
+          "stakes": "Spiller du, hjelper du laget nå. Står du over, beskytter du både deg selv og muligheten til å bidra senere.",
+          "situation": [
+            "Dette er kampen du helst vil spille.",
+            "Treneren sier ikke direkte at du må, men alle vet at laget trenger deg.",
+            "Kroppen er ikke ødelagt, men den er tydelig sliten på en måte du kjenner igjen."
+          ],
+          "task_domain": "kampklarhet",
+          "competency": "ansvarlig_grense",
+          "pressure": "lagbehov_vs_kroppens_grense",
+          "choice_axis": "stå_over_vs_spille_på_risiko",
+          "consequence_axis": "langsiktig_tilgjengelighet_vs_kortsiktig_bidrag",
+          "narrative_arc": "utøveren lærer at lojalitet også kan være å ikke gjøre seg utilgjengelig senere",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si fra at du ikke bør spille full kamp og foreslå begrenset rolle",
+              "reply": "Jeg sier fra at jeg ikke bør spille full kamp og foreslår begrenset rolle.",
+              "effect": 1,
+              "tags": ["body", "team", "responsibility"],
+              "feedback": "Du tar ansvar uten å forsvinne fra laget."
+            },
+            {
+              "id": "B",
+              "label": "Spille kampen fordi laget trenger deg",
+              "reply": "Jeg spiller kampen fordi laget trenger meg.",
+              "effect": -1,
+              "tags": ["team", "overload", "risk"],
+              "feedback": "Du hjelper laget nå, men gjør kroppen til regningen som betales senere."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lagmiljo_rolle_og_normer",
+      "purpose": "Lære spilleren at lagmiljø, rolleforståelse og normer former utvikling, tilhørighet og grenser.",
+      "learning_focus": ["lagmiljø", "rolle", "normer"],
+      "mails": [
+        {
+          "id": "sport_utover_job_lag_001",
+          "mail_type": "job",
+          "mail_family": "lagmiljo_rolle_og_normer",
+          "role_scope": "sport_utover",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "subject": "Rollen din er mindre enn ambisjonen din akkurat nå",
+          "summary": "Du får en smalere rolle i laget enn du ønsker, men rollen kan lære deg timing, posisjonering og lagforståelse.",
+          "purpose": "Vise rolleforståelse som utvikling, ikke bare begrensning.",
+          "stakes": "Motsetter du deg rollen, viser du ambisjon. Tar du den på alvor, kan du utvikle noe du ikke ville valgt selv.",
+          "situation": [
+            "Du mener du kan bidra mer enn rollen du får.",
+            "Treneren sier at laget trenger deg akkurat der nå.",
+            "Det føles som en begrensning, men kan også være en konkret læringssituasjon."
+          ],
+          "task_domain": "lagrolle",
+          "competency": "rolleforståelse",
+          "pressure": "egen_ambisjon_vs_lagets_behov",
+          "choice_axis": "eie_rolle_vs_markere_misnøye",
+          "consequence_axis": "lagutvikling_vs_selvhevdelse",
+          "narrative_arc": "utøveren lærer at en rolle kan være liten og viktig samtidig",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta rollen seriøst og bruke den til å lære lagets rytme",
+              "reply": "Jeg tar rollen seriøst og bruker den til å lære lagets rytme.",
+              "effect": 1,
+              "tags": ["team", "role", "development"],
+              "feedback": "Du gjør rollen til læring i stedet for bare status."
+            },
+            {
+              "id": "B",
+              "label": "Markere at du ønsker større ansvar",
+              "reply": "Jeg markerer at jeg ønsker større ansvar.",
+              "effect": 0,
+              "tags": ["ambition", "status"],
+              "feedback": "Ambisjonen er reell, men den løser ikke nødvendigvis det laget trenger nå."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_job_lag_002",
+          "mail_type": "job",
+          "mail_family": "lagmiljo_rolle_og_normer",
+          "role_scope": "sport_utover",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "lagkontakt_samir",
+          "place_id": "sport_treningsfelt",
+          "subject": "Garderoben kaller det standard, men det føles feil",
+          "summary": "En intern norm i laget gjør det vanskelig å si fra om belastning og feil, fordi alle ler det bort som del av kulturen.",
+          "purpose": "Teste om spilleren skiller lagtilhørighet fra å akseptere usunne normer.",
+          "stakes": "Tier du, holder du deg inne i miljøet. Sier du fra, risikerer du friksjon, men gjør kulturen sunnere.",
+          "situation": [
+            "Ingen mener nødvendigvis noe vondt.",
+            "Likevel blir småplager, feil og svakhet gjort til spøk på en måte som får folk til å tie.",
+            "Du kjenner at normen virker, fordi du vurderer å si mindre enn du burde."
+          ],
+          "task_domain": "lagkultur",
+          "competency": "sunn_grense",
+          "pressure": "tilhørighet_vs_grense",
+          "choice_axis": "si_fra_vs_tie_for_miljø",
+          "consequence_axis": "sunn_kultur_vs_sosial_ro",
+          "narrative_arc": "utøveren lærer at lojalitet til laget noen ganger betyr å utfordre normen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta det opp rolig og konkret med laget eller treneren",
+              "reply": "Jeg tar det opp rolig og konkret med laget eller treneren.",
+              "effect": 1,
+              "tags": ["team_culture", "boundary", "care"],
+              "feedback": "Du gjør miljøet litt mindre komfortabelt og litt tryggere."
+            },
+            {
+              "id": "B",
+              "label": "La det ligge for å ikke lage dårlig stemning",
+              "reply": "Jeg lar det ligge for å ikke lage dårlig stemning.",
+              "effect": -1,
+              "tags": ["silence", "risk"],
+              "feedback": "Stemningen holder seg, men normen får fortsette å styre hva folk tør å si."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "konkurranse_press_og_resultat",
+      "purpose": "Lære spilleren at konkurransepress kan brukes uten at resultatet får definere hele utviklingen eller selvbildet.",
+      "learning_focus": ["konkurranse", "resultatpress", "selvbilde"],
+      "mails": [
+        {
+          "id": "sport_utover_job_konk_001",
+          "mail_type": "job",
+          "mail_family": "konkurranse_press_og_resultat",
+          "role_scope": "sport_utover",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "trener_maja",
+          "place_id": "sport_konkurransearena",
+          "subject": "Resultatet var dårlig, men prestasjonen var ikke bare dårlig",
+          "summary": "Du taper eller underpresterer på tavla, men gjennomføringen viser noen riktige valg som ikke synes i sluttresultatet.",
+          "purpose": "Lære spilleren å analysere konkurranse uten å redusere alt til resultat.",
+          "stakes": "Lar du resultatet definere alt, blir læringen smal. Leser du prestasjonen, finner du forbedring uten å bortforklare tapet.",
+          "situation": [
+            "Resultatet er tungt å se på.",
+            "Du vet at noen situasjoner var svake, men treneren peker også på bedre timing og ro under press.",
+            "Det føles nesten feil å lære av noe som endte dårlig."
+          ],
+          "task_domain": "kampanalyse",
+          "competency": "resultatkritisk_læring",
+          "pressure": "tavle_vs_prestasjon",
+          "choice_axis": "analysere_prestasjon_vs_dømme_resultat",
+          "consequence_axis": "læring_vs_selvbildefall",
+          "narrative_arc": "utøveren lærer at resultatet viser noe, men ikke alt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Analysere prestasjonen konkret og skille læring fra resultat",
+              "reply": "Jeg analyserer prestasjonen konkret og skiller læring fra resultat.",
+              "effect": 1,
+              "tags": ["competition", "learning", "analysis"],
+              "feedback": "Du tar resultatet alvorlig uten å la det bli hele sannheten."
+            },
+            {
+              "id": "B",
+              "label": "La resultatet være hovedsvaret og trene hardere neste uke",
+              "reply": "Jeg lar resultatet være hovedsvaret og trener hardere neste uke.",
+              "effect": 0,
+              "tags": ["result", "intensity"],
+              "feedback": "Det kan gi energi, men ikke nødvendigvis presis læring."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_job_konk_002",
+          "mail_type": "job",
+          "mail_family": "konkurranse_press_og_resultat",
+          "role_scope": "sport_utover",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "trener_maja",
+          "place_id": "sport_konkurransearena",
+          "subject": "Du må prestere uten å bli resultatet ditt",
+          "summary": "En viktig konkurranse nærmer seg, og du kjenner at forventningen begynner å styre både kroppen, hodet og hvordan du ser deg selv.",
+          "purpose": "Avrunde rollen med moden prestasjonsforståelse: konkurranse, kropp, lag og selvbilde må holdes sammen.",
+          "stakes": "Gjør du konkurransen til dom over deg selv, kan presset gi ekstra tenning eller knekk. Holder du den som en oppgave, kan du prestere friere.",
+          "situation": [
+            "Du har trent godt, kroppen er nær klar, og laget forventer noe av deg.",
+            "Samtidig merker du at konkurransen begynner å føles som en dom over hvem du er.",
+            "Nå handler det ikke bare om teknikk, men om hvordan du bærer presset."
+          ],
+          "task_domain": "prestasjonsmodenhet",
+          "competency": "konkurransero",
+          "pressure": "forventning_vs_selvbilde",
+          "choice_axis": "holde_oppgavefokus_vs_jage_identitetsbekreftelse",
+          "consequence_axis": "fri_prestasjon_vs_pressidentitet",
+          "narrative_arc": "utøveren lærer å konkurrere uten å bli redusert til konkurransen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Holde fokus på konkrete oppgaver, kropp og lagrolle",
+              "reply": "Jeg holder fokus på konkrete oppgaver, kropp og lagrolle.",
+              "effect": 1,
+              "tags": ["mastery", "pressure", "focus"],
+              "feedback": "Du lar prestasjonen være viktig uten å gjøre den til hele deg."
+            },
+            {
+              "id": "B",
+              "label": "Bruke forventningen som drivstoff og jage toppresultat",
+              "reply": "Jeg bruker forventningen som drivstoff og jager toppresultat.",
+              "effect": 0,
+              "tags": ["pressure", "result"],
+              "feedback": "Presset kan skjerpe deg, men du legger mye av selvbildet på tavla."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
