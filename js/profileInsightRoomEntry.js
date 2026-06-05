@@ -47,14 +47,17 @@
   function addButton() {
     if (document.getElementById("btnOpenPsychologyRoom")) return;
 
-    const actions = document.querySelector(".profile-hero-actions-v2");
+    const actions = document.querySelector("header #profileCard .profile-hero-actions-v2")
+      || document.querySelector("#profileCard .profile-hero-actions-v2")
+      || document.querySelector(".profile-hero-actions-v2");
     if (!actions) return;
 
     const button = document.createElement("button");
     button.id = "btnOpenPsychologyRoom";
     button.type = "button";
-    button.className = "btn";
-    button.textContent = "Psykologrommet";
+    button.className = "btn profile-icon-button profile-room-button";
+    button.textContent = "R";
+    button.setAttribute("aria-label", "Psykologrommet");
     button.title = "Åpne screening, refleksjon og innsiktsprofil";
     button.addEventListener("click", (event) => {
       event.preventDefault();
