@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_legende",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "offentlig_ikon_og_medier",
+      "purpose": "Lære spilleren at offentlig synlighet må styres aktivt når medier gjør mennesket til en brukbar fortelling.",
+      "learning_focus": ["medier", "egen stemme", "offentlig symbol"],
+      "mails": [
+        {
+          "id": "sport_legende_job_media_001",
+          "mail_type": "job",
+          "mail_family": "offentlig_ikon_og_medier",
+          "role_scope": "sport_legende",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "medieradgiver_liv",
+          "place_id": "sport_mediesone",
+          "subject": "Intervjuet vil ha mennesket, men klipper fram symbolet",
+          "summary": "Et stort intervju ber deg være åpen og personlig, men vinkelen er allerede lagt rundt offer, triumf og nasjonal stolthet.",
+          "purpose": "Etablere at egen stemme må beskyttes når mediene trenger en fortelling.",
+          "stakes": "Går du helt åpent inn, kan intervjuet bli sterkt, men også brukt. Setter du grenser, mister du noe av nærheten, men beholder stemmen.",
+          "situation": [
+            "Journalisten sier at de vil vise mennesket bak prestasjonen.",
+            "Samtidig ligger spørsmålene allerede i en bestemt dramaturgi: motgang, seier, tårer, nasjonen.",
+            "Du kjenner at sannheten din er mer rotete enn den historien de vil ha."
+          ],
+          "task_domain": "mediehåndtering",
+          "competency": "egen_stemme_under_synlighet",
+          "pressure": "åpenhet_vs_fortellingskontroll",
+          "choice_axis": "sette_grenser_vs_gi_full_tilgang",
+          "consequence_axis": "integritet_vs_medienærhet",
+          "narrative_arc": "legenden lærer at offentlig ærlighet trenger form for ikke å bli tatt fra deg",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi intervjuet, men avklare tydelige grenser for privatliv og vinkling",
+              "reply": "Jeg gir intervjuet, men avklarer tydelige grenser for privatliv og vinkling.",
+              "effect": 1,
+              "tags": ["media", "voice", "boundaries"],
+              "feedback": "Du gir offentligheten noe ekte uten å gi fra deg hele historien."
+            },
+            {
+              "id": "B",
+              "label": "Gå helt åpent inn for å vise den ekte siden av historien",
+              "reply": "Jeg går helt åpent inn for å vise den ekte siden av historien.",
+              "effect": 0,
+              "tags": ["openness", "risk"],
+              "feedback": "Det kan bli sterkt, men også lettere å klippe inn i en fortelling du ikke styrer."
+            }
+          ]
+        },
+        {
+          "id": "sport_legende_job_media_002",
+          "mail_type": "job",
+          "mail_family": "offentlig_ikon_og_medier",
+          "role_scope": "sport_legende",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "medieradgiver_liv",
+          "place_id": "sport_mediesone",
+          "subject": "Alle vil ha kommentaren din fordi du er mer enn deg selv nå",
+          "summary": "En kontrovers i idretten gjør at media forventer at du uttaler deg, selv om du ikke kjenner saken godt nok ennå.",
+          "purpose": "Teste om spilleren skiller mellom viktig offentlig stemme og symbolsk press til å mene noe straks.",
+          "stakes": "Snakker du raskt, viser du lederskap. Venter du, kan du virke unnvikende, men unngår å bruke status uten kunnskap.",
+          "situation": [
+            "Telefonen går hele dagen.",
+            "Du blir spurt fordi du er et symbol i idretten, ikke fordi du har vært nær saken.",
+            "Det kan være viktig å si noe, men ikke nødvendigvis akkurat nå."
+          ],
+          "task_domain": "offentlig_uttalelse",
+          "competency": "ansvarlig_synlighet",
+          "pressure": "symbolsk_forventning_vs_kunnskapsgrunnlag",
+          "choice_axis": "avvente_og_sette_kriterier_vs_uttale_seg_raskt",
+          "consequence_axis": "troverdighet_vs_synlig_lederskap",
+          "narrative_arc": "legenden lærer at offentlig stemme må ha grunnlag for å ha verdi",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avvente, hente fakta og si at du uttaler deg når grunnlaget er tydelig",
+              "reply": "Jeg avventer, henter fakta og sier at jeg uttaler meg når grunnlaget er tydelig.",
+              "effect": 1,
+              "tags": ["media", "responsibility", "facts"],
+              "feedback": "Du beskytter tyngden i stemmen din ved å ikke bruke den for tidlig."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask prinsipiell kommentar for å vise ansvar",
+              "reply": "Jeg gir en rask prinsipiell kommentar for å vise ansvar.",
+              "effect": 0,
+              "tags": ["public_voice", "speed"],
+              "feedback": "Du viser tilstedeværelse, men risikerer å bli brukt før du vet nok."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sponsor_merkevare_og_integritet",
+      "purpose": "Lære spilleren at sponsor- og merkevarevalg forvalter troverdighet, verdier og grenser, ikke bare inntekt og synlighet.",
+      "learning_focus": ["sponsor", "merkevare", "integritet"],
+      "mails": [
+        {
+          "id": "sport_legende_job_sponsor_001",
+          "mail_type": "job",
+          "mail_family": "sponsor_merkevare_og_integritet",
+          "role_scope": "sport_legende",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "agent_elin",
+          "place_id": "sport_partnerrom",
+          "subject": "Avtalen betaler godt, men låner verdiene dine feil",
+          "summary": "En sponsor vil bruke historien din om disiplin og fellesskap i en kampanje som egentlig selger individualistisk luksus og status.",
+          "purpose": "Etablere at sponsoravtaler låner troverdighet, ikke bare ansikt.",
+          "stakes": "Sier du ja, gir det økonomi og synlighet. Sier du nei, beskytter du verdien som gjorde avtalen verdifull i utgangspunktet.",
+          "situation": [
+            "Pengene er store, og kampanjen ser profesjonell ut.",
+            "Men de vil bruke akkurat det du har bygget: disiplin, fellesskap og ydmykhet.",
+            "Budskapet under bildene peker mot noe helt annet."
+          ],
+          "task_domain": "sponsorvurdering",
+          "competency": "integritetsfilter",
+          "pressure": "kommersiell_mulighet_vs_verdimessig_samsvar",
+          "choice_axis": "si_nei_vs_ta_avtalen",
+          "consequence_axis": "troverdighet_vs_inntekt_og_synlighet",
+          "narrative_arc": "legenden lærer at pengene kjøper verdien som kan forsvinne hvis alt selges",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si nei eller kreve ny kampanje som faktisk matcher verdiene dine",
+              "reply": "Jeg sier nei eller krever ny kampanje som faktisk matcher verdiene mine.",
+              "effect": 1,
+              "tags": ["sponsor", "integrity", "values"],
+              "feedback": "Du beskytter det sponsorene egentlig kom for å låne."
+            },
+            {
+              "id": "B",
+              "label": "Ta avtalen og bruke pengene til gode formål senere",
+              "reply": "Jeg tar avtalen og bruker pengene til gode formål senere.",
+              "effect": -1,
+              "tags": ["money", "rationalization"],
+              "feedback": "Du kan gjøre godt med pengene, men avtalen skriver også noe på navnet ditt."
+            }
+          ]
+        },
+        {
+          "id": "sport_legende_job_sponsor_002",
+          "mail_type": "job",
+          "mail_family": "sponsor_merkevare_og_integritet",
+          "role_scope": "sport_legende",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "agent_elin",
+          "place_id": "sport_partnerrom",
+          "subject": "Merkevaren din er blitt ryddigere enn mennesket ditt",
+          "summary": "Teamet rundt deg vil gjøre alle uttalelser, bilder og samarbeid mer konsistente, men du kjenner at det ekte mennesket forsvinner bak profilen.",
+          "purpose": "Teste om spilleren beskytter identitet mot merkevarens krav om glatt konsistens.",
+          "stakes": "Lar du teamet stramme inn, blir du mer salgbar. Tar du tilbake nyanser, blir profilen mindre ren, men mer sann.",
+          "situation": [
+            "Alt ser profesjonelt ut nå.",
+            "Bildene, ordene, avtalene og postene peker samme vei.",
+            "Problemet er at du ikke kjenner igjen alle kantene dine i den ryddige versjonen."
+          ],
+          "task_domain": "merkevareforvaltning",
+          "competency": "identitetsvern",
+          "pressure": "salgbar_konsistens_vs_menneskelig_sannhet",
+          "choice_axis": "ta_tilbake_nyanser_vs_stramme_merkevare",
+          "consequence_axis": "autentisitet_vs_kommersiell_renhet",
+          "narrative_arc": "legenden lærer at merkevaren kan bli et bur laget av gode intensjoner",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta tilbake noen nyanser og la profilen tåle mer menneskelig kompleksitet",
+              "reply": "Jeg tar tilbake noen nyanser og lar profilen tåle mer menneskelig kompleksitet.",
+              "effect": 1,
+              "tags": ["brand", "identity", "integrity"],
+              "feedback": "Du gjør deg mindre glatt og mer virkelig."
+            },
+            {
+              "id": "B",
+              "label": "Stramme profilen videre for å beskytte merkevaren",
+              "reply": "Jeg strammer profilen videre for å beskytte merkevaren.",
+              "effect": 0,
+              "tags": ["brand", "control"],
+              "feedback": "Du beskytter bildet, men bildet begynner å eie mer av deg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forbildeansvar_og_neste_generasjon",
+      "purpose": "Lære spilleren at forbildeansvar er ekte, men må ha grenser og sannhet for ikke å spise opp mennesket.",
+      "learning_focus": ["forbildeansvar", "unge utøvere", "grenser"],
+      "mails": [
+        {
+          "id": "sport_legende_job_forbilde_001",
+          "mail_type": "job",
+          "mail_family": "forbildeansvar_og_neste_generasjon",
+          "role_scope": "sport_legende",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "barneidrett_koordinator_nina",
+          "place_id": "sport_klubbhus",
+          "subject": "Barna vil møte helten, men du er tom etter reisen",
+          "summary": "En samling med unge utøvere er planlagt rett etter en krevende periode, og alle forventer at du skal være inspirerende og tilgjengelig.",
+          "purpose": "Etablere at forbildeansvar kan være ekte også når kapasiteten er lav, men trenger grenser.",
+          "stakes": "Gjennomfører du fullt, gir du barna noe stort, men tømmer deg selv. Setter du rammer, kan møtet bli mindre omfattende, men mer sant.",
+          "situation": [
+            "Barna har gledet seg lenge.",
+            "Du vet hvor mye et slikt møte kan bety.",
+            "Samtidig kjenner du at du ikke har kapasitet til å være grenseløst varm, morsom, tålmodig og tilgjengelig i to timer."
+          ],
+          "task_domain": "forbildemøte",
+          "competency": "grensesatt_generøsitet",
+          "pressure": "offentlig_betydning_vs_privat_slitenhet",
+          "choice_axis": "sette_rammer_vs_gi_full_tilgjengelighet",
+          "consequence_axis": "bærekraftig_forbilde_vs_selvutslettende_gavmildhet",
+          "narrative_arc": "legenden lærer at det å gi tilbake også må ha en form som mennesket tåler",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjennomføre kortere møte med tydelig ramme og ekte tilstedeværelse",
+              "reply": "Jeg gjennomfører kortere møte med tydelig ramme og ekte tilstedeværelse.",
+              "effect": 1,
+              "tags": ["role_model", "children", "boundaries"],
+              "feedback": "Du gir mindre tid, men mer nærvær."
+            },
+            {
+              "id": "B",
+              "label": "Gjennomføre fullt opplegg fordi barna fortjener det",
+              "reply": "Jeg gjennomfører fullt opplegg fordi barna fortjener det.",
+              "effect": 0,
+              "tags": ["generosity", "overload"],
+              "feedback": "Du gir mye, men lærer kroppen at forbildeansvar betyr å forsvinne litt."
+            }
+          ]
+        },
+        {
+          "id": "sport_legende_job_forbilde_002",
+          "mail_type": "job",
+          "mail_family": "forbildeansvar_og_neste_generasjon",
+          "role_scope": "sport_legende",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "barneidrett_koordinator_nina",
+          "place_id": "sport_klubbhus",
+          "subject": "De unge trenger sannhet, ikke bare glansbildet",
+          "summary": "Du er invitert til å snakke om veien til toppen, men arrangøren ønsker mest en motiverende historie uten for mye smerte, tvil eller kostnad.",
+          "purpose": "Teste om spilleren tør å gi neste generasjon en sannere fortelling om prestasjon.",
+          "stakes": "Holder du det inspirerende, blir arrangementet lett. Tar du med kostnaden, kan du hjelpe dypere, men bryte glansbildet.",
+          "situation": [
+            "De vil at du skal fortelle om drømmer, disiplin og seier.",
+            "Alt det er sant, men ikke hele sannheten.",
+            "Du vet at unge utøvere også trenger språk for tvil, skade, press og grensene for hva idretten skal få ta."
+          ],
+          "task_domain": "forbildefortelling",
+          "competency": "sann_inspirasjon",
+          "pressure": "inspirerende_bilde_vs_hel_sannhet",
+          "choice_axis": "fortelle_med_kostnad_vs_ren_motivasjon",
+          "consequence_axis": "moden_læring_vs_glansbilde",
+          "narrative_arc": "legenden lærer at forbildeansvar ikke bare er å skinne, men å gjøre virkeligheten mer lesbar",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fortelle inspirerende, men også ærlig om press, tvil og grenser",
+              "reply": "Jeg forteller inspirerende, men også ærlig om press, tvil og grenser.",
+              "effect": 1,
+              "tags": ["role_model", "truth", "youth"],
+              "feedback": "Du gir de unge et forbilde som også er menneskelig nok til å lære av."
+            },
+            {
+              "id": "B",
+              "label": "Holde foredraget positivt og fokusere på drøm, disiplin og seier",
+              "reply": "Jeg holder foredraget positivt og fokuserer på drøm, disiplin og seier.",
+              "effect": 0,
+              "tags": ["motivation", "image"],
+              "feedback": "Du inspirerer, men lar noe av den viktigste kunnskapen bli stående uten språk."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arv_ettermale_og_identitet",
+      "purpose": "Lære spilleren at ettermæle skapes av hvordan makt, synlighet, prestasjon og menneskelighet forvaltes etter toppstatus.",
+      "learning_focus": ["ettermæle", "identitet", "arv"],
+      "mails": [
+        {
+          "id": "sport_legende_job_arv_001",
+          "mail_type": "job",
+          "mail_family": "arv_ettermale_og_identitet",
+          "role_scope": "sport_legende",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "forbundskontakt_ole",
+          "place_id": "sport_seremonirom",
+          "subject": "De vil feire prestasjonen, men du kjenner at livet må videre",
+          "summary": "En ny hyllest skal bygges rundt ditt største øyeblikk, men du merker at historien låser deg fast i én versjon av deg selv.",
+          "purpose": "Etablere at prestasjonens ettermæle kan bli både ære og fangenskap.",
+          "stakes": "Går du fullt inn i hyllesten, styrker du arven. Setter du ny ramme, kan du åpne historien for livet etter prestasjonen.",
+          "situation": [
+            "Øyeblikket var stort, og du er stolt av det.",
+            "Men hver gang det gjenfortelles, blir du litt mer lik den ene dagen og litt mindre lik mennesket som fortsatt lever.",
+            "Du må finne en måte å ære prestasjonen uten å bli værende i den."
+          ],
+          "task_domain": "ettermæleforvaltning",
+          "competency": "identitet_etter_prestasjon",
+          "pressure": "historisk_øyeblikk_vs_liv_videre",
+          "choice_axis": "sette_ny_ramme_vs_gå_inn_i_hyllest",
+          "consequence_axis": "levende_identitet_vs_fastfrosset_symbol",
+          "narrative_arc": "legenden lærer at arv må gi rom for mennesket etter seieren",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Delta, men ramme prestasjonen inn som begynnelse på videre ansvar",
+              "reply": "Jeg deltar, men rammer prestasjonen inn som begynnelse på videre ansvar.",
+              "effect": 1,
+              "tags": ["legacy", "identity", "future"],
+              "feedback": "Du ærer øyeblikket uten å la det bli hele deg."
+            },
+            {
+              "id": "B",
+              "label": "Gå fullt inn i hyllesten og la prestasjonen stå størst",
+              "reply": "Jeg går fullt inn i hyllesten og lar prestasjonen stå størst.",
+              "effect": 0,
+              "tags": ["celebration", "symbol"],
+              "feedback": "Arven blir sterkere, men mennesket får mindre plass i fortellingen."
+            }
+          ]
+        },
+        {
+          "id": "sport_legende_job_arv_002",
+          "mail_type": "job",
+          "mail_family": "arv_ettermale_og_identitet",
+          "role_scope": "sport_legende",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "forbundskontakt_ole",
+          "place_id": "sport_seremonirom",
+          "subject": "Legenden må forvalte historien uten å bli fanget i den",
+          "summary": "Du skal holde en tale om idrettens betydning, og alle forventer at du skal oppsummere karrieren som seier, offer og nasjonal stolthet.",
+          "purpose": "Avrunde rollen med moden forvaltning av menneske, merkevare, forbildeansvar og ettermæle.",
+          "stakes": "Gir du forventet tale, samler du alle. Gir du en sannere tale, kan du endre hva legenden brukes til.",
+          "situation": [
+            "Rommet vil ha den store fortellingen.",
+            "Du kan gi dem seier, offer, flagg og applaus.",
+            "Men du har også lært noe om grenser, mennesker, barn, makt, penger og hva idretten kan koste når den blir alt."
+          ],
+          "task_domain": "legende_tale",
+          "competency": "helhetlig_ettermæle",
+          "pressure": "forventet_symbol_vs_sannere_arv",
+          "choice_axis": "gi_sannere_tale_vs_gi_samlende_myte",
+          "consequence_axis": "levende_arv_vs_ren_heroiseringsfortelling",
+          "narrative_arc": "legenden lærer at det siste ansvaret er å gjøre historien nyttig uten å gjøre den falsk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Holde en tale som rommer seier, kostnad, ansvar og menneskelighet",
+              "reply": "Jeg holder en tale som rommer seier, kostnad, ansvar og menneskelighet.",
+              "effect": 1,
+              "tags": ["mastery", "legacy", "truth"],
+              "feedback": "Du gjør legenden mindre glatt og mer verdt å arve."
+            },
+            {
+              "id": "B",
+              "label": "Holde en samlende tale om seier, offer og stolthet",
+              "reply": "Jeg holder en samlende tale om seier, offer og stolthet.",
+              "effect": 0,
+              "tags": ["myth", "unity"],
+              "feedback": "Du gir rommet det det forventer, men lar noen sannheter bli uten stemme."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
