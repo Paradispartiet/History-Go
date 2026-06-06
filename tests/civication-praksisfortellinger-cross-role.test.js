@@ -109,6 +109,40 @@ const ROLES = {
     ],
     forbiddenFamilyNeedles: ['arbeider', 'fagarbeider']
 
+  },
+  ekspeditor: {
+    active: {
+      career_id: 'naeringsliv',
+      title: 'Ekspeditør / butikkmedarbeider',
+      role_key: 'ekspeditor',
+      role_id: 'naer_ekspeditor'
+    },
+    planPath: 'data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json',
+    jobPath: 'data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json',
+    peoplePath: 'data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json',
+    packageSteps: 10,
+    packageFamilies: [
+      'first_week_praksisfortellinger_ekspeditor_job',
+      'first_week_praksisfortellinger_ekspeditor_private'
+    ],
+    expectedStepFamilies: index => index % 2 === 0
+      ? 'first_week_praksisfortellinger_ekspeditor_job'
+      : 'first_week_praksisfortellinger_ekspeditor_private',
+    expectedSignals: [
+      'accuracy',
+      'customer_trust',
+      'manager_trust',
+      'service_quality',
+      'queue_flow',
+      'boundary',
+      'future_risk',
+      'conflict',
+      'stress',
+      'service_mask',
+      'relationship_private',
+      'stagnation'
+    ],
+    forbiddenFamilyNeedles: ['arbeider', 'fagarbeider', 'formann']
   }
 };
 
