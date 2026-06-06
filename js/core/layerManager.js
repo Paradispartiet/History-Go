@@ -138,6 +138,13 @@ function applyMode(mode) {
 
   document.body.classList.toggle("mode-map", isMap);
   syncMapViewportLock(isMap);
+
+  if (isMap) {
+    requestAnimationFrame(() => {
+      window.HGMap?.resize?.();
+      window.HGMap?.maybeDrawMarkers?.();
+    });
+  }
 }
 
   

@@ -25,7 +25,7 @@
   const SRC = "hg-places";
   const STANDARD_DIM_SRC = "hg-standard-map-dim-src";
   const STANDARD_DIM_LAYER = "hg-standard-map-dim";
-  const STANDARD_DIM_OPACITY = 0.22;
+  const STANDARD_DIM_OPACITY = 0.14;
   const L_GLOW = "hg-places-glow";
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
@@ -33,7 +33,9 @@
   const PLACE_LABEL_MIN_ZOOM = 13.8;
   const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB, L_GLOW];
   const PLACE_HIT_PRIORITY = [L_HIT, L_DOTS, L_LAB, L_GLOW];
-  const PLACE_TAP_TOLERANCE_PX = 28;
+  const PLACE_TAP_TOLERANCE_PX = 12;
+  const PLACE_POINTER_MOVE_TOLERANCE_PX = 7;
+  const PLACE_GESTURE_COOLDOWN_MS = 180;
 
   function num(v) {
     const n = Number(v);
@@ -91,9 +93,10 @@
     MAP.on("load", () => {
       mapReady = true;
       ensureMapStyleToggle(containerId);
+      MAP.resize();
       applyStandardMapDarkening();
       drawPlaceMarkers();
-      MAP.resize();
+      moveMarkersOnTop();
     });
 
     return MAP;
@@ -365,9 +368,13 @@
       }
 
       if (layerType === "line") {
-        if (/road|transport|rail|tunnel|bridge/.test(sourceLayer)) {
-          setPaintPropertyIfSupported(id, "line-color", "#53677d");
-          setPaintPropertyIfSupported(id, "line-opacity", 0.72);
+        const layerName = `${id} ${sourceLayer}`;
+        const isTransportLayer = /road|transportation|highway|street|motorway|trunk|primary|secondary|tertiary|tunnel|bridge|path|rail/.test(layerName);
+        if (isTransportLayer) {
+          const isRail = /rail/.test(layerName);
+          const isCasing = /casing|outline|shadow/.test(layerName);
+          setPaintPropertyIfSupported(id, "line-color", isRail ? "#cbd2da" : isCasing ? "#aeb8c3" : "#f7f9fc");
+          setPaintPropertyIfSupported(id, "line-opacity", isRail ? 0.78 : isCasing ? 0.88 : 0.96);
         } else if (/water|river|stream/.test(sourceLayer)) {
           setPaintPropertyIfSupported(id, "line-color", "#1e5c7e");
           setPaintPropertyIfSupported(id, "line-opacity", 0.84);
@@ -496,9 +503,9 @@
     }
 
     return {
-      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 6, 12, 8, 14, 11, 16, 16, 18, 22],
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 12, 7, 14, 9, 16, 13, 18, 18],
       "circle-color": ["get", "fill"],
-      "circle-opacity": 0.28,
+      "circle-opacity": 0.24,
       "circle-blur": 0.65
     };
   }
@@ -594,11 +601,11 @@
       paint: {
         "circle-radius": [
           "interpolate", ["linear"], ["zoom"],
-          10, ["+", 2.4, ["*", 0.5, ["get", "visited"]]],
-          12, ["+", 3.2, ["*", 0.7, ["get", "visited"]]],
-          14, ["+", 4.8, ["*", 0.9, ["get", "visited"]]],
-          16, ["+", 7.2, ["*", 1.2, ["get", "visited"]]],
-          18, ["+", 10.5, ["*", 1.5, ["get", "visited"]]]
+          10, ["+", 2.1, ["*", 0.4, ["get", "visited"]]],
+          12, ["+", 2.8, ["*", 0.6, ["get", "visited"]]],
+          14, ["+", 4.1, ["*", 0.8, ["get", "visited"]]],
+          16, ["+", 6.1, ["*", 1.0, ["get", "visited"]]],
+          18, ["+", 8.8, ["*", 1.3, ["get", "visited"]]]
         ],
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
@@ -628,7 +635,7 @@
       type: "circle",
       source: SRC,
       paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 16, 12, 20, 14, 24, 16, 30, 18, 38],
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 9, 12, 11, 14, 14, 16, 18, 18, 23],
         "circle-color": "rgba(0,0,0,0.01)",
         "circle-opacity": 0.01
       }
@@ -701,14 +708,24 @@
       MAP.off("mouseleave", L_HIT, prev.clearPointer);
       MAP.off("click", prev.handlePlaceClick);
       MAP.off("touchend", prev.handlePlaceClick);
-      [L_HIT, L_DOTS, L_LAB].forEach((layerId) => {
-        if (!hasLayer(layerId)) return;
-        MAP.off("click", layerId, prev.handlePlaceClick);
-        MAP.off("touchend", layerId, prev.handlePlaceClick);
-      });
+      MAP.off("dragstart", prev.markMapGesture);
+      MAP.off("zoomstart", prev.markMapGesture);
+      MAP.off("rotatestart", prev.markMapGesture);
+      MAP.off("dragend", prev.finishMapGesture);
+      MAP.off("zoomend", prev.finishMapGesture);
+      MAP.off("rotateend", prev.finishMapGesture);
+      prev.canvas?.removeEventListener("pointerdown", prev.handlePointerDown);
+      prev.canvas?.removeEventListener("pointermove", prev.handlePointerMove);
+      prev.canvas?.removeEventListener("pointerup", prev.handlePointerUp);
+      prev.canvas?.removeEventListener("pointercancel", prev.handlePointerCancel);
     }
 
     const canvas = MAP.getCanvas();
+    let pointerStart = null;
+    let pointerMoved = false;
+    let mapGestureActive = false;
+    let suppressPlaceClickUntil = 0;
+    let lastOpenedPlace = { id: null, at: 0 };
 
     const setPointer = () => {
       canvas.style.cursor = "pointer";
@@ -718,11 +735,53 @@
       canvas.style.cursor = "";
     };
 
+    const markMapGesture = () => {
+      mapGestureActive = true;
+      pointerMoved = true;
+      suppressPlaceClickUntil = Date.now() + PLACE_GESTURE_COOLDOWN_MS;
+    };
+
+    const finishMapGesture = () => {
+      mapGestureActive = false;
+      suppressPlaceClickUntil = Date.now() + PLACE_GESTURE_COOLDOWN_MS;
+    };
+
+    const handlePointerDown = (event) => {
+      pointerStart = { x: event.clientX, y: event.clientY };
+      pointerMoved = false;
+    };
+
+    const handlePointerMove = (event) => {
+      if (!pointerStart || pointerMoved) return;
+      const dx = event.clientX - pointerStart.x;
+      const dy = event.clientY - pointerStart.y;
+      if (Math.hypot(dx, dy) > PLACE_POINTER_MOVE_TOLERANCE_PX) {
+        pointerMoved = true;
+        suppressPlaceClickUntil = Date.now() + PLACE_GESTURE_COOLDOWN_MS;
+      }
+    };
+
+    const handlePointerUp = () => {
+      if (pointerMoved) suppressPlaceClickUntil = Date.now() + PLACE_GESTURE_COOLDOWN_MS;
+      pointerStart = null;
+    };
+
+    const handlePointerCancel = () => {
+      pointerStart = null;
+      pointerMoved = true;
+      suppressPlaceClickUntil = Date.now() + PLACE_GESTURE_COOLDOWN_MS;
+    };
+
     const handlePlaceClick = (e) => {
+      const now = Date.now();
+      if (mapGestureActive || pointerMoved || now < suppressPlaceClickUntil) return;
+
       const feature = getPlaceFeatureFromEvent(e);
       const id = feature?.properties?.id;
       if (!id) return;
+      if (lastOpenedPlace.id === id && now - lastOpenedPlace.at < PLACE_GESTURE_COOLDOWN_MS) return;
 
+      lastOpenedPlace = { id, at: now };
       e?.preventDefault?.();
       e?.originalEvent?.preventDefault?.();
       e?.originalEvent?.stopPropagation?.();
@@ -730,19 +789,34 @@
       onPlaceClick(id);
     };
 
-    MAP.__hgPlaceHandlers = { setPointer, clearPointer, handlePlaceClick };
+    MAP.__hgPlaceHandlers = {
+      canvas,
+      setPointer,
+      clearPointer,
+      markMapGesture,
+      finishMapGesture,
+      handlePointerDown,
+      handlePointerMove,
+      handlePointerUp,
+      handlePointerCancel,
+      handlePlaceClick
+    };
+
+    canvas.addEventListener("pointerdown", handlePointerDown, { passive: true });
+    canvas.addEventListener("pointermove", handlePointerMove, { passive: true });
+    canvas.addEventListener("pointerup", handlePointerUp, { passive: true });
+    canvas.addEventListener("pointercancel", handlePointerCancel, { passive: true });
 
     MAP.on("mouseenter", L_HIT, setPointer);
     MAP.on("mouseleave", L_HIT, clearPointer);
-
+    MAP.on("dragstart", markMapGesture);
+    MAP.on("zoomstart", markMapGesture);
+    MAP.on("rotatestart", markMapGesture);
+    MAP.on("dragend", finishMapGesture);
+    MAP.on("zoomend", finishMapGesture);
+    MAP.on("rotateend", finishMapGesture);
     MAP.on("click", handlePlaceClick);
     MAP.on("touchend", handlePlaceClick);
-
-    [L_HIT, L_DOTS, L_LAB].forEach((layerId) => {
-      if (!hasLayer(layerId)) return;
-      MAP.on("click", layerId, handlePlaceClick);
-      MAP.on("touchend", layerId, handlePlaceClick);
-    });
   }
 
   function moveMarkersOnTop() {
