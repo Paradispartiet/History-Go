@@ -658,6 +658,660 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_ekspeditor_private",
+      "description": "Andre private uke for ekspeditør: øve på å la butikkgulv, serviceblikk, kø og lukkerutine bli igjen på jobb.",
+      "learning_focus": [
+        "service_mask",
+        "privat_grense",
+        "mennesker_ikke_henvendelser"
+      ],
+      "mails": [
+        {
+          "id": "personal_ekspeditor_week2_remembering_small_complaints",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "mid",
+          "priority": 93,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du husker alle små klager",
+          "summary": "Butikkens kundehukommelse blir med hjem og gjør små kommentarer til reklamasjoner.",
+          "situation": [
+            "Fra Privat notat: Du husker alt folk sa i dag. Ikke fordi det var stort, men fordi det kunne bli stort. En kunde som sukket, en som så på kvitteringen litt for lenge, en som sa at det stod noe annet på hylla. Nå gjør hodet det samme hjemme.",
+            "Fra Sara: Jeg sa bare at det var litt rotete. Du svarte som om jeg hadde skrevet en kundeklage. Jeg vil ikke ha kompensasjon. Jeg ville bare finne benken."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Slippe klageblikket",
+              "reply": "Jeg sier at hun har rett, og at en kommentar hjemme ikke er en kundesak.",
+              "effects": {
+                "relationship_sara": 3,
+                "self_awareness": 2,
+                "service_mask": -1,
+                "stress": -1
+              },
+              "feedback": "Bra. Jeg liker at du hører meg. Men jeg vil ikke at hver kommentar skal få tiltak.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_drops_complaint_lens"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_drops_complaint_lens"
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at kjøkkenklagen er mottatt, men avslått på grunn av manglende kvittering.",
+              "effects": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "feedback": "Tynt. Men litt morsomt.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_jokes_about_kitchen_complaint"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_jokes_about_kitchen_complaint"
+            },
+            {
+              "id": "C",
+              "label": "Begynne å fikse alt med én gang",
+              "reply": "Jeg begynner å rydde med en gang for å vise at jeg tar kommentaren alvorlig.",
+              "effects": {
+                "control": 2,
+                "relationship_sara": -1,
+                "stress": 1,
+                "stagnation_private": 1,
+                "service_mask": 1
+              },
+              "feedback": "Jeg ba ikke om strakstiltak. Jeg sa bare at det var rotete.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_immediate_home_fix"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_immediate_home_fix"
+            }
+          ]
+        },
+        {
+          "id": "personal_ekspeditor_week2_living_room_as_store",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "mid",
+          "priority": 91,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du gjør stua til en butikk",
+          "summary": "Stengetid og kø får privatrommet til å ligne et butikkgulv som skal optimaliseres.",
+          "situation": [
+            "Fra Sara: Du sa nettopp at vi burde få bedre flyt i stua. Jeg tror du mente møblene. Men det hørtes ut som du skulle optimalisere kundeopplevelsen i leiligheten.",
+            "Fra Privat notat: Flyt er et godt ord på jobb: køflyt, vareflyt, kundestrøm. Hjemme kan det fort bety at alt skal fungere som en butikk. Men et hjem er ikke bare et sted der ting skal passere effektivt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Slippe butikkgulv-blikket",
+              "reply": "Jeg sier at hun har rett, og at stua ikke trenger kundeopplevelse.",
+              "effects": {
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "control": -1,
+                "stress": -1
+              },
+              "feedback": "Takk. Stua kan godt være litt upraktisk hvis den føles som vår.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_drops_shopfloor_lens"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_drops_shopfloor_lens"
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at sofaområdet har god konvertering, men svak vareplassering.",
+              "effects": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "feedback": "Forbud mot butikkord i stua. Men jeg lo.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_jokes_living_room_store"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_jokes_living_room_store"
+            },
+            {
+              "id": "C",
+              "label": "Begynne å omorganisere",
+              "reply": "Jeg begynner å flytte småting for å gjøre rommet mer ryddig og logisk.",
+              "effects": {
+                "control": 2,
+                "relationship_sara": -1,
+                "stress": 1,
+                "stagnation_private": 1
+              },
+              "feedback": "Du klarte å gjøre avslapning til varepåfyll.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_reorganizes_living_room"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_reorganizes_living_room"
+            }
+          ]
+        },
+        {
+          "id": "personal_ekspeditor_week2_friend_not_complaint",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "mid",
+          "priority": 89,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Vennen som ikke vil være reklamasjon",
+          "summary": "Jonas minner deg om at venner ikke ber om reklamasjonsbehandling, men om deg.",
+          "situation": [
+            "Fra Jonas: Jeg sa at jeg syntes du var litt fjern forrige gang vi møttes. Du svarte nesten med: det var leit å høre, jeg skal ta det videre. Jeg vet du prøver. Men jeg reklamerer ikke på deg.",
+            "Fra Privat notat: På jobb er en klage noe som må håndteres ryddig. Privat kan samme ryddighet gjøre deg rar. Jonas ber ikke om kompensasjon. Han ber om deg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Møte det som venn, ikke reklamasjon",
+              "reply": "Jeg sier at han har rett, og at jeg har vært fjern fordi hodet har vært fullt av jobb.",
+              "effects": {
+                "relationship_jonas": 3,
+                "self_awareness": 2,
+                "service_mask": -1,
+                "stress": -1
+              },
+              "feedback": "Der. Det var ikke kundebehandling. Det var svar.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_answers_friend_as_friend"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_answers_friend_as_friend"
+            },
+            {
+              "id": "B",
+              "label": "Forklare at du prøvde å ta det seriøst",
+              "reply": "Jeg sier at jeg bare ville vise at jeg tok det han sa på alvor.",
+              "effects": {
+                "relationship_jonas": 0,
+                "service_mask": 1,
+                "self_awareness": 0,
+                "stress": 0
+              },
+              "feedback": "Det er fint. Men å ta noe seriøst trenger ikke høres ut som reklamasjonsrutine.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_defends_serious_service_tone"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_defends_serious_service_tone"
+            },
+            {
+              "id": "C",
+              "label": "Gjøre det til spøk",
+              "reply": "Jeg sier at klagen er mottatt og vil bli behandlet av kompisavdelingen.",
+              "effects": {
+                "relationship_jonas": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "feedback": "Kompisavdelingen får muntlig advarsel. Men greit.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_friend_complaint_joke"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_friend_complaint_joke"
+            }
+          ]
+        },
+        {
+          "id": "personal_ekspeditor_week2_day_as_register_close",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "mid",
+          "priority": 87,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du teller dagen som et oppgjør",
+          "summary": "Etter lukkeansvar begynner du å avstemme privatdagen som en kasse.",
+          "situation": [
+            "Fra Privat notat: Du kommer hjem og begynner nesten å gjøre opp dagen. Hva brukte du? Hva fikk du igjen? Hva stemmer ikke? Hvor ble energien av? Det er ikke dumme spørsmål, men det er slitsomt når selv kvelden må avstemmes.",
+            "Fra Sara: Du sitter bare stille, men jeg ser at du teller inni hodet. Skal du gjøre opp dagen, eller kan vi bare ha kveld?"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "La dagen være uoppgjort",
+              "reply": "Jeg sier at jeg fortsatt er i lukkehodet, men at dagen ikke trenger å avstemmes nå.",
+              "effects": {
+                "relationship_sara": 2,
+                "stress": -2,
+                "control": -1,
+                "self_awareness": 2
+              },
+              "feedback": "Bra. Noen dager trenger ikke stemme helt før man legger seg.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_leaves_day_unbalanced"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_leaves_day_unbalanced"
+            },
+            {
+              "id": "B",
+              "label": "Fortelle kort hva som sitter igjen",
+              "reply": "Jeg sier at jeg er sliten etter lukking og små ansvar, men prøver å lande.",
+              "effects": {
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "stress": -1,
+                "service_mask": -1
+              },
+              "feedback": "Det var fint. Ikke oppgjør. Bare forklaring.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_explains_closing_head"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_explains_closing_head"
+            },
+            {
+              "id": "C",
+              "label": "Lage mental liste over alt som må gjøres bedre",
+              "reply": "Jeg går gjennom alt jeg burde gjort raskere, tryggere eller bedre.",
+              "effects": {
+                "control": 2,
+                "stress": 2,
+                "energy_weekend": -1,
+                "stagnation_private": 1
+              },
+              "feedback": "Du lærer kanskje noe. Men du hviler ikke.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_private_improvement_ledger"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_private_improvement_ledger"
+            }
+          ]
+        },
+        {
+          "id": "personal_ekspeditor_week2_weekend_without_shop_floor",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "mid",
+          "priority": 85,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Helgen uten butikkgulv",
+          "summary": "Etter to uker i frontlinjen må du slutte å lese privatlivet som kø, kunde, klage og lukkerutine.",
+          "situation": [
+            "Fra Privat notat: Du har stått i to uker med små menneskelige trykk: Hva koster den? Hvor er den? Kan jeg bytte? Hvorfor står det noe annet på hylla? Kan du bare? Du lærer å smile uten å love alt. Nå må du lære å la ansiktet hvile.",
+            "Fra Sara: Denne helgen vil jeg ikke være kunde, kø eller noe du skal håndtere. Ikke spør hva jeg trenger hele tiden. Ikke gjør små kommentarer til klager. Ikke lukk dagen som en butikk. Bare vær her.",
+            "Fra Jonas: Ingen butikkstemme. Ingen jeg skal se hva jeg kan gjøre. Ingen bare et øyeblikk. Ingen mental kø. Hvis du begynner å rydde oss etter stengetidsrutine, skylder du middag."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en helg uten butikkgulv",
+              "reply": "Jeg bestemmer at helgen ikke skal være service, kø, lukking, kundelesning eller profesjonell vennlighet.",
+              "effects": {
+                "energy_weekend": 5,
+                "stress": -4,
+                "service_mask": -4,
+                "relationship_private": 4,
+                "autonomy_private": 3
+              },
+              "feedback": "Du lar ansiktet falle på plass. Det er ikke uhøflig. Det er hvile.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_private_boundary"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_private_boundary"
+            },
+            {
+              "id": "B",
+              "label": "Være sammen uten å ekspedere noen",
+              "reply": "Jeg møter Sara eller Jonas og lar samtalen være vanlig, uten å tolke alt som forespørsel eller klage.",
+              "effects": {
+                "relationship_private": 4,
+                "mood": 2,
+                "self_awareness": 2,
+                "stress": -2
+              },
+              "feedback": "Du var bare vanlig. Det var ganske luksus.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_present_without_expedition"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_present_without_expedition"
+            },
+            {
+              "id": "C",
+              "label": "Trekke deg unna alt sosialt",
+              "reply": "Jeg sier at jeg trenger ro og ikke orker flere menneskelige behov denne helgen.",
+              "effects": {
+                "energy_weekend": 2,
+                "relationship_private": -2,
+                "stress": -1,
+                "guilt": 1
+              },
+              "feedback": "Det er lov å være tom. Men pass på at du ikke gjør alle mennesker til etterarbeid.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_withdraws_from_social_needs"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_withdraws_from_social_needs"
+            },
+            {
+              "id": "D",
+              "label": "Prøve å være ekstra hyggelig for å kompensere",
+              "reply": "Jeg prøver å være ekstra hjelpsom, oppmerksom og smilende hjemme.",
+              "effects": {
+                "service_mask": 3,
+                "stress": 2,
+                "relationship_private": -2,
+                "energy_weekend": -2,
+                "stagnation_private": 2
+              },
+              "feedback": "Du er snill. Men det er fortsatt butikk-snill. Jeg vil heller ha deg litt sliten og ekte.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_compensates_with_service_mask"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_compensates_with_service_mask"
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "ekspeditor_week2_drops_complaint_lens",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du husker alle små klager",
+          "summary": "Bra. Jeg liker at du hører meg. Men jeg vil ikke at hver kommentar skal få tiltak.",
+          "situation": [
+            "Bra. Jeg liker at du hører meg. Men jeg vil ikke at hver kommentar skal få tiltak."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_jokes_about_kitchen_complaint",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du husker alle små klager",
+          "summary": "Tynt. Men litt morsomt.",
+          "situation": [
+            "Tynt. Men litt morsomt."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_immediate_home_fix",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du husker alle små klager",
+          "summary": "Jeg ba ikke om strakstiltak. Jeg sa bare at det var rotete.",
+          "situation": [
+            "Jeg ba ikke om strakstiltak. Jeg sa bare at det var rotete."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_drops_shopfloor_lens",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du gjør stua til en butikk",
+          "summary": "Takk. Stua kan godt være litt upraktisk hvis den føles som vår.",
+          "situation": [
+            "Takk. Stua kan godt være litt upraktisk hvis den føles som vår."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_jokes_living_room_store",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du gjør stua til en butikk",
+          "summary": "Forbud mot butikkord i stua. Men jeg lo.",
+          "situation": [
+            "Forbud mot butikkord i stua. Men jeg lo."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_reorganizes_living_room",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du gjør stua til en butikk",
+          "summary": "Du klarte å gjøre avslapning til varepåfyll.",
+          "situation": [
+            "Du klarte å gjøre avslapning til varepåfyll."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_answers_friend_as_friend",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Vennen som ikke vil være reklamasjon",
+          "summary": "Der. Det var ikke kundebehandling. Det var svar.",
+          "situation": [
+            "Der. Det var ikke kundebehandling. Det var svar."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_defends_serious_service_tone",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Vennen som ikke vil være reklamasjon",
+          "summary": "Det er fint. Men å ta noe seriøst trenger ikke høres ut som reklamasjonsrutine.",
+          "situation": [
+            "Det er fint. Men å ta noe seriøst trenger ikke høres ut som reklamasjonsrutine."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_friend_complaint_joke",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Vennen som ikke vil være reklamasjon",
+          "summary": "Kompisavdelingen får muntlig advarsel. Men greit.",
+          "situation": [
+            "Kompisavdelingen får muntlig advarsel. Men greit."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_leaves_day_unbalanced",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du teller dagen som et oppgjør",
+          "summary": "Bra. Noen dager trenger ikke stemme helt før man legger seg.",
+          "situation": [
+            "Bra. Noen dager trenger ikke stemme helt før man legger seg."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_explains_closing_head",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du teller dagen som et oppgjør",
+          "summary": "Det var fint. Ikke oppgjør. Bare forklaring.",
+          "situation": [
+            "Det var fint. Ikke oppgjør. Bare forklaring."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_private_improvement_ledger",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du teller dagen som et oppgjør",
+          "summary": "Du lærer kanskje noe. Men du hviler ikke.",
+          "situation": [
+            "Du lærer kanskje noe. Men du hviler ikke."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_private_boundary",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten butikkgulv",
+          "summary": "Du lar ansiktet falle på plass. Det er ikke uhøflig. Det er hvile.",
+          "situation": [
+            "Du lar ansiktet falle på plass. Det er ikke uhøflig. Det er hvile."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_present_without_expedition",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten butikkgulv",
+          "summary": "Du var bare vanlig. Det var ganske luksus.",
+          "situation": [
+            "Du var bare vanlig. Det var ganske luksus."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_withdraws_from_social_needs",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten butikkgulv",
+          "summary": "Det er lov å være tom. Men pass på at du ikke gjør alle mennesker til etterarbeid.",
+          "situation": [
+            "Det er lov å være tom. Men pass på at du ikke gjør alle mennesker til etterarbeid."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_compensates_with_service_mask",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "role_scope": "ekspeditor",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten butikkgulv",
+          "summary": "Du er snill. Men det er fortsatt butikk-snill. Jeg vil heller ha deg litt sliten og ekte.",
+          "situation": [
+            "Du er snill. Men det er fortsatt butikk-snill. Jeg vil heller ha deg litt sliten og ekte."
+          ]
+        }
+      ],
+      "week_outcomes": [
+        {
+          "id": "private_shopfloor_boundary_week2",
+          "condition": "Slutter å lese privatlivet som kø, klage, kundesak, lukkerutine eller servicebehov.",
+          "effects": {
+            "relationship_private": 7,
+            "energy_weekend": 5,
+            "stress": -5,
+            "service_mask": -5,
+            "autonomy_private": 4,
+            "self_awareness": 4
+          },
+          "narrative": "Du lar butikkgulvet bli igjen på jobb. Det er ikke at du blir mindre hjelpsom. Du blir mer til stede. Privatlivet trenger ikke ekspederes."
+        }
+      ]
+    },
+    {
       "id": "salg_og_veiledning",
       "purpose": "Vise hvordan salg og veiledning blir relasjonelt når kunden husker deg, stoler på deg eller lar deg få for mye autoritet.",
       "learning_focus": [

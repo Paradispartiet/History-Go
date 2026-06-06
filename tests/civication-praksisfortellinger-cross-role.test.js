@@ -120,14 +120,19 @@ const ROLES = {
     planPath: 'data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json',
     jobPath: 'data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json',
     peoplePath: 'data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json',
-    packageSteps: 10,
+    packageSteps: 20,
     packageFamilies: [
       'first_week_praksisfortellinger_ekspeditor_job',
-      'first_week_praksisfortellinger_ekspeditor_private'
+      'first_week_praksisfortellinger_ekspeditor_private',
+      'second_week_praksisfortellinger_ekspeditor_job',
+      'second_week_praksisfortellinger_ekspeditor_private'
     ],
-    expectedStepFamilies: index => index % 2 === 0
-      ? 'first_week_praksisfortellinger_ekspeditor_job'
-      : 'first_week_praksisfortellinger_ekspeditor_private',
+    expectedStepFamilies: index => {
+      const weekPrefix = index < 10 ? 'first_week' : 'second_week';
+      return index % 2 === 0
+        ? `${weekPrefix}_praksisfortellinger_ekspeditor_job`
+        : `${weekPrefix}_praksisfortellinger_ekspeditor_private`;
+    },
     expectedSignals: [
       'accuracy',
       'customer_trust',
@@ -140,7 +145,13 @@ const ROLES = {
       'stress',
       'service_mask',
       'relationship_private',
-      'stagnation'
+      'stagnation',
+      'closing_quality',
+      'training_path',
+      'process_quality',
+      'energy_weekend',
+      'autonomy_private',
+      'self_awareness'
     ],
     forbiddenFamilyNeedles: ['arbeider', 'fagarbeider', 'formann']
   }
