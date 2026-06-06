@@ -729,6 +729,739 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_ekspeditor_job",
+      "description": "Andre uke som ekspeditør: tilbakevendende kundesak, stengetid, lagerrot, lukkeansvar og ærlig ansvarsvurdering.",
+      "learning_focus": [
+        "service_vs_grenser",
+        "tempo_vs_menneskelesning",
+        "kundeopplevelse_vs_drift",
+        "tillit_gjennom_oppfolging"
+      ],
+      "mails": [
+        {
+          "id": "job_ekspeditor_week2_customer_returns_after_error",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 94,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Kunden som kommer tilbake",
+          "summary": "En kunde fra forrige uke kommer tilbake med kvittering og mulig feilbelastning.",
+          "situation": [
+            "Fra Lene, butikksjef: Det kommer kanskje en kunde inn i dag som mener hun ble feil belastet for en vare forrige uke. Hun har kvittering og sier at hun snakket med en ny i kassa. Ikke gå i forsvar, sjekk kvittering, sjekk pris-/kampanjehistorikk, hent Amir eller meg hvis du er usikker, og forklar hva du finner.",
+            "Fra Amir: Dette er litt sånn frontlinjetest. Hvis kunden kommer tilbake, har hun allerede brukt energi på saken. Sjekk rolig. Ikke gjør henne til problem. Gjør saken til sak.",
+            "Fra System: Kunde viser kvittering. Vare: kaffe/kampanjevare. Kunden mener hun betalte 10 kroner for mye. Kampanjeplakat fra forrige uke er fjernet. Systemhistorikk: tilgjengelig. Kø: 4 personer. Risiko: mistillit, konflikt, feil refusjon, dårlig køflyt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekke kvittering og historikk rolig",
+              "reply": "Jeg sier at vi skal se på det, sjekker kvitteringen mot kampanjehistorikk og forklarer kunden hva jeg finner før jeg eventuelt refunderer.",
+              "effects": {
+                "customer_trust": 4,
+                "accuracy": 4,
+                "manager_trust": 3,
+                "queue_pressure": 1,
+                "service_quality": 3,
+                "stress": 1
+              },
+              "feedback": "Bra. Du gjorde ikke kunden til motpart. Du gjorde saken etterprøvbar. Det er slik små feil blir tillit i stedet for irritasjon.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_handles_returning_customer_well"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_handles_returning_customer_well"
+            },
+            {
+              "id": "B",
+              "label": "Refundere raskt for å få saken ut av køen",
+              "reply": "Jeg beklager og refunderer 10 kroner raskt uten å sjekke hele historikken.",
+              "effects": {
+                "queue_flow": 2,
+                "customer_trust": 1,
+                "accuracy": -1,
+                "future_risk": 2,
+                "manager_trust": -1,
+                "stress": -1
+              },
+              "feedback": "Det løste køen. Men hvis vi ikke vet hva som skjedde, vet vi heller ikke om feilen ligger i system, kasse eller kampanje.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_quick_refund_without_check"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_quick_refund_without_check"
+            },
+            {
+              "id": "C",
+              "label": "Si at saken burde vært tatt samme dag",
+              "reply": "Jeg sier at det er vanskelig å rette dette i etterkant, og at kunden burde sagt fra da feilen skjedde.",
+              "effects": {
+                "customer_trust": -4,
+                "conflict": 3,
+                "queue_flow": 1,
+                "manager_trust": -2,
+                "future_risk": 3
+              },
+              "feedback": "Så det er min feil at jeg oppdaget det hjemme? Da vet jeg det.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_blames_customer_timing"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_blames_customer_timing"
+            }
+          ]
+        },
+        {
+          "id": "job_ekspeditor_week2_queue_before_closing",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 92,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Køen før stengetid",
+          "summary": "Stengetid tester om du kan være vennlig uten å love mer enn tiden tåler.",
+          "situation": [
+            "Fra Lene: Du får være med på mer stengetid denne uka. De siste 20 minuttene er rare: folk kommer inn bare fort, noen vil ha hjelp som tar lengre tid enn de sier, køen blir mer utålmodig, vi må stenge uten å være ufine, og kasseoppgjør og rydding må fortsatt gjøres riktig. Ikke bli stresset inn i falsk fleksibilitet.",
+            "Fra Amir: Den siste kunden er aldri bare én kunde. Hvis du åpner for alt, kommer du ikke i mål med stengingen. Hvis du blir kald, får butikken dårlig sisteinntrykk. Du må si ja til noe konkret og nei til resten.",
+            "Fra System: Tid til stenging: 12 minutter. Kø: 6 personer. Kunde ber om hjelp til å finne gave, pakke den inn og sjekke flere varianter. Lager: delvis tilgjengelig. Kasseoppgjør: må startes snart. Risiko: sen stenging, stress, dårlig service, feil oppgjør."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avgrense hjelpen tydelig og vennlig",
+              "reply": "Jeg sier at jeg kan hjelpe med én rask vare og betaling før stenging, men ikke full gaveveiledning og innpakking nå.",
+              "effects": {
+                "boundary": 4,
+                "queue_flow": 3,
+                "service_quality": 2,
+                "customer_trust": 1,
+                "manager_trust": 3,
+                "stress": 1
+              },
+              "feedback": "Veldig bra. Du var ikke kald. Du var tydelig. Det er forskjellen på grense og avvisning.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_closing_clear_boundary"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_closing_clear_boundary"
+            },
+            {
+              "id": "B",
+              "label": "Hjelpe kunden fullt ut selv om stenging ryker",
+              "reply": "Jeg hjelper kunden med gavevalg, lagerstatus og innpakking, selv om køen og stengingen blir forsinket.",
+              "effects": {
+                "customer_trust": 3,
+                "service_quality": 2,
+                "queue_flow": -3,
+                "manager_trust": -2,
+                "closing_quality": -3,
+                "stress": 3
+              },
+              "feedback": "Snilt. Men nå står fem andre og venter, og stengingen blir rotete. Service til én kunde kan bli dårlig service for resten.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_overextends_service"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_overextends_service"
+            },
+            {
+              "id": "C",
+              "label": "Si at vi stenger snart og ikke kan hjelpe",
+              "reply": "Jeg sier kort at vi stenger snart, og at kunden må komme tilbake i morgen.",
+              "effects": {
+                "queue_flow": 2,
+                "boundary": 2,
+                "customer_trust": -3,
+                "service_quality": -3,
+                "conflict": 2,
+                "stress": -1
+              },
+              "feedback": "Da kunne dere kanskje sagt det litt hyggeligere. Jeg spurte ikke om hele butikken.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_closing_cold_no"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_closing_cold_no"
+            }
+          ]
+        },
+        {
+          "id": "job_ekspeditor_week2_forgotten_order",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 90,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Bestillingen som ble glemt",
+          "summary": "En tom hylle viser at lagerstatus og bestilling også er kundeløfter.",
+          "situation": [
+            "Fra Lene: Vi mangler fortsatt allergivennlig vaskemiddel. Systemet viste lager forrige uke, men hylla var tom. Nå spør kunder igjen. Sjekk om dette skyldes feil lagerstatus, glemt bestilling, feilplassering på bakrommet, leverandørforsinkelse eller at ingen har meldt tom hylle riktig.",
+            "Fra Amir: Dette er den typen ting som gjør kunder irritert. Ikke fordi varen er tom én gang, men fordi vi sier jeg skal sjekke, og så skjer det ingenting. Hvis du finner årsaken, meld den tydelig. Ikke bare si at den er tom.",
+            "Fra System: Vare: allergivennlig vaskemiddel. Systemlager: 3. Hylle: 0. Bakrom: usikkert. Siste bestilling: ikke funnet. Kundespørsmål siste uke: 4. Risiko: falsk lagerstatus, tap av tillit, gjentatte kundespørsmål."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følge varen fra system til bakrom og bestilling",
+              "reply": "Jeg sjekker systemstatus, bakrom, bestillingslogg og melder tydelig hva som må rettes.",
+              "effects": {
+                "accuracy": 4,
+                "stock_reliability": 4,
+                "customer_trust": 2,
+                "manager_trust": 3,
+                "process_quality": 3,
+                "stress": 2
+              },
+              "feedback": "Bra. Du behandlet ikke tom hylle som et svar. Du fant ut hvorfor hylla var tom.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_tracks_stock_root_cause"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_tracks_stock_root_cause"
+            },
+            {
+              "id": "B",
+              "label": "Sette opp ny bestilling uten å undersøke lagerfeilen",
+              "reply": "Jeg legger inn ny bestillingsforespørsel for å få varen inn igjen.",
+              "effects": {
+                "stock_reliability": 1,
+                "deadline_met": 1,
+                "future_risk": 2,
+                "accuracy": -1,
+                "stress": -1
+              },
+              "feedback": "Det kan løse hylla. Men hvis systemet allerede tror vi har tre, kan ny bestilling bare legge mer rot oppå gammel rot.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_reorders_without_root_cause"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_reorders_without_root_cause"
+            },
+            {
+              "id": "C",
+              "label": "Si til kunder at varen er utsolgt til ny levering",
+              "reply": "Jeg sier til kunder at varen dessverre er utsolgt, og at vi venter ny levering.",
+              "effects": {
+                "queue_flow": 1,
+                "service_quality": 1,
+                "accuracy": -1,
+                "future_risk": 2,
+                "customer_trust": 0
+              },
+              "feedback": "Det er greit å gi et svar. Men hvis svaret ikke bygger på faktisk bestilling, kan det bli et nytt løfte vi ikke har dekning for.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_stock_answer_without_fix"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_stock_answer_without_fix"
+            }
+          ]
+        },
+        {
+          "id": "job_ekspeditor_week2_first_closing_responsibility",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Første lukkeansvar",
+          "summary": "Lukking viser om små rutiner skjer når kundene ikke ser på.",
+          "situation": [
+            "Fra Lene: I dag får du ta mer ansvar i lukkerutinen sammen med Amir. Du skal ikke gjøre alt alene, men jeg vil se om du kan følge rutinen: kasseavstemming, rydde disk, sjekke kampanjeplakater, melde tomme varer, låse relevante skap og notere avvik.",
+            "Fra Amir: Ikke stress gjennom lista. Det er nesten alltid når folk bare skal bli ferdige at noe glipper. Det du ikke noterer i kveld, blir noen andres overraskelse i morgen.",
+            "Fra System: Tid: 20 minutter etter stenging. Kasse: liten differanse. Hylle: to kampanjeplakater må fjernes. Tom vare: allergivennlig vaskemiddel. Disk: delvis ryddet. Avviksnotat: ikke skrevet. Risiko: feil oppgjør, feil pris neste dag, tom hylle uten oppfølging."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følge lukkelista og notere avvik",
+              "reply": "Jeg går gjennom lista med Amir, sjekker kasse, fjerner plakater, melder tom vare og skriver kort avviksnotat.",
+              "effects": {
+                "closing_quality": 4,
+                "manager_trust": 4,
+                "accuracy": 3,
+                "process_quality": 3,
+                "future_risk": -2,
+                "stress": 2
+              },
+              "feedback": "Bra. Det er sånn du får mer ansvar. Ikke ved å virke travel, men ved at morgendagen ikke arver rotet ditt.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_closing_routine_done"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_closing_routine_done"
+            },
+            {
+              "id": "B",
+              "label": "Gjøre det viktigste og ta resten i morgen",
+              "reply": "Jeg avstemmer kassa og rydder disk, men lar plakater og tomvare-notat vente til i morgen.",
+              "effects": {
+                "closing_quality": 1,
+                "stress": -1,
+                "future_risk": 2,
+                "manager_trust": 0,
+                "process_quality": -1
+              },
+              "feedback": "Kassa var viktigst, ja. Men kampanjeplakater og tomvarer er nettopp slike småting som blir kundesaker neste dag.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_partial_closing"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_partial_closing"
+            },
+            {
+              "id": "C",
+              "label": "Skynde deg gjennom rutinen uten å dobbeltsjekke",
+              "reply": "Jeg går raskt gjennom lukkelista og krysser av for å bli ferdig.",
+              "effects": {
+                "stress": -1,
+                "closing_quality": -3,
+                "future_risk": 3,
+                "manager_trust": -2,
+                "accuracy": -2
+              },
+              "feedback": "Du ble ferdig. Men jeg vet ikke om butikken ble ferdig. Det er forskjellen.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_rushed_closing"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_rushed_closing"
+            }
+          ]
+        },
+        {
+          "id": "job_ekspeditor_week2_second_week_behind_counter",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 86,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Andre uke bak disken",
+          "summary": "Uka oppsummeres som mønster: kundesaker, kø, lager, lukking og ærlig ansvar.",
+          "situation": [
+            "Fra Lene: Før du går, send meg en kort oppsummering av andre uke: hvordan du håndterte kunden som kom tilbake, hva du lærte av køen før stengetid, om vare-/lagerfeilen ble fulgt opp, hvordan lukkerutinen gikk, og om du føler deg klar for litt mer selvstendig ansvar neste uke.",
+            "Fra Amir: Du begynner å lese butikken bedre. Men ikke gjør rask til hele identiteten din. Du er best når du sjekker, forklarer og setter grenser rolig. Det er da folk stoler på deg.",
+            "Fra System: Uke 2-signaler: tilbakevendende kunde med mulig feil, kø før stenging, tom vare og lager-/bestillingsspor, lukkeansvar, og service- og kontrollmodus påvirket privatlivet. Risiko: Mer ansvar kan gis for tidlig hvis tempo forveksles med trygghet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive ærlig om trygghet, grenser og videre trening",
+              "reply": "Jeg skriver at jeg håndterer kundesaker bedre når jeg sjekker og forklarer, men fortsatt trenger trening på lukking og køpress.",
+              "effects": {
+                "manager_trust": 5,
+                "self_awareness": 4,
+                "training_path": 4,
+                "accuracy": 3,
+                "future_risk": -3,
+                "stress": 1
+              },
+              "feedback": "Dette er moden oppsummering. Du er ikke ferdig, men du er klar for litt mer ansvar med riktig støtte.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_ready_for_guided_responsibility"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_ready_for_guided_responsibility"
+            },
+            {
+              "id": "B",
+              "label": "Skrive at du er klar for mer ansvar",
+              "reply": "Jeg skriver at uka gikk bra, og at jeg er klar for mer selvstendig kasse, lukking og kundehåndtering.",
+              "effects": {
+                "manager_pressure": -1,
+                "manager_trust": 1,
+                "future_risk": 2,
+                "stagnation": 2,
+                "training_path": -1
+              },
+              "feedback": "Kanskje. Men hvis du ikke sier hva som fortsatt er utrygt, får du ansvar på feil grunnlag.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_overstates_readiness"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_overstates_readiness"
+            },
+            {
+              "id": "C",
+              "label": "Fokusere på at du holder køen i gang",
+              "reply": "Jeg skriver at jeg har blitt raskere og tåler køpress bedre, og at tempoet er hovedstyrken min.",
+              "effects": {
+                "queue_flow": 4,
+                "accuracy": -1,
+                "service_quality": -1,
+                "future_risk": 3,
+                "manager_trust": 0
+              },
+              "feedback": "Tempo er bra. Men butikkdrift er ikke bare køflyt. Det er også rett pris, riktig vare, god forklaring og trygg lukking.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_speed_identity"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_speed_identity"
+            },
+            {
+              "id": "D",
+              "label": "Legge vekt på vanskelige kunder og press",
+              "reply": "Jeg skriver at kunder, kø og stengetid gjør det vanskelig å få alt riktig.",
+              "effects": {
+                "stress": -1,
+                "self_awareness": -1,
+                "manager_trust": -2,
+                "stagnation": 3,
+                "conflict": 1
+              },
+              "feedback": "Det er sant at presset gjør det vanskelig. Men rollen handler nettopp om hva du gjør under press. Vi må se mer på handlingsmønsteret ditt.",
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week2_blames_pressure"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week2_blames_pressure"
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "ekspeditor_week2_handles_returning_customer_well",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Kunden som kommer tilbake",
+          "summary": "Bra. Du gjorde ikke kunden til motpart. Du gjorde saken etterprøvbar. Det er slik små feil blir tillit i stedet for irritasjon.",
+          "situation": [
+            "Bra. Du gjorde ikke kunden til motpart. Du gjorde saken etterprøvbar. Det er slik små feil blir tillit i stedet for irritasjon."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_quick_refund_without_check",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Kunden som kommer tilbake",
+          "summary": "Det løste køen. Men hvis vi ikke vet hva som skjedde, vet vi heller ikke om feilen ligger i system, kasse eller kampanje.",
+          "situation": [
+            "Det løste køen. Men hvis vi ikke vet hva som skjedde, vet vi heller ikke om feilen ligger i system, kasse eller kampanje."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_blames_customer_timing",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Kunden som kommer tilbake",
+          "summary": "Så det er min feil at jeg oppdaget det hjemme? Da vet jeg det.",
+          "situation": [
+            "Så det er min feil at jeg oppdaget det hjemme? Da vet jeg det."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_closing_clear_boundary",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Køen før stengetid",
+          "summary": "Veldig bra. Du var ikke kald. Du var tydelig. Det er forskjellen på grense og avvisning.",
+          "situation": [
+            "Veldig bra. Du var ikke kald. Du var tydelig. Det er forskjellen på grense og avvisning."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_overextends_service",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Køen før stengetid",
+          "summary": "Snilt. Men nå står fem andre og venter, og stengingen blir rotete. Service til én kunde kan bli dårlig service for resten.",
+          "situation": [
+            "Snilt. Men nå står fem andre og venter, og stengingen blir rotete. Service til én kunde kan bli dårlig service for resten."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_closing_cold_no",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Køen før stengetid",
+          "summary": "Da kunne dere kanskje sagt det litt hyggeligere. Jeg spurte ikke om hele butikken.",
+          "situation": [
+            "Da kunne dere kanskje sagt det litt hyggeligere. Jeg spurte ikke om hele butikken."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_tracks_stock_root_cause",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Bestillingen som ble glemt",
+          "summary": "Bra. Du behandlet ikke tom hylle som et svar. Du fant ut hvorfor hylla var tom.",
+          "situation": [
+            "Bra. Du behandlet ikke tom hylle som et svar. Du fant ut hvorfor hylla var tom."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_reorders_without_root_cause",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Bestillingen som ble glemt",
+          "summary": "Det kan løse hylla. Men hvis systemet allerede tror vi har tre, kan ny bestilling bare legge mer rot oppå gammel rot.",
+          "situation": [
+            "Det kan løse hylla. Men hvis systemet allerede tror vi har tre, kan ny bestilling bare legge mer rot oppå gammel rot."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_stock_answer_without_fix",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Bestillingen som ble glemt",
+          "summary": "Det er greit å gi et svar. Men hvis svaret ikke bygger på faktisk bestilling, kan det bli et nytt løfte vi ikke har dekning for.",
+          "situation": [
+            "Det er greit å gi et svar. Men hvis svaret ikke bygger på faktisk bestilling, kan det bli et nytt løfte vi ikke har dekning for."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_closing_routine_done",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Første lukkeansvar",
+          "summary": "Bra. Det er sånn du får mer ansvar. Ikke ved å virke travel, men ved at morgendagen ikke arver rotet ditt.",
+          "situation": [
+            "Bra. Det er sånn du får mer ansvar. Ikke ved å virke travel, men ved at morgendagen ikke arver rotet ditt."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_partial_closing",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Første lukkeansvar",
+          "summary": "Kassa var viktigst, ja. Men kampanjeplakater og tomvarer er nettopp slike småting som blir kundesaker neste dag.",
+          "situation": [
+            "Kassa var viktigst, ja. Men kampanjeplakater og tomvarer er nettopp slike småting som blir kundesaker neste dag."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_rushed_closing",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Første lukkeansvar",
+          "summary": "Du ble ferdig. Men jeg vet ikke om butikken ble ferdig. Det er forskjellen.",
+          "situation": [
+            "Du ble ferdig. Men jeg vet ikke om butikken ble ferdig. Det er forskjellen."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_ready_for_guided_responsibility",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke bak disken",
+          "summary": "Dette er moden oppsummering. Du er ikke ferdig, men du er klar for litt mer ansvar med riktig støtte.",
+          "situation": [
+            "Dette er moden oppsummering. Du er ikke ferdig, men du er klar for litt mer ansvar med riktig støtte."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_overstates_readiness",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke bak disken",
+          "summary": "Kanskje. Men hvis du ikke sier hva som fortsatt er utrygt, får du ansvar på feil grunnlag.",
+          "situation": [
+            "Kanskje. Men hvis du ikke sier hva som fortsatt er utrygt, får du ansvar på feil grunnlag."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_speed_identity",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke bak disken",
+          "summary": "Tempo er bra. Men butikkdrift er ikke bare køflyt. Det er også rett pris, riktig vare, god forklaring og trygg lukking.",
+          "situation": [
+            "Tempo er bra. Men butikkdrift er ikke bare køflyt. Det er også rett pris, riktig vare, god forklaring og trygg lukking."
+          ]
+        },
+        {
+          "id": "ekspeditor_week2_blames_pressure",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke bak disken",
+          "summary": "Det er sant at presset gjør det vanskelig. Men rollen handler nettopp om hva du gjør under press. Vi må se mer på handlingsmønsteret ditt.",
+          "situation": [
+            "Det er sant at presset gjør det vanskelig. Men rollen handler nettopp om hva du gjør under press. Vi må se mer på handlingsmønsteret ditt."
+          ]
+        }
+      ],
+      "week_outcomes": [
+        {
+          "id": "trusted_frontline_responsibility_week2",
+          "condition": "Håndterer tilbakevendende kunde rolig, avgrenser stengetid, følger lagerfeil til rotårsak, gjennomfører lukkerutine og oppsummerer ærlig treningsbehov.",
+          "effects": {
+            "customer_trust": 8,
+            "manager_trust": 7,
+            "accuracy": 6,
+            "service_quality": 6,
+            "closing_quality": 5,
+            "training_path": 5,
+            "future_risk": -5
+          },
+          "narrative": "Du blir en person butikken kan stole mer på. Ikke fordi du aldri gjør feil, men fordi du retter, forklarer og følger opp før småting blir mønster."
+        },
+        {
+          "id": "speed_over_trust_week2",
+          "condition": "Refunderer raskt uten å sjekke, prioriterer køflyt, gir raske varesvar og gjør bare deler av lukking for å bli ferdig.",
+          "effects": {
+            "queue_flow": 8,
+            "stress": -2,
+            "accuracy": -4,
+            "customer_trust": -4,
+            "future_risk": 6,
+            "closing_quality": -3
+          },
+          "narrative": "Du får dagen til å gå fortere. Men noe av farten kommer av at spørsmål, feil og tomme hyller får ligge igjen bak deg."
+        },
+        {
+          "id": "boundaryless_service_week2",
+          "condition": "Hjelper én kunde for mye, gjør raske unntak, tar for mye ansvar for irritasjon og mister lukkerutinen i servicevilje.",
+          "effects": {
+            "customer_trust": 3,
+            "service_quality": 2,
+            "manager_trust": -5,
+            "boundary": -6,
+            "closing_quality": -4,
+            "stress": 4
+          },
+          "narrative": "Du vil være god mot kunden foran deg. Men grenseløs service gjør butikken mindre trygg for alle andre."
+        },
+        {
+          "id": "cold_closing_worker_week2",
+          "condition": "Bruker regler hardt, avviser kunder kort før stenging og setter grense uten forklaring.",
+          "effects": {
+            "queue_flow": 4,
+            "boundary": 3,
+            "customer_trust": -6,
+            "service_quality": -5,
+            "conflict": 4,
+            "manager_trust": -2
+          },
+          "narrative": "Du beskytter rammen, men gjør den kald. En god grense forklarer nok til at kunden skjønner at det ikke bare er et nei."
+        },
+        {
+          "id": "honest_store_learner_week2",
+          "condition": "Sjekker lager, forklarer usikkerhet, melder tomvarer, ber om støtte og viser læringsbehov uten å overdrive mestring.",
+          "effects": {
+            "accuracy": 7,
+            "manager_trust": 6,
+            "customer_trust": 5,
+            "training_path": 6,
+            "process_quality": 4,
+            "stress": 2
+          },
+          "narrative": "Du lærer butikkarbeid som praksis, ikke som fasade. Du blir tryggere fordi du tør å være presis om det du ennå ikke vet."
+        }
+      ]
+    },
+    {
       "id": "kasse_og_pris",
       "purpose": "Lære spilleren at kasse, pris og betaling er frontlinjens mest synlige tillitspunkt: små avvik blir raskt kundens problem og butikkens ansvar.",
       "learning_focus": [

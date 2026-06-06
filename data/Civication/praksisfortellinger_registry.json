@@ -372,7 +372,14 @@
         "stress",
         "service_mask",
         "relationship_private",
-        "stagnation"
+        "stagnation",
+        "closing_quality",
+        "training_path",
+        "process_quality",
+        "stock_reliability",
+        "energy_weekend",
+        "autonomy_private",
+        "self_awareness"
       ],
       "packages": [
         {
@@ -385,9 +392,22 @@
           "expected_job_threads": 5,
           "expected_private_threads": 5,
           "test_file": "tests/civication-ekspeditor-first-week-praksisfortellinger.test.js"
+        },
+        {
+          "package_id": "ekspeditor_week_2",
+          "week": 2,
+          "step_start": 11,
+          "step_end": 20,
+          "job_family": "second_week_praksisfortellinger_ekspeditor_job",
+          "private_family": "second_week_praksisfortellinger_ekspeditor_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-ekspeditor-second-week-praksisfortellinger.test.js"
         }
       ],
-      "flow_tests": []
+      "flow_tests": [
+        "tests/civication-ekspeditor-two-week-flow.test.js"
+      ]
     }
   ],
   "cross_role_tests": [
