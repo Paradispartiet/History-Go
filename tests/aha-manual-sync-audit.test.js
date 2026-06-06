@@ -238,6 +238,7 @@ async function executeWithAudit(runInput, writeTarget, auditOverride) {
   assert.deepStrictEqual(Object.keys(details).sort(), [
     'auditId', 'auditStatus', 'checklistSummary', 'confirmationSummary', 'errors', 'excludedModules',
     'includedModules', 'itemCounts', 'payloadSummary', 'readinessStatus', 'recordedAt', 'resultMessage',
+    'retryEligibility',
     'resultStatus', 'rollbackStatus', 'runId', 'schemaVersion', 'target', 'targetStatus', 'totalItems',
     'trigger', 'validationSummary', 'warnings', 'writeStatus'
   ].sort(), 'details builder returns only whitelisted fields');
@@ -293,6 +294,101 @@ async function executeWithAudit(runInput, writeTarget, auditOverride) {
   const missingView = Dashboard.renderAhaManualSyncHistoryDetails(missingDetailsElement, missingState);
   assert.deepStrictEqual(missingView, { ok: false, error: Dashboard.DETAILS_MISSING_MESSAGE });
   assert.strictEqual(missingDetailsElement.children.some((child) => child.textContent === 'Selected run was not found.'), true);
+
+  function descendants(element) {
+    return [element, ...(element.children || []).flatMap(descendants)];
+  }
+  function findText(element, text) {
+    return descendants(element).find((child) => child.textContent === text);
+  }
+  function findButton(element, text) {
+    return descendants(element).find((child) => child.tagName === 'button' && child.textContent === text);
+  }
+  function findClass(element, className) {
+    return descendants(element).find((child) => child.className === className);
+  }
+
+  let confirmCalls = 0;
+  const hubElement = new FakeElement('section', fakeDocument);
+  const hubState = Dashboard.renderAhaSyncHub(hubElement, {
+    target: 'aha_imports',
+    targetStatus: 'ready',
+    readinessStatus: 'ready',
+    includedModules: ['lists', 'paths'],
+    itemCounts: { lists: 2, paths: 3 },
+    validationSummary: { ok: true, checked: 5, warningCount: 0 },
+    checklistSummary: { ok: true, completed: 4, total: 4 },
+    auditStatus: 'success',
+    canOpenConfirmation: true,
+    canConfirm: false,
+    historyRuns: [detailsInput],
+    lastRun: detailsInput
+  }, { onConfirm: () => { confirmCalls += 1; } });
+  assert.strictEqual(Dashboard.AHA_SYNC_HUB_MOUNT_ID, 'aha-sync-hub-status');
+  ['Sync readiness', 'Target', 'Modules', 'Items', 'Last run', 'Manual sync'].forEach((label) => {
+    assert(findText(hubElement, label), `top summary renders ${label}`);
+  });
+  assert(findText(hubElement, 'Manual only'), 'manual-only status remains prominent');
+  assert(findText(hubElement, 'Manual sync history'), 'history panel remains visible');
+  assert.strictEqual(hubState.advancedOpen, false, 'Advanced diagnostics is collapsed by default without critical errors');
+  const advancedToggle = findText(hubElement, 'Advanced diagnostics');
+  assert(advancedToggle, 'Advanced diagnostics toggle renders');
+  advancedToggle.onclick();
+  assert.strictEqual(hubState.advancedOpen, true, 'Advanced diagnostics can be opened using local UI state');
+  advancedToggle.onclick();
+  assert.strictEqual(hubState.advancedOpen, false, 'Advanced diagnostics can be closed using local UI state');
+
+  const manualButton = findButton(hubElement, 'Manual sync');
+  manualButton.onclick();
+  const confirmButton = findButton(hubElement, 'Confirm sync');
+  assert(confirmButton, 'existing Manual sync / Confirm flow remains available');
+  assert.strictEqual(confirmButton.disabled, true, 'Confirm remains gated by canConfirm');
+  assert(findText(hubElement, 'Sync 5 items from 2 modules to aha_imports.'), 'confirmation leads with sync scope and target');
+  assert(findText(hubElement, 'Audit status: success.'), 'confirmation keeps audit status visible');
+  confirmButton.onclick();
+  assert.strictEqual(confirmCalls, 0, 'disabled confirmation cannot execute a handler');
+
+  const blockedHubElement = new FakeElement('section', fakeDocument);
+  const blockedState = Dashboard.renderAhaSyncHub(blockedHubElement, {
+    target: null,
+    targetStatus: 'not_configured',
+    readinessStatus: 'blocked',
+    includedModules: [],
+    totalItems: 0,
+    validationSummary: { ok: false, errorCount: 2 },
+    auditStatus: 'failed',
+    writeStatus: 'failed',
+    confirmationRequired: true,
+    confirmation: { confirmed: false },
+    lastRun: { runId: 'failed-run', resultStatus: 'failed' },
+    historyRuns: []
+  });
+  assert.strictEqual(blockedState.advancedOpen, true, 'critical errors may open Advanced diagnostics by default');
+  const expectedBlockers = [
+    'Validation errors must be resolved before sync.',
+    'Sync readiness is blocked.',
+    'Target is not configured.',
+    'Audit logging failed.',
+    'The last write failed.',
+    'Explicit confirmation is required.',
+    'Last run requires attention: failed.'
+  ];
+  const blockerPanel = findClass(blockedHubElement, 'aha-sync-critical-blockers');
+  assert(blockerPanel, 'critical blocker panel renders outside Advanced diagnostics');
+  const blockerTexts = descendants(blockerPanel).map((child) => child.textContent);
+  expectedBlockers.forEach((message) => assert(blockerTexts.includes(message), `${message} is visible outside Advanced diagnostics`));
+
+  const historyElement = new FakeElement('section', fakeDocument);
+  Dashboard.renderAhaManualSyncHistory(historyElement, [detailsInput]);
+  ['Target: aha_imports', 'Items: 5', 'Modules: 2'].forEach((text) => {
+    assert(findText(historyElement, text), `history row renders ${text}`);
+  });
+  findButton(historyElement, 'Details').onclick();
+  const detailsText = descendants(historyElement).map((child) => child.textContent).join(' ');
+  assert(detailsText.includes('Retry eligibility'), 'details drawer keeps retry eligibility visible');
+  ['full item data', 'secret-token', 'secret-password', 'postgres://secret'].forEach((secret) => {
+    assert.strictEqual(detailsText.includes(secret), false, `rendered Sync Hub excludes ${secret}`);
+  });
 
   let readTable = null;
   let readSelect = null;

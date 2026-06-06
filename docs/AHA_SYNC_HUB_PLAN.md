@@ -66,14 +66,23 @@ The adapter passes only included modules to the target writer. Excluded modules,
 - Unsafe payload reuse, incomplete/corrupt audit evidence, unresolved security or partial-write state, unsupported adapters, unavailable audit writing, and all passive or automatic triggers fail closed.
 - This phase documents the contract only; it does not add retry authority.
 
-### 7. Manual sync retry confirmation preview — next
+### 7. Sync Hub operator UI simplification — implemented
 
-Add a read-only **Prepare retry** / **Retry confirmation** preview that shows the original run summary, eligibility, target, modules/counts, current checks, warnings, errors, and blockers. The preview must not call `executeAhaManualSyncRun`, write audit state, persist confirmation, or expose a functioning **Retry now** action.
+- The operator surface is organized into four levels: top summary, primary manual action, visible history, and collapsible **Advanced diagnostics**.
+- The top summary presents readiness, target, included module count, item count, last run, and a human-readable manual sync status.
+- Critical blockers stay visible in the primary action area. Technical dry-run, validation, readiness, minimized payload sample, checklist, target, audit, adapter, state-machine, run-summary, and retry-eligibility diagnostics move under Advanced diagnostics.
+- The confirmation view leads with the target, module/item totals, blockers or warnings, and audit status. History and sanitized details remain available without rendering full payloads or secrets.
+- Advanced/details state remains local to the UI and is not stored in `localStorage`.
+- This phase is UI organization only. It does not change `executeAhaManualSyncRun`, adapter gates, state transitions, target/database writes, the audit writer, the payload contract, confirmation authority, retry execution, or auto-sync behavior.
 
-### 8. Manual sync retry execution — later, not implemented
+### 8. AHA Home dashboard information hierarchy review — next
 
-Actual retry may be considered only in a separate, explicitly approved phase after the confirmation preview and after the adapter, reconstruction, audit, failure, partial-write, and rollback requirements in the retry contract are implemented and tested. Eligibility or confirmation preview state alone must never grant write authority.
+Review the wider AHA Home dashboard hierarchy so the most important status and actions are easier to scan. Keep this separate from Sync Hub write behavior and preserve the existing manual-only guarantees.
 
-### 9. Activation / auto-sync / auto-retry — not introduced
+### 9. Manual sync retry execution — later, not implemented
+
+Actual retry may be considered only in a separate, explicitly approved phase after the adapter, reconstruction, confirmation, audit, failure, partial-write, and rollback requirements in the retry contract are implemented and tested. Eligibility or preview state alone must never grant write authority.
+
+### 10. Activation / auto-sync / auto-retry — not introduced
 
 No activation, auto-sync, scheduled retry, background retry, or automatic retry after failure is included. Any future activation must be a separate, explicitly approved phase after durable operational safeguards and explicit product approval. Auto-retry is not permitted: retry must always remain one deliberate user action, one fresh confirmation, one new run, and one linked audit trail.

@@ -1,6 +1,7 @@
 (function (globalScope) {
   "use strict";
 
+  const AHA_SYNC_HUB_MOUNT_ID = "aha-sync-hub-status";
   const DETAILS_MISSING_MESSAGE = "Selected run was not found.";
   const DETAILS_ERROR_MESSAGE = "Manual sync run details could not be built.";
   const SECRET_TEXT_PATTERN = /(authorization|bearer|token|password|passwd|secret|api[_-]?key|credential|connection\s*string|postgres(?:ql)?:\/\/|supabase[_-]?key)/i;
@@ -93,6 +94,9 @@
     const confirmationSummary = source.confirmationSummary && typeof source.confirmationSummary === "object" && !Array.isArray(source.confirmationSummary)
       ? source.confirmationSummary
       : {};
+    const retryEligibility = source.retryEligibility && typeof source.retryEligibility === "object" && !Array.isArray(source.retryEligibility)
+      ? source.retryEligibility
+      : {};
     const itemCounts = safeCounts(source.itemCounts);
     const totalItemsValue = Number(source.totalItems);
 
@@ -129,6 +133,10 @@
       confirmationSummary: {
         confirmed: confirmationSummary.confirmed === true,
         confirmedAt: safeText(confirmationSummary.confirmedAt, null, 100)
+      },
+      retryEligibility: {
+        status: safeText(retryEligibility.status, "not_available", 100),
+        reasons: safeStrings(retryEligibility.reasons || retryEligibility.blockers)
       },
       warnings: safeStrings(source.warnings),
       errors: safeStrings(source.errors),
@@ -216,8 +224,6 @@
       const list = element.ownerDocument.createElement("dl");
       appendDetail(list, "Run ID", details.runId || "Not recorded");
       appendDetail(list, "Recorded at", details.recordedAt);
-      appendDetail(list, "Schema version", details.schemaVersion);
-      appendDetail(list, "Trigger", details.trigger);
       appendDetail(list, "Target", details.target);
       appendDetail(list, "Target status", details.targetStatus);
       appendDetail(list, "Result status", details.resultStatus);
@@ -226,16 +232,14 @@
       appendDetail(list, "Audit status", details.auditStatus);
       appendDetail(list, "Audit ID", details.auditId);
       appendDetail(list, "Included modules", details.includedModules.join(", ") || "None");
-      appendDetail(list, "Excluded modules", details.excludedModules.join(", ") || "None");
-      appendDetail(list, "Item counts", formatSummary(details.itemCounts));
-      appendDetail(list, "Total items", details.totalItems);
+      appendDetail(list, "Items", details.totalItems);
       appendDetail(list, "Readiness", details.readinessStatus);
       appendDetail(list, "Validation", formatSummary(details.validationSummary));
       appendDetail(list, "Checklist", formatSummary(details.checklistSummary));
-      appendDetail(list, "Payload summary", `Modules: ${details.payloadSummary.moduleIds.join(", ") || "none"}; counts: ${formatSummary(details.payloadSummary.itemCounts)}; total: ${details.payloadSummary.totalItems}; checksum: ${details.payloadSummary.checksum || "not recorded"}`);
-      appendDetail(list, "Confirmation", details.confirmationSummary.confirmed ? `Confirmed${details.confirmationSummary.confirmedAt ? ` at ${details.confirmationSummary.confirmedAt}` : ""}` : "Not confirmed");
       appendDetail(list, "Warnings", details.warnings.join("; ") || "None");
       appendDetail(list, "Errors", details.errors.join("; ") || "None");
+      appendDetail(list, "Retry eligibility", `${details.retryEligibility.status}${details.retryEligibility.reasons.length ? ` — ${details.retryEligibility.reasons.join("; ")}` : ""}`);
+      appendDetail(list, "Confirmation", details.confirmationSummary.confirmed ? `Confirmed${details.confirmationSummary.confirmedAt ? ` at ${details.confirmationSummary.confirmedAt}` : ""}` : "Not confirmed");
       appendDetail(list, "Result message", details.resultMessage);
       element.appendChild(list);
       return { ok: true, details };
@@ -262,7 +266,11 @@
       const row = element.ownerDocument.createElement("article");
       row.className = "aha-sync-history-run";
       appendTextElement(row, "strong", details.runId || "Unknown run");
-      appendTextElement(row, "span", `${details.recordedAt || "Timestamp unavailable"} · ${details.resultStatus}`);
+      appendTextElement(row, "span", details.recordedAt || "Timestamp unavailable");
+      appendTextElement(row, "span", `Status: ${details.resultStatus}`);
+      appendTextElement(row, "span", `Target: ${details.target}`);
+      appendTextElement(row, "span", `Items: ${details.totalItems}`);
+      appendTextElement(row, "span", `Modules: ${details.includedModules.length}`);
       const button = appendTextElement(row, "button", "Details");
       button.type = "button";
       button.addEventListener("click", () => {
@@ -280,7 +288,242 @@
     return viewState;
   }
 
+  function collectCriticalIssues(input) {
+    const source = input && typeof input === "object" ? input : {};
+    const validation = source.validationSummary || {};
+    const issues = safeStrings(source.blockers);
+    if (validation.ok === false || Number(validation.errorCount) > 0) issues.push("Validation errors must be resolved before sync.");
+    if (source.readinessStatus === "blocked") issues.push("Sync readiness is blocked.");
+    if (!source.target || source.targetStatus === "not_configured") issues.push("Target is not configured.");
+    if (source.auditStatus === "failed" || source.auditStatus === "not_configured") issues.push(source.auditStatus === "failed" ? "Audit logging failed." : "Audit logging is not configured.");
+    if (source.writeStatus === "failed") issues.push("The last write failed.");
+    if (source.confirmationRequired === true && source.confirmation?.confirmed !== true) issues.push("Explicit confirmation is required.");
+    const lastStatus = source.lastRun?.resultStatus || source.lastRun?.status;
+    if (lastStatus === "failed" || lastStatus === "partial_success") issues.push(`Last run requires attention: ${lastStatus}.`);
+    return [...new Set(issues)];
+  }
+
+  function normalizeManualStatus(input, criticalIssues) {
+    const explicit = safeText(input?.manualSyncStatus, "", 50).toLowerCase();
+    if (["ready", "blocked", "needs review", "not configured"].includes(explicit)) {
+      return explicit.replace(/^./, (letter) => letter.toUpperCase());
+    }
+    if (!input?.target || input?.targetStatus === "not_configured" || input?.auditStatus === "not_configured") return "Not configured";
+    if (criticalIssues.length) return "Blocked";
+    const warnings = safeStrings(input?.warnings);
+    if (warnings.length || Number(input?.validationSummary?.warningCount) > 0) return "Needs review";
+    return input?.readinessStatus === "ready" ? "Ready to sync" : "Needs review";
+  }
+
+  function createAhaSyncHubState(input) {
+    const source = input && typeof input === "object" ? input : {};
+    const modules = safeStrings(source.includedModules);
+    const counts = safeCounts(source.itemCounts);
+    const totalValue = Number(source.totalItems);
+    const criticalIssues = collectCriticalIssues(source);
+    return {
+      advancedOpen: source.advancedOpen === true || (source.advancedOpen !== false && criticalIssues.length > 0),
+      confirmationOpen: source.confirmationOpen === true,
+      historyState: source.historyState || createAhaManualSyncHistoryState(source.historyRuns),
+      target: safeText(source.target, "Not configured", 200),
+      targetStatus: safeText(source.targetStatus, "not_configured", 100),
+      readinessStatus: safeText(source.readinessStatus, "unknown", 100),
+      includedModules: modules,
+      totalItems: Number.isFinite(totalValue) && totalValue >= 0
+        ? Math.floor(totalValue)
+        : Object.values(counts).reduce((total, count) => total + count, 0),
+      lastRun: source.lastRun ? sanitizeAhaManualSyncAuditRunForDetails(source.lastRun) : null,
+      manualSyncStatus: normalizeManualStatus(source, criticalIssues),
+      criticalIssues,
+      warnings: safeStrings(source.warnings),
+      canOpenConfirmation: source.canOpenConfirmation === true,
+      canConfirm: source.canConfirm === true,
+      auditStatus: safeText(source.auditStatus, "not_configured", 100),
+      historyRuns: Array.isArray(source.historyRuns) ? source.historyRuns : [],
+      diagnostics: {
+        dryRun: safeSummary(source.dryRunSummary, ["status", "ok", "itemCount", "moduleCount"]),
+        validation: safeSummary(source.validationSummary, ["ok", "checked", "errorCount", "warningCount", "status"]),
+        readiness: safeSummary(source.readinessSummary || { status: source.readinessStatus }, ["ok", "status", "blockerCount"]),
+        payloadSample: safeSummary(source.payloadSummary, ["totalItems", "checksum", "checksumScope"]),
+        checklist: safeSummary(source.checklistSummary, ["ok", "completed", "total", "status"]),
+        target: safeSummary(source.targetSummary || { status: source.targetStatus }, ["ok", "status", "configured"]),
+        audit: safeSummary(source.auditSummary || { status: source.auditStatus }, ["ok", "status", "required"]),
+        adapter: safeSummary(source.adapterSummary, ["ok", "status", "canExecute", "canWrite"]),
+        stateMachine: safeSummary(source.stateMachineSummary, ["ok", "status", "state"]),
+        run: safeSummary(source.runSummary, ["status", "resultStatus", "writeStatus", "auditStatus"]),
+        retry: safeSummary(source.retryEligibility, ["ok", "status", "eligible"]),
+        retryReasons: safeStrings(source.retryEligibility?.reasons || source.retryEligibility?.blockers)
+      }
+    };
+  }
+
+  function humanStatus(value) {
+    const status = safeText(value, "Unknown", 100).replace(/[_-]+/g, " ");
+    return status.replace(/^./, (letter) => letter.toUpperCase());
+  }
+
+  function appendSummaryItem(parent, label, value) {
+    const item = parent.ownerDocument.createElement("div");
+    item.className = "aha-sync-summary-item";
+    appendTextElement(item, "dt", label);
+    appendTextElement(item, "dd", value);
+    parent.appendChild(item);
+  }
+
+  function renderDiagnostics(parent, diagnostics) {
+    const list = parent.ownerDocument.createElement("dl");
+    list.className = "aha-sync-diagnostics-list";
+    appendDetail(list, "Dry-run details", formatSummary(diagnostics.dryRun));
+    appendDetail(list, "Validation details", formatSummary(diagnostics.validation));
+    appendDetail(list, "Readiness details", formatSummary(diagnostics.readiness));
+    appendDetail(list, "Payload sample summary", formatSummary(diagnostics.payloadSample));
+    appendDetail(list, "Operator checklist", formatSummary(diagnostics.checklist));
+    appendDetail(list, "Target selector status", formatSummary(diagnostics.target));
+    appendDetail(list, "Audit log preview", formatSummary(diagnostics.audit));
+    appendDetail(list, "Adapter status", formatSummary(diagnostics.adapter));
+    appendDetail(list, "State machine status", formatSummary(diagnostics.stateMachine));
+    appendDetail(list, "Run summary status", formatSummary(diagnostics.run));
+    appendDetail(list, "Retry eligibility", `${formatSummary(diagnostics.retry)}${diagnostics.retryReasons.length ? `; reasons: ${diagnostics.retryReasons.join("; ")}` : ""}`);
+    parent.appendChild(list);
+  }
+
+  function renderAhaSyncConfirmation(element, state, handlers) {
+    if (!element) return null;
+    element.replaceChildren();
+    element.hidden = !state.confirmationOpen;
+    if (!state.confirmationOpen) return state;
+    element.className = "aha-sync-confirmation";
+    element.setAttribute("role", "dialog");
+    element.setAttribute("aria-modal", "true");
+    element.setAttribute("aria-label", "Confirm manual sync");
+    appendTextElement(element, "h2", "Confirm manual sync");
+    appendTextElement(element, "p", `Sync ${state.totalItems} items from ${state.includedModules.length} modules to ${state.target}.`);
+    appendTextElement(element, "p", `Audit status: ${state.auditStatus}.`);
+    const review = element.ownerDocument.createElement("div");
+    review.className = "aha-sync-confirmation-review";
+    const notices = state.criticalIssues.length ? state.criticalIssues : state.warnings;
+    appendTextElement(review, "strong", state.criticalIssues.length ? "Blockers" : "Warnings");
+    appendTextElement(review, "p", notices.join(" ") || "No blockers or warnings.");
+    element.appendChild(review);
+
+    const advanced = element.ownerDocument.createElement("details");
+    appendTextElement(advanced, "summary", "Advanced details");
+    renderDiagnostics(advanced, state.diagnostics);
+    element.appendChild(advanced);
+
+    const actions = element.ownerDocument.createElement("div");
+    actions.className = "aha-sync-confirmation-actions";
+    const cancel = appendTextElement(actions, "button", "Cancel");
+    cancel.type = "button";
+    cancel.addEventListener("click", () => {
+      state.confirmationOpen = false;
+      if (typeof handlers?.onCancelConfirmation === "function") handlers.onCancelConfirmation(state);
+      renderAhaSyncConfirmation(element, state, handlers);
+    });
+    const confirm = appendTextElement(actions, "button", "Confirm sync");
+    confirm.type = "button";
+    confirm.disabled = !state.canConfirm;
+    confirm.setAttribute("aria-disabled", String(!state.canConfirm));
+    confirm.addEventListener("click", () => {
+      if (state.canConfirm && typeof handlers?.onConfirm === "function") handlers.onConfirm(state);
+    });
+    element.appendChild(actions);
+    return state;
+  }
+
+  function renderAhaSyncHub(element, input, handlers) {
+    if (!element) return null;
+    const state = input?.historyState && input?.diagnostics && Object.prototype.hasOwnProperty.call(input, "advancedOpen")
+      ? input
+      : createAhaSyncHubState(input);
+    element.replaceChildren();
+    element.className = "aha-sync-hub";
+    element.dataset.manualSyncStatus = state.manualSyncStatus.toLowerCase().replace(/\s+/g, "-");
+
+    const header = element.ownerDocument.createElement("header");
+    header.className = "aha-sync-hub-header";
+    appendTextElement(header, "p", "Manual only", "aha-sync-manual-only");
+    appendTextElement(header, "h1", "AHA Sync Hub");
+    appendTextElement(header, "p", "Review status, confirm a manual sync, and inspect recent results. No automatic sync is performed.");
+    element.appendChild(header);
+
+    const summary = element.ownerDocument.createElement("section");
+    summary.className = "aha-sync-top-summary";
+    appendTextElement(summary, "h2", "Sync status");
+    const summaryList = element.ownerDocument.createElement("dl");
+    summaryList.className = "aha-sync-summary-grid";
+    appendSummaryItem(summaryList, "Sync readiness", state.readinessStatus === "ready" ? "Ready to sync" : humanStatus(state.readinessStatus));
+    appendSummaryItem(summaryList, "Target", state.target);
+    appendSummaryItem(summaryList, "Modules", String(state.includedModules.length));
+    appendSummaryItem(summaryList, "Items", String(state.totalItems));
+    appendSummaryItem(summaryList, "Last run", state.lastRun ? `${state.lastRun.resultStatus} · ${state.lastRun.recordedAt || "time unavailable"}` : "No runs yet");
+    appendSummaryItem(summaryList, "Manual sync", state.manualSyncStatus);
+    summary.appendChild(summaryList);
+    element.appendChild(summary);
+
+    const action = element.ownerDocument.createElement("section");
+    action.className = "aha-sync-primary-action";
+    appendTextElement(action, "h2", "What you can do now");
+    appendTextElement(action, "p", "Manual only — a sync starts only after explicit confirmation.", "aha-sync-manual-only");
+    if (state.criticalIssues.length) {
+      const alert = element.ownerDocument.createElement("div");
+      alert.className = "aha-sync-critical-blockers";
+      alert.setAttribute("role", "alert");
+      appendTextElement(alert, "strong", "Blocked");
+      state.criticalIssues.forEach((issue) => appendTextElement(alert, "p", issue));
+      action.appendChild(alert);
+    } else if (state.warnings.length) {
+      appendTextElement(action, "p", state.warnings.join(" "), "aha-sync-warning");
+    }
+    const manualButton = appendTextElement(action, "button", "Manual sync");
+    manualButton.type = "button";
+    manualButton.disabled = !state.canOpenConfirmation;
+    manualButton.setAttribute("aria-disabled", String(!state.canOpenConfirmation));
+    action.appendChild(manualButton);
+    element.appendChild(action);
+
+    const confirmation = element.ownerDocument.createElement("section");
+    confirmation.className = "aha-sync-confirmation-slot";
+    element.appendChild(confirmation);
+    manualButton.addEventListener("click", () => {
+      if (!state.canOpenConfirmation) return;
+      state.confirmationOpen = true;
+      if (typeof handlers?.onOpenConfirmation === "function") handlers.onOpenConfirmation(state);
+      renderAhaSyncConfirmation(confirmation, state, handlers);
+    });
+    renderAhaSyncConfirmation(confirmation, state, handlers);
+
+    const history = element.ownerDocument.createElement("section");
+    history.className = "aha-sync-history-section";
+    element.appendChild(history);
+    renderAhaManualSyncHistory(history, state.historyRuns, state.historyState);
+
+    const advanced = element.ownerDocument.createElement("section");
+    advanced.className = "aha-sync-advanced";
+    const toggle = appendTextElement(advanced, "button", "Advanced diagnostics");
+    toggle.type = "button";
+    toggle.setAttribute("aria-expanded", String(state.advancedOpen));
+    const panel = element.ownerDocument.createElement("div");
+    panel.className = "aha-sync-advanced-panel";
+    panel.hidden = !state.advancedOpen;
+    renderDiagnostics(panel, state.diagnostics);
+    toggle.addEventListener("click", () => {
+      state.advancedOpen = !state.advancedOpen;
+      toggle.setAttribute("aria-expanded", String(state.advancedOpen));
+      panel.hidden = !state.advancedOpen;
+    });
+    advanced.appendChild(panel);
+    element.appendChild(advanced);
+    return state;
+  }
+
+  function mountAhaSyncHub(documentRef, input, handlers) {
+    const mount = documentRef?.getElementById?.(AHA_SYNC_HUB_MOUNT_ID);
+    return mount ? renderAhaSyncHub(mount, input, handlers) : null;
+  }
+
   const api = {
+    AHA_SYNC_HUB_MOUNT_ID,
     DETAILS_MISSING_MESSAGE,
     createAhaManualSyncAuditViewModel,
     renderAhaManualSyncAuditResult,
@@ -290,7 +533,12 @@
     openAhaManualSyncHistoryDetails,
     closeAhaManualSyncHistoryDetails,
     renderAhaManualSyncHistory,
-    renderAhaManualSyncHistoryDetails
+    renderAhaManualSyncHistoryDetails,
+    collectAhaSyncCriticalIssues: collectCriticalIssues,
+    createAhaSyncHubState,
+    renderAhaSyncConfirmation,
+    renderAhaSyncHub,
+    mountAhaSyncHub
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   globalScope.AhaDashboard = api;
