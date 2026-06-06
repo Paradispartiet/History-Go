@@ -1,0 +1,662 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "administrasjonsmedarbeider",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+      "description": "Første uke privat etter administrasjonsarbeid: språk for mapper, saker og oppfølging lekker inn i relasjoner og helg.",
+      "learning_focus": [
+        "privat grense",
+        "relasjoner",
+        "kontroll",
+        "nærvær"
+      ],
+      "mails": [
+        {
+          "id": "personal_administrasjonsmedarbeider_week1_receipts_at_home",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "intro",
+          "priority": 89,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du begynner å lete etter kvitteringer hjemme",
+          "summary": "Administrasjonsblikket flytter inn i privatlivet.",
+          "situation": [
+            "Fra Privat notat: Du ser en kvittering på kjøkkenbenken. Før var det bare papir; nå ser du dato, beløp, butikk, formål og mulig mappe.",
+            "Fra Sara: Du tok kvitteringen og spurte om dere skulle ha et sted for disse. Hun ber deg om ikke å innføre bilagssystem hjemme."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "La kvitteringen være uviktig",
+              "reply": "Jeg sier at hun har rett, og lar kvitteringen ligge uten å lage system.",
+              "effects": {
+                "relationship_sara": 2,
+                "stress": -1,
+                "control": -1,
+                "self_awareness": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_receipts_unimportant"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_receipts_unimportant",
+              "feedback": "Takk. Noen kvitteringer skal bare bli borte av seg selv. Det er faktisk en del av privatlivet."
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at sjokoladen føres som nødvendig trivselstiltak uten krav om vedlegg.",
+              "effects": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_receipts_joke"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_receipts_joke",
+              "feedback": "Godkjent. Men bare fordi du ikke opprettet mappe."
+            },
+            {
+              "id": "C",
+              "label": "Lage en liten kvitteringsplass likevel",
+              "reply": "Jeg foreslår en enkel skuff for kvitteringer, bare for å slippe rot.",
+              "effects": {
+                "control": 2,
+                "relationship_sara": -1,
+                "stagnation_private": 1,
+                "stress": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_receipts_drawer"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_receipts_drawer",
+              "feedback": "Du sier “bare en skuff”. Jeg hører “første steg mot privat arkivplikt”."
+            }
+          ]
+        },
+        {
+          "id": "personal_administrasjonsmedarbeider_week1_friend_not_a_folder",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "intro",
+          "priority": 88,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Vennen som ikke vil bli satt i mappe",
+          "summary": "Administrasjonsspråk kan gjøre relasjoner til saker.",
+          "situation": [
+            "Fra Jonas: Du svarte at dette høres ut som noe vi bør følge opp senere. Han trengte kompis, ikke saksgang.",
+            "Fra Privat notat: På jobb var setningen ryddig. Privat hørtes Jonas ut som en mappe med gul trekant og påminnelse."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare som venn",
+              "reply": "Jeg skriver at han har rett, og at jeg ikke trenger å gjøre det til en sak.",
+              "effects": {
+                "relationship_jonas": 2,
+                "self_awareness": 2,
+                "control": -1,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_friend_as_friend"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_friend_as_friend",
+              "feedback": "Bra. Jeg nekter å være ubehandlet henvendelse."
+            },
+            {
+              "id": "B",
+              "label": "Forklare at du mente det godt",
+              "reply": "Jeg skriver at jeg bare mente at jeg ville huske det og spørre ham senere.",
+              "effects": {
+                "relationship_jonas": -1,
+                "control": 1,
+                "conflict": 1,
+                "self_awareness": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_friend_explain"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_friend_explain",
+              "feedback": "Jeg skjønner. Men noen ganger er det fint at en ting bare får være sagt, ikke registrert."
+            },
+            {
+              "id": "C",
+              "label": "Tulle det bort",
+              "reply": "Jeg sier at han nå er arkivert under “venn – ikke tiltak”.",
+              "effects": {
+                "relationship_jonas": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_friend_joke"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_friend_joke",
+              "feedback": "Akseptert. Men jeg vil ha innsynsrett."
+            }
+          ]
+        },
+        {
+          "id": "personal_administrasjonsmedarbeider_week1_sorting_conversations_like_emails",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "intro",
+          "priority": 87,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du rydder samtaler som e-poster",
+          "summary": "Private samtaler blir sortert som viktig, senere, avklart og uavklart.",
+          "situation": [
+            "Fra Sara: Du spurte om dere skulle ta samtalen nå eller parkere den. Hun vil ikke bli parkert.",
+            "Fra Privat notat: På jobb er parkere, løfte og avklare nyttige ord. Privat kan de få et menneske til å føle seg som en ubesvart e-post."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare direkte og være til stede",
+              "reply": "Jeg sier at hun har rett, og at vi kan snakke nå uten å gjøre det til sakshåndtering.",
+              "effects": {
+                "relationship_sara": 3,
+                "self_awareness": 2,
+                "stress": -1,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_conversation_present"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_conversation_present",
+              "feedback": "Takk. Det var bare viktig at du ikke la den i en mental innboks."
+            },
+            {
+              "id": "B",
+              "label": "Forklare at du prøvde å lage ryddighet",
+              "reply": "Jeg sier at jeg bare ville finne riktig tidspunkt og ikke avvise henne.",
+              "effects": {
+                "relationship_sara": 0,
+                "control": 1,
+                "self_awareness": 0,
+                "stress": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_conversation_explain"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_conversation_explain",
+              "feedback": "Jeg skjønner. Men noen ganger høres ryddighet ut som avstand."
+            },
+            {
+              "id": "C",
+              "label": "Utsette samtalen likevel",
+              "reply": "Jeg sier at jeg er for sliten og at vi bør ta det senere.",
+              "effects": {
+                "energy": 1,
+                "relationship_sara": -2,
+                "guilt": 2,
+                "stagnation_private": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_conversation_parked"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_conversation_parked",
+              "feedback": "Du parkerer den. Det står ikke “parkert” på den. Men det kjennes sånn."
+            }
+          ]
+        },
+        {
+          "id": "personal_administrasjonsmedarbeider_week1_dinner_gets_case_number",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "intro",
+          "priority": 86,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Middagen som får saksnummer",
+          "summary": "Middag med Jonas trenger ikke status, ansvarlig og neste steg.",
+          "situation": [
+            "Fra Jonas: Skal vi spise noe i morgen? Dette trenger ikke saksnummer. Bare ja, nei eller kanskje.",
+            "Fra Privat notat: Du tenker nesten status, ansvarlig, neste steg og risiko før du skjønner at du trenger fri fra å gjøre alt til behandling."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare enkelt ja eller nei",
+              "reply": "Jeg svarer enkelt og foreslår et tidspunkt.",
+              "effects": {
+                "relationship_jonas": 2,
+                "decision_fatigue": -1,
+                "stress": -1,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_dinner_simple"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_dinner_simple",
+              "feedback": "Se der. Et menneskesvar. Jeg skriver det ikke i protokoll."
+            },
+            {
+              "id": "B",
+              "label": "Svare med forbehold og mulige alternativer",
+              "reply": "Jeg skriver at det kanskje passer, avhengig av energi, tidspunkt og hva som skjer ellers.",
+              "effects": {
+                "relationship_jonas": -1,
+                "decision_fatigue": 1,
+                "stagnation_private": 1,
+                "control": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_dinner_with_attachments"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_dinner_with_attachments",
+              "feedback": "Dette var et kanskje med vedlegg. Jeg tolker det som nei til du sier noe annet."
+            },
+            {
+              "id": "C",
+              "label": "Be Jonas bestemme alt",
+              "reply": "Jeg sier at han kan bestemme tid og sted fordi jeg ikke orker å administrere mer.",
+              "effects": {
+                "energy": 1,
+                "relationship_jonas": 1,
+                "guilt": 0,
+                "autonomy_private": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_dinner_delegate"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_dinner_delegate",
+              "feedback": "Greit. Men du må møte opp som person, ikke som passiv mottaker av innkalling."
+            }
+          ]
+        },
+        {
+          "id": "personal_administrasjonsmedarbeider_week1_weekend_without_inbox",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "phase": "intro",
+          "priority": 85,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Helgen uten innboks",
+          "summary": "Helgen må ikke bli en privat innboks med status og oppfølging.",
+          "situation": [
+            "Fra Privat notat: Helgen kommer uten frist, men hodet spør hva som må avklares, hva som venter på svar og hva som står uten eier.",
+            "Fra Sara: Denne helgen vil jeg ikke være i innboksen din. Ikke åpen samtale, følge opp senere eller parkere. Bare helg.",
+            "Fra Jonas: Arkivfri sone: sier du mal, frist, saksnummer, vedlegg eller oppfølging privat i helgen, skylder du snacks."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en innboksfri dag",
+              "reply": "Jeg bestemmer at én dag skal være uten jobbmail, mentale oppfølgingslister og private saker som må behandles.",
+              "effects": {
+                "energy_weekend": 4,
+                "stress": -3,
+                "autonomy_private": 3,
+                "relationship_private": 2,
+                "control": -2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_inbox_boundary"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_inbox_boundary",
+              "feedback": "Dagen blir ikke behandlet. Den blir bare levd. Det føles uvant nok til å være nødvendig."
+            },
+            {
+              "id": "B",
+              "label": "Være sosial uten å sortere alt",
+              "reply": "Jeg møter Sara eller Jonas og lar samtalen gå uten å arkivere, avklare eller parkere den.",
+              "effects": {
+                "relationship_private": 4,
+                "mood": 2,
+                "stress": -2,
+                "self_awareness": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_social_unsorted"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_social_unsorted",
+              "feedback": "Du behandlet ikke samtalen som sak. Jeg visste ikke at det skulle bli et kompliment, men her er vi."
+            },
+            {
+              "id": "C",
+              "label": "Lage lett helgeoversikt",
+              "reply": "Jeg lager en liten oversikt over mat, rydding, sosial tid og hvile så helgen blir ryddig.",
+              "effects": {
+                "control": 3,
+                "stress": 1,
+                "energy_weekend": -1,
+                "stagnation_private": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_weekend_schedule"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_weekend_schedule",
+              "feedback": "Det var ikke en katastrofe. Men du klarte altså å lage helg i skjemaform."
+            },
+            {
+              "id": "D",
+              "label": "La alt flyte, men kjenne uro",
+              "reply": "Jeg lar være å planlegge, men går rundt med følelsen av at noe burde vært sortert.",
+              "effects": {
+                "control": -1,
+                "stress": 2,
+                "guilt": 1,
+                "stagnation_private": 2,
+                "energy_weekend": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week1_weekend_uneasy"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week1_weekend_uneasy",
+              "feedback": "Du gjør ingenting. Men du slipper ikke helt følelsen av at noe venter på behandling."
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "administrasjonsmedarbeider_week1_receipts_unimportant",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du begynner å lete etter kvitteringer hjemme",
+          "summary": "Takk. Noen kvitteringer skal bare bli borte av seg selv. Det er faktisk en del av privatlivet.",
+          "situation": [
+            "Takk. Noen kvitteringer skal bare bli borte av seg selv. Det er faktisk en del av privatlivet."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_receipts_joke",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du begynner å lete etter kvitteringer hjemme",
+          "summary": "Godkjent. Men bare fordi du ikke opprettet mappe.",
+          "situation": [
+            "Godkjent. Men bare fordi du ikke opprettet mappe."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_receipts_drawer",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du begynner å lete etter kvitteringer hjemme",
+          "summary": "Du sier “bare en skuff”. Jeg hører “første steg mot privat arkivplikt”.",
+          "situation": [
+            "Du sier “bare en skuff”. Jeg hører “første steg mot privat arkivplikt”."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_friend_as_friend",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Vennen som ikke vil bli satt i mappe",
+          "summary": "Bra. Jeg nekter å være ubehandlet henvendelse.",
+          "situation": [
+            "Bra. Jeg nekter å være ubehandlet henvendelse."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_friend_explain",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Vennen som ikke vil bli satt i mappe",
+          "summary": "Jeg skjønner. Men noen ganger er det fint at en ting bare får være sagt, ikke registrert.",
+          "situation": [
+            "Jeg skjønner. Men noen ganger er det fint at en ting bare får være sagt, ikke registrert."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_friend_joke",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Vennen som ikke vil bli satt i mappe",
+          "summary": "Akseptert. Men jeg vil ha innsynsrett.",
+          "situation": [
+            "Akseptert. Men jeg vil ha innsynsrett."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_conversation_present",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du rydder samtaler som e-poster",
+          "summary": "Takk. Det var bare viktig at du ikke la den i en mental innboks.",
+          "situation": [
+            "Takk. Det var bare viktig at du ikke la den i en mental innboks."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_conversation_explain",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du rydder samtaler som e-poster",
+          "summary": "Jeg skjønner. Men noen ganger høres ryddighet ut som avstand.",
+          "situation": [
+            "Jeg skjønner. Men noen ganger høres ryddighet ut som avstand."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_conversation_parked",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Du rydder samtaler som e-poster",
+          "summary": "Du parkerer den. Det står ikke “parkert” på den. Men det kjennes sånn.",
+          "situation": [
+            "Du parkerer den. Det står ikke “parkert” på den. Men det kjennes sånn."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_dinner_simple",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Middagen som får saksnummer",
+          "summary": "Se der. Et menneskesvar. Jeg skriver det ikke i protokoll.",
+          "situation": [
+            "Se der. Et menneskesvar. Jeg skriver det ikke i protokoll."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_dinner_with_attachments",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Middagen som får saksnummer",
+          "summary": "Dette var et kanskje med vedlegg. Jeg tolker det som nei til du sier noe annet.",
+          "situation": [
+            "Dette var et kanskje med vedlegg. Jeg tolker det som nei til du sier noe annet."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_dinner_delegate",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Middagen som får saksnummer",
+          "summary": "Greit. Men du må møte opp som person, ikke som passiv mottaker av innkalling.",
+          "situation": [
+            "Greit. Men du må møte opp som person, ikke som passiv mottaker av innkalling."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_inbox_boundary",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten innboks",
+          "summary": "Dagen blir ikke behandlet. Den blir bare levd. Det føles uvant nok til å være nødvendig.",
+          "situation": [
+            "Dagen blir ikke behandlet. Den blir bare levd. Det føles uvant nok til å være nødvendig."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_social_unsorted",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten innboks",
+          "summary": "Du behandlet ikke samtalen som sak. Jeg visste ikke at det skulle bli et kompliment, men her er vi.",
+          "situation": [
+            "Du behandlet ikke samtalen som sak. Jeg visste ikke at det skulle bli et kompliment, men her er vi."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_weekend_schedule",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten innboks",
+          "summary": "Det var ikke en katastrofe. Men du klarte altså å lage helg i skjemaform.",
+          "situation": [
+            "Det var ikke en katastrofe. Men du klarte altså å lage helg i skjemaform."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week1_weekend_uneasy",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Konsekvens: Helgen uten innboks",
+          "summary": "Du gjør ingenting. Men du slipper ikke helt følelsen av at noe venter på behandling.",
+          "situation": [
+            "Du gjør ingenting. Men du slipper ikke helt følelsen av at noe venter på behandling."
+          ]
+        }
+      ],
+      "week_outcomes": [
+        {
+          "id": "private_admin_leak",
+          "condition": "Tar administrasjonsspråket hjem, setter relasjoner i mapper, parkerer samtaler og gjør helgen til en innboks.",
+          "effects": {
+            "relationship_private": -5,
+            "control": 4,
+            "stress": 3,
+            "energy_weekend": -3,
+            "stagnation_private": 4
+          },
+          "narrative": "Du får orden på mye. Men mennesker merker når de blir behandlet som saker. Noen ting skal ikke sorteres riktig. De skal møtes."
+        }
+      ]
+    }
+  ]
+}

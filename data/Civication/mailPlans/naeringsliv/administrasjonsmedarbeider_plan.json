@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "admin_routine_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "admin_routine_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -38,81 +44,226 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
-      "step_goal": "Etablere bilag, spor og grunnleggende administrativ nøyaktighet.",
-      "allowed_families": ["bilag_og_spor"],
-      "fallback_types": ["job"]
+      "step_goal": "Bilaget uten eier etablerer rollen som sporbygger.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 2,
-      "type": "job",
+      "type": "people",
       "phase": "intro",
-      "step_goal": "Vise at frister ikke følger seg selv, men må bæres av tydelig oppfølging.",
-      "allowed_families": ["frist_og_purring"],
-      "fallback_types": ["job"]
+      "step_goal": "Kvitteringen hjemme viser hvordan administrasjonsblikket kan lekke privat.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 3,
       "type": "job",
-      "phase": "early",
-      "step_goal": "La spilleren møte gapet mellom systemets kategori og driftens praktiske virkelighet.",
-      "allowed_families": ["system_vs_drift"],
-      "fallback_types": ["job"]
+      "phase": "intro",
+      "step_goal": "Fristen viser at administrasjon må eie overganger mellom mennesker.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 4,
-      "type": "job",
-      "phase": "early",
-      "step_goal": "Introdusere avvik som noe som må spores før det forklares bort.",
-      "allowed_families": ["avvik_og_ansvar"],
-      "fallback_types": ["job"]
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Jonas viser at venner ikke skal behandles som mapper.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 5,
       "type": "job",
-      "phase": "mid",
-      "step_goal": "Forsterke bilag og dokumentasjon som virksomhetens hukommelse.",
-      "allowed_families": ["bilag_og_spor", "system_vs_drift"],
-      "fallback_types": ["job"]
+      "phase": "intro",
+      "step_goal": "Systemavviket trener skillet mellom menneskelig feil og uklart felt.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 6,
-      "type": "job",
-      "phase": "mid",
-      "step_goal": "Teste hvordan høflig purring kan bli nødvendig press uten å bli aggressiv.",
-      "allowed_families": ["frist_og_purring"],
-      "fallback_types": ["job"]
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Sara viser hvordan samtaler ikke skal parkeres som e-post.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 7,
       "type": "job",
-      "phase": "advanced",
-      "step_goal": "La et lite avvik få større konsekvens hvis det ikke håndteres tydelig.",
-      "allowed_families": ["avvik_og_ansvar"],
-      "fallback_types": ["job"]
+      "phase": "intro",
+      "step_goal": "Arkivet viser at feil versjon kan gjøre hukommelsen farligere enn glemsel.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 8,
-      "type": "job",
-      "phase": "advanced",
-      "step_goal": "Løfte administrativ dømmekraft: når rydde selv, når be om bedre grunnlag, når eskalere.",
-      "allowed_families": ["system_vs_drift", "avvik_og_ansvar"],
-      "fallback_types": ["job"]
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Middag med Jonas trener enkle menneskesvar uten saksnummer.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 9,
       "type": "job",
-      "phase": "mastery",
-      "step_goal": "La spilleren vise moden kontroll over frister, spor og ansvar uten å bli ren kontrollør.",
-      "allowed_families": ["frist_og_purring", "bilag_og_spor"],
-      "fallback_types": ["job"]
+      "phase": "intro",
+      "step_goal": "Fredagsoppsummeringen skiller løst fra midlertidig håndtert.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 10,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Helgen uten innboks setter privat grense mot administrasjonsspråk.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_administrasjonsmedarbeider_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere bilag, spor og grunnleggende administrativ nøyaktighet.",
+      "allowed_families": [
+        "bilag_og_spor"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 12,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Vise at frister ikke følger seg selv, men må bæres av tydelig oppfølging.",
+      "allowed_families": [
+        "frist_og_purring"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 13,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "La spilleren møte gapet mellom systemets kategori og driftens praktiske virkelighet.",
+      "allowed_families": [
+        "system_vs_drift"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 14,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere avvik som noe som må spores før det forklares bort.",
+      "allowed_families": [
+        "avvik_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 15,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Forsterke bilag og dokumentasjon som virksomhetens hukommelse.",
+      "allowed_families": [
+        "bilag_og_spor",
+        "system_vs_drift"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste hvordan høflig purring kan bli nødvendig press uten å bli aggressiv.",
+      "allowed_families": [
+        "frist_og_purring"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 17,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La et lite avvik få større konsekvens hvis det ikke håndteres tydelig.",
+      "allowed_families": [
+        "avvik_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 18,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Løfte administrativ dømmekraft: når rydde selv, når be om bedre grunnlag, når eskalere.",
+      "allowed_families": [
+        "system_vs_drift",
+        "avvik_og_ansvar"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 19,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "La spilleren vise moden kontroll over frister, spor og ansvar uten å bli ren kontrollør.",
+      "allowed_families": [
+        "frist_og_purring",
+        "bilag_og_spor"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 20,
       "type": "job",
       "phase": "climax",
       "step_goal": "Avrunde rollen: administrasjon er ikke papirarbeid, men en presis hukommelse for virksomheten.",
-      "allowed_families": ["system_vs_drift", "avvik_og_ansvar", "bilag_og_spor"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "system_vs_drift",
+        "avvik_og_ansvar",
+        "bilag_og_spor"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     }
   ]
 }

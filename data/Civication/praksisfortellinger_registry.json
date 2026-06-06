@@ -300,6 +300,46 @@
       "flow_tests": [
         "tests/civication-controller-two-week-flow.test.js"
       ]
+    },
+    {
+      "role_id": "administrasjonsmedarbeider",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
+      "expected_signals": [
+        "documentation_quality",
+        "traceability",
+        "process_quality",
+        "trust_manager",
+        "trust_economy",
+        "trust_drift",
+        "deadline_met",
+        "deadline_pressure",
+        "future_risk",
+        "stagnation",
+        "stress",
+        "clarity",
+        "control",
+        "relationship_private",
+        "self_awareness",
+        "energy_weekend",
+        "autonomy_private"
+      ],
+      "packages": [
+        {
+          "package_id": "administrasjonsmedarbeider_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "private_family": "first_week_praksisfortellinger_administrasjonsmedarbeider_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": []
     }
   ],
   "cross_role_tests": [
