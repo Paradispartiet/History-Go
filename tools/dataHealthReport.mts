@@ -70,7 +70,7 @@ type DataHealthState = {
   notConfigured: Set<string>;
 };
 
-type PlaceErrorOptions = {
+type PlaceIssueOptions = {
   alreadyReportedGlobally?: boolean;
 };
 
@@ -135,7 +135,7 @@ function checkAsset(assetPath: unknown, ctx: JsonObject): boolean {
   if (!nonEmpty(assetPath)) return false;
   const p = path.join(ROOT, assetPath.trim());
   if (!fs.existsSync(p)) {
-    addError('missing_asset', `Asset path does not exist: ${assetPath}`, ctx);
+    addWarning('missing_asset', `Asset path does not exist: ${assetPath}`, ctx);
     return false;
   }
   state.filesChecked.add(rel(p));
@@ -258,8 +258,13 @@ function run(): void {
     const missing: string[] = [];
     const warnings: string[] = [];
     const errors: string[] = [];
+    const warningsAlreadyReportedGlobally = new Set<string>();
     const errorsAlreadyReportedGlobally = new Set<string>();
-    const addPlaceError = (type: string, options: PlaceErrorOptions = {}): void => {
+    const addPlaceWarning = (type: string, options: PlaceIssueOptions = {}): void => {
+      warnings.push(type);
+      if (options.alreadyReportedGlobally) warningsAlreadyReportedGlobally.add(type);
+    };
+    const addPlaceError = (type: string, options: PlaceIssueOptions = {}): void => {
       errors.push(type);
       if (options.alreadyReportedGlobally) errorsAlreadyReportedGlobally.add(type);
     };
@@ -276,7 +281,7 @@ function run(): void {
     const checkPlaceAsset = (field: string): void => {
       if (!nonEmpty(place[field])) return;
       if (!checkAsset(place[field], { id, field, file: place._file })) {
-        addPlaceError(`missing_asset_${field}`, { alreadyReportedGlobally: true });
+        addPlaceWarning(`missing_asset_${field}`, { alreadyReportedGlobally: true });
       }
     };
 
@@ -310,7 +315,10 @@ function run(): void {
 
     if (place.groundhopper == null) warnings.push('missing_groundhopper');
 
-    for (const w of warnings) { addWarning(w, `${id}: ${w}`, { id, file: place._file }); pushMissing(w, id); }
+    for (const w of warnings) {
+      if (!warningsAlreadyReportedGlobally.has(w)) addWarning(w, `${id}: ${w}`, { id, file: place._file });
+      pushMissing(w, id);
+    }
     for (const e of errors) {
       if (!errorsAlreadyReportedGlobally.has(e)) addError(e, `${id}: ${e}`, { id, file: place._file });
     }
