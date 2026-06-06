@@ -1132,10 +1132,11 @@
     return String(s == null ? "" : s).trim().toLowerCase().replace(/[\s-]+/g, "_");
   }
 
-  // Returnerer landmark-id hvis place matcher et håndmodellert landemerke, ellers null.
-  // Korte aliaser krever eksakt id/navn-treff; lange (>= 9 tegn) tillater delstreng,
-  // så fulle navn som «Den Norske Opera» fanges uten å overmatche småsteder.
-  function matchLandmarkForPlace(p) {
+  // Matcher place mot håndmodellert landemerke. Returnerer { landmarkId, exact }
+  // eller null. Eksakte id/navn-treff sjekkes FØR delstreng-treff (>= 9 tegn), så
+  // f.eks. «Nationaltheatret» (teater) vinner over «Nationaltheatret stasjon»
+  // (delstreng) – og kan velges som det kanoniske stedet ved landemerket.
+  function landmarkMatchInfo(p) {
     const id = normId(p.id);
     const name = normId(p.name);
     const keys = Object.keys(HAND_MODELED_PLACE_ALIASES);
@@ -1143,15 +1144,47 @@
       const aliases = HAND_MODELED_PLACE_ALIASES[keys[k]];
       for (let i = 0; i < aliases.length; i++) {
         const a = aliases[i];
-        if (id === a || name === a) return keys[k];
-        if (a.length >= 9 && (id.indexOf(a) !== -1 || name.indexOf(a) !== -1)) return keys[k];
+        if (id === a || name === a) return { landmarkId: keys[k], exact: true };
+      }
+    }
+    for (let k = 0; k < keys.length; k++) {
+      const aliases = HAND_MODELED_PLACE_ALIASES[keys[k]];
+      for (let i = 0; i < aliases.length; i++) {
+        const a = aliases[i];
+        if (a.length >= 9 && (id.indexOf(a) !== -1 || name.indexOf(a) !== -1)) return { landmarkId: keys[k], exact: false };
       }
     }
     return null;
   }
 
+  function matchLandmarkForPlace(p) {
+    const info = landmarkMatchInfo(p);
+    return info ? info.landmarkId : null;
+  }
+
   function getLandmarkEntry(landmarkId) {
     return OSLO_KEY_LANDMARKS.find((e) => e.id === landmarkId) || null;
+  }
+
+  // Del 2 – ren grupperingslogikk (uten scene/DOM, derfor testbar): del en liste
+  // normaliserte places i kandidater + ett kanonisk place per håndmodellert
+  // landemerke. Eksakt id/navn-treff foran delstreng, så f.eks. selve teateret
+  // velges foran «<teater> stasjon». hiddenCount = alle skjulte duplikater.
+  function dedupeLandmarkPlaces(list) {
+    const byLandmark = {};
+    const candidates = [];
+    let hiddenCount = 0;
+    (list || []).forEach((p) => {
+      const info = landmarkMatchInfo(p);
+      if (info && getLandmarkEntry(info.landmarkId)) {
+        hiddenCount++;
+        const cur = byLandmark[info.landmarkId];
+        if (!cur || (info.exact && !cur.exact)) byLandmark[info.landmarkId] = { place: p, exact: info.exact };
+      } else {
+        candidates.push(p);
+      }
+    });
+    return { byLandmark, candidates, hiddenCount };
   }
 
   // --- Del 4 – Landemerke-archetypes (enkle, gjenkjennelige miniatyrer) ------
@@ -2213,8 +2246,10 @@
     const subtype = String(qp.subtype || "").toLowerCase();
     const hay = `${p.id || ""} ${p.name || ""} ${ptype} ${subtype}`.toLowerCase();
 
-    // Sterke nøkkelord på tvers av kategorier.
-    if (/ishall|ishockey|amfi|skoyte|skøyte|isbane|kunstisbane/.test(hay)) return "ice_arena";
+    // Sterke nøkkelord på tvers av kategorier. NB: bare «skøyte» er for vidt –
+    // det treffer friidrettsstadioner med skøytehistorie (f.eks. Bislett), så
+    // ishall krever mer spesifikke termer.
+    if (/ishall|ishockey|isbane|kunstisbane|skøytehall|skoytehall|amfi/.test(hay)) return "ice_arena";
     if (/stadion|stadium|arena/.test(hay)) return "stadium";
     if (/lekeplass|playground|sandlek/.test(hay)) return "playground";
     if (/museum|museet/.test(hay)) return "museum";
@@ -2245,7 +2280,7 @@
       case "litteratur": return "library";
       case "musikk": return "music_venue";
       case "film": case "film_tv": return "cinema";
-      case "popkultur": return "music_venue";
+      case "popkultur": case "populaerkultur": return "music_venue";
       case "subkultur": return "subculture";
       case "natur": return "park";
       case "politikk": case "media": return "civic";
@@ -2356,16 +2391,16 @@
     if (camera) camera.updateMatrixWorld();
 
     // Del 2 – skill ut places som tilsvarer håndmodellerte landemerker; de får
-    // ingen ekstra generisk marker, kun en usynlig hit target ved landemerket.
-    const landmarkMatched = [];
-    const candidates = [];
-    _places.forEach((p) => {
-      const lm = matchLandmarkForPlace(p);
-      if (lm && getLandmarkEntry(lm)) landmarkMatched.push({ place: p, landmarkId: lm });
-      else candidates.push(p);
-    });
+    // ingen ekstra generisk marker. Flere places kan matche samme landemerke
+    // (duplikater/aliaser) – dedupeLandmarkPlaces velger ÉT kanonisk sted per
+    // landemerke (eksakt treff foran delstreng) som klikkbart via en usynlig
+    // hit target ved modellen.
+    const dedup = dedupeLandmarkPlaces(_places);
+    const byLandmark = dedup.byLandmark;
+    const candidates = dedup.candidates;
 
-    landmarkMatched.forEach(({ place, landmarkId }) => {
+    Object.keys(byLandmark).forEach((landmarkId) => {
+      const place = byLandmark[landmarkId].place;
       const e = getLandmarkEntry(landmarkId);
       const baseY = e.baseY == null ? GROUND_Y : e.baseY;
       const hit = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 1.0), INVISIBLE_HIT_MAT);
@@ -2376,7 +2411,7 @@
       _landmarkPlaceMap[landmarkId] = place.id;
       _stats.clickableLandmarkPlaces.push({ placeId: place.id, landmarkId });
     });
-    _stats.hiddenDuplicateLandmarkPlaces = landmarkMatched.length;
+    _stats.hiddenDuplicateLandmarkPlaces = dedup.hiddenCount;
 
     // Del 6 – prioriter og projiser; Del 5 – LOD-grense + frustum-culling.
     const scored = [];
@@ -2763,6 +2798,21 @@
     getDistrictVisualProfiles,
     getLandmarkPositions,
     getVisiblePlaceMiniatures: () => _visibleMiniatures.map((m) => Object.assign({}, m)),
-    getPlaceMiniatureTypeStats: () => Object.assign({}, _stats.placeMiniatureTypes)
+    getPlaceMiniatureTypeStats: () => Object.assign({}, _stats.placeMiniatureTypes),
+    // Rene introspeksjons-/testfunksjoner (uten scene/DOM) – speiler nøyaktig
+    // logikken renderen bruker, så de kan dekkes av node-tester og dev-konsoll.
+    resolvePlaceMiniatureType: (place) => resolvePlaceMiniatureType(normalize(place)),
+    matchLandmarkForPlace: (place) => matchLandmarkForPlace(normalize(place)),
+    priorityOfPlace: (place) => priorityOfPlace(normalize(place)),
+    placeLodLevel,
+    getPlaceMiniatureTypeKeys: () => Object.keys(PLACE_MINIATURE_TYPES),
+    getPlaceLodLimits: () => Object.assign({}, PLACE_LOD_LIMITS),
+    getHandModeledPlaceAliases: () => JSON.parse(JSON.stringify(HAND_MODELED_PLACE_ALIASES)),
+    getLandmarkDedup: (list) => {
+      const r = dedupeLandmarkPlaces((list || []).map(normalize));
+      const canonical = {};
+      Object.keys(r.byLandmark).forEach((k) => { canonical[k] = r.byLandmark[k].place.id; });
+      return { canonical, hiddenCount: r.hiddenCount, candidateCount: r.candidates.length };
+    }
   };
 })();
