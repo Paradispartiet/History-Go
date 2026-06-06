@@ -32,7 +32,8 @@
     sport_utover: 'sport_utover',
     sport_kaptein: 'sport_kaptein',
     sport_trener: 'sport_trener',
-    sport_sportsledelse: 'sport_sportsledelse'
+    sport_sportsledelse: 'sport_sportsledelse',
+    sport_legende: 'sport_legende'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -52,7 +53,8 @@
     sport_utover: 'sport_utover',
     sport_kaptein: 'sport_kaptein',
     sport_trener: 'sport_trener',
-    sport_sportsledelse: 'sport_sportsledelse'
+    sport_sportsledelse: 'sport_sportsledelse',
+    sport_legende: 'sport_legende'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -125,7 +127,10 @@
     kaptein: 'sport_kaptein',
     trener: 'sport_trener',
     hovedtrener: 'sport_trener',
-    sportssjef: 'sport_sportsledelse'
+    sportssjef: 'sport_sportsledelse',
+    olympisk_mester: 'sport_legende',
+    idrettsstjerne: 'sport_legende',
+    idrettslegende: 'sport_legende'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -142,11 +147,13 @@
       if (roleKey === 'sport_kaptein') return 'sport_kaptein';
       if (roleKey === 'sport_trener') return 'sport_trener';
       if (roleKey === 'sport_sportsledelse') return 'sport_sportsledelse';
+      if (roleKey === 'sport_legende') return 'sport_legende';
       if (SPORT_ROLE_SCOPE_BY_TITLE[titleKey]) return SPORT_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('mosjonist') || titleKey.includes('utover') || titleKey.includes('konkurranseutover') || titleKey.includes('klubbspiller') || titleKey.includes('eliteseriespiller') || titleKey.includes('landslagsutover')) return 'sport_utover';
       if (titleKey.includes('kaptein')) return 'sport_kaptein';
       if (titleKey.includes('trener')) return 'sport_trener';
       if (titleKey.includes('sportssjef')) return 'sport_sportsledelse';
+      if (titleKey.includes('olympisk_mester') || titleKey.includes('idrettsstjerne') || titleKey.includes('idrettslegende')) return 'sport_legende';
     }
 
     if (careerId === 'by') {
@@ -210,6 +217,7 @@
     if (roleKey.includes('sport_kaptein')) return 'sport_kaptein';
     if (roleKey.includes('sport_trener')) return 'sport_trener';
     if (roleKey.includes('sport_sportsledelse')) return 'sport_sportsledelse';
+    if (roleKey.includes('sport_legende')) return 'sport_legende';
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
