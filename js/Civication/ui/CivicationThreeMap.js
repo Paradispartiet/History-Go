@@ -2237,6 +2237,20 @@
   // -> kategori/quiz_profile-nøkkelord -> id/navn-heuristikk -> default.
   function resolvePlaceMiniatureType(p) {
     const cm = p.civiMap || {};
+
+    // Felles designCode-system (Del 6). Prøv den delte resolveren først hvis den
+    // er lastet; bruk renderHints.threeType når den finnes i type-katalogen.
+    // Kartet er aldri avhengig av at js/visualDesignCodes.js er lastet – uten
+    // resolveren faller vi tilbake til den eksisterende logikken nedenfor.
+    try {
+      const reg = (typeof window !== "undefined") && window.HGVisualDesignCodes;
+      if (reg && typeof reg.resolveForPlace === "function") {
+        const r = reg.resolveForPlace(p.raw || p);
+        const threeType = r && r.entry && r.entry.renderHints && r.entry.renderHints.threeType;
+        if (threeType && PLACE_MINIATURE_TYPES[threeType]) return threeType;
+      }
+    } catch (e) { /* fall through to legacy resolver */ }
+
     const explicit = String(cm.assetType || (p.raw && p.raw.mapAssetType) || "").trim().toLowerCase();
     if (explicit && PLACE_MINIATURE_TYPES[explicit]) return explicit;
 
