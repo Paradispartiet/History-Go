@@ -18,7 +18,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -2
     },
@@ -31,12 +33,117 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "evening_pressure", "morning_choices_expand", "retail_routine_loop"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "evening_pressure",
+        "morning_choices_expand",
+        "retail_routine_loop"
+      ]
     }
   },
   "sequence": [
     {
       "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Prisfeilen i køen etablerer kasse, synlig feilretting og tillit under køpress.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Kundelesningen hjemme viser hvordan butikkmodus kan lekke inn i privatlivet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Retur uten kvittering trener service med tydelige grenser.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Jonas viser at venner ikke vil ekspederes som kunder.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Tom hylle og usikkert lager trener ærlig varekunnskap uten bløff.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Sara viser at ikke alle private meldinger er forespørsler.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Feilslag i kassa må rettes tidlig og synlig før tilliten går ut døra.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Middag med Jonas trener vanlig nærhet uten kundeservice-stemme.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Fredagsoppsummeringen skiller trygg læring fra tempo som maske.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Helgen uten kø setter privat grense mot service-masken.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_ekspeditor_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere kasse, pris og første tillit på gulvet.",
@@ -49,7 +156,7 @@
       ]
     },
     {
-      "step": 2,
+      "step": 12,
       "type": "job",
       "phase": "early",
       "step_goal": "Teste kundemøte og service under moderat press.",
@@ -62,7 +169,7 @@
       ]
     },
     {
-      "step": 3,
+      "step": 13,
       "type": "people",
       "phase": "early",
       "step_goal": "Bygge første sosial lesning: ny kollega, tillit og hvem som hjelper hvem.",
@@ -75,7 +182,7 @@
       ]
     },
     {
-      "step": 4,
+      "step": 14,
       "type": "job",
       "phase": "early",
       "step_goal": "Gi ansvar for lager og bestilling som får konsekvens senere.",
@@ -88,7 +195,7 @@
       ]
     },
     {
-      "step": 5,
+      "step": 15,
       "type": "conflict",
       "phase": "mid",
       "step_goal": "Første tydelige ansvarskonflikt: gulvet merker om spilleren skjuler, løser eller løfter problemet.",
@@ -101,7 +208,7 @@
       ]
     },
     {
-      "step": 6,
+      "step": 16,
       "type": "story",
       "phase": "mid",
       "step_goal": "Koble salg og veiledning til rolleidentitet: hjelper du kunden eller bare flytter du varer?",
@@ -114,7 +221,7 @@
       ]
     },
     {
-      "step": 7,
+      "step": 17,
       "type": "event",
       "phase": "mid",
       "step_goal": "Bruke åpning/lukking som praktisk test på tillit og detaljansvar.",
@@ -127,7 +234,7 @@
       ]
     },
     {
-      "step": 8,
+      "step": 18,
       "type": "job",
       "phase": "advanced",
       "step_goal": "Samle tidligere hverdagsvalg i en større vurdering av tempo, service og kontroll.",
@@ -142,7 +249,7 @@
       ]
     },
     {
-      "step": 9,
+      "step": 19,
       "type": "event",
       "phase": "mastery",
       "step_goal": "Avslutte praktisk mestring: åpning/lukking viser om spilleren kan bære rollen uten tett oppfølging.",
@@ -156,7 +263,7 @@
       ]
     },
     {
-      "step": 10,
+      "step": 20,
       "type": "story",
       "phase": "climax",
       "step_goal": "Sluttvurdering: om butikkrollen blir springbrett, rutine eller brudd i tillit.",
