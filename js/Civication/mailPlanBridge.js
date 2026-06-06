@@ -7,7 +7,8 @@
       arbeider: "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
       fagarbeider: "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
       mellomleder: "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
-      formann: "data/Civication/mailPlans/naeringsliv/formann_plan.json"
+      formann: "data/Civication/mailPlans/naeringsliv/formann_plan.json",
+      administrasjonsmedarbeider: "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json"
     }
   };
 
@@ -61,6 +62,10 @@
         event: "data/Civication/mailFamilies/naeringsliv/event/formann_event.json",
         people: "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
         conflict: "data/Civication/mailFamilies/naeringsliv/conflict/formann_conflict.json"
+      },
+      administrasjonsmedarbeider: {
+        job: "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
+        people: "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json"
       }
     }
   };
@@ -70,7 +75,8 @@
     naer_arbeider: "arbeider",
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
-    naer_formann: "formann"
+    naer_formann: "formann",
+    naer_administrasjonsmedarbeider: "administrasjonsmedarbeider"
   };
 
   const ROLE_SCOPE_BY_TITLE = {
@@ -84,7 +90,8 @@
     formann: "formann",
     arbeidsleder: "formann",
     formann_arbeidsleder: "formann",
-    okonomi_og_administrasjonsmedarbeider: "mellomleder",
+    okonomi_og_administrasjonsmedarbeider: "administrasjonsmedarbeider",
+    administrasjonsmedarbeider: "administrasjonsmedarbeider",
     controller: "mellomleder",
     avdelingsleder: "mellomleder",
     driftsleder: "mellomleder",
