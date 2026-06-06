@@ -1132,10 +1132,11 @@
     return String(s == null ? "" : s).trim().toLowerCase().replace(/[\s-]+/g, "_");
   }
 
-  // Returnerer landmark-id hvis place matcher et håndmodellert landemerke, ellers null.
-  // Korte aliaser krever eksakt id/navn-treff; lange (>= 9 tegn) tillater delstreng,
-  // så fulle navn som «Den Norske Opera» fanges uten å overmatche småsteder.
-  function matchLandmarkForPlace(p) {
+  // Matcher place mot håndmodellert landemerke. Returnerer { landmarkId, exact }
+  // eller null. Eksakte id/navn-treff sjekkes FØR delstreng-treff (>= 9 tegn), så
+  // f.eks. «Nationaltheatret» (teater) vinner over «Nationaltheatret stasjon»
+  // (delstreng) – og kan velges som det kanoniske stedet ved landemerket.
+  function landmarkMatchInfo(p) {
     const id = normId(p.id);
     const name = normId(p.name);
     const keys = Object.keys(HAND_MODELED_PLACE_ALIASES);
@@ -1143,11 +1144,22 @@
       const aliases = HAND_MODELED_PLACE_ALIASES[keys[k]];
       for (let i = 0; i < aliases.length; i++) {
         const a = aliases[i];
-        if (id === a || name === a) return keys[k];
-        if (a.length >= 9 && (id.indexOf(a) !== -1 || name.indexOf(a) !== -1)) return keys[k];
+        if (id === a || name === a) return { landmarkId: keys[k], exact: true };
+      }
+    }
+    for (let k = 0; k < keys.length; k++) {
+      const aliases = HAND_MODELED_PLACE_ALIASES[keys[k]];
+      for (let i = 0; i < aliases.length; i++) {
+        const a = aliases[i];
+        if (a.length >= 9 && (id.indexOf(a) !== -1 || name.indexOf(a) !== -1)) return { landmarkId: keys[k], exact: false };
       }
     }
     return null;
+  }
+
+  function matchLandmarkForPlace(p) {
+    const info = landmarkMatchInfo(p);
+    return info ? info.landmarkId : null;
   }
 
   function getLandmarkEntry(landmarkId) {
@@ -2245,7 +2257,7 @@
       case "litteratur": return "library";
       case "musikk": return "music_venue";
       case "film": case "film_tv": return "cinema";
-      case "popkultur": return "music_venue";
+      case "popkultur": case "populaerkultur": return "music_venue";
       case "subkultur": return "subculture";
       case "natur": return "park";
       case "politikk": case "media": return "civic";
@@ -2356,16 +2368,25 @@
     if (camera) camera.updateMatrixWorld();
 
     // Del 2 – skill ut places som tilsvarer håndmodellerte landemerker; de får
-    // ingen ekstra generisk marker, kun en usynlig hit target ved landemerket.
-    const landmarkMatched = [];
+    // ingen ekstra generisk marker. Flere places kan matche samme landemerke
+    // (duplikater/aliaser) – da velges ÉT kanonisk sted (eksakt treff foran
+    // delstreng) som klikkbart via en usynlig hit target ved modellen.
+    const byLandmark = {};
     const candidates = [];
+    let hiddenCount = 0;
     _places.forEach((p) => {
-      const lm = matchLandmarkForPlace(p);
-      if (lm && getLandmarkEntry(lm)) landmarkMatched.push({ place: p, landmarkId: lm });
-      else candidates.push(p);
+      const info = landmarkMatchInfo(p);
+      if (info && getLandmarkEntry(info.landmarkId)) {
+        hiddenCount++;
+        const cur = byLandmark[info.landmarkId];
+        if (!cur || (info.exact && !cur.exact)) byLandmark[info.landmarkId] = { place: p, exact: info.exact };
+      } else {
+        candidates.push(p);
+      }
     });
 
-    landmarkMatched.forEach(({ place, landmarkId }) => {
+    Object.keys(byLandmark).forEach((landmarkId) => {
+      const place = byLandmark[landmarkId].place;
       const e = getLandmarkEntry(landmarkId);
       const baseY = e.baseY == null ? GROUND_Y : e.baseY;
       const hit = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 1.0), INVISIBLE_HIT_MAT);
@@ -2376,7 +2397,7 @@
       _landmarkPlaceMap[landmarkId] = place.id;
       _stats.clickableLandmarkPlaces.push({ placeId: place.id, landmarkId });
     });
-    _stats.hiddenDuplicateLandmarkPlaces = landmarkMatched.length;
+    _stats.hiddenDuplicateLandmarkPlaces = hiddenCount;
 
     // Del 6 – prioriter og projiser; Del 5 – LOD-grense + frustum-culling.
     const scored = [];
