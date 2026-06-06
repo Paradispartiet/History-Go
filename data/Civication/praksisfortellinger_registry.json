@@ -243,6 +243,49 @@
       "flow_tests": [
         "tests/civication-avdelingsleder-two-week-flow.test.js"
       ]
+    },
+    {
+      "role_id": "controller",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/controller_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/controller_job.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/controller_people.json",
+      "expected_signals": [
+        "accuracy",
+        "trust_drift",
+        "trust_manager",
+        "deadline_met",
+        "deadline_pressure",
+        "traceability",
+        "process_quality",
+        "forecast_quality",
+        "decision_quality",
+        "report_quality",
+        "future_risk",
+        "conflict",
+        "stagnation",
+        "stress",
+        "control",
+        "manager_pressure",
+        "relationship_private",
+        "self_awareness",
+        "energy_weekend",
+        "autonomy_private"
+      ],
+      "packages": [
+        {
+          "package_id": "controller_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_controller_job",
+          "private_family": "first_week_praksisfortellinger_controller_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-controller-first-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": []
     }
   ],
   "cross_role_tests": [

@@ -21,65 +21,215 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
-      "step_goal": "Etablere controllerrollen gjennom månedsrapport, avstemming og første møte med driftsforklaringer.",
-      "allowed_families": ["controller_intro_v2"],
-      "fallback_types": ["job", "conflict", "story"]
+      "step_goal": "La controlleren møte tall som ansvar gjennom avvik, forklaring, prognose og graderte forbehold.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 2,
-      "type": "job",
-      "phase": "early",
-      "step_goal": "La spilleren bruke økonomisk presisjon uten å miste kontakten med driften.",
-      "allowed_families": ["avstemming_og_rapport", "prognose_og_budsjett"],
-      "fallback_types": ["conflict", "story", "event"]
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "La controlleren oppdage hvordan kontrollblikket påvirker tillit, varme og frihet utenfor arbeidet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 3,
-      "type": "conflict",
-      "phase": "early",
-      "step_goal": "Introdusere første konflikt mellom tempo i rapporteringen og nøyaktig forklaring av avvik.",
-      "allowed_families": ["avvik_og_forklaring"],
-      "fallback_types": ["job", "event", "story"]
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La controlleren møte tall som ansvar gjennom avvik, forklaring, prognose og graderte forbehold.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 4,
-      "type": "story",
-      "phase": "mid",
-      "step_goal": "Løfte controllerrollen fra regneark til styringsmakt: tall former hva ledelsen ser.",
-      "allowed_families": ["tall_og_tillit"],
-      "fallback_types": ["job", "conflict", "event"]
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "La controlleren oppdage hvordan kontrollblikket påvirker tillit, varme og frihet utenfor arbeidet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 5,
-      "type": "event",
-      "phase": "mid",
-      "step_goal": "Utløse frist, revisjon eller ledelsesmøte som tester prioritering og dokumentasjon.",
-      "allowed_families": ["rapportfrist_og_revisjon"],
-      "fallback_types": ["job", "conflict", "story"]
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La controlleren møte tall som ansvar gjennom avvik, forklaring, prognose og graderte forbehold.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 6,
-      "type": "job",
-      "phase": "advanced",
-      "step_goal": "Gi spilleren mer ansvar for prognose, budsjett og økonomisk styringsinformasjon.",
-      "allowed_families": ["prognose_og_budsjett", "avstemming_og_rapport"],
-      "fallback_types": ["conflict", "event", "story"]
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "La controlleren oppdage hvordan kontrollblikket påvirker tillit, varme og frihet utenfor arbeidet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_private"
+      ],
+      "fallback_types": []
     },
     {
       "step": 7,
-      "type": "conflict",
-      "phase": "mastery",
-      "step_goal": "La controlleren møte et etisk press: pynte på tempoet eller bevare sporbarheten.",
-      "allowed_families": ["etikk_og_presisjon"],
-      "fallback_types": ["job", "event", "story"]
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La controlleren møte tall som ansvar gjennom avvik, forklaring, prognose og graderte forbehold.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_job"
+      ],
+      "fallback_types": []
     },
     {
       "step": 8,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "La controlleren oppdage hvordan kontrollblikket påvirker tillit, varme og frihet utenfor arbeidet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La controlleren møte tall som ansvar gjennom avvik, forklaring, prognose og graderte forbehold.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "La controlleren oppdage hvordan kontrollblikket påvirker tillit, varme og frihet utenfor arbeidet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_controller_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere controllerrollen gjennom månedsrapport, avstemming og første møte med driftsforklaringer.",
+      "allowed_families": [
+        "controller_intro_v2"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "story"
+      ]
+    },
+    {
+      "step": 12,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "La spilleren bruke økonomisk presisjon uten å miste kontakten med driften.",
+      "allowed_families": [
+        "avstemming_og_rapport",
+        "prognose_og_budsjett"
+      ],
+      "fallback_types": [
+        "conflict",
+        "story",
+        "event"
+      ]
+    },
+    {
+      "step": 13,
+      "type": "conflict",
+      "phase": "early",
+      "step_goal": "Introdusere første konflikt mellom tempo i rapporteringen og nøyaktig forklaring av avvik.",
+      "allowed_families": [
+        "avvik_og_forklaring"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mid",
+      "step_goal": "Løfte controllerrollen fra regneark til styringsmakt: tall former hva ledelsen ser.",
+      "allowed_families": [
+        "tall_og_tillit"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "event"
+      ]
+    },
+    {
+      "step": 15,
+      "type": "event",
+      "phase": "mid",
+      "step_goal": "Utløse frist, revisjon eller ledelsesmøte som tester prioritering og dokumentasjon.",
+      "allowed_families": [
+        "rapportfrist_og_revisjon"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict",
+        "story"
+      ]
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Gi spilleren mer ansvar for prognose, budsjett og økonomisk styringsinformasjon.",
+      "allowed_families": [
+        "prognose_og_budsjett",
+        "avstemming_og_rapport"
+      ],
+      "fallback_types": [
+        "conflict",
+        "event",
+        "story"
+      ]
+    },
+    {
+      "step": 17,
+      "type": "conflict",
+      "phase": "mastery",
+      "step_goal": "La controlleren møte et etisk press: pynte på tempoet eller bevare sporbarheten.",
+      "allowed_families": [
+        "etikk_og_presisjon"
+      ],
+      "fallback_types": [
+        "job",
+        "event",
+        "story"
+      ]
+    },
+    {
+      "step": 18,
       "type": "story",
       "phase": "climax",
       "step_goal": "Avrunde controllerbuen: spilleren ser hvilken type økonomisk makt de har lært å bruke.",
-      "allowed_families": ["controller_identitet"],
-      "fallback_types": ["event", "conflict", "job"]
+      "allowed_families": [
+        "controller_identitet"
+      ],
+      "fallback_types": [
+        "event",
+        "conflict",
+        "job"
+      ]
     }
   ]
 }
