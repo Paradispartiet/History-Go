@@ -1,0 +1,621 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "first_week_praksisfortellinger_controller_private",
+      "description": "Første uke som Controller utenfor arbeidet: når behovet for kontroll og mønstre møter nærhet, tillit og privat autonomi.",
+      "mails": [
+        {
+          "id": "personal_controller_week1_counting_at_home",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du begynner å telle ting hjemme",
+          "summary": "Controllerblikket følger med hjem og gjør handleposen til en avstemming mellom pris, kvittering og faktisk innhold.",
+          "situation": [
+            "Du og Sara pakker ut matvarene etter jobb, og du legger kvitteringen flatt på kjøkkenbenken før varene er kommet i skapet.",
+            "En rabatt ser ut til å mangle. Du teller varene, sammenligner kilopris og begynner å forklare hvorfor små differanser kan gjenta seg.",
+            "Sara spør om dere kan lage middag først og eventuelt se på kvitteringen senere. Hun høres mer sliten enn irritert ut.",
+            "Du merker at arbeidsdagens behov for sporbarhet har flyttet inn i handleposen, der ingen egentlig ba om en kontroll."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg kvitteringen bort og hjelp Sara med middagen.",
+              "reply": "Du har rett. Dette kan vente; jeg vil heller være her sammen med deg nå.",
+              "effects": {
+                "relationship_private": 2,
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "control": -2,
+                "stress": -1,
+                "mood": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_counting_A"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_counting_A"
+            },
+            {
+              "id": "B",
+              "label": "Fullfør kontrollen raskt før du slipper den.",
+              "reply": "Gi meg to minutter, så finner jeg differansen og kan legge det bort.",
+              "effects": {
+                "control": 2,
+                "stress": 1,
+                "relationship_private": -1,
+                "relationship_sara": -1,
+                "guilt": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_counting_B"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_counting_B"
+            },
+            {
+              "id": "C",
+              "label": "Fortell hva du merker ved deg selv og spør hva Sara trenger.",
+              "reply": "Jeg merker at jeg fortsatt er på jobb i hodet. Vil du at jeg bare legger dette bort?",
+              "effects": {
+                "self_awareness": 3,
+                "relationship_private": 2,
+                "relationship_sara": 2,
+                "control": -1,
+                "autonomy_private": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_counting_C"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_counting_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week1_friend_not_controlled",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som ikke vil bli kontrollert",
+          "summary": "Jonas forteller om en vanskelig beslutning, men oppfølgingsspørsmålene dine høres mer ut som revisjon enn vennskap.",
+          "situation": [
+            "Jonas ringer fordi han vurderer å si opp uten å ha en ny jobb klar. Han sier at han først og fremst trenger å snakke høyt.",
+            "Du spør hva planen er, hvor lenge sparepengene varer, og hvilke forutsetninger beslutningen bygger på.",
+            "Etter det fjerde spørsmålet blir han stille og sier: «Jeg ringte ikke for å bli kontrollert.»",
+            "Spørsmålene dine er relevante, men du hører at presisjonen har gjort omsorg om til en kontrollhandling."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beklag og spør hvordan dette faktisk kjennes for ham.",
+              "reply": "Beklager. Jeg gikk rett i analyse. Hvordan har du det i alt dette?",
+              "effects": {
+                "relationship_private": 2,
+                "relationship_jonas": 3,
+                "self_awareness": 2,
+                "control": -2,
+                "mood": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_friend_A"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_friend_A"
+            },
+            {
+              "id": "B",
+              "label": "Forklar at spørsmålene bare skal beskytte ham mot risiko.",
+              "reply": "Jeg prøver ikke å kontrollere deg; jeg vil bare være sikker på at du har tenkt gjennom risikoen.",
+              "effects": {
+                "relationship_jonas": -2,
+                "relationship_private": -1,
+                "control": 2,
+                "guilt": 1,
+                "stress": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_friend_B"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_friend_B"
+            },
+            {
+              "id": "C",
+              "label": "Spør om han vil ha lytting eller problemløsning.",
+              "reply": "Vil du at jeg bare lytter nå, eller vil du at vi ser på alternativer senere?",
+              "effects": {
+                "relationship_jonas": 2,
+                "autonomy_private": 2,
+                "self_awareness": 2,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_friend_C"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_friend_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week1_pattern_in_conversation",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du leter etter mønster i en vanlig samtale",
+          "summary": "Når Sara forteller om dagen sin, begynner du å sortere hendelsene i mønster før du møter følelsen i dem.",
+          "situation": [
+            "Sara forteller at tre små ting gikk galt på jobb, og at hun følte seg oversett i et møte.",
+            "Du oppdager et mønster i hvem som avbryter henne, hvilke møter det skjer i, og hva hun kunne dokumentert neste gang.",
+            "Hun stopper deg midt i analysen: «Kan du være kjæresten min før du blir controlleren min?»",
+            "Du kjenner at analysen ga deg kontroll, men tok plass før varmen og nærheten fikk komme til."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stopp analysen og anerkjenn følelsen hennes.",
+              "reply": "Det høres vondt og ensomt ut. Jeg er her, og jeg skal ikke løse det nå.",
+              "effects": {
+                "relationship_sara": 3,
+                "relationship_private": 2,
+                "self_awareness": 2,
+                "control": -2,
+                "mood": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_pattern_A"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_pattern_A"
+            },
+            {
+              "id": "B",
+              "label": "Fortsett fordi mønsteret kan hjelpe henne senere.",
+              "reply": "Jeg skjønner, men dette mønsteret er viktig; hvis vi finner det, kan du stå sterkere neste gang.",
+              "effects": {
+                "control": 2,
+                "relationship_sara": -2,
+                "relationship_private": -1,
+                "stagnation_private": 1,
+                "guilt": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_pattern_B"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_pattern_B"
+            },
+            {
+              "id": "C",
+              "label": "Legg analysen til side og avtal at hun kan be om den senere.",
+              "reply": "Jeg legger analysen bort. Hvis du vil se på mønsteret en annen dag, bestemmer du når.",
+              "effects": {
+                "autonomy_private": 3,
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_pattern_C"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_pattern_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week1_dinner_as_spreadsheet",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Middagen som blir et regneark",
+          "summary": "En enkel middag med venner blir til kostnad, tidsbruk og scenarioanalyse før noen har valgt hva de har lyst på.",
+          "situation": [
+            "Jonas foreslår at dere lager middag sammen på fredag. Sara nevner tre retter, og alle virker fornøyde med å improvisere.",
+            "Du åpner et notat og sammenligner pris per person, tilberedningstid, matsvinn og risikoen for at noen kommer sent.",
+            "Jonas ler først, men spør så om dere trenger et beslutningsgrunnlag for å spise pasta.",
+            "Du ser at regnestykket kan gjøre kvelden effektiv, men også at fellesskapet ikke er en prognose som må optimaliseres."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk notatet og la lyst styre middagen.",
+              "reply": "Greit, ingen modell. Vi velger det som frister og tåler litt sløsing med planen.",
+              "effects": {
+                "relationship_private": 2,
+                "relationship_jonas": 2,
+                "autonomy_private": 2,
+                "control": -2,
+                "mood": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_dinner_A"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_dinner_A"
+            },
+            {
+              "id": "B",
+              "label": "Presenter den mest kostnadseffektive løsningen.",
+              "reply": "Pasta gir lavest kostnad og minst tidsrisiko, så det er det mest fornuftige valget.",
+              "effects": {
+                "control": 2,
+                "relationship_jonas": -1,
+                "relationship_private": -1,
+                "stagnation_private": 1,
+                "mood": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_dinner_B"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_dinner_B"
+            },
+            {
+              "id": "C",
+              "label": "Bruk oversikten bare til å fjerne praktiske hindringer.",
+              "reply": "Jeg kan sjekke allergier og handleliste, men dere velger hva vi faktisk har lyst på.",
+              "effects": {
+                "self_awareness": 2,
+                "autonomy_private": 2,
+                "relationship_private": 2,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_dinner_C"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_dinner_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week1_weekend_without_variance",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten avvik",
+          "summary": "Etter første uke vil du planlegge restitusjonen presist, men oppdager at en kontrollfri helg også kan være ansvarlig.",
+          "situation": [
+            "Fredag kveld lager du en liste over søvn, trening, rydding og sosial tid som skal få energien tilbake før mandag.",
+            "Sara spør om helgen kan få være uten måltall. Jonas sender en melding om en spontan tur hvis været holder.",
+            "Du kjenner både lettelse og uro ved tanken på at timer kan gå uten plan, leveranse eller etterkontroll.",
+            "Første uke har lært deg å finne avvik. Nå må du avgjøre om fritiden også skal avstemmes mot en forventning."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "La lørdagen stå åpen uten resultatkrav.",
+              "reply": "Lørdagen får være åpen. Jeg vil øve på at hvile ikke trenger dokumentasjon.",
+              "effects": {
+                "energy_weekend": 3,
+                "autonomy_private": 3,
+                "stress": -2,
+                "control": -2,
+                "mood": 2,
+                "self_awareness": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_weekend_A"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_weekend_A"
+            },
+            {
+              "id": "B",
+              "label": "Behold planen og mål om helgen virket.",
+              "reply": "Jeg følger planen og vurderer søndag kveld om helgen ga ønsket effekt.",
+              "effects": {
+                "control": 3,
+                "energy_weekend": -1,
+                "stress": 1,
+                "stagnation_private": 2,
+                "relationship_private": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_weekend_B"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_weekend_B"
+            },
+            {
+              "id": "C",
+              "label": "Velg ett holdepunkt og la resten være fritt.",
+              "reply": "Jeg beholder én avtale, men lar resten av helgen utvikle seg uten kontrollskjema.",
+              "effects": {
+                "energy_weekend": 2,
+                "autonomy_private": 2,
+                "mood": 1,
+                "control": -1,
+                "guilt": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_private_week1_weekend_C"
+                ]
+              },
+              "triggers_on_choice": "controller_private_week1_weekend_C"
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "controller_private_week1_counting_A",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du begynner å telle ting hjemme",
+          "summary": "Valget i «Du begynner å telle ting hjemme» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Du begynner å telle ting hjemme».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_counting_B",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du begynner å telle ting hjemme",
+          "summary": "Valget i «Du begynner å telle ting hjemme» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Du begynner å telle ting hjemme».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_counting_C",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du begynner å telle ting hjemme",
+          "summary": "Valget i «Du begynner å telle ting hjemme» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Du begynner å telle ting hjemme».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_friend_A",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Vennen som ikke vil bli kontrollert",
+          "summary": "Valget i «Vennen som ikke vil bli kontrollert» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Vennen som ikke vil bli kontrollert».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_friend_B",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Vennen som ikke vil bli kontrollert",
+          "summary": "Valget i «Vennen som ikke vil bli kontrollert» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Vennen som ikke vil bli kontrollert».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_friend_C",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Vennen som ikke vil bli kontrollert",
+          "summary": "Valget i «Vennen som ikke vil bli kontrollert» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Vennen som ikke vil bli kontrollert».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_pattern_A",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du leter etter mønster i en vanlig samtale",
+          "summary": "Valget i «Du leter etter mønster i en vanlig samtale» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Du leter etter mønster i en vanlig samtale».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_pattern_B",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du leter etter mønster i en vanlig samtale",
+          "summary": "Valget i «Du leter etter mønster i en vanlig samtale» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Du leter etter mønster i en vanlig samtale».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_pattern_C",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du leter etter mønster i en vanlig samtale",
+          "summary": "Valget i «Du leter etter mønster i en vanlig samtale» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Du leter etter mønster i en vanlig samtale».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_dinner_A",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Middagen som blir et regneark",
+          "summary": "Valget i «Middagen som blir et regneark» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Middagen som blir et regneark».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_dinner_B",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Middagen som blir et regneark",
+          "summary": "Valget i «Middagen som blir et regneark» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Middagen som blir et regneark».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_dinner_C",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Middagen som blir et regneark",
+          "summary": "Valget i «Middagen som blir et regneark» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Middagen som blir et regneark».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_weekend_A",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Helgen uten avvik",
+          "summary": "Valget i «Helgen uten avvik» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Helgen uten avvik».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_weekend_B",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Helgen uten avvik",
+          "summary": "Valget i «Helgen uten avvik» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Helgen uten avvik».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        },
+        {
+          "id": "controller_private_week1_weekend_C",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Helgen uten avvik",
+          "summary": "Valget i «Helgen uten avvik» får en personlig konsekvens.",
+          "situation": [
+            "Svaret ditt blir liggende igjen i samtalen om «Helgen uten avvik».",
+            "Måten du balanserte kontroll, varme og frihet på påvirker hva den andre tør å dele neste gang."
+          ]
+        }
+      ]
+    }
+  ]
+}
