@@ -1,117 +1,55 @@
 {
-  "schema": "civication_mail_family_catalog_v2",
-  "version": 2,
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
   "category": "naeringsliv",
   "role_scope": "controller",
   "mail_type": "job",
   "families": [
     {
-      "id": "first_week_praksisfortellinger_controller_job",
-      "description": "Første uke som Controller. Tall er spor etter arbeid, ikke bare fasit.",
+      "id": "avstemming_og_rapport",
+      "description": "Controllerfamilie for avstemming, lagerverdi og rapportering.",
       "mails": [
         {
-          "id": "job_controller_week1_month_report_before_explanation",
+          "id": "controller_job_001",
           "mail_type": "job",
-          "mail_family": "first_week_praksisfortellinger_controller_job",
+          "mail_family": "avstemming_og_rapport",
           "role_scope": "controller",
-          "channel": "job",
-          "messageChannel": "job",
-          "mail_class": "job_message",
-          "subject": "Månedsrapporten – tallet som kom før forklaringen",
-          "summary": "Varekostnaden avviker fra budsjett, og rapporten trenger forklaring før tallet blir brukt som konklusjon.",
-          "situation": ["Rapportfristen nærmer seg.", "Varekostnaden avviker fra budsjett.", "Drift har forklaringer som ikke er ferdig dokumentert.", "Du må velge mellom tempo og forklaringskvalitet."],
+          "subject": "Lagerverdien stemmer ikke: paller, svinn og et tall som er blitt for pent",
+          "summary": "Lagerverdien i driftssystemet stemmer ikke med regnskapet.",
+          "situation": [
+            "Du får to tall på skjermen: lagerverdi i driftssystemet og bokført verdi i regnskapet.",
+            "De skulle vært like. Det er de ikke.",
+            "Du må avgjøre om du gjør rapporten pen, eller følger sporet tilbake til den fysiske virkeligheten tallene kommer fra."
+          ],
           "choices": [
-            {"id": "A", "label": "Hent forklaring først.", "reply": "Jeg henter forklaring før rapporten lukkes.", "effects": {"accuracy": 3, "trust_drift": 2, "trust_manager": 2, "report_quality": 3}, "next_bias": {"set_flags": ["controller_week1_explanation_before_report"]}, "triggers_on_choice": "controller_week1_month_report_A"},
-            {"id": "B", "label": "Send raskt.", "reply": "Jeg sender rapporten raskt uten full kommentar.", "effects": {"deadline_met": 2, "future_risk": 2, "report_quality": -2, "stagnation": 1}, "next_bias": {"set_flags": ["controller_week1_fast_unexplained_report"]}, "triggers_on_choice": "controller_week1_month_report_B"}
-          ]
-        },
-        {
-          "id": "job_controller_week1_reconciliation_almost_matches",
-          "mail_type": "job",
-          "mail_family": "first_week_praksisfortellinger_controller_job",
-          "role_scope": "controller",
-          "channel": "job",
-          "messageChannel": "job",
-          "mail_class": "job_message",
-          "subject": "Avstemmingen som nesten stemmer",
-          "summary": "En liten differanse må vurderes som enkeltfeil eller mønster.",
-          "situation": ["En konto har liten differanse.", "Beløpet er lavt.", "Historikken viser lignende avvik.", "Du må velge mellom lukking og sporbarhet."],
-          "choices": [
-            {"id": "A", "label": "Hold åpen og hent underlag.", "reply": "Jeg henter underlag før godkjenning.", "effects": {"traceability": 3, "accuracy": 3, "process_quality": 2}, "next_bias": {"set_flags": ["controller_week1_trace_before_close"]}, "triggers_on_choice": "controller_week1_reconciliation_A"},
-            {"id": "B", "label": "Godkjenn som liten differanse.", "reply": "Jeg godkjenner fordi beløpet er lite.", "effects": {"deadline_met": 2, "traceability": -2, "future_risk": 2, "stagnation": 1}, "next_bias": {"set_flags": ["controller_week1_materiality_shortcut"]}, "triggers_on_choice": "controller_week1_reconciliation_B"}
-          ]
-        },
-        {
-          "id": "job_controller_week1_operations_explains_variance",
-          "mail_type": "job",
-          "mail_family": "first_week_praksisfortellinger_controller_job",
-          "role_scope": "controller",
-          "channel": "job",
-          "messageChannel": "job",
-          "mail_class": "job_message",
-          "subject": "Driften forklarer avviket",
-          "summary": "Forklaringen må graderes etter dokumentasjon og usikkerhet.",
-          "situation": ["Drift forklarer avviket.", "Noe er dokumentert.", "Noe er sannsynlig.", "Noe er fortsatt usikkert."],
-          "choices": [
-            {"id": "A", "label": "Grader forklaringen.", "reply": "Jeg skiller dokumentert, sannsynlig og usikkert.", "effects": {"accuracy": 4, "trust_drift": 2, "trust_manager": 3}, "next_bias": {"set_flags": ["controller_week1_graded_explanation"]}, "triggers_on_choice": "controller_week1_operations_A"},
-            {"id": "B", "label": "Godta samlet forklaring.", "reply": "Jeg legger forklaringen inn samlet.", "effects": {"trust_drift": 2, "accuracy": -1, "future_risk": 2}, "next_bias": {"set_flags": ["controller_week1_accepts_story"]}, "triggers_on_choice": "controller_week1_operations_B"}
-          ]
-        },
-        {
-          "id": "job_controller_week1_forecast_everyone_wants_certain",
-          "mail_type": "job",
-          "mail_family": "first_week_praksisfortellinger_controller_job",
-          "role_scope": "controller",
-          "channel": "job",
-          "messageChannel": "job",
-          "mail_class": "job_message",
-          "subject": "Prognosen som alle vil ha sikker",
-          "summary": "Ledergruppen vil ha sikker prognose, men grunnlaget krever scenarioer.",
-          "situation": ["Ledergruppen trenger prognose.", "Noen effekter er midlertidige.", "Andre kan bli mønster.", "Du må velge mellom ett tall og scenarioer."],
-          "choices": [
-            {"id": "A", "label": "Lag scenarioer.", "reply": "Jeg lager basis-, forsiktig- og risikoscenario.", "effects": {"forecast_quality": 4, "trust_manager": 3, "accuracy": 3, "decision_quality": 3}, "next_bias": {"set_flags": ["controller_week1_scenario_forecast"]}, "triggers_on_choice": "controller_week1_forecast_A"},
-            {"id": "B", "label": "Lag ett tall.", "reply": "Jeg lager ett hovedestimat.", "effects": {"manager_pressure": -1, "future_risk": 2, "decision_quality": -1}, "next_bias": {"set_flags": ["controller_week1_single_number_forecast"]}, "triggers_on_choice": "controller_week1_forecast_B"}
-          ]
-        },
-        {
-          "id": "job_controller_week1_numbers_as_responsibility",
-          "mail_type": "job",
-          "mail_family": "first_week_praksisfortellinger_controller_job",
-          "role_scope": "controller",
-          "channel": "job",
-          "messageChannel": "job",
-          "mail_class": "job_message",
-          "subject": "Første uke med tall som ansvar",
-          "summary": "Uka oppsummeres som dokumentert, sannsynlig og usikkert.",
-          "situation": ["Økonomisjefen ber om oppsummering.", "Avviket er delvis forklart.", "Prognosen har usikkerhet.", "Neste uke trenger tydelig oppfølging."],
-          "choices": [
-            {"id": "A", "label": "Skriv presist med forbehold.", "reply": "Jeg skriver hva som er dokumentert, sannsynlig og usikkert.", "effects": {"accuracy": 5, "trust_manager": 4, "trust_drift": 3, "decision_quality": 3}, "next_bias": {"set_flags": ["controller_week1_precise_summary"]}, "triggers_on_choice": "controller_week1_summary_A"},
-            {"id": "B", "label": "Skriv glatt.", "reply": "Jeg skriver at avvikene i hovedsak er forklart.", "effects": {"manager_pressure": -2, "stagnation": 3, "future_risk": 3}, "next_bias": {"set_flags": ["controller_week1_smooth_summary"]}, "triggers_on_choice": "controller_week1_summary_B"}
+            {"id": "A", "label": "Spor differansen før justering.", "effect": 1},
+            {"id": "B", "label": "Legg inn midlertidig korreksjon.", "effect": -1}
           ]
         }
-      ],
-      "threads": [
-        {"id":"controller_week1_month_report_A","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Månedsrapporten","situation":["Rapporten blir litt senere, men mer brukbar."]},
-        {"id":"controller_week1_month_report_B","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Månedsrapporten","situation":["Fristen holdes, men avviket blir en dom før analyse."]},
-        {"id":"controller_week1_reconciliation_A","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Avstemming","situation":["Underlag hentes før lukking."]},
-        {"id":"controller_week1_reconciliation_B","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Avstemming","situation":["Små avvik kan bli mønster."]},
-        {"id":"controller_week1_operations_A","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Driftsforklaring","situation":["Forklaringen graderes presist."]},
-        {"id":"controller_week1_operations_B","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Driftsforklaring","situation":["Alt høres like dokumentert ut."]},
-        {"id":"controller_week1_forecast_A","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Prognose","situation":["Scenarioer gir beslutningsgrunnlag."]},
-        {"id":"controller_week1_forecast_B","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Prognose","situation":["Ett tall er lett å misbruke."]},
-        {"id":"controller_week1_summary_A","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Første uke","situation":["Usikkerhet gjøres brukbar."]},
-        {"id":"controller_week1_summary_B","mail_type":"job","mail_family":"first_week_praksisfortellinger_controller_job","role_scope":"controller","channel":"job","messageChannel":"job","mail_class":"job_message","subject":"Re: Første uke","situation":["Under kontroll kan skjule uferdig forklaring."]}
       ]
     },
     {
-      "id": "avstemming_og_rapport",
-      "description": "Eksisterende controllerfamilie bevart. Full tekst må ikke erstattes; denne familien beholdes for eksisterende controller-plansteg.",
-      "mails": []
-    },
-    {
       "id": "prognose_og_budsjett",
-      "description": "Eksisterende controllerfamilie bevart. Full tekst må ikke erstattes; denne familien beholdes for eksisterende controller-plansteg.",
-      "mails": []
+      "description": "Controllerfamilie for prognoser, scenarioer og budsjett.",
+      "mails": [
+        {
+          "id": "controller_job_002",
+          "mail_type": "job",
+          "mail_family": "prognose_og_budsjett",
+          "role_scope": "controller",
+          "subject": "Ny prognose før ledermøtet: budsjettet møter virkeligheten",
+          "summary": "Du må oppdatere prognosen etter svakere salg, brukte kampanjekostnader og press om å beholde et optimistisk bilde.",
+          "situation": [
+            "Salget ligger under forventning, men kampanjekostnaden er allerede brukt.",
+            "Ledergruppen vil ha ny prognose før klokken 14.",
+            "Du må velge om du lager en realistisk prognose med tydelige forutsetninger, eller glatter ut avviket."
+          ],
+          "choices": [
+            {"id": "A", "label": "Lag realistisk prognose med tydelige forutsetninger.", "effect": 1},
+            {"id": "B", "label": "Glatt ut avviket med forventet innhenting senere.", "effect": -1}
+          ]
+        }
+      ]
     }
   ]
 }
