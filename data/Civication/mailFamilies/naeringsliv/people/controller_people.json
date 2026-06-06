@@ -616,6 +616,647 @@
           ]
         }
       ]
+    },
+    {
+      "id": "second_week_praksisfortellinger_controller_private",
+      "purpose": "Praksisfortellinger – Controller pakke 2 privat: Kontrollspråket lekker inn i følelser, vennskap, samtaler og helg.",
+      "learning_focus": [
+        "privat_tillit",
+        "anerkjennelse_for_analyse",
+        "kontrollgrenser",
+        "samtale_uten_sak"
+      ],
+      "week_outcomes": [
+        {
+          "id": "private_control_boundary_week2",
+          "condition": "Spilleren slutter å be private følelser om dokumentasjon, anerkjenner før analyse, og lar helgen være uten kontrollspor.",
+          "effects": {
+            "relationship_private": 6,
+            "self_awareness": 4,
+            "energy_weekend": 4,
+            "stress": -4,
+            "autonomy_private": 3,
+            "control": -3
+          },
+          "story": "Du lærer at ikke alt trenger underlag for å være sant. Noen ting finnes fordi noen sier dem, føler dem, lever dem. Det er ikke dårlig sporbarhet. Det er privatliv."
+        }
+      ],
+      "mails": [
+        {
+          "id": "personal_controller_week2_documenting_a_feeling",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du vil ha dokumentasjon på en følelse",
+          "summary": "Sara opplever at følelsen hennes må levere underlag før den får finnes.",
+          "situation": [
+            "Fra: Sara\nEmne: Litt rart i går\nBody:\nJeg følte bare at du var litt fjern i går. Da jeg sa det, spurte du: “Hva bygger du det på?” Det er en ganske kald setning å få når man prøver å si hvordan noe føles.",
+            "Fra: Privat notat\nEmne: Hva bygger du det på\nBody:\nDet var ikke feil spørsmål, bare feil rom. På jobb beskytter det mot antakelser; hjemme kan det høres ut som om følelsen må levere underlag før den får eksistere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare at følelser ikke alltid trenger bevis",
+              "reply": "Jeg skriver at hun har rett, og at jeg ikke trenger dokumentasjon for å ta følelsen hennes alvorlig.",
+              "effects": {
+                "relationship_sara": 3,
+                "relationship_private": 3,
+                "self_awareness": 3,
+                "control": -1,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_feeling_A"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_feeling_A"
+            },
+            {
+              "id": "B",
+              "label": "Forklare hvorfor du spurte",
+              "reply": "Jeg skriver at jeg bare prøvde å forstå hva som gjorde at hun opplevde meg fjern.",
+              "effects": {
+                "control": 1,
+                "relationship_sara": -1,
+                "relationship_private": -1,
+                "self_awareness": 0,
+                "conflict": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_feeling_B"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_feeling_B"
+            },
+            {
+              "id": "C",
+              "label": "Ikke svare før senere",
+              "reply": "Jeg lar meldingen ligge fordi jeg ikke vet hvordan jeg skal svare uten å gjøre det analytisk igjen.",
+              "effects": {
+                "energy": 1,
+                "relationship_sara": -2,
+                "relationship_private": -2,
+                "guilt": 2,
+                "stagnation_private": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_feeling_C"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_feeling_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week2_friend_says_you_do_not_believe_me",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som sier “du tror meg jo ikke”",
+          "summary": "Jonas trenger anerkjennelse før oppfølgingsspørsmålene dine gjør irritasjonen hans til en sak.",
+          "situation": [
+            "Fra: Jonas\nEmne: Du tror meg jo ikke\nBody:\nJeg fortalte om han fyren på jobb igjen, og du stilte tre oppfølgingsspørsmål før du sa noe menneskelig. Det føles som om jeg må dokumentere min egen irritasjon før du tror meg.",
+            "Fra: Privat notat\nEmne: Tre spørsmål\nBody:\nSpørsmålene var gode på jobb: hva sa han konkret, hvem var der, har dette skjedd før. Privat gjorde de Jonas alene med forklaringsbyrden."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anerkjenne før du spør mer",
+              "reply": "Jeg skriver at jeg tror ham, og at spørsmålene kom for tidlig. Først vil jeg bare høre hvordan det var.",
+              "effects": {
+                "relationship_jonas": 3,
+                "relationship_private": 3,
+                "self_awareness": 2,
+                "control": -1,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_friend_A"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_friend_A"
+            },
+            {
+              "id": "B",
+              "label": "Forsvare spørsmålene",
+              "reply": "Jeg skriver at jeg bare trengte mer kontekst for å forstå situasjonen riktig.",
+              "effects": {
+                "control": 2,
+                "relationship_jonas": -2,
+                "relationship_private": -2,
+                "conflict": 1,
+                "self_awareness": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_friend_B"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_friend_B"
+            },
+            {
+              "id": "C",
+              "label": "Prøve å spøke det bort",
+              "reply": "Jeg skriver at jeg skal slutte å være privat etterforskningsutvalg.",
+              "effects": {
+                "mood": 1,
+                "relationship_jonas": 1,
+                "relationship_private": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_friend_C"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_friend_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week2_auditing_own_words",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du begynner å kontrollere egne ord",
+          "summary": "Du vurderer private formuleringer som om de kan være resultatpynt, og Sara ber deg si det enkelt.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Egne formuleringer\nBody:\nDu skriver til Sara: “Jeg var litt utilgjengelig i går.” Så stopper du. Var det presist, pynt eller en mild periodisering av fravær?",
+            "Fra: Sara\nEmne: Du kan bare si det enkelt\nBody:\nDu trenger ikke formulere det perfekt. Hvis du var fjern, kan du bare si at du var fjern. Jeg tåler et vanlig ord bedre enn en presis halvhet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si det enkelt",
+              "reply": "Jeg skriver at jeg var fjern, og at det ikke var rettferdig overfor henne.",
+              "effects": {
+                "relationship_sara": 3,
+                "relationship_private": 3,
+                "self_awareness": 3,
+                "stress": -1,
+                "control": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_words_A"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_words_A"
+            },
+            {
+              "id": "B",
+              "label": "Skrive veldig presist",
+              "reply": "Jeg forklarer nyansert at jeg var mentalt til stede i perioder, men emosjonelt mindre tilgjengelig.",
+              "effects": {
+                "control": 2,
+                "relationship_sara": -1,
+                "relationship_private": -1,
+                "stagnation_private": 1,
+                "self_awareness": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_words_B"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_words_B"
+            },
+            {
+              "id": "C",
+              "label": "Utsette fordi du ikke finner riktig formulering",
+              "reply": "Jeg lar meldingen ligge til jeg finner en formulering som ikke blir feil.",
+              "effects": {
+                "energy": 1,
+                "guilt": 2,
+                "relationship_sara": -2,
+                "relationship_private": -2,
+                "stagnation_private": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_words_C"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_words_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week2_conversation_without_evidence",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Samtalen uten bevisførsel",
+          "summary": "Jonas vil ha en vanlig samtale uten problemstilling, underlag eller konklusjon.",
+          "situation": [
+            "Fra: Jonas\nEmne: Kan vi bare snakke?\nBody:\nKan vi bare snakke i kveld? Ikke om noe spesielt. Og ikke sånn hvor vi finner ut hva saken egentlig handler om. Bare vanlig prat.",
+            "Fra: Privat notat\nEmne: Uten sak\nBody:\nIngen sak, problemstilling, underlag eller konklusjon. Bare samtale. Det burde ikke føles som manglende dokumentasjon."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ha samtalen uten å lede den mot konklusjon",
+              "reply": "Jeg sier ja og lar samtalen gå uten å oppsummere, tolke eller avklare den.",
+              "effects": {
+                "relationship_jonas": 3,
+                "relationship_private": 3,
+                "self_awareness": 2,
+                "control": -2,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_conversation_A"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_conversation_A"
+            },
+            {
+              "id": "B",
+              "label": "Spørre hva han egentlig vil snakke om",
+              "reply": "Jeg spør hva han egentlig vil snakke om, så jeg skjønner rammen.",
+              "effects": {
+                "control": 1,
+                "relationship_jonas": -1,
+                "relationship_private": -1,
+                "stress": 0,
+                "stagnation_private": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_conversation_B"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_conversation_B"
+            },
+            {
+              "id": "C",
+              "label": "Si at du er for sliten",
+              "reply": "Jeg sier at jeg er for sliten til en åpen samtale i kveld.",
+              "effects": {
+                "energy": 1,
+                "relationship_jonas": -1,
+                "relationship_private": -1,
+                "guilt": 1,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_conversation_C"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_conversation_C"
+            }
+          ]
+        },
+        {
+          "id": "personal_controller_week2_weekend_without_audit_trail",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten kontrollspor",
+          "summary": "Etter to uker med revisjonsspor må privatlivet få være sant uten sporbarhet.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på å sikre at noen kan forstå vurderingene senere. Hva visste vi, hvorfor mente vi det, hva stod åpent, hva ble besluttet? Men nå er det fredag. Ikke alt må kunne forklares i ettertid for å ha vært ekte.",
+            "Fra: Sara\nEmne: Helg uten sporbarhet\nBody:\nDenne helgen vil jeg ikke at vi skal etterlate kontrollspor. Ikke budsjett, avvik eller forklaringsnivå. Hvis vi gjør noe hyggelig, trenger det ikke dokumenteres.",
+            "Fra: Jonas\nEmne: Kontrollfri sone 2\nBody:\nHvis du sier “revisjonsspor”, “underlag” eller “substans” i helgen, skylder du snacks. Hvis du sier alle tre i samme setning, skylder du middag."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en helg uten kontrollspor",
+              "reply": "Jeg bestemmer at helgen ikke skal dokumenteres, måles, avstemmes eller evalueres.",
+              "effects": {
+                "energy_weekend": 4,
+                "stress": -4,
+                "autonomy_private": 3,
+                "relationship_private": 2,
+                "control": -2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_weekend_A"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_weekend_A"
+            },
+            {
+              "id": "B",
+              "label": "Være sosial uten å analysere samtalene",
+              "reply": "Jeg møter Sara eller Jonas og lar samtalene være vanlige, uten mønsteranalyse.",
+              "effects": {
+                "relationship_private": 4,
+                "mood": 2,
+                "stress": -2,
+                "self_awareness": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_weekend_B"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_weekend_B"
+            },
+            {
+              "id": "C",
+              "label": "Lage en lett plan for å føle kontroll",
+              "reply": "Jeg lager en enkel helgeplan for penger, tid, mat og hvile, men prøver å holde den uformell.",
+              "effects": {
+                "control": 2,
+                "stress": 1,
+                "energy_weekend": -1,
+                "stagnation_private": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_weekend_C"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_weekend_C"
+            },
+            {
+              "id": "D",
+              "label": "La alt flyte, men være urolig",
+              "reply": "Jeg lar være å planlegge, men går rundt med følelsen av at noe burde vært avklart.",
+              "effects": {
+                "control": -1,
+                "stress": 2,
+                "guilt": 1,
+                "stagnation_private": 2,
+                "energy_weekend": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "controller_week2_private_weekend_D"
+                ]
+              },
+              "triggers_on_choice": "controller_week2_private_weekend_D"
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "controller_week2_private_feeling_A",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du vil ha dokumentasjon på en følelse",
+          "summary": "Valget i «Du vil ha dokumentasjon på en følelse» får en personlig konsekvens.",
+          "situation": [
+            "Det var egentlig alt jeg trengte. Ikke at du var enig i alt. Bare at jeg slapp å bevise stemningen."
+          ]
+        },
+        {
+          "id": "controller_week2_private_feeling_B",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du vil ha dokumentasjon på en følelse",
+          "summary": "Valget i «Du vil ha dokumentasjon på en følelse» får en personlig konsekvens.",
+          "situation": [
+            "Jeg skjønner det. Men noen ganger kommer forklaringen din før nærheten."
+          ]
+        },
+        {
+          "id": "controller_week2_private_feeling_C",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "privat_notat",
+          "subject": "Re: Du vil ha dokumentasjon på en følelse",
+          "summary": "Valget i «Du vil ha dokumentasjon på en følelse» får en personlig konsekvens.",
+          "situation": [
+            "Du unngår å analysere. Men du unngår også å være til stede."
+          ]
+        },
+        {
+          "id": "controller_week2_private_friend_A",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Vennen som sier “du tror meg jo ikke”",
+          "summary": "Valget i «Vennen som sier “du tror meg jo ikke”» får en personlig konsekvens.",
+          "situation": [
+            "Der. Det var alt. Du kan spørre etterpå. Men ikke åpne som revisor."
+          ]
+        },
+        {
+          "id": "controller_week2_private_friend_B",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Vennen som sier “du tror meg jo ikke”",
+          "summary": "Valget i «Vennen som sier “du tror meg jo ikke”» får en personlig konsekvens.",
+          "situation": [
+            "Jeg skjønner. Men jeg trengte kompis før kontekst."
+          ]
+        },
+        {
+          "id": "controller_week2_private_friend_C",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Vennen som sier “du tror meg jo ikke”",
+          "summary": "Valget i «Vennen som sier “du tror meg jo ikke”» får en personlig konsekvens.",
+          "situation": [
+            "Greit. Men jeg kommer til å fakturere deg hvis du ber om vedlegg neste gang."
+          ]
+        },
+        {
+          "id": "controller_week2_private_words_A",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du begynner å kontrollere egne ord",
+          "summary": "Valget i «Du begynner å kontrollere egne ord» får en personlig konsekvens.",
+          "situation": [
+            "Der. Det var ikke perfekt. Det var bedre."
+          ]
+        },
+        {
+          "id": "controller_week2_private_words_B",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Du begynner å kontrollere egne ord",
+          "summary": "Valget i «Du begynner å kontrollere egne ord» får en personlig konsekvens.",
+          "situation": [
+            "Dette var sikkert mer presist. Men også mindre nært."
+          ]
+        },
+        {
+          "id": "controller_week2_private_words_C",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "privat_notat",
+          "subject": "Re: Du begynner å kontrollere egne ord",
+          "summary": "Valget i «Du begynner å kontrollere egne ord» får en personlig konsekvens.",
+          "situation": [
+            "Du vil ikke skrive feil. Så du skriver ingenting. Det blir også feil."
+          ]
+        },
+        {
+          "id": "controller_week2_private_conversation_A",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Samtalen uten bevisførsel",
+          "summary": "Valget i «Samtalen uten bevisførsel» får en personlig konsekvens.",
+          "situation": [
+            "Det var fint. Du lot samtalen være samtale. Ikke en sak som skulle lukkes."
+          ]
+        },
+        {
+          "id": "controller_week2_private_conversation_B",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Samtalen uten bevisførsel",
+          "summary": "Valget i «Samtalen uten bevisførsel» får en personlig konsekvens.",
+          "situation": [
+            "Det er akkurat rammen jeg ikke ville lage. Glem det. Vi kan bare henge."
+          ]
+        },
+        {
+          "id": "controller_week2_private_conversation_C",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Samtalen uten bevisførsel",
+          "summary": "Valget i «Samtalen uten bevisførsel» får en personlig konsekvens.",
+          "situation": [
+            "Greit. Men si det som sliten, ikke som om samtaleformatet er ineffektivt."
+          ]
+        },
+        {
+          "id": "controller_week2_private_weekend_A",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "privat_notat",
+          "subject": "Re: Helgen uten kontrollspor",
+          "summary": "Valget i «Helgen uten kontrollspor» får en personlig konsekvens.",
+          "situation": [
+            "Helgen etterlater lite spor. Likevel skjedde den. Det er nesten provoserende nok."
+          ]
+        },
+        {
+          "id": "controller_week2_private_weekend_B",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "jonas",
+          "subject": "Re: Helgen uten kontrollspor",
+          "summary": "Valget i «Helgen uten kontrollspor» får en personlig konsekvens.",
+          "situation": [
+            "Du stilte ingen kontrollspørsmål. Jeg antar at dette ikke er et tiltak, men personlig vekst."
+          ]
+        },
+        {
+          "id": "controller_week2_private_weekend_C",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "sara",
+          "subject": "Re: Helgen uten kontrollspor",
+          "summary": "Valget i «Helgen uten kontrollspor» får en personlig konsekvens.",
+          "situation": [
+            "Det var ikke den verste planen. Men det var fortsatt en plan som prøvde å kle seg ut som frihet."
+          ]
+        },
+        {
+          "id": "controller_week2_private_weekend_D",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_controller_private",
+          "role_scope": "controller",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "from": "privat_notat",
+          "subject": "Re: Helgen uten kontrollspor",
+          "summary": "Valget i «Helgen uten kontrollspor» får en personlig konsekvens.",
+          "situation": [
+            "Du slipper kontrollen i handling. Ikke helt i kroppen. Det er en start, men ikke fri."
+          ]
+        }
+      ]
     }
   ]
 }
