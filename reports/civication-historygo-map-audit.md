@@ -1,17 +1,17 @@
 # Civication – History Go map audit
 
-Generert: 2026-06-04T17:14:41.440Z
+Generert: 2026-06-06T20:20:55.821Z
 
 ## Sammendrag
 
 - Filer i manifest: **40**
-- Steder totalt: **476**
+- Steder totalt: **483**
 - Oslo-steder plassert på kartet: **303**
 
 | Kategori | Antall |
 | --- | ---: |
 | missing_lat_lon | 0 |
-| non_oslo_skipped | 173 |
+| non_oslo_skipped | 180 |
 | missing_asset_type | 71 |
 | projected_from_lat_lon | 303 |
 | uses_manual_civiMap | 0 |
@@ -21,7 +21,7 @@ Generert: 2026-06-04T17:14:41.440Z
 
 _Ingen._
 
-## Ikke-Oslo, hoppet over (173)
+## Ikke-Oslo, hoppet over (180)
 
 - `eidsvollsbygningen` – places/historie/oslo/places_historie.json
 - `oscarsborg_festning` – places/historie/oslo/places_historie.json
@@ -48,7 +48,7 @@ _Ingen._
 - `lisbon_parque_eduardo_vii` – places/by/europe/portugal/lisbon/places_lisbon_by.json
 - `lisbon_cais_do_sodre` – places/by/europe/portugal/lisbon/places_lisbon_by.json
 - `lisbon_principe_real` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- … og 148 til (se JSON).
+- … og 155 til (se JSON).
 
 ## Mangler eksplisitt assetType (bruker heuristikk) (71)
 

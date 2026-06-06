@@ -170,6 +170,39 @@ Eksplisitt kode er valgfritt og brukes kun når heuristikken ikke treffer riktig
 > Avgrensning: designCodes legges ikke på i bulk. De fleste entiteter løser kode
 > implisitt via resolveren; eksplisitt kode brukes punktvis der det trengs.
 
+## Pilot batch 1
+
+Første pilot merker bare et **lite, trygt utvalg** entiteter med eksplisitt
+`visual.designCode` – steder, personer og artikler der riktig kode er helt
+åpenbar (stadioner, ishaller, museer, bibliotek, teater, universiteter, kinoer,
+torg/civic; forfattere, poeter, fotballspillere, løpere, skiløpere, musikere,
+politikere; historie-, sports- og kunstartikler).
+
+Pilotens omfang (batch 1):
+
+| entityType | eksplisitt merket | eksempler på koder |
+| --- | --- | --- |
+| places | 28 | `stadium_miniature`, `ice_arena_miniature`, `museum_miniature`, `library_miniature`, `theatre_miniature`, `university_miniature`, `cinema_miniature`, `civic_miniature`, `square_miniature` |
+| people | 30 | `person_writer_miniature`, `person_poet_miniature`, `person_footballer_miniature`, `person_runner_miniature`, `person_skier_miniature`, `person_musician_miniature`, `person_politician_miniature` |
+| articles | 15 | `article_history_miniature`, `article_sports_history_miniature`, `article_art_miniature`, `article_groundhopper_miniature` |
+
+Prinsipper for piloten:
+
+- **Resolveren håndterer fortsatt resten heuristisk.** Eksplisitt kode er kun
+  lagt på der den uansett ville vært åpenbar; alle andre entiteter løser kode
+  implisitt (assetType → nøkkelord → kategori → default) som før.
+- **Kvalitet før full batch.** Målet er å verifisere at eksplisitt merking,
+  resolver og audit fungerer på et kontrollert utvalg – ikke å dekke alt.
+- **Ingen masseendring.** Bare `visual.designCode` er lagt til; tekst, quiz,
+  relasjoner, bilder og schema er urørt.
+- **Senere batcher kan utvide dekningen** gradvis, kategori for kategori, etter
+  hvert som flere åpenbare tilfeller verifiseres.
+
+Effekten kan leses i [`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md)
+(seksjonen «Eksplisitt pilot-merkede designCodes»). Etter batch 1 er det 73
+eksplisitte koder, 0 ugyldige eksplisitte koder og 0 koder med manglende
+`renderHints`.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,

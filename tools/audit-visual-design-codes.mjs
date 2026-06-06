@@ -292,16 +292,19 @@ function tallyResolved(entries, resolveFn, usage) {
   const counts = { explicit: 0, assetType: 0, category: 0, heuristic: 0, default: 0 };
   let withExplicit = 0;
   const invalidExplicit = [];
+  // Eksplisitt (pilot-merket) bruk per designCode for denne entitetstypen.
+  const explicitByCode = {};
   for (const e of entries) {
     const r = resolveFn(e);
     counts[r.source] = (counts[r.source] || 0) + 1;
     if (r.source === "explicit") {
       withExplicit++;
+      explicitByCode[r.designCode] = (explicitByCode[r.designCode] || 0) + 1;
       if (!r.valid) invalidExplicit.push({ id: e.id || e.title || "(unknown)", designCode: r.designCode });
     }
     usage[r.designCode] = (usage[r.designCode] || 0) + 1;
   }
-  return { counts, withExplicit, invalidExplicit };
+  return { counts, withExplicit, invalidExplicit, explicitByCode };
 }
 
 function main() {
@@ -378,6 +381,11 @@ function main() {
       people: peopleStats.counts,
       articles: articleStats.counts
     },
+    explicitDesignCodes: {
+      places: placeStats.explicitByCode,
+      people: peopleStats.explicitByCode,
+      articles: articleStats.explicitByCode
+    },
     topUsedDesignCodes: topUsed,
     unusedDesignCodes: unused,
     invalidExplicitDesignCodes: invalidExplicit
@@ -441,6 +449,21 @@ function toMarkdown(r) {
   lines.push(row("places", r.resolution.places));
   lines.push(row("people", r.resolution.people));
   lines.push(row("articles", r.resolution.articles));
+  lines.push("");
+  lines.push("## Eksplisitt pilot-merkede designCodes");
+  lines.push("");
+  const ex = r.explicitDesignCodes || {};
+  const exEntityLabels = [["places", ex.places], ["people", ex.people], ["articles", ex.articles]];
+  let anyExplicit = false;
+  for (const [label, byCode] of exEntityLabels) {
+    const codes = Object.entries(byCode || {}).sort((a, b) => b[1] - a[1]);
+    if (!codes.length) continue;
+    anyExplicit = true;
+    const total = codes.reduce((s, [, n]) => s + n, 0);
+    lines.push(`- ${label} (${total}):`);
+    for (const [code, count] of codes) lines.push(`  - \`${code}\`: ${count}`);
+  }
+  if (!anyExplicit) lines.push("- (ingen)");
   lines.push("");
   lines.push("## Topp brukte designCodes");
   lines.push("");
