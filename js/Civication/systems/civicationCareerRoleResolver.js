@@ -31,7 +31,8 @@
     by_arkitekt: 'by_arkitekt',
     sport_utover: 'sport_utover',
     sport_kaptein: 'sport_kaptein',
-    sport_trener: 'sport_trener'
+    sport_trener: 'sport_trener',
+    sport_sportsledelse: 'sport_sportsledelse'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -50,7 +51,8 @@
     by_arkitekt: 'by_arkitekt',
     sport_utover: 'sport_utover',
     sport_kaptein: 'sport_kaptein',
-    sport_trener: 'sport_trener'
+    sport_trener: 'sport_trener',
+    sport_sportsledelse: 'sport_sportsledelse'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -122,7 +124,8 @@
     landslagsutover: 'sport_utover',
     kaptein: 'sport_kaptein',
     trener: 'sport_trener',
-    hovedtrener: 'sport_trener'
+    hovedtrener: 'sport_trener',
+    sportssjef: 'sport_sportsledelse'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -138,10 +141,12 @@
       if (roleKey === 'sport_utover') return 'sport_utover';
       if (roleKey === 'sport_kaptein') return 'sport_kaptein';
       if (roleKey === 'sport_trener') return 'sport_trener';
+      if (roleKey === 'sport_sportsledelse') return 'sport_sportsledelse';
       if (SPORT_ROLE_SCOPE_BY_TITLE[titleKey]) return SPORT_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('mosjonist') || titleKey.includes('utover') || titleKey.includes('konkurranseutover') || titleKey.includes('klubbspiller') || titleKey.includes('eliteseriespiller') || titleKey.includes('landslagsutover')) return 'sport_utover';
       if (titleKey.includes('kaptein')) return 'sport_kaptein';
       if (titleKey.includes('trener')) return 'sport_trener';
+      if (titleKey.includes('sportssjef')) return 'sport_sportsledelse';
     }
 
     if (careerId === 'by') {
@@ -204,6 +209,7 @@
     if (roleKey.includes('sport_utover')) return 'sport_utover';
     if (roleKey.includes('sport_kaptein')) return 'sport_kaptein';
     if (roleKey.includes('sport_trener')) return 'sport_trener';
+    if (roleKey.includes('sport_sportsledelse')) return 'sport_sportsledelse';
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
