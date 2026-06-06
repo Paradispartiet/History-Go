@@ -1,0 +1,1169 @@
+{
+  "schema": "history-go.visual-design-codes.v1",
+  "version": 1,
+  "description": "Shared visual miniature/design-code registry for History Go and Civication entities. Data (places, people, articles) points to a designCode; renderers (Three.js, Canvas, cards, icons) decide how each code is drawn. This is a metadata/resolver layer, not geometry.",
+  "codes": {
+    "default_miniature": {
+      "id": "default_miniature",
+      "entityTypes": ["place"],
+      "family": "generic",
+      "label": "Default miniature",
+      "description": "Generic small-building miniature used when no more specific place code applies.",
+      "renderHints": {
+        "threeType": "default",
+        "canvasType": "default_miniature",
+        "cardType": "place_default",
+        "iconType": "building"
+      },
+      "visualTraits": {
+        "silhouette": "block",
+        "primaryMaterial": "stone",
+        "accent": "neutral",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "generic", "fallback"]
+    },
+    "stadium_miniature": {
+      "id": "stadium_miniature",
+      "entityTypes": ["place"],
+      "family": "sport",
+      "label": "Stadium miniature",
+      "description": "Arena or stadium miniature with pitch and tribune silhouette.",
+      "renderHints": {
+        "threeType": "stadium",
+        "canvasType": "stadium_miniature",
+        "cardType": "place_stadium",
+        "iconType": "stadium"
+      },
+      "visualTraits": {
+        "silhouette": "arena",
+        "primaryMaterial": "stone",
+        "accent": "field_green",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "sport", "groundhopper", "arena"]
+    },
+    "sports_field_miniature": {
+      "id": "sports_field_miniature",
+      "entityTypes": ["place"],
+      "family": "sport",
+      "label": "Sports field miniature",
+      "description": "Open sports pitch with simple field lines and goals, no stand structure.",
+      "renderHints": {
+        "threeType": "sports_field",
+        "canvasType": "sports_field_miniature",
+        "cardType": "place_sports_field",
+        "iconType": "field"
+      },
+      "visualTraits": {
+        "silhouette": "field",
+        "primaryMaterial": "grass",
+        "accent": "field_green",
+        "detailLevel": "light"
+      },
+      "tags": ["place", "sport", "field", "outdoor"]
+    },
+    "ice_arena_miniature": {
+      "id": "ice_arena_miniature",
+      "entityTypes": ["place"],
+      "family": "sport",
+      "label": "Ice arena miniature",
+      "description": "Low, rounded ice hall with domed roof and a hint of an ice surface.",
+      "renderHints": {
+        "threeType": "ice_arena",
+        "canvasType": "ice_arena_miniature",
+        "cardType": "place_ice_arena",
+        "iconType": "ice"
+      },
+      "visualTraits": {
+        "silhouette": "dome",
+        "primaryMaterial": "stone",
+        "accent": "ice_blue",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "sport", "ice", "arena", "groundhopper"]
+    },
+    "museum_miniature": {
+      "id": "museum_miniature",
+      "entityTypes": ["place"],
+      "family": "culture",
+      "label": "Museum miniature",
+      "description": "Wide cultural front with columns, steps and a cornice roof.",
+      "renderHints": {
+        "threeType": "museum",
+        "canvasType": "museum_miniature",
+        "cardType": "place_museum",
+        "iconType": "museum"
+      },
+      "visualTraits": {
+        "silhouette": "colonnade",
+        "primaryMaterial": "stone",
+        "accent": "culture",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "culture", "museum", "heritage"]
+    },
+    "gallery_miniature": {
+      "id": "gallery_miniature",
+      "entityTypes": ["place"],
+      "family": "culture",
+      "label": "Gallery miniature",
+      "description": "Low modern block with a skylight volume and a side wing.",
+      "renderHints": {
+        "threeType": "gallery",
+        "canvasType": "gallery_miniature",
+        "cardType": "place_gallery",
+        "iconType": "gallery"
+      },
+      "visualTraits": {
+        "silhouette": "modern_block",
+        "primaryMaterial": "stone",
+        "accent": "culture",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "culture", "art", "gallery"]
+    },
+    "theatre_miniature": {
+      "id": "theatre_miniature",
+      "entityTypes": ["place"],
+      "family": "culture",
+      "label": "Theatre miniature",
+      "description": "Entrance front with fly tower / stage box and an awning.",
+      "renderHints": {
+        "threeType": "theatre",
+        "canvasType": "theatre_miniature",
+        "cardType": "place_theatre",
+        "iconType": "theatre"
+      },
+      "visualTraits": {
+        "silhouette": "stage_house",
+        "primaryMaterial": "stone",
+        "accent": "culture",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "culture", "theatre", "stage"]
+    },
+    "music_venue_miniature": {
+      "id": "music_venue_miniature",
+      "entityTypes": ["place"],
+      "family": "music",
+      "label": "Music venue miniature",
+      "description": "Darker stage house with stage tower, side volume and entrance canopy.",
+      "renderHints": {
+        "threeType": "music_venue",
+        "canvasType": "music_venue_miniature",
+        "cardType": "place_music_venue",
+        "iconType": "music"
+      },
+      "visualTraits": {
+        "silhouette": "stage_house",
+        "primaryMaterial": "stone",
+        "accent": "music",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "music", "venue", "concert"]
+    },
+    "cinema_miniature": {
+      "id": "cinema_miniature",
+      "entityTypes": ["place"],
+      "family": "culture",
+      "label": "Cinema miniature",
+      "description": "Cinema front with a marquee and a blank vertical blade sign.",
+      "renderHints": {
+        "threeType": "cinema",
+        "canvasType": "cinema_miniature",
+        "cardType": "place_cinema",
+        "iconType": "film"
+      },
+      "visualTraits": {
+        "silhouette": "marquee",
+        "primaryMaterial": "stone",
+        "accent": "culture",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "culture", "film", "cinema"]
+    },
+    "library_miniature": {
+      "id": "library_miniature",
+      "entityTypes": ["place"],
+      "family": "culture",
+      "label": "Library miniature",
+      "description": "Calm public building with a skylight/atrium and wide window bands.",
+      "renderHints": {
+        "threeType": "library",
+        "canvasType": "library_miniature",
+        "cardType": "place_library",
+        "iconType": "library"
+      },
+      "visualTraits": {
+        "silhouette": "public_block",
+        "primaryMaterial": "stone",
+        "accent": "culture",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "culture", "library", "literature"]
+    },
+    "church_miniature": {
+      "id": "church_miniature",
+      "entityTypes": ["place"],
+      "family": "heritage",
+      "label": "Church miniature",
+      "description": "Nave with tower and spire plus an entrance front.",
+      "renderHints": {
+        "threeType": "church",
+        "canvasType": "church_miniature",
+        "cardType": "place_church",
+        "iconType": "church"
+      },
+      "visualTraits": {
+        "silhouette": "spire",
+        "primaryMaterial": "stone",
+        "accent": "heritage",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "heritage", "church", "religion"]
+    },
+    "school_miniature": {
+      "id": "school_miniature",
+      "entityTypes": ["place"],
+      "family": "education",
+      "label": "School miniature",
+      "description": "Low school wing with a schoolyard and a simple roof.",
+      "renderHints": {
+        "threeType": "school",
+        "canvasType": "school_miniature",
+        "cardType": "place_school",
+        "iconType": "school"
+      },
+      "visualTraits": {
+        "silhouette": "low_wing",
+        "primaryMaterial": "stone",
+        "accent": "education",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "education", "school"]
+    },
+    "university_miniature": {
+      "id": "university_miniature",
+      "entityTypes": ["place"],
+      "family": "education",
+      "label": "University miniature",
+      "description": "Wide institutional building with wings, entrance and inner courtyard.",
+      "renderHints": {
+        "threeType": "university",
+        "canvasType": "university_miniature",
+        "cardType": "place_university",
+        "iconType": "university"
+      },
+      "visualTraits": {
+        "silhouette": "institution",
+        "primaryMaterial": "stone",
+        "accent": "education",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "education", "university", "science"]
+    },
+    "station_miniature": {
+      "id": "station_miniature",
+      "entityTypes": ["place"],
+      "family": "transport",
+      "label": "Station miniature",
+      "description": "Long hall with a barrel roof and a hint of platform and tracks.",
+      "renderHints": {
+        "threeType": "station",
+        "canvasType": "station_miniature",
+        "cardType": "place_station",
+        "iconType": "station"
+      },
+      "visualTraits": {
+        "silhouette": "long_hall",
+        "primaryMaterial": "stone",
+        "accent": "transport",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "transport", "station", "rail"]
+    },
+    "park_miniature": {
+      "id": "park_miniature",
+      "entityTypes": ["place"],
+      "family": "nature",
+      "label": "Park miniature",
+      "description": "Green surface with small trees, a path and a bench.",
+      "renderHints": {
+        "threeType": "park",
+        "canvasType": "park_miniature",
+        "cardType": "place_park",
+        "iconType": "park"
+      },
+      "visualTraits": {
+        "silhouette": "greenery",
+        "primaryMaterial": "grass",
+        "accent": "nature",
+        "detailLevel": "light"
+      },
+      "tags": ["place", "nature", "park", "outdoor"]
+    },
+    "playground_miniature": {
+      "id": "playground_miniature",
+      "entityTypes": ["place"],
+      "family": "nature",
+      "label": "Playground miniature",
+      "description": "Sand surface with a climbing frame, slide and swing.",
+      "renderHints": {
+        "threeType": "playground",
+        "canvasType": "playground_miniature",
+        "cardType": "place_playground",
+        "iconType": "playground"
+      },
+      "visualTraits": {
+        "silhouette": "play_structure",
+        "primaryMaterial": "sand",
+        "accent": "nature",
+        "detailLevel": "light"
+      },
+      "tags": ["place", "nature", "playground", "outdoor"]
+    },
+    "square_miniature": {
+      "id": "square_miniature",
+      "entityTypes": ["place"],
+      "family": "urban",
+      "label": "Square miniature",
+      "description": "Open plaza with low surrounding buildings and a small statue, tree and bench.",
+      "renderHints": {
+        "threeType": "square",
+        "canvasType": "square_miniature",
+        "cardType": "place_square",
+        "iconType": "square"
+      },
+      "visualTraits": {
+        "silhouette": "plaza",
+        "primaryMaterial": "stone",
+        "accent": "urban",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "urban", "square", "public"]
+    },
+    "street_miniature": {
+      "id": "street_miniature",
+      "entityTypes": ["place"],
+      "family": "urban",
+      "label": "Street miniature",
+      "description": "Narrow street surface with rows of houses on the sides.",
+      "renderHints": {
+        "threeType": "street",
+        "canvasType": "street_miniature",
+        "cardType": "place_street",
+        "iconType": "street"
+      },
+      "visualTraits": {
+        "silhouette": "street_row",
+        "primaryMaterial": "stone",
+        "accent": "urban",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "urban", "street"]
+    },
+    "fortress_miniature": {
+      "id": "fortress_miniature",
+      "entityTypes": ["place"],
+      "family": "heritage",
+      "label": "Fortress miniature",
+      "description": "Stone base with corner towers, walls and a bailey.",
+      "renderHints": {
+        "threeType": "fortress",
+        "canvasType": "fortress_miniature",
+        "cardType": "place_fortress",
+        "iconType": "fortress"
+      },
+      "visualTraits": {
+        "silhouette": "rampart",
+        "primaryMaterial": "stone",
+        "accent": "heritage",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "heritage", "fortress", "castle"]
+    },
+    "civic_miniature": {
+      "id": "civic_miniature",
+      "entityTypes": ["place"],
+      "family": "civic",
+      "label": "Civic miniature",
+      "description": "Public core building with base, tower volume, steps and columns.",
+      "renderHints": {
+        "threeType": "civic",
+        "canvasType": "civic_miniature",
+        "cardType": "place_civic",
+        "iconType": "civic"
+      },
+      "visualTraits": {
+        "silhouette": "civic_tower",
+        "primaryMaterial": "stone",
+        "accent": "civic",
+        "detailLevel": "rich"
+      },
+      "tags": ["place", "civic", "politics", "institution"]
+    },
+    "waterfront_miniature": {
+      "id": "waterfront_miniature",
+      "entityTypes": ["place"],
+      "family": "nature",
+      "label": "Waterfront miniature",
+      "description": "Quay, pier, a small building and a little boat.",
+      "renderHints": {
+        "threeType": "waterfront",
+        "canvasType": "waterfront_miniature",
+        "cardType": "place_waterfront",
+        "iconType": "harbor"
+      },
+      "visualTraits": {
+        "silhouette": "quay",
+        "primaryMaterial": "wood",
+        "accent": "water_blue",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "nature", "waterfront", "harbor"]
+    },
+    "industrial_miniature": {
+      "id": "industrial_miniature",
+      "entityTypes": ["place"],
+      "family": "industry",
+      "label": "Industrial miniature",
+      "description": "Low warehouse hall with a gate, chimney and ventilation blocks.",
+      "renderHints": {
+        "threeType": "industrial",
+        "canvasType": "industrial_miniature",
+        "cardType": "place_industrial",
+        "iconType": "factory"
+      },
+      "visualTraits": {
+        "silhouette": "warehouse",
+        "primaryMaterial": "metal",
+        "accent": "industry",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "industry", "warehouse", "factory"]
+    },
+    "commerce_miniature": {
+      "id": "commerce_miniature",
+      "entityTypes": ["place"],
+      "family": "commerce",
+      "label": "Commerce miniature",
+      "description": "Shopfront with an awning, door, shop windows and a blank sign.",
+      "renderHints": {
+        "threeType": "commerce",
+        "canvasType": "commerce_miniature",
+        "cardType": "place_commerce",
+        "iconType": "shop"
+      },
+      "visualTraits": {
+        "silhouette": "shopfront",
+        "primaryMaterial": "stone",
+        "accent": "commerce",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "commerce", "shop", "business"]
+    },
+    "apartment_block_miniature": {
+      "id": "apartment_block_miniature",
+      "entityTypes": ["place"],
+      "family": "urban",
+      "label": "Apartment block miniature",
+      "description": "Residential block with a roof cap, door and window rhythm.",
+      "renderHints": {
+        "threeType": "apartment",
+        "canvasType": "apartment_block_miniature",
+        "cardType": "place_apartment_block",
+        "iconType": "apartment"
+      },
+      "visualTraits": {
+        "silhouette": "tall_block",
+        "primaryMaterial": "stone",
+        "accent": "urban",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "urban", "residential", "apartment"]
+    },
+    "subculture_miniature": {
+      "id": "subculture_miniature",
+      "entityTypes": ["place"],
+      "family": "subculture",
+      "label": "Subculture miniature",
+      "description": "Rawer form with skate/ramp, wall and stage-like volumes.",
+      "renderHints": {
+        "threeType": "subculture",
+        "canvasType": "subculture_miniature",
+        "cardType": "place_subculture",
+        "iconType": "subculture"
+      },
+      "visualTraits": {
+        "silhouette": "raw_block",
+        "primaryMaterial": "concrete",
+        "accent": "subculture",
+        "detailLevel": "standard"
+      },
+      "tags": ["place", "subculture", "skate", "underground"]
+    },
+
+    "person_default_miniature": {
+      "id": "person_default_miniature",
+      "entityTypes": ["person"],
+      "family": "generic",
+      "label": "Person miniature",
+      "description": "Generic person design code used when no more specific profile applies.",
+      "renderHints": {
+        "threeType": "person_default",
+        "canvasType": "person_token",
+        "cardType": "person_default_card",
+        "iconType": "person"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "neutral",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "generic", "fallback"]
+    },
+    "person_writer_miniature": {
+      "id": "person_writer_miniature",
+      "entityTypes": ["person"],
+      "family": "literature",
+      "label": "Writer miniature",
+      "description": "Person design code for writers, authors and prose figures.",
+      "renderHints": {
+        "threeType": "person_writer",
+        "canvasType": "person_token",
+        "cardType": "person_literature_card",
+        "iconType": "writer"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "ink",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "literature", "writer", "author"]
+    },
+    "person_poet_miniature": {
+      "id": "person_poet_miniature",
+      "entityTypes": ["person"],
+      "family": "literature",
+      "label": "Poet miniature",
+      "description": "Person design code for poets and lyrical writers.",
+      "renderHints": {
+        "threeType": "person_poet",
+        "canvasType": "person_token",
+        "cardType": "person_literature_card",
+        "iconType": "poet"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "ink",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "literature", "poet", "poetry"]
+    },
+    "person_artist_miniature": {
+      "id": "person_artist_miniature",
+      "entityTypes": ["person"],
+      "family": "art",
+      "label": "Artist miniature",
+      "description": "Person design code for visual artists, painters and sculptors.",
+      "renderHints": {
+        "threeType": "person_artist",
+        "canvasType": "person_token",
+        "cardType": "person_art_card",
+        "iconType": "artist"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "palette",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "art", "artist", "painter"]
+    },
+    "person_musician_miniature": {
+      "id": "person_musician_miniature",
+      "entityTypes": ["person"],
+      "family": "music",
+      "label": "Musician miniature",
+      "description": "Person design code for musicians, composers and band members.",
+      "renderHints": {
+        "threeType": "person_musician",
+        "canvasType": "person_token",
+        "cardType": "person_music_card",
+        "iconType": "musician"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "music",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "music", "musician", "composer"]
+    },
+    "person_actor_miniature": {
+      "id": "person_actor_miniature",
+      "entityTypes": ["person"],
+      "family": "stage",
+      "label": "Actor miniature",
+      "description": "Person design code for actors and stage/screen performers.",
+      "renderHints": {
+        "threeType": "person_actor",
+        "canvasType": "person_token",
+        "cardType": "person_stage_card",
+        "iconType": "actor"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "stage",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "stage", "actor", "performer"]
+    },
+    "person_director_miniature": {
+      "id": "person_director_miniature",
+      "entityTypes": ["person"],
+      "family": "stage",
+      "label": "Director miniature",
+      "description": "Person design code for directors and filmmakers.",
+      "renderHints": {
+        "threeType": "person_director",
+        "canvasType": "person_token",
+        "cardType": "person_stage_card",
+        "iconType": "director"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "stage",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "stage", "director", "film"]
+    },
+    "person_athlete_miniature": {
+      "id": "person_athlete_miniature",
+      "entityTypes": ["person"],
+      "family": "sport",
+      "label": "Athlete miniature",
+      "description": "Person design code for general athletes and sports figures.",
+      "renderHints": {
+        "threeType": "person_athlete",
+        "canvasType": "person_token",
+        "cardType": "person_sports_card",
+        "iconType": "athlete"
+      },
+      "visualTraits": {
+        "silhouette": "human_motion",
+        "primaryMaterial": "figure",
+        "accent": "sport",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "sport", "athlete"]
+    },
+    "person_footballer_miniature": {
+      "id": "person_footballer_miniature",
+      "entityTypes": ["person"],
+      "family": "sport",
+      "label": "Footballer miniature",
+      "description": "Person design code for footballers and pitch-based sports profiles.",
+      "renderHints": {
+        "threeType": "person_footballer",
+        "canvasType": "person_token",
+        "cardType": "person_sports_card",
+        "iconType": "footballer"
+      },
+      "visualTraits": {
+        "silhouette": "human_motion",
+        "primaryMaterial": "figure",
+        "accent": "field_green",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "sport", "football", "groundhopper"]
+    },
+    "person_runner_miniature": {
+      "id": "person_runner_miniature",
+      "entityTypes": ["person"],
+      "family": "sport",
+      "label": "Runner miniature",
+      "description": "Person design code for runners, athletics figures and movement-focused sports profiles.",
+      "renderHints": {
+        "threeType": "person_runner",
+        "canvasType": "person_token",
+        "cardType": "person_sports_card",
+        "iconType": "runner"
+      },
+      "visualTraits": {
+        "silhouette": "human_motion",
+        "primaryMaterial": "figure",
+        "accent": "track",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "sport", "running", "athletics"]
+    },
+    "person_skier_miniature": {
+      "id": "person_skier_miniature",
+      "entityTypes": ["person"],
+      "family": "sport",
+      "label": "Skier miniature",
+      "description": "Person design code for skiers and winter-sport profiles.",
+      "renderHints": {
+        "threeType": "person_skier",
+        "canvasType": "person_token",
+        "cardType": "person_sports_card",
+        "iconType": "skier"
+      },
+      "visualTraits": {
+        "silhouette": "human_motion",
+        "primaryMaterial": "figure",
+        "accent": "snow",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "sport", "ski", "winter"]
+    },
+    "person_politician_miniature": {
+      "id": "person_politician_miniature",
+      "entityTypes": ["person"],
+      "family": "civic",
+      "label": "Politician miniature",
+      "description": "Person design code for politicians and elected figures.",
+      "renderHints": {
+        "threeType": "person_politician",
+        "canvasType": "person_token",
+        "cardType": "person_civic_card",
+        "iconType": "politician"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "civic",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "politics", "politician", "civic"]
+    },
+    "person_activist_miniature": {
+      "id": "person_activist_miniature",
+      "entityTypes": ["person"],
+      "family": "civic",
+      "label": "Activist miniature",
+      "description": "Person design code for activists and movement figures.",
+      "renderHints": {
+        "threeType": "person_activist",
+        "canvasType": "person_token",
+        "cardType": "person_civic_card",
+        "iconType": "activist"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "civic",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "politics", "activist", "movement"]
+    },
+    "person_scientist_miniature": {
+      "id": "person_scientist_miniature",
+      "entityTypes": ["person"],
+      "family": "science",
+      "label": "Scientist miniature",
+      "description": "Person design code for scientists and researchers.",
+      "renderHints": {
+        "threeType": "person_scientist",
+        "canvasType": "person_token",
+        "cardType": "person_science_card",
+        "iconType": "scientist"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "science",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "science", "scientist", "research"]
+    },
+    "person_teacher_miniature": {
+      "id": "person_teacher_miniature",
+      "entityTypes": ["person"],
+      "family": "education",
+      "label": "Teacher miniature",
+      "description": "Person design code for teachers, educators and pedagogues.",
+      "renderHints": {
+        "threeType": "person_teacher",
+        "canvasType": "person_token",
+        "cardType": "person_education_card",
+        "iconType": "teacher"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "education",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "education", "teacher"]
+    },
+    "person_explorer_miniature": {
+      "id": "person_explorer_miniature",
+      "entityTypes": ["person"],
+      "family": "exploration",
+      "label": "Explorer miniature",
+      "description": "Person design code for explorers, expedition figures and adventurers.",
+      "renderHints": {
+        "threeType": "person_explorer",
+        "canvasType": "person_token",
+        "cardType": "person_explorer_card",
+        "iconType": "explorer"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "expedition",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "exploration", "explorer", "expedition"]
+    },
+    "person_historical_miniature": {
+      "id": "person_historical_miniature",
+      "entityTypes": ["person"],
+      "family": "history",
+      "label": "Historical person miniature",
+      "description": "Person design code for historical figures from earlier eras.",
+      "renderHints": {
+        "threeType": "person_historical",
+        "canvasType": "person_token",
+        "cardType": "person_history_card",
+        "iconType": "historical"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "heritage",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "history", "historical"]
+    },
+    "person_local_legend_miniature": {
+      "id": "person_local_legend_miniature",
+      "entityTypes": ["person"],
+      "family": "local",
+      "label": "Local legend miniature",
+      "description": "Person design code for local legends and neighbourhood figures.",
+      "renderHints": {
+        "threeType": "person_local_legend",
+        "canvasType": "person_token",
+        "cardType": "person_local_card",
+        "iconType": "local_legend"
+      },
+      "visualTraits": {
+        "silhouette": "human",
+        "primaryMaterial": "figure",
+        "accent": "local",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "local", "legend", "neighbourhood"]
+    },
+
+    "article_default_miniature": {
+      "id": "article_default_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "generic",
+      "label": "Article miniature",
+      "description": "Generic article/knowledge design code used when no more specific topic applies.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_card",
+        "cardType": "article_default_card",
+        "iconType": "article"
+      },
+      "visualTraits": {
+        "silhouette": "marker",
+        "primaryMaterial": "paper",
+        "accent": "neutral",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "knowledge", "generic", "fallback"]
+    },
+    "article_history_miniature": {
+      "id": "article_history_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "history",
+      "label": "History article miniature",
+      "description": "Knowledge design code for historical articles and stories.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_history_card",
+        "iconType": "history"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "heritage",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "history", "heritage"]
+    },
+    "article_sports_history_miniature": {
+      "id": "article_sports_history_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "sport",
+      "label": "Sports history article miniature",
+      "description": "Knowledge design code for sports history articles and groundhopper stories.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_sports_history_card",
+        "iconType": "sports_history"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "sport",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "sport", "history", "groundhopper"]
+    },
+    "article_music_history_miniature": {
+      "id": "article_music_history_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "music",
+      "label": "Music history article miniature",
+      "description": "Knowledge design code for music history articles and stories.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_music_history_card",
+        "iconType": "music_history"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "music",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "music", "history"]
+    },
+    "article_literature_miniature": {
+      "id": "article_literature_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "literature",
+      "label": "Literature article miniature",
+      "description": "Knowledge design code for literature articles, essays and reading trails.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_literature_card",
+        "iconType": "literature"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "ink",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "literature", "essay"]
+    },
+    "article_art_miniature": {
+      "id": "article_art_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "art",
+      "label": "Art article miniature",
+      "description": "Knowledge design code for art articles and gallery stories.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_card",
+        "cardType": "article_art_card",
+        "iconType": "art"
+      },
+      "visualTraits": {
+        "silhouette": "frame",
+        "primaryMaterial": "paper",
+        "accent": "palette",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "art", "culture"]
+    },
+    "article_architecture_miniature": {
+      "id": "article_architecture_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "architecture",
+      "label": "Architecture article miniature",
+      "description": "Knowledge design code for architecture and built-heritage articles.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_card",
+        "cardType": "article_architecture_card",
+        "iconType": "architecture"
+      },
+      "visualTraits": {
+        "silhouette": "blueprint",
+        "primaryMaterial": "paper",
+        "accent": "stone",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "architecture", "heritage"]
+    },
+    "article_political_history_miniature": {
+      "id": "article_political_history_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "civic",
+      "label": "Political history article miniature",
+      "description": "Knowledge design code for political history articles and stories.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_political_history_card",
+        "iconType": "political_history"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "civic",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "politics", "history"]
+    },
+    "article_local_story_miniature": {
+      "id": "article_local_story_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "local",
+      "label": "Local story miniature",
+      "description": "Knowledge design code for local stories and neighbourhood narratives.",
+      "renderHints": {
+        "threeType": "scroll",
+        "canvasType": "article_card",
+        "cardType": "article_local_story_card",
+        "iconType": "local_story"
+      },
+      "visualTraits": {
+        "silhouette": "scroll",
+        "primaryMaterial": "paper",
+        "accent": "local",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "local", "story", "neighbourhood"]
+    },
+    "article_place_essay_miniature": {
+      "id": "article_place_essay_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "place",
+      "label": "Place essay miniature",
+      "description": "Knowledge design code for place-focused essays and main place articles.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_place_essay_card",
+        "iconType": "place_essay"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "stone",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "place", "essay"]
+    },
+    "article_people_portrait_miniature": {
+      "id": "article_people_portrait_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "people",
+      "label": "People portrait miniature",
+      "description": "Knowledge design code for biographical portraits and people-focused articles.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_card",
+        "cardType": "article_people_portrait_card",
+        "iconType": "portrait"
+      },
+      "visualTraits": {
+        "silhouette": "portrait_frame",
+        "primaryMaterial": "paper",
+        "accent": "neutral",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "people", "portrait", "biography"]
+    },
+    "article_groundhopper_miniature": {
+      "id": "article_groundhopper_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "sport",
+      "label": "Groundhopper article miniature",
+      "description": "Knowledge design code for groundhopper articles, stadium guides and arena stories.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_card",
+        "cardType": "article_groundhopper_card",
+        "iconType": "groundhopper"
+      },
+      "visualTraits": {
+        "silhouette": "ticket",
+        "primaryMaterial": "paper",
+        "accent": "field_green",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "sport", "groundhopper", "stadium"]
+    },
+    "article_wonderkammer_miniature": {
+      "id": "article_wonderkammer_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "wonder",
+      "label": "Wonderkammer article miniature",
+      "description": "Knowledge design code for AHA/wonderkammer curiosities and cabinet-of-wonders pieces.",
+      "renderHints": {
+        "threeType": "object_case",
+        "canvasType": "article_card",
+        "cardType": "article_wonderkammer_card",
+        "iconType": "wonderkammer"
+      },
+      "visualTraits": {
+        "silhouette": "cabinet",
+        "primaryMaterial": "paper",
+        "accent": "wonder",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "wonder", "aha", "wonderkammer"]
+    },
+    "article_language_miniature": {
+      "id": "article_language_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "language",
+      "label": "Language article miniature",
+      "description": "Knowledge design code for language articles, etymology and dialect stories.",
+      "renderHints": {
+        "threeType": "open_book",
+        "canvasType": "article_card",
+        "cardType": "article_language_card",
+        "iconType": "language"
+      },
+      "visualTraits": {
+        "silhouette": "open_book",
+        "primaryMaterial": "paper",
+        "accent": "ink",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "language", "sprak"]
+    },
+    "article_object_story_miniature": {
+      "id": "article_object_story_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "object",
+      "label": "Object story miniature",
+      "description": "Knowledge design code for object-focused stories and artefact narratives.",
+      "renderHints": {
+        "threeType": "object_case",
+        "canvasType": "article_card",
+        "cardType": "article_object_story_card",
+        "iconType": "object_story"
+      },
+      "visualTraits": {
+        "silhouette": "cabinet",
+        "primaryMaterial": "paper",
+        "accent": "neutral",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "object", "artefact", "story"]
+    }
+  }
+}
