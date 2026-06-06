@@ -4,6 +4,7 @@
   const PLAN_FILES = {
     naeringsliv: {
       ekspeditor: "data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json",
+      lager_og_driftsmedarbeider: "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
       arbeider: "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
       fagarbeider: "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
       mellomleder: "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
@@ -24,6 +25,10 @@
         event: "data/Civication/mailFamilies/naeringsliv/event/ekspeditor_event.json",
         people: "data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json",
         conflict: "data/Civication/mailFamilies/naeringsliv/conflict/ekspeditor_conflict.json"
+      },
+      lager_og_driftsmedarbeider: {
+        job: "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json",
+        people: "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json"
       },
       arbeider: {
         job: [
@@ -72,6 +77,7 @@
 
   const ROLE_SCOPE_BY_ROLE_ID = {
     naer_ekspeditor: "ekspeditor",
+    naer_lager_og_driftsmedarbeider: "lager_og_driftsmedarbeider",
     naer_arbeider: "arbeider",
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
@@ -83,8 +89,8 @@
     ekspeditor: "ekspeditor",
     butikkmedarbeider: "ekspeditor",
     ekspeditor_butikkmedarbeider: "ekspeditor",
+    lager_og_driftsmedarbeider: "lager_og_driftsmedarbeider",
     arbeider: "arbeider",
-    lager_og_driftsmedarbeider: "arbeider",
     fagarbeider: "fagarbeider",
     skiftleder: "formann",
     formann: "formann",

@@ -10,23 +10,24 @@
   },
   "category": "naeringsliv",
   "role_scope": "lager_og_driftsmedarbeider",
-  "role_id": "naeringsliv_lager_og_driftsmedarbeider",
+  "role_id": "naer_lager_og_driftsmedarbeider",
   "title": "Lager- og driftsmedarbeider",
   "core_narrative": [
-    "I Civication er Lager- og driftsmedarbeider en praktisk rolle i Næringsliv & industri der valg former tillit, handlingsrom og status."
+    "I Civication er Lager- og driftsmedarbeider en praktisk næringslivsrolle der spilleren lærer at fysisk vareflyt, systemregistrering, avvik og HMS må stemme før resten av driften kan stole på lageret."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til industri, handel og markeder."
+      "Tar imot varer, kontrollerer kolli og følgeseddel, plasserer varer, plukker og pakker ordre, teller lager og registrerer bevegelser i system."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Holde vareflyt og sporbarhet sammen under tempo, driftspress og fysisk belastning.",
+      "Melde avvik tidlig nok til at små feil ikke flyttes videre til butikk, drift, kunde, økonomi eller transport."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Arbeidsmiljøet er konkret, fysisk og tidsstyrt, med korte avklaringer mellom lager, drift, butikk, transport og økonomi."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Rollen blir ofte usynlig når alt flyter, men svært synlig når feilplukk, differanser eller HMS-brudd stopper andre ledd."
     ]
   },
   "career_path": {
@@ -51,7 +52,7 @@
       "Grunnforståelse for fagfeltet og institusjonene i kategorien."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Mottakskontroll, plukk/pakk, lagerplassering, avviksmelding, enkel systemregistrering, telling, HMS og prioritering under press."
     ],
     "category_knowledge": [
       "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
@@ -64,28 +65,49 @@
   },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
+      "id": "tempo_vs_noyaktighet",
+      "title": "Tempo mot nøyaktighet",
+      "description": "Driften venter på varen, men små feil i mottak, plukk eller registrering blir større når de flyttes videre.",
+      "pressure": "tempo_vs_noyaktighet",
       "affects": [
         "trust",
-        "status",
+        "flow",
         "risk"
+      ]
+    },
+    {
+      "id": "sikkerhet_vs_produksjonspress",
+      "title": "Sikkerhet mot produksjonspress",
+      "description": "Fysisk arbeid kan gjøres raskere på kort sikt, men HMS svikter hvis kroppen blir den skjulte bufferen.",
+      "pressure": "sikkerhet_vs_produksjonspress",
+      "affects": [
+        "stability",
+        "health",
+        "output"
       ]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
+      "id": "flyt_vs_sporbarhet",
+      "title": "Flyt mot sporbarhet",
+      "setup": "Du kan hjelpe køen ved å slippe varen raskt videre, eller stoppe lenge nok til at system, fysisk lager og avvik stemmer.",
+      "choice_axis": "flyt_vs_sporbarhet",
+      "consequence_axis": "lokal_flyt_vs_langsiktig_tillit",
       "mail_hooks": [
         "job",
-        "conflict",
-        "story"
+        "people"
+      ]
+    },
+    {
+      "id": "hjelpe_laget_vs_folge_systemet",
+      "title": "Hjelpe laget eller følge systemet",
+      "setup": "En erfaren kollega viser en snarvei som hjelper nå, men som gjør vareflyten mindre sporbar senere.",
+      "choice_axis": "hjelpe_laget_vs_folge_systemet",
+      "consequence_axis": "sosial_tillit_vs_sporbar_risiko",
+      "mail_hooks": [
+        "people",
+        "job"
       ]
     }
   ],
@@ -93,7 +115,7 @@
   "related_places": [],
   "mail_integration": {
     "role_scope": "lager_og_driftsmedarbeider",
-    "mail_profile": "naeringsliv_lager_og_driftsmedarbeider",
+    "mail_profile": "naer_lager_og_driftsmedarbeider",
     "can_feed_mail_types": [
       "job",
       "story",
@@ -105,16 +127,33 @@
     "mail_variables": {
       "role_title": "Lager- og driftsmedarbeider",
       "category": "naeringsliv",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "tempo_vs_noyaktighet",
+      "ethical_axis": "hjelpe_laget_vs_folge_systemet",
+      "status_axis": "flyt_vs_sporbarhet"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": [
+      "mottak_og_vareflyt",
+      "plukk_pakk_og_avvik",
+      "lager_team_og_belastning"
+    ],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": [
+    "vareflyt",
+    "mottak",
+    "plukk_pakk",
+    "avvik",
+    "systemregistrering",
+    "HMS",
+    "fysisk_arbeid_og_driftsansvar"
+  ],
+  "ideal_type_problems": [
+    "tempoarbeideren som holder flyt ved å skjule risiko",
+    "snarveisarbeideren som hjelper laget og svekker sporbarheten",
+    "avviksbyggeren som gjør feil synlige uten å gjøre dem til skyld"
+  ],
   "notes": [
-    "Basert på badges.json: naeringsliv / Lager- og driftsmedarbeider."
+    "Basert på badges.json: naeringsliv / Lager- og driftsmedarbeider.",
+    "Oppdatert med grunnkoblinger til egen rollepakke, uten Praksisfortellinger uke 1/uke 2."
   ]
 }

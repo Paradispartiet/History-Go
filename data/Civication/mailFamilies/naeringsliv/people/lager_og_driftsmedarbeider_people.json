@@ -1,0 +1,154 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "lager_og_driftsmedarbeider",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "lager_team_og_belastning",
+      "purpose": "Vise hvordan fysisk lagerarbeid, kollegiale snarveier, registrering og HMS preger kroppen, laget og følelsen av usynlig drift.",
+      "learning_focus": [
+        "fysisk_belastning",
+        "kollegialt_press",
+        "HMS",
+        "avvikskultur"
+      ],
+      "mails": [
+        {
+          "id": "lager_people_belastning_001",
+          "mail_type": "people",
+          "mail_family": "lager_team_og_belastning",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "early",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du går som om gulvet ble med hjem",
+          "summary": "Kroppen merker dagen før tallene viser hva du faktisk har gjort.",
+          "purpose": "Knytte fysisk arbeid, restitusjon og usynlig drift til rollen.",
+          "stakes": "Å presse videre kan føles lojalt mot laget, men svekker HMS og varig arbeidsevne. Å sette grense kan oppleves som tregt, men beskytter produksjonsgrunnlaget.",
+          "situation": [
+            "Etter skiftet kjenner du ryggen, skuldrene og beina mer enn du hadde tenkt å innrømme.",
+            "En kollega skrev at dere reddet dagen fordi dere tok noen ekstra tunge løft uten å lage sak av det.",
+            "Hjemme spør noen om det gikk bra, og du merker at det er vanskelig å forklare arbeid som bare synes når det ikke blir gjort."
+          ],
+          "task_domain": "lager_team_og_belastning",
+          "competency": "sikkerhetsblikk",
+          "pressure": "lojalitet_til_laget",
+          "choice_axis": "sikkerhet_vs_produksjonspress",
+          "consequence_axis": "kort_flyt_vs_langvarig_baerekraft",
+          "narrative_arc": "spilleren kjenner at kroppen er en del av driftsapparatet, ikke et privat vedheng",
+          "learning_focus": [
+            "kroppen etter fysisk arbeid",
+            "HMS",
+            "fysisk arbeid og driftsansvar",
+            "usynlig drift"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si at kroppen må tas med i planen i morgen",
+              "reply": "Jeg sier at det gikk bra, men at kroppen ikke kan være bufferen hver gang driften har dårlig tid.",
+              "effect": 1,
+              "tags": [
+                "hms",
+                "boundary"
+              ],
+              "feedback": "Du gjør belastningen synlig som driftsdata, ikke bare privat slitenhet."
+            },
+            {
+              "id": "B",
+              "label": "Avfeie det og si at laget trengte det",
+              "reply": "Jeg sier at det bare var en tung dag, og at laget trengte at noen tok i litt ekstra.",
+              "effect": 0,
+              "tags": [
+                "loyalty",
+                "strain"
+              ],
+              "feedback": "Du holder på lagfølelsen, men lar kroppen betale for at systemet ikke måtte stoppe."
+            }
+          ]
+        },
+        {
+          "id": "lager_people_snarvei_002",
+          "mail_type": "people",
+          "mail_family": "lager_team_og_belastning",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten_erfaren",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Et lite triks, hvis du vil slippe køen",
+          "summary": "En erfaren kollega viser en snarvei som hjelper laget, men hopper over registreringen.",
+          "purpose": "Teste konflikten mellom å hjelpe laget raskt og følge systemet som beskytter sporbarhet.",
+          "stakes": "Snarveien kan fjerne kø og gi sosial tillit, men svekker avvikskultur og gjør fysisk arbeid usynlig for systemet.",
+          "situation": [
+            "Morten viser deg hvordan han pleier å flytte noen varer direkte til plukksonen når det koker.",
+            "Han sier at alle vet det, og at registreringen kan tas senere hvis noen spør.",
+            "Du skjønner at snarveien faktisk hjelper laget nå, men også at systemet mister et ledd i vareflyten."
+          ],
+          "task_domain": "kollegial_snarvei",
+          "competency": "avviksforstaelse",
+          "pressure": "kollega_som_skynder_seg",
+          "choice_axis": "hjelpe_laget_vs_folge_systemet",
+          "consequence_axis": "sosial_tillit_vs_sporbar_risiko",
+          "narrative_arc": "spilleren møter erfaren praksis som både er klokskap og risiko",
+          "learning_focus": [
+            "erfaren lagerarbeider som vet snarveier",
+            "kollega som dropper registrering",
+            "konflikt mellom å hjelpe laget og følge systemet",
+            "avvikskultur"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke snarveien bare hvis flyttingen registreres med én gang",
+              "reply": "Jeg kan hjelpe med flyten, men flyttingen må registreres nå mens vi vet hva som skjer.",
+              "effect": 1,
+              "tags": [
+                "system",
+                "teamwork"
+              ],
+              "feedback": "Du prøver å beholde både laghjelpen og sporbarheten, selv om snarveien blir mindre behagelig."
+            },
+            {
+              "id": "B",
+              "label": "Følge snarveien og rydde registreringen senere",
+              "reply": "Jeg gjør som Morten sier og tar registreringen senere hvis det blir tid.",
+              "effect": -1,
+              "tags": [
+                "shortcut",
+                "loyalty"
+              ],
+              "feedback": "Du blir en del av lagets raske løsning, men også av grunnen til at tallene kan slutte å vise arbeidet."
+            },
+            {
+              "id": "C",
+              "label": "Melde at snarveien trengs fordi prosessen stopper opp",
+              "reply": "Jeg melder at vi trenger en bedre rutine når plukksonen koker, i stedet for å late som snarveien ikke finnes.",
+              "effect": 1,
+              "tags": [
+                "deviation",
+                "improvement"
+              ],
+              "feedback": "Du gjør snarveien til et driftsproblem som kan forbedres, ikke en privat hemmelighet."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

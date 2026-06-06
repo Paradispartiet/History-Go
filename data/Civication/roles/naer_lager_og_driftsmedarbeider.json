@@ -1,0 +1,173 @@
+{
+  "schema": "civication_role_content_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "tier_label": "Lager- og driftsmedarbeider",
+  "role_id": "naer_lager_og_driftsmedarbeider",
+  "role_name": "Lager- og driftsmedarbeider",
+  "role_level": 2,
+  "primary_conflict": "tempo_vs_noyaktighet",
+  "secondary_conflict": "flyt_vs_sporbarhet",
+  "background_conflict": "usynlig_drift_vs_synlig_resultat",
+  "tone": [
+    "konkret",
+    "fysisk",
+    "praktisk",
+    "litt presset",
+    "oppmerksom på små feil som flytter seg videre"
+  ],
+  "role_summary": "Du tar imot, plasserer, plukker, pakker og registrerer varer slik at drift, butikk, økonomi og transport kan stole på at fysisk lager og systemtall stemmer.",
+  "actual_work": [
+    "motta varer",
+    "kontrollere kolli og følgeseddel",
+    "plassere varer på riktig lokasjon",
+    "plukke og pakke etter ordre",
+    "melde avvik",
+    "telle lager",
+    "registrere bevegelser i system",
+    "holde orden i vareflyt",
+    "samarbeide med butikk drift økonomi og transport",
+    "følge HMS når tempoet presser"
+  ],
+  "key_skills": [
+    "nøyaktighet",
+    "logistikkforståelse",
+    "systemregistrering",
+    "avviksblikk",
+    "fysisk utholdenhet",
+    "sikkerhetsblikk",
+    "prioritering under press",
+    "samarbeid i drift"
+  ],
+  "common_irritations": [
+    "alle venter på varen, men få ser arbeidet bak at den ligger riktig",
+    "små feilplukk blir store feil når de når kunde eller drift",
+    "systemet krever registrering samtidig som kroppen og køen krever tempo",
+    "HMS kan bli omtalt som treghet akkurat når den trengs mest",
+    "tallene ser ryddige ut helt til fysisk lager viser noe annet"
+  ],
+  "misconception": "At lagerarbeid bare er å flytte varer raskt fra ett sted til et annet.",
+  "what_player_learns": [
+    "hvordan mottak, kolli, følgeseddel og avvik henger sammen",
+    "hvorfor riktig vare, riktig hylle og riktig registrering er samme arbeidsoppgave",
+    "hvordan plukk- og pakkelogikk påvirker kunde, butikk, drift og transport",
+    "hvorfor telling og differanser viser forskjellen mellom systemtall og fysisk virkelighet",
+    "hvordan fysisk arbeid og digital sporbarhet må stemme for at driften skal være trygg",
+    "hvorfor HMS ikke er treghet, men produksjonsgrunnlag"
+  ],
+  "knowledge_layers": {
+    "field_knowledge": [
+      "lager",
+      "mottak",
+      "plukk",
+      "pakking",
+      "vareflyt",
+      "intern logistikk",
+      "driftspress"
+    ],
+    "role_knowledge": [
+      "lagerplassering",
+      "følgeseddel",
+      "kolli",
+      "avviksmelding",
+      "telling",
+      "systemregistrering",
+      "HMS i fysisk arbeid"
+    ],
+    "situational_knowledge": [
+      "når tempo kan økes",
+      "når kontroll må stoppe flyten",
+      "når avvik skal meldes",
+      "når snarvei skaper skjult risiko",
+      "når hjelpe laget betyr å følge systemet"
+    ]
+  },
+  "scenario_families": [
+    {
+      "family_id": "mottak_og_vareflyt",
+      "title": "Mottak og vareflyt",
+      "primary_conflict": "tempo_vs_noyaktighet",
+      "secondary_conflict": "flyt_vs_sporbarhet",
+      "what_it_teaches": [
+        "at mottak er første kontrollpunkt i hele vareflyten",
+        "at følgeseddel, kolli og fysisk vare må stemme før resten av systemet kan stole på dem",
+        "at avvik som ikke meldes tidlig blir dyrere senere"
+      ]
+    },
+    {
+      "family_id": "plukk_pakk_og_avvik",
+      "title": "Plukk, pakk og avvik",
+      "primary_conflict": "flyt_vs_sporbarhet",
+      "secondary_conflict": "fysisk_arbeid_vs_systemkrav",
+      "what_it_teaches": [
+        "at riktig plukk er både fysisk presisjon og digital sporbarhet",
+        "at små feil kan flytte seg gjennom butikk, kundeledd og økonomi",
+        "at avvikskultur handler om å reparere flyt uten å gjøre feil til skyld"
+      ]
+    },
+    {
+      "family_id": "lager_team_og_belastning",
+      "title": "Lagerteam og belastning",
+      "primary_conflict": "sikkerhet_vs_produksjonspress",
+      "secondary_conflict": "usynlig_drift_vs_synlig_resultat",
+      "what_it_teaches": [
+        "at kroppen er del av produksjonssystemet",
+        "at snarveier kan hjelpe laget kortsiktig og skade driften langsiktig",
+        "at usynlig fysisk arbeid ofte bare blir synlig når tallene ikke stemmer"
+      ]
+    }
+  ],
+  "storylets": [
+    {
+      "id": "naer_lager_og_driftsmedarbeider_1_1",
+      "family_id": "mottak_og_vareflyt",
+      "title": "Kolli som nesten stemmer",
+      "primary_conflict": "tempo_vs_noyaktighet",
+      "secondary_conflict": "flyt_vs_sporbarhet",
+      "tone": [
+        "konkret",
+        "praktisk",
+        "litt presset"
+      ],
+      "summary": "Leveransen ser nesten riktig ut, men én liten differanse kan flytte seg videre i hele vareflyten.",
+      "situation": [
+        "Driften venter på varen, transporten vil videre, og systemet spør om mottaket kan lukkes. Du ser at ett kolli ikke helt stemmer med følgeseddelen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stoppe mottaket kort og kontrollere differansen",
+          "tags": [
+            "accuracy",
+            "traceability"
+          ]
+        },
+        {
+          "id": "B",
+          "label": "Registrere mottaket og merke avviket etterpå",
+          "tags": [
+            "flow",
+            "risk"
+          ]
+        },
+        {
+          "id": "C",
+          "label": "Spørre erfaren kollega før systemet lukkes",
+          "tags": [
+            "collaboration",
+            "learning"
+          ]
+        }
+      ],
+      "what_player_learns": [
+        "mottak er både fysisk kontroll og systemansvar",
+        "små differanser kan bli store feil senere i driften"
+      ],
+      "progress_tags": [
+        "goods_receipt",
+        "deviation_awareness",
+        "traceability"
+      ]
+    }
+  ]
+}

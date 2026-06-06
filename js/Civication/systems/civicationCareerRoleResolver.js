@@ -17,6 +17,7 @@
 
   const ROLE_ID_BY_SCOPE = {
     ekspeditor: 'naer_ekspeditor',
+    lager_og_driftsmedarbeider: 'naer_lager_og_driftsmedarbeider',
     arbeider: 'naer_arbeider',
     administrasjonsmedarbeider: 'naer_administrasjonsmedarbeider',
     fagarbeider: 'naer_fagarbeider',
@@ -38,6 +39,7 @@
 
   const ROLE_SCOPE_BY_ROLE_ID = {
     naer_ekspeditor: 'ekspeditor',
+    naer_lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
     naer_arbeider: 'arbeider',
     naer_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     naer_fagarbeider: 'fagarbeider',
@@ -66,7 +68,7 @@
     butikkmedarbeider: 'ekspeditor',
     ekspeditor_butikkmedarbeider: 'ekspeditor',
 
-    lager_og_driftsmedarbeider: 'arbeider',
+    lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
     okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     fagarbeider: 'fagarbeider',
@@ -183,7 +185,7 @@
       if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey];
 
       if (titleKey.includes('ekspedit') || titleKey.includes('butikkmedarbeider')) return 'ekspeditor';
-      if (titleKey.includes('lager')) return 'arbeider';
+      if (titleKey.includes('lager')) return 'lager_og_driftsmedarbeider';
       if (titleKey.includes('administrasjon') || titleKey.includes('administrasjonsmedarbeider')) return 'administrasjonsmedarbeider';
       if (titleKey.includes('fagarbeider')) return 'fagarbeider';
       if (titleKey.includes('formann') || titleKey.includes('arbeidsleder') || titleKey.includes('skiftleder')) return 'formann';
@@ -224,6 +226,7 @@
     if (roleKey.includes('by_prosjektleder')) return 'by_prosjektleder';
     if (roleKey.includes('by_arkitekt')) return 'by_arkitekt';
     if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
+    if (roleKey.includes('lager')) return 'lager_og_driftsmedarbeider';
     if (roleKey.includes('arbeider')) return 'arbeider';
     if (roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
     if (roleKey.includes('fagarbeider')) return 'fagarbeider';
