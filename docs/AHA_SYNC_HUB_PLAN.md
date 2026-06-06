@@ -7,7 +7,7 @@
 - Database and audit writes belong in adapter/repository layers. The dashboard presents state and structured results only.
 - Audit data is minimized and versioned: no full payload, credentials, tokens, passwords, connection strings, or unknown object dumps.
 - History and details are read-only. Their local UI state is not stored in `localStorage` or written to the database.
-- Activation and auto-sync remain outside the plan. Any future write capability requires a separate, explicitly approved phase.
+- Activation, auto-sync, and auto-retry remain outside the plan. Any future retry write capability requires a separate, explicitly approved phase and must preserve one user action, one confirmation, one run, and one audit trail.
 
 ## Phases
 
@@ -52,10 +52,28 @@ The adapter passes only included modules to the target writer. Excluded modules,
 - Full payloads, full item data, unknown object dumps, secrets, tokens, passwords, credentials, and connection strings are never rendered.
 - The panel is explicitly read-only. Opening or closing it does not start sync, write an audit entry, mutate database state, or alter the existing confirm/write flow.
 
-### 5. Manual sync retry eligibility preview — next
+### 5. Manual sync retry eligibility preview — implemented
 
-Add a read-only preview that explains whether a historical run would be eligible for a separately confirmed retry. The preview must not execute a retry, mutate the selected run, write audit state, or weaken the existing manual confirmation and write guarantees.
+- History details can expose a read-only assessment of whether a historical run has enough evidence to prepare a separately confirmed retry.
+- `eligible_preview` is informational only. It does not authorize a write, create or persist confirmation, execute retry, mutate the selected run, or write audit state.
+- Retry execution remains unavailable.
 
-### 6. Activation / auto-sync — not introduced
+### 6. Manual sync retry contract — implemented
 
-No activation or auto-sync work is included. Any future activation must be a separate, explicitly approved phase after durable operational safeguards and explicit product approval.
+- The normative contract is documented in [`AHA_MANUAL_SYNC_RETRY_CONTRACT.md`](./AHA_MANUAL_SYNC_RETRY_CONTRACT.md).
+- Retry consideration is limited to complete, safely reconstructable `failed` or `partial_success` runs that pass current target, adapter, validation, readiness, checklist, audit-writer, and eligibility checks.
+- A retry is a new manual run with a new `retryRunId`, linked to the historical `originalRunId`, and requires its own single-use confirmation and attempt/outcome audit trail.
+- Unsafe payload reuse, incomplete/corrupt audit evidence, unresolved security or partial-write state, unsupported adapters, unavailable audit writing, and all passive or automatic triggers fail closed.
+- This phase documents the contract only; it does not add retry authority.
+
+### 7. Manual sync retry confirmation preview — next
+
+Add a read-only **Prepare retry** / **Retry confirmation** preview that shows the original run summary, eligibility, target, modules/counts, current checks, warnings, errors, and blockers. The preview must not call `executeAhaManualSyncRun`, write audit state, persist confirmation, or expose a functioning **Retry now** action.
+
+### 8. Manual sync retry execution — later, not implemented
+
+Actual retry may be considered only in a separate, explicitly approved phase after the confirmation preview and after the adapter, reconstruction, audit, failure, partial-write, and rollback requirements in the retry contract are implemented and tested. Eligibility or confirmation preview state alone must never grant write authority.
+
+### 9. Activation / auto-sync / auto-retry — not introduced
+
+No activation, auto-sync, scheduled retry, background retry, or automatic retry after failure is included. Any future activation must be a separate, explicitly approved phase after durable operational safeguards and explicit product approval. Auto-retry is not permitted: retry must always remain one deliberate user action, one fresh confirmation, one new run, and one linked audit trail.
