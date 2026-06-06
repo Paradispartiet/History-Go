@@ -1,0 +1,405 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_sportsledelse",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "klubbstrategi_og_sportslig_retning",
+      "purpose": "Lære spilleren at klubbstrategi først er virkelig når den styrer valg under resultatpress.",
+      "learning_focus": ["klubbstrategi", "sportslig retning", "resultatpress"],
+      "mails": [
+        {
+          "id": "sport_sports_job_strat_001",
+          "mail_type": "job",
+          "mail_family": "klubbstrategi_og_sportslig_retning",
+          "role_scope": "sport_sportsledelse",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "styreleder_karin",
+          "place_id": "sport_klubbkontor",
+          "subject": "Klubbstrategien sier utvikling, men tabellen ber om raske svar",
+          "summary": "Klubben har vedtatt langsiktig utviklingsmodell, men tre svake resultater gjør at styret vil se umiddelbar sportslig respons.",
+          "purpose": "Etablere at sportssjefen må gjøre strategi operativ når presset kommer.",
+          "stakes": "Gjør du et raskt grep, viser du handlekraft. Holder du modellen, må du forklare hvorfor planen fortsatt er riktig under press.",
+          "situation": [
+            "Strategidokumentet er klart: utvikle egne spillere, spille offensivt og bygge bærekraftig stall.",
+            "Nå har laget tapt tre kamper, og styret spør hva som skal gjøres umiddelbart.",
+            "Det er nå strategien enten blir styring eller pynt."
+          ],
+          "task_domain": "sportslig_strategi",
+          "competency": "strategi_under_press",
+          "pressure": "langsiktig_plan_vs_kortsiktig_resultatkrav",
+          "choice_axis": "forklare_og_holde_retning_vs_gjøre_raskt_grep",
+          "consequence_axis": "strategisk_troverdighet_vs_handlekraft_signal",
+          "narrative_arc": "sportssjefen lærer at langsiktighet må forsvares akkurat når den er minst populær",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg fram status som viser hvilke grep som følger strategien, ikke panikken",
+              "reply": "Jeg legger fram status som viser hvilke grep som følger strategien, ikke panikken.",
+              "effect": 1,
+              "tags": ["strategy", "pressure", "leadership"],
+              "feedback": "Du gjør strategien ansvarlig og konkret under press."
+            },
+            {
+              "id": "B",
+              "label": "Varsle et tydelig kortsiktig grep for å vise handlekraft",
+              "reply": "Jeg varsler et tydelig kortsiktig grep for å vise handlekraft.",
+              "effect": -1,
+              "tags": ["panic", "result", "risk"],
+              "feedback": "Du roer presset nå, men gjør modellen lettere å forlate neste gang."
+            }
+          ]
+        },
+        {
+          "id": "sport_sports_job_strat_002",
+          "mail_type": "job",
+          "mail_family": "klubbstrategi_og_sportslig_retning",
+          "role_scope": "sport_sportsledelse",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "daglig_leder_morten",
+          "place_id": "sport_klubbkontor",
+          "subject": "Klubbprofilen peker én vei, rekrutteringen en annen",
+          "summary": "Klubben sier den vil være utviklende og energisk, men de siste spillerprofilene peker mot kortsiktig erfaring og lavere videresalgsverdi.",
+          "purpose": "Teste om spilleren ser at strategi må speiles i rekruttering, ikke bare språk.",
+          "stakes": "Lar du rekrutteringen fortsette, får treneren tryggere kort. Strammer du inn profilen, kan resultateffekten bli svakere på kort sikt.",
+          "situation": [
+            "På papiret vil klubben være modig, utviklende og framtidsrettet.",
+            "I praksis frister det med spillere som kan levere trygt nå, men som ikke passer utviklingsmodellen.",
+            "Du må avgjøre om profilen er et faktisk filter eller bare en formulering."
+          ],
+          "task_domain": "klubbprofil",
+          "competency": "strategisk_konsistens",
+          "pressure": "trygg_erfaring_vs_klubbmodell",
+          "choice_axis": "stramme_rekrutteringsprofil_vs_tillate_kortsiktig_trygghet",
+          "consequence_axis": "modellbygging_vs_umiddelbar_stabilitet",
+          "narrative_arc": "sportssjefen lærer at klubbidentitet blir sann i spillerlogistikken",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stram inn rekrutteringsprofilen og krev at nye navn passer modellen",
+              "reply": "Jeg strammer inn rekrutteringsprofilen og krever at nye navn passer modellen.",
+              "effect": 1,
+              "tags": ["recruitment", "strategy", "identity"],
+              "feedback": "Du gjør klubbprofilen til et faktisk styringsverktøy."
+            },
+            {
+              "id": "B",
+              "label": "Tillat noen tryggere kort for å stabilisere laget",
+              "reply": "Jeg tillater noen tryggere kort for å stabilisere laget.",
+              "effect": 0,
+              "tags": ["stability", "compromise"],
+              "feedback": "Det kan være fornuftig kort, men profilen blir mindre forpliktende."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trener_stab_og_evaluering",
+      "purpose": "Lære spilleren å skille støtte, evaluering, arbeidsro og nødvendig korreksjon i trenerrollen.",
+      "learning_focus": ["trenerstøtte", "evaluering", "stab"],
+      "mails": [
+        {
+          "id": "sport_sports_job_trener_001",
+          "mail_type": "job",
+          "mail_family": "trener_stab_og_evaluering",
+          "role_scope": "sport_sportsledelse",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "styreleder_karin",
+          "place_id": "sport_klubbkontor",
+          "subject": "Treneren trenger støtte, men ikke blankofullmakt",
+          "summary": "Resultatene er svake, men flere problemer skyldes stallbalanse og skader. Samtidig finnes det tegn på uklare roller og svak kampjustering.",
+          "purpose": "Etablere at trenerlojalitet og sportslig ansvar må holdes sammen.",
+          "stakes": "Støtter du treneren fullt, gir du arbeidsro. Evaluerer du tydelig, kan du skape uro, men også bedre styring.",
+          "situation": [
+            "Treneren er under press etter svake resultater.",
+            "Noe av kritikken er urettferdig fordi stallen har manglet viktige brikker.",
+            "Samtidig ser du repeterende problemer i rolleavklaringer og justeringer."
+          ],
+          "task_domain": "treneroppfølging",
+          "competency": "støtte_med_evaluering",
+          "pressure": "arbeidsro_vs_nødvendig_korreksjon",
+          "choice_axis": "støtte_og_evaluere_vs_gi_full_arbeidsro",
+          "consequence_axis": "ansvarlig_støtte_vs_uklar_lojalitet",
+          "narrative_arc": "sportssjefen lærer at trenerstøtte er sterkest når den er presis",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Støtt treneren offentlig, men avtal konkrete evalueringspunkter internt",
+              "reply": "Jeg støtter treneren offentlig, men avtaler konkrete evalueringspunkter internt.",
+              "effect": 1,
+              "tags": ["coach", "evaluation", "trust"],
+              "feedback": "Du gir arbeidsro uten å gi opp sportslig ansvar."
+            },
+            {
+              "id": "B",
+              "label": "Gi treneren full arbeidsro til skadesituasjonen er bedre",
+              "reply": "Jeg gir treneren full arbeidsro til skadesituasjonen er bedre.",
+              "effect": 0,
+              "tags": ["support", "delay"],
+              "feedback": "Det kan være rettferdig kort, men noen faglige problemer får vente."
+            }
+          ]
+        },
+        {
+          "id": "sport_sports_job_trener_002",
+          "mail_type": "job",
+          "mail_family": "trener_stab_og_evaluering",
+          "role_scope": "sport_sportsledelse",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "daglig_leder_morten",
+          "place_id": "sport_klubbkontor",
+          "subject": "Staben fungerer sosialt, men ikke faglig tydelig nok",
+          "summary": "Trenerteamet har god stemning, men ansvarsfordelingen mellom hovedtrener, assistent og analyse er uklar i kampforberedelsen.",
+          "purpose": "Teste om spilleren tør å korrigere en velfungerende sosial stab faglig.",
+          "stakes": "Lar du det være, bevarer du harmoni. Presiserer du roller, kan du skape friksjon, men bedre beslutningskraft.",
+          "situation": [
+            "Ingen i staben krangler.",
+            "Problemet er nesten motsatt: alle bidrar litt, men ingen eier de avgjørende punktene tydelig nok.",
+            "Kampforberedelsene blir hyggelige, men for diffuse."
+          ],
+          "task_domain": "stabstruktur",
+          "competency": "faglig_rolleavklaring",
+          "pressure": "harmoni_vs_tydelig_ansvar",
+          "choice_axis": "presisere_stabsroller_vs_bevare_flyt",
+          "consequence_axis": "beslutningskraft_vs_sosial_ro",
+          "narrative_arc": "sportssjefen lærer at god stemning ikke alltid er god struktur",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Presiser faglige ansvarsområder før neste kampforberedelse",
+              "reply": "Jeg presiserer faglige ansvarsområder før neste kampforberedelse.",
+              "effect": 1,
+              "tags": ["staff", "structure", "performance"],
+              "feedback": "Du gjør staben mer ansvarlig, selv om rommet blir litt mindre behagelig."
+            },
+            {
+              "id": "B",
+              "label": "La staben beholde flyten og evaluere etter neste kamp",
+              "reply": "Jeg lar staben beholde flyten og evaluerer etter neste kamp.",
+              "effect": -1,
+              "tags": ["delay", "harmony"],
+              "feedback": "Du bevarer harmonien, men uklarheten får en kamp til å virke i."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spillerlogistikk_rekruttering_og_okonomi",
+      "purpose": "Lære spilleren at rekruttering, kontrakter og budsjett er sportslig styring, ikke bare marked eller økonomi.",
+      "learning_focus": ["spillerlogistikk", "rekruttering", "økonomi"],
+      "mails": [
+        {
+          "id": "sport_sports_job_log_001",
+          "mail_type": "job",
+          "mail_family": "spillerlogistikk_rekruttering_og_okonomi",
+          "role_scope": "sport_sportsledelse",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "speidersjef_jonas",
+          "place_id": "sport_klubbkontor",
+          "subject": "Signeringen løser én posisjon og blokkerer to utviklingsspor",
+          "summary": "En erfaren spiller kan heve laget raskt, men vil ta minutter fra to unge spillere klubben egentlig har definert som satsingsspillere.",
+          "purpose": "Etablere spillerkjøp som strukturelt valg, ikke bare forsterkning.",
+          "stakes": "Signer du, hjelper du treneren nå. Sier du nei, beskytter du utviklingsmodellen og tar sportslig risiko.",
+          "situation": [
+            "Spilleren er god, tilgjengelig og passer et akutt behov.",
+            "Samtidig står to unge spillere klare akkurat i samme rom i stallen.",
+            "Dette er ikke bare et spørsmål om hvem som er best, men om hvilken klubb dere faktisk bygger."
+          ],
+          "task_domain": "rekrutteringsvalg",
+          "competency": "spillerlogistisk_helhetsblikk",
+          "pressure": "kort_effekt_vs_lang_utviklingsvei",
+          "choice_axis": "beskytte_utviklingsspor_vs_signere_erfaring",
+          "consequence_axis": "klubbmodell_vs_umiddelbar_forsterkning",
+          "narrative_arc": "sportssjefen lærer at en signering alltid endrer mer enn elleveren",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avstå signeringen og lage tydelig utviklingsplan for de unge spillerne",
+              "reply": "Jeg avstår signeringen og lager tydelig utviklingsplan for de unge spillerne.",
+              "effect": 1,
+              "tags": ["recruitment", "academy", "strategy"],
+              "feedback": "Du tar risiko nå for å gjøre klubbmodellen virkelig."
+            },
+            {
+              "id": "B",
+              "label": "Signere den erfarne spilleren og låne ut én ung spiller",
+              "reply": "Jeg signerer den erfarne spilleren og låner ut én ung spiller.",
+              "effect": 0,
+              "tags": ["transfer", "stability"],
+              "feedback": "Du løser presset nå, men akademiveien blir litt mindre direkte."
+            }
+          ]
+        },
+        {
+          "id": "sport_sports_job_log_002",
+          "mail_type": "job",
+          "mail_family": "spillerlogistikk_rekruttering_og_okonomi",
+          "role_scope": "sport_sportsledelse",
+          "phase": "advanced",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "okonomiansvarlig_sigrid",
+          "place_id": "sport_klubbkontor",
+          "subject": "Lønnsbudsjettet tåler kjøpet, men ikke signaleffekten",
+          "summary": "En toppspiller kan hentes innenfor budsjett, men lønnsnivået vil forskyve forventningene i resten av garderoben.",
+          "purpose": "Teste om spilleren ser økonomi som kultur- og styringssignal, ikke bare ramme.",
+          "stakes": "Henter du spilleren, øker kvaliteten. Lar du være, beskytter du lønnsstruktur og garderobebalanse.",
+          "situation": [
+            "Regnearket sier ja, akkurat innenfor rammen.",
+            "Men lønna vil bli ny referanse for agentene, spillerne og neste forhandling.",
+            "Noen kostnader vises ikke før de blir kultur."
+          ],
+          "task_domain": "lønnsstruktur",
+          "competency": "økonomisk_sportsstyring",
+          "pressure": "toppkvalitet_vs_lønnsbalanse",
+          "choice_axis": "beskytte_lønnsstruktur_vs_ta_markedsmulighet",
+          "consequence_axis": "langsiktig_bærekraft_vs_kortsiktig_kvalitet",
+          "narrative_arc": "sportssjefen lærer at budsjett er sportslig kultur skrevet i tall",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avstå eller reforhandle for å beskytte lønnsstrukturen",
+              "reply": "Jeg avstår eller reforhandler for å beskytte lønnsstrukturen.",
+              "effect": 1,
+              "tags": ["budget", "wage_structure", "culture"],
+              "feedback": "Du sier nei til kvalitet som kan koste mer enn kontrakten viser."
+            },
+            {
+              "id": "B",
+              "label": "Ta muligheten fordi spilleren hever laget umiddelbart",
+              "reply": "Jeg tar muligheten fordi spilleren hever laget umiddelbart.",
+              "effect": -1,
+              "tags": ["market", "quality", "risk"],
+              "feedback": "Du får kvalitet inn, men flytter hele klubbens forhandlingsgulv."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "akademi_prestasjonskultur_og_bro",
+      "purpose": "Lære spilleren at akademi og prestasjonskultur bare virker hvis det finnes en reell bro fra utvikling til seniornivå.",
+      "learning_focus": ["akademi", "prestasjonskultur", "bro til senior"],
+      "mails": [
+        {
+          "id": "sport_sports_job_akad_001",
+          "mail_type": "job",
+          "mail_family": "akademi_prestasjonskultur_og_bro",
+          "role_scope": "sport_sportsledelse",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "akademileder_amira",
+          "place_id": "sport_klubbkontor",
+          "subject": "Akademiet leverer spillere, men seniorlaget leverer ikke plass",
+          "summary": "Flere unge spillere er klare for gradvis matching, men seniorlaget fyller benken med trygge alternativer hver uke.",
+          "purpose": "Etablere at akademistrategi krever faktisk vei inn i seniorhverdagen.",
+          "stakes": "Presser du fram akademiplass, øker risikoen i kamp. Venter du, kan utviklingsløftet bli tomt.",
+          "situation": [
+            "Akademiet har gjort jobben sin.",
+            "Spillerne er ikke ferdige, men de er klare for kontrollert eksponering.",
+            "Seniorlaget sier de tror på dem, men velger tryggere alternativer når poengene står på spill."
+          ],
+          "task_domain": "akademibro",
+          "competency": "utviklingsvei_til_senior",
+          "pressure": "talentplass_vs_sikkerhet",
+          "choice_axis": "lage_matchingsplan_vs_utsette_talentbruk",
+          "consequence_axis": "reell_akademistrategi_vs_trygg_seniorhverdag",
+          "narrative_arc": "sportssjefen lærer at akademiet bare er strategi hvis døra faktisk åpnes",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage forpliktende matchingsplan for utvalgte akademispillere",
+              "reply": "Jeg lager forpliktende matchingsplan for utvalgte akademispillere.",
+              "effect": 1,
+              "tags": ["academy", "pathway", "development"],
+              "feedback": "Du gjør akademiveien virkelig nok til å koste noe."
+            },
+            {
+              "id": "B",
+              "label": "Utsette talentbruken til laget er tryggere tabellmessig",
+              "reply": "Jeg utsetter talentbruken til laget er tryggere tabellmessig.",
+              "effect": -1,
+              "tags": ["safety", "delay"],
+              "feedback": "Det høres forsvarlig ut, men døra åpnes ofte først når behovet er borte."
+            }
+          ]
+        },
+        {
+          "id": "sport_sports_job_akad_002",
+          "mail_type": "job",
+          "mail_family": "akademi_prestasjonskultur_og_bro",
+          "role_scope": "sport_sportsledelse",
+          "phase": "mastery",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "styreleder_karin",
+          "place_id": "sport_klubbkontor",
+          "subject": "Sluttvurderingen må vise hvilken klubb dere faktisk bygger",
+          "summary": "Styret vil ha status på sportsplanen: trenerprofil, spillerlogistikk, økonomi, akademi og resultater må forklares som én helhet.",
+          "purpose": "Avrunde rollen med moden sportslig ledelse: strategi, risiko, kultur og prestasjon i samme bilde.",
+          "stakes": "Skriver du optimistisk, bevarer du ro. Skriver du presist, må styret eie både risikoen og retningen.",
+          "situation": [
+            "Noen indikatorer peker riktig vei, andre peker mot kortsiktig risiko.",
+            "Treneren trenger tydeligere mandat, akademiet trenger bro, og økonomien setter grenser.",
+            "Du må forklare ikke bare hvordan det går, men hvilken klubb valgene skaper."
+          ],
+          "task_domain": "sportsplan_status",
+          "competency": "helhetlig_sportslig_ledelse",
+          "pressure": "optimistisk_status_vs_presis_strategisk_sannhet",
+          "choice_axis": "vise_helhet_og_risiko_vs_skrive_trygg_status",
+          "consequence_axis": "ansvarlig_styring_vs_komfortabel_ro",
+          "narrative_arc": "sportssjefen lærer at god sportslig ledelse gjør klubbens retning synlig før alle er enige",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv status som viser strategi, risiko, økonomi, trenerprofil og akademibro samlet",
+              "reply": "Jeg skriver status som viser strategi, risiko, økonomi, trenerprofil og akademibro samlet.",
+              "effect": 1,
+              "tags": ["mastery", "strategy", "board"],
+              "feedback": "Du gjør sportsplanen styrbar fordi du viser både retning og pris."
+            },
+            {
+              "id": "B",
+              "label": "Skriv status med hovedvekt på positive utviklingstrekk og neste tiltak",
+              "reply": "Jeg skriver status med hovedvekt på positive utviklingstrekk og neste tiltak.",
+              "effect": 0,
+              "tags": ["status", "optimism"],
+              "feedback": "Du bevarer roen, men styringen blir mindre presis."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
