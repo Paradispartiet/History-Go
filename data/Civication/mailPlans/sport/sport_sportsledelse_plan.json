@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "sport_sportsledelse_v1",
+  "category": "sport",
+  "role_scope": "sport_sportsledelse",
+  "description": "Dramaturgisk plan for Sportssjef: fra klubbstrategi og trenerstøtte til spillerlogistikk, økonomi, akademi og langsiktig prestasjonskultur.",
+  "arc": {
+    "from": "Du overtar sportslig ansvar i en klubb som vil være langsiktig, men hele tiden blir dratt mot raske svar av resultater, marked og uro.",
+    "to": "Du forstår at sportslig ledelse handler om å gjøre strategi virkelig gjennom trenerprofil, spillerlogistikk, økonomiske prioriteringer, akademibro og en prestasjonskultur som tåler press.",
+    "core_questions": [
+      "Hva betyr klubbstrategien når laget taper?",
+      "Når skal treneren støttes, korrigeres eller byttes?",
+      "Når løser en signering et problem, og når skaper den et større?",
+      "Hvordan beskytter du akademiveien når markedet frister?",
+      "Hvordan forklarer du sportslig sannhet til styre, trener, spillere og supportere?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "sport_sportsledelse_panikkstyring_loop", "evening_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere at klubbstrategi må styre konkrete valg før resultatpresset kommer.",
+      "allowed_families": ["klubbstrategi_og_sportslig_retning"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren møte første trener-/stabssituasjon der støtte og evaluering må balanseres.",
+      "allowed_families": ["trener_stab_og_evaluering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere spillerlogistikk der markedsløsning frister, men kan svekke modellen.",
+      "allowed_families": ["spillerlogistikk_rekruttering_og_okonomi"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Vise at akademi og prestasjonskultur må ha reell bro til seniornivå.",
+      "allowed_families": ["akademi_prestasjonskultur_og_bro"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste om spilleren holder sportslig retning når styre og supportere krever kortsiktige grep.",
+      "allowed_families": ["klubbstrategi_og_sportslig_retning", "spillerlogistikk_rekruttering_og_okonomi"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "La trenerens situasjon kreve presis vurdering av mandat, stall, metode og resultater.",
+      "allowed_families": ["trener_stab_og_evaluering"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La akademi, økonomi og marked kollidere i et valg som viser klubbens egentlige modell.",
+      "allowed_families": ["akademi_prestasjonskultur_og_bro", "spillerlogistikk_rekruttering_og_okonomi"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Avrunde rollen: moden sportslig ledelse forklarer strategi, risiko, trenerprofil, spillerlogistikk og kultur i samme bilde.",
+      "allowed_families": ["klubbstrategi_og_sportslig_retning", "trener_stab_og_evaluering", "akademi_prestasjonskultur_og_bro"],
+      "fallback_types": ["job"]
+    }
+  ]
+}
