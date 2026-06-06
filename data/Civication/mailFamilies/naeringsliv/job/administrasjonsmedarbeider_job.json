@@ -739,6 +739,742 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+      "description": "Andre uke som administrasjonsmedarbeider: midlertidige bilag, eierløse saker, feilbrukte maler og beslutningsnotater viser forskjellen mellom god orden, passiv videresending, overkontroll og prosessforbedring.",
+      "learning_focus": [
+        "eierskap",
+        "frister",
+        "malforbedring",
+        "beslutningsnotat",
+        "virksomhetens hukommelse"
+      ],
+      "mails": [
+        {
+          "id": "job_administrasjonsmedarbeider_week2_temporary_became_permanent",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 86,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det midlertidige som ble permanent",
+          "summary": "Midlertidige konteringer mangler eier, frist og neste steg.",
+          "situation": [
+            "Fra Ingrid, kontorleder: Se på listen over midlertidige konteringer fra forrige uke. Flere bilag har kommentaren «avklares senere», men mangler eier eller frist.",
+            "Fra Marius, økonomi: Midlertidig kontering er greit. Problemet er når midlertidig blir en parkeringsplass. Eier og frist gjør oss bedre stilt.",
+            "Fra Elin, drift: Noen bilag er nok våre, men vi trenger konkret liste. Når alt sendes bredt til drift, ender det hos alle og ingen.",
+            "Fra System: Midlertidige bilag: 7. Mangler eier: 4. Mangler frist: 5. Kommentar uten neste steg: 3. Eldste sak: 12 dager. Risiko: midlertidige avklaringer blir permanent uklarhet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi hver midlertidige sak eier, frist og neste steg",
+              "reply": "Jeg lager oversikt med bilag, sannsynlig eier, ansvarlig avklarer, frist og konkret neste steg.",
+              "effects": {
+                "traceability": 4,
+                "documentation_quality": 4,
+                "process_quality": 3,
+                "trust_economy": 3,
+                "future_risk": -2,
+                "stress": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_temporary_with_owner"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_temporary_with_owner",
+              "feedback": "Bra. Du gjorde ikke bare listen ryddigere. Du gjorde den levende igjen. Nå kan sakene faktisk bevege seg."
+            },
+            {
+              "id": "B",
+              "label": "Sende samlet liste til drift og økonomi",
+              "reply": "Jeg sender listen til drift og økonomi og ber dem gi beskjed om hvilke bilag de kjenner igjen.",
+              "effects": {
+                "deadline_pressure": -1,
+                "stress": -1,
+                "traceability": 1,
+                "stagnation": 2,
+                "future_risk": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_grouped_followup"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_grouped_followup",
+              "feedback": "Vi kan se på det. Men når listen går bredt, blir ansvaret også bredt. Det er ofte det samme som uklart."
+            },
+            {
+              "id": "C",
+              "label": "Lukke de små bilagene for å rydde listen",
+              "reply": "Jeg lukker de minste bilagene med kommentar om sannsynlig avdeling for å redusere etterslepet.",
+              "effects": {
+                "deadline_met": 2,
+                "process_quality": -2,
+                "traceability": -3,
+                "future_risk": 3,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_closes_unclear_small_items"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_closes_unclear_small_items",
+              "feedback": "Listen ser bedre ut. Men hvis vi lukker uklare bilag fordi de er små, lærer systemet at små feil ikke trenger forklaring. Det blir ofte dyrere senere."
+            }
+          ]
+        },
+        {
+          "id": "job_administrasjonsmedarbeider_week2_case_without_owner",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 85,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Når en sak mangler eier",
+          "summary": "En leverandørsak har mange delvise svar, men ingen samlet prosesseier.",
+          "situation": [
+            "Fra Ingrid: En leverandørhenvendelse har gått mellom tre personer. Alle har svart litt, men ingen eier saken. Rydd i tråden og foreslå hvem som bør eie saken.",
+            "Fra Marius: Økonomi håndterer betalingsgrunnlag, men drift må bekrefte hva som ble levert. Jeg kan ikke godkjenne betaling uten driftsbekreftelse.",
+            "Fra Elin: Drift kan bekrefte leveransen, men ikke avgjøre betaling. Leverandøren får svar fra alle, men ingen helhetlig beskjed.",
+            "Fra System: Deler av saken er hva som ble levert, hva som kan betales, hvem som godkjenner og hvem som gir samlet svar. Risiko: mange delvise svar skaper mer uklarhet enn stillhet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Foreslå én prosesseier og delansvar per område",
+              "reply": "Jeg foreslår at Ingrid eier saken samlet, drift bekrefter leveransen, økonomi vurderer betaling, og én samlet beskjed sendes til leverandør.",
+              "effects": {
+                "clarity": 4,
+                "process_quality": 4,
+                "trust_manager": 3,
+                "trust_economy": 2,
+                "trust_drift": 2,
+                "stress": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_assigns_case_owner"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_assigns_case_owner",
+              "feedback": "Godt forslag. Du skiller mellom fagansvar og prosesseierskap. Det er ofte der rotet ligger."
+            },
+            {
+              "id": "B",
+              "label": "Videresende saken til Ingrid med kort oppsummering",
+              "reply": "Jeg sender tråden til Ingrid og skriver at saken trenger beslutning.",
+              "effects": {
+                "stress": -1,
+                "clarity": 1,
+                "stagnation": 1,
+                "future_risk": 1,
+                "trust_manager": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_escalates_without_structure"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_escalates_without_structure",
+              "feedback": "Greit at den løftes. Men neste gang: legg gjerne ved forslag til eier og delansvar. Det sparer én ekstra runde."
+            },
+            {
+              "id": "C",
+              "label": "Svare leverandøren at saken undersøkes",
+              "reply": "Jeg svarer leverandøren at saken undersøkes internt og at de får svar når avklaringen er ferdig.",
+              "effects": {
+                "deadline_pressure": -1,
+                "trust_supplier": 1,
+                "stagnation": 2,
+                "process_quality": -1,
+                "future_risk": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_external_delay"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_external_delay",
+              "feedback": "Det kjøper tid. Men uten intern eier kjøper vi mest en ny påminnelse fra leverandøren om to dager."
+            }
+          ]
+        },
+        {
+          "id": "job_administrasjonsmedarbeider_week2_template_everyone_misuses",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 84,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Malen som alle bruker feil",
+          "summary": "Refusjonsmalen inviterer til feil når feltet ber om enhet, men økonomi trenger koststed.",
+          "situation": [
+            "Fra Ingrid: Refusjoner kommer fortsatt inn med feil felt utfylt, selv etter at riktig mal ble sendt ut. Undersøk om feilen skyldes gammel mal, uklart felt, manglende hjelpetekst, gammel vane eller manglende lesing.",
+            "Fra Marius: Feilen gjelder særlig koststed. Folk fyller inn avdeling, men vi trenger koststed. Det gir manuell korrigering.",
+            "Fra Elin: Folk skjønner ikke forskjellen på avdeling og koststed. Hvis feltet bare sier «enhet», kommer ingen til å vite det. Det er dårlig felt, ikke vond vilje.",
+            "Fra System: Felt: enhet. Forventet: koststed. Faktisk utfylt: avdeling. Feilrate siste uke: 38 %. Gammel mal er fortsatt lagret lokalt hos noen. Risiko: brukerfeil gjentas fordi malen inviterer til feil."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Endre felttekst, hjelpetekst og arkivert mal",
+              "reply": "Jeg foreslår å endre feltet til “koststed”, legge inn eksempel/hjelpetekst og markere gammel mal som utgått i arkivet.",
+              "effects": {
+                "process_quality": 5,
+                "documentation_quality": 4,
+                "trust_economy": 3,
+                "trust_drift": 3,
+                "future_risk": -3,
+                "stress": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_template_root_fix"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_template_root_fix",
+              "feedback": "Dette er riktig. Du retter ikke bare feil bruk. Du retter invitasjonen til feil bruk."
+            },
+            {
+              "id": "B",
+              "label": "Sende ny instruksjon til alle",
+              "reply": "Jeg sender en tydelig instruksjon om at “enhet” betyr koststed og ber alle bruke riktig mal.",
+              "effects": {
+                "deadline_met": 1,
+                "process_quality": 0,
+                "future_risk": 2,
+                "documentation_quality": 1,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_template_instruction_only"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_template_instruction_only",
+              "feedback": "Det hjelper kanskje litt. Men hvis feltet fortsatt sier noe annet enn det vi trenger, kommer instruksen til å tape mot skjemaet."
+            },
+            {
+              "id": "C",
+              "label": "Be ledere minne folk på riktig utfylling",
+              "reply": "Jeg ber lederne minne sine team på korrekt utfylling.",
+              "effects": {
+                "authority": 1,
+                "trust_drift": -1,
+                "future_risk": 2,
+                "process_quality": -1,
+                "stagnation": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_template_blames_users"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_template_blames_users",
+              "feedback": "Ledere kan sikkert minne folk. Men når 38 prosent gjør samme feil, er det litt modig å si at problemet bare er folk."
+            }
+          ]
+        },
+        {
+          "id": "job_administrasjonsmedarbeider_week2_documentation_hides_point",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 83,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Dokumentasjonen som skjuler poenget",
+          "summary": "Et grundig saksnotat må forkortes så hovedpoeng, anbefaling og eier blir synlig.",
+          "situation": [
+            "Fra Ingrid: Saksnotatet om refusjonsmalen og bilagene er grundig, kanskje for grundig. Lag en kortere versjon med bakgrunn, anbefalt endring, konsekvens hvis vi ikke gjør noe og hvem som eier neste steg.",
+            "Fra Marius: Økonomi trenger egentlig bare å vite hva som endres og hvordan det påvirker bilagsflyten. Når alt står i samme tyngde, blir ingenting viktigst.",
+            "Fra Elin: Drift trenger konkret hva folk skal gjøre annerledes, ikke hele historien hver gang.",
+            "Fra System: Langt notat har høy sporbarhet, lav handlingsklarhet, uklart eierskap og hovedpoeng som er vanskelig å finne. Risiko: dokumentasjonen blir korrekt, men lite brukt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage kort beslutningsnotat med tydelig anbefaling",
+              "reply": "Jeg skriver en kort versjon med bakgrunn, anbefalt endring, konsekvens ved passivitet og eier for neste steg.",
+              "effects": {
+                "documentation_quality": 4,
+                "clarity": 5,
+                "process_quality": 3,
+                "trust_manager": 3,
+                "decision_quality": 3,
+                "stress": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_clear_decision_note"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_clear_decision_note",
+              "feedback": "Dette ble mye bedre. Nå kan folk handle på dokumentasjonen, ikke bare beundre at den finnes."
+            },
+            {
+              "id": "B",
+              "label": "Beholde langt notat og legge sammendrag øverst",
+              "reply": "Jeg legger et kort sammendrag øverst, men beholder hele notatet som vedlegg.",
+              "effects": {
+                "traceability": 3,
+                "clarity": 2,
+                "documentation_quality": 3,
+                "stress": 0,
+                "decision_quality": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_summary_plus_detail"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_summary_plus_detail",
+              "feedback": "Dette fungerer. Kort nok til å brukes, langt nok til å etterprøves. Det er ofte balansen."
+            },
+            {
+              "id": "C",
+              "label": "Kutte kraftig uten å bevare spor",
+              "reply": "Jeg lager en veldig kort versjon og fjerner det meste av bakgrunn og vurdering.",
+              "effects": {
+                "clarity": 2,
+                "traceability": -3,
+                "future_risk": 2,
+                "documentation_quality": -2,
+                "stress": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_too_short_note"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_too_short_note",
+              "feedback": "Dette er lett å lese. Men nå mangler litt av hvorfor. Hvis saken kommer tilbake senere, må vi rekonstruere vurderingen."
+            }
+          ]
+        },
+        {
+          "id": "job_administrasjonsmedarbeider_week2_business_memory_second_week",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 82,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Andre uke med virksomhetens hukommelse",
+          "summary": "Fredagsoppsummeringen skiller mellom håndtert, løst og forbedret.",
+          "situation": [
+            "Fra Ingrid: Send en kort oppsummering av andre uke: midlertidige bilag med eier og frist, leverandørsakens eierskap, refusjonsmalen, kortere dokumentasjon og oppfølging neste uke. Skill sak håndtert, sak løst og sak forbedret.",
+            "Fra Marius: Skriv at midlertidige konteringer trenger eier og frist, og at refusjonsmalen må endres i selve feltet, ikke bare forklares bedre i en mail.",
+            "Fra Elin: Det hjelper at du skilte mellom folk som gjør feil og skjema som inviterer til feil. Hvis alt bare blir brukerfeil, slutter folk å si fra om dårlige systemer.",
+            "Fra System: Uke 2-signaler: midlertidige konteringer trenger eier/frister, leverandørsak trenger prosesseier, refusjonsmal brukes feil, dokumentasjon må være kortere og private relasjoner påvirkes av oppfølging/status/referat-språk."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive tydelig: håndtert, løst, forbedret",
+              "reply": "Jeg oppsummerer hvilke saker som er håndtert, hvilke som faktisk er løst, og hvilke som forbedrer systemet fremover.",
+              "effects": {
+                "documentation_quality": 6,
+                "traceability": 5,
+                "process_quality": 5,
+                "clarity": 5,
+                "trust_manager": 4,
+                "future_risk": -4
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_memory_system_builder"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_memory_system_builder",
+              "feedback": "Dette er veldig bra. Du skiller mellom å rydde en sak og å gjøre systemet bedre. Det er akkurat den forskjellen vi trenger. God helg."
+            },
+            {
+              "id": "B",
+              "label": "Skrive at alt er under kontroll",
+              "reply": "Jeg skriver at bilag, leverandørsak, mal og dokumentasjon er fulgt opp og at åpne punkter tas neste uke.",
+              "effects": {
+                "manager_pressure": -1,
+                "stress": -1,
+                "stagnation": 4,
+                "future_risk": 3,
+                "documentation_quality": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_smooth_admin_control"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_smooth_admin_control",
+              "feedback": "“Fulgt opp” kan bety mye. Det kan også bety at saken har fått ny dato uten å bli klokere."
+            },
+            {
+              "id": "C",
+              "label": "Lage lang komplett statusrapport",
+              "reply": "Jeg skriver en full rapport med alle detaljer, historikk, beslutninger, åpne punkter og bakgrunn.",
+              "effects": {
+                "traceability": 4,
+                "documentation_quality": 3,
+                "stress": 3,
+                "clarity": -2,
+                "decision_quality": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_overdocumented_status"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_overdocumented_status",
+              "feedback": "Du har fått med alt. Men vi trenger at det viktigste står tydeligst. Ellers blir dokumentasjonen en ny sak."
+            },
+            {
+              "id": "D",
+              "label": "Løfte alt uavklart til Ingrid",
+              "reply": "Jeg skriver at flere punkter fortsatt krever lederavklaring og sender dem samlet til Ingrid.",
+              "effects": {
+                "stress": -1,
+                "manager_pressure": 2,
+                "stagnation": 2,
+                "trust_manager": -1,
+                "clarity": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "administrasjonsmedarbeider_week2_escalates_open_items"
+                ]
+              },
+              "triggers_on_choice": "administrasjonsmedarbeider_week2_escalates_open_items",
+              "feedback": "Greit å løfte det som faktisk krever beslutning. Men sorter gjerne hva som trenger meg, og hva som bare trenger eier. Det er ikke alltid det samme."
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "administrasjonsmedarbeider_week2_temporary_with_owner",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Det midlertidige som ble permanent",
+          "summary": "Bra. Du gjorde ikke bare listen ryddigere. Du gjorde den levende igjen. Nå kan sakene faktisk bevege seg.",
+          "situation": [
+            "Bra. Du gjorde ikke bare listen ryddigere. Du gjorde den levende igjen. Nå kan sakene faktisk bevege seg."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_grouped_followup",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Det midlertidige som ble permanent",
+          "summary": "Vi kan se på det. Men når listen går bredt, blir ansvaret også bredt. Det er ofte det samme som uklart.",
+          "situation": [
+            "Vi kan se på det. Men når listen går bredt, blir ansvaret også bredt. Det er ofte det samme som uklart."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_closes_unclear_small_items",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Det midlertidige som ble permanent",
+          "summary": "Listen ser bedre ut. Men hvis vi lukker uklare bilag fordi de er små, lærer systemet at små feil ikke trenger forklaring. Det blir ofte dyrere senere.",
+          "situation": [
+            "Listen ser bedre ut. Men hvis vi lukker uklare bilag fordi de er små, lærer systemet at små feil ikke trenger forklaring. Det blir ofte dyrere senere."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_assigns_case_owner",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Når en sak mangler eier",
+          "summary": "Godt forslag. Du skiller mellom fagansvar og prosesseierskap. Det er ofte der rotet ligger.",
+          "situation": [
+            "Godt forslag. Du skiller mellom fagansvar og prosesseierskap. Det er ofte der rotet ligger."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_escalates_without_structure",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Når en sak mangler eier",
+          "summary": "Greit at den løftes. Men neste gang: legg gjerne ved forslag til eier og delansvar. Det sparer én ekstra runde.",
+          "situation": [
+            "Greit at den løftes. Men neste gang: legg gjerne ved forslag til eier og delansvar. Det sparer én ekstra runde."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_external_delay",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Når en sak mangler eier",
+          "summary": "Det kjøper tid. Men uten intern eier kjøper vi mest en ny påminnelse fra leverandøren om to dager.",
+          "situation": [
+            "Det kjøper tid. Men uten intern eier kjøper vi mest en ny påminnelse fra leverandøren om to dager."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_template_root_fix",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Malen som alle bruker feil",
+          "summary": "Dette er riktig. Du retter ikke bare feil bruk. Du retter invitasjonen til feil bruk.",
+          "situation": [
+            "Dette er riktig. Du retter ikke bare feil bruk. Du retter invitasjonen til feil bruk."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_template_instruction_only",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Malen som alle bruker feil",
+          "summary": "Det hjelper kanskje litt. Men hvis feltet fortsatt sier noe annet enn det vi trenger, kommer instruksen til å tape mot skjemaet.",
+          "situation": [
+            "Det hjelper kanskje litt. Men hvis feltet fortsatt sier noe annet enn det vi trenger, kommer instruksen til å tape mot skjemaet."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_template_blames_users",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Malen som alle bruker feil",
+          "summary": "Ledere kan sikkert minne folk. Men når 38 prosent gjør samme feil, er det litt modig å si at problemet bare er folk.",
+          "situation": [
+            "Ledere kan sikkert minne folk. Men når 38 prosent gjør samme feil, er det litt modig å si at problemet bare er folk."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_clear_decision_note",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Dokumentasjonen som skjuler poenget",
+          "summary": "Dette ble mye bedre. Nå kan folk handle på dokumentasjonen, ikke bare beundre at den finnes.",
+          "situation": [
+            "Dette ble mye bedre. Nå kan folk handle på dokumentasjonen, ikke bare beundre at den finnes."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_summary_plus_detail",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Dokumentasjonen som skjuler poenget",
+          "summary": "Dette fungerer. Kort nok til å brukes, langt nok til å etterprøves. Det er ofte balansen.",
+          "situation": [
+            "Dette fungerer. Kort nok til å brukes, langt nok til å etterprøves. Det er ofte balansen."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_too_short_note",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Dokumentasjonen som skjuler poenget",
+          "summary": "Dette er lett å lese. Men nå mangler litt av hvorfor. Hvis saken kommer tilbake senere, må vi rekonstruere vurderingen.",
+          "situation": [
+            "Dette er lett å lese. Men nå mangler litt av hvorfor. Hvis saken kommer tilbake senere, må vi rekonstruere vurderingen."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_memory_system_builder",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke med virksomhetens hukommelse",
+          "summary": "Dette er veldig bra. Du skiller mellom å rydde en sak og å gjøre systemet bedre. Det er akkurat den forskjellen vi trenger. God helg.",
+          "situation": [
+            "Dette er veldig bra. Du skiller mellom å rydde en sak og å gjøre systemet bedre. Det er akkurat den forskjellen vi trenger. God helg."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_smooth_admin_control",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke med virksomhetens hukommelse",
+          "summary": "“Fulgt opp” kan bety mye. Det kan også bety at saken har fått ny dato uten å bli klokere.",
+          "situation": [
+            "“Fulgt opp” kan bety mye. Det kan også bety at saken har fått ny dato uten å bli klokere."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_overdocumented_status",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke med virksomhetens hukommelse",
+          "summary": "Du har fått med alt. Men vi trenger at det viktigste står tydeligst. Ellers blir dokumentasjonen en ny sak.",
+          "situation": [
+            "Du har fått med alt. Men vi trenger at det viktigste står tydeligst. Ellers blir dokumentasjonen en ny sak."
+          ]
+        },
+        {
+          "id": "administrasjonsmedarbeider_week2_escalates_open_items",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_administrasjonsmedarbeider_job",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Konsekvens: Andre uke med virksomhetens hukommelse",
+          "summary": "Greit å løfte det som faktisk krever beslutning. Men sorter gjerne hva som trenger meg, og hva som bare trenger eier. Det er ikke alltid det samme.",
+          "situation": [
+            "Greit å løfte det som faktisk krever beslutning. Men sorter gjerne hva som trenger meg, og hva som bare trenger eier. Det er ikke alltid det samme."
+          ]
+        }
+      ],
+      "week_outcomes": [
+        {
+          "id": "memory_system_builder_week2",
+          "condition": "Spilleren gir midlertidige saker eier/frist, fordeler ansvar i eierløse saker, retter malens rotårsak, forkorter dokumentasjon til beslutningsnotat og skiller håndtert/løst/forbedret.",
+          "effects": {
+            "documentation_quality": 8,
+            "traceability": 7,
+            "process_quality": 7,
+            "clarity": 6,
+            "trust_manager": 5,
+            "trust_economy": 4,
+            "future_risk": -5
+          },
+          "narrative": "Du bygger ikke bare arkiv. Du bygger evnen til å forstå hva som skjedde, hvem som eide det, og hvordan det kan gjøres bedre neste gang."
+        },
+        {
+          "id": "passive_forwarder_week2",
+          "condition": "Spilleren sender lister bredt, venter på andre, svarer eksternt at saken undersøkes, og løfter uavklarte punkter uten struktur.",
+          "effects": {
+            "stress": -3,
+            "stagnation": 6,
+            "future_risk": 5,
+            "traceability": -3,
+            "trust_manager": -2,
+            "clarity": -2
+          },
+          "narrative": "Du holder saker i bevegelse, men ikke nødvendigvis fremover. Informasjon flytter seg. Ansvar gjør det ikke."
+        },
+        {
+          "id": "system_improver_week2",
+          "condition": "Spilleren retter felt, maler, søkbarhet, hjelpetekst og prosesslogikk i stedet for å bare sende nye instrukser.",
+          "effects": {
+            "process_quality": 8,
+            "documentation_quality": 5,
+            "trust_drift": 5,
+            "trust_economy": 5,
+            "future_risk": -6,
+            "clarity": 5
+          },
+          "narrative": "Du gjør systemet lettere å bruke riktig. Det er usynlig arbeid helt til alle slipper å gjøre samme feil igjen."
+        },
+        {
+          "id": "overdocumenter_week2",
+          "condition": "Spilleren lager for lange notater, fullstendige statusrapporter og dokumentasjon som skjuler hovedpoenget.",
+          "effects": {
+            "traceability": 5,
+            "documentation_quality": 4,
+            "stress": 5,
+            "clarity": -4,
+            "decision_quality": -3,
+            "process_quality": -1
+          },
+          "narrative": "Du husker alt, men gjør det vanskelig å finne det som betyr mest. Dokumentasjon skal være sti, ikke skog."
+        },
+        {
+          "id": "smooth_admin_control_week2",
+          "condition": "Spilleren skriver at alt er fulgt opp, lukker småting for å rydde, og lar midlertidige løsninger fremstå mer ferdige enn de er.",
+          "effects": {
+            "manager_pressure": -3,
+            "stress": -2,
+            "stagnation": 5,
+            "future_risk": 5,
+            "documentation_quality": -3,
+            "traceability": -2
+          },
+          "narrative": "Det ser ryddig ut. Det er ikke det samme som at virksomheten faktisk husker bedre."
+        }
+      ]
+    },
+    {
       "id": "bilag_og_spor",
       "purpose": "Lære spilleren at bilag, fakturaer og dokumentasjon er spor etter faktiske valg, ikke bare papir.",
       "learning_focus": [
