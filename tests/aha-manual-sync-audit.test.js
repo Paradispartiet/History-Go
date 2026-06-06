@@ -207,6 +207,121 @@ async function executeWithAudit(runInput, writeTarget, auditOverride) {
   assert.strictEqual(sanitizedJson.includes('warning-secret'), false, 'secret-like warning text is redacted');
   assert.strictEqual(sanitizedJson.includes('error-secret'), false, 'secret-like error text is redacted');
 
+  const detailsInput = {
+    id: 'historygo_manual_sync_audit_run-123_outcome',
+    created_at: '2026-06-06T10:00:02.000Z',
+    payload: {
+      ...outcomeEntry,
+      auditStatus: 'success',
+      message: 'Five items synchronized.',
+      payload: { forbidden: 'full item data' },
+      fullPayload: { forbidden: true },
+      token: 'secret-token',
+      password: 'secret-password',
+      connectionString: 'postgres://secret',
+      warnings: ['safe warning', 'token=warning-secret'],
+      errors: ['safe error', 'password=error-secret']
+    }
+  };
+  const details = Dashboard.buildAhaManualSyncHistoryRunDetails(detailsInput);
+  assert.strictEqual(details.runId, successRun.runId);
+  assert.strictEqual(details.recordedAt, outcomeEntry.recordedAt);
+  assert.strictEqual(details.target, 'aha_imports');
+  assert.strictEqual(details.resultStatus, 'success');
+  assert.strictEqual(details.writeStatus, 'success');
+  assert.deepStrictEqual(details.includedModules, ['lists', 'paths']);
+  assert.deepStrictEqual(details.itemCounts, { lists: 2, paths: 3 });
+  assert.strictEqual(details.totalItems, 5);
+  assert.deepStrictEqual(details.warnings, ['safe warning']);
+  assert.deepStrictEqual(details.errors, ['safe error']);
+  assert.strictEqual(details.auditId, detailsInput.id);
+  assert.deepStrictEqual(Object.keys(details).sort(), [
+    'auditId', 'auditStatus', 'checklistSummary', 'confirmationSummary', 'errors', 'excludedModules',
+    'includedModules', 'itemCounts', 'payloadSummary', 'readinessStatus', 'recordedAt', 'resultMessage',
+    'resultStatus', 'rollbackStatus', 'runId', 'schemaVersion', 'target', 'targetStatus', 'totalItems',
+    'trigger', 'validationSummary', 'warnings', 'writeStatus'
+  ].sort(), 'details builder returns only whitelisted fields');
+  const detailsJson = JSON.stringify(details);
+  ['full item data', 'secret-token', 'secret-password', 'postgres://secret', 'warning-secret', 'error-secret'].forEach((secret) => {
+    assert.strictEqual(detailsJson.includes(secret), false, `history details exclude ${secret}`);
+  });
+  ['payload', 'fullPayload', 'token', 'password', 'connectionString'].forEach((field) => {
+    assert.strictEqual(Object.prototype.hasOwnProperty.call(details, field), false, `history details do not expose ${field}`);
+  });
+
+  const sparseDetails = Dashboard.sanitizeAhaManualSyncAuditRunForDetails({ runId: 'sparse-run' });
+  assert.strictEqual(sparseDetails.runId, 'sparse-run');
+  assert.deepStrictEqual(sparseDetails.includedModules, []);
+  assert.deepStrictEqual(sparseDetails.itemCounts, {});
+  assert.strictEqual(sparseDetails.totalItems, 0);
+  assert.doesNotThrow(() => Dashboard.sanitizeAhaManualSyncAuditRunForDetails('unknown audit shape'));
+  assert.deepStrictEqual(Dashboard.sanitizeAhaManualSyncAuditRunForDetails(null).warnings, []);
+
+  let syncCallsFromDetails = 0;
+  let auditWritesFromDetails = 0;
+  let databaseWritesFromDetails = 0;
+  const historyState = Dashboard.createAhaManualSyncHistoryState([detailsInput]);
+  Dashboard.openAhaManualSyncHistoryDetails(historyState, successRun.runId);
+  assert.strictEqual(historyState.selectedHistoryRunId, successRun.runId);
+  assert.strictEqual(historyState.detailsOpen, true);
+  assert.strictEqual(syncCallsFromDetails, 0, 'opening details does not start sync');
+  assert.strictEqual(auditWritesFromDetails, 0, 'opening details does not write audit log');
+  assert.strictEqual(databaseWritesFromDetails, 0, 'opening details does not write to the database');
+  Dashboard.closeAhaManualSyncHistoryDetails(historyState);
+  assert.strictEqual(historyState.selectedHistoryRunId, null);
+  assert.strictEqual(historyState.detailsOpen, false);
+
+  class FakeElement {
+    constructor(tagName, ownerDocument) {
+      this.tagName = tagName;
+      this.ownerDocument = ownerDocument;
+      this.children = [];
+      this.attributes = {};
+      this.dataset = {};
+      this.hidden = false;
+      this.textContent = '';
+    }
+    appendChild(child) { this.children.push(child); return child; }
+    replaceChildren(...children) { this.children = children; }
+    setAttribute(name, value) { this.attributes[name] = value; }
+    addEventListener(name, handler) { this[`on${name}`] = handler; }
+  }
+  const fakeDocument = { createElement: (tagName) => new FakeElement(tagName, fakeDocument) };
+  const missingDetailsElement = new FakeElement('aside', fakeDocument);
+  const missingState = Dashboard.createAhaManualSyncHistoryState([]);
+  Dashboard.openAhaManualSyncHistoryDetails(missingState, 'missing-run');
+  const missingView = Dashboard.renderAhaManualSyncHistoryDetails(missingDetailsElement, missingState);
+  assert.deepStrictEqual(missingView, { ok: false, error: Dashboard.DETAILS_MISSING_MESSAGE });
+  assert.strictEqual(missingDetailsElement.children.some((child) => child.textContent === 'Selected run was not found.'), true);
+
+  let readTable = null;
+  let readSelect = null;
+  let readFilter = null;
+  let readOrder = null;
+  let readLimit = null;
+  let readWriteCalls = 0;
+  const readResponse = { data: [detailsInput], error: null };
+  const readQuery = {
+    select(columns) { readSelect = columns; return this; },
+    eq(column, value) { readFilter = [column, value]; return this; },
+    order(column, options) { readOrder = [column, options]; return this; },
+    limit(value) { readLimit = value; return this; },
+    upsert() { readWriteCalls += 1; throw new Error('history reader must not write'); },
+    then(resolve) { return Promise.resolve(readResponse).then(resolve); }
+  };
+  const historyRead = await Repository.readAhaManualSyncAuditHistory({ limit: 10 }, {
+    auth: { getClient: async () => ({ from(table) { readTable = table; return readQuery; } }) }
+  });
+  assert.strictEqual(historyRead.ok, true);
+  assert.strictEqual(historyRead.runs.length, 1);
+  assert.strictEqual(historyRead.runs[0].runId, successRun.runId);
+  assert.strictEqual(readTable, 'aha_imports');
+  assert.strictEqual(readSelect, 'id,payload,counts,created_at');
+  assert.deepStrictEqual(readFilter, ['source_app', 'historygo_manual_sync_audit']);
+  assert.deepStrictEqual(readOrder, ['created_at', { ascending: false }]);
+  assert.strictEqual(readLimit, 10);
+  assert.strictEqual(readWriteCalls, 0, 'history reader never performs a database write');
+
   const storedRecords = [];
   const fakeClient = {
     from(table) {
@@ -261,6 +376,10 @@ async function executeWithAudit(runInput, writeTarget, auditOverride) {
   assert.strictEqual(/createClient\s*\(|new\s+SupabaseClient/.test(combinedSyncSource), false, 'no new database client is introduced');
   assert.strictEqual(/(postgres(?:ql)?:\/\/[^\s"']+:[^\s"']+@|sk_live_|service_role\s*[:=])/.test(combinedSyncSource), false, 'no credentials are hardcoded');
   assert.strictEqual(/payload\s*:\s*(entry|input|base)\.payload/.test(repositorySource), false, 'repository does not dump full input payload');
+  assert.strictEqual(/JSON\.stringify/.test(dashboardSource), false, 'dashboard never stringifies a full audit entry');
+  assert.strictEqual(/localStorage\.setItem/.test(dashboardSource), false, 'details state is not persisted');
+  assert.strictEqual(/autoSync|syncFromDatabase/.test(dashboardSource), false, 'details UI does not introduce auto-sync');
+  assert.strictEqual(/appendDetail\([^\n]*(rawPayload|fullPayload|connectionString|password|token)/.test(dashboardSource), false, 'details UI does not render sensitive fields');
 
   const homeSource = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
   ['ahaLists.js', 'ahaPaths.js', 'ahaGroups.js', 'ahaAvisa.js'].forEach((file) => {

@@ -2,11 +2,12 @@
 
 ## Principles
 
-- Sync is manual and gated. Loading a page, opening Sync Hub or a modal, and selecting a target must never trigger a write.
+- Sync is manual and gated. Loading a page, opening Sync Hub or a modal, selecting a target, browsing history, and opening run details must never trigger a write.
 - Existing AHA database connectivity is reused through `HistoryGoAHAAuth`; Sync Hub must not create another client or embed credentials.
 - Database and audit writes belong in adapter/repository layers. The dashboard presents state and structured results only.
 - Audit data is minimized and versioned: no full payload, credentials, tokens, passwords, connection strings, or unknown object dumps.
-- Activation and auto-sync are outside the current plan until manual write guarantees and result history are established.
+- History and details are read-only. Their local UI state is not stored in `localStorage` or written to the database.
+- Activation and auto-sync remain outside the plan. Any future write capability requires a separate, explicitly approved phase.
 
 ## Phases
 
@@ -37,10 +38,24 @@ The adapter passes only included modules to the target writer. Excluded modules,
 - Rollback is not implemented or claimed; `rollbackStatus` is `not_available` for blocked, successful, and failed runs.
 - Duplicate execution of the same `runId` and confirmation timestamp is blocked within the current runtime without using `localStorage`. Durable cross-runtime idempotency requires a later database-level contract.
 
-### 3. Manual sync result history panel — next
+### 3. Manual sync result history panel — implemented
 
-Add a read-only result-history panel backed by the hardened audit records. Keep querying in a repository/service layer, expose explicit loading/error/empty states, and do not introduce polling, activation, or auto-sync.
+- The audit repository exposes a bounded, read-only history query using the existing `HistoryGoAHAAuth` client and `aha_imports` records.
+- The dashboard renders read-only history rows and explicit empty/error-ready result structures without polling or background sync.
+- History browsing does not call the target writer, audit writer, or any database mutation.
 
-### 4. Activation / auto-sync — not introduced
+### 4. Manual sync history details drawer — implemented
 
-No activation or auto-sync work is included. Any future activation must be a separate, explicitly approved phase after result history and durable operational safeguards.
+- A selected history run opens in a compact **Manual sync run details** panel with a Close action.
+- Details state (`selectedHistoryRunId` and `detailsOpen`) is local to the dashboard runtime and is not persisted.
+- A whitelist-based details builder exposes run metadata, statuses, modules, counts, validation/readiness/checklist summaries, minimized payload/confirmation summaries, warnings, errors, and a short result message.
+- Full payloads, full item data, unknown object dumps, secrets, tokens, passwords, credentials, and connection strings are never rendered.
+- The panel is explicitly read-only. Opening or closing it does not start sync, write an audit entry, mutate database state, or alter the existing confirm/write flow.
+
+### 5. Manual sync retry eligibility preview — next
+
+Add a read-only preview that explains whether a historical run would be eligible for a separately confirmed retry. The preview must not execute a retry, mutate the selected run, write audit state, or weaken the existing manual confirmation and write guarantees.
+
+### 6. Activation / auto-sync — not introduced
+
+No activation or auto-sync work is included. Any future activation must be a separate, explicitly approved phase after durable operational safeguards and explicit product approval.

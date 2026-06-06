@@ -146,11 +146,62 @@
     }
   }
 
+  function sanitizeAhaManualSyncHistoryRecord(record) {
+    const source = record && typeof record === "object" && !Array.isArray(record) ? record : {};
+    const payload = source.payload && typeof source.payload === "object" && !Array.isArray(source.payload) ? source.payload : source;
+    const sanitizedPayload = redactAhaManualSyncAuditEntry(payload);
+    return {
+      ...sanitizedPayload,
+      auditId: typeof source.id === "string" ? source.id.slice(0, 250) : null,
+      auditStatus: "success",
+      recordedAt: typeof payload.recordedAt === "string"
+        ? payload.recordedAt
+        : (typeof source.created_at === "string" ? source.created_at : sanitizedPayload.recordedAt)
+    };
+  }
+
+  async function readAhaManualSyncAuditHistory(options, dependencies) {
+    const settings = options || {};
+    const deps = dependencies || {};
+    const auth = deps.auth || globalScope.HistoryGoAHAAuth;
+    const limit = Number.isFinite(Number(settings.limit)) ? Math.min(100, Math.max(1, Math.floor(Number(settings.limit)))) : 25;
+
+    if (!auth || typeof auth.getClient !== "function") {
+      return { ok: false, status: "not_configured", runs: [], errors: ["Audit history reader is not configured."], warnings: [] };
+    }
+
+    try {
+      const client = deps.client || await auth.getClient();
+      if (!client || typeof client.from !== "function") {
+        return { ok: false, status: "not_configured", runs: [], errors: ["Audit history reader is not configured."], warnings: [] };
+      }
+
+      let query = client.from("aha_imports").select("id,payload,counts,created_at");
+      if (typeof query.eq === "function") query = query.eq("source_app", AUDIT_SOURCE_APP);
+      if (typeof query.order === "function") query = query.order("created_at", { ascending: false });
+      if (typeof query.limit === "function") query = query.limit(limit);
+      const response = await query;
+      if (response?.error) throw response.error;
+      const records = Array.isArray(response?.data) ? response.data : [];
+      return {
+        ok: true,
+        status: "success",
+        runs: records.map(sanitizeAhaManualSyncHistoryRecord),
+        errors: [],
+        warnings: []
+      };
+    } catch (error) {
+      return { ok: false, status: "failed", runs: [], errors: [errorMessage(error)], warnings: [] };
+    }
+  }
+
   const api = {
     AUDIT_SCHEMA_VERSION,
     writeAhaManualSyncAuditLog,
     redactAhaManualSyncAuditEntry,
-    sanitizeAhaManualSyncAuditEntry: redactAhaManualSyncAuditEntry
+    sanitizeAhaManualSyncAuditEntry: redactAhaManualSyncAuditEntry,
+    sanitizeAhaManualSyncHistoryRecord,
+    readAhaManualSyncAuditHistory
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   globalScope.AhaManualSyncAuditRepository = api;
