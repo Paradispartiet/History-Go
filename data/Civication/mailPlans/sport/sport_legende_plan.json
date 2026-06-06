@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "sport_legende_v1",
+  "category": "sport",
+  "role_scope": "sport_legende",
+  "description": "Dramaturgisk plan for Idrettslegende: fra offentlig ikon og mediefortelling til sponsorpress, forbildeansvar, arv, ettermæle og identitet etter storhet.",
+  "arc": {
+    "from": "Du har nådd toppstatus og oppdager at prestasjonen ikke bare tilhører deg lenger; den brukes av medier, sponsorer, barn, klubb, nasjon og historien som skrives rundt deg.",
+    "to": "Du forstår at en idrettslegende må forvalte synlighet, integritet, forbildeansvar og ettermæle uten å la mennesket forsvinne bak symbolet.",
+    "core_questions": [
+      "Hvordan bevarer du egen stemme når andre trenger en fortelling?",
+      "Når bruker en sponsor verdiene dine feil?",
+      "Hvordan er du forbilde uten å bli brukt opp?",
+      "Når må du snakke, og når må du beskytte privatlivet?",
+      "Hvordan lever mennesket videre etter at prestasjonen er blitt historie?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "sport_legende_merkevare_loop", "evening_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere at mediefortellingen kan bruke mennesket som symbol.",
+      "allowed_families": ["offentlig_ikon_og_medier"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren møte sponsorpress der verdier og synlighet kolliderer.",
+      "allowed_families": ["sponsor_merkevare_og_integritet"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Introdusere forbildeansvar overfor unge utøvere uten å gjøre legenden grenseløs.",
+      "allowed_families": ["forbildeansvar_og_neste_generasjon"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Vise hvordan ettermæle kan begynne å skrive mennesket fast i én prestasjon.",
+      "allowed_families": ["arv_ettermale_og_identitet"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Teste om spilleren beskytter egen stemme når medie- og sponsorfortelling trekker sammen.",
+      "allowed_families": ["offentlig_ikon_og_medier", "sponsor_merkevare_og_integritet"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "La forbildeansvar og privat slitenhet kollidere i en offentlig situasjon.",
+      "allowed_families": ["forbildeansvar_og_neste_generasjon"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "La arv, symbolverdi og ny identitet trekke i ulike retninger.",
+      "allowed_families": ["arv_ettermale_og_identitet", "offentlig_ikon_og_medier"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Avrunde rollen: moden legende-status forvalter prestasjon, menneske, merkevare, forbildeansvar og ettermæle samlet.",
+      "allowed_families": ["sponsor_merkevare_og_integritet", "forbildeansvar_og_neste_generasjon", "arv_ettermale_og_identitet"],
+      "fallback_types": ["job"]
+    }
+  ]
+}
