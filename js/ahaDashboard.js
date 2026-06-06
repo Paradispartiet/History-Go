@@ -11,6 +11,9 @@
     return {
       auditStatus,
       auditId: result?.auditId || null,
+      resultStatus: result?.resultStatus || result?.status || "unknown",
+      writeStatus: result?.writeStatus || "not_started",
+      rollbackStatus: result?.rollbackStatus || "not_available",
       message,
       error: auditStatus === "failed" ? (result?.errors || []).join(" ") : ""
     };
@@ -22,7 +25,7 @@
     element.dataset.auditStatus = viewModel.auditStatus;
     element.replaceChildren();
     const status = element.ownerDocument.createElement("p");
-    status.textContent = viewModel.message;
+    status.textContent = `${viewModel.message}. Result: ${viewModel.resultStatus}; write: ${viewModel.writeStatus}; rollback: ${viewModel.rollbackStatus}.`;
     element.appendChild(status);
     if (viewModel.auditId) {
       const id = element.ownerDocument.createElement("small");
