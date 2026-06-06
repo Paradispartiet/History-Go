@@ -21,6 +21,11 @@
 - A read-only retry eligibility preview exists for historical runs. Its `eligible_preview` state is informational only and cannot execute retry, persist confirmation, mutate the selected run, or write audit/database state.
 - The manual sync retry contract is documented in [`AHA_MANUAL_SYNC_RETRY_CONTRACT.md`](./AHA_MANUAL_SYNC_RETRY_CONTRACT.md). It defines eligibility and blockers, fresh confirmation, `originalRunId` → `retryRunId` linkage, safe payload reconstruction, adapter support, attempt/outcome audit, failure/partial/rollback semantics, UI limits, and the prohibition on auto-retry.
 - Sync remains manual and gated: one deliberate user action, one confirmation, one run, and one audit trail. No retry contract or preview grants write authority.
+- The AHA Sync Hub operator UI is simplified into a top status summary, a primary manual action area, visible manual sync history, and on-demand technical details.
+- **Advanced diagnostics** keeps dry-run, validation, readiness, minimized payload sample, checklist, target internals, audit preview, adapter/state-machine status, run internals, and retry eligibility reasons out of the main operator path. Its open/closed state is local UI state and is never persisted.
+- Critical blockers remain visible outside Advanced diagnostics, including validation errors, blocked readiness, missing target or audit configuration, audit/write failures, missing required confirmation, and a failed last run.
+- The confirmation view now prioritizes what will be synced, target, module/item totals, blockers or warnings, and audit status while preserving the existing gates.
+- This simplification changes UI organization only. The adapter, state machine, target contract, database write, audit writer, payload written, retry execution, and confirmation rules are unchanged. Auto-sync remains absent.
 
 ## Not implemented
 
@@ -31,4 +36,4 @@
 
 ## Next recommended PR
 
-`feat: add AHA manual sync retry confirmation preview`
+`chore: review AHA Home dashboard information hierarchy`

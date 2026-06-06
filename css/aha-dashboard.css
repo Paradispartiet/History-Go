@@ -1,0 +1,126 @@
+.aha-sync-hub {
+  display: grid;
+  gap: 1rem;
+  color: #17202a;
+}
+
+.aha-sync-hub > section,
+.aha-sync-hub-header,
+.aha-sync-confirmation {
+  border: 1px solid #d8dee6;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 1rem;
+}
+
+.aha-sync-hub-header,
+.aha-sync-primary-action {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.aha-sync-hub h1,
+.aha-sync-hub h2,
+.aha-sync-hub p,
+.aha-sync-hub dl {
+  margin: 0;
+}
+
+.aha-sync-manual-only {
+  color: #52616f;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.aha-sync-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+}
+
+.aha-sync-summary-item {
+  border-radius: 0.5rem;
+  background: #f4f7fa;
+  padding: 0.75rem;
+}
+
+.aha-sync-summary-item dt {
+  color: #52616f;
+  font-size: 0.8rem;
+}
+
+.aha-sync-summary-item dd {
+  margin: 0.25rem 0 0;
+  font-weight: 700;
+}
+
+.aha-sync-critical-blockers {
+  border-left: 0.3rem solid #b42318;
+  background: #fff1f0;
+  padding: 0.75rem;
+}
+
+.aha-sync-warning {
+  border-left: 0.3rem solid #b7791f;
+  background: #fffaf0;
+  padding: 0.75rem;
+}
+
+.aha-sync-history-list,
+.aha-sync-confirmation-review,
+.aha-sync-confirmation-actions,
+.aha-sync-advanced-panel {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.aha-sync-history-run {
+  display: grid;
+  grid-template-columns: minmax(10rem, 1fr) repeat(5, auto) auto;
+  gap: 0.75rem;
+  align-items: center;
+  border-bottom: 1px solid #e5e9ef;
+  padding: 0.75rem 0;
+}
+
+.aha-sync-history-details {
+  border-left: 1px solid #d8dee6;
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
+.aha-sync-history-detail-row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.35fr) 1fr;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+}
+
+.aha-sync-history-detail-row dt {
+  font-weight: 700;
+}
+
+.aha-sync-history-detail-row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.aha-sync-confirmation-actions {
+  grid-auto-flow: column;
+  justify-content: end;
+}
+
+.aha-sync-advanced > button {
+  width: 100%;
+  text-align: left;
+}
+
+@media (max-width: 52rem) {
+  .aha-sync-history-run {
+    grid-template-columns: 1fr 1fr;
+  }
+}
