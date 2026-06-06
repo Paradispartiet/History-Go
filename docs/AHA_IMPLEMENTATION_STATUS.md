@@ -18,14 +18,17 @@
 - History details are built through an explicit whitelist. They expose audit/status metadata, modules, counts, readiness/validation/checklist summaries, minimized payload summary, confirmation summary, warnings, errors, and a short result message when available.
 - The details panel never renders a full payload, full item data, secrets, tokens, passwords, credentials, or connection strings. Unknown fields and nested object dumps are excluded.
 - Opening or closing history details does not change the existing confirmation, sync, domain-write, or audit-write flow.
+- A read-only retry eligibility preview exists for historical runs. Its `eligible_preview` state is informational only and cannot execute retry, persist confirmation, mutate the selected run, or write audit/database state.
+- The manual sync retry contract is documented in [`AHA_MANUAL_SYNC_RETRY_CONTRACT.md`](./AHA_MANUAL_SYNC_RETRY_CONTRACT.md). It defines eligibility and blockers, fresh confirmation, `originalRunId` → `retryRunId` linkage, safe payload reconstruction, adapter support, attempt/outcome audit, failure/partial/rollback semantics, UI limits, and the prohibition on auto-retry.
+- Sync remains manual and gated: one deliberate user action, one confirmation, one run, and one audit trail. No retry contract or preview grants write authority.
 
 ## Not implemented
 
-- Auto-sync/activation is intentionally not implemented.
-- Retry execution and retry eligibility preview are not implemented.
+- Auto-sync/activation and auto-retry are intentionally not implemented. There is no page-load, history-open, details-open, target-select, modal-open, failed-result, scheduled, or background retry trigger.
+- Retry execution and retry confirmation preview are not implemented. The existing eligibility preview remains read-only.
 - Durable cross-session idempotency is not claimed; the current duplicate guard protects one application runtime only.
 - Rollback and partial domain-write semantics are not implemented. `partial_success` is reserved for a completed domain write whose required outcome audit failed.
 
 ## Next recommended PR
 
-`feat: add AHA manual sync retry eligibility preview`
+`feat: add AHA manual sync retry confirmation preview`
