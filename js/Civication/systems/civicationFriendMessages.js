@@ -23,6 +23,14 @@
   // Stabilt kildemerke for alle meldinger som kommer fra vennehandlinger.
   const SOURCE = "civication_friend_action";
 
+  // Kildemerke for henvendelser som starter fra et sosialt sted (samme sted i
+  // siste fase). Holdes adskilt fra vanlige vennehandlinger, men er fortsatt en
+  // PERSONLIG melding (privat kanal, aldri jobbmail).
+  const SOCIAL_ENCOUNTER_SOURCE = "civication_social_encounter";
+
+  // Svarvalg mottakeren får på en sosial henvendelse (Mål 5).
+  const RESPONSE_OPTIONS = ["reply", "ignore", "decline"];
+
   // Personlig/privat kanal. Brukes konsekvent slik at meldingene sorteres under
   // "Personlige meldinger" i innkommende, aldri under "Jobbmail".
   const PRIVATE_CHANNEL = "private";
@@ -142,6 +150,57 @@
     return message;
   }
 
+  // Henvend deg: lager en personlig HENVENDELSE fra et sosialt sted (samme sted
+  // i siste fase). Egen kilde (civication_social_encounter), status
+  // "pending_response" og svarvalg reply/ignore/decline (Mål 4/5). Fortsatt en
+  // personlig melding (privat kanal) – aldri jobb-/karrierefelt.
+  function createApproachMessageFromEncounter(actionResult) {
+    const ctx = readActionContext(actionResult);
+    const first = firstName(ctx.friendName);
+    const placeLabel = ctx.locationLabel || ctx.locationId || "stedet";
+    const message = {
+      type: PRIVATE_CHANNEL,
+      channel: PRIVATE_CHANNEL,
+      source: SOCIAL_ENCOUNTER_SOURCE,
+      actionId: "approach",
+      friendId: ctx.friendId,
+      friendName: ctx.friendName,
+      phase: ctx.phase,
+      threadId: resolvePrivateThreadForFriend(ctx.friendId),
+      title: "Henvendelse til " + first,
+      body: "Du henvender deg til " + first + " på " + placeLabel.toLowerCase() +
+        " i " + phaseInWords(ctx.phase) + ".",
+      status: "pending_response",
+      responseOptions: RESPONSE_OPTIONS.slice()
+    };
+    if (ctx.locationId) message.locationId = ctx.locationId;
+    return message;
+  }
+
+  // Mål 5: modell for mottakerens svarvalg på en henvendelse. Bruker motorens
+  // label-hjelper når den finnes, ellers trygg lokal fallback.
+  function buildEncounterResponseModel(messageOrEvent) {
+    const m = messageOrEvent && typeof messageOrEvent === "object" ? messageOrEvent : {};
+    const opts = Array.isArray(m.responseOptions) && m.responseOptions.length
+      ? m.responseOptions
+      : RESPONSE_OPTIONS.slice();
+    const eng = window.CivicationFriendsEngine;
+    const fallbackLabels = { reply: "Svar", ignore: "Ignorer", decline: "Avvis" };
+    const labelFor = (o) => {
+      if (eng && typeof eng.getResponseOptionLabel === "function") {
+        const lbl = eng.getResponseOptionLabel(o);
+        if (lbl) return lbl;
+      }
+      return fallbackLabels[norm(o).toLowerCase()] || "";
+    };
+    return {
+      friendId: norm(m.friendId),
+      threadId: norm(m.threadId) || resolvePrivateThreadForFriend(m.friendId),
+      status: norm(m.status) || "pending_response",
+      options: opts.map((o) => ({ id: norm(o).toLowerCase(), label: labelFor(o) }))
+    };
+  }
+
   // ---------------------------------------------------------------------------
   // Adapter mot eksisterende meldingssystem
   // ---------------------------------------------------------------------------
@@ -159,7 +218,7 @@
     const threadId = norm(m.threadId) || resolvePrivateThreadForFriend(m.friendId);
     const actionId = norm(m.actionId) || "message";
     const id = threadId + "_" + actionId + "_" + nextSeq();
-    return {
+    const event = {
       id: id,
       mail_key: id,
       // Eksplisitt privat/personlig – aldri jobb.
@@ -167,7 +226,8 @@
       mail_type: PRIVATE_CHANNEL,
       channel: PRIVATE_CHANNEL,
       mail_class: "private_message",
-      source: SOURCE,
+      // Behold kilden (vennehandling vs. sosial henvendelse), default vennehandling.
+      source: norm(m.source) || SOURCE,
       // Brukervendt innhold.
       subject: norm(m.title) || "Personlig melding",
       summary: norm(m.body),
@@ -180,6 +240,11 @@
       locationId: norm(m.locationId) || null,
       status: norm(m.status) || "draft"
     };
+    // Svarvalg følger med for sosiale henvendelser (Mål 5).
+    if (Array.isArray(m.responseOptions) && m.responseOptions.length) {
+      event.responseOptions = m.responseOptions.slice();
+    }
+    return event;
   }
 
   // Registrerer meldingen i innkommende via mail-engine når den er tilgjengelig.
@@ -248,28 +313,34 @@
     const ctx = readActionContext(actionResult);
     const actionId = ctx.actionId;
 
-    if (actionId !== "message" && actionId !== "invite") {
+    if (actionId !== "message" && actionId !== "invite" && actionId !== "approach") {
       return { ok: false, reason: "not_a_message_action", actionId: actionId, channel: PRIVATE_CHANNEL };
     }
     if (!ctx.friendId) {
       return { ok: false, reason: "missing_friend", actionId: actionId, channel: PRIVATE_CHANNEL };
     }
 
-    const message = actionId === "invite"
-      ? createInviteMessageFromFriendAction(actionResult)
-      : createPrivateMessageFromFriendAction(actionResult);
+    let message;
+    if (actionId === "approach") message = createApproachMessageFromEncounter(actionResult);
+    else if (actionId === "invite") message = createInviteMessageFromFriendAction(actionResult);
+    else message = createPrivateMessageFromFriendAction(actionResult);
 
     const reg = registerPrivateMessage(message);
 
-    // Send melding åpner/forbereder tråden; Inviter legges kun i innkommende.
+    // Send melding åpner/forbereder tråden; Inviter/Henvend deg legges i innkommende.
     if (actionId === "message") {
       dispatchPrivateMessageOpen(message.friendId, message);
     }
 
     const first = firstName(ctx.friendName);
-    const feedbackText = actionId === "message"
-      ? "Personlig melding til " + first + " er klar i Innkommende."
-      : "Invitasjon til " + first + " er lagt i Personlige meldinger.";
+    let feedbackText;
+    if (actionId === "message") {
+      feedbackText = "Personlig melding til " + first + " er klar i Innkommende.";
+    } else if (actionId === "approach") {
+      feedbackText = "Henvendelse til " + first + " er lagt i Personlige meldinger.";
+    } else {
+      feedbackText = "Invitasjon til " + first + " er lagt i Personlige meldinger.";
+    }
 
     return {
       ok: true,
@@ -280,16 +351,22 @@
       message: message,
       mailEvent: reg.event,
       registered: reg.registered,
+      // Svarvalg-modell følger med for henvendelser (Mål 5).
+      responseModel: actionId === "approach" ? buildEncounterResponseModel(message) : null,
       feedbackText: feedbackText
     };
   }
 
   window.CivicationFriendMessages = {
     SOURCE: SOURCE,
+    SOCIAL_ENCOUNTER_SOURCE: SOCIAL_ENCOUNTER_SOURCE,
+    RESPONSE_OPTIONS: RESPONSE_OPTIONS.slice(),
     PRIVATE_CHANNEL: PRIVATE_CHANNEL,
     resolvePrivateThreadForFriend: resolvePrivateThreadForFriend,
     createPrivateMessageFromFriendAction: createPrivateMessageFromFriendAction,
     createInviteMessageFromFriendAction: createInviteMessageFromFriendAction,
+    createApproachMessageFromEncounter: createApproachMessageFromEncounter,
+    buildEncounterResponseModel: buildEncounterResponseModel,
     toMailEvent: toMailEvent,
     registerPrivateMessage: registerPrivateMessage,
     dispatchPrivateMessageOpen: dispatchPrivateMessageOpen,
