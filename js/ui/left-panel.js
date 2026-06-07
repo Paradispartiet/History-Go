@@ -134,25 +134,28 @@ function setLeftPanelMode(mode) {
 // ============================================================
 
 function syncLeftPanelFrame() {
-  const header =
-    document.querySelector("header") ||
-    document.querySelector(".site-header");
+  const root = document.documentElement;
+  if (!root) return;
 
-  if (!header) return;
+  const styles = window.getComputedStyle(root);
+  const visualHeaderHeight = parseFloat(
+    styles.getPropertyValue("--hg-visual-header-height")
+  );
 
-  const shell = document.querySelector(".app-shell");
+  let headerH = Number.isFinite(visualHeaderHeight) ? visualHeaderHeight : 0;
 
-  const hr = header.getBoundingClientRect();
-  let headerH = hr.bottom;
+  if (!headerH) {
+    const header =
+      document.querySelector("header") ||
+      document.querySelector(".site-header");
 
-  if (shell) {
-    const sr = shell.getBoundingClientRect();
-    headerH = hr.bottom - sr.top;
+    if (!header) return;
+    headerH = header.getBoundingClientRect().bottom;
   }
 
   headerH = Math.max(0, Math.round(headerH));
 
-  document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
+  root.style.setProperty("--hg-header-h", headerH + "px");
 }
 
 // ============================================================

@@ -9,6 +9,8 @@
   // utenfor det skalerte design-canvaset og måles i ekte viewport-piksler).
   const HEADER_HEIGHT = 74;
   const FOOTER_HEIGHT = 80;
+  const NEARBY_HEIGHT_TABLET = 260;
+  const NEARBY_HEIGHT_PHONE = 228;
 
   let shell = null;
   let mapLayer = null;
@@ -80,6 +82,7 @@
     if (!shell) return;
 
     const { mode, designWidth, designHeight } = layout;
+    const nearbyHeight = mode === "phone" ? NEARBY_HEIGHT_PHONE : NEARBY_HEIGHT_TABLET;
     const scaledW = designWidth * scale;
     const scaledH = designHeight * scale;
 
@@ -124,8 +127,9 @@
     }
 
     // Design-offset: fordi de interne canvas-elementene er skalert, må
-    // de få header/footer-klaring uttrykt i design-piksler (ekte px / scale).
+    // de få header/nearby/footer-klaring uttrykt i design-piksler (ekte px / scale).
     const designHeaderOffset = HEADER_HEIGHT / scale;
+    const designNearbyOffset = nearbyHeight / scale;
     const designFooterOffset = FOOTER_HEIGHT / scale;
 
     const root = document.documentElement;
@@ -135,7 +139,11 @@
       root.style.setProperty("--hg-vp-w", `${vw}px`);
       root.style.setProperty("--hg-vp-h", `${vh}px`);
       root.style.setProperty("--hg-design-header-offset", `${designHeaderOffset}px`);
+      root.style.setProperty("--hg-design-nearby-offset", `${designNearbyOffset}px`);
       root.style.setProperty("--hg-design-footer-offset", `${designFooterOffset}px`);
+      root.style.setProperty("--hg-visual-header-height", `${HEADER_HEIGHT}px`);
+      root.style.setProperty("--hg-visual-nearby-height", `${nearbyHeight}px`);
+      root.style.setProperty("--hg-visual-footer-height", `${FOOTER_HEIGHT}px`);
     }
 
     window.HGViewport = {
@@ -152,8 +160,10 @@
       vw,
       vh,
       headerHeight: HEADER_HEIGHT,
+      nearbyHeight,
       footerHeight: FOOTER_HEIGHT,
       designHeaderOffset,
+      designNearbyOffset,
       designFooterOffset
     };
 
