@@ -1,0 +1,150 @@
+{
+  "schema": "civication.routines.v1",
+  "version": 1,
+  "routines": {
+    "routine_barista_evening_shift": {
+      "id": "routine_barista_evening_shift",
+      "label": "Barista med kveldsvakt",
+      "segments": [
+        {
+          "time": "09:00",
+          "locationId": "civi_home_grunerlokka_01",
+          "state": "at_home",
+          "visibilityText": "Jonas er hjemme. Gardinene er halvveis trukket for."
+        },
+        {
+          "time": "11:15",
+          "locationId": "civi_street_grunerlokka_main",
+          "state": "walking",
+          "visibilityText": "Jonas går mot kafeen med hettegenseren litt for langt opp i nakken."
+        },
+        {
+          "time": "12:00",
+          "locationId": "civi_cafe_001",
+          "state": "working",
+          "visibilityText": "Jonas står bak disken og smiler mekanisk til køen."
+        },
+        {
+          "time": "22:30",
+          "locationId": "civi_cafe_001",
+          "state": "closing",
+          "visibilityText": "Jonas låser døren og blir stående et øyeblikk utenfor."
+        },
+        {
+          "time": "23:10",
+          "locationId": "civi_home_grunerlokka_01",
+          "state": "at_home",
+          "visibilityText": "Lyset er på hjemme hos Jonas, men han svarer ikke med en gang."
+        }
+      ]
+    },
+    "routine_caseworker_regular": {
+      "id": "routine_caseworker_regular",
+      "label": "Saksbehandler med kontortid",
+      "segments": [
+        {
+          "time": "07:45",
+          "locationId": "civi_home_sagene_02",
+          "state": "leaving_home",
+          "visibilityText": "Mina låser døren med telefonen allerede i hånden."
+        },
+        {
+          "time": "08:30",
+          "locationId": "civi_office_public_casework",
+          "state": "working",
+          "visibilityText": "Mina sitter ved skrivebordet med tre åpne saker og kald kaffe."
+        },
+        {
+          "time": "12:05",
+          "locationId": "civi_office_canteen",
+          "state": "lunch",
+          "visibilityText": "Mina spiser raskt og leser samtidig en intern melding."
+        },
+        {
+          "time": "16:15",
+          "locationId": "civi_bus_stop_sagene",
+          "state": "commuting",
+          "visibilityText": "Mina står ved bussholdeplassen og ser ut som hun fortsatt er på jobb."
+        },
+        {
+          "time": "18:30",
+          "locationId": "civi_home_sagene_02",
+          "state": "at_home",
+          "visibilityText": "Mina er hjemme. Hun har ikke åpnet meldingen din ennå."
+        }
+      ]
+    },
+    "routine_childcare_early_shift": {
+      "id": "routine_childcare_early_shift",
+      "label": "Tidlig barnehagevakt",
+      "segments": [
+        {
+          "time": "06:40",
+          "locationId": "civi_home_torshov_01",
+          "state": "leaving_home",
+          "visibilityText": "Sana går ut med termokopp og vått hår."
+        },
+        {
+          "time": "07:00",
+          "locationId": "civi_kindergarten_urban_01",
+          "state": "opening",
+          "visibilityText": "Sana åpner porten før de første barna kommer."
+        },
+        {
+          "time": "11:30",
+          "locationId": "civi_kindergarten_yard_01",
+          "state": "outdoor_work",
+          "visibilityText": "Sana står i utegården med blikket på tre konflikter samtidig."
+        },
+        {
+          "time": "15:00",
+          "locationId": "civi_street_torshov_main",
+          "state": "walking",
+          "visibilityText": "Sana går hjemover med rolig tempo, men tunge skuldre."
+        },
+        {
+          "time": "20:30",
+          "locationId": "civi_home_torshov_01",
+          "state": "at_home",
+          "visibilityText": "Sana er hjemme. Hun svarer kanskje hvis meldingen er kort og tydelig."
+        }
+      ]
+    },
+    "routine_unemployed_creative_irregular": {
+      "id": "routine_unemployed_creative_irregular",
+      "label": "Uregelmessig kreativ dag",
+      "segments": [
+        {
+          "time": "10:45",
+          "locationId": "civi_home_st_hanshaugen_01",
+          "state": "at_home",
+          "visibilityText": "Vetle er hjemme. Dagen ser ikke helt i gang ut."
+        },
+        {
+          "time": "13:00",
+          "locationId": "civi_library_urban_01",
+          "state": "thinking",
+          "visibilityText": "Vetle sitter på biblioteket med notater, men leser mest gamle meldinger."
+        },
+        {
+          "time": "16:20",
+          "locationId": "civi_park_st_hanshaugen",
+          "state": "walking",
+          "visibilityText": "Vetle går rundt i parken uten å ta den korteste veien."
+        },
+        {
+          "time": "21:40",
+          "locationId": "civi_cafe_001",
+          "state": "sitting",
+          "visibilityText": "Vetle sitter ved vinduet med en kaffe han ikke har råd til."
+        },
+        {
+          "time": "01:10",
+          "locationId": "civi_home_st_hanshaugen_01",
+          "state": "awake",
+          "visibilityText": "Vetle er våken. Det lyser fra rommet hans."
+        }
+      ]
+    }
+  }
+}
