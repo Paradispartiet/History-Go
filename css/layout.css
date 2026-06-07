@@ -6,6 +6,10 @@ body.hg-app{
   margin: 0;
   overflow: hidden;
   background: #000;
+
+  /* Visuell høyde på nearby-panelet i design-canvas-koordinater.
+     Arves ned til både #nearbyListContainer og #placeCard. */
+  --hg-nearby-height: 260px;
 }
 
 
@@ -50,16 +54,21 @@ body.hg-app .app-shell > *{
    ============================================================ */
 
 body.hg-app .site-header{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  width: 100vw;
   height: 74px;
+  box-sizing: border-box;
 
-  z-index: 100;
+  z-index: 120;
 
   background: #000;
   border-bottom: 1px solid rgba(255,255,255,.06);
+
+  padding-left: calc(12px + env(safe-area-inset-left));
+  padding-right: calc(12px + env(safe-area-inset-right));
 }
 
 /* ============================================================
@@ -81,13 +90,15 @@ body.hg-app .app-main{
    ============================================================ */
 
 body.hg-app .app-footer{
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
   height: 80px;
+  box-sizing: border-box;
 
-  z-index: 200;
+  z-index: 90;
 
   background: #000;
   border-top: 1px solid rgba(255,255,255,.08);
@@ -95,14 +106,18 @@ body.hg-app .app-footer{
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px;
+
+  padding-top: 10px;
+  padding-left: calc(10px + env(safe-area-inset-left));
+  padding-right: calc(10px + env(safe-area-inset-right));
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
 #nearbyListContainer{
   position: absolute;
 
-  top: 74px;
-  height: 260px;
+  top: var(--hg-design-header-offset, 74px);
+  height: var(--hg-nearby-height, 260px);
 
   left: 0;
   right: 0;
@@ -126,6 +141,9 @@ body.hg-app .app-footer{
 #mapLayer{
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   z-index: 0;
   overflow: hidden;
   background: #000;
@@ -150,18 +168,14 @@ body.hg-app #placeCard{
   position: absolute;
   left: 0;
   right: 0;
-  top: 334px;
-  bottom: 80px; /* same as footer height */
+  top: calc(var(--hg-design-header-offset, 74px) + var(--hg-nearby-height, 260px));
+  bottom: var(--hg-design-footer-offset, 80px);
   height: auto;
   z-index: 100;
 }
 
-body.hg-app.hg-phone #nearbyListContainer{
-  height: 228px;
-}
-
-body.hg-app.hg-phone #placeCard{
-  top: 302px; /* 74px header + 228px nearby */
+body.hg-app.hg-phone{
+  --hg-nearby-height: 228px;
 }
 
 

@@ -5,12 +5,18 @@
   const PHONE_BREAKPOINT = 520;
   const PHONE_MIN_DESIGN_HEIGHT = 820;
 
+  // Faste visuelle høyder på de full-bleed lagene (header/footer ligger
+  // utenfor det skalerte design-canvaset og måles i ekte viewport-piksler).
+  const HEADER_HEIGHT = 74;
+  const FOOTER_HEIGHT = 80;
+
   let shell = null;
   let mapLayer = null;
   let rafId = null;
   let last = { scale: null, x: null, y: null, w: null, h: null };
   let stableViewport = null;
   let lastMode = null;
+  let initialized = false;
 
   function isTextInputActive() {
     const el = document.activeElement;
@@ -106,18 +112,34 @@
       lastMode = mode;
     }
 
-    // Kartlaget: IKKE scale-transform, bare samme synlige rektangel
+    // Kartlaget: full-bleed mot ekte viewport (ikke design-canvaset).
     if (mapLayer) {
       mapLayer.style.position = "fixed";
-      mapLayer.style.left = `${x}px`;
-      mapLayer.style.top = `${y}px`;
-      mapLayer.style.width = `${scaledW}px`;
-      mapLayer.style.height = `${scaledH}px`;
+      mapLayer.style.left = "0";
+      mapLayer.style.top = "0";
+      mapLayer.style.width = `${vw}px`;
+      mapLayer.style.height = `${vh}px`;
       mapLayer.style.transform = "none";
       mapLayer.style.overflow = "hidden";
     }
 
+    // Design-offset: fordi de interne canvas-elementene er skalert, må
+    // de få header/footer-klaring uttrykt i design-piksler (ekte px / scale).
+    const designHeaderOffset = HEADER_HEIGHT / scale;
+    const designFooterOffset = FOOTER_HEIGHT / scale;
+
+    const root = document.documentElement;
+    if (root) {
+      root.style.setProperty("--hg-vp-scale", String(scale));
+      root.style.setProperty("--hg-vp-x", `${x}px`);
+      root.style.setProperty("--hg-vp-w", `${vw}px`);
+      root.style.setProperty("--hg-vp-h", `${vh}px`);
+      root.style.setProperty("--hg-design-header-offset", `${designHeaderOffset}px`);
+      root.style.setProperty("--hg-design-footer-offset", `${designFooterOffset}px`);
+    }
+
     window.HGViewport = {
+      // eksisterende felter (beholdt for kompatibilitet)
       scale,
       x,
       y,
@@ -125,7 +147,14 @@
       designWidth,
       designHeight,
       visibleWidth: scaledW,
-      visibleHeight: scaledH
+      visibleHeight: scaledH,
+      // nye felter
+      vw,
+      vh,
+      headerHeight: HEADER_HEIGHT,
+      footerHeight: FOOTER_HEIGHT,
+      designHeaderOffset,
+      designFooterOffset
     };
 
     if (window.HGMap?.resize) {
@@ -156,9 +185,13 @@
   }
 
   function init() {
+    if (initialized) return;
+
     shell = document.querySelector(".app-shell");
     mapLayer = document.getElementById("mapLayer");
     if (!shell) return;
+
+    initialized = true;
 
     update();
 

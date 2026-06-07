@@ -309,6 +309,10 @@
 
     initOpenMode();
 
+    // Layout/viewport må være riktig før første brukbare kartskjerm,
+    // slik at #mapLayer og design-canvaset er korrekt dimensjonert.
+    runSafe("ViewportManager.init", () => window.ViewportManager?.init?.());
+
     window.HG_ENV = {
       geo: "unknown",
       openMode: !!window.OPEN_MODE
@@ -384,7 +388,6 @@
     runSafe("renderCollection", () => typeof renderCollection === "function" ? renderCollection() : undefined);
     runSafe("renderGallery", () => typeof window.renderGallery === "function" ? window.renderGallery() : undefined);
     runSafe("initPlaceCardCollapse", () => typeof initPlaceCardCollapse === "function" ? initPlaceCardCollapse() : undefined);
-    runSafe("ViewportManager.init", () => window.ViewportManager?.init?.());
     runSafe("LayerManager.init", () => window.LayerManager?.init?.());
     runSafe("bottomSheetController.init", () => window.bottomSheetController?.init?.());
 
