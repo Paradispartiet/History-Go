@@ -35,6 +35,53 @@
   // "Personlige meldinger" i innkommende, aldri under "Jobbmail".
   const PRIVATE_CHANNEL = "private";
 
+  // Kildemerke for en NY personlig melding som oppstår når spilleren svarer på en
+  // sosial henvendelse (followup / samtalestart). Egen kilde, fortsatt privat.
+  const SOCIAL_RESPONSE_SOURCE = "civication_social_response";
+
+  // Hvilke actionId-er som regnes som en sosial henvendelse (kan besvares).
+  // Holdes eksplisitt smal: kun "approach" i dag. Jobbmail er ALDRI her.
+  const SOCIAL_ACTIONS = ["approach"];
+
+  // Norske labels for svarvalgene (fallback når motoren ikke er lastet).
+  const SOCIAL_RESPONSE_LABEL = { reply: "Svar", ignore: "Ignorer", decline: "Avvis" };
+
+  // Datadrevet konsekvensmodell pr. svarvalg. status/relationshipDelta/canFollowup
+  // og brukervendt resultattekst – alt deterministisk, ingen tilfeldighet.
+  const SOCIAL_RESPONSE_CONSEQUENCE = {
+    reply: {
+      status: "replied",
+      relationshipDelta: 1,
+      canFollowup: true,
+      text: "Du svarer på henvendelsen. Samtalen kan fortsette."
+    },
+    ignore: {
+      status: "ignored",
+      relationshipDelta: 0,
+      canFollowup: false,
+      text: "Du ignorerer henvendelsen."
+    },
+    decline: {
+      status: "declined",
+      relationshipDelta: -1,
+      canFollowup: false,
+      text: "Du avviser henvendelsen."
+    }
+  };
+
+  // status -> kort, brukervendt resultatetikett i Personlige meldinger.
+  const SOCIAL_RESPONSE_STATUS_LABEL = {
+    pending_response: "Venter på svar",
+    replied: "Besvart",
+    ignored: "Ignorert",
+    declined: "Avvist"
+  };
+
+  // Lokale, testbare lager for sosial relasjon + behandlede henvendelser.
+  // Speiles til localStorage når tilgjengelig; ellers holdes alt i minne.
+  const RELATIONSHIP_STORE_KEY = "civi.socialRelationships.v1";
+  const RESPONSE_STORE_KEY = "civi.socialResponses.v1";
+
   // Semantisk fase -> brukervendt frase ("i fritidsfasen"). Deterministisk;
   // ingen klokke, ingen tilfeldighet.
   const PHASE_WORD = {
@@ -57,6 +104,22 @@
 
   function norm(value) {
     return String(value == null ? "" : value).trim();
+  }
+
+  function obj(value) {
+    return value && typeof value === "object" ? value : {};
+  }
+
+  // Første endelige tall blant argumentene, ellers null. Brukes for å lese et
+  // valgfritt seed-relasjonsnivå fra kontekst/melding uten å kaste.
+  function firstNumber() {
+    for (let i = 0; i < arguments.length; i += 1) {
+      const v = arguments[i];
+      if (v == null || v === "") continue;
+      const n = Number(v);
+      if (Number.isFinite(n)) return n;
+    }
+    return null;
   }
 
   // Normaliser til en gyldig semantisk fase. Faller trygt tilbake til "morning".
@@ -357,10 +420,439 @@
     };
   }
 
+  // ---------------------------------------------------------------------------
+  // Sosial svarsløyfe (Svar / Ignorer / Avvis) – datadrevet, testbar
+  // ---------------------------------------------------------------------------
+  // Når en sosial henvendelse (actionId "approach", privat kanal,
+  // mail_class "private_message") ligger i Personlige meldinger, kan spilleren
+  // svare. Valget lagres som en sosial respons og gir tydelig konsekvens:
+  //   reply   -> status "replied",  relationshipDelta +1, kan starte samtale
+  //   ignore  -> status "ignored",  relationshipDelta  0, ingen ny samtale
+  //   decline -> status "declined", relationshipDelta -1, ingen ny samtale
+  //
+  // SEPARASJON: denne flyten behandler ALDRI jobbmail. Resultatet er alltid
+  // privat/personlig (channel "private", mail_class "private_message") og får
+  // aldri job/work/career-felt. Alt er deterministisk og lokalt (ingen backend).
+
+  // Normaliser et svarvalg til en gyldig id, ellers "" (ugyldig/manglende).
+  function normalizeResponseId(responseId) {
+    const r = norm(responseId).toLowerCase();
+    return RESPONSE_OPTIONS.includes(r) ? r : "";
+  }
+
+  // Svarvalg -> norsk knappetekst ("Svar"/"Ignorer"/"Avvis"). Bruker motorens
+  // label-hjelper når den finnes, ellers trygg lokal fallback.
+  function getSocialResponseLabel(responseId) {
+    const r = normalizeResponseId(responseId);
+    if (!r) return "";
+    const eng = window.CivicationFriendsEngine;
+    if (eng && typeof eng.getResponseOptionLabel === "function") {
+      const lbl = eng.getResponseOptionLabel(r);
+      if (lbl) return lbl;
+    }
+    return SOCIAL_RESPONSE_LABEL[r] || "";
+  }
+
+  // status -> kort resultatetikett ("Besvart"/"Ignorert"/"Avvist").
+  function getSocialResponseStatusLabel(status) {
+    return SOCIAL_RESPONSE_STATUS_LABEL[norm(status).toLowerCase()] || "";
+  }
+
+  // Brukervendt resultattekst for et svar (fra responseId, ev. fra status).
+  function getSocialResponseResultText(responseResult) {
+    const rr = obj(responseResult);
+    const rid = normalizeResponseId(rr.responseId);
+    if (rid) return SOCIAL_RESPONSE_CONSEQUENCE[rid].text;
+    const byStatus = { replied: "reply", ignored: "ignore", declined: "decline" }[norm(rr.status).toLowerCase()];
+    return byStatus ? SOCIAL_RESPONSE_CONSEQUENCE[byStatus].text : "";
+  }
+
+  // Har meldingen noen jobb-/arbeids-/karrierefelt? Hard separasjonsvakt slik at
+  // jobbmail aldri kan behandles av den sosiale svarsløyfen.
+  function hasJobFields(message) {
+    const m = obj(message);
+    const jobKeys = [
+      "career_id", "role_key", "role_id", "role_scope", "brand_id", "brand_name",
+      "task_domain", "career_outcome_meta", "role_content_meta", "mail_plan_meta",
+      "brand_progression_meta"
+    ];
+    if (jobKeys.some((k) => norm(m[k]))) return true;
+    const ch = norm(m.channel || m.messageChannel).toLowerCase();
+    if (ch === "job" || ch === "jobmail") return true;
+    const mc = norm(m.mail_class).toLowerCase();
+    if (mc === "job_message" || mc === "career_outcome" || mc === "daily_workday" ||
+        mc === "opportunity_blocked" || mc === "job_milestone") return true;
+    // Siste vakt: la channel-klassifiseringen bekrefte at dette ikke er jobbmail.
+    const channels = window.CivicationEventChannels;
+    if (channels && typeof channels.isJobMail === "function") {
+      try { if (channels.isJobMail(m)) return true; } catch (_e) { /* trygt videre */ }
+    }
+    return false;
+  }
+
+  // Les felles kontekst ut av en henvendelses-melding. Tåler både mail-eventet
+  // (fra innkommende, med id/mail_class) og en rå approach-modell.
+  function readResponseMessageContext(message) {
+    const m = obj(message);
+    return {
+      messageId: norm(m.id || m.mail_key),
+      friendId: norm(m.friendId),
+      friendName: norm(m.friendName) || "vennen",
+      phase: normalizePhase(m.phase),
+      locationId: norm(m.locationId) || null,
+      threadId: norm(m.threadId) || resolvePrivateThreadForFriend(m.friendId),
+      actionId: norm(m.actionId || m.action).toLowerCase() || "approach",
+      channel: norm(m.channel || m.type || m.mail_type).toLowerCase(),
+      mailClass: norm(m.mail_class).toLowerCase(),
+      source: norm(m.source).toLowerCase(),
+      status: norm(m.status).toLowerCase()
+    };
+  }
+
+  // Validerer at meldingen er en sosial henvendelse som KAN besvares. Returnerer
+  // { ok, reason }. Avviser jobbmail, feil kanal/mail_class og ikke-sosiale
+  // handlinger trygt (ingen kast).
+  function validateSocialEncounterMessage(message) {
+    const m = obj(message);
+    if (!message || typeof message !== "object" || Array.isArray(message) || Object.keys(m).length === 0) {
+      return { ok: false, reason: "missing_message" };
+    }
+    // Jobbmail kan ALDRI behandles av den sosiale svarsløyfen.
+    if (hasJobFields(m)) return { ok: false, reason: "job_mail_not_allowed" };
+    const ctx = readResponseMessageContext(m);
+    if (ctx.channel !== "private" && ctx.channel !== "personal") {
+      return { ok: false, reason: "not_private_channel" };
+    }
+    if (ctx.mailClass && ctx.mailClass !== "private_message") {
+      return { ok: false, reason: "not_private_message" };
+    }
+    const isSocialAction = SOCIAL_ACTIONS.includes(ctx.actionId);
+    const isSocialSource = ctx.source === SOCIAL_ENCOUNTER_SOURCE;
+    if (!isSocialAction && !isSocialSource) {
+      return { ok: false, reason: "not_social_action" };
+    }
+    return { ok: true, reason: "" };
+  }
+
+  // Er meldingen en besvarbar sosial henvendelse? (boolsk bekvemmelighet).
+  function isSocialEncounterMessage(message) {
+    return validateSocialEncounterMessage(message).ok;
+  }
+
+  // Bygger en NY personlig melding (samtalestart) når spilleren svarer. Kun for
+  // "reply". Returnerer null for ignore/decline. Privat kanal, aldri jobb.
+  function createFollowupMessageFromSocialResponse(responseResult) {
+    const rr = obj(responseResult);
+    const rid = normalizeResponseId(rr.responseId);
+    const cons = rid ? SOCIAL_RESPONSE_CONSEQUENCE[rid] : null;
+    if (!cons || !cons.canFollowup) return null;
+    const friendId = norm(rr.friendId);
+    const first = firstName(rr.friendName);
+    const followup = {
+      type: PRIVATE_CHANNEL,
+      channel: PRIVATE_CHANNEL,
+      source: SOCIAL_RESPONSE_SOURCE,
+      actionId: "reply",
+      friendId: friendId,
+      friendName: norm(rr.friendName),
+      phase: normalizePhase(rr.phase),
+      threadId: norm(rr.threadId) || resolvePrivateThreadForFriend(friendId),
+      title: "Samtale med " + first,
+      body: "Du svarer " + first + ". Samtalen er i gang.",
+      status: "open"
+    };
+    if (norm(rr.locationId)) followup.locationId = norm(rr.locationId);
+    return followup;
+  }
+
+  // Ren byggefunksjon: bygger resultatet av et svar på en henvendelse uten
+  // sideeffekter (ingen lagring, ingen registrering). Trygg ved ugyldig svar /
+  // ikke-sosial melding. Resultatet er ALLTID privat, aldri jobb.
+  function buildSocialEncounterResponseResult(message, responseId, context) {
+    const ctxIn = obj(context);
+    const rid = normalizeResponseId(responseId);
+    if (!rid) {
+      return { ok: false, reason: "invalid_response", responseId: norm(responseId), channel: PRIVATE_CHANNEL };
+    }
+    const valid = validateSocialEncounterMessage(message);
+    if (!valid.ok) {
+      return { ok: false, reason: valid.reason, responseId: rid, channel: PRIVATE_CHANNEL };
+    }
+    const mctx = readResponseMessageContext(message);
+    const cons = SOCIAL_RESPONSE_CONSEQUENCE[rid];
+    const messageId = norm(ctxIn.messageId) || mctx.messageId || (mctx.threadId + "_" + mctx.actionId);
+    const baseLevel = firstNumber(
+      ctxIn.relationshipLevel,
+      ctxIn.friend && ctxIn.friend.relationshipLevel,
+      message && message.relationshipLevel
+    );
+    const result = {
+      ok: true,
+      responseId: rid,
+      responseLabel: getSocialResponseLabel(rid),
+      status: cons.status,
+      statusLabel: getSocialResponseStatusLabel(cons.status),
+      relationshipDelta: cons.relationshipDelta,
+      resultText: cons.text,
+      canFollowup: cons.canFollowup,
+      // Separasjon: alltid privat/personlig, aldri jobb.
+      channel: PRIVATE_CHANNEL,
+      mail_class: "private_message",
+      source: SOCIAL_RESPONSE_SOURCE,
+      // Sporbar kontekst.
+      messageId: messageId,
+      actionId: mctx.actionId || "approach",
+      friendId: mctx.friendId,
+      friendName: mctx.friendName,
+      phase: mctx.phase,
+      locationId: mctx.locationId,
+      threadId: mctx.threadId,
+      baseRelationshipLevel: baseLevel
+    };
+    if (norm(ctxIn.at)) result.respondedAt = norm(ctxIn.at);
+    result.followup = cons.canFollowup ? createFollowupMessageFromSocialResponse(result) : null;
+    return result;
+  }
+
+  // ---- Lokal relasjonsmodell (testbar) ---------------------------------------
+  let _relationshipStore = null;
+
+  function loadRelationshipStore() {
+    if (_relationshipStore) return _relationshipStore;
+    _relationshipStore = {};
+    try {
+      const raw = window.localStorage && window.localStorage.getItem(RELATIONSHIP_STORE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") _relationshipStore = parsed;
+      }
+    } catch (_e) {
+      // localStorage utilgjengelig (privat modus/test) – hold alt i minne.
+    }
+    return _relationshipStore;
+  }
+
+  function persistRelationshipStore(store) {
+    try {
+      window.localStorage && window.localStorage.setItem(RELATIONSHIP_STORE_KEY, JSON.stringify(store));
+    } catch (_e) {
+      // Ignorer skrivefeil – minnet er fortsatt oppdatert.
+    }
+  }
+
+  // Oppdaterer (eller oppretter) sosial relasjon for en venn ut fra et
+  // svar-resultat. relationshipLevel seedes fra responseResult.baseRelationshipLevel
+  // første gang vennen ses, og justeres med relationshipDelta (aldri under 0).
+  function applySocialRelationshipDelta(friendId, responseResult) {
+    const rr = obj(responseResult);
+    const fid = norm(friendId) || norm(rr.friendId);
+    const delta = Number(rr.relationshipDelta) || 0;
+    const store = loadRelationshipStore();
+    let record = store[fid];
+    if (!record || typeof record !== "object") {
+      const seed = firstNumber(rr.baseRelationshipLevel);
+      record = {
+        friendId: fid,
+        relationshipLevel: seed == null ? 0 : seed,
+        lastSocialResponse: null,
+        lastSocialResponseAt: null,
+        socialHistory: []
+      };
+    }
+    record.friendId = fid;
+    record.relationshipLevel = Math.max(0, (Number(record.relationshipLevel) || 0) + delta);
+    record.lastSocialResponse = normalizeResponseId(rr.responseId) || record.lastSocialResponse;
+    record.lastSocialResponseAt = norm(rr.respondedAt) || record.lastSocialResponseAt || null;
+    record.socialHistory = Array.isArray(record.socialHistory) ? record.socialHistory : [];
+    record.socialHistory.push({
+      messageId: norm(rr.messageId),
+      actionId: norm(rr.actionId) || "approach",
+      responseId: normalizeResponseId(rr.responseId),
+      phase: normalizePhase(rr.phase),
+      locationId: norm(rr.locationId) || null,
+      relationshipDelta: delta
+    });
+    store[fid] = record;
+    persistRelationshipStore(store);
+    return { ...record, socialHistory: record.socialHistory.slice() };
+  }
+
+  function getSocialRelationship(friendId) {
+    const fid = norm(friendId);
+    const r = loadRelationshipStore()[fid];
+    return r ? { ...r, socialHistory: Array.isArray(r.socialHistory) ? r.socialHistory.slice() : [] } : null;
+  }
+
+  function clearSocialRelationshipsForTesting() {
+    _relationshipStore = {};
+    try {
+      window.localStorage && window.localStorage.removeItem(RELATIONSHIP_STORE_KEY);
+    } catch (_e) {
+      // Ignorer – minnet er allerede nullstilt.
+    }
+    return {};
+  }
+
+  // ---- Behandlede henvendelser (hindrer dobbel respons) ----------------------
+  let _responseStore = null;
+
+  function loadResponseStore() {
+    if (_responseStore) return _responseStore;
+    _responseStore = {};
+    try {
+      const raw = window.localStorage && window.localStorage.getItem(RESPONSE_STORE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") _responseStore = parsed;
+      }
+    } catch (_e) {
+      // hold i minne ved utilgjengelig localStorage.
+    }
+    return _responseStore;
+  }
+
+  function persistResponseStore(store) {
+    try {
+      window.localStorage && window.localStorage.setItem(RESPONSE_STORE_KEY, JSON.stringify(store));
+    } catch (_e) {
+      // Ignorer skrivefeil.
+    }
+  }
+
+  function getSocialResponseRecord(messageId) {
+    const mid = norm(messageId);
+    if (!mid) return null;
+    return loadResponseStore()[mid] || null;
+  }
+
+  function recordSocialResponse(messageId, result) {
+    const mid = norm(messageId);
+    if (!mid) return null;
+    const store = loadResponseStore();
+    store[mid] = {
+      messageId: mid,
+      responseId: result.responseId,
+      status: result.status,
+      friendId: result.friendId,
+      relationshipDelta: result.relationshipDelta,
+      phase: result.phase,
+      locationId: result.locationId
+    };
+    persistResponseStore(store);
+    return store[mid];
+  }
+
+  function clearSocialResponsesForTesting() {
+    _responseStore = {};
+    try {
+      window.localStorage && window.localStorage.removeItem(RESPONSE_STORE_KEY);
+    } catch (_e) {
+      // Ignorer.
+    }
+    return {};
+  }
+
+  // Hoved-inngang: håndterer spillerens svar på en sosial henvendelse. Tar
+  // (messageId, responseId, context). context.message (eller .event) skal være
+  // henvendelses-meldingen. Validerer, hindrer dobbel respons, oppdaterer
+  // relasjon, og lager/registrerer en followup ved "Svar". Kaster aldri.
+  function handleSocialEncounterResponse(messageId, responseId, context) {
+    const ctx = obj(context);
+    const message = ctx.message || ctx.event || ctx.mail || null;
+    const rid = normalizeResponseId(responseId);
+    if (!rid) {
+      return { ok: false, reason: "invalid_response", responseId: norm(responseId), channel: PRIVATE_CHANNEL };
+    }
+    const valid = validateSocialEncounterMessage(message);
+    if (!valid.ok) {
+      return { ok: false, reason: valid.reason, responseId: rid, channel: PRIVATE_CHANNEL };
+    }
+    const mctx = readResponseMessageContext(message);
+    const mid = norm(messageId) || mctx.messageId || (mctx.threadId + "_" + mctx.actionId);
+
+    // Dobbel-respons-vakt: samme melding kan ikke besvares to ganger uten at
+    // kallstedet eksplisitt setter context.force = true.
+    const prior = getSocialResponseRecord(mid);
+    if (prior && !ctx.force) {
+      return {
+        ok: false,
+        reason: "already_responded",
+        responseId: prior.responseId,
+        status: prior.status,
+        statusLabel: getSocialResponseStatusLabel(prior.status),
+        messageId: mid,
+        channel: PRIVATE_CHANNEL,
+        existing: prior
+      };
+    }
+
+    const result = buildSocialEncounterResponseResult(message, rid, { ...ctx, messageId: mid });
+    if (!result.ok) return result;
+
+    // Relasjonskonsekvens.
+    result.relationship = applySocialRelationshipDelta(result.friendId, result);
+
+    // Marker meldingen som behandlet (hindrer dobbel respons senere).
+    recordSocialResponse(mid, result);
+
+    // Ved "Svar" registreres en followup som personlig melding (privat kanal).
+    if (result.followup) {
+      try {
+        const reg = registerPrivateMessage(result.followup);
+        result.followupRegistered = !!(reg && reg.registered);
+        result.followupEvent = (reg && reg.event) || null;
+      } catch (_e) {
+        result.followupRegistered = false;
+        result.followupEvent = null;
+      }
+    }
+
+    return result;
+  }
+
+  // Stabil adapter/view-model for Personlige meldinger: gir meldingssystemet alt
+  // det trenger for å vise valgene (Svar/Ignorer/Avvis) og – etter svar –
+  // resultatet (Besvart/Ignorert/Avvist) uten ny logikk. Ren funksjon.
+  function buildSocialEncounterResponseView(message, context) {
+    const ctx = obj(context);
+    const valid = validateSocialEncounterMessage(message);
+    const mctx = readResponseMessageContext(message);
+    const messageId = norm(ctx.messageId) || mctx.messageId || (mctx.threadId + "_" + mctx.actionId);
+    const record = getSocialResponseRecord(messageId);
+    const responded = !!record;
+    const options = RESPONSE_OPTIONS.map((id) => ({ id: id, label: getSocialResponseLabel(id) }));
+    const status = responded ? record.status : (mctx.status || "pending_response");
+    return {
+      isSocialEncounter: valid.ok,
+      reason: valid.reason || "",
+      messageId: messageId,
+      friendId: mctx.friendId,
+      friendName: mctx.friendName,
+      phase: mctx.phase,
+      locationId: mctx.locationId,
+      threadId: mctx.threadId,
+      // Separasjon synlig i selve view-modellen.
+      channel: PRIVATE_CHANNEL,
+      mail_class: "private_message",
+      responded: responded,
+      status: status,
+      statusLabel: getSocialResponseStatusLabel(status),
+      responseId: responded ? record.responseId : null,
+      // Valg vises kun før svar; etter svar viser vi resultatet i stedet.
+      options: (valid.ok && !responded) ? options : [],
+      canRespond: valid.ok && !responded
+    };
+  }
+
   window.CivicationFriendMessages = {
     SOURCE: SOURCE,
     SOCIAL_ENCOUNTER_SOURCE: SOCIAL_ENCOUNTER_SOURCE,
+    SOCIAL_RESPONSE_SOURCE: SOCIAL_RESPONSE_SOURCE,
     RESPONSE_OPTIONS: RESPONSE_OPTIONS.slice(),
+    SOCIAL_ACTIONS: SOCIAL_ACTIONS.slice(),
+    SOCIAL_RESPONSE_LABEL: { ...SOCIAL_RESPONSE_LABEL },
+    SOCIAL_RESPONSE_CONSEQUENCE: { ...SOCIAL_RESPONSE_CONSEQUENCE },
+    SOCIAL_RESPONSE_STATUS_LABEL: { ...SOCIAL_RESPONSE_STATUS_LABEL },
     PRIVATE_CHANNEL: PRIVATE_CHANNEL,
     resolvePrivateThreadForFriend: resolvePrivateThreadForFriend,
     createPrivateMessageFromFriendAction: createPrivateMessageFromFriendAction,
@@ -370,6 +862,23 @@
     toMailEvent: toMailEvent,
     registerPrivateMessage: registerPrivateMessage,
     dispatchPrivateMessageOpen: dispatchPrivateMessageOpen,
-    handleCivicationFriendMessageAction: handleCivicationFriendMessageAction
+    handleCivicationFriendMessageAction: handleCivicationFriendMessageAction,
+    // sosial svarsløyfe (Svar / Ignorer / Avvis) – datadrevet, testbar
+    normalizeResponseId: normalizeResponseId,
+    getSocialResponseLabel: getSocialResponseLabel,
+    getSocialResponseStatusLabel: getSocialResponseStatusLabel,
+    getSocialResponseResultText: getSocialResponseResultText,
+    isSocialEncounterMessage: isSocialEncounterMessage,
+    validateSocialEncounterMessage: validateSocialEncounterMessage,
+    buildSocialEncounterResponseResult: buildSocialEncounterResponseResult,
+    createFollowupMessageFromSocialResponse: createFollowupMessageFromSocialResponse,
+    handleSocialEncounterResponse: handleSocialEncounterResponse,
+    buildSocialEncounterResponseView: buildSocialEncounterResponseView,
+    // lokal relasjonsmodell
+    applySocialRelationshipDelta: applySocialRelationshipDelta,
+    getSocialRelationship: getSocialRelationship,
+    getSocialResponseRecord: getSocialResponseRecord,
+    clearSocialRelationshipsForTesting: clearSocialRelationshipsForTesting,
+    clearSocialResponsesForTesting: clearSocialResponsesForTesting
   };
 })();
