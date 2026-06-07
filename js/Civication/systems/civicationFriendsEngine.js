@@ -82,6 +82,47 @@
     reflection: "Siste refleksjonsfase"
   };
 
+  // Semantisk fase -> brukervendt frase ("i fritidsfasen"). Deterministisk.
+  const SNAPSHOT_PHASE_IN_WORDS = {
+    morning: "i morgenfasen",
+    work: "i arbeidsfasen",
+    leisure: "i fritidsfasen",
+    evening: "i kveldsfasen",
+    reflection: "i refleksjonsfasen"
+  };
+
+  // ---------------------------------------------------------------------------
+  // Sosial tilgjengelighet (social availability)
+  // ---------------------------------------------------------------------------
+  // Enkel, eksplisitt tilstedeværelse for asynkrone sosiale møter. Dette er
+  // IKKE live-status og IKKE GPS – det er en frivillig markering på spillerens/
+  // vennens SISTE fasevalg om de er åpne for en henvendelse på det stedet.
+  //   open_to_contact -> kan vises som mulig sosialt møte og henvendes til
+  //   busy / private  -> vises ikke som sosialt møte på stedet
+  //   hidden          -> verken på kart eller som møte
+  const SOCIAL_AVAILABILITY_VALUES = ["open_to_contact", "busy", "private", "hidden"];
+
+  const SOCIAL_AVAILABILITY_LABEL = {
+    open_to_contact: "åpen for kontakt",
+    busy: "opptatt",
+    private: "privat",
+    hidden: "skjult"
+  };
+
+  // Svarvalg en mottaker har på en sosial henvendelse (Mål 5).
+  const SOCIAL_RESPONSE_OPTIONS = ["reply", "ignore", "decline"];
+
+  // Stabil action-id for en henvendelse fra et sosialt sted (Mål 4/7).
+  const SOCIAL_ENCOUNTER_ACTION = "approach";
+
+  // action/svarvalg -> norsk knappetekst.
+  const SOCIAL_RESPONSE_OPTION_LABEL = {
+    approach: "Henvend deg",
+    reply: "Svar",
+    ignore: "Ignorer",
+    decline: "Avvis"
+  };
+
   let _locationsCache = null;
   let _friendsCache = null;
   let _snapshotsCache = null;
@@ -114,6 +155,38 @@
 
   function snapshotLastSeenText(phase) {
     return SNAPSHOT_LAST_SEEN_TEXT[normalizeSnapshotPhase(phase)] || "Sist sett";
+  }
+
+  function snapshotPhaseInWords(phase) {
+    return SNAPSHOT_PHASE_IN_WORDS[normalizeSnapshotPhase(phase)] || "i fasen";
+  }
+
+  // Normaliser til en gyldig sosial tilgjengelighet. fallback brukes når verdien
+  // mangler/er ugyldig (default "open_to_contact").
+  function normalizeSocialAvailability(value, fallback) {
+    const v = norm(value).toLowerCase();
+    if (SOCIAL_AVAILABILITY_VALUES.includes(v)) return v;
+    const fb = norm(fallback).toLowerCase();
+    return SOCIAL_AVAILABILITY_VALUES.includes(fb) ? fb : "open_to_contact";
+  }
+
+  // social availability -> norsk label ("åpen for kontakt" …).
+  function getSocialAvailabilityLabel(value) {
+    return SOCIAL_AVAILABILITY_LABEL[normalizeSocialAvailability(value)] || "";
+  }
+
+  // svarvalg/approach -> norsk knappetekst ("Svar"/"Ignorer"/"Avvis"/"Henvend deg").
+  function getResponseOptionLabel(option) {
+    return SOCIAL_RESPONSE_OPTION_LABEL[norm(option).toLowerCase()] || "";
+  }
+
+  // Er denne tilstedeværelsen/verdien åpen for kontakt? Tar enten et presence-/
+  // snapshot-objekt (leser .socialAvailability) eller en rå verdi.
+  function isOpenToContact(presenceOrValue) {
+    const v = presenceOrValue && typeof presenceOrValue === "object"
+      ? presenceOrValue.socialAvailability
+      : presenceOrValue;
+    return normalizeSocialAvailability(v, "hidden") === "open_to_contact";
   }
 
   // ---------------------------------------------------------------------------
@@ -317,12 +390,18 @@
     }
     if (isHiddenState(state)) visibleOnMap = false;
 
+    const socialAvailability = normalizeSocialAvailability(
+      entry.socialAvailability,
+      visibleOnMap ? "open_to_contact" : "hidden"
+    );
+
     return {
       state,
       locationId,
       activity: norm(entry.activity),
       mood: norm(entry.mood),
       visibleOnMap,
+      socialAvailability,
       statusText: presenceText(state),
       source: "snapshot",
       isSnapshot: true,
@@ -356,6 +435,8 @@
       return {
         ...fallback,
         mood: "",
+        // Fallback er IKKE et ekte fasevalg -> aldri et sosialt møte på stedet.
+        socialAvailability: fallback.visibleOnMap ? "open_to_contact" : "hidden",
         source: "presence_fallback",
         isSnapshot: false,
         phase: ph,
@@ -372,6 +453,7 @@
       activity: "",
       mood: "",
       visibleOnMap: false,
+      socialAvailability: "hidden",
       statusText: "Ingen fasehistorikk ennå",
       source: "none",
       isSnapshot: false,
@@ -700,6 +782,121 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Stedsbaserte sosiale møter (asynkron sosial tilstedeværelse)
+  // ---------------------------------------------------------------------------
+  // Kjerneidé: når en spiller/venn etterlater sitt SISTE FASEVALG på et sosialt
+  // sted (samme phase + samme locationId), kan andre som senere velger samme
+  // sted i samme fase se dette som et "møte" og sende en "henvendelse".
+  //
+  // Dette er IKKE live multiplayer, IKKE GPS, IKKE fysisk posisjon – kun
+  // asynkron sosial tilstedeværelse basert på siste fasevalg. Alle funksjonene
+  // her er rene og deterministiske: samme (phase, locationId, data) gir alltid
+  // samme møteliste.
+
+  // Kort, brukervendt møte-tekst: "Mariam — Barista — avslappet — «aktivitet»".
+  function getSocialEncounterText(friend, snapshot, phase, location) {
+    const first = friendFirstName(friend);
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const role = norm(friend && friend.role);
+    const activity = norm(snap.activity);
+    const parts = [first];
+    if (role) parts.push(role);
+    if (norm(snap.mood)) parts.push(norm(snap.mood));
+    if (activity) parts.push("«" + activity + "»");
+    return parts.join(" — ");
+  }
+
+  // Resultattekst når spilleren henvender seg til en person på et sted. Bevisst
+  // formulert som siste fasevalg, aldri som live-posisjon.
+  function getApproachActionResultText(friend, snapshot, phase, location) {
+    const first = friendFirstName(friend);
+    const ph = normalizeSnapshotPhase(phase);
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const loc = location && typeof location === "object" ? location : {};
+    let placeLabel = norm(loc.label) || norm(snap.locationId) || norm(snap.locationLabel);
+    if (!placeLabel) placeLabel = "stedet";
+    return "Du henvender deg til " + first + " på " + placeLabel.toLowerCase() +
+      " " + snapshotPhaseInWords(ph) + ".";
+  }
+
+  // Bygger en ren sosial møte-modell for en venn på et sted i en fase. Tar
+  // vennens fase-snapshot (siste fasevalg) eksplisitt, så den er testbar.
+  function buildSocialEncounterModel(friend, snapshot, phase, location) {
+    const ph = normalizeSnapshotPhase(phase);
+    const f = friend && typeof friend === "object" ? friend : {};
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const loc = location && typeof location === "object" ? location : {};
+    const availability = normalizeSocialAvailability(
+      snap.socialAvailability,
+      snap.visibleOnMap ? "open_to_contact" : "hidden"
+    );
+    const locationId = norm(snap.locationId) || norm(loc.id);
+    return {
+      friendId: norm(f.id),
+      friendName: norm(f.name) || "vennen",
+      role: norm(f.role),
+      phase: ph,
+      phaseLabel: snapshotPhaseLabel(ph),
+      locationId: locationId,
+      locationLabel: norm(loc.label) || locationId,
+      activity: norm(snap.activity),
+      mood: norm(snap.mood),
+      socialAvailability: availability,
+      socialAvailabilityLabel: getSocialAvailabilityLabel(availability),
+      lastSeenText: norm(snap.lastSeenText) || snapshotLastSeenText(ph),
+      // Stabil action-id for "Henvend deg" (Mål 4).
+      action: SOCIAL_ENCOUNTER_ACTION,
+      actionLabel: getResponseOptionLabel(SOCIAL_ENCOUNTER_ACTION),
+      encounterText: getSocialEncounterText(f, snap, ph, loc),
+      // Svarvalg mottakeren senere får (Mål 5).
+      responseOptions: SOCIAL_RESPONSE_OPTIONS.slice(),
+      isSimulated: true
+    };
+  }
+
+  // Rene rader: venner med EKTE fase-snapshot på samme sted i samme fase som er
+  // synlige og åpne for kontakt. Mangler snapshot (kun presence-fallback/ingen
+  // historikk) -> personen vises ALDRI som sosialt møte på stedet.
+  function getVisibleFriendsAtSamePhaseLocation(phase, locationId, friendsArg, snapshotsArg, dayIndex) {
+    const ph = normalizeSnapshotPhase(phase);
+    const key = norm(locationId);
+    if (!key) return [];
+    const friends = Array.isArray(friendsArg) ? friendsArg : (_friendsCache || []);
+    const snapshots = Array.isArray(snapshotsArg) ? snapshotsArg : (_snapshotsCache || []);
+    return friendSnapshotRows(friends, ph, snapshots, dayIndex).filter((row) => {
+      const p = row.presence;
+      return p &&
+        p.source === "snapshot" &&            // kun ekte siste fasevalg
+        p.visibleOnMap === true &&
+        norm(p.locationId) === key &&         // samme sted i siste fase
+        isOpenToContact(p);                   // open_to_contact
+    });
+  }
+
+  // Sosiale møte-modeller for et sted i en fase. opts kan bære rådata
+  // (friends/snapshots/locations/dayIndex) for testing uten fetch/cache.
+  function getSocialEncountersForLocation(phase, locationId, opts) {
+    const o = opts && typeof opts === "object" ? opts : {};
+    const friends = Array.isArray(o.friends) ? o.friends : (_friendsCache || []);
+    const snapshots = Array.isArray(o.snapshots) ? o.snapshots : (_snapshotsCache || []);
+    const locations = Array.isArray(o.locations) ? o.locations : (_locationsCache || []);
+    const dayIndex = o.dayIndex != null ? Number(o.dayIndex) : 1;
+    const ph = normalizeSnapshotPhase(phase);
+    const key = norm(locationId);
+    const location = locationById(locations, key);
+    return getVisibleFriendsAtSamePhaseLocation(ph, key, friends, snapshots, dayIndex)
+      .map((row) => buildSocialEncounterModel(row.friend, row.presence, ph, location));
+  }
+
+  // Kan spilleren henvende seg til denne vennen på dette stedet i denne fasen?
+  function canApproachFriendAtLocation(friendId, phase, locationId, opts) {
+    const fid = norm(friendId);
+    if (!fid) return false;
+    return getSocialEncountersForLocation(phase, locationId, opts)
+      .some((enc) => enc.friendId === fid);
+  }
+
+  // ---------------------------------------------------------------------------
   // Runtime-kontekst (fase/dag fra kalenderen)
   // ---------------------------------------------------------------------------
   function getCurrentPhase() {
@@ -820,7 +1017,8 @@
       activity: "starter dagen hjemme",
       mood: "rolig",
       updatedAtLabel: "sist morgenrunde",
-      channel: "private"
+      channel: "private",
+      socialAvailability: "private"
     },
     work: {
       state: "at_work",
@@ -828,7 +1026,8 @@
       activity: "jobber med dagens oppgaver",
       mood: "fokusert",
       updatedAtLabel: "sist arbeidsrunde",
-      channel: "job"
+      channel: "job",
+      socialAvailability: "busy"
     },
     leisure: {
       state: "walking_in_city",
@@ -836,7 +1035,8 @@
       activity: "tar en pause ute i byen",
       mood: "avslappet",
       updatedAtLabel: "sist fritidsrunde",
-      channel: "leisure"
+      channel: "leisure",
+      socialAvailability: "open_to_contact"
     },
     evening: {
       state: "at_home",
@@ -844,7 +1044,8 @@
       activity: "roer ned hjemme",
       mood: "rolig",
       updatedAtLabel: "sist kveldsrunde",
-      channel: "private"
+      channel: "private",
+      socialAvailability: "private"
     },
     reflection: {
       state: "reflecting",
@@ -852,9 +1053,41 @@
       activity: "reflekterer over dagen",
       mood: "ettertenksom",
       updatedAtLabel: "sist refleksjonsrunde",
-      channel: "reflection"
+      channel: "reflection",
+      socialAvailability: "private"
     }
   };
+
+  // Sosiale steder spilleren kan velge -> deterministisk state/aktivitet/
+  // sosial tilgjengelighet for player-snapshotet. Keyed på stedets id (vinner)
+  // og ellers stedstype. Speiler aktivitetene i oppgavens kjerneeksempler.
+  const SOCIAL_PLACE_BY_ID = {
+    football: { state: "at_match", activity: "drar på kamp", socialAvailability: "open_to_contact" },
+    gym: { state: "at_training", activity: "går på trening", socialAvailability: "open_to_contact" },
+    psychology_room: { state: "reflecting", activity: "går i Psykologirommet", socialAvailability: "private" }
+  };
+
+  const SOCIAL_PLACE_BY_TYPE = {
+    cafe: { state: "at_cafe", activity: "drar på kafé", socialAvailability: "open_to_contact" },
+    park: { state: "at_park", activity: "setter seg i parken", socialAvailability: "open_to_contact" },
+    training: { state: "at_training", activity: "går på trening", socialAvailability: "open_to_contact" },
+    culture: { state: "at_culture", activity: "går på kultursted", socialAvailability: "open_to_contact" },
+    library: { state: "at_library", activity: "går på biblioteket", socialAvailability: "open_to_contact" },
+    insight: { state: "reflecting", activity: "går i Psykologirommet", socialAvailability: "private" },
+    job: { state: "at_work", activity: "går på jobbpause", socialAvailability: "busy" },
+    store: { state: "shopping", activity: "stikker innom butikken", socialAvailability: "busy" },
+    service: { state: "at_service", activity: "ordner et ærend", socialAvailability: "busy" },
+    home: { state: "at_home", activity: "er hjemme", socialAvailability: "private" },
+    friend_home: { state: "visiting_player", activity: "er på besøk", socialAvailability: "private" }
+  };
+
+  // Slår opp en sosial sted-profil for en location (id vinner over type).
+  function resolveSocialPlaceProfile(location) {
+    const loc = location && typeof location === "object" ? location : {};
+    const id = norm(loc.id).toLowerCase();
+    const type = norm(loc.type).toLowerCase();
+    return SOCIAL_PLACE_BY_ID[id] || SOCIAL_PLACE_BY_TYPE[type] || null;
+  }
 
   let _playerPhaseSnapshots = null;
 
@@ -890,6 +1123,10 @@
     const state = norm(s.state) || "at_home";
     let visibleOnMap = typeof s.visibleOnMap === "boolean" ? s.visibleOnMap : true;
     if (isHiddenState(state)) visibleOnMap = false;
+    const socialAvailability = normalizeSocialAvailability(
+      s.socialAvailability,
+      visibleOnMap ? "open_to_contact" : "hidden"
+    );
     return {
       phase: ph,
       state,
@@ -898,6 +1135,7 @@
       mood: norm(s.mood),
       updatedAtLabel: norm(s.updatedAtLabel),
       visibleOnMap,
+      socialAvailability,
       channel: norm(s.channel)
     };
   }
@@ -916,7 +1154,29 @@
       mood: norm(cs.mood) || def.mood,
       updatedAtLabel: norm(cs.updatedAtLabel) || def.updatedAtLabel,
       channel: norm(cs.channel) || def.channel,
+      socialAvailability: norm(cs.socialAvailability) || def.socialAvailability,
       visibleOnMap: typeof cs.visibleOnMap === "boolean" ? cs.visibleOnMap : true
+    });
+  }
+
+  // Bygger spillerens snapshot når et bestemt sosialt sted velges (Mål 6).
+  // Henter state/aktivitet/sosial tilgjengelighet/kanal fra stedet via en
+  // deterministisk sted-profil; overrides kan finjustere. Ren funksjon.
+  function buildPlayerSnapshotForLocation(phase, location, overrides) {
+    const ph = normalizeSnapshotPhase(phase);
+    const loc = location && typeof location === "object" ? location : {};
+    const profile = resolveSocialPlaceProfile(loc) || {};
+    const def = PLAYER_PHASE_DEFAULTS[ph] || PLAYER_PHASE_DEFAULTS.morning;
+    const o = overrides && typeof overrides === "object" ? overrides : {};
+    return normalizePlayerSnapshot(ph, {
+      state: norm(o.state) || profile.state || def.state,
+      locationId: norm(o.locationId) || norm(loc.id) || def.locationId,
+      activity: norm(o.activity) || profile.activity || def.activity,
+      mood: norm(o.mood) || def.mood,
+      updatedAtLabel: norm(o.updatedAtLabel) || def.updatedAtLabel,
+      channel: norm(o.channel) || norm(loc.channel) || def.channel,
+      socialAvailability: norm(o.socialAvailability) || profile.socialAvailability || def.socialAvailability,
+      visibleOnMap: typeof o.visibleOnMap === "boolean" ? o.visibleOnMap : true
     });
   }
 
@@ -943,6 +1203,14 @@
   function capturePlayerPhaseSnapshot(currentState, phaseArg) {
     const phase = phaseArg != null ? normalizeSnapshotPhase(phaseArg) : getActivePhase();
     return savePlayerSnapshotForPhase(phase, buildPlayerSnapshotFromCurrentState(phase, currentState));
+  }
+
+  // Lagrer spillerens snapshot for et valgt sosialt sted i aktiv fase (Mål 6).
+  // Setter phase + locationId + activity + state + socialAvailability +
+  // visibleOnMap deterministisk fra stedet. Dette er spillerens siste fasevalg.
+  function capturePlayerPhaseSnapshotAtLocation(location, phaseArg, overrides) {
+    const phase = phaseArg != null ? normalizeSnapshotPhase(phaseArg) : getActivePhase();
+    return savePlayerSnapshotForPhase(phase, buildPlayerSnapshotForLocation(phase, location, overrides));
   }
 
   function clearPlayerPhaseSnapshotsForTesting() {
@@ -988,12 +1256,22 @@
     SNAPSHOT_LAST_SEEN_TEXT: { ...SNAPSHOT_LAST_SEEN_TEXT },
     DAY_PHASE_TO_SNAPSHOT: { ...DAY_PHASE_TO_SNAPSHOT },
     SNAPSHOT_TO_DAY_PHASE: { ...SNAPSHOT_TO_DAY_PHASE },
+    SOCIAL_AVAILABILITY_VALUES: SOCIAL_AVAILABILITY_VALUES.slice(),
+    SOCIAL_AVAILABILITY_LABEL: { ...SOCIAL_AVAILABILITY_LABEL },
+    SOCIAL_RESPONSE_OPTIONS: SOCIAL_RESPONSE_OPTIONS.slice(),
+    SOCIAL_ENCOUNTER_ACTION,
     // rene hjelpere (testbare uten fetch/DOM)
     normalizePhase,
     normalizeSnapshotPhase,
     snapshotPhaseLabel,
     snapshotLastSeenText,
+    snapshotPhaseInWords,
     presenceText,
+    // sosial tilgjengelighet + labels (Mål 1/7)
+    normalizeSocialAvailability,
+    getSocialAvailabilityLabel,
+    getResponseOptionLabel,
+    isOpenToContact,
     // brukervendte label-/tekst-hjelpere (stabile, testbare navn)
     getPhaseLabel,
     getPresenceStateLabel,
@@ -1025,6 +1303,13 @@
     buildFriendInviteAction,
     buildFriendProfileAction,
     handleFriendAction,
+    // stedsbaserte sosiale møter (rene, deterministiske) – Mål 2/7
+    getSocialEncounterText,
+    getApproachActionResultText,
+    buildSocialEncounterModel,
+    getVisibleFriendsAtSamePhaseLocation,
+    getSocialEncountersForLocation,
+    canApproachFriendAtLocation,
     // runtime-kontekst
     getCurrentPhase,
     getActivePhase,
@@ -1035,11 +1320,14 @@
     getFriendsAtLocationForPhase,
     // lokalt spiller-fase-minne (grunnlag for framtidig synk til venner)
     PLAYER_PHASE_DEFAULTS: { ...PLAYER_PHASE_DEFAULTS },
+    resolveSocialPlaceProfile,
     buildPlayerSnapshotFromCurrentState,
+    buildPlayerSnapshotForLocation,
     getPlayerPhaseSnapshots,
     getPlayerSnapshotForPhase,
     savePlayerSnapshotForPhase,
     capturePlayerPhaseSnapshot,
+    capturePlayerPhaseSnapshotAtLocation,
     clearPlayerPhaseSnapshotsForTesting,
     // bakoverkompatible aliaser
     getPlayerPhaseSnapshot,

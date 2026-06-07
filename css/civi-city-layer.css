@@ -379,6 +379,28 @@ body.civi-mapmode .civi-city-layer {
   display: none;
 }
 
+/* Sosiale møter på et sted: personer som også sist valgte stedet i samme fase. */
+.civi-city-encounters .civi-city-encounter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.civi-city-encounters .civi-city-encounter-line {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.civi-city-encounters .civi-city-approach {
+  flex: 0 0 auto;
+  min-width: 104px;
+}
+
 @media (max-width: 520px) {
   .civi-city-place-label {
     max-width: 84px;

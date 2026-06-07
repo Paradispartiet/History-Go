@@ -250,6 +250,26 @@
     }
   }
 
+  // Lagrer spillerens siste fasevalg for et valgt sosialt sted (Mål 6): sted +
+  // aktivitet + state + socialAvailability + kanal utledes deterministisk fra
+  // stedet av motoren. Trygg fallback til den enklere capture-en.
+  function capturePlayerSnapshotForPlace(loc) {
+    const eng = engine();
+    if (!eng) return null;
+    const snapshotPhase = _model ? _model.snapshotPhase : null;
+    try {
+      if (typeof eng.capturePlayerPhaseSnapshotAtLocation === "function") {
+        return eng.capturePlayerPhaseSnapshotAtLocation(loc, snapshotPhase);
+      }
+      return capturePlayerSnapshot({
+        locationId: String((loc && loc.id) || ""),
+        channel: String((loc && loc.channel) || "")
+      });
+    } catch (_e) {
+      return null;
+    }
+  }
+
   // Diskret linje: "Denne fasen lagres som din siste arbeidsfase – Arbeidsplass".
   function renderSelfStatus() {
     const eng = engine();
@@ -312,16 +332,28 @@
 
     markSelected('[data-place-id="' + cssEscape(placeId) + '"]');
 
-    // Spilleren bruker et sted i den aktive fasen -> oppdater spillerens eget
-    // fase-minne så det peker hit (sted + kanal fra stedet). Resten er fasens
-    // deterministiske standard.
-    capturePlayerSnapshot({ locationId: String(loc.id || ""), channel: String(loc.channel || "") });
+    // Spilleren velger et sosialt sted i den aktive fasen -> lagre spillerens
+    // siste fasevalg her: phase + locationId + activity + state +
+    // socialAvailability + visibleOnMap (deterministisk fra stedet). Mål 6.
+    capturePlayerSnapshotForPlace(loc);
     renderSelfStatus();
 
     // Venner her = de hvis aktive fase-minne (snapshot/fallback) peker hit.
     const here = (_model.friends || []).filter((r) =>
       r.presence && r.presence.visibleOnMap && String(r.presence.locationId || "") === String(placeId));
     const active = eng.isLocationActive(loc, _model.phase);
+
+    // Sosiale møter = personer som også sist valgte dette stedet i samme fase og
+    // er åpne for kontakt (Mål 3). Henter rene møte-modeller fra motoren.
+    const encounters = (typeof eng.getSocialEncountersForLocation === "function")
+      ? eng.getSocialEncountersForLocation(_model.snapshotPhase, placeId, {
+          friends: (_model.friends || []).map((r) => r.friend),
+          snapshots: _model.snapshots,
+          locations: _model.locations,
+          dayIndex: _model.dayIndex
+        })
+      : [];
+    const encountersHtml = buildPlaceEncountersHtml(loc, _model.snapshotPhase, encounters);
 
     const activitiesHtml = (Array.isArray(loc.availableActivities) ? loc.availableActivities : [])
       .map((a) => '<span class="civi-city-chip">' + esc(activityLabel(a)) + "</span>")
@@ -345,9 +377,49 @@
         (active ? "Aktivt i denne fasen" : "Roligere i denne fasen") + "</div>" +
       (activitiesHtml ? '<div class="civi-city-detail-section"><h4>Aktiviteter</h4><div class="civi-city-chips">' + activitiesHtml + "</div></div>" : "") +
       '<div class="civi-city-detail-section"><h4>Venner her</h4><ul class="civi-city-detail-list">' + friendsHtml + "</ul></div>" +
+      encountersHtml +
       (channelHint ? '<p class="civi-city-detail-hint">' + esc(channelHint) + "</p>" : "") +
-      (relatedSection ? '<div class="civi-city-detail-actions"><button type="button" class="civi-btn" data-civi-goto-section="' + esc(relatedSection) + '">Åpne i Civication</button></div>' : "")
+      (relatedSection ? '<div class="civi-city-detail-actions"><button type="button" class="civi-btn" data-civi-goto-section="' + esc(relatedSection) + '">Åpne i Civication</button></div>' : "") +
+      '<p class="civi-city-detail-feedback" data-encounter-feedback hidden></p>'
     );
+  }
+
+  // Ren funksjon: bygger HTML for "sosiale møter" på et sted i en fase. Viser
+  // personer som også sist valgte dette stedet i samme fase (åpne for kontakt),
+  // med en "Henvend deg"-knapp pr. person. Eksportert for headless testing.
+  function buildPlaceEncountersHtml(loc, phase, encounters) {
+    const eng = engine();
+    const list = Array.isArray(encounters) ? encounters : [];
+    const placeLabel = (loc && (loc.label || loc.id)) || "stedet";
+    const phaseLbl = (eng && typeof eng.snapshotPhaseLabel === "function")
+      ? eng.snapshotPhaseLabel(phase)
+      : String(phase || "");
+    const phaseLow = (phaseLbl || "fase").toLowerCase();
+    const heading = "Folk som også valgte " + placeLabel.toLowerCase() + " i siste " + phaseLow;
+
+    if (!list.length) {
+      return '<div class="civi-city-detail-section civi-city-encounters">' +
+        "<h4>" + esc("Sosialt møte") + "</h4>" +
+        '<p class="civi-city-detail-list muted">' +
+        esc("Ingen åpne for kontakt her i siste " + phaseLow + ".") + "</p></div>";
+    }
+
+    const items = list.map((enc) => {
+      const sub = [enc.role, enc.mood, enc.activity ? "«" + enc.activity + "»" : ""]
+        .filter(Boolean).map(esc).join(" — ");
+      const label = enc.actionLabel || "Henvend deg";
+      return '<li class="civi-city-encounter">' +
+        '<div class="civi-city-encounter-line"><strong>' + esc(enc.friendName) + "</strong>" +
+        (sub ? " — " + sub : "") + "</div>" +
+        '<button type="button" class="civi-btn civi-city-approach" data-civi-social-action="approach"' +
+        ' data-friend-id="' + esc(enc.friendId) + '" data-friend-name="' + esc(enc.friendName) + '"' +
+        ' data-friend-phase="' + esc(enc.phase) + '" data-location-id="' + esc(enc.locationId) + '">' +
+        esc(label) + "</button></li>";
+    }).join("");
+
+    return '<div class="civi-city-detail-section civi-city-encounters">' +
+      "<h4>" + esc(heading) + "</h4>" +
+      '<ul class="civi-city-detail-list">' + items + "</ul></div>";
   }
 
   function openFriendDetail(friendId) {
@@ -517,6 +589,20 @@
         });
       });
     });
+
+    // "Henvend deg" på et sosialt sted -> personlig henvendelse (Mål 4).
+    detail.querySelectorAll("[data-civi-social-action]").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        handleSocialEncounterAction(detail, {
+          action: btn.getAttribute("data-civi-social-action"),
+          friendId: btn.getAttribute("data-friend-id"),
+          friendName: btn.getAttribute("data-friend-name"),
+          phase: btn.getAttribute("data-friend-phase"),
+          locationId: btn.getAttribute("data-location-id")
+        });
+      });
+    });
   }
 
   function gotoSection(sectionId) {
@@ -611,6 +697,69 @@
         }
       }));
     } catch (_e) {}
+  }
+
+  // "Henvend deg" fra et sosialt sted: bygger en møte-modell for vennen på
+  // stedet og kobler den til PERSONLIGE meldinger (privat kanal, aldri jobb)
+  // via broen. Viser respons i stedskortet og sender en stabil event-hook.
+  function handleSocialEncounterAction(detail, info) {
+    const eng = engine();
+    const action = String((info && info.action) || "").toLowerCase();
+    if (action !== "approach") return;
+    const friendId = info && info.friendId;
+    const phase = (info && info.phase) || (_model && _model.snapshotPhase) || "leisure";
+    const locationId = info && info.locationId;
+
+    // Finn den rene møte-modellen for nettopp denne vennen på stedet.
+    let encounter = null;
+    if (eng && typeof eng.getSocialEncountersForLocation === "function") {
+      const opts = {
+        friends: _model ? (_model.friends || []).map((r) => r.friend) : null,
+        snapshots: _model ? _model.snapshots : null,
+        locations: _model ? _model.locations : null,
+        dayIndex: _model ? _model.dayIndex : 1
+      };
+      encounter = eng.getSocialEncountersForLocation(phase, locationId, opts)
+        .find((e) => String(e.friendId) === String(friendId)) || null;
+    }
+
+    // Koble henvendelsen til personlige meldinger via broen.
+    let feedbackText = "";
+    let bridged = null;
+    const bridge = window.CivicationFriendMessages;
+    if (encounter && bridge && typeof bridge.handleCivicationFriendMessageAction === "function") {
+      try {
+        bridged = bridge.handleCivicationFriendMessageAction({ ok: true, action: "approach", model: encounter });
+        if (bridged && bridged.feedbackText) feedbackText = bridged.feedbackText;
+      } catch (_e) {}
+    }
+    if (!feedbackText) {
+      const name = (encounter && encounter.friendName) || (info && info.friendName) || "vennen";
+      feedbackText = "Henvendelse til " + name + " er klar.";
+    }
+
+    const feedback = detail.querySelector("[data-encounter-feedback]");
+    if (feedback && feedbackText) {
+      feedback.textContent = feedbackText;
+      feedback.removeAttribute("hidden");
+    }
+
+    try {
+      window.dispatchEvent(new CustomEvent("civi:socialEncounterApproach", {
+        detail: {
+          action: "approach",
+          friendId: friendId,
+          phase: phase,
+          locationId: locationId,
+          encounter: encounter,
+          message: bridged ? bridged.message : null,
+          responseOptions: bridged && bridged.message ? bridged.message.responseOptions : null,
+          source: "civicationCityLayer"
+        }
+      }));
+    } catch (_e) {}
+
+    return bridged;
   }
 
   // Bro mot personlige meldinger: kobler Send melding / Inviter til innkommende
@@ -716,6 +865,8 @@
     openPlaceDetail,
     openFriendDetail,
     buildFriendDetailHtml,
+    buildPlaceEncountersHtml,
+    handleSocialEncounterAction,
     getFriendInvites,
     closeDetail
   };
