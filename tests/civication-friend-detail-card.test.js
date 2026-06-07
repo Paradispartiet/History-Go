@@ -44,6 +44,12 @@ function loadModules() {
   );
   vm.runInThisContext(engineCode, { filename: "civicationFriendsEngine.js" });
 
+  const relCode = fs.readFileSync(
+    path.join(repoRoot, "js/Civication/systems/civicationRelationshipEngine.js"),
+    "utf8"
+  );
+  vm.runInThisContext(relCode, { filename: "civicationRelationshipEngine.js" });
+
   const layerCode = fs.readFileSync(
     path.join(repoRoot, "js/Civication/ui/CivicationCityLayer.js"),
     "utf8"
@@ -56,7 +62,11 @@ function loadModules() {
     typeof sandboxWindow.CivicationCityLayer.buildFriendDetailHtml === "function",
     "buildFriendDetailHtml skal være eksportert"
   );
-  return { eng: sandboxWindow.CivicationFriendsEngine, layer: sandboxWindow.CivicationCityLayer };
+  return {
+    eng: sandboxWindow.CivicationFriendsEngine,
+    layer: sandboxWindow.CivicationCityLayer,
+    rel: sandboxWindow.CivicationRelationshipEngine
+  };
 }
 
 let failures = 0;
@@ -75,15 +85,16 @@ const locations = readJSON("data/Civication/map/phaseLocations.json").phaseLocat
 const friends = readJSON("data/Civication/map/friends.json").friends;
 const snapshots = readJSON("data/Civication/map/friendPhaseSnapshots.json").friendPhaseSnapshots;
 
-const { eng, layer } = loadModules();
+const { eng, layer, rel } = loadModules();
 
-function buildCard(friend, phase) {
+function buildCard(friend, phase, relationship) {
   const presence = eng.resolveFriendMapPresence(friend, phase, snapshots, 1);
   const model = {
     locations,
     snapshotPhase: eng.normalizeSnapshotPhase(phase),
     snapshotPhaseLabel: eng.getPhaseLabel(phase)
   };
+  if (relationship) model.relationship = relationship;
   return layer.buildFriendDetailHtml({ friend, presence }, model);
 }
 
@@ -170,6 +181,37 @@ check("alle fire handlinger rendres med stabile data-attributter", () => {
 
 check("buildFriendDetailHtml er deterministisk (samme input -> samme output)", () => {
   assert.strictEqual(buildCard(mariam, "evening"), buildCard(mariam, "evening"));
+});
+
+console.log("Vennens profilkort – levende relasjonsstatus (relasjonsmotoren)");
+
+check("uten lagret relasjon vises ingen levende relasjonsblokk", () => {
+  const html = buildCard(mariam, "morning");
+  assert.ok(!html.includes("civi-friend-relation-live"), "levende blokk skal ikke vises uten relasjon");
+  // Den eldre hurtig-etiketten er fortsatt på plass og uendret.
+  assert.ok(html.includes("Nivå 2 · venn"), "eldre relasjonslinje skal beholdes");
+});
+
+check("med lagret relasjon vises stage, status, tilgjengelighet og siste møte", () => {
+  const summary = rel.buildRelationshipSummary({
+    friendId: "friend_demo_01", relationshipLevel: 2, trust: 1, familiarity: 2,
+    lastSocialResponse: "reply", lastInteractionPhase: "leisure", lastInteractionLocationId: "park",
+    socialHistory: [{ messageId: "x" }]
+  });
+  const html = buildCard(mariam, "morning", summary);
+  assert.ok(html.includes("civi-friend-relation-live"), "levende blokk mangler");
+  assert.ok(html.includes("bekjent"), "stage-label (bekjent) mangler");
+  assert.ok(html.includes("mer åpen"), "availability-label mangler");
+  assert.ok(html.includes("Siste svar: Svar"), "siste respons mangler");
+  assert.ok(html.includes("park"), "siste møtested mangler");
+});
+
+check("levende relasjonsblokk er fortsatt deterministisk", () => {
+  const summary = rel.buildRelationshipSummary({
+    friendId: "friend_demo_01", relationshipLevel: 4, lastSocialResponse: "decline",
+    lastInteractionPhase: "evening", lastInteractionLocationId: "cafe"
+  });
+  assert.strictEqual(buildCard(mariam, "evening", summary), buildCard(mariam, "evening", summary));
 });
 
 if (failures > 0) {

@@ -429,7 +429,21 @@
     if (!row) return;
 
     markSelected('[data-friend-id="' + cssEscape(friendId) + '"]');
-    showDetail(buildFriendDetailHtml(row, _model));
+    // Overlat live relasjonsstatus (fra svarsløyfen) til kortet når den finnes.
+    const relSummary = liveRelationship(friendId);
+    const model = relSummary ? { ..._model, relationship: relSummary } : _model;
+    showDetail(buildFriendDetailHtml(row, model));
+  }
+
+  // Hent levende relasjonssammendrag for en venn fra den lokale relasjonsmotoren
+  // (oppdateres av Svar/Ignorer/Avvis). Trygt null når broen/motoren ikke er
+  // lastet eller vennen ennå ikke har en lagret relasjon.
+  function liveRelationship(friendId) {
+    const bridge = window.CivicationFriendMessages;
+    if (bridge && typeof bridge.getRelationshipSummaryForFriend === "function") {
+      try { return bridge.getRelationshipSummaryForFriend(friendId) || null; } catch (_e) { return null; }
+    }
+    return null;
   }
 
   // Ren funksjon: bygger HTML for vennens profilkort i byen. Tar (row, model)
@@ -480,6 +494,12 @@
     const relText = "Nivå " + rel + " · " + relationshipLabel(rel);
     const relBlurb = relationshipBlurb(rel);
 
+    // 4b) Levende relasjonsstatus (relasjonsmotoren): vises diskret KUN når en
+    // lagret relasjon finnes (etter Svar/Ignorer/Avvis). Viser relasjonsstage,
+    // kort blurb, sosial tilgjengelighet, siste respons og siste møtested/fase.
+    const liveRel = model && model.relationship;
+    const relLiveHtml = liveRel ? buildLiveRelationshipHtml(liveRel, snapshotPhase) : "";
+
     // Disclosure: skiller fase-minne fra live-sporing.
     const disclosure = hasHistory
       ? friendDisclosure(firstName, snapshotPhase)
@@ -511,6 +531,7 @@
       '<div class="civi-city-detail-section civi-friend-relation"><h4>Relasjon</h4>' +
         '<div class="civi-city-detail-status">' + esc(relText) + "</div>" +
         (relBlurb ? '<p class="civi-friend-relation-blurb">' + esc(relBlurb) + "</p>" : "") +
+        relLiveHtml +
       "</div>" +
       // Disclosure (fase-minne, ikke live)
       '<p class="civi-city-detail-hint">' + disclosure + "</p>" +
@@ -549,6 +570,40 @@
     const eng = engine();
     if (eng && typeof eng.getRelationshipBlurb === "function") return eng.getRelationshipBlurb(level);
     return "";
+  }
+
+  // Diskret blokk for den levende relasjonsstatusen fra relasjonsmotoren. Tar et
+  // ferdig relasjonssammendrag (CivicationRelationshipEngine.buildRelationshipSummary)
+  // og rendrer relasjonsstage, blurb, sosial tilgjengelighet, siste respons og
+  // siste møtested/fase. Ren funksjon – ingen DOM/fetch.
+  function buildLiveRelationshipHtml(summary, fallbackPhase) {
+    const s = summary && typeof summary === "object" ? summary : {};
+    const eng = engine();
+    const stageLabel = s.stageLabel || "";
+    const blurb = s.statusText || s.stageBlurb || "";
+    const availLabel = s.availabilityModifierLabel || "";
+    const lastResp = s.lastSocialResponseLabel || "";
+    const phaseRaw = s.lastInteractionPhase || fallbackPhase || "";
+    const phaseLbl = phaseRaw && eng && typeof eng.getPhaseLabel === "function"
+      ? eng.getPhaseLabel(phaseRaw) : "";
+    const locId = s.lastInteractionLocationId || "";
+
+    const stageLine = stageLabel
+      ? '<div class="civi-friend-relation-stage">' + esc("Status: " + stageLabel) +
+        (availLabel ? " · " + esc(availLabel) : "") + "</div>"
+      : "";
+    const blurbLine = blurb
+      ? '<p class="civi-friend-relation-live-blurb">' + esc(blurb) + "</p>" : "";
+
+    const meta = [];
+    if (lastResp) meta.push("Siste svar: " + lastResp);
+    if (locId) meta.push("Sist sett: " + locId + (phaseLbl ? " (" + phaseLbl.toLowerCase() + ")" : ""));
+    else if (phaseLbl) meta.push("Sist: " + phaseLbl.toLowerCase());
+    const metaLine = meta.length
+      ? '<p class="civi-friend-relation-meta">' + esc(meta.join(" · ")) + "</p>" : "";
+
+    if (!stageLine && !blurbLine && !metaLine) return "";
+    return '<div class="civi-friend-relation-live">' + stageLine + blurbLine + metaLine + "</div>";
   }
 
   function friendDisclosure(friendName, phase) {
@@ -865,6 +920,7 @@
     openPlaceDetail,
     openFriendDetail,
     buildFriendDetailHtml,
+    buildLiveRelationshipHtml,
     buildPlaceEncountersHtml,
     handleSocialEncounterAction,
     getFriendInvites,
