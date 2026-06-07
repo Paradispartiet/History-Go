@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-07T06:05:56.679Z
+Generert: 2026-06-07T09:24:25.461Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -27,59 +27,61 @@ Generert: 2026-06-07T06:05:56.679Z
 
 ## Resolusjon
 
-- eksplisitt `visual.designCode`: 169
+- eksplisitt `visual.designCode`: 249
 - per kilde (alle entiteter):
-  - explicit: 169
+  - explicit: 249
   - assetType: 0
   - category: 264
-  - heuristic: 478
-  - default: 348
+  - heuristic: 421
+  - default: 325
 
 | entityType | explicit | assetType | category | heuristic | default |
 | --- | --- | --- | --- | --- | --- |
-| places | 68 | 0 | 132 | 274 | 15 |
-| people | 65 | 0 | 132 | 167 | 62 |
-| articles | 36 | 0 | 0 | 37 | 271 |
+| places | 98 | 0 | 132 | 247 | 12 |
+| people | 88 | 0 | 132 | 144 | 62 |
+| articles | 63 | 0 | 0 | 30 | 251 |
 
 ## Eksplisitt pilot-merkede designCodes
 
-- places (68):
+- places (98):
+  - `park_miniature`: 13
+  - `church_miniature`: 11
+  - `station_miniature`: 9
+  - `stadium_miniature`: 8
+  - `museum_miniature`: 8
   - `square_miniature`: 7
-  - `park_miniature`: 7
-  - `church_miniature`: 6
-  - `station_miniature`: 5
-  - `museum_miniature`: 5
-  - `university_miniature`: 5
+  - `cinema_miniature`: 7
+  - `university_miniature`: 6
+  - `theatre_miniature`: 5
+  - `library_miniature`: 5
   - `street_miniature`: 4
   - `waterfront_miniature`: 4
-  - `library_miniature`: 4
-  - `cinema_miniature`: 4
-  - `stadium_miniature`: 4
   - `ice_arena_miniature`: 4
-  - `theatre_miniature`: 2
   - `civic_miniature`: 2
   - `fortress_miniature`: 2
   - `commerce_miniature`: 1
   - `industrial_miniature`: 1
   - `school_miniature`: 1
-- people (65):
-  - `person_musician_miniature`: 14
-  - `person_scientist_miniature`: 11
-  - `person_writer_miniature`: 6
-  - `person_politician_miniature`: 6
-  - `person_athlete_miniature`: 6
+- people (88):
+  - `person_scientist_miniature`: 15
+  - `person_musician_miniature`: 15
+  - `person_writer_miniature`: 14
+  - `person_politician_miniature`: 13
+  - `person_athlete_miniature`: 9
   - `person_poet_miniature`: 5
   - `person_runner_miniature`: 5
   - `person_footballer_miniature`: 4
   - `person_skier_miniature`: 4
   - `person_activist_miniature`: 3
   - `person_historical_miniature`: 1
-- articles (36):
+- articles (63):
+  - `article_architecture_miniature`: 16
   - `article_history_miniature`: 13
+  - `article_sports_history_miniature`: 11
   - `article_place_essay_miniature`: 9
-  - `article_sports_history_miniature`: 5
+  - `article_art_miniature`: 5
   - `article_political_history_miniature`: 3
-  - `article_art_miniature`: 3
+  - `article_literature_miniature`: 3
   - `article_local_story_miniature`: 1
   - `article_groundhopper_miniature`: 1
   - `article_object_story_miniature`: 1
@@ -87,13 +89,13 @@ Generert: 2026-06-07T06:05:56.679Z
 ## Pilot batch 2
 
 - Batch 1-baseline: 73 eksplisitte `visual.designCode` (28 places, 30 people, 15 articles).
-- Nåværende total etter batch 2: 169 eksplisitte `visual.designCode`.
-- Netto økning etter batch 1: 96 (40 places, 35 people, 21 articles).
+- Nåværende total etter batch 2: 249 eksplisitte `visual.designCode`.
+- Netto økning etter batch 1: 176 (70 places, 58 people, 48 articles).
 - Omfang: Kontrollert Pilot batch 2: høy nytte for sentrale kartsteder, stedskoblede people og kunnskapslagartikler.
 
 ## Topp brukte designCodes
 
-- `article_default_miniature`: 271
+- `article_default_miniature`: 251
 - `waterfront_miniature`: 87
 - `park_miniature`: 63
 - `person_default_miniature`: 62
@@ -105,7 +107,7 @@ Generert: 2026-06-07T06:05:56.679Z
 - `apartment_block_miniature`: 28
 - `person_politician_miniature`: 28
 - `person_artist_miniature`: 28
-- `museum_miniature`: 26
+- `museum_miniature`: 27
 - `commerce_miniature`: 25
 - `university_miniature`: 25
 
@@ -114,7 +116,7 @@ Generert: 2026-06-07T06:05:56.679Z
 Entiteter som fortsatt løses via default-fallback. Dette er den neste
 ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 
-#### Places som fortsatt er `default_miniature` (15)
+#### Places som fortsatt er `default_miniature` (12)
 
 | id | navn/tittel | kategori | fil |
 | --- | --- | --- | --- |
@@ -122,7 +124,6 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | grini_fangeleir | Grini fangeleir | historie | data/places/historie/oslo/places_historie.json |
 | villa_grande | Villa Grande | historie | data/places/historie/oslo/places_historie.json |
 | bogstad_gard | Bogstad gård | historie | data/places/historie/oslo/places_historie.json |
-| nonneseter_kloster | Nonneseter kloster | historie | data/places/historie/oslo/places_historie_added_batch_01.json |
 | oslo_ladegard | Oslo ladegård | historie | data/places/historie/oslo/places_historie_added_batch_01.json |
 | gamle_radhus | Gamle rådhus | historie | data/places/historie/oslo/places_historie_added_batch_01.json |
 | galgeberg | Galgeberg | historie | data/places/historie/oslo/places_historie_added_batch_01.json |
@@ -131,8 +132,6 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | prinds_christian_augusts_minde | Prinds Christian Augusts Minde | historie | data/places/historie/oslo/places_historie_added_batch_01.json |
 | hellerud_gard | Hellerud gård | historie | data/places/natur/oslo/places_oslo_alna.json |
 | lisbon_padrao_dos_descobrimentos | Padrão dos Descobrimentos | historie | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json |
-| lisbon_sao_vicente_de_fora | Igreja e Mosteiro de São Vicente de Fora | historie | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json |
-| lisbon_palacio_ajuda | Palácio Nacional da Ajuda | historie | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json |
 
 #### People som fortsatt er `person_default_miniature` (62)
 
@@ -181,7 +180,7 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 
 _Viser 40 av 62. Full liste i `reports/visual-design-codes-audit.json`._
 
-#### Artikler som fortsatt er `article_default_miniature` (271)
+#### Artikler som fortsatt er `article_default_miniature` (251)
 
 | id | navn/tittel | kategori | fil |
 | --- | --- | --- | --- |
@@ -190,7 +189,6 @@ _Viser 40 av 62. Full liste i `reports/visual-design-codes-audit.json`._
 | loelva_historisk | loelva_historisk | — | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
 | trosterud_friomrade | trosterud_friomrade | — | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
 | furuset_haugerud_skogbelte | furuset_haugerud_skogbelte | — | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
-| hellerud_gard | hellerud_gard | — | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
 | alnabru_jernbane_og_logistikk | alnabru_jernbane_og_logistikk | — | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
 | damstredet_telthusbakken | damstredet_telthusbakken | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
 | gamle_trikkestallen | gamle_trikkestallen | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
@@ -199,19 +197,14 @@ _Viser 40 av 62. Full liste i `reports/visual-design-codes-audit.json`._
 | bjoelsenfossen | bjoelsenfossen | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
 | glads_molle | glads_molle | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
 | voienfossen | voienfossen | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| voien_gard_voienvolden | voien_gard_voienvolden | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
 | nedre_foss | nedre_foss | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
 | vaterland_historisk_elvelop | vaterland_historisk_elvelop | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| lisbon_torre_de_belem | lisbon_torre_de_belem | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
-| lisbon_mosteiro_dos_jeronimos | lisbon_mosteiro_dos_jeronimos | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
 | lisbon_castelo_de_sao_jorge | lisbon_castelo_de_sao_jorge | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
 | lisbon_aqueduto_das_aguas_livres | lisbon_aqueduto_das_aguas_livres | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
-| lisbon_se_de_lisboa | lisbon_se_de_lisboa | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
 | lisbon_convento_do_carmo | lisbon_convento_do_carmo | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
 | lisbon_padrao_dos_descobrimentos | lisbon_padrao_dos_descobrimentos | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
 | lisbon_estacao_do_rossio | lisbon_estacao_do_rossio | — | data/leksikon/places/europe/portugal/lisbon/historie/leksikon_lisbon_historie.json |
 | bispelokket | bispelokket | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
-| gronland_basarene | gronland_basarene | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
 | ring_3 | ring_3 | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
 | trikk_17_18 | trikk_17_18 | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
 | grunerlokka_helgesens_tm | grunerlokka_helgesens_tm | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
@@ -225,8 +218,14 @@ _Viser 40 av 62. Full liste i `reports/visual-design-codes-audit.json`._
 | gronland_kirke | gronland_kirke | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
 | kampen_kirke | kampen_kirke | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
 | jernbanetorget | jernbanetorget | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
+| oslo_bussterminal | oslo_bussterminal | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
+| helsfyr | helsfyr | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
+| bogstadveien | bogstadveien | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
+| gronlandsleiret | gronlandsleiret | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
+| storgata | storgata | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
+| ullevål_hageby | ullevål_hageby | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
 
-_Viser 40 av 271. Full liste i `reports/visual-design-codes-audit.json`._
+_Viser 40 av 251. Full liste i `reports/visual-design-codes-audit.json`._
 
 ## Heuristiske kandidater for eksplisitt designCode
 
@@ -235,101 +234,93 @@ heuristikk. High-confidence treff er trygge kandidater for eksplisitt merking.
 
 ### Places
 
-- totalt: 274 (high 81, medium 187, low 6)
+- totalt: 247 (high 54, medium 187, low 6)
 
-#### Topp high-confidence (81)
+#### Topp high-confidence (54)
 
 | id | navn/tittel | resolvedCode | reason |
 | --- | --- | --- | --- |
 | tigeren | Tigerstatuen | station_miniature | keyword: stasjon |
-| botsparken | Botsparken | park_miniature | keyword: park |
-| bislett | Bislett | stadium_miniature | keyword: stadion |
-| trefoldighetskirken | Trefoldighetskirken | church_miniature | keyword: kirke |
-| ekebergparken | Ekebergparken skulpturpark | park_miniature | keyword: park |
 | kulturkirken_jakob_litteratur | Kulturkirken Jakob | church_miniature | keyword: kirke |
 | norli_universitetsgata | Norli Universitetsgata | university_miniature | keyword: universitet |
-| det_norske_teatret | Det Norske Teatret | theatre_miniature | keyword: teater |
-| jernbaneverkstedet_lodalen | Lodalen jernbaneverksted | station_miniature | keyword: jernbane |
 | fornebu_teknologipark | Fornebu Teknologipark | park_miniature | keyword: park |
 | ulven_handelspark | Ulven handelspark | park_miniature | keyword: park |
-| jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | station_miniature | keyword: jernbane |
-| alnabru_jernbane_og_logistikk | Alnabru – jernbane og logistikk | station_miniature | keyword: jernbane |
-| alnaparken | Alnaparken | park_miniature | keyword: park |
-| cinemateket_oslo | Cinemateket i Oslo | cinema_miniature | keyword: cinema |
-| colosseum_kino | Colosseum kino | cinema_miniature | keyword: kino |
-| folketeateret | Folketeateret | theatre_miniature | keyword: teater |
-| holmenkollen_nasjonalanlegg | Holmenkollen nasjonalanlegg | stadium_miniature | keyword: stadion |
-| frogner_stadion | Frogner stadion | stadium_miniature | keyword: stadion |
-| daelenenga_idrettspark | Dælenenga idrettspark | park_miniature | keyword: park |
-| nordre_aasen_idrettspark | Nordre Åsen idrettspark | park_miniature | keyword: park |
 | aktivitet_rudolf_nilsens_plass | Rudolf Nilsens plass aktivitetspark | park_miniature | keyword: park |
 | treningssted_torshovdalen | Torshovdalen trenings- og aktivitetspark | park_miniature | keyword: park |
 | treningssted_kampen_park | Kampen park treningssted | park_miniature | keyword: park |
 | gardermoen_motorpark | Gardermoen Motorpark | park_miniature | keyword: park |
-| sofienbergparken_subkultur | Sofienbergparken | park_miniature | keyword: park |
-| universitetets_gamle_kjemi | Universitetets gamle kjemibygning | university_miniature | keyword: universitet |
 | forskningsparken | Forskningsparken | park_miniature | keyword: park |
 | rikshospitalet | Rikshospitalet | university_miniature | keyword: universitet |
 | lisbon_parque_eduardo_vii | Parque Eduardo VII | park_miniature | keyword: park |
+| lisbon_estrela | Estrela | park_miniature | keyword: park |
+| lisbon_gare_do_cais_do_sodre | Gare do Cais do Sodré | station_miniature | keyword: stasjon |
+| lisbon_teatro_romano | Ruínas do Teatro Romano | theatre_miniature | keyword: teater |
+| lisbon_panteao_nacional | Panteão Nacional (Igreja de Santa Engrácia) | church_miniature | keyword: kirke |
+| lisbon_museu_de_lisboa | Museu de Lisboa (Palácio Pimenta) | museum_miniature | keyword: museum |
+| lisbon_igreja_de_santo_antonio | Igreja de Santo António | church_miniature | keyword: kirke |
+| lisbon_igreja_de_sao_roque | Igreja de São Roque | church_miniature | keyword: kirke |
+| lisbon_museu_do_aljube | Museu do Aljube – Resistência e Liberdade | museum_miniature | keyword: museum |
+| lisbon_igreja_de_sao_domingos | Igreja de São Domingos | church_miniature | keyword: kirke |
+| lisbon_museu_de_marinha | Museu de Marinha | museum_miniature | keyword: museum |
+| lisbon_museu_nacional_dos_coches | Museu Nacional dos Coches | museum_miniature | keyword: museum |
+| lisbon_museu_nacional_do_azulejo | Museu Nacional do Azulejo | museum_miniature | keyword: museum |
+| lisbon_fundacao_calouste_gulbenkian | Fundação Calouste Gulbenkian | museum_miniature | keyword: museum |
+| lisbon_maat | MAAT / Tejo-kraftstasjonen | museum_miniature | keyword: museum |
+| lisbon_centro_cultural_de_belem | Centro Cultural de Belém | museum_miniature | keyword: museum |
+| lisbon_museu_do_oriente | Museu do Oriente | museum_miniature | keyword: museum |
+| lisbon_mac_ccb_berardo | MAC/CCB (tidligere Museu Coleção Berardo) | museum_miniature | keyword: museum |
+| lisbon_museu_nacional_de_arte_contemporanea_do_chiado | Museu Nacional de Arte Contemporânea do Chiado | museum_miniature | keyword: museum |
 
-_Viser 30 av 81. Full liste i `reports/visual-design-codes-audit.json`._
+_Viser 30 av 54. Full liste i `reports/visual-design-codes-audit.json`._
 
 ### People
 
-- totalt: 167 (high 58, medium 109, low 0)
+- totalt: 144 (high 35, medium 109, low 0)
 
-#### Topp high-confidence (58)
+#### Topp high-confidence (35)
 
 | id | navn/tittel | resolvedCode | reason |
 | --- | --- | --- | --- |
-| carl_berner | Carl Berner | person_politician_miniature | keyword: politiker |
-| henrik_ibsen | Henrik Ibsen | person_writer_miniature | keyword: forfatter |
 | christian_krohg | Christian Krohg | person_writer_miniature | keyword: forfatter |
 | aasta_hansteen | Aasta Hansteen | person_writer_miniature | keyword: forfatter |
-| peder_anker | Peder Anker | person_politician_miniature | keyword: statsminister |
-| cj_hambro | C.J. Hambro | person_politician_miniature | keyword: politiker |
-| trygve_bratteli | Trygve Bratteli | person_politician_miniature | keyword: statsminister |
 | petter_moen | Petter Moen | person_writer_miniature | keyword: forfatter |
 | peder_clausson_friis | Peder Claussøn Friis | person_writer_miniature | keyword: forfatter |
 | cecilie_enger | Cecilie Enger | person_writer_miniature | keyword: forfatter |
-| jens_bjorneboe | Jens Bjørneboe | person_writer_miniature | keyword: forfatter |
 | tor_age_bringsvaerd | Tor Åge Bringsværd | person_writer_miniature | keyword: forfatter |
 | helene_uri | Helene Uri | person_writer_miniature | keyword: forfatter |
 | ingvar_ambjornsen | Ingvar Ambjørnsen | person_writer_miniature | keyword: forfatter |
-| ruth_maier | Ruth Maier | person_writer_miniature | keyword: forfatter |
-| oskar_braaten | Oskar Braaten | person_writer_miniature | keyword: forfatter |
 | krag | Vilhelm Krag | person_writer_miniature | keyword: forfatter |
-| jon_fosse | Jon Fosse | person_writer_miniature | keyword: forfatter |
-| bjornstjerne_bjornson | Bjørnstjerne Bjørnson | person_writer_miniature | keyword: forfatter |
-| camilla_collett | Camilla Collett | person_writer_miniature | keyword: forfatter |
 | fernando_pessoa | Fernando Pessoa | person_writer_miniature | keyword: forfatter |
 | humberto_delgado | Humberto Delgado | person_athlete_miniature | keyword: sport |
 | fernando_pinto | Fernando Pinto | person_athlete_miniature | keyword: sport |
 | alfred_nobel | Alfred Nobel | person_scientist_miniature | keyword: nobel |
-| thekla_resvoll | Thekla Resvoll | person_scientist_miniature | keyword: forsker |
-| rolf_nordhagen | Rolf Nordhagen | person_scientist_miniature | keyword: forsker |
-| haaken_hasberg_gran | Haaken Hasberg Gran | person_scientist_miniature | keyword: forsker |
-| lauritz_somme | Lauritz Sømme | person_scientist_miniature | keyword: forsker |
-| helge_ingstad | Helge Ingstad | person_writer_miniature | keyword: forfatter |
 | goncalo_ribeiro_telles | Gonçalo Ribeiro Telles | person_politician_miniature | keyword: politiker |
+| hanna_kvanmo | Hanna Kvanmo | person_politician_miniature | keyword: politiker |
+| jo_benkow | Jo Benkow | person_politician_miniature | keyword: politiker |
+| marcelo_caetano | Marcelo Caetano | person_politician_miniature | keyword: statsminister |
+| klanen | Klanen (VIF) | person_athlete_miniature | keyword: sport |
+| nils_arne_eggen | Nils Arne Eggen | person_footballer_miniature | keyword: fotball |
+| lyn_fotball | Lyn Fotball | person_footballer_miniature | keyword: fotball |
+| skeid_fotball | Skeid Fotball | person_footballer_miniature | keyword: fotball |
+| oslo_skoiteklub | Oslo Skøiteklub | person_athlete_miniature | keyword: sport |
+| eusebio | Eusébio | person_footballer_miniature | keyword: fotball |
+| jose_alvalade | José Alvalade | person_footballer_miniature | keyword: fotball |
+| mario_moniz_pereira | Mário Moniz Pereira | person_runner_miniature | keyword: friidrett |
+| tinashe_williamson | Tinashe Williamson | person_writer_miniature | keyword: forfatter |
+| don_martin | Don Martin | person_writer_miniature | keyword: forfatter |
+| romulo_de_carvalho | Rómulo de Carvalho | person_writer_miniature | keyword: forfatter |
+| anne_cath_vestly | Anne-Cath. Vestly | person_writer_miniature | keyword: forfatter |
+| arne_skouen | Arne Skouen | person_writer_miniature | keyword: forfatter |
 
-_Viser 30 av 58. Full liste i `reports/visual-design-codes-audit.json`._
+_Viser 30 av 35. Full liste i `reports/visual-design-codes-audit.json`._
 
 ### Artikler
 
-- totalt: 37 (high 7, medium 9, low 21)
+- totalt: 30 (high 0, medium 9, low 21)
 
-#### Topp high-confidence (7)
+#### Topp high-confidence (0)
 
-| id | navn/tittel | resolvedCode | reason |
-| --- | --- | --- | --- |
-| daelenenga_idrettspark_hovedartikkel | Dælenenga idrettspark | article_sports_history_miniature | keyword: idrett |
-| daelenenga_idrettspark_grunerhallen | Grünerhallen | article_sports_history_miniature | keyword: idrett |
-| daelenenga_idrettspark_gruner_il | Grüner IL og klubbhistorien | article_sports_history_miniature | keyword: idrett |
-| daelenenga_idrettspark_arbeideridrett | Arbeideridretten på Dælenenga | article_sports_history_miniature | keyword: idrett |
-| daelenenga_idrettspark_fleridrett_og_anleggsendring | Fleridrett og anleggsendringer | article_sports_history_miniature | keyword: idrett |
-| daelenenga_idrettspark_nabolagsidrett | Nabolagsidrett og sosial infrastruktur | article_sports_history_miniature | keyword: idrett |
-| tullin_historisk_museum_og_nasjonalgalleriet | Historisk museum og det tidligere Nasjonalgalleriet | article_art_miniature | keyword: galleri |
+- (ingen)
 
 ## Ubrukte designCodes – anbefalt oppfølging
 
@@ -339,20 +330,6 @@ _Viser 30 av 58. Full liste i `reports/visual-design-codes-audit.json`._
 - entityTypes: place
 - søkeord: `galleri`, `gallery`, `kunsthall`, `utstilling`
 - anbefalt: Vurder places med galleri/kunsthall som i dag løses som museum_miniature eller default.
-
-### `article_literature_miniature`
-
-- family: literature
-- entityTypes: article, story, leksikon, lesespor
-- søkeord: `litteratur`, `forfatter`, `roman`, `dikt`, `poesi`, `novelle`
-- anbefalt: Vurder leksikon/lesespor om litteratur og forfatterskap for eksplisitt article_literature_miniature.
-
-### `article_architecture_miniature`
-
-- family: architecture
-- entityTypes: article, story, leksikon, lesespor
-- søkeord: `arkitektur`, `architecture`, `bygning`, `byrom`, `byggeskikk`
-- anbefalt: Vurder artikler om arkitektur og bygde miljøer for eksplisitt article_architecture_miniature.
 
 ### `article_people_portrait_miniature`
 
@@ -390,43 +367,40 @@ Eksplisitte koder som kan være riktige, men bør vurderes manuelt. Dette er
 Prioritert liste (P5 = åpenbar og viktig, P3 = sannsynlig, bør sjekkes).
 Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
 
-#### Places (totalt 279, viser 20)
+#### Places (totalt 249, viser 20)
 
 - `church_miniature`:
   - [P5] Kulturkirken Jakob (`kulturkirken_jakob_litteratur`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
   - [P5] Cemitério dos Prazeres (`lisbon_cemiterio_dos_prazeres`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
-  - [P5] Convento do Carmo (`lisbon_convento_do_carmo`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
   - [P5] Igreja de Santo António (`lisbon_igreja_de_santo_antonio`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
   - [P5] Igreja de São Domingos (`lisbon_igreja_de_sao_domingos`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
   - [P5] Igreja de São Roque (`lisbon_igreja_de_sao_roque`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
   - [P5] Miradouro da Senhora do Monte (`lisbon_miradouro_da_senhora_do_monte`) — heuristisk high-confidence treff (kapell); gjør eksplisitt for stabil visuell identitet
   - [P5] Panteão Nacional (Igreja de Santa Engrácia) (`lisbon_panteao_nacional`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
-  - [P5] Sé de Lisboa (`lisbon_se_de_lisboa`) — heuristisk high-confidence treff (katedral); gjør eksplisitt for stabil visuell identitet
-  - [P5] Trefoldighetskirken (`trefoldighetskirken`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
 - `cinema_miniature`:
-  - [P5] Cinemateket i Oslo (`cinemateket_oslo`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
-  - [P5] Colosseum kino (`colosseum_kino`) — heuristisk high-confidence treff (kino); gjør eksplisitt for stabil visuell identitet
   - [P5] Cinema Ideal (`lisbon_cinema_ideal`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
   - [P5] Cinema Nimas (`lisbon_cinema_nimas`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
   - [P5] Cinema São Jorge (`lisbon_cinema_sao_jorge`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
-  - [P5] Cinemateca Portuguesa (`lisbon_cinemateca_portuguesa`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
   - [P5] Doclisboa – Festival Internacional de Cinema (`lisbon_doclisboa`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
 - `library_miniature`:
-  - [P5] Biblioteca Nacional de Portugal (`lisbon_biblioteca_nacional_de_portugal`) — heuristisk high-confidence treff (bibliotek); gjør eksplisitt for stabil visuell identitet
   - [P5] Grémio Literário (`lisbon_gremio_literario`) — heuristisk high-confidence treff (bibliotek); gjør eksplisitt for stabil visuell identitet
 - `museum_miniature`:
   - [P5] Banco de Portugal / Museu do Dinheiro (`lisbon_banco_de_portugal_museu_do_dinheiro`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] Casa Fernando Pessoa (`lisbon_casa_fernando_pessoa`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] Casa-Museu Amália Rodrigues (`lisbon_casa_museu_amalia_rodrigues`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] Centro Cultural de Belém (`lisbon_centro_cultural_de_belem`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] Fundação Calouste Gulbenkian (`lisbon_fundacao_calouste_gulbenkian`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] MAAT / Tejo-kraftstasjonen (`lisbon_maat`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] MAC/CCB (tidligere Museu Coleção Berardo) (`lisbon_mac_ccb_berardo`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
+  - [P5] MUDE – Museu do Design e da Moda (`lisbon_mude`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
 
-#### People (totalt 171, viser 20)
+#### People (totalt 148, viser 20)
 
 - `person_athlete_miniature`:
-  - [P5] Andreas Thorkildsen (`andreas_thorkildsen`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
   - [P5] Fernando Pinto (`fernando_pinto`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
   - [P5] Humberto Delgado (`humberto_delgado`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
   - [P5] Klanen (VIF) (`klanen`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
-  - [P5] Nora Mørk (`nora_mork`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
   - [P5] Oslo Skøiteklub (`oslo_skoiteklub`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
-  - [P5] Sander Sagosen (`sander_sagosen`) — heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet
 - `person_footballer_miniature`:
   - [P5] Eusébio (`eusebio`) — heuristisk high-confidence treff (fotball); gjør eksplisitt for stabil visuell identitet
   - [P5] José Alvalade (`jose_alvalade`) — heuristisk high-confidence treff (fotball); gjør eksplisitt for stabil visuell identitet
@@ -435,52 +409,57 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P5] Skeid Fotball (`skeid_fotball`) — heuristisk high-confidence treff (fotball); gjør eksplisitt for stabil visuell identitet
 - `person_musician_miniature`:
   - [P5] Luís Villas-Boas (`luis_villas_boas`) — heuristisk high-confidence treff (musiker); gjør eksplisitt for stabil visuell identitet
-  - [P5] Rikard Nordraak (`rikard_nordraak`) — heuristisk high-confidence treff (komponist); gjør eksplisitt for stabil visuell identitet
 - `person_politician_miniature`:
-  - [P5] Berit Ås (`berit_aas`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
-  - [P5] Betzy Kjelsberg (`betzy_kjelsberg`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
-  - [P5] Carl Berner (`carl_berner`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
-  - [P5] C.J. Hambro (`cj_hambro`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
-  - [P5] Eva Kolstad (`eva_kolstad`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
   - [P5] Gonçalo Ribeiro Telles (`goncalo_ribeiro_telles`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
+  - [P5] Hanna Kvanmo (`hanna_kvanmo`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
+  - [P5] Jo Benkow (`jo_benkow`) — heuristisk high-confidence treff (politiker); gjør eksplisitt for stabil visuell identitet
+  - [P5] Marcelo Caetano (`marcelo_caetano`) — heuristisk high-confidence treff (statsminister); gjør eksplisitt for stabil visuell identitet
+- `person_runner_miniature`:
+  - [P5] Mário Moniz Pereira (`mario_moniz_pereira`) — heuristisk high-confidence treff (friidrett); gjør eksplisitt for stabil visuell identitet
+- `person_scientist_miniature`:
+  - [P5] Alfred Nobel (`alfred_nobel`) — heuristisk high-confidence treff (nobel); gjør eksplisitt for stabil visuell identitet
+- `person_writer_miniature`:
+  - [P5] Aasta Hansteen (`aasta_hansteen`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
+  - [P5] Anja Breien (`anja_breien`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
+  - [P5] Anne-Cath. Vestly (`anne_cath_vestly`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
+  - [P5] Arne Skouen (`arne_skouen`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
 
-#### Artikler (totalt 164, viser 30)
+#### Artikler (totalt 137, viser 30)
 
 - `article_architecture_miniature`:
-  - [P5] Frogner hovedgård i parken (`frognerparken_frogner_hovedgaard`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] Parkaksen gjennom Frognerparken (`frognerparken_parkakse`) — default-fallback; dyp-tekst treff 'arkitektur' dekker ubrukt kode article_architecture_miniature
-  - [P5] Middelalderparken og ruinene (`gamlebyen_middelalderparken_ruiner`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] Oslo hospital (`gamlebyen_oslo_hospital`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] gronland_basarene (`gronland_basarene`) — default-fallback; dyp-tekst treff 'arkitektur' dekker ubrukt kode article_architecture_miniature
-  - [P5] hellerud_gard (`hellerud_gard`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] lisbon_mosteiro_dos_jeronimos (`lisbon_mosteiro_dos_jeronimos`) — default-fallback; dyp-tekst treff 'arkitektur' dekker ubrukt kode article_architecture_miniature
-  - [P5] lisbon_se_de_lisboa (`lisbon_se_de_lisboa`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] lisbon_torre_de_belem (`lisbon_torre_de_belem`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] markveien (`markveien`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] nydalen (`nydalen`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] operahuset (`operahuset`) — default-fallback; dyp-tekst treff 'arkitektur' dekker ubrukt kode article_architecture_miniature
-  - [P5] Torshovbyen (`torshov_torshovbyen`) — default-fallback; dyp-tekst treff 'arkitektur' dekker ubrukt kode article_architecture_miniature
-  - [P5] Tullin (`tullin_hovedartikkel`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] universitetsplassen (`universitetsplassen`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
-  - [P5] vigelandsparken (`vigelandsparken`) — default-fallback; dyp-tekst treff 'arkitektur' dekker ubrukt kode article_architecture_miniature
-  - [P5] voien_gard_voienvolden (`voien_gard_voienvolden`) — default-fallback; dyp-tekst treff 'bygning' dekker ubrukt kode article_architecture_miniature
+  - [P3] operahuset (`operahuset`) — default-fallback; mulig dyp-tekst treff 'arkitektur'
 - `article_art_miniature`:
-  - [P5] Historisk museum og det tidligere Nasjonalgalleriet (`tullin_historisk_museum_og_nasjonalgalleriet`) — heuristisk high-confidence treff (galleri); gjør eksplisitt for stabil visuell identitet
-  - [P4] Tullinløkka (`tullin_tullinlokka`) — default-fallback; tydelig dyp-tekst treff 'galleri'
+  - [P3] Broen og skulpturrommene (`frognerparken_broen_og_skulpturrom`) — heuristisk medium-confidence treff (skulptur); bør sjekkes før eksplisitt merking
+  - [P3] Frognerparken (`frognerparken_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'skulptur'
+  - [P3] Vigelandsanlegget i Frognerparken (`frognerparken_vigelandsanlegget`) — default-fallback; mulig dyp-tekst treff 'skulptur'
+  - [P3] Astrup Fearnleys store uke (`lesespor_astrup_fearnley_001`) — default-fallback; mulig dyp-tekst treff 'kunst'
+  - [P3] Vanskelige penger (`lesespor_astrup_fearnley_002`) — default-fallback; mulig dyp-tekst treff 'kunst'
+  - [P3] Banal og overdimensjonert skulpturpark (`lesespor_ekebergparken_001`) — heuristisk medium-confidence treff (skulptur); bør sjekkes før eksplisitt merking
+  - [P3] – Et smykkeskrin for våre kunstskatter (`lesespor_nasjonalmuseet_001`) — heuristisk medium-confidence treff (kunst); bør sjekkes før eksplisitt merking
+  - [P3] lisbon_aqueduto_das_aguas_livres (`lisbon_aqueduto_das_aguas_livres`) — default-fallback; mulig dyp-tekst treff 'kunst'
+  - [P3] tjuvholmen (`tjuvholmen`) — default-fallback; mulig dyp-tekst treff 'kunst'
 - `article_groundhopper_miniature`:
   - [P4] bislett_stadion (`bislett_stadion`) — default-fallback; tydelig dyp-tekst treff 'stadion'
-- `article_literature_miniature`:
-  - [P5] Fremtidsrommet åpner (`lesespor_deichman_001`) — default-fallback; dyp-tekst treff 'litteratur' dekker ubrukt kode article_literature_miniature
-  - [P5] lisbon_jardim_da_estrela (`lisbon_jardim_da_estrela`) — default-fallback; dyp-tekst treff 'roman' dekker ubrukt kode article_literature_miniature
-  - [P5] Navnet Tullin (`tullin_navn_christian_brunmann_tullin`) — default-fallback; dyp-tekst treff 'dikt' dekker ubrukt kode article_literature_miniature
 - `article_sports_history_miniature`:
-  - [P5] Arbeideridretten på Dælenenga (`daelenenga_idrettspark_arbeideridrett`) — heuristisk high-confidence treff (idrett); gjør eksplisitt for stabil visuell identitet
-  - [P5] Fleridrett og anleggsendringer (`daelenenga_idrettspark_fleridrett_og_anleggsendring`) — heuristisk high-confidence treff (idrett); gjør eksplisitt for stabil visuell identitet
-  - [P5] Grüner IL og klubbhistorien (`daelenenga_idrettspark_gruner_il`) — heuristisk high-confidence treff (idrett); gjør eksplisitt for stabil visuell identitet
-  - [P5] Grünerhallen (`daelenenga_idrettspark_grunerhallen`) — heuristisk high-confidence treff (idrett); gjør eksplisitt for stabil visuell identitet
-  - [P5] Dælenenga idrettspark (`daelenenga_idrettspark_hovedartikkel`) — heuristisk high-confidence treff (idrett); gjør eksplisitt for stabil visuell identitet
-  - [P5] Nabolagsidrett og sosial infrastruktur (`daelenenga_idrettspark_nabolagsidrett`) — heuristisk high-confidence treff (idrett); gjør eksplisitt for stabil visuell identitet
   - [P4] alna_smalvoll (`alna_smalvoll`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] alnabru_jernbane_og_logistikk (`alnabru_jernbane_og_logistikk`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] carl_berner_plass (`carl_berner_plass`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] gamle_trikkestallen (`gamle_trikkestallen`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] Begreper rundt Good Game-redaksjonen (`good_game_redaksjon_begreper`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] Good Game i digital offentlighet (`good_game_redaksjon_digital_offentlighet`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] Good Game-redaksjonen (NRK) (`good_game_redaksjon_hovedartikkel`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] helsfyr (`helsfyr`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] jernbanetorget (`jernbanetorget`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] lisbon_estacao_do_rossio (`lisbon_estacao_do_rossio`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] majorstuen_krysset (`majorstuen_krysset`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] nationaltheatret_stasjon (`nationaltheatret_stasjon`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] nedre_foss (`nedre_foss`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] oslo_bussterminal (`oslo_bussterminal`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] oslo_s (`oslo_s`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] Begreper: knutepunkt, stasjonshall og folkestrøm (`oslo_s_begreper`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] storgata (`storgata`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] tigeren (`tigeren`) — default-fallback; tydelig dyp-tekst treff 'sport'
+  - [P4] trikk_17_18 (`trikk_17_18`) — default-fallback; tydelig dyp-tekst treff 'sport'
 
 ## Invalid eksplisitte designCodes
 
