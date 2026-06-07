@@ -1,4 +1,4 @@
-// tools/audit-visual-design-codes.mjs
+// tools/audit-visual-design-codes.mts
 //
 // Audit av det felles visual designCode-systemet (data/visualDesignCodes.json)
 // mot place-, people- og artikkel-/story-/leksikon-/lesespor-data.
@@ -12,7 +12,7 @@
 // gjøres eksplisitte), ubrukte koder med søkeforslag, mulige semantisk svake
 // eksplisitte valg (review candidates) og et prioritert batch 3-forslag.
 //
-// Kjør:  node tools/audit-visual-design-codes.mjs
+// Kjør:  npm run test:visual-design-codes
 //
 // Skriver:
 //   reports/visual-design-codes-audit.json  (detaljert, full liste)
@@ -21,6 +21,38 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+
+type JsonValue = string | number | boolean | null | JsonObject | JsonArray;
+type JsonObject = { [key: string]: JsonValue };
+type JsonArray = JsonValue[];
+type EntityType = "place" | "person" | "article";
+type ResolutionSource = "explicit" | "assetType" | "category" | "heuristic" | "default";
+type KeywordRule = [RegExp, string];
+type AuditEntity = { [key: string]: any };
+type WrappedEntity = { entry: AuditEntity; file: string };
+type VisualDesignCode = {
+  id?: string;
+  entityTypes?: string[];
+  renderHints?: Record<string, unknown>;
+  tags?: string[];
+  [key: string]: unknown;
+};
+type VisualDesignRegistry = { codes?: Record<string, VisualDesignCode> };
+type ResolvedDesignCode = { designCode: string; source: ResolutionSource; valid: boolean };
+type CandidateRow = {
+  id: unknown;
+  nameOrTitle: unknown;
+  file: string;
+  [key: string]: unknown;
+};
+type BatchSuggestion = CandidateRow & {
+  entityType: EntityType;
+  suggestedDesignCode: string;
+  reason: string;
+  priority: number;
+};
+type AuditReport = { [key: string]: any };
+type Resolver = (entity: AuditEntity) => ResolvedDesignCode;
 
 const ROOT = process.cwd();
 const DATA = path.join(ROOT, "data");
@@ -35,17 +67,17 @@ const MD_MAX_BATCH3_PLACES = 20;
 const MD_MAX_BATCH3_PEOPLE = 20;
 const MD_MAX_BATCH3_ARTICLES = 30;
 
-function readJSON(file) {
+function readJSON(file: string): unknown {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
-function tryReadJSON(file) {
+function tryReadJSON(file: string): unknown | null {
   try { return readJSON(file); } catch { return null; }
 }
 
-const lc = (v) => String(v == null ? "" : v).trim().toLowerCase();
+const lc = (v: unknown) => String(v == null ? "" : v).trim().toLowerCase();
 
-function haystack(parts) {
+function haystack(parts: unknown[]): string {
   const out = [];
   for (const p of parts) {
     if (p == null) continue;
@@ -57,7 +89,7 @@ function haystack(parts) {
 
 // Flat tekst-uttrekk fra string/array/objekt (brukes for dyp tekstskanning i
 // batch 3-forslag, der vi tør lese mer enn resolveren leser i runtime).
-function flattenText(v, depth) {
+function flattenText(v: unknown, depth?: number): string {
   if (v == null) return "";
   if (depth == null) depth = 0;
   if (depth > 4) return "";
@@ -67,7 +99,7 @@ function flattenText(v, depth) {
   if (typeof v === "object") {
     const out = [];
     for (const k in v) {
-      if (Object.prototype.hasOwnProperty.call(v, k)) out.push(flattenText(v[k], depth + 1));
+      if (Object.prototype.hasOwnProperty.call(v, k)) out.push(flattenText((v as Record<string, unknown>)[k], depth + 1));
     }
     return out.join(" ");
   }
@@ -84,7 +116,7 @@ const DEFAULTS = {
   article: "article_default_miniature"
 };
 
-const PLACE_ASSET_TO_CODE = {
+const PLACE_ASSET_TO_CODE: Record<string, string> = {
   stadium: "stadium_miniature", arena: "stadium_miniature",
   sports_field: "sports_field_miniature", ice_arena: "ice_arena_miniature",
   museum: "museum_miniature", gallery: "gallery_miniature",
@@ -104,7 +136,7 @@ const PLACE_ASSET_TO_CODE = {
   default: "default_miniature"
 };
 
-const PLACE_CATEGORY_TO_CODE = {
+const PLACE_CATEGORY_TO_CODE: Record<string, string> = {
   sport: "sports_field_miniature", kunst: "museum_miniature",
   litteratur: "library_miniature", musikk: "music_venue_miniature",
   film: "cinema_miniature", film_tv: "cinema_miniature",
@@ -115,7 +147,7 @@ const PLACE_CATEGORY_TO_CODE = {
   naeringsliv: "commerce_miniature", by: "apartment_block_miniature"
 };
 
-const PLACE_KEYWORD_RULES = [
+const PLACE_KEYWORD_RULES: KeywordRule[] = [
   [/ishall|ishockey|isbane|kunstisbane|skøytehall|skoytehall|amfi/, "ice_arena_miniature"],
   [/stadion|stadium|arena/, "stadium_miniature"],
   [/lekeplass|playground|sandlek/, "playground_miniature"],
@@ -138,7 +170,7 @@ const PLACE_KEYWORD_RULES = [
   [/gate\b|veien|allé|alle\b|street/, "street_miniature"]
 ];
 
-const PERSON_KEYWORD_RULES = [
+const PERSON_KEYWORD_RULES: KeywordRule[] = [
   [/footballer|fotball|football|spiss|keeper|midtbane|landslag/, "person_footballer_miniature"],
   [/runner|løper|loper|friidrett|athletics|sprint|maraton/, "person_runner_miniature"],
   [/skier|skiløper|skiloper|langrenn|alpint|hopp|ski\b/, "person_skier_miniature"],
@@ -157,7 +189,7 @@ const PERSON_KEYWORD_RULES = [
   [/local legend|lokal|nabolag|byoriginal/, "person_local_legend_miniature"]
 ];
 
-const PERSON_CATEGORY_TO_CODE = {
+const PERSON_CATEGORY_TO_CODE: Record<string, string> = {
   sport: "person_athlete_miniature", litteratur: "person_writer_miniature",
   kunst: "person_artist_miniature", musikk: "person_musician_miniature",
   popkultur: "person_musician_miniature", populaerkultur: "person_musician_miniature",
@@ -168,7 +200,7 @@ const PERSON_CATEGORY_TO_CODE = {
   subkultur: "person_local_legend_miniature"
 };
 
-const ARTICLE_KEYWORD_RULES = [
+const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
   [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
   [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
   [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
@@ -185,7 +217,7 @@ const ARTICLE_KEYWORD_RULES = [
   [/histor/, "article_history_miniature"]
 ];
 
-const ARTICLE_CATEGORY_TO_CODE = {
+const ARTICLE_CATEGORY_TO_CODE: Record<string, string> = {
   historie: "article_history_miniature", sport: "article_sports_history_miniature",
   musikk: "article_music_history_miniature", litteratur: "article_literature_miniature",
   kunst: "article_art_miniature", arkitektur: "article_architecture_miniature",
@@ -194,7 +226,7 @@ const ARTICLE_CATEGORY_TO_CODE = {
   natur: "article_place_essay_miniature"
 };
 
-function explicitCode(obj) {
+function explicitCode(obj: AuditEntity): string | null {
   if (!obj) return null;
   let v = obj.visual && obj.visual.designCode;
   if (v == null && obj.designCode != null) v = obj.designCode;
@@ -206,27 +238,27 @@ function explicitCode(obj) {
 // Haystack-byggere som speiler resolverens feltvalg per entitetstype. Disse
 // brukes både til å gjenfinne hvilket nøkkelord som traff (reason/confidence)
 // og som basis for resolveren.
-function placeHay(place) {
+function placeHay(place: AuditEntity): string {
   const cm = place.civiMap || {};
   const assetType = lc(cm.assetType || place.mapAssetType || place.assetType || "");
   const qp = place.quiz_profile || {};
   return haystack([place.id, place.name, place.title, qp.place_type, qp.subtype, assetType]);
 }
 
-function personHay(person) {
+function personHay(person: AuditEntity): string {
   return haystack([person.role, person.profession, person.sport, person.tags,
     person.id, person.name, person.title, person.desc]);
 }
 
-function articleHay(article) {
+function articleHay(article: AuditEntity): string {
   return haystack([article.type, article.topic, article.category, article.tags,
     article.themes, article.title, article.id, article.subject]);
 }
 
-function makeResolvers(validCodes) {
-  const isValid = (c) => validCodes.has(c);
+function makeResolvers(validCodes: Set<string>) {
+  const isValid = (c: string) => validCodes.has(c);
 
-  function resolveForPlace(place) {
+  function resolveForPlace(place: AuditEntity): ResolvedDesignCode {
     const explicit = explicitCode(place);
     if (explicit) return { designCode: explicit, source: "explicit", valid: isValid(explicit) };
 
@@ -256,7 +288,7 @@ function makeResolvers(validCodes) {
     return { designCode: DEFAULTS.place, source: "default", valid: true };
   }
 
-  function resolveForPerson(person) {
+  function resolveForPerson(person: AuditEntity): ResolvedDesignCode {
     const explicit = explicitCode(person);
     if (explicit) return { designCode: explicit, source: "explicit", valid: isValid(explicit) };
     const hay = personHay(person);
@@ -268,7 +300,7 @@ function makeResolvers(validCodes) {
     return { designCode: DEFAULTS.person, source: "default", valid: true };
   }
 
-  function resolveForArticle(article) {
+  function resolveForArticle(article: AuditEntity): ResolvedDesignCode {
     const explicit = explicitCode(article);
     if (explicit) return { designCode: explicit, source: "explicit", valid: isValid(explicit) };
     const hay = articleHay(article);
@@ -289,7 +321,7 @@ function makeResolvers(validCodes) {
 
 // Entitetsidentitet for kandidatlister. Artikler (leksikon) har ofte bare
 // place_id; lesespor har id + title.
-function entityIdentity(e, type) {
+function entityIdentity(e: AuditEntity, type: EntityType) {
   const id = e.id || (type === "article" ? e.place_id : null) || e.title || "(unknown)";
   const nameOrTitle = e.name || e.title || (type === "article" ? e.place_id : null) || e.id || "(unknown)";
   let category = lc(e.category);
@@ -301,7 +333,7 @@ function entityIdentity(e, type) {
 
 // Finn første nøkkelord-treff i en regelliste og returner det faktiske
 // triggerordet (m[0]) – nyttig som "reason".
-function firstKeywordMatch(hay, rules) {
+function firstKeywordMatch(hay: string, rules: KeywordRule[]) {
   for (const [re, code] of rules) {
     const m = re.exec(hay);
     if (m) return { code, keyword: m[0] };
@@ -317,7 +349,7 @@ const LOW_CONFIDENCE_TERMS = new Set([
   "art", "by", "object", "objekt", "gjenstand", "scene"
 ]);
 
-function confidenceFor(keyword) {
+function confidenceFor(keyword: string | null) {
   const k = lc(keyword || "");
   if (!k) return "low";
   if (HIGH_CONFIDENCE_RE.test(k)) return "high";
@@ -326,7 +358,7 @@ function confidenceFor(keyword) {
 }
 
 // Forklar hvilket nøkkelord/kilde som ga en heuristisk kode.
-function explainHeuristic(type, e) {
+function explainHeuristic(type: EntityType, e: AuditEntity) {
   if (type === "place") {
     const m = firstKeywordMatch(placeHay(e), PLACE_KEYWORD_RULES);
     if (m) return m.keyword;
@@ -344,7 +376,7 @@ function explainHeuristic(type, e) {
 }
 
 // Dype haystacks for batch 3 – tør lese mer tekst enn runtime-resolveren.
-function placeDeepHay(e) {
+function placeDeepHay(e: AuditEntity): string {
   const cm = e.civiMap || {};
   const assetType = lc(cm.assetType || e.mapAssetType || e.assetType || "");
   const qp = e.quiz_profile || {};
@@ -352,12 +384,12 @@ function placeDeepHay(e) {
     assetType, e.desc, e.popupDesc]);
 }
 
-function personDeepHay(e) {
+function personDeepHay(e: AuditEntity): string {
   return haystack([e.role, e.profession, e.sport, e.tags, e.id, e.name, e.title,
     e.category, e.desc, e.popupDesc]);
 }
 
-function articleDeepHay(e) {
+function articleDeepHay(e: AuditEntity): string {
   const parts = [e.type, e.topic, e.category, e.tags, e.themes, e.title, e.id,
     e.subject, e.place_id, e.popupDesc, e.category_hints,
     flattenText(e.summary), flattenText(e.wikiText)];
@@ -480,8 +512,8 @@ function resolveManifestFile(rel, baseDir) {
 }
 
 // Returnerer [{ entry, file }] der file er sti relativt til repo-roten.
-function loadFromManifest(manifestPath, baseDir) {
-  const manifest = tryReadJSON(manifestPath);
+function loadFromManifest(manifestPath: string, baseDir: string): WrappedEntity[] {
+  const manifest = tryReadJSON(manifestPath) as AuditEntity | null;
   if (!manifest || !Array.isArray(manifest.files)) return [];
   const seen = new Set();
   const out = [];
@@ -507,7 +539,7 @@ function loadFromManifest(manifestPath, baseDir) {
 // ---------------------------------------------------------------------------
 
 // Enkelt-gjennomgang per entitetstype. Samler tellinger og alle kandidatlister.
-function analyzeEntities(type, wrapped, resolveFn, usage) {
+function analyzeEntities(type: EntityType, wrapped: WrappedEntity[], resolveFn: Resolver, usage: Record<string, number>) {
   const counts = { explicit: 0, assetType: 0, category: 0, heuristic: 0, default: 0 };
   let withExplicit = 0;
   const invalidExplicit = [];
@@ -560,7 +592,7 @@ function analyzeEntities(type, wrapped, resolveFn, usage) {
 
 // Dyp skann for batch 3-forslag: prøver å finne en konkret kode (særlig en
 // ubrukt kode) for default-fallback-entiteter.
-function deepSuggest(type, e, unusedSet) {
+function deepSuggest(type: EntityType, e: AuditEntity, unusedSet: Set<string>) {
   let hay;
   let rules;
   if (type === "place") { hay = placeDeepHay(e); rules = PLACE_KEYWORD_RULES; }
@@ -574,8 +606,8 @@ function deepSuggest(type, e, unusedSet) {
 }
 
 // Bygg prioritert batch 3-forslag fra heuristiske og default-kandidater.
-function buildBatch3(type, wrapped, resolveFn, unusedSet) {
-  const out = [];
+function buildBatch3(type: EntityType, wrapped: WrappedEntity[], resolveFn: Resolver, unusedSet: Set<string>): BatchSuggestion[] {
+  const out: BatchSuggestion[] = [];
   for (const { entry: e, file } of wrapped) {
     const r = resolveFn(e);
     if (r.source === "explicit") continue;
@@ -628,12 +660,12 @@ function buildBatch3(type, wrapped, resolveFn, unusedSet) {
   }
   out.sort((a, b) => b.priority - a.priority ||
     String(a.suggestedDesignCode).localeCompare(b.suggestedDesignCode) ||
-    String(a.id).localeCompare(b.id));
+    String(a.id).localeCompare(b.id as string));
   return out;
 }
 
 function main() {
-  const registry = readJSON(REGISTRY);
+  const registry = readJSON(REGISTRY) as VisualDesignRegistry;
   const codes = registry.codes || {};
   const codeIds = Object.keys(codes);
   const validCodes = new Set(codeIds);
@@ -656,7 +688,7 @@ function main() {
   const leksikon = loadFromManifest(path.join(DATA, "leksikon", "manifest.json"), path.join(DATA, "leksikon"));
   const lesespor = loadFromManifest(path.join(DATA, "lesespor", "manifest.json"), path.join(DATA, "lesespor"));
 
-  const usage = {};
+  const usage: Record<string, number> = {};
   const placeStats = analyzeEntities("place", places, resolveForPlace, usage);
   const peopleStats = analyzeEntities("person", people, resolveForPerson, usage);
   // Artikkel-familien dekker leksikon + lesespor.
@@ -837,7 +869,7 @@ function pushBatch3Group(lines, label, items, max) {
   lines.push("");
 }
 
-function toMarkdown(r) {
+function toMarkdown(r: AuditReport) {
   const lines = [];
   lines.push("# Visual design codes – audit");
   lines.push("");
@@ -877,7 +909,7 @@ function toMarkdown(r) {
   lines.push("## Eksplisitt pilot-merkede designCodes");
   lines.push("");
   const ex = r.explicitDesignCodes || {};
-  const exEntityLabels = [["places", ex.places], ["people", ex.people], ["articles", ex.articles]];
+  const exEntityLabels: Array<[string, Record<string, number> | undefined]> = [["places", ex.places], ["people", ex.people], ["articles", ex.articles]];
   let anyExplicit = false;
   for (const [label, byCode] of exEntityLabels) {
     const codes = Object.entries(byCode || {}).sort((a, b) => b[1] - a[1]);
