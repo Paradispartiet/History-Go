@@ -1202,7 +1202,8 @@
                 "set_flags": [
                   "renholder_week2_secures_interrupted_room"
                 ]
-              }
+              },
+              "triggers_on_choice": "renholder_week2_interrupted_room_thread"
             },
             {
               "id": "B",
@@ -1844,6 +1845,64 @@
                 "set_flags": [
                   "renholder_week2_more_training_before_autonomy"
                 ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "build",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amina",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Konsekvensen gjør uke 2-valget om avbrutte rom synlig uten å åpne nytt narrativt innhold.",
+          "narrative_arc": "renholder_andre_uke",
+          "learning_focus": [
+            "hygiene",
+            "romstandard",
+            "HMS",
+            "avbrutte_rom"
+          ],
+          "id": "renholder_week2_interrupted_room_thread",
+          "subject": "Oppfølging: rommet som ble sikret før bruk",
+          "summary": "Konsekvens av at spilleren sikret et rom som ble brukt før renholdet var ferdig.",
+          "purpose": "Forsterke koblingen mellom avbrutte rom, hygiene og verdighet.",
+          "situation": [
+            "Amina noterer at rommet ble stoppet før det ble tatt i bruk igjen.",
+            "Hun peker på at sperringen gjorde både hygienestatus og romstandard tydelig for alle."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta læringen videre",
+              "reply": "Jeg tar med sperring og tydelig status inn i neste avbrutte rom.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Avbrutt arbeid blir lettere å gjøre trygt når statusen vises før rommet tas i bruk.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1,
+                  "hygiene_quality": 1,
+                  "room_standard": 1
+                }
               }
             }
           ]

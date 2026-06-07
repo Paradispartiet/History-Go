@@ -58,11 +58,12 @@ for (const existing of ['arbeider','fagarbeider','formann','mellomleder','avdeli
   assert.ok(mappings.careers.naeringsliv.roles[existing], `existing role mapping removed: ${existing}`);
 }
 assert.ok(JSON.stringify(registry).includes('renholder_week_1'), 'Renholder first-week package should be registered in praksisfortellinger registry');
+assert.ok(JSON.stringify(registry).includes('renholder_week_2'), 'Renholder second-week package should be registered in praksisfortellinger registry');
 
 assert.equal(plan.schema, 'civication_mail_plan_v1');
 assert.equal(plan.role_scope, 'renholder');
-assert.equal(plan.sequence.length, 10);
-assert.deepEqual(plan.sequence.map(step => step.step), [1,2,3,4,5,6,7,8,9,10]);
+assert.ok(plan.sequence.length >= 20);
+assert.deepEqual(plan.sequence.slice(0, 20).map(step => step.step), [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]);
 
 const jobFamilyIds = job.families.map(family => family.id);
 const peopleFamilyIds = people.families.map(family => family.id);
