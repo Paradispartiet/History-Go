@@ -1,6 +1,6 @@
 # Civication – History Go map audit
 
-Generert: 2026-06-07T05:27:49.449Z
+Generert: 2026-06-07T09:24:35.733Z
 
 ## Sammendrag
 

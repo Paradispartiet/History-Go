@@ -227,6 +227,55 @@ Effekten etter batch 2 kan leses i
 [`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md)
 (seksjonen «Pilot batch 2»).
 
+## Pilot batch 3
+
+Pilot batch 3 er den **første batchen som er bygget direkte fra auditens
+`batch3Suggestions`**, ikke ved manuell gjetting. Kandidatene ble plukket fra
+`reports/visual-design-codes-audit.json` og kryssjekket mot rapportens øvrige
+seksjoner før de ble låst som eksplisitt `visual.designCode`.
+
+Prinsipper for batch 3:
+
+- **P5/P4 ble prioritert.** Kun forslag med `priority` 5 eller 4 fra
+  `batch3Suggestions.places`, `.people` og `.articles` ble tatt med. Lavere
+  prioritet (P1–P3) ble bevisst utsatt.
+- **`semanticReviewCandidates` ble bevisst ikke endret.** Steder og personer som
+  `slottsparken`, `operahuset`, `ronny_deila`, `oscar_mathisen`,
+  `hjalmar_andersen`, `johann_olav_koss` og `ole_gunnar_solskjaer` ble stående
+  urørt – de venter på en eventuell mer presis kode (f.eks. opera-, skøyte- eller
+  trener-kode) eller en manuell konseptbeslutning.
+- **Ingen nye designCodes.** Registeret (`data/visualDesignCodes.json`) ble ikke
+  utvidet; batch 3 bruker kun koder som allerede finnes.
+- **Tvilsomme heuristikk-treff ble luket ut.** Kandidater der auditens `reason`
+  var svak (f.eks. «park» som egentlig er handels-/teknologipark, eller
+  `article_sports_history_miniature` på rene transport-/knutepunktartikler) ble
+  ikke tatt med, selv om de hadde høy prioritet.
+
+Batch 3 prioriterte å redusere default-hull der riktig kode var åpenbar, og å få
+to tidligere ubrukte artikkelkoder i bruk:
+
+- **places (+30):** kirker, kinoer, teatre, museer, bibliotek, stasjoner,
+  stadioner, universitetsbygg og parker i Oslo, supplert med åpenbare P5-steder i
+  Lisboa (inkludert tidligere `default_miniature`-steder som
+  `lisbon_sao_vicente_de_fora` og `lisbon_palacio_ajuda`).
+- **people (+23):** forfattere, politikere, forskere, en komponist og utøvere med
+  tydelig individuell rolle/profesjon, alle med høy-konfidens heuristikk-treff.
+- **articles (+27):** tok i bruk de tidligere ubrukte kodene
+  `article_architecture_miniature` og `article_literature_miniature`, i tillegg
+  til `article_art_miniature` og `article_sports_history_miniature`.
+
+Formålet var å **øke presis eksplisitt dekning uten å gjøre en full batch**.
+Ubrukte koder uten konkrete audit-kandidater (`gallery_miniature`,
+`article_people_portrait_miniature`, `article_wonderkammer_miniature`) ble latt
+ligge til en senere batch, siden `batch3Suggestions` ikke pekte ut trygge,
+konkrete entiteter for dem.
+
+Effekten etter batch 3 kan leses i
+[`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md):
+eksplisitt `visual.designCode` økte fra 169 til 249 (places 68 → 98, people
+65 → 88, articles 36 → 63), fortsatt med 0 ugyldige eksplisitte koder og 0 koder
+med manglende `renderHints`.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,
