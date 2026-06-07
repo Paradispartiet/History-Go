@@ -1,6 +1,13 @@
 /* Civication city layer
    Levende byverden: fasepunkter (steder) + simulerte venner som figurer.
-   Ligger over kartmotoren (canvas/3D) og vises kun i kartmodus. */
+   Ligger over kartmotoren (canvas/3D) og vises kun i kartmodus.
+
+   Kartforankret (følger kartets zoom/pan/resize – posisjon settes i px fra JS
+   via CanvasMap-projeksjonen): .civi-city-markers, .civi-city-place,
+   .civi-city-friend.
+   Ikke kartforankret (vanlige UI-paneler over kartet): .civi-city-self,
+   .civi-city-detail og lukkeknapp/detaljpanel – disse panoreres/zoomes aldri
+   med kartet. */
 
 .civi-city-layer {
   position: absolute;
@@ -16,6 +23,8 @@ body.civi-mapmode .civi-city-layer {
   display: block;
 }
 
+/* Dekker kartflaten. Markørene inni får left/top i px fra JS (kartprojeksjon),
+   ikke egne overlay-prosenter, så de følger kartets eget koordinatsystem. */
 .civi-city-markers {
   position: absolute;
   inset: 0;
@@ -23,9 +32,12 @@ body.civi-mapmode .civi-city-layer {
 }
 
 /* ---- Stedsmarkører ---- */
+/* left/top settes i px fra kartprojeksjonen; translate(-50%,-50%) sentrerer
+   markøren på punktet. will-change holder pan/zoom jevn. */
 .civi-city-place {
   position: absolute;
   transform: translate(-50%, -50%);
+  will-change: left, top;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,9 +98,12 @@ body.civi-mapmode .civi-city-layer {
 }
 
 /* ---- Vennefigurer ---- */
+/* left/top settes i px fra kartprojeksjonen + liten deterministisk
+   skjermpiksel-offset rundt stedet (flere venner på samme sted). */
 .civi-city-friend {
   position: absolute;
   transform: translate(-50%, -50%);
+  will-change: left, top;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,6 +144,15 @@ body.civi-mapmode .civi-city-layer {
 
 .civi-city-friend.is-visiting_player .civi-city-friend-figure {
   box-shadow: 0 0 0 3px rgba(120, 220, 160, 0.4), 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* Markører uten kartanker (CanvasMap aktiv, men stedet kan ikke projiseres)
+   skjules – de skal aldri plasseres tilfeldig midt på kartet. Klassen settes
+   av JS i positionMarker(); en egen regel trengs fordi .civi-city-place/.friend
+   setter display:flex og ville ellers overstyre [hidden]. */
+.civi-city-place.is-unanchored,
+.civi-city-friend.is-unanchored {
+  display: none;
 }
 
 .civi-city-friend-tag {

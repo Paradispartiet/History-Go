@@ -358,6 +358,81 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Hjemmemodell for venner/personer (Del D)
+  // ---------------------------------------------------------------------------
+  // En venns "hjem" er avatar.homeId -> en location av type friend_home i
+  // phaseLocations. Dette er et SIMULERT hjemmepunkt i spillet, IKKE en ekte
+  // adresse og IKKE GPS. Modellen gjør hjemmet tydelig og trygt: den flagger
+  // aldri en ekte privatadresse, og håndteres trygt når homeId mangler/peker
+  // feil. Flere venner kan dele samme demo-hjem (Oda deler med Mariam) – det er
+  // tillatt, men bør rapporteres som "shared demo home" i audit.
+
+  function getFriendHomeId(friend) {
+    return norm(friend && friend.avatar && friend.avatar.homeId) || null;
+  }
+
+  // Er en location et venne-hjem (type friend_home)?
+  function isFriendHomeLocation(loc) {
+    return norm(loc && loc.type) === "friend_home";
+  }
+
+  // Venens hjem-location (selve location-objektet) eller null.
+  function getFriendHomeLocation(friend, locations) {
+    const homeId = getFriendHomeId(friend);
+    if (!homeId) return null;
+    return locationById(locations, homeId);
+  }
+
+  // Kartanker for hjemmet: normalisert position og/eller mapZone. null når
+  // hjemmet ikke kan slås opp.
+  function getFriendHomeAnchor(friend, locations) {
+    const loc = getFriendHomeLocation(friend, locations);
+    if (!loc) return null;
+    const pos = loc.position && typeof loc.position === "object" ? loc.position : null;
+    const hasXY = pos && Number.isFinite(Number(pos.x)) && Number.isFinite(Number(pos.y));
+    return {
+      locationId: norm(loc.id),
+      mapZone: norm(loc.mapZone) || null,
+      position: hasXY ? { x: Number(pos.x), y: Number(pos.y) } : null,
+      hasPosition: !!hasXY
+    };
+  }
+
+  // Bakoverkompatibelt/forklarende alias.
+  const resolveFriendHomeMapAnchor = getFriendHomeAnchor;
+
+  // Brukervendt hjem-etikett. Spillkontekst ("simulert hjemmepunkt"/"hjem"),
+  // aldri en fysisk adresse.
+  function getFriendHomeLabel(friend, locations) {
+    const loc = getFriendHomeLocation(friend, locations);
+    if (loc && norm(loc.label)) return norm(loc.label);
+    const first = friendFirstName(friend);
+    return first && first !== "vennen" ? possessiveName(first) + " hjem" : "hjem";
+  }
+
+  // Samlet, tydelig hjemmemodell. anchorType "simulated_home",
+  // isPrivateRealAddress=false, visibility "game_only" – aldri ekte adresse/GPS.
+  function buildFriendHomeModel(friend, locations) {
+    const f = friend && typeof friend === "object" ? friend : {};
+    const homeId = getFriendHomeId(f);
+    const loc = getFriendHomeLocation(f, locations);
+    const anchor = getFriendHomeAnchor(f, locations);
+    return {
+      friendId: norm(f.id),
+      homeId: homeId,
+      label: getFriendHomeLabel(f, locations),
+      mapZone: (loc && norm(loc.mapZone)) || null,
+      position: anchor && anchor.position ? { x: anchor.position.x, y: anchor.position.y } : null,
+      anchorType: "simulated_home",
+      isPrivateRealAddress: false,
+      visibility: "game_only",
+      found: !!loc,
+      isFriendHome: isFriendHomeLocation(loc),
+      hasPosition: !!(anchor && anchor.hasPosition)
+    };
+  }
+
+  // ---------------------------------------------------------------------------
   // Fase-minne-resolver (ren, deterministisk)
   // ---------------------------------------------------------------------------
   // Slår opp et venne-snapshot for en gitt semantisk fase i en snapshots-array
@@ -1303,6 +1378,14 @@
     isLocationActive,
     friendsForPhase,
     friendsAtLocation,
+    // hjemmemodell for venner/personer (Del D) – simulert hjemmepunkt, ikke GPS
+    getFriendHomeId,
+    isFriendHomeLocation,
+    getFriendHomeLocation,
+    getFriendHomeAnchor,
+    resolveFriendHomeMapAnchor,
+    getFriendHomeLabel,
+    buildFriendHomeModel,
     // fase-minne (rene, deterministiske)
     snapshotEntryFor,
     resolveFriendMapPresence,

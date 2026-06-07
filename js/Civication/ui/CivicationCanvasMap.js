@@ -52,6 +52,12 @@
   let hitTargets = [];
   let visiblePlaces = [];
 
+  // Lyttere for transform-endringer (zoom/pan/resize). Andre kartlag (f.eks.
+  // CivicationCityLayer) bruker disse + window-eventet civi:canvasMapTransformChanged
+  // for å holde HTML-markører forankret i kartets eget koordinatsystem.
+  const transformListeners = new Set();
+  let transformEmitQueued = false;
+
   // ---------------------------------------------------------------------------
   // Småhjelpere
   // ---------------------------------------------------------------------------
@@ -80,6 +86,100 @@
       x: (px - W / 2) / (state.zoom * W) + state.cx,
       y: (py - H / 2) / (state.zoom * H) + state.cy
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Stabilt projeksjons-API (Del A)
+  // ---------------------------------------------------------------------------
+  // Lar andre kartlag bruke NØYAKTIG samme projeksjon som canvas selv tegner med,
+  // slik at steder, venner, hjem og sosiale møter forankres i kartets eget
+  // koordinatsystem (ikke som overlay-prosenter). Endrer ikke hvordan canvas
+  // tegnes – dette er lese-API på samme transform-state og samme place-løype.
+
+  function getTransformState() {
+    return { zoom: state.zoom, cx: state.cx, cy: state.cy, width: W, height: H };
+  }
+
+  function getViewportSize() {
+    return { width: W, height: H };
+  }
+
+  // Er Canvas-kartet den aktive (tegnende) kartmotoren akkurat nå? Falsk når 3D
+  // har tatt over (window.__civiThreeActive) eller før init/flag.
+  function isActive() {
+    return flagOn() && _inited && !window.__civiThreeActive;
+  }
+
+  // World-koordinat (normalisert 0–1) -> skjermpiksel. Samme matte som
+  // worldToScreen som canvas-tegningen bruker. null ved ugyldig input/viewport.
+  function projectWorldToScreen(x, y) {
+    const nx = Number(x), ny = Number(y);
+    if (!Number.isFinite(nx) || !Number.isFinite(ny)) return null;
+    if (!W || !H) return null;
+    return worldToScreen(nx, ny);
+  }
+
+  // World-koordinatene er allerede normaliserte 0–1, så normalisert == world her.
+  const projectNormalizedToScreen = projectWorldToScreen;
+
+  // Slå opp et place: enten et rå/normalisert place-objekt, eller en place-id
+  // (matches mot de innlastede places). Returnerer normalisert form.
+  function lookupPlace(placeOrId) {
+    if (placeOrId && typeof placeOrId === "object") return normalize(placeOrId);
+    const id = String(placeOrId == null ? "" : placeOrId);
+    if (!id) return null;
+    return (_places || []).find((p) => String(p.id) === id) || null;
+  }
+
+  // Place -> normalisert world-koordinat via SAMME løype som drawPlaces bruker
+  // (manuell civiMap.x/y vinner, ellers kalibrert Oslo-projeksjon). null = mangler
+  // koordinater (gjetter aldri).
+  function projectPlaceToWorld(placeOrId) {
+    const place = lookupPlace(placeOrId);
+    if (!place) return null;
+    return projectOsloLatLonToCiviXY(place);
+  }
+
+  // Place -> skjermpiksel (kombinerer projectPlaceToWorld + projectWorldToScreen).
+  function projectPlaceToScreen(placeOrId) {
+    const w = projectPlaceToWorld(placeOrId);
+    if (!w) return null;
+    const s = projectWorldToScreen(w.x, w.y);
+    if (!s) return null;
+    return { x: s.x, y: s.y, source: w.source };
+  }
+
+  function onTransformChanged(callback) {
+    if (typeof callback === "function") transformListeners.add(callback);
+  }
+  function offTransformChanged(callback) {
+    transformListeners.delete(callback);
+  }
+
+  // Dispatch ett ryddig transform-event etter at state er oppdatert. Coalesces
+  // via rAF slik at zoom/pan-strømmer ikke spammer (maks ett pr. frame).
+  function notifyTransformChanged() {
+    const detail = getTransformState();
+    transformListeners.forEach((cb) => { try { cb(detail); } catch (e) { /* lytter feilet */ } });
+    try {
+      window.dispatchEvent(new CustomEvent("civi:canvasMapTransformChanged", { detail }));
+    } catch (e) { /* CustomEvent utilgjengelig */ }
+  }
+  function scheduleTransformEmit() {
+    if (transformEmitQueued) return;
+    transformEmitQueued = true;
+    requestAnimationFrame(() => { transformEmitQueued = false; notifyTransformChanged(); });
+  }
+
+  // Kun for headless tester: sett transform/viewport uten et ekte canvas.
+  function setTransformForTesting(t) {
+    const o = t && typeof t === "object" ? t : {};
+    if (Number.isFinite(o.zoom)) state.zoom = o.zoom;
+    if (Number.isFinite(o.cx)) state.cx = o.cx;
+    if (Number.isFinite(o.cy)) state.cy = o.cy;
+    if (Number.isFinite(o.width)) W = o.width;
+    if (Number.isFinite(o.height)) H = o.height;
+    return getTransformState();
   }
 
   function clampPan() {
@@ -140,6 +240,7 @@
     placesCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     clampPan();
     scheduleFrame();
+    scheduleTransformEmit();
   }
 
   // ---------------------------------------------------------------------------
@@ -633,6 +734,7 @@
     state.cy = wp.y - (py - H / 2) / (z * H);
     clampPan();
     scheduleFrame();
+    scheduleTransformEmit();
   }
 
   function panBy(dxPx, dyPx) {
@@ -641,11 +743,12 @@
     state.cy -= dyPx / (state.zoom * H);
     clampPan();
     scheduleFrame();
+    scheduleTransformEmit();
   }
 
   function zoomIn() { zoomAt(state.zoom * ZOOM_STEP, W / 2, H / 2); }
   function zoomOut() { zoomAt(state.zoom / ZOOM_STEP, W / 2, H / 2); }
-  function reset() { state.zoom = 1; state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); }
+  function reset() { state.zoom = 1; state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); scheduleTransformEmit(); }
   function getZoom() { return state.zoom; }
 
   // ---------------------------------------------------------------------------
@@ -880,6 +983,17 @@
     getVisiblePlaces: () => visiblePlaces.slice(),
     getHitTargets: () => hitTargets.slice(),
     getProjectionDebug,
-    getCalibrationAnchors
+    getCalibrationAnchors,
+    // Stabilt projeksjons-API (Del A) – samme projeksjon som canvas tegner med.
+    projectWorldToScreen,
+    projectNormalizedToScreen,
+    projectPlaceToWorld,
+    projectPlaceToScreen,
+    getTransformState,
+    getViewportSize,
+    isActive,
+    onTransformChanged,
+    offTransformChanged,
+    setTransformForTesting
   };
 })();
