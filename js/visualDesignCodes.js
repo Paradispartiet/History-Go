@@ -72,6 +72,13 @@
 
   // assetType / explicit keyword tokens -> designCode.
   var PLACE_ASSET_TO_CODE = {
+    opera: "opera_miniature",
+    palace: "palace_miniature",
+    cemetery: "cemetery_miniature",
+    monument: "monument_miniature",
+    farm: "farm_estate_miniature",
+    estate: "farm_estate_miniature",
+    prison: "prison_miniature",
     stadium: "stadium_miniature",
     arena: "stadium_miniature",
     sports_field: "sports_field_miniature",
@@ -131,6 +138,12 @@
   // rule stays narrow on purpose so skating-history athletics stadiums (Bislett)
   // still resolve to stadium.
   var PLACE_KEYWORD_RULES = [
+    [/opera|operahuset/, "opera_miniature"],
+    [/slott|palace|palass|kongelig residens/, "palace_miniature"],
+    [/gravlund|kirkegård|cemetery|cemiterio|cemitério|graveyard/, "cemetery_miniature"],
+    [/monument|statue|memorial|minnesmerke|padrão/, "monument_miniature"],
+    [/gård|gard|farm|estate|manor|quinta/, "farm_estate_miniature"],
+    [/fengsel|prison|fangeleir|detention|botsfengsel/, "prison_miniature"],
     [/ishall|ishockey|isbane|kunstisbane|skøytehall|skoytehall|amfi/, "ice_arena_miniature"],
     [/stadion|stadium|arena/, "stadium_miniature"],
     [/lekeplass|playground|sandlek/, "playground_miniature"],
@@ -143,7 +156,7 @@
     [/universitet|hogskole|høgskole|university|fakultet|campus/, "university_miniature"],
     [/skole|gymnas|videregaende|videregående|school/, "school_miniature"],
     [/stasjon|t-bane|jernbane|holdeplass|station|terminal|metro/, "station_miniature"],
-    [/festning|slott|borg|skanse|fortress|fort\b/, "fortress_miniature"],
+    [/festning|borg|skanse|fortress|fort\b/, "fortress_miniature"],
     [/brygge|havn|kai|fjord|vann|dam|tjern|elv|strand|waterfront|marina/, "waterfront_miniature"],
     [/park|hage|skog|lund|mark|allmenning|grøntdrag/, "park_miniature"],
     [/torg|plass\b|square/, "square_miniature"],
@@ -156,6 +169,11 @@
   // ---- person heuristics ---------------------------------------------------
 
   var PERSON_KEYWORD_RULES = [
+    [/trener|coach|manager|head coach/, "person_coach_miniature"],
+    [/skøyte|skoyte|skøyteløper|skoyteloper|speed skating|kunstløper|kunstloper|figure skater/, "person_skater_miniature"],
+    [/byplanlegger|urban planner|city planner|planlegger/, "person_urban_planner_miniature"],
+    [/arkitekt|architect/, "person_architect_miniature"],
+    [/næringsliv|naeringsliv|business|entrepreneur|industrialist|bank|shipping|handel|hotell|investor|eiendom/, "person_business_miniature"],
     [/footballer|fotball|football|spiss|keeper|midtbane|landslag/, "person_footballer_miniature"],
     [/runner|løper|loper|friidrett|athletics|sprint|maraton/, "person_runner_miniature"],
     [/skier|skiløper|skiloper|langrenn|alpint|hopp|ski\b/, "person_skier_miniature"],
@@ -195,6 +213,9 @@
   // ---- article heuristics --------------------------------------------------
 
   var ARTICLE_KEYWORD_RULES = [
+    [/biografi|biography|portrett|portrait|liv|personportrett/, "article_biography_miniature"],
+    [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
+    [/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/, "article_memory_place_miniature"],
     [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
     [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
     [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],

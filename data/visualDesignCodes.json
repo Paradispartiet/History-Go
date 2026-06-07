@@ -143,6 +143,26 @@
       },
       "tags": ["place", "culture", "theatre", "stage"]
     },
+    "opera_miniature": {
+      "id": "opera_miniature",
+      "entityTypes": ["place"],
+      "family": "culture",
+      "label": "Opera miniature",
+      "description": "Opera house or major performing arts building with distinctive civic/cultural silhouette.",
+      "renderHints": {
+        "threeType": "theatre",
+        "canvasType": "theatre_miniature",
+        "cardType": "place_opera",
+        "iconType": "opera"
+      },
+      "visualTraits": {
+        "silhouette": "opera_house",
+        "primaryMaterial": "stone_glass",
+        "accent": "stage",
+        "detailLevel": "high"
+      },
+      "tags": ["opera", "culture", "performing_arts", "theatre"]
+    },
     "music_venue_miniature": {
       "id": "music_venue_miniature",
       "entityTypes": ["place"],
@@ -383,6 +403,106 @@
       },
       "tags": ["place", "heritage", "fortress", "castle"]
     },
+    "palace_miniature": {
+      "id": "palace_miniature",
+      "entityTypes": ["place"],
+      "family": "civic",
+      "label": "Palace miniature",
+      "description": "Palace, royal residence or formal representative building.",
+      "renderHints": {
+        "threeType": "civic",
+        "canvasType": "civic_miniature",
+        "cardType": "place_palace",
+        "iconType": "palace"
+      },
+      "visualTraits": {
+        "silhouette": "palace",
+        "primaryMaterial": "stone",
+        "accent": "formal_axis",
+        "detailLevel": "high"
+      },
+      "tags": ["palace", "royal", "civic", "state"]
+    },
+    "cemetery_miniature": {
+      "id": "cemetery_miniature",
+      "entityTypes": ["place"],
+      "family": "memory",
+      "label": "Cemetery miniature",
+      "description": "Cemetery, graveyard or memorial landscape.",
+      "renderHints": {
+        "threeType": "park",
+        "canvasType": "park_miniature",
+        "cardType": "place_cemetery",
+        "iconType": "cemetery"
+      },
+      "visualTraits": {
+        "silhouette": "memorial_landscape",
+        "primaryMaterial": "greenery_stone",
+        "accent": "memorial",
+        "detailLevel": "standard"
+      },
+      "tags": ["cemetery", "graveyard", "memorial", "memory"]
+    },
+    "monument_miniature": {
+      "id": "monument_miniature",
+      "entityTypes": ["place"],
+      "family": "memory",
+      "label": "Monument miniature",
+      "description": "Standalone monument, memorial, statue or symbolic marker.",
+      "renderHints": {
+        "threeType": "civic",
+        "canvasType": "civic_miniature",
+        "cardType": "place_monument",
+        "iconType": "monument"
+      },
+      "visualTraits": {
+        "silhouette": "monument",
+        "primaryMaterial": "stone",
+        "accent": "plinth",
+        "detailLevel": "standard"
+      },
+      "tags": ["monument", "memorial", "statue", "symbol"]
+    },
+    "farm_estate_miniature": {
+      "id": "farm_estate_miniature",
+      "entityTypes": ["place"],
+      "family": "history",
+      "label": "Farm estate miniature",
+      "description": "Historic farm, manor, estate or older rural property.",
+      "renderHints": {
+        "threeType": "apartment",
+        "canvasType": "apartment_block_miniature",
+        "cardType": "place_farm_estate",
+        "iconType": "farm"
+      },
+      "visualTraits": {
+        "silhouette": "farmstead",
+        "primaryMaterial": "wood_stone",
+        "accent": "yard",
+        "detailLevel": "standard"
+      },
+      "tags": ["farm", "estate", "manor", "rural_history"]
+    },
+    "prison_miniature": {
+      "id": "prison_miniature",
+      "entityTypes": ["place"],
+      "family": "institution",
+      "label": "Prison miniature",
+      "description": "Prison, detention site or penal institution.",
+      "renderHints": {
+        "threeType": "civic",
+        "canvasType": "civic_miniature",
+        "cardType": "place_prison",
+        "iconType": "prison"
+      },
+      "visualTraits": {
+        "silhouette": "institutional_block",
+        "primaryMaterial": "brick_stone",
+        "accent": "bars",
+        "detailLevel": "standard"
+      },
+      "tags": ["prison", "detention", "institution", "justice"]
+    },
     "civic_miniature": {
       "id": "civic_miniature",
       "entityTypes": ["place"],
@@ -503,7 +623,6 @@
       },
       "tags": ["place", "subculture", "skate", "underground"]
     },
-
     "person_default_miniature": {
       "id": "person_default_miniature",
       "entityTypes": ["person"],
@@ -663,6 +782,46 @@
         "detailLevel": "standard"
       },
       "tags": ["person", "sport", "athlete"]
+    },
+    "person_coach_miniature": {
+      "id": "person_coach_miniature",
+      "entityTypes": ["person"],
+      "family": "sport",
+      "label": "Coach miniature",
+      "description": "Person design code for coaches, managers and tactical sport leaders.",
+      "renderHints": {
+        "threeType": "person_coach",
+        "canvasType": "person_token",
+        "cardType": "person_sports_card",
+        "iconType": "coach"
+      },
+      "visualTraits": {
+        "silhouette": "human_instruction",
+        "primaryMaterial": "figure",
+        "accent": "tactics",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "sport", "coach", "manager", "trainer"]
+    },
+    "person_skater_miniature": {
+      "id": "person_skater_miniature",
+      "entityTypes": ["person"],
+      "family": "sport",
+      "label": "Skater miniature",
+      "description": "Person design code for speed skaters, figure skaters and ice-skating profiles.",
+      "renderHints": {
+        "threeType": "person_skater",
+        "canvasType": "person_token",
+        "cardType": "person_sports_card",
+        "iconType": "skater"
+      },
+      "visualTraits": {
+        "silhouette": "human_ice_motion",
+        "primaryMaterial": "figure",
+        "accent": "ice",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "sport", "skating", "ice", "speed_skating", "figure_skating"]
     },
     "person_footballer_miniature": {
       "id": "person_footballer_miniature",
@@ -844,6 +1003,66 @@
       },
       "tags": ["person", "history", "historical"]
     },
+    "person_architect_miniature": {
+      "id": "person_architect_miniature",
+      "entityTypes": ["person"],
+      "family": "architecture",
+      "label": "Architect miniature",
+      "description": "Person design code for architects, planners and urban form thinkers.",
+      "renderHints": {
+        "threeType": "person_architect",
+        "canvasType": "person_token",
+        "cardType": "person_architecture_card",
+        "iconType": "architect"
+      },
+      "visualTraits": {
+        "silhouette": "human_blueprint",
+        "primaryMaterial": "figure",
+        "accent": "blueprint",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "architecture", "architect", "planner", "urbanism"]
+    },
+    "person_urban_planner_miniature": {
+      "id": "person_urban_planner_miniature",
+      "entityTypes": ["person"],
+      "family": "urbanism",
+      "label": "Urban planner miniature",
+      "description": "Person design code for city planners, municipal planners and urban development figures.",
+      "renderHints": {
+        "threeType": "person_architect",
+        "canvasType": "person_token",
+        "cardType": "person_urbanism_card",
+        "iconType": "urban_planner"
+      },
+      "visualTraits": {
+        "silhouette": "human_city_plan",
+        "primaryMaterial": "figure",
+        "accent": "grid",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "urbanism", "planner", "city", "architecture"]
+    },
+    "person_business_miniature": {
+      "id": "person_business_miniature",
+      "entityTypes": ["person"],
+      "family": "business",
+      "label": "Business miniature",
+      "description": "Person design code for business owners, industrialists, entrepreneurs and finance figures.",
+      "renderHints": {
+        "threeType": "person_business",
+        "canvasType": "person_token",
+        "cardType": "person_business_card",
+        "iconType": "business"
+      },
+      "visualTraits": {
+        "silhouette": "human_enterprise",
+        "primaryMaterial": "figure",
+        "accent": "commerce",
+        "detailLevel": "standard"
+      },
+      "tags": ["person", "business", "industry", "entrepreneur", "finance", "commerce"]
+    },
     "person_local_legend_miniature": {
       "id": "person_local_legend_miniature",
       "entityTypes": ["person"],
@@ -864,7 +1083,6 @@
       },
       "tags": ["person", "local", "legend", "neighbourhood"]
     },
-
     "article_default_miniature": {
       "id": "article_default_miniature",
       "entityTypes": ["article", "story", "leksikon", "lesespor"],
@@ -1065,6 +1283,46 @@
       },
       "tags": ["article", "place", "essay"]
     },
+    "article_institution_miniature": {
+      "id": "article_institution_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "institution",
+      "label": "Institution article miniature",
+      "description": "Article design code for institutions such as schools, hospitals, prisons, public offices and civic organizations.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_miniature",
+        "cardType": "article_institution",
+        "iconType": "institution"
+      },
+      "visualTraits": {
+        "silhouette": "institution_page",
+        "primaryMaterial": "paper",
+        "accent": "civic",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "institution", "civic", "school", "hospital", "prison"]
+    },
+    "article_memory_place_miniature": {
+      "id": "article_memory_place_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "memory",
+      "label": "Memory place article miniature",
+      "description": "Article design code for memory places, memorial landscapes, cemeteries and traumatic or commemorative history.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_miniature",
+        "cardType": "article_memory_place",
+        "iconType": "memory"
+      },
+      "visualTraits": {
+        "silhouette": "memorial_page",
+        "primaryMaterial": "paper",
+        "accent": "memorial",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "memory", "memorial", "cemetery", "war", "occupation"]
+    },
     "article_people_portrait_miniature": {
       "id": "article_people_portrait_miniature",
       "entityTypes": ["article", "story", "leksikon", "lesespor"],
@@ -1084,6 +1342,26 @@
         "detailLevel": "standard"
       },
       "tags": ["article", "people", "portrait", "biography"]
+    },
+    "article_biography_miniature": {
+      "id": "article_biography_miniature",
+      "entityTypes": ["article", "story", "leksikon", "lesespor"],
+      "family": "people",
+      "label": "Biography article miniature",
+      "description": "Article design code for biography, life story or person-focused historical entry.",
+      "renderHints": {
+        "threeType": "article_marker",
+        "canvasType": "article_miniature",
+        "cardType": "article_biography",
+        "iconType": "biography"
+      },
+      "visualTraits": {
+        "silhouette": "portrait_page",
+        "primaryMaterial": "paper",
+        "accent": "person",
+        "detailLevel": "standard"
+      },
+      "tags": ["article", "biography", "portrait", "person", "life_story"]
     },
     "article_groundhopper_miniature": {
       "id": "article_groundhopper_miniature",

@@ -117,6 +117,10 @@ const DEFAULTS = {
 };
 
 const PLACE_ASSET_TO_CODE: Record<string, string> = {
+  opera: "opera_miniature", palace: "palace_miniature",
+  cemetery: "cemetery_miniature", monument: "monument_miniature",
+  farm: "farm_estate_miniature", estate: "farm_estate_miniature",
+  prison: "prison_miniature",
   stadium: "stadium_miniature", arena: "stadium_miniature",
   sports_field: "sports_field_miniature", ice_arena: "ice_arena_miniature",
   museum: "museum_miniature", gallery: "gallery_miniature",
@@ -148,6 +152,12 @@ const PLACE_CATEGORY_TO_CODE: Record<string, string> = {
 };
 
 const PLACE_KEYWORD_RULES: KeywordRule[] = [
+  [/opera|operahuset/, "opera_miniature"],
+  [/slott|palace|palass|kongelig residens/, "palace_miniature"],
+  [/gravlund|kirkegård|cemetery|cemiterio|cemitério|graveyard/, "cemetery_miniature"],
+  [/monument|statue|memorial|minnesmerke|padrão/, "monument_miniature"],
+  [/gård|gard|farm|estate|manor|quinta/, "farm_estate_miniature"],
+  [/fengsel|prison|fangeleir|detention|botsfengsel/, "prison_miniature"],
   [/ishall|ishockey|isbane|kunstisbane|skøytehall|skoytehall|amfi/, "ice_arena_miniature"],
   [/stadion|stadium|arena/, "stadium_miniature"],
   [/lekeplass|playground|sandlek/, "playground_miniature"],
@@ -160,7 +170,7 @@ const PLACE_KEYWORD_RULES: KeywordRule[] = [
   [/universitet|hogskole|høgskole|university|fakultet|campus/, "university_miniature"],
   [/skole|gymnas|videregaende|videregående|school/, "school_miniature"],
   [/stasjon|t-bane|jernbane|holdeplass|station|terminal|metro/, "station_miniature"],
-  [/festning|slott|borg|skanse|fortress|fort\b/, "fortress_miniature"],
+  [/festning|borg|skanse|fortress|fort\b/, "fortress_miniature"],
   [/brygge|havn|kai|fjord|vann|dam|tjern|elv|strand|waterfront|marina/, "waterfront_miniature"],
   [/park|hage|skog|lund|mark|allmenning|grøntdrag/, "park_miniature"],
   [/torg|plass\b|square/, "square_miniature"],
@@ -171,6 +181,11 @@ const PLACE_KEYWORD_RULES: KeywordRule[] = [
 ];
 
 const PERSON_KEYWORD_RULES: KeywordRule[] = [
+  [/trener|coach|manager|head coach/, "person_coach_miniature"],
+  [/skøyte|skoyte|skøyteløper|skoyteloper|speed skating|kunstløper|kunstloper|figure skater/, "person_skater_miniature"],
+  [/byplanlegger|urban planner|city planner|planlegger/, "person_urban_planner_miniature"],
+  [/arkitekt|architect/, "person_architect_miniature"],
+  [/næringsliv|naeringsliv|business|entrepreneur|industrialist|bank|shipping|handel|hotell|investor|eiendom/, "person_business_miniature"],
   [/footballer|fotball|football|spiss|keeper|midtbane|landslag/, "person_footballer_miniature"],
   [/runner|løper|loper|friidrett|athletics|sprint|maraton/, "person_runner_miniature"],
   [/skier|skiløper|skiloper|langrenn|alpint|hopp|ski\b/, "person_skier_miniature"],
@@ -201,6 +216,9 @@ const PERSON_CATEGORY_TO_CODE: Record<string, string> = {
 };
 
 const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
+  [/biografi|biography|portrett|portrait|liv|personportrett/, "article_biography_miniature"],
+  [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
+  [/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/, "article_memory_place_miniature"],
   [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
   [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
   [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
@@ -342,7 +360,7 @@ function firstKeywordMatch(hay: string, rules: KeywordRule[]) {
 }
 
 // Tydelige nøkkelord gir high confidence.
-const HIGH_CONFIDENCE_RE = /(stadion|stadium|ishall|museum|museet|galleri|gallery|kunsthall|kirke|domkirke|katedral|kapell|bibliotek|library|deichman|stasjon|jernbane|t-bane|metro|park|teater|theatre|theater|kino|cinema|forfatter|author|musiker|komponist|composer|forsker|professor|nobel|politiker|statsminister|universitet|fotball|football|skiløper|skiloper|langrenn|friidrett|maraton|sprint|sport|idrett)/;
+const HIGH_CONFIDENCE_RE = /(opera|operahuset|slott|palace|palass|gravlund|kirkegård|cemetery|graveyard|monument|statue|memorial|minnesmerke|fengsel|prison|fangeleir|gård|gard|farm|estate|manor|quinta|stadion|stadium|ishall|museum|museet|galleri|gallery|kunsthall|kirke|domkirke|katedral|kapell|bibliotek|library|deichman|stasjon|jernbane|t-bane|metro|park|teater|theatre|theater|kino|cinema|trener|coach|manager|skøyte|skoyte|skøyteløper|speed skating|kunstløper|figure skater|arkitekt|architect|byplanlegger|urban planner|business|entrepreneur|industrialist|forfatter|author|musiker|komponist|composer|forsker|professor|nobel|politiker|statsminister|universitet|fotball|football|skiløper|skiloper|langrenn|friidrett|maraton|sprint|sport|idrett|biografi|biography|portrett|portrait|institusjon|institution|okkupasjon)/;
 // Brede/uklare treff gir low confidence.
 const LOW_CONFIDENCE_TERMS = new Set([
   "sted", "place", "essay", "lokal", "local", "nabolag", "person", "histor",
@@ -399,6 +417,62 @@ function articleDeepHay(e: AuditEntity): string {
 
 // Søkeforslag/oppfølging for ubrukte koder.
 const UNUSED_CODE_HINTS = {
+  opera_miniature: {
+    searchTerms: ["opera", "operahuset", "performing arts", "teater"],
+    nextAction: "Vurder operabygg og store scenekunsthus for eksplisitt opera_miniature."
+  },
+  palace_miniature: {
+    searchTerms: ["slott", "palass", "palace", "kongelig residens"],
+    nextAction: "Vurder slott, palasser og representative statsbygg for eksplisitt palace_miniature."
+  },
+  cemetery_miniature: {
+    searchTerms: ["gravlund", "kirkegård", "cemetery", "graveyard"],
+    nextAction: "Vurder gravlunder, kirkegårder og minnelandskap for eksplisitt cemetery_miniature."
+  },
+  monument_miniature: {
+    searchTerms: ["monument", "statue", "memorial", "minnesmerke"],
+    nextAction: "Vurder frittstående monumenter, statuer og minnesmerker for eksplisitt monument_miniature."
+  },
+  farm_estate_miniature: {
+    searchTerms: ["gård", "gard", "farm", "estate", "manor", "quinta"],
+    nextAction: "Vurder historiske gårder, gods, herregårder og eldre landsteder for eksplisitt farm_estate_miniature."
+  },
+  prison_miniature: {
+    searchTerms: ["fengsel", "prison", "fangeleir", "detention", "botsfengsel"],
+    nextAction: "Vurder fengsler, fangeleirer og andre straffeinstitusjoner for eksplisitt prison_miniature."
+  },
+  person_coach_miniature: {
+    searchTerms: ["trener", "coach", "manager", "head coach"],
+    nextAction: "Vurder trenere, managere og taktiske idrettsledere for eksplisitt person_coach_miniature."
+  },
+  person_skater_miniature: {
+    searchTerms: ["skøyte", "skøyteløper", "speed skating", "kunstløper", "figure skater"],
+    nextAction: "Vurder skøyteløpere og kunstløpere for eksplisitt person_skater_miniature."
+  },
+  person_architect_miniature: {
+    searchTerms: ["arkitekt", "architect"],
+    nextAction: "Vurder arkitekter for eksplisitt person_architect_miniature."
+  },
+  person_business_miniature: {
+    searchTerms: ["næringsliv", "business", "entrepreneur", "industrialist", "bank", "shipping", "handel"],
+    nextAction: "Vurder næringslivsfolk, industribyggere, investorer og finans-/handelsprofiler for eksplisitt person_business_miniature."
+  },
+  person_urban_planner_miniature: {
+    searchTerms: ["byplanlegger", "urban planner", "city planner", "planlegger"],
+    nextAction: "Vurder byplanleggere og urbanismeprofiler for eksplisitt person_urban_planner_miniature."
+  },
+  article_biography_miniature: {
+    searchTerms: ["biografi", "biography", "portrett", "portrait", "personportrett"],
+    nextAction: "Vurder biografier og personfokuserte historietekster for eksplisitt article_biography_miniature."
+  },
+  article_institution_miniature: {
+    searchTerms: ["institusjon", "institution", "skole", "hospital", "fengsel", "forvaltning"],
+    nextAction: "Vurder institusjonsartikler om skoler, sykehus, fengsler og offentlige kontorer for eksplisitt article_institution_miniature."
+  },
+  article_memory_place_miniature: {
+    searchTerms: ["gravlund", "kirkegård", "memorial", "minne", "okkupasjon", "fangeleir"],
+    nextAction: "Vurder minnesteder, gravlunder og okkupasjons-/fangeleirhistorie for eksplisitt article_memory_place_miniature."
+  },
   gallery_miniature: {
     searchTerms: ["galleri", "gallery", "kunsthall", "utstilling"],
     nextAction: "Vurder places med galleri/kunsthall som i dag løses som museum_miniature eller default."
@@ -440,34 +514,54 @@ function unusedCodeDetail(code, registryEntry) {
 // entiteter med eksplisitt designCode. Ikke "feil" – bare manuelle sjekkpunkter.
 function placeReviewReason(e, code) {
   const hay = haystack([e.id, e.name, e.title]);
-  if (/slott|palace|palass/.test(hay) &&
-      code !== "fortress_miniature" && code !== "civic_miniature") {
-    return `Navn/id antyder slott/palass, men koden er '${code}' (vurder fortress_miniature eller civic_miniature).`;
+  if (/opera|operahuset/.test(hay) && code !== "opera_miniature") {
+    return `Navn/id antyder opera, men koden er '${code}' (vurder opera_miniature).`;
   }
-  if (/opera/.test(hay) && code === "theatre_miniature") {
-    return "Navn/id inneholder 'opera' og koden er theatre_miniature (egen opera-kode kan vurderes senere).";
+  if (/slott|palace|palass|kongelig residens/.test(hay) && code !== "palace_miniature") {
+    return `Navn/id antyder slott/palass, men koden er '${code}' (vurder palace_miniature).`;
+  }
+  if (/gravlund|kirkegård|cemetery|graveyard/.test(hay) && code !== "cemetery_miniature") {
+    return `Navn/id antyder gravlund/kirkegård, men koden er '${code}' (vurder cemetery_miniature).`;
+  }
+  if (/monument|statue|memorial|minnesmerke/.test(hay) && code !== "monument_miniature") {
+    return `Navn/id antyder monument/minnesmerke, men koden er '${code}' (vurder monument_miniature).`;
   }
   return null;
 }
 
 function personReviewReason(e, code) {
   const hay = haystack([e.tags, e.desc, e.role, e.profession, e.name, e.id]);
-  if (/trener|coach/.test(hay) && code === "person_footballer_miniature") {
-    return "Tags/desc antyder trener og koden er person_footballer_miniature (person_coach_miniature kan vurderes senere).";
+  if (/trener|coach|manager|head coach/.test(hay) && code !== "person_coach_miniature") {
+    return `Tags/desc antyder trener/coach, men koden er '${code}' (vurder person_coach_miniature).`;
   }
-  if (/skøyte|skoyte|skøyteløper|skoyteloper/.test(hay) && code === "person_athlete_miniature") {
-    return "Skøyte/skøyteløper og koden er person_athlete_miniature (person_skater_miniature kan vurderes senere).";
+  if (/skøyte|skoyte|skøyteløper|skoyteloper|speed skating|kunstløper|kunstloper|figure skater/.test(hay) && code !== "person_skater_miniature") {
+    return `Skøyte/skøyteløper antydes, men koden er '${code}' (vurder person_skater_miniature).`;
+  }
+  if (/byplanlegger|urban planner|city planner|planlegger/.test(hay) && code !== "person_urban_planner_miniature") {
+    return `Byplanlegging/urbanisme antydes, men koden er '${code}' (vurder person_urban_planner_miniature).`;
+  }
+  if (/arkitekt|architect/.test(hay) && code !== "person_architect_miniature") {
+    return `Arkitekt antydes, men koden er '${code}' (vurder person_architect_miniature).`;
+  }
+  if (/næringsliv|naeringsliv|business|entrepreneur|industrialist|bank|shipping|handel|hotell|investor|eiendom/.test(hay) && code !== "person_business_miniature") {
+    return `Næringsliv/handel antydes, men koden er '${code}' (vurder person_business_miniature).`;
   }
   return null;
 }
 
 function articleReviewReason(e, code) {
   const hay = haystack([e.title, e.id, e.place_id]);
+  if (/biografi|biography|portrett|portrait|personportrett/.test(hay) && code !== "article_biography_miniature") {
+    return `Tittel/id inneholder biografi/portrett, men koden er '${code}' (vurder article_biography_miniature).`;
+  }
+  if (/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/.test(hay) && code !== "article_institution_miniature") {
+    return `Tittel/id antyder institusjon, men koden er '${code}' (vurder article_institution_miniature).`;
+  }
+  if (/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/.test(hay) && code !== "article_memory_place_miniature") {
+    return `Tittel/id antyder minne-/gravlundssted, men koden er '${code}' (vurder article_memory_place_miniature).`;
+  }
   if (/arkitektur/.test(hay) && code !== "article_architecture_miniature") {
     return `Tittel/id inneholder 'arkitektur', men koden er '${code}' (vurder article_architecture_miniature).`;
-  }
-  if (/portrett|biografi/.test(hay) && code !== "article_people_portrait_miniature") {
-    return `Tittel/id inneholder portrett/biografi, men koden er '${code}' (vurder article_people_portrait_miniature).`;
   }
   if (/wonderkammer/.test(hay) && code !== "article_wonderkammer_miniature") {
     return `Tittel/id inneholder 'wonderkammer', men koden er '${code}' (vurder article_wonderkammer_miniature).`;
@@ -772,16 +866,18 @@ function main() {
       articles: articleStats.semanticReviewCandidates
     },
     batch3Suggestions: batch3,
-    pilotBatch2: {
-      baselineExplicit: 73,
-      baselineByEntityType: { places: 28, people: 30, articles: 15 },
-      addedExplicit: Math.max(0, totalExplicit - 73),
-      addedByEntityType: {
-        places: Math.max(0, placeStats.withExplicit - 28),
-        people: Math.max(0, peopleStats.withExplicit - 30),
-        articles: Math.max(0, articleStats.withExplicit - 15)
+    pilotBatchStatus: {
+      batch1Baseline: 73,
+      afterBatch2: 169,
+      afterBatch3: 249,
+      currentExplicit: totalExplicit,
+      currentByEntityType: {
+        places: placeStats.withExplicit,
+        people: peopleStats.withExplicit,
+        articles: articleStats.withExplicit
       },
-      scope: "Kontrollert Pilot batch 2: høy nytte for sentrale kartsteder, stedskoblede people og kunnskapslagartikler."
+      addedSinceBatch3: Math.max(0, totalExplicit - 249),
+      scope: "Kontrollerte pilot-batcher for visual.designCode-dekning; nåværende total beregnes fra data."
     }
   };
 
@@ -922,14 +1018,16 @@ function toMarkdown(r: AuditReport) {
   if (!anyExplicit) lines.push("- (ingen)");
   lines.push("");
 
-  const pb2 = r.pilotBatch2;
-  if (pb2) {
-    lines.push("## Pilot batch 2");
+  const pbs = r.pilotBatchStatus;
+  if (pbs) {
+    lines.push("## Pilot batch status");
     lines.push("");
-    lines.push(`- Batch 1-baseline: ${pb2.baselineExplicit} eksplisitte \`visual.designCode\` (${pb2.baselineByEntityType.places} places, ${pb2.baselineByEntityType.people} people, ${pb2.baselineByEntityType.articles} articles).`);
-    lines.push(`- Nåværende total etter batch 2: ${r.resolution.explicit} eksplisitte \`visual.designCode\`.`);
-    lines.push(`- Netto økning etter batch 1: ${pb2.addedExplicit} (${pb2.addedByEntityType.places} places, ${pb2.addedByEntityType.people} people, ${pb2.addedByEntityType.articles} articles).`);
-    lines.push(`- Omfang: ${pb2.scope}`);
+    lines.push(`- Batch 1-baseline: ${pbs.batch1Baseline} eksplisitte \`visual.designCode\`.`);
+    lines.push(`- Etter batch 2: ${pbs.afterBatch2} eksplisitte \`visual.designCode\`.`);
+    lines.push(`- Etter batch 3: ${pbs.afterBatch3} eksplisitte \`visual.designCode\`.`);
+    lines.push(`- Nåværende total: ${pbs.currentExplicit} eksplisitte \`visual.designCode\` (${pbs.currentByEntityType.places} places, ${pbs.currentByEntityType.people} people, ${pbs.currentByEntityType.articles} articles).`);
+    lines.push(`- Endring siden batch 3: ${pbs.addedSinceBatch3}.`);
+    lines.push(`- Omfang: ${pbs.scope}`);
     lines.push("");
   }
 
