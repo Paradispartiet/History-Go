@@ -9,7 +9,7 @@ kort, ikoner, leksikon, AHA-galleri) kan tegne hver på sin måte.
 - Resolver: [`js/visualDesignCodes.js`](../js/visualDesignCodes.js) →
   `window.HGVisualDesignCodes`
 - Audit: `npm run test:visual-design-codes`
-  ([`tools/audit-visual-design-codes.mjs`](../tools/audit-visual-design-codes.mjs))
+  ([`tools/audit-visual-design-codes.mts`](../tools/audit-visual-design-codes.mts))
 
 ## Hva er en designCode?
 
@@ -275,6 +275,38 @@ Effekten etter batch 3 kan leses i
 eksplisitt `visual.designCode` økte fra 169 til 249 (places 68 → 98, people
 65 → 88, articles 36 → 63), fortsatt med 0 ugyldige eksplisitte koder og 0 koder
 med manglende `renderHints`.
+
+
+## Register precision expansion
+
+Register precision expansion er en ren register-/resolver-/audit-utvidelse. Den
+legger til mer presise designCodes for kjente presisjonshull som audit har vist
+etter de tre kontrollerte pilotene: opera-/scenekunstbygg, slott/palasser,
+gravlunder/minnesteder, monumenter, historiske gårds-/eiendomssteder, fengsler,
+trenere, skøyteløpere, arkitekter, byplanleggere, næringslivsprofiler og mer
+spissede artikkeltyper for biografi, institusjon og minnesteder.
+
+Dette er **ikke en ny data-batch** og ikke «batch 4». Ingen nye
+`visual.designCode`-verdier legges inn i place-, people-, leksikon- eller
+lesespor-data som del av selve registerutvidelsen. Poenget er å gjøre systemet
+klart for senere kontrollerte batcher, slik at framtidige eksplisitte merkinger
+kan bruke en presis kode i stedet for å presse entiteter inn i brede fallbacker
+som `theatre_miniature`, `civic_miniature`, `person_athlete_miniature` eller
+`person_default_miniature`.
+
+De gamle brede kodene fungerer fortsatt som fallback. Resolveren prøver nå mer
+spesifikke nøkkelord først (for eksempel opera før teater, slott før festning,
+coach før footballer og skøyteløper før generisk athlete), men ender fortsatt i
+eksisterende brede koder eller default-koder når den ikke har et trygt treff.
+Audit-scriptet speiler samme rekkefølge, slik at rapportene viser de samme
+heuristiske mulighetene som runtime-resolveren.
+
+`renderHints.threeType` og andre renderer-hint for de nye kodene kan foreløpig
+peke til eksisterende primitive archetypes. For eksempel kan `opera_miniature`
+bruke samme Three.js-type som teater, og `palace_miniature` kan bruke civic-
+primitive, mens kort- og ikonhint allerede er mer semantisk presise. En egen
+renderer eller egne 3D-/Canvas-varianter for disse kodene kan komme senere uten
+at datafilene må endres på nytt.
 
 ## Audit
 
