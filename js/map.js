@@ -23,8 +23,6 @@
   const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
 
   const SRC = "hg-places";
-  const STANDARD_DIM_SRC = "hg-standard-map-dim-src";
-  const STANDARD_DIM_LAYER = "hg-standard-map-dim";
   const L_GLOW = "hg-places-glow";
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
@@ -93,7 +91,7 @@
       mapReady = true;
       ensureMapStyleToggle(containerId);
       MAP.resize();
-      applyStandardMapDarkening();
+      applyStandardMapPalette();
       drawPlaceMarkers();
       moveMarkersOnTop();
     });
@@ -220,7 +218,7 @@
       isApplyingStyle = false;
       saveMapStyleMode(mapStyleMode);
       mapReady = true;
-      applyStandardMapDarkening();
+      applyStandardMapPalette();
       drawPlaceMarkers();
       moveMarkersOnTop();
       MAP.resize();
@@ -257,7 +255,7 @@
       saveMapStyleMode(mapStyleMode);
       mapReady = true;
       console.debug("[HGMap] redrawing place markers after style switch");
-      applyStandardMapDarkening();
+      applyStandardMapPalette();
       drawPlaceMarkers();
       moveMarkersOnTop();
       MAP.resize();
@@ -334,43 +332,29 @@
     } catch {}
   }
 
-  function removeMapLayerIfExists(layerId) {
-    if (!MAP || !MAP.getLayer(layerId)) return;
-    try {
-      MAP.removeLayer(layerId);
-    } catch {}
-  }
-
-  function removeMapSourceIfExists(sourceId) {
-    if (!MAP || !MAP.getSource(sourceId)) return;
-    try {
-      MAP.removeSource(sourceId);
-    } catch {}
-  }
-
-  function getStandardLandFillPaint(layerName) {
-    if (/water|ocean|river|lake/.test(layerName)) {
-      return { color: "#0f3d56", opacity: 0.98 };
+  function getStandardFillPaint(layerName) {
+    if (/water|ocean|river|lake|canal|reservoir/.test(layerName)) {
+      return { color: "#8fcbe6", opacity: 0.94 };
     }
 
-    if (/park|grass|green/.test(layerName)) {
-      return { color: "#2f6544", opacity: 0.76 };
+    if (/park|grass|green|garden|pitch/.test(layerName)) {
+      return { color: "#bde7ad", opacity: 0.72 };
     }
 
     if (/wood|forest|natural|landcover|cemetery/.test(layerName)) {
-      return { color: "#28563c", opacity: 0.74 };
+      return { color: "#a8d99b", opacity: 0.62 };
     }
 
-    if (/landuse|pitch|garden/.test(layerName)) {
-      return { color: "#254b36", opacity: 0.62 };
+    if (/landuse|farmland|meadow|scrub/.test(layerName)) {
+      return { color: "#d6ead0", opacity: 0.52 };
     }
 
     if (/building/.test(layerName)) {
-      return { color: "#263442", opacity: 0.58 };
+      return { color: "#e1d7c8", opacity: 0.48 };
     }
 
     if (/land|earth/.test(layerName)) {
-      return { color: "#141e2a", opacity: 1 };
+      return { color: "#f3efe5", opacity: 1 };
     }
 
     return null;
@@ -378,72 +362,82 @@
 
   function getStandardRoadLinePaint(layerName) {
     if (/rail/.test(layerName)) {
-      return { color: "#98a8b5", opacity: 0.54 };
+      return { color: "#b9b4aa", opacity: 0.52 };
     }
 
-    const isRoad = /road|transportation|highway|street|motorway|trunk|primary|secondary|tertiary|minor|service|tunnel|bridge|path/.test(layerName);
+    const isRoad = /road|transportation|highway|street|motorway|trunk|primary|secondary|tertiary|minor|service|tunnel|bridge|path|pedestrian|foot/.test(layerName);
     if (!isRoad) return null;
 
     if (/casing|outline|shadow/.test(layerName)) {
-      return { color: "#2b3745", opacity: 0.74 };
+      return { color: "#d2cbbd", opacity: 0.44 };
     }
 
     if (/motorway|trunk/.test(layerName)) {
-      return { color: "#d7c9aa", opacity: 0.78 };
+      return { color: "#d8c7ab", opacity: 0.68 };
     }
 
     if (/primary|secondary/.test(layerName)) {
-      return { color: "#c8c2b5", opacity: 0.70 };
+      return { color: "#ddd6c9", opacity: 0.62 };
     }
 
     if (/tertiary/.test(layerName)) {
-      return { color: "#b6bcc3", opacity: 0.58 };
+      return { color: "#e3ded3", opacity: 0.54 };
     }
 
     if (/path|foot|pedestrian|service|minor/.test(layerName)) {
-      return { color: "#8894a2", opacity: 0.38 };
+      return { color: "#ebe5d9", opacity: 0.40 };
     }
 
-    return { color: "#a4adb8", opacity: 0.50 };
+    return { color: "#e2dbcf", opacity: 0.48 };
   }
 
   function getStandardLabelPaint(layerName) {
     if (/road|transportation|highway|street/.test(layerName)) {
       return {
-        color: "#aeb8c4",
-        haloColor: "rgba(8,14,22,0.82)",
-        haloWidth: 1.05,
-        haloBlur: 0.35,
-        opacity: 0.72
+        color: "#776f64",
+        haloColor: "rgba(250,247,239,0.88)",
+        haloWidth: 0.9,
+        haloBlur: 0.25,
+        opacity: 0.68
       };
     }
 
     if (/water|marine/.test(layerName)) {
       return {
-        color: "#9bc9df",
-        haloColor: "rgba(5,24,36,0.78)",
-        haloWidth: 1.15,
-        haloBlur: 0.3,
+        color: "#2d7598",
+        haloColor: "rgba(235,247,251,0.86)",
+        haloWidth: 1.05,
+        haloBlur: 0.25,
         opacity: 0.86
       };
     }
 
-    if (/poi|park|place|settlement|city|town|village/.test(layerName)) {
+    if (/poi|park/.test(layerName)) {
       return {
-        color: "#e6f0f8",
-        haloColor: "rgba(6,11,18,0.88)",
-        haloWidth: 1.35,
-        haloBlur: 0.28,
+        color: "#4f7650",
+        haloColor: "rgba(248,246,238,0.88)",
+        haloWidth: 1.05,
+        haloBlur: 0.25,
+        opacity: 0.78
+      };
+    }
+
+    if (/place|settlement|city|town|village/.test(layerName)) {
+      return {
+        color: "#3f4b55",
+        haloColor: "rgba(250,247,239,0.92)",
+        haloWidth: 1.2,
+        haloBlur: 0.22,
         opacity: 0.90
       };
     }
 
     return {
-      color: "#ccd6df",
-      haloColor: "rgba(6,11,18,0.84)",
-      haloWidth: 1.15,
-      haloBlur: 0.28,
-      opacity: 0.78
+      color: "#5a625f",
+      haloColor: "rgba(250,247,239,0.88)",
+      haloWidth: 1.0,
+      haloBlur: 0.24,
+      opacity: 0.76
     };
   }
 
@@ -460,12 +454,12 @@
       const layerType = layer.type;
 
       if (layerType === "background") {
-        setPaintPropertyIfSupported(id, "background-color", "#0d1520");
+        setPaintPropertyIfSupported(id, "background-color", "#f3efe5");
         continue;
       }
 
       if (layerType === "fill") {
-        const fillPaint = getStandardLandFillPaint(layerName);
+        const fillPaint = getStandardFillPaint(layerName);
         if (fillPaint) {
           setPaintPropertyIfSupported(id, "fill-color", fillPaint.color);
           setPaintPropertyIfSupported(id, "fill-opacity", fillPaint.opacity);
@@ -482,8 +476,8 @@
         }
 
         if (/water|river|stream/.test(layerName)) {
-          setPaintPropertyIfSupported(id, "line-color", "#2d7895");
-          setPaintPropertyIfSupported(id, "line-opacity", 0.76);
+          setPaintPropertyIfSupported(id, "line-color", "#6bb7d9");
+          setPaintPropertyIfSupported(id, "line-opacity", 0.72);
         }
         continue;
       }
@@ -499,15 +493,13 @@
     }
   }
 
-  function applyStandardMapDarkening() {
+  function applyStandardMapPalette() {
     if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD) return;
     if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
-      runWhenStyleReady(applyStandardMapDarkening);
+      runWhenStyleReady(applyStandardMapPalette);
       return;
     }
 
-    removeMapLayerIfExists(STANDARD_DIM_LAYER);
-    removeMapSourceIfExists(STANDARD_DIM_SRC);
     tuneStandardBaseMapStyle();
     moveMarkersOnTop();
   }
@@ -600,14 +592,14 @@
     }
 
     return {
-      "text-color": "rgba(250,252,255,0.98)",
-      "text-halo-color": "rgba(3,8,15,0.96)",
-      "text-halo-width": 2.2,
-      "text-halo-blur": 0.18,
+      "text-color": "rgba(50,61,67,0.96)",
+      "text-halo-color": "rgba(255,252,244,0.96)",
+      "text-halo-width": 1.7,
+      "text-halo-blur": 0.22,
       "text-opacity": [
         "interpolate", ["linear"], ["zoom"],
         PLACE_LABEL_MIN_ZOOM - 0.2, 0.0,
-        PLACE_LABEL_MIN_ZOOM + 0.8, 0.78,
+        PLACE_LABEL_MIN_ZOOM + 0.8, 0.74,
         PLACE_LABEL_MIN_ZOOM + 1.6, 1.0
       ]
     };
@@ -649,7 +641,7 @@
     if (!features.length) return;
 
     const fc = { type: "FeatureCollection", features };
-    applyStandardMapDarkening();
+    applyStandardMapPalette();
     const src = MAP.getSource(SRC);
     if (src) {
       src.setData(fc);
