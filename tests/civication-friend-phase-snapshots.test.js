@@ -210,6 +210,68 @@ check("getVisibleFriendSnapshotsForPhase utelater skjulte venner", () => {
   assert.ok(visibleWork.includes("friend_demo_02"), "Jonas skal vises i arbeidsfasen");
 });
 
+console.log("CivicationFriendsEngine – brukervendte label-/tekst-hjelpere");
+
+check("getPhaseLabel gir riktige norske fase-labels", () => {
+  assert.strictEqual(eng.getPhaseLabel("morning"), "Morgenfase");
+  assert.strictEqual(eng.getPhaseLabel("work"), "Arbeidsfase");
+  assert.strictEqual(eng.getPhaseLabel("leisure"), "Fritidsfase");
+  assert.strictEqual(eng.getPhaseLabel("evening"), "Kveldsfase");
+  assert.strictEqual(eng.getPhaseLabel("reflection"), "Refleksjonsfase");
+});
+
+check("getPhaseLabel godtar kalenderens dagfaser via normalisering", () => {
+  assert.strictEqual(eng.getPhaseLabel("lunch"), "Arbeidsfase");
+  assert.strictEqual(eng.getPhaseLabel("afternoon"), "Fritidsfase");
+  assert.strictEqual(eng.getPhaseLabel("day_end"), "Kveldsfase");
+});
+
+check("getPresenceStateLabel gir norske statustekster", () => {
+  assert.strictEqual(eng.getPresenceStateLabel("at_home"), "Er hjemme");
+  assert.strictEqual(eng.getPresenceStateLabel("at_work"), "Er på jobb");
+  assert.strictEqual(eng.getPresenceStateLabel("reflecting"), "Reflekterer");
+});
+
+check("getRelationshipLabel dekker alle nivåer", () => {
+  assert.strictEqual(eng.getRelationshipLabel(0), "ny kontakt");
+  assert.strictEqual(eng.getRelationshipLabel(1), "bekjent");
+  assert.strictEqual(eng.getRelationshipLabel(2), "venn");
+  assert.strictEqual(eng.getRelationshipLabel(3), "nær venn");
+  assert.strictEqual(eng.getRelationshipLabel(9), "nær venn");
+  assert.strictEqual(eng.getRelationshipLabel(undefined), "ny kontakt");
+});
+
+check("getRelationshipBlurb gir egen sosial tekst pr. nivå", () => {
+  const blurbs = [0, 1, 2, 3].map((n) => eng.getRelationshipBlurb(n));
+  blurbs.forEach((b) => assert.ok(b && b.length > 0, "blurb skal ikke være tom"));
+  assert.strictEqual(new Set(blurbs).size, 4, "hvert nivå skal ha unik tekst");
+  assert.strictEqual(eng.getRelationshipBlurb(1), "Dere kjenner hverandre litt.");
+  assert.strictEqual(eng.getRelationshipBlurb(2), "Dere har begynt å bygge en relasjon.");
+  assert.strictEqual(eng.getRelationshipBlurb(3), "Dette er en nær venn i byen.");
+});
+
+check("getSnapshotDisclosureText sier tydelig at det IKKE er live-posisjon", () => {
+  const text = eng.getSnapshotDisclosureText("Kari", "morning");
+  assert.ok(/ikke live-posisjon/i.test(text), "må avkrefte live-posisjon");
+  assert.ok(/simulert fasehistorikk/i.test(text), "må kalle det simulert fasehistorikk");
+  assert.ok(text.includes("Karis"), "skal bruke eieform av navnet");
+  assert.ok(text.includes("morgenfase"), "skal nevne fasen på norsk");
+});
+
+check("getSnapshotDisclosureText håndterer navn som slutter på s", () => {
+  const text = eng.getSnapshotDisclosureText("Jonas", "work");
+  assert.ok(text.includes("Jonas'"), "navn på s skal få apostrof-eieform");
+  assert.ok(text.includes("arbeidsfase"), "skal nevne arbeidsfasen");
+});
+
+check("label-/tekst-hjelpere er deterministiske", () => {
+  assert.strictEqual(eng.getPhaseLabel("evening"), eng.getPhaseLabel("evening"));
+  assert.strictEqual(
+    eng.getSnapshotDisclosureText("Kari", "leisure"),
+    eng.getSnapshotDisclosureText("Kari", "leisure")
+  );
+});
+
 console.log("CivicationFriendsEngine – lokalt spiller-fase-minne (scaffold)");
 
 check("setPlayerPhaseSnapshot/getPlayerPhaseSnapshot lagrer og henter i minne", () => {

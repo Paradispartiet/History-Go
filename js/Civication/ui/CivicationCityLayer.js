@@ -356,58 +356,98 @@
     const row = (_model.friends || []).find((r) => String(r.friend && r.friend.id) === String(friendId));
     if (!row) return;
 
-    const friend = row.friend;
-    const presence = row.presence;
-    const avatar = friend.avatar || {};
-
     markSelected('[data-friend-id="' + cssEscape(friendId) + '"]');
+    showDetail(buildFriendDetailHtml(row, _model));
+  }
 
-    const homeLoc = eng.locationById(_model.locations, avatar.homeId);
-    const snapshotLoc = eng.locationById(_model.locations, presence.locationId);
-    const rel = Number(friend.relationshipLevel || 0);
-    const relText = "Nivå " + rel + " · " + relationshipLabel(rel);
+  // Ren funksjon: bygger HTML for vennens profilkort i byen. Tar (row, model)
+  // eksplisitt så den kan enhetstestes headless (ingen DOM, ingen fetch). All
+  // tekst hentes fra de deterministiske motorhjelperne – dette er fase-minne,
+  // ikke live-posisjon.
+  function buildFriendDetailHtml(row, model) {
+    const eng = engine();
+    const friend = (row && row.friend) || {};
+    const presence = (row && row.presence) || {};
+    const avatar = friend.avatar || {};
+    const locations = (model && model.locations) || [];
+
+    const homeLoc = eng ? eng.locationById(locations, avatar.homeId) : null;
+    const snapshotLoc = eng ? eng.locationById(locations, presence.locationId) : null;
 
     // Aktiv semantisk fase som spilleren selv er i (fase-minne, ikke live).
-    const phaseLbl = presence.snapshotPhaseLabel || _model.snapshotPhaseLabel || "";
-    const lastSeen = presence.lastSeenText || "";
+    const snapshotPhase = presence.phase || (model && model.snapshotPhase) || "morning";
+    const phaseLbl = friendPhaseLabel(snapshotPhase) || presence.snapshotPhaseLabel ||
+      (model && model.snapshotPhaseLabel) || "";
+    const lastSeen = presence.lastSeenText || (phaseLbl ? "Siste " + phaseLbl.toLowerCase() : "");
     const hasHistory = presence.source !== "none";
     const firstName = String(friend.name || "Vennen").trim().split(/\s+/)[0] || "Vennen";
 
-    // Statuslinje: tydelig at dette er SISTE fase-status, ikke nåværende.
-    const statusLine = hasHistory
-      ? (lastSeen ? esc(lastSeen) + ": " : "") + esc(presence.statusText) +
-        (presence.activity ? " – " + esc(presence.activity) : "")
+    // 1) Header-statuslinje: tydelig at dette er SISTE fase-status.
+    const headerStatus = hasHistory
+      ? lastSeen || "Siste fase"
       : "Ingen fasehistorikk ennå for denne fasen.";
 
-    // Forklaringstekst som skiller fase-minne fra live-sporing.
-    const memoryNote = hasHistory
-      ? "Dette er " + esc(firstName) + "s siste lagrede " +
-        esc((phaseLbl || "fase").toLowerCase()) + " i Civication – simulert fasehistorikk, ikke live-posisjon."
-      : esc(firstName) + " har ingen lagret status for " +
-        esc((phaseLbl || "denne fasen").toLowerCase()) + " ennå.";
+    // 2) Livstegn: hvor, hva og hvilken stemning vennen sist hadde i fasen.
+    const placeLabel = snapshotLoc ? snapshotLoc.label : (presence.locationId || "—");
+    const lifeRows = hasHistory
+      ? (row2("Sted", placeLabel) +
+         row2("Aktivitet", presence.activity || "—") +
+         (presence.mood ? row2("Stemning", presence.mood) : "") +
+         (presence.updatedAtLabel ? row2("Oppdatert", presence.updatedAtLabel) : ""))
+      : '<p class="civi-city-detail-list muted">' + esc(firstName) +
+        " har ikke lagret denne fasen ennå.</p>";
 
-    showDetail(
-      '<div class="civi-city-detail-kicker">👤 Venn · ' + esc(phaseLbl) + "</div>" +
+    // 3) Figur: utseende og hvordan vennen beveger seg i byen.
+    const figureRows =
+      row2("Klær/stil", [avatar.clothes, avatar.style].filter(Boolean).join(" · ")) +
+      row2("Transport", avatar.vehicle) +
+      row2("Hjem", homeLoc ? homeLoc.label : (avatar.homeId || "—"));
+
+    // 4) Relasjon: nivå + kort sosial tekst.
+    const rel = Number(friend.relationshipLevel || 0);
+    const relText = "Nivå " + rel + " · " + relationshipLabel(rel);
+    const relBlurb = relationshipBlurb(rel);
+
+    // Disclosure: skiller fase-minne fra live-sporing.
+    const disclosure = hasHistory
+      ? friendDisclosure(firstName, snapshotPhase)
+      : esc(firstName) + " har ingen lagret " +
+        esc((phaseLbl || "fase").toLowerCase()) + " i Civication ennå.";
+
+    const fid = esc(friend.id);
+    const fname = esc(friend.name || "");
+    const fphase = esc(snapshotPhase);
+    function actionBtn(action, label, extra) {
+      return '<button type="button" class="civi-btn" data-civi-friend-action="' + action +
+        '" data-friend-id="' + fid + '" data-friend-name="' + fname +
+        '" data-friend-phase="' + fphase + '"' + (extra || "") + ">" + esc(label) + "</button>";
+    }
+
+    return (
+      // 1) Header
+      '<div class="civi-city-detail-kicker">👤 Venn</div>' +
       "<h3>" + esc(friend.name || "") + (friend.role ? " — " + esc(friend.role) : "") + "</h3>" +
       '<div class="civi-city-detail-status' + (hasHistory && presence.visibleOnMap ? " is-active" : "") + '">' +
-        statusLine + "</div>" +
-      '<div class="civi-city-detail-grid">' +
-        row2("Rolle", friend.role) +
-        row2("Relasjon", relText) +
-        row2("Klær/stil", [avatar.clothes, avatar.style].filter(Boolean).join(" · ")) +
-        row2("Transport", avatar.vehicle) +
-        row2("Hjem", homeLoc ? homeLoc.label : (avatar.homeId || "—")) +
-        row2("Aktiv fase", phaseLbl || "—") +
-        row2("Siste sted", snapshotLoc ? snapshotLoc.label : (presence.locationId || "—")) +
-        row2("Aktivitet", presence.activity || "—") +
-        (presence.mood ? row2("Stemning", presence.mood) : "") +
+        esc(headerStatus) + "</div>" +
+      // 2) Livstegn
+      '<div class="civi-city-detail-section"><h4>Livstegn</h4>' +
+        '<div class="civi-city-detail-grid">' + lifeRows + "</div></div>" +
+      // 3) Figur
+      '<div class="civi-city-detail-section"><h4>Figur</h4>' +
+        '<div class="civi-city-detail-grid">' + figureRows + "</div></div>" +
+      // 4) Relasjon
+      '<div class="civi-city-detail-section civi-friend-relation"><h4>Relasjon</h4>' +
+        '<div class="civi-city-detail-status">' + esc(relText) + "</div>" +
+        (relBlurb ? '<p class="civi-friend-relation-blurb">' + esc(relBlurb) + "</p>" : "") +
       "</div>" +
-      '<p class="civi-city-detail-hint">' + memoryNote + "</p>" +
+      // Disclosure (fase-minne, ikke live)
+      '<p class="civi-city-detail-hint">' + disclosure + "</p>" +
+      // 5) Handlinger – stabile data-attributter/event hooks
       '<div class="civi-city-detail-actions">' +
-        '<button type="button" class="civi-btn" data-civi-friend-action="message" data-friend-id="' + esc(friend.id) + '">Send melding</button>' +
-        '<button type="button" class="civi-btn" data-civi-friend-action="visit" data-friend-id="' + esc(friend.id) + '">Besøk</button>' +
-        '<button type="button" class="civi-btn" data-civi-friend-action="invite" data-friend-id="' + esc(friend.id) + '">Inviter</button>' +
-        '<button type="button" class="civi-btn" data-civi-goto-section="civiPeopleSection">Se profil</button>' +
+        actionBtn("message", "Send melding") +
+        actionBtn("visit", "Besøk") +
+        actionBtn("invite", "Inviter") +
+        actionBtn("profile", "Se profil", ' data-civi-goto-section="civiPeopleSection"') +
       "</div>" +
       '<p class="civi-city-detail-feedback" data-friend-feedback hidden></p>'
     );
@@ -417,11 +457,34 @@
     return '<div class="civi-city-detail-cell"><span>' + esc(label) + "</span><strong>" + esc(value || "—") + "</strong></div>";
   }
 
+  // Tynne wrappere som foretrekker motorens deterministiske hjelpere, med
+  // trygg fallback hvis motoren ikke er lastet ennå.
+  function friendPhaseLabel(phase) {
+    const eng = engine();
+    return eng && typeof eng.getPhaseLabel === "function" ? eng.getPhaseLabel(phase) : "";
+  }
+
   function relationshipLabel(level) {
+    const eng = engine();
+    if (eng && typeof eng.getRelationshipLabel === "function") return eng.getRelationshipLabel(level);
     if (level >= 3) return "nær venn";
     if (level === 2) return "venn";
     if (level === 1) return "bekjent";
     return "ny kontakt";
+  }
+
+  function relationshipBlurb(level) {
+    const eng = engine();
+    if (eng && typeof eng.getRelationshipBlurb === "function") return eng.getRelationshipBlurb(level);
+    return "";
+  }
+
+  function friendDisclosure(friendName, phase) {
+    const eng = engine();
+    if (eng && typeof eng.getSnapshotDisclosureText === "function") {
+      return esc(eng.getSnapshotDisclosureText(friendName, phase));
+    }
+    return esc(friendName) + "s siste lagrede fase i Civication – simulert fasehistorikk, ikke live-posisjon.";
   }
 
   // CSS.escape-fallback for attributtselektorer.
@@ -446,9 +509,12 @@
     detail.querySelectorAll("[data-civi-friend-action]").forEach((btn) => {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
-        const action = btn.getAttribute("data-civi-friend-action");
-        const friendId = btn.getAttribute("data-friend-id");
-        handleFriendAction(detail, action, friendId);
+        handleFriendAction(detail, {
+          action: btn.getAttribute("data-civi-friend-action"),
+          friendId: btn.getAttribute("data-friend-id"),
+          friendName: btn.getAttribute("data-friend-name"),
+          phase: btn.getAttribute("data-friend-phase")
+        });
       });
     });
   }
@@ -468,10 +534,14 @@
   // Lettvekts, simulert respons. Sender et event slik at andre systemer (AHA,
   // sosiale lag) kan reagere senere – men muterer ikke jobbmail/personlige
   // meldinger direkte (de holdes adskilt).
-  function handleFriendAction(detail, action, friendId) {
+  function handleFriendAction(detail, info) {
+    const action = info && info.action;
+    const friendId = info && info.friendId;
     const row = _model && (_model.friends || []).find((r) => String(r.friend && r.friend.id) === String(friendId));
-    const name = row ? row.friend.name : "vennen";
+    const name = (info && info.friendName) || (row ? row.friend.name : "vennen");
 
+    // "profile" navigerer via data-civi-goto-section (egen handler) – ingen
+    // egen feedback-tekst her, men hendelsen sendes likevel som hook.
     const messages = {
       message: "Du sendte en melding til " + name + ". Svar kan dukke opp i personlige meldinger.",
       visit: "Du planla et besøk hos " + name + ".",
@@ -479,8 +549,8 @@
     };
 
     const feedback = detail.querySelector("[data-friend-feedback]");
-    if (feedback) {
-      feedback.textContent = messages[action] || "Handling registrert.";
+    if (feedback && messages[action]) {
+      feedback.textContent = messages[action];
       feedback.removeAttribute("hidden");
     }
 
@@ -489,6 +559,8 @@
         detail: {
           action,
           friendId,
+          friendName: name,
+          snapshotPhase: (info && info.phase) || (row && row.presence ? row.presence.phase : null),
           phase: _model ? _model.phase : null,
           locationId: row ? row.presence.locationId : null
         }
@@ -536,6 +608,7 @@
     scheduleRender,
     openPlaceDetail,
     openFriendDetail,
+    buildFriendDetailHtml,
     closeDetail
   };
 })();
