@@ -1,0 +1,1084 @@
+{
+  "schema": "civication.placePhases.v1",
+  "version": 1,
+  "note": "Stedsfaser beskriver hva et sted er i en bestemt del av dagen. Rutiner sier hvor personer er; stedsfaser sier hva stedet gjør med situasjonen.",
+  "field_docs": {
+    "id": "Unik ID for stedsfasen.",
+    "placeId": "Stedet fasen gjelder for.",
+    "phase": "Maskinlesbart fasenavn.",
+    "label": "Kort menneskelig navn.",
+    "phaseType": "Hvilken type situasjon fasen representerer.",
+    "timeRange": "Når fasen normalt er aktiv.",
+    "activeDays": "Hvilke dager fasen kan aktiveres.",
+    "mood": "Overordnet stemning på stedet.",
+    "density": "Hvor tett eller folksomt stedet er.",
+    "compatibleRoutineStates": "Personrutine-states som passer med fasen.",
+    "visibleCharacterRules": "Hvem som kan vises i fasen.",
+    "activities": "Hva som skjer på stedet.",
+    "availableInteractions": "Valg spilleren kan få.",
+    "eventHooks": "Sosiale hendelser denne fasen kan trigge.",
+    "insightSignals": "Hva AHA / innsiktsmotoren kan lære av spillerens valg her.",
+    "mapVisualState": "Hvordan stedet bør se ut på kartet.",
+    "narrativeText": "Kort tekst som beskriver fasen i spillverdenen."
+  },
+  "placePhases": {
+    "phase_cafe_morning_rush": {
+      "id": "phase_cafe_morning_rush",
+      "placeId": "civi_cafe_001",
+      "phase": "morning_rush",
+      "label": "Morgenrush på kaféen",
+      "phaseType": "work_pressure",
+      "timeRange": "07:00-10:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "busy",
+      "density": "high",
+      "compatibleRoutineStates": [
+        "working",
+        "waiting",
+        "commuting"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": true,
+        "preferredCharacters": [
+          "friend_jonas_berg",
+          "friend_amir_nouri"
+        ]
+      },
+      "activities": [
+        "coffee_queue",
+        "short_customer_interactions",
+        "people_before_work",
+        "delivery_pickups",
+        "compressed_smalltalk"
+      ],
+      "availableInteractions": [
+        "buy_coffee",
+        "wait_patiently",
+        "talk_briefly",
+        "observe_work",
+        "complain_about_wait"
+      ],
+      "eventHooks": [
+        "event_work_friend_under_pressure",
+        "event_delivery_rider_waiting",
+        "event_customer_queue_tension"
+      ],
+      "insightSignals": [
+        "patience_under_minor_pressure",
+        "respect_for_service_work",
+        "tendency_to_interrupt_busy_people",
+        "everyday_class_awareness"
+      ],
+      "mapVisualState": {
+        "buildingLight": "warm_active",
+        "crowdLevel": "high",
+        "movement": "fast_short_loops",
+        "soundscape": "coffee_machine_queue_steps"
+      },
+      "narrativeText": "Kaféen er full av folk som egentlig ikke har tid til å være der. Alt skjer raskt: kort, kopp, blikk, neste."
+    },
+    "phase_cafe_afternoon_lull": {
+      "id": "phase_cafe_afternoon_lull",
+      "placeId": "civi_cafe_001",
+      "phase": "afternoon_lull",
+      "label": "Stille ettermiddag",
+      "phaseType": "social_pause",
+      "timeRange": "13:30-15:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "mood": "open_quiet",
+      "density": "medium_low",
+      "compatibleRoutineStates": [
+        "working",
+        "sitting",
+        "thinking",
+        "resting"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": false,
+        "preferredCharacters": [
+          "friend_jonas_berg",
+          "friend_vetle_mo"
+        ]
+      },
+      "activities": [
+        "slow_coffee",
+        "quiet_work",
+        "notebook_writing",
+        "small_confessions",
+        "people_between_tasks"
+      ],
+      "availableInteractions": [
+        "sit_down",
+        "start_conversation",
+        "ask_about_day",
+        "write_notes",
+        "leave_quietly"
+      ],
+      "eventHooks": [
+        "event_creative_friend_at_window",
+        "event_barista_short_break",
+        "event_small_confession"
+      ],
+      "insightSignals": [
+        "ability_to_listen",
+        "interest_in_others_inner_life",
+        "creative_attention",
+        "low_pressure_social_presence"
+      ],
+      "mapVisualState": {
+        "buildingLight": "soft_daylight",
+        "crowdLevel": "low",
+        "movement": "slow",
+        "soundscape": "cups_chairs_low_talk"
+      },
+      "narrativeText": "Kaféen har et hull i dagen. Ingen skynder seg helt, og derfor blir noen setninger litt lengre enn vanlig."
+    },
+    "phase_cafe_evening_closing": {
+      "id": "phase_cafe_evening_closing",
+      "placeId": "civi_cafe_001",
+      "phase": "evening_closing",
+      "label": "Stenging",
+      "phaseType": "after_work_threshold",
+      "timeRange": "21:30-23:00",
+      "activeDays": [
+        "monday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "mood": "tired",
+      "density": "low",
+      "compatibleRoutineStates": [
+        "closing",
+        "sitting",
+        "walking"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": false,
+        "preferredCharacters": [
+          "friend_jonas_berg",
+          "friend_vetle_mo"
+        ]
+      },
+      "activities": [
+        "cleaning_tables",
+        "locking_door",
+        "counting_register",
+        "late_window_sitting",
+        "after_work_silence"
+      ],
+      "availableInteractions": [
+        "wait_outside",
+        "ask_how_shift_was",
+        "make_light_joke",
+        "walk_home_together",
+        "leave"
+      ],
+      "eventHooks": [
+        "event_work_friend_after_bad_shift",
+        "event_friend_too_tired_to_answer",
+        "event_late_evening_walk"
+      ],
+      "insightSignals": [
+        "sensitivity_to_fatigue",
+        "timing_of_care",
+        "ability_to_not_demand_response",
+        "friendship_after_work"
+      ],
+      "mapVisualState": {
+        "buildingLight": "warm_fading",
+        "crowdLevel": "very_low",
+        "movement": "slow_exiting",
+        "soundscape": "keys_chairs_mop_bucket"
+      },
+      "narrativeText": "Døren låses. Vinduet speiler gaten. Arbeidet er ferdig, men kroppen har ikke fått beskjed ennå."
+    },
+    "phase_public_office_morning_intake": {
+      "id": "phase_public_office_morning_intake",
+      "placeId": "civi_office_public_casework",
+      "phase": "morning_intake",
+      "label": "Morgensaker",
+      "phaseType": "bureaucratic_start",
+      "timeRange": "08:00-10:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "controlled",
+      "density": "medium",
+      "compatibleRoutineStates": [
+        "working",
+        "case_review",
+        "checking_messages"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": false,
+        "preferredCharacters": [
+          "friend_mina_sandaker"
+        ]
+      },
+      "activities": [
+        "opening_cases",
+        "checking_internal_messages",
+        "prioritizing_documents",
+        "quiet_deadlines"
+      ],
+      "availableInteractions": [
+        "wait",
+        "observe_system",
+        "ask_briefly",
+        "send_message_later"
+      ],
+      "eventHooks": [
+        "event_caseworker_cannot_talk_now",
+        "event_office_language_observed"
+      ],
+      "insightSignals": [
+        "respect_for_work_boundaries",
+        "understanding_of_system_pressure",
+        "patience_with_slow_processes",
+        "reaction_to_formality"
+      ],
+      "mapVisualState": {
+        "buildingLight": "cold_active",
+        "crowdLevel": "medium",
+        "movement": "linear",
+        "soundscape": "keyboard_printer_low_voices"
+      },
+      "narrativeText": "Kontoret våkner uten å se våkent ut. Skjermer tennes, saker åpnes, og språket blir mer presist enn menneskene."
+    },
+    "phase_public_office_midday_pressure": {
+      "id": "phase_public_office_midday_pressure",
+      "placeId": "civi_office_public_casework",
+      "phase": "midday_pressure",
+      "label": "Midt på dagen-press",
+      "phaseType": "institutional_pressure",
+      "timeRange": "11:00-14:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "compressed",
+      "density": "medium_high",
+      "compatibleRoutineStates": [
+        "working",
+        "lunch",
+        "documentation_pressure"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": false,
+        "preferredCharacters": [
+          "friend_mina_sandaker"
+        ]
+      },
+      "activities": [
+        "case_review",
+        "short_lunch",
+        "documentation_pressure",
+        "internal_messages",
+        "boundary_setting"
+      ],
+      "availableInteractions": [
+        "respect_boundary",
+        "ask_if_she_is_ok",
+        "push_for_answer",
+        "send_supportive_message",
+        "do_not_interrupt"
+      ],
+      "eventHooks": [
+        "event_caseworker_boundary",
+        "event_documentation_pressure",
+        "event_friend_carries_work_home"
+      ],
+      "insightSignals": [
+        "boundary_skill",
+        "conflict_escalation_tendency",
+        "care_without_intrusion",
+        "understanding_bureaucratic_stress"
+      ],
+      "mapVisualState": {
+        "buildingLight": "white_flat",
+        "crowdLevel": "medium_high",
+        "movement": "short_constrained",
+        "soundscape": "printer_notifications_muffled_calls"
+      },
+      "narrativeText": "Alt ser rolig ut utenfra. Inne er tiden delt opp i saker, frister og formuleringer ingen helt eier alene."
+    },
+    "phase_public_office_end_of_day": {
+      "id": "phase_public_office_end_of_day",
+      "placeId": "civi_office_public_casework",
+      "phase": "end_of_day",
+      "label": "Arbeidsdagen slipper ikke taket",
+      "phaseType": "work_afterimage",
+      "timeRange": "15:45-17:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "mentally_absent",
+      "density": "medium_low",
+      "compatibleRoutineStates": [
+        "commuting",
+        "leaving_work",
+        "walking"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": true,
+        "preferredCharacters": [
+          "friend_mina_sandaker"
+        ]
+      },
+      "activities": [
+        "leaving_office",
+        "checking_phone",
+        "bus_stop_waiting",
+        "unfinished_thoughts"
+      ],
+      "availableInteractions": [
+        "walk_to_bus",
+        "ask_about_day",
+        "leave_space",
+        "offer_later_talk"
+      ],
+      "eventHooks": [
+        "event_friend_still_at_work_mentally",
+        "event_boundary_respected",
+        "event_commute_silence"
+      ],
+      "insightSignals": [
+        "reading_social_exhaustion",
+        "timing_of_questions",
+        "nonverbal_attention",
+        "friendship_without_immediate_access"
+      ],
+      "mapVisualState": {
+        "buildingLight": "cool_fading",
+        "crowdLevel": "medium",
+        "movement": "outward",
+        "soundscape": "doors_bus_traffic"
+      },
+      "narrativeText": "Folk går ut av bygget, men ikke helt ut av arbeidsdagen. Noen saker følger med i kroppen."
+    },
+    "phase_kindergarten_opening": {
+      "id": "phase_kindergarten_opening",
+      "placeId": "civi_kindergarten_urban_01",
+      "phase": "opening",
+      "label": "Barnehagen åpner",
+      "phaseType": "care_start",
+      "timeRange": "06:45-08:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "early_alert",
+      "density": "medium",
+      "compatibleRoutineStates": [
+        "opening",
+        "working",
+        "leaving_home"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showFamilies": true,
+        "preferredCharacters": [
+          "friend_sana_hassan"
+        ]
+      },
+      "activities": [
+        "opening_gate",
+        "receiving_children",
+        "parent_handovers",
+        "morning_transitions",
+        "comforting"
+      ],
+      "availableInteractions": [
+        "say_hello",
+        "observe_care_work",
+        "help_with_small_practical_thing",
+        "do_not_interrupt"
+      ],
+      "eventHooks": [
+        "event_childcare_opening_pressure",
+        "event_parent_handover",
+        "event_care_worker_already_busy"
+      ],
+      "insightSignals": [
+        "attention_to_care_work",
+        "respect_for_children_space",
+        "practical_helpfulness",
+        "understanding_morning_stress"
+      ],
+      "mapVisualState": {
+        "buildingLight": "soft_morning",
+        "crowdLevel": "medium",
+        "movement": "small_crossing_paths",
+        "soundscape": "children_gate_zippers"
+      },
+      "narrativeText": "Porten åpnes før dagen har samlet seg. Barn leveres, beskjeder gis, og omsorgsarbeidet begynner før noen rekker å kalle det arbeid."
+    },
+    "phase_kindergarten_yard_midday": {
+      "id": "phase_kindergarten_yard_midday",
+      "placeId": "civi_kindergarten_yard_01",
+      "phase": "yard_midday",
+      "label": "Utegården midt på dagen",
+      "phaseType": "care_visibility",
+      "timeRange": "10:30-12:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "loud_warm",
+      "density": "high",
+      "compatibleRoutineStates": [
+        "outdoor_work",
+        "yard_supervision",
+        "working"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showChildrenAsAmbient": true,
+        "preferredCharacters": [
+          "friend_sana_hassan"
+        ]
+      },
+      "activities": [
+        "yard_supervision",
+        "small_conflicts",
+        "play",
+        "weather_management",
+        "constant_observation"
+      ],
+      "availableInteractions": [
+        "watch_from_distance",
+        "help_with_gate",
+        "observe_patience",
+        "ask_too_much"
+      ],
+      "eventHooks": [
+        "event_kindergarten_gate_help",
+        "event_small_conflict_between_children",
+        "event_care_work_visible"
+      ],
+      "insightSignals": [
+        "responsibility_in_public_space",
+        "care_as_skilled_work",
+        "noticing_before_crisis",
+        "appropriate_distance"
+      ],
+      "mapVisualState": {
+        "buildingLight": "day_active",
+        "crowdLevel": "high",
+        "movement": "small_fast_random",
+        "soundscape": "children_wind_playground"
+      },
+      "narrativeText": "Utegården ser kaotisk ut bare hvis man ikke vet hva man skal se etter. Sana følger alt med blikket: jakker, porter, spader, gråt, latter."
+    },
+    "phase_kindergarten_pickup": {
+      "id": "phase_kindergarten_pickup",
+      "placeId": "civi_kindergarten_urban_01",
+      "phase": "pickup",
+      "label": "Henting",
+      "phaseType": "care_transition",
+      "timeRange": "15:00-17:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "mood": "loud_warm_stress",
+      "density": "high",
+      "compatibleRoutineStates": [
+        "working",
+        "walking",
+        "going_home"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showFamilies": true,
+        "preferredCharacters": [
+          "friend_sana_hassan"
+        ]
+      },
+      "activities": [
+        "parents_arrive",
+        "children_leave",
+        "last_messages",
+        "small_practical_crises",
+        "emotional_transitions"
+      ],
+      "availableInteractions": [
+        "say_hello",
+        "help_with_gate",
+        "ask_about_day",
+        "let_her_rest",
+        "leave_quietly"
+      ],
+      "eventHooks": [
+        "event_kindergarten_gate_help",
+        "event_care_worker_tired_after_day",
+        "event_parent_pickup_tension"
+      ],
+      "insightSignals": [
+        "practical_help",
+        "reading_fatigue",
+        "timing_of_social_contact",
+        "care_respect"
+      ],
+      "mapVisualState": {
+        "buildingLight": "late_day_active",
+        "crowdLevel": "high",
+        "movement": "in_and_out",
+        "soundscape": "parents_children_gate"
+      },
+      "narrativeText": "Dagen avsluttes ikke samtidig for alle. Noen hentes. Noen rydder. Noen bærer resten av lydene med seg hjem."
+    },
+    "phase_grocery_midday_stocking": {
+      "id": "phase_grocery_midday_stocking",
+      "placeId": "civi_grocery_kiwi_urban",
+      "phase": "midday_stocking",
+      "label": "Varepåfylling",
+      "phaseType": "everyday_work",
+      "timeRange": "11:00-14:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "mood": "efficient",
+      "density": "medium",
+      "compatibleRoutineStates": [
+        "stocking",
+        "working"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showCustomers": true,
+        "preferredCharacters": [
+          "friend_erik_lien"
+        ]
+      },
+      "activities": [
+        "filling_shelves",
+        "moving_goods",
+        "customer_questions",
+        "short_colleague_talk"
+      ],
+      "availableInteractions": [
+        "ask_where_item_is",
+        "short_talk",
+        "observe_work",
+        "get_out_of_way"
+      ],
+      "eventHooks": [
+        "event_grocery_worker_interrupted",
+        "event_everyday_logistics_visible"
+      ],
+      "insightSignals": [
+        "respect_for_practical_work",
+        "awareness_of_logistics",
+        "interrupting_or_waiting",
+        "everyday_system_understanding"
+      ],
+      "mapVisualState": {
+        "buildingLight": "fluorescent_active",
+        "crowdLevel": "medium",
+        "movement": "aisle_loops",
+        "soundscape": "carts_boxes_register"
+      },
+      "narrativeText": "Butikken ser full ut av varer, men egentlig er den full av bevegelser. Erik fyller hullene før kundene rekker å se dem."
+    },
+    "phase_grocery_evening_queue": {
+      "id": "phase_grocery_evening_queue",
+      "placeId": "civi_grocery_kiwi_urban",
+      "phase": "evening_queue",
+      "label": "Ettermiddagskø",
+      "phaseType": "everyday_pressure",
+      "timeRange": "16:30-19:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "mood": "compressed_everyday",
+      "density": "high",
+      "compatibleRoutineStates": [
+        "checkout",
+        "working",
+        "waiting"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showCustomers": true,
+        "preferredCharacters": [
+          "friend_erik_lien",
+          "friend_amir_nouri"
+        ]
+      },
+      "activities": [
+        "shopping",
+        "checkout_pressure",
+        "small_customer_conflicts",
+        "delivery_pickup",
+        "after_work_errands"
+      ],
+      "availableInteractions": [
+        "shop",
+        "talk_to_erik",
+        "wait_patiently",
+        "complain",
+        "make_small_joke"
+      ],
+      "eventHooks": [
+        "event_customer_queue_tension",
+        "event_grocery_worker_after_stress",
+        "event_delivery_rider_interrupted"
+      ],
+      "insightSignals": [
+        "patience_in_everyday_pressure",
+        "class_signal_awareness",
+        "treatment_of_workers",
+        "irritation_control"
+      ],
+      "mapVisualState": {
+        "buildingLight": "bright_evening",
+        "crowdLevel": "high",
+        "movement": "queue_and_aisles",
+        "soundscape": "register_beeps_plastic_bags"
+      },
+      "narrativeText": "Alle skal bare innom. Derfor blir køen et lite samfunn av folk som ikke mener å møte hverandre."
+    },
+    "phase_library_midday_thinking": {
+      "id": "phase_library_midday_thinking",
+      "placeId": "civi_library_urban_01",
+      "phase": "midday_thinking",
+      "label": "Bibliotekets åpne tid",
+      "phaseType": "public_reflection",
+      "timeRange": "11:00-15:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "mood": "quiet_open",
+      "density": "medium_low",
+      "compatibleRoutineStates": [
+        "thinking",
+        "sitting",
+        "working",
+        "resting"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": false,
+        "showPassersBy": true,
+        "preferredCharacters": [
+          "friend_vetle_mo"
+        ]
+      },
+      "activities": [
+        "reading",
+        "writing_notes",
+        "avoiding_home",
+        "silent_work",
+        "public_rest"
+      ],
+      "availableInteractions": [
+        "sit_nearby",
+        "ask_what_he_writes",
+        "avoid_interrupting",
+        "read",
+        "write_notes"
+      ],
+      "eventHooks": [
+        "event_creative_block",
+        "event_friend_avoids_home",
+        "event_public_space_as_shelter"
+      ],
+      "insightSignals": [
+        "attention_to_inner_life",
+        "creative_pattern_detection",
+        "respect_for_silence",
+        "understanding_public_space"
+      ],
+      "mapVisualState": {
+        "buildingLight": "soft_public",
+        "crowdLevel": "medium_low",
+        "movement": "slow_sparse",
+        "soundscape": "pages_chairs_low_steps"
+      },
+      "narrativeText": "Biblioteket er et sted for folk som trenger et rom uten å måtte forklare hvorfor. Vetle sitter der som om stillheten holder ham oppe."
+    },
+    "phase_park_late_afternoon": {
+      "id": "phase_park_late_afternoon",
+      "placeId": "civi_park_st_hanshaugen",
+      "phase": "late_afternoon",
+      "label": "Sen ettermiddag i parken",
+      "phaseType": "open_social_space",
+      "timeRange": "16:00-19:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "mood": "open_social",
+      "density": "medium",
+      "compatibleRoutineStates": [
+        "walking",
+        "resting",
+        "thinking",
+        "going_home"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": false,
+        "showPassersBy": true,
+        "preferredCharacters": [
+          "friend_vetle_mo",
+          "friend_sana_hassan"
+        ]
+      },
+      "activities": [
+        "walking",
+        "resting",
+        "children_playing",
+        "informal_meetings",
+        "slow_conversations"
+      ],
+      "availableInteractions": [
+        "join_walk",
+        "sit_down",
+        "start_conversation",
+        "keep_distance",
+        "invite_for_coffee"
+      ],
+      "eventHooks": [
+        "event_late_afternoon_walk",
+        "event_friend_needs_structure",
+        "event_care_worker_decompressing"
+      ],
+      "insightSignals": [
+        "social_timing",
+        "ability_to_walk_and_talk",
+        "reading_openness",
+        "friendship_in_public_space"
+      ],
+      "mapVisualState": {
+        "buildingLight": "natural_late_day",
+        "crowdLevel": "medium",
+        "movement": "slow_loops",
+        "soundscape": "wind_steps_children_far_away"
+      },
+      "narrativeText": "Parken gjør samtaler mindre frontale. Folk kan si mer når de slipper å sitte rett overfor hverandre."
+    },
+    "phase_delivery_lunch_wait": {
+      "id": "phase_delivery_lunch_wait",
+      "placeId": "civi_food_pickup_street_01",
+      "phase": "lunch_wait",
+      "label": "Budene venter",
+      "phaseType": "platform_work_pressure",
+      "timeRange": "11:30-13:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "mood": "impatient",
+      "density": "medium_high",
+      "compatibleRoutineStates": [
+        "waiting",
+        "working",
+        "cycling"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": true,
+        "preferredCharacters": [
+          "friend_amir_nouri"
+        ]
+      },
+      "activities": [
+        "waiting_for_order",
+        "checking_app",
+        "restaurant_delay",
+        "short_rider_talk",
+        "income_calculation"
+      ],
+      "availableInteractions": [
+        "talk_briefly",
+        "wait_with_him",
+        "ask_about_app",
+        "do_not_interrupt",
+        "observe_platform_work"
+      ],
+      "eventHooks": [
+        "event_delivery_rider_waiting",
+        "event_restaurant_delay_costs_money",
+        "event_platform_pressure_visible"
+      ],
+      "insightSignals": [
+        "platform_economy_awareness",
+        "time_as_money",
+        "body_under_algorithm",
+        "solidarity_with_precarious_work"
+      ],
+      "mapVisualState": {
+        "buildingLight": "day_fast_food",
+        "crowdLevel": "medium_high",
+        "movement": "waiting_then_burst",
+        "soundscape": "phone_pings_bikes_traffic"
+      },
+      "narrativeText": "Budene står stille, men arbeidet deres gjør det ikke. Hvert minutt uten matpose er et lite tap."
+    },
+    "phase_delivery_dinner_rush": {
+      "id": "phase_delivery_dinner_rush",
+      "placeId": "civi_food_pickup_street_02",
+      "phase": "dinner_rush",
+      "label": "Middagsrush",
+      "phaseType": "platform_work_peak",
+      "timeRange": "17:00-21:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "mood": "strained",
+      "density": "high",
+      "compatibleRoutineStates": [
+        "working",
+        "waiting",
+        "cycling"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": true,
+        "showPassersBy": true,
+        "preferredCharacters": [
+          "friend_amir_nouri"
+        ]
+      },
+      "activities": [
+        "order_pickup",
+        "phone_notifications",
+        "fast_departures",
+        "traffic_risk",
+        "short_interrupted_conversations"
+      ],
+      "availableInteractions": [
+        "walk_with_him",
+        "tell_him_to_rest",
+        "let_him_work",
+        "ask_if_he_is_ok",
+        "observe_risk"
+      ],
+      "eventHooks": [
+        "event_delivery_rider_interrupted",
+        "event_friend_controlled_by_app",
+        "event_body_wear_after_shift"
+      ],
+      "insightSignals": [
+        "recognition_of_algorithmic_control",
+        "care_vs_practical_help",
+        "respect_for_work_flow",
+        "risk_awareness"
+      ],
+      "mapVisualState": {
+        "buildingLight": "bright_busy_evening",
+        "crowdLevel": "high",
+        "movement": "rapid_departures",
+        "soundscape": "traffic_phone_pings_restaurant_doors"
+      },
+      "narrativeText": "Amir rekker nesten å være til stede før appen kaller ham videre. Samtalen må konkurrere med neste levering."
+    },
+    "phase_home_friend_evening_light": {
+      "id": "phase_home_friend_evening_light",
+      "placeId": "civi_home_grunerlokka_01",
+      "phase": "evening_light_on",
+      "label": "Lyset er på hjemme",
+      "phaseType": "private_threshold",
+      "timeRange": "20:00-02:00",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "mood": "private_uncertain",
+      "density": "very_low",
+      "compatibleRoutineStates": [
+        "at_home",
+        "recovering",
+        "awake"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": false,
+        "showPassersBy": false,
+        "preferredCharacters": [
+          "friend_jonas_berg"
+        ]
+      },
+      "activities": [
+        "recovering_after_work",
+        "not_answering_immediately",
+        "private_silence",
+        "late_message_possibility"
+      ],
+      "availableInteractions": [
+        "send_short_message",
+        "leave_quietly",
+        "wait_until_tomorrow",
+        "knock_on_door"
+      ],
+      "eventHooks": [
+        "event_friend_seen_at_home_light_on",
+        "event_friend_too_tired_to_answer",
+        "event_boundary_at_private_home"
+      ],
+      "insightSignals": [
+        "respect_for_privacy",
+        "ability_to_wait",
+        "care_without_access",
+        "intrusion_risk"
+      ],
+      "mapVisualState": {
+        "buildingLight": "single_window_warm",
+        "crowdLevel": "none",
+        "movement": "still",
+        "soundscape": "distant_street_room_silence"
+      },
+      "narrativeText": "Lyset står på. Det betyr bare at noen er der, ikke at de er tilgjengelige."
+    },
+    "phase_home_creative_late_night": {
+      "id": "phase_home_creative_late_night",
+      "placeId": "civi_home_st_hanshaugen_01",
+      "phase": "late_night_awake",
+      "label": "Våken for sent",
+      "phaseType": "private_overactivity",
+      "timeRange": "00:00-02:30",
+      "activeDays": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "sunday"
+      ],
+      "mood": "overactive_fragile",
+      "density": "very_low",
+      "compatibleRoutineStates": [
+        "awake",
+        "at_home"
+      ],
+      "visibleCharacterRules": {
+        "showAddedFriends": true,
+        "showWorkers": false,
+        "showPassersBy": false,
+        "preferredCharacters": [
+          "friend_vetle_mo"
+        ]
+      },
+      "activities": [
+        "late_night_messages",
+        "unfinished_notes",
+        "creative_overthinking",
+        "boundary_testing"
+      ],
+      "availableInteractions": [
+        "reply_now",
+        "reply_tomorrow",
+        "set_boundary",
+        "invite_for_walk_tomorrow"
+      ],
+      "eventHooks": [
+        "event_late_message",
+        "event_creative_block",
+        "event_friend_needs_structure"
+      ],
+      "insightSignals": [
+        "boundary_setting",
+        "late_night_responsiveness",
+        "care_vs_enabling",
+        "structure_help"
+      ],
+      "mapVisualState": {
+        "buildingLight": "one_window_late",
+        "crowdLevel": "none",
+        "movement": "still_with_phone",
+        "soundscape": "distant_traffic_keyboard"
+      },
+      "narrativeText": "Det er for sent til at meldingen burde bety noe nytt, men Vetle skriver som om natten har åpnet en egen sak."
+    }
+  }
+}
