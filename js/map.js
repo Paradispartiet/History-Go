@@ -25,7 +25,6 @@
   const SRC = "hg-places";
   const STANDARD_DIM_SRC = "hg-standard-map-dim-src";
   const STANDARD_DIM_LAYER = "hg-standard-map-dim";
-  const STANDARD_DIM_OPACITY = 0.14;
   const L_GLOW = "hg-places-glow";
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
@@ -335,6 +334,119 @@
     } catch {}
   }
 
+  function removeMapLayerIfExists(layerId) {
+    if (!MAP || !MAP.getLayer(layerId)) return;
+    try {
+      MAP.removeLayer(layerId);
+    } catch {}
+  }
+
+  function removeMapSourceIfExists(sourceId) {
+    if (!MAP || !MAP.getSource(sourceId)) return;
+    try {
+      MAP.removeSource(sourceId);
+    } catch {}
+  }
+
+  function getStandardLandFillPaint(layerName) {
+    if (/water|ocean|river|lake/.test(layerName)) {
+      return { color: "#0f3d56", opacity: 0.98 };
+    }
+
+    if (/park|grass|green/.test(layerName)) {
+      return { color: "#2f6544", opacity: 0.76 };
+    }
+
+    if (/wood|forest|natural|landcover|cemetery/.test(layerName)) {
+      return { color: "#28563c", opacity: 0.74 };
+    }
+
+    if (/landuse|pitch|garden/.test(layerName)) {
+      return { color: "#254b36", opacity: 0.62 };
+    }
+
+    if (/building/.test(layerName)) {
+      return { color: "#263442", opacity: 0.58 };
+    }
+
+    if (/land|earth/.test(layerName)) {
+      return { color: "#141e2a", opacity: 1 };
+    }
+
+    return null;
+  }
+
+  function getStandardRoadLinePaint(layerName) {
+    if (/rail/.test(layerName)) {
+      return { color: "#98a8b5", opacity: 0.54 };
+    }
+
+    const isRoad = /road|transportation|highway|street|motorway|trunk|primary|secondary|tertiary|minor|service|tunnel|bridge|path/.test(layerName);
+    if (!isRoad) return null;
+
+    if (/casing|outline|shadow/.test(layerName)) {
+      return { color: "#2b3745", opacity: 0.74 };
+    }
+
+    if (/motorway|trunk/.test(layerName)) {
+      return { color: "#d7c9aa", opacity: 0.78 };
+    }
+
+    if (/primary|secondary/.test(layerName)) {
+      return { color: "#c8c2b5", opacity: 0.70 };
+    }
+
+    if (/tertiary/.test(layerName)) {
+      return { color: "#b6bcc3", opacity: 0.58 };
+    }
+
+    if (/path|foot|pedestrian|service|minor/.test(layerName)) {
+      return { color: "#8894a2", opacity: 0.38 };
+    }
+
+    return { color: "#a4adb8", opacity: 0.50 };
+  }
+
+  function getStandardLabelPaint(layerName) {
+    if (/road|transportation|highway|street/.test(layerName)) {
+      return {
+        color: "#aeb8c4",
+        haloColor: "rgba(8,14,22,0.82)",
+        haloWidth: 1.05,
+        haloBlur: 0.35,
+        opacity: 0.72
+      };
+    }
+
+    if (/water|marine/.test(layerName)) {
+      return {
+        color: "#9bc9df",
+        haloColor: "rgba(5,24,36,0.78)",
+        haloWidth: 1.15,
+        haloBlur: 0.3,
+        opacity: 0.86
+      };
+    }
+
+    if (/poi|park|place|settlement|city|town|village/.test(layerName)) {
+      return {
+        color: "#e6f0f8",
+        haloColor: "rgba(6,11,18,0.88)",
+        haloWidth: 1.35,
+        haloBlur: 0.28,
+        opacity: 0.90
+      };
+    }
+
+    return {
+      color: "#ccd6df",
+      haloColor: "rgba(6,11,18,0.84)",
+      haloWidth: 1.15,
+      haloBlur: 0.28,
+      opacity: 0.78
+    };
+  }
+
   function tuneStandardBaseMapStyle() {
     if (!MAP || mapStyleMode !== STYLE_MODE_STANDARD || !MAP.getStyle) return;
     const style = MAP.getStyle();
@@ -343,51 +455,46 @@
     for (const layer of layers) {
       const id = layer?.id;
       if (!id || id.startsWith("hg-")) continue;
-      const sourceLayer = String(layer["source-layer"] || id).toLowerCase();
+      const sourceLayer = String(layer["source-layer"] || "").toLowerCase();
+      const layerName = `${id} ${sourceLayer}`.toLowerCase();
       const layerType = layer.type;
 
       if (layerType === "background") {
-        setPaintPropertyIfSupported(id, "background-color", "#101721");
+        setPaintPropertyIfSupported(id, "background-color", "#0d1520");
         continue;
       }
 
       if (layerType === "fill") {
-        if (/water|ocean|river|lake/.test(sourceLayer)) {
-          setPaintPropertyIfSupported(id, "fill-color", "#0b3551");
-          setPaintPropertyIfSupported(id, "fill-opacity", 0.96);
-        } else if (/park|wood|forest|landcover|landuse|green|grass|cemetery/.test(sourceLayer)) {
-          setPaintPropertyIfSupported(id, "fill-color", "#173726");
-          setPaintPropertyIfSupported(id, "fill-opacity", 0.78);
-        } else if (/building/.test(sourceLayer)) {
-          setPaintPropertyIfSupported(id, "fill-color", "#26313d");
-          setPaintPropertyIfSupported(id, "fill-opacity", 0.64);
-        } else if (/land|earth/.test(sourceLayer)) {
-          setPaintPropertyIfSupported(id, "fill-color", "#18212c");
+        const fillPaint = getStandardLandFillPaint(layerName);
+        if (fillPaint) {
+          setPaintPropertyIfSupported(id, "fill-color", fillPaint.color);
+          setPaintPropertyIfSupported(id, "fill-opacity", fillPaint.opacity);
         }
         continue;
       }
 
       if (layerType === "line") {
-        const layerName = `${id} ${sourceLayer}`;
-        const isTransportLayer = /road|transportation|highway|street|motorway|trunk|primary|secondary|tertiary|tunnel|bridge|path|rail/.test(layerName);
-        if (isTransportLayer) {
-          const isRail = /rail/.test(layerName);
-          const isCasing = /casing|outline|shadow/.test(layerName);
-          setPaintPropertyIfSupported(id, "line-color", isRail ? "#cbd2da" : isCasing ? "#aeb8c3" : "#f7f9fc");
-          setPaintPropertyIfSupported(id, "line-opacity", isRail ? 0.78 : isCasing ? 0.88 : 0.96);
-        } else if (/water|river|stream/.test(sourceLayer)) {
-          setPaintPropertyIfSupported(id, "line-color", "#1e5c7e");
-          setPaintPropertyIfSupported(id, "line-opacity", 0.84);
+        const roadPaint = getStandardRoadLinePaint(layerName);
+        if (roadPaint) {
+          setPaintPropertyIfSupported(id, "line-color", roadPaint.color);
+          setPaintPropertyIfSupported(id, "line-opacity", roadPaint.opacity);
+          continue;
+        }
+
+        if (/water|river|stream/.test(layerName)) {
+          setPaintPropertyIfSupported(id, "line-color", "#2d7895");
+          setPaintPropertyIfSupported(id, "line-opacity", 0.76);
         }
         continue;
       }
 
       if (layerType === "symbol" && layer.layout?.["text-field"]) {
-        setPaintPropertyIfSupported(id, "text-color", "#eef5ff");
-        setPaintPropertyIfSupported(id, "text-halo-color", "rgba(5,10,18,0.92)");
-        setPaintPropertyIfSupported(id, "text-halo-width", 1.25);
-        setPaintPropertyIfSupported(id, "text-halo-blur", 0.25);
-        setPaintPropertyIfSupported(id, "text-opacity", 0.96);
+        const labelPaint = getStandardLabelPaint(layerName);
+        setPaintPropertyIfSupported(id, "text-color", labelPaint.color);
+        setPaintPropertyIfSupported(id, "text-halo-color", labelPaint.haloColor);
+        setPaintPropertyIfSupported(id, "text-halo-width", labelPaint.haloWidth);
+        setPaintPropertyIfSupported(id, "text-halo-blur", labelPaint.haloBlur);
+        setPaintPropertyIfSupported(id, "text-opacity", labelPaint.opacity);
       }
     }
   }
@@ -399,43 +506,9 @@
       return;
     }
 
-    if (!MAP.getSource(STANDARD_DIM_SRC)) {
-      MAP.addSource(STANDARD_DIM_SRC, {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: [{
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Polygon",
-              coordinates: [[
-                [-180, -85],
-                [180, -85],
-                [180, 85],
-                [-180, 85],
-                [-180, -85]
-              ]]
-            }
-          }]
-        }
-      });
-    }
-
+    removeMapLayerIfExists(STANDARD_DIM_LAYER);
+    removeMapSourceIfExists(STANDARD_DIM_SRC);
     tuneStandardBaseMapStyle();
-
-    if (!MAP.getLayer(STANDARD_DIM_LAYER)) {
-      MAP.addLayer({
-        id: STANDARD_DIM_LAYER,
-        type: "fill",
-        source: STANDARD_DIM_SRC,
-        paint: {
-          "fill-color": "#07101d",
-          "fill-opacity": STANDARD_DIM_OPACITY
-        }
-      });
-    }
-
     moveMarkersOnTop();
   }
 
