@@ -566,26 +566,38 @@
     if (action === "visit" && model && model.lastActivity) {
       feedbackText += " Sist sett her: " + model.lastActivity + ".";
     }
+
+    // 2) Handlingsspesifikke effekter (kan oppdatere feedbackText). Sosiale
+    //    meldingshandlinger kobles til PERSONLIGE meldinger via broen – aldri
+    //    jobbmail. Broen registrerer meldingen i innkommende (privat kanal).
+    if (result && result.ok && model) {
+      if (action === "message") {
+        const bridged = bridgeFriendPrivateMessage(result);
+        if (bridged && bridged.feedbackText) {
+          feedbackText = bridged.feedbackText;
+        } else {
+          // Bakoverkompatibel fallback når broen ikke er lastet.
+          dispatchOpenPrivateMessage(model);
+        }
+      } else if (action === "visit") {
+        performFriendVisit(model);
+      } else if (action === "invite") {
+        storeFriendInvite(model);
+        const bridged = bridgeFriendPrivateMessage(result);
+        if (bridged && bridged.feedbackText) feedbackText = bridged.feedbackText;
+      }
+      // "profile" navigerer til folk-seksjonen via egen goto-handler; modellen
+      // sendes med i event-hooken under for framtidig full profilflate.
+    }
+
+    // 3) Tydelig respons i kartlaget – etter at effekter har fått oppdatere teksten.
     const feedback = detail.querySelector("[data-friend-feedback]");
     if (feedback && feedbackText) {
       feedback.textContent = feedbackText;
       feedback.removeAttribute("hidden");
     }
 
-    // 2) Handlingsspesifikke effekter.
-    if (result && result.ok && model) {
-      if (action === "message") {
-        dispatchOpenPrivateMessage(model);
-      } else if (action === "visit") {
-        performFriendVisit(model);
-      } else if (action === "invite") {
-        storeFriendInvite(model);
-      }
-      // "profile" navigerer til folk-seksjonen via egen goto-handler; modellen
-      // sendes med i event-hooken under for framtidig full profilflate.
-    }
-
-    // 3) Stabil, bakoverkompatibel event-hook for andre systemer.
+    // 4) Stabil, bakoverkompatibel event-hook for andre systemer.
     try {
       window.dispatchEvent(new CustomEvent("civi:friendAction", {
         detail: {
@@ -601,7 +613,23 @@
     } catch (_e) {}
   }
 
+  // Bro mot personlige meldinger: kobler Send melding / Inviter til innkommende
+  // (privat kanal). Returnerer bro-resultatet (med feedbackText) eller null når
+  // broen ikke er lastet, slik at kallstedet kan falle tilbake trygt.
+  function bridgeFriendPrivateMessage(result) {
+    const bridge = window.CivicationFriendMessages;
+    if (!bridge || typeof bridge.handleCivicationFriendMessageAction !== "function") {
+      return null;
+    }
+    try {
+      return bridge.handleCivicationFriendMessageAction(result);
+    } catch (_e) {
+      return null;
+    }
+  }
+
   // Send melding: stabil event-hook for et framtidig privat meldingssystem.
+  // Brukes nå som bakoverkompatibel fallback når broen ikke er lastet.
   function dispatchOpenPrivateMessage(model) {
     try {
       window.dispatchEvent(new CustomEvent("civi:openPrivateMessage", {
