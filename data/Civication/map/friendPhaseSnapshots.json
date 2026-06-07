@@ -1,0 +1,162 @@
+{
+  "kind": "civication_friend_phase_snapshots",
+  "version": 1,
+  "note": "Fase-minne for venner i Civication. Hver snapshot er vennens SISTE LAGREDE status for en bestemt Civication-fase – ikke live-status, ikke GPS, ikke ekte fysisk posisjon. Når kartet viser 'Mariam er hjemme' i morgenfasen betyr det at Mariams avatar var sist hjemme da hun spilte morgenfasen. Fasenøkler: morning, work, leisure, evening, reflection. locationId peker til en id i phaseLocations.json. state-verdier: walking_in_city, at_home, at_work, travelling, training, in_event, visiting_player, reflecting, unavailable, offline_simulated. Hvis snapshot mangler for en fase, faller motoren tilbake til friends.json presenceByPhase.",
+  "friendPhaseSnapshots": [
+    {
+      "friendId": "friend_demo_01",
+      "snapshots": {
+        "morning": {
+          "phase": "morning",
+          "state": "at_home",
+          "locationId": "friend_home_demo_01",
+          "activity": "lager kaffe før jobb",
+          "mood": "rolig",
+          "updatedAtLabel": "sist morgenrunde",
+          "visibleOnMap": true
+        },
+        "work": {
+          "phase": "work",
+          "state": "at_work",
+          "locationId": "cafe",
+          "activity": "tar imot morgenrushet på kaféen",
+          "mood": "fokusert",
+          "updatedAtLabel": "sist arbeidsrunde",
+          "visibleOnMap": true
+        },
+        "leisure": {
+          "phase": "leisure",
+          "state": "walking_in_city",
+          "locationId": "park",
+          "activity": "tar en gåtur i parken etter vakt",
+          "mood": "avslappet",
+          "updatedAtLabel": "sist fritidsrunde",
+          "visibleOnMap": true
+        },
+        "evening": {
+          "phase": "evening",
+          "state": "at_home",
+          "locationId": "friend_home_demo_01",
+          "activity": "sitter hjemme med personlige meldinger",
+          "mood": "sliten",
+          "updatedAtLabel": "sist kveldsrunde",
+          "visibleOnMap": true
+        }
+      }
+    },
+    {
+      "friendId": "friend_demo_02",
+      "snapshots": {
+        "morning": {
+          "phase": "morning",
+          "state": "travelling",
+          "locationId": "workplace",
+          "activity": "på vei til tidligvakt",
+          "mood": "nøktern",
+          "updatedAtLabel": "sist morgenrunde",
+          "visibleOnMap": true
+        },
+        "work": {
+          "phase": "work",
+          "state": "at_work",
+          "locationId": "workplace",
+          "activity": "midt i en lagerøkt",
+          "mood": "presset",
+          "updatedAtLabel": "sist arbeidsrunde",
+          "visibleOnMap": true
+        },
+        "evening": {
+          "phase": "evening",
+          "state": "training",
+          "locationId": "gym",
+          "activity": "trener etter jobb",
+          "mood": "oppløftet",
+          "updatedAtLabel": "sist kveldsrunde",
+          "visibleOnMap": true
+        }
+      }
+    },
+    {
+      "friendId": "friend_demo_03",
+      "snapshots": {
+        "morning": {
+          "phase": "morning",
+          "state": "at_home",
+          "locationId": "friend_home_demo_03",
+          "activity": "leser til eksamen",
+          "mood": "konsentrert",
+          "updatedAtLabel": "sist morgenrunde",
+          "visibleOnMap": true
+        },
+        "leisure": {
+          "phase": "leisure",
+          "state": "in_event",
+          "locationId": "football",
+          "activity": "ser en lokal fotballkamp",
+          "mood": "engasjert",
+          "updatedAtLabel": "sist fritidsrunde",
+          "visibleOnMap": true
+        },
+        "evening": {
+          "phase": "evening",
+          "state": "visiting_player",
+          "locationId": "home",
+          "activity": "er innom hjemme hos deg",
+          "mood": "varm",
+          "updatedAtLabel": "sist kveldsrunde",
+          "visibleOnMap": true
+        },
+        "reflection": {
+          "phase": "reflection",
+          "state": "reflecting",
+          "locationId": "psychology_room",
+          "activity": "skriver i refleksjonsloggen",
+          "mood": "ettertenksom",
+          "updatedAtLabel": "sist refleksjonsrunde",
+          "visibleOnMap": true
+        }
+      }
+    },
+    {
+      "friendId": "friend_demo_04",
+      "snapshots": {
+        "morning": {
+          "phase": "morning",
+          "state": "at_work",
+          "locationId": "workplace",
+          "activity": "tidlig vakt",
+          "mood": "våken",
+          "updatedAtLabel": "sist morgenrunde",
+          "visibleOnMap": true
+        },
+        "work": {
+          "phase": "work",
+          "state": "unavailable",
+          "locationId": "workplace",
+          "activity": "opptatt på vakt",
+          "mood": "presset",
+          "updatedAtLabel": "sist arbeidsrunde",
+          "visibleOnMap": false
+        },
+        "leisure": {
+          "phase": "leisure",
+          "state": "at_home",
+          "locationId": "friend_home_demo_01",
+          "activity": "endelig fri",
+          "mood": "lettet",
+          "updatedAtLabel": "sist fritidsrunde",
+          "visibleOnMap": true
+        },
+        "evening": {
+          "phase": "evening",
+          "state": "offline_simulated",
+          "locationId": "friend_home_demo_01",
+          "activity": "har logget av for kvelden",
+          "mood": "tom",
+          "updatedAtLabel": "sist kveldsrunde",
+          "visibleOnMap": false
+        }
+      }
+    }
+  ]
+}

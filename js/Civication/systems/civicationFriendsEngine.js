@@ -15,6 +15,8 @@
 
   const LOCATIONS_PATH = "data/Civication/map/phaseLocations.json";
   const FRIENDS_PATH = "data/Civication/map/friends.json";
+  const SNAPSHOTS_PATH = "data/Civication/map/friendPhaseSnapshots.json";
+  const PLAYER_SNAPSHOTS_KEY = "civi.playerPhaseSnapshots.v1";
 
   const DAY_PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
 
@@ -30,12 +32,59 @@
     training: "Trener",
     in_event: "På et arrangement",
     visiting_player: "Er innom deg",
+    reflecting: "Reflekterer",
     unavailable: "Opptatt",
     offline_simulated: "Utilgjengelig"
   };
 
+  // ---------------------------------------------------------------------------
+  // Fase-minne (phase snapshots)
+  // ---------------------------------------------------------------------------
+  // Civication har semantiske livsfaser (morgen, arbeid, fritid, kveld,
+  // refleksjon) som kartet bruker for å vise hver venns SISTE LAGREDE status i
+  // nettopp den fasen spilleren selv er i. Dette er fase-minne, ikke live-status.
+  const SNAPSHOT_PHASES = ["morning", "work", "leisure", "evening", "reflection"];
+
+  // Kalenderens dagfaser -> semantisk Civication-fase brukt av fase-minnet.
+  // Deterministisk oppslag, ingen klokkeslett-logikk på toppen av spillfasen.
+  const DAY_PHASE_TO_SNAPSHOT = {
+    morning: "morning",
+    lunch: "work",
+    afternoon: "leisure",
+    evening: "evening",
+    day_end: "evening"
+  };
+
+  // Semantisk fase -> representativ dagfase, brukt KUN som trygg fallback mot
+  // friends.json presenceByPhase når et snapshot mangler for den aktive fasen.
+  const SNAPSHOT_TO_DAY_PHASE = {
+    morning: "morning",
+    work: "lunch",
+    leisure: "afternoon",
+    evening: "evening",
+    reflection: "day_end"
+  };
+
+  const SNAPSHOT_PHASE_LABEL = {
+    morning: "Morgenfase",
+    work: "Arbeidsfase",
+    leisure: "Fritidsfase",
+    evening: "Kveldsfase",
+    reflection: "Refleksjonsfase"
+  };
+
+  // Brukervendt "sist sett"-tekst pr. fase (gjør det tydelig at dette er minne).
+  const SNAPSHOT_LAST_SEEN_TEXT = {
+    morning: "Sist sett i morgenfasen",
+    work: "Siste arbeidsfase",
+    leisure: "Siste fritidsfase",
+    evening: "Siste kveldsfase",
+    reflection: "Siste refleksjonsfase"
+  };
+
   let _locationsCache = null;
   let _friendsCache = null;
+  let _snapshotsCache = null;
 
   // ---------------------------------------------------------------------------
   // Små rene hjelpere
@@ -47,6 +96,24 @@
   function normalizePhase(phase) {
     const p = norm(phase).toLowerCase();
     return DAY_PHASES.includes(p) ? p : "morning";
+  }
+
+  // Normaliser til en gyldig semantisk fase-minne-fase. Godtar både semantiske
+  // faser (morning/work/leisure/evening/reflection) og kalenderens dagfaser
+  // (som mappes via DAY_PHASE_TO_SNAPSHOT).
+  function normalizeSnapshotPhase(phase) {
+    const p = norm(phase).toLowerCase();
+    if (SNAPSHOT_PHASES.includes(p)) return p;
+    if (DAY_PHASE_TO_SNAPSHOT[p]) return DAY_PHASE_TO_SNAPSHOT[p];
+    return "morning";
+  }
+
+  function snapshotPhaseLabel(phase) {
+    return SNAPSHOT_PHASE_LABEL[normalizeSnapshotPhase(phase)] || "Morgenfase";
+  }
+
+  function snapshotLastSeenText(phase) {
+    return SNAPSHOT_LAST_SEEN_TEXT[normalizeSnapshotPhase(phase)] || "Sist sett";
   }
 
   // Deterministisk hash (FNV-1a-aktig). Brukes kun som fallback når en venn
@@ -167,10 +234,124 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Fase-minne-resolver (ren, deterministisk)
+  // ---------------------------------------------------------------------------
+  // Slår opp et venne-snapshot for en gitt semantisk fase i en snapshots-array
+  // (formen til friendPhaseSnapshots.json). Returnerer rå snapshot-objekt eller
+  // null. Ren funksjon – ingen fetch, ingen cache.
+  function snapshotEntryFor(snapshots, friendId, phase) {
+    const fid = norm(friendId);
+    const ph = normalizeSnapshotPhase(phase);
+    if (!fid) return null;
+    const list = Array.isArray(snapshots) ? snapshots : [];
+    const record = list.find((r) => norm(r && r.friendId) === fid);
+    if (!record || !record.snapshots || typeof record.snapshots !== "object") return null;
+    const entry = record.snapshots[ph];
+    return entry && typeof entry === "object" ? entry : null;
+  }
+
+  // Bygger et presence-objekt ut fra et rått snapshot. Beholder samme form som
+  // computePresence, men legger til fase-minne-felt (mood, source, isSnapshot …).
+  function presenceFromSnapshot(friend, phase, entry) {
+    const ph = normalizeSnapshotPhase(phase);
+    const state = norm(entry.state) || "at_home";
+    const homeId = norm(friend && friend.avatar && friend.avatar.homeId) || null;
+    const locationId = norm(entry.locationId) || homeId;
+
+    let visibleOnMap;
+    if (typeof entry.visibleOnMap === "boolean") {
+      visibleOnMap = entry.visibleOnMap;
+    } else {
+      visibleOnMap = !isHiddenState(state);
+    }
+    if (isHiddenState(state)) visibleOnMap = false;
+
+    return {
+      state,
+      locationId,
+      activity: norm(entry.activity),
+      mood: norm(entry.mood),
+      visibleOnMap,
+      statusText: presenceText(state),
+      source: "snapshot",
+      isSnapshot: true,
+      phase: ph,
+      snapshotPhaseLabel: snapshotPhaseLabel(ph),
+      lastSeenText: snapshotLastSeenText(ph),
+      updatedAtLabel: norm(entry.updatedAtLabel)
+    };
+  }
+
+  // Avgjør hvilken status kartet skal vise for en venn i den aktive fasen.
+  // Prioritet:
+  //   1) Snapshot for fasen (fase-minne) – vinner alltid hvis det finnes.
+  //   2) Trygg fallback: friends.json presenceByPhase for tilsvarende dagfase.
+  //   3) Ingen fasehistorikk -> skjult (visibleOnMap=false, source="none").
+  // Ren og deterministisk: samme (friend, phase, snapshots) gir samme resultat.
+  function resolveFriendMapPresence(friend, phase, snapshots, dayIndex) {
+    const ph = normalizeSnapshotPhase(phase);
+    const entry = snapshotEntryFor(snapshots, friend && friend.id, ph);
+    if (entry) {
+      return presenceFromSnapshot(friend, ph, entry);
+    }
+
+    // Fallback til eksisterende presence hvis vennen har den dagfasen.
+    const dayPhase = SNAPSHOT_TO_DAY_PHASE[ph] || "morning";
+    const byPhase = friend && friend.presenceByPhase && typeof friend.presenceByPhase === "object"
+      ? friend.presenceByPhase
+      : {};
+    if (byPhase[dayPhase] && typeof byPhase[dayPhase] === "object") {
+      const fallback = computePresence(friend, dayPhase, dayIndex);
+      return {
+        ...fallback,
+        mood: "",
+        source: "presence_fallback",
+        isSnapshot: false,
+        phase: ph,
+        snapshotPhaseLabel: snapshotPhaseLabel(ph),
+        lastSeenText: snapshotLastSeenText(ph),
+        updatedAtLabel: ""
+      };
+    }
+
+    // Verken snapshot eller fallback: skjul vennen trygt.
+    return {
+      state: "no_history",
+      locationId: null,
+      activity: "",
+      mood: "",
+      visibleOnMap: false,
+      statusText: "Ingen fasehistorikk ennå",
+      source: "none",
+      isSnapshot: false,
+      phase: ph,
+      snapshotPhaseLabel: snapshotPhaseLabel(ph),
+      lastSeenText: snapshotLastSeenText(ph),
+      updatedAtLabel: ""
+    };
+  }
+
+  // Vennene med resolvet fase-minne-presence for en semantisk fase.
+  function friendSnapshotRows(friends, phase, snapshots, dayIndex) {
+    return (Array.isArray(friends) ? friends : []).map((friend) => ({
+      friend,
+      presence: resolveFriendMapPresence(friend, phase, snapshots, dayIndex)
+    }));
+  }
+
+  // ---------------------------------------------------------------------------
   // Runtime-kontekst (fase/dag fra kalenderen)
   // ---------------------------------------------------------------------------
   function getCurrentPhase() {
     return normalizePhase(window.CivicationCalendar?.getPhase?.() || "morning");
+  }
+
+  // Hvilken semantisk Civication-fase er spilleren i nå? Mapper kalenderens
+  // dagfase til fase-minne-fasen. Kan overstyres med et eksplisitt argument
+  // (f.eks. når refleksjon/psykologirommet er åpent).
+  function getActivePhase(dayPhaseArg) {
+    const dayPhase = dayPhaseArg != null ? normalizePhase(dayPhaseArg) : getCurrentPhase();
+    return DAY_PHASE_TO_SNAPSHOT[dayPhase] || "morning";
   }
 
   function getDayIndex() {
@@ -211,31 +392,137 @@
     return _friendsCache;
   }
 
-  async function loadData() {
-    const [locations, friends] = await Promise.all([loadLocations(), loadFriends()]);
-    return { locations, friends };
+  async function loadSnapshots() {
+    if (Array.isArray(_snapshotsCache)) return _snapshotsCache;
+    try {
+      const json = await fetchJson(SNAPSHOTS_PATH);
+      _snapshotsCache = Array.isArray(json && json.friendPhaseSnapshots) ? json.friendPhaseSnapshots : [];
+    } catch (e) {
+      // Fase-minne er valgfritt – uten fil faller motoren tilbake til presence.
+      console.warn("[CivicationFriendsEngine] kunne ikke laste friendPhaseSnapshots:", (e && e.message) || e);
+      _snapshotsCache = [];
+    }
+    return _snapshotsCache;
   }
 
-  // Bekvemmelighet for UI: full kartmodell for nåværende fase.
+  async function loadData() {
+    const [locations, friends, snapshots] = await Promise.all([
+      loadLocations(),
+      loadFriends(),
+      loadSnapshots()
+    ]);
+    return { locations, friends, snapshots };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Runtime-bekvemmelighet for fase-minne (bruker cache, men kan ta eksplisitt
+  // data som siste argument – nyttig for testing uten fetch).
+  // ---------------------------------------------------------------------------
+  function getFriendSnapshotForPhase(friendId, phase, snapshotsArg) {
+    const snapshots = Array.isArray(snapshotsArg) ? snapshotsArg : (_snapshotsCache || []);
+    return snapshotEntryFor(snapshots, friendId, phase);
+  }
+
+  function getVisibleFriendSnapshotsForPhase(phase, friendsArg, snapshotsArg, dayIndex) {
+    const friends = Array.isArray(friendsArg) ? friendsArg : (_friendsCache || []);
+    const snapshots = Array.isArray(snapshotsArg) ? snapshotsArg : (_snapshotsCache || []);
+    return friendSnapshotRows(friends, phase, snapshots, dayIndex)
+      .filter((row) => row.presence && row.presence.visibleOnMap);
+  }
+
+  function getFriendsAtLocationForPhase(locationId, phase, friendsArg, snapshotsArg, dayIndex) {
+    const key = norm(locationId);
+    if (!key) return [];
+    return getVisibleFriendSnapshotsForPhase(phase, friendsArg, snapshotsArg, dayIndex)
+      .filter((row) => norm(row.presence.locationId) === key);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lokalt spiller-fase-minne (scaffold – forbereder framtidig synk mellom
+  // venner). Ingen backend/nettverk her: lagres i minne, speiles til
+  // localStorage hvis tilgjengelig. Andre systemer kan kalle setPlayerPhaseSnapshot
+  // når en fase fullføres eller byttes.
+  // ---------------------------------------------------------------------------
+  let _playerPhaseSnapshots = null;
+
+  function loadPlayerPhaseSnapshots() {
+    if (_playerPhaseSnapshots) return _playerPhaseSnapshots;
+    _playerPhaseSnapshots = {};
+    try {
+      const raw = window.localStorage && window.localStorage.getItem(PLAYER_SNAPSHOTS_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") _playerPhaseSnapshots = parsed;
+      }
+    } catch (_e) {
+      // localStorage utilgjengelig (privat modus/test) – hold alt i minne.
+    }
+    return _playerPhaseSnapshots;
+  }
+
+  function getPlayerPhaseSnapshots() {
+    return { ...loadPlayerPhaseSnapshots() };
+  }
+
+  function getPlayerPhaseSnapshot(phase) {
+    const store = loadPlayerPhaseSnapshots();
+    return store[normalizeSnapshotPhase(phase)] || null;
+  }
+
+  function setPlayerPhaseSnapshot(phase, snapshot) {
+    const ph = normalizeSnapshotPhase(phase);
+    const store = loadPlayerPhaseSnapshots();
+    store[ph] = {
+      phase: ph,
+      state: norm(snapshot && snapshot.state) || "at_home",
+      locationId: norm(snapshot && snapshot.locationId) || null,
+      activity: norm(snapshot && snapshot.activity),
+      mood: norm(snapshot && snapshot.mood),
+      updatedAtLabel: norm(snapshot && snapshot.updatedAtLabel),
+      visibleOnMap: snapshot && typeof snapshot.visibleOnMap === "boolean" ? snapshot.visibleOnMap : true
+    };
+    try {
+      window.localStorage && window.localStorage.setItem(PLAYER_SNAPSHOTS_KEY, JSON.stringify(store));
+    } catch (_e) {
+      // Ignorer skrivefeil – minnet er fortsatt oppdatert.
+    }
+    return store[ph];
+  }
+
+  // Bekvemmelighet for UI: full kartmodell for nåværende fase. Vennelaget bruker
+  // fase-minne (snapshot for aktiv semantisk fase), med trygg fallback til
+  // presence. Steder bruker fortsatt dagfasen for aktiv/rolig-markering.
   async function getCityModel() {
-    const { locations, friends } = await loadData();
-    const phase = getCurrentPhase();
+    const { locations, friends, snapshots } = await loadData();
+    const dayPhase = getCurrentPhase();
+    const snapshotPhase = getActivePhase(dayPhase);
     const dayIndex = getDayIndex();
     return {
-      phase,
+      phase: dayPhase,
+      snapshotPhase,
+      snapshotPhaseLabel: snapshotPhaseLabel(snapshotPhase),
       dayIndex,
       locations,
-      friends: friendsForPhase(friends, phase, dayIndex),
-      activeLocationIds: activeLocations(locations, phase).map((l) => norm(l.id))
+      snapshots,
+      friends: friendSnapshotRows(friends, snapshotPhase, snapshots, dayIndex),
+      activeLocationIds: activeLocations(locations, dayPhase).map((l) => norm(l.id))
     };
   }
 
   window.CivicationFriendsEngine = {
     // konstanter
     DAY_PHASES: DAY_PHASES.slice(),
+    SNAPSHOT_PHASES: SNAPSHOT_PHASES.slice(),
     PRESENCE_TEXT: { ...PRESENCE_TEXT },
+    SNAPSHOT_PHASE_LABEL: { ...SNAPSHOT_PHASE_LABEL },
+    SNAPSHOT_LAST_SEEN_TEXT: { ...SNAPSHOT_LAST_SEEN_TEXT },
+    DAY_PHASE_TO_SNAPSHOT: { ...DAY_PHASE_TO_SNAPSHOT },
+    SNAPSHOT_TO_DAY_PHASE: { ...SNAPSHOT_TO_DAY_PHASE },
     // rene hjelpere (testbare uten fetch/DOM)
     normalizePhase,
+    normalizeSnapshotPhase,
+    snapshotPhaseLabel,
+    snapshotLastSeenText,
     presenceText,
     isHiddenState,
     computePresence,
@@ -244,13 +531,27 @@
     isLocationActive,
     friendsForPhase,
     friendsAtLocation,
+    // fase-minne (rene, deterministiske)
+    snapshotEntryFor,
+    resolveFriendMapPresence,
+    friendSnapshotRows,
     // runtime-kontekst
     getCurrentPhase,
+    getActivePhase,
     getDayIndex,
+    // fase-minne runtime
+    getFriendSnapshotForPhase,
+    getVisibleFriendSnapshotsForPhase,
+    getFriendsAtLocationForPhase,
+    // lokalt spiller-fase-minne (scaffold for framtidig synk)
+    getPlayerPhaseSnapshots,
+    getPlayerPhaseSnapshot,
+    setPlayerPhaseSnapshot,
     // async
     loadData,
     loadLocations,
     loadFriends,
+    loadSnapshots,
     getCityModel
   };
 })();
