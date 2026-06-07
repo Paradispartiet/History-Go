@@ -1,181 +1,2013 @@
 {
   "schema": "civication.socialEvents.v1",
   "version": 1,
+  "note": "Sosiale hendelser kobler stedsfaser, personer, valg og innsiktsdata. Alle event-ID-er her er laget for å kunne brukes direkte fra placePhases.eventHooks.",
+  "field_docs": {
+    "id": "Unik ID for hendelsen.",
+    "label": "Kort menneskelig navn.",
+    "eventType": "Hva slags sosial situasjon hendelsen er.",
+    "trigger": "Hvilke personer, steder, faser eller states hendelsen passer til.",
+    "text": "Fortellende tekst spilleren ser.",
+    "choices": "Valgene spilleren får.",
+    "effects": "Tallmessige eller semantiske konsekvenser av valget.",
+    "insightSignals": "Hva AHA / innsiktsmotoren kan lære av valget."
+  },
   "events": {
-    "event_friend_seen_at_home_light_on": {
-      "id": "event_friend_seen_at_home_light_on",
+    "event_work_friend_under_pressure": {
+      "id": "event_work_friend_under_pressure",
+      "label": "Venn på jobb under press",
+      "eventType": "work_pressure",
       "trigger": {
-        "characterState": "at_home",
-        "relationshipState": "friend",
-        "timeRange": "20:00-02:00"
+        "placeIds": [
+          "civi_cafe_001"
+        ],
+        "characterIds": [
+          "friend_jonas_berg"
+        ],
+        "compatibleMoods": [
+          "busy",
+          "strained"
+        ]
       },
-      "text": "Du ser at lyset er på hjemme hos vennen din. Det er ikke sikkert han vil prate, men han er der.",
+      "text": "Jonas ser deg i køen, men rekker bare et lite nikk. Bak ham hoper koppene seg opp, og noen sukker høyt fordi det går for sakte.",
       "choices": {
-        "choice_send_short_message": {
-          "label": "Send en kort melding",
+        "choice_wait_patiently": {
+          "id": "choice_wait_patiently",
+          "label": "Vent rolig",
           "effects": {
             "relationshipTrust": 1,
-            "intrusionRisk": 0,
-            "playerEmpathy": 1
-          }
+            "workerStress": -1,
+            "playerPatience": 2
+          },
+          "insightSignals": [
+            "patience_under_minor_pressure",
+            "respect_for_service_work"
+          ]
         },
-        "choice_knock_on_door": {
-          "label": "Bank på",
+        "choice_try_to_talk": {
+          "id": "choice_try_to_talk",
+          "label": "Prøv å snakke med ham likevel",
           "effects": {
             "relationshipTrust": -1,
-            "intrusionRisk": 2,
-            "playerBoldness": 1
-          }
+            "workerStress": 1,
+            "playerIntrusion": 1
+          },
+          "insightSignals": [
+            "tendency_to_interrupt_busy_people"
+          ]
         },
-        "choice_leave_quietly": {
-          "label": "Gå videre",
+        "choice_make_queue_joke": {
+          "id": "choice_make_queue_joke",
+          "label": "Lag en lett køspøk",
           "effects": {
             "relationshipTrust": 0,
-            "intrusionRisk": -1,
-            "playerPatience": 1
-          }
+            "moodRelief": 1,
+            "workerStress": 0
+          },
+          "insightSignals": [
+            "social_timing",
+            "humor_under_pressure"
+          ]
+        }
+      }
+    },
+    "event_delivery_rider_waiting": {
+      "id": "event_delivery_rider_waiting",
+      "label": "Budet venter",
+      "eventType": "platform_work",
+      "trigger": {
+        "characterIds": [
+          "friend_amir_nouri"
+        ],
+        "compatibleStates": [
+          "waiting"
+        ]
+      },
+      "text": "Amir står utenfor restauranten med sykkelen mellom beina. Appen sier at maten skulle vært klar for seks minutter siden.",
+      "choices": {
+        "choice_wait_with_him": {
+          "id": "choice_wait_with_him",
+          "label": "Vent litt sammen med ham",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerSystemInsight": 1,
+            "timeCost": 1
+          },
+          "insightSignals": [
+            "platform_economy_awareness",
+            "solidarity_with_precarious_work"
+          ]
+        },
+        "choice_ask_about_app": {
+          "id": "choice_ask_about_app",
+          "label": "Spør hvordan appen styrer dagen hans",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerSystemInsight": 2,
+            "conversationDepth": 1
+          },
+          "insightSignals": [
+            "algorithmic_control_awareness",
+            "time_as_money"
+          ]
+        },
+        "choice_interrupt_with_private_topic": {
+          "id": "choice_interrupt_with_private_topic",
+          "label": "Begynn å snakke om noe helt annet",
+          "effects": {
+            "relationshipTrust": -1,
+            "workerStress": 1,
+            "conversationDepth": -1
+          },
+          "insightSignals": [
+            "poor_timing",
+            "low_context_awareness"
+          ]
+        }
+      }
+    },
+    "event_customer_queue_tension": {
+      "id": "event_customer_queue_tension",
+      "label": "Køen strammer seg",
+      "eventType": "everyday_conflict",
+      "trigger": {
+        "phaseTypes": [
+          "work_pressure",
+          "everyday_pressure"
+        ],
+        "compatibleMoods": [
+          "busy",
+          "compressed_everyday"
+        ]
+      },
+      "text": "En kunde foran deg begynner å klage. Ikke høyt nok til å lage en scene, men høyt nok til at alle kjenner det.",
+      "choices": {
+        "choice_stay_calm": {
+          "id": "choice_stay_calm",
+          "label": "Stå rolig og ikke bidra til presset",
+          "effects": {
+            "conflictRisk": -1,
+            "playerPatience": 2,
+            "workerStress": -1
+          },
+          "insightSignals": [
+            "irritation_control",
+            "patience_in_everyday_pressure"
+          ]
+        },
+        "choice_support_worker": {
+          "id": "choice_support_worker",
+          "label": "Si rolig at det går fint å vente",
+          "effects": {
+            "relationshipTrust": 1,
+            "conflictRisk": -1,
+            "workerStress": -1
+          },
+          "insightSignals": [
+            "everyday_solidarity",
+            "respect_for_workers"
+          ]
+        },
+        "choice_join_complaint": {
+          "id": "choice_join_complaint",
+          "label": "Bli med på klagingen",
+          "effects": {
+            "conflictRisk": 2,
+            "workerStress": 2,
+            "playerImpatience": 2
+          },
+          "insightSignals": [
+            "conflict_escalation_tendency",
+            "low_worker_respect"
+          ]
+        }
+      }
+    },
+    "event_creative_friend_at_window": {
+      "id": "event_creative_friend_at_window",
+      "label": "Vennen ved vinduet",
+      "eventType": "quiet_social_opening",
+      "trigger": {
+        "characterIds": [
+          "friend_vetle_mo"
+        ],
+        "placeIds": [
+          "civi_cafe_001"
+        ]
+      },
+      "text": "Vetle sitter ved vinduet med en notatbok åpen foran seg. Han skriver ikke. Han ser mer ut som han venter på en tanke enn på noen.",
+      "choices": {
+        "choice_sit_nearby": {
+          "id": "choice_sit_nearby",
+          "label": "Sett deg i nærheten uten å presse fram en samtale",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 1,
+            "intrusionRisk": -1
+          },
+          "insightSignals": [
+            "low_pressure_social_presence",
+            "respect_for_silence"
+          ]
+        },
+        "choice_ask_what_he_writes": {
+          "id": "choice_ask_what_he_writes",
+          "label": "Spør hva han skriver",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 2,
+            "intrusionRisk": 0
+          },
+          "insightSignals": [
+            "interest_in_others_inner_life",
+            "creative_attention"
+          ]
+        },
+        "choice_give_advice": {
+          "id": "choice_give_advice",
+          "label": "Begynn å gi råd om hvordan han bør komme i gang",
+          "effects": {
+            "relationshipTrust": -1,
+            "conversationDepth": -1,
+            "playerControlNeed": 1
+          },
+          "insightSignals": [
+            "fixing_instead_of_listening"
+          ]
+        }
+      }
+    },
+    "event_barista_short_break": {
+      "id": "event_barista_short_break",
+      "label": "Kort pause bak disken",
+      "eventType": "work_pause",
+      "trigger": {
+        "characterIds": [
+          "friend_jonas_berg"
+        ],
+        "compatibleStates": [
+          "working",
+          "resting"
+        ]
+      },
+      "text": "Jonas får tre minutter uten kunder. Han lener seg mot benken, men står fortsatt som om noen snart skal rope på ham.",
+      "choices": {
+        "choice_short_question": {
+          "id": "choice_short_question",
+          "label": "Still ett kort spørsmål",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": 0,
+            "conversationDepth": 1
+          },
+          "insightSignals": [
+            "timing_of_care",
+            "social_precision"
+          ]
+        },
+        "choice_let_break_be_break": {
+          "id": "choice_let_break_be_break",
+          "label": "La pausen være en pause",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": -1,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "care_without_demand",
+            "respect_for_recovery"
+          ]
+        },
+        "choice_long_story": {
+          "id": "choice_long_story",
+          "label": "Fortell en lang historie fra din egen dag",
+          "effects": {
+            "relationshipTrust": -1,
+            "workerStress": 1,
+            "playerSelfFocus": 1
+          },
+          "insightSignals": [
+            "poor_timing",
+            "self_focus"
+          ]
+        }
+      }
+    },
+    "event_small_confession": {
+      "id": "event_small_confession",
+      "label": "En liten innrømmelse",
+      "eventType": "conversation_depth",
+      "trigger": {
+        "phaseTypes": [
+          "social_pause"
+        ]
+      },
+      "text": "Samtalen får et lite hull, og i det hullet sier vennen din noe som virker mer sant enn planlagt.",
+      "choices": {
+        "choice_listen": {
+          "id": "choice_listen",
+          "label": "Lytt uten å fylle stillheten",
+          "effects": {
+            "relationshipTrust": 2,
+            "conversationDepth": 2,
+            "playerEmpathy": 2
+          },
+          "insightSignals": [
+            "ability_to_listen",
+            "comfort_with_silence"
+          ]
+        },
+        "choice_make_it_light": {
+          "id": "choice_make_it_light",
+          "label": "Gjør det litt lettere med humor",
+          "effects": {
+            "relationshipTrust": 0,
+            "moodRelief": 1,
+            "conversationDepth": -1
+          },
+          "insightSignals": [
+            "deflection_with_humor"
+          ]
+        },
+        "choice_compare_with_self": {
+          "id": "choice_compare_with_self",
+          "label": "Sammenlign det med noe du selv har opplevd",
+          "effects": {
+            "relationshipTrust": 0,
+            "conversationDepth": 0,
+            "playerSelfFocus": 1
+          },
+          "insightSignals": [
+            "self_reference_in_care"
+          ]
         }
       }
     },
     "event_work_friend_after_bad_shift": {
       "id": "event_work_friend_after_bad_shift",
+      "label": "Etter en dårlig vakt",
+      "eventType": "after_work_care",
       "trigger": {
-        "characterState": "closing",
-        "roleTags": [
-          "visible_service_worker"
+        "characterIds": [
+          "friend_jonas_berg",
+          "friend_erik_lien"
         ],
-        "mood": "tired"
+        "compatibleStates": [
+          "closing",
+          "parking",
+          "after_shift"
+        ]
       },
-      "text": "Jonas låser kafeen. Han smiler når han ser deg, men smilet faller nesten med en gang.",
+      "text": "Vennen din er ferdig på jobb, men ikke ferdig med følelsen av jobben. Det ligger igjen noe i skuldrene.",
       "choices": {
-        "choice_ask_directly": {
-          "label": "Spør direkte hvordan vakten var",
+        "choice_ask_how_shift_was": {
+          "id": "choice_ask_how_shift_was",
+          "label": "Spør hvordan vakten var",
           "effects": {
             "relationshipTrust": 1,
-            "playerEmpathy": 1,
-            "conversationDepth": 1
-          }
+            "conversationDepth": 1,
+            "playerEmpathy": 1
+          },
+          "insightSignals": [
+            "timing_of_care",
+            "friendship_after_work"
+          ]
         },
-        "choice_make_joke": {
-          "label": "Lag en lett spøk",
+        "choice_walk_home_together": {
+          "id": "choice_walk_home_together",
+          "label": "Tilby å gå et stykke sammen",
           "effects": {
-            "relationshipTrust": 0,
-            "moodRelief": 1,
-            "conversationDepth": 0
-          }
+            "relationshipTrust": 2,
+            "conversationDepth": 1,
+            "stressRelief": 1
+          },
+          "insightSignals": [
+            "care_as_presence",
+            "walk_and_talk"
+          ]
         },
-        "choice_talk_about_yourself": {
-          "label": "Begynn å snakke om din egen dag",
+        "choice_demand_details": {
+          "id": "choice_demand_details",
+          "label": "Be ham forklare alt som skjedde",
           "effects": {
             "relationshipTrust": -1,
-            "playerSelfFocus": 1,
-            "conversationDepth": -1
-          }
+            "intrusionRisk": 1,
+            "stressRelief": -1
+          },
+          "insightSignals": [
+            "care_as_interrogation"
+          ]
+        }
+      }
+    },
+    "event_friend_too_tired_to_answer": {
+      "id": "event_friend_too_tired_to_answer",
+      "label": "For sliten til å svare",
+      "eventType": "private_boundary",
+      "trigger": {
+        "compatibleStates": [
+          "at_home",
+          "recovering"
+        ]
+      },
+      "text": "Meldingen står levert. Ikke lest. Det kan bety alt mulig, men mest sannsynlig betyr det bare at dagen var lang.",
+      "choices": {
+        "choice_wait": {
+          "id": "choice_wait",
+          "label": "Vent",
+          "effects": {
+            "relationshipTrust": 1,
+            "intrusionRisk": -1,
+            "playerPatience": 2
+          },
+          "insightSignals": [
+            "ability_to_wait",
+            "care_without_access"
+          ]
+        },
+        "choice_send_one_more": {
+          "id": "choice_send_one_more",
+          "label": "Send én kort oppfølgingsmelding",
+          "effects": {
+            "relationshipTrust": 0,
+            "intrusionRisk": 1,
+            "playerCare": 1
+          },
+          "insightSignals": [
+            "care_vs_pressure"
+          ]
+        },
+        "choice_keep_sending": {
+          "id": "choice_keep_sending",
+          "label": "Send flere meldinger",
+          "effects": {
+            "relationshipTrust": -2,
+            "intrusionRisk": 3,
+            "playerAnxiety": 2
+          },
+          "insightSignals": [
+            "intrusion_risk",
+            "difficulty_waiting"
+          ]
+        }
+      }
+    },
+    "event_late_evening_walk": {
+      "id": "event_late_evening_walk",
+      "label": "Kveldstur etter jobb",
+      "eventType": "walk_conversation",
+      "trigger": {
+        "compatibleStates": [
+          "closing",
+          "walking"
+        ]
+      },
+      "text": "Gaten er roligere nå. Det er lettere å snakke når dere ikke må se rett på hverandre.",
+      "choices": {
+        "choice_walk_silently": {
+          "id": "choice_walk_silently",
+          "label": "Gå sammen uten å fylle alt med prat",
+          "effects": {
+            "relationshipTrust": 2,
+            "stressRelief": 1,
+            "conversationDepth": 1
+          },
+          "insightSignals": [
+            "friendship_in_silence",
+            "reading_fatigue"
+          ]
+        },
+        "choice_ask_open_question": {
+          "id": "choice_ask_open_question",
+          "label": "Still et åpent spørsmål",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 2,
+            "playerEmpathy": 1
+          },
+          "insightSignals": [
+            "ability_to_walk_and_talk",
+            "conversation_depth"
+          ]
+        },
+        "choice_fill_silence": {
+          "id": "choice_fill_silence",
+          "label": "Fyll stillheten med småprat",
+          "effects": {
+            "relationshipTrust": 0,
+            "conversationDepth": -1,
+            "moodRelief": 0
+          },
+          "insightSignals": [
+            "discomfort_with_silence"
+          ]
+        }
+      }
+    },
+    "event_caseworker_cannot_talk_now": {
+      "id": "event_caseworker_cannot_talk_now",
+      "label": "Kan ikke snakke nå",
+      "eventType": "work_boundary",
+      "trigger": {
+        "characterIds": [
+          "friend_mina_sandaker"
+        ],
+        "placeIds": [
+          "civi_office_public_casework"
+        ]
+      },
+      "text": "Mina ser opp fra skjermen og sier lavt at hun ikke kan snakke nå. Det er ikke avvisning. Det er arbeid.",
+      "choices": {
+        "choice_accept": {
+          "id": "choice_accept",
+          "label": "Aksepter det med en gang",
+          "effects": {
+            "relationshipTrust": 2,
+            "conflictRisk": -1,
+            "playerBoundarySkill": 2
+          },
+          "insightSignals": [
+            "respect_for_work_boundaries",
+            "friendship_without_immediate_access"
+          ]
+        },
+        "choice_ask_when": {
+          "id": "choice_ask_when",
+          "label": "Spør når det passer senere",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationFuture": 1,
+            "conflictRisk": 0
+          },
+          "insightSignals": [
+            "structured_contact",
+            "social_timing"
+          ]
+        },
+        "choice_take_personally": {
+          "id": "choice_take_personally",
+          "label": "Ta det personlig",
+          "effects": {
+            "relationshipTrust": -2,
+            "conflictRisk": 2,
+            "playerInsecurity": 2
+          },
+          "insightSignals": [
+            "misreading_boundaries",
+            "conflict_escalation_tendency"
+          ]
+        }
+      }
+    },
+    "event_office_language_observed": {
+      "id": "event_office_language_observed",
+      "label": "Kontorspråket",
+      "eventType": "system_observation",
+      "trigger": {
+        "placeIds": [
+          "civi_office_public_casework"
+        ]
+      },
+      "text": "Du legger merke til hvordan folk snakker her: kort, presist, avgrenset. Nesten alle setninger virker laget for å kunne arkiveres.",
+      "choices": {
+        "choice_observe": {
+          "id": "choice_observe",
+          "label": "Observer språket",
+          "effects": {
+            "playerSystemInsight": 2,
+            "playerObservation": 2
+          },
+          "insightSignals": [
+            "understanding_of_system_pressure",
+            "reaction_to_formality"
+          ]
+        },
+        "choice_mock_language": {
+          "id": "choice_mock_language",
+          "label": "Gjør narr av språket",
+          "effects": {
+            "playerSystemInsight": -1,
+            "relationshipTrust": -1
+          },
+          "insightSignals": [
+            "low_institutional_literacy"
+          ]
+        },
+        "choice_try_language": {
+          "id": "choice_try_language",
+          "label": "Prøv å formulere deg like presist",
+          "effects": {
+            "playerPrecision": 2,
+            "playerSystemInsight": 1
+          },
+          "insightSignals": [
+            "institutional_language_learning",
+            "precision"
+          ]
         }
       }
     },
     "event_caseworker_boundary": {
       "id": "event_caseworker_boundary",
+      "label": "Grensen",
+      "eventType": "boundary_test",
       "trigger": {
-        "placeId": "civi_office_public_casework",
-        "characterId": "friend_mina_sandaker",
-        "phase": "midday_pressure"
+        "characterIds": [
+          "friend_mina_sandaker"
+        ],
+        "phaseTypes": [
+          "institutional_pressure"
+        ]
       },
       "text": "Mina sier at hun ikke kan snakke om saken nå. Hun sier det saklig, men blikket hennes ber deg egentlig om å forstå grensen.",
       "choices": {
         "choice_respect_boundary": {
+          "id": "choice_respect_boundary",
           "label": "Respekter grensen",
           "effects": {
             "relationshipTrust": 2,
             "playerBoundarySkill": 2,
             "conflictRisk": -1
-          }
+          },
+          "insightSignals": [
+            "boundary_skill",
+            "care_without_intrusion"
+          ]
         },
         "choice_push_for_answer": {
+          "id": "choice_push_for_answer",
           "label": "Press på for et svar",
           "effects": {
             "relationshipTrust": -2,
             "conflictRisk": 2,
             "playerImpatience": 1
-          }
+          },
+          "insightSignals": [
+            "conflict_escalation_tendency",
+            "poor_boundary_reading"
+          ]
         },
         "choice_offer_later_talk": {
+          "id": "choice_offer_later_talk",
           "label": "Si at dere kan snakke senere",
           "effects": {
             "relationshipTrust": 1,
+            "conversationFuture": 1,
+            "playerPatience": 1
+          },
+          "insightSignals": [
+            "structured_contact",
+            "social_timing"
+          ]
+        }
+      }
+    },
+    "event_documentation_pressure": {
+      "id": "event_documentation_pressure",
+      "label": "Dokumentasjonspress",
+      "eventType": "bureaucratic_pressure",
+      "trigger": {
+        "placeIds": [
+          "civi_office_public_casework"
+        ],
+        "compatibleStates": [
+          "documentation_pressure"
+        ]
+      },
+      "text": "Mina sitter med en sak der alt må formuleres riktig. Ikke fordi ordene er viktigere enn menneskene, men fordi systemet bare kan gripe det som er skrevet.",
+      "choices": {
+        "choice_leave_her_to_work": {
+          "id": "choice_leave_her_to_work",
+          "label": "La henne arbeide uforstyrret",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": -1,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "understanding_bureaucratic_stress",
+            "respect_for_concentration"
+          ]
+        },
+        "choice_send_supportive_message": {
+          "id": "choice_send_supportive_message",
+          "label": "Send en kort støttende melding",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": 0,
+            "playerCare": 1
+          },
+          "insightSignals": [
+            "care_without_intrusion"
+          ]
+        },
+        "choice_ask_for_help_now": {
+          "id": "choice_ask_for_help_now",
+          "label": "Be henne hjelpe deg med noe nå",
+          "effects": {
+            "relationshipTrust": -2,
+            "workerStress": 2,
+            "intrusionRisk": 2
+          },
+          "insightSignals": [
+            "poor_timing",
+            "instrumentalizing_friendship"
+          ]
+        }
+      }
+    },
+    "event_friend_carries_work_home": {
+      "id": "event_friend_carries_work_home",
+      "label": "Arbeidet blir med hjem",
+      "eventType": "work_afterimage",
+      "trigger": {
+        "characterIds": [
+          "friend_mina_sandaker"
+        ],
+        "compatibleStates": [
+          "at_home",
+          "commuting"
+        ]
+      },
+      "text": "Mina har gått fra kontoret, men det virker ikke som kontoret har gått fra henne.",
+      "choices": {
+        "choice_send_light_message": {
+          "id": "choice_send_light_message",
+          "label": "Send en enkel melding uten krav om svar",
+          "effects": {
+            "relationshipTrust": 1,
+            "stressRelief": 1,
+            "intrusionRisk": -1
+          },
+          "insightSignals": [
+            "care_without_access",
+            "reading_social_exhaustion"
+          ]
+        },
+        "choice_ask_for_full_update": {
+          "id": "choice_ask_for_full_update",
+          "label": "Be om full oppdatering",
+          "effects": {
+            "relationshipTrust": -1,
+            "workerStress": 1,
+            "intrusionRisk": 1
+          },
+          "insightSignals": [
+            "care_as_demand"
+          ]
+        },
+        "choice_wait_until_tomorrow": {
+          "id": "choice_wait_until_tomorrow",
+          "label": "Vent til i morgen",
+          "effects": {
+            "relationshipTrust": 1,
             "playerPatience": 1,
-            "conversationFuture": 1
-          }
+            "intrusionRisk": -1
+          },
+          "insightSignals": [
+            "ability_to_wait",
+            "respect_for_private_recovery"
+          ]
+        }
+      }
+    },
+    "event_friend_still_at_work_mentally": {
+      "id": "event_friend_still_at_work_mentally",
+      "label": "Mentalt fortsatt på jobb",
+      "eventType": "commute_observation",
+      "trigger": {
+        "compatibleStates": [
+          "commuting",
+          "leaving_work"
+        ]
+      },
+      "text": "Vennen din står ved holdeplassen, men blikket er fortsatt inne i bygget.",
+      "choices": {
+        "choice_walk_to_bus": {
+          "id": "choice_walk_to_bus",
+          "label": "Gå sammen til bussen",
+          "effects": {
+            "relationshipTrust": 1,
+            "stressRelief": 1,
+            "conversationDepth": 0
+          },
+          "insightSignals": [
+            "nonverbal_attention",
+            "care_as_presence"
+          ]
+        },
+        "choice_ask_about_day": {
+          "id": "choice_ask_about_day",
+          "label": "Spør om dagen",
+          "effects": {
+            "relationshipTrust": 0,
+            "conversationDepth": 1,
+            "intrusionRisk": 1
+          },
+          "insightSignals": [
+            "timing_of_questions"
+          ]
+        },
+        "choice_leave_space": {
+          "id": "choice_leave_space",
+          "label": "Gi rom",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerBoundarySkill": 1,
+            "intrusionRisk": -1
+          },
+          "insightSignals": [
+            "reading_social_exhaustion"
+          ]
+        }
+      }
+    },
+    "event_boundary_respected": {
+      "id": "event_boundary_respected",
+      "label": "Grensen respekteres",
+      "eventType": "relationship_repair",
+      "trigger": {
+        "requiresPreviousChoice": [
+          "choice_respect_boundary",
+          "choice_leave_space"
+        ]
+      },
+      "text": "Senere svarer vennen din roligere. Det virker som det betydde noe at du ikke presset.",
+      "choices": {
+        "choice_reply_short": {
+          "id": "choice_reply_short",
+          "label": "Svar kort og rolig",
+          "effects": {
+            "relationshipTrust": 2,
+            "conversationFuture": 1,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "trust_built_by_restraint"
+          ]
+        },
+        "choice_reopen_pressure": {
+          "id": "choice_reopen_pressure",
+          "label": "Bruk åpningen til å presse på igjen",
+          "effects": {
+            "relationshipTrust": -2,
+            "conflictRisk": 2,
+            "intrusionRisk": 2
+          },
+          "insightSignals": [
+            "failed_boundary_learning"
+          ]
+        }
+      }
+    },
+    "event_commute_silence": {
+      "id": "event_commute_silence",
+      "label": "Stillhet på vei hjem",
+      "eventType": "commute_silence",
+      "trigger": {
+        "phaseTypes": [
+          "work_afterimage"
+        ]
+      },
+      "text": "Dere står ved siden av hverandre mens trafikken går forbi. Stillheten er ikke tom. Den er bare ikke klar ennå.",
+      "choices": {
+        "choice_share_silence": {
+          "id": "choice_share_silence",
+          "label": "Del stillheten",
+          "effects": {
+            "relationshipTrust": 1,
+            "stressRelief": 1,
+            "playerPatience": 1
+          },
+          "insightSignals": [
+            "friendship_without_words",
+            "comfort_with_silence"
+          ]
+        },
+        "choice_force_topic": {
+          "id": "choice_force_topic",
+          "label": "Tving fram et samtaleemne",
+          "effects": {
+            "relationshipTrust": -1,
+            "stressRelief": -1,
+            "playerAnxiety": 1
+          },
+          "insightSignals": [
+            "discomfort_with_silence"
+          ]
+        }
+      }
+    },
+    "event_childcare_opening_pressure": {
+      "id": "event_childcare_opening_pressure",
+      "label": "Åpningstrykk i barnehagen",
+      "eventType": "care_work_pressure",
+      "trigger": {
+        "placeIds": [
+          "civi_kindergarten_urban_01"
+        ],
+        "compatibleStates": [
+          "opening"
+        ]
+      },
+      "text": "Tre barn kommer samtidig. En forelder må rekke bussen. Et barn vil ikke slippe jakken. Sana tar imot alt uten at det ser dramatisk ut.",
+      "choices": {
+        "choice_observe_care": {
+          "id": "choice_observe_care",
+          "label": "Observer arbeidet uten å forstyrre",
+          "effects": {
+            "playerObservation": 2,
+            "workerStress": -1,
+            "playerCareInsight": 1
+          },
+          "insightSignals": [
+            "attention_to_care_work",
+            "care_as_skilled_work"
+          ]
+        },
+        "choice_say_hello_briefly": {
+          "id": "choice_say_hello_briefly",
+          "label": "Si kort hei",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": 0,
+            "socialWarmth": 1
+          },
+          "insightSignals": [
+            "social_timing"
+          ]
+        },
+        "choice_start_long_talk": {
+          "id": "choice_start_long_talk",
+          "label": "Start en lang samtale",
+          "effects": {
+            "relationshipTrust": -1,
+            "workerStress": 2,
+            "intrusionRisk": 1
+          },
+          "insightSignals": [
+            "poor_timing",
+            "low_care_context_awareness"
+          ]
+        }
+      }
+    },
+    "event_parent_handover": {
+      "id": "event_parent_handover",
+      "label": "Leveringssituasjon",
+      "eventType": "care_transition",
+      "trigger": {
+        "phaseTypes": [
+          "care_start"
+        ]
+      },
+      "text": "En forelder gir en rask beskjed, barnet vil inn, og Sana forsøker å få med seg begge deler samtidig.",
+      "choices": {
+        "choice_step_back": {
+          "id": "choice_step_back",
+          "label": "Tre litt tilbake",
+          "effects": {
+            "workerStress": -1,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "appropriate_distance",
+            "respect_for_children_space"
+          ]
+        },
+        "choice_help_practically": {
+          "id": "choice_help_practically",
+          "label": "Hjelp praktisk uten å overta",
+          "effects": {
+            "relationshipTrust": 1,
+            "safety": 1,
+            "playerResponsibility": 1
+          },
+          "insightSignals": [
+            "practical_helpfulness"
+          ]
+        }
+      }
+    },
+    "event_care_worker_already_busy": {
+      "id": "event_care_worker_already_busy",
+      "label": "Allerede opptatt",
+      "eventType": "care_boundary",
+      "trigger": {
+        "characterIds": [
+          "friend_sana_hassan"
+        ]
+      },
+      "text": "Sana ser deg og smiler, men hun er allerede midt i tre små situasjoner som alle krever henne.",
+      "choices": {
+        "choice_nod_and_wait": {
+          "id": "choice_nod_and_wait",
+          "label": "Nikk og vent",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": -1,
+            "playerPatience": 1
+          },
+          "insightSignals": [
+            "understanding_morning_stress",
+            "timing_of_social_contact"
+          ]
+        },
+        "choice_call_her_over": {
+          "id": "choice_call_her_over",
+          "label": "Rop henne bort",
+          "effects": {
+            "relationshipTrust": -2,
+            "workerStress": 2,
+            "safety": -1
+          },
+          "insightSignals": [
+            "low_situational_awareness"
+          ]
         }
       }
     },
     "event_kindergarten_gate_help": {
       "id": "event_kindergarten_gate_help",
+      "label": "Porten",
+      "eventType": "practical_care",
       "trigger": {
-        "placeId": "civi_kindergarten_urban_01",
-        "phase": "pickup",
-        "characterId": "friend_sana_hassan"
+        "placeIds": [
+          "civi_kindergarten_urban_01",
+          "civi_kindergarten_yard_01"
+        ]
       },
       "text": "En port står åpen mens tre barn løper i hver sin retning. Sana ser det før alle andre, men hun har hendene fulle.",
       "choices": {
-        "choice_help_with_gate": {
+        "choice_close_gate_calmly": {
+          "id": "choice_close_gate_calmly",
           "label": "Lukk porten rolig",
           "effects": {
             "relationshipTrust": 2,
             "playerResponsibility": 2,
             "safety": 2
-          }
+          },
+          "insightSignals": [
+            "noticing_before_crisis",
+            "practical_help"
+          ]
         },
-        "choice_point_it_out": {
+        "choice_tell_sana": {
+          "id": "choice_tell_sana",
           "label": "Si fra til Sana",
           "effects": {
             "relationshipTrust": 1,
             "playerObservation": 1,
             "safety": 1
-          }
+          },
+          "insightSignals": [
+            "responsibility_in_public_space"
+          ]
         },
-        "choice_ignore": {
+        "choice_ignore_gate": {
+          "id": "choice_ignore_gate",
           "label": "Ikke bland deg",
           "effects": {
             "relationshipTrust": -1,
             "playerPassivity": 1,
-            "safety": -1
-          }
+            "safety": -2
+          },
+          "insightSignals": [
+            "missed_practical_responsibility"
+          ]
         }
       }
     },
-    "event_delivery_rider_interrupted": {
-      "id": "event_delivery_rider_interrupted",
+    "event_small_conflict_between_children": {
+      "id": "event_small_conflict_between_children",
+      "label": "To barn og én spade",
+      "eventType": "care_observation",
       "trigger": {
-        "characterId": "friend_amir_nouri",
-        "characterState": "working",
-        "roleId": "role_delivery_rider"
+        "phaseTypes": [
+          "care_visibility"
+        ]
       },
-      "text": "Amir rekker akkurat å si hei før mobilen piper igjen. Et nytt oppdrag. Han ser på skjermen som om den bestemmer mer enn han gjør.",
+      "text": "To barn peker på samme spade. For dem er det hele verden akkurat nå. Sana går ned på huk før konflikten blir større.",
       "choices": {
+        "choice_observe_patience": {
+          "id": "choice_observe_patience",
+          "label": "Observer hvordan hun løser det",
+          "effects": {
+            "playerObservation": 2,
+            "playerCareInsight": 2
+          },
+          "insightSignals": [
+            "care_as_skilled_work",
+            "conflict_resolution_observation"
+          ]
+        },
+        "choice_interrupt_solution": {
+          "id": "choice_interrupt_solution",
+          "label": "Foreslå en rask løsning",
+          "effects": {
+            "relationshipTrust": -1,
+            "workerStress": 1,
+            "playerControlNeed": 1
+          },
+          "insightSignals": [
+            "overriding_care_worker"
+          ]
+        }
+      }
+    },
+    "event_care_work_visible": {
+      "id": "event_care_work_visible",
+      "label": "Omsorgsarbeidet blir synlig",
+      "eventType": "work_recognition",
+      "trigger": {
+        "phaseTypes": [
+          "care_visibility"
+        ]
+      },
+      "text": "Det ser ut som lek, men det er arbeid: blikk, avstand, stemme, kropp, timing. Sana styrer mer enn hun sier.",
+      "choices": {
+        "choice_recognize_skill": {
+          "id": "choice_recognize_skill",
+          "label": "Legg merke til ferdigheten",
+          "effects": {
+            "playerCareInsight": 2,
+            "playerObservation": 2
+          },
+          "insightSignals": [
+            "care_as_skilled_work",
+            "attention_to_care_work"
+          ]
+        },
+        "choice_dismiss_as_easy": {
+          "id": "choice_dismiss_as_easy",
+          "label": "Tenk at dette sikkert er enkelt",
+          "effects": {
+            "playerCareInsight": -2,
+            "relationshipTrust": -1
+          },
+          "insightSignals": [
+            "undervaluing_care_work"
+          ]
+        }
+      }
+    },
+    "event_care_worker_tired_after_day": {
+      "id": "event_care_worker_tired_after_day",
+      "label": "Trøtt etter dagen",
+      "eventType": "after_care_work",
+      "trigger": {
+        "characterIds": [
+          "friend_sana_hassan"
+        ],
+        "compatibleStates": [
+          "walking",
+          "going_home"
+        ]
+      },
+      "text": "Sana går rolig hjemover, men ansiktet hennes har fortsatt dagens lyder i seg.",
+      "choices": {
+        "choice_walk_with": {
+          "id": "choice_walk_with",
+          "label": "Gå et stykke sammen",
+          "effects": {
+            "relationshipTrust": 1,
+            "stressRelief": 1,
+            "conversationDepth": 1
+          },
+          "insightSignals": [
+            "care_worker_decompression",
+            "walk_and_talk"
+          ]
+        },
+        "choice_let_her_rest": {
+          "id": "choice_let_her_rest",
+          "label": "La henne hvile",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerBoundarySkill": 1,
+            "stressRelief": 1
+          },
+          "insightSignals": [
+            "reading_fatigue",
+            "care_without_demand"
+          ]
+        },
+        "choice_ask_many_questions": {
+          "id": "choice_ask_many_questions",
+          "label": "Still mange spørsmål om dagen",
+          "effects": {
+            "relationshipTrust": -1,
+            "stressRelief": -1,
+            "intrusionRisk": 1
+          },
+          "insightSignals": [
+            "poor_recovery_timing"
+          ]
+        }
+      }
+    },
+    "event_parent_pickup_tension": {
+      "id": "event_parent_pickup_tension",
+      "label": "Henting med friksjon",
+      "eventType": "care_transition_tension",
+      "trigger": {
+        "phaseTypes": [
+          "care_transition"
+        ]
+      },
+      "text": "En forelder er stresset, et barn vil ikke gå, og Sana må gjøre overgangen myk uten å eie noen av følelsene.",
+      "choices": {
+        "choice_keep_distance": {
+          "id": "choice_keep_distance",
+          "label": "Hold riktig avstand",
+          "effects": {
+            "workerStress": -1,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "appropriate_distance",
+            "respect_for_children_space"
+          ]
+        },
+        "choice_intervene": {
+          "id": "choice_intervene",
+          "label": "Bland deg inn",
+          "effects": {
+            "workerStress": 2,
+            "conflictRisk": 2,
+            "relationshipTrust": -1
+          },
+          "insightSignals": [
+            "overstepping_in_care_context"
+          ]
+        }
+      }
+    },
+    "event_grocery_worker_interrupted": {
+      "id": "event_grocery_worker_interrupted",
+      "label": "Avbrutt i vareflyten",
+      "eventType": "everyday_work_interruption",
+      "trigger": {
+        "characterIds": [
+          "friend_erik_lien"
+        ],
+        "compatibleStates": [
+          "stocking"
+        ]
+      },
+      "text": "Erik fyller varer. Hver gang noen spør om noe, mister han litt av rytmen og finner den igjen.",
+      "choices": {
+        "choice_wait_until_gap": {
+          "id": "choice_wait_until_gap",
+          "label": "Vent til det passer",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": -1,
+            "playerPatience": 1
+          },
+          "insightSignals": [
+            "interrupting_or_waiting",
+            "respect_for_practical_work"
+          ]
+        },
+        "choice_ask_quickly": {
+          "id": "choice_ask_quickly",
+          "label": "Spør raskt og konkret",
+          "effects": {
+            "relationshipTrust": 0,
+            "workerStress": 0,
+            "playerPrecision": 1
+          },
+          "insightSignals": [
+            "social_precision"
+          ]
+        },
+        "choice_start_chat": {
+          "id": "choice_start_chat",
+          "label": "Start en prat midt i arbeidet",
+          "effects": {
+            "relationshipTrust": -1,
+            "workerStress": 1,
+            "intrusionRisk": 1
+          },
+          "insightSignals": [
+            "poor_work_context_awareness"
+          ]
+        }
+      }
+    },
+    "event_everyday_logistics_visible": {
+      "id": "event_everyday_logistics_visible",
+      "label": "Logistikken blir synlig",
+      "eventType": "system_observation",
+      "trigger": {
+        "placeIds": [
+          "civi_grocery_kiwi_urban"
+        ]
+      },
+      "text": "Butikken virker selvfølgelig helt til du ser hvor mye som må stemme: varer, traller, hyller, kasser, bestillinger, tid.",
+      "choices": {
+        "choice_observe_system": {
+          "id": "choice_observe_system",
+          "label": "Observer systemet",
+          "effects": {
+            "playerSystemInsight": 2,
+            "playerObservation": 2
+          },
+          "insightSignals": [
+            "everyday_system_understanding",
+            "awareness_of_logistics"
+          ]
+        },
+        "choice_ignore_system": {
+          "id": "choice_ignore_system",
+          "label": "Ikke tenk over det",
+          "effects": {
+            "playerSystemInsight": -1
+          },
+          "insightSignals": [
+            "low_everyday_system_awareness"
+          ]
+        }
+      }
+    },
+    "event_grocery_worker_after_stress": {
+      "id": "event_grocery_worker_after_stress",
+      "label": "Etter kassa",
+      "eventType": "after_work_care",
+      "trigger": {
+        "characterIds": [
+          "friend_erik_lien"
+        ],
+        "compatibleStates": [
+          "parking",
+          "at_home"
+        ]
+      },
+      "text": "Erik sier at det gikk greit, men han sier det på den måten folk sier ting er greit når de ikke vil åpne en hel skuff.",
+      "choices": {
+        "choice_ask_once": {
+          "id": "choice_ask_once",
+          "label": "Spør én gang, rolig",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 1,
+            "intrusionRisk": 0
+          },
+          "insightSignals": [
+            "timing_of_care",
+            "reading_fatigue"
+          ]
+        },
+        "choice_change_topic": {
+          "id": "choice_change_topic",
+          "label": "Skift til et lettere tema",
+          "effects": {
+            "relationshipTrust": 0,
+            "moodRelief": 1,
+            "conversationDepth": -1
+          },
+          "insightSignals": [
+            "mood_management"
+          ]
+        },
+        "choice_press_details": {
+          "id": "choice_press_details",
+          "label": "Press på for detaljer",
+          "effects": {
+            "relationshipTrust": -1,
+            "intrusionRisk": 2,
+            "conversationDepth": -1
+          },
+          "insightSignals": [
+            "care_as_pressure"
+          ]
+        }
+      }
+    },
+    "event_creative_block": {
+      "id": "event_creative_block",
+      "label": "Kreativ blokkering",
+      "eventType": "creative_struggle",
+      "trigger": {
+        "characterIds": [
+          "friend_vetle_mo"
+        ],
+        "compatibleStates": [
+          "thinking",
+          "sitting",
+          "awake"
+        ]
+      },
+      "text": "Vetle sier at han har mange ideer. Det er ikke ideene som mangler. Det er formen, rytmen, første setning, resten av livet rundt den.",
+      "choices": {
+        "choice_listen_to_project": {
+          "id": "choice_listen_to_project",
+          "label": "Lytt til prosjektet hans",
+          "effects": {
+            "relationshipTrust": 2,
+            "conversationDepth": 2,
+            "playerEmpathy": 1
+          },
+          "insightSignals": [
+            "creative_attention",
+            "ability_to_listen"
+          ]
+        },
+        "choice_offer_structure": {
+          "id": "choice_offer_structure",
+          "label": "Tilby enkel struktur",
+          "effects": {
+            "relationshipTrust": 1,
+            "practicalHelp": 2,
+            "conversationDepth": 1
+          },
+          "insightSignals": [
+            "structure_help",
+            "practical_support"
+          ]
+        },
+        "choice_say_just_start": {
+          "id": "choice_say_just_start",
+          "label": "Si at han bare må begynne",
+          "effects": {
+            "relationshipTrust": -1,
+            "practicalHelp": -1,
+            "conversationDepth": -1
+          },
+          "insightSignals": [
+            "generic_advice_failure"
+          ]
+        }
+      }
+    },
+    "event_friend_avoids_home": {
+      "id": "event_friend_avoids_home",
+      "label": "Unngår hjemmet",
+      "eventType": "public_space_shelter",
+      "trigger": {
+        "characterIds": [
+          "friend_vetle_mo"
+        ],
+        "placeIds": [
+          "civi_library_urban_01",
+          "civi_cafe_001"
+        ]
+      },
+      "text": "Vetle sier ikke at han unngår å dra hjem. Han bare blir sittende litt for lenge på steder som ikke spør hvorfor han er der.",
+      "choices": {
+        "choice_invite_for_walk": {
+          "id": "choice_invite_for_walk",
+          "label": "Inviter ham med på en gåtur",
+          "effects": {
+            "relationshipTrust": 1,
+            "stressRelief": 1,
+            "conversationDepth": 1
+          },
+          "insightSignals": [
+            "public_space_as_shelter",
+            "care_as_movement"
+          ]
+        },
+        "choice_ask_directly": {
+          "id": "choice_ask_directly",
+          "label": "Spør direkte om han unngår hjemmet",
+          "effects": {
+            "relationshipTrust": 0,
+            "conversationDepth": 2,
+            "intrusionRisk": 1
+          },
+          "insightSignals": [
+            "directness",
+            "risk_in_care"
+          ]
+        },
+        "choice_ignore_pattern": {
+          "id": "choice_ignore_pattern",
+          "label": "Ikke legg merke til mønsteret",
+          "effects": {
+            "playerObservation": -1,
+            "conversationDepth": -1
+          },
+          "insightSignals": [
+            "missed_pattern"
+          ]
+        }
+      }
+    },
+    "event_public_space_as_shelter": {
+      "id": "event_public_space_as_shelter",
+      "label": "Offentlig rom som ly",
+      "eventType": "system_observation",
+      "trigger": {
+        "placeIds": [
+          "civi_library_urban_01"
+        ]
+      },
+      "text": "Biblioteket er ikke bare bøker. Det er varme, stoler, stillhet, strømuttak, toalett og en plass å være uten å kjøpe noe.",
+      "choices": {
+        "choice_understand_place": {
+          "id": "choice_understand_place",
+          "label": "Forstå stedet som sosial infrastruktur",
+          "effects": {
+            "playerSystemInsight": 2,
+            "playerCareInsight": 1
+          },
+          "insightSignals": [
+            "understanding_public_space",
+            "social_infrastructure_awareness"
+          ]
+        },
+        "choice_see_only_books": {
+          "id": "choice_see_only_books",
+          "label": "Se det bare som et sted for bøker",
+          "effects": {
+            "playerSystemInsight": -1
+          },
+          "insightSignals": [
+            "narrow_place_understanding"
+          ]
+        }
+      }
+    },
+    "event_late_afternoon_walk": {
+      "id": "event_late_afternoon_walk",
+      "label": "Sen ettermiddagstur",
+      "eventType": "walk_conversation",
+      "trigger": {
+        "placeIds": [
+          "civi_park_st_hanshaugen"
+        ]
+      },
+      "text": "Parken gjør samtalen mindre krevende. Dere kan gå, stoppe, se bort, begynne igjen.",
+      "choices": {
+        "choice_join_walk": {
+          "id": "choice_join_walk",
+          "label": "Bli med på gåturen",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 1,
+            "stressRelief": 1
+          },
+          "insightSignals": [
+            "ability_to_walk_and_talk",
+            "friendship_in_public_space"
+          ]
+        },
+        "choice_sit_down": {
+          "id": "choice_sit_down",
+          "label": "Sett deg ned sammen",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 1,
+            "moodRelief": 1
+          },
+          "insightSignals": [
+            "social_timing",
+            "shared_rest"
+          ]
+        },
+        "choice_keep_distance": {
+          "id": "choice_keep_distance",
+          "label": "Hold avstand",
+          "effects": {
+            "relationshipTrust": 0,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "appropriate_distance"
+          ]
+        }
+      }
+    },
+    "event_friend_needs_structure": {
+      "id": "event_friend_needs_structure",
+      "label": "Trenger struktur",
+      "eventType": "support_structure",
+      "trigger": {
+        "characterIds": [
+          "friend_vetle_mo"
+        ]
+      },
+      "text": "Vetle snakker i store buer. Alt henger sammen, men ingenting har rekkefølge ennå.",
+      "choices": {
+        "choice_make_small_plan": {
+          "id": "choice_make_small_plan",
+          "label": "Foreslå én liten plan for i morgen",
+          "effects": {
+            "relationshipTrust": 2,
+            "practicalHelp": 2,
+            "playerStructureSkill": 2
+          },
+          "insightSignals": [
+            "structure_help",
+            "care_as_practical_order"
+          ]
+        },
+        "choice_follow_all_threads": {
+          "id": "choice_follow_all_threads",
+          "label": "Følg alle tanketrådene hans",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 2,
+            "practicalHelp": -1
+          },
+          "insightSignals": [
+            "deep_listening_without_structure"
+          ]
+        },
+        "choice_cut_him_off": {
+          "id": "choice_cut_him_off",
+          "label": "Avbryt og si at han må skjerpe seg",
+          "effects": {
+            "relationshipTrust": -2,
+            "conversationDepth": -2,
+            "conflictRisk": 1
+          },
+          "insightSignals": [
+            "low_support_skill"
+          ]
+        }
+      }
+    },
+    "event_care_worker_decompressing": {
+      "id": "event_care_worker_decompressing",
+      "label": "Omsorgsarbeideren puster ut",
+      "eventType": "decompression",
+      "trigger": {
+        "characterIds": [
+          "friend_sana_hassan"
+        ],
+        "placeIds": [
+          "civi_park_st_hanshaugen"
+        ]
+      },
+      "text": "Sana går saktere enn vanlig. Ikke trist, bare endelig uten ansvar for alle bevegelser rundt seg.",
+      "choices": {
+        "choice_walk_quietly": {
+          "id": "choice_walk_quietly",
+          "label": "Gå rolig sammen",
+          "effects": {
+            "relationshipTrust": 2,
+            "stressRelief": 2,
+            "playerEmpathy": 1
+          },
+          "insightSignals": [
+            "reading_openness",
+            "care_worker_decompression"
+          ]
+        },
+        "choice_ask_about_children": {
+          "id": "choice_ask_about_children",
+          "label": "Spør om barna",
+          "effects": {
+            "relationshipTrust": 0,
+            "conversationDepth": 1,
+            "stressRelief": -1
+          },
+          "insightSignals": [
+            "bringing_work_back"
+          ]
+        },
+        "choice_offer_different_topic": {
+          "id": "choice_offer_different_topic",
+          "label": "Snakk om noe annet enn jobb",
+          "effects": {
+            "relationshipTrust": 1,
+            "stressRelief": 1,
+            "moodRelief": 1
+          },
+          "insightSignals": [
+            "recovery_sensitive_conversation"
+          ]
+        }
+      }
+    },
+    "event_restaurant_delay_costs_money": {
+      "id": "event_restaurant_delay_costs_money",
+      "label": "Forsinkelsen koster",
+      "eventType": "platform_economy",
+      "trigger": {
+        "placeIds": [
+          "civi_food_pickup_street_01",
+          "civi_food_pickup_street_02"
+        ]
+      },
+      "text": "Restauranten sier at maten straks er klar. Amir ser på klokka. Straks er ikke et nøytralt ord når man får betalt per levering.",
+      "choices": {
+        "choice_notice_time_money": {
+          "id": "choice_notice_time_money",
+          "label": "Legg merke til at tid er penger her",
+          "effects": {
+            "playerSystemInsight": 2,
+            "playerObservation": 1
+          },
+          "insightSignals": [
+            "time_as_money",
+            "platform_economy_awareness"
+          ]
+        },
+        "choice_blame_amir": {
+          "id": "choice_blame_amir",
+          "label": "Tenk at han bare burde planlagt bedre",
+          "effects": {
+            "playerSystemInsight": -2,
+            "relationshipTrust": -1
+          },
+          "insightSignals": [
+            "individualizing_system_pressure"
+          ]
+        }
+      }
+    },
+    "event_platform_pressure_visible": {
+      "id": "event_platform_pressure_visible",
+      "label": "Plattformpresset blir synlig",
+      "eventType": "system_observation",
+      "trigger": {
+        "roleIds": [
+          "role_delivery_rider"
+        ]
+      },
+      "text": "Det er ingen sjef her, men Amir blir likevel styrt. Telefonen piper, ruten endres, neste valg blir mindre fritt.",
+      "choices": {
+        "choice_understand_algorithm": {
+          "id": "choice_understand_algorithm",
+          "label": "Forstå appen som styringssystem",
+          "effects": {
+            "playerSystemInsight": 3,
+            "playerObservation": 1
+          },
+          "insightSignals": [
+            "algorithmic_control_awareness",
+            "body_under_algorithm"
+          ]
+        },
+        "choice_see_freedom": {
+          "id": "choice_see_freedom",
+          "label": "Tenk at fleksibiliteten betyr frihet",
+          "effects": {
+            "playerSystemInsight": -1
+          },
+          "insightSignals": [
+            "surface_level_freedom_reading"
+          ]
+        }
+      }
+    },
+    "event_friend_controlled_by_app": {
+      "id": "event_friend_controlled_by_app",
+      "label": "Styrt av appen",
+      "eventType": "algorithmic_interruption",
+      "trigger": {
+        "characterIds": [
+          "friend_amir_nouri"
+        ],
+        "compatibleStates": [
+          "working"
+        ]
+      },
+      "text": "Amir rekker akkurat å si noe før mobilen piper. Han ser ned, og samtalen deres blir mindre viktig enn neste ordre.",
+      "choices": {
+        "choice_let_him_work": {
+          "id": "choice_let_him_work",
+          "label": "La ham jobbe videre",
+          "effects": {
+            "relationshipTrust": 1,
+            "workerStress": -1,
+            "playerBoundarySkill": 1
+          },
+          "insightSignals": [
+            "respect_for_work_flow",
+            "care_vs_practical_help"
+          ]
+        },
         "choice_walk_with_him": {
+          "id": "choice_walk_with_him",
           "label": "Gå et stykke sammen med ham",
           "effects": {
             "relationshipTrust": 1,
             "playerSystemInsight": 1,
             "timeCost": 1
-          }
+          },
+          "insightSignals": [
+            "solidarity_with_precarious_work"
+          ]
         },
-        "choice_tell_him_to_rest": {
-          "label": "Si at han burde ta pause",
+        "choice_take_offense": {
+          "id": "choice_take_offense",
+          "label": "Bli irritert fordi han avbryter",
+          "effects": {
+            "relationshipTrust": -2,
+            "conflictRisk": 1,
+            "playerInsecurity": 1
+          },
+          "insightSignals": [
+            "misreading_algorithmic_pressure"
+          ]
+        }
+      }
+    },
+    "event_body_wear_after_shift": {
+      "id": "event_body_wear_after_shift",
+      "label": "Kroppen etter skiftet",
+      "eventType": "body_wear",
+      "trigger": {
+        "roleIds": [
+          "role_delivery_rider"
+        ],
+        "compatibleStates": [
+          "resting",
+          "at_home"
+        ]
+      },
+      "text": "Amir setter seg som om kroppen kom fram etter ham. Knærne, ryggen, hendene — alt har vært på jobb.",
+      "choices": {
+        "choice_offer_food": {
+          "id": "choice_offer_food",
+          "label": "Tilby noe å spise",
+          "effects": {
+            "relationshipTrust": 2,
+            "stressRelief": 1,
+            "practicalHelp": 1
+          },
+          "insightSignals": [
+            "practical_care",
+            "body_under_algorithm"
+          ]
+        },
+        "choice_ask_if_ok": {
+          "id": "choice_ask_if_ok",
+          "label": "Spør om han er ok",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 1,
+            "playerEmpathy": 1
+          },
+          "insightSignals": [
+            "care_for_body_wear"
+          ]
+        },
+        "choice_ignore_wear": {
+          "id": "choice_ignore_wear",
+          "label": "Ikke kommenter det",
+          "effects": {
+            "playerObservation": -1,
+            "relationshipTrust": 0
+          },
+          "insightSignals": [
+            "missed_body_signal"
+          ]
+        }
+      }
+    },
+    "event_friend_seen_at_home_light_on": {
+      "id": "event_friend_seen_at_home_light_on",
+      "label": "Lyset er på",
+      "eventType": "private_threshold",
+      "trigger": {
+        "compatibleStates": [
+          "at_home",
+          "recovering",
+          "awake"
+        ],
+        "timeRange": "20:00-02:00"
+      },
+      "text": "Du ser at lyset er på hjemme hos vennen din. Det betyr at noen er der. Det betyr ikke automatisk at døren er åpen.",
+      "choices": {
+        "choice_send_short_message": {
+          "id": "choice_send_short_message",
+          "label": "Send en kort melding",
+          "effects": {
+            "relationshipTrust": 1,
+            "intrusionRisk": 0,
+            "playerEmpathy": 1
+          },
+          "insightSignals": [
+            "respect_for_privacy",
+            "care_without_access"
+          ]
+        },
+        "choice_knock_on_door": {
+          "id": "choice_knock_on_door",
+          "label": "Bank på",
+          "effects": {
+            "relationshipTrust": -1,
+            "intrusionRisk": 2,
+            "playerBoldness": 1
+          },
+          "insightSignals": [
+            "intrusion_risk",
+            "private_boundary_test"
+          ]
+        },
+        "choice_leave_quietly": {
+          "id": "choice_leave_quietly",
+          "label": "Gå videre",
           "effects": {
             "relationshipTrust": 0,
-            "playerCare": 1,
-            "practicalHelp": 0
-          }
-        },
-        "choice_let_him_work": {
-          "label": "La ham jobbe videre",
+            "intrusionRisk": -1,
+            "playerPatience": 1
+          },
+          "insightSignals": [
+            "ability_to_wait",
+            "privacy_respect"
+          ]
+        }
+      }
+    },
+    "event_boundary_at_private_home": {
+      "id": "event_boundary_at_private_home",
+      "label": "Privat grense",
+      "eventType": "private_boundary",
+      "trigger": {
+        "phaseTypes": [
+          "private_threshold",
+          "private_overactivity"
+        ]
+      },
+      "text": "Et hjem er synlig utenfra, men det er fortsatt et hjem. Kartet viser hvor folk er, ikke hva du har rett til.",
+      "choices": {
+        "choice_respect_home": {
+          "id": "choice_respect_home",
+          "label": "Respekter hjemmet som grense",
           "effects": {
-            "relationshipTrust": 0,
-            "playerBoundarySkill": 1,
-            "timeCost": 0
-          }
+            "relationshipTrust": 1,
+            "intrusionRisk": -2,
+            "playerBoundarySkill": 2
+          },
+          "insightSignals": [
+            "respect_for_privacy",
+            "boundary_skill"
+          ]
+        },
+        "choice_treat_map_as_access": {
+          "id": "choice_treat_map_as_access",
+          "label": "Tolk synlighet som tilgang",
+          "effects": {
+            "relationshipTrust": -2,
+            "intrusionRisk": 3,
+            "conflictRisk": 1
+          },
+          "insightSignals": [
+            "visibility_vs_access_confusion"
+          ]
+        }
+      }
+    },
+    "event_late_message": {
+      "id": "event_late_message",
+      "label": "Melding for sent",
+      "eventType": "late_night_boundary",
+      "trigger": {
+        "characterIds": [
+          "friend_vetle_mo"
+        ],
+        "compatibleStates": [
+          "awake"
+        ],
+        "timeRange": "00:00-02:30"
+      },
+      "text": "Vetle sender en lang melding etter midnatt. Den begynner med én ting og slutter et helt annet sted.",
+      "choices": {
+        "choice_reply_tomorrow": {
+          "id": "choice_reply_tomorrow",
+          "label": "Svar i morgen",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerBoundarySkill": 2,
+            "intrusionRisk": -1
+          },
+          "insightSignals": [
+            "boundary_setting",
+            "care_vs_enabling"
+          ]
+        },
+        "choice_reply_now": {
+          "id": "choice_reply_now",
+          "label": "Svar nå",
+          "effects": {
+            "relationshipTrust": 1,
+            "conversationDepth": 2,
+            "playerSleepCost": 1
+          },
+          "insightSignals": [
+            "late_night_responsiveness",
+            "care_at_personal_cost"
+          ]
+        },
+        "choice_set_boundary": {
+          "id": "choice_set_boundary",
+          "label": "Sett en rolig grense",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerBoundarySkill": 3,
+            "conversationFuture": 1
+          },
+          "insightSignals": [
+            "structured_care",
+            "boundary_setting"
+          ]
         }
       }
     }
