@@ -388,7 +388,18 @@ function main() {
     },
     topUsedDesignCodes: topUsed,
     unusedDesignCodes: unused,
-    invalidExplicitDesignCodes: invalidExplicit
+    invalidExplicitDesignCodes: invalidExplicit,
+    pilotBatch2: {
+      baselineExplicit: 73,
+      baselineByEntityType: { places: 28, people: 30, articles: 15 },
+      addedExplicit: Math.max(0, totalExplicit - 73),
+      addedByEntityType: {
+        places: Math.max(0, placeStats.withExplicit - 28),
+        people: Math.max(0, peopleStats.withExplicit - 30),
+        articles: Math.max(0, articleStats.withExplicit - 15)
+      },
+      scope: "Kontrollert Pilot batch 2: høy nytte for sentrale kartsteder, stedskoblede people og kunnskapslagartikler."
+    }
   };
 
   if (!fs.existsSync(REPORTS_DIR)) fs.mkdirSync(REPORTS_DIR, { recursive: true });
@@ -465,6 +476,16 @@ function toMarkdown(r) {
   }
   if (!anyExplicit) lines.push("- (ingen)");
   lines.push("");
+  const pb2 = r.pilotBatch2;
+  if (pb2) {
+    lines.push("## Pilot batch 2");
+    lines.push("");
+    lines.push(`- Batch 1-baseline: ${pb2.baselineExplicit} eksplisitte \`visual.designCode\` (${pb2.baselineByEntityType.places} places, ${pb2.baselineByEntityType.people} people, ${pb2.baselineByEntityType.articles} articles).`);
+    lines.push(`- Nåværende total etter batch 2: ${r.resolution.explicit} eksplisitte \`visual.designCode\`.`);
+    lines.push(`- Netto økning etter batch 1: ${pb2.addedExplicit} (${pb2.addedByEntityType.places} places, ${pb2.addedByEntityType.people} people, ${pb2.addedByEntityType.articles} articles).`);
+    lines.push(`- Omfang: ${pb2.scope}`);
+    lines.push("");
+  }
   lines.push("## Topp brukte designCodes");
   lines.push("");
   for (const { code, count } of r.topUsedDesignCodes) lines.push(`- \`${code}\`: ${count}`);
