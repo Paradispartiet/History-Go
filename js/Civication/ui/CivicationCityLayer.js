@@ -369,10 +369,19 @@
     const channelHint = CHANNEL_HINTS[String(loc.channel || "")] || "";
     const relatedSection = String(loc.relatedSection || "");
 
+    // Ekte brand-kafésted (fra CivicationSocialPlaceResolver): vis brandnavn +
+    // tilknyttet History Go-sted + fase + kort intro i stedet for generisk header.
+    const resolver = window.CivicationSocialPlaceResolver;
+    const isBrandPlace = resolver && typeof resolver.isBrandSocialPlace === "function" &&
+      resolver.isBrandSocialPlace(loc);
+    const headerHtml = isBrandPlace
+      ? resolver.buildBrandPlaceHeaderHtml(loc, _model.snapshotPhase)
+      : ('<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " Sted · " + esc(phaseLabel(loc.phase)) + "</div>" +
+         "<h3>" + esc(loc.label || loc.id) + "</h3>" +
+         '<p class="civi-city-detail-desc">' + esc(loc.description || "") + "</p>");
+
     showDetail(
-      '<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " Sted · " + esc(phaseLabel(loc.phase)) + "</div>" +
-      "<h3>" + esc(loc.label || loc.id) + "</h3>" +
-      '<p class="civi-city-detail-desc">' + esc(loc.description || "") + "</p>" +
+      headerHtml +
       '<div class="civi-city-detail-status' + (active ? " is-active" : "") + '">' +
         (active ? "Aktivt i denne fasen" : "Roligere i denne fasen") + "</div>" +
       (activitiesHtml ? '<div class="civi-city-detail-section"><h4>Aktiviteter</h4><div class="civi-city-chips">' + activitiesHtml + "</div></div>" : "") +
