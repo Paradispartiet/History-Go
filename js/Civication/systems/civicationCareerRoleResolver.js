@@ -19,6 +19,7 @@
     ekspeditor: 'naer_ekspeditor',
     arbeider: 'naer_arbeider',
     lager_og_driftsmedarbeider: 'naer_lager_og_driftsmedarbeider',
+    renholder: 'naer_renholder',
     administrasjonsmedarbeider: 'naer_administrasjonsmedarbeider',
     fagarbeider: 'naer_fagarbeider',
     formann: 'naer_formann',
@@ -41,6 +42,8 @@
     naer_ekspeditor: 'ekspeditor',
     naer_arbeider: 'arbeider',
     naer_lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
+    renholder: 'renholder',
+    naer_renholder: 'renholder',
     naer_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     naer_fagarbeider: 'fagarbeider',
     naer_formann: 'formann',
@@ -69,6 +72,7 @@
     ekspeditor_butikkmedarbeider: 'ekspeditor',
 
     lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
+    renholder: 'renholder',
     okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     fagarbeider: 'fagarbeider',
@@ -175,6 +179,7 @@
     if (careerId === 'naeringsliv') {
       if (roleKey === 'ekspeditor' || roleKey.includes('ekspedit') || roleKey.includes('butikk')) return 'ekspeditor';
       if (roleKey === 'lager_og_driftsmedarbeider' || roleKey.includes('lager_og_driftsmedarbeider')) return 'lager_og_driftsmedarbeider';
+      if (roleKey === 'renholder' || roleKey.includes('renholder')) return 'renholder';
       if (roleKey === 'arbeider') return 'arbeider';
       if (roleKey === 'administrasjonsmedarbeider' || roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
       if (roleKey === 'fagarbeider' || roleKey.includes('fagarbeider')) return 'fagarbeider';
@@ -186,6 +191,7 @@
       if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey];
 
       if (titleKey.includes('ekspedit') || titleKey.includes('butikkmedarbeider')) return 'ekspeditor';
+      if (titleKey.includes('renholder') || titleKey.includes('renhold')) return 'renholder';
       if (titleKey.includes('lager')) return 'arbeider';
       if (titleKey.includes('administrasjon') || titleKey.includes('administrasjonsmedarbeider')) return 'administrasjonsmedarbeider';
       if (titleKey.includes('fagarbeider')) return 'fagarbeider';
@@ -228,6 +234,7 @@
     if (roleKey.includes('by_arkitekt')) return 'by_arkitekt';
     if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
     if (roleKey.includes('lager_og_driftsmedarbeider')) return 'lager_og_driftsmedarbeider';
+    if (roleKey.includes('renholder')) return 'renholder';
     if (roleKey.includes('arbeider')) return 'arbeider';
     if (roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
     if (roleKey.includes('fagarbeider')) return 'fagarbeider';
