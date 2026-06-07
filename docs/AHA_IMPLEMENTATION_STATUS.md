@@ -14,7 +14,7 @@
 - A minimal in-memory duplicate guard blocks repeated execution of the same `runId` plus confirmation timestamp during the current runtime. It does not use `localStorage`; durable cross-runtime idempotency remains a future database-contract concern.
 - Structured results expose `resultStatus`, `writeStatus`, `auditStatus`, `auditId`, and `rollbackStatus`. Because rollback is not implemented, `rollbackStatus` is always `not_available`; the adapter never claims `rolled_back`.
 - Manual sync history is available through a read-only reader that reuses the existing audit repository and database connection. It does not poll, sync, write audit entries, or write database state.
-- A read-only **Manual sync run details** panel can open one selected history run and can be closed without persisting UI state. The selection exists only in dashboard memory.
+- A read-only **Manual sync details** panel can open one selected history run and can be closed without persisting UI state. The selection exists only in dashboard memory.
 - History details are built through an explicit whitelist. They expose audit/status metadata, modules, counts, readiness/validation/checklist summaries, minimized payload summary, confirmation summary, warnings, errors, and a short result message when available.
 - The details panel never renders a full payload, full item data, secrets, tokens, passwords, credentials, or connection strings. Unknown fields and nested object dumps are excluded.
 - Opening or closing history details does not change the existing confirmation, sync, domain-write, or audit-write flow.
@@ -26,6 +26,10 @@
 - Critical blockers remain visible outside Advanced diagnostics, including validation errors, blocked readiness, missing target or audit configuration, audit/write failures, missing required confirmation, and a failed last run.
 - The confirmation view now prioritizes what will be synced, target, module/item totals, blockers or warnings, and audit status while preserving the existing gates.
 - This simplification changes UI organization only. The adapter, state machine, target contract, database write, audit writer, payload written, retry execution, and confirmation rules are unchanged. Auto-sync remains absent.
+- AHA Home card copy is normalized around short English titles such as **Sync Hub**, **System health**, **Data readiness**, **Manual sync history**, and **Advanced diagnostics**.
+- Help text, action labels, and status labels now use consistent wording and capitalization. Normal empty states identify missing history, blockers, module data, warnings, errors, target configuration, and details without treating expected absence as a system failure.
+- Main-view error copy is short and does not expose raw error objects. Sanitized technical detail remains limited to the existing read-only diagnostics/details surfaces; full payloads, secrets, credentials, connection strings, and raw audit JSON remain excluded.
+- This normalization is UI text and organization only. Sync behavior, database/write flow, adapter behavior, audit writing, state-machine rules, payload contracts, history/details data flow, retry logic, and module-health calculation are unchanged. Auto-sync is still not implemented.
 
 ## Not implemented
 
@@ -36,4 +40,4 @@
 
 ## Next recommended PR
 
-`chore: review AHA Home dashboard information hierarchy`
+`chore: improve AHA Home mobile/tablet layout`

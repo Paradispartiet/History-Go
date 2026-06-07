@@ -75,14 +75,21 @@ The adapter passes only included modules to the target writer. Excluded modules,
 - Advanced/details state remains local to the UI and is not stored in `localStorage`.
 - This phase is UI organization only. It does not change `executeAhaManualSyncRun`, adapter gates, state transitions, target/database writes, the audit writer, the payload contract, confirmation authority, retry execution, or auto-sync behavior.
 
-### 8. AHA Home dashboard information hierarchy review — next
+### 8. AHA Home copy normalization — implemented
 
-Review the wider AHA Home dashboard hierarchy so the most important status and actions are easier to scan. Keep this separate from Sync Hub write behavior and preserve the existing manual-only guarantees.
+- Sync Hub/Home card titles, help text, action labels, status labels, empty states, and compact error states use consistent English wording.
+- Critical blockers and missing target configuration remain visible, while normal empty states are concise and non-alarming.
+- Main-view copy does not expose raw errors, full payloads, secrets, credentials, connection strings, or raw audit JSON.
+- This phase changes UI text and organization only. Core sync, adapter, state-machine, target/database writes, audit writing, payload contracts, retry behavior, and manual confirmation gates are unchanged. No auto-sync was added.
 
-### 9. Manual sync retry execution — later, not implemented
+### 9. AHA Home mobile/tablet layout — next
+
+Improve the existing AHA Home layout for mobile and tablet widths without changing sync/write behavior or introducing auto-sync.
+
+### 10. Manual sync retry execution — later, not implemented
 
 Actual retry may be considered only in a separate, explicitly approved phase after the adapter, reconstruction, confirmation, audit, failure, partial-write, and rollback requirements in the retry contract are implemented and tested. Eligibility or preview state alone must never grant write authority.
 
-### 10. Activation / auto-sync / auto-retry — not introduced
+### 11. Activation / auto-sync / auto-retry — not introduced
 
 No activation, auto-sync, scheduled retry, background retry, or automatic retry after failure is included. Any future activation must be a separate, explicitly approved phase after durable operational safeguards and explicit product approval. Auto-retry is not permitted: retry must always remain one deliberate user action, one fresh confirmation, one new run, and one linked audit trail.
