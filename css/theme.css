@@ -122,20 +122,25 @@ body.hg-app.placecard-open::before{
 /* ===================================================== */
 
 body.hg-app header.site-header{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
   height: 74px;
-  z-index: 20;
+  z-index: 120;
+
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
 
-  padding: 6px 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: calc(12px + env(safe-area-inset-left));
+  padding-right: calc(12px + env(safe-area-inset-right));
 
   background: #000;
   overflow: visible;
