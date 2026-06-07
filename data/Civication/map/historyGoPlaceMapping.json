@@ -1,18 +1,630 @@
 {
   "schema": "civication.historyGoPlaceMapping.v1",
   "version": 1,
-  "mappings": {
-    "map_oslo_bislett_stadion": {
-      "id": "map_oslo_bislett_stadion",
-      "historyGoPlaceId": "oslo_bislett_stadion",
-      "civicationPlaceId": "civi_sport_bislett",
-      "buildingTypeId": "building_small_urban_stadium",
+  "note": "Mapping mellom History Go-stedskilder og Civication-kartroller. Dette er category/source-file mapping, ikke full per-place mapping. Konkrete historyGoPlaceId-er må verifiseres mot kildefilene før endelig per-place mapping.",
+  "sourceOfTruth": {
+    "manifestPath": "data/places/manifest.json",
+    "manifestListsPlaceFiles": true
+  },
+  "field_docs": {
+    "sourceFile": "History Go-kildefil fra data/places/manifest.json.",
+    "historyGoCategory": "Overordnet History Go-kategori.",
+    "civicationLayer": "Hvilket Civication-lag stedet primært tilhører.",
+    "defaultBuildingTypeId": "Standard miniatyr-/kartobjekt for steder fra denne kilden.",
+    "mapRole": "Hva stedet gjør på Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Hvilke sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Hvilke stedsfaser som typisk passer.",
+    "groundhopperRelevant": "Om stedet normalt bør regnes som Groundhopper-relevant.",
+    "needsPerPlaceMapping": "Om hver enkelt placeId senere bør få egen mapping."
+  },
+  "sourceFileMappings": {
+    "mapping_by_oslo": {
+      "id": "mapping_by_oslo",
+      "sourceFile": "places/by/oslo/places_by.json",
+      "historyGoCategory": "by",
+      "civicationLayer": "city_life",
+      "defaultBuildingTypeId": "building_urban_block_or_landmark",
+      "mapRole": "urban_identity_place",
+      "visibleAs": "city_place",
+      "socialFunctions": [
+        "local_identity",
+        "everyday_life",
+        "walking",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "midday_public_life",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_historie_oslo": {
+      "id": "mapping_historie_oslo",
+      "sourceFile": "places/historie/oslo/places_historie.json",
+      "historyGoCategory": "historie",
+      "civicationLayer": "memory",
+      "defaultBuildingTypeId": "building_historical_marker",
+      "mapRole": "historical_memory_place",
+      "visibleAs": "memory_landmark",
+      "socialFunctions": [
+        "history",
+        "reflection",
+        "local_memory",
+        "story_unlock"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "guided_memory",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_historie_added_batch_01": {
+      "id": "mapping_historie_added_batch_01",
+      "sourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "historyGoCategory": "historie",
+      "civicationLayer": "memory",
+      "defaultBuildingTypeId": "building_historical_marker",
+      "mapRole": "historical_memory_place",
+      "visibleAs": "memory_landmark",
+      "socialFunctions": [
+        "history",
+        "reflection",
+        "local_memory",
+        "story_unlock"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "guided_memory",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_sport_oslo": {
+      "id": "mapping_sport_oslo",
+      "sourceFile": "places/sport/oslo/places_sport.json",
+      "historyGoCategory": "sport",
+      "civicationLayer": "sport",
+      "defaultBuildingTypeId": "building_sport_ground",
       "mapRole": "sport_memory_place",
-      "visibleAs": "stadium",
+      "visibleAs": "stadium_or_sport_facility",
       "socialFunctions": [
         "training",
         "event",
         "groundhopper",
-        "local_identity"
+        "local_identity",
+        "competition"
       ],
-      "phase
+      "phaseTypes": [
+        "training",
+        "matchday",
+        "empty_ground",
+        "after_event"
+      ],
+      "groundhopperRelevant": true,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_sport_lekeplasser_trening": {
+      "id": "mapping_sport_lekeplasser_trening",
+      "sourceFile": "places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "historyGoCategory": "sport",
+      "civicationLayer": "training_and_play",
+      "defaultBuildingTypeId": "building_playground_training_area",
+      "mapRole": "play_and_training_place",
+      "visibleAs": "playground_or_training_area",
+      "socialFunctions": [
+        "children_play",
+        "training",
+        "family_life",
+        "neighborhood_activity"
+      ],
+      "phaseTypes": [
+        "children_play",
+        "family_afternoon",
+        "outdoor_training",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_motorsport_ostlandet": {
+      "id": "mapping_motorsport_ostlandet",
+      "sourceFile": "places/sport/ostlandet/places_motorsport_ostlandet.json",
+      "historyGoCategory": "sport",
+      "civicationLayer": "sport",
+      "defaultBuildingTypeId": "building_motorsport_facility",
+      "mapRole": "motorsport_groundhopper_place",
+      "visibleAs": "track_or_motorsport_facility",
+      "socialFunctions": [
+        "groundhopper",
+        "competition",
+        "technical_sport",
+        "local_club_life",
+        "event"
+      ],
+      "phaseTypes": [
+        "race_day",
+        "training",
+        "garage_work",
+        "empty_track"
+      ],
+      "groundhopperRelevant": true,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_kunst_oslo": {
+      "id": "mapping_kunst_oslo",
+      "sourceFile": "places/kunst/oslo/places_kunst.json",
+      "historyGoCategory": "kunst",
+      "civicationLayer": "culture",
+      "defaultBuildingTypeId": "building_gallery_or_art_place",
+      "mapRole": "art_and_aesthetic_place",
+      "visibleAs": "gallery_or_public_art",
+      "socialFunctions": [
+        "aesthetic_observation",
+        "culture",
+        "reflection",
+        "creative_identity"
+      ],
+      "phaseTypes": [
+        "exhibition",
+        "quiet_viewing",
+        "public_art_encounter"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_litteratur_oslo": {
+      "id": "mapping_litteratur_oslo",
+      "sourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "historyGoCategory": "litteratur",
+      "civicationLayer": "knowledge_and_culture",
+      "defaultBuildingTypeId": "building_library_bookstore_or_writer_place",
+      "mapRole": "literary_memory_place",
+      "visibleAs": "literary_place",
+      "socialFunctions": [
+        "reading",
+        "writing",
+        "literary_memory",
+        "lesespor"
+      ],
+      "phaseTypes": [
+        "quiet_reading",
+        "writing_session",
+        "literary_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_musikk_oslo": {
+      "id": "mapping_musikk_oslo",
+      "sourceFile": "places/musikk/oslo/places_musikk.json",
+      "historyGoCategory": "musikk",
+      "civicationLayer": "culture_and_nightlife",
+      "defaultBuildingTypeId": "building_music_venue",
+      "mapRole": "music_memory_place",
+      "visibleAs": "venue_or_music_place",
+      "socialFunctions": [
+        "concert",
+        "nightlife",
+        "scene_identity",
+        "subculture"
+      ],
+      "phaseTypes": [
+        "soundcheck",
+        "concert_evening",
+        "late_night_exit",
+        "empty_venue"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_media_oslo": {
+      "id": "mapping_media_oslo",
+      "sourceFile": "places/media/oslo/places_oslo_media.json",
+      "historyGoCategory": "media",
+      "civicationLayer": "public_discourse",
+      "defaultBuildingTypeId": "building_media_house",
+      "mapRole": "media_and_public_discourse_place",
+      "visibleAs": "media_building",
+      "socialFunctions": [
+        "news",
+        "public_discourse",
+        "information_flow",
+        "work"
+      ],
+      "phaseTypes": [
+        "deadline_pressure",
+        "newsroom_day",
+        "public_attention"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_film_oslo": {
+      "id": "mapping_film_oslo",
+      "sourceFile": "places/film/oslo/places_oslo_film.json",
+      "historyGoCategory": "film",
+      "civicationLayer": "culture",
+      "defaultBuildingTypeId": "building_cinema_or_film_location",
+      "mapRole": "film_memory_place",
+      "visibleAs": "cinema_or_film_location",
+      "socialFunctions": [
+        "cinema",
+        "story",
+        "popular_memory",
+        "cultural_event"
+      ],
+      "phaseTypes": [
+        "screening",
+        "film_memory",
+        "evening_culture"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_popkultur_oslo": {
+      "id": "mapping_popkultur_oslo",
+      "sourceFile": "places/popkultur/oslo/places_oslo_populaerkultur.json",
+      "historyGoCategory": "popkultur",
+      "civicationLayer": "popular_culture",
+      "defaultBuildingTypeId": "building_popculture_marker",
+      "mapRole": "popular_culture_place",
+      "visibleAs": "popculture_landmark",
+      "socialFunctions": [
+        "popular_memory",
+        "fandom",
+        "youth_culture",
+        "story_unlock"
+      ],
+      "phaseTypes": [
+        "fan_memory",
+        "public_recognition",
+        "casual_visit"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_subkultur_oslo": {
+      "id": "mapping_subkultur_oslo",
+      "sourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "historyGoCategory": "subkultur",
+      "civicationLayer": "subculture",
+      "defaultBuildingTypeId": "building_subculture_spot",
+      "mapRole": "subcultural_identity_place",
+      "visibleAs": "subculture_spot",
+      "socialFunctions": [
+        "scene_identity",
+        "youth_culture",
+        "alternative_social_life",
+        "street_culture"
+      ],
+      "phaseTypes": [
+        "hangout",
+        "late_evening",
+        "street_culture",
+        "informal_meeting"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_naeringsliv_oslo": {
+      "id": "mapping_naeringsliv_oslo",
+      "sourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "historyGoCategory": "naeringsliv",
+      "civicationLayer": "work_and_economy",
+      "defaultBuildingTypeId": "building_workplace_or_business",
+      "mapRole": "economic_life_place",
+      "visibleAs": "workplace_or_business_district",
+      "socialFunctions": [
+        "work",
+        "economy",
+        "class_signal",
+        "career"
+      ],
+      "phaseTypes": [
+        "workday",
+        "lunch_pressure",
+        "after_work",
+        "business_rhythm"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_politikk_oslo": {
+      "id": "mapping_politikk_oslo",
+      "sourceFile": "places/politikk/oslo/places_politikk.json",
+      "historyGoCategory": "politikk",
+      "civicationLayer": "civic_system",
+      "defaultBuildingTypeId": "building_civic_or_political",
+      "mapRole": "political_power_place",
+      "visibleAs": "civic_landmark",
+      "socialFunctions": [
+        "politics",
+        "power",
+        "public_decision",
+        "democracy"
+      ],
+      "phaseTypes": [
+        "public_debate",
+        "institutional_day",
+        "protest",
+        "quiet_power"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_vitenskap_oslo": {
+      "id": "mapping_vitenskap_oslo",
+      "sourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "historyGoCategory": "vitenskap",
+      "civicationLayer": "knowledge",
+      "defaultBuildingTypeId": "building_science_or_research",
+      "mapRole": "science_learning_place",
+      "visibleAs": "science_institution",
+      "socialFunctions": [
+        "learning",
+        "research",
+        "knowledge",
+        "public_understanding"
+      ],
+      "phaseTypes": [
+        "study",
+        "research_day",
+        "public_learning",
+        "quiet_institution"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_vitenskap_historiske_institusjoner": {
+      "id": "mapping_vitenskap_historiske_institusjoner",
+      "sourceFile": "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+      "historyGoCategory": "vitenskap",
+      "civicationLayer": "knowledge_memory",
+      "defaultBuildingTypeId": "building_historical_science_institution",
+      "mapRole": "knowledge_memory_place",
+      "visibleAs": "historical_institution",
+      "socialFunctions": [
+        "learning",
+        "research_history",
+        "institutional_memory",
+        "knowledge"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "study",
+        "institutional_memory"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_psykologi_oslo": {
+      "id": "mapping_psykologi_oslo",
+      "sourceFile": "places/psykologi/oslo/places_psykologi.json",
+      "historyGoCategory": "psykologi",
+      "civicationLayer": "psychology_and_self",
+      "defaultBuildingTypeId": "building_psychology_room_or_institution",
+      "mapRole": "psychological_insight_place",
+      "visibleAs": "psychology_place",
+      "socialFunctions": [
+        "reflection",
+        "self_insight",
+        "mental_models",
+        "learning_profile"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "self_observation",
+        "insight_session"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_alna": {
+      "id": "mapping_natur_alna",
+      "sourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature",
+      "defaultBuildingTypeId": "building_nature_area",
+      "mapRole": "urban_nature_place",
+      "visibleAs": "river_or_green_area",
+      "socialFunctions": [
+        "walking",
+        "training",
+        "reflection",
+        "family_life"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "outdoor_training",
+        "quiet_reflection",
+        "family_afternoon"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_akerselva": {
+      "id": "mapping_natur_akerselva",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_akerselvarute.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature_and_city_route",
+      "defaultBuildingTypeId": "building_river_route",
+      "mapRole": "walking_route_place",
+      "visibleAs": "river_route",
+      "socialFunctions": [
+        "walking",
+        "history",
+        "training",
+        "local_identity",
+        "reflection"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "training",
+        "historical_reflection",
+        "quiet_evening"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_alnaelva_rute": {
+      "id": "mapping_natur_alnaelva_rute",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature_and_city_route",
+      "defaultBuildingTypeId": "building_river_route",
+      "mapRole": "walking_route_place",
+      "visibleAs": "river_route",
+      "socialFunctions": [
+        "walking",
+        "nature",
+        "local_identity",
+        "reflection"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "quiet_reflection",
+        "outdoor_training"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_bygdoy": {
+      "id": "mapping_natur_bygdoy",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature_and_leisure",
+      "defaultBuildingTypeId": "building_green_peninsula_or_recreation",
+      "mapRole": "leisure_nature_place",
+      "visibleAs": "green_recreation_area",
+      "socialFunctions": [
+        "walking",
+        "family_life",
+        "recreation",
+        "reflection"
+      ],
+      "phaseTypes": [
+        "weekend_walk",
+        "family_afternoon",
+        "quiet_nature",
+        "summer_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_hovedsteder": {
+      "id": "mapping_natur_hovedsteder",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature",
+      "defaultBuildingTypeId": "building_nature_landmark",
+      "mapRole": "nature_landmark_place",
+      "visibleAs": "nature_landmark",
+      "socialFunctions": [
+        "walking",
+        "nature_learning",
+        "reflection",
+        "place_collection"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "nature_observation",
+        "outdoor_learning"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_ljanselva": {
+      "id": "mapping_natur_ljanselva",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature_and_city_route",
+      "defaultBuildingTypeId": "building_river_route",
+      "mapRole": "walking_route_place",
+      "visibleAs": "river_route",
+      "socialFunctions": [
+        "walking",
+        "nature",
+        "local_identity",
+        "reflection"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "quiet_reflection",
+        "outdoor_training"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_ostensjovannet": {
+      "id": "mapping_natur_ostensjovannet",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature_and_lake",
+      "defaultBuildingTypeId": "building_lake_nature_area",
+      "mapRole": "urban_nature_place",
+      "visibleAs": "lake_or_wetland",
+      "socialFunctions": [
+        "walking",
+        "bird_observation",
+        "family_life",
+        "reflection"
+      ],
+      "phaseTypes": [
+        "nature_observation",
+        "quiet_walk",
+        "family_afternoon"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    },
+    "mapping_natur_salamanderdammer": {
+      "id": "mapping_natur_salamanderdammer",
+      "sourceFile": "places/natur/oslo/places_oslo_natur_salamanderdammer.json",
+      "historyGoCategory": "natur",
+      "civicationLayer": "nature_and_micro_ecology",
+      "defaultBuildingTypeId": "building_small_nature_habitat",
+      "mapRole": "ecology_learning_place",
+      "visibleAs": "small_nature_habitat",
+      "socialFunctions": [
+        "nature_learning",
+        "wonderkammer",
+        "children_discovery",
+        "reflection"
+      ],
+      "phaseTypes": [
+        "nature_observation",
+        "children_discovery",
+        "quiet_learning"
+      ],
+      "groundhopperRelevant": false,
+      "needsPerPlaceMapping": true
+    }
+  },
+  "perPlaceMappingTemplate": {
+    "id": "map_<historyGoPlaceId>",
+    "historyGoPlaceId": "<must_match_existing_place_id>",
+    "historyGoSourceFile": "<source file from manifest>",
+    "civicationPlaceId": "civi_<clean_place_id>",
+    "buildingTypeId": "<from sourceFileMappings.defaultBuildingTypeId or custom>",
+    "mapRole": "<from sourceFileMappings.mapRole or custom>",
+    "visibleAs": "<from sourceFileMappings.visibleAs or custom>",
+    "socialFunctions": [
+      "<one>",
+      "<per>",
+      "<line>"
+    ],
+    "phaseTypes": [
+      "<one>",
+      "<per>",
+      "<line>"
+    ],
+    "groundhopperRelevant": false,
+    "needsVerification": true
+  }
+}
