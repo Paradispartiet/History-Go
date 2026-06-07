@@ -116,6 +116,57 @@
     return SNAPSHOT_LAST_SEEN_TEXT[normalizeSnapshotPhase(phase)] || "Sist sett";
   }
 
+  // ---------------------------------------------------------------------------
+  // Brukervendte label-/tekst-hjelpere for vennedetaljen (rene, deterministiske)
+  // ---------------------------------------------------------------------------
+  // Stabile, testbare navn som UI-laget (og framtidige systemer) kan bygge på.
+  // Alt er deterministisk: samme input gir alltid samme tekst, ingen klokke,
+  // ingen tilfeldighet, ingen live-/GPS-data.
+
+  // Semantisk fase -> norsk fase-label ("Morgenfase", "Arbeidsfase" …).
+  function getPhaseLabel(phase) {
+    return snapshotPhaseLabel(phase);
+  }
+
+  // Presence-state -> norsk, brukervendt status ("Er hjemme", "Trener" …).
+  function getPresenceStateLabel(state) {
+    return presenceText(state);
+  }
+
+  // Relasjonsnivå -> kort etikett. 0 = ny kontakt … 3+ = nær venn.
+  function getRelationshipLabel(level) {
+    const n = Number(level) || 0;
+    if (n >= 3) return "nær venn";
+    if (n === 2) return "venn";
+    if (n === 1) return "bekjent";
+    return "ny kontakt";
+  }
+
+  // Relasjonsnivå -> kort sosial tekst til profilkortet.
+  function getRelationshipBlurb(level) {
+    const n = Number(level) || 0;
+    if (n >= 3) return "Dette er en nær venn i byen.";
+    if (n === 2) return "Dere har begynt å bygge en relasjon.";
+    if (n === 1) return "Dere kjenner hverandre litt.";
+    return "Dere har akkurat blitt kjent i byen.";
+  }
+
+  // Norsk eieform som tåler navn på s/x/z (Kari -> Karis, Jonas -> Jonas').
+  function possessiveName(name) {
+    const n = norm(name);
+    if (!n) return "";
+    return /[sxzSXZ]$/.test(n) ? n + "'" : n + "s";
+  }
+
+  // Tydelig disclosure: fase-minne, IKKE live-posisjon. Brukes i vennedetaljen
+  // slik at det aldri er tvil om at dette er simulert fasehistorikk.
+  function getSnapshotDisclosureText(friendName, phase) {
+    const who = possessiveName(friendName) || "Vennens";
+    const phaseLabel = getPhaseLabel(phase).toLowerCase();
+    return "Dette er " + who + " siste lagrede " + phaseLabel +
+      " i Civication – simulert fasehistorikk, ikke live-posisjon.";
+  }
+
   // Deterministisk hash (FNV-1a-aktig). Brukes kun som fallback når en venn
   // mangler eksplisitt presenceByPhase for en fase – aldri tilfeldig.
   function hashString(str) {
@@ -634,6 +685,12 @@
     snapshotPhaseLabel,
     snapshotLastSeenText,
     presenceText,
+    // brukervendte label-/tekst-hjelpere (stabile, testbare navn)
+    getPhaseLabel,
+    getPresenceStateLabel,
+    getRelationshipLabel,
+    getRelationshipBlurb,
+    getSnapshotDisclosureText,
     isHiddenState,
     computePresence,
     locationById,
