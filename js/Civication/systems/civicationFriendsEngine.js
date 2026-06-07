@@ -438,11 +438,64 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Lokalt spiller-fase-minne (scaffold – forbereder framtidig synk mellom
-  // venner). Ingen backend/nettverk her: lagres i minne, speiles til
-  // localStorage hvis tilgjengelig. Andre systemer kan kalle setPlayerPhaseSnapshot
-  // når en fase fullføres eller byttes.
+  // Lokalt spiller-fase-minne (player phase snapshots)
   // ---------------------------------------------------------------------------
+  // Når spilleren spiller en fase (morgen/arbeid/fritid/kveld/refleksjon) lagrer
+  // vi spillerens EGEN siste status for nettopp den fasen – på samme form som
+  // venners fase-minne (friendPhaseSnapshots.json). Dette er grunnlaget for at
+  // spilleren senere kan etterlate sin siste fase i byen for venner.
+  //
+  // Ingen backend/nettverk her: lagres i minne, speiles til localStorage hvis
+  // tilgjengelig. Ingen GPS / live-posisjon / tidsstempel – kun deterministisk
+  // fase-minne slik at testing er forutsigbar.
+
+  // Deterministiske standardverdier pr. semantisk fase. Brukes når spilleren er
+  // i en fase uten at et eksplisitt sted/aktivitet er oppgitt. locationId peker
+  // til ekte steder i phaseLocations.json. channel speiler hvilken kanal/type
+  // fasen tilhører (job/private/leisure/reflection), kompatibelt med kartdata.
+  const PLAYER_PHASE_DEFAULTS = {
+    morning: {
+      state: "at_home",
+      locationId: "home",
+      activity: "starter dagen hjemme",
+      mood: "rolig",
+      updatedAtLabel: "sist morgenrunde",
+      channel: "private"
+    },
+    work: {
+      state: "at_work",
+      locationId: "workplace",
+      activity: "jobber med dagens oppgaver",
+      mood: "fokusert",
+      updatedAtLabel: "sist arbeidsrunde",
+      channel: "job"
+    },
+    leisure: {
+      state: "walking_in_city",
+      locationId: "park",
+      activity: "tar en pause ute i byen",
+      mood: "avslappet",
+      updatedAtLabel: "sist fritidsrunde",
+      channel: "leisure"
+    },
+    evening: {
+      state: "at_home",
+      locationId: "home",
+      activity: "roer ned hjemme",
+      mood: "rolig",
+      updatedAtLabel: "sist kveldsrunde",
+      channel: "private"
+    },
+    reflection: {
+      state: "reflecting",
+      locationId: "psychology_room",
+      activity: "reflekterer over dagen",
+      mood: "ettertenksom",
+      updatedAtLabel: "sist refleksjonsrunde",
+      channel: "reflection"
+    }
+  };
+
   let _playerPhaseSnapshots = null;
 
   function loadPlayerPhaseSnapshots() {
@@ -460,34 +513,91 @@
     return _playerPhaseSnapshots;
   }
 
-  function getPlayerPhaseSnapshots() {
-    return { ...loadPlayerPhaseSnapshots() };
-  }
-
-  function getPlayerPhaseSnapshot(phase) {
-    const store = loadPlayerPhaseSnapshots();
-    return store[normalizeSnapshotPhase(phase)] || null;
-  }
-
-  function setPlayerPhaseSnapshot(phase, snapshot) {
-    const ph = normalizeSnapshotPhase(phase);
-    const store = loadPlayerPhaseSnapshots();
-    store[ph] = {
-      phase: ph,
-      state: norm(snapshot && snapshot.state) || "at_home",
-      locationId: norm(snapshot && snapshot.locationId) || null,
-      activity: norm(snapshot && snapshot.activity),
-      mood: norm(snapshot && snapshot.mood),
-      updatedAtLabel: norm(snapshot && snapshot.updatedAtLabel),
-      visibleOnMap: snapshot && typeof snapshot.visibleOnMap === "boolean" ? snapshot.visibleOnMap : true
-    };
+  function persistPlayerPhaseSnapshots(store) {
     try {
       window.localStorage && window.localStorage.setItem(PLAYER_SNAPSHOTS_KEY, JSON.stringify(store));
     } catch (_e) {
       // Ignorer skrivefeil – minnet er fortsatt oppdatert.
     }
+  }
+
+  // Ren normalisering til ett player phase snapshot. Samme felt-form som
+  // friend-snapshot (phase, state, locationId, activity, mood, updatedAtLabel,
+  // visibleOnMap) pluss channel/type. Ingen tidsstempel/GPS-felt.
+  function normalizePlayerSnapshot(phase, snapshot) {
+    const ph = normalizeSnapshotPhase(phase);
+    const s = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const state = norm(s.state) || "at_home";
+    let visibleOnMap = typeof s.visibleOnMap === "boolean" ? s.visibleOnMap : true;
+    if (isHiddenState(state)) visibleOnMap = false;
+    return {
+      phase: ph,
+      state,
+      locationId: norm(s.locationId) || null,
+      activity: norm(s.activity),
+      mood: norm(s.mood),
+      updatedAtLabel: norm(s.updatedAtLabel),
+      visibleOnMap,
+      channel: norm(s.channel)
+    };
+  }
+
+  // Bygger et player phase snapshot ut fra aktiv fase + spillerens nåværende
+  // tilstand. currentState kan overstyre sted/aktivitet/stemning/kanal; det som
+  // mangler fylles deterministisk fra PLAYER_PHASE_DEFAULTS. Ren funksjon.
+  function buildPlayerSnapshotFromCurrentState(phase, currentState) {
+    const ph = normalizeSnapshotPhase(phase);
+    const def = PLAYER_PHASE_DEFAULTS[ph] || PLAYER_PHASE_DEFAULTS.morning;
+    const cs = currentState && typeof currentState === "object" ? currentState : {};
+    return normalizePlayerSnapshot(ph, {
+      state: norm(cs.state) || def.state,
+      locationId: norm(cs.locationId) || def.locationId,
+      activity: norm(cs.activity) || def.activity,
+      mood: norm(cs.mood) || def.mood,
+      updatedAtLabel: norm(cs.updatedAtLabel) || def.updatedAtLabel,
+      channel: norm(cs.channel) || def.channel,
+      visibleOnMap: typeof cs.visibleOnMap === "boolean" ? cs.visibleOnMap : true
+    });
+  }
+
+  function getPlayerPhaseSnapshots() {
+    return { ...loadPlayerPhaseSnapshots() };
+  }
+
+  function getPlayerSnapshotForPhase(phase) {
+    const store = loadPlayerPhaseSnapshots();
+    return store[normalizeSnapshotPhase(phase)] || null;
+  }
+
+  // Lagrer ett snapshot for én fase – overskriver KUN den fasen, ikke de andre.
+  function savePlayerSnapshotForPhase(phase, snapshot) {
+    const ph = normalizeSnapshotPhase(phase);
+    const store = loadPlayerPhaseSnapshots();
+    store[ph] = normalizePlayerSnapshot(ph, snapshot);
+    persistPlayerPhaseSnapshots(store);
     return store[ph];
   }
+
+  // Bygger og lagrer spillerens snapshot for den fasen den selv er i nå. Kalles
+  // av UI når spilleren bytter fase eller bruker et sted/fullfører en fasehandling.
+  function capturePlayerPhaseSnapshot(currentState, phaseArg) {
+    const phase = phaseArg != null ? normalizeSnapshotPhase(phaseArg) : getActivePhase();
+    return savePlayerSnapshotForPhase(phase, buildPlayerSnapshotFromCurrentState(phase, currentState));
+  }
+
+  function clearPlayerPhaseSnapshotsForTesting() {
+    _playerPhaseSnapshots = {};
+    try {
+      window.localStorage && window.localStorage.removeItem(PLAYER_SNAPSHOTS_KEY);
+    } catch (_e) {
+      // Ignorer – minnet er allerede nullstilt.
+    }
+    return {};
+  }
+
+  // Bakoverkompatible aliaser (scaffold-navn fra PR #1181).
+  const getPlayerPhaseSnapshot = getPlayerSnapshotForPhase;
+  const setPlayerPhaseSnapshot = savePlayerSnapshotForPhase;
 
   // Bekvemmelighet for UI: full kartmodell for nåværende fase. Vennelaget bruker
   // fase-minne (snapshot for aktiv semantisk fase), med trygg fallback til
@@ -543,8 +653,15 @@
     getFriendSnapshotForPhase,
     getVisibleFriendSnapshotsForPhase,
     getFriendsAtLocationForPhase,
-    // lokalt spiller-fase-minne (scaffold for framtidig synk)
+    // lokalt spiller-fase-minne (grunnlag for framtidig synk til venner)
+    PLAYER_PHASE_DEFAULTS: { ...PLAYER_PHASE_DEFAULTS },
+    buildPlayerSnapshotFromCurrentState,
     getPlayerPhaseSnapshots,
+    getPlayerSnapshotForPhase,
+    savePlayerSnapshotForPhase,
+    capturePlayerPhaseSnapshot,
+    clearPlayerPhaseSnapshotsForTesting,
+    // bakoverkompatible aliaser
     getPlayerPhaseSnapshot,
     setPlayerPhaseSnapshot,
     // async

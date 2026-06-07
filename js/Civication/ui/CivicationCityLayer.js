@@ -102,6 +102,7 @@
     layer.className = LAYER_CLASS;
     layer.innerHTML =
       '<div class="civi-city-markers" aria-label="Civication-byens steder og venner"></div>' +
+      '<div class="civi-city-self" aria-live="polite" hidden></div>' +
       '<aside class="civi-city-detail" aria-live="polite" hidden>' +
       '<button type="button" class="civi-city-detail-close" aria-label="Lukk">×</button>' +
       '<div class="civi-city-detail-body"></div>' +
@@ -120,6 +121,11 @@
   function detailEl() {
     const layer = ensureLayer();
     return layer ? layer.querySelector(".civi-city-detail") : null;
+  }
+
+  function selfEl() {
+    const layer = ensureLayer();
+    return layer ? layer.querySelector(".civi-city-self") : null;
   }
 
   function closeDetail() {
@@ -157,6 +163,11 @@
 
     const { phase, locations, friends } = _model;
     mh.innerHTML = "";
+
+    // Spilleren er i aktiv fase og ser på byen -> lagre spillerens egen
+    // fase-status for nettopp denne fasen (deterministisk standard for fasen).
+    capturePlayerSnapshot();
+    renderSelfStatus();
 
     // 1) Stedsmarkører.
     (locations || []).forEach((loc) => {
@@ -223,6 +234,54 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Spillerens eget fase-minne (player phase snapshot)
+  // ---------------------------------------------------------------------------
+  // Lagrer spillerens egen siste status for den aktive fasen. currentState kan
+  // overstyre sted/aktivitet/kanal (f.eks. når et bestemt sted brukes); resten
+  // fylles deterministisk av motoren. Lokalt minne/localStorage, ingen backend.
+  function capturePlayerSnapshot(currentState) {
+    const eng = engine();
+    if (!eng || typeof eng.capturePlayerPhaseSnapshot !== "function") return null;
+    const snapshotPhase = _model ? _model.snapshotPhase : null;
+    try {
+      return eng.capturePlayerPhaseSnapshot(currentState || null, snapshotPhase);
+    } catch (_e) {
+      return null;
+    }
+  }
+
+  // Diskret linje: "Denne fasen lagres som din siste arbeidsfase – Arbeidsplass".
+  function renderSelfStatus() {
+    const eng = engine();
+    const el = selfEl();
+    if (!eng || !el || !_model) return;
+
+    const snapshotPhase = _model.snapshotPhase;
+    const snap = typeof eng.getPlayerSnapshotForPhase === "function"
+      ? eng.getPlayerSnapshotForPhase(snapshotPhase)
+      : null;
+
+    if (!snap) {
+      el.setAttribute("hidden", "");
+      el.textContent = "";
+      return;
+    }
+
+    const phaseLabel = (eng.snapshotPhaseLabel
+      ? eng.snapshotPhaseLabel(snapshotPhase)
+      : (_model.snapshotPhaseLabel || "")).toLowerCase();
+    const loc = eng.locationById(_model.locations, snap.locationId);
+    const placeLabel = loc ? loc.label : (snap.locationId || "");
+
+    el.innerHTML =
+      '<span class="civi-city-self-icon">📍</span>' +
+      '<span class="civi-city-self-text">Denne fasen lagres som din siste ' +
+      esc(phaseLabel) + (placeLabel ? ": <strong>" + esc(placeLabel) + "</strong>" : "") +
+      "</span>";
+    el.removeAttribute("hidden");
+  }
+
+  // ---------------------------------------------------------------------------
   // Detalj-paneler
   // ---------------------------------------------------------------------------
   function markSelected(selector) {
@@ -252,6 +311,12 @@
     if (!loc) return;
 
     markSelected('[data-place-id="' + cssEscape(placeId) + '"]');
+
+    // Spilleren bruker et sted i den aktive fasen -> oppdater spillerens eget
+    // fase-minne så det peker hit (sted + kanal fra stedet). Resten er fasens
+    // deterministiske standard.
+    capturePlayerSnapshot({ locationId: String(loc.id || ""), channel: String(loc.channel || "") });
+    renderSelfStatus();
 
     // Venner her = de hvis aktive fase-minne (snapshot/fallback) peker hit.
     const here = (_model.friends || []).filter((r) =>
