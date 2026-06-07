@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/civi-map-miniatures.css" />
   <link rel="stylesheet" href="css/civi-canvas-map.css" />
   <link rel="stylesheet" href="css/civi-three-map.css" />
+  <link rel="stylesheet" href="css/civi-city-layer.css" />
   <link rel="stylesheet" href="css/fixed-shell.css" />
 </head>
 
@@ -92,7 +93,7 @@
         </div>
       </section>
 
-      <section class="civi-identity">
+      <section id="civiIdentitySection" class="civi-identity">
         <h2>Identitet</h2>
         <div id="identityCompass"></div>
         <div id="identityDominant"></div>
@@ -100,7 +101,7 @@
         <div id="identityPerception"></div>
       </section>
 
-      <section class="civi-psyche">
+      <section id="civiPsyche" class="civi-psyche">
         <h2>Psyke</h2>
         <div class="psyche-grid">
           <div class="psyche-item"><div class="psyche-label">Integritet</div><div class="psyche-value" id="psyIntegrity">—</div></div>
@@ -309,6 +310,10 @@
   <script src="js/Civication/systems/day/dayRuntimeDebugPanel.js"></script>
 
   <script src="js/onboarding/onboardingEngine.js"></script>
+
+  <!-- Civication-by: fasepunkter + simulerte venner (ikke ekte GPS) -->
+  <script src="js/Civication/systems/civicationFriendsEngine.js"></script>
+  <script src="js/Civication/ui/CivicationCityLayer.js"></script>
 
   <!-- Boot -->
   <script src="js/Civication/CivicationBoot.js"></script>
