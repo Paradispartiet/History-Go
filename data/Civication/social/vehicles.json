@@ -1,0 +1,46 @@
+{
+  "schema": "civication.vehicles.v1",
+  "version": 1,
+  "vehicles": {
+    "vehicle_none": {
+      "id": "vehicle_none",
+      "label": "Ingen bil",
+      "type": "none",
+      "condition": "none",
+      "statusSignal": "car_free",
+      "economicSignal": "low_cost_or_city_life"
+    },
+    "vehicle_used_yaris_2008": {
+      "id": "vehicle_used_yaris_2008",
+      "label": "Brukt Toyota Yaris",
+      "type": "small_car",
+      "condition": "worn",
+      "statusSignal": "modest",
+      "economicSignal": "careful_spending"
+    },
+    "vehicle_old_bicycle": {
+      "id": "vehicle_old_bicycle",
+      "label": "Gammel bysykkel",
+      "type": "bicycle",
+      "condition": "worn_but_working",
+      "statusSignal": "practical",
+      "economicSignal": "low_cost"
+    },
+    "vehicle_electric_cargo_bike": {
+      "id": "vehicle_electric_cargo_bike",
+      "label": "Elektrisk lastesykkel",
+      "type": "cargo_bike",
+      "condition": "good",
+      "statusSignal": "urban_family_or_green",
+      "economicSignal": "medium_investment"
+    },
+    "vehicle_used_van": {
+      "id": "vehicle_used_van",
+      "label": "Brukt varebil",
+      "type": "van",
+      "condition": "scratched",
+      "statusSignal": "manual_work",
+      "economicSignal": "work_tool"
+    }
+  }
+}
