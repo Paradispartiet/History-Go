@@ -48,22 +48,35 @@
 
   // Datadrevet konsekvensmodell pr. svarvalg. status/relationshipDelta/canFollowup
   // og brukervendt resultattekst – alt deterministisk, ingen tilfeldighet.
+  //
+  // Relasjonsmotoren (CivicationRelationshipEngine) er kilden til de fulle
+  // dimensjonene (trust/familiarity/availability). Vi speiler dem her som rene
+  // data slik at bridgen også fungerer i fallback uten motoren lastet.
   const SOCIAL_RESPONSE_CONSEQUENCE = {
     reply: {
       status: "replied",
       relationshipDelta: 1,
+      trustDelta: 1,
+      familiarityDelta: 1,
+      availabilityModifier: "warmer",
       canFollowup: true,
       text: "Du svarer på henvendelsen. Samtalen kan fortsette."
     },
     ignore: {
       status: "ignored",
       relationshipDelta: 0,
+      trustDelta: 0,
+      familiarityDelta: 0,
+      availabilityModifier: "unchanged",
       canFollowup: false,
       text: "Du ignorerer henvendelsen."
     },
     decline: {
       status: "declined",
       relationshipDelta: -1,
+      trustDelta: -1,
+      familiarityDelta: 0,
+      availabilityModifier: "cooler",
       canFollowup: false,
       text: "Du avviser henvendelsen."
     }
@@ -593,6 +606,10 @@
       status: cons.status,
       statusLabel: getSocialResponseStatusLabel(cons.status),
       relationshipDelta: cons.relationshipDelta,
+      // Fulle relasjonsdimensjoner (datadrevet konsekvensmodell).
+      trustDelta: cons.trustDelta,
+      familiarityDelta: cons.familiarityDelta,
+      availabilityModifier: cons.availabilityModifier,
       resultText: cons.text,
       canFollowup: cons.canFollowup,
       // Separasjon: alltid privat/personlig, aldri jobb.
@@ -642,13 +659,44 @@
 
   // Oppdaterer (eller oppretter) sosial relasjon for en venn ut fra et
   // svar-resultat. relationshipLevel seedes fra responseResult.baseRelationshipLevel
-  // første gang vennen ses, og justeres med relationshipDelta (aldri under 0).
+  // første gang vennen ses, og justeres deretter.
+  //
+  // Når relasjonsmotoren (CivicationRelationshipEngine) er lastet brukes den
+  // rikere modellen (relationshipStage/trust/familiarity/availabilityModifier +
+  // lastInteractionPhase/locationId), med clamps og dobbel-effekt-vakt. Uten
+  // motoren faller vi trygt tilbake til den enkle nivå-/historikk-modellen slik
+  // at bridgen aldri kaster og eldre tester fortsatt passerer.
   function applySocialRelationshipDelta(friendId, responseResult) {
     const rr = obj(responseResult);
     const fid = norm(friendId) || norm(rr.friendId);
-    const delta = Number(rr.relationshipDelta) || 0;
     const store = loadRelationshipStore();
     let record = store[fid];
+
+    const engine = window.CivicationRelationshipEngine;
+    if (engine && typeof engine.updateRelationshipFromSocialResponse === "function") {
+      let base = record && typeof record === "object" ? record : null;
+      if (!base) {
+        const seed = firstNumber(rr.baseRelationshipLevel);
+        base = { friendId: fid, relationshipLevel: seed == null ? 0 : seed };
+      }
+      const messageCtx = {
+        friendId: fid,
+        id: norm(rr.messageId),
+        phase: norm(rr.phase),
+        locationId: norm(rr.locationId),
+        actionId: norm(rr.actionId) || "approach"
+      };
+      const updated = engine.updateRelationshipFromSocialResponse(messageCtx, rr, base);
+      // Bevar tidsmerket fra svaret (motoren er tidsuavhengig).
+      updated.lastSocialResponseAt = norm(rr.respondedAt) ||
+        (record && record.lastSocialResponseAt) || null;
+      store[fid] = updated;
+      persistRelationshipStore(store);
+      return { ...updated, socialHistory: updated.socialHistory.slice() };
+    }
+
+    // ---- Fallback (motor ikke lastet): enkel nivå-/historikk-modell ----------
+    const delta = Number(rr.relationshipDelta) || 0;
     if (!record || typeof record !== "object") {
       const seed = firstNumber(rr.baseRelationshipLevel);
       record = {
@@ -681,6 +729,23 @@
     const fid = norm(friendId);
     const r = loadRelationshipStore()[fid];
     return r ? { ...r, socialHistory: Array.isArray(r.socialHistory) ? r.socialHistory.slice() : [] } : null;
+  }
+
+  // Brukervendt relasjonssammendrag via relasjonsmotoren. Returnerer null når
+  // motoren ikke er lastet eller relasjonen mangler – trygt for kallsteder.
+  function buildRelationshipSummary(relationship) {
+    if (!relationship || typeof relationship !== "object") return null;
+    const engine = window.CivicationRelationshipEngine;
+    if (engine && typeof engine.buildRelationshipSummary === "function") {
+      return engine.buildRelationshipSummary(relationship);
+    }
+    return null;
+  }
+
+  // Bekvemmelighet for UI: hent relasjonssammendrag for en venn direkte fra det
+  // lokale lageret (eller null når ingen relasjon / ingen motor).
+  function getRelationshipSummaryForFriend(friendId) {
+    return buildRelationshipSummary(getSocialRelationship(friendId));
   }
 
   function clearSocialRelationshipsForTesting() {
@@ -791,6 +856,9 @@
 
     // Relasjonskonsekvens.
     result.relationship = applySocialRelationshipDelta(result.friendId, result);
+    // Brukervendt relasjonssammendrag (for followup-melding / profilkort) når
+    // relasjonsmotoren er lastet. Trygt fravær uten motoren.
+    result.relationshipSummary = buildRelationshipSummary(result.relationship);
 
     // Marker meldingen som behandlet (hindrer dobbel respons senere).
     recordSocialResponse(mid, result);
@@ -877,6 +945,8 @@
     // lokal relasjonsmodell
     applySocialRelationshipDelta: applySocialRelationshipDelta,
     getSocialRelationship: getSocialRelationship,
+    buildRelationshipSummary: buildRelationshipSummary,
+    getRelationshipSummaryForFriend: getRelationshipSummaryForFriend,
     getSocialResponseRecord: getSocialResponseRecord,
     clearSocialRelationshipsForTesting: clearSocialRelationshipsForTesting,
     clearSocialResponsesForTesting: clearSocialResponsesForTesting
