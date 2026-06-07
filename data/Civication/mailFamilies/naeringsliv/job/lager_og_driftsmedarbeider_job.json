@@ -1,0 +1,287 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "lager_og_driftsmedarbeider",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "mottak_og_vareflyt",
+      "purpose": "Lære spilleren at mottak og vareflyt er første kontrollpunkt for hele driften: kolli, følgeseddel, lokasjon, avvik og registrering må henge sammen.",
+      "learning_focus": [
+        "mottak",
+        "vareflyt",
+        "sporbarhet",
+        "avvik"
+      ],
+      "mails": [
+        {
+          "id": "lager_job_mottak_001",
+          "mail_type": "job",
+          "mail_family": "mottak_og_vareflyt",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 64,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_drift",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Første mottak: kolliet som ikke helt stemmer",
+          "summary": "En leveranse står i porten, men ett kolli og følgeseddelen gir ulike signaler.",
+          "purpose": "Etablere mottak som både fysisk kontroll og digitalt ansvar.",
+          "stakes": "Rask lukking gir flyt, men kan sende feil videre. Kontroll tar tid, men beskytter sporbarhet og senere drift.",
+          "situation": [
+            "Transporten venter på kvittering, og driften spør når varen kan plukkes videre.",
+            "Følgeseddelen sier at alt er med, men ett kolli har feil merking og litt skadet emballasje.",
+            "Du må avgjøre om mottaket skal stoppes kort for kontroll, eller om flyten skal holdes i gang med en rask merknad."
+          ],
+          "task_domain": "mottak_og_vareflyt",
+          "competency": "leveransekontroll",
+          "pressure": "driften_venter_pa_varen",
+          "choice_axis": "tempo_vs_noyaktighet",
+          "consequence_axis": "flyt_vs_sporbarhet",
+          "narrative_arc": "første møte med at et lite mottaksavvik kan følge varen gjennom hele systemet",
+          "learning_focus": [
+            "mottak av varer",
+            "kontroll av leveranser",
+            "avviksmelding",
+            "systemregistrering"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe mottaket kort og kontrollere kolliet",
+              "reply": "Jeg stopper mottaket kort, kontrollerer kolliet mot følgeseddelen og registrerer avviket før varen slippes videre.",
+              "effect": 1,
+              "tags": [
+                "accuracy",
+                "traceability"
+              ],
+              "feedback": "Du taper litt tempo, men gjør avviket synlig før det blir andres problem."
+            },
+            {
+              "id": "B",
+              "label": "Holde flyten og merke avviket etterpå",
+              "reply": "Jeg slipper varen videre og legger inn en merknad etter at transporten har kommet seg av gårde.",
+              "effect": 0,
+              "tags": [
+                "flow",
+                "risk"
+              ],
+              "feedback": "Du hjelper flyten nå, men gjør sporbarheten svakere akkurat der feilen begynner."
+            },
+            {
+              "id": "C",
+              "label": "Be drift vente mens du avklarer med transport",
+              "reply": "Jeg avklarer raskt med transport og gir drift beskjed om at varen ikke er frigitt før kontrollen er gjort.",
+              "effect": 1,
+              "tags": [
+                "coordination",
+                "hms"
+              ],
+              "feedback": "Du tar en synlig forsinkelse og viser samtidig at mottak er et felles kontrollpunkt."
+            }
+          ]
+        },
+        {
+          "id": "lager_job_vareflyt_002",
+          "mail_type": "job",
+          "mail_family": "mottak_og_vareflyt",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "morten_transport",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Varen ligger riktig, men systemet sier noe annet",
+          "summary": "Butikk/drift finner varen fysisk, men systemlokasjonen peker fortsatt til mottakssonen.",
+          "purpose": "Vise at lagerplassering først virker når fysisk plass og systemregistrering stemmer.",
+          "stakes": "Rask manuell løsning hjelper en intern kunde, men kan skjule et mønster. Rydding i systemet tar tid og beskytter videre vareflyt.",
+          "situation": [
+            "En kollega fra drift står ved hyllen med riktig vare i hånden, men ordren får ikke frigis fordi systemet fortsatt viser mottakssone.",
+            "Det er frist på utsendelsen, og noen foreslår å bare skrive en lapp og fikse registreringen senere.",
+            "Du må velge om du løser ordren manuelt eller stopper lenge nok til å rydde lagerplasseringen i systemet."
+          ],
+          "task_domain": "lagerplassering",
+          "competency": "systemregistrering",
+          "pressure": "frist_pa_utsendelse",
+          "choice_axis": "fysisk_arbeid_vs_systemkrav",
+          "consequence_axis": "lokal_losning_vs_varig_sporbarhet",
+          "narrative_arc": "spilleren ser at varen ikke er ferdig plassert før systemet også vet hvor den er",
+          "learning_focus": [
+            "lagerplassering",
+            "vareflyt",
+            "systemregistrering",
+            "samarbeid med drift"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rette systemlokasjonen før ordren frigis",
+              "reply": "Jeg retter systemlokasjonen først og frigir ordren når fysisk plass og systemtall stemmer.",
+              "effect": 1,
+              "tags": [
+                "system",
+                "traceability"
+              ],
+              "feedback": "Du gjør forsinkelsen tydelig, men hindrer at samme feil dukker opp i neste plukk."
+            },
+            {
+              "id": "B",
+              "label": "Løse ordren manuelt og registrere senere",
+              "reply": "Jeg hjelper drift med ordren nå og registrerer flyttingen etterpå.",
+              "effect": 0,
+              "tags": [
+                "help",
+                "shortcut"
+              ],
+              "feedback": "Du får varen videre, men lager et mellomrom der ingen helt vet hva systemet kan stoles på."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plukk_pakk_og_avvik",
+      "purpose": "Lære spilleren hvordan riktig plukk, pakking, telling og avviksmelding beskytter kundeledd, drift og økonomi mot små lagerfeil.",
+      "learning_focus": [
+        "plukk",
+        "pakking",
+        "telling",
+        "avvikskultur"
+      ],
+      "mails": [
+        {
+          "id": "lager_job_plukk_001",
+          "mail_type": "job",
+          "mail_family": "plukk_pakk_og_avvik",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_drift",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Feilplukket som ser lite ut her inne",
+          "summary": "To nesten like varer ligger nær hverandre, og ordren haster videre til kunde/drift.",
+          "purpose": "Etablere plukk som presisjon under tidspress, ikke bare tempo.",
+          "stakes": "Raskt plukk holder køen nede, men en liten forveksling kan bli kundefeil, retur og differanse senere.",
+          "situation": [
+            "Plukklisten viser en vare som ligner på nabovaren i hyllen, og strekkoden er delvis slitt.",
+            "Pakking venter, og noen sier at det sikkert er riktig fordi varen pleier å ligge der.",
+            "Du må velge om du dobbeltsjekker varen mot systemet eller lar tempoet bestemme."
+          ],
+          "task_domain": "plukk_og_pakk",
+          "competency": "plukkpresisjon",
+          "pressure": "pakking_venter",
+          "choice_axis": "tempo_vs_noyaktighet",
+          "consequence_axis": "kundeledd_vs_lagerflyt",
+          "narrative_arc": "spilleren lærer at en liten feil i plukk blir stor når den forlater lageret",
+          "learning_focus": [
+            "plukk- og pakkelogikk",
+            "kontroll av vare",
+            "små feil i lageret",
+            "kunde- og driftsledd"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dobbeltsjekke strekkode og vare før pakking",
+              "reply": "Jeg dobbeltsjekker strekkode og vare mot plukklisten før jeg sender den til pakking.",
+              "effect": 1,
+              "tags": [
+                "accuracy",
+                "customer"
+              ],
+              "feedback": "Du senker tempoet litt, men fjerner en feil før den blir kundens problem."
+            },
+            {
+              "id": "B",
+              "label": "Plukke varen som pleier å ligge der",
+              "reply": "Jeg tar varen fra vanlig plassering og lar pakking holde tempoet oppe.",
+              "effect": -1,
+              "tags": [
+                "speed",
+                "risk"
+              ],
+              "feedback": "Du holder køen i bevegelse, men lar vane erstatte sporbar kontroll."
+            },
+            {
+              "id": "C",
+              "label": "Melde uklar hyllemerking som avvik",
+              "reply": "Jeg plukker kontrollert og melder samtidig hyllemerkingen som avvik.",
+              "effect": 1,
+              "tags": [
+                "deviation",
+                "improvement"
+              ],
+              "feedback": "Du løser ordren og gjør årsaken synlig slik at feilen ikke gjentas like lett."
+            }
+          ]
+        },
+        {
+          "id": "lager_job_telling_002",
+          "mail_type": "job",
+          "mail_family": "plukk_pakk_og_avvik",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "early",
+          "priority": 59,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "siv_okonomi",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Tellingen sier én ting, systemet sier en annen",
+          "summary": "En differanse dukker opp rett før økonomi skal lukke en enkel avstemming.",
+          "purpose": "Vise telling som møte mellom fysisk virkelighet, systemtall og økonomisk ansvar.",
+          "stakes": "Å glatte over differansen beskytter fristen, men svekker kontrollen. Å undersøke differansen koster tid og gjør ansvaret tydelig.",
+          "situation": [
+            "Du teller fysisk lager og får ett tall, mens systemet viser et annet.",
+            "Økonomi trenger et svar før avstemmingen, og drift mener differansen sikkert skyldes et gammelt plukk.",
+            "Du må velge om du markerer differansen som avvik eller prøver å få tallene til å passe raskt."
+          ],
+          "task_domain": "telling_og_differanse",
+          "competency": "avviksforstaelse",
+          "pressure": "avstemmingsfrist",
+          "choice_axis": "flyt_vs_sporbarhet",
+          "consequence_axis": "kontroll_vs_fristro",
+          "narrative_arc": "spilleren ser at lagerets fysiske virkelighet blir økonomiens tallgrunnlag",
+          "learning_focus": [
+            "telling og differanser",
+            "avviksmelding",
+            "samarbeid med økonomi",
+            "systemregistrering"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Melde differansen og beskrive hva som er kontrollert",
+              "reply": "Jeg melder differansen, beskriver kontrollen og lar økonomi se hva som er sikkert og usikkert.",
+              "effect": 1,
+              "tags": [
+                "deviation",
+                "control"
+              ],
+              "feedback": "Du gjør usikkerheten synlig nok til at den kan håndteres uten å bli skjult i tallene."
+            },
+            {
+              "id": "B",
+              "label": "Justere raskt mot systemtallet",
+              "reply": "Jeg justerer raskt mot systemtallet og noterer at differansen trolig skyldes gammelt plukk.",
+              "effect": -1,
+              "tags": [
+                "shortcut",
+                "risk"
+              ],
+              "feedback": "Du gir fristen ro, men flytter spørsmålet om hva som faktisk skjedde lenger bort."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
