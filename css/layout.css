@@ -6,10 +6,6 @@ body.hg-app{
   margin: 0;
   overflow: hidden;
   background: #000;
-
-  /* Visuell høyde på nearby-panelet i design-canvas-koordinater.
-     Arves ned til både #nearbyListContainer og #placeCard. */
-  --hg-nearby-height: 260px;
 }
 
 
@@ -114,15 +110,16 @@ body.hg-app .app-footer{
 }
 
 #nearbyListContainer{
-  position: absolute;
+  position: fixed;
 
-  top: var(--hg-design-header-offset, 74px);
-  height: var(--hg-nearby-height, 260px);
-
+  top: var(--hg-visual-header-height, 74px);
   left: 0;
   right: 0;
+  width: 100vw;
+  height: var(--hg-visual-nearby-height, 260px);
+  box-sizing: border-box;
 
-  z-index: 19;
+  z-index: 80;
 
   background: transparent;
 
@@ -130,6 +127,9 @@ body.hg-app .app-footer{
   flex-direction: column;
 
   overflow: hidden;
+
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 
@@ -168,14 +168,14 @@ body.hg-app #placeCard{
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(var(--hg-design-header-offset, 74px) + var(--hg-nearby-height, 260px));
+  top: calc(
+    var(--hg-design-header-offset, 74px) +
+    var(--hg-design-nearby-offset, 260px)
+  );
   bottom: var(--hg-design-footer-offset, 80px);
   height: auto;
   z-index: 100;
 }
 
-body.hg-app.hg-phone{
-  --hg-nearby-height: 228px;
-}
 
 
