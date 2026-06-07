@@ -1,0 +1,183 @@
+{
+  "schema": "civication.socialEvents.v1",
+  "version": 1,
+  "events": {
+    "event_friend_seen_at_home_light_on": {
+      "id": "event_friend_seen_at_home_light_on",
+      "trigger": {
+        "characterState": "at_home",
+        "relationshipState": "friend",
+        "timeRange": "20:00-02:00"
+      },
+      "text": "Du ser at lyset er på hjemme hos vennen din. Det er ikke sikkert han vil prate, men han er der.",
+      "choices": {
+        "choice_send_short_message": {
+          "label": "Send en kort melding",
+          "effects": {
+            "relationshipTrust": 1,
+            "intrusionRisk": 0,
+            "playerEmpathy": 1
+          }
+        },
+        "choice_knock_on_door": {
+          "label": "Bank på",
+          "effects": {
+            "relationshipTrust": -1,
+            "intrusionRisk": 2,
+            "playerBoldness": 1
+          }
+        },
+        "choice_leave_quietly": {
+          "label": "Gå videre",
+          "effects": {
+            "relationshipTrust": 0,
+            "intrusionRisk": -1,
+            "playerPatience": 1
+          }
+        }
+      }
+    },
+    "event_work_friend_after_bad_shift": {
+      "id": "event_work_friend_after_bad_shift",
+      "trigger": {
+        "characterState": "closing",
+        "roleTags": [
+          "visible_service_worker"
+        ],
+        "mood": "tired"
+      },
+      "text": "Jonas låser kafeen. Han smiler når han ser deg, men smilet faller nesten med en gang.",
+      "choices": {
+        "choice_ask_directly": {
+          "label": "Spør direkte hvordan vakten var",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerEmpathy": 1,
+            "conversationDepth": 1
+          }
+        },
+        "choice_make_joke": {
+          "label": "Lag en lett spøk",
+          "effects": {
+            "relationshipTrust": 0,
+            "moodRelief": 1,
+            "conversationDepth": 0
+          }
+        },
+        "choice_talk_about_yourself": {
+          "label": "Begynn å snakke om din egen dag",
+          "effects": {
+            "relationshipTrust": -1,
+            "playerSelfFocus": 1,
+            "conversationDepth": -1
+          }
+        }
+      }
+    },
+    "event_caseworker_boundary": {
+      "id": "event_caseworker_boundary",
+      "trigger": {
+        "placeId": "civi_office_public_casework",
+        "characterId": "friend_mina_sandaker",
+        "phase": "midday_pressure"
+      },
+      "text": "Mina sier at hun ikke kan snakke om saken nå. Hun sier det saklig, men blikket hennes ber deg egentlig om å forstå grensen.",
+      "choices": {
+        "choice_respect_boundary": {
+          "label": "Respekter grensen",
+          "effects": {
+            "relationshipTrust": 2,
+            "playerBoundarySkill": 2,
+            "conflictRisk": -1
+          }
+        },
+        "choice_push_for_answer": {
+          "label": "Press på for et svar",
+          "effects": {
+            "relationshipTrust": -2,
+            "conflictRisk": 2,
+            "playerImpatience": 1
+          }
+        },
+        "choice_offer_later_talk": {
+          "label": "Si at dere kan snakke senere",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerPatience": 1,
+            "conversationFuture": 1
+          }
+        }
+      }
+    },
+    "event_kindergarten_gate_help": {
+      "id": "event_kindergarten_gate_help",
+      "trigger": {
+        "placeId": "civi_kindergarten_urban_01",
+        "phase": "pickup",
+        "characterId": "friend_sana_hassan"
+      },
+      "text": "En port står åpen mens tre barn løper i hver sin retning. Sana ser det før alle andre, men hun har hendene fulle.",
+      "choices": {
+        "choice_help_with_gate": {
+          "label": "Lukk porten rolig",
+          "effects": {
+            "relationshipTrust": 2,
+            "playerResponsibility": 2,
+            "safety": 2
+          }
+        },
+        "choice_point_it_out": {
+          "label": "Si fra til Sana",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerObservation": 1,
+            "safety": 1
+          }
+        },
+        "choice_ignore": {
+          "label": "Ikke bland deg",
+          "effects": {
+            "relationshipTrust": -1,
+            "playerPassivity": 1,
+            "safety": -1
+          }
+        }
+      }
+    },
+    "event_delivery_rider_interrupted": {
+      "id": "event_delivery_rider_interrupted",
+      "trigger": {
+        "characterId": "friend_amir_nouri",
+        "characterState": "working",
+        "roleId": "role_delivery_rider"
+      },
+      "text": "Amir rekker akkurat å si hei før mobilen piper igjen. Et nytt oppdrag. Han ser på skjermen som om den bestemmer mer enn han gjør.",
+      "choices": {
+        "choice_walk_with_him": {
+          "label": "Gå et stykke sammen med ham",
+          "effects": {
+            "relationshipTrust": 1,
+            "playerSystemInsight": 1,
+            "timeCost": 1
+          }
+        },
+        "choice_tell_him_to_rest": {
+          "label": "Si at han burde ta pause",
+          "effects": {
+            "relationshipTrust": 0,
+            "playerCare": 1,
+            "practicalHelp": 0
+          }
+        },
+        "choice_let_him_work": {
+          "label": "La ham jobbe videre",
+          "effects": {
+            "relationshipTrust": 0,
+            "playerBoundarySkill": 1,
+            "timeCost": 0
+          }
+        }
+      }
+    }
+  }
+}
