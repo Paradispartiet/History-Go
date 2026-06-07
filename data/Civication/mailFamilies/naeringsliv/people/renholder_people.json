@@ -6,6 +6,642 @@
   "mail_type": "people",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_renholder_private",
+      "purpose": "Praksisfortellinger – Renholder pakke 1 privat: Første uke der renholdsblikket møter hjem, venner, kropp og helg.",
+      "learning_focus": [
+        "hygiene",
+        "berøringspunkter",
+        "romstandard",
+        "HMS",
+        "kjemikalier",
+        "tidspress",
+        "kropp",
+        "privat_grense"
+      ],
+      "mails": [
+        {
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker om renholdsblikket får bli på jobb eller følger med inn i privatlivet.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week1_sees_stains_at_home",
+          "subject": "Du begynner å se flekker hjemme",
+          "summary": "Renholdsblikket flytter hjem og gjør kjøkkenet til flater, brytere og kontrollpunkter.",
+          "purpose": "Vise at fagblikket kan lekke inn i privatlivet.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Kjøkkenet\nBody:\nDu kommer hjem og ser kjøkkenet annerledes. Ikke som kjøkken. Som flater: benken, kranen, kjøleskapshåndtaket, bryteren ved døra og flekken under stolen.",
+            "Fra: Sara\nEmne: Ikke inspiser leiligheten\nBody:\nDu gikk rett bort til lysbryteren og tørket den. Jeg skjønner at du har jobbet med renhold, men kan du prøve å ikke komme hjem som internkontroll?"
+          ],
+          "task_domain": "privat_grense_etter_renhold",
+          "competency": "selvregulering_hjemme",
+          "pressure": "arbeidsblikk_i_privatsone",
+          "choice_axis": "slippe_kontroll_vs_fortsette_skiftet",
+          "consequence_axis": "hjemmefred_vs_privat_kontroll",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Slippe inspeksjonsblikket hjemme",
+              "reply": "Jeg sier at hun har rett, og lar kjøkkenet være hjem, ikke renholdssone.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Jeg er for rent kjøkken. Jeg er imot at du scanner hjemmet som arbeidsområde.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 3,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_boundary"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at lysbryteren hadde alvorlig status, men at saken lukkes uten videre tiltak.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Mildt morsomt. Men ingen flere saker på kjøkkenet.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rengjøre litt for å få ro",
+              "reply": "Jeg vasker noen småflater fordi det stresser meg å se dem.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Du landet ikke helt. Du bare fortsatte skiftet i en annen bygning.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "stress": 1,
+                  "relationship_sara": -1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_cleaning_leak"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker om renholdsblikket får bli på jobb eller følger med inn i privatlivet.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week1_friend_not_hygiene_checked",
+          "subject": "Vennen som ikke vil bli kontrollert for hygiene",
+          "summary": "Et spørsmål om håndvask høres ut som avvikskontroll når jobb-stemmen følger med til middag.",
+          "purpose": "Vise hvordan hygieneomsorg kan høres ut som inspeksjon privat.",
+          "situation": [
+            "Fra: Jonas\nEmne: Håndvask?\nBody:\nDu spurte om jeg hadde vasket hendene før vi spiste. Du spurte med veldig jobb-stemme. Jeg følte meg som et avvik i venterom.",
+            "Fra: Privat notat\nEmne: Jobb-stemme\nBody:\nDet var ikke feil å tenke på hygiene. Det var bare måten. Privat kan det fort høres ut som mistillit."
+          ],
+          "task_domain": "hygiene_og_private_relasjoner",
+          "competency": "rollebytte_og_tillit",
+          "pressure": "jobbmodus_i_vennskap",
+          "choice_axis": "venn_vs_kontrollor",
+          "consequence_axis": "relasjon_vs_kontroll",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare som venn, ikke kontrollør",
+              "reply": "Jeg sier at han har rett, og at jeg kom rett fra jobbmodus.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Greit. Jeg godtar at du har håndtaks-traumer.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 3,
+                  "self_awareness": 2,
+                  "control": -1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_friend_mode"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklare hvorfor hygiene faktisk er viktig",
+              "reply": "Jeg forklarer at berøringspunkter og håndhygiene faktisk betyr mer enn folk tror.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Det er sikkert sant. Men jeg trengte middag, ikke minikurs.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "relationship_jonas": -2,
+                  "conflict": 1,
+                  "self_awareness": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at han er godkjent for midlertidig servering uten ytterligere kontroll.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Akseptert. Men jeg nekter å bruke hårnett.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker om renholdsblikket får bli på jobb eller følger med inn i privatlivet.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week1_cleans_to_calm_head",
+          "subject": "Du vasker for å få ro i hodet",
+          "summary": "Renhold hjemme gir kort kontroll, men kan gjøre hvile til et nytt skift.",
+          "purpose": "Vise renhold som privat kontrollstrategi.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Etter jobb\nBody:\nDu kommer hjem og vasker benken, vasken og dørhåndtaket. Det er ikke helt nødvendig, men det gir et kort øyeblikk av kontroll. Det farlige er at kontrollen later som den er hvile.",
+            "Fra: Sara\nEmne: Du trenger ikke vaske nå\nBody:\nDu kan sette deg. Det er ikke så skittent her. Jeg tror kanskje du prøver å lande ved å fortsette."
+          ],
+          "task_domain": "kontrollstrategi_og_hvile",
+          "competency": "stressregulering_uten_arbeid",
+          "pressure": "uro_etter_skift",
+          "choice_axis": "hvile_vs_fortsette",
+          "consequence_axis": "restitusjon_vs_stagnasjon_private",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe og sette deg",
+              "reply": "Jeg stopper, sier at hun har rett, og prøver å lande uten å vaske mer.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Du trenger ikke fortjene sofaen ved å vaske deg frem til den.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 3,
+                  "stress": -2,
+                  "self_awareness": 2,
+                  "control": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Vaske ferdig én ting og stoppe",
+              "reply": "Jeg vasker ferdig benken og bestemmer meg for å la resten være.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Det var et kompromiss. Ikke helt hvile, men heller ikke full jobbmodus.",
+              "effects": {
+                "stats": {
+                  "control": 1,
+                  "stress": 0,
+                  "self_awareness": 1,
+                  "relationship_sara": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fortsette å vaske fordi det hjelper",
+              "reply": "Jeg vasker videre fordi det faktisk roer meg.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Det hjelper på en måte som også holder deg i gang.",
+              "effects": {
+                "stats": {
+                  "control": 3,
+                  "stress": 1,
+                  "energy_weekend": -2,
+                  "stagnation_private": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_cleaning_leak"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker om renholdsblikket får bli på jobb eller følger med inn i privatlivet.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week1_body_after_cleaning",
+          "subject": "Kroppen etter renhold",
+          "summary": "Etter mange små repetisjoner blir kroppen en del av fagforståelsen.",
+          "purpose": "Vise at renhold er fysisk arbeid og krever selvregulering.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Kroppen\nBody:\nDet er en annen type slitenhet. Ikke ett stort løft, men mange små: vri klut, bøye rygg, tørke flate, løfte bøtte, gå videre og gjenta.",
+            "Fra: Sara\nEmne: Hendene dine\nBody:\nDu ser sliten ut i hendene. Skal du hvile litt, eller skal du late som dette bare var lett jobb?"
+          ],
+          "task_domain": "kropp_og_belastning",
+          "competency": "kroppsbevissthet_og_restitusjon",
+          "pressure": "fysisk_repetisjon_etter_skift",
+          "choice_axis": "ta_kroppen_paa_alvor_vs_presse_videre",
+          "consequence_axis": "energi_vs_physical_load",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hvile og ta kroppen på alvor",
+              "reply": "Jeg sier at kroppen er sliten, og tar kvelden rolig uten å gjøre mer praktisk arbeid.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Det er fysisk arbeid selv om rommet bare ser “vanlig rent” ut etterpå.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 4,
+                  "stress": -2,
+                  "energy_weekend": 2,
+                  "relationship_sara": 1,
+                  "physical_load": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_body_rest"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Tøye og forklare belastningen",
+              "reply": "Jeg tøyer lett og forteller hvordan repetisjonene satte seg i kroppen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Da hører jeg arbeidet bedre også.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 3,
+                  "self_awareness": 2,
+                  "relationship_sara": 2,
+                  "stress": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde mer hjemme fordi du først er i gang",
+              "reply": "Jeg rydder og vasker litt mer hjemme fordi kroppen allerede er i arbeid.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Du fortsetter fordi du kan. Det betyr ikke at kroppen fikk det den trengte.",
+              "effects": {
+                "stats": {
+                  "physical_load": 3,
+                  "stress": 2,
+                  "energy_weekend": -2,
+                  "body_awareness": -2,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_cleaning_leak"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "mastery",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker om renholdsblikket får bli på jobb eller følger med inn i privatlivet.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week1_weekend_without_cleaning_gaze",
+          "subject": "Helgen uten renholdsblikk",
+          "summary": "Fredag kveld må hjemmet få være hjem, ikke et rom som skal godkjennes.",
+          "purpose": "Øve på å la helgen være fri fra renholdsblikket.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på å se det andre overser: håndtak, brytere, flekker, feil middel, tidsavvik og hender som blir slitne. Men nå er det helg.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen vil jeg ikke at du skal gå rundt og se etter flekker, kontrollere håndtak, gjøre kjøkkenet til sone eller vaske for å få lov til å hvile.",
+            "Fra: Jonas\nEmne: Helgeregel\nBody:\nIngen “berøringspunkt”. Ingen “romstandard”. Ingen “hygienisk rent”. Hvis du sier det på fest, skylder du middag."
+          ],
+          "task_domain": "helgegrense_uten_renholdsblikk",
+          "competency": "privat_grensesetting_og_restitusjon",
+          "pressure": "jobbblikk_ved_helg",
+          "choice_axis": "slippe_kontroll_vs_vaske_for_ro",
+          "consequence_axis": "restitusjon_vs_privat_lekkasje",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en helg uten renholdsblikk",
+              "reply": "Jeg bestemmer at helgen ikke skal være soner, flater, flekker, kontroll eller renholdsstandard.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Hjemmet blir ikke perfekt rent. Det blir mulig å være i det.",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 5,
+                  "stress": -5,
+                  "relationship_private": 4,
+                  "body_awareness": 3,
+                  "control": -3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_boundary"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Hvile kroppen uten å fortjene hvilen først",
+              "reply": "Jeg lar kroppen hvile uten å vaske, rydde eller gjøre praktiske ting først.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Du trenger ikke gjøre rent før du får lov til å være sliten.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 5,
+                  "stress": -4,
+                  "energy_weekend": 4,
+                  "self_awareness": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde litt fordi rotet stresser deg",
+              "reply": "Jeg rydder og vasker litt for å få ro, men prøver å stoppe før det blir skift nummer to.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Pass på at “litt” ikke blir måten jobben smyger seg inn på.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "stress": 1,
+                  "energy_weekend": -1,
+                  "self_awareness": 1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_cleaning_leak"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Vaske mye fordi det føles bedre etterpå",
+              "reply": "Jeg bruker helgen på å få hjemmet ordentlig rent fordi det gir ro.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Det ble rent. Men du hvilte ikke. Du bare gjorde kontrollen penere.",
+              "effects": {
+                "stats": {
+                  "control": 4,
+                  "physical_load": 3,
+                  "energy_weekend": -4,
+                  "stress": 2,
+                  "stagnation_private": 3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week1_private_cleaning_leak"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": []
+    },
+    {
       "id": "renhold_status_og_belastning",
       "purpose": "Grunnfamilie for private/people-mail om status, avbrytelser, kropp og verdighet i renholderrollen.",
       "learning_focus": [
