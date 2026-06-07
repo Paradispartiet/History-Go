@@ -1,149 +1,681 @@
 {
   "schema": "civication.routines.v1",
   "version": 1,
+  "field_docs": {
+    "id": "Unik ID for rutinen.",
+    "label": "Kort menneskelig navn.",
+    "routineType": "Hva slags livsrytme rutinen representerer.",
+    "stability": "Hvor forutsigbar rutinen er.",
+    "weekPattern": "Hvilke dager rutinen typisk gjelder.",
+    "segments": "Tidsblokker som styrer hvor personen er, hva personen gjør, og hvordan spilleren kan observere det.",
+    "socialHooks": "Mulige sosiale innganger rutinen kan åpne.",
+    "stressPattern": "Når personen typisk er presset.",
+    "visibilityRule": "Når spilleren kan se personen på kartet."
+  },
   "routines": {
     "routine_barista_evening_shift": {
       "id": "routine_barista_evening_shift",
       "label": "Barista med kveldsvakt",
+      "routineType": "shift_work",
+      "stability": "medium",
+      "weekPattern": [
+        "monday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "stressPattern": {
+        "highestStress": [
+          "15:00-18:00",
+          "21:30-23:00"
+        ],
+        "lowestStress": [
+          "09:00-11:00"
+        ]
+      },
+      "visibilityRule": {
+        "visibleOnlyIfRelationship": "added_friend",
+        "showOnMapWhenStateIs": [
+          "walking",
+          "working",
+          "closing",
+          "at_home"
+        ]
+      },
       "segments": [
         {
           "time": "09:00",
           "locationId": "civi_home_grunerlokka_01",
           "state": "at_home",
-          "visibilityText": "Jonas er hjemme. Gardinene er halvveis trukket for."
+          "activity": "slow_morning",
+          "mood": "flat",
+          "visibilityText": "Jonas er hjemme. Gardinene er halvveis trukket for.",
+          "availableInteractions": [
+            "send_message",
+            "leave_alone"
+          ]
         },
         {
           "time": "11:15",
           "locationId": "civi_street_grunerlokka_main",
           "state": "walking",
-          "visibilityText": "Jonas går mot kafeen med hettegenseren litt for langt opp i nakken."
+          "activity": "commuting_to_work",
+          "mood": "neutral",
+          "visibilityText": "Jonas går mot kafeen med hettegenseren litt for langt opp i nakken.",
+          "availableInteractions": [
+            "wave",
+            "walk_with",
+            "ignore"
+          ]
         },
         {
           "time": "12:00",
           "locationId": "civi_cafe_001",
           "state": "working",
-          "visibilityText": "Jonas står bak disken og smiler mekanisk til køen."
+          "activity": "serving_customers",
+          "mood": "focused",
+          "visibilityText": "Jonas står bak disken og smiler mekanisk til køen.",
+          "availableInteractions": [
+            "buy_coffee",
+            "short_talk",
+            "observe_work"
+          ]
+        },
+        {
+          "time": "16:30",
+          "locationId": "civi_cafe_001",
+          "state": "working",
+          "activity": "rush_hour",
+          "mood": "strained",
+          "visibilityText": "Køen vokser. Jonas beveger seg raskere, men sier mindre.",
+          "availableInteractions": [
+            "wait_patiently",
+            "complain",
+            "offer_help"
+          ]
         },
         {
           "time": "22:30",
           "locationId": "civi_cafe_001",
           "state": "closing",
-          "visibilityText": "Jonas låser døren og blir stående et øyeblikk utenfor."
+          "activity": "cleaning_and_locking",
+          "mood": "tired",
+          "visibilityText": "Jonas låser døren og blir stående et øyeblikk utenfor.",
+          "availableInteractions": [
+            "ask_how_shift_was",
+            "make_light_joke",
+            "walk_home_together"
+          ]
         },
         {
           "time": "23:10",
           "locationId": "civi_home_grunerlokka_01",
           "state": "at_home",
-          "visibilityText": "Lyset er på hjemme hos Jonas, men han svarer ikke med en gang."
+          "activity": "recovering",
+          "mood": "withdrawn",
+          "visibilityText": "Lyset er på hjemme hos Jonas, men han svarer ikke med en gang.",
+          "availableInteractions": [
+            "send_short_message",
+            "leave_quietly"
+          ]
         }
+      ],
+      "socialHooks": [
+        "after_bad_shift",
+        "money_pressure",
+        "friend_too_tired_to_answer",
+        "late_evening_walk"
       ]
     },
     "routine_caseworker_regular": {
       "id": "routine_caseworker_regular",
       "label": "Saksbehandler med kontortid",
+      "routineType": "office_work",
+      "stability": "high",
+      "weekPattern": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "stressPattern": {
+        "highestStress": [
+          "10:00-14:30"
+        ],
+        "lowestStress": [
+          "18:00-21:00"
+        ]
+      },
+      "visibilityRule": {
+        "visibleOnlyIfRelationship": "added_friend",
+        "showOnMapWhenStateIs": [
+          "commuting",
+          "working",
+          "lunch",
+          "at_home"
+        ]
+      },
       "segments": [
         {
           "time": "07:45",
           "locationId": "civi_home_sagene_02",
           "state": "leaving_home",
-          "visibilityText": "Mina låser døren med telefonen allerede i hånden."
+          "activity": "checking_messages",
+          "mood": "controlled",
+          "visibilityText": "Mina låser døren med telefonen allerede i hånden.",
+          "availableInteractions": [
+            "say_good_morning",
+            "send_message_later"
+          ]
         },
         {
           "time": "08:30",
           "locationId": "civi_office_public_casework",
           "state": "working",
-          "visibilityText": "Mina sitter ved skrivebordet med tre åpne saker og kald kaffe."
+          "activity": "case_review",
+          "mood": "focused",
+          "visibilityText": "Mina sitter ved skrivebordet med tre åpne saker og kald kaffe.",
+          "availableInteractions": [
+            "wait",
+            "observe_system",
+            "ask_briefly"
+          ]
         },
         {
           "time": "12:05",
           "locationId": "civi_office_canteen",
           "state": "lunch",
-          "visibilityText": "Mina spiser raskt og leser samtidig en intern melding."
+          "activity": "short_lunch",
+          "mood": "compressed",
+          "visibilityText": "Mina spiser raskt og leser samtidig en intern melding.",
+          "availableInteractions": [
+            "sit_nearby",
+            "respect_boundary",
+            "ask_if_she_is_ok"
+          ]
+        },
+        {
+          "time": "14:20",
+          "locationId": "civi_office_public_casework",
+          "state": "working",
+          "activity": "documentation_pressure",
+          "mood": "strained",
+          "visibilityText": "Mina skriver med små, presise bevegelser. Hun virker mer presset enn hun sier.",
+          "availableInteractions": [
+            "do_not_interrupt",
+            "send_supportive_message",
+            "push_for_answer"
+          ]
         },
         {
           "time": "16:15",
           "locationId": "civi_bus_stop_sagene",
           "state": "commuting",
-          "visibilityText": "Mina står ved bussholdeplassen og ser ut som hun fortsatt er på jobb."
+          "activity": "leaving_work",
+          "mood": "mentally_absent",
+          "visibilityText": "Mina står ved bussholdeplassen og ser ut som hun fortsatt er på jobb.",
+          "availableInteractions": [
+            "walk_to_bus",
+            "ask_about_day",
+            "leave_space"
+          ]
         },
         {
           "time": "18:30",
           "locationId": "civi_home_sagene_02",
           "state": "at_home",
-          "visibilityText": "Mina er hjemme. Hun har ikke åpnet meldingen din ennå."
+          "activity": "private_recovery",
+          "mood": "quiet",
+          "visibilityText": "Mina er hjemme. Hun har ikke åpnet meldingen din ennå.",
+          "availableInteractions": [
+            "send_short_message",
+            "wait_until_tomorrow"
+          ]
         }
+      ],
+      "socialHooks": [
+        "boundary_respected",
+        "case_pressure",
+        "office_language",
+        "friend_who_cannot_talk_now"
       ]
     },
     "routine_childcare_early_shift": {
       "id": "routine_childcare_early_shift",
       "label": "Tidlig barnehagevakt",
+      "routineType": "care_work",
+      "stability": "high",
+      "weekPattern": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday"
+      ],
+      "stressPattern": {
+        "highestStress": [
+          "07:00-09:00",
+          "15:00-16:30"
+        ],
+        "lowestStress": [
+          "19:30-21:00"
+        ]
+      },
+      "visibilityRule": {
+        "visibleOnlyIfRelationship": "added_friend",
+        "showOnMapWhenStateIs": [
+          "opening",
+          "outdoor_work",
+          "walking",
+          "at_home"
+        ]
+      },
       "segments": [
         {
           "time": "06:40",
           "locationId": "civi_home_torshov_01",
           "state": "leaving_home",
-          "visibilityText": "Sana går ut med termokopp og vått hår."
+          "activity": "early_start",
+          "mood": "practical",
+          "visibilityText": "Sana går ut med termokopp og vått hår.",
+          "availableInteractions": [
+            "wave",
+            "send_good_luck"
+          ]
         },
         {
           "time": "07:00",
           "locationId": "civi_kindergarten_urban_01",
           "state": "opening",
-          "visibilityText": "Sana åpner porten før de første barna kommer."
+          "activity": "opening_gate",
+          "mood": "alert",
+          "visibilityText": "Sana åpner porten før de første barna kommer.",
+          "availableInteractions": [
+            "observe_care_work",
+            "say_hello"
+          ]
+        },
+        {
+          "time": "09:40",
+          "locationId": "civi_kindergarten_urban_01",
+          "state": "working",
+          "activity": "morning_conflicts",
+          "mood": "warm_but_busy",
+          "visibilityText": "Sana bøyer seg ned mellom to barn som begge peker på samme spade.",
+          "availableInteractions": [
+            "observe_patience",
+            "do_not_interrupt"
+          ]
         },
         {
           "time": "11:30",
           "locationId": "civi_kindergarten_yard_01",
           "state": "outdoor_work",
-          "visibilityText": "Sana står i utegården med blikket på tre konflikter samtidig."
+          "activity": "yard_supervision",
+          "mood": "focused",
+          "visibilityText": "Sana står i utegården med blikket på tre konflikter samtidig.",
+          "availableInteractions": [
+            "help_with_gate",
+            "watch_from_distance",
+            "ask_too_much"
+          ]
         },
         {
           "time": "15:00",
           "locationId": "civi_street_torshov_main",
           "state": "walking",
-          "visibilityText": "Sana går hjemover med rolig tempo, men tunge skuldre."
+          "activity": "going_home",
+          "mood": "tired_but_open",
+          "visibilityText": "Sana går hjemover med rolig tempo, men tunge skuldre.",
+          "availableInteractions": [
+            "walk_with",
+            "ask_about_day",
+            "let_her_rest"
+          ]
         },
         {
           "time": "20:30",
           "locationId": "civi_home_torshov_01",
           "state": "at_home",
-          "visibilityText": "Sana er hjemme. Hun svarer kanskje hvis meldingen er kort og tydelig."
+          "activity": "quiet_evening",
+          "mood": "soft",
+          "visibilityText": "Sana er hjemme. Hun svarer kanskje hvis meldingen er kort og tydelig.",
+          "availableInteractions": [
+            "send_short_message",
+            "wait"
+          ]
         }
+      ],
+      "socialHooks": [
+        "care_work_visible",
+        "small_practical_help",
+        "adult_responsibility",
+        "friend_needs_clear_message"
+      ]
+    },
+    "routine_grocery_shift_rotation": {
+      "id": "routine_grocery_shift_rotation",
+      "label": "Butikkmedarbeider med turnus",
+      "routineType": "shift_rotation",
+      "stability": "medium_low",
+      "weekPattern": [
+        "monday",
+        "tuesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "stressPattern": {
+        "highestStress": [
+          "15:30-19:30"
+        ],
+        "lowestStress": [
+          "10:00-12:00"
+        ]
+      },
+      "visibilityRule": {
+        "visibleOnlyIfRelationship": "added_friend",
+        "showOnMapWhenStateIs": [
+          "working",
+          "stocking",
+          "checkout",
+          "parking",
+          "at_home"
+        ]
+      },
+      "segments": [
+        {
+          "time": "10:00",
+          "locationId": "civi_home_majorstuen_01",
+          "state": "at_home",
+          "activity": "before_shift",
+          "mood": "restless",
+          "visibilityText": "Erik er hjemme, men han virker allerede på vei videre.",
+          "availableInteractions": [
+            "send_message",
+            "ask_about_shift"
+          ]
+        },
+        {
+          "time": "12:15",
+          "locationId": "civi_grocery_kiwi_urban",
+          "state": "stocking",
+          "activity": "filling_shelves",
+          "mood": "efficient",
+          "visibilityText": "Erik fyller varer uten å se særlig opp fra tralla.",
+          "availableInteractions": [
+            "short_talk",
+            "ask_where_item_is",
+            "observe_work"
+          ]
+        },
+        {
+          "time": "16:45",
+          "locationId": "civi_grocery_kiwi_urban",
+          "state": "checkout",
+          "activity": "evening_queue",
+          "mood": "strained",
+          "visibilityText": "Køen strekker seg forbi smågodtet. Erik sier hei uten å stoppe hendene.",
+          "availableInteractions": [
+            "wait_patiently",
+            "complain",
+            "make_small_joke"
+          ]
+        },
+        {
+          "time": "20:20",
+          "locationId": "civi_parking_majorstuen_small",
+          "state": "parking",
+          "activity": "after_shift",
+          "mood": "drained",
+          "visibilityText": "Erik sitter i bilen noen minutter før han starter motoren.",
+          "availableInteractions": [
+            "ask_if_ok",
+            "leave_alone",
+            "offer_walk"
+          ]
+        },
+        {
+          "time": "21:00",
+          "locationId": "civi_home_majorstuen_01",
+          "state": "at_home",
+          "activity": "late_dinner",
+          "mood": "quiet",
+          "visibilityText": "Erik er hjemme. Han spiser sent.",
+          "availableInteractions": [
+            "send_message",
+            "wait_until_tomorrow"
+          ]
+        }
+      ],
+      "socialHooks": [
+        "turnus_pressure",
+        "customer_conflict",
+        "money_conversation",
+        "friend_in_car_after_shift"
       ]
     },
     "routine_unemployed_creative_irregular": {
       "id": "routine_unemployed_creative_irregular",
       "label": "Uregelmessig kreativ dag",
+      "routineType": "unstructured_day",
+      "stability": "low",
+      "weekPattern": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "sunday"
+      ],
+      "stressPattern": {
+        "highestStress": [
+          "00:00-02:00",
+          "14:00-17:00"
+        ],
+        "lowestStress": [
+          "11:00-13:00"
+        ]
+      },
+      "visibilityRule": {
+        "visibleOnlyIfRelationship": "added_friend",
+        "showOnMapWhenStateIs": [
+          "at_home",
+          "thinking",
+          "walking",
+          "sitting",
+          "awake"
+        ]
+      },
       "segments": [
         {
           "time": "10:45",
           "locationId": "civi_home_st_hanshaugen_01",
           "state": "at_home",
-          "visibilityText": "Vetle er hjemme. Dagen ser ikke helt i gang ut."
+          "activity": "delayed_start",
+          "mood": "unclear",
+          "visibilityText": "Vetle er hjemme. Dagen ser ikke helt i gang ut.",
+          "availableInteractions": [
+            "send_message",
+            "invite_for_walk",
+            "leave_alone"
+          ]
         },
         {
           "time": "13:00",
           "locationId": "civi_library_urban_01",
           "state": "thinking",
-          "visibilityText": "Vetle sitter på biblioteket med notater, men leser mest gamle meldinger."
+          "activity": "notes_and_distraction",
+          "mood": "intense",
+          "visibilityText": "Vetle sitter på biblioteket med notater, men leser mest gamle meldinger.",
+          "availableInteractions": [
+            "sit_nearby",
+            "ask_what_he_writes",
+            "avoid_interrupting"
+          ]
         },
         {
           "time": "16:20",
           "locationId": "civi_park_st_hanshaugen",
           "state": "walking",
-          "visibilityText": "Vetle går rundt i parken uten å ta den korteste veien."
+          "activity": "looping_walk",
+          "mood": "restless",
+          "visibilityText": "Vetle går rundt i parken uten å ta den korteste veien.",
+          "availableInteractions": [
+            "walk_with",
+            "ask_directly",
+            "talk_about_project"
+          ]
         },
         {
           "time": "21:40",
           "locationId": "civi_cafe_001",
           "state": "sitting",
-          "visibilityText": "Vetle sitter ved vinduet med en kaffe han ikke har råd til."
+          "activity": "late_coffee",
+          "mood": "open_but_fragile",
+          "visibilityText": "Vetle sitter ved vinduet med en kaffe han ikke har råd til.",
+          "availableInteractions": [
+            "buy_extra_coffee",
+            "listen",
+            "challenge_him"
+          ]
         },
         {
           "time": "01:10",
           "locationId": "civi_home_st_hanshaugen_01",
           "state": "awake",
-          "visibilityText": "Vetle er våken. Det lyser fra rommet hans."
+          "activity": "late_night_messages",
+          "mood": "overactive",
+          "visibilityText": "Vetle er våken. Det lyser fra rommet hans.",
+          "availableInteractions": [
+            "reply_now",
+            "reply_tomorrow",
+            "set_boundary"
+          ]
         }
+      ],
+      "socialHooks": [
+        "creative_block",
+        "late_message",
+        "money_shame",
+        "friend_needs_structure"
+      ]
+    },
+    "routine_delivery_rider_flexible": {
+      "id": "routine_delivery_rider_flexible",
+      "label": "Budsyklist med fleksibel appdag",
+      "routineType": "platform_work",
+      "stability": "low",
+      "weekPattern": [
+        "monday",
+        "wednesday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "stressPattern": {
+        "highestStress": [
+          "11:30-13:30",
+          "17:00-21:00"
+        ],
+        "lowestStress": [
+          "14:00-16:00"
+        ]
+      },
+      "visibilityRule": {
+        "visibleOnlyIfRelationship": "added_friend",
+        "showOnMapWhenStateIs": [
+          "waiting",
+          "cycling",
+          "working",
+          "resting",
+          "at_home"
+        ]
+      },
+      "segments": [
+        {
+          "time": "10:30",
+          "locationId": "civi_home_toyen_01",
+          "state": "at_home",
+          "activity": "checking_app",
+          "mood": "calculating",
+          "visibilityText": "Amir sjekker appen før han bestemmer om dagen er verdt å starte.",
+          "availableInteractions": [
+            "ask_about_work",
+            "invite_for_lunch",
+            "leave_alone"
+          ]
+        },
+        {
+          "time": "12:10",
+          "locationId": "civi_food_pickup_street_01",
+          "state": "waiting",
+          "activity": "waiting_for_order",
+          "mood": "impatient",
+          "visibilityText": "Amir står utenfor restauranten og ser hvert minutt bli til mindre penger.",
+          "availableInteractions": [
+            "talk_briefly",
+            "wait_with_him",
+            "ask_about_app"
+          ]
+        },
+        {
+          "time": "13:00",
+          "locationId": "civi_street_delivery_route_01",
+          "state": "cycling",
+          "activity": "delivery_route",
+          "mood": "focused",
+          "visibilityText": "Amir sykler raskt mellom biler, fortau og appens neste beskjed.",
+          "availableInteractions": [
+            "observe_risk",
+            "do_not_interrupt"
+          ]
+        },
+        {
+          "time": "15:15",
+          "locationId": "civi_park_toyen_small",
+          "state": "resting",
+          "activity": "short_break",
+          "mood": "tired",
+          "visibilityText": "Amir sitter på en benk med sykkelen ved siden av seg.",
+          "availableInteractions": [
+            "sit_down",
+            "offer_food",
+            "ask_if_he_is_ok"
+          ]
+        },
+        {
+          "time": "18:20",
+          "locationId": "civi_food_pickup_street_02",
+          "state": "working",
+          "activity": "dinner_rush",
+          "mood": "strained",
+          "visibilityText": "Mobilen piper igjen før Amir rekker å fullføre setningen.",
+          "availableInteractions": [
+            "walk_with_him",
+            "tell_him_to_rest",
+            "let_him_work"
+          ]
+        },
+        {
+          "time": "22:40",
+          "locationId": "civi_home_toyen_01",
+          "state": "at_home",
+          "activity": "counting_income",
+          "mood": "quiet",
+          "visibilityText": "Amir er hjemme og regner på om dagen egentlig gikk i pluss.",
+          "availableInteractions": [
+            "send_message",
+            "wait_until_tomorrow"
+          ]
+        }
+      ],
+      "socialHooks": [
+        "platform_pressure",
+        "body_wear",
+        "city_routes",
+        "friend_interrupted_by_app"
       ]
     }
   }
