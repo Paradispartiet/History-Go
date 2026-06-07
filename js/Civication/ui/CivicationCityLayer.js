@@ -38,7 +38,8 @@
   }
 
   // Normalisert posisjon (0-1) for et sted: eksplisitt position vinner, ellers
-  // bydelssenter fra kartmodellen, ellers midten.
+  // bydelssenter fra kartmodellen, ellers midten. Brukes KUN som fallback når
+  // CanvasMap-projeksjonen ikke er aktiv (3D/SVG) – se resolveLocationAnchor.
   function locationXY(loc) {
     if (loc && loc.position && typeof loc.position.x === "number" && typeof loc.position.y === "number") {
       return { x: loc.position.x, y: loc.position.y };
@@ -46,6 +47,141 @@
     const center = districtCenter(loc && loc.mapZone);
     if (center) return center;
     return { x: 0.5, y: 0.5 };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Kartforankring (Del B) – marker-posisjoner fra aktiv kartmotor
+  // ---------------------------------------------------------------------------
+  // Når CanvasMap er den aktive kartmotoren forankres markørene i kartets eget
+  // koordinatsystem via CanvasMap-projeksjonen (skjermpiksler som følger
+  // zoom/pan/resize), ikke som egne overlay-prosenter. Når 3D har tatt over
+  // eller SVG-fallback er aktiv, beholdes den trygge normaliserte prosent-
+  // plasseringen (se Del F).
+  function activeCanvasMap() {
+    const cm = window.CivicationCanvasMap;
+    if (cm && typeof cm.isActive === "function" && cm.isActive() &&
+        typeof cm.projectWorldToScreen === "function") {
+      return cm;
+    }
+    return null;
+  }
+
+  // Skjermpiksel-anker (px) for et sted via den aktive CanvasMap-projeksjonen.
+  // Prioritet (jf. oppgaven):
+  //   1) sourcePlaceId/brand_place -> projiser det ekte History Go-stedet.
+  //   2) eksplisitt normalisert loc.position -> projectWorldToScreen.
+  //   3) mapZone -> bydelssenter -> projectWorldToScreen.
+  //   4) ingen anker -> null (gjetter aldri).
+  function projectLocationToScreen(loc) {
+    const cm = activeCanvasMap();
+    if (!cm || !loc) return null;
+
+    // 1) Ekte sosialt sted: prøv å forankre via dets ekte History Go-place.
+    const sourcePlaceId = loc.sourcePlaceId || (loc.raw && loc.raw.sourcePlaceId);
+    if (sourcePlaceId && typeof cm.projectPlaceToScreen === "function") {
+      const s = cm.projectPlaceToScreen(sourcePlaceId);
+      if (s && Number.isFinite(s.x) && Number.isFinite(s.y)) return { x: s.x, y: s.y };
+    }
+
+    // 2) Eksplisitt normalisert world-koordinat.
+    if (loc.position && typeof loc.position.x === "number" && typeof loc.position.y === "number") {
+      const s = cm.projectWorldToScreen(loc.position.x, loc.position.y);
+      if (s && Number.isFinite(s.x) && Number.isFinite(s.y)) return { x: s.x, y: s.y };
+    }
+
+    // 3) mapZone -> bydelssenter som world-koordinat.
+    const center = districtCenter(loc.mapZone);
+    if (center) {
+      const s = cm.projectWorldToScreen(center.x, center.y);
+      if (s && Number.isFinite(s.x) && Number.isFinite(s.y)) return { x: s.x, y: s.y };
+    }
+
+    // 4) Ingen anker funnet.
+    return null;
+  }
+
+  // Anker-deskriptor: skjermpiksler når CanvasMap er aktiv, ellers normalisert
+  // fallback. null = CanvasMap aktiv, men stedet kunne ikke forankres (skjules).
+  function resolveLocationAnchor(loc) {
+    if (!loc) return null;
+    if (activeCanvasMap()) {
+      const screen = projectLocationToScreen(loc);
+      if (screen) return { mode: "screen", x: screen.x, y: screen.y };
+      return null;
+    }
+    const xy = locationXY(loc);
+    return { mode: "normalized", x: xy.x, y: xy.y };
+  }
+
+  function setScreenPos(el, point) {
+    el.style.left = point.x.toFixed(1) + "px";
+    el.style.top = point.y.toFixed(1) + "px";
+  }
+
+  function setNormalizedPos(el, xy) {
+    el.style.left = (xy.x * 100).toFixed(2) + "%";
+    el.style.top = (xy.y * 100).toFixed(2) + "%";
+  }
+
+  // Plasser én markør ut fra dens lagrede sted (_civiLoc) + eventuell
+  // deterministisk forskyvning (_civiOffset, brukes for venner rundt samme sted).
+  // Forskyvningen skjer ETTER projeksjon (i skjermpiksler) når kartet er aktivt,
+  // slik at den ikke bryter ved zoom/pan.
+  function positionMarker(el) {
+    const loc = el._civiLoc;
+    const off = el._civiOffset || null;
+    const anchor = resolveLocationAnchor(loc);
+
+    if (!anchor) {
+      // Regel 5: CanvasMap er aktiv, men stedet har ingen kartanker -> ikke vis
+      // markøren som kartfestet (ingen tilfeldig midt-plassering).
+      el.classList.add("is-unanchored");
+      el.hidden = true;
+      return;
+    }
+
+    el.hidden = false;
+    el.classList.remove("is-unanchored");
+
+    if (anchor.mode === "screen") {
+      let x = anchor.x, y = anchor.y;
+      if (off) {
+        x += Math.cos(off.angle) * off.ringPx;
+        y += Math.sin(off.angle) * off.ringPx + off.dyPx;
+      }
+      setScreenPos(el, { x, y });
+    } else {
+      let nx = anchor.x, ny = anchor.y;
+      if (off) {
+        nx += Math.cos(off.angle) * off.ringNorm;
+        ny += Math.sin(off.angle) * off.ringNorm + off.dyNorm;
+      }
+      setNormalizedPos(el, { x: nx, y: ny });
+    }
+  }
+
+  // Re-posisjoner alle kartforankrede markører (steder + venner). Kalles ved
+  // første render og på civi:canvasMapTransformChanged / resize.
+  function refreshMarkerPositions() {
+    const mh = markersHost();
+    if (!mh || !mh.querySelectorAll) return;
+    mh.querySelectorAll(".civi-city-place, .civi-city-friend").forEach(positionMarker);
+  }
+
+  // Bind transform-hendelser én gang slik at markørene følger kartet, ikke
+  // skjermen, ved zoom/pan/resize.
+  let _mapEventsBound = false;
+  function bindMapTransformEvents() {
+    if (_mapEventsBound) return;
+    _mapEventsBound = true;
+    const onChange = () => refreshMarkerPositions();
+    window.addEventListener("civi:canvasMapTransformChanged", onChange);
+    window.addEventListener("resize", onChange);
+    window.addEventListener("orientationchange", () => setTimeout(onChange, 140));
+    const cm = window.CivicationCanvasMap;
+    if (cm && typeof cm.onTransformChanged === "function") {
+      try { cm.onTransformChanged(onChange); } catch (_e) { /* CanvasMap ennå ikke lastet */ }
+    }
   }
 
   const ACTIVITY_LABELS = {
@@ -135,11 +271,6 @@
     markersHost()?.querySelectorAll(".is-selected").forEach((n) => n.classList.remove("is-selected"));
   }
 
-  function setPos(el, xy) {
-    el.style.left = (xy.x * 100).toFixed(2) + "%";
-    el.style.top = (xy.y * 100).toFixed(2) + "%";
-  }
-
   // ---------------------------------------------------------------------------
   // Render
   // ---------------------------------------------------------------------------
@@ -169,7 +300,8 @@
     capturePlayerSnapshot();
     renderSelfStatus();
 
-    // 1) Stedsmarkører.
+    // 1) Stedsmarkører. Posisjon settes av refreshMarkerPositions() fra aktiv
+    //    kartmotor – ikke som egne overlay-prosenter her.
     (locations || []).forEach((loc) => {
       const active = eng.isLocationActive(loc, phase);
       const btn = document.createElement("button");
@@ -179,7 +311,7 @@
       btn.innerHTML =
         '<span class="civi-city-place-icon">' + esc(loc.icon || "📍") + "</span>" +
         '<span class="civi-city-place-label">' + esc(loc.label || loc.id || "") + "</span>";
-      setPos(btn, locationXY(loc));
+      btn._civiLoc = loc;
       btn.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -188,7 +320,11 @@
       mh.appendChild(btn);
     });
 
-    // 2) Vennefigurer – grupper pr. sted for å spre dem litt.
+    // 2) Vennefigurer – grupper pr. sted for å spre dem litt rundt stedet de
+    //    faktisk er på i aktiv/siste fase. Forskyvningen er en liten
+    //    deterministisk skjermpiksel-offset som påføres ETTER projeksjon (i
+    //    positionMarker), så flere venner på samme sted spres uten å miste
+    //    kartankeret ved zoom/pan.
     const visible = (friends || []).filter((row) => row.presence && row.presence.visibleOnMap);
     const byLocation = {};
     visible.forEach((row) => {
@@ -198,19 +334,31 @@
 
     Object.keys(byLocation).forEach((locId) => {
       const group = byLocation[locId];
-      const loc = eng.locationById(locations, locId);
-      const base = loc ? locationXY(loc) : { x: 0.5, y: 0.5 };
+      const loc = eng.locationById(locations, locId) || {};
       group.forEach((row, index) => {
-        // Deterministisk liten forskyvning rundt stedet (sirkel).
         const angle = (index / Math.max(1, group.length)) * Math.PI * 2;
-        const ring = group.length > 1 ? 0.028 : 0;
-        const xy = { x: base.x + Math.cos(angle) * ring, y: base.y + Math.sin(angle) * ring + 0.03 };
-        mh.appendChild(buildFriendMarker(row, xy));
+        const multi = group.length > 1;
+        const marker = buildFriendMarker(row);
+        marker._civiLoc = loc;
+        marker._civiOffset = {
+          angle,
+          // Skjermpiksler (CanvasMap aktiv).
+          ringPx: multi ? 22 : 0,
+          dyPx: 18,
+          // Normalisert (3D/SVG-fallback) – beholder gammel oppførsel.
+          ringNorm: multi ? 0.028 : 0,
+          dyNorm: 0.03
+        };
+        mh.appendChild(marker);
       });
     });
+
+    // Forankre alle markører i kartets koordinatsystem og hold dem oppdatert.
+    refreshMarkerPositions();
+    bindMapTransformEvents();
   }
 
-  function buildFriendMarker(row, xy) {
+  function buildFriendMarker(row) {
     const friend = row.friend || {};
     const presence = row.presence || {};
     const color = (friend.avatar && friend.avatar.color) || "#cfd6e0";
@@ -224,7 +372,6 @@
       '<span class="civi-city-friend-figure" style="--friend-color:' + esc(color) + '">' + esc(initial) + "</span>" +
       '<span class="civi-city-friend-tag">' + esc(friend.name || "") +
       '<small>' + esc(presence.lastSeenText || presence.statusText || "") + "</small></span>";
-    setPos(btn, xy);
     btn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -907,6 +1054,7 @@
 
   function init() {
     ensureLayer();
+    bindMapTransformEvents();
     scheduleRender();
   }
 
@@ -937,6 +1085,11 @@
     buildPlaceEncountersHtml,
     handleSocialEncounterAction,
     getFriendInvites,
-    closeDetail
+    closeDetail,
+    // Kartforankring (Del B) – eksponert for testing.
+    resolveLocationAnchor,
+    projectLocationToScreen,
+    refreshMarkerPositions,
+    locationXY
   };
 })();
