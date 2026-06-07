@@ -6,6 +6,667 @@
   "mail_type": "people",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+      "purpose": "Praksisfortellinger – Lager- og driftsmedarbeider pakke 1: Første uke med mottak, plukk, lokasjon, HMS, kropp og skillet mellom lagerblikk og privatliv.",
+      "learning_focus": [
+        "mottak",
+        "plukk",
+        "lokasjon",
+        "HMS",
+        "sporbarhet",
+        "privat_grense"
+      ],
+      "week_outcomes": [
+        {
+          "id": "reliable_stock_flow_worker",
+          "condition": "Spilleren teller før signering, melder plukkavvik, registrerer lokasjonsfeil, stopper ved HMS-risiko og oppsummerer fysisk/systemisk vareflyt presist.",
+          "effects": {
+            "accuracy": 8,
+            "traceability": 8,
+            "stock_reliability": 7,
+            "manager_trust": 6,
+            "team_trust": 5,
+            "future_risk": -5
+          },
+          "story": "Du blir en medarbeider andre kan bygge videre på. Ikke fordi du er raskest, men fordi det du registrerer, faktisk stemmer med det som finnes."
+        },
+        {
+          "id": "speed_first_warehouse_worker",
+          "condition": "Spilleren signerer usikkert, plukker nesten riktig, flytter ting uten registrering og oppsummerer tempo som hovedstyrke.",
+          "effects": {
+            "flow_quality": 7,
+            "stress": -2,
+            "accuracy": -5,
+            "traceability": -5,
+            "stock_reliability": -6,
+            "future_risk": 6
+          },
+          "story": "Du får ting til å bevege seg. Men noen av feilene beveger seg også. Tempo uten sporbarhet blir bare raskere rot."
+        },
+        {
+          "id": "silent_fix_worker",
+          "condition": "Spilleren retter fysisk, men dokumenterer lite: flytter varer, gir muntlige beskjeder og får hyllene til å se bedre ut uten at systemet lærer.",
+          "effects": {
+            "flow_quality": 4,
+            "traceability": -6,
+            "process_quality": -3,
+            "future_risk": 5,
+            "team_trust": -2
+          },
+          "story": "Du rydder mye. Men stille rydding kan bli en måte å skjule mønstre på. Lageret ser bedre ut enn det faktisk er."
+        },
+        {
+          "id": "hms_flow_guardian",
+          "condition": "Spilleren stopper ved pall i gangsonen, ber om hjelp ved tunge løft, og forstår HMS som del av flyten.",
+          "effects": {
+            "hms_safety": 8,
+            "team_trust": 5,
+            "manager_trust": 5,
+            "future_risk": -5,
+            "flow_quality": 3,
+            "body_awareness": 3
+          },
+          "story": "Du lærer at sikkerhet ikke er pause fra produksjon. Det er det som gjør produksjonen mulig i morgen også."
+        },
+        {
+          "id": "system_blame_worker",
+          "condition": "Spilleren ser systemfeil, men bruker dem mest som forklaring i stedet for å gjøre dem sporbare og håndterbare.",
+          "effects": {
+            "system_awareness": 4,
+            "process_quality": -2,
+            "manager_trust": -3,
+            "stagnation": 4,
+            "conflict": 2
+          },
+          "story": "Du har rett i at systemet ofte tar feil. Men rollen blir sterkere når du gjør feilen brukbar, ikke bare peker på den."
+        },
+        {
+          "id": "private_warehouse_leak",
+          "condition": "Spilleren tar lagerblikket hjem: teller poser, flytter ting for flyt, gir mennesker hylleplass og presser kroppen videre.",
+          "effects": {
+            "control": 5,
+            "relationship_private": -5,
+            "stress": 4,
+            "energy_weekend": -4,
+            "stagnation_private": 4,
+            "body_awareness": -2
+          },
+          "story": "Du får orden på mye. Men privatlivet er ikke et lager. Noen ting skal ikke plasseres riktig. De skal bare få være der."
+        }
+      ],
+      "mails": [
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week1_counting_bags_at_home",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 129,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du teller posene hjemme",
+          "summary": "Lagerblikket flytter inn på kjøkkenet når handleposene nesten blir et varemottak.",
+          "purpose": "Spilleren merker at mottakslogikk kan lekke inn i privatlivet.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Kjøkkenet\nBody:\nDu kommer hjem med handleposer og teller dem nesten: kjøleskap, tørrvarer og ting du ikke husker å ha kjøpt. Så skjønner du at ingen ba deg ta varemottak i ditt eget kjøkken.",
+            "Fra: Sara\nEmne: Posene\nBody:\nDu sa “det mangler én pose” med veldig alvorlig stemme. Det var søppelposen. Jeg tror du fortsatt er på lager."
+          ],
+          "task_domain": "privat_mottaksblikk",
+          "competency": "selvbevissthet",
+          "pressure": "jobbblikk_hjemme",
+          "choice_axis": "kontroll_vs_tilstedevaer",
+          "consequence_axis": "privat_kontroll_vs_relasjon_og_hvile",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Slippe mottaksblikket hjemme",
+              "reply": "Jeg sier at hun har rett, og lar posene være vanlig rot, ikke varemottak.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Kjøkkenet trenger ikke følgeseddel.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 2,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at søppelposen er avviksmeldt og midlertidig plassert på gulvet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Hvis du lager avviksskjema for bananer, flytter jeg.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Begynne å organisere posene etter kategori",
+              "reply": "Jeg sorterer posene i kjøl, tørrvarer, vask og rest før jeg klarer å slappe av.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Det blir ryddig, men vanskelig å vite om du kom hjem eller bare byttet lager.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "stress": 1,
+                  "relationship_sara": -1,
+                  "stagnation_private": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week1_friend_not_shelf_location",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 128,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Vennen som ikke vil ha hylleplass",
+          "summary": "Jonas reagerer på at en prat omtales som noe som må få riktig plass.",
+          "purpose": "Spilleren lærer at mennesker ikke vil behandles som logistikk.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Jonas\nEmne: Hylleplass\nBody:\nDu skrev at vi må finne riktig plass til den praten. Jeg fikk følelsen av at samtalen vår var en vare du ikke fant lokasjon på. Jeg trenger bare øl eller kaffe.",
+            "Fra: Privat notat\nEmne: Riktig plass\nBody:\nPå lager betyr riktig plass at ting ikke forsvinner. Privat kan det høres ut som om mennesker må lagres effektivt før de kan møtes."
+          ],
+          "task_domain": "privat_relasjon_og_logistikk",
+          "competency": "relasjonsbevissthet",
+          "pressure": "planleggingssprak",
+          "choice_axis": "kontroll_vs_tilstedevaer",
+          "consequence_axis": "privat_kontroll_vs_relasjon_og_hvile",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare enkelt og menneskelig",
+              "reply": "Jeg skriver at han har rett, og foreslår kaffe uten å gjøre det til planlogistikk.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Jeg nekter å få lokasjonskode.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 3,
+                  "self_awareness": 2,
+                  "control": -1,
+                  "stress": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklare at du bare ville finne tidspunkt",
+              "reply": "Jeg skriver at jeg bare mente at vi måtte finne en tid som passet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Noen ganger kan du bare skrive “kaffe torsdag?”",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 0,
+                  "control": 1,
+                  "self_awareness": 0,
+                  "stress": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spøke med det",
+              "reply": "Jeg skriver at han midlertidig er plassert på lokasjon K-AFFE-01.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Akseptert, men jeg krever manuell håndtering.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week1_rearranging_home_for_flow",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 127,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du begynner å flytte ting for flyt",
+          "summary": "Glassene flyttes for bedre flyt, men hjemmet er ikke en internlogistisk flaskehals.",
+          "purpose": "Spilleren tar vareflytblikket hjem og må skille orden fra medbestemmelse.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Sara\nEmne: Hvorfor står glassene der?\nBody:\nDu flyttet glassene igjen og sa at det gir bedre flyt. Det er et skap, ikke en internlogistisk flaskehals.",
+            "Fra: Privat notat\nEmne: Bedre flyt\nBody:\nOfte brukt nærmest, tunge ting nederst og ting som hører sammen, sammen. Alt er fornuftig, men hjemmet er fullt av ufornuftige vaner som tilhører folk."
+          ],
+          "task_domain": "privat_flyt_og_hjem",
+          "competency": "medbestemmelse",
+          "pressure": "ordenstrang",
+          "choice_axis": "kontroll_vs_tilstedevaer",
+          "consequence_axis": "privat_kontroll_vs_relasjon_og_hvile",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spørre før du omorganiserer",
+              "reply": "Jeg sier at jeg burde spurt før jeg flyttet ting, og setter noe tilbake.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Jeg er ikke mot orden. Jeg er mot at hjemmet plutselig får lageransvarlig.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 3,
+                  "self_awareness": 2,
+                  "control": -1,
+                  "stress": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklare hvorfor flyten blir bedre",
+              "reply": "Jeg forklarer at plasseringen faktisk gir mindre rot og færre unødvendige bevegelser.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Det kan godt hende du har rett, men du optimaliserte meg uten å spørre.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "relationship_sara": -1,
+                  "conflict": 1,
+                  "self_awareness": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at glassene er flyttet til ny lokasjon etter intern revisjon.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Jeg ler, men revisjonen reverseres.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week1_body_after_warehouse",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 126,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Kroppen etter lageret",
+          "summary": "Fysisk arbeid setter seg i underarmer, korsrygg, knær og føtter.",
+          "purpose": "Spilleren lærer at kroppen også er en del av driftsansvaret.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Kroppen\nBody:\nDet er ikke én stor smerte, men mange små beskjeder fra underarmene, korsryggen, knærne og føttene. Kroppen minner deg på at dagen ikke bare var i hodet.",
+            "Fra: Sara\nEmne: Du går rart\nBody:\nDu går litt som om du har lastet ned en pall i beina. Skal du hvile, eller late som kroppen bare er et transportmiddel?"
+          ],
+          "task_domain": "privat_kropp_og_hvile",
+          "competency": "kroppsbevissthet",
+          "pressure": "sliten_etter_skift",
+          "choice_axis": "kontroll_vs_tilstedevaer",
+          "consequence_axis": "privat_kontroll_vs_relasjon_og_hvile",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hvile og lytte til kroppen",
+              "reply": "Jeg sier at jeg er sliten fysisk, og tar kvelden rolig uten å gjøre mer enn nødvendig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Kroppen din er ikke bare utstyr du låner av jobben.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 3,
+                  "stress": -2,
+                  "energy_weekend": 1,
+                  "relationship_sara": 1,
+                  "control": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Tøye litt og forklare dagen",
+              "reply": "Jeg tøyer lett og forteller kort hva som gjorde dagen tung.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Ikke klaging. Bare bruksanvisning for hvordan du har det.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 2,
+                  "relationship_sara": 2,
+                  "stress": -1,
+                  "self_awareness": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Ignorere kroppen og gjøre mer hjemme",
+              "reply": "Jeg rydder og bærer ting hjemme fordi jeg ikke vil virke helt utslått.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Du beviser at du kan presse kroppen videre. Det er ikke det samme som at det var klokt.",
+              "effects": {
+                "stats": {
+                  "physical_load": 3,
+                  "stress": 2,
+                  "energy_weekend": -2,
+                  "body_awareness": -1,
+                  "stagnation_private": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week1_weekend_without_pallets",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten paller",
+          "summary": "Helgen må få være kropp, hvile og relasjon – ikke vareflyt.",
+          "purpose": "Spilleren øver på å la helgen være uten mottak, plukk, paller og systemtall.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på ett kolli, fire manglende varer, feil lokasjon, pall i gangsonen og kroppen som sier lavt fra. Nå er det helg. Det finnes ingen plukkliste for å hvile riktig.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen vil jeg ikke at du skal optimalisere hjemmet. Ikke flytte glass, telle poser eller si at noe står i feil flyt. Bare vær her.",
+            "Fra: Jonas\nEmne: Regel\nBody:\nHvis du sier lokasjon, pall, vareflyt eller avvik privat, skylder du snacks. Hvis du sier HMS mens du bærer en stol alene, skylder du middag."
+          ],
+          "task_domain": "privat_helg_og_grenser",
+          "competency": "restitusjon",
+          "pressure": "helg_etter_lageruke",
+          "choice_axis": "kontroll_vs_tilstedevaer",
+          "consequence_axis": "privat_kontroll_vs_relasjon_og_hvile",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en helg uten lagerblikk",
+              "reply": "Jeg bestemmer at helgen ikke skal være mottak, plukk, paller, flyt eller systemtall.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Hjemmet blir ikke mer effektivt. Det blir mer hjemme.",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 4,
+                  "stress": -4,
+                  "body_awareness": 2,
+                  "relationship_private": 3,
+                  "control": -2
+                }
+              },
+              "triggers_on_choice": "lager_week1_private_boundary_thread"
+            },
+            {
+              "id": "B",
+              "label": "Hvile kroppen uten å gjøre hvile til oppgave",
+              "reply": "Jeg lar kroppen lande uten å lage plan for restitusjon, effektiv hvile eller forbedret søvnflyt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Du trenger ikke prestere hvile. Du kan bare hvile.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 4,
+                  "stress": -3,
+                  "energy_weekend": 3,
+                  "self_awareness": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde litt fordi rotet stresser deg",
+              "reply": "Jeg rydder og flytter ting litt for å få ro i hodet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Pass på at du ikke gjør hjemmet til et lager som aldri blir ferdig.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "stress": 1,
+                  "energy_weekend": -1,
+                  "relationship_private": -1,
+                  "stagnation_private": 1
+                }
+              }
+            },
+            {
+              "id": "D",
+              "label": "Presse kroppen videre fordi du føler deg lat",
+              "reply": "Jeg gjør praktiske ting hjemme selv om kroppen er sliten, fordi jeg ikke vil at dagen skal stoppe.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Du klarer mer. Det betyr ikke at mer var riktig.",
+              "effects": {
+                "stats": {
+                  "physical_load": 3,
+                  "body_awareness": -2,
+                  "stress": 2,
+                  "energy_weekend": -3,
+                  "guilt": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "lager_week1_private_boundary_thread",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: helg uten lagerblikk",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens første uke.",
+          "purpose": "Vise hvordan førsteukesvalget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara merker at helgen får mer plass når du lar være å gjøre hjemmet til vareflyt.",
+            "Jonas skriver at snacksregelen er suspendert så lenge ingen får lokasjonskode."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ]
+    },
+    {
       "id": "lager_team_og_belastning",
       "purpose": "Vise hvordan fysisk lagerarbeid, kollegiale snarveier, registrering og HMS preger kroppen, laget og følelsen av usynlig drift.",
       "learning_focus": [

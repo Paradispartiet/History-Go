@@ -6,6 +6,868 @@
   "mail_type": "job",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+      "purpose": "Praksisfortellinger – Lager- og driftsmedarbeider pakke 1: Første uke med mottak, plukk, lokasjon, HMS, kropp og skillet mellom lagerblikk og privatliv.",
+      "learning_focus": [
+        "mottak",
+        "plukk",
+        "lokasjon",
+        "HMS",
+        "sporbarhet",
+        "privat_grense"
+      ],
+      "week_outcomes": [
+        {
+          "id": "reliable_stock_flow_worker",
+          "condition": "Spilleren teller før signering, melder plukkavvik, registrerer lokasjonsfeil, stopper ved HMS-risiko og oppsummerer fysisk/systemisk vareflyt presist.",
+          "effects": {
+            "accuracy": 8,
+            "traceability": 8,
+            "stock_reliability": 7,
+            "manager_trust": 6,
+            "team_trust": 5,
+            "future_risk": -5
+          },
+          "story": "Du blir en medarbeider andre kan bygge videre på. Ikke fordi du er raskest, men fordi det du registrerer, faktisk stemmer med det som finnes."
+        },
+        {
+          "id": "speed_first_warehouse_worker",
+          "condition": "Spilleren signerer usikkert, plukker nesten riktig, flytter ting uten registrering og oppsummerer tempo som hovedstyrke.",
+          "effects": {
+            "flow_quality": 7,
+            "stress": -2,
+            "accuracy": -5,
+            "traceability": -5,
+            "stock_reliability": -6,
+            "future_risk": 6
+          },
+          "story": "Du får ting til å bevege seg. Men noen av feilene beveger seg også. Tempo uten sporbarhet blir bare raskere rot."
+        },
+        {
+          "id": "silent_fix_worker",
+          "condition": "Spilleren retter fysisk, men dokumenterer lite: flytter varer, gir muntlige beskjeder og får hyllene til å se bedre ut uten at systemet lærer.",
+          "effects": {
+            "flow_quality": 4,
+            "traceability": -6,
+            "process_quality": -3,
+            "future_risk": 5,
+            "team_trust": -2
+          },
+          "story": "Du rydder mye. Men stille rydding kan bli en måte å skjule mønstre på. Lageret ser bedre ut enn det faktisk er."
+        },
+        {
+          "id": "hms_flow_guardian",
+          "condition": "Spilleren stopper ved pall i gangsonen, ber om hjelp ved tunge løft, og forstår HMS som del av flyten.",
+          "effects": {
+            "hms_safety": 8,
+            "team_trust": 5,
+            "manager_trust": 5,
+            "future_risk": -5,
+            "flow_quality": 3,
+            "body_awareness": 3
+          },
+          "story": "Du lærer at sikkerhet ikke er pause fra produksjon. Det er det som gjør produksjonen mulig i morgen også."
+        },
+        {
+          "id": "system_blame_worker",
+          "condition": "Spilleren ser systemfeil, men bruker dem mest som forklaring i stedet for å gjøre dem sporbare og håndterbare.",
+          "effects": {
+            "system_awareness": 4,
+            "process_quality": -2,
+            "manager_trust": -3,
+            "stagnation": 4,
+            "conflict": 2
+          },
+          "story": "Du har rett i at systemet ofte tar feil. Men rollen blir sterkere når du gjør feilen brukbar, ikke bare peker på den."
+        },
+        {
+          "id": "private_warehouse_leak",
+          "condition": "Spilleren tar lagerblikket hjem: teller poser, flytter ting for flyt, gir mennesker hylleplass og presser kroppen videre.",
+          "effects": {
+            "control": 5,
+            "relationship_private": -5,
+            "stress": 4,
+            "energy_weekend": -4,
+            "stagnation_private": 4,
+            "body_awareness": -2
+          },
+          "story": "Du får orden på mye. Men privatlivet er ikke et lager. Noen ting skal ikke plasseres riktig. De skal bare få være der."
+        }
+      ],
+      "mails": [
+        {
+          "id": "job_lager_og_driftsmedarbeider_week1_receiving_almost_matched",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 129,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Mottaket som nesten stemte",
+          "summary": "Første mottak viser at 17 synlige kolli ikke kan signeres som 18 uten avvik.",
+          "purpose": "Spilleren lærer at mottak er første kontrollpunkt i vareflyten.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Ragnhild, driftsleder\nEmne: Første mottak\nBody:\nVelkommen på lager. I mottak må fysisk pall, følgeseddel og systemregistrering stemme; hvis én av dem ikke stemmer, må det meldes som avvik.",
+            "Fra: Pavel, erfaren lagermedarbeider\nEmne: Kolli\nBody:\nIkke la sjåfør, klokke eller pall stresse deg til å bare signere. Hvis følgeseddelen sier 18 kolli og du ser 17, er det ikke nesten riktig.",
+            "Fra: System\nEmne: Mottakssituasjon\nBody:\nLeveranse: rengjøringsvarer og emballasje. Følgeseddel: 18 kolli. Fysisk opptelling: 17 kolli synlig. Sjåfør har dårlig tid. Risiko: feil lagerbeholdning, manglende vare og senere plukkfeil."
+          ],
+          "task_domain": "mottak_og_kollikontroll",
+          "competency": "leveransekontroll",
+          "pressure": "sjafor_og_klokke",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "kort_flyt_vs_langsiktig_palitelighet",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe mottaket og telle rolig før signering",
+              "reply": "Jeg sier at vi må telle én gang til før signering, sjekker pallen bak og ber Pavel kontrollere følgeseddelen sammen med meg.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Du lot ikke tempoet gjøre 17 til 18. Det er sånn vi unngår at feilen blir dyrere senere.",
+              "effects": {
+                "stats": {
+                  "accuracy": 4,
+                  "traceability": 4,
+                  "stock_reliability": 3,
+                  "team_trust": 2,
+                  "flow_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_counts_before_signing"
+                ]
+              },
+              "triggers_on_choice": "lager_week1_counts_before_signing_thread"
+            },
+            {
+              "id": "B",
+              "label": "Signere og notere usikkerhet etterpå",
+              "reply": "Jeg signerer mottaket for å slippe å stoppe sjåføren, men skriver en intern kommentar om at ett kolli var usikkert.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Når du signerer, sier vi i praksis at mottaket er kontrollert. Da blir kommentaren svakere enn signaturen.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 1,
+                  "deadline_pressure": -1,
+                  "traceability": 1,
+                  "future_risk": 2,
+                  "stock_reliability": -2,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_signed_uncertain_delivery"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Registrere mottaket som komplett fordi avviket er lite",
+              "reply": "Jeg registrerer leveransen som komplett fordi det bare mangler ett kolli og det sannsynligvis dukker opp.",
+              "effect": 0,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Ett kolli er ikke lite hvis det er akkurat det noen skal plukke senere.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 2,
+                  "accuracy": -3,
+                  "stock_reliability": -4,
+                  "future_risk": 4,
+                  "team_trust": -2,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_ignores_small_receiving_gap"
+                ]
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week1_pick_list_pressure",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 128,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Plukklisten som presset deg til å gjette",
+          "summary": "Plukklisten viser 12, hylla har 8 riktige og 6 lignende varer.",
+          "purpose": "Spilleren lærer at plukk handler om presisjon under tempo.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Plukk i dag\nBody:\nPlukk handler om riktig vare, antall, lokasjon, registrering og merking. Hvis varen ikke ligger der systemet sier, ikke gjett.",
+            "Fra: Pavel\nEmne: Plukkfeil\nBody:\nEn feilplukket vare ser liten ut hos oss, men videre får butikk feil vare, kunde feil svar og økonomi feil lager.",
+            "Fra: System\nEmne: Plukksituasjon\nBody:\nOrdre: 12 enheter allergivennlig vaskemiddel. Lokasjon B-14-03. Hylle: 8 riktig vare + 6 lignende variant. System: 12 på lokasjon. Tidsfrist kort."
+          ],
+          "task_domain": "plukk_og_avvik",
+          "competency": "plukkpresisjon",
+          "pressure": "kort_tidsfrist",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "kort_flyt_vs_langsiktig_palitelighet",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Plukke 8 riktige og melde avvik på resten",
+              "reply": "Jeg plukker de 8 riktige, stopper ved manglende 4, og melder avvik på lokasjon/system før jeg erstatter med lignende vare.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du lot ikke systemtallet tvinge deg til å late som hylla stemte.",
+              "effects": {
+                "stats": {
+                  "accuracy": 4,
+                  "stock_reliability": 4,
+                  "traceability": 3,
+                  "flow_pressure": 2,
+                  "team_trust": 2,
+                  "stress": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_reports_pick_shortage"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Plukke lignende variant for å fullføre ordren",
+              "reply": "Jeg plukker 8 riktige og 4 lignende variant, siden varen ligner og ordren haster.",
+              "effect": 0,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Nesten samme var ikke samme.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 2,
+                  "accuracy": -4,
+                  "future_risk": 4,
+                  "stock_reliability": -3,
+                  "team_trust": -2,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_near_match_pick"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Stoppe hele ordren og vente på leder",
+              "reply": "Jeg stopper plukket og venter på Ragnhild før jeg gjør noe mer.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Trygt, men du kan ofte melde avvik og plukke det som faktisk stemmer uten å stoppe alt.",
+              "effects": {
+                "stats": {
+                  "accuracy": 1,
+                  "flow_pressure": 3,
+                  "manager_trust": 1,
+                  "team_trust": 0,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_waits_for_manager"
+                ]
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week1_wrong_location",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 127,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Varen på feil lokasjon",
+          "summary": "Emballasjeruller ligger fysisk på C-04-03 mens systemet peker til C-02-01.",
+          "purpose": "Spilleren lærer at feil lokasjon må rettes både fysisk og digitalt.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Lokasjonsavvik\nBody:\nNår du finner en vare på feil plass, må du ikke bare flytte den fysisk. Systemet må også forstå hva som har skjedd.",
+            "Fra: Pavel\nEmne: Feil lokasjon\nBody:\nHvis du bare flytter varen stille, ser lageret penere ut, men vi lærer ingenting om mottak, påfyll eller retur.",
+            "Fra: System\nEmne: Lokasjonssituasjon\nBody:\nVare: emballasjeruller. Systemlokasjon C-02-01. Fysisk funnet C-04-03. Antall 9. Siste bevegelse uklar. Ordre venter."
+          ],
+          "task_domain": "lagerplassering",
+          "competency": "lokasjonskontroll",
+          "pressure": "ordre_venter",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "kort_flyt_vs_langsiktig_palitelighet",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytte varen og registrere lokasjonsavvik",
+              "reply": "Jeg flytter varen til riktig lokasjon, registrerer avviket og noterer at siste bevegelse er uklar.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du rettet både kroppen og systemet. Det er forskjellen på rydding og driftskontroll.",
+              "effects": {
+                "stats": {
+                  "stock_reliability": 4,
+                  "traceability": 4,
+                  "process_quality": 3,
+                  "team_trust": 2,
+                  "flow_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_location_error_logged"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Flytte varen fysisk uten registrering",
+              "reply": "Jeg flytter varen til riktig hylle for å få orden raskt, men registrerer ikke avviket.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Hylla ser bedre ut, men ingen vet hvorfor den var feil eller om det skjer igjen.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 2,
+                  "stock_reliability": 1,
+                  "traceability": -3,
+                  "future_risk": 3,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_silent_location_fix"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "La varen ligge og bare si fra muntlig",
+              "reply": "Jeg sier fra til Pavel om hvor varen ligger, men lar den stå til senere fordi ordren haster.",
+              "effect": 0,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Muntlig beskjed hjelper i fem minutter. Systemfeil varer lenger enn hukommelsen vår.",
+              "effects": {
+                "stats": {
+                  "flow_pressure": -1,
+                  "future_risk": 3,
+                  "traceability": -2,
+                  "stock_reliability": -2,
+                  "team_trust": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_oral_location_warning"
+                ]
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week1_pallet_in_the_way",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 126,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Pallen som stod i veien",
+          "summary": "En tung pall står delvis i gangsonen mens truck og ansatte skal forbi.",
+          "purpose": "Spilleren lærer at HMS ikke er ved siden av produksjonen, men produksjonsgrunnlag.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: HMS og flyt\nBody:\nNår det er travelt, tror mange HMS bremser arbeidet. Ofte er det motsatt: dårlig HMS skaper stopp, skader, leting og irritasjon.",
+            "Fra: Pavel\nEmne: Paller\nBody:\nHvis du ser en pall i veien, ikke bare klatre rundt den. Flytt den riktig, merk den, eller si fra hvis du ikke kan flytte den trygt.",
+            "Fra: System\nEmne: HMS-situasjon\nBody:\nPall med tunge varer står delvis i gangsonen. Truck skal gjennom. To ansatte går rundt pallen. Risiko: snubling, klemskade og dårlig flyt."
+          ],
+          "task_domain": "hms_og_gangsoner",
+          "competency": "sikkerhetsblikk",
+          "pressure": "ordre_haster",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "kort_flyt_vs_langsiktig_palitelighet",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe kort og få pallen trygt flyttet",
+              "reply": "Jeg stopper arbeidet kort, sier fra til Pavel og får pallen flyttet trygt før gangsonen brukes videre.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du stoppet ikke produksjonen. Du beskyttet den.",
+              "effects": {
+                "stats": {
+                  "hms_safety": 5,
+                  "process_quality": 3,
+                  "team_trust": 3,
+                  "flow_pressure": 2,
+                  "manager_trust": 3,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_stops_for_safety"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gå rundt pallen og ta det senere",
+              "reply": "Jeg går rundt pallen for å holde ordren i gang, og tenker at vi kan flytte den etterpå.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Alle tenker etterpå. Det er derfor den fortsatt står der når trucken kommer.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 1,
+                  "hms_safety": -3,
+                  "future_risk": 3,
+                  "stagnation": 1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_works_around_hazard"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Prøve å flytte pallen alene",
+              "reply": "Jeg prøver å dra pallen litt til siden alene for å få bedre plass raskt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Å ta sikkerhet på alvor betyr også å ikke gjøre deg selv til løsning på alt fysisk.",
+              "effects": {
+                "stats": {
+                  "hms_safety": -4,
+                  "physical_load": 3,
+                  "future_risk": 4,
+                  "manager_trust": -2,
+                  "stress": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_moves_heavy_pallet_alone"
+                ]
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week1_between_stock_and_system",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 125,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Første uke mellom lager og system",
+          "summary": "Fredagens oppsummering tester om spilleren forstår lager som både fysisk vareflyt og systemspor.",
+          "purpose": "Spilleren oppsummerer hvilken lager- og driftsmedarbeider de er i ferd med å bli.",
+          "stakes": "Valget avgjør om fysisk flyt, systemspor, HMS, kropp og private grenser styrkes eller svekkes gjennom første uke.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Før helg – første uke\nBody:\nSend en kort oppsummering: mottak, plukkavvik, lokasjonsfeil, pall i gangsonen og hva du trenger mer trening i.",
+            "Fra: Pavel\nEmne: Fra gulvet\nBody:\nSkriv at lageret ikke bare er fysisk, og ikke bare system. Når kroppen og systemet slutter å snakke sammen, får alle andre problemer.",
+            "Fra: System\nEmne: Uke 1 – lagersignaler\nBody:\nRegistrerte signaler: mottak med kolliavvik, plukkliste med feil systemtall, vare på feil lokasjon, pall i gangsonen, kropp etter fysisk arbeid og privat flytblikk."
+          ],
+          "task_domain": "ukeoppsummering",
+          "competency": "refleksjon_og_sporbarhet",
+          "pressure": "før_helg",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "kort_flyt_vs_langsiktig_palitelighet",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive presist om fysisk vareflyt og systemspor",
+              "reply": "Jeg skriver hva som faktisk ble kontrollert, hvilke avvik som ble meldt, hva som fortsatt må følges opp, og hvor jeg trenger mer trening.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du skjønner at lagerfeil ikke bare ligger på lager. De vandrer videre hvis vi ikke stopper dem.",
+              "effects": {
+                "stats": {
+                  "accuracy": 5,
+                  "traceability": 5,
+                  "stock_reliability": 4,
+                  "manager_trust": 4,
+                  "team_trust": 3,
+                  "training_path": 3,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_precise_stock_system_summary"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive at uka gikk fint og at du holder tempoet",
+              "reply": "Jeg skriver at jeg begynner å få flyt, holder tempo og får oppgavene gjort.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Tempo er bra, men hvis tempo er hele fortellingen, mangler det viktigste: hva du stoppet ved.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 3,
+                  "manager_pressure": -1,
+                  "stagnation": 3,
+                  "future_risk": 3,
+                  "accuracy": -1,
+                  "training_path": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_speed_summary"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fokusere på at systemet ofte tar feil",
+              "reply": "Jeg skriver at mye av uka handlet om systemtall som ikke stemte, og at systemet skapte flere av problemene.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Rollen din er å gjøre feilen sporbar og håndterbar, ikke bare peke på systemet.",
+              "effects": {
+                "stats": {
+                  "system_awareness": 2,
+                  "conflict": 1,
+                  "self_awareness": -1,
+                  "manager_trust": -1,
+                  "stagnation": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_blames_system"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Si at du trenger mer støtte før selvstendig ansvar",
+              "reply": "Jeg skriver at jeg forstår mer, men trenger mer trening på avvik, lokasjon og HMS før jeg tar mer selvstendig ansvar.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Mer ansvar kommer av å vite hva som ennå ikke sitter.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 4,
+                  "manager_trust": 2,
+                  "training_path": 4,
+                  "stress": 1,
+                  "future_risk": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week1_asks_for_guided_training"
+                ]
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "lager_week1_counts_before_signing_thread",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "pavel",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: spor som holder",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens første uke.",
+          "purpose": "Vise hvordan førsteukesvalget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Pavel bekrefter at ekstra telling før signering gjorde avviket synlig før varen gikk videre til plukk.",
+            "Ragnhild bruker hendelsen som eksempel på at mottak er første kontrollpunkt, ikke bare portarbeid."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_første_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "mottak",
+            "plukk",
+            "lokasjon",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ]
+    },
+    {
       "id": "mottak_og_vareflyt",
       "purpose": "Lære spilleren at mottak og vareflyt er første kontrollpunkt for hele driften: kolli, følgeseddel, lokasjon, avvik og registrering må henge sammen.",
       "learning_focus": [

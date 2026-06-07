@@ -408,6 +408,49 @@
       "flow_tests": [
         "tests/civication-ekspeditor-two-week-flow.test.js"
       ]
+    },
+    {
+      "role_id": "lager_og_driftsmedarbeider",
+      "domain": "naeringsliv",
+      "plan_path": "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
+      "job_family_path": "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json",
+      "private_family_path": "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json",
+      "expected_signals": [
+        "accuracy",
+        "traceability",
+        "stock_reliability",
+        "flow_quality",
+        "flow_pressure",
+        "hms_safety",
+        "process_quality",
+        "team_trust",
+        "manager_trust",
+        "future_risk",
+        "stress",
+        "body_awareness",
+        "energy_weekend",
+        "relationship_private",
+        "control",
+        "stagnation",
+        "stagnation_private",
+        "training_path",
+        "system_awareness",
+        "physical_load"
+      ],
+      "packages": [
+        {
+          "package_id": "lager_og_driftsmedarbeider_week_1",
+          "week": 1,
+          "step_start": 1,
+          "step_end": 10,
+          "job_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "private_family": "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js"
+        }
+      ],
+      "flow_tests": []
     }
   ],
   "cross_role_tests": [
