@@ -15,7 +15,7 @@
   let shell = null;
   let mapLayer = null;
   let rafId = null;
-  let last = { scale: null, x: null, y: null, w: null, h: null };
+  let last = { scale: null, x: null, y: null, w: null, h: null, vw: null, vh: null };
   let stableViewport = null;
   let lastMode = null;
   let initialized = false;
@@ -89,13 +89,21 @@
     const x = Math.max(0, (vw - scaledW) / 2);
     const y = 0;
 
+    // Viktig: vw/vh må være med i sammenligningen. Når bredden er den
+    // begrensende dimensjonen (vanlig på desktop) endres ikke scale eller
+    // den skalerte canvas-geometrien når bare høyden endres – men kartlaget
+    // (full-bleed mot ekte viewport) og --hg-vp-*-variablene avhenger av
+    // raw vw/vh. Uten denne sjekken hopper vi over oppdatering av kartlaget
+    // og HGMap.resize(), slik at kartet henger igjen med gamle dimensjoner.
     if (
       last.scale !== null &&
       Math.abs(scale - last.scale) < 0.001 &&
       Math.abs(x - last.x) < 0.5 &&
       Math.abs(y - last.y) < 0.5 &&
       Math.abs(scaledW - last.w) < 0.5 &&
-      Math.abs(scaledH - last.h) < 0.5
+      Math.abs(scaledH - last.h) < 0.5 &&
+      Math.abs(vw - last.vw) < 0.5 &&
+      Math.abs(vh - last.vh) < 0.5
     ) {
       return;
     }
@@ -171,7 +179,7 @@
       window.HGMap.resize();
     }
 
-    last = { scale, x, y, w: scaledW, h: scaledH };
+    last = { scale, x, y, w: scaledW, h: scaledH, vw, vh };
   }
 
   function update() {
