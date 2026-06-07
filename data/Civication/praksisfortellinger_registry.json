@@ -448,9 +448,22 @@
           "expected_job_threads": 5,
           "expected_private_threads": 5,
           "test_file": "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js"
+        },
+        {
+          "package_id": "lager_og_driftsmedarbeider_week_2",
+          "week": 2,
+          "step_start": 11,
+          "step_end": 20,
+          "job_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "private_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "expected_job_threads": 5,
+          "expected_private_threads": 5,
+          "test_file": "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js"
         }
       ],
-      "flow_tests": []
+      "flow_tests": [
+        "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js"
+      ]
     }
   ],
   "cross_role_tests": [

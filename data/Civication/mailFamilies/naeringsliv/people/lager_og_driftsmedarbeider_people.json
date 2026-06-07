@@ -667,6 +667,1637 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+      "purpose": "Praksisfortellinger – Lager- og driftsmedarbeider pakke 2 privat: Lagerblikket følger med hjem og må avgrenses gjennom språk, kropp, energi og helg.",
+      "learning_focus": [
+        "etterlevering",
+        "feilplukk",
+        "kontrolltelling",
+        "HMS",
+        "sporbarhet",
+        "privat_grense"
+      ],
+      "week_outcomes": [
+        {
+          "id": "private_warehouse_boundary_week2",
+          "condition": "Spilleren slipper lageransvaret privat, slutter å telle energi som beholdning, lar kroppen hvile og lar hjemmet være hjem.",
+          "effects": {
+            "relationship_private": 7,
+            "body_awareness": 6,
+            "energy_weekend": 6,
+            "stress": -6,
+            "control": -4,
+            "self_awareness": 4
+          },
+          "story": "Du lar lageret bli igjen på lageret. Det betyr ikke at du mister orden. Det betyr at du finner tilbake til et liv som ikke trenger lokasjon for å være ditt."
+        }
+      ],
+      "mails": [
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week2_searching_for_missing_things",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 139,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du leter etter det som mangler",
+          "summary": "Avviksblikket følger med hjem når en ladekabel blir en nesten-lagerhendelse.",
+          "purpose": "Spilleren tar avviksblikket hjem og må slippe at små mangler blir sporingssaker.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Den manglende tingen\nBody:\nDu finner ikke ladekabelen. Før ville du bare lett. Nå tenker du: sist sett stua, mulig feil lokasjon soverom, sannsynlig bruker meg, risiko irritasjon kl. 23. Det er nesten imponerende. Også helt unødvendig.",
+            "Fra: Sara\nEmne: Kabelen\nBody:\nDu spurte om jeg hadde “flyttet kabelen uten å registrere det”. Jeg håper virkelig det var en spøk."
+          ],
+          "task_domain": "privat_avviksblikk",
+          "competency": "selvbevissthet",
+          "pressure": "manglende_kabel",
+          "choice_axis": "kontroll_vs_hjem",
+          "consequence_axis": "registrering_vs_relajon",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Slippe avviksspråket hjemme",
+              "reply": "Jeg sier at jeg er i lagermodus, og at hun selvfølgelig ikke må registrere en ladekabel.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Bra. Jeg nekter å ha systemansvar for kabler.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 3,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_drops_deviation_language"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_drops_deviation_language_thread"
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at kabelen er savnet på lokasjon SOFA-01 og etterlyses uten sanksjoner.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Morsomt. Men ikke lag kart.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_jokes_missing_cable"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_jokes_missing_cable_thread"
+            },
+            {
+              "id": "C",
+              "label": "Lete systematisk til du finner den",
+              "reply": "Jeg går rom for rom og leter systematisk til kabelen er funnet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Du finner kabelen. Du mister nesten kvelden.",
+              "effects": {
+                "stats": {
+                  "control": 3,
+                  "stress": 1,
+                  "energy_weekend": -1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_systematic_cable_search"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_systematic_cable_search_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week2_feeling_like_delay",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 138,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du føler deg som en forsinkelse",
+          "summary": "Et sent svar til Jonas føles plutselig som en forsinket vareflyt.",
+          "purpose": "Etter lagerfeil begynner spilleren å føle seg som en flaskehals privat.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Forsinkelse\nBody:\nDu kommer en time for sent til å svare Jonas og tenker: Jeg er forsinkelsen. Jeg er kolliet som ikke kom. Det er dramatisk, men kroppen tror på det et øyeblikk.",
+            "Fra: Jonas\nEmne: Slapp av\nBody:\nDu skrev “beklager forsinket leveranse av svar”. Jeg står ikke ved en lasterampe og venter på deg. Det var en melding, ikke en ordre."
+          ],
+          "task_domain": "privat_forsinkelsesfolelse",
+          "competency": "vennskap",
+          "pressure": "sent_svar",
+          "choice_axis": "redegjørelse_vs_vanlig_svar",
+          "consequence_axis": "vareflyt_vs_menneske",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svare vanlig",
+              "reply": "Jeg skriver at jeg var sliten og svarer som venn, ikke som forsinket vareflyt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Der ja. Menneske mottatt.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 3,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_answers_as_friend"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_answers_as_friend_thread"
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg skriver at svaret er forsinket grunnet internlogistikk, men nå sendt til riktig mottaker.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Godkjent. Men ikke send sporingsnummer.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_jokes_delayed_reply"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_jokes_delayed_reply_thread"
+            },
+            {
+              "id": "C",
+              "label": "Forklare alt som gjorde deg sen",
+              "reply": "Jeg forklarer i detalj hvorfor jeg ikke svarte før.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Du trengte ikke redegjøre. Du kunne bare svare.",
+              "effects": {
+                "stats": {
+                  "control": 1,
+                  "stress": 1,
+                  "relationship_jonas": 0,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_overexplains_delay"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_overexplains_delay_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week2_counting_energy",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 137,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Du prøver å telle energi",
+          "summary": "Egen energi blir behandlet som lagerbeholdning, med startsaldo, forbruk og rest.",
+          "purpose": "Spilleren begynner å behandle egen energi som lagerbeholdning.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Beholdning\nBody:\nDu prøver å kjenne etter hvor mye energi du har. Hodet gjør det til beholdning: startsaldo middels, forbruk høyt, rest usikker, avvik kroppen sier mindre enn planen. Nyttig observasjon. Litt trist.",
+            "Fra: Sara\nEmne: Energi\nBody:\nDu sa “jeg har lav beholdning”. Jeg skjønte hva du mente. Men du kan bare si at du er sliten."
+          ],
+          "task_domain": "privat_energi",
+          "competency": "kroppsbevissthet",
+          "pressure": "lav_energi",
+          "choice_axis": "språk_vs_nærhet",
+          "consequence_axis": "selvinnsikt_vs_kontrollform",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si det enkelt: jeg er sliten",
+              "reply": "Jeg sier at jeg er sliten og trenger en rolig kveld.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Takk. Det var mye lettere å møte.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 3,
+                  "relationship_sara": 2,
+                  "stress": -2,
+                  "control": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_says_tired_plainly"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_says_tired_plainly_thread"
+            },
+            {
+              "id": "B",
+              "label": "Forklare energien som lagerbeholdning",
+              "reply": "Jeg forklarer at det føles som om energien ikke stemmer med det systemet mitt forventet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Jeg skjønner bildet. Men jeg vil heller snakke med deg enn med lagerstatusen din.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1,
+                  "control": 1,
+                  "relationship_sara": -1,
+                  "stress": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_explains_energy_stock"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_explains_energy_stock_thread"
+            },
+            {
+              "id": "C",
+              "label": "Overstyre slitenheten",
+              "reply": "Jeg sier at jeg sikkert bare må komme i gang, og prøver å gjøre mer hjemme.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Du korrigerer ikke beholdningen. Du tømmer den.",
+              "effects": {
+                "stats": {
+                  "physical_load": 2,
+                  "body_awareness": -2,
+                  "stress": 2,
+                  "energy_weekend": -2,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_overrides_tiredness"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_overrides_tiredness_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week2_body_speaks_again",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 136,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Kroppen sier fra igjen",
+          "summary": "Kroppens små signaler blir en privat nestenulykke før skade.",
+          "purpose": "Spilleren lærer å ta kroppens grenser alvorlig før det blir skade.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Signal\nBody:\nKroppen sier fra: et lite rykk i ryggen, stivhet i skulderen, føtter som ikke liker gulvet lenger. På jobb kalles nestenulykke informasjon før skade. Kroppen gjør det samme.",
+            "Fra: Sara\nEmne: Ikke vent på skade\nBody:\nDu trenger ikke vente til du faktisk får vondt nok til å måtte stoppe. Det er lov å stoppe før."
+          ],
+          "task_domain": "privat_kroppssignal",
+          "competency": "belastningsstyring",
+          "pressure": "fysisk_press",
+          "choice_axis": "presse_videre_vs_stoppe_tidlig",
+          "consequence_axis": "hvile_før_skade",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe før kroppen blir skade",
+              "reply": "Jeg tar kroppen på alvor, hviler og bestemmer meg for å si fra på jobb hvis belastningen fortsetter.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Du trenger ikke dokumentere smerte for å få lov til å hvile.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 4,
+                  "hms_safety": 2,
+                  "stress": -2,
+                  "energy_weekend": 2,
+                  "self_awareness": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_stops_before_injury"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_stops_before_injury_thread"
+            },
+            {
+              "id": "B",
+              "label": "Tøye og justere uten dramatikk",
+              "reply": "Jeg tøyer, drikker vann og tenker gjennom hva som belastet kroppen mest.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Dette var ikke overkontroll. Det var vedlikehold.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 3,
+                  "stress": -1,
+                  "self_awareness": 2,
+                  "energy_weekend": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_maintains_body"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_maintains_body_thread"
+            },
+            {
+              "id": "C",
+              "label": "Presse videre fordi det sikkert går over",
+              "reply": "Jeg ignorerer signalet og gjør praktiske ting hjemme som vanlig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Det gikk kanskje over. Men kroppen lærer at den må rope høyere neste gang.",
+              "effects": {
+                "stats": {
+                  "physical_load": 3,
+                  "body_awareness": -3,
+                  "stress": 2,
+                  "future_risk": 2,
+                  "energy_weekend": -2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_pushes_body_signal"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_pushes_body_signal_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "personal_lager_og_driftsmedarbeider_week2_weekend_without_warehouse_responsibility",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 135,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Helgen uten lageransvar",
+          "summary": "Helgen skal ikke driftes som en sone med vareflyt, avvik og fysisk prestasjon.",
+          "purpose": "Spilleren øver på å slippe lageransvaret privat uten å miste seg selv i uro.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på å passe på at ting ikke forsvinner: kolli, varer, lokasjoner, avvik, kroppens signaler og nestenulykker. Det er nødvendig arbeid. Men helgen er ikke en sone du skal drifte.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen vil jeg ikke at du skal være lageransvarlig hjemme. Ikke flytte ting fordi de står feil. Ikke telle energi. Ikke presse kroppen som en frist. Bare vær her.",
+            "Fra: Jonas\nEmne: Helgeregel 2\nBody:\nIngen lokasjon. Ingen pall. Ingen HMS-foredrag mens du bærer noe for tungt. Hvis du sier “sporbar flyt” privat, skylder du middag."
+          ],
+          "task_domain": "privat_helgegrense",
+          "competency": "grensesetting",
+          "pressure": "helg_etter_lageruke",
+          "choice_axis": "kontroll_vs_hvile",
+          "consequence_axis": "hjem_som_hjem",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en helg uten lageransvar",
+              "reply": "Jeg bestemmer at helgen ikke skal være vareflyt, avvik, telling, lokasjon eller fysisk prestasjon.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Ingenting blir optimalisert. Likevel blir det bedre.",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 5,
+                  "stress": -5,
+                  "body_awareness": 4,
+                  "relationship_private": 4,
+                  "control": -3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_boundary"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_boundary_thread"
+            },
+            {
+              "id": "B",
+              "label": "Hvile kroppen og være sosial uten å organisere alt",
+              "reply": "Jeg møter Sara eller Jonas rolig, uten å flytte ting, løse alt eller gjøre kroppen nyttig hele tiden.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Sara: Dette var fint. Du var ikke på vei videre til neste oppgave. Du var her.",
+              "effects": {
+                "stats": {
+                  "relationship_private": 4,
+                  "body_awareness": 3,
+                  "stress": -3,
+                  "self_awareness": 2,
+                  "energy_weekend": 3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_social_rest"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_social_rest_thread"
+            },
+            {
+              "id": "C",
+              "label": "Rydde litt for å få ro",
+              "reply": "Jeg rydder noen ting og flytter litt rundt fordi rot gjør det vanskelig å slappe av.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Jonas: Det var ikke ille. Men du har en tendens til å kalle kontroll for ro.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "stress": 1,
+                  "relationship_private": -1,
+                  "energy_weekend": -1,
+                  "stagnation_private": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_tidies_for_control"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_tidies_for_control_thread"
+            },
+            {
+              "id": "D",
+              "label": "Presse kroppen videre fordi du føler ansvar",
+              "reply": "Jeg gjør praktiske ting hjemme selv om kroppen egentlig ber om pause.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Privat notat: Du får gjort mer. Men kroppen skriver avviket et sted du ikke kan slette.",
+              "effects": {
+                "stats": {
+                  "physical_load": 4,
+                  "body_awareness": -3,
+                  "stress": 3,
+                  "energy_weekend": -4,
+                  "future_risk": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
+                ],
+                "set_flags": [
+                  "lager_week2_private_pushes_weekend_body"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_private_pushes_weekend_body_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "lager_week2_private_drops_deviation_language_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du leter etter det som mangler",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara: Bra. Jeg nekter å ha systemansvar for kabler.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_jokes_missing_cable_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du leter etter det som mangler",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara: Morsomt. Men ikke lag kart.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_systematic_cable_search_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du leter etter det som mangler",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Privat notat: Du finner kabelen. Du mister nesten kvelden.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_answers_as_friend_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du føler deg som en forsinkelse",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Jonas: Der ja. Menneske mottatt.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_jokes_delayed_reply_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du føler deg som en forsinkelse",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Jonas: Godkjent. Men ikke send sporingsnummer.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_overexplains_delay_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du føler deg som en forsinkelse",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Jonas: Du trengte ikke redegjøre. Du kunne bare svare.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_says_tired_plainly_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du prøver å telle energi",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara: Takk. Det var mye lettere å møte.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_explains_energy_stock_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du prøver å telle energi",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara: Jeg skjønner bildet. Men jeg vil heller snakke med deg enn med lagerstatusen din.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_overrides_tiredness_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Du prøver å telle energi",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Privat notat: Du korrigerer ikke beholdningen. Du tømmer den.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_stops_before_injury_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Kroppen sier fra igjen",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara: Du trenger ikke dokumentere smerte for å få lov til å hvile.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_maintains_body_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Kroppen sier fra igjen",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Privat notat: Dette var ikke overkontroll. Det var vedlikehold.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_pushes_body_signal_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Kroppen sier fra igjen",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Privat notat: Det gikk kanskje over. Men kroppen lærer at den må rope høyere neste gang.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_boundary_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Helgen uten lageransvar",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Privat notat: Ingenting blir optimalisert. Likevel blir det bedre.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_social_rest_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Helgen uten lageransvar",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Sara: Dette var fint. Du var ikke på vei videre til neste oppgave. Du var her.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_tidies_for_control_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Helgen uten lageransvar",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Jonas: Det var ikke ille. Men du har en tendens til å kalle kontroll for ro.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_private_pushes_weekend_body_thread",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_private",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_notat",
+          "place_id": "privat",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Oppfølging: Helgen uten lageransvar",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Privat notat: Du får gjort mer. Men kroppen skriver avviket et sted du ikke kan slette.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ]
+    },
+    {
       "id": "lager_team_og_belastning",
       "purpose": "Vise hvordan fysisk lagerarbeid, kollegiale snarveier, registrering og HMS preger kroppen, laget og følelsen av usynlig drift.",
       "learning_focus": [

@@ -35,10 +35,10 @@ assert.equal(mappings.careers.naeringsliv.title_to_role_scope['Lager- og driftsm
 assert.ok(!mappings.careers.naeringsliv.roles.arbeider.badge_titles.includes('Lager- og driftsmedarbeider'));
 
 assert.equal(plan.role_scope, 'lager_og_driftsmedarbeider');
-assert.equal(plan.sequence.length, 10);
-assert.deepEqual(plan.sequence.map(step => step.step), [1,2,3,4,5,6,7,8,9,10]);
-assert.deepEqual(job.families.map(family => family.id), ['first_week_praksisfortellinger_lager_og_driftsmedarbeider_job', 'mottak_og_vareflyt', 'plukk_pakk_og_avvik']);
-assert.deepEqual(people.families.map(family => family.id), ['first_week_praksisfortellinger_lager_og_driftsmedarbeider_private', 'lager_team_og_belastning']);
+assert.equal(plan.sequence.length, 20);
+assert.deepEqual(plan.sequence.map(step => step.step), [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]);
+assert.deepEqual(job.families.map(family => family.id), ['first_week_praksisfortellinger_lager_og_driftsmedarbeider_job', 'second_week_praksisfortellinger_lager_og_driftsmedarbeider_job', 'mottak_og_vareflyt', 'plukk_pakk_og_avvik']);
+assert.deepEqual(people.families.map(family => family.id), ['first_week_praksisfortellinger_lager_og_driftsmedarbeider_private', 'second_week_praksisfortellinger_lager_og_driftsmedarbeider_private', 'lager_team_og_belastning']);
 assert.deepEqual(plan.sequence.map(step => step.allowed_families[0]), [
   'first_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
   'first_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
@@ -49,11 +49,21 @@ assert.deepEqual(plan.sequence.map(step => step.allowed_families[0]), [
   'first_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
   'first_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
   'first_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
-  'first_week_praksisfortellinger_lager_og_driftsmedarbeider_private'
+  'first_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_private',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_job',
+  'second_week_praksisfortellinger_lager_og_driftsmedarbeider_private'
 ]);
 
 const allMails = [...job.families, ...people.families].flatMap(family => family.mails);
-assert.equal(allMails.length, 16);
+assert.equal(allMails.length, 26);
 for (const mail of allMails) {
   for (const field of ['id','mail_type','mail_family','role_scope','phase','priority','from','subject','summary','purpose','stakes','task_domain','competency','pressure','choice_axis','consequence_axis','narrative_arc']) {
     assert.ok(mail[field] !== undefined && mail[field] !== '', `${mail.id} missing ${field}`);
