@@ -1,0 +1,92 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "renholder",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "renhold_status_og_belastning",
+      "purpose": "Grunnfamilie for private/people-mail om status, avbrytelser, kropp og verdighet i renholderrollen.",
+      "learning_focus": [
+        "usynlig arbeid og verdighet",
+        "kroppslig belastning",
+        "respekt",
+        "snarveier under tidspress"
+      ],
+      "mails": [
+        {
+          "id": "people_renholder_status_belastning",
+          "mail_type": "people",
+          "mail_family": "renhold_status_og_belastning",
+          "role_scope": "renholder",
+          "phase": "reflection",
+          "priority": 45,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "foundation",
+          "from": "kollega_mona",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "people",
+          "messageChannel": "people",
+          "mail_class": "people_message",
+          "subject": "Når gulvet er vått og folk bare går",
+          "summary": "Etter en fysisk tung dag går folk gjennom våt sone, en kollega tar snarveier, og du merker hvordan usynlig arbeid setter seg i kroppen.",
+          "purpose": "Vise hvordan status, respekt, kropp og kvalitet henger sammen i renholderrollen.",
+          "stakes": "Valget påvirker verdighet, kroppslig belastning, kollegatillit og standard under tidspress.",
+          "situation": [
+            "Du har vasket en gang før åpning og satt opp vått-gulv-skilt. To personer går rett gjennom fordi de skal rekke et møte.",
+            "Mona sier at hun skjønner deg, men at hun selv hopper over hjørner når planen er umulig. Kroppen din er tung etter mange like bevegelser."
+          ],
+          "task_domain": "status_belastning_og_grenser",
+          "competency": "verdig_grensesetting",
+          "pressure": "lav_status_og_tidspress",
+          "choice_axis": "verdighet_vs_lav_status",
+          "consequence_axis": "taus_slitasje_vs_synlig_kvalitet",
+          "narrative_arc": "renholder_grunnrolle",
+          "learning_focus": [
+            "usynlig arbeid",
+            "kropp",
+            "respekt",
+            "snarveier"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sette rolig grense ved våt sone",
+              "reply": "Jeg sier kort at gulvet må få tørke for sikkerhet og ber dem bruke andre inngang.",
+              "effect": 1,
+              "tags": [
+                "dignity",
+                "safety"
+              ],
+              "feedback": "Du gjør ikke situasjonen større enn nødvendig, men du lar heller ikke arbeidet ditt bli tråkket bort."
+            },
+            {
+              "id": "B",
+              "label": "La dem gå og vaske på nytt",
+              "reply": "Jeg sier ingenting, vasker sporene etterpå og prøver å rekke resten.",
+              "effect": 0,
+              "tags": [
+                "invisible_work",
+                "strain"
+              ],
+              "feedback": "Du holder fred på overflaten, men kroppen og tiden betaler for at standarden ikke ble respektert."
+            },
+            {
+              "id": "C",
+              "label": "Snakke med Mona om hva som faktisk er mulig",
+              "reply": "Jeg spør Mona hvilke snarveier som er farlige, og hvilke avvik vi bør melde som for lavt tidsbudsjett.",
+              "effect": 1,
+              "tags": [
+                "collaboration",
+                "deviation"
+              ],
+              "feedback": "Dere skiller mellom praktisk prioritering og skjult kvalitetsfall. Det gjør presset lettere å melde."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

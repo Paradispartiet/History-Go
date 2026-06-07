@@ -1,0 +1,124 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "renholder_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "renholder",
+  "description": "Grunnplan for Renholder i Næringsliv & industri: nøktern rolleopplæring om soner, hygiene, utstyr, kjemi, HMS, status og prioritering. Inneholder ikke Praksisfortellinger uke 1/uke 2 ennå.",
+  "arc": {
+    "from": "Ny renholder som først ser rommet som en liste med synlige flater.",
+    "to": "Trygg renholder som prioriterer soner, berøringspunkter, HMS og verdighet under realistisk tidspress.",
+    "core_questions": [
+      "Hva er forskjellen på synlig rent og hygienisk rent?",
+      "Når må tempo vike for standard?",
+      "Hvordan gjør du usynlig arbeid tydelig uten å miste verdighet?",
+      "Hvordan beskytter du kroppen når driften presser?",
+      "Når er et lite avvik egentlig et driftsproblem?"
+    ]
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Første rom: lære forskjellen på synlig rent og faktisk rent.",
+      "allowed_families": [
+        "soner_hygiene_og_prioritering"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Berøringspunkter: dørhåndtak, bord, toalett, knapper og fellesflater.",
+      "allowed_families": [
+        "soner_hygiene_og_prioritering"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "build",
+      "step_goal": "Tidspress: planen sier 12 minutter, men rommet trenger 20.",
+      "allowed_families": [
+        "soner_hygiene_og_prioritering"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "build",
+      "step_goal": "Kjemikalier og utstyr: riktig middel, riktig flate og riktig HMS.",
+      "allowed_families": [
+        "utstyr_kjemi_og_hms"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "people",
+      "phase": "build",
+      "step_goal": "Avbrutt arbeid: folk bruker rommet mens du renholder.",
+      "allowed_families": [
+        "renhold_status_og_belastning"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "build",
+      "step_goal": "Avvik: søl, smuss, skade, lukt, manglende utstyr eller fare.",
+      "allowed_families": [
+        "soner_hygiene_og_prioritering",
+        "utstyr_kjemi_og_hms"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "people",
+      "phase": "reflection",
+      "step_goal": "Lav status: arbeid som bare merkes når det ikke gjøres.",
+      "allowed_families": [
+        "renhold_status_og_belastning"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "reflection",
+      "step_goal": "Kropp og belastning: tempo, stillinger, repetisjon og pauser.",
+      "allowed_families": [
+        "renhold_status_og_belastning"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Første selvstendige område: prioritere soner og kvalitet uten tett oppfølging.",
+      "allowed_families": [
+        "soner_hygiene_og_prioritering",
+        "utstyr_kjemi_og_hms"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "job",
+      "phase": "outcome",
+      "step_goal": "Rolleutfall: trygg renholder, overflatearbeider, usynlig sliter, HMS-bærer eller snarveisarbeider.",
+      "allowed_families": [
+        "soner_hygiene_og_prioritering",
+        "utstyr_kjemi_og_hms",
+        "renhold_status_og_belastning"
+      ],
+      "fallback_types": []
+    }
+  ]
+}

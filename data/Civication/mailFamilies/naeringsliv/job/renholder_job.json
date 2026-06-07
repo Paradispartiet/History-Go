@@ -1,0 +1,174 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "renholder",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "soner_hygiene_og_prioritering",
+      "purpose": "Grunnfamilie for renholder: soner, berøringspunkter, hygiene og prioritering under tidspress.",
+      "learning_focus": [
+        "hygiene",
+        "renholdssoner",
+        "berøringspunkter",
+        "prioritering under tidspress"
+      ],
+      "mails": [
+        {
+          "id": "job_renholder_soner_forste_rom",
+          "mail_type": "job",
+          "mail_family": "soner_hygiene_og_prioritering",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "foundation",
+          "from": "driftsleder_renhold",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Første rom: ser rent ut",
+          "summary": "Et møterom ser ryddig ut, men berøringspunktene avgjør om det faktisk er hygienisk klart.",
+          "purpose": "Lære forskjellen på synlig rent og hygienisk rent.",
+          "stakes": "Valget påvirker hygiene, romstandard, tillit og risiko for falskt renhold.",
+          "situation": [
+            "Møterommet skal brukes om tolv minutter. Bordet ser rent ut, men dørhåndtak, lysbryter, stolrygger og kaffeflekk ved søppelbøtta viser faktisk bruk.",
+            "Planen sier rommet skal være klart raskt. En kollega sier at det viktigste er at det ser greit ut når folk kommer inn."
+          ],
+          "task_domain": "renholdssoner_og_beroringspunkter",
+          "competency": "hygienisk_prioritering",
+          "pressure": "tidsbudsjett_foer_aapning",
+          "choice_axis": "synlig_rent_vs_hygienisk_rent",
+          "consequence_axis": "kort_inntrykk_vs_trygg_standard",
+          "narrative_arc": "renholder_grunnrolle",
+          "learning_focus": [
+            "synlig rent vs hygienisk rent",
+            "berøringspunkter",
+            "soneprioritering"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta berøringspunktene først",
+              "reply": "Jeg prioriterer håndtak, brytere, stolrygger og bordkant før jeg gjør kosmetisk finish.",
+              "effect": 1,
+              "tags": [
+                "hygiene",
+                "priority"
+              ],
+              "feedback": "Rommet blir kanskje ikke perfekt polert, men de viktigste smitte- og brukspunktene er håndtert."
+            },
+            {
+              "id": "B",
+              "label": "Gjøre rommet pent først",
+              "reply": "Jeg tar synlige flater og retter stoler så rommet ser klart ut når folk kommer.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "surface"
+              ],
+              "feedback": "Rommet ser klart ut, men hygienerisikoen ligger igjen på punktene alle tar på."
+            },
+            {
+              "id": "C",
+              "label": "Melde behov for to minutter ekstra",
+              "reply": "Jeg sier fra at rommet trenger to minutter ekstra for å bli hygienisk klart, ikke bare pent.",
+              "effect": 1,
+              "tags": [
+                "communication",
+                "standard"
+              ],
+              "feedback": "Du gjør kvalitetskravet synlig uten dramatikk, og romstandarden blir lettere å forsvare."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utstyr_kjemi_og_hms",
+      "purpose": "Grunnfamilie for renholder: riktig utstyr, kjemikalier, virketid, kropp og HMS.",
+      "learning_focus": [
+        "kjemikalier og utstyr",
+        "HMS",
+        "virketid",
+        "kroppslig belastning"
+      ],
+      "mails": [
+        {
+          "id": "job_renholder_utstyr_kjemi_hms",
+          "mail_type": "job",
+          "mail_family": "utstyr_kjemi_og_hms",
+          "role_scope": "renholder",
+          "phase": "build",
+          "priority": 58,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "foundation",
+          "from": "hms_koordinator",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Riktig middel på riktig flate",
+          "summary": "En fellesflate trenger renhold, men feil middel kan skade flaten og kroppen selv om det virker raskere.",
+          "purpose": "Lære riktig bruk av kjemikalier, utstyr og HMS under produksjonspress.",
+          "stakes": "Valget påvirker hygiene, materialsikkerhet, kroppslig belastning og framtidig avviksrisiko.",
+          "situation": [
+            "Du finner søl og fingermerker på en mye brukt fellesflate. Det milde middelet krever virketid, mens et sterkere middel står lett tilgjengelig på vogna.",
+            "En ansatt spør om området kan åpnes med én gang. Du kjenner at skulderen allerede er sliten etter flere rom."
+          ],
+          "task_domain": "utstyr_kjemi_og_hms",
+          "competency": "kjemikaliebruk_og_hms",
+          "pressure": "produksjonspress_og_kroppslig_slitasje",
+          "choice_axis": "hms_vs_produksjonspress",
+          "consequence_axis": "rask_effekt_vs_trygg_kvalitet",
+          "narrative_arc": "renholder_grunnrolle",
+          "learning_focus": [
+            "riktig kjemikalie",
+            "virketid",
+            "HMS",
+            "kropp"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke riktig middel og sperre av kort",
+              "reply": "Jeg bruker riktig middel, lar det virke, setter skilt og åpner flaten når den er trygg.",
+              "effect": 1,
+              "tags": [
+                "hms",
+                "quality"
+              ],
+              "feedback": "Du beskytter både flaten, brukerne og deg selv. Tiden blir synlig som del av kvaliteten."
+            },
+            {
+              "id": "B",
+              "label": "Bruke sterkere middel for å bli ferdig",
+              "reply": "Jeg bruker det sterkere middelet raskt så området kan åpnes.",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "risk"
+              ],
+              "feedback": "Det går fortere, men du flytter risiko til flaten, lufta og kroppen."
+            },
+            {
+              "id": "C",
+              "label": "Be om avklaring før du improviserer",
+              "reply": "Jeg spør HMS-koordinator eller erfaren kollega før jeg bruker et middel jeg er usikker på.",
+              "effect": 1,
+              "tags": [
+                "learning",
+                "safety"
+              ],
+              "feedback": "Du gjør usikkerhet til faglig kontroll i stedet for å gjette under press."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

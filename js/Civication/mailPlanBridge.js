@@ -6,6 +6,7 @@
       ekspeditor: "data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json",
       arbeider: "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
       lager_og_driftsmedarbeider: "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
+      renholder: "data/Civication/mailPlans/naeringsliv/renholder_plan.json",
       fagarbeider: "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
       mellomleder: "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
       formann: "data/Civication/mailPlans/naeringsliv/formann_plan.json",
@@ -29,6 +30,10 @@
       lager_og_driftsmedarbeider: {
         job: "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json",
         people: "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json"
+      },
+      renholder: {
+        job: "data/Civication/mailFamilies/naeringsliv/job/renholder_job.json",
+        people: "data/Civication/mailFamilies/naeringsliv/people/renholder_people.json"
       },
       arbeider: {
         job: [
@@ -79,6 +84,8 @@
     naer_ekspeditor: "ekspeditor",
     naer_arbeider: "arbeider",
     naer_lager_og_driftsmedarbeider: "lager_og_driftsmedarbeider",
+    renholder: "renholder",
+    naer_renholder: "renholder",
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
     naer_formann: "formann",
@@ -91,6 +98,7 @@
     ekspeditor_butikkmedarbeider: "ekspeditor",
     arbeider: "arbeider",
     lager_og_driftsmedarbeider: "lager_og_driftsmedarbeider",
+    renholder: "renholder",
     fagarbeider: "fagarbeider",
     skiftleder: "formann",
     formann: "formann",

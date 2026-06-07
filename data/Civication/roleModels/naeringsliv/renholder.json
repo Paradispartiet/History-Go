@@ -1,0 +1,174 @@
+{
+  "schema": "civication_role_model_v1",
+  "version": 1,
+  "source": {
+    "badge_file": "data/badges/naeringsliv.json",
+    "badge_id": "naeringsliv",
+    "badge_name": "Næringsliv & industri",
+    "tier_label": "Renholder",
+    "tier_threshold": 1
+  },
+  "category": "naeringsliv",
+  "role_scope": "renholder",
+  "role_id": "naer_renholder",
+  "title": "Renholder",
+  "short_description": "Praktisk renholdsrolle som lærer spilleren å holde rom, soner og berøringspunkter hygienisk trygge under tidspress, lav status og fysisk belastning.",
+  "core_narrative": [
+    "I Civication er Renholder en grunnleggende næringslivsrolle der spilleren lærer at renhold er faglig, kroppslig og samfunnsviktig drift som ofte først blir synlig når det svikter."
+  ],
+  "core_practices": [
+    "prioritere soner og berøringspunkter",
+    "skille synlig rent fra hygienisk rent",
+    "bruke riktig utstyr og kjemikalier",
+    "melde avvik ved søl, skade, lukt eller fare",
+    "beskytte kroppen gjennom HMS, teknikk og pauser",
+    "holde verdighet når arbeidet avbrytes eller overses"
+  ],
+  "key_conflicts": [
+    "synlig_resultat_vs_usynlig_arbeid",
+    "tempo_vs_grundighet",
+    "hygiene_vs_tidsbudsjett",
+    "verdighet_vs_lav_status",
+    "hms_vs_produksjonspress",
+    "rutine_vs_faktisk_behov"
+  ],
+  "work_life": {
+    "daily_work": [
+      "Vasker og desinfiserer rom, fellesflater og berøringspunkter før åpning, under drift eller etter stenging."
+    ],
+    "responsibilities": [
+      "Holde hygienisk standard og verdig rombruk selv når tid, avbrytelser og lav status presser arbeidet."
+    ],
+    "work_environment": [
+      "Arbeidet er fysisk, rutinepreget og tett på andres bruk av rom, ofte med korte tidsvinduer."
+    ],
+    "status_position": [
+      "Rollen er lavt synlig når alt fungerer, men blir raskt synlig når lukt, smuss, smittefare eller våte gulv skaper problemer."
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "Tidligere eller parallelle praktiske driftsroller."
+    ],
+    "progression_to": [
+      "Mer ansvar for soner, team, HMS, drift eller faglig renholdsstandard."
+    ],
+    "possible_promotions": [
+      "Renholdsansvarlig, fagarbeider med renholdsfaglig fordypning eller driftskoordinator."
+    ],
+    "possible_exits": [
+      "Lager, drift, service, HMS eller andre praktiske roller."
+    ],
+    "career_risks": [
+      "Stagnasjon og slitasje hvis tidspress og lav status gjør kvaliteten usynlig."
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Grunnopplæring i renholdsrutiner, kjemikalier, utstyr og HMS."
+    ],
+    "skills": [
+      "Soneforståelse, hygieneblikk, kjemikaliebruk, avviksmelding, prioritering og kroppslig selvregulering."
+    ],
+    "category_knowledge": [
+      "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+    ],
+    "history_go_badges": [
+      "naeringsliv"
+    ],
+    "place_connections": [],
+    "people_connections": []
+  },
+  "challenges": [
+    {
+      "id": "hygiene_vs_tidsbudsjett",
+      "title": "Hygiene mot tidsbudsjett",
+      "description": "Planen kan være kortere enn rommets faktiske behov, og synlig finish kan skjule hygienerisiko.",
+      "pressure": "hygiene_vs_tidsbudsjett",
+      "affects": [
+        "quality",
+        "health",
+        "trust"
+      ]
+    },
+    {
+      "id": "hms_vs_produksjonspress",
+      "title": "HMS mot produksjonspress",
+      "description": "Tempo kan gjøre kroppen til buffer, men slitasje og feil kjemikaliebruk svekker kvaliteten over tid.",
+      "pressure": "hms_vs_produksjonspress",
+      "affects": [
+        "health",
+        "stability",
+        "output"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "synlig_rent_vs_hygienisk_rent",
+      "title": "Synlig rent eller hygienisk rent",
+      "setup": "Rommet kan se klart ut før alle berøringspunkter er tatt, men brukerne stoler på mer enn overflaten.",
+      "choice_axis": "synlig_resultat_vs_usynlig_arbeid",
+      "consequence_axis": "inntrykk_vs_trygghet",
+      "mail_hooks": [
+        "job"
+      ]
+    },
+    {
+      "id": "taus_slitasje_vs_verdig_grense",
+      "title": "Taus slitasje eller verdig grense",
+      "setup": "Du kan vaske etter avbrytelser uten å si noe, eller sette en rolig grense for sone, kropp og standard.",
+      "choice_axis": "verdighet_vs_lav_status",
+      "consequence_axis": "fred_nå_vs_bærekraftig_kvalitet",
+      "mail_hooks": [
+        "people",
+        "job"
+      ]
+    }
+  ],
+  "related_people": [],
+  "related_places": [],
+  "mail_integration": {
+    "role_scope": "renholder",
+    "mail_profile": "naer_renholder",
+    "can_feed_mail_types": [
+      "job",
+      "people"
+    ],
+    "mail_variables": {
+      "role_title": "Renholder",
+      "category": "naeringsliv",
+      "main_pressure": "hygiene_vs_tidsbudsjett",
+      "ethical_axis": "verdighet_vs_lav_status",
+      "status_axis": "synlig_resultat_vs_usynlig_arbeid"
+    },
+    "recommended_mail_families": [
+      "soner_hygiene_og_prioritering",
+      "utstyr_kjemi_og_hms",
+      "renhold_status_og_belastning"
+    ],
+    "role_model_refs_supported": true
+  },
+  "competence_axes": [
+    "hygiene",
+    "renholdssoner",
+    "berøringspunkter",
+    "kjemikalier_og_utstyr",
+    "HMS",
+    "avvik",
+    "verdighet_i_usynlig_arbeid"
+  ],
+  "ideal_type_problems": [
+    "overflatearbeideren som gjør rommet pent, men ikke hygienisk trygt",
+    "den usynlige sliteren som lar kroppen betale for for lite tid",
+    "HMS-bæreren som gjør kvalitet, kropp og sikkerhet synlig"
+  ],
+  "recommended_mail_families": [
+    "soner_hygiene_og_prioritering",
+    "utstyr_kjemi_og_hms",
+    "renhold_status_og_belastning"
+  ],
+  "notes": [
+    "Ny grunnrollepakke uten Praksisfortellinger uke 1/uke 2."
+  ]
+}
