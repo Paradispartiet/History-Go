@@ -731,6 +731,20 @@
     return r ? { ...r, socialHistory: Array.isArray(r.socialHistory) ? r.socialHistory.slice() : [] } : null;
   }
 
+  // Skriver et helt relasjonsrecord tilbake til det samme lokale lageret.
+  // Brukes av den sosiale samtalemotoren (CivicationSocialConversationEngine)
+  // slik at samtalevalg lagrer relasjon i SAMME lager som svarsløyfen. Krever et
+  // friendId; ellers ingen skriving (trygt). Returnerer en kopi.
+  function saveSocialRelationship(record) {
+    const rec = obj(record);
+    const fid = norm(rec.friendId);
+    if (!fid) return null;
+    const store = loadRelationshipStore();
+    store[fid] = rec;
+    persistRelationshipStore(store);
+    return { ...rec, socialHistory: Array.isArray(rec.socialHistory) ? rec.socialHistory.slice() : [] };
+  }
+
   // Brukervendt relasjonssammendrag via relasjonsmotoren. Returnerer null når
   // motoren ikke er lastet eller relasjonen mangler – trygt for kallsteder.
   function buildRelationshipSummary(relationship) {
@@ -875,6 +889,25 @@
       }
     }
 
+    // Positiv respons («Svar») skal bli en faktisk samtaletråd, ikke bare
+    // relasjonspoeng. Når samtalemotoren er lastet åpner/oppretter vi en liten
+    // sosial samtaletråd i Personlige meldinger. Followup-meldingen over bevares;
+    // her kobler vi den til samtalens conversationId. Trygt fravær uten motoren.
+    if (result.followup && window.CivicationSocialConversationEngine &&
+        typeof window.CivicationSocialConversationEngine.createSocialConversationFromResponse === "function") {
+      try {
+        const conv = window.CivicationSocialConversationEngine
+          .createSocialConversationFromResponse(result, { message: message });
+        if (conv) {
+          result.conversation = conv;
+          result.conversationId = conv.conversationId;
+          if (result.followupEvent) result.followupEvent.conversationId = conv.conversationId;
+        }
+      } catch (_e) {
+        // Samtaletråd er en utvidelse – aldri en hard avhengighet for svaret.
+      }
+    }
+
     return result;
   }
 
@@ -945,6 +978,7 @@
     // lokal relasjonsmodell
     applySocialRelationshipDelta: applySocialRelationshipDelta,
     getSocialRelationship: getSocialRelationship,
+    saveSocialRelationship: saveSocialRelationship,
     buildRelationshipSummary: buildRelationshipSummary,
     getRelationshipSummaryForFriend: getRelationshipSummaryForFriend,
     getSocialResponseRecord: getSocialResponseRecord,
