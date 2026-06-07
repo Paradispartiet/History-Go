@@ -212,7 +212,7 @@
     btn.innerHTML =
       '<span class="civi-city-friend-figure" style="--friend-color:' + esc(color) + '">' + esc(initial) + "</span>" +
       '<span class="civi-city-friend-tag">' + esc(friend.name || "") +
-      '<small>' + esc(presence.statusText || "") + "</small></span>";
+      '<small>' + esc(presence.lastSeenText || presence.statusText || "") + "</small></span>";
     setPos(btn, xy);
     btn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -253,7 +253,9 @@
 
     markSelected('[data-place-id="' + cssEscape(placeId) + '"]');
 
-    const here = eng.friendsAtLocation(_model.friends.map((r) => r.friend), placeId, _model.phase, _model.dayIndex);
+    // Venner her = de hvis aktive fase-minne (snapshot/fallback) peker hit.
+    const here = (_model.friends || []).filter((r) =>
+      r.presence && r.presence.visibleOnMap && String(r.presence.locationId || "") === String(placeId));
     const active = eng.isLocationActive(loc, _model.phase);
 
     const activitiesHtml = (Array.isArray(loc.availableActivities) ? loc.availableActivities : [])
@@ -296,24 +298,46 @@
     markSelected('[data-friend-id="' + cssEscape(friendId) + '"]');
 
     const homeLoc = eng.locationById(_model.locations, avatar.homeId);
-    const currentLoc = eng.locationById(_model.locations, presence.locationId);
+    const snapshotLoc = eng.locationById(_model.locations, presence.locationId);
     const rel = Number(friend.relationshipLevel || 0);
     const relText = "Nivå " + rel + " · " + relationshipLabel(rel);
 
+    // Aktiv semantisk fase som spilleren selv er i (fase-minne, ikke live).
+    const phaseLbl = presence.snapshotPhaseLabel || _model.snapshotPhaseLabel || "";
+    const lastSeen = presence.lastSeenText || "";
+    const hasHistory = presence.source !== "none";
+    const firstName = String(friend.name || "Vennen").trim().split(/\s+/)[0] || "Vennen";
+
+    // Statuslinje: tydelig at dette er SISTE fase-status, ikke nåværende.
+    const statusLine = hasHistory
+      ? (lastSeen ? esc(lastSeen) + ": " : "") + esc(presence.statusText) +
+        (presence.activity ? " – " + esc(presence.activity) : "")
+      : "Ingen fasehistorikk ennå for denne fasen.";
+
+    // Forklaringstekst som skiller fase-minne fra live-sporing.
+    const memoryNote = hasHistory
+      ? "Dette er " + esc(firstName) + "s siste lagrede " +
+        esc((phaseLbl || "fase").toLowerCase()) + " i Civication – simulert fasehistorikk, ikke live-posisjon."
+      : esc(firstName) + " har ingen lagret status for " +
+        esc((phaseLbl || "denne fasen").toLowerCase()) + " ennå.";
+
     showDetail(
-      '<div class="civi-city-detail-kicker">👤 Venn</div>' +
-      "<h3>" + esc(friend.name || "") + "</h3>" +
-      '<div class="civi-city-detail-status' + (presence.visibleOnMap ? " is-active" : "") + '">' +
-        esc(presence.statusText) + (presence.activity ? " – " + esc(presence.activity) : "") + "</div>" +
+      '<div class="civi-city-detail-kicker">👤 Venn · ' + esc(phaseLbl) + "</div>" +
+      "<h3>" + esc(friend.name || "") + (friend.role ? " — " + esc(friend.role) : "") + "</h3>" +
+      '<div class="civi-city-detail-status' + (hasHistory && presence.visibleOnMap ? " is-active" : "") + '">' +
+        statusLine + "</div>" +
       '<div class="civi-city-detail-grid">' +
         row2("Rolle", friend.role) +
         row2("Relasjon", relText) +
         row2("Klær/stil", [avatar.clothes, avatar.style].filter(Boolean).join(" · ")) +
         row2("Transport", avatar.vehicle) +
         row2("Hjem", homeLoc ? homeLoc.label : (avatar.homeId || "—")) +
-        row2("Nå", currentLoc ? currentLoc.label : (presence.locationId || "—")) +
+        row2("Aktiv fase", phaseLbl || "—") +
+        row2("Siste sted", snapshotLoc ? snapshotLoc.label : (presence.locationId || "—")) +
         row2("Aktivitet", presence.activity || "—") +
+        (presence.mood ? row2("Stemning", presence.mood) : "") +
       "</div>" +
+      '<p class="civi-city-detail-hint">' + memoryNote + "</p>" +
       '<div class="civi-city-detail-actions">' +
         '<button type="button" class="civi-btn" data-civi-friend-action="message" data-friend-id="' + esc(friend.id) + '">Send melding</button>' +
         '<button type="button" class="civi-btn" data-civi-friend-action="visit" data-friend-id="' + esc(friend.id) + '">Besøk</button>' +
