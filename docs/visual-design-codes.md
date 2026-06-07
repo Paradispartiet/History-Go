@@ -239,3 +239,38 @@ Rapporten viser antall koder per `entityType`, hvor mange entiteter som løses v
 hver kilde (`explicit`/`assetType`/`category`/`heuristic`/`default`), topp brukte
 koder, ubrukte koder, ugyldige eksplisitte koder og koder med manglende
 `renderHints`.
+
+## Audit quality pass
+
+Audit-rapporten viser **ikke bare dekning, men også konkrete kandidater**. Den er
+arbeidslisten neste batch skal bygges på, ikke en oppsummering vi leser én gang.
+JSON-rapporten er den fulle, uavkortede kilden; Markdown-rapporten er den lesbare
+versjonen med avkortede lister (totalsummer + topp-N, full liste i JSON).
+
+Rapporten har følgende kandidat- og kvalitetsseksjoner:
+
+- **`defaultCandidates`** – entiteter som fortsatt løses via default-fallback
+  (`default_miniature` / `person_default_miniature` / `article_default_miniature`).
+  Dette er **neste ryddeliste**: de mest opplagte hullene i dekningen, gruppert
+  per places / people / artikler med id, navn/tittel, kategori og filsti.
+- **`heuristicCandidates`** – entiteter uten eksplisitt kode der resolveren
+  likevel gir en konkret kode via heuristikk. Hver kandidat har `confidence`
+  (`high`/`medium`/`low`) og en `reason` (triggerordet). High-confidence treff
+  **kan få eksplisitt designCode senere** – de er trygge å låse.
+- **`unusedDesignCodeDetails`** – ubrukte koder med `family`, `entityTypes`,
+  `suggestedSearchTerms` og `suggestedNextAction`, slik at det er lett å lete opp
+  entiteter som burde dekke koden (f.eks. `article_architecture_miniature`).
+- **`semanticReviewCandidates`** – eksplisitte koder som kan være riktige, men
+  bør vurderes manuelt (f.eks. `opera` på `theatre_miniature`, `trener` på
+  `person_footballer_miniature`). Dette er **review candidates, ikke feil** –
+  bare manuelle vurderingspunkter for senere, mer presise koder.
+- **`batch3Suggestions`** – en prioritert (P1–P5) liste som kombinerer
+  high-confidence heuristikk, default-kandidater med tydelige dyp-tekst-treff og
+  dekning av ubrukte koder. Markdown viser P3 og oppover, gruppert per
+  `suggestedDesignCode`.
+
+Prinsippet: **batch 3 skal baseres på audit, ikke manuell gjetting.** Når neste
+batch bygges, plukkes entiteter fra `batch3Suggestions` (start med P5/P4),
+kryssjekkes mot `semanticReviewCandidates`, og dekning av ubrukte koder hentes fra
+`unusedDesignCodeDetails`. Dette holder hver batch verifiserbar og sporbar tilbake
+til rapporten.
