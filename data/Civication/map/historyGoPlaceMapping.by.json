@@ -1,0 +1,1802 @@
+{
+  "schema": "civication.historyGoPlaceMapping.by.v1",
+  "version": 1,
+  "sourceFile": "places/by/oslo/places_by.json",
+  "note": "Samlet verifisert per-place mapping for History Go by-steder til Civication-kartet. Kombinerer batch01-batch04. Noen enkle områdeposter fra batch04 mangler emne_ids i kilden og er derfor merket med needsEnrichment: true.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_torggata": {
+      "id": "map_torggata",
+      "historyGoPlaceId": "torggata",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_torggata",
+      "name": "Torggata",
+      "category": "by",
+      "lat": 59.9145,
+      "lon": 10.7539,
+      "emne_ids": [
+        "em_by_gentrifisering_eiendom",
+        "em_by_styring_forvaltning_planmakt"
+      ],
+      "buildingTypeId": "building_commercial_street_axis",
+      "mapRole": "commercial_transformation_street",
+      "visibleAs": "street_axis",
+      "socialFunctions": [
+        "walking",
+        "commerce",
+        "nightlife",
+        "gentrification_observation",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "midday_public_life",
+        "evening_city_flow",
+        "nightlife_pressure"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bispelokket": {
+      "id": "map_bispelokket",
+      "historyGoPlaceId": "bispelokket",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_bispelokket",
+      "name": "Bispelokket / Trafikkmaskinen",
+      "category": "by",
+      "lat": 59.9078,
+      "lon": 10.7538,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_barrierer_forbindelser",
+        "em_by_romlig_orden",
+        "em_by_teori_vs_praksis_i_byutvikling"
+      ],
+      "buildingTypeId": "building_retro_infrastructure_node",
+      "mapRole": "removed_traffic_barrier_memory",
+      "visibleAs": "historical_infrastructure_overlay",
+      "socialFunctions": [
+        "infrastructure_memory",
+        "urban_transformation",
+        "barrier_observation",
+        "fjord_city_context"
+      ],
+      "phaseTypes": [
+        "historical_overlay",
+        "traffic_memory",
+        "transformation_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gronland_basarene": {
+      "id": "map_gronland_basarene",
+      "historyGoPlaceId": "gronland_basarene",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_gronland_basarene",
+      "name": "Grønland basarene",
+      "category": "by",
+      "lat": 59.9128,
+      "lon": 10.7645,
+      "emne_ids": [
+        "em_by_synlige_usynlige_grupper",
+        "em_by_territorialitet_og_grensemarkering"
+      ],
+      "buildingTypeId": "building_market_bazaar",
+      "mapRole": "multicultural_commerce_place",
+      "visibleAs": "bazaar_building",
+      "socialFunctions": [
+        "commerce",
+        "migration_visibility",
+        "everyday_life",
+        "social_boundary_observation"
+      ],
+      "phaseTypes": [
+        "market_day",
+        "midday_public_life",
+        "evening_local_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_karl_johan": {
+      "id": "map_karl_johan",
+      "historyGoPlaceId": "karl_johan",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_karl_johan",
+      "name": "Karl Johans gate",
+      "category": "by",
+      "lat": 59.9138,
+      "lon": 10.7387,
+      "emne_ids": [
+        "em_by_hendelsesbasert_byliv_hoytider",
+        "em_by_publikum_deltakelse_tilskuere",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_national_street_axis",
+      "mapRole": "national_ceremonial_axis",
+      "visibleAs": "ceremonial_street_axis",
+      "socialFunctions": [
+        "ceremony",
+        "protest",
+        "tourism",
+        "public_life",
+        "national_representation"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "tourist_flow",
+        "public_marking",
+        "everyday_axis"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_radhusplassen": {
+      "id": "map_radhusplassen",
+      "historyGoPlaceId": "radhusplassen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_radhusplassen",
+      "name": "Rådhusplassen",
+      "category": "by",
+      "lat": 59.9111,
+      "lon": 10.7314,
+      "emne_ids": [
+        "em_by_midlertidige_installasjoner",
+        "em_by_symbolsk_makt_og_representasjon",
+        "em_by_torg_plasser_som_scene"
+      ],
+      "buildingTypeId": "building_civic_square",
+      "mapRole": "civic_event_square",
+      "visibleAs": "large_public_square",
+      "socialFunctions": [
+        "festival",
+        "public_marking",
+        "civic_identity",
+        "fjord_access",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "empty_square",
+        "event_setup",
+        "festival",
+        "political_marking",
+        "harbor_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bjorvika": {
+      "id": "map_bjorvika",
+      "historyGoPlaceId": "bjorvika",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_bjorvika",
+      "name": "Bjørvika",
+      "category": "by",
+      "lat": 59.9075,
+      "lon": 10.7531,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_gentrifisering_eiendom",
+        "em_by_vannpromenader_fjordliv"
+      ],
+      "buildingTypeId": "building_waterfront_transformation_district",
+      "mapRole": "fjord_city_transformation_area",
+      "visibleAs": "waterfront_district",
+      "socialFunctions": [
+        "waterfront_life",
+        "culture",
+        "real_estate_observation",
+        "promenade",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "morning_promontory",
+        "cultural_visit",
+        "summer_waterfront",
+        "evening_promontory",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ring_3": {
+      "id": "map_ring_3",
+      "historyGoPlaceId": "ring_3",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_ring_3",
+      "name": "Ring 3",
+      "category": "by",
+      "lat": 59.931,
+      "lon": 10.792,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_barrierer_forbindelser"
+      ],
+      "buildingTypeId": "building_road_infrastructure_ring",
+      "mapRole": "mobility_barrier_system",
+      "visibleAs": "road_infrastructure_band",
+      "socialFunctions": [
+        "mobility",
+        "traffic_pressure",
+        "barrier_observation",
+        "regional_connection"
+      ],
+      "phaseTypes": [
+        "rush_hour",
+        "traffic_delay",
+        "quiet_night_road",
+        "barrier_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_trikk_17_18": {
+      "id": "map_trikk_17_18",
+      "historyGoPlaceId": "trikk_17_18",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_trikk_17_18",
+      "name": "Trikkelinje 17/18",
+      "category": "by",
+      "lat": 59.92,
+      "lon": 10.76,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_gangstrommer_snarveier"
+      ],
+      "buildingTypeId": "building_tram_line_route",
+      "mapRole": "everyday_transit_route",
+      "visibleAs": "transit_line_overlay",
+      "socialFunctions": [
+        "mobility",
+        "commuting",
+        "route_identity",
+        "neighborhood_connection"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "tram_wait",
+        "route_observation",
+        "evening_return"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_grunerlokka_helgesens_tm": {
+      "id": "map_grunerlokka_helgesens_tm",
+      "historyGoPlaceId": "grunerlokka_helgesens_tm",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_grunerlokka_helgesens_tm",
+      "name": "Grünerløkka – Helgesens / Thorvald Meyers",
+      "category": "by",
+      "lat": 59.9237,
+      "lon": 10.7576,
+      "emne_ids": [
+        "em_by_gateliv_kantsoner",
+        "em_by_butikkfasader_vindusutstillinger",
+        "em_by_smaprat_blikk_sosial_koreografi"
+      ],
+      "buildingTypeId": "building_active_street_corner",
+      "mapRole": "micro_social_street_corner",
+      "visibleAs": "active_corner",
+      "socialFunctions": [
+        "smalltalk",
+        "street_life",
+        "storefront_observation",
+        "neighborhood_identity"
+      ],
+      "phaseTypes": [
+        "midday_public_life",
+        "afternoon_corner_flow",
+        "evening_local_street",
+        "micro_social_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_toyen_torg": {
+      "id": "map_toyen_torg",
+      "historyGoPlaceId": "toyen_torg",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_toyen_torg",
+      "name": "Tøyen torg",
+      "category": "by",
+      "lat": 59.9154,
+      "lon": 10.7765,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_sosial_miks_i_offentlige_rom",
+        "em_by_lavterskel_moteplasser_uten_kjopspress"
+      ],
+      "buildingTypeId": "building_neighborhood_square",
+      "mapRole": "low_threshold_public_meeting_place",
+      "visibleAs": "neighborhood_square",
+      "socialFunctions": [
+        "meeting_point",
+        "public_rest",
+        "social_mix",
+        "neighborhood_life",
+        "low_cost_presence"
+      ],
+      "phaseTypes": [
+        "morning_local_square",
+        "midday_public_life",
+        "family_afternoon",
+        "evening_neighborhood_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_majorstuen_krysset": {
+      "id": "map_majorstuen_krysset",
+      "historyGoPlaceId": "majorstuen_krysset",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_majorstuen_krysset",
+      "name": "Majorstuen krysset",
+      "category": "by",
+      "lat": 59.9295,
+      "lon": 10.7146,
+      "emne_ids": [
+        "em_by_flaskehalser_kryss_friksjon",
+        "em_by_gangstrommer_snarveier"
+      ],
+      "buildingTypeId": "building_intersection_pressure_hub",
+      "mapRole": "urban_bottleneck_crossing",
+      "visibleAs": "busy_intersection",
+      "socialFunctions": [
+        "commuting",
+        "shopping_transition",
+        "traffic_pressure",
+        "shortcut_observation"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "midday_crossing",
+        "rush_hour_pressure",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_st_hanshaugen_park": {
+      "id": "map_st_hanshaugen_park",
+      "historyGoPlaceId": "st_hanshaugen_park",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_st_hanshaugen_park",
+      "name": "St. Hanshaugen park",
+      "category": "by",
+      "lat": 59.9234,
+      "lon": 10.7463,
+      "emne_ids": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang"
+      ],
+      "buildingTypeId": "building_urban_hill_park",
+      "mapRole": "park_as_social_infrastructure",
+      "visibleAs": "hill_park",
+      "socialFunctions": [
+        "walking",
+        "rest",
+        "training",
+        "viewpoint",
+        "public_reflection",
+        "family_life"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "quiet_reflection",
+        "outdoor_training",
+        "family_afternoon",
+        "late_afternoon_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_s": {
+      "id": "map_oslo_s",
+      "historyGoPlaceId": "oslo_s",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_oslo_s",
+      "name": "Oslo S",
+      "category": "by",
+      "lat": 59.911,
+      "lon": 10.7528,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_sosiale_knutepunkt"
+      ],
+      "buildingTypeId": "building_central_station",
+      "mapRole": "national_transport_exchange",
+      "visibleAs": "central_station",
+      "socialFunctions": [
+        "commuting",
+        "arrival",
+        "waiting",
+        "shopping",
+        "social_visibility",
+        "national_gateway"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "station_waiting",
+        "rush_hour_exchange",
+        "late_arrival",
+        "orientation_pressure"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vulkan_energisentral": {
+      "id": "map_vulkan_energisentral",
+      "historyGoPlaceId": "vulkan_energisentral",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_vulkan_energisentral",
+      "name": "Vulkan energisentral",
+      "category": "by",
+      "lat": 59.9233,
+      "lon": 10.7518,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_risiko_beredskap_robusthet"
+      ],
+      "buildingTypeId": "building_hidden_energy_infrastructure",
+      "mapRole": "invisible_city_system",
+      "visibleAs": "technical_infrastructure_node",
+      "socialFunctions": [
+        "infrastructure_learning",
+        "green_city_system",
+        "resilience",
+        "transformation_backside"
+      ],
+      "phaseTypes": [
+        "technical_observation",
+        "hidden_system_reflection",
+        "urban_resilience_learning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_aker_brygge": {
+      "id": "map_aker_brygge",
+      "historyGoPlaceId": "aker_brygge",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_aker_brygge",
+      "name": "Aker Brygge",
+      "category": "by",
+      "lat": 59.9097,
+      "lon": 10.7256,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_uteservering_kommersielt_byliv",
+        "em_by_vannpromenader_fjordliv",
+        "em_by_gentrifisering_eiendom"
+      ],
+      "buildingTypeId": "building_commercial_waterfront",
+      "mapRole": "postindustrial_commercial_waterfront",
+      "visibleAs": "waterfront_promonade",
+      "socialFunctions": [
+        "waterfront_life",
+        "commerce",
+        "restaurant_life",
+        "promenade",
+        "real_estate_observation"
+      ],
+      "phaseTypes": [
+        "lunch_waterfront",
+        "summer_promonade",
+        "evening_restaurant_flow",
+        "commercial_public_space_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tigeren": {
+      "id": "map_tigeren",
+      "historyGoPlaceId": "tigeren",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_tigeren",
+      "name": "Tigerstatuen",
+      "category": "by",
+      "lat": 59.9111,
+      "lon": 10.7528,
+      "emne_ids": [
+        "em_by_symbolsk_makt_og_representasjon",
+        "em_by_torg_plasser_som_scene"
+      ],
+      "buildingTypeId": "building_public_symbol_object",
+      "mapRole": "popular_meeting_symbol",
+      "visibleAs": "public_sculpture_marker",
+      "socialFunctions": [
+        "meeting_point",
+        "tourism",
+        "city_symbol",
+        "arrival_scene",
+        "photo_point"
+      ],
+      "phaseTypes": [
+        "station_meeting",
+        "tourist_photo",
+        "arrival_waiting",
+        "symbol_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gronland_kirke": {
+      "id": "map_gronland_kirke",
+      "historyGoPlaceId": "gronland_kirke",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_gronland_kirke",
+      "name": "Grønland kirke",
+      "category": "by",
+      "lat": 59.9125,
+      "lon": 10.7678,
+      "emne_ids": [
+        "em_by_bydelsforskjeller_segregering",
+        "em_by_sosial_miks_i_offentlige_rom"
+      ],
+      "buildingTypeId": "building_church_landmark",
+      "mapRole": "institution_in_socially_mixed_district",
+      "visibleAs": "church_landmark",
+      "socialFunctions": [
+        "institution",
+        "religion",
+        "social_geography",
+        "local_identity",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_institution",
+        "neighborhood_flow",
+        "historical_reflection",
+        "social_mix_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_kampen_kirke": {
+      "id": "map_kampen_kirke",
+      "historyGoPlaceId": "kampen_kirke",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_kampen_kirke",
+      "name": "Kampen kirke",
+      "category": "by",
+      "lat": 59.9167,
+      "lon": 10.7781,
+      "emne_ids": [
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_romlig_orden"
+      ],
+      "buildingTypeId": "building_church_hill_landmark",
+      "mapRole": "neighborhood_orientation_landmark",
+      "visibleAs": "church_landmark",
+      "socialFunctions": [
+        "orientation",
+        "local_identity",
+        "historical_layer",
+        "institution",
+        "neighborhood_memory"
+      ],
+      "phaseTypes": [
+        "quiet_institution",
+        "neighborhood_walk",
+        "historical_reflection",
+        "orientation_point"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gronlandsleiret": {
+      "id": "map_gronlandsleiret",
+      "historyGoPlaceId": "gronlandsleiret",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_gronlandsleiret",
+      "name": "Grønlandsleiret",
+      "category": "by",
+      "lat": 59.9124,
+      "lon": 10.7608,
+      "emne_ids": [
+        "em_by_kommersielle_gater",
+        "em_by_sosial_miks_i_offentlige_rom"
+      ],
+      "buildingTypeId": "building_multicultural_commercial_street",
+      "mapRole": "everyday_multicultural_trade_street",
+      "visibleAs": "commercial_street",
+      "socialFunctions": [
+        "commerce",
+        "migration_visibility",
+        "social_mix",
+        "everyday_life",
+        "local_networks"
+      ],
+      "phaseTypes": [
+        "market_day",
+        "midday_public_life",
+        "evening_local_flow",
+        "social_mix_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_storgata": {
+      "id": "map_storgata",
+      "historyGoPlaceId": "storgata",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_storgata",
+      "name": "Storgata",
+      "category": "by",
+      "lat": 59.9153,
+      "lon": 10.7521,
+      "emne_ids": [
+        "em_by_kommersielle_gater",
+        "em_by_infrastruktur_mobilitet"
+      ],
+      "buildingTypeId": "building_tram_commercial_street",
+      "mapRole": "hybrid_trade_and_transit_street",
+      "visibleAs": "street_with_tram_tracks",
+      "socialFunctions": [
+        "commerce",
+        "tram_mobility",
+        "street_intensity",
+        "urban_transition",
+        "everyday_pressure"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "midday_commerce",
+        "tram_flow",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ullevål_hageby": {
+      "id": "map_ullevål_hageby",
+      "historyGoPlaceId": "ullevål_hageby",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_ullevål_hageby",
+      "name": "Ullevål Hageby",
+      "category": "by",
+      "lat": 59.9369,
+      "lon": 10.7317,
+      "emne_ids": [
+        "em_by_boligstruktur",
+        "em_by_romlig_orden"
+      ],
+      "buildingTypeId": "building_garden_city_residential_area",
+      "mapRole": "planned_housing_ideal_place",
+      "visibleAs": "garden_city_neighborhood",
+      "socialFunctions": [
+        "housing",
+        "neighborhood_identity",
+        "planning_ideology",
+        "green_transition",
+        "everyday_life"
+      ],
+      "phaseTypes": [
+        "quiet_morning",
+        "neighborhood_walk",
+        "family_afternoon",
+        "housing_structure_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_romsaås": {
+      "id": "map_romsaås",
+      "historyGoPlaceId": "romsaås",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_romsaås",
+      "name": "Romsås",
+      "category": "by",
+      "lat": 59.9626,
+      "lon": 10.8842,
+      "emne_ids": [
+        "em_by_modernistisk_boligplanlegging",
+        "em_by_bydelsforskjeller_segregering"
+      ],
+      "buildingTypeId": "building_modernist_housing_area",
+      "mapRole": "modernist_welfare_housing_landscape",
+      "visibleAs": "drabantby_housing_area",
+      "socialFunctions": [
+        "housing",
+        "neighborhood_identity",
+        "segregation_observation",
+        "planning_ideology",
+        "landscape_adaptation"
+      ],
+      "phaseTypes": [
+        "quiet_morning",
+        "neighborhood_walk",
+        "after_school_flow",
+        "housing_structure_reflection",
+        "social_geography_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_rodelokka": {
+      "id": "map_rodelokka",
+      "historyGoPlaceId": "rodelokka",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_rodelokka",
+      "name": "Rodeløkka",
+      "category": "by",
+      "lat": 59.9272,
+      "lon": 10.7704,
+      "emne_ids": [
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_boligstruktur"
+      ],
+      "buildingTypeId": "building_historic_wooden_housing_area",
+      "mapRole": "historic_worker_housing_memory",
+      "visibleAs": "wooden_house_neighborhood",
+      "socialFunctions": [
+        "housing",
+        "local_identity",
+        "historical_layer",
+        "small_scale_street_life",
+        "gentrification_observation"
+      ],
+      "phaseTypes": [
+        "neighborhood_walk",
+        "quiet_residential_day",
+        "historical_reflection",
+        "evening_local_street"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vaalerenga": {
+      "id": "map_vaalerenga",
+      "historyGoPlaceId": "vaalerenga",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_vaalerenga",
+      "name": "Vålerenga",
+      "category": "by",
+      "lat": 59.9079,
+      "lon": 10.7891,
+      "emne_ids": [
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_boligstruktur"
+      ],
+      "buildingTypeId": "building_historic_eastside_neighborhood",
+      "mapRole": "worker_neighborhood_identity_place",
+      "visibleAs": "historic_residential_neighborhood",
+      "socialFunctions": [
+        "housing",
+        "local_identity",
+        "worker_history",
+        "neighborhood_memory",
+        "sport_connection"
+      ],
+      "phaseTypes": [
+        "neighborhood_walk",
+        "local_identity_reflection",
+        "quiet_residential_day",
+        "evening_local_street"
+      ],
+      "groundhopperRelevant": false,
+      "connectedSportPlaceIds": [
+        "jordal_amfi"
+      ],
+      "needsVerification": false
+    },
+    "map_vinderen": {
+      "id": "map_vinderen",
+      "historyGoPlaceId": "vinderen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_vinderen",
+      "name": "Vinderen",
+      "category": "by",
+      "lat": 59.9471,
+      "lon": 10.7086,
+      "emne_ids": [
+        "em_by_bydelsforskjeller_segregering",
+        "em_by_boligstruktur"
+      ],
+      "buildingTypeId": "building_westside_villa_neighborhood",
+      "mapRole": "transport_shaped_westside_housing_area",
+      "visibleAs": "villa_neighborhood",
+      "socialFunctions": [
+        "housing",
+        "class_signal",
+        "westside_geography",
+        "transport_history",
+        "private_space_observation"
+      ],
+      "phaseTypes": [
+        "quiet_morning",
+        "school_commute",
+        "residential_privacy",
+        "social_geography_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ullern": {
+      "id": "map_ullern",
+      "historyGoPlaceId": "ullern",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_ullern",
+      "name": "Ullern",
+      "category": "by",
+      "lat": 59.9216,
+      "lon": 10.6647,
+      "emne_ids": [
+        "em_by_bydelsforskjeller_segregering",
+        "em_by_boligstruktur"
+      ],
+      "buildingTypeId": "building_spacious_westside_housing_mix",
+      "mapRole": "varied_westside_housing_landscape",
+      "visibleAs": "spacious_residential_area",
+      "socialFunctions": [
+        "housing",
+        "class_signal",
+        "green_residential_life",
+        "private_space_observation",
+        "social_geography"
+      ],
+      "phaseTypes": [
+        "quiet_morning",
+        "residential_privacy",
+        "family_afternoon",
+        "housing_structure_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_spikersuppa": {
+      "id": "map_spikersuppa",
+      "historyGoPlaceId": "spikersuppa",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_spikersuppa",
+      "name": "Spikersuppa",
+      "category": "by",
+      "lat": 59.9139,
+      "lon": 10.7391,
+      "emne_ids": [
+        "em_by_torg_plasser_som_scene",
+        "em_by_offentlige_rom_motesteder"
+      ],
+      "buildingTypeId": "building_seasonal_public_micro_square",
+      "mapRole": "seasonal_city_center_meeting_scene",
+      "visibleAs": "central_public_park_square",
+      "socialFunctions": [
+        "meeting_point",
+        "seasonal_event",
+        "skating",
+        "public_rest",
+        "city_center_scene"
+      ],
+      "phaseTypes": [
+        "winter_skating",
+        "summer_pause",
+        "holiday_market",
+        "midday_public_life",
+        "symbolic_center_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bankplassen": {
+      "id": "map_bankplassen",
+      "historyGoPlaceId": "bankplassen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_bankplassen",
+      "name": "Bankplassen",
+      "category": "by",
+      "lat": 59.9077,
+      "lon": 10.7419,
+      "emne_ids": [
+        "em_by_torg_plasser_som_scene",
+        "em_by_offentlige_rom_motesteder"
+      ],
+      "buildingTypeId": "building_historic_culture_square",
+      "mapRole": "quiet_kvadraturen_culture_square",
+      "visibleAs": "historic_square",
+      "socialFunctions": [
+        "public_rest",
+        "culture",
+        "historical_layer",
+        "architecture_observation",
+        "quiet_meeting_point"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "cultural_visit",
+        "historical_reflection",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_christiania_torv": {
+      "id": "map_christiania_torv",
+      "historyGoPlaceId": "christiania_torv",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_christiania_torv",
+      "name": "Christiania Torv",
+      "category": "by",
+      "lat": 59.9074,
+      "lon": 10.741,
+      "emne_ids": [
+        "em_by_torg_plasser_som_scene",
+        "em_by_offentlige_rom_motesteder"
+      ],
+      "buildingTypeId": "building_historic_foundation_square",
+      "mapRole": "city_plan_origin_square",
+      "visibleAs": "historic_square",
+      "socialFunctions": [
+        "historical_layer",
+        "public_rest",
+        "outdoor_serving",
+        "city_plan_learning",
+        "kvadraturen_identity"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "midday_public_life",
+        "evening_outdoor_serving"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_slottsparken": {
+      "id": "map_slottsparken",
+      "historyGoPlaceId": "slottsparken",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_slottsparken",
+      "name": "Slottsparken",
+      "category": "by",
+      "lat": 59.9166,
+      "lon": 10.7278,
+      "emne_ids": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang"
+      ],
+      "buildingTypeId": "building_representative_royal_park",
+      "mapRole": "royal_public_park_frame",
+      "visibleAs": "large_central_park",
+      "socialFunctions": [
+        "walking",
+        "public_rest",
+        "symbolic_power",
+        "tourism",
+        "everyday_green_route"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "tourist_flow",
+        "quiet_reflection",
+        "ceremonial_day",
+        "green_commute_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_botsparken": {
+      "id": "map_botsparken",
+      "historyGoPlaceId": "botsparken",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_botsparken",
+      "name": "Botsparken",
+      "category": "by",
+      "lat": 59.9053,
+      "lon": 10.769,
+      "emne_ids": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang"
+      ],
+      "buildingTypeId": "building_small_institution_adjacent_park",
+      "mapRole": "small_green_pocket_near_institution",
+      "visibleAs": "small_urban_park",
+      "socialFunctions": [
+        "public_rest",
+        "children_play",
+        "neighborhood_pause",
+        "institutional_contrast",
+        "low_cost_presence"
+      ],
+      "phaseTypes": [
+        "quiet_morning",
+        "family_afternoon",
+        "neighborhood_pause",
+        "institutional_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_stensparken": {
+      "id": "map_stensparken",
+      "historyGoPlaceId": "stensparken",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_stensparken",
+      "name": "Stensparken",
+      "category": "by",
+      "lat": 59.9268,
+      "lon": 10.7406,
+      "emne_ids": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang"
+      ],
+      "buildingTypeId": "building_urban_ridge_park",
+      "mapRole": "neighborhood_ridge_park_with_memory_layers",
+      "visibleAs": "hill_park",
+      "socialFunctions": [
+        "walking",
+        "public_rest",
+        "viewpoint",
+        "park_history",
+        "queer_history",
+        "literary_memory",
+        "neighborhood_identity"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "late_afternoon_walk",
+        "viewpoint_pause",
+        "park_history_reflection",
+        "neighborhood_green_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nydalen": {
+      "id": "map_nydalen",
+      "historyGoPlaceId": "nydalen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_nydalen",
+      "name": "Nydalen",
+      "category": "by",
+      "lat": 59.9497,
+      "lon": 10.7675,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_gentrifisering_eiendom"
+      ],
+      "buildingTypeId": "building_postindustrial_knowledge_district",
+      "mapRole": "industrial_to_knowledge_city_transformation",
+      "visibleAs": "transformation_district",
+      "socialFunctions": [
+        "work",
+        "education",
+        "office_life",
+        "industrial_memory",
+        "gentrification_observation",
+        "river_context"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "office_day",
+        "student_flow",
+        "industrial_memory_reflection",
+        "after_work"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tjuvholmen": {
+      "id": "map_tjuvholmen",
+      "historyGoPlaceId": "tjuvholmen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_tjuvholmen",
+      "name": "Tjuvholmen",
+      "category": "by",
+      "lat": 59.9075,
+      "lon": 10.72,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_gentrifisering_eiendom",
+        "em_by_vannpromenader_fjordliv"
+      ],
+      "buildingTypeId": "building_luxury_waterfront_culture_district",
+      "mapRole": "exclusive_public_waterfront",
+      "visibleAs": "waterfront_district",
+      "socialFunctions": [
+        "waterfront_life",
+        "culture",
+        "restaurant_life",
+        "real_estate_observation",
+        "exclusive_public_space"
+      ],
+      "phaseTypes": [
+        "gallery_visit",
+        "summer_waterfront",
+        "evening_restaurant_flow",
+        "gentrification_reflection",
+        "public_access_vs_exclusivity"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_sorenga": {
+      "id": "map_sorenga",
+      "historyGoPlaceId": "sorenga",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_sorenga",
+      "name": "Sørenga",
+      "category": "by",
+      "lat": 59.9029,
+      "lon": 10.7586,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_gentrifisering_eiendom",
+        "em_by_vannpromenader_fjordliv"
+      ],
+      "buildingTypeId": "building_bathing_waterfront_residential_area",
+      "mapRole": "fjord_bathing_residential_front",
+      "visibleAs": "waterfront_bathing_area",
+      "socialFunctions": [
+        "bathing",
+        "waterfront_life",
+        "summer_public_life",
+        "housing",
+        "real_estate_observation"
+      ],
+      "phaseTypes": [
+        "summer_bathing",
+        "waterfront_walk",
+        "evening_promontory",
+        "housing_front_reflection",
+        "public_private_waterfront"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_majorstuen_tbanestasjon": {
+      "id": "map_majorstuen_tbanestasjon",
+      "historyGoPlaceId": "majorstuen_tbanestasjon",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_majorstuen_tbanestasjon",
+      "name": "Majorstuen T-banestasjon",
+      "category": "by",
+      "lat": 59.9293,
+      "lon": 10.7146,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_flaskehalser_kryss_friksjon"
+      ],
+      "buildingTypeId": "building_metro_exchange_station",
+      "mapRole": "western_metro_line_exchange",
+      "visibleAs": "metro_station_hub",
+      "socialFunctions": [
+        "commuting",
+        "line_exchange",
+        "waiting",
+        "mobility_pressure",
+        "orientation"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "rush_hour_exchange",
+        "platform_waiting",
+        "evening_return",
+        "infrastructure_pressure"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nationaltheatret_stasjon": {
+      "id": "map_nationaltheatret_stasjon",
+      "historyGoPlaceId": "nationaltheatret_stasjon",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_nationaltheatret_stasjon",
+      "name": "Nationaltheatret stasjon",
+      "category": "by",
+      "lat": 59.9145,
+      "lon": 10.7319,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_flaskehalser_kryss_friksjon"
+      ],
+      "buildingTypeId": "building_underground_central_exchange_station",
+      "mapRole": "hidden_central_transition_machine",
+      "visibleAs": "underground_station_hub",
+      "socialFunctions": [
+        "commuting",
+        "line_exchange",
+        "symbolic_axis_connection",
+        "waiting",
+        "orientation_pressure"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "underground_transition",
+        "rush_hour_exchange",
+        "symbolic_city_axis",
+        "late_arrival"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bislett": {
+      "id": "map_bislett",
+      "historyGoPlaceId": "bislett",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_bislett",
+      "name": "Bislett",
+      "category": "by",
+      "lat": 59.925,
+      "lon": 10.7328,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_offentlige_rom_motesteder",
+        "em_by_hendelsesbasert_byliv_hoytider",
+        "em_by_lek_trening_uformell_aktivitet"
+      ],
+      "buildingTypeId": "building_stadium_driven_mixed_district",
+      "mapRole": "sport_identity_and_everyday_city_mix",
+      "visibleAs": "stadium_neighborhood",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "training",
+        "student_life",
+        "local_commerce",
+        "transport",
+        "neighborhood_identity"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "student_flow",
+        "morning_commute",
+        "event_day",
+        "everyday_neighborhood"
+      ],
+      "groundhopperRelevant": true,
+      "connectedSportPlaceIds": [
+        "bislett_stadion"
+      ],
+      "needsVerification": false
+    },
+    "map_olaf_ryes_plass": {
+      "id": "map_olaf_ryes_plass",
+      "historyGoPlaceId": "olaf_ryes_plass",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_olaf_ryes_plass",
+      "name": "Olaf Ryes plass",
+      "category": "by",
+      "lat": 59.9238,
+      "lon": 10.7589,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_torg_plasser_som_scene"
+      ],
+      "buildingTypeId": "building_neighborhood_public_square",
+      "mapRole": "local_grunerlokka_social_square",
+      "visibleAs": "public_square_park",
+      "socialFunctions": [
+        "meeting_point",
+        "public_rest",
+        "neighborhood_identity",
+        "cafe_area",
+        "local_scene"
+      ],
+      "phaseTypes": [
+        "midday_public_life",
+        "afternoon_local_square",
+        "evening_neighborhood_flow",
+        "social_mix_observation"
+      ],
+      "groundhopperRelevant": false,
+      "connectedSportPlaceIds": [
+        "daelenenga_idrettspark"
+      ],
+      "needsVerification": false
+    },
+    "map_birkelunden": {
+      "id": "map_birkelunden",
+      "historyGoPlaceId": "birkelunden",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_birkelunden",
+      "name": "Birkelunden",
+      "category": "by",
+      "lat": 59.9256,
+      "lon": 10.7574,
+      "emne_ids": [
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_opphold_vs_gjennomgang"
+      ],
+      "buildingTypeId": "building_dense_neighborhood_park",
+      "mapRole": "noncommercial_green_room_in_dense_district",
+      "visibleAs": "urban_park",
+      "socialFunctions": [
+        "public_rest",
+        "children_play",
+        "neighborhood_life",
+        "low_cost_presence",
+        "green_pause",
+        "local_identity"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "family_afternoon",
+        "picnic",
+        "neighborhood_pause",
+        "evening_local_park"
+      ],
+      "groundhopperRelevant": false,
+      "connectedSportPlaceIds": [
+        "daelenenga_idrettspark"
+      ],
+      "needsVerification": false
+    },
+    "map_akerselva": {
+      "id": "map_akerselva",
+      "historyGoPlaceId": "akerselva",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_akerselva",
+      "name": "Akerselva",
+      "category": "by",
+      "lat": 59.9225,
+      "lon": 10.7572,
+      "emne_ids": [
+        "em_by_transformasjon_ombruk",
+        "em_by_historiske_lag_i_hverdagsrom"
+      ],
+      "buildingTypeId": "building_river_industrial_memory_axis",
+      "mapRole": "city_binding_river_axis",
+      "visibleAs": "river_route_axis",
+      "socialFunctions": [
+        "walking",
+        "running",
+        "industrial_memory",
+        "recreation",
+        "urban_transformation",
+        "neighborhood_connection"
+      ],
+      "phaseTypes": [
+        "morning_run",
+        "route_walk",
+        "industrial_memory_reflection",
+        "evening_river_walk",
+        "transformation_layer"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_universitetsplassen": {
+      "id": "map_universitetsplassen",
+      "historyGoPlaceId": "universitetsplassen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_universitetsplassen",
+      "name": "Universitetsplassen",
+      "category": "by",
+      "lat": 59.915,
+      "lon": 10.7397,
+      "emne_ids": [
+        "em_by_symbolsk_makt_og_representasjon",
+        "em_by_offentlige_rom_motesteder"
+      ],
+      "buildingTypeId": "building_academic_civic_square",
+      "mapRole": "knowledge_institution_public_square",
+      "visibleAs": "institutional_square",
+      "socialFunctions": [
+        "knowledge",
+        "public_marking",
+        "student_life",
+        "institutional_identity",
+        "symbolic_axis"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "public_marking",
+        "quiet_observation",
+        "academic_ceremony",
+        "city_axis_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_operahuset": {
+      "id": "map_operahuset",
+      "historyGoPlaceId": "operahuset",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_operahuset",
+      "name": "Operahuset",
+      "category": "by",
+      "lat": 59.9074,
+      "lon": 10.753,
+      "emne_ids": [
+        "em_by_symbolsk_makt_og_representasjon",
+        "em_by_materialitet_og_sanseerfaring",
+        "em_by_vannpromenader_fjordliv"
+      ],
+      "buildingTypeId": "building_walkable_cultural_icon",
+      "mapRole": "public_cultural_landscape_building",
+      "visibleAs": "walkable_culture_building",
+      "socialFunctions": [
+        "culture",
+        "tourism",
+        "public_roof_walk",
+        "fjord_view",
+        "symbolic_city_identity",
+        "material_experience"
+      ],
+      "phaseTypes": [
+        "tourist_flow",
+        "roof_walk",
+        "cultural_visit",
+        "sunset_fjord_view",
+        "symbolic_building_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_deichman_bjorvika": {
+      "id": "map_deichman_bjorvika",
+      "historyGoPlaceId": "deichman_bjorvika",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_deichman_bjorvika",
+      "name": "Deichman Bjørvika",
+      "category": "by",
+      "lat": 59.9078,
+      "lon": 10.7546,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_materialitet_og_sanseerfaring",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_public_library_knowledge_house",
+      "mapRole": "democratic_knowledge_meeting_house",
+      "visibleAs": "public_library_landmark",
+      "socialFunctions": [
+        "knowledge",
+        "reading",
+        "public_rest",
+        "study",
+        "low_cost_presence",
+        "public_interior"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "quiet_reading",
+        "public_interior_rest",
+        "event_evening",
+        "knowledge_house_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_barcode": {
+      "id": "map_barcode",
+      "historyGoPlaceId": "barcode",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_barcode",
+      "name": "Barcode",
+      "category": "by",
+      "lat": 59.91,
+      "lon": 10.7594,
+      "emne_ids": [
+        "em_by_romlig_orden",
+        "em_by_gentrifisering_eiendom",
+        "em_by_dodt_vs_aktivt_gateniva"
+      ],
+      "buildingTypeId": "building_highrise_business_row",
+      "mapRole": "contested_new_city_form",
+      "visibleAs": "highrise_row",
+      "socialFunctions": [
+        "office_life",
+        "real_estate_observation",
+        "skyline_identity",
+        "street_level_debate",
+        "urban_form_analysis"
+      ],
+      "phaseTypes": [
+        "morning_office_flow",
+        "lunch_business_district",
+        "dead_vs_active_street_level",
+        "evening_empty_office_row",
+        "scale_conflict_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vigelandsparken": {
+      "id": "map_vigelandsparken",
+      "historyGoPlaceId": "vigelandsparken",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_vigelandsparken",
+      "name": "Vigelandsparken",
+      "category": "by",
+      "lat": 59.927,
+      "lon": 10.7005,
+      "emne_ids": [
+        "em_by_romlig_orden",
+        "em_by_offentlige_rom_motesteder",
+        "em_by_materialitet_og_sanseerfaring"
+      ],
+      "buildingTypeId": "building_axial_sculpture_park",
+      "mapRole": "public_art_landscape_axis",
+      "visibleAs": "sculpture_park",
+      "socialFunctions": [
+        "walking",
+        "tourism",
+        "public_rest",
+        "art_observation",
+        "material_experience",
+        "park_life"
+      ],
+      "phaseTypes": [
+        "tourist_flow",
+        "morning_walk",
+        "sculpture_axis_observation",
+        "family_afternoon",
+        "materiality_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "connectedSportPlaceIds": [
+        "frogner_stadion"
+      ],
+      "needsVerification": false
+    },
+    "map_voienvolden": {
+      "id": "map_voienvolden",
+      "historyGoPlaceId": "voienvolden",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_voienvolden",
+      "name": "Voienvolden",
+      "category": "by",
+      "lat": 59.926,
+      "lon": 10.7435,
+      "emne_ids": [
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_transformasjon_ombruk",
+        "em_by_lavterskel_moteplasser_uten_kjopspress"
+      ],
+      "buildingTypeId": "building_historic_farm_fragment",
+      "mapRole": "time_pocket_inside_dense_city",
+      "visibleAs": "historic_courtyard_site",
+      "socialFunctions": [
+        "historical_layer",
+        "low_cost_presence",
+        "quiet_meeting_place",
+        "reuse",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "historical_reflection",
+        "low_threshold_meeting",
+        "courtyard_pause",
+        "reuse_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_carl_berner_plass": {
+      "id": "map_carl_berner_plass",
+      "historyGoPlaceId": "carl_berner_plass",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_carl_berner_plass",
+      "name": "Carl Berners plass",
+      "category": "by",
+      "lat": 59.9282,
+      "lon": 10.7819,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_flaskehalser_kryss_friksjon"
+      ],
+      "buildingTypeId": "building_eastside_transport_square",
+      "mapRole": "eastside_distribution_pressure_node",
+      "visibleAs": "transport_square",
+      "socialFunctions": [
+        "commuting",
+        "traffic_pressure",
+        "line_exchange",
+        "waiting",
+        "crossing",
+        "eastside_connection"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "rush_hour_pressure",
+        "tram_bus_exchange",
+        "traffic_noise",
+        "infrastructure_friction"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tullin": {
+      "id": "map_tullin",
+      "historyGoPlaceId": "tullin",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_tullin",
+      "name": "Tullin",
+      "category": "by",
+      "lat": 59.916519,
+      "lon": 10.73645,
+      "emne_ids": [],
+      "buildingTypeId": "building_institutional_city_quarter",
+      "mapRole": "education_culture_office_transition_area",
+      "visibleAs": "city_quarter",
+      "socialFunctions": [
+        "education",
+        "culture",
+        "office_life",
+        "institutional_flow",
+        "traffic_edge"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "office_day",
+        "institutional_flow",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_okern": {
+      "id": "map_okern",
+      "historyGoPlaceId": "okern",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_okern",
+      "name": "Økern",
+      "category": "by",
+      "lat": 59.930161,
+      "lon": 10.808531,
+      "emne_ids": [],
+      "buildingTypeId": "building_transformation_transport_business_node",
+      "mapRole": "outer_city_transformation_node",
+      "visibleAs": "transformation_hub",
+      "socialFunctions": [
+        "transport",
+        "business",
+        "warehouse_memory",
+        "urban_transformation",
+        "ring_road_context"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "business_day",
+        "construction_transformation",
+        "infrastructure_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_skoyen": {
+      "id": "map_skoyen",
+      "historyGoPlaceId": "skoyen",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_skoyen",
+      "name": "Skøyen",
+      "category": "by",
+      "lat": 59.922086,
+      "lon": 10.683861,
+      "emne_ids": [],
+      "buildingTypeId": "building_westside_business_transport_corridor",
+      "mapRole": "business_corridor_transport_hub",
+      "visibleAs": "business_transport_area",
+      "socialFunctions": [
+        "commuting",
+        "business",
+        "office_life",
+        "regional_connection",
+        "mobility_pressure"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "office_day",
+        "station_waiting",
+        "evening_return"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_torshov": {
+      "id": "map_torshov",
+      "historyGoPlaceId": "torshov",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_torshov",
+      "name": "Torshov",
+      "category": "by",
+      "lat": 59.933611,
+      "lon": 10.764167,
+      "emne_ids": [],
+      "buildingTypeId": "building_inner_city_neighborhood_area",
+      "mapRole": "dense_residential_neighborhood_with_local_axis",
+      "visibleAs": "neighborhood_area",
+      "socialFunctions": [
+        "housing",
+        "local_commerce",
+        "park_life",
+        "neighborhood_identity",
+        "walking"
+      ],
+      "phaseTypes": [
+        "quiet_morning",
+        "local_shopping",
+        "family_afternoon",
+        "evening_neighborhood_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_grorud": {
+      "id": "map_grorud",
+      "historyGoPlaceId": "grorud",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_grorud",
+      "name": "Grorud",
+      "category": "by",
+      "lat": 59.9575,
+      "lon": 10.880833,
+      "emne_ids": [],
+      "buildingTypeId": "building_outer_city_district_center",
+      "mapRole": "groruddalen_district_center",
+      "visibleAs": "district_center",
+      "socialFunctions": [
+        "commuting",
+        "shopping",
+        "housing",
+        "district_identity",
+        "postwar_housing_context"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "district_center_day",
+        "after_school_flow",
+        "evening_local_center"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_sagene": {
+      "id": "map_sagene",
+      "historyGoPlaceId": "sagene",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_sagene",
+      "name": "Sagene",
+      "category": "by",
+      "lat": 59.937222,
+      "lon": 10.756111,
+      "emne_ids": [],
+      "buildingTypeId": "building_worker_history_inner_north_area",
+      "mapRole": "akerselva_worker_history_neighborhood",
+      "visibleAs": "historical_neighborhood_area",
+      "socialFunctions": [
+        "housing",
+        "worker_history",
+        "local_identity",
+        "river_context",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "neighborhood_walk",
+        "historical_reflection",
+        "local_commerce",
+        "evening_neighborhood_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    }
+  }
+}
