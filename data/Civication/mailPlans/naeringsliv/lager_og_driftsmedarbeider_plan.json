@@ -1,0 +1,121 @@
+{
+  "schema": "civication_role_mail_plan_v1",
+  "id": "naeringsliv_lager_og_driftsmedarbeider_plan",
+  "category": "naeringsliv",
+  "role_scope": "lager_og_driftsmedarbeider",
+  "description": "Grunnplan for Lager- og driftsmedarbeider: mottak, vareflyt, plukk/pakk, avvik, telling, HMS og selvstendig drift uten Praksisfortellinger-uke ennå.",
+  "arc": {
+    "from": "Ny i lager- og driftsrollen. Spilleren lærer at fysisk vareflyt og digital registrering må stemme før andre ledd kan stole på driften.",
+    "to": "En trygg driftsmedarbeider som kan holde flyt, melde avvik, prioritere sikkerhet og forstå hvordan små lagerfeil blir store driftsfeil.",
+    "core_questions": [
+      "Når er tempo hjelp, og når blir det feil som flytter seg videre?",
+      "Hvordan holder du fysisk lager og systemtall sammen under press?",
+      "Når er avviksmelding en forsinkelse, og når er den produksjonsgrunnlag?",
+      "Hvordan blir HMS en del av flyten i stedet for noe som står i veien for den?"
+    ]
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Første mottak: forstå leveranse, kolli, følgeseddel og avvik.",
+      "allowed_families": [
+        "mottak_og_vareflyt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Plukk og plassering: riktig vare, riktig hylle, riktig registrering.",
+      "allowed_families": [
+        "plukk_pakk_og_avvik"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Tempo under press: når driften venter på varen.",
+      "allowed_families": [
+        "mottak_og_vareflyt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Feilplukk: hvordan en liten feil flytter seg gjennom systemet.",
+      "allowed_families": [
+        "plukk_pakk_og_avvik"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Telling og differanse: fysisk virkelighet vs. systemtall.",
+      "allowed_families": [
+        "mottak_og_vareflyt",
+        "plukk_pakk_og_avvik"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 6,
+      "type": "people",
+      "phase": "early",
+      "step_goal": "HMS og belastning: når raskt arbeid blir risikabelt.",
+      "allowed_families": [
+        "lager_team_og_belastning"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 7,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Samarbeid med butikk, drift og transport: intern logistikk som relasjonelt arbeid.",
+      "allowed_families": [
+        "mottak_og_vareflyt"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 8,
+      "type": "people",
+      "phase": "mid",
+      "step_goal": "Avvikskultur: melde feil uten å gjøre det til skyld.",
+      "allowed_families": [
+        "lager_team_og_belastning"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Første selvstendige driftsansvar: holde flyt uten tett oppfølging.",
+      "allowed_families": [
+        "mottak_og_vareflyt",
+        "plukk_pakk_og_avvik"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Rolleutfall: trygg driftsmedarbeider, tempoarbeider, snarveisarbeider eller avviksbygger.",
+      "allowed_families": [
+        "lager_team_og_belastning"
+      ],
+      "fallback_types": []
+    }
+  ]
+}
