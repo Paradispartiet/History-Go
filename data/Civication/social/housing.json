@@ -1,0 +1,51 @@
+{
+  "schema": "civication.housing.v1",
+  "version": 1,
+  "housing": {
+    "housing_small_rental_apartment": {
+      "id": "housing_small_rental_apartment",
+      "label": "Liten leieleilighet",
+      "type": "rental_apartment",
+      "sizeSignal": "small",
+      "economicSignal": "pressed",
+      "privacyLevel": "medium",
+      "socialMeaning": "hjemmet fungerer, men økonomien merkes"
+    },
+    "housing_shared_flat": {
+      "id": "housing_shared_flat",
+      "label": "Delt leilighet",
+      "type": "shared_flat",
+      "sizeSignal": "medium_shared",
+      "economicSignal": "low_income",
+      "privacyLevel": "low",
+      "socialMeaning": "livet er sosialt, men aldri helt privat"
+    },
+    "housing_family_apartment": {
+      "id": "housing_family_apartment",
+      "label": "Familieleilighet",
+      "type": "family_apartment",
+      "sizeSignal": "medium",
+      "economicSignal": "stable_or_stretched",
+      "privacyLevel": "medium_high",
+      "socialMeaning": "hverdagen er organisert rundt ansvar"
+    },
+    "housing_temporary_room": {
+      "id": "housing_temporary_room",
+      "label": "Midlertidig rom",
+      "type": "temporary_room",
+      "sizeSignal": "very_small",
+      "economicSignal": "unstable",
+      "privacyLevel": "low",
+      "socialMeaning": "personen er ikke helt på plass i byen"
+    },
+    "housing_owned_outer_city": {
+      "id": "housing_owned_outer_city",
+      "label": "Eid leilighet utenfor sentrum",
+      "type": "owned_apartment",
+      "sizeSignal": "medium_large",
+      "economicSignal": "stable",
+      "privacyLevel": "high",
+      "socialMeaning": "personen har fått fotfeste, men lever litt utenfor byens sentrum"
+    }
+  }
+}
