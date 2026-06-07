@@ -868,6 +868,1709 @@
       ]
     },
     {
+      "id": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+      "purpose": "Praksisfortellinger – Lager- og driftsmedarbeider pakke 2: Andre uke med etterlevering, feilplukk, telling, HMS, ansvar og private grenser.",
+      "learning_focus": [
+        "etterlevering",
+        "feilplukk",
+        "kontrolltelling",
+        "HMS",
+        "sporbarhet",
+        "privat_grense"
+      ],
+      "week_outcomes": [
+        {
+          "id": "reliable_flow_responsibility_week2",
+          "condition": "Spilleren registrerer sent kolli med historikk, undersøker feil vare til butikk, sporer telleavvik, melder nestenulykke og oppsummerer avvik/tiltak/læring tydelig.",
+          "effects": {
+            "accuracy": 9,
+            "traceability": 9,
+            "stock_reliability": 8,
+            "manager_trust": 7,
+            "team_trust": 6,
+            "future_risk": -6,
+            "process_quality": 6
+          },
+          "story": "Du begynner å bære vareflyten som ansvar. Ikke bare ved å få ting videre, men ved å sørge for at de kan stoles på når de kommer frem."
+        },
+        {
+          "id": "speed_without_trace_week2",
+          "condition": "Spilleren legger varer inn flatt, fikser ordre uten lokasjonssjekk, justerer system uten årsak og oppsummerer tempo som hovedstyrke.",
+          "effects": {
+            "flow_quality": 8,
+            "stress": -3,
+            "traceability": -7,
+            "stock_reliability": -6,
+            "future_risk": 7,
+            "accuracy": -4
+          },
+          "story": "Varene beveger seg. Det er ikke ingenting. Men uten sporbarhet blir bevegelsen vanskelig å stole på."
+        },
+        {
+          "id": "downstream_blame_worker_week2",
+          "condition": "Spilleren skyver ansvar til butikk, transport, system eller andre ledd i stedet for å gjøre feilen håndterbar der den oppstår.",
+          "effects": {
+            "conflict": 5,
+            "trust_drift": -6,
+            "manager_trust": -4,
+            "stagnation": 5,
+            "future_risk": 5
+          },
+          "story": "Du ser at feilene har flere eiere. Men hvis du bare peker videre, mister lageret sin del av ansvaret."
+        },
+        {
+          "id": "hms_learning_worker_week2",
+          "condition": "Spilleren melder nestenulykke, stopper farlig flyt, lytter til kroppen og gjør HMS til læring, ikke skyld.",
+          "effects": {
+            "hms_safety": 10,
+            "team_trust": 6,
+            "manager_trust": 6,
+            "body_awareness": 5,
+            "future_risk": -7,
+            "process_quality": 4
+          },
+          "story": "Du lærer at sikkerhet ikke er det som kommer etter arbeidet. Det er det som gjør arbeidet mulig uten at mennesker blir brukt opp."
+        },
+        {
+          "id": "guided_training_path_week2",
+          "condition": "Spilleren er ærlig om hva som fortsatt ikke sitter: telling, etterlevering, lokasjon, avvik og HMS, og ber om mer trening før fullt ansvar.",
+          "effects": {
+            "self_awareness": 7,
+            "training_path": 7,
+            "manager_trust": 5,
+            "future_risk": -4,
+            "stress": 2
+          },
+          "story": "Du får ikke mer ansvar ved å late som alt er lett. Du får det ved å vite hva du faktisk kan bære, og hva du må lære før du bærer mer."
+        }
+      ],
+      "mails": [
+        {
+          "id": "job_lager_og_driftsmedarbeider_week2_late_missing_colli",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 139,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Kolliet som dukket opp for sent",
+          "summary": "Det manglende kolliet fra forrige uke kommer fem dager senere og må kobles til avvik, økonomi og videre vareflyt.",
+          "purpose": "Spilleren lærer at et avvik ikke er ferdig bare fordi varen dukker opp.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Ragnhild, driftsleder\nEmne: Kolliet fra mandag\nBody:\nDet manglende kolliet fra forrige uke dukket opp i dag. Sjekk om mottaket fortsatt står med avvik, om kolliet må registreres som etterlevering, om økonomi har fått feil grunnlag, om varen er lovet videre og om transportøravviket skal lukkes eller følges opp. Kolliet skal ikke bare inn på lager; det skal inn i riktig historie.",
+            "Fra: Pavel\nEmne: Sent kolli\nBody:\nHvis vi bare legger det på plass, ser systemet kanskje ut som om alt alltid stemte. Et kolli som kommer for sent er ikke det samme som et kolli som aldri manglet.",
+            "Fra: Marius, økonomi\nEmne: Mottaksavvik\nBody:\nGi beskjed når dere vet hvordan kolliet registreres. Hvis det bare registreres som vanlig mottak, kan det bli feil periode eller dobbeltspor.",
+            "Fra: System\nEmne: Etterlevering\nBody:\nOpprinnelig mottak: 18 kolli forventet. Registrert mottak: 17 kolli + avvik. Nytt kolli: ankommet 5 dager senere. Årsak: transportør glemte kolli. Systemstatus: avvik åpent. Risiko: feil periode, feil lagerhistorikk, feil økonomigrunnlag."
+          ],
+          "task_domain": "etterlevering_og_mottaksavvik",
+          "competency": "sporbar_registrering",
+          "pressure": "varen_er_fysisk_tilbake",
+          "choice_axis": "flyt_vs_historikk",
+          "consequence_axis": "pålitelig_historikk_vs_flat_mottak",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrere kolliet som etterlevering og lukke avviket med spor",
+              "reply": "Jeg registrerer kolliet som etterlevering, kobler det til opprinnelig avvik og gir økonomi beskjed om at grunnlaget kan oppdateres.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Riktig. Du gjorde ikke varen bare fysisk mottatt. Du gjorde historien ferdig.",
+              "effects": {
+                "stats": {
+                  "traceability": 5,
+                  "stock_reliability": 4,
+                  "accuracy": 4,
+                  "trust_economy": 3,
+                  "manager_trust": 3,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_late_colli_closed_with_trace"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_late_colli_closed_with_trace_thread"
+            },
+            {
+              "id": "B",
+              "label": "Legge kolliet inn som vanlig mottak",
+              "reply": "Jeg legger kolliet inn på lager og registrerer det som mottatt i dagens levering.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Marius: Da får vi varen inn. Men uten historikk mister vi forklaringen på avviket.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 2,
+                  "traceability": -3,
+                  "future_risk": 3,
+                  "stock_reliability": 1,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_late_colli_registered_flat"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_late_colli_registered_flat_thread"
+            },
+            {
+              "id": "C",
+              "label": "Legge varen på plass og si muntlig fra til Pavel",
+              "reply": "Jeg legger kolliet på riktig lokasjon og sier til Pavel at det manglende kolliet har kommet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Jeg vet det nå. Men systemet vet det ikke. Og jeg er ikke lagerets arkiv.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 1,
+                  "traceability": -4,
+                  "future_risk": 4,
+                  "team_trust": -1,
+                  "stock_reliability": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_late_colli_oral_only"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_late_colli_oral_only_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week2_store_waits_wrong_item",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 138,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Når butikken venter på feil vare",
+          "summary": "Butikken har fått feil variant, og lageret må finne om feilen ligger i plukk, lokasjon, systemtall eller gjentatt mønster.",
+          "purpose": "Spilleren lærer at feilplukk påvirker butikk, kunde, økonomi og tillit til lageret.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Feil vare sendt ut\nBody:\nButikken fikk feil variant av vaskemiddel. Finn ut om feilen skjedde i plukk, om lokasjonen var blandet, om systemtallet var feil, om butikken fikk beskjed om usikkerhet og hvordan vi hindrer samme feil igjen. Dette handler ikke om syndebukk, men om å stoppe mønsteret.",
+            "Fra: Pavel\nEmne: Feilplukk\nBody:\nVaren ligner, ordren haster, noen tenker “nesten samme”. Så blir nesten samme helt feil for den som skulle bruke varen. Vi må sjekke lokasjonen, ikke bare den ene ordren.",
+            "Fra: Elin, butikk/drift\nEmne: Feil variant\nBody:\nVi fikk feil variant i leveransen. Kunden spurte konkret etter allergivennlig type. Vi trenger å vite om riktig vare finnes, og når den kommer.",
+            "Fra: System\nEmne: Feilplukkstatus\nBody:\nButikk mottok: lignende variant. Bestilt: allergivennlig vaskemiddel. Lokasjon: B-14-03. System: viste 12 riktig vare. Fysisk rest: uklar. Risiko: kunde får feil informasjon, lager mister tillit, samme feil gjentas."
+          ],
+          "task_domain": "feilplukk_og_lokasjon",
+          "competency": "rotarsaksanalyse",
+          "pressure": "butikk_venter",
+          "choice_axis": "ordre_fiks_vs_lokasjonslæring",
+          "consequence_axis": "kundetillit_vs_nedstrøms_skyld",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekke lokasjon og gi butikk presis status",
+              "reply": "Jeg sjekker lokasjonen fysisk, teller riktige og lignende varer, melder avvik og gir butikken presis status på hva som finnes.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Elin: Takk. Da kan vi si noe sant til kunden, ikke bare “lageret sjekker”.",
+              "effects": {
+                "stats": {
+                  "accuracy": 5,
+                  "stock_reliability": 5,
+                  "trust_drift": 4,
+                  "traceability": 4,
+                  "process_quality": 3,
+                  "stress": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_wrong_item_root_checked"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_wrong_item_root_checked_thread"
+            },
+            {
+              "id": "B",
+              "label": "Sende riktig vare hvis du finner den, uten å undersøke lokasjonen videre",
+              "reply": "Jeg finner riktig vare et annet sted, sender den til butikken og lar resten av lokasjonsfeilen vente.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Bra at butikken får varen. Men hvis lokasjonen fortsatt er blandet, får vi samme feil igjen.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 3,
+                  "trust_drift": 1,
+                  "traceability": -2,
+                  "future_risk": 3,
+                  "stock_reliability": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_fix_order_not_location"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_fix_order_not_location_thread"
+            },
+            {
+              "id": "C",
+              "label": "Si at butikken må dobbeltsjekke ved mottak",
+              "reply": "Jeg svarer at butikken bør sjekke variant ved mottak, siden varene ligner.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Butikken skal kontrollere, men vi kan ikke sende feil og gjøre mottaker til hovedansvarlig.",
+              "effects": {
+                "stats": {
+                  "conflict": 2,
+                  "trust_drift": -3,
+                  "self_awareness": -1,
+                  "future_risk": 3,
+                  "stagnation": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_pushes_error_downstream"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_pushes_error_downstream_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week2_count_mismatch",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 137,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Tellingen som ikke stemmer med systemet",
+          "summary": "Systemet sier 24, fysisk telling sier 19, og differansen må tolkes før den korrigeres.",
+          "purpose": "Spilleren lærer at telling er mer enn å telle; differanser kan komme fra mottak, plukk, lokasjon, svinn eller registreringsfeil.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Lagerdifferanse\nBody:\nKontrolltelling på B-14-03 viser system 24 og fysisk 19. Ikke hopp rett til svinn. Differanser kan skyldes feil mottak, feil plukk, feil lokasjon, flytting uten registrering, blandede varer eller faktisk svinn.",
+            "Fra: Pavel\nEmne: Telling\nBody:\nTelling er litt brutalt. Kroppen sier én ting. Systemet sier en annen. Ikke velg side for fort. Først teller du på nytt. Så ser du etter spor.",
+            "Fra: System\nEmne: Kontrolltelling\nBody:\nLokasjon: B-14-03. Systembeholdning: 24. Fysisk telling: 19. Lignende variant på samme reol: ja. Siste avvik: feilplukk til butikk. Siste mottak: forsinket kolli. Risiko: feil lagerverdi, feil bestilling, gjentatte plukkfeil."
+          ],
+          "task_domain": "kontrolltelling",
+          "competency": "differanseanalyse",
+          "pressure": "system_vs_fysisk_telling",
+          "choice_axis": "korrigere_vs_forstå",
+          "consequence_axis": "riktig_tall_vs_pålitelig_årsak",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Telle på nytt, skille variantene og spore differansen",
+              "reply": "Jeg teller på nytt, skiller variantene fysisk, sjekker siste bevegelser og melder differansen med mulig årsak.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du behandlet ikke differansen som ett tall. Du behandlet den som en historie vi måtte forstå.",
+              "effects": {
+                "stats": {
+                  "accuracy": 5,
+                  "stock_reliability": 5,
+                  "traceability": 5,
+                  "process_quality": 4,
+                  "stress": 2,
+                  "manager_trust": 3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_count_mismatch_traced"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_count_mismatch_traced_thread"
+            },
+            {
+              "id": "B",
+              "label": "Justere systemet til fysisk beholdning",
+              "reply": "Jeg korrigerer systemet fra 24 til 19 fordi fysisk telling må være riktig nå.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Systemet stemmer kanskje akkurat nå. Men vi vet ikke hvorfor det var feil.",
+              "effects": {
+                "stats": {
+                  "stock_reliability": 1,
+                  "accuracy": 1,
+                  "traceability": -3,
+                  "future_risk": 3,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_count_adjusted_without_cause"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_count_adjusted_without_cause_thread"
+            },
+            {
+              "id": "C",
+              "label": "Anta svinn og rapportere tap",
+              "reply": "Jeg rapporterer differansen som svinn og ber om at beholdningen justeres.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Ikke kall det svinn før du har sjekket bevegelsene. Svinn er én mulig forklaring.",
+              "effects": {
+                "stats": {
+                  "future_risk": 3,
+                  "accuracy": -2,
+                  "traceability": -3,
+                  "conflict": 1,
+                  "stock_reliability": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_calls_shrink_too_early"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_calls_shrink_too_early_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week2_near_miss_everyone_passed",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 136,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Nestenulykken som alle gikk forbi",
+          "summary": "En pall i gangsonen ble flyttet for raskt og noen måtte hoppe unna; lageret må lære før flaks blir rutine.",
+          "purpose": "Spilleren lærer at nestenulykker ikke er bagateller, men informasjon før skade.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Nestenulykke\nBody:\nI går måtte en ansatt hoppe unna en pall som ble flyttet for raskt gjennom trang passasje. Kartlegg hvor pallen stod, hvem som flyttet den, hvorfor gangsonen var trang, om det var tidspress og hva som må endres før neste gang. Ikke jakt skyld; gjør det til læring.",
+            "Fra: Pavel\nEmne: Nestenulykke\nBody:\nFolk liker ikke å melde nestenulykker. Det føles som å lage styr av noe som ikke skjedde. Men nestenulykker er informasjon før skaden. Hvis vi bare går videre, sier vi at flaks er rutine.",
+            "Fra: System\nEmne: HMS-hendelse\nBody:\nHendelse: ansatt måtte hoppe unna pall. Skade: ingen. Gangsonen: delvis blokkert. Tidspress: høyt. Avviksmelding: ikke skrevet. Vitner: flere. Risiko: normalisert farlig flyt."
+          ],
+          "task_domain": "HMS_og_nestenulykke",
+          "competency": "læringsavvik",
+          "pressure": "ingen_ble_skadet",
+          "choice_axis": "muntlig_advarsel_vs_spor",
+          "consequence_axis": "normalisert_risiko_vs_sikker_læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Melde nestenulykken som læringsavvik",
+              "reply": "Jeg skriver kort avviksmelding med sted, situasjon, årsaksspor og forslag til tiltak uten å peke ut skyld.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du gjorde nestenulykken nyttig uten å gjøre den til en rettssak.",
+              "effects": {
+                "stats": {
+                  "hms_safety": 6,
+                  "process_quality": 4,
+                  "team_trust": 3,
+                  "manager_trust": 4,
+                  "future_risk": -4,
+                  "stress": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_near_miss_reported"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_near_miss_reported_thread"
+            },
+            {
+              "id": "B",
+              "label": "Si fra muntlig og be folk være mer forsiktige",
+              "reply": "Jeg sier fra til teamet om at vi må passe bedre på gangsonen og paller under tidspress.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Greit å si fra. Men muntlig advarsel blir borte fort. Nestenulykker trenger spor.",
+              "effects": {
+                "stats": {
+                  "hms_safety": 1,
+                  "traceability": -2,
+                  "future_risk": 2,
+                  "stress": -1,
+                  "team_trust": 0
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_near_miss_oral_warning"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_near_miss_oral_warning_thread"
+            },
+            {
+              "id": "C",
+              "label": "La det ligge siden ingen ble skadet",
+              "reply": "Jeg lar saken ligge fordi ingen ble skadet og folk allerede vet at det var nære på.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Ingen ble skadet denne gangen. Det er ikke et argument for å glemme det.",
+              "effects": {
+                "stats": {
+                  "hms_safety": -5,
+                  "future_risk": 5,
+                  "stagnation": 3,
+                  "manager_trust": -3,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_near_miss_ignored"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_near_miss_ignored_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "job_lager_og_driftsmedarbeider_week2_flow_and_traceability",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 135,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Andre uke mellom flyt og sporbarhet",
+          "summary": "Fredagsoppsummeringen viser om spilleren kan samle kolli, feil vare, telling og HMS til sporbar flyt.",
+          "purpose": "Fredag oppsummerer om spilleren er klar for mer selvstendig driftsansvar.",
+          "stakes": "Valget avgjør om uke 2 styrker pålitelig vareflyt, HMS, kroppslige grenser og private relasjoner, eller lar feilene få etterliv.",
+          "situation": [
+            "Fra: Ragnhild\nEmne: Andre uke – oppsummering\nBody:\nSend en kort oppsummering: hvordan sent kolli ble registrert, hva vi lærte av feil vare til butikk, hva tellingen på B-14-03 viste, om nestenulykken ble meldt og fulgt opp, hva du kan ta mer ansvar for neste uke og hva du fortsatt trenger støtte på. Jeg vil vite hva som faktisk ble sporbar flyt.",
+            "Fra: Pavel\nEmne: Andre uke\nBody:\nLager er ikke bare å flytte ting. Det er å flytte ting på en måte som gjør at neste person kan stole på det.",
+            "Fra: System\nEmne: Uke 2 – lagersignaler\nBody:\nSent kolli krever historikk. Feil vare krever lokasjonssjekk. Telling viste differanse. Nestenulykke krever HMS-spor. Kroppslig belastning må tas på alvor. Mer ansvar krever nøyaktighet, ikke bare tempo."
+          ],
+          "task_domain": "ukeoppsummering",
+          "competency": "ansvarsrefleksjon",
+          "pressure": "mer_ansvar",
+          "choice_axis": "tempo_vs_sporbarhet",
+          "consequence_axis": "selvstendig_ansvar_vs_treningsbehov",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive tydelig oppsummering med avvik, tiltak og læring",
+              "reply": "Jeg oppsummerer hva som ble lukket med spor, hva som fortsatt må følges opp, og hvor jeg er klar for mer ansvar med støtte.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Du viser at du skjønner både flyten og sporene. Da kan vi gi deg mer ansvar uten å bare håpe.",
+              "effects": {
+                "stats": {
+                  "accuracy": 6,
+                  "traceability": 6,
+                  "stock_reliability": 5,
+                  "hms_safety": 5,
+                  "manager_trust": 5,
+                  "training_path": 4,
+                  "stress": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_ready_for_guided_responsibility"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_ready_for_guided_responsibility_thread"
+            },
+            {
+              "id": "B",
+              "label": "Skrive at du har fått bedre tempo og flyt",
+              "reply": "Jeg skriver at jeg jobber raskere, forstår lageret bedre og får varene videre med mindre hjelp.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Pavel: Det er sant at du er raskere. Men spørsmålet er om varene går videre riktig.",
+              "effects": {
+                "stats": {
+                  "flow_quality": 4,
+                  "manager_pressure": -1,
+                  "accuracy": -1,
+                  "future_risk": 3,
+                  "stagnation": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_speed_identity"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_speed_identity_thread"
+            },
+            {
+              "id": "C",
+              "label": "Skrive at systemfeilene var hovedproblemet",
+              "reply": "Jeg skriver at mange problemer skyldtes feil i system, lokasjoner og tidligere registreringer.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Systemet var en del av problemet. Neste steg er å forbedre hvordan vi fanger det.",
+              "effects": {
+                "stats": {
+                  "system_awareness": 3,
+                  "self_awareness": -1,
+                  "manager_trust": -1,
+                  "stagnation": 3,
+                  "conflict": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_system_blame_summary"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_system_blame_summary_thread"
+            },
+            {
+              "id": "D",
+              "label": "Si at du trenger mer opplæring før mer ansvar",
+              "reply": "Jeg skriver at jeg forstår mer, men trenger mer trening på telling, etterlevering og HMS før jeg tar selvstendig ansvar.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "lager_og_driftsmedarbeider"
+              ],
+              "feedback": "Ragnhild: Mer ansvar kan komme gradvis. Det viktigste er at du vet hva som fortsatt må sitte.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 5,
+                  "training_path": 5,
+                  "manager_trust": 3,
+                  "stress": 1,
+                  "future_risk": -2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
+                ],
+                "set_flags": [
+                  "lager_week2_more_training_before_autonomy"
+                ]
+              },
+              "triggers_on_choice": "lager_week2_more_training_before_autonomy_thread"
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "lager_week2_late_colli_closed_with_trace_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Kolliet som dukket opp for sent",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Riktig. Du gjorde ikke varen bare fysisk mottatt. Du gjorde historien ferdig.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_late_colli_registered_flat_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Kolliet som dukket opp for sent",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Marius: Da får vi varen inn. Men uten historikk mister vi forklaringen på avviket.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_late_colli_oral_only_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Kolliet som dukket opp for sent",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Pavel: Jeg vet det nå. Men systemet vet det ikke. Og jeg er ikke lagerets arkiv.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_wrong_item_root_checked_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Når butikken venter på feil vare",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Elin: Takk. Da kan vi si noe sant til kunden, ikke bare “lageret sjekker”.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_fix_order_not_location_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Når butikken venter på feil vare",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Pavel: Bra at butikken får varen. Men hvis lokasjonen fortsatt er blandet, får vi samme feil igjen.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_pushes_error_downstream_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Når butikken venter på feil vare",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Butikken skal kontrollere, men vi kan ikke sende feil og gjøre mottaker til hovedansvarlig.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_count_mismatch_traced_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Tellingen som ikke stemmer med systemet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Du behandlet ikke differansen som ett tall. Du behandlet den som en historie vi måtte forstå.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_count_adjusted_without_cause_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Tellingen som ikke stemmer med systemet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Pavel: Systemet stemmer kanskje akkurat nå. Men vi vet ikke hvorfor det var feil.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_calls_shrink_too_early_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Tellingen som ikke stemmer med systemet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Ikke kall det svinn før du har sjekket bevegelsene. Svinn er én mulig forklaring.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_near_miss_reported_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Nestenulykken som alle gikk forbi",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Du gjorde nestenulykken nyttig uten å gjøre den til en rettssak.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_near_miss_oral_warning_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Nestenulykken som alle gikk forbi",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Pavel: Greit å si fra. Men muntlig advarsel blir borte fort. Nestenulykker trenger spor.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_near_miss_ignored_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Nestenulykken som alle gikk forbi",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Ingen ble skadet denne gangen. Det er ikke et argument for å glemme det.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_ready_for_guided_responsibility_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Andre uke mellom flyt og sporbarhet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Du viser at du skjønner både flyten og sporene. Da kan vi gi deg mer ansvar uten å bare håpe.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_speed_identity_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Andre uke mellom flyt og sporbarhet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Pavel: Det er sant at du er raskere. Men spørsmålet er om varene går videre riktig.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_system_blame_summary_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Andre uke mellom flyt og sporbarhet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Systemet var en del av problemet. Neste steg er å forbedre hvordan vi fanger det.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        },
+        {
+          "id": "lager_week2_more_training_before_autonomy_thread",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_lager_og_driftsmedarbeider_job",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "phase": "mid",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Oppfølging: Andre uke mellom flyt og sporbarhet",
+          "summary": "Konsekvens av et valg i lager- og driftsmedarbeiderens andre uke.",
+          "purpose": "Vise hvordan uke 2-valget får en liten oppfølging i praksisfortellingen.",
+          "stakes": "Konsekvensen forsterker læringen uten å åpne en ny uke.",
+          "situation": [
+            "Ragnhild: Mer ansvar kan komme gradvis. Det viktigste er at du vet hva som fortsatt må sitte.",
+            "Valget blir stående som et spor inn i resten av rollen."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "narrative_arc": "lager_og_driftsmedarbeider_andre_uke",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med læringen videre",
+              "reply": "Jeg tar med læringen videre i neste skift.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "oppfolging"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser lageret videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1
+                }
+              }
+            }
+          ],
+          "learning_focus": [
+            "etterlevering",
+            "feilplukk",
+            "kontrolltelling",
+            "HMS",
+            "sporbarhet",
+            "privat_grense"
+          ]
+        }
+      ]
+    },
+    {
       "id": "mottak_og_vareflyt",
       "purpose": "Lære spilleren at mottak og vareflyt er første kontrollpunkt for hele driften: kolli, følgeseddel, lokasjon, avvik og registrering må henge sammen.",
       "learning_focus": [
