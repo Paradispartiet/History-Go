@@ -391,6 +391,315 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Vennehandlinger – datadrevet action-router (rent, deterministisk)
+  // ---------------------------------------------------------------------------
+  // Når spilleren trykker på en handling i vennens profilkort skal Civication
+  // svare med riktig sosial spillflyt. Alt her er rene, deterministiske
+  // hjelpere som UI-laget (CivicationCityLayer) bruker – ingen DOM, ingen
+  // fetch, ingen live-/GPS-posisjon. "snapshot" betyr ALLTID vennens siste
+  // lagrede fase-status (fase-minne), aldri sanntidsposisjon.
+
+  // Stabile action-id-er for vennehandlingene. Endres aldri – UI, event-hooks
+  // og framtidige systemer bygger på disse.
+  const FRIEND_ACTIONS = ["message", "visit", "invite", "profile"];
+
+  const FRIEND_ACTION_LABEL = {
+    message: "Send melding",
+    visit: "Besøk",
+    invite: "Inviter",
+    profile: "Se profil"
+  };
+
+  // Fase -> kort "sted-ord" brukt i resultattekst ("siste morgensted" …).
+  // Bevisst formulert som SISTE/minne, aldri som "er nå på".
+  const SNAPSHOT_PHASE_PLACE_WORD = {
+    morning: "morgensted",
+    work: "arbeidssted",
+    leisure: "fritidssted",
+    evening: "kveldssted",
+    reflection: "refleksjonssted"
+  };
+
+  // Fasebasert grunnetikett for invitasjoner. Kan forfines av stedstype.
+  const INVITE_LABEL_BY_PHASE = {
+    morning: "Inviter til kaffe",
+    work: "Inviter til pause etter jobb",
+    leisure: "Inviter til kafé eller park",
+    evening: "Inviter hjem til kvelden",
+    reflection: "Inviter til refleksjon"
+  };
+
+  // action-id -> norsk knappetekst ("Send melding", "Besøk" …).
+  function getFriendActionLabel(action) {
+    return FRIEND_ACTION_LABEL[norm(action).toLowerCase()] || "";
+  }
+
+  function isFriendAction(action) {
+    return FRIEND_ACTIONS.includes(norm(action).toLowerCase());
+  }
+
+  // Fasebasert invitasjonsetikett, forfinet av stedstype når det er relevant.
+  // Eksempler: morgen -> "Inviter til kaffe"; leisure+park -> "Inviter til park".
+  function getInviteLabelForPhase(phase, locationType) {
+    const ph = normalizeSnapshotPhase(phase);
+    const type = norm(locationType).toLowerCase();
+    if (ph === "leisure") {
+      if (type === "training") return "Inviter til trening";
+      if (type === "cafe") return "Inviter til kafé";
+      if (type === "park") return "Inviter til park";
+      return INVITE_LABEL_BY_PHASE.leisure;
+    }
+    if (ph === "reflection") {
+      if (type === "insight") return "Inviter til Psykologirommet";
+      return INVITE_LABEL_BY_PHASE.reflection;
+    }
+    return INVITE_LABEL_BY_PHASE[ph] || "Inviter til noe senere";
+  }
+
+  // Finn stedet en handling skal peke mot for en venn i en fase. Bruker
+  // snapshotets locationId (fase-minne), faller tilbake til vennens hjem.
+  // Returnerer stedmetadata fra phaseLocations (label/type/icon/mapZone).
+  function resolveFriendActionTargetLocation(friend, snapshot, phase, locations) {
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const homeId = norm(friend && friend.avatar && friend.avatar.homeId) || null;
+    const locationId = norm(snap.locationId) || homeId || null;
+    const loc = locationById(locations, locationId);
+    return {
+      locationId: locationId,
+      label: loc ? norm(loc.label) || locationId : (locationId || ""),
+      type: loc ? norm(loc.type) : "",
+      icon: loc ? norm(loc.icon) : "",
+      mapZone: loc ? norm(loc.mapZone) : "",
+      channel: loc ? norm(loc.channel) : "",
+      found: !!loc,
+      fromHome: !norm(snap.locationId) && !!homeId
+    };
+  }
+
+  function friendFirstName(friend) {
+    const name = norm(friend && friend.name) || "vennen";
+    return name.split(/\s+/)[0] || name;
+  }
+
+  // Brukervendt resultattekst pr. handling. Bevisst formulert som forberedt/
+  // lagret/minne – aldri som live-posisjon. locations er valgfri (5. arg) og
+  // brukes kun for å slå opp et lesbart stednavn til besøkstekst.
+  function getFriendActionResultText(action, friend, snapshot, phase, locations) {
+    const act = norm(action).toLowerCase();
+    const first = friendFirstName(friend);
+    const ph = normalizeSnapshotPhase(phase);
+    const phaseLbl = snapshotPhaseLabel(ph).toLowerCase();
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+
+    if (act === "message") {
+      return "Melding til " + first + " er klar.";
+    }
+    if (act === "visit") {
+      const placeWord = SNAPSHOT_PHASE_PLACE_WORD[ph] || "sted";
+      let placeLabel = norm(snap.locationLabel);
+      if (!placeLabel) {
+        const loc = locationById(locations, snap.locationId);
+        placeLabel = loc ? norm(loc.label) : norm(snap.locationId);
+      }
+      if (!placeLabel) placeLabel = "et sted";
+      return "Du ser " + possessiveName(first) + " siste " + placeWord + ": " + placeLabel + ".";
+    }
+    if (act === "invite") {
+      return "Invitasjon til " + first + " er laget for " + phaseLbl + ".";
+    }
+    if (act === "profile") {
+      return "Viser profil for " + first + ".";
+    }
+    return "";
+  }
+
+  // ---- Action-byggere (returnerer rene action-modeller) ----------------------
+
+  // Send melding: forbereder en personlig melding til vennen. Lokalt
+  // action-state + stabil event-hook (civi:openPrivateMessage) som senere kan
+  // kobles til et fullt privat meldingssystem. Muterer ikke innboksen her.
+  function buildFriendMessageAction(friend, snapshot, phase, locations) {
+    const ph = normalizeSnapshotPhase(phase);
+    return {
+      action: "message",
+      intent: "message",
+      friendId: norm(friend && friend.id),
+      friendName: norm(friend && friend.name) || "vennen",
+      phase: ph,
+      label: getFriendActionLabel("message"),
+      event: "civi:openPrivateMessage",
+      status: "drafted",
+      isSimulated: true,
+      resultText: getFriendActionResultText("message", friend, snapshot, ph, locations)
+    };
+  }
+
+  // Besøk: peker mot vennens siste simulerte sted for den aktive fasen. Dette
+  // er simulert besøk i Civication (fase-minne), ikke fysisk posisjon.
+  function buildFriendVisitAction(friend, snapshot, phase, locations) {
+    const ph = normalizeSnapshotPhase(phase);
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const target = resolveFriendActionTargetLocation(friend, snap, ph, locations);
+    return {
+      action: "visit",
+      intent: "visit",
+      friendId: norm(friend && friend.id),
+      friendName: norm(friend && friend.name) || "vennen",
+      phase: ph,
+      locationId: target.locationId,
+      locationLabel: target.label,
+      locationType: target.type,
+      locationIcon: target.icon,
+      lastActivity: norm(snap.activity),
+      lastSeenText: norm(snap.lastSeenText) || snapshotLastSeenText(ph),
+      mood: norm(snap.mood),
+      isSimulated: true,
+      status: "ready",
+      label: getFriendActionLabel("visit"),
+      resultText: getFriendActionResultText("visit", friend, snap, ph, locations)
+    };
+  }
+
+  // Inviter: lager en enkel, lokal sosial invitasjon knyttet til aktiv fase og
+  // relevant sted. Trenger ingen backend – ren lokal spillhandling.
+  function buildFriendInviteAction(friend, snapshot, phase, locations) {
+    const ph = normalizeSnapshotPhase(phase);
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const target = resolveFriendActionTargetLocation(friend, snap, ph, locations);
+    return {
+      action: "invite",
+      intent: "invite",
+      friendId: norm(friend && friend.id),
+      friendName: norm(friend && friend.name) || "vennen",
+      phase: ph,
+      locationId: target.locationId,
+      locationLabel: target.label,
+      label: getInviteLabelForPhase(ph, target.type),
+      status: "drafted",
+      isSimulated: true,
+      resultText: getFriendActionResultText("invite", friend, snap, ph, locations)
+    };
+  }
+
+  // Se profil: returnerer en samlet profilmodell for vennen + siste snapshot for
+  // aktiv fase. Tydelig merket som simulert fasehistorikk.
+  function buildFriendProfileAction(friend, snapshot, phase, locations) {
+    const ph = normalizeSnapshotPhase(phase);
+    const f = friend && typeof friend === "object" ? friend : {};
+    const avatar = f.avatar || {};
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const homeLoc = locationById(locations, avatar.homeId);
+    const snapLoc = locationById(locations, snap.locationId);
+    const rel = Number(f.relationshipLevel) || 0;
+    const hasHistory = norm(snap.source) !== "none" && norm(snap.source) !== "";
+    return {
+      action: "profile",
+      intent: "profile",
+      friendId: norm(f.id),
+      friendName: norm(f.name) || "vennen",
+      name: norm(f.name),
+      role: norm(f.role),
+      relationshipLevel: rel,
+      relationshipLabel: getRelationshipLabel(rel),
+      relationshipBlurb: getRelationshipBlurb(rel),
+      style: norm(avatar.style),
+      clothes: norm(avatar.clothes),
+      vehicle: norm(avatar.vehicle),
+      home: homeLoc ? norm(homeLoc.label) : (norm(avatar.homeId) || ""),
+      homeId: norm(avatar.homeId),
+      phase: ph,
+      phaseLabel: snapshotPhaseLabel(ph),
+      lastSeenText: norm(snap.lastSeenText) || snapshotLastSeenText(ph),
+      lastSnapshot: {
+        phase: ph,
+        state: norm(snap.state),
+        statusText: norm(snap.statusText),
+        locationId: norm(snap.locationId),
+        locationLabel: snapLoc ? norm(snapLoc.label) : (norm(snap.locationId) || ""),
+        activity: norm(snap.activity),
+        mood: norm(snap.mood),
+        source: norm(snap.source)
+      },
+      hasHistory: hasHistory,
+      disclosure: getSnapshotDisclosureText(norm(f.name), ph),
+      navigateSection: "civiPeopleSection",
+      status: "open",
+      isSimulated: true,
+      resultText: getFriendActionResultText("profile", friend, snap, ph, locations)
+    };
+  }
+
+  // Resolver felles kontekst for en vennehandling: finn vennen, hennes siste
+  // fase-minne for aktiv fase (med trygg fallback til presenceByPhase) og
+  // målstedet. Bruker eksplisitt data fra opts når oppgitt, ellers cachen.
+  function resolveFriendActionContext(friendId, activePhase, opts) {
+    const o = opts && typeof opts === "object" ? opts : {};
+    const friends = Array.isArray(o.friends) ? o.friends : (_friendsCache || []);
+    const snapshots = Array.isArray(o.snapshots) ? o.snapshots : (_snapshotsCache || []);
+    const locations = Array.isArray(o.locations) ? o.locations : (_locationsCache || []);
+    const dayIndex = o.dayIndex != null ? Number(o.dayIndex) : 1;
+    const ph = normalizeSnapshotPhase(activePhase);
+    const fid = norm(friendId);
+    const friend = friends.find((f) => norm(f && f.id) === fid) || null;
+    const snapshot = friend ? resolveFriendMapPresence(friend, ph, snapshots, dayIndex) : null;
+    const target = friend ? resolveFriendActionTargetLocation(friend, snapshot, ph, locations) : null;
+    return {
+      found: !!friend,
+      friendId: fid,
+      friend: friend,
+      snapshot: snapshot,
+      phase: ph,
+      locations: locations,
+      target: target
+    };
+  }
+
+  // Hoved-router: tar (action, friendId, context) og returnerer et resultat
+  // med en action-modell. context kan inneholde rådata (friends/snapshots/
+  // locations/dayIndex) og enten "phase" eller en ferdig resolvet "friend"/
+  // "snapshot". Ren funksjon – ingen DOM/events; UI-laget håndterer effekter.
+  function handleFriendAction(action, friendId, context) {
+    const act = norm(action).toLowerCase();
+    const ctxIn = context && typeof context === "object" ? context : {};
+
+    if (!isFriendAction(act)) {
+      return { ok: false, action: act, friendId: norm(friendId), reason: "unknown_action" };
+    }
+
+    const phaseArg = ctxIn.phase != null ? ctxIn.phase : ctxIn.activePhase;
+    const ctx = ctxIn.friend
+      ? {
+          found: true,
+          friendId: norm(ctxIn.friend.id),
+          friend: ctxIn.friend,
+          snapshot: ctxIn.snapshot || null,
+          phase: normalizeSnapshotPhase(phaseArg),
+          locations: Array.isArray(ctxIn.locations) ? ctxIn.locations : (_locationsCache || []),
+          target: null
+        }
+      : resolveFriendActionContext(friendId, phaseArg, ctxIn);
+
+    if (!ctx.found || !ctx.friend) {
+      return { ok: false, action: act, friendId: norm(friendId), reason: "friend_not_found" };
+    }
+
+    const { friend, snapshot, phase, locations } = ctx;
+    let model = null;
+    if (act === "message") model = buildFriendMessageAction(friend, snapshot, phase, locations);
+    else if (act === "visit") model = buildFriendVisitAction(friend, snapshot, phase, locations);
+    else if (act === "invite") model = buildFriendInviteAction(friend, snapshot, phase, locations);
+    else if (act === "profile") model = buildFriendProfileAction(friend, snapshot, phase, locations);
+
+    return {
+      ok: true,
+      action: act,
+      friendId: norm(friend.id),
+      phase: phase,
+      model: model
+    };
+  }
+
+  // ---------------------------------------------------------------------------
   // Runtime-kontekst (fase/dag fra kalenderen)
   // ---------------------------------------------------------------------------
   function getCurrentPhase() {
@@ -702,6 +1011,20 @@
     snapshotEntryFor,
     resolveFriendMapPresence,
     friendSnapshotRows,
+    // vennehandlinger – datadrevet action-router (rene, deterministiske)
+    FRIEND_ACTIONS: FRIEND_ACTIONS.slice(),
+    FRIEND_ACTION_LABEL: { ...FRIEND_ACTION_LABEL },
+    isFriendAction,
+    getFriendActionLabel,
+    getInviteLabelForPhase,
+    getFriendActionResultText,
+    resolveFriendActionTargetLocation,
+    resolveFriendActionContext,
+    buildFriendMessageAction,
+    buildFriendVisitAction,
+    buildFriendInviteAction,
+    buildFriendProfileAction,
+    handleFriendAction,
     // runtime-kontekst
     getCurrentPhase,
     getActivePhase,

@@ -531,29 +531,61 @@
     }
   }
 
-  // Lettvekts, simulert respons. Sender et event slik at andre systemer (AHA,
-  // sosiale lag) kan reagere senere – men muterer ikke jobbmail/personlige
-  // meldinger direkte (de holdes adskilt).
+  // Lokale, utkastede invitasjoner (ren lokal spillhandling, ingen backend).
+  const _friendInvites = [];
+
+  // Datadrevet action-router: oversetter en knappetrykk i vennens profilkort til
+  // riktig sosial spillflyt via motorens rene handleFriendAction. Viser tydelig
+  // respons i kartlaget og sender stabile event-hooks. Muterer ikke jobbmail/
+  // innboks direkte – sosial flyt holdes adskilt.
   function handleFriendAction(detail, info) {
-    const action = info && info.action;
+    const eng = engine();
+    const action = String((info && info.action) || "").toLowerCase();
     const friendId = info && info.friendId;
-    const row = _model && (_model.friends || []).find((r) => String(r.friend && r.friend.id) === String(friendId));
-    const name = (info && info.friendName) || (row ? row.friend.name : "vennen");
+    const row = _model && (_model.friends || [])
+      .find((r) => String(r.friend && r.friend.id) === String(friendId));
+    const phase = (info && info.phase) || (_model && _model.snapshotPhase) || "morning";
 
-    // "profile" navigerer via data-civi-goto-section (egen handler) – ingen
-    // egen feedback-tekst her, men hendelsen sendes likevel som hook.
-    const messages = {
-      message: "Du sendte en melding til " + name + ". Svar kan dukke opp i personlige meldinger.",
-      visit: "Du planla et besøk hos " + name + ".",
-      invite: "Du inviterte " + name + " til noe senere i dag."
-    };
+    let result = null;
+    if (eng && typeof eng.handleFriendAction === "function") {
+      result = eng.handleFriendAction(action, friendId, {
+        phase,
+        friends: _model ? (_model.friends || []).map((r) => r.friend) : null,
+        snapshots: _model ? _model.snapshots : null,
+        locations: _model ? _model.locations : null,
+        dayIndex: _model ? _model.dayIndex : 1
+      });
+    }
 
+    const model = (result && result.model) || null;
+    const name = (model && model.friendName) ||
+      (info && info.friendName) || (row ? row.friend.name : "vennen");
+
+    // 1) Tydelig respons i kartlaget (fase-minne-tekst, ikke live-posisjon).
+    let feedbackText = model ? model.resultText : "";
+    if (action === "visit" && model && model.lastActivity) {
+      feedbackText += " Sist sett her: " + model.lastActivity + ".";
+    }
     const feedback = detail.querySelector("[data-friend-feedback]");
-    if (feedback && messages[action]) {
-      feedback.textContent = messages[action];
+    if (feedback && feedbackText) {
+      feedback.textContent = feedbackText;
       feedback.removeAttribute("hidden");
     }
 
+    // 2) Handlingsspesifikke effekter.
+    if (result && result.ok && model) {
+      if (action === "message") {
+        dispatchOpenPrivateMessage(model);
+      } else if (action === "visit") {
+        performFriendVisit(model);
+      } else if (action === "invite") {
+        storeFriendInvite(model);
+      }
+      // "profile" navigerer til folk-seksjonen via egen goto-handler; modellen
+      // sendes med i event-hooken under for framtidig full profilflate.
+    }
+
+    // 3) Stabil, bakoverkompatibel event-hook for andre systemer.
     try {
       window.dispatchEvent(new CustomEvent("civi:friendAction", {
         detail: {
@@ -562,10 +594,57 @@
           friendName: name,
           snapshotPhase: (info && info.phase) || (row && row.presence ? row.presence.phase : null),
           phase: _model ? _model.phase : null,
-          locationId: row ? row.presence.locationId : null
+          locationId: model ? model.locationId : (row ? row.presence.locationId : null),
+          model
         }
       }));
     } catch (_e) {}
+  }
+
+  // Send melding: stabil event-hook for et framtidig privat meldingssystem.
+  function dispatchOpenPrivateMessage(model) {
+    try {
+      window.dispatchEvent(new CustomEvent("civi:openPrivateMessage", {
+        detail: {
+          friendId: model.friendId,
+          friendName: model.friendName,
+          phase: model.phase,
+          status: model.status,
+          source: "civicationCityLayer"
+        }
+      }));
+    } catch (_e) {}
+  }
+
+  // Besøk: marker vennens siste simulerte sted på kartet (fase-minne). Beholder
+  // vennekortet åpent slik at fase-minne-teksten fortsatt vises.
+  function performFriendVisit(model) {
+    const locId = model && model.locationId;
+    if (!locId) return;
+    const eng = engine();
+    const loc = eng && _model ? eng.locationById(_model.locations, locId) : null;
+    if (loc) {
+      markSelected('[data-place-id="' + cssEscape(locId) + '"]');
+    }
+  }
+
+  // Inviter: lager lokal invitasjonsstate (drafted). Ingen backend.
+  function storeFriendInvite(model) {
+    if (!model) return null;
+    const invite = {
+      friendId: model.friendId,
+      phase: model.phase,
+      locationId: model.locationId,
+      intent: "invite",
+      label: model.label,
+      status: "drafted"
+    };
+    _friendInvites.push(invite);
+    return invite;
+  }
+
+  function getFriendInvites() {
+    return _friendInvites.slice();
   }
 
   // ---------------------------------------------------------------------------
@@ -609,6 +688,7 @@
     openPlaceDetail,
     openFriendDetail,
     buildFriendDetailHtml,
+    getFriendInvites,
     closeDetail
   };
 })();
