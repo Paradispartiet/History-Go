@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// tools/check-audit-refactor-equivalence.mjs
+// tools/check-audit-refactor-equivalence.mts
 // Read-only control check for the audit refactor introduced in PR #406.
 // Compares shared helper behaviour against the previous inline audit primitives
 // on the current repository data. This script does not modify data or reports.
@@ -17,26 +17,72 @@ import {
   toArray,
 } from './lib/placeRefAuditUtils.mjs';
 
+type JsonObject = Record<string, unknown>;
+
+type RefRow = {
+  key: string;
+  value: string;
+};
+
+type CompareResult = {
+  name: string;
+  ok: boolean;
+  oldCount: number;
+  newCount: number;
+  onlyOld: string[];
+  onlyNew: string[];
+};
+
+type PlaceArrayCheck = {
+  file: string;
+  ok: boolean;
+  oldCount: number;
+  newCount: number;
+};
+
+type PeopleRefCheck = {
+  file: string;
+  peopleCountOk: boolean;
+  oldPeopleCount: number;
+  newPeopleCount: number;
+  refs: CompareResult;
+};
+
+type GenericRefCheck = {
+  file: string;
+  refs: CompareResult;
+};
+
+type ManifestJson = {
+  files?: string[];
+};
+
+type PlaceRow = {
+  id?: unknown;
+};
+
 const root = process.cwd();
 const placesManifestPath = path.join(root, 'data/places/manifest.json');
 const peopleManifestPath = path.join(root, 'data/people/manifest.json');
 
-function oldToArrayForPlaceAudit(data) {
+function oldToArrayForPlaceAudit(data: unknown): unknown[] {
   if (Array.isArray(data)) return data;
-  if (data && Array.isArray(data.places)) return data.places;
-  if (data && Array.isArray(data.items)) return data.items;
+  const objectData = data as JsonObject;
+  if (data && Array.isArray(objectData.places)) return objectData.places;
+  if (data && Array.isArray(objectData.items)) return objectData.items;
   return [];
 }
 
-function oldToArrayForPeopleAudit(data) {
+function oldToArrayForPeopleAudit(data: unknown): unknown[] {
   if (Array.isArray(data)) return data;
-  if (data && Array.isArray(data.items)) return data.items;
-  if (data && Array.isArray(data.people)) return data.people;
-  if (data && Array.isArray(data.places)) return data.places;
+  const objectData = data as JsonObject;
+  if (data && Array.isArray(objectData.items)) return objectData.items;
+  if (data && Array.isArray(objectData.people)) return objectData.people;
+  if (data && Array.isArray(objectData.places)) return objectData.places;
   return [];
 }
 
-function oldCollectRefsByKeys(node, keys, currentPath = '', refs = []) {
+function oldCollectRefsByKeys(node: unknown, keys: readonly string[], currentPath = '', refs: RefRow[] = []): RefRow[] {
   if (Array.isArray(node)) {
     node.forEach((v, i) => oldCollectRefsByKeys(v, keys, `${currentPath}[${i}]`, refs));
     return refs;
@@ -58,8 +104,8 @@ function oldCollectRefsByKeys(node, keys, currentPath = '', refs = []) {
   return refs;
 }
 
-function oldPeopleFindPlaceRefs(node, currentPath = '') {
-  const refs = [];
+function oldPeopleFindPlaceRefs(node: unknown, currentPath = ''): RefRow[] {
+  const refs: RefRow[] = [];
   if (!node || typeof node !== 'object') return refs;
 
   if (Array.isArray(node)) {
@@ -84,15 +130,15 @@ function oldPeopleFindPlaceRefs(node, currentPath = '') {
   return refs;
 }
 
-function normalizeRef(ref) {
+function normalizeRef(ref: RefRow): string {
   return `${ref.key} -> ${ref.value}`;
 }
 
-function rel(filePath) {
+function rel(filePath: string): string {
   return path.relative(root, filePath).replace(/\\/g, '/');
 }
 
-function compareSets(name, oldValues, newValues) {
+function compareSets(name: string, oldValues: string[], newValues: string[]): CompareResult {
   const oldSet = new Set(oldValues);
   const newSet = new Set(newValues);
   const onlyOld = [...oldSet].filter((value) => !newSet.has(value)).sort();
@@ -101,11 +147,11 @@ function compareSets(name, oldValues, newValues) {
   return { name, ok, oldCount: oldSet.size, newCount: newSet.size, onlyOld, onlyNew };
 }
 
-function normalizePathFormat(key) {
+function normalizePathFormat(key: string): string {
   return key.replace(/\[\d+\]/g, '');
 }
 
-function parseRefString(refString) {
+function parseRefString(refString: string): RefRow {
   const separator = ' -> ';
   const splitIndex = refString.indexOf(separator);
   if (splitIndex === -1) return { key: refString, value: '' };
@@ -115,8 +161,8 @@ function parseRefString(refString) {
   };
 }
 
-function summarizeRefsByPathAndValue(refStrings) {
-  const summary = new Map();
+function summarizeRefsByPathAndValue(refStrings: string[]): Map<string, number> {
+  const summary = new Map<string, number>();
   for (const refString of refStrings) {
     const { key, value } = parseRefString(refString);
     const bucket = `${normalizePathFormat(key)} -> ${value}`;
@@ -125,7 +171,7 @@ function summarizeRefsByPathAndValue(refStrings) {
   return summary;
 }
 
-function mapsEqual(left, right) {
+function mapsEqual(left: Map<string, number>, right: Map<string, number>): boolean {
   if (left.size !== right.size) return false;
   for (const [key, value] of left.entries()) {
     if (right.get(key) !== value) return false;
@@ -133,12 +179,12 @@ function mapsEqual(left, right) {
   return true;
 }
 
-function loadPlaceFiles() {
-  const manifest = readJson(placesManifestPath);
+function loadPlaceFiles(): string[] {
+  const manifest = readJson(placesManifestPath) as ManifestJson;
   return Array.isArray(manifest?.files) ? manifest.files.map((entry) => path.join(root, 'data', entry)) : [];
 }
 
-function checkPlaceArrays() {
+function checkPlaceArrays(): PlaceArrayCheck[] {
   return loadPlaceFiles().map((filePath) => {
     const data = readJson(filePath);
     const oldRows = oldToArrayForPlaceAudit(data);
@@ -147,12 +193,13 @@ function checkPlaceArrays() {
   });
 }
 
-function checkActivePlaceIds() {
-  const oldIds = new Set();
+function checkActivePlaceIds(): CompareResult {
+  const oldIds = new Set<string>();
   for (const filePath of loadPlaceFiles()) {
     const rows = oldToArrayForPlaceAudit(readJson(filePath));
     for (const row of rows) {
-      if (typeof row?.id === 'string' && row.id.trim()) oldIds.add(row.id.trim());
+      const placeRow = row as PlaceRow;
+      if (typeof placeRow?.id === 'string' && placeRow.id.trim()) oldIds.add(placeRow.id.trim());
     }
   }
 
@@ -160,8 +207,8 @@ function checkActivePlaceIds() {
   return compareSets('active place ids', [...oldIds], [...newIds]);
 }
 
-function checkPeopleManifestFiles() {
-  const peopleManifest = readJson(peopleManifestPath);
+function checkPeopleManifestFiles(): CompareResult {
+  const peopleManifest = readJson(peopleManifestPath) as ManifestJson;
   const oldFiles = Array.isArray(peopleManifest?.files)
     ? peopleManifest.files.map((entry) => path.join(root, 'data', entry))
     : [];
@@ -169,15 +216,15 @@ function checkPeopleManifestFiles() {
   return compareSets('people manifest files', oldFiles.map(rel), newFiles.map(rel));
 }
 
-function checkPeopleRefs() {
+function checkPeopleRefs(): PeopleRefCheck[] {
   const files = manifestFilesToPaths(root, peopleManifestPath);
   return files.map((filePath) => {
     const data = readJson(filePath);
     const peopleOld = oldToArrayForPeopleAudit(data);
     const peopleNew = toArray(data);
 
-    const oldRefs = [];
-    const newRefs = [];
+    const oldRefs: string[] = [];
+    const newRefs: string[] = [];
 
     peopleOld.forEach((person, index) => {
       for (const ref of oldPeopleFindPlaceRefs(person)) oldRefs.push(`[${index}].${normalizeRef(ref)}`);
@@ -193,7 +240,7 @@ function checkPeopleRefs() {
   });
 }
 
-function checkGenericRefPathDifference() {
+function checkGenericRefPathDifference(): GenericRefCheck[] {
   const files = [
     'data/badges.json',
     'data/routes.json',
@@ -218,7 +265,7 @@ const peopleManifestFiles = checkPeopleManifestFiles();
 const peopleRefs = checkPeopleRefs();
 const genericRefs = checkGenericRefPathDifference();
 
-const failures = [];
+const failures: string[] = [];
 for (const item of placeArrayChecks) if (!item.ok) failures.push(`Place array count changed in ${item.file}: ${item.oldCount} -> ${item.newCount}`);
 if (!activePlaceIds.ok) failures.push(`Active place id set changed: ${activePlaceIds.oldCount} -> ${activePlaceIds.newCount}`);
 if (!peopleManifestFiles.ok) failures.push(`People manifest file set changed: ${peopleManifestFiles.oldCount} -> ${peopleManifestFiles.newCount}`);
@@ -228,7 +275,7 @@ for (const item of peopleRefs) {
 }
 
 const genericPathOnlyDifferences = genericRefs.filter((item) => !item.refs.ok);
-const genericBlockingDifferences = [];
+const genericBlockingDifferences: string[] = [];
 
 for (const item of genericPathOnlyDifferences) {
   const oldSummary = summarizeRefsByPathAndValue(item.refs.onlyOld);
