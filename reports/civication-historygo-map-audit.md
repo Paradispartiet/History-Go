@@ -1,19 +1,19 @@
 # Civication – History Go map audit
 
-Generert: 2026-06-06T20:20:55.821Z
+Generert: 2026-06-07T05:27:49.449Z
 
 ## Sammendrag
 
 - Filer i manifest: **40**
-- Steder totalt: **483**
-- Oslo-steder plassert på kartet: **303**
+- Steder totalt: **489**
+- Oslo-steder plassert på kartet: **309**
 
 | Kategori | Antall |
 | --- | ---: |
 | missing_lat_lon | 0 |
 | non_oslo_skipped | 180 |
-| missing_asset_type | 71 |
-| projected_from_lat_lon | 303 |
+| missing_asset_type | 77 |
+| projected_from_lat_lon | 309 |
 | uses_manual_civiMap | 0 |
 | duplicate_ids | 0 |
 
@@ -50,8 +50,14 @@ _Ingen._
 - `lisbon_principe_real` – places/by/europe/portugal/lisbon/places_lisbon_by.json
 - … og 155 til (se JSON).
 
-## Mangler eksplisitt assetType (bruker heuristikk) (71)
+## Mangler eksplisitt assetType (bruker heuristikk) (77)
 
+- `tullin` (by) – Tullin
+- `okern` (by) – Økern
+- `skoyen` (by) – Skøyen
+- `torshov` (by) – Torshov
+- `grorud` (by) – Grorud
+- `sagene` (by) – Sagene
 - `good_game_redaksjon` (media) – Good Game-redaksjonen (NRK)
 - `vg_huset` (media) – VG-huset
 - `nrk_huset_marienlyst` (media) – NRK-huset på Marienlyst
@@ -71,15 +77,9 @@ _Ingen._
 - `alna_bryn` (natur) – Alna ved Bryn
 - `svartdalen` (natur) – Svartdalen
 - `kvaernerbyen_alna` (natur) – Kværnerbyen ved Alna
-- `alna_utlop_bjorvika` (natur) – Alna utløp i Bjørvika
-- `bygdoy_kongeskogen` (natur) – Bygdøy Kongeskogen
-- `bygdoy_dronningberget` (natur) – Bygdøy Dronningberget
-- `bygdoy_huk` (natur) – Bygdøy Huk
-- `bygdoy_paradisbukta` (natur) – Bygdøy Paradisbukta
-- `bygdoy_bygdoynes` (natur) – Bygdøy Bygdøynes
-- … og 46 til (se JSON).
+- … og 52 til (se JSON).
 
-## Projisert fra lat/lon (trenger evt. manuell civiMap.x/y) (303)
+## Projisert fra lat/lon (trenger evt. manuell civiMap.x/y) (309)
 
 - `torggata` – lat 59.9145, lon 10.7539
 - `bispelokket` – lat 59.9078, lon 10.7538
@@ -106,7 +106,7 @@ _Ingen._
 - `markveien` – lat 59.9235, lon 10.7584
 - `gronlandsleiret` – lat 59.9124, lon 10.7608
 - `storgata` – lat 59.9153, lon 10.7521
-- … og 278 til (se JSON).
+- … og 284 til (se JSON).
 
 ## Bruker manuell civiMap.x/y (0)
 

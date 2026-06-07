@@ -203,6 +203,30 @@ Effekten kan leses i [`reports/visual-design-codes-audit.md`](../reports/visual-
 eksplisitte koder, 0 ugyldige eksplisitte koder og 0 koder med manglende
 `renderHints`.
 
+## Pilot batch 2
+
+Pilot batch 2 er en kontrollert utvidelse etter batch 1, fortsatt med **høy
+nytte fremfor bred dekning** som prinsipp. Batch 1 var en trygg grunnpilot med
+de mest opplagte kodene; batch 2 utvider utvalget til flere entiteter som
+forventes å være ofte synlige i kart, PlaceCard/Groundhopper og kunnskapslag.
+
+Batch 2 prioriterer:
+
+- sentrale kartsteder som gater, torg, parker, stasjoner, kirker, bibliotek,
+  waterfront-steder og historiske anlegg,
+- personer som allerede er koblet til steder, særlig innen sport, musikk,
+  politikk og vitenskap,
+- leksikon-/artikkeloppføringer som bærer stedshistorie, lokalhistorie,
+  politisk historie, objektfortellinger og place essays.
+
+Dette er fortsatt **ikke en full batch**. Full dekning bør vente til audit,
+renderer-erfaring og faktisk bruk viser at designCode-systemet fungerer godt på
+tvers av kart, kort, Canvas fallback og kunnskapsflater.
+
+Effekten etter batch 2 kan leses i
+[`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md)
+(seksjonen «Pilot batch 2»).
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,
