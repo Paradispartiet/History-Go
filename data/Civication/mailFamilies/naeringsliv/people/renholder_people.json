@@ -723,6 +723,552 @@
           ]
         }
       ]
+    },
+    {
+      "id": "second_week_praksisfortellinger_renholder_private",
+      "purpose": "Praksisfortellinger – Renholder pakke 2 privat: Andre uke der renholdslogikk om halvferdig rom, risiko, verdighet og kropp må avgrenses hjemme.",
+      "learning_focus": [
+        "hygiene",
+        "romstandard",
+        "HMS",
+        "avvik",
+        "verdighet",
+        "kropp",
+        "tidspress",
+        "privat_grense"
+      ],
+      "mails": [
+        {
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "build",
+          "priority": 135,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker hygiene, HMS, romstandard, verdighet, kropp og privat grense gjennom renholderens andre uke.",
+          "narrative_arc": "renholder_andre_uke",
+          "learning_focus": [
+            "hygiene",
+            "romstandard",
+            "HMS",
+            "avvik",
+            "verdighet",
+            "kropp",
+            "tidspress",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week2_cannot_leave_half_done",
+          "subject": "Du klarer ikke slippe halvferdige ting",
+          "summary": "Halvferdig-logikken fra jobb gjør småting hjemme til åpne avvik.",
+          "purpose": "Vise hvordan renholderens faglige varsellogikk kan skape uro privat.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Halvferdig\nBody:\nDu ser en kopp på bordet, en jakke over stolen og en våt klut ved vasken. Det er ikke farlig. Men hodet sier: halvferdig arbeid, åpent punkt, mulig forverring. Hjemme finnes det nesten bare halvferdige ting.",
+            "Fra: Sara\nEmne: Den koppen\nBody:\nDu så på koppen min som om den hadde brutt romstandard. Jeg skal ta den. Men ikke se på den som en HMS-hendelse."
+          ],
+          "task_domain": "privat_halvferdighet_etter_renhold",
+          "competency": "skille_avvik_fra_liv",
+          "pressure": "hjemme_som_halvferdig_rom",
+          "choice_axis": "slippe_smaating_vs_rydde_for_ro",
+          "consequence_axis": "hjemmefred_vs_kontroll",
+          "choices": [
+            {
+              "id": "A",
+              "label": "La småting være småting",
+              "reply": "Jeg sier at hun har rett, og lar koppen stå uten å gjøre den til et åpent avvik.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Takk. Noen kopper må få være på vei et sted uten å være problem.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 3,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at koppen er observert, men ikke vurdert som kritisk berøringspunkt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Greit. Men ikke lag kopp-logg.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde den for å få ro",
+              "reply": "Jeg tar koppen og noen andre småting fordi det er vanskelig å slappe av når alt står halvferdig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Det ble ryddigere. Men du forlot ikke jobbmodusen. Du bare vant én liten runde mot den.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "stress": 1,
+                  "relationship_sara": -1,
+                  "stagnation_private": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "build",
+          "priority": 136,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker hygiene, HMS, romstandard, verdighet, kropp og privat grense gjennom renholderens andre uke.",
+          "narrative_arc": "renholder_andre_uke",
+          "learning_focus": [
+            "hygiene",
+            "romstandard",
+            "HMS",
+            "avvik",
+            "verdighet",
+            "kropp",
+            "tidspress",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week2_clutter_feels_like_hazard",
+          "subject": "Du reagerer på rot som om det er fare",
+          "summary": "En jakke på gulvet oppleves som dårlig passasje og snublefare.",
+          "purpose": "Øve på å skille reell fare fra vanlig privat rot.",
+          "situation": [
+            "Fra: Jonas\nEmne: Jakka mi\nBody:\nDu sa at jakka mi på gulvet skaper dårlig passasje. Det er helt riktig. Men det er også bare jakka mi. Du trenger kanskje en kveld uten risikovurdering.",
+            "Fra: Privat notat\nEmne: Dårlig passasje\nBody:\nDu så ikke en jakke. Du så snublefare. Det er ikke helt feil. Men det er heller ikke slik man alltid kan leve sammen med andre mennesker."
+          ],
+          "task_domain": "privat_rot_som_risiko",
+          "competency": "risikomodus_og_selvregulering",
+          "pressure": "jobbens_fareblikk_hjemme",
+          "choice_axis": "vanlig_rot_vs_avvik",
+          "consequence_axis": "relasjonell_romslighet_vs_kontroll",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skille fare fra vanlig rot",
+              "reply": "Jeg sier at jeg er i risikoblendet modus, og lar jakka være vanlig rot, ikke avvik.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Takk. Jeg skal ta jakka. Men ikke fordi den er en hendelse.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 3,
+                  "self_awareness": 2,
+                  "stress": -1,
+                  "control": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Spøke med det",
+              "reply": "Jeg sier at jakka er en lavrisiko tekstilbasert hindring og får observasjon, ikke tiltak.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Du er slitsom. Men du er morsom når du innrømmer det.",
+              "effects": {
+                "stats": {
+                  "relationship_jonas": 1,
+                  "mood": 1,
+                  "self_awareness": 1,
+                  "stress": 0
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde den selv",
+              "reply": "Jeg henger opp jakka fordi jeg ikke klarer å slutte å se den som dårlig flyt.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Du fikk orden. Men jeg fikk følelsen av å være del av arbeidsområdet ditt.",
+              "effects": {
+                "stats": {
+                  "control": 2,
+                  "relationship_jonas": -1,
+                  "stress": 1,
+                  "stagnation_private": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "reflection",
+          "priority": 137,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker hygiene, HMS, romstandard, verdighet, kropp og privat grense gjennom renholderens andre uke.",
+          "narrative_arc": "renholder_andre_uke",
+          "learning_focus": [
+            "hygiene",
+            "romstandard",
+            "HMS",
+            "avvik",
+            "verdighet",
+            "kropp",
+            "tidspress",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week2_friend_not_work_area",
+          "subject": "Vennen som ikke vil være arbeidsområde",
+          "summary": "Et glass på nyvasket benk treffer følelsen av å bli usynlig på jobb.",
+          "purpose": "Vise hvordan usynlighet og grenser fra arbeid kan flytte inn i nære relasjoner.",
+          "situation": [
+            "Fra: Sara\nEmne: Jeg prøvde ikke å gjøre deg usynlig\nBody:\nJeg satte glasset på benken rett etter at du tørket den. Jeg skjønte plutselig at det traff noe fra jobb. Men jeg prøvde ikke å si at arbeidet ditt ikke betyr noe. Jeg bare satte fra meg et glass.",
+            "Fra: Privat notat\nEmne: Glasset\nBody:\nDet var et glass. Men du kjente det som en liten versjon av folk som går over vått gulv, setter kopper på nyvasket bord og sier at du kan ta det etterpå. Hjemme må du passe på at gamle rom ikke flytter inn i nye rom."
+          ],
+          "task_domain": "privat_verdighet_etter_usynlig_arbeid",
+          "competency": "forklare_trigger_uten_skyld",
+          "pressure": "jobbens_usynlighetsfoelelse_hjemme",
+          "choice_axis": "si_hva_det_traff_vs_gjoere_den_andre_til_bruker",
+          "consequence_axis": "naerhet_vs_konflikt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si hva det traff, uten å gjøre Sara skyldig",
+              "reply": "Jeg sier at glasset traff jobbslitenheten, men at jeg vet hun ikke mente det sånn.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Takk. Det kan jeg forstå. Da kan vi snakke om deg, ikke om glasset.",
+              "effects": {
+                "stats": {
+                  "relationship_sara": 4,
+                  "self_awareness": 3,
+                  "stress": -2,
+                  "dignity_private": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at det ikke er noe",
+              "reply": "Jeg sier at det ikke betyr noe og tørker over benken igjen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Du unngår konflikt. Men du sier heller ikke hva som faktisk skjedde i deg.",
+              "effects": {
+                "stats": {
+                  "stress": 1,
+                  "relationship_sara": 0,
+                  "stagnation_private": 2,
+                  "physical_load": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bli irritert over at hun ikke tenkte seg om",
+              "reply": "Jeg sier at hun kunne sett at jeg nettopp hadde tørket der.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Jeg skjønner at du er sliten. Men jeg vil ikke bli gjort til bruker av et rom du drifter.",
+              "effects": {
+                "stats": {
+                  "conflict": 3,
+                  "relationship_sara": -3,
+                  "stress": 2,
+                  "dignity_private": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "mastery",
+          "priority": 138,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker hygiene, HMS, romstandard, verdighet, kropp og privat grense gjennom renholderens andre uke.",
+          "narrative_arc": "renholder_andre_uke",
+          "learning_focus": [
+            "hygiene",
+            "romstandard",
+            "HMS",
+            "avvik",
+            "verdighet",
+            "kropp",
+            "tidspress",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week2_rest_without_cleaning_first",
+          "subject": "Du prøver å hvile uten å rydde først",
+          "summary": "Sofaen må prøves før hjemmet er ferdig ryddet.",
+          "purpose": "Øve på at hvile ikke må fortjenes gjennom rydding eller vask.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Før sofaen\nBody:\nDu står i stua og ser litt støv, to glass, en jakke og en kjøkkenbenk som kunne vært bedre. Du tenker: Jeg skal bare rydde litt først. Men litt først er ofte måten hvilen aldri får begynne på.",
+            "Fra: Sara\nEmne: Sitt ned først\nBody:\nKan du prøve noe? Sitt ned før du rydder. Bare fem minutter. Hvis du fortsatt vil rydde etterpå, kan du gjøre det. Men kroppen din skal ikke alltid komme etter rommet."
+          ],
+          "task_domain": "hvile_foer_rydding",
+          "competency": "restitusjon_uten_opptjent_kontroll",
+          "pressure": "uro_foer_sofaen",
+          "choice_axis": "hvile_foerst_vs_rydde_foerst",
+          "consequence_axis": "kropp_foer_rom_vs_kontroll",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sette deg før du rydder",
+              "reply": "Jeg setter meg ned først, selv om rommet ikke er helt ryddig.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Der. Rommet overlevde. Og du fikk komme først.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 4,
+                  "stress": -3,
+                  "relationship_sara": 2,
+                  "control": -2,
+                  "energy_weekend": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rydde én liten ting og så stoppe",
+              "reply": "Jeg rydder glassene og lar resten være.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Det ble ikke helt frihet. Men det ble heller ikke nytt skift.",
+              "effects": {
+                "stats": {
+                  "control": 1,
+                  "stress": -1,
+                  "self_awareness": 1,
+                  "body_awareness": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde alt før du kan hvile",
+              "reply": "Jeg rydder og vasker til rommet føles godt nok til å sette meg.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Det ble ryddig. Men du måtte betale med kroppen for å få lov til å sitte.",
+              "effects": {
+                "stats": {
+                  "control": 3,
+                  "physical_load": 3,
+                  "stress": 2,
+                  "energy_weekend": -3,
+                  "stagnation_private": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_renholder_private",
+          "role_scope": "renholder",
+          "phase": "mastery",
+          "priority": 139,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat",
+          "place_id": "hjemme",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "stakes": "Valget påvirker hygiene, HMS, romstandard, verdighet, kropp og privat grense gjennom renholderens andre uke.",
+          "narrative_arc": "renholder_andre_uke",
+          "learning_focus": [
+            "hygiene",
+            "romstandard",
+            "HMS",
+            "avvik",
+            "verdighet",
+            "kropp",
+            "tidspress",
+            "privat_grense"
+          ],
+          "id": "personal_renholder_week2_weekend_without_standard_control",
+          "subject": "Helgen uten standardkontroll",
+          "summary": "Helgen må være bebodd, ikke godkjent.",
+          "purpose": "La spilleren slippe behovet for å kontrollere hjemmet før det kan leves i.",
+          "situation": [
+            "Fra: Privat notat\nEmne: Fredag kveld\nBody:\nDu har brukt uka på å se rom som systemer: flater, berøringspunkter, søl, avvik, brukere, kropp og tid. Det er et blikk som gjør arbeid bedre. Men hvis det aldri slår seg av, gjør det hjemmet mindre hjemme.",
+            "Fra: Sara\nEmne: Helg\nBody:\nDenne helgen vil jeg ikke at leiligheten skal bestå standardkontroll. Ikke sjekk håndtak. Ikke vurder gulvet. Ikke vask før du hviler. Ikke gjør kroppen din til utstyr. Bare vær her.",
+            "Fra: Jonas\nEmne: Helgeregel 2\nBody:\nIngen romstandard. Ingen berøringspunkt. Ingen den flaten burde egentlig tas. Hvis du sier hygienisk kvalitet mens vi spiser pizza, skylder du middag."
+          ],
+          "task_domain": "helg_uten_standardkontroll",
+          "competency": "privat_grensesetting_og_restitusjon",
+          "pressure": "jobbblikk_etter_to_uker",
+          "choice_axis": "slippe_standard_vs_vaske_for_ro",
+          "consequence_axis": "bebodd_hjem_vs_godkjent_rom",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skjerme en helg uten standardkontroll",
+              "reply": "Jeg bestemmer at helgen ikke skal være romstandard, flekker, berøringspunkter, avvik eller kontroll.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Hjemmet blir ikke godkjent. Det blir bebodd.",
+              "effects": {
+                "stats": {
+                  "energy_weekend": 5,
+                  "stress": -5,
+                  "relationship_private": 4,
+                  "body_awareness": 4,
+                  "control": -4
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "people"
+                ],
+                "prefer_families": [
+                  "second_week_praksisfortellinger_renholder_private"
+                ],
+                "set_flags": [
+                  "renholder_week2_private_boundary"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Hvile kroppen selv om rommet ikke er perfekt",
+              "reply": "Jeg lar kroppen hvile før jeg rydder, vasker eller fikser noe.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sara: Bra. Du kom før rommet. Det burde ikke være radikalt, men det føltes sånn.",
+              "effects": {
+                "stats": {
+                  "body_awareness": 5,
+                  "energy_weekend": 4,
+                  "stress": -4,
+                  "self_awareness": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Rydde litt og prøve å stoppe før det blir arbeid",
+              "reply": "Jeg rydder noen småting for å roe hodet, men stopper før jeg begynner å vaske hele rommet.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Jonas: Dette var nesten normalt. Jeg registrerer fremgang, men ikke i skjema.",
+              "effects": {
+                "stats": {
+                  "control": 1,
+                  "self_awareness": 1,
+                  "stress": 0,
+                  "energy_weekend": -1
+                }
+              }
+            },
+            {
+              "id": "D",
+              "label": "Vaske mye fordi det føles umulig å slappe av ellers",
+              "reply": "Jeg vasker og rydder til hjemmet føles rent nok til å hvile i.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Privat notat: Det ble rent. Men hvilen kom etter at kroppen hadde betalt inngangsbilletten.",
+              "effects": {
+                "stats": {
+                  "control": 4,
+                  "physical_load": 4,
+                  "energy_weekend": -5,
+                  "stress": 3,
+                  "stagnation_private": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
