@@ -57,7 +57,7 @@ assert.equal(mappings.careers.naeringsliv.title_to_role_scope.Renholder, 'renhol
 for (const existing of ['arbeider','fagarbeider','formann','mellomleder','avdelingsleder','controller','administrasjonsmedarbeider','ekspeditor','lager_og_driftsmedarbeider']) {
   assert.ok(mappings.careers.naeringsliv.roles[existing], `existing role mapping removed: ${existing}`);
 }
-assert.ok(!JSON.stringify(registry).includes('renholder'), 'Renholder must not be registered in praksisfortellinger registry yet');
+assert.ok(JSON.stringify(registry).includes('renholder_week_1'), 'Renholder first-week package should be registered in praksisfortellinger registry');
 
 assert.equal(plan.schema, 'civication_mail_plan_v1');
 assert.equal(plan.role_scope, 'renholder');

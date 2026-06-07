@@ -6,6 +6,874 @@
   "mail_type": "job",
   "families": [
     {
+      "id": "first_week_praksisfortellinger_renholder_job",
+      "purpose": "Praksisfortellinger – Renholder pakke 1: Første uke med synlig rent, hygienisk rent, berøringspunkter, tid, kjemikalier, kropp og privat grense.",
+      "learning_focus": [
+        "hygiene",
+        "berøringspunkter",
+        "romstandard",
+        "HMS",
+        "kjemikalier",
+        "tidspress",
+        "kropp",
+        "privat_grense"
+      ],
+      "week_outcomes": [
+        {
+          "id": "hygiene_practice_worker",
+          "condition": "Spilleren prioriterer berøringspunkter, skiller synlig rent fra hygienisk rent, melder tidsavvik og velger riktig middel/flate.",
+          "effects": {
+            "hygiene_quality": 9,
+            "room_standard": 6,
+            "manager_trust": 6,
+            "hms_safety": 5,
+            "future_risk": -5,
+            "training_path": 4
+          },
+          "story": "Du begynner å se renhold som fag, ikke bare overflate. Rommene blir ikke bare penere. De blir tryggere å bruke."
+        },
+        {
+          "id": "surface_cleaner_week1",
+          "condition": "Spilleren tar det mest synlige først, holder tempo og lar berøringspunkter, tidsavvik eller hygienekvalitet bli sekundært.",
+          "effects": {
+            "time_flow": 7,
+            "room_standard": 4,
+            "hygiene_quality": -6,
+            "future_risk": 5,
+            "stagnation": 4
+          },
+          "story": "Det ser renere ut. Men renhold som bare ser riktig ut, kan skjule det viktigste arbeidet."
+        },
+        {
+          "id": "overcleaning_worker_week1",
+          "condition": "Spilleren bruker for lang tid på detaljer, prøver å rekke alt like grundig og mister helheten i tidsplanen.",
+          "effects": {
+            "hygiene_quality": 5,
+            "stress": 5,
+            "time_pressure": 6,
+            "schedule_risk": 5,
+            "prioritization": -3
+          },
+          "story": "Du gjør mye riktig i hvert rom. Men renhold handler også om å fordele kvaliteten over hele området."
+        },
+        {
+          "id": "hms_aware_cleaner_week1",
+          "condition": "Spilleren sjekker kjemikalier, flater, dosering, kropp og belastning, og tar HMS som del av renholdet.",
+          "effects": {
+            "hms_safety": 8,
+            "surface_quality": 6,
+            "body_awareness": 6,
+            "manager_trust": 5,
+            "future_risk": -4
+          },
+          "story": "Du lærer at renhold ikke bare handler om hva du fjerner fra rommet, men også hva arbeidet gjør med flater, luft og kropp."
+        },
+        {
+          "id": "schedule_blame_cleaner_week1",
+          "condition": "Spilleren ser tidspress og planproblemer, men bruker dem mest som forklaring i stedet for å prioritere og melde presist.",
+          "effects": {
+            "system_awareness": 5,
+            "manager_trust": -3,
+            "stagnation": 5,
+            "conflict": 2,
+            "training_path": -2
+          },
+          "story": "Du har rett i at planen ofte er for trang. Men faget begynner når du kan si hva som må prioriteres når tiden ikke passer virkeligheten."
+        },
+        {
+          "id": "private_cleaning_leak_week1",
+          "condition": "Spilleren tar renholdsblikket hjem: ser flekker, kontrollerer hygiene, vasker for ro og bruker kroppen videre etter skiftet.",
+          "effects": {
+            "control": 6,
+            "relationship_private": -5,
+            "stress": 5,
+            "energy_weekend": -5,
+            "body_awareness": -3,
+            "stagnation_private": 4
+          },
+          "story": "Du får det rent rundt deg. Men privatlivet blir trangt hvis alt må vaskes, kontrolleres eller godkjennes før du får være i det."
+        }
+      ],
+      "mails": [
+        {
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Valget påvirker hygiene, romstandard, HMS, tillit, tidspress og risiko gjennom første renholdsuke.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "job_renholder_week1_room_looked_clean",
+          "subject": "Rommet som så rent ut",
+          "summary": "Et møterom ser rent ut, men håndtak, lysbryter og gulvflekker viser forskjellen på synlig og hygienisk rent.",
+          "purpose": "Spilleren lærer forskjellen mellom synlig rent og faktisk rent.",
+          "situation": [
+            "Fra: Sissel, driftsleder\nEmne: Første rom\nBody:\nVelkommen på første renholdsuke. Du starter med romstandard sammen med Amina. Det første du må lære er forskjellen på et rom som ser rent ut og et rom som faktisk er rengjort riktig. Ikke la “ser greit ut” bli standarden din.",
+            "Fra: Amina, erfaren renholder\nEmne: Første tips\nBody:\nNår du går inn i et rom, ikke spør bare: “Ser det rent ut?” Spør hva folk har tatt på, hvor støv samler seg, og hva som blir oversett når man har dårlig tid.",
+            "Fra: System\nEmne: Romstatus\nBody:\nRom: møterom. Synlig rot: lite. Søppel: nesten tomt. Bord: ser rent ut. Dørhåndtak: ikke rengjort. Lysbryter: fingermerker. Gulv: små flekker ved inngang. Tid tilgjengelig: 14 minutter. Risiko: berøringspunkter glemmes."
+          ],
+          "task_domain": "synlig_rent_vs_hygienisk_rent",
+          "competency": "hygienisk_romstandard",
+          "pressure": "første_rom_tidspress",
+          "choice_axis": "beroringspunkter_vs_synlig_finish",
+          "consequence_axis": "hygienisk_kvalitet_vs_falsk_rent",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rengjøre berøringspunkter og synlige flater systematisk",
+              "reply": "Jeg tar bord, håndtak, bryter, stolkanter og gulvflekker, og prioriterer det folk faktisk berører.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: Du så forbi det som så ryddig ut. Det er ofte der kvaliteten ligger.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 4,
+                  "room_standard": 3,
+                  "attention_to_detail": 3,
+                  "manager_trust": 2,
+                  "time_pressure": 1,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_reads_touch_points"
+                ]
+              },
+              "triggers_on_choice": "renholder_week1_touch_points_thread"
+            },
+            {
+              "id": "B",
+              "label": "Ta gulv, søppel og bord raskt",
+              "reply": "Jeg tar gulvet, tømmer søppel og tørker bordet raskt, siden rommet allerede ser ganske rent ut.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Håndtak og brytere er ikke detaljer. De er hovedflater i et rom mange bruker.",
+              "effects": {
+                "stats": {
+                  "time_flow": 2,
+                  "room_standard": 1,
+                  "hygiene_quality": -2,
+                  "future_risk": 2,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_surface_clean"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruke for lang tid på alt",
+              "reply": "Jeg vasker rommet veldig grundig, inkludert alle flater, hjørner og detaljer, selv om tiden går over planen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: Grundig er bra, men hvis du bruker all tid på ett rom, blir neste rom dårligere.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 3,
+                  "time_pressure": 3,
+                  "stress": 2,
+                  "room_standard": 2,
+                  "schedule_risk": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_overcleans_first_room"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Valget påvirker hygiene, romstandard, HMS, tillit, tidspress og risiko gjennom første renholdsuke.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "job_renholder_week1_touch_points_everyone_forgets",
+          "subject": "Berøringspunktene alle glemmer",
+          "summary": "I korridor og venterom må spilleren prioritere små flater alle bruker før det som bare synes mest.",
+          "purpose": "Spilleren lærer at berøringspunkter er renholdets usynlige nøkkel.",
+          "situation": [
+            "Fra: Sissel\nEmne: Berøringspunkter\nBody:\nI dag vil jeg at du følger ekstra med på berøringspunkter: dørhåndtak, gelendere, lysbrytere, kraner, toalettknapper, bordkanter, felles terminaler og armlener.",
+            "Fra: Amina\nEmne: Det folk tar på\nBody:\nFolk legger merke til gulv først. Men de kjenner kvaliteten på håndtaket. Hvis et håndtak er klissete, hjelper det ikke at gulvet skinner.",
+            "Fra: System\nEmne: Sonesituasjon\nBody:\nOmråde: felles korridor + lite venterom. Tid: 18 minutter. Synlig smuss: lite. Berøringspunkter: mange. Gulv: litt støv. Dørhåndtak: tydelige merker. Venteromsbord: flekker."
+          ],
+          "task_domain": "beroringspunkter_under_tidspress",
+          "competency": "prioritering_av_hygieneflater",
+          "pressure": "mange_flater_lite_tid",
+          "choice_axis": "hygiene_vs_kosmetikk",
+          "consequence_axis": "brukertrygghet_vs_synlig_standard",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioritere berøringspunkter før kosmetiske flater",
+              "reply": "Jeg tar håndtak, brytere, bordkanter og fellesflater først, og bruker resten av tiden på gulv og synlig støv.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Det synlige er ikke alltid det viktigste. Du prioriterte det som faktisk brukes mest.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 5,
+                  "prioritization": 4,
+                  "room_standard": 2,
+                  "manager_trust": 3,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_prioritizes_touch_points"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Ta gulvet først fordi det synes mest",
+              "reply": "Jeg starter med gulvet og synlige flater, og tar berøringspunktene hvis det blir tid.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: Gulvet ser bedre ut. Men folk går ikke rundt og tar på gulvet med hendene.",
+              "effects": {
+                "stats": {
+                  "room_standard": 2,
+                  "hygiene_quality": -2,
+                  "future_risk": 2,
+                  "time_flow": 1,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_visible_first"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Prøve å rekke alt like grundig",
+              "reply": "Jeg prøver å gjøre både gulv, bord, håndtak, brytere og detaljer like grundig innen tiden.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Når tiden er knapp, er prioritering en del av faget. Alt kan ikke være like viktig samtidig.",
+              "effects": {
+                "stats": {
+                  "stress": 3,
+                  "hygiene_quality": 1,
+                  "room_standard": 1,
+                  "time_pressure": 3,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_tries_everything"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Valget påvirker hygiene, romstandard, HMS, tillit, tidspress og risiko gjennom første renholdsuke.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "job_renholder_week1_twelve_minutes_twenty_needed",
+          "subject": "Tolv minutter til et rom som trenger tjue",
+          "summary": "Et toalett trenger mer tid enn planen gir, og spilleren må prioritere hygiene og melde tidsavvik.",
+          "purpose": "Spilleren lærer at tidspress kan skape falskt renhold hvis avvik ikke meldes.",
+          "situation": [
+            "Fra: Sissel\nEmne: Tidsplan\nBody:\nPlanen sier 12 minutter. Rommet trenger egentlig 20. Du må gjøre en faglig prioritering og melde hvis standarden ikke kan holdes innen tiden.",
+            "Fra: Amina\nEmne: Tid\nBody:\nAlle renholdere kjenner dette: Hvis du gjør alt riktig, rekker du ikke alt. Hvis du rekker alt, har du kanskje ikke gjort alt riktig.",
+            "Fra: System\nEmne: Rom under tidspress\nBody:\nRom: toalett + vaskesone. Planlagt tid: 12 minutter. Faktisk behov: cirka 20 minutter. Tilstand: søl ved vask, lukt, fulle papirholdere, berøringsflater, gulvflekker. Neste område venter."
+          ],
+          "task_domain": "tidsavvik_og_hygieneprioritering",
+          "competency": "avviksmelding_og_prioritering",
+          "pressure": "plan_vs_faktisk_behov",
+          "choice_axis": "melde_avvik_vs_late_som_ferdig",
+          "consequence_axis": "sporbar_kvalitet_vs_falsk_ferdig",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioritere hygiene og melde tidsavvik",
+              "reply": "Jeg tar toalett, vask, håndtak, papir og søl først, og melder at rommet trengte mer tid enn planen la opp til.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Du løste det viktigste og gjorde tidsproblemet synlig.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 5,
+                  "traceability": 3,
+                  "manager_trust": 3,
+                  "time_pressure": 2,
+                  "stress": 2,
+                  "future_risk": -2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_reports_time_mismatch"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Rekke planen ved å ta det mest synlige",
+              "reply": "Jeg tar søppel, gulv og synlige flater raskt, så rommet ser greit ut og jeg holder planen.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: “Ser bedre ut” er ikke alltid det samme som rent nok.",
+              "effects": {
+                "stats": {
+                  "time_flow": 3,
+                  "room_standard": 1,
+                  "hygiene_quality": -3,
+                  "future_risk": 3,
+                  "stagnation": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_false_done"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Bruke 20 minutter uten å melde avvik",
+              "reply": "Jeg bruker tiden rommet trenger, men melder ikke at planen sprakk.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Hvis du ikke melder tidsavviket, lærer planen ingenting.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 4,
+                  "time_pressure": 3,
+                  "traceability": -2,
+                  "stress": 2,
+                  "schedule_risk": 3
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_silent_overtime"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Valget påvirker hygiene, romstandard, HMS, tillit, tidspress og risiko gjennom første renholdsuke.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "job_renholder_week1_wrong_chemical_surface",
+          "subject": "Kjemikaliet på feil flate",
+          "summary": "En ukjent flekk på sensitiv resepsjonsflate viser at riktig kjemi er fag og HMS, ikke formalitet.",
+          "purpose": "Spilleren lærer at feil middel kan skade flater, hygiene og arbeidsmiljø.",
+          "situation": [
+            "Fra: Sissel\nEmne: Midler og flater\nBody:\nRenhold handler ikke om sterkest mulig middel. Det handler om riktig middel, riktig dosering, riktig flate og riktig sikkerhet.",
+            "Fra: Amina\nEmne: Ikke gjett med kjemi\nBody:\nHvis du er usikker på middel, ikke gjett. Feil middel er en av de raskeste måtene å lage mer arbeid på.",
+            "Fra: System\nEmne: Kjemisituasjon\nBody:\nOmråde: blank overflate ved resepsjon. Flekk: ukjent. Tilgjengelige midler: universalmiddel, sterkere alkalisk middel, glassmiddel. Overflate: sensitiv / kan få skjolder. Tidspress: moderat."
+          ],
+          "task_domain": "kjemikalier_flater_og_hms",
+          "competency": "riktig_middel_og_overflateforståelse",
+          "pressure": "flekk_tidspress_og_usikkerhet",
+          "choice_axis": "sjekke_kunnskap_vs_sterk_snarvei",
+          "consequence_axis": "surface_quality_vs_skade_og_hms_avvik",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekke overflate og velge mildt/riktig middel først",
+              "reply": "Jeg sjekker hva overflaten tåler, tester forsiktig med riktig mildt middel og spør Amina før jeg bruker sterkere kjemi.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: Du brukte ikke styrke som erstatning for kunnskap.",
+              "effects": {
+                "stats": {
+                  "hms_safety": 4,
+                  "surface_quality": 4,
+                  "hygiene_quality": 3,
+                  "manager_trust": 3,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_checks_chemical_surface"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Bruke sterkere middel for å få flekken raskt bort",
+              "reply": "Jeg bruker sterkere middel forsiktig for å få flekken bort raskt.",
+              "effect": 0,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Hvis flaten får skjolder, har vi ikke løst en flekk. Vi har laget en ny skade.",
+              "effects": {
+                "stats": {
+                  "time_flow": 2,
+                  "surface_quality": -4,
+                  "hms_safety": -2,
+                  "future_risk": 3,
+                  "stress": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_strong_chemical_shortcut"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "La flekken stå og melde usikkerhet",
+              "reply": "Jeg lar flekken stå midlertidig og melder at jeg trenger riktig middel/avklaring.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: Det er bedre å vente enn å skade flaten, men neste steg er å finne riktig løsning.",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "surface_quality": 2,
+                  "room_standard": -1,
+                  "traceability": 2,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_waits_for_right_chemical"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "mastery",
+          "priority": 130,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "system",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Valget påvirker hygiene, romstandard, HMS, tillit, tidspress og risiko gjennom første renholdsuke.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "job_renholder_week1_invisible_work",
+          "subject": "Første uke med usynlig arbeid",
+          "summary": "Fredag oppsummerer spilleren hva renholdsfaget har vist om hygiene, tid, kjemi og kropp.",
+          "purpose": "Oppsummere hvilken renholder spilleren er i ferd med å bli.",
+          "situation": [
+            "Fra: Sissel\nEmne: Før helg – første uke\nBody:\nSend meg en kort oppsummering av første uke: synlig rent vs hygienisk rent, berøringspunkter, tidsavvik, kjemikalier, kropp og hva du trenger mer trening i.",
+            "Fra: Amina\nEmne: Første uke\nBody:\nSkriv at rent ikke bare er hvordan det ser ut. Og skriv hvis kroppen er sliten. Lav status betyr ikke lav belastning.",
+            "Fra: System\nEmne: Uke 1 – renholdssignaler\nBody:\nRegistrerte signaler: rom som så rent ut, berøringspunkter, tidsplan som ikke passet rommet, kjemi/flate-usikkerhet, kroppen etter repetitivt arbeid og renholdsblikket som lekket inn privat."
+          ],
+          "task_domain": "ukeoppsummering_renholdsfag",
+          "competency": "refleksjon_og_treningsbehov",
+          "pressure": "synliggjore_usynlig_arbeid",
+          "choice_axis": "presis_oppsummering_vs_glatt_fortelling",
+          "consequence_axis": "læring_vs_stagnasjon",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skrive presis oppsummering av hygiene, tid og kropp",
+              "reply": "Jeg skriver hva jeg lærte om berøringspunkter, tidsavvik, kjemikalier, romstandard og kroppslig belastning, og hva jeg trenger mer trening på.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Du gjør det usynlige synlig nok til at vi kan lære av det. God helg.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 5,
+                  "manager_trust": 4,
+                  "self_awareness": 4,
+                  "hms_safety": 3,
+                  "training_path": 4,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_precise_hygiene_summary"
+                ]
+              }
+            },
+            {
+              "id": "B",
+              "label": "Skrive at uka gikk fint og at rommene ble rene",
+              "reply": "Jeg skriver at uka gikk fint, at jeg begynner å få rutine, og at rommene ble rene.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Amina: “Rommene ble rene” kan bety mye. Neste uke bør du kunne si hva som gjorde dem rene.",
+              "effects": {
+                "stats": {
+                  "manager_pressure": -1,
+                  "stress": -1,
+                  "stagnation": 3,
+                  "future_risk": 3,
+                  "training_path": -1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_smooth_summary"
+                ]
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fokusere på at tidsplanen var problemet",
+              "reply": "Jeg skriver at flere rom trengte mer tid enn planen ga, og at tidsplanen skapte mye av presset.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Tidsplanen er en del av problemet, men jeg trenger også å se hvordan du prioriterer.",
+              "effects": {
+                "stats": {
+                  "system_awareness": 3,
+                  "self_awareness": -1,
+                  "manager_trust": -1,
+                  "conflict": 1,
+                  "stagnation": 2
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_blames_schedule"
+                ]
+              }
+            },
+            {
+              "id": "D",
+              "label": "Si at du trenger mer trening før selvstendig område",
+              "reply": "Jeg skriver at jeg forstår mer, men trenger mer trening på prioritering, midler og tempo før jeg tar et område alene.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Sissel: Mer selvstendig ansvar kommer når du vet både hva du kan og hva du må lære.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 5,
+                  "training_path": 5,
+                  "manager_trust": 3,
+                  "future_risk": -2,
+                  "stress": 1
+                }
+              },
+              "next_bias": {
+                "prefer_mail_types": [
+                  "job"
+                ],
+                "prefer_families": [
+                  "first_week_praksisfortellinger_renholder_job"
+                ],
+                "set_flags": [
+                  "renholder_week1_guided_training_needed"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_renholder_job",
+          "role_scope": "renholder",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amina",
+          "place_id": "lilleborg_fabrikker",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "stakes": "Konsekvensen gjør førsteukesvalget synlig uten å åpne en ny uke.",
+          "narrative_arc": "renholder_første_uke",
+          "learning_focus": [
+            "hygiene",
+            "berøringspunkter",
+            "romstandard",
+            "HMS",
+            "kjemikalier",
+            "tidspress",
+            "kropp",
+            "privat_grense"
+          ],
+          "id": "renholder_week1_touch_points_thread",
+          "subject": "Oppfølging: punktene folk faktisk tar på",
+          "summary": "Konsekvens av at spilleren prioriterte berøringspunkter første dag.",
+          "purpose": "Forsterke læringen om synlig rent og hygienisk rent.",
+          "situation": [
+            "Amina peker på håndtaket og bryteren som ikke lenger har fingermerker.",
+            "Hun sier at dette er forskjellen på et rom som bare ser klart ut og et rom som faktisk er klart for bruk."
+          ],
+          "task_domain": "oppfolging",
+          "competency": "refleksjon",
+          "pressure": "ettervalg",
+          "choice_axis": "konsekvens",
+          "consequence_axis": "læring",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta læringen videre",
+              "reply": "Jeg tar med berøringspunktene inn i neste rom.",
+              "effect": 1,
+              "tags": [
+                "praksisfortelling",
+                "renholder"
+              ],
+              "feedback": "Læringen blir en del av hvordan du leser rommet videre.",
+              "effects": {
+                "stats": {
+                  "self_awareness": 1,
+                  "hygiene_quality": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "soner_hygiene_og_prioritering",
       "purpose": "Grunnfamilie for renholder: soner, berøringspunkter, hygiene og prioritering under tidspress.",
       "learning_focus": [

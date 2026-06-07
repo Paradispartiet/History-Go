@@ -3,7 +3,7 @@
   "id": "renholder_naeringsliv_v1",
   "category": "naeringsliv",
   "role_scope": "renholder",
-  "description": "Grunnplan for Renholder i Næringsliv & industri: nøktern rolleopplæring om soner, hygiene, utstyr, kjemi, HMS, status og prioritering. Inneholder ikke Praksisfortellinger uke 1/uke 2 ennå.",
+  "description": "Praksisfortellinger og grunnplan for Renholder i Næringsliv & industri: første uke veksler mellom jobbmail og private konsekvenser om hygiene, romstandard, HMS, kropp og grenser.",
   "arc": {
     "from": "Ny renholder som først ser rommet som en liste med synlige flater.",
     "to": "Trygg renholder som prioriterer soner, berøringspunkter, HMS og verdighet under realistisk tidspress.",
@@ -20,80 +20,79 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
-      "step_goal": "Første rom: lære forskjellen på synlig rent og faktisk rent.",
+      "step_goal": "Jobbmail: Rommet som så rent ut",
       "allowed_families": [
-        "soner_hygiene_og_prioritering"
+        "first_week_praksisfortellinger_renholder_job"
       ],
       "fallback_types": []
     },
     {
       "step": 2,
-      "type": "job",
+      "type": "people",
       "phase": "intro",
-      "step_goal": "Berøringspunkter: dørhåndtak, bord, toalett, knapper og fellesflater.",
+      "step_goal": "Privat: Du begynner å se flekker hjemme",
       "allowed_families": [
-        "soner_hygiene_og_prioritering"
+        "first_week_praksisfortellinger_renholder_private"
       ],
       "fallback_types": []
     },
     {
       "step": 3,
       "type": "job",
-      "phase": "build",
-      "step_goal": "Tidspress: planen sier 12 minutter, men rommet trenger 20.",
+      "phase": "intro",
+      "step_goal": "Jobbmail: Berøringspunktene alle glemmer",
       "allowed_families": [
-        "soner_hygiene_og_prioritering"
+        "first_week_praksisfortellinger_renholder_job"
       ],
       "fallback_types": []
     },
     {
       "step": 4,
-      "type": "job",
-      "phase": "build",
-      "step_goal": "Kjemikalier og utstyr: riktig middel, riktig flate og riktig HMS.",
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Privat: Vennen som ikke vil bli kontrollert for hygiene",
       "allowed_families": [
-        "utstyr_kjemi_og_hms"
+        "first_week_praksisfortellinger_renholder_private"
       ],
       "fallback_types": []
     },
     {
       "step": 5,
-      "type": "people",
+      "type": "job",
       "phase": "build",
-      "step_goal": "Avbrutt arbeid: folk bruker rommet mens du renholder.",
+      "step_goal": "Jobbmail: Tolv minutter til et rom som trenger tjue",
       "allowed_families": [
-        "renhold_status_og_belastning"
+        "first_week_praksisfortellinger_renholder_job"
       ],
       "fallback_types": []
     },
     {
       "step": 6,
-      "type": "job",
+      "type": "people",
       "phase": "build",
-      "step_goal": "Avvik: søl, smuss, skade, lukt, manglende utstyr eller fare.",
+      "step_goal": "Privat: Du vasker for å få ro i hodet",
       "allowed_families": [
-        "soner_hygiene_og_prioritering",
-        "utstyr_kjemi_og_hms"
+        "first_week_praksisfortellinger_renholder_private"
       ],
       "fallback_types": []
     },
     {
       "step": 7,
-      "type": "people",
-      "phase": "reflection",
-      "step_goal": "Lav status: arbeid som bare merkes når det ikke gjøres.",
+      "type": "job",
+      "phase": "build",
+      "step_goal": "Jobbmail: Kjemikaliet på feil flate",
       "allowed_families": [
-        "renhold_status_og_belastning"
+        "first_week_praksisfortellinger_renholder_job"
       ],
       "fallback_types": []
     },
     {
       "step": 8,
       "type": "people",
-      "phase": "reflection",
-      "step_goal": "Kropp og belastning: tempo, stillinger, repetisjon og pauser.",
+      "phase": "build",
+      "step_goal": "Privat: Kroppen etter renhold",
       "allowed_families": [
-        "renhold_status_og_belastning"
+        "first_week_praksisfortellinger_renholder_private"
       ],
       "fallback_types": []
     },
@@ -101,22 +100,19 @@
       "step": 9,
       "type": "job",
       "phase": "mastery",
-      "step_goal": "Første selvstendige område: prioritere soner og kvalitet uten tett oppfølging.",
+      "step_goal": "Jobbmail: Første uke med usynlig arbeid",
       "allowed_families": [
-        "soner_hygiene_og_prioritering",
-        "utstyr_kjemi_og_hms"
+        "first_week_praksisfortellinger_renholder_job"
       ],
       "fallback_types": []
     },
     {
       "step": 10,
-      "type": "job",
-      "phase": "outcome",
-      "step_goal": "Rolleutfall: trygg renholder, overflatearbeider, usynlig sliter, HMS-bærer eller snarveisarbeider.",
+      "type": "people",
+      "phase": "mastery",
+      "step_goal": "Privat: Helgen uten renholdsblikk",
       "allowed_families": [
-        "soner_hygiene_og_prioritering",
-        "utstyr_kjemi_og_hms",
-        "renhold_status_og_belastning"
+        "first_week_praksisfortellinger_renholder_private"
       ],
       "fallback_types": []
     }
