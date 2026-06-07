@@ -3,7 +3,7 @@
   "id": "naeringsliv_lager_og_driftsmedarbeider_plan",
   "category": "naeringsliv",
   "role_scope": "lager_og_driftsmedarbeider",
-  "description": "Grunnplan for Lager- og driftsmedarbeider: mottak, vareflyt, plukk/pakk, avvik, telling, HMS og selvstendig drift uten Praksisfortellinger-uke ennå.",
+  "description": "Praksisfortellinger pakke 1 for Lager- og driftsmedarbeider: første uke mellom fysisk vareflyt, systemspor, plukk, lokasjon, HMS og private grenser.",
   "arc": {
     "from": "Ny i lager- og driftsrollen. Spilleren lærer at fysisk vareflyt og digital registrering må stemme før andre ledd kan stole på driften.",
     "to": "En trygg driftsmedarbeider som kan holde flyt, melde avvik, prioritere sikkerhet og forstå hvordan små lagerfeil blir store driftsfeil.",
@@ -19,101 +19,99 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
-      "step_goal": "Første mottak: forstå leveranse, kolli, følgeseddel og avvik.",
+      "step_goal": "Mandag jobb: mottaket som nesten stemte.",
       "allowed_families": [
-        "mottak_og_vareflyt"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
       ],
       "fallback_types": []
     },
     {
       "step": 2,
-      "type": "job",
+      "type": "people",
       "phase": "intro",
-      "step_goal": "Plukk og plassering: riktig vare, riktig hylle, riktig registrering.",
+      "step_goal": "Mandag privat: du teller posene hjemme.",
       "allowed_families": [
-        "plukk_pakk_og_avvik"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
       ],
       "fallback_types": []
     },
     {
       "step": 3,
       "type": "job",
-      "phase": "early",
-      "step_goal": "Tempo under press: når driften venter på varen.",
+      "phase": "intro",
+      "step_goal": "Tirsdag jobb: plukklisten som presset deg til å gjette.",
       "allowed_families": [
-        "mottak_og_vareflyt"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
       ],
       "fallback_types": []
     },
     {
       "step": 4,
-      "type": "job",
-      "phase": "early",
-      "step_goal": "Feilplukk: hvordan en liten feil flytter seg gjennom systemet.",
+      "type": "people",
+      "phase": "intro",
+      "step_goal": "Tirsdag privat: vennen som ikke vil ha hylleplass.",
       "allowed_families": [
-        "plukk_pakk_og_avvik"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
       ],
       "fallback_types": []
     },
     {
       "step": 5,
       "type": "job",
-      "phase": "early",
-      "step_goal": "Telling og differanse: fysisk virkelighet vs. systemtall.",
+      "phase": "intro",
+      "step_goal": "Onsdag jobb: varen på feil lokasjon.",
       "allowed_families": [
-        "mottak_og_vareflyt",
-        "plukk_pakk_og_avvik"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
       ],
       "fallback_types": []
     },
     {
       "step": 6,
       "type": "people",
-      "phase": "early",
-      "step_goal": "HMS og belastning: når raskt arbeid blir risikabelt.",
+      "phase": "intro",
+      "step_goal": "Onsdag privat: du begynner å flytte ting for flyt.",
       "allowed_families": [
-        "lager_team_og_belastning"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
       ],
       "fallback_types": []
     },
     {
       "step": 7,
       "type": "job",
-      "phase": "mid",
-      "step_goal": "Samarbeid med butikk, drift og transport: intern logistikk som relasjonelt arbeid.",
+      "phase": "intro",
+      "step_goal": "Torsdag jobb: pallen som stod i veien.",
       "allowed_families": [
-        "mottak_og_vareflyt"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
       ],
       "fallback_types": []
     },
     {
       "step": 8,
       "type": "people",
-      "phase": "mid",
-      "step_goal": "Avvikskultur: melde feil uten å gjøre det til skyld.",
+      "phase": "intro",
+      "step_goal": "Torsdag privat: kroppen etter lageret.",
       "allowed_families": [
-        "lager_team_og_belastning"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
       ],
       "fallback_types": []
     },
     {
       "step": 9,
       "type": "job",
-      "phase": "mastery",
-      "step_goal": "Første selvstendige driftsansvar: holde flyt uten tett oppfølging.",
+      "phase": "intro",
+      "step_goal": "Fredag jobb: første uke mellom lager og system.",
       "allowed_families": [
-        "mottak_og_vareflyt",
-        "plukk_pakk_og_avvik"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_job"
       ],
       "fallback_types": []
     },
     {
       "step": 10,
       "type": "people",
-      "phase": "mastery",
-      "step_goal": "Rolleutfall: trygg driftsmedarbeider, tempoarbeider, snarveisarbeider eller avviksbygger.",
+      "phase": "intro",
+      "step_goal": "Fredag privat: helgen uten paller.",
       "allowed_families": [
-        "lager_team_og_belastning"
+        "first_week_praksisfortellinger_lager_og_driftsmedarbeider_private"
       ],
       "fallback_types": []
     }
