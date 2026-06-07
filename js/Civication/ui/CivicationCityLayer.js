@@ -369,13 +369,17 @@
     const channelHint = CHANNEL_HINTS[String(loc.channel || "")] || "";
     const relatedSection = String(loc.relatedSection || "");
 
-    // Ekte brand-kafésted (fra CivicationSocialPlaceResolver): vis brandnavn +
-    // tilknyttet History Go-sted + fase + kort intro i stedet for generisk header.
+    // Ekte sosialt sted (fra CivicationSocialPlaceResolver): vis socialPlaceType-
+    // label, brandnavn (brand-place) eller ekte stednavn (place-only), tilknyttet
+    // History Go-sted + fase + kort intro i stedet for generisk header.
     const resolver = window.CivicationSocialPlaceResolver;
-    const isBrandPlace = resolver && typeof resolver.isBrandSocialPlace === "function" &&
-      resolver.isBrandSocialPlace(loc);
-    const headerHtml = isBrandPlace
-      ? resolver.buildBrandPlaceHeaderHtml(loc, _model.snapshotPhase)
+    const isSocialPlace = resolver &&
+      ((typeof resolver.isSocialPlace === "function" && resolver.isSocialPlace(loc)) ||
+       (typeof resolver.isBrandSocialPlace === "function" && resolver.isBrandSocialPlace(loc)));
+    const buildHeader = resolver &&
+      (resolver.buildSocialPlaceHeaderHtml || resolver.buildBrandPlaceHeaderHtml);
+    const headerHtml = (isSocialPlace && typeof buildHeader === "function")
+      ? buildHeader(loc, _model.snapshotPhase)
       : ('<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " Sted · " + esc(phaseLabel(loc.phase)) + "</div>" +
          "<h3>" + esc(loc.label || loc.id) + "</h3>" +
          '<p class="civi-city-detail-desc">' + esc(loc.description || "") + "</p>");
