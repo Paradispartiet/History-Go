@@ -338,7 +338,12 @@
     const friendName = norm(rr.friendName) || "vennen";
     const phase = normalizePhase(rr.phase);
     const locationId = norm(rr.locationId) || null;
-    const locationLabel = locationId ? resolveLocationLabel(locationId, ctx) : "";
+    // Ekte stedskobling (CivicationSocialPlaceResolver) når møtet kom fra et
+    // ekte sosialt sted: sourcePlaceId, brandId, socialPlaceType, placeLabel.
+    const sourcePlaceId = norm(rr.sourcePlaceId) || null;
+    const brandId = norm(rr.brandId) || null;
+    const socialPlaceType = norm(rr.socialPlaceType) || null;
+    const locationLabel = norm(rr.placeLabel) || (locationId ? resolveLocationLabel(locationId, ctx) : "");
     const threadId = resolveConversationThreadId(friendId);
     const conversationId = buildConversationId(friendId, phase, locationId);
 
@@ -361,6 +366,10 @@
       phase: phase,
       locationId: locationId,
       locationLabel: locationLabel || null,
+      // Ekte stedskobling (kan være null for generiske steder).
+      sourcePlaceId: sourcePlaceId,
+      brandId: brandId,
+      socialPlaceType: socialPlaceType,
       status: "open",
       statusLabel: getConversationStatusLabel("open"),
       turnIndex: 0,
@@ -445,6 +454,10 @@
       friendName: norm(conv.friendName),
       phase: normalizePhase(conv.phase),
       locationId: norm(conv.locationId) || null,
+      // Ekte stedskobling følger samtalevalget.
+      sourcePlaceId: norm(conv.sourcePlaceId) || null,
+      brandId: norm(conv.brandId) || null,
+      socialPlaceType: norm(conv.socialPlaceType) || null,
       baseRelationshipLevel: baseLevel
     };
     // «Foreslå å møtes her igjen» kan lage et senere sosialt hint knyttet til
@@ -494,6 +507,10 @@
       actionId: ORIGIN_ACTION_ID,
       phase: phase,
       locationId: locationId,
+      // Ekte stedskobling lagres i socialHistory (når relevant).
+      sourcePlaceId: norm(cr.sourcePlaceId) || null,
+      brandId: norm(cr.brandId) || null,
+      socialPlaceType: norm(cr.socialPlaceType) || null,
       relationshipDelta: delta.relationshipDelta,
       trustDelta: delta.trustDelta,
       familiarityDelta: delta.familiarityDelta,
@@ -571,6 +588,11 @@
       friendName: norm(conv.friendName),
       phase: normalizePhase(conv.phase),
       locationId: norm(conv.locationId) || null,
+      // Ekte stedskobling for personlige meldinger.
+      sourcePlaceId: norm(conv.sourcePlaceId) || null,
+      brandId: norm(conv.brandId) || null,
+      socialPlaceType: norm(conv.socialPlaceType) || null,
+      placeLabel: norm(conv.locationLabel) || null,
       actionId: ORIGIN_ACTION_ID,
       threadId: norm(conv.threadId) || resolveConversationThreadId(conv.friendId),
       conversationId: norm(conv.conversationId),

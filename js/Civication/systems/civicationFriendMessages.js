@@ -174,6 +174,11 @@
       phase: normalizePhase(model.phase || ar.phase),
       locationId: norm(model.locationId) || null,
       locationLabel: norm(model.locationLabel) || "",
+      // Ekte stedskobling (CivicationSocialPlaceResolver) når den finnes.
+      sourcePlaceId: norm(model.sourcePlaceId) || null,
+      brandId: norm(model.brandId) || null,
+      socialPlaceType: norm(model.socialPlaceType) || null,
+      placeLabel: norm(model.placeLabel) || "",
       actionId: norm(model.action || model.actionId || ar.action).toLowerCase()
     };
   }
@@ -250,6 +255,11 @@
       responseOptions: RESPONSE_OPTIONS.slice()
     };
     if (ctx.locationId) message.locationId = ctx.locationId;
+    // Ekte stedskobling følger med henvendelsen (samtale + relasjon kan bruke den).
+    if (ctx.sourcePlaceId) message.sourcePlaceId = ctx.sourcePlaceId;
+    if (ctx.brandId) message.brandId = ctx.brandId;
+    if (ctx.socialPlaceType) message.socialPlaceType = ctx.socialPlaceType;
+    if (ctx.placeLabel) message.placeLabel = ctx.placeLabel;
     return message;
   }
 
@@ -320,6 +330,11 @@
     if (Array.isArray(m.responseOptions) && m.responseOptions.length) {
       event.responseOptions = m.responseOptions.slice();
     }
+    // Ekte stedskobling følger med (CivicationSocialPlaceResolver).
+    if (norm(m.sourcePlaceId)) event.sourcePlaceId = norm(m.sourcePlaceId);
+    if (norm(m.brandId)) event.brandId = norm(m.brandId);
+    if (norm(m.socialPlaceType)) event.socialPlaceType = norm(m.socialPlaceType);
+    if (norm(m.placeLabel)) event.placeLabel = norm(m.placeLabel);
     return event;
   }
 
@@ -513,6 +528,11 @@
       friendName: norm(m.friendName) || "vennen",
       phase: normalizePhase(m.phase),
       locationId: norm(m.locationId) || null,
+      // Ekte stedskobling (CivicationSocialPlaceResolver) når den finnes.
+      sourcePlaceId: norm(m.sourcePlaceId) || null,
+      brandId: norm(m.brandId) || null,
+      socialPlaceType: norm(m.socialPlaceType) || null,
+      placeLabel: norm(m.placeLabel) || null,
       threadId: norm(m.threadId) || resolvePrivateThreadForFriend(m.friendId),
       actionId: norm(m.actionId || m.action).toLowerCase() || "approach",
       channel: norm(m.channel || m.type || m.mail_type).toLowerCase(),
@@ -575,6 +595,10 @@
       status: "open"
     };
     if (norm(rr.locationId)) followup.locationId = norm(rr.locationId);
+    if (norm(rr.sourcePlaceId)) followup.sourcePlaceId = norm(rr.sourcePlaceId);
+    if (norm(rr.brandId)) followup.brandId = norm(rr.brandId);
+    if (norm(rr.socialPlaceType)) followup.socialPlaceType = norm(rr.socialPlaceType);
+    if (norm(rr.placeLabel)) followup.placeLabel = norm(rr.placeLabel);
     return followup;
   }
 
@@ -623,6 +647,11 @@
       friendName: mctx.friendName,
       phase: mctx.phase,
       locationId: mctx.locationId,
+      // Ekte stedskobling følger svaret videre til samtale + relasjon.
+      sourcePlaceId: mctx.sourcePlaceId,
+      brandId: mctx.brandId,
+      socialPlaceType: mctx.socialPlaceType,
+      placeLabel: mctx.placeLabel,
       threadId: mctx.threadId,
       baseRelationshipLevel: baseLevel
     };

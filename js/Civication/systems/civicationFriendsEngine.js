@@ -839,6 +839,11 @@
       phaseLabel: snapshotPhaseLabel(ph),
       locationId: locationId,
       locationLabel: norm(loc.label) || locationId,
+      // Ekte stedskobling når stedet er et CivicationSocialPlaceResolver-sted.
+      sourcePlaceId: norm(loc.sourcePlaceId) || null,
+      brandId: norm(loc.brandId) || null,
+      socialPlaceType: norm(loc.socialPlaceType) || null,
+      placeLabel: norm(loc.placeLabel) || null,
       activity: norm(snap.activity),
       mood: norm(snap.mood),
       socialAvailability: availability,
@@ -1073,6 +1078,9 @@
     training: { state: "at_training", activity: "går på trening", socialAvailability: "open_to_contact" },
     culture: { state: "at_culture", activity: "går på kultursted", socialAvailability: "open_to_contact" },
     library: { state: "at_library", activity: "går på biblioteket", socialAvailability: "open_to_contact" },
+    // Ekte sosiale stedstyper fra CivicationSocialPlaceResolver (utvidet sett).
+    store_social: { state: "shopping", activity: "er innom en butikk", socialAvailability: "open_to_contact" },
+    city_walk: { state: "walking_in_city", activity: "er på byvandring", socialAvailability: "open_to_contact" },
     insight: { state: "reflecting", activity: "går i Psykologirommet", socialAvailability: "private" },
     job: { state: "at_work", activity: "går på jobbpause", socialAvailability: "busy" },
     store: { state: "shopping", activity: "stikker innom butikken", socialAvailability: "busy" },
@@ -1127,7 +1135,7 @@
       s.socialAvailability,
       visibleOnMap ? "open_to_contact" : "hidden"
     );
-    return {
+    const snap = {
       phase: ph,
       state,
       locationId: norm(s.locationId) || null,
@@ -1138,6 +1146,12 @@
       socialAvailability,
       channel: norm(s.channel)
     };
+    // Ekte stedskobling (CivicationSocialPlaceResolver) – kun når den finnes, så
+    // generiske snapshots beholder det opprinnelige formatet.
+    if (norm(s.sourcePlaceId)) snap.sourcePlaceId = norm(s.sourcePlaceId);
+    if (norm(s.brandId)) snap.brandId = norm(s.brandId);
+    if (norm(s.socialPlaceType)) snap.socialPlaceType = norm(s.socialPlaceType);
+    return snap;
   }
 
   // Bygger et player phase snapshot ut fra aktiv fase + spillerens nåværende
@@ -1176,7 +1190,11 @@
       updatedAtLabel: norm(o.updatedAtLabel) || def.updatedAtLabel,
       channel: norm(o.channel) || norm(loc.channel) || def.channel,
       socialAvailability: norm(o.socialAvailability) || profile.socialAvailability || def.socialAvailability,
-      visibleOnMap: typeof o.visibleOnMap === "boolean" ? o.visibleOnMap : true
+      visibleOnMap: typeof o.visibleOnMap === "boolean" ? o.visibleOnMap : true,
+      // Ekte stedskobling fra et CivicationSocialPlaceResolver-sted.
+      sourcePlaceId: norm(o.sourcePlaceId) || norm(loc.sourcePlaceId),
+      brandId: norm(o.brandId) || norm(loc.brandId),
+      socialPlaceType: norm(o.socialPlaceType) || norm(loc.socialPlaceType)
     });
   }
 
