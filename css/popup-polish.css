@@ -1,0 +1,311 @@
+/* ============================================================
+   POPUP POLISH
+   Visuell forbedring for stedspopup/personpopup og Stories.
+   Dette er kun presentasjon: Stories-systemet/dataformatet endres ikke.
+   ============================================================ */
+
+body.hg-app .hg-popup.place-popup,
+body.hg-app .hg-popup.person-popup{
+  background:
+    radial-gradient(circle at top left, rgba(246,200,0,0.10), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(25,118,210,0.12), transparent 38%),
+    rgba(3,7,14,0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.hg-app .hg-popup.place-popup .hg-popup-inner,
+body.hg-app .hg-popup.person-popup .hg-popup-inner{
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    linear-gradient(180deg, rgba(18,25,37,0.98), rgba(5,8,14,0.98));
+  box-shadow:
+    0 24px 70px rgba(0,0,0,0.58),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+body.hg-app .hg-popup.place-popup .hg-modal,
+body.hg-app .hg-popup.person-popup .hg-modal{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+body.hg-app .hg-popup.place-popup .hg-modal-header,
+body.hg-app .hg-popup.person-popup .hg-modal-header{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 22px 64px 14px 0;
+  background: linear-gradient(180deg, rgba(18,25,37,0.98), rgba(18,25,37,0.78));
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.hg-app .hg-popup.place-popup .hg-modal-title,
+body.hg-app .hg-popup.person-popup .hg-modal-title,
+body.hg-app .hg-popup.place-popup .hg-popup-title,
+body.hg-app .hg-popup.person-popup .hg-popup-name{
+  margin: 0;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.05;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+body.hg-app .hg-popup.place-popup .hg-modal-meta,
+body.hg-app .hg-popup.person-popup .hg-modal-meta,
+body.hg-app .hg-popup-place-cat,
+body.hg-app .hg-popup-cat{
+  margin: 8px 0 0;
+  color: rgba(255,255,255,0.68);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-popup.place-popup .hg-modal-body,
+body.hg-app .hg-popup.person-popup .hg-modal-body{
+  padding: 0 0 26px;
+}
+
+body.hg-app .hg-popup.place-popup .hg-section,
+body.hg-app .hg-popup.person-popup .hg-section{
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.045);
+}
+
+body.hg-app .hg-popup.place-popup .hg-section h3,
+body.hg-app .hg-popup.person-popup .hg-section h3{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: #f6c800;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 850;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-popup.place-popup .hg-section h3::before,
+body.hg-app .hg-popup.person-popup .hg-section h3::before{
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f6c800;
+  box-shadow: 0 0 14px rgba(246,200,0,0.55);
+}
+
+body.hg-app .hg-popup.place-popup .hg-popup-img,
+body.hg-app .hg-popup.person-popup .hg-popup-face,
+body.hg-app .hg-popup.person-popup .hg-popup-cardimg{
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.38);
+}
+
+body.hg-app .hg-popup.place-popup .hg-popup-img{
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+body.hg-app .hg-popup.person-popup .hg-popup-face{
+  width: 150px;
+  height: 150px;
+  border-radius: 24px;
+  margin: 0 0 14px;
+}
+
+body.hg-app .hg-popup.person-popup .hg-popup-cardimg{
+  opacity: .82;
+  border-radius: 18px;
+}
+
+body.hg-app .hg-popup.place-popup .hg-popupdesc,
+body.hg-app .hg-popup.person-popup .hg-wiki{
+  color: rgba(255,255,255,0.84);
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+body.hg-app .hg-popup.place-popup .hg-place,
+body.hg-app .hg-popup.person-popup .hg-place,
+body.hg-app .hg-popup.place-popup .hg-rel-link,
+body.hg-app .hg-popup.person-popup .hg-rel-link{
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.20);
+  color: #fff;
+}
+
+body.hg-app .hg-popup.place-popup .hg-place:hover,
+body.hg-app .hg-popup.person-popup .hg-place:hover,
+body.hg-app .hg-popup.place-popup .hg-rel-link:hover,
+body.hg-app .hg-popup.person-popup .hg-rel-link:hover{
+  background: rgba(246,200,0,0.10);
+  border-color: rgba(246,200,0,0.28);
+}
+
+body.hg-app .hg-popup.place-popup .hg-section-stories,
+body.hg-app .hg-popup.person-popup .hg-section-stories{
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+body.hg-app .hg-popup.place-popup .pc-stories-list,
+body.hg-app .hg-popup.person-popup .pc-stories-list{
+  display: grid;
+  gap: 12px;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story,
+body.hg-app .hg-popup.person-popup .pc-story{
+  position: relative;
+  overflow: hidden;
+  padding: 16px 16px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    linear-gradient(135deg, rgba(246,200,0,0.115), rgba(255,255,255,0.045) 42%, rgba(25,118,210,0.08));
+  box-shadow: 0 14px 30px rgba(0,0,0,0.24);
+}
+
+body.hg-app .hg-popup.place-popup .pc-story::before,
+body.hg-app .hg-popup.person-popup .pc-story::before{
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, #f6c800, rgba(246,200,0,0.16));
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-header,
+body.hg-app .hg-popup.person-popup .pc-story-header{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 8px;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-title,
+body.hg-app .hg-popup.person-popup .pc-story-title{
+  margin: 0;
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.22;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-year-badge,
+body.hg-app .hg-popup.person-popup .pc-story-year-badge{
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(246,200,0,0.16);
+  border: 1px solid rgba(246,200,0,0.28);
+  color: #ffe16a;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-lede,
+body.hg-app .hg-popup.person-popup .pc-story-lede{
+  margin: 0 0 8px;
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-body,
+body.hg-app .hg-popup.person-popup .pc-story-body{
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-related,
+body.hg-app .hg-popup.person-popup .pc-story-related,
+body.hg-app .hg-popup.place-popup .pc-story-tags,
+body.hg-app .hg-popup.person-popup .pc-story-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-chip,
+body.hg-app .hg-popup.person-popup .pc-story-chip,
+body.hg-app .hg-popup.place-popup .pc-story-tag,
+body.hg-app .hg-popup.person-popup .pc-story-tag{
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.22);
+  color: rgba(255,255,255,0.82);
+  padding: 5px 9px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-chip,
+body.hg-app .hg-popup.person-popup .pc-story-chip{
+  cursor: pointer;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-chip:hover,
+body.hg-app .hg-popup.person-popup .pc-story-chip:hover{
+  border-color: rgba(246,200,0,0.35);
+  color: #fff;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-sources,
+body.hg-app .hg-popup.person-popup .pc-story-sources{
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.58);
+  font-size: 12px;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-source,
+body.hg-app .hg-popup.person-popup .pc-story-source{
+  color: rgba(246,200,0,0.86);
+  text-decoration: none;
+}
+
+body.hg-app .hg-popup.place-popup .pc-story-source:hover,
+body.hg-app .hg-popup.person-popup .pc-story-source:hover{
+  text-decoration: underline;
+}
+
+@media (max-width: 720px){
+  body.hg-app .hg-popup.place-popup .hg-popup-inner,
+  body.hg-app .hg-popup.person-popup .hg-popup-inner{
+    width: calc(100vw - 18px);
+    max-height: calc(100dvh - 24px);
+    border-radius: 22px;
+  }
+
+  body.hg-app .hg-popup.place-popup .hg-modal-header,
+  body.hg-app .hg-popup.person-popup .hg-modal-header{
+    padding-top: 18px;
+  }
+
+  body.hg-app .hg-popup.place-popup .hg-section,
+  body.hg-app .hg-popup.person-popup .hg-section{
+    padding: 14px;
+    border-radius: 18px;
+  }
+}
