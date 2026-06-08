@@ -62,9 +62,12 @@ function hide(){
     el = document.getElementById("placeCard");
     if (!el) return;
 
-    // start collapsed
-    el.classList.add("is-collapsed");
+    // start skjult (ikke bare collapsed) slik at det tomme PlaceCard-skallet
+    // ikke synes før openPlaceCard() har fylt innhold.
+    el.classList.remove("is-open", "is-collapsed", "is-hidden");
+    el.classList.add("is-hidden");
     el.setAttribute("aria-hidden", "true");
+    state = STATES.HIDDEN;
   }
 
   window.bottomSheetController = {

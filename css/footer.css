@@ -73,9 +73,9 @@
 
 
 /* Liten rute-meny for footerens ruteikon */
-.app-footer{
-  position: relative;
-}
+/* MERK: footerens posisjon eies av layout.css (position: fixed; bottom: 0).
+   Ikke sett position på .app-footer her – fixed er også en positioned
+   containing block, så .pc-route-menu kan fortsatt være absolute. */
 
 .pc-route-menu{
   position: absolute;
