@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // finnes når MapView.openPlace()/AppRouter forsøker å åpne et sted.
     await safeRun("loadLayerManager", () => loadScriptOnce("js/core/layerManager.js"));
     await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
+    await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
 
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
