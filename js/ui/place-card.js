@@ -573,6 +573,13 @@ if (isNarrow) {
   setPcText(btnClose, tt("ui.quiz.close", "Lukk"));
 }
 
+if (btnClose) {
+  btnClose.textContent = "";
+  btnClose.setAttribute("aria-label", tt("ui.attr.minimize", "Minimer"));
+  btnClose.title = tt("ui.attr.minimize", "Minimer");
+  btnClose.classList.add("pc-iconbtn");
+}
+
 if (!card) return;
 
   // Smooth “skifte sted”

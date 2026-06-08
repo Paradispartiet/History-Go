@@ -46,26 +46,45 @@
 }
 
 /* Standard knappehøyder i footer */
-.app-actions button{
+.app-actions button,
+.app-actions .pc-action{
   height: 56px;
-  padding: 0 16px;
   border-radius: 999px;
   font-size: 15px;
+  font-weight: 800;
+  border: 1px solid rgba(255,255,255,.14);
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.app-actions .pc-action-text{
+  padding: 0 18px;
+  background: rgba(255,255,255,0.10);
+}
+
+.app-actions .pc-action-primary{
+  padding: 0 18px;
+  background: #147efb;
 }
 
 /* Ikonknapper */
 #pcRoute::before   { content:"🗺️"; font-size:22px; }
 #pcObserve::before { content:"👁️"; font-size:22px; }
 #pcNote::before    { content:"📝"; font-size:22px; }
+#pcClose::before   { content:"➜"; font-size:28px; font-weight:900; }
 
 #pcRoute,
 #pcObserve,
-#pcNote{
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+#pcNote,
+#pcClose{
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  padding: 0;
   font-size: 0;
   border-radius: 50%;
   background: rgba(255,255,255,0.08);
