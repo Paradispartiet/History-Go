@@ -311,6 +311,31 @@ body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-three-canvas{
   }
 }
 
+/* Innebygd nabolagsvelger.
+   Når #districtModal åpnes inni en seksjons-popup (civi-section-popup) skal den
+   oppføre seg som et panel i popupens innholdsområde – ikke som et eget fixed
+   overlegg som ender opp bak popupen. Popupens egen body håndterer scroll. */
+.civi-modal.is-embedded{
+  position:static;
+  inset:auto;
+  display:block;
+  z-index:auto;
+  background:transparent;
+}
+
+.civi-modal.is-embedded .civi-modal-content{
+  width:100%;
+  max-width:100%;
+  max-height:none;
+  overflow:visible;
+  padding:0;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+
 .district-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
