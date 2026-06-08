@@ -50,49 +50,58 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Kartforankring (Del B) – marker-posisjoner fra aktiv kartmotor
+  // Kartforankring (Del C) – marker-posisjoner fra DEN AKTIVE kartmotoren
   // ---------------------------------------------------------------------------
-  // Når CanvasMap er den aktive kartmotoren forankres markørene i kartets eget
-  // koordinatsystem via CanvasMap-projeksjonen (skjermpiksler som følger
-  // zoom/pan/resize), ikke som egne overlay-prosenter. Når 3D har tatt over
-  // eller SVG-fallback er aktiv, beholdes den trygge normaliserte prosent-
-  // plasseringen (se Del F).
-  function activeCanvasMap() {
+  // Markørene forankres i kartets eget koordinatsystem (skjermpiksler som følger
+  // zoom/pan/resize) via projeksjons-API-et til den kartmotoren spilleren faktisk
+  // ser. ThreeMap (3D) prøves først fordi den tar over når både Canvas og Three
+  // er aktivert; deretter CanvasMap. Normalisert prosent brukes KUN som fallback
+  // når ingen kartmotor er aktiv (SVG/ingen motor) – se resolveLocationAnchor.
+  function activeMapProjection() {
+    const tm = window.CivicationThreeMap;
+    if (tm && typeof tm.isActive === "function" && tm.isActive() &&
+        typeof tm.projectWorldToScreen === "function") {
+      return { type: "three", engine: tm };
+    }
+
     const cm = window.CivicationCanvasMap;
     if (cm && typeof cm.isActive === "function" && cm.isActive() &&
         typeof cm.projectWorldToScreen === "function") {
-      return cm;
+      return { type: "canvas", engine: cm };
     }
+
     return null;
   }
 
-  // Skjermpiksel-anker (px) for et sted via den aktive CanvasMap-projeksjonen.
+  // Skjermpiksel-anker (px) for et sted via den aktive kartmotorens projeksjon.
   // Prioritet (jf. oppgaven):
-  //   1) sourcePlaceId/brand_place -> projiser det ekte History Go-stedet.
+  //   1) sourcePlaceId/brand_place -> projiser det ekte History Go-stedet
+  //      (kun når motoren har projectPlaceToScreen; ThreeMap har det ikke ennå).
   //   2) eksplisitt normalisert loc.position -> projectWorldToScreen.
   //   3) mapZone -> bydelssenter -> projectWorldToScreen.
   //   4) ingen anker -> null (gjetter aldri).
   function projectLocationToScreen(loc) {
-    const cm = activeCanvasMap();
-    if (!cm || !loc) return null;
+    const proj = activeMapProjection();
+    if (!proj || !loc) return null;
+    const engine = proj.engine;
 
     // 1) Ekte sosialt sted: prøv å forankre via dets ekte History Go-place.
     const sourcePlaceId = loc.sourcePlaceId || (loc.raw && loc.raw.sourcePlaceId);
-    if (sourcePlaceId && typeof cm.projectPlaceToScreen === "function") {
-      const s = cm.projectPlaceToScreen(sourcePlaceId);
+    if (sourcePlaceId && typeof engine.projectPlaceToScreen === "function") {
+      const s = engine.projectPlaceToScreen(sourcePlaceId);
       if (s && Number.isFinite(s.x) && Number.isFinite(s.y)) return { x: s.x, y: s.y };
     }
 
     // 2) Eksplisitt normalisert world-koordinat.
     if (loc.position && typeof loc.position.x === "number" && typeof loc.position.y === "number") {
-      const s = cm.projectWorldToScreen(loc.position.x, loc.position.y);
+      const s = engine.projectWorldToScreen(loc.position.x, loc.position.y);
       if (s && Number.isFinite(s.x) && Number.isFinite(s.y)) return { x: s.x, y: s.y };
     }
 
     // 3) mapZone -> bydelssenter som world-koordinat.
     const center = districtCenter(loc.mapZone);
     if (center) {
-      const s = cm.projectWorldToScreen(center.x, center.y);
+      const s = engine.projectWorldToScreen(center.x, center.y);
       if (s && Number.isFinite(s.x) && Number.isFinite(s.y)) return { x: s.x, y: s.y };
     }
 
@@ -100,11 +109,12 @@
     return null;
   }
 
-  // Anker-deskriptor: skjermpiksler når CanvasMap er aktiv, ellers normalisert
-  // fallback. null = CanvasMap aktiv, men stedet kunne ikke forankres (skjules).
+  // Anker-deskriptor: skjermpiksler når en kartmotor er aktiv, ellers normalisert
+  // fallback. null = en kartmotor er aktiv, men stedet kunne ikke forankres
+  // (skjules – Del E: bedre å skjule enn å la ikonet flyte feil i 3D).
   function resolveLocationAnchor(loc) {
     if (!loc) return null;
-    if (activeCanvasMap()) {
+    if (activeMapProjection()) {
       const screen = projectLocationToScreen(loc);
       if (screen) return { mode: "screen", x: screen.x, y: screen.y };
       return null;
@@ -133,8 +143,9 @@
     const anchor = resolveLocationAnchor(loc);
 
     if (!anchor) {
-      // Regel 5: CanvasMap er aktiv, men stedet har ingen kartanker -> ikke vis
-      // markøren som kartfestet (ingen tilfeldig midt-plassering).
+      // Del E: en kartmotor er aktiv, men stedet har ingen kartanker -> ikke vis
+      // markøren som kartfestet (ingen tilfeldig midt-plassering). Bedre å skjule
+      // i 3D enn å la ikonet flyte feil.
       el.classList.add("is-unanchored");
       el.hidden = true;
       return;
@@ -174,13 +185,20 @@
   function bindMapTransformEvents() {
     if (_mapEventsBound) return;
     _mapEventsBound = true;
+    // Re-projiser (ikke full render) når den aktive kartmotoren transformeres.
     const onChange = () => refreshMarkerPositions();
+    window.addEventListener("civi:threeMapTransformChanged", onChange);
     window.addEventListener("civi:canvasMapTransformChanged", onChange);
+    window.addEventListener("civi:mapRendered", onChange);
     window.addEventListener("resize", onChange);
     window.addEventListener("orientationchange", () => setTimeout(onChange, 140));
     const cm = window.CivicationCanvasMap;
     if (cm && typeof cm.onTransformChanged === "function") {
       try { cm.onTransformChanged(onChange); } catch (_e) { /* CanvasMap ennå ikke lastet */ }
+    }
+    const tm = window.CivicationThreeMap;
+    if (tm && typeof tm.onTransformChanged === "function") {
+      try { tm.onTransformChanged(onChange); } catch (_e) { /* ThreeMap ennå ikke lastet */ }
     }
   }
 
