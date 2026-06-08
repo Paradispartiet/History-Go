@@ -2506,6 +2506,102 @@
     camera.lookAt(panX, 0, panZ);
     camera.updateProjectionMatrix();
     dirty = true;
+    // Del B: zoom/pan/resize gikk alle gjennom updateCamera -> varsle kartlag
+    // (CivicationCityLayer) så HTML-markører kan re-projiseres mot 3D-kameraet.
+    scheduleTransformEmit();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Del A – stabilt projeksjons-API (speiler CivicationCanvasMap der relevant)
+  // ---------------------------------------------------------------------------
+  // Lar andre kartlag (f.eks. CivicationCityLayer) projisere normaliserte
+  // Civication world-koordinater (0–1) til skjermpiksler via NØYAKTIG samme
+  // kamera/zoom/pan/resize-state som 3D-kartet selv tegner med. Rent lese-API –
+  // endrer ikke rendering. Returnerer null når 3D ikke er aktivt eller punktet
+  // ikke kan projiseres trygt (gjetter aldri).
+
+  function getTransformState() {
+    return { zoom, panX, panZ, width: W, height: H };
+  }
+
+  function getViewportSize() {
+    return { width: W, height: H };
+  }
+
+  // Normalisert Civication world-koordinat (0–1) -> skjermpiksel relativt til
+  // #civiMapWorld / renderer. Bruker 3D-kameraets projeksjon (vector.project).
+  function projectWorldToScreen(nx, ny) {
+    if (!active) return null;
+    if (!THREE || !camera || !renderer) return null;
+    if (!W || !H) return null;
+    const x = Number(nx), y = Number(ny);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+
+    // Civication-normalisert -> Three world (XZ-bakkeplan), litt over bakken.
+    const worldX = nx2x(x);
+    const worldZ = ny2z(y);
+    const worldY = GROUND_Y + 0.08;
+
+    let v;
+    try {
+      v = new THREE.Vector3(worldX, worldY, worldZ);
+      v.project(camera);
+    } catch (_e) {
+      return null;
+    }
+    if (!v || !Number.isFinite(v.x) || !Number.isFinite(v.y)) return null;
+    // Utenfor trygt NDC-dybdespenn (bak kamera / klippet) -> ikke projiser.
+    if (Number.isFinite(v.z) && Math.abs(v.z) > 1.5) return null;
+
+    const screenX = (v.x + 1) / 2 * W;
+    const screenY = (-v.y + 1) / 2 * H;
+    if (!Number.isFinite(screenX) || !Number.isFinite(screenY)) return null;
+    return { x: screenX, y: screenY };
+  }
+
+  // World-koordinatene er allerede normaliserte 0–1, så normalisert == world.
+  const projectNormalizedToScreen = projectWorldToScreen;
+
+  // ---------------------------------------------------------------------------
+  // Del B – transform-event (zoom/pan/resize) med rAF-coalescing
+  // ---------------------------------------------------------------------------
+  const transformListeners = new Set();
+  let transformEmitQueued = false;
+
+  function onTransformChanged(callback) {
+    if (typeof callback === "function") transformListeners.add(callback);
+  }
+  function offTransformChanged(callback) {
+    transformListeners.delete(callback);
+  }
+
+  function notifyTransformChanged() {
+    const detail = getTransformState();
+    transformListeners.forEach((cb) => { try { cb(detail); } catch (_e) { /* lytter feilet */ } });
+    try {
+      window.dispatchEvent(new CustomEvent("civi:threeMapTransformChanged", { detail }));
+    } catch (_e) { /* CustomEvent utilgjengelig */ }
+  }
+  function scheduleTransformEmit() {
+    if (transformEmitQueued) return;
+    transformEmitQueued = true;
+    requestAnimationFrame(() => { transformEmitQueued = false; notifyTransformChanged(); });
+  }
+
+  // Kun for headless tester: injiser kamera/THREE/viewport/aktiv-state uten
+  // WebGL, slik at projeksjons-API-et og transform-eventet kan dekkes i node.
+  function setStateForTesting(s) {
+    const o = s && typeof s === "object" ? s : {};
+    if (o.THREE) THREE = o.THREE;
+    if (o.camera) camera = o.camera;
+    if (o.renderer) renderer = o.renderer;
+    if (Number.isFinite(o.W)) W = o.W;
+    if (Number.isFinite(o.H)) H = o.H;
+    if (Number.isFinite(o.zoom)) zoom = o.zoom;
+    if (Number.isFinite(o.panX)) panX = o.panX;
+    if (Number.isFinite(o.panZ)) panZ = o.panZ;
+    if (typeof o.active === "boolean") active = o.active;
+    return getTransformState();
   }
 
   function resize() {
@@ -2806,6 +2902,14 @@
     zoomIn,
     zoomOut,
     getZoom,
+    // Del A/B – stabilt projeksjons- og transform-API (speiler CanvasMap).
+    projectWorldToScreen,
+    projectNormalizedToScreen,
+    getTransformState,
+    getViewportSize,
+    onTransformChanged,
+    offTransformChanged,
+    setStateForTesting,
     getHitTargets: () => hitTargets.slice(),
     getProjectionDebug,
     getSceneStats,
