@@ -557,6 +557,13 @@ window.setNearbyCollapsed = function (hidden) {
 // ============================================================
 
 window.initLeftPanel = initLeftPanel;
-window.initPlaceCardCollapse = initPlaceCardCollapse;
+
+// initPlaceCardCollapse defineres og eksponeres i js/ui/place-card.js.
+// Les ikke en bar top-level binding her – hvis place-card.js ikke er lastet
+// før left-panel.js vil det kaste ReferenceError ("Script error. 0 0") og
+// hindre at resten av expose-blokken kjører. Bruk trygg globalThis-oppslag.
+if (typeof globalThis.initPlaceCardCollapse === "function") {
+  window.initPlaceCardCollapse = globalThis.initPlaceCardCollapse;
+}
 window.rerenderActiveLeftPanelMode = rerenderActiveLeftPanelMode;
 window.renderActiveLeftPanelModeNow = renderActiveLeftPanelModeNow;
