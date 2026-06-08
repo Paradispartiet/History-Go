@@ -815,6 +815,12 @@
   function closePopup() {
     const modal = document.getElementById("civiSectionPopup");
 
+    // Hvis nabolagsvelgeren var innebygd i popupen, lukk og flytt den tilbake
+    // til verdenslaget slik at den ikke blir liggende igjen som skjult innhold.
+    if (modal && modal.querySelector("#districtModal")) {
+      window.closeDistrictSelector?.();
+    }
+
     if (activeModalSection && activeModalBody) {
       activeModalBody.classList.remove("is-in-popup");
       activeModalSection.appendChild(activeModalBody);

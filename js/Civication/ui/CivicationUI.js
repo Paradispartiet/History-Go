@@ -793,24 +793,52 @@ function openDistrictSelector() {
     if (canBuy) {
       card.querySelector("button").onclick = () => {
         window.CivicationHome.purchaseDistrict(district.id);
-        modal.style.display = "none";
+        closeDistrictSelector();
       };
     }
 
     list.appendChild(card);
   });
 
-  modal.style.display = "flex";
+  // Når nabolagsvelgeren åpnes mens en seksjons-popup er aktiv, skal listen
+  // vises som et innebygd panel inni popupen. Ellers havner #districtModal bak
+  // popupen, fordi popupen ligger i en høyere stacking-context (z-index 10000)
+  // enn kart-/verdenslaget der #districtModal hører hjemme.
+  const popup = document.getElementById("civiSectionPopup");
+  const popupBody = document.getElementById("civiSectionPopupBody");
+  const embed = !!(popup && popup.classList.contains("is-open") && popupBody);
+
+  if (embed) {
+    if (modal.parentElement !== popupBody) popupBody.appendChild(modal);
+    modal.classList.add("is-embedded");
+    modal.style.display = "";            // .is-embedded styrer visningen via CSS
+    modal.scrollIntoView({ block: "nearest" });
+  } else {
+    modal.classList.remove("is-embedded");
+    modal.style.display = "flex";
+  }
+}
+
+function closeDistrictSelector() {
+  const modal = document.getElementById("districtModal");
+  if (!modal) return;
+
+  modal.style.display = "none";
+  modal.classList.remove("is-embedded");
+
+  // Flytt panelet tilbake til verdenslaget slik at DOM-strukturen er konsistent
+  // uavhengig av om det var innebygd i en popup eller vist som eget overlegg.
+  const world = document.querySelector(".civi-world");
+  if (world && modal.parentElement !== world) world.appendChild(modal);
 }
 
 // Viktig hvis knappen kaller openDistrictSelector() uten scope (inline onclick o.l.)
 window.openDistrictSelector = openDistrictSelector;
+window.closeDistrictSelector = closeDistrictSelector;
 
 // Close-knapp
 document.getElementById("closeDistrictModal")
-  ?.addEventListener("click", () => {
-    document.getElementById("districtModal").style.display = "none";
-  });
+  ?.addEventListener("click", closeDistrictSelector);
 
 
 /**
