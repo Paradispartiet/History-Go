@@ -31,7 +31,7 @@
     console.error(e.error && e.error.stack);
   });
 </script>
-  
+   
   <!-- CSS -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
@@ -55,6 +55,7 @@
   <link rel="stylesheet" href="css/people.css">
   <link rel="stylesheet" href="css/onboarding.css">
   <link rel="stylesheet" href="css/popups.css">
+  <link rel="stylesheet" href="css/popup-polish.css">
 
   <!-- Console CSS -->
   <link rel="stylesheet" href="js/console/console.css">
@@ -72,7 +73,7 @@
 <header class="site-header">
 
   <img class="hg-brand" src="bilder/logo_historygo.PNG" alt="History GO">
-  
+   
   <div class="top-actions">
 
     <select id="languageSelect" class="top-lang-select" aria-label="Language" title="Språk" data-hg-i18n-aria-label="ui.attr.language" data-hg-i18n-title="ui.language.label" style="max-width:120px; font-size:1.15rem; padding:4px 8px;">
@@ -123,7 +124,7 @@
             data-hg-i18n-title="ui.nav.readingTracks">
       📚
     </button>
-  
+   
     <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus" data-hg-i18n-aria-label="ui.attr.mapMode" data-hg-i18n-title="ui.attr.mapMode" data-i18n="ui.map.show">Se kart</button>
 
     <input id="globalSearch" type="search" placeholder="Søk…" data-hg-i18n-placeholder="ui.attr.search" autocomplete="off">
@@ -131,7 +132,7 @@
     <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus" data-hg-i18n-title="ui.attr.positionStatus">…</span>
 
     <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all" data-hg-i18n-aria-label="ui.attr.unlockAll" data-hg-i18n-title="ui.attr.unlockAll">🔓</button>
-      
+       
     <label class="toggle">
       <input id="openToggle" type="checkbox" />
       <span></span>
@@ -183,435 +184,38 @@
                   type="button">Merker</button>
 
         </div>
-
-        <select id="leftPanelMode"
-                class="leftpanel-select"
-                aria-label="Velg visning"
-                data-hg-i18n-aria-label="ui.attr.chooseView"
-                style="display:none">
-          <option value="nearby" selected data-i18n="ui.static.nearest">Nærmeste</option>
-          <option value="people" data-i18n="ui.tabs.people">Folk</option>
-          <option value="nature" data-i18n="ui.tabs.nature">Natur</option>
-          <option value="routes" data-i18n="ui.tabs.routes">Ruter</option>
-          <option value="badges" data-i18n="ui.tabs.badges">Merker</option>
-        </select>
-
-      </div>
-    </div>
-
-    <div class="leftpanel-body">
-      <section id="panelNearby" class="leftpanel-view">
-        <div id="status" class="muted" style="display:none" data-i18n="ui.position.loading">Henter posisjon…</div>
-        <div class="nearby-row2">
-          <div id="nearbyList" class="nearby-strip"></div>
-        </div>
-      </section>
-
-      <section id="panelPeople" class="leftpanel-view" style="display:none;">
-        <div class="nearby-row2">
-          <div id="leftPeopleList" class="nearby-strip"></div>
-        </div>
-      </section>
-
-      <section id="panelNature" class="leftpanel-view" style="display:none;">
-        <div class="nearby-row2">
-          <div id="leftNatureList" class="nearby-strip"></div>
-        </div>
-      </section>
-
-      <section id="panelRoutes" class="leftpanel-view" style="display:none;">
-        <div id="leftRoutesList" class="leftpanel-list"></div>
-      </section>
-
-      <section id="panelBadges" class="leftpanel-view" style="display:none;">
-        <div id="leftBadgesList" class="leftpanel-list"></div>
-      </section>
-
-    </div>
-  </div>
-
-
-
-
-  <!-- APP SHELL -->
-  <div class="app-shell">
-
-  <!-- KART -->
-  <div class="map-controls">
-    <button id="btnCenter" title="Sentrer" data-hg-i18n-title="ui.attr.center">⌖</button>
-    <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart" data-hg-i18n-title="ui.attr.closeMap" data-hg-i18n-aria-label="ui.attr.closeMap">✕</button>
-  </div>
-
-<!-- PLACE CARD -->
-<div id="placeCard" aria-hidden="true">
-
-  <button id="pcCollapseBtn"
-          class="pc-collapse-btn"
-          aria-label="Minimer" data-hg-i18n-aria-label="ui.attr.minimize">▾</button>
-
-  <div class="pc-body">
-
-    <!-- Tekst øverst -->
-    <div class="pc-text">
-      <h2 id="pcTitle"></h2>
-      <div id="pcMeta" class="pc-meta"></div>
-      <p id="pcDesc" class="pc-desc"></p>
-    </div>
-    
-  <!-- 2x2 Grid -->
-  <div class="pc-grid">
-
-    <!-- 1: FrontcardImage -->
-    <div class="pc-frontcard" id="pcFrontCardFlip" role="button" tabindex="0" aria-label="Vis quizkort" data-hg-i18n-aria-label="ui.attr.showQuizCard">
-      <div class="pc-card-flip-inner">
-        <div class="pc-card-face pc-card-face-front">
-          <img id="pcFrontImage" src="" alt="">
-        </div>
-        <div class="pc-card-face pc-card-face-back">
-          <img id="pcQuizCardImage" src="" alt="">
-        </div>
-      </div>
-    </div>
-
-    <!-- 3: Ikon-kvadrat + På stedet -->
-    <div class="pc-side-stack">
-      <div class="pc-quad pc-icons-quad">
-        <div id="pcPeopleIcon" class="pc-round"></div>
-        <div id="pcNatureIcon" class="pc-round"></div>
-        <div id="pcBadgesIcon" class="pc-round"></div>
-
-        <div id="pcCivicationStoreIcon" class="pc-round"></div>
-
-        <div id="pcBrandsIcon" class="pc-round"></div>
-        <div id="pcLeksikonIcon" class="pc-round"></div>
       </div>
 
-      <!-- 4: På stedet -->
-      <div class="pc-quad pc-events-quad" id="pcEventsBox" aria-label="Det som skjer her" data-hg-i18n-aria-label="ui.attr.onSite">
-        <div class="pc-events-head">
-          <span class="pc-events-title" data-i18n="ui.static.onSite">På stedet</span>
-          <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til" data-hg-i18n-aria-label="ui.attr.add">＋</button>
-        </div>
+      <div class="nearby-row2">
+        <div id="leftPeopleList" class="nearby-strip" hidden></div>
+        <div id="nearbyList" class="nearby-strip"></div>
       </div>
-    </div>
 
-  </div>
-    <div id="pcLesespor"></div>
-    <div id="pcPeopleList"></div>
-    <div id="pcNatureList"></div>
-    <div id="pcBadgesList"></div>
-
-    <div id="pcCivicationStoreList"></div>
-
-    <div id="pcBrandsList"></div>
-    <div id="pcLeksikonList"></div>
-   </div>
- </div>
-
-
-<div id="mpNextUp" class="app-nextup"></div>
-
-  <!-- Toast -->
-  <div id="toast"></div>
-
-  <!-- USYNLIGE DATA-CONTAINERE -->
-  <div id="collectionGrid" style="display:none"></div>
-  <div id="collectionCount" style="display:none"></div>
-  <div id="gallery" style="display:none"></div>
-
-  <!-- Badge-modal -->
-  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-    <div class="modal-content">
-      <img class="badge-img" src="" alt="Merke" data-hg-i18n-alt="ui.attr.badge">
-      <h3 class="badge-title"></h3>
-      <p class="badge-level"></p>
-      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
-      <p class="badge-progress-text"></p>
-      <ul class="badge-quizzes"></ul>
-      <button class="close-btn" data-i18n="ui.quiz.close">Lukk</button>
     </div>
   </div>
 
-  </div>
-  <!-- /APP SHELL -->
+  <!-- MAIN APP -->
+  <main>
+    <section id="panel" class="panel hidden"></section>
+  </main>
 
-<!-- GLOBAL FOOTER -->
-<div class="app-footer">
+  <!-- FOOTER -->
+  <footer class="site-footer" aria-label="Status og spillvalg">
+    <div class="footer-section footer-stats">
+      <span id="footerPlaces" class="footer-pill">0 steder</span>
+      <span id="footerQuiz" class="footer-pill">0 quiz</span>
+      <span id="footerBadges" class="footer-pill">0 merker</span>
+    </div>
 
-  <!-- 🔹 MINI PLACE CARD -->
-<div id="pcMini" class="pc-mini" aria-hidden="true">
-  <img id="pcMiniImg" alt="">
-  <div class="pc-mini-openbar">
-    <button
-      id="pcExpandBtn"
-      class="pc-collapse-btn pc-expand-btn"
-      aria-label="Åpne"
-      data-hg-i18n-aria-label="ui.attr.open"
-      type="button"
-    >▴</button>
-  </div>
-</div>
+    <div class="footer-section footer-tabs" role="tablist" aria-label="Modus">
+      <button class="footer-tab is-active" data-mode="discover" type="button">Utforsk</button>
+      <button class="footer-tab" data-mode="routes" type="button">Ruter</button>
+      <button class="footer-tab" data-mode="badges" type="button">Merker</button>
+      <button class="footer-tab" data-mode="profile" type="button">Profil</button>
+    </div>
+  </footer>
 
-  <!-- 🔹 ACTIONS -->
-  <div class="app-actions">
-    <button id="pcInfo" class="secondary" data-i18n="ui.place.moreInfo">Mer info</button>
-    <button id="pcQuiz" class="primary" data-i18n="ui.place.takeQuiz">Ta quiz</button>
-    <button id="pcUnlock" class="primary" data-i18n="ui.place.unlock">Lås opp</button>
-
-    <button id="pcRoute" class="iconbtn" aria-label="Rute" data-hg-i18n-aria-label="ui.place.route"></button>
-    <button id="pcObserve" class="iconbtn" aria-label="Observer" data-hg-i18n-aria-label="ui.place.observe"></button>
-    <button id="pcNote" class="iconbtn" aria-label="Notat" data-hg-i18n-aria-label="ui.place.note"></button>
-  </div>
-
-</div>
-
-  <!-- SERVICE WORKER -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        const base = location.pathname.replace(/\/[^\/]*$/, "/");
-        navigator.serviceWorker.register(base + "sw.js");
-      });
-    }
-  </script>
-
-
-  
-  <!-- MapLibre JS: MÅ før map.js -->
-<link
-  href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"
-  rel="stylesheet"
-/>
-
-<script
-  src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"
-  crossorigin="anonymous">
-</script>
-
-<script>
-  window.addEventListener("error", (e) => {
-    console.log("[GLOBAL ERROR]", {
-      message: e.message,
-      filename: e.filename,
-      lineno: e.lineno,
-      colno: e.colno
-    });
-  });
-
-  window.addEventListener("unhandledrejection", (e) => {
-    console.log("[UNHANDLED REJECTION]", e.reason);
-  });
-
-</script>
-
-<!-- ======================================================
-     EKSTERNE / STØTTE
-====================================================== -->
-<script src="js/i18n.js"></script>
-<script src="js/events/events_loader.js"></script>
-<script src="js/brands/brands_loader.js"></script>
-<script src="js/emnerLoader.js"></script>
-
-<script src="js/ui/popup-utils.js"></script>
-<script src="js/ui/place-card.js?v=20260524-underbadge-precision-pass"></script>
-<script src="js/hgchips.js" defer></script>
-
-<script src="js/learningLog.js"></script>
-<script src="js/aha.js"></script>
-<script src="js/profileIdentity.js"></script>
-<script src="js/knowledge.js"></script>
-<script src="js/knowledge_component.js"></script>
-<script src="js/trivia.js"></script>
-<script src="js/hgInsights.js"></script>
-<script src="js/dataHub.js"></script>
-<script src="js/epoker-runtime.js"></script>
-<script src="js/time-resolver.js"></script>
-
-<script src="js/DomainRegistry.js"></script>
-<script src="js/fagHealthReport.js"></script>
-<script src="js/courses.js"></script>
-<script src="js/hgKnowledgeEngine.js"></script>
-<script src="js/domainHealthReport.js"></script>
-
-<!-- ======================================================
-     DEV / CONSOLE
-====================================================== -->
-<script src="js/console/init.js"></script>
-<script src="js/console/verify.js"></script>
-<script src="js/console/diagnosticConsole.js"></script>
-<script src="js/console/devConsole.js"></script>
-<script src="js/console/legacyExtensions.js"></script>
-
-<script src="js/audits/missingImages.audit.js"></script>
-<script src="js/audits/wonderkammer.audit.js"></script>
-
-<!-- ======================================================
-     OBSERVATIONS
-====================================================== -->
-<script src="js/observations.js"></script>
-<script src="js/observationsView.js"></script>
-
-<!-- ======================================================
-     CORE (ingen DOM, ingen side-effekter)
-====================================================== -->
-<script src="js/core/placeIdAliases.js"></script>
-<script src="js/state/state.js"></script>
-<script src="js/state/persistence.js"></script>
-<script src="js/state/openmode.js"></script>
-<script src="js/core/core.js"></script>
-<script src="js/core/categories.js"></script>
-
-<script src="js/core/knowledgeLearningState.js"></script>
-<script src="js/core/learningEvents.js"></script>
-
-<script src="js/core/viewportManager.js"></script>
-<script src="js/core/layerManager.js"></script>
-<script src="js/core/bottomSheetController.js"></script>
-
-<script src="js/ui/geo-indicator.js"></script>
-
-<!-- ======================================================
-     GEO / MAP
-====================================================== -->
-<script src="js/core/geo.js"></script>
-<script src="js/core/pos.js"></script>
-<script src="js/map.js"></script>
-
-<script src="js/orsConfig.js"></script>
-<script src="js/navRoutes.js"></script>
-
-<!-- ======================================================
-     GAME / PROGRESSION
-====================================================== -->
-<script src="js/hg_unlocks.js"></script>
-<script src="js/hg_nature_unlocks.js"></script>
-<script src="js/quizzes.js"></script>
-<script src="js/quiz-audit.js"></script>
-
-<!-- ======================================================
-     UI – DOM + INTERAKSJON
-====================================================== -->
-<script src="js/ui/dom.js"></script>
-<script src="js/ui/toast.js"></script>
-<script src="js/ui/wonderkammer-entry.js"></script>
-
-<script src="js/ui/events.js"></script>
-<script src="js/ui/interactions.js"></script>
-<script src="js/ui/lists.js?v=20260524-nearby-time-sort-v2"></script>
-
-<script src="js/ui/left-panel.js?v=20260524-nearby-time-sort-v1"></script>
-<script src="js/ui/badges.js"></script>
-<script src="js/ui/badge-modal.js"></script>
-<script src="js/ui/mini-profile.js"></script>
-<script src="js/ui/nature-card.js"></script>
-<script src="js/ui/nature-unlock-toast.js"></script>
-<script src="js/ui/person-place-unlock-toast.js"></script>
-<script src="js/ui/badge-unlock-toast.js"></script>
-<script src="js/ui/onboarding-welcome.js"></script>
-
-
-<!-- ======================================================
-     CIVICATION
-====================================================== -->
-
-<script src="js/Civication/core/civicationState.js"></script>
-<script src="js/Civication/tiersCivi.js"></script>
-<script src="js/Civication/core/civicationJobs.js"></script>
-<script src="js/Civication/ui/CivicationBadge.js"></script>
-
-<script src="js/Civication/core/civicationEconomyEngine.js"></script>
-<script src="js/Civication/civicationObligationEngine.js"></script>
-<script src="js/Civication/core/civicationEventEngine.js"></script>
-
-<script src="js/Civication/capitalEngine.js"></script>
-<script src="js/Civication/capitalMaintenanceEngine.js"></script>
-
-<script src="js/Civication/identityCore.js"></script>
-<script src="js/Civication/identityCompass.js"></script>
-<script src="js/Civication/identityEngine.js"></script>
-
-<script src="js/Civication/civiLifestyle.js"></script>
-<script src="js/Civication/civicationCommercial.js"></script>
-
-<script src="js/Civication/core/CivicationPsyche.js"></script>
-<script src="js/Civication/ui/CivicationHome.js"></script>
-<script src="js/Civication/ui/CivicationPublicLayer.js"></script>
-<script src="js/Civication/ui/CivicationMap.js"></script>
-<script src="js/Civication/ui/CivicationUI.js"></script>
-<script src="js/Civication/merits-and-jobs.js"></script>
-  
-<!-- ======================================================
-     STORIES
-====================================================== -->
-<script src="js/stories/stories_loader.js"></script>
-<script src="js/stories/stories_utils.js"></script>
-<script src="js/stories/story_source_collector.js"></script>
-<script src="js/stories/story_episode_extractor.js"></script>
-<script src="js/stories/story_scoring.js"></script>
-<script src="js/stories/story_dedupe.js"></script>
-<script src="js/stories/story_generator_engine.js"></script>
-<script src="js/stories/story_quiz_generator.js"></script>
-<script src="js/stories/story_graph_engine.js"></script>
-  
-  
-<!-- ======================================================
-     BOOT (kobler alt)
-====================================================== -->
-<script src="js/boot.js"></script>
-
-<!-- ======================================================
-     APP – SIST, ALLTID
-====================================================== -->
-<script src="js/app.js"></script>
-<script src="js/onboarding/onboardingEngine.js"></script>
-
-  
-  <script>
-    // Tving linkBadges til å være kun tall (app.js kan skrive "12 merker")
-  (function(){
-    const el = document.getElementById("linkBadges");
-    if(!el) return;
-
-    function normalize(){
-      const txt = (el.textContent || "").trim();
-      const m = txt.match(/\d+/);
-      el.textContent = m ? m[0] : "0";
-    }
-
-    // run now + hold it stable hvis app.js endrer igjen
-    normalize();
-    const obs = new MutationObserver(normalize);
-    obs.observe(el, { childList:true, characterData:true, subtree:true });
-  })();
-</script>
-
-<script>
-
-
-  function setGeo(status) {
-    const el = document.getElementById("geoStatus");
-    if (!el) return;
-
-    el.classList.remove("geo-ok","geo-bad","geo-unknown");
-
-    if (status === "granted" || status === "test") {
-      el.classList.add("geo-ok"); el.textContent = "📍";
-    } else if (status === "blocked" || status === "unsupported") {
-      el.classList.add("geo-bad"); el.textContent = "⛔";
-    } else {
-      el.classList.add("geo-unknown"); el.textContent = "…";
-    }
-  }
-
-  window.addEventListener("hg:geo", (e) => {
-    const st = e?.detail?.status || "unknown";
-    setGeo(st);
-  });
-
-
-</script>
-
-
-<script src="js/routes.js"></script>
+  <!-- App scripts -->
+  <script type="module" src="./js/app.js"></script>
 </body>
 </html>
