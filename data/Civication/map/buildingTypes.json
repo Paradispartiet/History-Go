@@ -103,6 +103,924 @@
       ],
       "scale": "medium_large",
       "mapFunction": "learning_and_reflection_place"
+    },
+    "building_commercial_street_axis": {
+      "id": "building_commercial_street_axis",
+      "label": "Kommersiell byakse",
+      "usedForCategories": [
+        "commerce",
+        "social",
+        "nightlife"
+      ],
+      "visualElements": [
+        "continuous_storefronts",
+        "neon_signs",
+        "sidewalk_crowd",
+        "narrow_street_axis"
+      ],
+      "scale": "route",
+      "mapFunction": "commercial_street_life"
+    },
+    "building_retro_infrastructure_node": {
+      "id": "building_retro_infrastructure_node",
+      "label": "Revet trafikkmaskin (minne)",
+      "usedForCategories": [
+        "infrastructure",
+        "memory",
+        "mobility"
+      ],
+      "visualElements": [
+        "ghosted_concrete_ramps",
+        "historical_road_overlay",
+        "memory_marker",
+        "transformed_ground_level"
+      ],
+      "scale": "large",
+      "mapFunction": "historic_memory_place"
+    },
+    "building_market_bazaar": {
+      "id": "building_market_bazaar",
+      "label": "Basar / flerkulturelt marked",
+      "usedForCategories": [
+        "commerce",
+        "social",
+        "everyday_life"
+      ],
+      "visualElements": [
+        "bazaar_arches",
+        "market_stalls",
+        "hanging_goods",
+        "mixed_crowd"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "social_meeting_point"
+    },
+    "building_national_street_axis": {
+      "id": "building_national_street_axis",
+      "label": "Nasjonal paradegate",
+      "usedForCategories": [
+        "ceremony",
+        "public_life",
+        "tourism"
+      ],
+      "visualElements": [
+        "wide_boulevard",
+        "flag_rows",
+        "grand_facades",
+        "ceremonial_crowd"
+      ],
+      "scale": "route",
+      "mapFunction": "ceremonial_public_axis"
+    },
+    "building_civic_square": {
+      "id": "building_civic_square",
+      "label": "Bytorg for arrangement",
+      "usedForCategories": [
+        "civic_system",
+        "event",
+        "public_space"
+      ],
+      "visualElements": [
+        "open_paved_square",
+        "event_stage",
+        "flagpoles",
+        "fjord_edge"
+      ],
+      "scale": "large",
+      "mapFunction": "public_square"
+    },
+    "building_waterfront_transformation_district": {
+      "id": "building_waterfront_transformation_district",
+      "label": "Fjordby i transformasjon",
+      "usedForCategories": [
+        "transformation",
+        "waterfront",
+        "culture"
+      ],
+      "visualElements": [
+        "waterfront_promenade",
+        "new_highrises",
+        "cultural_buildings",
+        "harbor_pools"
+      ],
+      "scale": "district",
+      "mapFunction": "transformation_district"
+    },
+    "building_road_infrastructure_ring": {
+      "id": "building_road_infrastructure_ring",
+      "label": "Ringvei (mobilitetsbarriere)",
+      "usedForCategories": [
+        "infrastructure",
+        "mobility",
+        "barrier"
+      ],
+      "visualElements": [
+        "multilane_road",
+        "overpasses",
+        "noise_barriers",
+        "traffic_flow"
+      ],
+      "scale": "route",
+      "mapFunction": "mobility_node"
+    },
+    "building_tram_line_route": {
+      "id": "building_tram_line_route",
+      "label": "Trikkelinje",
+      "usedForCategories": [
+        "mobility",
+        "commuting",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "tram_tracks",
+        "overhead_wires",
+        "tram_stop",
+        "moving_tram"
+      ],
+      "scale": "route",
+      "mapFunction": "mobility_node"
+    },
+    "building_active_street_corner": {
+      "id": "building_active_street_corner",
+      "label": "Aktivt gatehjørne",
+      "usedForCategories": [
+        "social",
+        "commerce",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "corner_cafe",
+        "storefront_windows",
+        "sidewalk_tables",
+        "lingering_pedestrians"
+      ],
+      "scale": "small",
+      "mapFunction": "social_meeting_point"
+    },
+    "building_neighborhood_square": {
+      "id": "building_neighborhood_square",
+      "label": "Nabolagstorg",
+      "usedForCategories": [
+        "social",
+        "public_space",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "paved_square",
+        "benches",
+        "kiosk",
+        "gathered_people"
+      ],
+      "scale": "medium",
+      "mapFunction": "social_meeting_point"
+    },
+    "building_intersection_pressure_hub": {
+      "id": "building_intersection_pressure_hub",
+      "label": "Trafikkert kryss",
+      "usedForCategories": [
+        "mobility",
+        "friction",
+        "commuting"
+      ],
+      "visualElements": [
+        "multi_road_junction",
+        "traffic_lights",
+        "tram_tracks",
+        "crossing_crowds"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "mobility_node"
+    },
+    "building_urban_hill_park": {
+      "id": "building_urban_hill_park",
+      "label": "Byås-park",
+      "usedForCategories": [
+        "nature",
+        "recreation",
+        "social"
+      ],
+      "visualElements": [
+        "grassy_hill",
+        "winding_paths",
+        "viewpoint",
+        "scattered_trees"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_central_station": {
+      "id": "building_central_station",
+      "label": "Sentralstasjon",
+      "usedForCategories": [
+        "mobility",
+        "commuting",
+        "social"
+      ],
+      "visualElements": [
+        "large_station_hall",
+        "platforms",
+        "departure_boards",
+        "travel_crowd"
+      ],
+      "scale": "large",
+      "mapFunction": "mobility_node"
+    },
+    "building_hidden_energy_infrastructure": {
+      "id": "building_hidden_energy_infrastructure",
+      "label": "Skjult energianlegg",
+      "usedForCategories": [
+        "infrastructure",
+        "technology",
+        "sustainability"
+      ],
+      "visualElements": [
+        "technical_facade",
+        "exposed_pipes",
+        "machinery_glimpse",
+        "info_panel"
+      ],
+      "scale": "medium",
+      "mapFunction": "hidden_infrastructure_place"
+    },
+    "building_commercial_waterfront": {
+      "id": "building_commercial_waterfront",
+      "label": "Kommersiell brygge",
+      "usedForCategories": [
+        "commerce",
+        "waterfront",
+        "food"
+      ],
+      "visualElements": [
+        "waterfront_promenade",
+        "restaurant_terraces",
+        "boardwalk",
+        "moored_boats"
+      ],
+      "scale": "district",
+      "mapFunction": "waterfront_life_place"
+    },
+    "building_public_symbol_object": {
+      "id": "building_public_symbol_object",
+      "label": "Bysymbol / møtestatue",
+      "usedForCategories": [
+        "social",
+        "symbol",
+        "tourism"
+      ],
+      "visualElements": [
+        "bronze_sculpture",
+        "pedestal",
+        "meeting_crowd",
+        "photo_takers"
+      ],
+      "scale": "small",
+      "mapFunction": "social_meeting_point"
+    },
+    "building_church_landmark": {
+      "id": "building_church_landmark",
+      "label": "Kirke-landemerke",
+      "usedForCategories": [
+        "institution",
+        "religion",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "church_tower",
+        "brick_facade",
+        "churchyard",
+        "entrance_steps"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "institutional_place"
+    },
+    "building_church_hill_landmark": {
+      "id": "building_church_hill_landmark",
+      "label": "Kirke på høyde (landemerke)",
+      "usedForCategories": [
+        "institution",
+        "orientation",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "hilltop_church",
+        "tall_spire",
+        "surrounding_wooden_houses",
+        "churchyard_trees"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "institutional_place"
+    },
+    "building_multicultural_commercial_street": {
+      "id": "building_multicultural_commercial_street",
+      "label": "Flerkulturell handlegate",
+      "usedForCategories": [
+        "commerce",
+        "social",
+        "everyday_life"
+      ],
+      "visualElements": [
+        "small_shops",
+        "ethnic_grocers",
+        "varied_signage",
+        "mixed_crowd"
+      ],
+      "scale": "route",
+      "mapFunction": "commercial_street_life"
+    },
+    "building_tram_commercial_street": {
+      "id": "building_tram_commercial_street",
+      "label": "Handle- og trikkegate",
+      "usedForCategories": [
+        "commerce",
+        "mobility",
+        "everyday_life"
+      ],
+      "visualElements": [
+        "tram_tracks",
+        "shopfronts",
+        "tram_stop",
+        "busy_sidewalk"
+      ],
+      "scale": "route",
+      "mapFunction": "commercial_street_life"
+    },
+    "building_garden_city_residential_area": {
+      "id": "building_garden_city_residential_area",
+      "label": "Hageby (boligområde)",
+      "usedForCategories": [
+        "housing",
+        "neighborhood",
+        "planning"
+      ],
+      "visualElements": [
+        "low_brick_houses",
+        "garden_hedges",
+        "tree_lined_streets",
+        "shared_greens"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_modernist_housing_area": {
+      "id": "building_modernist_housing_area",
+      "label": "Drabantby (modernistisk)",
+      "usedForCategories": [
+        "housing",
+        "neighborhood",
+        "planning"
+      ],
+      "visualElements": [
+        "concrete_blocks",
+        "terrain_following_buildings",
+        "green_spaces",
+        "pedestrian_paths"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_historic_wooden_housing_area": {
+      "id": "building_historic_wooden_housing_area",
+      "label": "Trehusbebyggelse (historisk)",
+      "usedForCategories": [
+        "housing",
+        "history",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "small_wooden_houses",
+        "narrow_streets",
+        "picket_fences",
+        "flower_gardens"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_historic_eastside_neighborhood": {
+      "id": "building_historic_eastside_neighborhood",
+      "label": "Østkant-nabolag (historisk)",
+      "usedForCategories": [
+        "housing",
+        "identity",
+        "history"
+      ],
+      "visualElements": [
+        "wooden_houses",
+        "hilltop_church",
+        "narrow_streets",
+        "local_pub"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_westside_villa_neighborhood": {
+      "id": "building_westside_villa_neighborhood",
+      "label": "Vestkant-villastrøk",
+      "usedForCategories": [
+        "housing",
+        "class",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "detached_villas",
+        "large_gardens",
+        "quiet_streets",
+        "mature_trees"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_spacious_westside_housing_mix": {
+      "id": "building_spacious_westside_housing_mix",
+      "label": "Romslig vestkant-boligområde",
+      "usedForCategories": [
+        "housing",
+        "neighborhood",
+        "class"
+      ],
+      "visualElements": [
+        "mixed_housing_types",
+        "green_gardens",
+        "low_density_streets",
+        "hillside_views"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_seasonal_public_micro_square": {
+      "id": "building_seasonal_public_micro_square",
+      "label": "Sesongtorg i sentrum",
+      "usedForCategories": [
+        "social",
+        "event",
+        "public_space"
+      ],
+      "visualElements": [
+        "sunken_basin",
+        "ice_rink_or_pool",
+        "surrounding_benches",
+        "seasonal_market_stalls"
+      ],
+      "scale": "medium",
+      "mapFunction": "public_square"
+    },
+    "building_historic_culture_square": {
+      "id": "building_historic_culture_square",
+      "label": "Historisk kulturplass",
+      "usedForCategories": [
+        "culture",
+        "history",
+        "public_space"
+      ],
+      "visualElements": [
+        "cobblestone_square",
+        "monumental_facades",
+        "museum_entrance",
+        "central_trees"
+      ],
+      "scale": "medium",
+      "mapFunction": "historic_memory_place"
+    },
+    "building_historic_foundation_square": {
+      "id": "building_historic_foundation_square",
+      "label": "Byens grunnleggingsplass",
+      "usedForCategories": [
+        "history",
+        "culture",
+        "public_space"
+      ],
+      "visualElements": [
+        "cobblestone_square",
+        "glove_fountain",
+        "historic_buildings",
+        "outdoor_seating"
+      ],
+      "scale": "medium",
+      "mapFunction": "historic_memory_place"
+    },
+    "building_representative_royal_park": {
+      "id": "building_representative_royal_park",
+      "label": "Slottspark",
+      "usedForCategories": [
+        "nature",
+        "recreation",
+        "symbol"
+      ],
+      "visualElements": [
+        "palace_backdrop",
+        "gravel_paths",
+        "open_lawns",
+        "mature_trees"
+      ],
+      "scale": "large",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_small_institution_adjacent_park": {
+      "id": "building_small_institution_adjacent_park",
+      "label": "Liten institusjonspark",
+      "usedForCategories": [
+        "nature",
+        "neighborhood",
+        "children"
+      ],
+      "visualElements": [
+        "small_lawn",
+        "playground",
+        "benches",
+        "institution_wall_backdrop"
+      ],
+      "scale": "small",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_urban_ridge_park": {
+      "id": "building_urban_ridge_park",
+      "label": "Bykolle-park",
+      "usedForCategories": [
+        "nature",
+        "recreation",
+        "history"
+      ],
+      "visualElements": [
+        "rocky_ridge",
+        "winding_paths",
+        "viewpoint",
+        "old_trees"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_postindustrial_knowledge_district": {
+      "id": "building_postindustrial_knowledge_district",
+      "label": "Kunnskapsbydel (tidl. industri)",
+      "usedForCategories": [
+        "work",
+        "education",
+        "transformation"
+      ],
+      "visualElements": [
+        "converted_factories",
+        "office_blocks",
+        "river_edge",
+        "campus_buildings"
+      ],
+      "scale": "district",
+      "mapFunction": "transformation_district"
+    },
+    "building_luxury_waterfront_culture_district": {
+      "id": "building_luxury_waterfront_culture_district",
+      "label": "Eksklusiv kulturbrygge",
+      "usedForCategories": [
+        "culture",
+        "waterfront",
+        "real_estate"
+      ],
+      "visualElements": [
+        "modern_apartments",
+        "art_museum",
+        "marina",
+        "waterfront_promenade"
+      ],
+      "scale": "district",
+      "mapFunction": "waterfront_life_place"
+    },
+    "building_bathing_waterfront_residential_area": {
+      "id": "building_bathing_waterfront_residential_area",
+      "label": "Badeby ved fjorden",
+      "usedForCategories": [
+        "waterfront",
+        "recreation",
+        "housing"
+      ],
+      "visualElements": [
+        "sea_pool",
+        "wooden_decks",
+        "apartment_rows",
+        "swimmers"
+      ],
+      "scale": "district",
+      "mapFunction": "waterfront_life_place"
+    },
+    "building_metro_exchange_station": {
+      "id": "building_metro_exchange_station",
+      "label": "T-banestasjon (knutepunkt)",
+      "usedForCategories": [
+        "mobility",
+        "commuting",
+        "social"
+      ],
+      "visualElements": [
+        "station_platforms",
+        "line_signs",
+        "escalators",
+        "waiting_crowd"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "mobility_node"
+    },
+    "building_underground_central_exchange_station": {
+      "id": "building_underground_central_exchange_station",
+      "label": "Underjordisk knutepunktstasjon",
+      "usedForCategories": [
+        "mobility",
+        "commuting",
+        "social"
+      ],
+      "visualElements": [
+        "underground_platforms",
+        "tunnel_mouths",
+        "escalators",
+        "departure_boards"
+      ],
+      "scale": "large",
+      "mapFunction": "mobility_node"
+    },
+    "building_stadium_driven_mixed_district": {
+      "id": "building_stadium_driven_mixed_district",
+      "label": "Stadionnabolag",
+      "usedForCategories": [
+        "sport",
+        "groundhopper",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "stadium_curve",
+        "floodlights",
+        "surrounding_apartments",
+        "local_shops"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "sport_memory_place"
+    },
+    "building_neighborhood_public_square": {
+      "id": "building_neighborhood_public_square",
+      "label": "Nabolagsplass",
+      "usedForCategories": [
+        "social",
+        "public_space",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "square_with_trees",
+        "fountain",
+        "cafe_terraces",
+        "benches"
+      ],
+      "scale": "medium",
+      "mapFunction": "public_square"
+    },
+    "building_dense_neighborhood_park": {
+      "id": "building_dense_neighborhood_park",
+      "label": "Bypark i tett strøk",
+      "usedForCategories": [
+        "nature",
+        "neighborhood",
+        "children"
+      ],
+      "visualElements": [
+        "tree_rows",
+        "central_lawn",
+        "bandstand",
+        "benches"
+      ],
+      "scale": "medium",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_river_industrial_memory_axis": {
+      "id": "building_river_industrial_memory_axis",
+      "label": "Elveakse med industriminne",
+      "usedForCategories": [
+        "nature",
+        "recreation",
+        "history"
+      ],
+      "visualElements": [
+        "river_course",
+        "waterfalls",
+        "old_factory_buildings",
+        "riverside_path"
+      ],
+      "scale": "route",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_academic_civic_square": {
+      "id": "building_academic_civic_square",
+      "label": "Universitetsplass",
+      "usedForCategories": [
+        "knowledge",
+        "public_space",
+        "civic_system"
+      ],
+      "visualElements": [
+        "neoclassical_facades",
+        "open_square",
+        "statues",
+        "student_groups"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "public_square"
+    },
+    "building_walkable_cultural_icon": {
+      "id": "building_walkable_cultural_icon",
+      "label": "Gåbart kulturbygg",
+      "usedForCategories": [
+        "culture",
+        "tourism",
+        "waterfront"
+      ],
+      "visualElements": [
+        "sloping_marble_roof",
+        "glass_facade",
+        "fjord_edge",
+        "roof_walkers"
+      ],
+      "scale": "large",
+      "mapFunction": "cultural_landmark_place"
+    },
+    "building_public_library_knowledge_house": {
+      "id": "building_public_library_knowledge_house",
+      "label": "Folkebibliotek (kunnskapshus)",
+      "usedForCategories": [
+        "knowledge",
+        "public_space",
+        "social"
+      ],
+      "visualElements": [
+        "large_glass_facade",
+        "cantilevered_floors",
+        "reading_areas",
+        "public_interior"
+      ],
+      "scale": "large",
+      "mapFunction": "learning_and_reflection_place"
+    },
+    "building_highrise_business_row": {
+      "id": "building_highrise_business_row",
+      "label": "Høyhusrekke (næring)",
+      "usedForCategories": [
+        "work",
+        "real_estate",
+        "urban_form"
+      ],
+      "visualElements": [
+        "narrow_highrises",
+        "varied_facades",
+        "gaps_between_towers",
+        "street_level_shops"
+      ],
+      "scale": "district",
+      "mapFunction": "transformation_district"
+    },
+    "building_axial_sculpture_park": {
+      "id": "building_axial_sculpture_park",
+      "label": "Skulpturpark",
+      "usedForCategories": [
+        "nature",
+        "culture",
+        "tourism"
+      ],
+      "visualElements": [
+        "central_axis",
+        "bronze_sculptures",
+        "monolith",
+        "fountains"
+      ],
+      "scale": "large",
+      "mapFunction": "urban_nature_place"
+    },
+    "building_historic_farm_fragment": {
+      "id": "building_historic_farm_fragment",
+      "label": "Historisk gårdsfragment",
+      "usedForCategories": [
+        "history",
+        "culture",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "old_timber_buildings",
+        "cobbled_courtyard",
+        "garden_plot",
+        "wooden_gate"
+      ],
+      "scale": "small",
+      "mapFunction": "historic_memory_place"
+    },
+    "building_eastside_transport_square": {
+      "id": "building_eastside_transport_square",
+      "label": "Østkant-trafikkplass",
+      "usedForCategories": [
+        "mobility",
+        "friction",
+        "commuting"
+      ],
+      "visualElements": [
+        "roundabout",
+        "tram_tracks",
+        "bus_stops",
+        "crossing_pedestrians"
+      ],
+      "scale": "medium_large",
+      "mapFunction": "mobility_node"
+    },
+    "building_institutional_city_quarter": {
+      "id": "building_institutional_city_quarter",
+      "label": "Institusjonskvartal",
+      "usedForCategories": [
+        "education",
+        "culture",
+        "work"
+      ],
+      "visualElements": [
+        "institutional_buildings",
+        "mixed_facades",
+        "busy_street_edge",
+        "plaza"
+      ],
+      "scale": "district",
+      "mapFunction": "institutional_place"
+    },
+    "building_transformation_transport_business_node": {
+      "id": "building_transformation_transport_business_node",
+      "label": "Transformasjonsknutepunkt",
+      "usedForCategories": [
+        "transformation",
+        "transport",
+        "business"
+      ],
+      "visualElements": [
+        "construction_sites",
+        "new_buildings",
+        "ring_road_junction",
+        "warehouse_remnants"
+      ],
+      "scale": "district",
+      "mapFunction": "transformation_district"
+    },
+    "building_westside_business_transport_corridor": {
+      "id": "building_westside_business_transport_corridor",
+      "label": "Vestkant-næringskorridor",
+      "usedForCategories": [
+        "work",
+        "mobility",
+        "business"
+      ],
+      "visualElements": [
+        "office_blocks",
+        "train_station",
+        "busy_through_road",
+        "glass_facades"
+      ],
+      "scale": "district",
+      "mapFunction": "business_transport_node"
+    },
+    "building_inner_city_neighborhood_area": {
+      "id": "building_inner_city_neighborhood_area",
+      "label": "Indre by-nabolag",
+      "usedForCategories": [
+        "housing",
+        "neighborhood",
+        "everyday_life"
+      ],
+      "visualElements": [
+        "apartment_blocks",
+        "local_high_street",
+        "neighborhood_park",
+        "courtyards"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
+    },
+    "building_outer_city_district_center": {
+      "id": "building_outer_city_district_center",
+      "label": "Ytre by-bydelssenter",
+      "usedForCategories": [
+        "housing",
+        "shopping",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "shopping_center",
+        "metro_station",
+        "housing_blocks",
+        "valley_backdrop"
+      ],
+      "scale": "district",
+      "mapFunction": "district_center_place"
+    },
+    "building_worker_history_inner_north_area": {
+      "id": "building_worker_history_inner_north_area",
+      "label": "Arbeiderhistorisk nabolag",
+      "usedForCategories": [
+        "housing",
+        "history",
+        "neighborhood"
+      ],
+      "visualElements": [
+        "brick_apartment_blocks",
+        "old_factory_buildings",
+        "riverside_path",
+        "workers_monument"
+      ],
+      "scale": "district",
+      "mapFunction": "residential_area"
     }
   }
 }
