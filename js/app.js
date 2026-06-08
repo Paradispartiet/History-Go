@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadMapView", () => loadScriptOnce("js/views/MapView.js"));
     await safeRun("loadAppRouter", () => loadScriptOnce("js/router/AppRouter.js"));
 
+    // PlaceCard-runtime: kjernen (LayerManager + bottomSheetController) før selve
+    // place-card.js, slik at window.openPlaceCard og init-hookene i bootCritical
+    // (initPlaceCardCollapse/LayerManager.init/bottomSheetController.init) finnes.
+    await safeRun("loadLayerManager", () => loadScriptOnce("js/core/layerManager.js"));
+    await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
+    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
+
     // Critical boot gjør bare index brukbar: kart + places_index + markører.
     // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
     await safeRun("bootCritical", window.bootCritical || window.boot);
