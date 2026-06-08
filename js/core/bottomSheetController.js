@@ -62,9 +62,10 @@ function hide(){
     el = document.getElementById("placeCard");
     if (!el) return;
 
-    // start collapsed
-    el.classList.add("is-collapsed");
+    el.classList.remove("is-open", "is-collapsed", "is-hidden");
+    el.classList.add("is-hidden");
     el.setAttribute("aria-hidden", "true");
+    state = STATES.HIDDEN;
   }
 
   window.bottomSheetController = {
