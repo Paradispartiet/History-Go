@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));
     await safeRun("loadGeo", () => loadScriptOnce("js/core/geo.js"));
     await safeRun("loadPos", () => loadScriptOnce("js/core/pos.js"));
+    await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadMap", () => loadScriptOnce("js/map.js"));
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
     await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));

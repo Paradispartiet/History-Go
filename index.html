@@ -271,17 +271,14 @@
 
   <!-- FOOTER -->
   <footer class="site-footer app-footer" aria-label="Status og spillvalg">
-    <div class="footer-section footer-stats">
-      <span id="footerPlaces" class="footer-pill">0 steder</span>
-      <span id="footerQuiz" class="footer-pill">0 quiz</span>
-      <span id="footerBadges" class="footer-pill">0 merker</span>
+    <div id="pcMini" class="pc-mini" aria-hidden="true">
+      <img id="pcMiniImg" src="" alt="">
     </div>
 
-    <div class="footer-section footer-tabs" role="tablist" aria-label="Modus">
-      <button class="footer-tab is-active" data-mode="discover" type="button">Utforsk</button>
-      <button class="footer-tab" data-mode="routes" type="button">Ruter</button>
-      <button class="footer-tab" data-mode="badges" type="button">Merker</button>
-      <button class="footer-tab" data-mode="profile" type="button">Profil</button>
+    <div class="app-actions" aria-label="Stedshandlinger">
+      <button id="pcRoute" type="button" aria-label="Rute" title="Rute"></button>
+      <button id="pcObserve" type="button" aria-label="Observer" title="Observer"></button>
+      <button id="pcNote" type="button" aria-label="Notat" title="Notat"></button>
     </div>
   </footer>
 
