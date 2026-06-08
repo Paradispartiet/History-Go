@@ -7,6 +7,10 @@
 
   <script src="js/config.js"></script>
 
+  <!-- MapLibre GL JS: MÅ lastes før js/map.js brukes (pinned versjon, ikke "latest"). -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" />
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js" crossorigin="anonymous"></script>
+
   <script>
   window.__lastRejection = null;
   window.addEventListener("unhandledrejection", (e) => {

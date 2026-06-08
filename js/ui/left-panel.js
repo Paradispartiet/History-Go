@@ -338,8 +338,11 @@ function initLeftPanel() {
   window.__HG_LEFT_PANEL_INIT_DONE__ = true;
 
   const panel = hg$("nearbyListContainer");
-  const sel   = /** @type {HTMLSelectElement} */ (hg$("leftPanelMode"));
-  if (!panel || !sel) return;
+  if (!panel) return;
+
+  // #leftPanelMode er valgfri bakoverkompatibilitet. Den faktiske UI-kilden er
+  // .nearby-tab[data-leftmode]. Index trenger ikke et skjult select for å virke.
+  const sel = /** @type {HTMLSelectElement|null} */ (hg$("leftPanelMode"));
 
     window.HG_NEARBY_FILTER =
       localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
@@ -355,20 +358,23 @@ function initLeftPanel() {
   let saved = null;
   try { saved = localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
 
-  const mode = saved || sel.value || "nearby";
-  sel.value = mode;
-  
+  // Lagret modus → ellers aktiv tab → ellers "nearby".
+  const mode = saved || hgActiveLeftPanelMode() || "nearby";
+  if (sel) sel.value = mode;
+
   setLeftPanelMode(mode);
 
-  // dropdown (skjult state-holder)
-  sel.addEventListener("change", () => setLeftPanelMode(sel.value));
+  // Valgfri skjult dropdown (kun bakoverkompatibilitet hvis elementet finnes).
+  if (sel) {
+    sel.addEventListener("change", () => setLeftPanelMode(sel.value));
+  }
 
-  // tabs
+  // tabs – faktisk UI-kilde
   document.querySelectorAll(".nearby-tab").forEach(btn => {
     btn.addEventListener("click", () => {
       const m = btn.getAttribute("data-leftmode") || "nearby";
-      sel.value = m;
-      sel.dispatchEvent(new Event("change", { bubbles: true }));
+      if (sel) sel.value = m;
+      setLeftPanelMode(m);
     });
   });
 
