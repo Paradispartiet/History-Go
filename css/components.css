@@ -112,6 +112,16 @@ button{ cursor:pointer; border:none }
   font-size: 16px;
 }
 
+body.hg-app #btnSeeMap{
+  font-size: 0;
+}
+
+body.hg-app #btnSeeMap::before{
+  content: "🗺️";
+  font-size: 18px;
+  line-height: 1;
+}
+
 #btnUnlockAll{ opacity: .85; }
 #btnUnlockAll:hover{ opacity: 1; }
 
