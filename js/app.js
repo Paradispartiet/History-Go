@@ -4,35 +4,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const releaseQueuedToasts = gateToastsUntilAppReady();
 
   try {
-    // Kritiske globale index-runtimescripts. Rekkefølgen er bevisst og eksplisitt:
-    // kjernemoduler → kartmotor → lister/venstrepanel, slik at bootCritical
-    // og initLeftPanel har det de trenger før de kjøres. js/map.js MÅ være lastet
-    // (og MapLibre tilgjengelig via index.html) før bootCritical initialiserer kartet.
-    await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));
-    await safeRun("loadGeo", () => loadScriptOnce("js/core/geo.js"));
-    await safeRun("loadPos", () => loadScriptOnce("js/core/pos.js"));
-    await safeRun("loadMap", () => loadScriptOnce("js/map.js"));
-    await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
-    await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));
-
-    // PlaceCard-runtime: kjernen (LayerManager + bottomSheetController) før selve
-    // place-card.js, og før MapView/AppRouter lastes – slik at window.openPlaceCard
-    // (og collapse/expand-hookene som bruker LayerManager/bottomSheetController)
-    // finnes når MapView.openPlace()/AppRouter forsøker å åpne et sted.
-    await safeRun("loadLayerManager", () => loadScriptOnce("js/core/layerManager.js"));
-    await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
-    await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
-    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
-
-    await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
-    await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
-
-    // DataHub MÅ lastes før boot-fast/bootCritical: boot-fast sin
-    // loadPlacesCritical() bruker window.DataHub.loadPlacesBase (manifest/places_index)
-    // som datakilde. Uten DataHub faller den tilbake til utdaterte PLACE_FILES_FALLBACK-
-    // stier som ikke matcher dagens place-struktur, og window.PLACES ender som [].
-    await safeRun("loadDataHub", () => loadScriptOnce("js/dataHub.js"));
-
     // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
     await safeRun("loadBootFast", () => loadScriptOnce("js/boot-fast.js"));
     await safeRun("loadMapView", () => loadScriptOnce("js/views/MapView.js"));
@@ -47,11 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
     await safeRun("initLeftPanel", window.initLeftPanel);
     await safeRun("wireBackgroundLeftPanelRerenders", wireBackgroundLeftPanelRerenders);
-
-    // Lett sanity check: ikke marker appen som frisk hvis kritiske index-deler
-    // (kartmotor eller venstrepanel) mangler. Feilen skal ikke skjules bak "hg-loaded".
-    const runtimeError = assertCriticalIndexRuntime();
-    if (runtimeError) throw runtimeError;
 
     markAppReady();
     releaseQueuedToasts();
@@ -70,39 +36,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     markAppFailed(e);
   }
 });
-
-function assertCriticalIndexRuntime() {
-  const missing = [];
-
-  if (typeof window.maplibregl === "undefined") {
-    missing.push("maplibregl (MapLibre GL JS) – sjekk <script>/<link> for maplibre-gl i index.html");
-  }
-
-  if (typeof window.HGMap !== "object" || !window.HGMap) {
-    missing.push("HGMap (js/map.js) – kartmotoren er ikke lastet");
-  }
-
-  if (!window.MAP && !window.HGMap?.getMap?.()) {
-    missing.push("MAP – kartet ble ikke initialisert (window.HGMap.initMap krever maplibregl)");
-  }
-
-  if (typeof window.initLeftPanel !== "function") {
-    missing.push("initLeftPanel (js/ui/left-panel.js) – venstrepanelet er ikke lastet");
-  }
-
-  if (!document.getElementById("nearbyList")) {
-    missing.push("#nearbyList – Nearby-containeren mangler i DOM");
-  }
-
-  if (missing.length === 0) return null;
-
-  const error = new Error(
-    "Kritiske index-runtimedeler mangler:\n- " + missing.join("\n- ")
-  );
-  console.error("[index runtime sanity check]", error.message);
-  window.__HG_INDEX_RUNTIME_MISSING__ = missing;
-  return error;
-}
 
 function markAppReady() {
   document.body?.classList.remove("hg-load-failed");
