@@ -104,6 +104,15 @@ function setLeftPanelMode(mode) {
     localStorage.setItem("hg_leftpanel_mode_v1", mode);
   } catch {}
 
+  // De faktiske listene som finnes i index.html er #nearbyList og
+  // #leftPeopleList (ikke panelNearby/panelPeople). Styr dem direkte slik at
+  // riktig liste faktisk vises for valgt modus.
+  const nearbyList = hg$("nearbyList");
+  const peopleList = hg$("leftPeopleList");
+
+  if (nearbyList) nearbyList.hidden = mode === "people";
+  if (peopleList) peopleList.hidden = mode !== "people";
+
   document.querySelectorAll(".nearby-tab").forEach(btn => {
     btn.classList.toggle(
       "is-active",

@@ -105,6 +105,11 @@
   display: block;
 }
 
+/* hidden-attributtet må vinne over display:block på #nearbyList */
+#nearbyListContainer #nearbyList[hidden] {
+  display: none;
+}
+
 /* Skjul gammel legacy-title KUN i listevisning */
 #nearbyList:not(.nearby-strip) .nearby-title{ display: none; }
 
