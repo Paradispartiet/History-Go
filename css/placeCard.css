@@ -669,26 +669,37 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   padding: 10px 12px;
 }
 
-/* Runde-labels */
+/* Runde-labels (fallback-innhold som setRoundLabel() i place-card.js lager) */
 #placeCard .pc-round-label{
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   color: #fff;
-  text-align: center;
+  font-weight: 800;
+  line-height: 1;
 }
 
 #placeCard .pc-round-emoji{
-  font-size: 38px;
+  font-size: 42px;
   line-height: 1;
 }
 
 #placeCard .pc-round-count{
-  font-size: 16px;
+  margin-top: 5px;
+  font-size: 20px;
   line-height: 1;
-  opacity: .9;
+  color: rgba(255,255,255,.92);
+}
+
+#placeCard .pc-round > img.pc-person-img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 #placeCard .pc-empty{
