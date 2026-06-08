@@ -15,6 +15,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
     await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));
 
+    // PlaceCard-runtime: kjernen (LayerManager + bottomSheetController) før selve
+    // place-card.js, og før MapView/AppRouter lastes – slik at window.openPlaceCard
+    // (og collapse/expand-hookene som bruker LayerManager/bottomSheetController)
+    // finnes når MapView.openPlace()/AppRouter forsøker å åpne et sted.
+    await safeRun("loadLayerManager", () => loadScriptOnce("js/core/layerManager.js"));
+    await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
+    await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
+    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
+
+    await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
+    await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
+
+    // DataHub MÅ lastes før boot-fast/bootCritical: boot-fast sin
+    // loadPlacesCritical() bruker window.DataHub.loadPlacesBase (manifest/places_index)
+    // som datakilde. Uten DataHub faller den tilbake til utdaterte PLACE_FILES_FALLBACK-
+    // stier som ikke matcher dagens place-struktur, og window.PLACES ender som [].
+    await safeRun("loadDataHub", () => loadScriptOnce("js/dataHub.js"));
+
     // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
     await safeRun("loadBootFast", () => loadScriptOnce("js/boot-fast.js"));
     await safeRun("loadMapView", () => loadScriptOnce("js/views/MapView.js"));

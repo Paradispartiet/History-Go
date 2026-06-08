@@ -20,7 +20,8 @@
 /* Head */
 #nearbyListContainer .leftpanel-head{
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: flex-start;
 
   gap: 10px;
@@ -103,6 +104,11 @@
   margin: 0;
 
   display: block;
+}
+
+/* hidden-attributtet må vinne over display:block på #nearbyList */
+#nearbyListContainer #nearbyList[hidden] {
+  display: none;
 }
 
 /* Skjul gammel legacy-title KUN i listevisning */
