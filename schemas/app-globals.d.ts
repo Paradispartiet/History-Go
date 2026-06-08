@@ -208,6 +208,7 @@ declare global {
     __HGCHIPS_UNLOCKS_WIRED__?: any;
     __HG_APP_LOAD_ERROR__?: any;
     __HG_APP_READY__?: any;
+    __HG_INDEX_RUNTIME_MISSING__?: any;
 
     __HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__?: any;
     bootBackground?: any;
