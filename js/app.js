@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
 
+    await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
+    await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
+
     // DataHub MÅ lastes før boot-fast/bootCritical: boot-fast sin
     // loadPlacesCritical() bruker window.DataHub.loadPlacesBase (manifest/places_index)
     // som datakilde. Uten DataHub faller den tilbake til utdaterte PLACE_FILES_FALLBACK-
