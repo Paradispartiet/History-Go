@@ -20,6 +20,7 @@ type PlaceRow = JsonObject & {
   frontImage?: unknown;
   hidden?: unknown;
   stub?: unknown;
+  groundhopper?: unknown;
 };
 type LightField = keyof PlaceRow;
 type LightPlace = Partial<Record<LightField, unknown>>;
@@ -50,6 +51,7 @@ const LIGHT_FIELDS: LightField[] = [
   'frontImage',
   'hidden',
   'stub',
+  'groundhopper',
 ];
 
 const MAX_DIFFS = 20;

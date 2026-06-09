@@ -24,12 +24,13 @@ type PlaceRow = JsonObject & {
   frontImage?: unknown;
   hidden?: unknown;
   stub?: unknown;
+  groundhopper?: unknown;
 };
 type LightField = keyof PlaceRow;
 type LightPlace = Partial<Record<LightField, unknown>>;
 
 const LIGHT_FIELDS: LightField[] = [
-  'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub'
+  'id','name','lat','lon','r','category','year','desc','image','cardImage','frontImage','hidden','stub','groundhopper'
 ];
 
 function hasObjectType(value: unknown): value is JsonObject {
