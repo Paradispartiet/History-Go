@@ -794,8 +794,17 @@ if (canTag) {
       await ensureLoaded();
 
       const tid = s(targetId);
-      const person = API.getPersonById(tid);
-      const place = API.getPlaceById(tid);
+      const person =
+        API.getPersonById(tid) ||
+        (Array.isArray(window.PEOPLE)
+          ? window.PEOPLE.find((p) => s(p?.id) === tid)
+          : null);
+
+      const place =
+        API.getPlaceById(tid) ||
+        (Array.isArray(window.PLACES)
+          ? window.PLACES.find((p) => s(p?.id) === tid)
+          : null);
 
       if (!person && !place) {
         API.showToast(tt("ui.quiz.targetMissing", "Fant verken person eller sted"));
