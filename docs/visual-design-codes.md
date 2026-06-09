@@ -308,6 +308,69 @@ primitive, mens kort- og ikonhint allerede er mer semantisk presise. En egen
 renderer eller egne 3D-/Canvas-varianter for disse kodene kan komme senere uten
 at datafilene må endres på nytt.
 
+## Precision batch 4
+
+Precision batch 4 er den første **data-batchen som tar i bruk presisjonskodene
+fra register precision expansion** (PR #1192). Der pilotene 1–3 brukte de brede
+kodene, bruker batch 4 de nye, mer spissede kodene på åpenbare eksisterende
+entiteter. Kandidatene ble plukket direkte fra
+`reports/visual-design-codes-audit.json` (`heuristicCandidates`,
+`defaultCandidates`, `batch3Suggestions` og `semanticReviewCandidates`) – ikke
+ved gjetting.
+
+Formålet er å **erstatte grove koder/default der riktig ny kode er åpenbar**, og
+å redusere default-hull og review-kandidater der en presis kode nå finnes.
+
+Prinsipper for batch 4:
+
+- **Kun åpenbare, trygge treff.** `semanticReviewCandidates` ble ikke brukt
+  blindt; de ble vurdert manuelt og bare tatt med når den nye presise koden gjorde
+  valget klart (f.eks. `operahuset` → `opera_miniature`, skøyteløpere →
+  `person_skater_miniature`, Ronny Deila → `person_coach_miniature`).
+- **Tvilstilfeller ble utelatt.** Steder/personer der den nye koden ikke var klar
+  ble stående urørt – for eksempel `akerhus_slott` (fortress er fortsatt riktig),
+  `slottsparken` (er en park), Gamle rådhus/Galgeberg/Prindsen (ingen åpenbar ny
+  place-kode), Ole Gunnar Solskjær (spiller-rollen er den tydelige i data) og
+  Kristian Birkeland (vitenskap, ikke næringsliv).
+- **Registeret og resolveren ble ikke endret.** `data/visualDesignCodes.json`,
+  `js/visualDesignCodes.js` og audit-scriptet er urørt; batch 4 bruker kun koder
+  som allerede finnes. Ingen renderer, kartmotor, UI, quiz, relasjoner eller
+  innholdstekster ble rørt – kun `visual.designCode` ble lagt til/endret.
+- **Dette er ikke en full batch.** `article_biography_miniature` ble bevisst latt
+  ligge fordi audit ikke pekte ut trygge biografi-artikler (kun svake
+  «liv»-treff på stedsartikler). Videre batcher skal fortsatt bygges på audit.
+
+Batch 4 traff i hovedsak:
+
+- **places (+25, samt `operahuset` reklassifisert fra `theatre_miniature`):**
+  `opera_miniature` (Operahuset), `palace_miniature` (Det kongelige slott,
+  Palácio da Ajuda, Fronteira, Belém), `cemetery_miniature`
+  (Gamlebyen/Vår Frelsers gravlund, Cemitério dos Prazeres), `monument_miniature`
+  (forfatterstatuer, Tigerstatuen, Abelhaugen, Padrão dos Descobrimentos),
+  `farm_estate_miniature` (Eidsvollsbygningen, Villa Grande, Bogstad/Oslo
+  ladegård/Hellerud/Vøien gård) og `prison_miniature` (Grini, Møllergata 19,
+  Botsfengselet).
+- **people (+30, samt 5 reklassifiseringer):** `person_architect_miniature`
+  (Grosch, Arneberg, Poulsson, Fehn m.fl. + Lisboa-arkitekter),
+  `person_urban_planner_miniature` (Harald Hals, Sverre Pedersen),
+  `person_business_miniature` (Sam Eyde, Ringnes, Schou, Olav Thon, Petter
+  Stordalen m.fl.), `person_coach_miniature` (Ronny Deila, Nils Arne Eggen,
+  Mário Moniz Pereira) og `person_skater_miniature` (Sonja Henie, Oscar Mathisen,
+  Hjalmar Andersen, Johann Olav Koss).
+- **articles (+9, samt 3 reklassifiseringer):** `article_institution_miniature`
+  (Cinemateket, Deichman Bjørvika/Schous, NRK-huset, Gulbenkian-stiftelsen,
+  Oslo hospital) og `article_memory_place_miniature` (Gamlebyen/Vår Frelsers
+  gravlund, Grini fangeleir).
+
+Effekten etter batch 4 kan leses i
+[`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md):
+eksplisitt `visual.designCode` økte fra 249 til 312 (places 98 → 122 inkl.
+reklassifisering, people 88 → 118, articles 63 → 72), fortsatt med 0 ugyldige
+eksplisitte koder og 0 koder med manglende `renderHints`. Default-kandidatene
+falt for alle tre entitetstyper (places 6 → 4, people 14 → 8, articles 250 →
+241), og review-kandidatene gikk ned (operahuset, trenere og skøyteløpere er nå
+mer presist merket).
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,

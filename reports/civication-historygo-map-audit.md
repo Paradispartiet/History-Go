@@ -1,17 +1,17 @@
 # Civication – History Go map audit
 
-Generert: 2026-06-07T09:24:35.733Z
+Generert: 2026-06-09T20:05:30.775Z
 
 ## Sammendrag
 
-- Filer i manifest: **40**
-- Steder totalt: **489**
+- Filer i manifest: **41**
+- Steder totalt: **501**
 - Oslo-steder plassert på kartet: **309**
 
 | Kategori | Antall |
 | --- | ---: |
 | missing_lat_lon | 0 |
-| non_oslo_skipped | 180 |
+| non_oslo_skipped | 192 |
 | missing_asset_type | 77 |
 | projected_from_lat_lon | 309 |
 | uses_manual_civiMap | 0 |
@@ -21,7 +21,7 @@ Generert: 2026-06-07T09:24:35.733Z
 
 _Ingen._
 
-## Ikke-Oslo, hoppet over (180)
+## Ikke-Oslo, hoppet over (192)
 
 - `eidsvollsbygningen` – places/historie/oslo/places_historie.json
 - `oscarsborg_festning` – places/historie/oslo/places_historie.json
@@ -37,18 +37,18 @@ _Ingen._
 - `finnskogbanen` – places/sport/ostlandet/places_motorsport_ostlandet.json
 - `momarken_bilbane` – places/sport/ostlandet/places_motorsport_ostlandet.json
 - `lyngasbanen` – places/sport/ostlandet/places_motorsport_ostlandet.json
-- `tvergastein` – places/vitenskap/oslo/places_vitenskap.json
-- `lisbon_city` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_praca_do_comercio` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_alfama` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_elevador_de_santa_justa` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_ponte_25_de_abril` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_rossio` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_avenida_da_liberdade` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_parque_eduardo_vii` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_cais_do_sodre` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- `lisbon_principe_real` – places/by/europe/portugal/lisbon/places_lisbon_by.json
-- … og 155 til (se JSON).
+- `wembley_stadium_london` – places/sport/london/footballgrounds.json
+- `tottenham_hotspur_stadium_london` – places/sport/london/footballgrounds.json
+- `emirates_stadium_london` – places/sport/london/footballgrounds.json
+- `stamford_bridge_london` – places/sport/london/footballgrounds.json
+- `london_stadium_london` – places/sport/london/footballgrounds.json
+- `craven_cottage_london` – places/sport/london/footballgrounds.json
+- `selhurst_park_london` – places/sport/london/footballgrounds.json
+- `the_den_london` – places/sport/london/footballgrounds.json
+- `loftus_road_london` – places/sport/london/footballgrounds.json
+- `gtech_community_stadium_london` – places/sport/london/footballgrounds.json
+- `the_valley_london` – places/sport/london/footballgrounds.json
+- … og 167 til (se JSON).
 
 ## Mangler eksplisitt assetType (bruker heuristikk) (77)
 
