@@ -327,6 +327,47 @@
     emit("hg:criticalReady", { places: window.PLACES?.length || 0 });
   }
 
+  /**
+   * Binder QuizEngine til det ekte app-API-et (window.PLACES/PEOPLE m.m.).
+   * Idempotent: kan trygt kalles både fra app-entry (før router) og fra
+   * bootBackground. Default-API-et i js/quizzes.js returnerer null, så denne
+   * MÅ ha kjørt før #/quiz kan starte QuizEngine.start.
+   * @returns {boolean}
+   */
+  function initQuizEngine() {
+    if (!window.QuizEngine || typeof window.QuizEngine.init !== "function") return false;
+    if (window.__HG_QUIZ_ENGINE_APP_API_BOUND__ === true) return true;
+
+    const bind = (fn) => (typeof fn === "function") ? fn : undefined;
+    /**
+     * @param {string} name
+     * @returns {(...args: any[]) => any}
+     */
+    const lazy = (name) => (...args) => {
+      const f = /** @type {any} */ (window)[name];
+      if (typeof f === "function") return f(...args);
+    };
+
+    window.QuizEngine.init({
+      getPersonById: (id) => (window.PEOPLE || []).find((p) => String(p?.id || "").trim() === String(id || "").trim()),
+      getPlaceById: (id) => (window.PLACES || []).find((p) => String(p?.id || "").trim() === String(id || "").trim()),
+      getVisited: () => (window.visited || {}),
+      isTestMode: () => !!window.OPEN_MODE,
+      showToast,
+      showRewardPerson: lazy("showRewardPerson"),
+      showRewardPlace: lazy("showRewardPlace"),
+      showPersonPopup: lazy("showPersonPopup"),
+      showPlacePopup: lazy("showPlacePopup"),
+      savePeopleCollected: lazy("savePeopleCollected"),
+      saveVisitedFromQuiz: lazy("saveVisitedFromQuiz"),
+      addCompletedQuizAndMaybePoint: lazy("addCompletedQuizAndMaybePoint"),
+      logCorrectQuizAnswer: bind(window.HGInsights?.logCorrectQuizAnswer?.bind(window.HGInsights))
+    });
+
+    window.__HG_QUIZ_ENGINE_APP_API_BOUND__ = true;
+    return true;
+  }
+
   async function bootBackground() {
     if (backgroundStarted) return;
     backgroundStarted = true;
@@ -350,35 +391,7 @@
 
     await Promise.allSettled(tasks);
 
-    if (window.QuizEngine) {
-      runSafe("QuizEngine.init", () => {
-        const bind = (fn) => (typeof fn === "function") ? fn : undefined;
-        /**
-         * @param {string} name
-         * @returns {(...args: any[]) => any}
-         */
-        const lazy = (name) => (...args) => {
-          const f = /** @type {any} */ (window)[name];
-          if (typeof f === "function") return f(...args);
-        };
-
-        window.QuizEngine.init({
-          getPersonById: (id) => (window.PEOPLE || []).find((p) => p.id === id),
-          getPlaceById: (id) => (window.PLACES || []).find((p) => p.id === id),
-          getVisited: () => (window.visited || {}),
-          isTestMode: () => !!window.OPEN_MODE,
-          showToast,
-          showRewardPerson: lazy("showRewardPerson"),
-          showRewardPlace: lazy("showRewardPlace"),
-          showPersonPopup: lazy("showPersonPopup"),
-          showPlacePopup: lazy("showPlacePopup"),
-          savePeopleCollected: lazy("savePeopleCollected"),
-          saveVisitedFromQuiz: lazy("saveVisitedFromQuiz"),
-          addCompletedQuizAndMaybePoint: lazy("addCompletedQuizAndMaybePoint"),
-          logCorrectQuizAnswer: bind(window.HGInsights?.logCorrectQuizAnswer?.bind(window.HGInsights))
-        });
-      });
-    }
+    runSafe("initQuizEngine", initQuizEngine);
 
     await runSafeAsync("ensureBadgesLoaded", () =>
       typeof ensureBadgesLoaded === "function" ? ensureBadgesLoaded() : undefined
@@ -399,4 +412,5 @@
 
   window.bootCritical = bootCritical;
   window.bootBackground = bootBackground;
+  window.initQuizEngine = initQuizEngine;
 })();

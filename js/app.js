@@ -63,6 +63,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // (bootCritical), så dette blokkerer ikke kart/nearby.
     await safeRun("loadQuizzes", () => loadScriptOnce("js/quizzes.js"));
 
+    // QuizEngine må bindes til det ekte app-API-et (window.PLACES) FØR routeren
+    // kan route til #/quiz; ellers bruker QuizEngine fortsatt default null-API
+    // og finner ikke stedet ("Fant verken person eller sted").
+    await safeRun("initQuizEngine", () => window.initQuizEngine?.());
+
     await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
 
     // NextUp-footer: HGNavigator (anbefalingsmotoren) før nextUpRuntime (footer-knapp
