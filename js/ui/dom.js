@@ -39,12 +39,12 @@ window.addEventListener("hg:geo", (e) => {
 
   if (st === "granted" || st === "test") {
     icon.classList.add("geo-ok");
-    icon.textContent = "✅";
+    icon.textContent = "📍";
   } else if (st === "blocked" || st === "unsupported") {
     icon.classList.add("geo-bad");
-    icon.textContent = "⛔";
+    icon.textContent = "📍";
   } else {
     icon.classList.add("geo-unknown");
-    icon.textContent = "…";
+    icon.textContent = "📍";
   }
 });

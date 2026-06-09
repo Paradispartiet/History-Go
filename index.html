@@ -133,7 +133,7 @@
 
     <input id="globalSearch" type="search" placeholder="Søk…" data-hg-i18n-placeholder="ui.attr.search" autocomplete="off">
 
-    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus" data-hg-i18n-title="ui.attr.positionStatus">…</span>
+    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus" data-hg-i18n-title="ui.attr.positionStatus">📍</span>
 
     <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all" data-hg-i18n-aria-label="ui.attr.unlockAll" data-hg-i18n-title="ui.attr.unlockAll">🔓</button>
        
@@ -276,9 +276,13 @@
     </div>
 
     <div class="app-actions" aria-label="Stedshandlinger">
-      <button id="pcRoute" type="button" aria-label="Rute" title="Rute"></button>
-      <button id="pcObserve" type="button" aria-label="Observer" title="Observer"></button>
-      <button id="pcNote" type="button" aria-label="Notat" title="Notat"></button>
+      <button id="pcInfo" class="pc-action pc-action-text" type="button" aria-label="Mer info" title="Mer info">Mer info</button>
+      <button id="pcQuiz" class="pc-action pc-action-primary" type="button" aria-label="Ta quiz" title="Ta quiz">Ta quiz</button>
+      <button id="pcUnlock" class="pc-action pc-action-primary" type="button" aria-label="Lås opp" title="Lås opp">Lås opp</button>
+      <button id="pcRoute" class="pc-action pc-action-icon" type="button" aria-label="Rute" title="Rute"></button>
+      <button id="pcObserve" class="pc-action pc-action-icon" type="button" aria-label="Observer" title="Observer"></button>
+      <button id="pcNote" class="pc-action pc-action-icon" type="button" aria-label="Notat" title="Notat"></button>
+      <button id="pcClose" class="pc-action pc-action-icon pc-action-close" type="button" aria-label="Minimer" title="Minimer">➜</button>
     </div>
   </footer>
 
