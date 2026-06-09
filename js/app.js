@@ -57,6 +57,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     markAppReady();
     releaseQueuedToasts();
 
+    // QuizEngine lastes fra app-entry (samme kanal som resten av index-runtime).
+    // Må være tilgjengelig før AppRouter kan route til #/quiz, og før bootBackground
+    // kjører QuizEngine.init i boot-fast sin bakgrunnsfase. Kartet er allerede booted
+    // (bootCritical), så dette blokkerer ikke kart/nearby.
+    await safeRun("loadQuizzes", () => loadScriptOnce("js/quizzes.js"));
+
     await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
 
     // Ikke blokker app-ready på søk/ruter/tunge data.
