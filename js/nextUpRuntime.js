@@ -480,7 +480,7 @@
     if (document.body?.classList.contains("profile-page")) return null;
 
     const footer = document.querySelector(".app-footer");
-    const shell = document.querySelector(".app-shell");
+    const shell = document.querySelector(".app-shell") || document.body;
     if (!footer || !shell) return null;
 
     ensureCss("css/footer-nextup.css");

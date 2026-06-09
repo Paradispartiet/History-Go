@@ -65,6 +65,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
 
+    // NextUp-footer: HGNavigator (anbefalingsmotoren) før nextUpRuntime (footer-knapp
+    // #pcNextUpBtn + #footerNextUpPanel), samme rekkefølge som historisk events_loader.
+    // Footeren (.app-footer) finnes allerede i index; nextUpRuntime bygger selv knappen
+    // og panelet, så vi lager dem ikke manuelt i index.html.
+    runAfterReady("loadNextUpRuntime", async () => {
+      await loadScriptOnce("js/hgNavigator.js");
+      await loadScriptOnce("js/nextUpRuntime.js");
+    });
+
     // Ikke blokker app-ready på søk/ruter/tunge data.
     runAfterReady("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
     runAfterReady("HGRoutes.init", () => window.HGRoutes?.init?.());
