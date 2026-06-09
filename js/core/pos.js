@@ -553,12 +553,19 @@
   window.setPos = setPos;
   window.clearPos = clearPos;
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function bindGeoStatusClick() {
     const trigger = document.getElementById("geoStatus");
-    if (!trigger) return;
+    if (!trigger || trigger.dataset.hgGeoClickBound === "1") return;
+    trigger.dataset.hgGeoClickBound = "1";
     trigger.style.cursor = "pointer";
     trigger.addEventListener("click", () => {
       openLocationPicker();
     });
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindGeoStatusClick, { once: true });
+  } else {
+    bindGeoStatusClick();
+  }
 })();
