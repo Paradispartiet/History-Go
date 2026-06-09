@@ -111,8 +111,28 @@ function assertCriticalIndexRuntime() {
     missing.push("initLeftPanel (js/ui/left-panel.js) – venstrepanelet er ikke lastet");
   }
 
+  // Index-layoutkontrakt: app-shell-modellen som CSS (css/layout.css) og
+  // ViewportManager (js/core/viewportManager.js) forventer. Mangler ett av
+  // disse lagene, faller det skalerte design-canvaset eller full-bleed-lagene
+  // sammen – da skal appen feile synlig, ikke late som den er frisk.
+  if (!document.querySelector(".app-shell")) {
+    missing.push(".app-shell – det skalerte design-canvaset mangler (ViewportManager.init finner det ikke)");
+  }
+
+  if (!document.getElementById("mapLayer")) {
+    missing.push("#mapLayer – full-bleed kartlag mangler i DOM");
+  }
+
   if (!document.getElementById("nearbyList")) {
     missing.push("#nearbyList – Nearby-containeren mangler i DOM");
+  }
+
+  if (!document.getElementById("placeCard")) {
+    missing.push("#placeCard – PlaceCard-laget mangler i DOM");
+  }
+
+  if (!document.querySelector(".app-footer")) {
+    missing.push(".app-footer – footer-handlingslinjen mangler i DOM");
   }
 
   if (missing.length === 0) return null;

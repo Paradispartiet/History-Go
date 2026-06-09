@@ -198,10 +198,20 @@
     </div>
   </div>
 
-  <!-- MAIN APP -->
-  <main>
-    <section id="panel" class="panel hidden"></section>
-  </main>
+  <!--
+    APP-SHELL: det skalerte design-canvaset (900x1230) som ViewportManager
+    transformerer. Kun de interne lagene som skal skaleres ligger her inne.
+    #mapLayer, header.site-header, #nearbyListContainer og footer.app-footer
+    er bevisst full-bleed UTENFOR app-shell: app-shell får transform, og en
+    transformert forfar gjør position:fixed-barn relative til seg selv – da
+    ville de full-bleed lagene mistet 100vw/100vh-forankringen til viewporten.
+  -->
+  <div class="app-shell">
+
+    <!-- MAIN APP -->
+    <main>
+      <section id="panel" class="panel hidden"></section>
+    </main>
 
   <!-- PLACE CARD -->
 <div id="placeCard" aria-hidden="true">
@@ -268,6 +278,8 @@
     <div id="pcLeksikonList"></div>
    </div>
  </div>
+
+  </div><!-- /.app-shell -->
 
   <!-- FOOTER -->
   <footer class="site-footer app-footer" aria-label="Status og spillvalg">
