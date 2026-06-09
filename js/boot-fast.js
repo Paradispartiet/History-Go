@@ -353,7 +353,7 @@
       getPlaceById: (id) => (window.PLACES || []).find((p) => String(p?.id || "").trim() === String(id || "").trim()),
       getVisited: () => (window.visited || {}),
       isTestMode: () => !!window.OPEN_MODE,
-      showToast,
+      showToast: (...args) => window.showToast?.(...args),
       showRewardPerson: lazy("showRewardPerson"),
       showRewardPlace: lazy("showRewardPlace"),
       showPersonPopup: lazy("showPersonPopup"),
