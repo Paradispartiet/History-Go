@@ -1,6 +1,6 @@
 {
   "schema": "history-go.visual-design-codes-audit.v1",
-  "generatedAt": "2026-06-07T12:55:51.582Z",
+  "generatedAt": "2026-06-09T20:05:18.417Z",
   "registry": {
     "totalCodes": 72,
     "byEntityType": {
@@ -14,41 +14,41 @@
     "missingRenderHints": []
   },
   "data": {
-    "places": 489,
+    "places": 501,
     "people": 426,
     "leksikon": 335,
     "lesespor": 9,
     "articlesTotal": 344
   },
   "resolution": {
-    "explicit": 249,
+    "explicit": 312,
     "bySource": {
-      "explicit": 249,
+      "explicit": 312,
       "assetType": 0,
-      "category": 244,
-      "heuristic": 496,
-      "default": 270
+      "category": 250,
+      "heuristic": 456,
+      "default": 253
     },
     "places": {
-      "explicit": 98,
+      "explicit": 122,
       "assetType": 0,
-      "category": 118,
-      "heuristic": 267,
-      "default": 6
+      "category": 124,
+      "heuristic": 251,
+      "default": 4
     },
     "people": {
-      "explicit": 88,
+      "explicit": 118,
       "assetType": 0,
       "category": 126,
-      "heuristic": 198,
-      "default": 14
+      "heuristic": 174,
+      "default": 8
     },
     "articles": {
-      "explicit": 63,
+      "explicit": 72,
       "assetType": 0,
       "category": 0,
       "heuristic": 31,
-      "default": 250
+      "default": 241
     }
   },
   "explicitDesignCodes": {
@@ -59,38 +59,51 @@
       "waterfront_miniature": 4,
       "park_miniature": 13,
       "station_miniature": 9,
+      "monument_miniature": 9,
       "church_miniature": 11,
       "stadium_miniature": 8,
-      "theatre_miniature": 5,
+      "opera_miniature": 1,
       "library_miniature": 5,
       "cinema_miniature": 7,
       "industrial_miniature": 1,
-      "civic_miniature": 2,
+      "palace_miniature": 4,
+      "cemetery_miniature": 3,
       "fortress_miniature": 2,
+      "farm_estate_miniature": 6,
+      "prison_miniature": 3,
       "school_miniature": 1,
       "museum_miniature": 8,
+      "theatre_miniature": 4,
+      "civic_miniature": 1,
       "ice_arena_miniature": 4,
       "university_miniature": 6
     },
     "people": {
       "person_politician_miniature": 13,
+      "person_architect_miniature": 18,
+      "person_urban_planner_miniature": 2,
       "person_writer_miniature": 14,
       "person_poet_miniature": 5,
+      "person_business_miniature": 8,
       "person_scientist_miniature": 15,
       "person_activist_miniature": 3,
       "person_historical_miniature": 1,
-      "person_footballer_miniature": 4,
+      "person_footballer_miniature": 3,
+      "person_coach_miniature": 3,
       "person_skier_miniature": 4,
       "person_runner_miniature": 5,
-      "person_athlete_miniature": 9,
+      "person_athlete_miniature": 5,
+      "person_skater_miniature": 4,
       "person_musician_miniature": 15
     },
     "articles": {
-      "article_architecture_miniature": 16,
+      "article_architecture_miniature": 15,
       "article_place_essay_miniature": 9,
-      "article_history_miniature": 13,
+      "article_history_miniature": 11,
+      "article_memory_place_miniature": 3,
       "article_political_history_miniature": 3,
       "article_local_story_miniature": 1,
+      "article_institution_miniature": 9,
       "article_groundhopper_miniature": 1,
       "article_sports_history_miniature": 11,
       "article_object_story_miniature": 1,
@@ -101,7 +114,7 @@
   "topUsedDesignCodes": [
     {
       "code": "article_default_miniature",
-      "count": 250
+      "count": 241
     },
     {
       "code": "waterfront_miniature",
@@ -109,11 +122,15 @@
     },
     {
       "code": "park_miniature",
-      "count": 59
+      "count": 60
     },
     {
       "code": "person_writer_miniature",
-      "count": 45
+      "count": 46
+    },
+    {
+      "code": "person_business_miniature",
+      "count": 43
     },
     {
       "code": "person_historical_miniature",
@@ -126,10 +143,6 @@
     {
       "code": "person_activist_miniature",
       "count": 38
-    },
-    {
-      "code": "person_business_miniature",
-      "count": 37
     },
     {
       "code": "person_musician_miniature",
@@ -148,21 +161,20 @@
       "count": 26
     },
     {
+      "code": "stadium_miniature",
+      "count": 25
+    },
+    {
       "code": "person_artist_miniature",
-      "count": 26
+      "count": 25
     },
     {
       "code": "commerce_miniature",
-      "count": 24
-    },
-    {
-      "code": "university_miniature",
       "count": 24
     }
   ],
   "unusedDesignCodes": [
     "gallery_miniature",
-    "opera_miniature",
     "article_people_portrait_miniature",
     "article_wonderkammer_miniature"
   ],
@@ -180,20 +192,6 @@
         "utstilling"
       ],
       "suggestedNextAction": "Vurder places med galleri/kunsthall som i dag løses som museum_miniature eller default."
-    },
-    {
-      "code": "opera_miniature",
-      "entityTypes": [
-        "place"
-      ],
-      "family": "culture",
-      "suggestedSearchTerms": [
-        "opera",
-        "operahuset",
-        "performing arts",
-        "teater"
-      ],
-      "suggestedNextAction": "Vurder operabygg og store scenekunsthus for eksplisitt opera_miniature."
     },
     {
       "code": "article_people_portrait_miniature",
@@ -234,22 +232,6 @@
   "invalidExplicitDesignCodes": [],
   "defaultCandidates": {
     "places": [
-      {
-        "id": "eidsvollsbygningen",
-        "nameOrTitle": "Eidsvollsbygningen",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "villa_grande",
-        "nameOrTitle": "Villa Grande",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "default_miniature",
-        "reason": "default"
-      },
       {
         "id": "gamle_radhus",
         "nameOrTitle": "Gamle rådhus",
@@ -317,14 +299,6 @@
         "reason": "default"
       },
       {
-        "id": "sam_eyde_industriutbygger",
-        "nameOrTitle": "Sam Eyde",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_default_miniature",
-        "reason": "default"
-      },
-      {
         "id": "kristian_birkeland_teknologi_og_industri",
         "nameOrTitle": "Kristian Birkeland",
         "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
@@ -333,48 +307,8 @@
         "reason": "default"
       },
       {
-        "id": "christen_smith_schous_bryggeri",
-        "nameOrTitle": "Christen Smith",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "ellef_ringnes_bryggeri_og_ledelse",
-        "nameOrTitle": "Ellef Ringnes",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_default_miniature",
-        "reason": "default"
-      },
-      {
         "id": "christian_schweigaard_post_og_administrasjon",
         "nameOrTitle": "Christian Schweigaard",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "alf_bjercke_industri_og_kvalitet",
-        "nameOrTitle": "Alf Bjercke",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "amund_ringnes_bryggeri",
-        "nameOrTitle": "Amund Ringnes",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "herman_schou_bryggeri",
-        "nameOrTitle": "Herman Schou",
         "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
         "category": "naeringsliv",
         "resolvedCode": "person_default_miniature",
@@ -465,14 +399,6 @@
       {
         "id": "sofienberg_kirke",
         "nameOrTitle": "sofienberg_kirke",
-        "file": "data/leksikon/places/oslo/historie/leksikon_oslo_historie.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "gamlebyen_gravlund",
-        "nameOrTitle": "gamlebyen_gravlund",
         "file": "data/leksikon/places/oslo/historie/leksikon_oslo_historie.json",
         "category": "",
         "resolvedCode": "article_default_miniature",
@@ -873,14 +799,6 @@
       {
         "id": "operahuset",
         "nameOrTitle": "operahuset",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "deichman_bjorvika",
-        "nameOrTitle": "deichman_bjorvika",
         "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json",
         "category": "",
         "resolvedCode": "article_default_miniature",
@@ -1407,14 +1325,6 @@
         "reason": "default"
       },
       {
-        "id": "lisbon_fundacao_calouste_gulbenkian",
-        "nameOrTitle": "lisbon_fundacao_calouste_gulbenkian",
-        "file": "data/leksikon/places/europe/portugal/lisbon/kunst/leksikon_lisbon_kunst_batch1.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
         "id": "lisbon_maat",
         "nameOrTitle": "lisbon_maat",
         "file": "data/leksikon/places/europe/portugal/lisbon/kunst/leksikon_lisbon_kunst_batch1.json",
@@ -1503,30 +1413,6 @@
         "reason": "default"
       },
       {
-        "id": "cinemateket_oslo_hovedartikkel",
-        "nameOrTitle": "Cinemateket i Oslo",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "cinemateket_oslo_norsk_filminstitutt",
-        "nameOrTitle": "Norsk filminstitutt og cinematek-funksjonen",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "cinemateket_oslo_film_som_arkiv",
-        "nameOrTitle": "Film som arkiv",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
         "id": "cinemateket_oslo_kuratering_programkino",
         "nameOrTitle": "Kuratering og programkino",
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
@@ -1593,14 +1479,6 @@
       {
         "id": "schous_plass_byrom_form",
         "nameOrTitle": "Schous plass som byrom",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "schous_plass_deichman_schous",
-        "nameOrTitle": "Deichman Schous",
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json",
         "category": "",
         "resolvedCode": "article_default_miniature",
@@ -2143,22 +2021,6 @@
         "reason": "default"
       },
       {
-        "id": "nrk_huset_marienlyst_hovedartikkel",
-        "nameOrTitle": "NRK-huset på Marienlyst",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
-        "id": "nrk_huset_marienlyst_allmennkringkasting",
-        "nameOrTitle": "Allmennkringkasting på Marienlyst",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json",
-        "category": "",
-        "resolvedCode": "article_default_miniature",
-        "reason": "default"
-      },
-      {
         "id": "nrk_huset_marienlyst_studio_produksjon",
         "nameOrTitle": "Studio og produksjon i NRK-huset",
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json",
@@ -2413,16 +2275,6 @@
         "reason": "keyword: handel"
       },
       {
-        "id": "tigeren",
-        "nameOrTitle": "Tigerstatuen",
-        "file": "data/places/by/oslo/places_by.json",
-        "category": "by",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: statue"
-      },
-      {
         "id": "markveien",
         "nameOrTitle": "Markveien",
         "file": "data/places/by/oslo/places_by.json",
@@ -2523,96 +2375,6 @@
         "reason": "keyword: dam"
       },
       {
-        "id": "gamlebyen_gravlund",
-        "nameOrTitle": "Gamlebyen gravlund",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "cemetery_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: gravlund"
-      },
-      {
-        "id": "var_frelsers_gravlund",
-        "nameOrTitle": "Vår Frelsers gravlund",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "cemetery_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: gravlund"
-      },
-      {
-        "id": "grini_fangeleir",
-        "nameOrTitle": "Grini fangeleir",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "prison_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: fangeleir"
-      },
-      {
-        "id": "bogstad_gard",
-        "nameOrTitle": "Bogstad gård",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "farm_estate_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: gard"
-      },
-      {
-        "id": "mollergata_19",
-        "nameOrTitle": "Møllergata 19",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "category": "historie",
-        "resolvedCode": "prison_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: fengsel"
-      },
-      {
-        "id": "oslo_ladegard",
-        "nameOrTitle": "Oslo ladegård",
-        "file": "data/places/historie/oslo/places_historie_added_batch_01.json",
-        "category": "historie",
-        "resolvedCode": "farm_estate_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: gard"
-      },
-      {
-        "id": "botsfengselet",
-        "nameOrTitle": "Botsfengselet",
-        "file": "data/places/historie/oslo/places_historie_added_batch_01.json",
-        "category": "historie",
-        "resolvedCode": "prison_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: botsfengsel"
-      },
-      {
-        "id": "camilla_collett_statue",
-        "nameOrTitle": "Camilla Collett-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: statue"
-      },
-      {
-        "id": "henrik_wergeland_statue",
-        "nameOrTitle": "Henrik Wergeland-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: statue"
-      },
-      {
         "id": "tronsmo_bokhandel",
         "nameOrTitle": "Tronsmo Bokhandel",
         "file": "data/places/litteratur/oslo/places_litteratur.json",
@@ -2653,26 +2415,6 @@
         "reason": "keyword: universitet"
       },
       {
-        "id": "sigrid_undset_statue",
-        "nameOrTitle": "Sigrid Undset-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: statue"
-      },
-      {
-        "id": "ruth_maier_minne",
-        "nameOrTitle": "Ruth Maier-minnesmerke",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: minnesmerke"
-      },
-      {
         "id": "alf_proysen_statue_nittedal",
         "nameOrTitle": "Alf Prøysen-statuen – Nittedal kulturhus",
         "file": "data/places/litteratur/oslo/places_litteratur.json",
@@ -2691,16 +2433,6 @@
         "source": "heuristic",
         "confidence": "medium",
         "reason": "keyword: hage"
-      },
-      {
-        "id": "oscar_braaten_statuen",
-        "nameOrTitle": "Oscar Braaten-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: statue"
       },
       {
         "id": "alexander_kiellands_plass",
@@ -3073,16 +2805,6 @@
         "reason": "keyword: skog"
       },
       {
-        "id": "hellerud_gard",
-        "nameOrTitle": "Hellerud gård",
-        "file": "data/places/natur/oslo/places_oslo_alna.json",
-        "category": "historie",
-        "resolvedCode": "farm_estate_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: gard"
-      },
-      {
         "id": "frysjadammen",
         "nameOrTitle": "Frysjadammen",
         "file": "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
@@ -3171,16 +2893,6 @@
         "source": "heuristic",
         "confidence": "medium",
         "reason": "keyword: vann"
-      },
-      {
-        "id": "voien_gard_voienvolden",
-        "nameOrTitle": "Vøien gård / Vøienvolden",
-        "file": "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-        "category": "historie",
-        "resolvedCode": "farm_estate_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: gard"
       },
       {
         "id": "myralokka",
@@ -3783,6 +3495,66 @@
         "reason": "keyword: mark"
       },
       {
+        "id": "wembley_stadium_london",
+        "nameOrTitle": "Wembley Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "category": "sport",
+        "resolvedCode": "stadium_miniature",
+        "source": "heuristic",
+        "confidence": "high",
+        "reason": "keyword: stadium"
+      },
+      {
+        "id": "tottenham_hotspur_stadium_london",
+        "nameOrTitle": "Tottenham Hotspur Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "category": "sport",
+        "resolvedCode": "stadium_miniature",
+        "source": "heuristic",
+        "confidence": "high",
+        "reason": "keyword: stadium"
+      },
+      {
+        "id": "emirates_stadium_london",
+        "nameOrTitle": "Emirates Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "category": "sport",
+        "resolvedCode": "stadium_miniature",
+        "source": "heuristic",
+        "confidence": "high",
+        "reason": "keyword: stadium"
+      },
+      {
+        "id": "london_stadium_london",
+        "nameOrTitle": "London Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "category": "sport",
+        "resolvedCode": "stadium_miniature",
+        "source": "heuristic",
+        "confidence": "high",
+        "reason": "keyword: stadium"
+      },
+      {
+        "id": "selhurst_park_london",
+        "nameOrTitle": "Selhurst Park",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "category": "sport",
+        "resolvedCode": "park_miniature",
+        "source": "heuristic",
+        "confidence": "high",
+        "reason": "keyword: park"
+      },
+      {
+        "id": "gtech_community_stadium_london",
+        "nameOrTitle": "Gtech Community Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "category": "sport",
+        "resolvedCode": "stadium_miniature",
+        "source": "heuristic",
+        "confidence": "high",
+        "reason": "keyword: stadium"
+      },
+      {
         "id": "hausmania",
         "nameOrTitle": "Hausmania",
         "file": "data/places/subkultur/oslo/places_subkultur.json",
@@ -3931,16 +3703,6 @@
         "source": "heuristic",
         "confidence": "medium",
         "reason": "keyword: skole"
-      },
-      {
-        "id": "abelhaugen",
-        "nameOrTitle": "Abelhaugen",
-        "file": "data/places/vitenskap/oslo/places_vitenskap.json",
-        "category": "vitenskap",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: monument"
       },
       {
         "id": "botanisk_hage",
@@ -4103,16 +3865,6 @@
         "reason": "keyword: park"
       },
       {
-        "id": "lisbon_ajuda",
-        "nameOrTitle": "Ajuda",
-        "file": "data/places/by/europe/portugal/lisbon/places_lisbon_by.json",
-        "category": "by",
-        "resolvedCode": "palace_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: palass"
-      },
-      {
         "id": "lisbon_campo_pequeno",
         "nameOrTitle": "Campo Pequeno",
         "file": "data/places/by/europe/portugal/lisbon/places_lisbon_by.json",
@@ -4193,16 +3945,6 @@
         "reason": "keyword: monument"
       },
       {
-        "id": "lisbon_padrao_dos_descobrimentos",
-        "nameOrTitle": "Padrão dos Descobrimentos",
-        "file": "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
-        "category": "historie",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "medium",
-        "reason": "keyword: padrão"
-      },
-      {
         "id": "lisbon_teatro_romano",
         "nameOrTitle": "Ruínas do Teatro Romano",
         "file": "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
@@ -4221,16 +3963,6 @@
         "source": "heuristic",
         "confidence": "high",
         "reason": "keyword: kirke"
-      },
-      {
-        "id": "lisbon_palacio_fronteira",
-        "nameOrTitle": "Palácio dos Marqueses de Fronteira",
-        "file": "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
-        "category": "historie",
-        "resolvedCode": "palace_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: palass"
       },
       {
         "id": "lisbon_museu_de_lisboa",
@@ -4341,16 +4073,6 @@
         "source": "heuristic",
         "confidence": "medium",
         "reason": "keyword: havn"
-      },
-      {
-        "id": "lisbon_palacio_de_belem",
-        "nameOrTitle": "Palácio de Belém",
-        "file": "data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json",
-        "category": "politikk",
-        "resolvedCode": "palace_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: palass"
       },
       {
         "id": "lisbon_museu_nacional_do_azulejo",
@@ -4483,28 +4205,8 @@
         "reason": "keyword: museum"
       },
       {
-        "id": "lisbon_cemiterio_dos_prazeres",
-        "nameOrTitle": "Cemitério dos Prazeres",
-        "file": "data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "cemetery_miniature",
-        "source": "heuristic",
-        "confidence": "medium",
-        "reason": "keyword: cemiterio"
-      },
-      {
         "id": "lisbon_praca_luis_de_camoes",
         "nameOrTitle": "Praça Luís de Camões",
-        "file": "data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json",
-        "category": "litteratur",
-        "resolvedCode": "monument_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: monument"
-      },
-      {
-        "id": "lisbon_estatua_eca_de_queiros",
-        "nameOrTitle": "Estátua de Eça de Queirós",
         "file": "data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json",
         "category": "litteratur",
         "resolvedCode": "monument_miniature",
@@ -5075,156 +4777,6 @@
     ],
     "people": [
       {
-        "id": "christian_heinrich_grosch",
-        "nameOrTitle": "Christian Heinrich Grosch",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "harald_hals",
-        "nameOrTitle": "Harald Hals",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_urban_planner_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: byplanlegger"
-      },
-      {
-        "id": "arne_korsmo",
-        "nameOrTitle": "Arne Korsmo",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "arnstein_arneberg",
-        "nameOrTitle": "Arnstein Arneberg",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "magnus_poulsson",
-        "nameOrTitle": "Magnus Poulsson",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "henrik_bull",
-        "nameOrTitle": "Henrik Bull",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "erling_viksjo",
-        "nameOrTitle": "Erling Viksjø",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "sverre_fehn",
-        "nameOrTitle": "Sverre Fehn",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "ove_bang",
-        "nameOrTitle": "Ove Bang",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "harald_aars",
-        "nameOrTitle": "Harald Aars",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "kirsten_sand",
-        "nameOrTitle": "Kirsten Sand",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "sverre_pedersen",
-        "nameOrTitle": "Sverre Pedersen",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_urban_planner_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: byplanlegger"
-      },
-      {
-        "id": "christian_norberg_schulz",
-        "nameOrTitle": "Christian Norberg-Schulz",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "thomas_thiis_evensen",
-        "nameOrTitle": "Thomas Thiis-Evensen",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "geir_grung",
-        "nameOrTitle": "Geir Grung",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "category": "by",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
         "id": "roald_amundsen",
         "nameOrTitle": "Roald Amundsen",
         "file": "data/people/historie/oslo/people_historie_oslo.json",
@@ -5405,26 +4957,6 @@
         "reason": "keyword: pedagog"
       },
       {
-        "id": "alexis_de_chateauneuf",
-        "nameOrTitle": "Alexis de Chateauneuf",
-        "file": "data/people/historie/oslo/people_historie_oslo.json",
-        "category": "historie",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "wilhelm_von_hanno",
-        "nameOrTitle": "Wilhelm von Hanno",
-        "file": "data/people/historie/oslo/people_historie_oslo.json",
-        "category": "historie",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
         "id": "petter_moen",
         "nameOrTitle": "Petter Moen",
         "file": "data/people/historie/oslo/people_historie_oslo.json",
@@ -5452,7 +4984,7 @@
         "resolvedCode": "person_artist_miniature",
         "source": "heuristic",
         "confidence": "medium",
-        "reason": "keyword: kunstner"
+        "reason": "keyword: maler"
       },
       {
         "id": "harriet_backer",
@@ -5465,6 +4997,16 @@
         "reason": "keyword: maler"
       },
       {
+        "id": "gustav_vigeland",
+        "nameOrTitle": "Gustav Vigeland",
+        "file": "data/people/kunst/oslo/people_kunst_oslo.json",
+        "category": "kunst",
+        "resolvedCode": "person_artist_miniature",
+        "source": "heuristic",
+        "confidence": "medium",
+        "reason": "keyword: kunstner"
+      },
+      {
         "id": "bjarne_melgaard",
         "nameOrTitle": "Bjarne Melgaard",
         "file": "data/people/kunst/oslo/people_kunst_oslo.json",
@@ -5472,7 +5014,7 @@
         "resolvedCode": "person_artist_miniature",
         "source": "heuristic",
         "confidence": "medium",
-        "reason": "keyword: kunstner"
+        "reason": "keyword: maler"
       },
       {
         "id": "steinar_jakobsen",
@@ -5509,24 +5051,14 @@
         "nameOrTitle": "Theodor Kittelsen",
         "file": "data/people/kunst/oslo/people_kunst_oslo.json",
         "category": "kunst",
-        "resolvedCode": "person_artist_miniature",
+        "resolvedCode": "person_writer_miniature",
         "source": "heuristic",
         "confidence": "medium",
-        "reason": "keyword: kunstner"
+        "reason": "keyword: roman"
       },
       {
         "id": "anna_eva_bergman",
         "nameOrTitle": "Anna-Eva Bergman",
-        "file": "data/people/kunst/oslo/people_kunst_oslo.json",
-        "category": "kunst",
-        "resolvedCode": "person_artist_miniature",
-        "source": "heuristic",
-        "confidence": "medium",
-        "reason": "keyword: kunstner"
-      },
-      {
-        "id": "rolf_nesch",
-        "nameOrTitle": "Rolf Nesch",
         "file": "data/people/kunst/oslo/people_kunst_oslo.json",
         "category": "kunst",
         "resolvedCode": "person_artist_miniature",
@@ -5763,26 +5295,6 @@
         "source": "heuristic",
         "confidence": "medium",
         "reason": "keyword: bank"
-      },
-      {
-        "id": "olav_thon_eiendom_og_handel",
-        "nameOrTitle": "Olav Thon",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_business_miniature",
-        "source": "heuristic",
-        "confidence": "medium",
-        "reason": "keyword: eiendom"
-      },
-      {
-        "id": "petter_stordalen_hotell_og_service",
-        "nameOrTitle": "Petter Stordalen",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_business_miniature",
-        "source": "heuristic",
-        "confidence": "medium",
-        "reason": "keyword: hotell"
       },
       {
         "id": "stein_erik_hagen_handel",
@@ -6055,16 +5567,6 @@
         "reason": "keyword: naeringsliv"
       },
       {
-        "id": "joao_luis_carrilho_da_graca",
-        "nameOrTitle": "João Luís Carrilho da Graça",
-        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
         "id": "rui_alegre",
         "nameOrTitle": "Rui Alegre",
         "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
@@ -6073,26 +5575,6 @@
         "source": "heuristic",
         "confidence": "medium",
         "reason": "keyword: naeringsliv"
-      },
-      {
-        "id": "manuel_tainha",
-        "nameOrTitle": "Manuel Tainha",
-        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
-      },
-      {
-        "id": "eduardo_souto_de_moura",
-        "nameOrTitle": "Eduardo Souto de Moura",
-        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
-        "category": "naeringsliv",
-        "resolvedCode": "person_architect_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: arkitekt"
       },
       {
         "id": "alfred_nobel",
@@ -6295,16 +5777,6 @@
         "reason": "keyword: keeper"
       },
       {
-        "id": "nils_arne_eggen",
-        "nameOrTitle": "Nils Arne Eggen",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "category": "sport",
-        "resolvedCode": "person_coach_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: trener"
-      },
-      {
         "id": "lyn_fotball",
         "nameOrTitle": "Lyn Fotball",
         "file": "data/people/sport/oslo/people_sport_oslo.json",
@@ -6353,16 +5825,6 @@
         "source": "heuristic",
         "confidence": "high",
         "reason": "keyword: fotball"
-      },
-      {
-        "id": "mario_moniz_pereira",
-        "nameOrTitle": "Mário Moniz Pereira",
-        "file": "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
-        "category": "sport",
-        "resolvedCode": "person_coach_miniature",
-        "source": "heuristic",
-        "confidence": "high",
-        "reason": "keyword: trener"
       },
       {
         "id": "kolapalsen",
@@ -7379,22 +6841,6 @@
         "suggestedAction": "review_only"
       },
       {
-        "id": "operahuset",
-        "nameOrTitle": "Operahuset",
-        "file": "data/places/by/oslo/places_by.json",
-        "currentDesignCode": "theatre_miniature",
-        "reason": "Navn/id antyder opera, men koden er 'theatre_miniature' (vurder opera_miniature).",
-        "suggestedAction": "review_only"
-      },
-      {
-        "id": "slottet",
-        "nameOrTitle": "Det kongelige slott",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "currentDesignCode": "civic_miniature",
-        "reason": "Navn/id antyder slott/palass, men koden er 'civic_miniature' (vurder palace_miniature).",
-        "suggestedAction": "review_only"
-      },
-      {
         "id": "akerhus_slott",
         "nameOrTitle": "Akerhus Slott",
         "file": "data/places/historie/oslo/places_historie.json",
@@ -7413,6 +6859,22 @@
         "suggestedAction": "review_only"
       },
       {
+        "id": "harald_hals",
+        "nameOrTitle": "Harald Hals",
+        "file": "data/people/by/oslo/people_by_oslo.json",
+        "currentDesignCode": "person_urban_planner_miniature",
+        "reason": "Arkitekt antydes, men koden er 'person_urban_planner_miniature' (vurder person_architect_miniature).",
+        "suggestedAction": "review_only"
+      },
+      {
+        "id": "sverre_pedersen",
+        "nameOrTitle": "Sverre Pedersen",
+        "file": "data/people/by/oslo/people_by_oslo.json",
+        "currentDesignCode": "person_urban_planner_miniature",
+        "reason": "Arkitekt antydes, men koden er 'person_urban_planner_miniature' (vurder person_architect_miniature).",
+        "suggestedAction": "review_only"
+      },
+      {
         "id": "peder_anker",
         "nameOrTitle": "Peder Anker",
         "file": "data/people/historie/oslo/people_historie_oslo.json",
@@ -7421,43 +6883,27 @@
         "suggestedAction": "review_only"
       },
       {
-        "id": "ronny_deila",
-        "nameOrTitle": "Ronny Deila",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "currentDesignCode": "person_footballer_miniature",
-        "reason": "Tags/desc antyder trener/coach, men koden er 'person_footballer_miniature' (vurder person_coach_miniature).",
+        "id": "joao_luis_carrilho_da_graca",
+        "nameOrTitle": "João Luís Carrilho da Graça",
+        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
+        "currentDesignCode": "person_architect_miniature",
+        "reason": "Næringsliv/handel antydes, men koden er 'person_architect_miniature' (vurder person_business_miniature).",
         "suggestedAction": "review_only"
       },
       {
-        "id": "sonja_henie",
-        "nameOrTitle": "Sonja Henie",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "currentDesignCode": "person_athlete_miniature",
-        "reason": "Skøyte/skøyteløper antydes, men koden er 'person_athlete_miniature' (vurder person_skater_miniature).",
+        "id": "manuel_tainha",
+        "nameOrTitle": "Manuel Tainha",
+        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
+        "currentDesignCode": "person_architect_miniature",
+        "reason": "Næringsliv/handel antydes, men koden er 'person_architect_miniature' (vurder person_business_miniature).",
         "suggestedAction": "review_only"
       },
       {
-        "id": "oscar_mathisen",
-        "nameOrTitle": "Oscar Mathisen",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "currentDesignCode": "person_athlete_miniature",
-        "reason": "Skøyte/skøyteløper antydes, men koden er 'person_athlete_miniature' (vurder person_skater_miniature).",
-        "suggestedAction": "review_only"
-      },
-      {
-        "id": "hjalmar_andersen",
-        "nameOrTitle": "Hjalmar Andersen",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "currentDesignCode": "person_athlete_miniature",
-        "reason": "Skøyte/skøyteløper antydes, men koden er 'person_athlete_miniature' (vurder person_skater_miniature).",
-        "suggestedAction": "review_only"
-      },
-      {
-        "id": "johann_olav_koss",
-        "nameOrTitle": "Johann Olav Koss",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "currentDesignCode": "person_athlete_miniature",
-        "reason": "Skøyte/skøyteløper antydes, men koden er 'person_athlete_miniature' (vurder person_skater_miniature).",
+        "id": "eduardo_souto_de_moura",
+        "nameOrTitle": "Eduardo Souto de Moura",
+        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
+        "currentDesignCode": "person_architect_miniature",
+        "reason": "Næringsliv/handel antydes, men koden er 'person_architect_miniature' (vurder person_business_miniature).",
         "suggestedAction": "review_only"
       },
       {
@@ -7469,53 +6915,10 @@
         "suggestedAction": "review_only"
       }
     ],
-    "articles": [
-      {
-        "id": "var_frelsers_gravlund",
-        "nameOrTitle": "var_frelsers_gravlund",
-        "file": "data/leksikon/places/oslo/historie/leksikon_oslo_historie.json",
-        "currentDesignCode": "article_history_miniature",
-        "reason": "Tittel/id antyder minne-/gravlundssted, men koden er 'article_history_miniature' (vurder article_memory_place_miniature).",
-        "suggestedAction": "review_only"
-      },
-      {
-        "id": "grini_fangeleir",
-        "nameOrTitle": "grini_fangeleir",
-        "file": "data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json",
-        "currentDesignCode": "article_history_miniature",
-        "reason": "Tittel/id antyder minne-/gravlundssted, men koden er 'article_history_miniature' (vurder article_memory_place_miniature).",
-        "suggestedAction": "review_only"
-      },
-      {
-        "id": "gamlebyen_oslo_hospital",
-        "nameOrTitle": "Oslo hospital",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch4.json",
-        "currentDesignCode": "article_architecture_miniature",
-        "reason": "Tittel/id antyder institusjon, men koden er 'article_architecture_miniature' (vurder article_institution_miniature).",
-        "suggestedAction": "review_only"
-      }
-    ]
+    "articles": []
   },
   "batch3Suggestions": {
     "places": [
-      {
-        "id": "gamlebyen_gravlund",
-        "nameOrTitle": "Gamlebyen gravlund",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "cemetery_miniature",
-        "reason": "heuristisk high-confidence treff (gravlund); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "var_frelsers_gravlund",
-        "nameOrTitle": "Vår Frelsers gravlund",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "cemetery_miniature",
-        "reason": "heuristisk high-confidence treff (gravlund); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
       {
         "id": "kulturkirken_jakob_litteratur",
         "nameOrTitle": "Kulturkirken Jakob",
@@ -7598,15 +7001,6 @@
         "priority": 5
       },
       {
-        "id": "bogstad_gard",
-        "nameOrTitle": "Bogstad gård",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "farm_estate_miniature",
-        "reason": "heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "bygdoy_kongsgard_salamanderdam",
         "nameOrTitle": "Bygdøy Kongsgård salamanderdam",
         "file": "data/places/natur/oslo/places_oslo_natur_salamanderdammer.json",
@@ -7643,33 +7037,6 @@
         "priority": 5
       },
       {
-        "id": "hellerud_gard",
-        "nameOrTitle": "Hellerud gård",
-        "file": "data/places/natur/oslo/places_oslo_alna.json",
-        "entityType": "place",
-        "suggestedDesignCode": "farm_estate_miniature",
-        "reason": "heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "oslo_ladegard",
-        "nameOrTitle": "Oslo ladegård",
-        "file": "data/places/historie/oslo/places_historie_added_batch_01.json",
-        "entityType": "place",
-        "suggestedDesignCode": "farm_estate_miniature",
-        "reason": "heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "voien_gard_voienvolden",
-        "nameOrTitle": "Vøien gård / Vøienvolden",
-        "file": "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-        "entityType": "place",
-        "suggestedDesignCode": "farm_estate_miniature",
-        "reason": "heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "lisbon_gremio_literario",
         "nameOrTitle": "Grémio Literário",
         "file": "data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json",
@@ -7679,35 +7046,8 @@
         "priority": 5
       },
       {
-        "id": "abelhaugen",
-        "nameOrTitle": "Abelhaugen",
-        "file": "data/places/vitenskap/oslo/places_vitenskap.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "alf_proysen_statue_nittedal",
         "nameOrTitle": "Alf Prøysen-statuen – Nittedal kulturhus",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (statue); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "camilla_collett_statue",
-        "nameOrTitle": "Camilla Collett-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (statue); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "henrik_wergeland_statue",
-        "nameOrTitle": "Henrik Wergeland-statuen",
         "file": "data/places/litteratur/oslo/places_litteratur.json",
         "entityType": "place",
         "suggestedDesignCode": "monument_miniature",
@@ -7742,15 +7082,6 @@
         "priority": 5
       },
       {
-        "id": "lisbon_estatua_eca_de_queiros",
-        "nameOrTitle": "Estátua de Eça de Queirós",
-        "file": "data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "lisbon_praca_dos_restauradores",
         "nameOrTitle": "Praça dos Restauradores",
         "file": "data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json",
@@ -7775,42 +7106,6 @@
         "entityType": "place",
         "suggestedDesignCode": "monument_miniature",
         "reason": "heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "oscar_braaten_statuen",
-        "nameOrTitle": "Oscar Braaten-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (statue); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "ruth_maier_minne",
-        "nameOrTitle": "Ruth Maier-minnesmerke",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (minnesmerke); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "sigrid_undset_statue",
-        "nameOrTitle": "Sigrid Undset-statuen",
-        "file": "data/places/litteratur/oslo/places_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (statue); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "tigeren",
-        "nameOrTitle": "Tigerstatuen",
-        "file": "data/places/by/oslo/places_by.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk high-confidence treff (statue); gjør eksplisitt for stabil visuell identitet",
         "priority": 5
       },
       {
@@ -7985,36 +7280,9 @@
         "priority": 5
       },
       {
-        "id": "lisbon_ajuda",
-        "nameOrTitle": "Ajuda",
-        "file": "data/places/by/europe/portugal/lisbon/places_lisbon_by.json",
-        "entityType": "place",
-        "suggestedDesignCode": "palace_miniature",
-        "reason": "heuristisk high-confidence treff (palass); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "lisbon_galeria_ze_dos_bois",
         "nameOrTitle": "Galeria Zé dos Bois (ZDB)",
         "file": "data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "palace_miniature",
-        "reason": "heuristisk high-confidence treff (palass); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "lisbon_palacio_de_belem",
-        "nameOrTitle": "Palácio de Belém",
-        "file": "data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json",
-        "entityType": "place",
-        "suggestedDesignCode": "palace_miniature",
-        "reason": "heuristisk high-confidence treff (palass); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "lisbon_palacio_fronteira",
-        "nameOrTitle": "Palácio dos Marqueses de Fronteira",
-        "file": "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
         "entityType": "place",
         "suggestedDesignCode": "palace_miniature",
         "reason": "heuristisk high-confidence treff (palass); gjør eksplisitt for stabil visuell identitet",
@@ -8111,6 +7379,15 @@
         "priority": 5
       },
       {
+        "id": "selhurst_park_london",
+        "nameOrTitle": "Selhurst Park",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "entityType": "place",
+        "suggestedDesignCode": "park_miniature",
+        "reason": "heuristisk high-confidence treff (park); gjør eksplisitt for stabil visuell identitet",
+        "priority": 5
+      },
+      {
         "id": "treningssted_kampen_park",
         "nameOrTitle": "Kampen park treningssted",
         "file": "data/places/sport/oslo/places_oslo_lekeplasser_trening.json",
@@ -8138,30 +7415,21 @@
         "priority": 5
       },
       {
-        "id": "botsfengselet",
-        "nameOrTitle": "Botsfengselet",
-        "file": "data/places/historie/oslo/places_historie_added_batch_01.json",
+        "id": "emirates_stadium_london",
+        "nameOrTitle": "Emirates Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
         "entityType": "place",
-        "suggestedDesignCode": "prison_miniature",
-        "reason": "heuristisk high-confidence treff (botsfengsel); gjør eksplisitt for stabil visuell identitet",
+        "suggestedDesignCode": "stadium_miniature",
+        "reason": "heuristisk high-confidence treff (stadium); gjør eksplisitt for stabil visuell identitet",
         "priority": 5
       },
       {
-        "id": "grini_fangeleir",
-        "nameOrTitle": "Grini fangeleir",
-        "file": "data/places/historie/oslo/places_historie.json",
+        "id": "gtech_community_stadium_london",
+        "nameOrTitle": "Gtech Community Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
         "entityType": "place",
-        "suggestedDesignCode": "prison_miniature",
-        "reason": "heuristisk high-confidence treff (fangeleir); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "mollergata_19",
-        "nameOrTitle": "Møllergata 19",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "prison_miniature",
-        "reason": "heuristisk high-confidence treff (fengsel); gjør eksplisitt for stabil visuell identitet",
+        "suggestedDesignCode": "stadium_miniature",
+        "reason": "heuristisk high-confidence treff (stadium); gjør eksplisitt for stabil visuell identitet",
         "priority": 5
       },
       {
@@ -8180,6 +7448,33 @@
         "entityType": "place",
         "suggestedDesignCode": "stadium_miniature",
         "reason": "heuristisk high-confidence treff (stadion); gjør eksplisitt for stabil visuell identitet",
+        "priority": 5
+      },
+      {
+        "id": "london_stadium_london",
+        "nameOrTitle": "London Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "entityType": "place",
+        "suggestedDesignCode": "stadium_miniature",
+        "reason": "heuristisk high-confidence treff (stadium); gjør eksplisitt for stabil visuell identitet",
+        "priority": 5
+      },
+      {
+        "id": "tottenham_hotspur_stadium_london",
+        "nameOrTitle": "Tottenham Hotspur Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "entityType": "place",
+        "suggestedDesignCode": "stadium_miniature",
+        "reason": "heuristisk high-confidence treff (stadium); gjør eksplisitt for stabil visuell identitet",
+        "priority": 5
+      },
+      {
+        "id": "wembley_stadium_london",
+        "nameOrTitle": "Wembley Stadium",
+        "file": "data/places/sport/london/footballgrounds.json",
+        "entityType": "place",
+        "suggestedDesignCode": "stadium_miniature",
+        "reason": "heuristisk high-confidence treff (stadium); gjør eksplisitt for stabil visuell identitet",
         "priority": 5
       },
       {
@@ -8280,15 +7575,6 @@
         "suggestedDesignCode": "farm_estate_miniature",
         "reason": "default-fallback; tydelig dyp-tekst treff 'gård'",
         "priority": 4
-      },
-      {
-        "id": "lisbon_cemiterio_dos_prazeres",
-        "nameOrTitle": "Cemitério dos Prazeres",
-        "file": "data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json",
-        "entityType": "place",
-        "suggestedDesignCode": "cemetery_miniature",
-        "reason": "heuristisk medium-confidence treff (cemiterio); bør sjekkes før eksplisitt merking",
-        "priority": 3
       },
       {
         "id": "eldorado_bokhandel",
@@ -8498,15 +7784,6 @@
         "priority": 3
       },
       {
-        "id": "eidsvollsbygningen",
-        "nameOrTitle": "Eidsvollsbygningen",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "industrial_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'verk'",
-        "priority": 3
-      },
-      {
         "id": "frysja_industriomrade",
         "nameOrTitle": "Frysja industriområde",
         "file": "data/places/naeringsliv/oslo/places_naeringsliv.json",
@@ -8621,15 +7898,6 @@
         "entityType": "place",
         "suggestedDesignCode": "industrial_miniature",
         "reason": "heuristisk medium-confidence treff (lager); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "lisbon_padrao_dos_descobrimentos",
-        "nameOrTitle": "Padrão dos Descobrimentos",
-        "file": "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "monument_miniature",
-        "reason": "heuristisk medium-confidence treff (padrão); bør sjekkes før eksplisitt merking",
         "priority": 3
       },
       {
@@ -9008,15 +8276,6 @@
         "entityType": "place",
         "suggestedDesignCode": "square_miniature",
         "reason": "heuristisk medium-confidence treff (torg); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "villa_grande",
-        "nameOrTitle": "Villa Grande",
-        "file": "data/places/historie/oslo/places_historie.json",
-        "entityType": "place",
-        "suggestedDesignCode": "square_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'plass'",
         "priority": 3
       },
       {
@@ -9904,81 +9163,9 @@
     ],
     "people": [
       {
-        "id": "alexis_de_chateauneuf",
-        "nameOrTitle": "Alexis de Chateauneuf",
-        "file": "data/people/historie/oslo/people_historie_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "arne_korsmo",
-        "nameOrTitle": "Arne Korsmo",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "arnstein_arneberg",
-        "nameOrTitle": "Arnstein Arneberg",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "christian_heinrich_grosch",
-        "nameOrTitle": "Christian Heinrich Grosch",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "christian_norberg_schulz",
-        "nameOrTitle": "Christian Norberg-Schulz",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "eduardo_souto_de_moura",
-        "nameOrTitle": "Eduardo Souto de Moura",
-        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "erling_viksjo",
-        "nameOrTitle": "Erling Viksjø",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "francisco_caldeira_cabral",
         "nameOrTitle": "Francisco Caldeira Cabral",
         "file": "data/people/natur/europe/portugal/lisbon/people_natur_lisbon.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "geir_grung",
-        "nameOrTitle": "Geir Grung",
-        "file": "data/people/by/oslo/people_by_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_architect_miniature",
         "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
@@ -9994,120 +9181,12 @@
         "priority": 5
       },
       {
-        "id": "harald_aars",
-        "nameOrTitle": "Harald Aars",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "henrik_bull",
-        "nameOrTitle": "Henrik Bull",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "joao_luis_carrilho_da_graca",
-        "nameOrTitle": "João Luís Carrilho da Graça",
-        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "kirsten_sand",
-        "nameOrTitle": "Kirsten Sand",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "magnus_poulsson",
-        "nameOrTitle": "Magnus Poulsson",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "manuel_tainha",
-        "nameOrTitle": "Manuel Tainha",
-        "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "ove_bang",
-        "nameOrTitle": "Ove Bang",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "sverre_fehn",
-        "nameOrTitle": "Sverre Fehn",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "thomas_thiis_evensen",
-        "nameOrTitle": "Thomas Thiis-Evensen",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "wilhelm_von_hanno",
-        "nameOrTitle": "Wilhelm von Hanno",
-        "file": "data/people/historie/oslo/people_historie_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_architect_miniature",
-        "reason": "heuristisk high-confidence treff (arkitekt); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
         "id": "klanen",
         "nameOrTitle": "Klanen (VIF)",
         "file": "data/people/sport/oslo/people_sport_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_athlete_miniature",
         "reason": "heuristisk high-confidence treff (sport); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "mario_moniz_pereira",
-        "nameOrTitle": "Mário Moniz Pereira",
-        "file": "data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_coach_miniature",
-        "reason": "heuristisk high-confidence treff (trener); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "nils_arne_eggen",
-        "nameOrTitle": "Nils Arne Eggen",
-        "file": "data/people/sport/oslo/people_sport_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_coach_miniature",
-        "reason": "heuristisk high-confidence treff (trener); gjør eksplisitt for stabil visuell identitet",
         "priority": 5
       },
       {
@@ -10198,24 +9277,6 @@
         "entityType": "person",
         "suggestedDesignCode": "person_skater_miniature",
         "reason": "heuristisk high-confidence treff (skøyte); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "harald_hals",
-        "nameOrTitle": "Harald Hals",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_urban_planner_miniature",
-        "reason": "heuristisk high-confidence treff (byplanlegger); gjør eksplisitt for stabil visuell identitet",
-        "priority": 5
-      },
-      {
-        "id": "sverre_pedersen",
-        "nameOrTitle": "Sverre Pedersen",
-        "file": "data/people/by/oslo/people_by_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_urban_planner_miniature",
-        "reason": "heuristisk high-confidence treff (byplanlegger); gjør eksplisitt for stabil visuell identitet",
         "priority": 5
       },
       {
@@ -10602,13 +9663,22 @@
         "file": "data/people/kunst/oslo/people_kunst_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_artist_miniature",
-        "reason": "heuristisk medium-confidence treff (kunstner); bør sjekkes før eksplisitt merking",
+        "reason": "heuristisk medium-confidence treff (maler); bør sjekkes før eksplisitt merking",
         "priority": 3
       },
       {
         "id": "edvard_munch",
         "nameOrTitle": "Edvard Munch",
         "file": "data/people/historie/oslo/people_historie_oslo.json",
+        "entityType": "person",
+        "suggestedDesignCode": "person_artist_miniature",
+        "reason": "heuristisk medium-confidence treff (kunstner); bør sjekkes før eksplisitt merking",
+        "priority": 3
+      },
+      {
+        "id": "gustav_vigeland",
+        "nameOrTitle": "Gustav Vigeland",
+        "file": "data/people/kunst/oslo/people_kunst_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_artist_miniature",
         "reason": "heuristisk medium-confidence treff (kunstner); bør sjekkes før eksplisitt merking",
@@ -10674,7 +9744,7 @@
         "file": "data/people/kunst/oslo/people_kunst_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_artist_miniature",
-        "reason": "heuristisk medium-confidence treff (kunstner); bør sjekkes før eksplisitt merking",
+        "reason": "heuristisk medium-confidence treff (maler); bør sjekkes før eksplisitt merking",
         "priority": 3
       },
       {
@@ -10689,15 +9759,6 @@
       {
         "id": "per_kleiva",
         "nameOrTitle": "Per Kleiva",
-        "file": "data/people/kunst/oslo/people_kunst_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_artist_miniature",
-        "reason": "heuristisk medium-confidence treff (kunstner); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "rolf_nesch",
-        "nameOrTitle": "Rolf Nesch",
         "file": "data/people/kunst/oslo/people_kunst_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_artist_miniature",
@@ -10723,15 +9784,6 @@
         "priority": 3
       },
       {
-        "id": "theodor_kittelsen",
-        "nameOrTitle": "Theodor Kittelsen",
-        "file": "data/people/kunst/oslo/people_kunst_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_artist_miniature",
-        "reason": "heuristisk medium-confidence treff (kunstner); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
         "id": "adriano_telles",
         "nameOrTitle": "Adriano Telles",
         "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
@@ -10750,30 +9802,12 @@
         "priority": 3
       },
       {
-        "id": "alf_bjercke_industri_og_kvalitet",
-        "nameOrTitle": "Alf Bjercke",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'naeringsliv'",
-        "priority": 3
-      },
-      {
         "id": "amund_ringnes",
         "nameOrTitle": "Amund Ringnes",
         "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
         "entityType": "person",
         "suggestedDesignCode": "person_business_miniature",
         "reason": "heuristisk medium-confidence treff (naeringsliv); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "amund_ringnes_bryggeri",
-        "nameOrTitle": "Amund Ringnes",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'naeringsliv'",
         "priority": 3
       },
       {
@@ -10831,15 +9865,6 @@
         "priority": 3
       },
       {
-        "id": "christen_smith_schous_bryggeri",
-        "nameOrTitle": "Christen Smith",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'naeringsliv'",
-        "priority": 3
-      },
-      {
         "id": "christian_ringnes",
         "nameOrTitle": "Christian Ringnes",
         "file": "data/people/filantroper/oslo/people_filantroper_oslo.json",
@@ -10873,15 +9898,6 @@
         "entityType": "person",
         "suggestedDesignCode": "person_business_miniature",
         "reason": "heuristisk medium-confidence treff (naeringsliv); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "ellef_ringnes_bryggeri_og_ledelse",
-        "nameOrTitle": "Ellef Ringnes",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'naeringsliv'",
         "priority": 3
       },
       {
@@ -10945,15 +9961,6 @@
         "entityType": "person",
         "suggestedDesignCode": "person_business_miniature",
         "reason": "heuristisk medium-confidence treff (naeringsliv); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "herman_schou_bryggeri",
-        "nameOrTitle": "Herman Schou",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'naeringsliv'",
         "priority": 3
       },
       {
@@ -11047,15 +10054,6 @@
         "priority": 3
       },
       {
-        "id": "olav_thon_eiendom_og_handel",
-        "nameOrTitle": "Olav Thon",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "heuristisk medium-confidence treff (eiendom); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
         "id": "paddy_cosgrave",
         "nameOrTitle": "Paddy Cosgrave",
         "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
@@ -11083,15 +10081,6 @@
         "priority": 3
       },
       {
-        "id": "petter_stordalen_hotell_og_service",
-        "nameOrTitle": "Petter Stordalen",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "heuristisk medium-confidence treff (hotell); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
         "id": "rui_alegre",
         "nameOrTitle": "Rui Alegre",
         "file": "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
@@ -11107,15 +10096,6 @@
         "entityType": "person",
         "suggestedDesignCode": "person_business_miniature",
         "reason": "heuristisk medium-confidence treff (naeringsliv); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "sam_eyde_industriutbygger",
-        "nameOrTitle": "Sam Eyde",
-        "file": "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json",
-        "entityType": "person",
-        "suggestedDesignCode": "person_business_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'naeringsliv'",
         "priority": 3
       },
       {
@@ -11792,6 +10772,15 @@
         "suggestedDesignCode": "person_writer_miniature",
         "reason": "heuristisk medium-confidence treff (roman); bør sjekkes før eksplisitt merking",
         "priority": 3
+      },
+      {
+        "id": "theodor_kittelsen",
+        "nameOrTitle": "Theodor Kittelsen",
+        "file": "data/people/kunst/oslo/people_kunst_oslo.json",
+        "entityType": "person",
+        "suggestedDesignCode": "person_writer_miniature",
+        "reason": "heuristisk medium-confidence treff (roman); bør sjekkes før eksplisitt merking",
+        "priority": 3
       }
     ],
     "articles": [
@@ -11820,42 +10809,6 @@
         "entityType": "article",
         "suggestedDesignCode": "article_institution_miniature",
         "reason": "default-fallback; tydelig dyp-tekst treff 'fengsel'",
-        "priority": 4
-      },
-      {
-        "id": "cinemateket_oslo_film_som_arkiv",
-        "nameOrTitle": "Film som arkiv",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "cinemateket_oslo_hovedartikkel",
-        "nameOrTitle": "Cinemateket i Oslo",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "cinemateket_oslo_norsk_filminstitutt",
-        "nameOrTitle": "Norsk filminstitutt og cinematek-funksjonen",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "deichman_bjorvika",
-        "nameOrTitle": "deichman_bjorvika",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
         "priority": 4
       },
       {
@@ -11906,15 +10859,6 @@
       {
         "id": "lisbon_culturgest",
         "nameOrTitle": "lisbon_culturgest",
-        "file": "data/leksikon/places/europe/portugal/lisbon/kunst/leksikon_lisbon_kunst_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "lisbon_fundacao_calouste_gulbenkian",
-        "nameOrTitle": "lisbon_fundacao_calouste_gulbenkian",
         "file": "data/leksikon/places/europe/portugal/lisbon/kunst/leksikon_lisbon_kunst_batch1.json",
         "entityType": "article",
         "suggestedDesignCode": "article_institution_miniature",
@@ -12021,24 +10965,6 @@
         "priority": 4
       },
       {
-        "id": "nrk_huset_marienlyst_allmennkringkasting",
-        "nameOrTitle": "Allmennkringkasting på Marienlyst",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "nrk_huset_marienlyst_hovedartikkel",
-        "nameOrTitle": "NRK-huset på Marienlyst",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
         "id": "sagene_arbeiderby_boligstruktur",
         "nameOrTitle": "Sagene som arbeiderby og hverdagsby",
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
@@ -12069,15 +10995,6 @@
         "id": "schous_bryggeri",
         "nameOrTitle": "schous_bryggeri",
         "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_institution_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "schous_plass_deichman_schous",
-        "nameOrTitle": "Deichman Schous",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json",
         "entityType": "article",
         "suggestedDesignCode": "article_institution_miniature",
         "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
@@ -12135,15 +11052,6 @@
         "entityType": "article",
         "suggestedDesignCode": "article_institution_miniature",
         "reason": "default-fallback; tydelig dyp-tekst treff 'institusjon'",
-        "priority": 4
-      },
-      {
-        "id": "gamlebyen_gravlund",
-        "nameOrTitle": "gamlebyen_gravlund",
-        "file": "data/leksikon/places/oslo/historie/leksikon_oslo_historie.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_memory_place_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'gravlund'",
         "priority": 4
       },
       {
@@ -13511,13 +12419,13 @@
     "batch1Baseline": 73,
     "afterBatch2": 169,
     "afterBatch3": 249,
-    "currentExplicit": 249,
+    "currentExplicit": 312,
     "currentByEntityType": {
-      "places": 98,
-      "people": 88,
-      "articles": 63
+      "places": 122,
+      "people": 118,
+      "articles": 72
     },
-    "addedSinceBatch3": 0,
+    "addedSinceBatch3": 63,
     "scope": "Kontrollerte pilot-batcher for visual.designCode-dekning; nåværende total beregnes fra data."
   }
 }
