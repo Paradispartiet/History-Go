@@ -46,6 +46,7 @@ const DEFAULTS = {
   let _placeFileByIdPromise = null;
   let _fagManifestPromise = null;
   let _lesesporPromise = null;
+  let _badgesPromise = null;
 
   function joinPath(base, path) {
     return `${base}/${path}`.replace(/\/+/g, "/");
@@ -204,9 +205,54 @@ async function loadPlacesBase(opts = {}) {
   function loadPeopleBase(opts = {}) {
     return fetchJSON(pData("people.json"), opts);
   }
-  function loadBadges(opts = {}) {
-    return fetchJSON(pData("badges.json"), opts);
+
+  async function loadBadges(opts = {}) {
+    if (Array.isArray(window.BADGES) && window.BADGES.length && !opts?.bust) {
+      return window.BADGES;
+    }
+
+    if (_badgesPromise && !opts?.bust) return _badgesPromise;
+
+    _badgesPromise = (async () => {
+      const index = await fetchJSON(pData("badges/index.json"), opts);
+      const files = Array.isArray(index?.files)
+        ? index.files.map((file) => String(file || "").trim()).filter(Boolean)
+        : [];
+
+      if (!files.length) {
+        throw new Error("data/badges/index.json mangler files[]");
+      }
+
+      const byId = new Map();
+      for (const rawFile of files) {
+        const file = String(rawFile || "")
+          .trim()
+          .replace(/^\/?data\/badges\//, "")
+          .replace(/^\.\//, "");
+        if (!file) continue;
+
+        const badge = await fetchJSON(pData(`badges/${file}`), opts);
+        const id = String(badge?.id || "").trim();
+        if (!id || !badge || typeof badge !== "object" || Array.isArray(badge)) {
+          throw new Error(`Ugyldig badge-fil: ${rawFile}`);
+        }
+        if (!byId.has(id)) byId.set(id, badge);
+      }
+
+      const badges = [...byId.values()];
+      window.BADGES = badges;
+      return badges;
+    })().catch((e) => {
+      console.warn("[DataHub.loadBadges] kunne ikke laste badge-index", e?.message || e);
+      window.BADGES = [];
+      return window.BADGES;
+    }).finally(() => {
+      _badgesPromise = null;
+    });
+
+    return _badgesPromise;
   }
+
   function loadRoutes(opts = {}) {
     return fetchJSON(pData("routes.json"), opts);
   }
