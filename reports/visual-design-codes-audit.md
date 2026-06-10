@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-10T04:55:56.416Z
+Generert: 2026-06-10T21:21:49.128Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -8,18 +8,18 @@ Generert: 2026-06-10T04:55:56.416Z
 
 ## Register
 
-- designCodes totalt: **72**
+- designCodes totalt: **81**
 - per entityType:
   - place: 31
   - person: 23
-  - article: 18
-  - story: 18
-  - leksikon: 18
-  - lesespor: 18
+  - article: 27
+  - story: 27
+  - leksikon: 27
+  - lesespor: 27
 
 ## Data funnet
 
-- places: 501
+- places: 440
 - people: 426
 - leksikon: 335
 - lesespor: 9
@@ -27,28 +27,27 @@ Generert: 2026-06-10T04:55:56.416Z
 
 ## Resolusjon
 
-- eksplisitt `visual.designCode`: 378
+- eksplisitt `visual.designCode`: 365
 - per kilde (alle entiteter):
-  - explicit: 378
+  - explicit: 365
   - assetType: 0
-  - category: 250
-  - heuristic: 456
+  - category: 233
+  - heuristic: 425
   - default: 187
 
 | entityType | explicit | assetType | category | heuristic | default |
 | --- | --- | --- | --- | --- | --- |
-| places | 122 | 0 | 124 | 251 | 4 |
+| places | 109 | 0 | 107 | 220 | 4 |
 | people | 118 | 0 | 126 | 174 | 8 |
 | articles | 138 | 0 | 0 | 31 | 175 |
 
 ## Eksplisitt pilot-merkede designCodes
 
-- places (122):
-  - `park_miniature`: 13
+- places (109):
+  - `park_miniature`: 11
   - `church_miniature`: 11
   - `station_miniature`: 9
   - `monument_miniature`: 9
-  - `stadium_miniature`: 8
   - `museum_miniature`: 8
   - `square_miniature`: 7
   - `cinema_miniature`: 7
@@ -59,11 +58,11 @@ Generert: 2026-06-10T04:55:56.416Z
   - `waterfront_miniature`: 4
   - `palace_miniature`: 4
   - `theatre_miniature`: 4
-  - `ice_arena_miniature`: 4
   - `cemetery_miniature`: 3
   - `prison_miniature`: 3
   - `fortress_miniature`: 2
   - `commerce_miniature`: 1
+  - `stadium_miniature`: 1
   - `opera_miniature`: 1
   - `industrial_miniature`: 1
   - `school_miniature`: 1
@@ -105,15 +104,15 @@ Generert: 2026-06-10T04:55:56.416Z
 - Batch 1-baseline: 73 eksplisitte `visual.designCode`.
 - Etter batch 2: 169 eksplisitte `visual.designCode`.
 - Etter batch 3: 249 eksplisitte `visual.designCode`.
-- Nåværende total: 378 eksplisitte `visual.designCode` (122 places, 118 people, 138 articles).
-- Endring siden batch 3: 129.
+- Nåværende total: 365 eksplisitte `visual.designCode` (109 places, 118 people, 138 articles).
+- Endring siden batch 3: 116.
 - Omfang: Kontrollerte pilot-batcher for visual.designCode-dekning; nåværende total beregnes fra data.
 
 ## Topp brukte designCodes
 
 - `article_default_miniature`: 175
-- `waterfront_miniature`: 84
-- `park_miniature`: 60
+- `waterfront_miniature`: 82
+- `park_miniature`: 51
 - `person_writer_miniature`: 46
 - `person_business_miniature`: 43
 - `person_historical_miniature`: 40
@@ -208,9 +207,9 @@ heuristikk. High-confidence treff er trygge kandidater for eksplisitt merking.
 
 ### Places
 
-- totalt: 251 (high 71, medium 175, low 5)
+- totalt: 220 (high 57, medium 158, low 5)
 
-#### Topp high-confidence (71)
+#### Topp high-confidence (57)
 
 | id | navn/tittel | resolvedCode | reason |
 | --- | --- | --- | --- |
@@ -222,17 +221,6 @@ heuristikk. High-confidence treff er trygge kandidater for eksplisitt merking.
 | akershus_slott_bakeriet | Bakeriet ved Akershus | palace_miniature | keyword: slott |
 | bygdoy_kongsgard_salamanderdam | Bygdøy Kongsgård salamanderdam | farm_estate_miniature | keyword: gard |
 | slottsplassen | Slottsplassen | palace_miniature | keyword: slott |
-| aktivitet_rudolf_nilsens_plass | Rudolf Nilsens plass aktivitetspark | park_miniature | keyword: park |
-| treningssted_torshovdalen | Torshovdalen trenings- og aktivitetspark | park_miniature | keyword: park |
-| treningssted_kampen_park | Kampen park treningssted | park_miniature | keyword: park |
-| gardermoen_raceway | Gardermoen Raceway | farm_estate_miniature | keyword: gard |
-| gardermoen_motorpark | Gardermoen Motorpark | farm_estate_miniature | keyword: gard |
-| wembley_stadium_london | Wembley Stadium | stadium_miniature | keyword: stadium |
-| tottenham_hotspur_stadium_london | Tottenham Hotspur Stadium | stadium_miniature | keyword: stadium |
-| emirates_stadium_london | Emirates Stadium | stadium_miniature | keyword: stadium |
-| london_stadium_london | London Stadium | stadium_miniature | keyword: stadium |
-| selhurst_park_london | Selhurst Park | park_miniature | keyword: park |
-| gtech_community_stadium_london | Gtech Community Stadium | stadium_miniature | keyword: stadium |
 | grunerlokka_bakgardsvegger | Grünerløkka bakgårdsvegger | farm_estate_miniature | keyword: gard |
 | forskningsparken | Forskningsparken | park_miniature | keyword: park |
 | rikshospitalet | Rikshospitalet | university_miniature | keyword: universitet |
@@ -244,8 +232,19 @@ heuristikk. High-confidence treff er trygge kandidater for eksplisitt merking.
 | lisbon_teatro_romano | Ruínas do Teatro Romano | theatre_miniature | keyword: teater |
 | lisbon_panteao_nacional | Panteão Nacional (Igreja de Santa Engrácia) | church_miniature | keyword: kirke |
 | lisbon_museu_de_lisboa | Museu de Lisboa (Palácio Pimenta) | museum_miniature | keyword: museum |
+| lisbon_igreja_de_santo_antonio | Igreja de Santo António | church_miniature | keyword: kirke |
+| lisbon_igreja_de_sao_roque | Igreja de São Roque | church_miniature | keyword: kirke |
+| lisbon_museu_do_aljube | Museu do Aljube – Resistência e Liberdade | museum_miniature | keyword: museum |
+| lisbon_igreja_de_sao_domingos | Igreja de São Domingos | church_miniature | keyword: kirke |
+| lisbon_museu_de_marinha | Museu de Marinha | museum_miniature | keyword: museum |
+| lisbon_museu_nacional_dos_coches | Museu Nacional dos Coches | museum_miniature | keyword: museum |
+| lisbon_praca_dos_restauradores | Praça dos Restauradores | monument_miniature | keyword: monument |
+| lisbon_praca_marques_de_pombal | Praça Marquês de Pombal | monument_miniature | keyword: monument |
+| lisbon_museu_nacional_do_azulejo | Museu Nacional do Azulejo | museum_miniature | keyword: museum |
+| lisbon_fundacao_calouste_gulbenkian | Fundação Calouste Gulbenkian | museum_miniature | keyword: museum |
+| lisbon_maat | MAAT / Tejo-kraftstasjonen | museum_miniature | keyword: museum |
 
-_Viser 30 av 71. Full liste i `reports/visual-design-codes-audit.json`._
+_Viser 30 av 57. Full liste i `reports/visual-design-codes-audit.json`._
 
 ### People
 
@@ -298,12 +297,26 @@ _Viser 30 av 32. Full liste i `reports/visual-design-codes-audit.json`._
 
 ## Ubrukte designCodes – anbefalt oppfølging
 
+### `sports_field_miniature`
+
+- family: sport
+- entityTypes: place
+- søkeord: `place`, `sport`, `field`, `outdoor`
+- anbefalt: Ingen entiteter løser til denne koden i dag. Vurder om noen entiteter bør merkes eksplisitt, eller om koden kan utgå.
+
 ### `gallery_miniature`
 
 - family: culture
 - entityTypes: place
 - søkeord: `galleri`, `gallery`, `kunsthall`, `utstilling`
 - anbefalt: Vurder places med galleri/kunsthall som i dag løses som museum_miniature eller default.
+
+### `playground_miniature`
+
+- family: nature
+- entityTypes: place
+- søkeord: `place`, `nature`, `playground`, `outdoor`
+- anbefalt: Ingen entiteter løser til denne koden i dag. Vurder om noen entiteter bør merkes eksplisitt, eller om koden kan utgå.
 
 ### `article_people_portrait_miniature`
 
@@ -318,6 +331,69 @@ _Viser 30 av 32. Full liste i `reports/visual-design-codes-audit.json`._
 - entityTypes: article, story, leksikon, lesespor
 - søkeord: `wonderkammer`, `kuriosa`, `objekt`, `samling`, `cabinet`
 - anbefalt: Vurder AHA-/kuriosa-/objektsamling-artikler for eksplisitt article_wonderkammer_miniature.
+
+### `article_nature_route_miniature`
+
+- family: nature
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `elv`, `elveløp`, `natursti`, `turvei`, `grøntdrag`, `vassdrag`, `bekk`, `naturkorridor`
+- anbefalt: Vurder naturstier, elver/bekker, vann, grøntdrag, turveier og natur-/elveforløp for eksplisitt article_nature_route_miniature (jf. articleBatch6Plan).
+
+### `article_media_history_miniature`
+
+- family: media
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `redaksjon`, `avis`, `journalistikk`, `nrk`, `kringkasting`, `mediehus`, `offentlighet`
+- anbefalt: Vurder avisredaksjoner, NRK/mediehus, pressehistorie og medieoffentlighet for eksplisitt article_media_history_miniature (jf. articleBatch6Plan).
+
+### `article_transport_miniature`
+
+- family: transport
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `trikk`, `t-bane`, `tog`, `buss`, `stasjon`, `knutepunkt`, `kollektiv`, `terminal`
+- anbefalt: Vurder trikk/t-bane/tog/buss, stasjoner, knutepunkt og kollektivsystem for eksplisitt article_transport_miniature (jf. articleBatch6Plan).
+
+### `article_urban_infrastructure_miniature`
+
+- family: urbanism
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `bro`, `bru`, `tunnel`, `akvedukt`, `vannforsyning`, `infrastruktur`, `kraft`
+- anbefalt: Vurder veier, bruer, tunneler, vannforsyning, kraft og teknisk infrastruktur for eksplisitt article_urban_infrastructure_miniature (jf. articleBatch6Plan).
+
+### `article_industry_miniature`
+
+- family: industry
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `bryggeri`, `fabrikk`, `verksted`, `industri`, `produksjon`
+- anbefalt: Vurder bryggeri, fabrikk, verksted, produksjon og industrihistorie for eksplisitt article_industry_miniature (jf. articleBatch6Plan).
+
+### `article_religion_miniature`
+
+- family: religion
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `kirke`, `menighet`, `trosliv`, `religion`, `kloster`, `moske`, `synagoge`
+- anbefalt: Vurder kirkerom, menighet, trosliv og kirkehistorie (religion mer enn bygning) for eksplisitt article_religion_miniature (jf. articleBatch6Plan).
+
+### `article_science_history_miniature`
+
+- family: science
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `forskning`, `vitenskap`, `laboratorium`, `institutt`, `metode`, `fagfelt`
+- anbefalt: Vurder forskning, vitenskapshistorie, fagmiljøer og laboratorier for eksplisitt article_science_history_miniature (jf. articleBatch6Plan).
+
+### `article_food_market_miniature`
+
+- family: food_market
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `matmarked`, `torghandel`, `mathall`, `markedshall`, `matkultur`, `servering`
+- anbefalt: Vurder matmarked, torghandel, mathall, serverings- og matkultur for eksplisitt article_food_market_miniature (jf. articleBatch6Plan).
+
+### `article_childhood_play_miniature`
+
+- family: childhood
+- entityTypes: article, story, leksikon, lesespor
+- søkeord: `lekeplass`, `barndom`, `lek`, `barn`, `skolegård`, `aktivitet`
+- anbefalt: Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch6Plan).
 
 ## Review-kandidater – ikke nødvendigvis feil
 
@@ -344,7 +420,7 @@ Eksplisitte koder som kan være riktige, men bør vurderes manuelt. Dette er
 Prioritert liste (P5 = åpenbar og viktig, P3 = sannsynlig, bør sjekkes).
 Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
 
-#### Places (totalt 249, viser 20)
+#### Places (totalt 218, viser 20)
 
 - `church_miniature`:
   - [P5] Kulturkirken Jakob (`kulturkirken_jakob_litteratur`) — heuristisk high-confidence treff (kirke); gjør eksplisitt for stabil visuell identitet
@@ -359,8 +435,6 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P5] Doclisboa – Festival Internacional de Cinema (`lisbon_doclisboa`) — heuristisk high-confidence treff (cinema); gjør eksplisitt for stabil visuell identitet
 - `farm_estate_miniature`:
   - [P5] Bygdøy Kongsgård salamanderdam (`bygdoy_kongsgard_salamanderdam`) — heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet
-  - [P5] Gardermoen Motorpark (`gardermoen_motorpark`) — heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet
-  - [P5] Gardermoen Raceway (`gardermoen_raceway`) — heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet
   - [P5] Grünerløkka bakgårdsvegger (`grunerlokka_bakgardsvegger`) — heuristisk high-confidence treff (gard); gjør eksplisitt for stabil visuell identitet
 - `library_miniature`:
   - [P5] Grémio Literário (`lisbon_gremio_literario`) — heuristisk high-confidence treff (bibliotek); gjør eksplisitt for stabil visuell identitet
@@ -371,6 +445,9 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P5] Cinema São Jorge (`lisbon_cinema_sao_jorge`) — heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet
   - [P5] Praça dos Restauradores (`lisbon_praca_dos_restauradores`) — heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet
   - [P5] Praça Luís de Camões (`lisbon_praca_luis_de_camoes`) — heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet
+  - [P5] Praça Marquês de Pombal (`lisbon_praca_marques_de_pombal`) — heuristisk high-confidence treff (monument); gjør eksplisitt for stabil visuell identitet
+- `museum_miniature`:
+  - [P5] Banco de Portugal / Museu do Dinheiro (`lisbon_banco_de_portugal_museu_do_dinheiro`) — heuristisk high-confidence treff (museum); gjør eksplisitt for stabil visuell identitet
 
 #### People (totalt 180, viser 20)
 
@@ -403,42 +480,42 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P5] Christian Krohg (`christian_krohg`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
   - [P5] Don Martin (`don_martin`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
 
-#### Artikler (totalt 127, viser 30)
+#### Artikler (totalt 167, viser 30)
 
-- `article_art_miniature`:
-  - [P3] Broen og skulpturrommene (`frognerparken_broen_og_skulpturrom`) — heuristisk medium-confidence treff (skulptur); bør sjekkes før eksplisitt merking
-  - [P3] Frognerparken (`frognerparken_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'skulptur'
-  - [P3] Banal og overdimensjonert skulpturpark (`lesespor_ekebergparken_001`) — heuristisk medium-confidence treff (skulptur); bør sjekkes før eksplisitt merking
-  - [P3] – Et smykkeskrin for våre kunstskatter (`lesespor_nasjonalmuseet_001`) — heuristisk medium-confidence treff (kunst); bør sjekkes før eksplisitt merking
-- `article_biography_miniature`:
-  - [P3] akerselva (`akerselva`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] alnabru_jernbane_og_logistikk (`alnabru_jernbane_og_logistikk`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] ankerbrua (`ankerbrua`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] birkelunden (`birkelunden`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] bygdoy_kongeskogen (`bygdoy_kongeskogen`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] bygdoy_natur (`bygdoy_natur`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] Chateau Neuf (`chateau_neuf_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] Vigelandsanlegget i Frognerparken (`frognerparken_vigelandsanlegget`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] Frognerstranda som sesongbasert kjendissone (`frognerstranda_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] gamle_trikkestallen (`gamle_trikkestallen`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] gressholmen (`gressholmen`) — default-fallback; mulig dyp-tekst treff 'liv'
-- `article_institution_miniature`:
-  - [P4] botsparken (`botsparken`) — default-fallback; tydelig dyp-tekst treff 'fengsel'
-  - [P4] gronland_kirke (`gronland_kirke`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-  - [P4] Sagene som arbeiderby og hverdagsby (`sagene_arbeiderby_boligstruktur`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-  - [P4] Sagene som film- og TV-miljø (`sagene_film_tv_lag`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-  - [P4] schous_bryggeri (`schous_bryggeri`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-  - [P4] Schous plass (`schous_plass_hovedartikkel`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-  - [P4] sofienberg_kirke (`sofienberg_kirke`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-  - [P4] trikk_17_18 (`trikk_17_18`) — default-fallback; tydelig dyp-tekst treff 'institusjon'
-- `article_sports_history_miniature`:
-  - [P4] carl_berner_plass (`carl_berner_plass`) — default-fallback; tydelig dyp-tekst treff 'sport'
-  - [P4] Begreper rundt Good Game-redaksjonen (`good_game_redaksjon_begreper`) — default-fallback; tydelig dyp-tekst treff 'sport'
-  - [P4] Good Game i digital offentlighet (`good_game_redaksjon_digital_offentlighet`) — default-fallback; tydelig dyp-tekst treff 'sport'
-  - [P4] jernbanetorget (`jernbanetorget`) — default-fallback; tydelig dyp-tekst treff 'sport'
-  - [P4] oslo_bussterminal (`oslo_bussterminal`) — default-fallback; tydelig dyp-tekst treff 'sport'
-  - [P4] Begreper: knutepunkt, stasjonshall og folkestrøm (`oslo_s_begreper`) — default-fallback; tydelig dyp-tekst treff 'sport'
-  - [P4] tigeren (`tigeren`) — default-fallback; tydelig dyp-tekst treff 'sport'
+- `article_childhood_play_miniature`:
+  - [P5] Grøntstruktur i Kampen park (`kampen_park_grontstruktur`) — default-fallback; dyp-tekst treff 'lekeplass' dekker ubrukt kode article_childhood_play_miniature
+  - [P5] Kampen park (`kampen_park_hovedartikkel`) — default-fallback; dyp-tekst treff 'lekeplass' dekker ubrukt kode article_childhood_play_miniature
+  - [P5] Parkrom, bakker og terreng i Kampen park (`kampen_park_parkrom_terreng`) — default-fallback; dyp-tekst treff 'lekeplass' dekker ubrukt kode article_childhood_play_miniature
+- `article_industry_miniature`:
+  - [P5] schous_bryggeri (`schous_bryggeri`) — default-fallback; dyp-tekst treff 'bryggeri' dekker ubrukt kode article_industry_miniature
+- `article_media_history_miniature`:
+  - [P5] Avisoffentlighet fra Aftenposten-redaksjonen (`aftenposten_akersgata_avisoffentlighet`) — default-fallback; dyp-tekst treff 'redaksjon' dekker ubrukt kode article_media_history_miniature
+  - [P5] Redaksjonell makt og geografi i Akersgata (`aftenposten_akersgata_geografi`) — default-fallback; dyp-tekst treff 'redaksjon' dekker ubrukt kode article_media_history_miniature
+  - [P5] bygdoy_huk (`bygdoy_huk`) — default-fallback; dyp-tekst treff 'presse' dekker ubrukt kode article_media_history_miniature
+  - [P5] Filmkultur i Oslo (`cinemateket_oslo_filmkultur_i_oslo`) — default-fallback; dyp-tekst treff 'programkino' dekker ubrukt kode article_media_history_miniature
+  - [P5] Kuratering og programkino (`cinemateket_oslo_kuratering_programkino`) — default-fallback; dyp-tekst treff 'programkino' dekker ubrukt kode article_media_history_miniature
+  - [P5] Begreper rundt Dagbladet i Akersgata (`dagbladet_akersgata_begreper`) — default-fallback; dyp-tekst treff 'avishus' dekker ubrukt kode article_media_history_miniature
+  - [P5] Kulturjournalistikk fra Dagbladet-redaksjonen (`dagbladet_akersgata_kulturjournalistikk`) — default-fallback; dyp-tekst treff 'journalistikk' dekker ubrukt kode article_media_history_miniature
+  - [P5] elvestrekning_bla_brenneriveien (`elvestrekning_bla_brenneriveien`) — default-fallback; dyp-tekst treff 'presse' dekker ubrukt kode article_media_history_miniature
+  - [P5] Good Game i digital offentlighet (`good_game_redaksjon_digital_offentlighet`) — default-fallback; dyp-tekst treff 'redaksjon' dekker ubrukt kode article_media_history_miniature
+  - [P5] Spillkultur som mediefelt i Good Game (`good_game_redaksjon_spillkultur_mediefelt`) — default-fallback; dyp-tekst treff 'mediefelt' dekker ubrukt kode article_media_history_miniature
+  - [P5] Klassekampen i politisk og kulturell offentlighet (`klassekampen_redaksjon_offentlighet`) — default-fallback; dyp-tekst treff 'redaksjon' dekker ubrukt kode article_media_history_miniature
+  - [P5] ljanselva_ljan (`ljanselva_ljan`) — default-fallback; dyp-tekst treff 'presse' dekker ubrukt kode article_media_history_miniature
+  - [P5] myralokka (`myralokka`) — default-fallback; dyp-tekst treff 'presse' dekker ubrukt kode article_media_history_miniature
+  - [P5] Begreper rundt NRK-huset på Marienlyst (`nrk_huset_marienlyst_begreper`) — default-fallback; dyp-tekst treff 'nrk' dekker ubrukt kode article_media_history_miniature
+- `article_nature_route_miniature`:
+  - [P5] akerselva_utlop_bjorvika (`akerselva_utlop_bjorvika`) — default-fallback; dyp-tekst treff 'elva' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alna_bryn (`alna_bryn`) — default-fallback; dyp-tekst treff 'elve' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alna_smalvoll (`alna_smalvoll`) — default-fallback; dyp-tekst treff 'elve' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alna_utlop_bjorvika (`alna_utlop_bjorvika`) — default-fallback; dyp-tekst treff 'elv' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alnaelva (`alnaelva`) — default-fallback; dyp-tekst treff 'elva' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alnaelvstien (`alnaelvstien`) — default-fallback; dyp-tekst treff 'elva' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alnaparken (`alnaparken`) — default-fallback; dyp-tekst treff 'grøntdrag' dekker ubrukt kode article_nature_route_miniature
+  - [P5] alnsjoen_alna_kilde (`alnsjoen_alna_kilde`) — default-fallback; dyp-tekst treff 'vassdrag' dekker ubrukt kode article_nature_route_miniature
+  - [P5] beierbrua (`beierbrua`) — default-fallback; dyp-tekst treff 'elva' dekker ubrukt kode article_nature_route_miniature
+  - [P5] bjoelsenfossen (`bjoelsenfossen`) — default-fallback; dyp-tekst treff 'elva' dekker ubrukt kode article_nature_route_miniature
+  - [P5] bjoelsenparken_elvenaer (`bjoelsenparken_elvenaer`) — default-fallback; dyp-tekst treff 'elve' dekker ubrukt kode article_nature_route_miniature
+  - [P5] fossveien_elvestrekning (`fossveien_elvestrekning`) — default-fallback; dyp-tekst treff 'elve' dekker ubrukt kode article_nature_route_miniature
 
 ## Article default analysis
 
@@ -446,15 +523,15 @@ Klassifisering av de gjenværende `article_default_miniature`. Denne
 delen merker **ingen** datafiler – den forbereder en presis batch 6.
 
 - total `article_default_miniature`: **175**
-- safeBatch6Candidates: 16
+- safeBatch6Candidates: 134
 - needsMetadata: 3
-- needsNewDesignCode: 118
+- needsNewDesignCode: 0
 - keepDefaultForNow: 26
 - manualReview: 12
 
 ### Trygge batch 6-kandidater
 
-#### safeBatch6Candidates (16)
+#### safeBatch6Candidates (134)
 
 | id / title | suggestedDesignCode | confidence | reason | file |
 | --- | --- | --- | --- | --- |
@@ -462,18 +539,54 @@ delen merker **ingen** datafiler – den forbereder en presis batch 6.
 | frognerparken_hovedartikkel — Frognerparken | article_art_miniature | high | tydelig eksisterende fagområde (vigelandsanlegget) → `article_art_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch4.json |
 | frognerparken_vigelandsanlegget — Vigelandsanlegget i Frognerparken | article_art_miniature | high | tydelig eksisterende fagområde (vigelandsanlegget, skulptur, skulpturpark) → `article_art_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch4.json |
 | gamlebyen_middelalderbyen_oslo — Middelalderbyen Oslo | article_history_miniature | high | tydelig eksisterende fagområde (middelalderby, christiania, byhistorie) → `article_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch4.json |
+| schous_plass_schous_bryggeri — Schous bryggeri | article_industry_miniature | high | tydelig eksisterende fagområde (bryggeri, industrihistorie) → `article_industry_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
 | chateau_neuf_hovedartikkel — Chateau Neuf | article_institution_miniature | high | tydelig eksisterende fagområde (studenthus, studentersamfund) → `article_institution_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
 | psykologisk_institutt_uio_forskning_metode — Forskning, metode og faglig vurdering | article_institution_miniature | high | tydelig eksisterende fagområde (institutt) → `article_institution_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_psykologisk_institutt_uio.json |
 | gronland_kirke — Østkantskirke som kobler institusjon, lokalhistorie og byendring. | article_local_story_miniature | high | tydelig eksisterende fagområde (lokalhistorie) → `article_local_story_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
-| radhusplassen_begreper — Begreper: plassrom, markering og byseremoni | article_place_essay_miniature | high | tydelig eksisterende fagområde (plassrom) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| radhusplassen_fjordrom — Byrommet ved fjorden | article_place_essay_miniature | high | tydelig eksisterende fagområde (byrom, plassrom) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| radhusplassen_hovedartikkel — Rådhusplassen som popkulturelt plassrom | article_place_essay_miniature | high | tydelig eksisterende fagområde (plassrom, byrom) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| radhusplassen_offentlighet — Åpen flate og representasjonsrom | article_place_essay_miniature | high | tydelig eksisterende fagområde (representasjonsrom, byrom) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| slottsplassen_akse — Plassflate, akse og utsyn | article_place_essay_miniature | high | tydelig eksisterende fagområde (seremoniell byform, byakse) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| slottsplassen_hovedartikkel — Slottsplassen som popkulturelt representasjonsrom | article_place_essay_miniature | high | tydelig eksisterende fagområde (representasjonsrom, byakse) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| torshov_torshovparken — Torshovparken | article_place_essay_miniature | high | tydelig eksisterende fagområde (byrom) → `article_place_essay_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json |
-| toyen_torg_hovedartikkel — Tøyen torg som popkulturelt byrom | article_place_essay_miniature | high | tydelig eksisterende fagområde (byrom) → `article_place_essay_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| spikersuppa — Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane. | article_political_history_miniature | medium | tydelig eksisterende fagområde (storting) → `article_political_history_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
+| aftenposten_akersgata_avisoffentlighet — Avisoffentlighet fra Aftenposten-redaksjonen | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon, lederartikkel, dagsorden) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| aftenposten_akersgata_begreper — Begreper rundt Aftenposten i Akersgata | article_media_history_miniature | high | tydelig eksisterende fagområde (avishus, lederartikkel, dagsorden, presse) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| aftenposten_akersgata_geografi — Redaksjonell makt og geografi i Akersgata | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon, avishus, presse) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| cinemateket_oslo_kuratering_programkino — Kuratering og programkino | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
+| dagbladet_akersgata_begreper — Begreper rundt Dagbladet i Akersgata | article_media_history_miniature | high | tydelig eksisterende fagområde (tabloid, avishus, redaksjon) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| dagbladet_akersgata_kulturjournalistikk — Kulturjournalistikk fra Dagbladet-redaksjonen | article_media_history_miniature | high | tydelig eksisterende fagområde (kulturjournalistikk, redaksjon) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| dagbladet_akersgata_medieform — Forside, overskrift og medieform | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon, tabloid) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| good_game_redaksjon_begreper — Begreper rundt Good Game-redaksjonen | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
+| good_game_redaksjon_spillkultur_mediefelt — Spillkultur som mediefelt i Good Game | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon, mediefelt) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
+| klassekampen_redaksjon_begreper — Begreper rundt Klassekampen-redaksjonen | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon, kulturjournalistikk, dagsorden, presse) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| klassekampen_redaksjon_offentlighet — Klassekampen i politisk og kulturell offentlighet | article_media_history_miniature | high | tydelig eksisterende fagområde (redaksjon, presse) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| nrk_huset_marienlyst_begreper — Begreper rundt NRK-huset på Marienlyst | article_media_history_miniature | high | tydelig eksisterende fagområde (nrk, allmennkringkasting, redaksjon, kringkasting) → `article_media_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json |
+| akerselva — Akerselva gjør Oslos industrilag og rekreasjonsby lesbare i samme løp. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, natur, turvei, elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
+| akerselva_utlop_bjorvika — Elv-til-fjord-overgang i Bjørvika der økologi og fjordbyutvikling møtes. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, elv) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
+| alna_bryn — Elvekorridor i overgangssonen ved Bryn. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve, bekk, elva) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| alna_smalvoll — Restaurert Alna-strekning gjennom Smalvoll. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve, kantvegetasjon) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| alnaelva — Byelv som bærer spor av industri, forurensning og restaurering. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, byelv, natur, naturhistorie, naturstruktur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
+| alnaelvstien — En sti som gjorde elva tilgjengelig. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, natur, turvei, byelv) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
+| alnaparken — Alnaparken er et grøntdrag langs åpnet Alna-løp med turvei, kantvegetasjon og små oppholdsflater. Parken knytter boligområder til elva og fungerer som lokal ferdselsakse. | article_nature_route_miniature | high | tydelig eksisterende fagområde (grøntdrag, turvei, kantvegetasjon, elva, elve, nærnatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| alnsjoen_alna_kilde — Alnsjøen markerer kildesonen til Alna-vassdraget i skogsterreng øst i Oslo. Her starter vannveien som senere blir byelv gjennom tett bebyggelse. | article_nature_route_miniature | high | tydelig eksisterende fagområde (vassdrag, byelv) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| beierbrua — Historisk kryssingspunkt over Akerselva ved industripregede byrom. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| bjoelsenfossen — Foss langs Akerselva med vannkraft- og industrihistorisk betydning. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, foss) → `article_nature_route_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
+| bjoelsenparken_elvenaer — Elvenært parkdrag som kobler ferdsel og opphold ved Akerselva. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve, elva, vannet) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| bogerudmyra — Bogerudmyra er en bynær fuktmark der myrvegetasjon gir et tydelig annet naturpreg enn skog og innsjø. | article_nature_route_miniature | high | tydelig eksisterende fagområde (innsjø, myr) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch2.json |
+| bygdoy_bygdoynes — Bygdøynes er et nes med vid fjordkontakt, kystkratt og åpne gresspartier mot vannet. Landskapet oppleves som et tydelig møte mellom halvøy og fjord. | article_nature_route_miniature | high | tydelig eksisterende fagområde (vannet) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| bygdoy_dronningberget — Kystnært naturpunkt på Bygdøy med berg og skog. | article_nature_route_miniature | high | tydelig eksisterende fagområde (svaberg) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| bygdoy_huk — Huk ytterst på Bygdøy er en eksponert oddesone med svaberg, strender og marint preg. Området har sterk fjordkontakt og høy badebruk i sesong. | article_nature_route_miniature | high | tydelig eksisterende fagområde (svaberg) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| bygdoy_kongeskogen — Bynær løvskog på Bygdøy med stier, naturbruk og tydelig rekreasjonsfunksjon. | article_nature_route_miniature | high | tydelig eksisterende fagområde (kongeskogen) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
+| bygdoy_paradisbukta — Paradisbukta på Bygdøy er en skjermet bukt med sandstrand og gruntvann. Den lune formen gir roligere vann enn på de mer åpne kystpartiene. | article_nature_route_miniature | high | tydelig eksisterende fagområde (vann) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| elvestrekning_bla_brenneriveien — Smal urban elvestrekning ved Blå med høy bruk. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve, elva, kantvegetasjon) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| fossveien_elvestrekning — Elvenær overgangssone ved Fossveien med synlig kantnatur. | article_nature_route_miniature | high | tydelig eksisterende fagområde (foss, elve, elva, natur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| furuset_haugerud_skogbelte — Der boligbyen møter skogen. | article_nature_route_miniature | high | tydelig eksisterende fagområde (skogbelte, natur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
+| furuset_haugerud_skogbelte_forbindelse — Skogbelte som grønn forbindelse | article_nature_route_miniature | high | tydelig eksisterende fagområde (skogbelte, grøntdrag) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| furuset_haugerud_skogbelte_hovedartikkel — Furuset–Haugerud skogbelte | article_nature_route_miniature | high | tydelig eksisterende fagområde (skogbelte, natur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| furuset_haugerud_skogbelte_terreng_vegetasjon — Terreng og vegetasjonsrom | article_nature_route_miniature | high | tydelig eksisterende fagområde (skogbelte, naturstruktur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| glads_molle — Møllehistorisk sted langs Akerselva. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva) → `article_nature_route_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
+| gressholmen — Gressholmen er en fjordøy med kystskog, strandenger og viktige hekkeområder for sjøfugl. Øya har nærkontakt med byfjorden, men tydelig naturpreg. | article_nature_route_miniature | high | tydelig eksisterende fagområde (fjordøy, natur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| grorud_groruddalen_dalrom — Groruddalen som dalrom | article_nature_route_miniature | high | tydelig eksisterende fagområde (dalrom) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch4.json |
+| hausmannsbrua — Krysningsbro over Akerselva i overgangen sentrum–øst. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| hausmannsomradet_elvelop — Sentrumsnært elveparti med kulturbruk og tydelig vannkontakt. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve, elva) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| hovedoya — Hovedøya har kalkrik flora, skogholt og strender i et variert øylandskap i indre Oslofjord. Naturreservat og høy besøksbruk ligger tett side om side. | article_nature_route_miniature | high | tydelig eksisterende fagområde (naturreservat) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| kuba_parken — Elvenær bypark i indre by, formet av transformasjonen langs Akerselva. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
+
+_Viser 50 av 134. Full liste i `reports/visual-design-codes-audit.json`._
 
 ### Mangler metadata
 
@@ -487,74 +600,9 @@ delen merker **ingen** datafiler – den forbereder en presis batch 6.
 
 ### Trenger mulig ny designCode
 
-#### needsNewDesignCode (118)
+#### needsNewDesignCode (0)
 
-- `article_industry_miniature` (1):
-  - schous_plass_schous_bryggeri [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_industry_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json`)
-- `article_media_history_miniature` (13):
-  - aftenposten_akersgata_avisoffentlighet [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - aftenposten_akersgata_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - aftenposten_akersgata_geografi [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - cinemateket_oslo_kuratering_programkino [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json`)
-  - dagbladet_akersgata_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - dagbladet_akersgata_kulturjournalistikk [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - dagbladet_akersgata_medieform [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - good_game_redaksjon_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json`)
-  - good_game_redaksjon_spillkultur_mediefelt [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json`)
-  - klassekampen_redaksjon_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - klassekampen_redaksjon_offentlighet [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - nrk_huset_marienlyst_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json`)
-  - good_game_redaksjon_digital_offentlighet [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_media_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json`)
-- `article_nature_route_miniature` (79):
-  - akerselva [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json`)
-  - akerselva_utlop_bjorvika [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json`)
-  - alna_bryn [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - alna_smalvoll [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - alnaelva [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_alna.json`)
-  - alnaelvstien [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_alna.json`)
-  - alnaparken [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json`)
-  - alnsjoen_alna_kilde [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json`)
-  - beierbrua [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - bjoelsenfossen [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json`)
-  - bjoelsenparken_elvenaer [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - bogerudmyra [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch2.json`)
-  - bygdoy_bygdoynes [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json`)
-  - bygdoy_dronningberget [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - bygdoy_huk [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json`)
-  - bygdoy_kongeskogen [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json`)
-  - bygdoy_paradisbukta [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json`)
-  - elvestrekning_bla_brenneriveien [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - fossveien_elvestrekning [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json`)
-  - furuset_haugerud_skogbelte [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_nature_route_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_alna.json`)
-  - _… 59 til i JSON._
-- `article_religion_miniature` (1):
-  - kampen_kirke [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_religion_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json`)
-- `article_transport_miniature` (21):
-  - alnabru_jernbane_og_logistikk [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_alna.json`)
-  - carl_berner_plass [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json`)
-  - grorud_t_bane_stasjon [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch4.json`)
-  - jernbanetorget [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json`)
-  - majorstuen_tbanestasjon [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json`)
-  - nationaltheatret_stasjon [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json`)
-  - okern_byutvikling_transformasjon [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json`)
-  - okern_ring3_okernkrysset [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json`)
-  - okern_t_bane_knutepunkt [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json`)
-  - oslo_bussterminal [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json`)
-  - oslo_s [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json`)
-  - oslo_s_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
-  - oslo_s_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
-  - oslo_s_transitrom [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
-  - skoyen_drammensveien_e18 [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json`)
-  - skoyen_naeringskorridor [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json`)
-  - skoyen_stasjon [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch3.json`)
-  - trikk_17_18 [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json`)
-  - tullin_pilestredet_ring1 [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json`)
-  - vaterland_knutepunkt [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_transport_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json`)
-  - _… 1 til i JSON._
-- `article_urban_infrastructure_miniature` (3):
-  - bispelokket [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_urban_infrastructure_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json`)
-  - groruddammen [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_urban_infrastructure_miniature` (`data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json`)
-  - vulkan_energisentral [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_urban_infrastructure_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json`)
+- (ingen)
 
 ### Bør forbli default foreløpig
 
@@ -619,7 +667,7 @@ Prioritert rekkefølge:
 Kun trygge kandidater (high/medium-confidence). `needsMetadata` og
 `needsNewDesignCode` tas **ikke** med som direkte batchkandidater.
 
-Topp 16 av 16, gruppert etter `suggestedDesignCode`:
+Topp 60 av 134, gruppert etter `suggestedDesignCode`:
 
 - `article_architecture_miniature` (1):
   - sagene_arbeiderby_boligstruktur [high] — tydelig eksisterende fagområde (boligstruktur) → `article_architecture_miniature`
@@ -628,22 +676,69 @@ Topp 16 av 16, gruppert etter `suggestedDesignCode`:
   - frognerparken_vigelandsanlegget [high] — tydelig eksisterende fagområde (vigelandsanlegget, skulptur, skulpturpark) → `article_art_miniature`
 - `article_history_miniature` (1):
   - gamlebyen_middelalderbyen_oslo [high] — tydelig eksisterende fagområde (middelalderby, christiania, byhistorie) → `article_history_miniature`
+- `article_industry_miniature` (1):
+  - schous_plass_schous_bryggeri [high] — tydelig eksisterende fagområde (bryggeri, industrihistorie) → `article_industry_miniature`
 - `article_institution_miniature` (2):
   - chateau_neuf_hovedartikkel [high] — tydelig eksisterende fagområde (studenthus, studentersamfund) → `article_institution_miniature`
   - psykologisk_institutt_uio_forskning_metode [high] — tydelig eksisterende fagområde (institutt) → `article_institution_miniature`
 - `article_local_story_miniature` (1):
   - gronland_kirke [high] — tydelig eksisterende fagområde (lokalhistorie) → `article_local_story_miniature`
-- `article_place_essay_miniature` (8):
-  - radhusplassen_begreper [high] — tydelig eksisterende fagområde (plassrom) → `article_place_essay_miniature`
-  - radhusplassen_fjordrom [high] — tydelig eksisterende fagområde (byrom, plassrom) → `article_place_essay_miniature`
-  - radhusplassen_hovedartikkel [high] — tydelig eksisterende fagområde (plassrom, byrom) → `article_place_essay_miniature`
-  - radhusplassen_offentlighet [high] — tydelig eksisterende fagområde (representasjonsrom, byrom) → `article_place_essay_miniature`
-  - slottsplassen_akse [high] — tydelig eksisterende fagområde (seremoniell byform, byakse) → `article_place_essay_miniature`
-  - slottsplassen_hovedartikkel [high] — tydelig eksisterende fagområde (representasjonsrom, byakse) → `article_place_essay_miniature`
-  - torshov_torshovparken [high] — tydelig eksisterende fagområde (byrom) → `article_place_essay_miniature`
-  - toyen_torg_hovedartikkel [high] — tydelig eksisterende fagområde (byrom) → `article_place_essay_miniature`
-- `article_political_history_miniature` (1):
-  - spikersuppa [medium] — tydelig eksisterende fagområde (storting) → `article_political_history_miniature`
+- `article_media_history_miniature` (12):
+  - aftenposten_akersgata_avisoffentlighet [high] — tydelig eksisterende fagområde (redaksjon, lederartikkel, dagsorden) → `article_media_history_miniature`
+  - aftenposten_akersgata_begreper [high] — tydelig eksisterende fagområde (avishus, lederartikkel, dagsorden, presse) → `article_media_history_miniature`
+  - aftenposten_akersgata_geografi [high] — tydelig eksisterende fagområde (redaksjon, avishus, presse) → `article_media_history_miniature`
+  - cinemateket_oslo_kuratering_programkino [high] — tydelig eksisterende fagområde (redaksjon) → `article_media_history_miniature`
+  - dagbladet_akersgata_begreper [high] — tydelig eksisterende fagområde (tabloid, avishus, redaksjon) → `article_media_history_miniature`
+  - dagbladet_akersgata_kulturjournalistikk [high] — tydelig eksisterende fagområde (kulturjournalistikk, redaksjon) → `article_media_history_miniature`
+  - dagbladet_akersgata_medieform [high] — tydelig eksisterende fagområde (redaksjon, tabloid) → `article_media_history_miniature`
+  - good_game_redaksjon_begreper [high] — tydelig eksisterende fagområde (redaksjon) → `article_media_history_miniature`
+  - good_game_redaksjon_spillkultur_mediefelt [high] — tydelig eksisterende fagområde (redaksjon, mediefelt) → `article_media_history_miniature`
+  - klassekampen_redaksjon_begreper [high] — tydelig eksisterende fagområde (redaksjon, kulturjournalistikk, dagsorden, presse) → `article_media_history_miniature`
+  - klassekampen_redaksjon_offentlighet [high] — tydelig eksisterende fagområde (redaksjon, presse) → `article_media_history_miniature`
+  - nrk_huset_marienlyst_begreper [high] — tydelig eksisterende fagområde (nrk, allmennkringkasting, redaksjon, kringkasting) → `article_media_history_miniature`
+- `article_nature_route_miniature` (40):
+  - akerselva [high] — tydelig eksisterende fagområde (elva, natur, turvei, elve) → `article_nature_route_miniature`
+  - akerselva_utlop_bjorvika [high] — tydelig eksisterende fagområde (elva, elv) → `article_nature_route_miniature`
+  - alna_bryn [high] — tydelig eksisterende fagområde (elve, bekk, elva) → `article_nature_route_miniature`
+  - alna_smalvoll [high] — tydelig eksisterende fagområde (elve, kantvegetasjon) → `article_nature_route_miniature`
+  - alnaelva [high] — tydelig eksisterende fagområde (elva, byelv, natur, naturhistorie, naturstruktur) → `article_nature_route_miniature`
+  - alnaelvstien [high] — tydelig eksisterende fagområde (elva, natur, turvei, byelv) → `article_nature_route_miniature`
+  - alnaparken [high] — tydelig eksisterende fagområde (grøntdrag, turvei, kantvegetasjon, elva, elve, nærnatur) → `article_nature_route_miniature`
+  - alnsjoen_alna_kilde [high] — tydelig eksisterende fagområde (vassdrag, byelv) → `article_nature_route_miniature`
+  - beierbrua [high] — tydelig eksisterende fagområde (elva, elve) → `article_nature_route_miniature`
+  - bjoelsenfossen [high] — tydelig eksisterende fagområde (elva, foss) → `article_nature_route_miniature`
+  - bjoelsenparken_elvenaer [high] — tydelig eksisterende fagområde (elve, elva, vannet) → `article_nature_route_miniature`
+  - bogerudmyra [high] — tydelig eksisterende fagområde (innsjø, myr) → `article_nature_route_miniature`
+  - bygdoy_bygdoynes [high] — tydelig eksisterende fagområde (vannet) → `article_nature_route_miniature`
+  - bygdoy_dronningberget [high] — tydelig eksisterende fagområde (svaberg) → `article_nature_route_miniature`
+  - bygdoy_huk [high] — tydelig eksisterende fagområde (svaberg) → `article_nature_route_miniature`
+  - bygdoy_kongeskogen [high] — tydelig eksisterende fagområde (kongeskogen) → `article_nature_route_miniature`
+  - bygdoy_paradisbukta [high] — tydelig eksisterende fagområde (vann) → `article_nature_route_miniature`
+  - elvestrekning_bla_brenneriveien [high] — tydelig eksisterende fagområde (elve, elva, kantvegetasjon) → `article_nature_route_miniature`
+  - fossveien_elvestrekning [high] — tydelig eksisterende fagområde (foss, elve, elva, natur) → `article_nature_route_miniature`
+  - furuset_haugerud_skogbelte [high] — tydelig eksisterende fagområde (skogbelte, natur) → `article_nature_route_miniature`
+  - furuset_haugerud_skogbelte_forbindelse [high] — tydelig eksisterende fagområde (skogbelte, grøntdrag) → `article_nature_route_miniature`
+  - furuset_haugerud_skogbelte_hovedartikkel [high] — tydelig eksisterende fagområde (skogbelte, natur) → `article_nature_route_miniature`
+  - furuset_haugerud_skogbelte_terreng_vegetasjon [high] — tydelig eksisterende fagområde (skogbelte, naturstruktur) → `article_nature_route_miniature`
+  - glads_molle [high] — tydelig eksisterende fagområde (elva) → `article_nature_route_miniature`
+  - gressholmen [high] — tydelig eksisterende fagområde (fjordøy, natur) → `article_nature_route_miniature`
+  - grorud_groruddalen_dalrom [high] — tydelig eksisterende fagområde (dalrom) → `article_nature_route_miniature`
+  - hausmannsbrua [high] — tydelig eksisterende fagområde (elva, elve) → `article_nature_route_miniature`
+  - hausmannsomradet_elvelop [high] — tydelig eksisterende fagområde (elve, elva) → `article_nature_route_miniature`
+  - hovedoya [high] — tydelig eksisterende fagområde (naturreservat) → `article_nature_route_miniature`
+  - kuba_parken [high] — tydelig eksisterende fagområde (elva, elve) → `article_nature_route_miniature`
+  - kvaernerbyen_alna [high] — tydelig eksisterende fagområde (byelv, elva) → `article_nature_route_miniature`
+  - lisbon_jardim_botanico [high] — tydelig eksisterende fagområde (jardim, bynatur) → `article_nature_route_miniature`
+  - lisbon_jardim_do_principe_real [high] — tydelig eksisterende fagområde (jardim, bynatur) → `article_nature_route_miniature`
+  - lisbon_jardim_do_torel [high] — tydelig eksisterende fagområde (jardim, bynatur) → `article_nature_route_miniature`
+  - lisbon_jardim_gulbenkian [high] — tydelig eksisterende fagområde (jardim, bynatur) → `article_nature_route_miniature`
+  - lisbon_miradouro_da_graca [high] — tydelig eksisterende fagområde (miradouro, bynatur) → `article_nature_route_miniature`
+  - lisbon_miradouro_da_senhora_do_monte [high] — tydelig eksisterende fagområde (miradouro, bynatur) → `article_nature_route_miniature`
+  - lisbon_miradouro_sao_pedro_de_alcantara [high] — tydelig eksisterende fagområde (miradouro, bynatur) → `article_nature_route_miniature`
+  - lisbon_monsanto [high] — tydelig eksisterende fagområde (monsanto, bynatur) → `article_nature_route_miniature`
+  - lisbon_tapada_da_ajuda [high] — tydelig eksisterende fagområde (tapada, bynatur) → `article_nature_route_miniature`
+
+_Viser 60 av 134. Full liste i `articleBatch6Plan.candidates` i JSON._
 
 ## Invalid eksplisitte designCodes
 
