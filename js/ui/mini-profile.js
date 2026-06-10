@@ -14,6 +14,66 @@ function tfUI(key, fallback = "", vars = {}) {
   );
 }
 
+function readJson(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw == null) return fallback;
+    const parsed = JSON.parse(raw);
+    return parsed == null ? fallback : parsed;
+  } catch {
+    return fallback;
+  }
+}
+
+// Samme prinsipp som profile.js sin getCompletedQuizUnitCount(): union av
+// HGLearningLog-historikken og quiz_progress.completed, uten duplikater.
+function getCompletedQuizUnitCount() {
+  const quizHistory = (window.HGLearningLog?.getQuizHistory?.() ?? []);
+  const quizProgress = readJson("quiz_progress", {});
+
+  const ids = new Set();
+
+  if (Array.isArray(quizHistory)) {
+    quizHistory.forEach(entry => {
+      const id = String(entry?.id || entry?.targetId || "").trim();
+      if (id) ids.add(id);
+    });
+  }
+
+  if (quizProgress && typeof quizProgress === "object") {
+    Object.values(quizProgress).forEach(value => {
+      const completed = Array.isArray(value?.completed) ? value.completed : [];
+      completed.forEach(id => {
+        const key = String(id || "").trim();
+        if (key) ids.add(key);
+      });
+    });
+  }
+
+  return ids.size;
+}
+
+// visited_places kan være object-map ({ id: true }) eller (historisk) array av
+// ID-er. Teller kun sannferdige entries, som unike trimmede ID-er.
+function getVisitedPlaceCount() {
+  const raw = readJson("visited_places", {});
+  const ids = new Set();
+  const addId = (value) => {
+    const id = String(value ?? "").trim();
+    if (id) ids.add(id);
+  };
+
+  if (Array.isArray(raw)) {
+    raw.filter(Boolean).forEach(addId);
+  } else if (raw && typeof raw === "object") {
+    Object.entries(raw).forEach(([id, value]) => {
+      if (value) addId(id);
+    });
+  }
+
+  return ids.size;
+}
+
 // Sørg for at #miniStats har sine #linkPlaces/#linkQuiz-spans. Normalt finnes de
 // allerede i index.html. Hvis gammel kode hadde overskrevet #miniStats med
 // textContent og slettet dem, rekonstrueres de rent og én gang med samme struktur.
@@ -57,13 +117,12 @@ function initMiniProfile() {
     if (fallbackColor) nm.style.color = fallbackColor;
   }
 
-  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const meritsLS     = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const meritsLS     = readJson("merits_by_category", {});
   const quizHist     = (window.HGLearningLog?.getQuizHistory?.() ?? []);
 
-  const visitedCount = Object.keys(visitedLS).length;
+  const visitedCount = getVisitedPlaceCount();
   const badgeCount   = Object.keys(meritsLS).length;
-  const quizCount    = quizHist.length;
+  const quizCount    = getCompletedQuizUnitCount();
 
   // Oppdater eksisterende elementer i stedet for å skrive st.textContent – sistnevnte
   // ville slette #linkPlaces/#linkQuiz (og dermed de klikkbare miniProfile-funksjonene).
@@ -263,7 +322,7 @@ window.addEventListener("aha:auth-ready", initMiniProfile);
 window.addEventListener("historygo:aha-readback", initMiniProfile);
 
 function showQuizHistory() {
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const progress = readJson("quiz_progress", {});
   const allCompleted = Object.entries(progress).flatMap(([cat, val]) =>
     (val.completed || []).map(id => ({ category: cat, id }))
   );

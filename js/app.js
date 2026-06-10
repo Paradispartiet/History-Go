@@ -8,12 +8,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     // kjernemoduler → kartmotor → lister/venstrepanel, slik at bootCritical
     // og initLeftPanel har det de trenger før de kjøres. js/map.js MÅ være lastet
     // (og MapLibre tilgjengelig via index.html) før bootCritical initialiserer kartet.
+    // Progresjonsruntime FØR resten: placeIdAliases før state.js (state.js bruker
+    // window.HGPlaceIds til ID-migrering), learningLog før bootCritical (som kaller
+    // HGLearningLog.migrateLegacy), og state.js før bootCritical (kart/nearby/quiz
+    // og miniProfile leser window.visited / visited_places).
+    await safeRun("loadPlaceIdAliases", () => loadScriptOnce("js/core/placeIdAliases.js"));
+    await safeRun("loadLearningLog", () => loadScriptOnce("js/learningLog.js"));
+    await safeRun("loadState", () => loadScriptOnce("js/state/state.js"));
+
     await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));
     await safeRun("loadGeo", () => loadScriptOnce("js/core/geo.js"));
     await safeRun("loadPos", () => loadScriptOnce("js/core/pos.js"));
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadMap", () => loadScriptOnce("js/map.js"));
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
+
+    // persistence.js etter lists.js: saveVisited() kaller renderCollection() (lists.js)
+    // og bruker state.js-globalene (personDialogs/peopleCollected/merits). Må være
+    // lastet før quiz/app-runtime trenger window.saveVisitedFromQuiz.
+    await safeRun("loadPersistence", () => loadScriptOnce("js/state/persistence.js"));
+
     await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));
 
     // PlaceCard-runtime: kjernen (LayerManager + bottomSheetController) før selve
@@ -76,6 +90,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Må være tilgjengelig før AppRouter kan route til #/quiz, og før bootBackground
     // kjører QuizEngine.init i boot-fast sin bakgrunnsfase. Kartet er allerede booted
     // (bootCritical), så dette blokkerer ikke kart/nearby.
+    // hg_unlocks.js FØR quizzes.js: quizzes.js kaller window.HGUnlocks.recordFromQuiz
+    // ved riktig svar, og recordFromQuiz dispatcher updateProfile (miniProfile-refresh).
+    await safeRun("loadHGUnlocks", () => loadScriptOnce("js/hg_unlocks.js"));
     await safeRun("loadQuizzes", () => loadScriptOnce("js/quizzes.js"));
 
     // QuizEngine må bindes til det ekte app-API-et (window.PLACES) FØR routeren
