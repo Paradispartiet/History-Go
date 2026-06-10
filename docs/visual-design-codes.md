@@ -486,6 +486,67 @@ Den lesbare oppsummeringen (med avkortede tabeller) ligger i
 [`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md)
 under «Article default analysis» og «Forslag til Article batch 6».
 
+## Article register expansion
+
+«Article register expansion» er en ren **register-/resolver-/audit-utvidelse** –
+ikke Article batch 6. Article default audit (#1236) viste at den klart største
+gruppen gjenværende `article_default_miniature` ikke bare manglet en batch, men
+manglet **presise artikkelkoder**: 118 av de 175 defaultene ble klassifisert som
+`needsNewDesignCode`, hovedsakelig natur-/elve-, transport-/knutepunkt-, medie-
+og infrastrukturartikler uten en dekkende eksisterende kode.
+
+Denne PR-en legger derfor til ni nye presise artikkelkoder i registeret før vi
+bygger en data-batch:
+
+| designCode | family | dekker |
+| --- | --- | --- |
+| `article_nature_route_miniature` | nature | naturstier, elver, bekker, vann, grøntdrag, turveier, naturkorridorer, marka-/park-/elveforløp |
+| `article_media_history_miniature` | media | avisredaksjoner, NRK, mediehus, pressehistorie, journalistikk, medieoffentlighet |
+| `article_transport_miniature` | transport | trikk, t-bane, tog, buss, stasjon, knutepunkt, kollektivsystem, mobilitet, terminaler |
+| `article_urban_infrastructure_miniature` | urbanism | veier, bruer, tunneler, vannforsyning, kraft, teknisk infrastruktur, store urbane systemer |
+| `article_industry_miniature` | industry | bryggeri, fabrikk, verksted, produksjon, industrihistorie |
+| `article_religion_miniature` | religion | kirkerom, menighet, trosliv, kirkehistorie (religion mer enn bygning) |
+| `article_science_history_miniature` | science | forskning, vitenskapshistorie, fagmiljøer, laboratorier, metode |
+| `article_food_market_miniature` | food_market | matmarked, torghandel, mathall, serverings- og matkultur |
+| `article_childhood_play_miniature` | childhood | lekeplasser, barndom, lek, barns bruk av sted |
+
+Prinsipper for utvidelsen:
+
+- **Ingen data merkes i denne PR-en.** Det legges ikke `visual.designCode` på
+  noen leksikon-, lesespor- eller story-data. Place- og people-data er heller
+  ikke rørt. Eksplisitt `article`-merking forblir 138 og `article_default_miniature`
+  forblir 175.
+- **Dette er ikke Article batch 6.** Selve merkingen skjer i en senere,
+  kontrollert data-batch som plukkes fra `articleBatch6Plan` i
+  `reports/visual-design-codes-audit.json`.
+- **Gamle brede koder og default er fortsatt fallback.** De nye kodene er nye
+  presise alternativer; resolveren ender fortsatt i brede koder eller
+  `article_default_miniature` når den ikke har et trygt, presist treff.
+- **Resolveren får kapasitet, ikke ny oppførsel på eksisterende data.** De nye
+  artikkelreglene i `js/visualDesignCodes.js` er *topical-only*: de matches kun
+  mot strukturert tematisk metadata (`type`/`topic`/`category`/`tags`/`themes`/
+  `subject`), ikke mot fritekst `id`/`title`. Dermed reklassifiseres ingen
+  eksisterende artikkel (som bare nevner et tema i sin id/tittel) før den merkes
+  eksplisitt i batch 6. De nye kodene er derfor foreløpig **ubrukte** og listes i
+  `unusedDesignCodeDetails` med søkeforslag.
+- **Audit speiler resolveren.** `tools/audit-visual-design-codes.mts` bruker
+  samme regelrekkefølge og samme topical-only-skille. I tillegg avgjør
+  artikkel-default-analysen nå `needsNewDesignCode` **dynamisk** mot registeret:
+  en foreslått kode regnes som «ny» kun hvis den mangler i registeret. Siden de
+  ni kodene nå finnes, flyttes treffene fra `needsNewDesignCode` til trygge
+  `safeBatch6Candidates`.
+
+Effekten etter utvidelsen (regenerert audit): registeret økte fra 72 til **81**
+designCodes (article-familien 18 → 27), `needsNewDesignCode` falt fra 118 til
+**0**, `safeBatch6Candidates` økte fra 16 til **134**, og `articleBatch6Plan`
+peker nå på trygge kandidater med de nye kodene (bl.a. `article_nature_route_miniature`,
+`article_transport_miniature` og `article_media_history_miniature`).
+`article_default_miniature` er fortsatt **175**, eksplisitt `article`-merking
+fortsatt **138**, med 0 ugyldige eksplisitte koder og 0 koder med manglende
+`renderHints`. `renderHints.threeType` for de nye kodene peker foreløpig til den
+eksisterende `article_marker`-archetypen; egne kort-/ikon-hint er allerede mer
+semantisk presise, og egne renderere kan komme senere uten at datafiler må endres.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,

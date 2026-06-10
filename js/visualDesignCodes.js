@@ -212,20 +212,41 @@
 
   // ---- article heuristics --------------------------------------------------
 
+  // Ordered article keyword heuristics. First match wins, so more specific
+  // rules come before broad ones (e.g. religion/science/media/nature/transport
+  // before architecture/institution/art/place_essay).
+  //
+  // The precise topic codes added in the "Article register expansion" carry a
+  // third element `true` = TOPICAL-ONLY. Those rules are matched against the
+  // structured topical metadata (type/topic/category/tags/themes/subject) and
+  // NOT against the free-text id/title slug. This keeps the new codes available
+  // as heuristic capability without reclassifying existing articles that merely
+  // mention a topic word in their id/title – data is marked explicitly in a
+  // later, controlled batch instead. Broad/legacy rules keep reading the full
+  // haystack (incl. id/title) exactly as before.
   var ARTICLE_KEYWORD_RULES = [
     [/biografi|biography|portrett|portrait|liv|personportrett/, "article_biography_miniature"],
-    [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
+    [/sprak|språk|language|dialekt|etymolog/, "article_language_miniature"],
     [/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/, "article_memory_place_miniature"],
+    [/menighet|trosliv|religion|kloster|moske|synagoge|tempel|kirkehistorie|gudstjeneste/, "article_religion_miniature", true],
+    [/forskning|vitenskap|laboratorium|forskningsmiljø|fagfelt|fagutvikling|vitenskapshistorie/, "article_science_history_miniature", true],
+    [/redaksjon|avishus|\bavis\b|journalistikk|kringkasting|allmennkringkasting|\bnrk\b|mediehus|presse|programkino|medieoffentlighet|mediefelt/, "article_media_history_miniature", true],
+    [/natursti|elvesti|turvei|grøntdrag|naturkorridor|parkdrag|elveløp|\belv\b|elva|elve|bekk|vassdrag|naturreservat|bynatur/, "article_nature_route_miniature", true],
+    [/trikk|t-?bane|jernbane|\btog\b|bussterminal|\bbuss\b|kollektivtransport|kollektivsystem|knutepunkt|transportåre|mobilitet|samferdsel/, "article_transport_miniature", true],
+    [/\bbro\b|\bbru\b|brua|tunnel|akvedukt|vannforsyning|kraftforsyning|teknisk infrastruktur|teknisk anlegg|ledningsnett|kloakk/, "article_urban_infrastructure_miniature", true],
+    [/bryggeri|fabrikk|verksted|industrihistorie|industriområde|industrikultur|\bmølle\b/, "article_industry_miniature", true],
+    [/matmarked|markedshall|mathall|torghandel|matkultur|serveringskultur/, "article_food_market_miniature", true],
+    [/lekeplass|barndom|barnelek|skolegård/, "article_childhood_play_miniature", true],
+    [/arkitektur|architecture|bygning|byggekunst/, "article_architecture_miniature"],
+    [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
+    [/kunst|art\b|maleri|galleri|skulptur/, "article_art_miniature"],
+    [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
     [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
     [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
-    [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
     [/litteratur|literature|essay|roman|dikt|bok\b|forfatter/, "article_literature_miniature"],
-    [/arkitektur|architecture|bygning|byggekunst/, "article_architecture_miniature"],
-    [/kunst|art\b|maleri|galleri|skulptur/, "article_art_miniature"],
     [/politikk|politic|valg|parti|demokrati/, "article_political_history_miniature"],
     [/wonderkammer|wonder|aha|kuriosa|cabinet/, "article_wonderkammer_miniature"],
     [/objekt|object|gjenstand|artefakt|artifact/, "article_object_story_miniature"],
-    [/sprak|språk|language|dialekt|etymolog/, "article_language_miniature"],
     [/portrett|portrait|biografi|person/, "article_people_portrait_miniature"],
     [/lokal|nabolag|local story|strøk|strok/, "article_local_story_miniature"],
     [/sted|place|essay/, "article_place_essay_miniature"],
@@ -387,14 +408,23 @@
 
     var type = lc(article.type);
     var topic = lc(article.topic);
+    // Full haystack (incl. free-text id/title) for broad/legacy rules.
     var hay = haystack([
       type, topic, article.category, article.tags, article.themes,
       article.title, article.id, article.subject
     ]);
+    // Structured topical metadata only (no id/title) for the precise topic
+    // codes flagged TOPICAL-ONLY in ARTICLE_KEYWORD_RULES.
+    var topicalHay = haystack([
+      type, topic, article.category, article.tags, article.themes,
+      article.subject
+    ]);
 
     for (var i = 0; i < ARTICLE_KEYWORD_RULES.length; i++) {
-      if (ARTICLE_KEYWORD_RULES[i][0].test(hay)) {
-        return result(ARTICLE_KEYWORD_RULES[i][1], "heuristic");
+      var rule = ARTICLE_KEYWORD_RULES[i];
+      var h = rule[2] ? topicalHay : hay;
+      if (rule[0].test(h)) {
+        return result(rule[1], "heuristic");
       }
     }
 

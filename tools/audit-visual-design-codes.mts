@@ -27,7 +27,7 @@ type JsonObject = { [key: string]: JsonValue };
 type JsonArray = JsonValue[];
 type EntityType = "place" | "person" | "article";
 type ResolutionSource = "explicit" | "assetType" | "category" | "heuristic" | "default";
-type KeywordRule = [RegExp, string];
+type KeywordRule = [RegExp, string, boolean?];
 type AuditEntity = { [key: string]: any };
 type WrappedEntity = { entry: AuditEntity; file: string };
 type VisualDesignCode = {
@@ -221,20 +221,35 @@ const PERSON_CATEGORY_TO_CODE: Record<string, string> = {
   subkultur: "person_local_legend_miniature"
 };
 
+// Speiler js/visualDesignCodes.js. Rekkefølgen er viktig (spesifikt før bredt).
+// Reglene med tredje element `true` er TOPICAL-ONLY: de matches kun mot
+// strukturert tematisk metadata (type/topic/category/tags/themes/subject), ikke
+// mot fritekst id/title. Dette er de presise artikkelkodene fra "Article
+// register expansion" – de gir kapasitet i resolveren uten å reklassifisere
+// eksisterende artikler som bare nevner et tema i id/title.
 const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
   [/biografi|biography|portrett|portrait|liv|personportrett/, "article_biography_miniature"],
-  [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
+  [/sprak|språk|language|dialekt|etymolog/, "article_language_miniature"],
   [/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/, "article_memory_place_miniature"],
+  [/menighet|trosliv|religion|kloster|moske|synagoge|tempel|kirkehistorie|gudstjeneste/, "article_religion_miniature", true],
+  [/forskning|vitenskap|laboratorium|forskningsmiljø|fagfelt|fagutvikling|vitenskapshistorie/, "article_science_history_miniature", true],
+  [/redaksjon|avishus|\bavis\b|journalistikk|kringkasting|allmennkringkasting|\bnrk\b|mediehus|presse|programkino|medieoffentlighet|mediefelt/, "article_media_history_miniature", true],
+  [/natursti|elvesti|turvei|grøntdrag|naturkorridor|parkdrag|elveløp|\belv\b|elva|elve|bekk|vassdrag|naturreservat|bynatur/, "article_nature_route_miniature", true],
+  [/trikk|t-?bane|jernbane|\btog\b|bussterminal|\bbuss\b|kollektivtransport|kollektivsystem|knutepunkt|transportåre|mobilitet|samferdsel/, "article_transport_miniature", true],
+  [/\bbro\b|\bbru\b|brua|tunnel|akvedukt|vannforsyning|kraftforsyning|teknisk infrastruktur|teknisk anlegg|ledningsnett|kloakk/, "article_urban_infrastructure_miniature", true],
+  [/bryggeri|fabrikk|verksted|industrihistorie|industriområde|industrikultur|\bmølle\b/, "article_industry_miniature", true],
+  [/matmarked|markedshall|mathall|torghandel|matkultur|serveringskultur/, "article_food_market_miniature", true],
+  [/lekeplass|barndom|barnelek|skolegård/, "article_childhood_play_miniature", true],
+  [/arkitektur|architecture|bygning|byggekunst/, "article_architecture_miniature"],
+  [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
+  [/kunst|art\b|maleri|galleri|skulptur/, "article_art_miniature"],
+  [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
   [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
   [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
-  [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
   [/litteratur|literature|essay|roman|dikt|bok\b|forfatter/, "article_literature_miniature"],
-  [/arkitektur|architecture|bygning|byggekunst/, "article_architecture_miniature"],
-  [/kunst|art\b|maleri|galleri|skulptur/, "article_art_miniature"],
   [/politikk|politic|valg|parti|demokrati/, "article_political_history_miniature"],
   [/wonderkammer|wonder|aha|kuriosa|cabinet/, "article_wonderkammer_miniature"],
   [/objekt|object|gjenstand|artefakt|artifact/, "article_object_story_miniature"],
-  [/sprak|språk|language|dialekt|etymolog/, "article_language_miniature"],
   [/portrett|portrait|biografi|person/, "article_people_portrait_miniature"],
   [/lokal|nabolag|local story|strøk|strok/, "article_local_story_miniature"],
   [/sted|place|essay/, "article_place_essay_miniature"],
@@ -277,6 +292,27 @@ function personHay(person: AuditEntity): string {
 function articleHay(article: AuditEntity): string {
   return haystack([article.type, article.topic, article.category, article.tags,
     article.themes, article.title, article.id, article.subject]);
+}
+
+// Strukturert tematisk metadata uten fritekst id/title – brukes av de
+// TOPICAL-ONLY artikkelreglene (presise temakoder). Speiler resolverens
+// topicalHay i js/visualDesignCodes.js.
+function articleTopicalHay(article: AuditEntity): string {
+  return haystack([article.type, article.topic, article.category, article.tags,
+    article.themes, article.subject]);
+}
+
+// Finn første artikkelregel som treffer, med riktig haystack per regel
+// (TOPICAL-ONLY-regler matches kun mot articleTopicalHay).
+function matchArticleRule(article: AuditEntity) {
+  const full = articleHay(article);
+  const topical = articleTopicalHay(article);
+  for (const rule of ARTICLE_KEYWORD_RULES) {
+    const h = rule[2] ? topical : full;
+    const m = rule[0].exec(h);
+    if (m) return { code: rule[1], keyword: m[0] };
+  }
+  return null;
 }
 
 function makeResolvers(validCodes: Set<string>) {
@@ -327,10 +363,8 @@ function makeResolvers(validCodes: Set<string>) {
   function resolveForArticle(article: AuditEntity): ResolvedDesignCode {
     const explicit = explicitCode(article);
     if (explicit) return { designCode: explicit, source: "explicit", valid: isValid(explicit) };
-    const hay = articleHay(article);
-    for (const [re, code] of ARTICLE_KEYWORD_RULES) {
-      if (re.test(hay)) return { designCode: code, source: "heuristic", valid: true };
-    }
+    const m = matchArticleRule(article);
+    if (m) return { designCode: m.code, source: "heuristic", valid: true };
     const cat = lc(article.category);
     if (cat && ARTICLE_CATEGORY_TO_CODE[cat]) return { designCode: ARTICLE_CATEGORY_TO_CODE[cat], source: "category", valid: true };
     return { designCode: DEFAULTS.article, source: "default", valid: true };
@@ -395,7 +429,7 @@ function explainHeuristic(type: EntityType, e: AuditEntity) {
     const m = firstKeywordMatch(personHay(e), PERSON_KEYWORD_RULES);
     return m ? m.keyword : null;
   }
-  const m = firstKeywordMatch(articleHay(e), ARTICLE_KEYWORD_RULES);
+  const m = matchArticleRule(e);
   return m ? m.keyword : null;
 }
 
@@ -498,6 +532,44 @@ const UNUSED_CODE_HINTS = {
   article_wonderkammer_miniature: {
     searchTerms: ["wonderkammer", "kuriosa", "objekt", "samling", "cabinet"],
     nextAction: "Vurder AHA-/kuriosa-/objektsamling-artikler for eksplisitt article_wonderkammer_miniature."
+  },
+  // Nye presise artikkelkoder fra "Article register expansion" (PR #1236-oppfølging).
+  // Foreløpig ubrukte – batch 6 kan ta dem i bruk via articleBatch6Plan.
+  article_nature_route_miniature: {
+    searchTerms: ["elv", "elveløp", "natursti", "turvei", "grøntdrag", "vassdrag", "bekk", "naturkorridor"],
+    nextAction: "Vurder naturstier, elver/bekker, vann, grøntdrag, turveier og natur-/elveforløp for eksplisitt article_nature_route_miniature (jf. articleBatch6Plan)."
+  },
+  article_media_history_miniature: {
+    searchTerms: ["redaksjon", "avis", "journalistikk", "nrk", "kringkasting", "mediehus", "offentlighet"],
+    nextAction: "Vurder avisredaksjoner, NRK/mediehus, pressehistorie og medieoffentlighet for eksplisitt article_media_history_miniature (jf. articleBatch6Plan)."
+  },
+  article_transport_miniature: {
+    searchTerms: ["trikk", "t-bane", "tog", "buss", "stasjon", "knutepunkt", "kollektiv", "terminal"],
+    nextAction: "Vurder trikk/t-bane/tog/buss, stasjoner, knutepunkt og kollektivsystem for eksplisitt article_transport_miniature (jf. articleBatch6Plan)."
+  },
+  article_urban_infrastructure_miniature: {
+    searchTerms: ["bro", "bru", "tunnel", "akvedukt", "vannforsyning", "infrastruktur", "kraft"],
+    nextAction: "Vurder veier, bruer, tunneler, vannforsyning, kraft og teknisk infrastruktur for eksplisitt article_urban_infrastructure_miniature (jf. articleBatch6Plan)."
+  },
+  article_industry_miniature: {
+    searchTerms: ["bryggeri", "fabrikk", "verksted", "industri", "produksjon"],
+    nextAction: "Vurder bryggeri, fabrikk, verksted, produksjon og industrihistorie for eksplisitt article_industry_miniature (jf. articleBatch6Plan)."
+  },
+  article_religion_miniature: {
+    searchTerms: ["kirke", "menighet", "trosliv", "religion", "kloster", "moske", "synagoge"],
+    nextAction: "Vurder kirkerom, menighet, trosliv og kirkehistorie (religion mer enn bygning) for eksplisitt article_religion_miniature (jf. articleBatch6Plan)."
+  },
+  article_science_history_miniature: {
+    searchTerms: ["forskning", "vitenskap", "laboratorium", "institutt", "metode", "fagfelt"],
+    nextAction: "Vurder forskning, vitenskapshistorie, fagmiljøer og laboratorier for eksplisitt article_science_history_miniature (jf. articleBatch6Plan)."
+  },
+  article_food_market_miniature: {
+    searchTerms: ["matmarked", "torghandel", "mathall", "markedshall", "matkultur", "servering"],
+    nextAction: "Vurder matmarked, torghandel, mathall, serverings- og matkultur for eksplisitt article_food_market_miniature (jf. articleBatch6Plan)."
+  },
+  article_childhood_play_miniature: {
+    searchTerms: ["lekeplass", "barndom", "lek", "barn", "skolegård", "aktivitet"],
+    nextAction: "Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch6Plan)."
   }
 };
 
@@ -683,7 +755,13 @@ function articleConfidence(s: CodeScore): "high" | "medium" | "low" {
 }
 
 // Klassifiser én default-artikkel. Returnerer { group, entry }.
-function classifyArticleDefault(e: AuditEntity, file: string) {
+//
+// `validCodes` er kodene som faktisk finnes i registeret. En foreslått kode
+// regnes som "ny" (needsNewDesignCode) KUN hvis den ikke finnes i registeret
+// ennå. Etter "Article register expansion" finnes de tidligere foreslåtte
+// artikkelkodene (transport, nature_route, media_history, …), så treff på dem
+// blir trygge batch 6-kandidater i stedet for needsNewDesignCode.
+function classifyArticleDefault(e: AuditEntity, file: string, validCodes: Set<string>) {
   const fields = articleAnalysisFields(e);
   const sum = e.summary || {};
   const cls = e.classification || {};
@@ -694,20 +772,21 @@ function classifyArticleDefault(e: AuditEntity, file: string) {
   const realTitle = !!e.title && lc(e.title) !== lc(e.id || e.place_id || "");
 
   const scores = new Map<string, CodeScore>();
-  const apply = (rules: KeywordRule[], isNew: boolean) => {
+  const apply = (rules: KeywordRule[]) => {
     rules.forEach(([re, code], order) => {
       for (const f of fields) {
         const ws = findAllMatches(re, f.text);
         if (!ws.length) continue;
         let s = scores.get(code);
-        if (!s) { s = { code, isNew, words: [], fields: new Set(), order }; scores.set(code, s); }
+        // "Ny" avgjøres dynamisk: koden mangler i registeret.
+        if (!s) { s = { code, isNew: !validCodes.has(code), words: [], fields: new Set(), order }; scores.set(code, s); }
         s.fields.add(f.field);
         for (const w of ws) if (!s.words.includes(w)) s.words.push(w);
       }
     });
   };
-  apply(ARTICLE_DEFAULT_SAFE_RULES, false);
-  apply(ARTICLE_DEFAULT_NEW_RULES, true);
+  apply(ARTICLE_DEFAULT_SAFE_RULES);
+  apply(ARTICLE_DEFAULT_NEW_RULES);
 
   const ranked = [...scores.values()].sort(
     (a, b) => b.fields.size - a.fields.size || a.order - b.order);
@@ -812,7 +891,7 @@ function classifyArticleDefault(e: AuditEntity, file: string) {
 }
 
 // Bygg hele articleDefaultAnalysis + articleBatch6Plan fra artikkel-entiteter.
-function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn: Resolver) {
+function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn: Resolver, validCodes: Set<string>) {
   const groups: Record<ArticleDefaultGroup, any[]> = {
     safeBatch6Candidates: [],
     needsMetadata: [],
@@ -824,7 +903,7 @@ function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn:
   for (const { entry: e, file } of articleEntries) {
     const r = resolveFn(e);
     if (r.source !== "default") continue; // kun article_default_miniature
-    const { group, entry } = classifyArticleDefault(e, file);
+    const { group, entry } = classifyArticleDefault(e, file, validCodes);
     groups[group].push(entry);
   }
 
@@ -1111,7 +1190,7 @@ function main() {
 
   // Klassifisering av de gjenværende article_default_miniature (audit-only).
   const { articleDefaultAnalysis, articleBatch6Plan } =
-    buildArticleDefaultAnalysis(articleEntries, resolveForArticle);
+    buildArticleDefaultAnalysis(articleEntries, resolveForArticle, validCodes);
 
   const report = {
     schema: "history-go.visual-design-codes-audit.v1",
