@@ -66,6 +66,12 @@ const MD_MAX_REVIEW = 50;
 const MD_MAX_BATCH3_PLACES = 20;
 const MD_MAX_BATCH3_PEOPLE = 20;
 const MD_MAX_BATCH3_ARTICLES = 30;
+// Article default analysis – Markdown-grenser (full liste i JSON).
+const MD_MAX_ADA_SAFE = 50;
+const MD_MAX_ADA_METADATA = 40;
+const MD_MAX_ADA_KEEP = 30;
+const MD_MAX_ADA_MANUAL = 40;
+const MD_MAX_ADA_BATCH6 = 60;
 
 function readJSON(file: string): unknown {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -576,6 +582,296 @@ function reviewReasonFor(type, e, code) {
 }
 
 // ---------------------------------------------------------------------------
+// Article default analysis – ren intern analysehelper.
+//
+// Klassifiserer de gjenværende `article_default_miniature`-artiklene før neste
+// data-batch (batch 6). Denne delen leser kun eksisterende felter
+// (id/place_id/title/popupDesc/summary/classification/subjects/category_hints)
+// og endrer ingen datafiler, registeret eller resolveren. Den foreslår koder,
+// men merker ingenting. Resultatet brukes til å bygge batch 6 presist i stedet
+// for å gjette.
+// ---------------------------------------------------------------------------
+
+// Eksisterende artikkelkoder audit kan foreslå som trygge batch 6-kandidater.
+// Rekkefølgen er fra mest til minst spesifikk (brukes som tie-breaker).
+const ARTICLE_DEFAULT_SAFE_RULES: KeywordRule[] = [
+  [/gravlund|kirkegård|minnesmerke|minnelund|minnested|krigsminne|okkupasjon|fangeleir|falne|deportasjon|henrettelse/, "article_memory_place_miniature"],
+  [/vigelandsanlegget|skulpturpark|skulptur|utsmykning|kunstmuseum|kunsthall|billedkunst|offentlig kunst|\bgalleri/, "article_art_miniature"],
+  [/hageby|trehus|gårdsanlegg|byggeskikk|arkitektur|byggekunst|fasade|kvartalsstruktur|boligstruktur|bygningsmiljø/, "article_architecture_miniature"],
+  [/bibliotek|universitet|sykehus|hospital|\bfengsel|stiftelse|institutt|studenthus|studentersamfund|departement|forvaltning/, "article_institution_miniature"],
+  [/stadion|fotballklubb|idrettshistorie|friidrett|skøytehall|sportshistorie|tribune/, "article_sports_history_miniature"],
+  [/musikkhistorie|konserthus|plateselskap|jazzklubb|musikkscene/, "article_music_history_miniature"],
+  [/forfatterskap|litteraturhistorie|diktning|poesi|romankunst/, "article_literature_miniature"],
+  [/storting|regjeringshistorie|partihistorie|valgkamp|demokratihistorie/, "article_political_history_miniature"],
+  [/stedsnavn|navnespor|språkhistorie|dialekt|etymologi/, "article_language_miniature"],
+  [/middelalderby|christiania|byhistorie/, "article_history_miniature"],
+  [/lokalhistorie|nabolagshistorie|strøkshistorie/, "article_local_story_miniature"],
+  [/stedsessay|representasjonsrom|seremoniell byform|byakse|plassrom|\bbyrom/, "article_place_essay_miniature"]
+];
+
+// Mulige NYE koder audit kan foreslå (men IKKE legge til i registeret i denne
+// PR-en). Disse dekker temaer dagens katalog treffer for grovt.
+const ARTICLE_DEFAULT_NEW_RULES: KeywordRule[] = [
+  [/jernbane|t-?bane|trikk|bussterminal|\bbuss|stasjon|knutepunkt|kollektiv|innfartsvei|motorvei|ring ?\d|drammensbanen|grorudbanen|drammensveien|\be18\b|samferdsel|transitrom|transportknutepunkt/, "article_transport_miniature"],
+  [/byelv|\belv\b|elva|elve|vassdrag|bekk|\bfoss|tjern|innsjø|\bvann\b|vannet|\bmyr\b|våtmark|naturreservat|fjordøy|svaberg|kantvegetasjon|grøntdrag|turvei|friområde|ravine|dalrom|kløft|bynatur|nærnatur|natur\b|naturstruktur|naturhistorie|skogbelte|kongeskogen|miradouro|jardim|monsanto|tapada|markavann/, "article_nature_route_miniature"],
+  [/\bbro\b|\bbrua|akvedukt|aqueduto|energisentral|vannregulering|kloakk|ledningsnett|trafikkmaskin|bispelokket|\bdam\b|dammen/, "article_urban_infrastructure_miniature"],
+  [/redaksjon|avishus|\bavis\b|kringkasting|allmennkringkasting|\bnrk\b|presse|tabloid|lederartikkel|dagsorden|mediefelt|kulturjournalistikk/, "article_media_history_miniature"],
+  [/industriområde|fabrikk|\bmølle\b|bryggeri|verksted|industrikultur|industrihistorie|driftsanlegg|trikkestall/, "article_industry_miniature"],
+  [/\bkirke\b|kapell|menighet|kloster|katedral|domkirke|moske|synagoge/, "article_religion_miniature"],
+  [/lekeplass|barndom|barnelek/, "article_childhood_play_miniature"],
+  [/laboratorium|vitenskapshistorie|forskningsmiljø|psykologi/, "article_science_history_miniature"],
+  [/torghandel|matmarked|markedshall|restaurantliv|spisested/, "article_food_market_miniature"]
+];
+
+// Temaer som peker mot bevisst generelle/populærkulturelle artikler uten klar
+// visuell hovedtype – default er ofte bedre enn å tvinge en smal kode.
+const ARTICLE_DEFAULT_KEEP_RE = /populaerkultur|populærkultur|kjendis|sladder|livsstilsmedier|filmkulisse|filmsted|film_tv|standup|nerdkultur|sjangerfellesskap|hverdagskultur|kjendissone/;
+
+// Svært entydige trefford gir høy konfidens selv ved ett felt.
+const ARTICLE_VERY_UNAMBIGUOUS = new Set([
+  "gravlund", "kirkegård", "fangeleir", "bibliotek", "universitet", "sykehus",
+  "stiftelse", "studentersamfund", "vigelandsanlegget", "skulpturpark",
+  "middelalderby", "stedsnavn", "navnespor", "akvedukt", "aqueduto",
+  "naturreservat", "jernbane", "trikkestall", "bryggeri"
+]);
+
+type ArticleField = { field: string; text: string };
+type CodeScore = { code: string; isNew: boolean; words: string[]; fields: Set<string>; order: number };
+type ArticleDefaultGroup =
+  "safeBatch6Candidates" | "needsMetadata" | "needsNewDesignCode" |
+  "keepDefaultForNow" | "manualReview";
+
+// Finn alle distinkte treff (m[0]) av et mønster i en streng.
+function findAllMatches(re: RegExp, text: string): string[] {
+  const g = new RegExp(re.source, "g");
+  const out: string[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = g.exec(text)) !== null) {
+    if (!out.includes(m[0])) out.push(m[0]);
+    if (m.index === g.lastIndex) g.lastIndex++;
+  }
+  return out;
+}
+
+// Feltvis tekst for en artikkel, med feltnavn for evidence.fieldsUsed.
+function articleAnalysisFields(e: AuditEntity): ArticleField[] {
+  const cls = e.classification || {};
+  const sum = e.summary || {};
+  const joinArr = (v: unknown) => Array.isArray(v) ? v.map(lc).join(" ") : "";
+  const subjects = Array.isArray(e.subjects)
+    ? e.subjects.map((s: any) => (s && s.name) ? s.name : s) : [];
+  const raw: ArticleField[] = [
+    { field: "id", text: lc(e.id || e.place_id || "") },
+    { field: "title", text: lc(e.title || "") },
+    { field: "popupDesc", text: lc(e.popupDesc || "") },
+    { field: "summary.one_liner", text: lc(sum.one_liner || "") },
+    { field: "summary.themes", text: joinArr(sum.themes) },
+    { field: "classification.tags", text: joinArr(cls.tags) },
+    { field: "classification.knagger", text: joinArr(cls.knagger) },
+    { field: "classification.entry_types_in_use", text: joinArr(cls.entry_types_in_use) },
+    { field: "subjects", text: joinArr(subjects) },
+    { field: "category_hints", text: joinArr(e.category_hints) }
+  ];
+  return raw.filter((f) => f.text);
+}
+
+function articleConfidence(s: CodeScore): "high" | "medium" | "low" {
+  if (s.fields.size >= 2) return "high";
+  if (s.words.some((w) => ARTICLE_VERY_UNAMBIGUOUS.has(w))) return "high";
+  if (s.fields.size === 1) return "medium";
+  return "low";
+}
+
+// Klassifiser én default-artikkel. Returnerer { group, entry }.
+function classifyArticleDefault(e: AuditEntity, file: string) {
+  const fields = articleAnalysisFields(e);
+  const sum = e.summary || {};
+  const cls = e.classification || {};
+  const themes: string[] = Array.isArray(sum.themes) ? sum.themes : [];
+  const tags: string[] = Array.isArray(cls.tags) ? cls.tags : [];
+  const oneLiner = lc(sum.one_liner || "");
+  const popupLen = String(e.popupDesc || "").length;
+  const realTitle = !!e.title && lc(e.title) !== lc(e.id || e.place_id || "");
+
+  const scores = new Map<string, CodeScore>();
+  const apply = (rules: KeywordRule[], isNew: boolean) => {
+    rules.forEach(([re, code], order) => {
+      for (const f of fields) {
+        const ws = findAllMatches(re, f.text);
+        if (!ws.length) continue;
+        let s = scores.get(code);
+        if (!s) { s = { code, isNew, words: [], fields: new Set(), order }; scores.set(code, s); }
+        s.fields.add(f.field);
+        for (const w of ws) if (!s.words.includes(w)) s.words.push(w);
+      }
+    });
+  };
+  apply(ARTICLE_DEFAULT_SAFE_RULES, false);
+  apply(ARTICLE_DEFAULT_NEW_RULES, true);
+
+  const ranked = [...scores.values()].sort(
+    (a, b) => b.fields.size - a.fields.size || a.order - b.order);
+  const popCulture = ARTICLE_DEFAULT_KEEP_RE.test(
+    [themes.join(" "), tags.join(" "), oneLiner, lc(e.popupDesc || "")].join(" "));
+
+  const id = e.id || e.place_id || e.title || "(unknown)";
+  const title = e.title || sum.one_liner || id;
+  const place_id = e.place_id ||
+    (Array.isArray(e.place_ids) && e.place_ids[0]) || "";
+  const presentFields = fields.map((f) => f.field);
+
+  const baseEntry = (suggested: string, confidence: string, reason: string,
+    words: string[], fieldsUsed: string[], extra?: Record<string, unknown>) => ({
+    id, title, place_id, file,
+    currentDesignCode: "article_default_miniature",
+    suggestedDesignCode: suggested,
+    confidence, reason,
+    evidence: { matchedWords: words, fieldsUsed },
+    ...(extra || {})
+  });
+
+  const thinMeta = themes.length === 0 && tags.length === 0 &&
+    popupLen < 40 && !oneLiner;
+
+  // 1) For lite metadata til trygg klassifisering.
+  if (thinMeta || (ranked.length === 0 && tags.length === 0 && themes.length <= 1 && popupLen < 80)) {
+    const missing: string[] = [];
+    if (!realTitle) missing.push("title");
+    if (themes.length === 0) missing.push("summary.themes");
+    if (tags.length === 0) missing.push("classification.tags");
+    if (popupLen < 40) missing.push("popupDesc");
+    const hint = Array.isArray(e.category_hints) && e.category_hints.length
+      ? ` (category_hints: ${e.category_hints.join("/")})` : "";
+    return {
+      group: "needsMetadata" as ArticleDefaultGroup,
+      entry: baseEntry("", "low",
+        `for lite metadata til trygg designCode${hint}`,
+        [], presentFields, { missing })
+    };
+  }
+
+  // 2) Ingen nøkkelordtreff, men noe metadata → bevisst generell/neutral.
+  if (ranked.length === 0) {
+    return {
+      group: "keepDefaultForNow" as ArticleDefaultGroup,
+      entry: baseEntry("article_default_miniature", "low",
+        popCulture
+          ? "populærkulturell/blandet artikkel uten klar visuell hovedtype"
+          : "generell artikkel uten tydelig fagområde; default beholdes",
+        [], presentFields)
+    };
+  }
+
+  const top = ranked[0];
+  const second = ranked[1];
+  const tie = second && second.fields.size === top.fields.size &&
+    second.code !== top.code;
+  const fieldsUsed = [...top.fields];
+
+  // 3) To plausible koder med lik styrke, eller eksplisitt/ny-konflikt.
+  if (tie) {
+    const words = [...new Set([...top.words, ...second.words])];
+    return {
+      group: "manualReview" as ArticleDefaultGroup,
+      entry: baseEntry(top.code, "low",
+        `flere plausible koder med lik styrke: \`${top.code}\` vs \`${second.code}\``,
+        words, [...new Set([...top.fields, ...second.fields])],
+        { alternativeDesignCode: second.code })
+    };
+  }
+
+  const confidence = articleConfidence(top);
+
+  // 4) Ny kode trengs (dagens katalog er for grov).
+  if (top.isNew) {
+    return {
+      group: "needsNewDesignCode" as ArticleDefaultGroup,
+      entry: baseEntry(top.code, confidence,
+        `temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode \`${top.code}\``,
+        top.words, fieldsUsed, { suggestedNewDesignCode: top.code })
+    };
+  }
+
+  // 5) Eksisterende kode treffer, men populærkulturell ramme gir tvil.
+  if (popCulture && top.code === "article_place_essay_miniature" && top.fields.size <= 1) {
+    return {
+      group: "manualReview" as ArticleDefaultGroup,
+      entry: baseEntry(top.code, "low",
+        `byrom-/torgessay med populærkulturell ramme; ${top.code} vs default bør avgjøres manuelt`,
+        top.words, fieldsUsed)
+    };
+  }
+
+  // 6) Trygg batch 6-kandidat med tydelig eksisterende kode.
+  return {
+    group: "safeBatch6Candidates" as ArticleDefaultGroup,
+    entry: baseEntry(top.code, confidence,
+      `tydelig eksisterende fagområde (${top.words.join(", ")}) → \`${top.code}\``,
+      top.words, fieldsUsed)
+  };
+}
+
+// Bygg hele articleDefaultAnalysis + articleBatch6Plan fra artikkel-entiteter.
+function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn: Resolver) {
+  const groups: Record<ArticleDefaultGroup, any[]> = {
+    safeBatch6Candidates: [],
+    needsMetadata: [],
+    needsNewDesignCode: [],
+    keepDefaultForNow: [],
+    manualReview: []
+  };
+
+  for (const { entry: e, file } of articleEntries) {
+    const r = resolveFn(e);
+    if (r.source !== "default") continue; // kun article_default_miniature
+    const { group, entry } = classifyArticleDefault(e, file);
+    groups[group].push(entry);
+  }
+
+  const total = groups.safeBatch6Candidates.length + groups.needsMetadata.length +
+    groups.needsNewDesignCode.length + groups.keepDefaultForNow.length +
+    groups.manualReview.length;
+
+  // Stabil sortering i hver gruppe (confidence, så kode, så id).
+  const confRank: Record<string, number> = { high: 0, medium: 1, low: 2 };
+  const sortGroup = (arr: any[]) => arr.sort((a, b) =>
+    (confRank[a.confidence] ?? 3) - (confRank[b.confidence] ?? 3) ||
+    String(a.suggestedDesignCode).localeCompare(String(b.suggestedDesignCode)) ||
+    String(a.id).localeCompare(String(b.id)));
+  for (const k of Object.keys(groups) as ArticleDefaultGroup[]) sortGroup(groups[k]);
+
+  const articleDefaultAnalysis = {
+    total,
+    safeBatch6Candidates: groups.safeBatch6Candidates,
+    needsMetadata: groups.needsMetadata,
+    needsNewDesignCode: groups.needsNewDesignCode,
+    keepDefaultForNow: groups.keepDefaultForNow,
+    manualReview: groups.manualReview
+  };
+
+  // Batch 6-plan: kun trygge, high/medium-confidence kandidater, prioritert.
+  const batchCandidates = groups.safeBatch6Candidates
+    .filter((c) => c.confidence === "high" || c.confidence === "medium")
+    .map((c) => ({
+      id: c.id, title: c.title, place_id: c.place_id, file: c.file,
+      suggestedDesignCode: c.suggestedDesignCode, confidence: c.confidence,
+      reason: c.reason
+    }));
+
+  const articleBatch6Plan = {
+    recommendedScope: { min: 50, max: 90 },
+    priorityOrder: [
+      "safe high-confidence article defaults",
+      "unused/underused existing article designCodes",
+      "manual review after human check"
+    ],
+    candidates: batchCandidates
+  };
+
+  return { articleDefaultAnalysis, articleBatch6Plan };
+}
+
+// ---------------------------------------------------------------------------
 // Datalasting.
 // ---------------------------------------------------------------------------
 
@@ -813,6 +1109,10 @@ function main() {
     articles: buildBatch3("article", articleEntries, resolveForArticle, unusedSet)
   };
 
+  // Klassifisering av de gjenværende article_default_miniature (audit-only).
+  const { articleDefaultAnalysis, articleBatch6Plan } =
+    buildArticleDefaultAnalysis(articleEntries, resolveForArticle);
+
   const report = {
     schema: "history-go.visual-design-codes-audit.v1",
     generatedAt: new Date().toISOString(),
@@ -866,6 +1166,8 @@ function main() {
       articles: articleStats.semanticReviewCandidates
     },
     batch3Suggestions: batch3,
+    articleDefaultAnalysis,
+    articleBatch6Plan,
     pilotBatchStatus: {
       batch1Baseline: 73,
       afterBatch2: 169,
@@ -902,6 +1204,9 @@ function main() {
   console.log(`  heuristic-kandidater:      ${countCand(report.heuristicCandidates)}`);
   console.log(`  review-kandidater:         ${countCand(report.semanticReviewCandidates)}`);
   console.log(`  batch3-forslag:            ${countCand(report.batch3Suggestions)}`);
+  const ada = report.articleDefaultAnalysis;
+  console.log(`  article-default analyse:   ${ada.total} (safe ${ada.safeBatch6Candidates.length}, metadata ${ada.needsMetadata.length}, ny-kode ${ada.needsNewDesignCode.length}, keep ${ada.keepDefaultForNow.length}, manuell ${ada.manualReview.length})`);
+  console.log(`  batch6-kandidater:         ${report.articleBatch6Plan.candidates.length}`);
   console.log(`  invalid eksplisitte:       ${invalidExplicit.length}`);
   console.log(`  manglende renderHints:     ${missingRenderHints.length}`);
   console.log(`  designCodes uten bruk:     ${unused.length}`);
@@ -963,6 +1268,126 @@ function pushBatch3Group(lines, label, items, max) {
     }
   }
   lines.push("");
+}
+
+// Render «Article default analysis»-seksjonen (Del 7) og batch 6-forslaget
+// (Del 8). Tall fra JSON, avkortede tabeller for lesbarhet.
+function pushArticleDefaultAnalysis(lines: string[], r: AuditReport) {
+  const ada = r.articleDefaultAnalysis;
+  if (!ada) return;
+  lines.push("## Article default analysis");
+  lines.push("");
+  lines.push(`Klassifisering av de gjenværende \`article_default_miniature\`. Denne`);
+  lines.push("delen merker **ingen** datafiler – den forbereder en presis batch 6.");
+  lines.push("");
+  lines.push(`- total \`article_default_miniature\`: **${ada.total}**`);
+  lines.push(`- safeBatch6Candidates: ${ada.safeBatch6Candidates.length}`);
+  lines.push(`- needsMetadata: ${ada.needsMetadata.length}`);
+  lines.push(`- needsNewDesignCode: ${ada.needsNewDesignCode.length}`);
+  lines.push(`- keepDefaultForNow: ${ada.keepDefaultForNow.length}`);
+  lines.push(`- manualReview: ${ada.manualReview.length}`);
+  lines.push("");
+
+  const idTitle = { head: "id / title", get: (x: any) => `${x.id}${x.title && x.title !== x.id ? " — " + x.title : ""}` };
+  const safeCols = [
+    idTitle,
+    { head: "suggestedDesignCode", get: (x: any) => x.suggestedDesignCode },
+    { head: "confidence", get: (x: any) => x.confidence },
+    { head: "reason", get: (x: any) => x.reason },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  lines.push("### Trygge batch 6-kandidater");
+  lines.push("");
+  pushCandidateList(lines, "safeBatch6Candidates", ada.safeBatch6Candidates, MD_MAX_ADA_SAFE, safeCols);
+
+  const metaCols = [
+    idTitle,
+    { head: "missing", get: (x: any) => (x.missing || []).join(", ") },
+    { head: "reason", get: (x: any) => x.reason },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  lines.push("### Mangler metadata");
+  lines.push("");
+  pushCandidateList(lines, "needsMetadata", ada.needsMetadata, MD_MAX_ADA_METADATA, metaCols);
+
+  // Trenger ny designCode – gruppert etter suggestedNewDesignCode.
+  lines.push("### Trenger mulig ny designCode");
+  lines.push("");
+  const nn = ada.needsNewDesignCode || [];
+  lines.push(`#### needsNewDesignCode (${nn.length})`);
+  lines.push("");
+  if (!nn.length) {
+    lines.push("- (ingen)");
+    lines.push("");
+  } else {
+    const byNew: Record<string, any[]> = {};
+    for (const it of nn) {
+      const k = it.suggestedNewDesignCode || it.suggestedDesignCode;
+      (byNew[k] = byNew[k] || []).push(it);
+    }
+    for (const code of Object.keys(byNew).sort()) {
+      const items = byNew[code];
+      lines.push(`- \`${code}\` (${items.length}):`);
+      for (const it of items.slice(0, 20)) {
+        lines.push(`  - ${mdEscape(it.id)} [${it.confidence}] — ${mdEscape(it.reason)} (\`${mdEscape(it.file)}\`)`);
+      }
+      if (items.length > 20) lines.push(`  - _… ${items.length - 20} til i JSON._`);
+    }
+    lines.push("");
+  }
+
+  const keepCols = [
+    idTitle,
+    { head: "reason", get: (x: any) => x.reason },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  lines.push("### Bør forbli default foreløpig");
+  lines.push("");
+  pushCandidateList(lines, "keepDefaultForNow", ada.keepDefaultForNow, MD_MAX_ADA_KEEP, keepCols);
+
+  const manualCols = [
+    idTitle,
+    { head: "suggestedDesignCode", get: (x: any) => x.suggestedDesignCode },
+    { head: "reason", get: (x: any) => x.reason },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  lines.push("### Manuell vurdering");
+  lines.push("");
+  pushCandidateList(lines, "manualReview", ada.manualReview, MD_MAX_ADA_MANUAL, manualCols);
+
+  // ---- Del 8: Forslag til Article batch 6 ----
+  const plan = r.articleBatch6Plan;
+  if (plan) {
+    lines.push("## Forslag til Article batch 6");
+    lines.push("");
+    lines.push(`Anbefalt omfang: **${plan.recommendedScope.min}–${plan.recommendedScope.max}** artikler.`);
+    lines.push("Prioritert rekkefølge:");
+    for (const p of plan.priorityOrder) lines.push(`1. ${p}`);
+    lines.push("");
+    lines.push("Kun trygge kandidater (high/medium-confidence). `needsMetadata` og");
+    lines.push("`needsNewDesignCode` tas **ikke** med som direkte batchkandidater.");
+    lines.push("");
+    const shown = plan.candidates.slice(0, MD_MAX_ADA_BATCH6);
+    lines.push(`Topp ${shown.length} av ${plan.candidates.length}, gruppert etter \`suggestedDesignCode\`:`);
+    lines.push("");
+    if (!plan.candidates.length) {
+      lines.push("- (ingen)");
+    } else {
+      const byCode: Record<string, any[]> = {};
+      for (const c of shown) (byCode[c.suggestedDesignCode] = byCode[c.suggestedDesignCode] || []).push(c);
+      for (const code of Object.keys(byCode).sort()) {
+        lines.push(`- \`${code}\` (${byCode[code].length}):`);
+        for (const c of byCode[code]) {
+          lines.push(`  - ${mdEscape(c.id)} [${c.confidence}] — ${mdEscape(c.reason)}`);
+        }
+      }
+      if (plan.candidates.length > shown.length) {
+        lines.push("");
+        lines.push(`_Viser ${shown.length} av ${plan.candidates.length}. Full liste i \`articleBatch6Plan.candidates\` i JSON._`);
+      }
+    }
+    lines.push("");
+  }
 }
 
 function toMarkdown(r: AuditReport) {
@@ -1122,6 +1547,9 @@ function toMarkdown(r: AuditReport) {
   pushBatch3Group(lines, "Places", r.batch3Suggestions.places, MD_MAX_BATCH3_PLACES);
   pushBatch3Group(lines, "People", r.batch3Suggestions.people, MD_MAX_BATCH3_PEOPLE);
   pushBatch3Group(lines, "Artikler", r.batch3Suggestions.articles, MD_MAX_BATCH3_ARTICLES);
+
+  // ---- Article default analysis ----
+  pushArticleDefaultAnalysis(lines, r);
 
   // ---- Eksisterende kvalitetsseksjoner ----
   lines.push("## Invalid eksplisitte designCodes");
