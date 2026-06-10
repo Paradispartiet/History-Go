@@ -480,8 +480,8 @@
     if (document.body?.classList.contains("profile-page")) return null;
 
     const footer = document.querySelector(".app-footer");
-    const shell = document.querySelector(".app-shell") || document.body;
-    if (!footer || !shell) return null;
+    const panelHost = document.body;
+    if (!footer || !panelHost) return null;
 
     ensureCss("css/footer-nextup.css");
 
@@ -491,7 +491,9 @@
       panel.id = PANEL_ID;
       panel.className = "footer-nextup-panel";
       panel.setAttribute("aria-hidden", "true");
-      shell.appendChild(panel);
+      panelHost.appendChild(panel);
+    } else if (panel.parentElement !== panelHost) {
+      panelHost.appendChild(panel);
     }
 
     let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById(BUTTON_ID));
