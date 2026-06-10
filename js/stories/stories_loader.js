@@ -1,5 +1,8 @@
 (function () {
   const MANIFEST_PATH = "data/stories/stories_manifest.json";
+  const EXTRA_MANIFEST_PATHS = [
+    "data/stories/stories_manifest_music_batch_01.json"
+  ];
 
   function ensureArray(value) {
     return Array.isArray(value) ? value : [];
@@ -50,6 +53,14 @@
     });
   }
 
+  async function loadManifest(path) {
+    const manifestRes = await fetch(path);
+    if (!manifestRes.ok) {
+      throw new Error(`Kunne ikke laste stories manifest ${path}: ${manifestRes.status}`);
+    }
+    return manifestRes.json();
+  }
+
   window.HGStories = {
     ready: false,
     manifest: null,
@@ -63,16 +74,26 @@
     async init() {
       if (this.ready) return this;
 
-      const manifestRes = await fetch(MANIFEST_PATH);
-      if (!manifestRes.ok) {
-        throw new Error(`Kunne ikke laste stories_manifest.json: ${manifestRes.status}`);
+      const manifests = [];
+      const mainManifest = await loadManifest(MANIFEST_PATH);
+      manifests.push(mainManifest);
+
+      for (const path of EXTRA_MANIFEST_PATHS) {
+        try {
+          manifests.push(await loadManifest(path));
+        } catch (err) {
+          console.warn("Ekstra story-manifest feilet:", path, err);
+        }
       }
 
-      const manifest = await manifestRes.json();
-      const files = ensureArray(manifest.files);
-      this.manifest = manifest;
+      const files = manifests.flatMap(manifest => ensureArray(manifest.files));
+      this.manifest = {
+        files,
+        sources: [MANIFEST_PATH, ...EXTRA_MANIFEST_PATHS]
+      };
 
       const loadedStories = [];
+      const seenStoryIds = new Set();
 
       for (const file of files) {
         if (!file?.path) continue;
@@ -86,6 +107,8 @@
 
           for (const story of stories) {
             if (!isValidStory(story)) continue;
+            if (seenStoryIds.has(story.id)) continue;
+            seenStoryIds.add(story.id);
             story.next_scenes = normalizeNextScenes(story.next_scenes);
             loadedStories.push(story);
           }
