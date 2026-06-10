@@ -50,6 +50,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("bootCritical", window.bootCritical || window.boot);
     await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
 
+    // Profilruntime lastes eksplisitt fra app-entry (samme kanal som resten av
+    // index-runtime) så index.html slipper flere <script>-tagger. Rekkefølgen er
+    // bevisst: aha.js (AHA-bro) før profileIdentity.js, og profileIdentity.js før
+    // mini-profile.js – fordi ProfileIdentity eier #miniName/profilnavnet, mens
+    // mini-profile.js bare rendrer statistikk. i18n.js finnes allerede fra index.html.
+    await safeRun("loadAhaBridge", () => loadScriptOnce("js/aha.js"));
+    await safeRun("loadProfileIdentity", () => loadScriptOnce("js/profileIdentity.js"));
+    await safeRun("loadMiniProfile", () => loadScriptOnce("js/ui/mini-profile.js"));
+
     await safeRun("initMiniProfile", window.initMiniProfile);
     await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
     await safeRun("initLeftPanel", window.initLeftPanel);
