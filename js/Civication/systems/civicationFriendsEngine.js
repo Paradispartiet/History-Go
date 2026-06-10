@@ -433,6 +433,137 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Kartnode-klassifisering (Del A) – semantisk rolle pr. location
+  // ---------------------------------------------------------------------------
+  // Civication-kartet skiller mellom system-/spillnoder, venners hjem, ekte
+  // sosiale steder (fra CivicationSocialPlaceResolver) og generiske sosiale
+  // fallback-noder. Rene, deterministiske hjelpere som CityLayer og bymodellen
+  // bruker for å rendre riktig og prioritere ekte socialPlaces. Ingen DOM/fetch.
+  //
+  // locationRole-verdier:
+  //   system_node     – øvrige systembygg (NAV-kontor m.fl.)
+  //   player_home     – spillerens hjem (id "home")
+  //   work_node       – arbeidsplassen (id "workplace")
+  //   insight_node    – Psykologirommet (id "psychology_room")
+  //   friend_home     – venners simulerte hjem (type "friend_home")
+  //   social_place    – ekte sosialt sted fra resolveren (sourcePlaceId + type)
+  //   social_fallback – generisk sosial phaseLocation (cafe/park/football/…)
+  const LOCATION_ROLES = {
+    SYSTEM_NODE: "system_node",
+    PLAYER_HOME: "player_home",
+    WORK_NODE: "work_node",
+    INSIGHT_NODE: "insight_node",
+    FRIEND_HOME: "friend_home",
+    SOCIAL_PLACE: "social_place",
+    SOCIAL_FALLBACK: "social_fallback"
+  };
+
+  // Fast id -> rolle for system-/spillnodene som alltid skal vises.
+  const SYSTEM_LOCATION_ROLE_BY_ID = {
+    home: "player_home",
+    workplace: "work_node",
+    nav_office: "system_node",
+    psychology_room: "insight_node"
+  };
+
+  // Generiske sosiale phaseLocations (id) -> socialPlaceType de "skygger for".
+  // Når en ekte socialPlace av samme type finnes, kan den generiske noden tones
+  // ned/skjules til fordel for det konkrete stedet.
+  const GENERIC_SOCIAL_LOCATION_TYPE = {
+    cafe: "coffee",
+    park: "park_public_space",
+    football: "sport_football",
+    culture: "culture",
+    gym: "sport_football",
+    store: "retail_social"
+  };
+
+  // socialPlaceType for en generisk sosial phaseLocation, ellers null.
+  function getGenericSocialPlaceType(loc) {
+    const id = norm(loc && loc.id).toLowerCase();
+    return GENERIC_SOCIAL_LOCATION_TYPE[id] || null;
+  }
+
+  // Er en location et ekte sosialt sted fra CivicationSocialPlaceResolver?
+  // (Har både sourcePlaceId og socialPlaceType – brand-place eller place-only.)
+  function isRealSocialPlace(loc) {
+    const l = loc && typeof loc === "object" ? loc : {};
+    return !!(norm(l.sourcePlaceId) && norm(l.socialPlaceType));
+  }
+
+  // Semantisk rolle for en location. Deterministisk; id-regler vinner, deretter
+  // friend_home, deretter ekte sosialt sted, deretter generisk fallback.
+  function getLocationRole(loc) {
+    const l = loc && typeof loc === "object" ? loc : {};
+    const id = norm(l.id).toLowerCase();
+    if (SYSTEM_LOCATION_ROLE_BY_ID[id]) return SYSTEM_LOCATION_ROLE_BY_ID[id];
+    if (isFriendHomeLocation(l)) return LOCATION_ROLES.FRIEND_HOME;
+    if (isRealSocialPlace(l)) return LOCATION_ROLES.SOCIAL_PLACE;
+    if (getGenericSocialPlaceType(l)) return LOCATION_ROLES.SOCIAL_FALLBACK;
+    // Øvrige systembygg uten egen id-regel (butikk/service o.l.) -> systemnode.
+    return LOCATION_ROLES.SYSTEM_NODE;
+  }
+
+  // Er dette en system-/spillnode (hjem, jobb, NAV, Psykologirommet, øvrige
+  // systembygg)? Disse skjules ALDRI av sosiale steder.
+  function isSystemLocation(loc) {
+    const role = getLocationRole(loc);
+    return role === LOCATION_ROLES.SYSTEM_NODE ||
+      role === LOCATION_ROLES.PLAYER_HOME ||
+      role === LOCATION_ROLES.WORK_NODE ||
+      role === LOCATION_ROLES.INSIGHT_NODE;
+  }
+
+  // Er dette en generisk sosial fallback-node (cafe/park/football/culture/…)?
+  function isGenericSocialFallback(loc) {
+    return getLocationRole(loc) === LOCATION_ROLES.SOCIAL_FALLBACK;
+  }
+
+  // Hvilke socialPlaceType-er har ekte sosiale steder i en locations-liste?
+  function getRealSocialPlaceTypes(locations) {
+    const set = new Set();
+    (Array.isArray(locations) ? locations : []).forEach((l) => {
+      if (isRealSocialPlace(l)) {
+        const t = norm(l.socialPlaceType);
+        if (t) set.add(t);
+      }
+    });
+    return set;
+  }
+
+  // Skal denne location rendres på bykartet i en gitt kontekst?
+  //   - system-/spillnoder, venners hjem og ekte sosiale steder: alltid
+  //   - generisk sosial fallback: kun når det IKKE finnes ekte sosiale steder av
+  //     tilsvarende socialPlaceType (ellers skjules den til fordel for de
+  //     konkrete stedene). Slik beholdes funksjonen når ingen ekte steder finnes.
+  // context: { realSocialPlaceTypes?: Set|Array<string>, locations?: Array }
+  function shouldRenderLocationOnCityMap(loc, context) {
+    const ctx = context && typeof context === "object" ? context : {};
+    if (getLocationRole(loc) !== LOCATION_ROLES.SOCIAL_FALLBACK) return true;
+    const spt = getGenericSocialPlaceType(loc);
+    if (!spt) return true;
+    let types = ctx.realSocialPlaceTypes;
+    if (types instanceof Set) { /* bruk som den er */ }
+    else if (Array.isArray(types)) types = new Set(types.map(norm));
+    else types = getRealSocialPlaceTypes(ctx.locations);
+    return !types.has(spt);
+  }
+
+  // Sammenslåing av ekte sosiale steder inn i location-listen (dedup på id).
+  // Holder engine uavhengig av resolveren (resolveren har en egen variant).
+  function mergeSocialPlacesIntoLocations(locations, socialPlaces) {
+    const base = (Array.isArray(locations) ? locations : []).slice();
+    const seen = new Set(base.map((l) => norm(l && l.id)).filter(Boolean));
+    (Array.isArray(socialPlaces) ? socialPlaces : []).forEach((sp) => {
+      const id = norm(sp && sp.id);
+      if (!id || seen.has(id)) return;
+      seen.add(id);
+      base.push(sp);
+    });
+    return base;
+  }
+
+  // ---------------------------------------------------------------------------
   // Fase-minne-resolver (ren, deterministisk)
   // ---------------------------------------------------------------------------
   // Slår opp et venne-snapshot for en gitt semantisk fase i en snapshots-array
@@ -566,6 +697,15 @@
     invite: "Inviter",
     profile: "Se profil"
   };
+
+  // Handlinger routeren kan bygge en modell for. UI-laget bruker rekken
+  // message/approach/invite/profile; "visit" beholdes som bakoverkompatibel
+  // intern handling (gamle data/tester), men er ikke lenger hovedhandling i UI.
+  const ROUTABLE_FRIEND_ACTIONS = FRIEND_ACTIONS.concat(["approach"]);
+
+  function isRoutableFriendAction(action) {
+    return ROUTABLE_FRIEND_ACTIONS.includes(norm(action).toLowerCase());
+  }
 
   // Fase -> kort "sted-ord" brukt i resultattekst ("siste morgensted" …).
   // Bevisst formulert som SISTE/minne, aldri som "er nå på".
@@ -717,6 +857,41 @@
     };
   }
 
+  // Henvend deg (fra vennens profilkort): bygger en personlig HENVENDELSE til
+  // vennen som kobles til Personlige meldinger via CivicationFriendMessages
+  // (privat kanal, aldri jobb). Bruker vennens siste fase/presence-locationId
+  // som kontekst når den finnes; mangler den, lages en generell personlig
+  // henvendelse uten konkret sted. Ekte stedskobling (sourcePlaceId/brandId/
+  // socialPlaceType) følger med når målet er et CivicationSocialPlaceResolver-sted.
+  // Setter ALDRI jobb-/karrierefelt.
+  function buildFriendApproachAction(friend, snapshot, phase, locations) {
+    const ph = normalizeSnapshotPhase(phase);
+    const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
+    const target = resolveFriendActionTargetLocation(friend, snap, ph, locations);
+    const loc = locationById(locations, target.locationId) || {};
+    const model = {
+      action: SOCIAL_ENCOUNTER_ACTION,
+      intent: "approach",
+      friendId: norm(friend && friend.id),
+      friendName: norm(friend && friend.name) || "vennen",
+      phase: ph,
+      locationId: target.locationId || null,
+      locationLabel: target.found ? target.label : "",
+      label: getResponseOptionLabel(SOCIAL_ENCOUNTER_ACTION) || "Henvend deg",
+      // Sosial henvendelse: privat kanal, svarbar (reply/ignore/decline).
+      status: "pending_response",
+      responseOptions: SOCIAL_RESPONSE_OPTIONS.slice(),
+      source: "civication_social_encounter",
+      isSimulated: true,
+      resultText: getApproachActionResultText(friend, snap, ph, loc)
+    };
+    if (norm(loc.sourcePlaceId)) model.sourcePlaceId = norm(loc.sourcePlaceId);
+    if (norm(loc.brandId)) model.brandId = norm(loc.brandId);
+    if (norm(loc.socialPlaceType)) model.socialPlaceType = norm(loc.socialPlaceType);
+    if (norm(loc.placeLabel)) model.placeLabel = norm(loc.placeLabel);
+    return model;
+  }
+
   // Inviter: lager en enkel, lokal sosial invitasjon knyttet til aktiv fase og
   // relevant sted. Trenger ingen backend – ren lokal spillhandling.
   function buildFriendInviteAction(friend, snapshot, phase, locations) {
@@ -819,7 +994,7 @@
     const act = norm(action).toLowerCase();
     const ctxIn = context && typeof context === "object" ? context : {};
 
-    if (!isFriendAction(act)) {
+    if (!isRoutableFriendAction(act)) {
       return { ok: false, action: act, friendId: norm(friendId), reason: "unknown_action" };
     }
 
@@ -843,6 +1018,7 @@
     const { friend, snapshot, phase, locations } = ctx;
     let model = null;
     if (act === "message") model = buildFriendMessageAction(friend, snapshot, phase, locations);
+    else if (act === "approach") model = buildFriendApproachAction(friend, snapshot, phase, locations);
     else if (act === "visit") model = buildFriendVisitAction(friend, snapshot, phase, locations);
     else if (act === "invite") model = buildFriendInviteAction(friend, snapshot, phase, locations);
     else if (act === "profile") model = buildFriendProfileAction(friend, snapshot, phase, locations);
@@ -1323,20 +1499,47 @@
   // Bekvemmelighet for UI: full kartmodell for nåværende fase. Vennelaget bruker
   // fase-minne (snapshot for aktiv semantisk fase), med trygg fallback til
   // presence. Steder bruker fortsatt dagfasen for aktiv/rolig-markering.
+  // Henter ekte sosiale steder fra CivicationSocialPlaceResolver når den er
+  // lastet. Trygt tomt array uten resolveren / ved feil (test/headless).
+  async function loadRealSocialPlacesForCity() {
+    const resolver = window.CivicationSocialPlaceResolver;
+    if (!resolver || typeof resolver.loadAllSocialPlaces !== "function") return [];
+    try {
+      const places = await resolver.loadAllSocialPlaces();
+      return Array.isArray(places) ? places : [];
+    } catch (_e) {
+      return [];
+    }
+  }
+
   async function getCityModel() {
     const { locations, friends, snapshots } = await loadData();
     const dayPhase = getCurrentPhase();
     const snapshotPhase = getActivePhase(dayPhase);
     const dayIndex = getDayIndex();
+
+    // Del B: slå sammen ekte sosiale steder (resolver) med fasepunktene, og
+    // bygg en render-liste der generiske sosiale fallback-noder skjules når
+    // konkrete steder av samme socialPlaceType finnes. Systemnoder, venners
+    // hjem og ekte sosiale steder vises alltid.
+    const socialPlaces = await loadRealSocialPlacesForCity();
+    const mergedLocations = mergeSocialPlacesIntoLocations(locations, socialPlaces);
+    const renderLocations = mergedLocations.filter((l) =>
+      shouldRenderLocationOnCityMap(l, { locations: mergedLocations }));
+
     return {
       phase: dayPhase,
       snapshotPhase,
       snapshotPhaseLabel: snapshotPhaseLabel(snapshotPhase),
       dayIndex,
-      locations,
+      // Full liste (brukes for oppslag/locationById og sosiale møter).
+      locations: mergedLocations,
+      // Filtrert liste til rendering (Del B).
+      renderLocations,
+      socialPlaces,
       snapshots,
       friends: friendSnapshotRows(friends, snapshotPhase, snapshots, dayIndex),
-      activeLocationIds: activeLocations(locations, dayPhase).map((l) => norm(l.id))
+      activeLocationIds: activeLocations(mergedLocations, dayPhase).map((l) => norm(l.id))
     };
   }
 
@@ -1386,6 +1589,17 @@
     resolveFriendHomeMapAnchor,
     getFriendHomeLabel,
     buildFriendHomeModel,
+    // kartnode-klassifisering (Del A) – semantisk rolle pr. location
+    LOCATION_ROLES: { ...LOCATION_ROLES },
+    GENERIC_SOCIAL_LOCATION_TYPE: { ...GENERIC_SOCIAL_LOCATION_TYPE },
+    getGenericSocialPlaceType,
+    isRealSocialPlace,
+    getLocationRole,
+    isSystemLocation,
+    isGenericSocialFallback,
+    getRealSocialPlaceTypes,
+    shouldRenderLocationOnCityMap,
+    mergeSocialPlacesIntoLocations,
     // fase-minne (rene, deterministiske)
     snapshotEntryFor,
     resolveFriendMapPresence,
@@ -1393,13 +1607,16 @@
     // vennehandlinger – datadrevet action-router (rene, deterministiske)
     FRIEND_ACTIONS: FRIEND_ACTIONS.slice(),
     FRIEND_ACTION_LABEL: { ...FRIEND_ACTION_LABEL },
+    ROUTABLE_FRIEND_ACTIONS: ROUTABLE_FRIEND_ACTIONS.slice(),
     isFriendAction,
+    isRoutableFriendAction,
     getFriendActionLabel,
     getInviteLabelForPhase,
     getFriendActionResultText,
     resolveFriendActionTargetLocation,
     resolveFriendActionContext,
     buildFriendMessageAction,
+    buildFriendApproachAction,
     buildFriendVisitAction,
     buildFriendInviteAction,
     buildFriendProfileAction,
@@ -1438,6 +1655,7 @@
     loadLocations,
     loadFriends,
     loadSnapshots,
+    loadRealSocialPlacesForCity,
     getCityModel
   };
 })();

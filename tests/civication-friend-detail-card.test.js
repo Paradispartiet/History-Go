@@ -160,14 +160,17 @@ check("tom-tilstand vises trygt når det ikke finnes fasehistorikk", () => {
 
 console.log("Vennens profilkort – handlinger (event hooks)");
 
-check("alle fire handlinger rendres med stabile data-attributter", () => {
+check("handlingsrekken er message/approach/invite/profile (ikke direkte Besøk)", () => {
   const html = buildCard(mariam, "morning");
-  ["message", "visit", "invite", "profile"].forEach((action) => {
+  ["message", "approach", "invite", "profile"].forEach((action) => {
     assert.ok(
       html.includes('data-civi-friend-action="' + action + '"'),
       "handling mangler: " + action
     );
   });
+  // "Henvend deg" er den sosiale kontakthandlingen; direkte "Besøk" er borte.
+  assert.ok(html.includes(">Henvend deg<"), "Henvend deg-knapp mangler");
+  assert.ok(!html.includes('data-civi-friend-action="visit"'), "visit skal ikke være hovedhandling i UI");
   // Hver handling bærer venn-id, navn og fase som hook-kontekst.
   assert.ok(html.includes('data-friend-id="friend_demo_01"'), "data-friend-id mangler");
   assert.ok(html.includes('data-friend-name="Mariam Holt"'), "data-friend-name mangler");

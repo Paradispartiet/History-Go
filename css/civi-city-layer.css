@@ -454,6 +454,29 @@ body.civi-mapmode .civi-city-layer {
   min-width: 104px;
 }
 
+/* Generiske sosiale fallback-noder tones lett ned slik at konkrete ekte steder
+   (social_place) er den visuelle hovedrepresentasjonen for sosiale møter. */
+.civi-city-place.civi-role-social-fallback {
+  opacity: 0.82;
+}
+.civi-city-place.civi-role-social-fallback.is-active {
+  opacity: 1;
+}
+
+/* Del C/E: en generisk fallback fremstår som en inngang/kategori som leder til
+   konkrete ekte sosiale steder. Gjenbruker detalj-panelets eksisterende stil. */
+.civi-city-fallback-choices .civi-city-fallback-choice {
+  list-style: none;
+}
+.civi-city-fallback-choices .civi-city-fallback-choice .civi-btn {
+  width: 100%;
+  text-align: left;
+}
+.civi-city-fallback-choices .civi-city-fallback-choice small {
+  opacity: 0.7;
+  font-weight: 400;
+}
+
 @media (max-width: 520px) {
   .civi-city-place-label {
     max-width: 84px;

@@ -311,6 +311,10 @@
     }
 
     const { phase, locations, friends } = _model;
+    // Del B: rendre den filtrerte listen (system-/spillnoder, venners hjem og
+    // ekte sosiale steder; generiske sosiale fallback-noder skjules når konkrete
+    // steder av samme type finnes). Full `locations` brukes fortsatt til oppslag.
+    const renderLocations = _model.renderLocations || locations || [];
     mh.innerHTML = "";
 
     // Spilleren er i aktiv fase og ser på byen -> lagre spillerens egen
@@ -320,12 +324,16 @@
 
     // 1) Stedsmarkører. Posisjon settes av refreshMarkerPositions() fra aktiv
     //    kartmotor – ikke som egne overlay-prosenter her.
-    (locations || []).forEach((loc) => {
+    (renderLocations || []).forEach((loc) => {
       const active = eng.isLocationActive(loc, phase);
+      const role = (typeof eng.getLocationRole === "function") ? eng.getLocationRole(loc) : "";
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "civi-city-place" + (active ? " is-active" : "") + (loc.type === "friend_home" ? " is-friend-home" : "");
+      btn.className = "civi-city-place" + (active ? " is-active" : "") +
+        (loc.type === "friend_home" ? " is-friend-home" : "") +
+        (role ? " civi-role-" + role.replace(/_/g, "-") : "");
       btn.setAttribute("data-place-id", String(loc.id || ""));
+      if (role) btn.setAttribute("data-location-role", role);
       btn.innerHTML =
         '<span class="civi-city-place-icon">' + esc(loc.icon || "📍") + "</span>" +
         '<span class="civi-city-place-label">' + esc(loc.label || loc.id || "") + "</span>";
@@ -543,16 +551,36 @@
        (typeof resolver.isBrandSocialPlace === "function" && resolver.isBrandSocialPlace(loc)));
     const buildHeader = resolver &&
       (resolver.buildSocialPlaceHeaderHtml || resolver.buildBrandPlaceHeaderHtml);
-    const headerHtml = (isSocialPlace && typeof buildHeader === "function")
-      ? buildHeader(loc, _model.snapshotPhase)
-      : ('<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " Sted · " + esc(phaseLabel(loc.phase)) + "</div>" +
-         "<h3>" + esc(loc.label || loc.id) + "</h3>" +
-         '<p class="civi-city-detail-desc">' + esc(loc.description || "") + "</p>");
+
+    // Del C/E: generisk sosial fallback med ekte steder av samme type -> vis
+    // stedskortet som en inngang/kategori ("Kaféområde"/"Kafévalg") og led til
+    // de konkrete stedene. Uten ekte steder beholdes den generiske møteflyten.
+    const isFallback = (typeof eng.isGenericSocialFallback === "function") && eng.isGenericSocialFallback(loc);
+    const fallbackChoicesHtml = isFallback ? buildFallbackSocialPlaceChoicesHtml(loc, _model.snapshotPhase) : "";
+    const fallbackActive = isFallback && !!fallbackChoicesHtml;
+
+    let headerHtml;
+    if (isSocialPlace && typeof buildHeader === "function") {
+      headerHtml = buildHeader(loc, _model.snapshotPhase);
+    } else if (fallbackActive) {
+      const word = String(loc.label || loc.id);
+      headerHtml =
+        '<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " " + esc(word) + "område</div>" +
+        "<h3>" + esc(word) + "valg</h3>" +
+        '<p class="civi-city-detail-desc">' +
+        esc("Velg et konkret " + word.toLowerCase() + "sted i byen.") + "</p>";
+    } else {
+      headerHtml =
+        '<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " Sted · " + esc(phaseLabel(loc.phase)) + "</div>" +
+        "<h3>" + esc(loc.label || loc.id) + "</h3>" +
+        '<p class="civi-city-detail-desc">' + esc(loc.description || "") + "</p>";
+    }
 
     showDetail(
       headerHtml +
       '<div class="civi-city-detail-status' + (active ? " is-active" : "") + '">' +
         (active ? "Aktivt i denne fasen" : "Roligere i denne fasen") + "</div>" +
+      fallbackChoicesHtml +
       (activitiesHtml ? '<div class="civi-city-detail-section"><h4>Aktiviteter</h4><div class="civi-city-chips">' + activitiesHtml + "</div></div>" : "") +
       '<div class="civi-city-detail-section"><h4>Venner her</h4><ul class="civi-city-detail-list">' + friendsHtml + "</ul></div>" +
       encountersHtml +
@@ -597,6 +625,51 @@
 
     return '<div class="civi-city-detail-section civi-city-encounters">' +
       "<h4>" + esc(heading) + "</h4>" +
+      '<ul class="civi-city-detail-list">' + items + "</ul></div>";
+  }
+
+  // ---------------------------------------------------------------------------
+  // Generiske sosiale fallback-noder (Del C/E)
+  // ---------------------------------------------------------------------------
+  // Når spilleren åpner en generisk sosial fallback (Kafé/Park/…) og det finnes
+  // ekte sosiale steder av samme socialPlaceType, skal stedskortet fremstå som
+  // en inngang/kategori og lede til de konkrete stedene i stedet for å være et
+  // konkret møtested. Disse hjelperne er bevisst enkle og testbare.
+
+  // Ekte sosiale steder (fra resolveren, merget inn i bymodellen) av samme
+  // socialPlaceType som en generisk fallback-node.
+  function getRealSocialPlacesForFallback(loc, phase) {
+    const eng = engine();
+    if (!eng || !_model || typeof eng.getGenericSocialPlaceType !== "function") return [];
+    const spt = eng.getGenericSocialPlaceType(loc);
+    if (!spt) return [];
+    return (_model.locations || []).filter((l) =>
+      eng.isRealSocialPlace(l) && String(l.socialPlaceType || "") === String(spt));
+  }
+
+  // Foretrukket sosialt sted for en fallback-node: det første ekte stedet av
+  // riktig type hvis det finnes, ellers den generiske noden selv (fallback).
+  function resolvePreferredSocialLocation(loc, phase) {
+    const real = getRealSocialPlacesForFallback(loc, phase);
+    return real.length ? real[0] : loc;
+  }
+
+  // Bygger valg-HTML som leder fra en generisk fallback til konkrete ekte steder.
+  // Tom streng når ingen ekte steder finnes (da beholdes generisk møteflyt).
+  function buildFallbackSocialPlaceChoicesHtml(loc, phase) {
+    const real = getRealSocialPlacesForFallback(loc, phase);
+    const typeWord = String((loc && loc.label) || "sosialt sted").toLowerCase();
+    if (!real.length) return "";
+    const items = real.slice(0, 8).map((p) =>
+      '<li class="civi-city-fallback-choice">' +
+      '<button type="button" class="civi-btn" data-civi-fallback-place="' + esc(p.id) + '">' +
+      "<strong>" + esc(p.label || p.placeLabel || p.id) + "</strong>" +
+      (p.placeLabel && p.placeLabel !== p.label ? ' <small>' + esc(p.placeLabel) + "</small>" : "") +
+      "</button></li>"
+    ).join("");
+    return '<div class="civi-city-detail-section civi-city-fallback-choices">' +
+      "<h4>" + esc("Velg et konkret " + typeWord + "sted") + "</h4>" +
+      '<p class="civi-city-detail-hint">' + esc("Viser sosiale " + typeWord + "steder i byen.") + "</p>" +
       '<ul class="civi-city-detail-list">' + items + "</ul></div>";
   }
 
@@ -713,10 +786,12 @@
       "</div>" +
       // Disclosure (fase-minne, ikke live)
       '<p class="civi-city-detail-hint">' + disclosure + "</p>" +
-      // 5) Handlinger – stabile data-attributter/event hooks
+      // 5) Handlinger – stabile data-attributter/event hooks. Sosial kontakt går
+      //    via Send melding / Henvend deg / Inviter / Se profil (ikke direkte
+      //    "Besøk"). "Henvend deg" (approach) lager en personlig henvendelse.
       '<div class="civi-city-detail-actions">' +
         actionBtn("message", "Send melding") +
-        actionBtn("visit", "Besøk") +
+        actionBtn("approach", "Henvend deg") +
         actionBtn("invite", "Inviter") +
         actionBtn("profile", "Se profil", ' data-civi-goto-section="civiPeopleSection"') +
       "</div>" +
@@ -823,6 +898,15 @@
       });
     });
 
+    // Generisk fallback -> velg et konkret ekte sted (Del C/E).
+    detail.querySelectorAll("[data-civi-fallback-place]").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openPlaceDetail(String(btn.getAttribute("data-civi-fallback-place") || ""));
+      });
+    });
+
     // "Henvend deg" på et sosialt sted -> personlig henvendelse (Mål 4).
     detail.querySelectorAll("[data-civi-social-action]").forEach((btn) => {
       btn.addEventListener("click", function (e) {
@@ -898,7 +982,14 @@
           // Bakoverkompatibel fallback når broen ikke er lastet.
           dispatchOpenPrivateMessage(model);
         }
+      } else if (action === "approach") {
+        // Henvend deg fra profilkortet -> personlig henvendelse (privat kanal,
+        // aldri jobb) via broen. Bruker vennens siste sted som kontekst når den
+        // finnes, ellers en generell henvendelse uten konkret sted.
+        const bridged = bridgeFriendPrivateMessage(result);
+        if (bridged && bridged.feedbackText) feedbackText = bridged.feedbackText;
       } else if (action === "visit") {
+        // Bakoverkompatibel intern handling – ingen ny UI-flyt.
         performFriendVisit(model);
       } else if (action === "invite") {
         storeFriendInvite(model);
@@ -1102,6 +1193,10 @@
     buildLiveRelationshipHtml,
     buildPlaceEncountersHtml,
     handleSocialEncounterAction,
+    // generiske sosiale fallback-noder (Del C/E)
+    getRealSocialPlacesForFallback,
+    resolvePreferredSocialLocation,
+    buildFallbackSocialPlaceChoicesHtml,
     getFriendInvites,
     closeDetail,
     // Kartforankring (Del B) – eksponert for testing.
