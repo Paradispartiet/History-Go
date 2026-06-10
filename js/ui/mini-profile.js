@@ -14,17 +14,48 @@ function tfUI(key, fallback = "", vars = {}) {
   );
 }
 
+// Sørg for at #miniStats har sine #linkPlaces/#linkQuiz-spans. Normalt finnes de
+// allerede i index.html. Hvis gammel kode hadde overskrevet #miniStats med
+// textContent og slettet dem, rekonstrueres de rent og én gang med samme struktur.
+function ensureMiniStatsSpans(st) {
+  let linkPlaces = document.getElementById("linkPlaces");
+  let linkQuiz   = document.getElementById("linkQuiz");
+  if (linkPlaces && linkQuiz) {
+    return { linkPlaces, linkQuiz, reconstructed: false };
+  }
+
+  st.textContent = "";
+
+  linkPlaces = document.createElement("span");
+  linkPlaces.id = "linkPlaces";
+  linkPlaces.className = "linkish";
+
+  linkQuiz = document.createElement("span");
+  linkQuiz.id = "linkQuiz";
+  linkQuiz.className = "linkish";
+
+  st.appendChild(linkPlaces);
+  st.appendChild(linkQuiz);
+
+  return { linkPlaces, linkQuiz, reconstructed: true };
+}
+
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
   const st = document.getElementById("miniStats");
   if (!nm || !st) return;
 
-  const name =
-    window.HGUserProfile?.getDisplayName?.() ||
-    localStorage.getItem("user_name") ||
-    "Logg inn";
-  const color = localStorage.getItem("user_color") || "#f6c800";
+  // ProfileIdentity (js/profileIdentity.js) eier #miniName/profilnavnet og setter
+  // det via applyProfileToDom(). MiniProfile er en ren statistikk-renderer og rører
+  // bare navnet som nødfallback dersom HGUserProfile mangler helt – og bruker da
+  // ALDRI "Logg inn" som tekst (navnefallback hører hjemme i profileIdentity.js).
+  if (!window.HGUserProfile) {
+    const fallbackName = localStorage.getItem("user_name");
+    if (fallbackName) nm.textContent = fallbackName;
+    const fallbackColor = localStorage.getItem("user_color");
+    if (fallbackColor) nm.style.color = fallbackColor;
+  }
 
   const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const meritsLS     = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
@@ -34,9 +65,19 @@ function initMiniProfile() {
   const badgeCount   = Object.keys(meritsLS).length;
   const quizCount    = quizHist.length;
 
-  nm.textContent = name;
-  nm.style.color = color;
-  st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
+  // Oppdater eksisterende elementer i stedet for å skrive st.textContent – sistnevnte
+  // ville slette #linkPlaces/#linkQuiz (og dermed de klikkbare miniProfile-funksjonene).
+  const { linkPlaces, linkQuiz, reconstructed } = ensureMiniStatsSpans(st);
+  linkPlaces.textContent = `${visitedCount} steder`;
+  linkQuiz.textContent   = `${quizCount} quizzer`;
+
+  const linkBadges = document.getElementById("linkBadges");
+  if (linkBadges) linkBadges.textContent = String(badgeCount);
+
+  // Hvis spanene måtte rekonstrueres (gammel kode hadde slettet dem), må de nye
+  // elementene bindes. wireMiniProfileLinks() er idempotent, så dette dobbeltbinder ikke.
+  if (reconstructed) window.wireMiniProfileLinks?.();
+
   window.renderCivicationInbox?.();
   
   /* -------------------------------------
@@ -264,22 +305,37 @@ function showQuizHistory() {
   });
 }
 
+// Idempotent: binder klikk på #linkPlaces/#linkBadges/#linkQuiz høyst én gang per
+// element. Markeres med dataset.hgMiniProfileBound slik at gjentatte kall (fra
+// updateProfile/hg:appReady/aha:auth-ready) ikke dobbeltbinder samme listener.
 function wireMiniProfileLinks() {
-  document.getElementById("linkPlaces")?.addEventListener("click", (e) => {
-    e.preventDefault(); e.stopPropagation();
-    enterMapMode();
-    showToast(tUI("ui.miniprofile.showingPlacesOnMap", "Viser steder på kartet"));
-  });
+  const linkPlaces = document.getElementById("linkPlaces");
+  if (linkPlaces && linkPlaces.dataset.hgMiniProfileBound !== "1") {
+    linkPlaces.dataset.hgMiniProfileBound = "1";
+    linkPlaces.addEventListener("click", (e) => {
+      e.preventDefault(); e.stopPropagation();
+      enterMapMode();
+      showToast(tUI("ui.miniprofile.showingPlacesOnMap", "Viser steder på kartet"));
+    });
+  }
 
-  document.getElementById("linkBadges")?.addEventListener("click", (e) => {
-    e.preventDefault(); e.stopPropagation();
-    window.location.href = "profile.html#userBadgesGrid";
-  });
+  const linkBadges = document.getElementById("linkBadges");
+  if (linkBadges && linkBadges.dataset.hgMiniProfileBound !== "1") {
+    linkBadges.dataset.hgMiniProfileBound = "1";
+    linkBadges.addEventListener("click", (e) => {
+      e.preventDefault(); e.stopPropagation();
+      window.location.href = "profile.html#userBadgesGrid";
+    });
+  }
 
-  document.getElementById("linkQuiz")?.addEventListener("click", (e) => {
-    e.preventDefault(); e.stopPropagation();
-    showQuizHistory();
-  });
+  const linkQuiz = document.getElementById("linkQuiz");
+  if (linkQuiz && linkQuiz.dataset.hgMiniProfileBound !== "1") {
+    linkQuiz.dataset.hgMiniProfileBound = "1";
+    linkQuiz.addEventListener("click", (e) => {
+      e.preventDefault(); e.stopPropagation();
+      showQuizHistory();
+    });
+  }
 }
 
 window.initMiniProfile = initMiniProfile;
