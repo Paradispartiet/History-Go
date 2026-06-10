@@ -454,13 +454,90 @@ body.civi-mapmode .civi-city-layer {
   min-width: 104px;
 }
 
-/* Generiske sosiale fallback-noder tones lett ned slik at konkrete ekte steder
-   (social_place) er den visuelle hovedrepresentasjonen for sosiale møter. */
-.civi-city-place.civi-role-social-fallback {
+/* ---------------------------------------------------------------------------
+   Node-roller (Del B)
+   Systemfunksjoner, ekte steder og personer skal leses som forskjellige ting:
+   - systemnoder  -> diskrete portal/funksjonsnoder (sirkel + halo)
+   - ekte steder  -> konkrete møteplasser (pin-aktig, tydeligere)
+   - venners hjem -> spillanker/hjemmepunkt (stiplet, diskret – ikke GPS)
+   - fallback     -> kategoriinnganger (nedtonet/stiplet, aldri konkurrent)
+   --------------------------------------------------------------------------- */
+
+/* Systemnoder (Hjem/Arbeidsplass/NAV/Psykologirommet): Civication-funksjoner/
+   portaler, ikke konkrete steder. Sirkulær ramme + halo som leses som
+   funksjonsnode; tydelig ikon, men dominerer ikke kartet. */
+.civi-city-place.is-role-system-node .civi-city-place-icon,
+.civi-city-place.is-role-player-home .civi-city-place-icon,
+.civi-city-place.is-role-work-node .civi-city-place-icon,
+.civi-city-place.is-role-insight-node .civi-city-place-icon {
+  border-radius: 50%;
+  background: rgba(14, 20, 30, 0.78);
+  border-color: rgba(150, 190, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(120, 160, 230, 0.18), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Innsiktsnoden (Psykologirommet) får et eget psykologi-/AHA-preg. */
+.civi-city-place.is-role-insight-node .civi-city-place-icon {
+  border-color: rgba(190, 160, 255, 0.52);
+  box-shadow: 0 0 0 3px rgba(170, 130, 240, 0.2), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Systemnodenes label leses som funksjonsetikett, ikke stedsnavn. */
+.civi-city-place.is-role-system-node .civi-city-place-label,
+.civi-city-place.is-role-player-home .civi-city-place-label,
+.civi-city-place.is-role-work-node .civi-city-place-label,
+.civi-city-place.is-role-insight-node .civi-city-place-label {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+  opacity: 0.92;
+}
+
+/* Ekte sosiale steder (Fuglen/Tim Wendelboe/St. Hanshaugen park …): konkrete
+   møteplasser. Pin-aktig markørstil, sterkere/tydeligere enn fallback. */
+.civi-city-place.is-role-social-place {
+  opacity: 0.92;
+}
+.civi-city-place.is-role-social-place .civi-city-place-icon {
+  border-radius: 14px 14px 14px 4px;
+  background: rgba(16, 22, 18, 0.78);
+  border-color: rgba(150, 220, 170, 0.55);
+}
+.civi-city-place.is-role-social-place .civi-city-place-label {
+  font-weight: 700;
+}
+
+/* Venners hjem: spillanker/hjemmepunkt, ikke ekte adresse/GPS. Diskret, stiplet
+   ramme – tydelig som "hjem i spillet". (is-friend-home beholdes for
+   bakoverkompat; rollen styrer den samme stilen.) */
+.civi-city-place.is-role-friend-home .civi-city-place-icon {
+  border-radius: 50%;
+  border-style: dashed;
+  background: rgba(20, 24, 34, 0.7);
+}
+.civi-city-place.is-role-friend-home .civi-city-place-label {
+  font-weight: 500;
   opacity: 0.82;
 }
-.civi-city-place.civi-role-social-fallback.is-active {
-  opacity: 1;
+
+/* Generiske sosiale fallback-noder (Kafé/Park/Fotballbane/Kultursted …): tones
+   ned og får stiplet ramme/kursiv label slik at de leses som kategoriinnganger
+   og aldri konkurrerer visuelt med ekte sosiale steder (social_place). */
+.civi-city-place.is-role-social-fallback {
+  opacity: 0.6;
+}
+.civi-city-place.is-role-social-fallback.is-active {
+  opacity: 0.78;
+}
+.civi-city-place.is-role-social-fallback .civi-city-place-icon {
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow: none;
+}
+.civi-city-place.is-role-social-fallback .civi-city-place-label {
+  font-weight: 500;
+  font-style: italic;
+  opacity: 0.78;
 }
 
 /* Del C/E: en generisk fallback fremstår som en inngang/kategori som leder til

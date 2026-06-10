@@ -181,6 +181,29 @@ check("mergeSocialPlacesIntoLocations slår sammen uten duplikater", () => {
   assert.ok(merged.some((l) => l.id === realPark.id));
 });
 
+console.log("Detalj-kicker pr. rolle (Del C)");
+
+check("system-/innsiktsnoder får tydelig rolle-kicker", () => {
+  assert.strictEqual(eng.getLocationKicker(loc("nav_office")), "Systemnode · Økonomi / hjelp");
+  assert.strictEqual(eng.getLocationKicker(loc("psychology_room")), "Innsiktsnode · Psykologi / AHA");
+  assert.strictEqual(eng.getLocationKicker(loc("home")), "Hjem · Din base");
+  assert.strictEqual(eng.getLocationKicker(loc("workplace")), "Arbeidsnode · Jobb og progresjon");
+});
+
+check("venners hjem får simulert hjemmepunkt-kicker (ikke ekte adresse)", () => {
+  ["friend_home_demo_01", "friend_home_demo_02", "friend_home_demo_03"].forEach((id) => {
+    assert.strictEqual(eng.getLocationKicker(loc(id)), "Simulert hjemmepunkt");
+  });
+});
+
+check("ekte sosiale steder og generiske fallback har egen header (kicker = null)", () => {
+  assert.strictEqual(eng.getLocationKicker(realCoffee), null);
+  assert.strictEqual(eng.getLocationKicker(realPark), null);
+  ["cafe", "park", "football", "culture"].forEach((id) => {
+    assert.strictEqual(eng.getLocationKicker(loc(id)), null, "fallback skal ha egen header: " + id);
+  });
+});
+
 console.log("Henvend deg fra vennens profilkort (Del D)");
 
 check("approach er en routbar handling og bygger en henvendelsesmodell", () => {

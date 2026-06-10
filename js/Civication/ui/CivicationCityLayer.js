@@ -290,6 +290,55 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Kartnode-roller i DOM (Del A)
+  // ---------------------------------------------------------------------------
+  // Semantisk rolle for et sted. Foretrekker motorens getLocationRole; mangler
+  // den (motor ikke lastet) brukes en liten fallback basert på id/type/channel
+  // slik at klassene fortsatt blir riktige. Endrer aldri datakilden.
+  function getPlaceRole(loc) {
+    const eng = engine();
+    if (eng && typeof eng.getLocationRole === "function") {
+      return eng.getLocationRole(loc) || "";
+    }
+    const l = loc && typeof loc === "object" ? loc : {};
+    const id = String(l.id || "").toLowerCase();
+    if (id === "home") return "player_home";
+    if (id === "workplace") return "work_node";
+    if (id === "nav_office") return "system_node";
+    if (id === "psychology_room") return "insight_node";
+    if (String(l.type || "") === "friend_home") return "friend_home";
+    if (l.sourcePlaceId && l.socialPlaceType) return "social_place";
+    if (["cafe", "park", "football", "culture", "gym", "store"].indexOf(id) !== -1) {
+      return "social_fallback";
+    }
+    return "system_node";
+  }
+
+  // Full klasseliste for en stedsmarkør. Legger på tydelige rolleklasser
+  // (is-role-system-node, is-role-social-place …) i tillegg til aktiv/hjem.
+  function buildPlaceClassList(loc, active) {
+    const role = getPlaceRole(loc);
+    const classes = ["civi-city-place"];
+    if (active) classes.push("is-active");
+    if (loc && loc.type === "friend_home") classes.push("is-friend-home");
+    if (role) classes.push("is-role-" + role.replace(/_/g, "-"));
+    return classes;
+  }
+
+  // Semantiske data-attributter for en stedsmarkør. data-location-role alltid;
+  // socialPlaceType/sourcePlaceId/brandId kun når de finnes (ekte sosiale steder).
+  function buildPlaceDataAttrs(loc) {
+    const l = loc && typeof loc === "object" ? loc : {};
+    const role = getPlaceRole(l);
+    const attrs = { "data-place-id": String(l.id || "") };
+    if (role) attrs["data-location-role"] = role;
+    if (l.socialPlaceType) attrs["data-social-place-type"] = String(l.socialPlaceType);
+    if (l.sourcePlaceId) attrs["data-source-place-id"] = String(l.sourcePlaceId);
+    if (l.brandId) attrs["data-brand-id"] = String(l.brandId);
+    return attrs;
+  }
+
+  // ---------------------------------------------------------------------------
   // Render
   // ---------------------------------------------------------------------------
   let _model = null;
@@ -326,14 +375,11 @@
     //    kartmotor – ikke som egne overlay-prosenter her.
     (renderLocations || []).forEach((loc) => {
       const active = eng.isLocationActive(loc, phase);
-      const role = (typeof eng.getLocationRole === "function") ? eng.getLocationRole(loc) : "";
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "civi-city-place" + (active ? " is-active" : "") +
-        (loc.type === "friend_home" ? " is-friend-home" : "") +
-        (role ? " civi-role-" + role.replace(/_/g, "-") : "");
-      btn.setAttribute("data-place-id", String(loc.id || ""));
-      if (role) btn.setAttribute("data-location-role", role);
+      btn.className = buildPlaceClassList(loc, active).join(" ");
+      const attrs = buildPlaceDataAttrs(loc);
+      Object.keys(attrs).forEach((key) => btn.setAttribute(key, attrs[key]));
       btn.innerHTML =
         '<span class="civi-city-place-icon">' + esc(loc.icon || "📍") + "</span>" +
         '<span class="civi-city-place-label">' + esc(loc.label || loc.id || "") + "</span>";
@@ -570,8 +616,14 @@
         '<p class="civi-city-detail-desc">' +
         esc("Velg et konkret " + word.toLowerCase() + "sted i byen.") + "</p>";
     } else {
+      // Del C: rolle-tydelig kicker for system-/innsiktsnoder, spillerens hjem,
+      // arbeidsnoden og venners simulerte hjemmepunkt. Faller tilbake til den
+      // generiske "Sted · fase"-headeren for øvrige steder.
+      const roleKicker = (typeof eng.getLocationKicker === "function")
+        ? eng.getLocationKicker(loc) : null;
+      const kickerText = roleKicker || ("Sted · " + phaseLabel(loc.phase));
       headerHtml =
-        '<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " Sted · " + esc(phaseLabel(loc.phase)) + "</div>" +
+        '<div class="civi-city-detail-kicker">' + esc(loc.icon || "📍") + " " + esc(kickerText) + "</div>" +
         "<h3>" + esc(loc.label || loc.id) + "</h3>" +
         '<p class="civi-city-detail-desc">' + esc(loc.description || "") + "</p>";
     }
@@ -1199,6 +1251,10 @@
     buildFallbackSocialPlaceChoicesHtml,
     getFriendInvites,
     closeDetail,
+    // Kartnode-roller i DOM (Del A) – eksponert for testing.
+    getPlaceRole,
+    buildPlaceClassList,
+    buildPlaceDataAttrs,
     // Kartforankring (Del B) – eksponert for testing.
     resolveLocationAnchor,
     projectLocationToScreen,
