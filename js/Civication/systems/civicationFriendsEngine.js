@@ -519,6 +519,40 @@
     return getLocationRole(loc) === LOCATION_ROLES.SOCIAL_FALLBACK;
   }
 
+  // ---------------------------------------------------------------------------
+  // Detalj-kicker pr. rolle (Del C) – ren, deterministisk
+  // ---------------------------------------------------------------------------
+  // Stedskortets kicker-linje skal gjøre rollen tydelig: systemfunksjoner leses
+  // som system-/innsiktsnoder, spillerens base som "Hjem", arbeidsplassen som
+  // arbeidsnode og venners hjem som et simulert hjemmepunkt (aldri ekte adresse).
+  // Ekte sosiale steder (social_place) og generiske fallback-noder bygger sine
+  // egne headere i UI-laget (resolver-header / kategoriinngang) -> null her.
+  const SYSTEM_LOCATION_KICKER_BY_ID = {
+    home: "Hjem · Din base",
+    workplace: "Arbeidsnode · Jobb og progresjon",
+    nav_office: "Systemnode · Økonomi / hjelp",
+    psychology_room: "Innsiktsnode · Psykologi / AHA"
+  };
+
+  const LOCATION_ROLE_KICKER = {
+    player_home: "Hjem · Din base",
+    work_node: "Arbeidsnode · Jobb og progresjon",
+    insight_node: "Innsiktsnode · Psykologi / AHA",
+    system_node: "Systemnode",
+    friend_home: "Simulert hjemmepunkt"
+  };
+
+  // Kicker-tekst for et steds detaljpanel basert på rollen. Faste id-er vinner
+  // (NAV/Psykologirommet/Hjem/Arbeidsplass), deretter rolle-default. Returnerer
+  // null for ekte sosiale steder og generiske fallback-noder (de har egne
+  // headere i UI-laget).
+  function getLocationKicker(loc) {
+    const id = norm(loc && loc.id).toLowerCase();
+    if (SYSTEM_LOCATION_KICKER_BY_ID[id]) return SYSTEM_LOCATION_KICKER_BY_ID[id];
+    const role = getLocationRole(loc);
+    return LOCATION_ROLE_KICKER[role] || null;
+  }
+
   // Hvilke socialPlaceType-er har ekte sosiale steder i en locations-liste?
   function getRealSocialPlaceTypes(locations) {
     const set = new Set();
@@ -1595,6 +1629,7 @@
     getGenericSocialPlaceType,
     isRealSocialPlace,
     getLocationRole,
+    getLocationKicker,
     isSystemLocation,
     isGenericSocialFallback,
     getRealSocialPlaceTypes,
