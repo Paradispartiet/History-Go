@@ -140,6 +140,12 @@ function applyMode(mode) {
   syncMapViewportLock(isMap);
 
   if (isMap) {
+    // Make sure the map layer is visible before MapLibre measures/resizes,
+    // otherwise it only paints a thin grey strip.
+    const mapLayer = byId("mapLayer");
+    const map = byId("map");
+    showEl(mapLayer || map, "");
+
     requestAnimationFrame(() => {
       window.HGMap?.resize?.();
       window.HGMap?.maybeDrawMarkers?.();
@@ -184,6 +190,7 @@ function applyMode(mode) {
 
     // Core DOM from index (161).html
     const header = $("header.site-header");
+    const mapLayer = byId("mapLayer");
     const map = byId("map");
     const mapControls = $(".map-controls");
     const nearby = byId("nearbyListContainer");
@@ -194,7 +201,8 @@ function applyMode(mode) {
     const badgeModal = byId("badgeModal");
 
     // Register layers
-    register("map", map, Z.MAP, { display: "" });
+    // mapLayer is the full-bleed map container; #map remains inside it for HGMap/MapLibre
+    register("map", mapLayer || map, Z.MAP, { display: "" });
 
     register("mapControls", mapControls, Z.MAP_CONTROLS, {
       display: "flex",
