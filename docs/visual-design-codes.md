@@ -371,6 +371,71 @@ falt for alle tre entitetstyper (places 6 → 4, people 14 → 8, articles 250 �
 241), og review-kandidatene gikk ned (operahuset, trenere og skøyteløpere er nå
 mer presist merket).
 
+## Article batch 5
+
+Article batch 5 er en **smal artikkelbatch** som fokuserer utelukkende på
+artikkel-/leksikon-/lesesporlaget. Etter pilotene 1–3 og Precision batch 4 hadde
+places og people fått god eksplisitt presisjon, mens det største gjenværende
+hullet var artiklene: hele 241 leksikon-/lesespor-oppføringer falt fortsatt til
+`article_default_miniature`. Målet med batch 5 er å **redusere
+`article_default_miniature`** ved å merke tydelige leksikon-, stedsessay- og
+lesespor-artikler med eksplisitt `visual.designCode`.
+
+Prinsipper for batch 5:
+
+- **Audit som kilde.** Kandidatene ble plukket fra
+  `reports/visual-design-codes-audit.json` (`defaultCandidates.articles`,
+  `batch3Suggestions.articles`, `heuristicCandidates.articles` og
+  `unusedDesignCodeDetails`), og deretter verifisert mot artiklenes egne
+  `id`/`title`/`popupDesc`/`summary.themes` før de ble låst. Svake
+  dyp-tekst-treff (f.eks. «liv» → biografi på elver, «løp» → sport på elveløp,
+  «parti» → politikk på naturpunkter) ble bevisst forkastet.
+- **Bare tydelige artikler.** Det ble kun merket der artikkeltypen var klar fra
+  innholdet – ikke fordi en artikkel lå i en bestemt mappe. Usikre artikler (rene
+  natur-/elveoppføringer, kirker uten egen artikkelkode, tvetydige
+  populærkultur-spor) ble stående urørt.
+- **Places og people ble bevisst ikke utvidet.** Ingen ny `visual.designCode` ble
+  lagt på place- eller person-data i denne batchen; explicit places (122) og
+  people (118) er uendret.
+- **Eksisterende register fra #1192.** Batch 5 bruker kun artikkelkoder som
+  allerede finnes i `data/visualDesignCodes.json`. Registeret, resolveren,
+  audit-scriptet, renderere, kartmotor, UI, quiz, relasjoner, bilder og
+  tekstinnhold er urørt – kun `visual.designCode` ble lagt til.
+
+Batch 5 traff i hovedsak (≈66 nye eksplisitte artikkelkoder):
+
+- **`article_architecture_miniature` (+17):** bygnings-, byroms- og
+  transformasjonsartikler (Aker Brygge, Barcode, Vøienvolden gårdsanlegg,
+  Ullevål Hageby, Romsås, trehusmiljøene på Damstredet/Rodeløkka/Vålerenga/Kampen,
+  Tjuvholmen, Sørenga, Schous plass byrom, Grorud boligstruktur) samt Lisboa-bygg
+  (Estação do Rossio, Convento do Carmo, Aqueduto das Águas Livres).
+- **`article_place_essay_miniature` (+19):** brede stedsessays/hovedartikler om
+  bydeler, gater og knutepunkt (Tøyen torg, Grünerløkka, Majorstukrysset,
+  Bogstadveien, Storgata, Sagene, Kampen, Skøyen, Økern, Torshov, Gamlebyen,
+  Grorud m.fl.).
+- **`article_institution_miniature` (+16):** redaksjoner og kulturinstitusjoner
+  (Klassekampen, Aftenposten, Dagbladet, NRK-huset, Good Game-redaksjonen,
+  Psykologisk institutt UiO, Det Norske Studentersamfund, Torshov teater) og
+  Lisboa-institusjoner (Centro Cultural de Belém, Culturgest, Museu do Oriente,
+  Teatro Nacional D. Maria II, Teatro São Luiz).
+- **`article_art_miniature` (+11):** Lisboas kunstmuseer (MAAT, MAC/CCB, MUDE,
+  Arpad Szenes/Vieira da Silva, Bordalo Pinheiro, Museu Nacional de Arte Antiga,
+  Chiado, Azulejo), Ekebergparken som offentlig kunst og to lesespor om Astrup
+  Fearnley.
+- **`article_history_miniature` (+2)** for Lisboas historiske monumenter
+  (Castelo de São Jorge, Padrão dos Descobrimentos) og
+  **`article_language_miniature` (+1)** for Hellerud som stedsnavn/språklig
+  landskap (første gangs bruk av språk-koden).
+
+Effekten etter batch 5 kan leses i
+[`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md):
+eksplisitt `visual.designCode` økte fra 312 til 378 (places 122 og people 118
+uendret, articles 72 → 138), `article_default_miniature` falt fra 241 til 175,
+fortsatt med 0 ugyldige eksplisitte koder og 0 koder med manglende `renderHints`.
+Dette er bevisst **ikke en full batch** – de resterende defaults (rene
+natur-/elveoppføringer og tvetydige artikler) venter på senere, audit-baserte
+batcher.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,
