@@ -144,6 +144,75 @@
   display: block;
 }
 
+/* Quizkort-bakside: rommer både gammelt bilde og nytt renderet kort */
+.pc-quiz-card-back{
+  width: 100%;
+  height: 100%;
+  background: #fff8df;
+  color: #1d160d;
+  overflow: hidden;
+}
+
+.pc-quiz-card-image{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pc-quiz-card-content{
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.pc-rendered-quiz-card{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pc-rendered-quiz-head h3{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.pc-rendered-quiz-kicker,
+.pc-rendered-quiz-head p{
+  margin: 0;
+  font-size: 10px;
+  opacity: .75;
+}
+
+.pc-rendered-quiz-list{
+  margin: 0;
+  padding-left: 18px;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.pc-rendered-quiz-list li{
+  margin-bottom: 6px;
+}
+
+.pc-rendered-quiz-options{
+  margin-top: 2px;
+  font-size: 9px;
+  opacity: .9;
+}
+
+.pc-rendered-quiz-answer-key{
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0,0,0,.25);
+  font-size: 8px;
+  line-height: 1.25;
+}
+
 /* Høyre kvadrater (generelt) */
 .pc-quad{
   display: grid;
