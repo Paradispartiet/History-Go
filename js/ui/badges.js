@@ -21,45 +21,18 @@ function pulseBadge(cat) {
   });
 }
 
-function getBadgesUrl(path = "data/badges.json") {
-  try {
-    return new URL(path, window.location.href).toString();
-  } catch {
-    return `/History-Go/${path}`;
-  }
-}
-
-async function loadBadgesFromIndex() {
-  const indexRes = await fetch(getBadgesUrl("data/badges/index.json"), { cache: "no-store" });
-  if (!indexRes.ok) throw new Error("badge index fetch failed");
-
-  const indexData = await indexRes.json();
-  if (!Array.isArray(indexData?.files) || !indexData.files.length) {
-    throw new Error("badge index files missing");
+async function loadBadgesFromDataHub() {
+  const loader = window.DataHub?.loadBadges;
+  if (typeof loader !== "function") {
+    throw new Error("DataHub.loadBadges mangler");
   }
 
-  const files = indexData.files.map((file) => String(file || "").trim()).filter(Boolean);
-  if (!files.length) throw new Error("badge index files invalid");
-
-  const loaded = await Promise.all(files.map(async (file) => {
-    const res = await fetch(getBadgesUrl(file), { cache: "no-store" });
-    if (!res.ok) throw new Error(`badge file fetch failed: ${file}`);
-    return res.json();
-  }));
-
-  const badges = loaded.filter((badge) => badge && typeof badge === "object" && !Array.isArray(badge));
-  if (!badges.length || badges.length !== loaded.length) {
-    throw new Error("badge files invalid payload");
+  const badges = await loader({ cache: "no-store" });
+  if (!Array.isArray(badges)) {
+    throw new Error("DataHub.loadBadges returnerte ikke array");
   }
 
   return badges;
-}
-
-async function loadBadgesFromLegacy() {
-  const res = await fetch(getBadgesUrl("data/badges.json"), { cache: "no-store" });
-  if (!res.ok) return [];
-  const data = await res.json();
-  return Array.isArray(data?.badges) ? data.badges : [];
 }
 
 async function ensureBadgesLoaded() {
@@ -71,13 +44,13 @@ async function ensureBadgesLoaded() {
     return __badgesLoadPromise;
   }
 
-  __badgesLoadPromise = loadBadgesFromIndex()
-    .catch(() => loadBadgesFromLegacy())
+  __badgesLoadPromise = loadBadgesFromDataHub()
     .then((badges) => {
       window.BADGES = Array.isArray(badges) ? badges : [];
       return /** @type {any} */ (window.BADGES);
     })
-    .catch(() => {
+    .catch((err) => {
+      console.warn("[HGBadges] badge-load failed", err);
       window.BADGES = [];
       return /** @type {any} */ (window.BADGES);
     })
@@ -105,7 +78,7 @@ function badgeImagePath(value) {
   const raw = String(value || "").trim();
   if (!raw) return "";
 
-  // Badges.json bruker både emoji-icon og image-path. Bare paths/URL-er skal inn i <img>.
+  // Badge-data bruker både emoji-icon og image-path. Bare paths/URL-er skal inn i <img>.
   if (/^(https?:)?\/\//.test(raw)) return raw;
   if (raw.includes("/") || /\.(png|jpe?g|webp|gif|svg)$/i.test(raw)) return raw;
   return "";
@@ -161,7 +134,7 @@ function renderBadgeSubcategories(place, badge) {
   const categoryId = badgeText(place?.category) || "ukjent";
 
   if (!badge) {
-    return `<div class="pc-empty">Badges.json mangler badge for category: ${escapeBadgeHtml(categoryId)}</div>`;
+    return `<div class="pc-empty">Badge mangler for category: ${escapeBadgeHtml(categoryId)}</div>`;
   }
 
   const badgeName = badgeText(badge.name || badge.title || badge.id) || "Badge";
@@ -172,7 +145,7 @@ function renderBadgeSubcategories(place, badge) {
       <div class="pc-badge-header">
         <strong>${escapeBadgeHtml(badgeName)}</strong>
       </div>
-      <div class="pc-empty">Badges.json mangler underkategori-data for ${escapeBadgeHtml(badgeName)}</div>
+      <div class="pc-empty">Badge mangler underkategori-data for ${escapeBadgeHtml(badgeName)}</div>
     `;
   }
 
@@ -209,7 +182,7 @@ function applyPlaceCardBadgeRound(place) {
   badgesEl.innerHTML = renderBadgeSubcategories(place, badge);
 
   badgesIcon.setAttribute("aria-label", badge ? badgeName : "Badge mangler");
-  badgesIcon.title = badge ? badgeName : `Badges.json mangler badge for ${badgeText(place?.category) || "ukjent kategori"}`;
+  badgesIcon.title = badge ? badgeName : `Badge mangler for ${badgeText(place?.category) || "ukjent kategori"}`;
 
   if (img) {
     badgesIcon.innerHTML = `<img src="${escapeBadgeHtml(img)}" class="pc-badge-round-img" alt="${escapeBadgeHtml(badgeName)}" title="${escapeBadgeHtml(badgeName)}">`;
