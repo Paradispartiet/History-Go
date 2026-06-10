@@ -508,6 +508,18 @@ async function loadPlacesBase(opts = {}) {
     return fetchJSON(pData(`quiz/quiz_${categoryId}.json`), opts).catch(() => []);
   }
 
+  // ----------------------------
+  // Quizkort-samlinger: /data/quizcards/<path>
+  // ----------------------------
+  function loadQuizCardsCollection(collectionPath, opts = {}) {
+    const path = String(collectionPath || "").trim();
+    if (!path) return Promise.resolve(null);
+    const cleanPath = path
+      .replace(/^\/?data\/quizcards\//, "")
+      .replace(/^\.\//, "");
+    return fetchJSON(pData(`quizcards/${cleanPath}`), opts).catch(() => null);
+  }
+
   function normalizeTags(rawTags, tagsRegistry) {
     const list = Array.isArray(rawTags) ? rawTags : [];
     const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
@@ -558,6 +570,7 @@ async function loadPlacesBase(opts = {}) {
 
     // quiz
     loadQuizCategory,
+    loadQuizCardsCollection,
 
     // natur
     loadNature,

@@ -309,6 +309,188 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
   card.setAttribute("aria-label", tUI("ui.attr.showQuizCard", "Vis quizkort"));
 }
 
+// ------------------------------------------------------------
+// Data-renderet quizkort på baksiden av frontImage-flippen
+// ------------------------------------------------------------
+const PLACE_CARD_QUIZ_CARD_COLLECTIONS = Object.freeze([
+  "litteratur/topp10_lit_kort.json"
+]);
+
+let placeCardQuizCollectionsPromise = null;
+
+function loadPlaceCardQuizCollections() {
+  if (placeCardQuizCollectionsPromise) return placeCardQuizCollectionsPromise;
+
+  const loader = window.DataHub?.loadQuizCardsCollection;
+  if (typeof loader !== "function") {
+    placeCardQuizCollectionsPromise = Promise.resolve([]);
+    return placeCardQuizCollectionsPromise;
+  }
+
+  placeCardQuizCollectionsPromise = Promise.all(
+    PLACE_CARD_QUIZ_CARD_COLLECTIONS.map(path =>
+      Promise.resolve(loader(path, { cache: "default" })).catch(() => null)
+    )
+  ).then(collections => collections.filter(Boolean));
+
+  return placeCardQuizCollectionsPromise;
+}
+
+/**
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {string[]}
+ */
+function getPlaceCardQuizTargetIds(place) {
+  const ids = [];
+  const push = (value) => {
+    const id = String(value ?? "").trim();
+    if (id) ids.push(id);
+  };
+
+  push(place?.id);
+  push(place?.personId);
+  push(place?.targetId);
+  push(place?.quiz_profile?.targetId);
+  push(place?.quiz_profile?.personId);
+
+  if (Array.isArray(place?.people)) {
+    for (const person of place.people) {
+      if (person && typeof person === "object") {
+        push(person.id);
+        push(person.personId);
+        push(person.targetId);
+      } else {
+        push(person);
+      }
+    }
+  }
+
+  return [...new Set(ids)];
+}
+
+/**
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {Promise<PlaceCardRecord | null>}
+ */
+async function resolvePlaceCardQuizData(place) {
+  if (!place) return null;
+
+  const targetIds = new Set(getPlaceCardQuizTargetIds(place));
+  if (!targetIds.size) return null;
+
+  let collections;
+  try {
+    collections = await loadPlaceCardQuizCollections();
+  } catch {
+    return null;
+  }
+
+  for (const collection of collections) {
+    const cards = Array.isArray(collection?.cards) ? collection.cards : [];
+    for (const card of cards) {
+      const cardTarget = String(card?.targetId ?? "").trim();
+      if (cardTarget && targetIds.has(cardTarget)) return card;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * @param {PlaceCardRecord | null | undefined} cardData
+ * @returns {string}
+ */
+function renderPlaceCardQuizData(cardData) {
+  const title = escapePlaceCardHTML(cardData?.title || "Quizkort");
+  const subtitle = escapePlaceCardHTML(cardData?.subtitle || "");
+
+  const questions = Array.isArray(cardData?.questions) ? cardData.questions : [];
+  const optionLetters = ["A", "B", "C", "D", "E", "F"];
+
+  const questionsHtml = questions.map((q) => {
+    const questionText = escapePlaceCardHTML(q?.question || "");
+    const options = Array.isArray(q?.options) ? q.options : [];
+    const optionsHtml = options.length
+      ? `<div class="pc-rendered-quiz-options">${options
+          .map((opt, idx) => `${escapePlaceCardHTML(optionLetters[idx] || String(idx + 1))}) ${escapePlaceCardHTML(opt)}`)
+          .join(" · ")}</div>`
+      : "";
+    return `<li>${questionText}${optionsHtml}</li>`;
+  }).join("");
+
+  const answerSource = Array.isArray(cardData?.answerKey) && cardData.answerKey.length
+    ? cardData.answerKey
+    : questions.map((q, idx) => ({ number: q?.number ?? idx + 1, answer: q?.answer }));
+
+  const answerHtml = answerSource
+    .map((entry) => `${escapePlaceCardHTML(entry?.number)}. ${escapePlaceCardHTML(entry?.answer)}`)
+    .join(" · ");
+
+  return `
+    <div class="pc-rendered-quiz-card">
+      <div class="pc-rendered-quiz-head">
+        <div class="pc-rendered-quiz-kicker">${escapePlaceCardHTML(tUI("ui.place.litteratureQuiz", "Litteraturquiz"))}</div>
+        <h3>${title}</h3>
+        <p>${subtitle || `${questions.length} spørsmål · fasit nederst`}</p>
+      </div>
+      <ol class="pc-rendered-quiz-list">
+        ${questionsHtml}
+      </ol>
+      <div class="pc-rendered-quiz-answer-key">
+        <strong>Fasit:</strong> ${answerHtml}
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * @param {HTMLElement | null} card
+ * @param {HTMLImageElement | null} quizImgEl
+ * @param {HTMLElement | null} quizContentEl
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {Promise<void>}
+ */
+async function setPlaceCardQuizBack(card, quizImgEl, quizContentEl, place) {
+  if (!card) return;
+
+  let cardData = null;
+  try {
+    cardData = await resolvePlaceCardQuizData(place);
+  } catch {
+    cardData = null;
+  }
+
+  // Sjekk at vi fortsatt viser samme sted (unngå race ved raske kortbytter)
+  const currentPlaceId = String(card.dataset.currentPlaceId || "").trim();
+  const requestedPlaceId = String(place?.id || "").trim();
+  if (requestedPlaceId && currentPlaceId && requestedPlaceId !== currentPlaceId) return;
+
+  if (cardData) {
+    if (quizContentEl) {
+      quizContentEl.innerHTML = renderPlaceCardQuizData(cardData);
+      quizContentEl.hidden = false;
+    }
+    if (quizImgEl) {
+      quizImgEl.alt = "";
+      if (quizImgEl.getAttribute("src")) quizImgEl.removeAttribute("src");
+      quizImgEl.style.display = "none";
+    }
+    card.classList.add("has-quiz-card");
+    card.setAttribute("aria-label", tUI("ui.attr.showQuizCard", "Vis quizkort"));
+    return;
+  }
+
+  // Fallback: eksisterende bildebaserte quizkort
+  if (quizContentEl) {
+    quizContentEl.innerHTML = "";
+    quizContentEl.hidden = true;
+  }
+  if (quizImgEl) {
+    quizImgEl.style.display = "";
+  }
+  setPlaceCardQuizImage(card, quizImgEl, place);
+}
+
 /**
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @returns {Promise<void>}
@@ -351,6 +533,7 @@ const card = document.getElementById("placeCard");
 const frontCardFlipEl = document.getElementById("pcFrontCardFlip");
 const frontImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcFrontImage"));
 const quizCardImgEl = document.getElementById("pcQuizCardImage");
+const quizCardContentEl = document.getElementById("pcQuizCardContent");
 const titleEl    = document.getElementById("pcTitle");
 const metaEl     = document.getElementById("pcMeta");
 const descEl     = document.getElementById("pcDesc");
@@ -587,7 +770,7 @@ if (!card) return;
 
   // Basic content
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
-  setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
+  await setPlaceCardQuizBack(frontCardFlipEl, quizCardImgEl, quizCardContentEl, place);
   // ---- MINI PREVIEW BILDE ----
   const miniImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcMiniImg"));
   setPlaceCardImgSrcStable(miniImgEl, frontImgEl?.getAttribute("src") || String(place.image ?? ""));
