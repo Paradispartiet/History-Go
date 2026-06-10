@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
 
+    // Leksikon-runtime: leksikon_loader.js definerer window.HGLeksikon og patcher
+    // window.openPlaceCard, så den må lastes etter place-card.js (som definerer
+    // window.openPlaceCard), men før brukeren rekker å åpne/bruke PlaceCard – ellers
+    // mangler window.HGLeksikon.openPlace når #pcLeksikonIcon klikkes.
+    await safeRun("loadLeksikon", () => loadScriptOnce("js/leksikon/leksikon_loader.js"));
+
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
     await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
 
