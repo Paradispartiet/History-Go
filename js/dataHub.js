@@ -202,8 +202,44 @@ async function loadPlacesBase(opts = {}) {
   }
   
 
-  function loadPeopleBase(opts = {}) {
-    return fetchJSON(pData("people.json"), opts);
+  function normalizePeopleManifestPath(entry) {
+    const raw = String(entry || "").trim().replace(/^\.?\//, "");
+    if (!raw) return null;
+    return raw.replace(/^data\//, "");
+  }
+
+  async function loadPeopleBase(opts = {}) {
+    const manifest = await fetchJSON(pData("people/manifest.json"), opts).catch((e) => {
+      console.error("[DataHub.loadPeopleBase] kunne ikke laste people-manifest", e?.message || e);
+      return null;
+    });
+
+    const files = Array.isArray(manifest?.files)
+      ? manifest.files.map(normalizePeopleManifestPath).filter(Boolean)
+      : [];
+
+    if (!files.length) {
+      console.error("[DataHub.loadPeopleBase] mangler gyldig people-manifest: data/people/manifest.json");
+      return [];
+    }
+
+    const people = [];
+    for (const file of files) {
+      const data = await fetchJSON(pData(file), opts).catch((e) => {
+        console.error(`[DataHub.loadPeopleBase] kunne ikke laste people-fil: ${file}`, e?.message || e);
+        return null;
+      });
+
+      if (Array.isArray(data)) {
+        people.push(...data);
+      } else if (Array.isArray(data?.people)) {
+        people.push(...data.people);
+      } else if (data) {
+        console.error(`[DataHub.loadPeopleBase] ugyldig people-fil: ${file}`);
+      }
+    }
+
+    return people;
   }
 
   async function loadBadges(opts = {}) {
