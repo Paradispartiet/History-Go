@@ -547,6 +547,26 @@ fortsatt **138**, med 0 ugyldige eksplisitte koder og 0 koder med manglende
 eksisterende `article_marker`-archetypen; egne kort-/ikon-hint er allerede mer
 semantisk presise, og egne renderere kan komme senere uten at datafiler må endres.
 
+
+## Article batch 6
+
+Article batch 6 bruker `articleBatch6Plan` fra auditrapporten etter PR #1246
+som kilde for trygg merking av gjenværende `article_default_miniature`-artikler.
+Batchen låser kun kandidater med tydelig audit-grunnlag, med hovedvekt på de nye
+presise artikkelkodene som `article_nature_route_miniature`,
+`article_transport_miniature`, `article_media_history_miniature`,
+`article_urban_infrastructure_miniature`, `article_religion_miniature` og
+`article_industry_miniature`.
+
+Registeret (`data/visualDesignCodes.json`) og resolveren er ikke endret i denne
+batchen; alle merkede artikler bruker eksisterende designCodes. Places- og
+people-data er heller ikke endret. Målet var å redusere bruken av
+`article_default_miniature` uten å tvinge usikre kandidater fra `needsMetadata`,
+`keepDefaultForNow` eller `manualReview` inn i eksplisitt merking. Etter
+regenerert audit er eksplisitt artikkelmerking økt til **252**, mens
+artikkel-default er redusert til **61**, fortsatt med 0 ugyldige eksplisitte
+koder og 0 manglende `renderHints`.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,
