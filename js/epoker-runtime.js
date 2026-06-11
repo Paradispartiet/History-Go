@@ -120,6 +120,7 @@ const EPOKER_FILES = [
   { domain: "tv", path: "data/epoker/epoker_TV.json" },
   { domain: "sport", path: "data/epoker/epoker_sport.json" },
   { domain: "by", path: "data/epoker/epoker_by.json" },
+  { domain: "kunst", path: "data/epoker/epoker_kunst.json" },
 ];
 
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
