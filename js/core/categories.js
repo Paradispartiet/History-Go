@@ -2,27 +2,40 @@
 // ------------------------------------------------------
 // KATEGORIER (GLOBAL, IKKE MODULE)
 // ------------------------------------------------------
+// Dette er UI/runtime-lista for place.category, farger, chips og badge/merit-visning.
+// Den er ikke fag/editorial-normalisering. Bruk window.DomainRegistry for fag-id-er.
+//
+// scope:
+// - runtime_domain: aktiv toppkategori som kan matche badge/merit/category direkte
+// - legacy_runtime_domain: aktiv runtime-id som beholdes til samlet migrering
+// - subfield_display: visnings-/subfelt-id; ikke nytt toppdomene uten DOMAIN_CONTRACT-endring
+//
+// Se også: docs/DOMAIN_CONTRACT.md
+// ------------------------------------------------------
 
 (function () {
   const CATEGORY_LIST = [
-    { id: "historie",       name: "Historie",               icon: "🏛️", color: "#f6c800" },
-    { id: "vitenskap",      name: "Vitenskap & filosofi",   icon: "🧪", color: "#6ee7ff" },
-    { id: "kunst",          name: "Kunst & kultur",         icon: "🎨", color: "#ff5aa5" },
-    { id: "musikk",         name: "Musikk & scenekunst",    icon: "🎭", color: "#b48cff" },
-    { id: "natur",          name: "Natur & miljø",          icon: "🌿", color: "#59d36a" },
-    { id: "sport",          name: "Sport & lek",            icon: "⚽", color: "#ff8a3d" },
-    { id: "by",             name: "By & arkitektur",        icon: "🏙️", color: "#7fb3ff" },
-    { id: "politikk",       name: "Politikk & samfunn",     icon: "🏛️", color: "#ffd27a" },
-    { id: "populaerkultur", name: "Populærkultur",          icon: "📺", color: "#a0a0a0" },
-    { id: "subkultur",      name: "Subkultur",              icon: "🧷", color: "#9b7bff" },
+    // Aktive toppdomener / runtime badges
+    { id: "historie",       name: "Historie",               icon: "🏛️", color: "#f6c800", scope: "runtime_domain" },
+    { id: "vitenskap",      name: "Vitenskap & filosofi",   icon: "🧪", color: "#6ee7ff", scope: "runtime_domain" },
+    { id: "kunst",          name: "Kunst & kultur",         icon: "🎨", color: "#ff5aa5", scope: "runtime_domain" },
+    { id: "musikk",         name: "Musikk & scenekunst",    icon: "🎭", color: "#b48cff", scope: "runtime_domain" },
+    { id: "natur",          name: "Natur & miljø",          icon: "🌿", color: "#59d36a", scope: "runtime_domain" },
+    { id: "sport",          name: "Sport & lek",            icon: "⚽", color: "#ff8a3d", scope: "runtime_domain" },
+    { id: "by",             name: "By & arkitektur",        icon: "🏙️", color: "#7fb3ff", scope: "runtime_domain" },
+    { id: "politikk",       name: "Politikk & samfunn",     icon: "🏛️", color: "#ffd27a", scope: "runtime_domain" },
+    { id: "subkultur",      name: "Subkultur",              icon: "🧷", color: "#9b7bff", scope: "runtime_domain" },
+    { id: "litteratur",     name: "Litteratur",             icon: "📚", color: "#ffcc66", scope: "runtime_domain" },
+    { id: "naeringsliv",    name: "Næringsliv",             icon: "🏭", color: "#9ad0c2", scope: "runtime_domain" },
+    { id: "psykologi",      name: "Psykologi",              icon: "🧠", color: "#ff9aa2", scope: "runtime_domain" },
 
-    // Ekstra domener du allerede har i filregistrene dine:
-    { id: "litteratur",     name: "Litteratur",             icon: "📚", color: "#ffcc66" },
-    { id: "naeringsliv",    name: "Næringsliv",             icon: "🏭", color: "#9ad0c2" },
-    { id: "film_tv",        name: "Film & TV",              icon: "🎞️", color: "#6c757d" },
-    { id: "scenekunst",     name: "Scenekunst",             icon: "🎭", color: "#c59cff" },
-    { id: "media",          name: "Medier",                 icon: "🗞️", color: "#c0c0c0" },
-    { id: "psykologi",      name: "Psykologi",              icon: "🧠", color: "#ff9aa2" }
+    // Aktive legacy runtime-id-er. Ikke rename enkeltvis; migrer samlet.
+    { id: "populaerkultur", name: "Populærkultur",          icon: "📺", color: "#a0a0a0", scope: "legacy_runtime_domain", canonicalFagId: "popkultur" },
+    { id: "film_tv",        name: "Film & TV",              icon: "🎞️", color: "#6c757d", scope: "legacy_runtime_domain", migrationTarget: "undecided" },
+    { id: "media",          name: "Medier",                 icon: "🗞️", color: "#c0c0c0", scope: "legacy_runtime_domain", migrationTarget: "undecided" },
+
+    // Subfelt/visning. Beholdes for UI/datafunn, men er ikke toppdomene nå.
+    { id: "scenekunst",     name: "Scenekunst",             icon: "🎭", color: "#c59cff", scope: "subfield_display", parentId: "kunst", canonicalFagId: "kunst" }
   ];
 
   const CAT_BY_ID = Object.create(null);
@@ -47,7 +60,9 @@
     return id ? `cat-${id}` : "cat-unknown";
   }
 
-  // Robust: forsøker å mappe vilkårlig "tag" til en kategori-id
+  // Robust: forsøker å mappe vilkårlig "tag" til en runtime-kategori-id.
+  // Denne funksjonen bruker CATEGORY_LIST, ikke DomainRegistry, fordi den skal returnere
+  // en id som finnes i UI/runtime-kategoriene her.
   // Støtter:
   //  - tag === kategori-id
   //  - TAGS_REGISTRY[tag] = { cat:"historie" } eller { category:"historie" } eller { categoryId:"historie" }
@@ -70,7 +85,8 @@
     return null;
   }
 
-  // “Display” kan være navn eller id (case-insensitiv)
+  // “Display” kan være navn eller id (case-insensitiv).
+  // Returnerer alltid id fra CATEGORY_LIST, ikke canonical fag-id.
   function catIdFromDisplay(display) {
     const s = norm(display).toLowerCase();
     if (!s) return null;
