@@ -132,7 +132,7 @@ Fagfil-kontrakt (manifest)
 - Aktiv versjon byttes ved å endre manifestet.
 
 **Bevisst unntak (dokumentert):**
-- `notater.html` fetcher `data/people.json` og `data/places.json` direkte for å mappe id→navn.  [oai_citation:11‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
+- `notater.html` fetcher `data/people/manifest.json` med manifest-listede people-filer, samt `data/places.json`, for å mappe id→navn.
 
 ---
 
