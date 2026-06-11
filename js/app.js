@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // og initLeftPanel har det de trenger før de kjøres. js/map.js MÅ være lastet
     // (og MapLibre tilgjengelig via index.html) før bootCritical initialiserer kartet.
     // Progresjonsruntime FØR resten: placeIdAliases før state.js (state.js bruker
-    // window.HGPlaceIds til ID-migrering), learningLog før bootCritical (som kaller
-    // HGLearningLog.migrateLegacy), og state.js før bootCritical (kart/nearby/quiz
-    // og miniProfile leser window.visited / visited_places).
+    // window.HGPlaceIds til ID-migrering), DomainRegistry + domainRuntime før state.js
+    // (domainRuntime beskytter category/merit/progression storage), learningLog før
+    // bootCritical (som kaller HGLearningLog.migrateLegacy), og state.js før
+    // bootCritical (kart/nearby/quiz og miniProfile leser window.visited / visited_places).
     await safeRun("loadPlaceIdAliases", () => loadScriptOnce("js/core/placeIdAliases.js"));
+    await safeRun("loadDomainRegistry", () => loadScriptOnce("js/DomainRegistry.js"));
+    await safeRun("loadDomainRuntime", () => loadScriptOnce("js/core/domainRuntime.js"));
     await safeRun("loadLearningLog", () => loadScriptOnce("js/learningLog.js"));
     await safeRun("loadState", () => loadScriptOnce("js/state/state.js"));
 
@@ -164,7 +167,7 @@ function assertCriticalIndexRuntime() {
   }
 
   if (!document.querySelector(".app-footer")) {
-    missing.push(".app-footer – footer-handlingslinjen mangler i DOM");
+    missing.push(".app-footer – footer-handlingslinjen mangler");
   }
 
   if (missing.length === 0) return null;
@@ -257,78 +260,4 @@ function wireBackgroundLeftPanelRerenders() {
       window.renderNearbyPeople();
     }
   });
-
-  window.addEventListener("hg:backgroundReady", () => {
-    window.rerenderActiveLeftPanelMode?.();
-  });
-}
-
-function wireMapPlacePopupInMapMode() {
-  if (!window.HGMap || typeof window.HGMap.setOnPlaceClick !== "function") return;
-
-  window.HGMap.setOnPlaceClick((id) => {
-    const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
-      (p) => String(p?.id || "").trim() === String(id || "").trim()
-    );
-
-    if (!place) return;
-
-    routeToPlace(place.id);
-  });
-}
-
-function loadScriptOnce(src) {
-  return new Promise((resolve, reject) => {
-    if (!src) return resolve();
-
-    const existing = document.querySelector(`script[src="${src}"]`);
-    if (existing instanceof HTMLScriptElement) {
-      if (existing.dataset.loaded === "1") return resolve();
-      existing.addEventListener("load", resolve, { once: true });
-      existing.addEventListener("error", reject, { once: true });
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = src;
-    script.dataset.loaded = "0";
-    script.onload = () => {
-      script.dataset.loaded = "1";
-      resolve();
-    };
-    script.onerror = () => reject(new Error(`Kunne ikke laste ${src}`));
-    document.body.appendChild(script);
-  });
-}
-
-function runAfterReady(label, fn) {
-  Promise.resolve()
-    .then(() => safeRun(label, fn))
-    .catch((e) => {
-      console.warn(`[${label}] background failed`, e);
-    });
-}
-
-async function safeRun(label, fn) {
-  try {
-    const out = fn?.();
-
-    if (out && typeof out.then === "function") {
-      return await out;
-    }
-
-    return out;
-  } catch (e) {
-    console.error(`[${label}]`, e);
-
-    if (window.DEBUG) {
-      window.__HG_LAST_ERROR__ = {
-        label,
-        message: String(e),
-        stack: e?.stack || null
-      };
-    }
-
-    throw e;
-  }
 }
