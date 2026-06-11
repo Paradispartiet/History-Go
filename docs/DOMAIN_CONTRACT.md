@@ -133,6 +133,9 @@ js/DomainRegistry.js
 ```
 
 Other files should call the registry/normalizer rather than making their own alias maps.
+Runtime writes must explicitly call `DomainRegistry.toRuntimeCategoryId(raw)` (or the pure
+`HGDomainRuntime.toRuntimeCategoryId(raw)` wrapper) before writing progression state.
+Storage access must not be monkey-patched to hide missing normalization at call sites.
 
 ### Categories
 

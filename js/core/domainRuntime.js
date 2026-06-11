@@ -1,28 +1,15 @@
 // js/core/domainRuntime.js
 // ------------------------------------------------------
-// HGDomainRuntime
-// ------------------------------------------------------
-// Runtime-bro mellom fag/editorial-id-er og runtime category/badge/progression-id-er.
+// Pure helpers for the two explicit History Go domain-id directions.
 //
-// Hovedregel:
-// - Fag/emner/pensum bruker DomainRegistry.toFagSubjectId()
-// - Badges/merits/place.category/quiz categoryId bruker toRuntimeCategoryId()
+// Callers must normalize at the source before runtime writes or fag loads:
+// - runtime badges/merits/progression: toRuntimeCategoryId()
+// - fag/emner/pensum: toFagSubjectId()
 //
-// Denne fila er bevisst liten og runtime-orientert. Den migrerer ikke datafiler.
-// Den beskytter bare runtime-laget mot at alias som "popkultur" blir et nytt
-// badge-/merit-/progression-spor ved en feil.
+// This module does not intercept or migrate storage.
 // ------------------------------------------------------
 
 (function () {
-  const STORAGE_KEYS_CATEGORY_MAP = new Set([
-    "merits_by_category",
-    "quiz_progress"
-  ]);
-
-  const STORAGE_KEYS_EVENT_LIST = new Set([
-    "hg_learning_log_v1"
-  ]);
-
   const RUNTIME_ALIASES = {
     popkultur: "populaerkultur",
     "populærkultur": "populaerkultur",
@@ -32,8 +19,6 @@
     "popular-culture": "populaerkultur",
     "popular culture": "populaerkultur"
   };
-
-  let storageGuardInstalled = false;
 
   function s(value) {
     return String(value ?? "").trim();
@@ -47,10 +32,10 @@
     const raw = s(value);
     if (!raw) return "";
 
-    const bridge = window.DomainRegistry?.toRuntimeCategoryId;
-    if (typeof bridge === "function") {
+    const normalizer = window.DomainRegistry?.toRuntimeCategoryId;
+    if (typeof normalizer === "function") {
       try {
-        return s(bridge(raw));
+        return s(normalizer(raw));
       } catch (err) {
         warn("DomainRegistry rejected runtime category", raw, err);
       }
@@ -63,10 +48,10 @@
     const raw = s(value);
     if (!raw) return "";
 
-    const bridge = window.DomainRegistry?.toFagSubjectId || window.DomainRegistry?.resolve;
-    if (typeof bridge === "function") {
+    const normalizer = window.DomainRegistry?.toFagSubjectId;
+    if (typeof normalizer === "function") {
       try {
-        return s(bridge(raw));
+        return s(normalizer(raw));
       } catch (err) {
         warn("DomainRegistry rejected fag subject", raw, err);
       }
@@ -76,10 +61,15 @@
     return raw;
   }
 
-  function mergeArrays(a, b) {
+  function mergeArrays(existing, incoming) {
     const out = [];
-    for (const item of [].concat(Array.isArray(a) ? a : [], Array.isArray(b) ? b : [])) {
-      if (!out.some(x => JSON.stringify(x) === JSON.stringify(item))) out.push(item);
+    for (const item of [].concat(
+      Array.isArray(existing) ? existing : [],
+      Array.isArray(incoming) ? incoming : []
+    )) {
+      if (!out.some(candidate => JSON.stringify(candidate) === JSON.stringify(item))) {
+        out.push(item);
+      }
     }
     return out;
   }
@@ -99,7 +89,11 @@
     if (isPlainObject(existing) && isPlainObject(incoming)) {
       const out = { ...existing };
       for (const [key, value] of Object.entries(incoming)) {
-        if ((key === "points" || key === "count") && Number.isFinite(Number(out[key])) && Number.isFinite(Number(value))) {
+        if (
+          (key === "points" || key === "count") &&
+          Number.isFinite(Number(out[key])) &&
+          Number.isFinite(Number(value))
+        ) {
           out[key] = Number(out[key] || 0) + Number(value || 0);
         } else {
           out[key] = mergeValues(out[key], value);
@@ -122,96 +116,9 @@
     return out;
   }
 
-  function normalizeEvent(event) {
-    if (!isPlainObject(event)) return event;
-
-    const out = { ...event };
-    if (out.categoryId != null) out.categoryId = toRuntimeCategoryId(out.categoryId);
-    if (out.category_id != null) out.category_id = toRuntimeCategoryId(out.category_id);
-
-    // Bare runtime-kategori-felt normaliseres her. Fagfelt som emne_id, dimension,
-    // epoke_domain osv. får stå urørt fordi de kan være fag/editorial-konsepter.
-    return out;
-  }
-
-  function normalizeEventList(list) {
-    if (!Array.isArray(list)) return list;
-    return list.map(normalizeEvent);
-  }
-
-  function normalizeStoragePayload(key, payload) {
-    const storageKey = s(key);
-    if (!storageKey || typeof payload !== "string" || !payload) return payload;
-
-    if (!STORAGE_KEYS_CATEGORY_MAP.has(storageKey) && !STORAGE_KEYS_EVENT_LIST.has(storageKey)) {
-      return payload;
-    }
-
-    try {
-      const parsed = JSON.parse(payload);
-      const normalized = STORAGE_KEYS_CATEGORY_MAP.has(storageKey)
-        ? normalizeCategoryMap(parsed)
-        : normalizeEventList(parsed);
-      return JSON.stringify(normalized);
-    } catch (err) {
-      warn("Could not normalize storage payload", storageKey, err);
-      return payload;
-    }
-  }
-
-  function installStorageGuard() {
-    if (storageGuardInstalled) return true;
-    if (!window.Storage || !window.localStorage) return false;
-
-    const proto = window.Storage.prototype;
-    if (proto.__HGDomainRuntimeGuardInstalled) {
-      storageGuardInstalled = true;
-      return true;
-    }
-
-    const originalGetItem = proto.getItem;
-    const originalSetItem = proto.setItem;
-
-    proto.getItem = function hgDomainRuntimeGetItem(key) {
-      const value = originalGetItem.call(this, key);
-      return normalizeStoragePayload(key, value);
-    };
-
-    proto.setItem = function hgDomainRuntimeSetItem(key, value) {
-      const normalized = normalizeStoragePayload(key, String(value));
-      return originalSetItem.call(this, key, normalized);
-    };
-
-    try {
-      Object.defineProperty(proto, "__HGDomainRuntimeGuardInstalled", {
-        value: true,
-        enumerable: false,
-        configurable: false
-      });
-    } catch {}
-
-    storageGuardInstalled = true;
-    return true;
-  }
-
-  function normalizeHookCategoryArg(fn) {
-    if (typeof fn !== "function") return fn;
-
-    return function hgDomainRuntimeHook(categoryId, ...rest) {
-      return fn.call(this, toRuntimeCategoryId(categoryId), ...rest);
-    };
-  }
-
   window.HGDomainRuntime = {
     toRuntimeCategoryId,
     toFagSubjectId,
-    normalizeCategoryMap,
-    normalizeEvent,
-    normalizeEventList,
-    normalizeStoragePayload,
-    installStorageGuard,
-    normalizeHookCategoryArg
+    normalizeCategoryMap
   };
-
-  installStorageGuard();
 })();

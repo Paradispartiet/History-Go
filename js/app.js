@@ -9,13 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     // og initLeftPanel har det de trenger før de kjøres. js/map.js MÅ være lastet
     // (og MapLibre tilgjengelig via index.html) før bootCritical initialiserer kartet.
     // Progresjonsruntime FØR resten: placeIdAliases før state.js (state.js bruker
-    // window.HGPlaceIds til ID-migrering), DomainRegistry + domainRuntime før state.js
-    // (domainRuntime beskytter category/merit/progression storage), learningLog før
+    // window.HGPlaceIds til ID-migrering), DomainRegistry + den rene domainRuntime-
+    // hjelpefila før state.js, learningLog før
     // bootCritical (som kaller HGLearningLog.migrateLegacy), og state.js før
     // bootCritical (kart/nearby/quiz og miniProfile leser window.visited / visited_places).
     await safeRun("loadPlaceIdAliases", () => loadScriptOnce("js/core/placeIdAliases.js"));
     await safeRun("loadDomainRegistry", () => loadScriptOnce("js/DomainRegistry.js"));
     await safeRun("loadDomainRuntime", () => loadScriptOnce("js/core/domainRuntime.js"));
+    await safeRun("assertRuntimeCategoryStorage", assertRuntimeCategoryStorage);
     await safeRun("loadLearningLog", () => loadScriptOnce("js/learningLog.js"));
     await safeRun("loadState", () => loadScriptOnce("js/state/state.js"));
 
@@ -128,6 +129,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     markAppFailed(e);
   }
 });
+
+function assertRuntimeCategoryStorage() {
+  if (!window.DEBUG) return;
+
+  try {
+    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    if (
+      merits &&
+      typeof merits === "object" &&
+      Object.prototype.hasOwnProperty.call(merits, "popkultur") &&
+      Object.prototype.hasOwnProperty.call(merits, "populaerkultur")
+    ) {
+      console.warn(
+        "[domain runtime] merits_by_category contains both popkultur and populaerkultur; " +
+        "runtime writes must use populaerkultur. Existing data was not changed."
+      );
+    }
+  } catch (err) {
+    console.warn("[domain runtime] could not inspect merits_by_category", err);
+  }
+}
 
 function assertCriticalIndexRuntime() {
   const missing = [];
