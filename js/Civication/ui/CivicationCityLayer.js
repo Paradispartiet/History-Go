@@ -569,6 +569,7 @@
           friends: (_model.friends || []).map((r) => r.friend),
           snapshots: _model.snapshots,
           locations: _model.locations,
+          socialPlaces: _model.socialPlaces,
           dayIndex: _model.dayIndex
         })
       : [];
@@ -778,8 +779,17 @@
 
     // 2) Livstegn: hvor, hva og hvilken stemning vennen sist hadde i fasen.
     const placeLabel = snapshotLoc ? snapshotLoc.label : (presence.locationId || "—");
+    // Del E: når en generisk faseplassering er resolvet til et konkret sted, vis
+    // diskret hvilken faseplan-kategori det opprinnelig kom fra ("fra faseplan: Kafé").
+    const rawLocId = presence.resolvedFromLocationId || "";
+    const rawLoc = (eng && rawLocId) ? eng.locationById(locations, rawLocId) : null;
+    const fromPlanLabel = rawLoc ? (rawLoc.label || rawLocId) : rawLocId;
+    const fromPlanRow = (hasHistory && rawLocId)
+      ? row2("Fra faseplan", fromPlanLabel)
+      : "";
     const lifeRows = hasHistory
       ? (row2("Sted", placeLabel) +
+         fromPlanRow +
          row2("Aktivitet", presence.activity || "—") +
          (presence.mood ? row2("Stemning", presence.mood) : "") +
          (presence.updatedAtLabel ? row2("Oppdatert", presence.updatedAtLabel) : ""))
@@ -1008,6 +1018,7 @@
         friends: _model ? (_model.friends || []).map((r) => r.friend) : null,
         snapshots: _model ? _model.snapshots : null,
         locations: _model ? _model.locations : null,
+        socialPlaces: _model ? _model.socialPlaces : null,
         dayIndex: _model ? _model.dayIndex : 1
       });
     }
@@ -1093,6 +1104,7 @@
         friends: _model ? (_model.friends || []).map((r) => r.friend) : null,
         snapshots: _model ? _model.snapshots : null,
         locations: _model ? _model.locations : null,
+        socialPlaces: _model ? _model.socialPlaces : null,
         dayIndex: _model ? _model.dayIndex : 1
       };
       encounter = eng.getSocialEncountersForLocation(phase, locationId, opts)
