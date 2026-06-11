@@ -152,6 +152,18 @@ function findNextSet(setList, currentSetId) {
   function s(x) { return String(x ?? "").trim(); }
   function arr(x) { return Array.isArray(x) ? x : []; }
 
+  function runtimeCategoryId(value) {
+    const raw = s(value);
+    if (!raw) return "";
+    const bridge = window.DomainRegistry?.toRuntimeCategoryId;
+    if (typeof bridge === "function") {
+      try { return s(bridge(raw)); }
+      catch (err) { if (window.DEBUG) console.warn("[quiz] invalid runtime category", raw, err); }
+    }
+    if (raw === "popkultur") return "populaerkultur";
+    return raw;
+  }
+
   function appendToArrayKey(key, item) {
     const cur = safeParse(key, []);
     const list = Array.isArray(cur) ? cur : [];
@@ -164,9 +176,10 @@ function findNextSet(setList, currentSetId) {
   function appendLearningEvent(evt) {
     try {
       if (!evt || typeof evt !== "object") throw new Error("evt missing");
-      if (!s(evt.categoryId)) throw new Error("categoryId missing");
+      const categoryId = runtimeCategoryId(evt.categoryId);
+      if (!categoryId) throw new Error("categoryId missing");
       if (!s(evt.targetId)) throw new Error("targetId missing");
-      appendToArrayKey(HG_LEARNING_LOG_KEY, evt);
+      appendToArrayKey(HG_LEARNING_LOG_KEY, { ...evt, categoryId });
       return true;
     } catch (e) {
       dwarn("appendLearningEvent rejected:", e, evt);
@@ -177,7 +190,7 @@ function findNextSet(setList, currentSetId) {
   function markQuizProgress(categoryId, targetId) {
     try {
       const prog = safeParse(QUIZ_PROGRESS_KEY, {});
-      const cat = s(categoryId) || "ukjent";
+      const cat = runtimeCategoryId(categoryId) || "ukjent";
       const tid = s(targetId) || "";
 
       prog[cat] = prog[cat] || { completed: [] };
@@ -214,7 +227,7 @@ function findNextSet(setList, currentSetId) {
 
   function incrementMeritPoints(categoryId, amount = 1) {
     try {
-      const key = s(categoryId);
+      const key = runtimeCategoryId(categoryId);
       if (!key) return false;
 
       const merits = safeParse("merits_by_category", {});
@@ -235,7 +248,7 @@ function findNextSet(setList, currentSetId) {
   }
 
   function getQuizCategoryId(questions) {
-    return s(
+    return runtimeCategoryId(
       questions?.[0]?.categoryId ||
       questions?.[0]?.category_id ||
       questions?.[0]?.category ||
@@ -1101,17 +1114,7 @@ if (perfect) {
           });
   
             // 3.5) merits_by_category (profile.html bruker denne til badge-grid)
-            try {
-            const merits = safeParse("merits_by_category", {});
-            const key = s(categoryId);
-             if (key) {
-            merits[key] = merits[key] || { points: 0 };
-            merits[key].points = Number(merits[key].points || 0) + 1;
-            safeWrite("merits_by_category", merits);
-              }
-            } catch (e) {
-            dwarn("could not save merits_by_category", e);
-            }
+            incrementMeritPoints(categoryId, 1);
   
             // 4) UI “done”
             if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);

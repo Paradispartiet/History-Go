@@ -29,6 +29,10 @@ populaerkultur  = runtime badge/category/progression id
 They are not two badges.
 They are not two progression tracks.
 
+Runtime category writes must call `DomainRegistry.toRuntimeCategoryId(raw)` explicitly at the source.
+There is no `Storage.prototype` monkey-patching or hidden storage normalization.
+`popkultur` must never become a `merits_by_category` key; runtime progression uses `populaerkultur`.
+
 ## Method choice
 
 ### Use `toFagSubjectId()` for fag/emne/pensum
@@ -193,3 +197,13 @@ Am I matching badges, categories, quiz categoryId or merits?
 ```
 
 Do not call `resolve()` in new runtime badge/progression code unless you specifically want the fag/editorial id.
+
+## Storage and debugging
+
+Storage is deliberately passive: no helper may replace `Storage.prototype.getItem` or
+`Storage.prototype.setItem`. Every quiz, badge and progression writer must normalize its
+category before indexing a map, calling an API hook or dispatching a runtime event.
+
+In DEBUG mode the app warns if existing `merits_by_category` data contains both
+`popkultur` and `populaerkultur`. The warning is diagnostic only; it does not silently
+migrate or rewrite user data.
