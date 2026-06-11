@@ -348,24 +348,6 @@
         const fallbackText = (el.textContent || "").trim();
         const translated = t(key, fallbackText);
 
-        if (el.id === "btnSeeMap" && el.classList.contains("iconbtn")) {
-          if (translated) {
-            setAttributeIfChanged(el, "aria-label", translated);
-            setAttributeIfChanged(el, "title", translated);
-          }
-
-          let icon = el.querySelector("[data-i18n-icon='map']");
-          if (!icon) {
-            el.textContent = "";
-            icon = document.createElement("span");
-            icon.setAttribute("data-i18n-icon", "map");
-            icon.setAttribute("aria-hidden", "true");
-            el.appendChild(icon);
-          }
-          icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path></svg>`;
-          return;
-        }
-
         if (el.children && el.children.length > 0) return;
 
         if (translated && el.textContent !== translated) {
