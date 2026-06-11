@@ -47,7 +47,7 @@ Eksempler:
 - rute
 - quiz
 
-**Kilde:** eksisterende JSON (`places.json`, `people.json`, osv.)
+**Kilde:** eksisterende JSON (`places.json`, `people/manifest.json`, osv.)
 
 ---
 

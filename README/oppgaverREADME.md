@@ -88,7 +88,7 @@ Ingen strategi-prat, ingen EchoNet, ingen fremtidssnakk. Bare arbeid.
 
 ---
 
-### A2. Personer (`people.json`)
+### A2. Personer (`people/manifest.json`)
 
 **Status:** Stabil struktur, men ufullstendig innhold
 
