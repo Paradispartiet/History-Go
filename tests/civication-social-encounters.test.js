@@ -421,6 +421,93 @@ check("buildPlaceEncountersHtml er deterministisk", () => {
   );
 });
 
+console.log("Grupperte fasevalg + valgt sted i stedskortet (Del A/B/D/F)");
+
+// Konkrete socialPlaces (samme form som CivicationSocialPlaceResolver gir) for
+// å teste gruppering, valgt-status, fallback-kategoriinngang og møtetekster.
+const choiceSocialPlaces = [
+  { id: "brand_place:universitetsplassen:fuglen", locationId: "brand_place:universitetsplassen:fuglen", sourcePlaceId: "universitetsplassen", brandId: "fuglen", socialPlaceType: "coffee", label: "Fuglen", placeLabel: "Universitetsplassen", type: "cafe", channel: "social", phaseAffinity: ["morning", "leisure", "evening"], activePhases: ["lunch", "afternoon", "evening"] },
+  { id: "brand_place:st_hanshaugen:java", locationId: "brand_place:st_hanshaugen:java", sourcePlaceId: "st_hanshaugen", brandId: "java", socialPlaceType: "coffee", label: "Java Kaffebar", placeLabel: "St. Hanshaugen park", type: "cafe", channel: "social", phaseAffinity: ["morning", "leisure", "evening"], activePhases: ["lunch", "afternoon", "evening"] }
+];
+const choiceLocations = eng.mergeSocialPlacesIntoLocations(locations, choiceSocialPlaces);
+const choiceContext = { locations: choiceLocations, socialPlaces: choiceSocialPlaces };
+
+check("buildPlayerPhaseChoicesHtml grupperer konkrete steder og systemvalg", () => {
+  eng.clearPlayerPhaseSnapshotsForTesting();
+  const html = layer.buildPlayerPhaseChoicesHtml("leisure", 12, choiceContext);
+  assert.ok(html.includes("Hvor vil du gå i denne fasen?"), "hovedoverskrift mangler");
+  assert.ok(html.includes(">Konkrete steder<"), "gruppe for konkrete steder mangler");
+  assert.ok(html.includes(">Systemvalg<"), "gruppe for systemvalg mangler");
+  assert.ok(html.includes(">Fuglen<"), "konkret sted-label mangler");
+  assert.ok(html.includes("Kaffe · Universitetsplassen"), "konkret subtitle mangler");
+  assert.ok(html.includes("is-kind-social-place"), "konkret sted skal ha stedsklasse");
+  assert.ok(html.includes("is-kind-system-node"), "systemvalg skal ha systemklasse");
+  assert.ok(html.includes("fase-minne, ikke live-posisjon"), "fase-minne-disclosure mangler");
+});
+
+check("valgt sted får Valgt-status i valglisten (DOM-markering)", () => {
+  eng.clearPlayerPhaseSnapshotsForTesting();
+  const result = eng.applyPlayerPhaseChoice("go:brand_place:universitetsplassen:fuglen", { ...choiceContext, phase: "leisure" });
+  assert.ok(result && result.snapshot, "valget skal lagre snapshot");
+  const html = layer.buildPlayerPhaseChoicesHtml("leisure", 12, choiceContext);
+  assert.ok(html.includes("is-selected-choice"), "valgt rad mangler markering");
+  assert.ok(html.includes(">Valgt<"), "valgt knappetekst mangler");
+  assert.ok(html.includes('aria-pressed="true"'), "aria-pressed mangler på valgt knapp");
+  assert.ok(html.includes(">Gå hit<"), "andre valg skal fortsatt vise Gå hit");
+  eng.clearPlayerPhaseSnapshotsForTesting();
+});
+
+check("buildChosenPlaceStatusHtml markerer valgt sted i stedskortet", () => {
+  const loc = { id: "brand_place:universitetsplassen:fuglen", label: "Fuglen" };
+  const html = layer.buildChosenPlaceStatusHtml(loc, "leisure", "brand_place:universitetsplassen:fuglen");
+  assert.ok(html.includes("is-player-choice"), "valgt-chip mangler klasse");
+  assert.ok(html.includes("Ditt valg i siste fritidsfase"), "valgt-chip mangler fasetekst");
+  assert.strictEqual(layer.buildChosenPlaceStatusHtml(loc, "leisure", "park"), "", "annet valgt sted skal gi tom streng");
+  assert.strictEqual(layer.buildChosenPlaceStatusHtml(loc, "leisure", ""), "", "uten valg skal gi tom streng");
+});
+
+check("kartmarkøren for spillerens fasevalg får is-player-choice", () => {
+  const fuglenLoc = choiceLocations.find((l) => l.id === "brand_place:universitetsplassen:fuglen");
+  const classes = layer.buildPlaceClassList(fuglenLoc, false, "brand_place:universitetsplassen:fuglen");
+  assert.ok(classes.includes("is-player-choice"), "valgt markør mangler is-player-choice");
+  const other = layer.buildPlaceClassList(locations.find((l) => l.id === "park"), false, "brand_place:universitetsplassen:fuglen");
+  assert.ok(!other.includes("is-player-choice"), "andre markører skal ikke få is-player-choice");
+});
+
+check("fallback-noden Kafé viser konkrete steder som kategoriinngang", () => {
+  const cafe = locations.find((l) => l.id === "cafe");
+  const html = layer.buildFallbackSocialPlaceChoicesHtml(cafe, "leisure", choiceContext);
+  assert.ok(html.includes("Velg et konkret kafésted"), "kategorioverskrift mangler");
+  assert.ok(html.includes("Kategoriinngang"), "kategorihint mangler");
+  assert.ok(html.includes(">Fuglen<"), "konkret sted mangler i kategoriinngangen");
+  assert.ok(html.includes("Kaffe · Universitetsplassen"), "konkret subtitle mangler i kategoriinngangen");
+  assert.ok(html.includes('data-civi-fallback-place="brand_place:universitetsplassen:fuglen"'), "fallback-valg-hook mangler");
+});
+
+check("fallback uten konkrete steder beholder generisk flyt (tom valg-HTML)", () => {
+  const cafe = locations.find((l) => l.id === "cafe");
+  assert.strictEqual(layer.buildFallbackSocialPlaceChoicesHtml(cafe, "leisure", { locations: locations }), "");
+});
+
+check("fallback-valg lagrer ikke generisk locationId når konkrete steder finnes", () => {
+  eng.clearPlayerPhaseSnapshotsForTesting();
+  const result = eng.applyPlayerPhaseChoice("go:cafe", { ...choiceContext, phase: "leisure" });
+  assert.strictEqual(result, null, "generisk kafévalg skal ikke finnes når konkrete kaffesteder finnes");
+  assert.strictEqual(eng.getPlayerSnapshotForPhase("leisure"), null, "ingen generisk snapshot skal lagres");
+});
+
+check("Henvend deg-tekst bruker konkret stednavn med riktig skrivemåte", () => {
+  const text = eng.getApproachActionResultText({ name: "Mariam Holt" }, {}, "leisure", { label: "Fuglen" });
+  assert.strictEqual(text, "Du henvender deg til Mariam på Fuglen i fritidsfasen.");
+});
+
+check("møteheading og tom-tekst bruker konkret stednavn også for socialPlaces", () => {
+  const fuglenLoc = choiceLocations.find((l) => l.id === "brand_place:universitetsplassen:fuglen");
+  const html = layer.buildPlaceEncountersHtml(fuglenLoc, "leisure", []);
+  assert.ok(/Folk som også valgte Fuglen i siste fritidsfase/.test(html), "konkret møteheading mangler");
+  assert.ok(/Ingen åpne for kontakt her i siste fritidsfase/.test(html), "konkret tom-tekst mangler");
+});
+
 console.log("Eksisterende action-id-er er fortsatt stabile");
 
 check("action-id approach finnes og rendres stabilt", () => {

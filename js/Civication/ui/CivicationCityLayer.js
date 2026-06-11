@@ -316,12 +316,17 @@
 
   // Full klasseliste for en stedsmarkør. Legger på tydelige rolleklasser
   // (is-role-system-node, is-role-social-place …) i tillegg til aktiv/hjem.
-  function buildPlaceClassList(loc, active) {
+  // chosenLocationId (valgfri) er spillerens lagrede fasevalg: markøren for det
+  // stedet får is-player-choice slik at "hvor valgte jeg å gå" synes på kartet.
+  function buildPlaceClassList(loc, active, chosenLocationId) {
     const role = getPlaceRole(loc);
     const classes = ["civi-city-place"];
     if (active) classes.push("is-active");
     if (loc && loc.type === "friend_home") classes.push("is-friend-home");
     if (role) classes.push("is-role-" + role.replace(/_/g, "-"));
+    if (chosenLocationId && loc && String(loc.id || "") === String(chosenLocationId)) {
+      classes.push("is-player-choice");
+    }
     return classes;
   }
 
@@ -373,12 +378,14 @@
     renderSelfStatus();
 
     // 1) Stedsmarkører. Posisjon settes av refreshMarkerPositions() fra aktiv
-    //    kartmotor – ikke som egne overlay-prosenter her.
+    //    kartmotor – ikke som egne overlay-prosenter her. Spillerens lagrede
+    //    fasevalg markeres på sin markør (is-player-choice).
+    const chosenLocationId = selectedPlayerLocationId(_model.snapshotPhase);
     (renderLocations || []).forEach((loc) => {
       const active = eng.isLocationActive(loc, phase);
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = buildPlaceClassList(loc, active).join(" ");
+      btn.className = buildPlaceClassList(loc, active, chosenLocationId).join(" ");
       const attrs = buildPlaceDataAttrs(loc);
       Object.keys(attrs).forEach((key) => btn.setAttribute(key, attrs[key]));
       btn.innerHTML =
@@ -523,10 +530,14 @@
     el.removeAttribute("hidden");
   }
 
+  // Spillerens valgte sted (fase-minne) for en fase. Trenger ikke _model når
+  // fasen oppgis eksplisitt – da kan valgt-status også bygges headless i tester.
   function selectedPlayerLocationId(phase) {
     const eng = engine();
-    if (!eng || !_model || typeof eng.getPlayerSnapshotForPhase !== "function") return "";
-    const snap = eng.getPlayerSnapshotForPhase(phase || _model.snapshotPhase);
+    if (!eng || typeof eng.getPlayerSnapshotForPhase !== "function") return "";
+    const ph = phase || (_model ? _model.snapshotPhase : "");
+    if (!ph) return "";
+    const snap = eng.getPlayerSnapshotForPhase(ph);
     return snap ? String(snap.locationId || "") : "";
   }
 
@@ -547,12 +558,15 @@
       esc(buttonLabel) + '</button></li>';
   }
 
-  function buildPlayerPhaseChoicesHtml(phase, limit) {
+  // context (valgfri) overstyrer bymodellens locations/socialPlaces slik at
+  // gruppert valg-HTML kan bygges headless i tester uten render()/fetch.
+  function buildPlayerPhaseChoicesHtml(phase, limit, context) {
     const eng = engine();
-    if (!eng || !_model || typeof eng.buildPlayerPhaseChoiceModel !== "function") return "";
-    const choiceModel = eng.buildPlayerPhaseChoiceModel(phase || _model.snapshotPhase, {
-      locations: _model.locations || [],
-      socialPlaces: _model.socialPlaces || []
+    const ctx = context && typeof context === "object" ? context : _model;
+    if (!eng || !ctx || typeof eng.buildPlayerPhaseChoiceModel !== "function") return "";
+    const choiceModel = eng.buildPlayerPhaseChoiceModel(phase || ctx.snapshotPhase, {
+      locations: ctx.locations || [],
+      socialPlaces: ctx.socialPlaces || []
     });
     const choices = Array.isArray(choiceModel.choices) ? choiceModel.choices : [];
     if (!choices.length) return "";
@@ -594,6 +608,7 @@
     renderSelfStatus();
     const targetLocationId = (result && result.choice && result.choice.locationId) || locationId;
     if (targetLocationId) {
+      markPlayerChoiceMarker(String(targetLocationId));
       _suppressNextAutoCaptureLocationId = String(targetLocationId);
       setTimeout(function () { openPlaceDetail(String(targetLocationId)); }, 0);
     }
@@ -616,6 +631,20 @@
     return result;
   }
 
+  // Ren funksjon: status-chip i stedskortet når stedet er spillerens lagrede
+  // valg for fasen. Tom streng ellers. Eksportert for headless testing (Del B:
+  // valgt sted skal kunne markeres i detail-panelet uten å ligne live-posisjon).
+  function buildChosenPlaceStatusHtml(loc, phase, chosenLocationId) {
+    const placeId = String((loc && loc.id) || "");
+    if (!placeId || String(chosenLocationId || "") !== placeId) return "";
+    const eng = engine();
+    const phaseLbl = (eng && typeof eng.snapshotPhaseLabel === "function")
+      ? eng.snapshotPhaseLabel(phase)
+      : String(phase || "");
+    return '<div class="civi-city-detail-status is-player-choice">' +
+      esc("Ditt valg i siste " + (phaseLbl || "fase").toLowerCase()) + "</div>";
+  }
+
   // ---------------------------------------------------------------------------
   // Detalj-paneler
   // ---------------------------------------------------------------------------
@@ -625,6 +654,18 @@
     mh.querySelectorAll(".is-selected").forEach((n) => n.classList.remove("is-selected"));
     const el = mh.querySelector(selector);
     if (el) el.classList.add("is-selected");
+  }
+
+  // Flytt is-player-choice til markøren for spillerens nye fasevalg uten å
+  // re-rendre hele laget (markørene er allerede kartforankret).
+  function markPlayerChoiceMarker(locationId) {
+    const mh = markersHost();
+    if (!mh) return;
+    mh.querySelectorAll(".civi-city-place.is-player-choice")
+      .forEach((n) => n.classList.remove("is-player-choice"));
+    if (!locationId) return;
+    const el = mh.querySelector('[data-place-id="' + cssEscape(locationId) + '"]');
+    if (el) el.classList.add("is-player-choice");
   }
 
   function showDetail(html) {
@@ -669,6 +710,7 @@
       capturePlayerSnapshotForPlace(loc);
     }
     renderSelfStatus();
+    markPlayerChoiceMarker(selectedPlayerLocationId(_model.snapshotPhase));
 
     // Venner her = de hvis aktive fase-minne (snapshot/fallback) peker hit.
     const here = (_model.friends || []).filter((r) =>
@@ -732,6 +774,7 @@
       headerHtml +
       '<div class="civi-city-detail-status' + (active ? " is-active" : "") + '">' +
         (active ? "Aktivt i denne fasen" : "Roligere i denne fasen") + "</div>" +
+      buildChosenPlaceStatusHtml(loc, _model.snapshotPhase, selectedPlayerLocationId(_model.snapshotPhase)) +
       (fallbackActive ? "" : buildPlayerPhaseChoicesHtml(_model.snapshotPhase, 8)) +
       fallbackChoicesHtml +
       (activitiesHtml ? '<div class="civi-city-detail-section"><h4>Aktiviteter</h4><div class="civi-city-chips">' + activitiesHtml + "</div></div>" : "") +
@@ -790,13 +833,15 @@
   // konkret møtested. Disse hjelperne er bevisst enkle og testbare.
 
   // Ekte sosiale steder (fra resolveren, merget inn i bymodellen) av samme
-  // socialPlaceType som en generisk fallback-node.
-  function getRealSocialPlacesForFallback(loc, phase) {
+  // socialPlaceType som en generisk fallback-node. context (valgfri) overstyrer
+  // bymodellens locations slik at kategoriinngangen kan testes headless.
+  function getRealSocialPlacesForFallback(loc, phase, context) {
     const eng = engine();
-    if (!eng || !_model || typeof eng.getGenericSocialPlaceType !== "function") return [];
+    const ctx = context && typeof context === "object" ? context : _model;
+    if (!eng || !ctx || typeof eng.getGenericSocialPlaceType !== "function") return [];
     const spt = eng.getGenericSocialPlaceType(loc);
     if (!spt) return [];
-    return (_model.locations || []).filter((l) =>
+    return (ctx.locations || []).filter((l) =>
       eng.isRealSocialPlace(l) && String(l.socialPlaceType || "") === String(spt));
   }
 
@@ -809,19 +854,26 @@
 
   // Bygger valg-HTML som leder fra en generisk fallback til konkrete ekte steder.
   // Tom streng når ingen ekte steder finnes (da beholdes generisk møteflyt).
-  function buildFallbackSocialPlaceChoicesHtml(loc, phase) {
-    const real = getRealSocialPlacesForFallback(loc, phase);
+  function buildFallbackSocialPlaceChoicesHtml(loc, phase, context) {
+    const real = getRealSocialPlacesForFallback(loc, phase, context);
     const typeWord = String((loc && loc.label) || "sosialt sted").toLowerCase();
     if (!real.length) return "";
-    const items = real.slice(0, 8).map((p) =>
-      '<li class="civi-city-fallback-choice civi-city-phase-choice">' +
-      '<div class="civi-city-phase-choice-copy"><strong>' + esc(p.label || p.placeLabel || p.id) + '</strong>' +
-      (p.placeLabel && p.placeLabel !== p.label ? ' <small>' + esc(p.placeLabel) + '</small>' : '') +
-      '</div><button type="button" class="civi-btn" data-civi-fallback-place="' + esc(p.id) + '">Gå hit</button></li>'
-    ).join("");
+    const eng = engine();
+    const items = real.slice(0, 8).map((p) => {
+      // Samme subtitle-form som fasevalgene: "Kaffe · Universitetsplassen".
+      const typeLabel = (eng && typeof eng.getSocialPlaceTypeLabel === "function")
+        ? eng.getSocialPlaceTypeLabel(p.socialPlaceType) : "";
+      const placePart = (p.placeLabel && p.placeLabel !== p.label) ? p.placeLabel : "";
+      const sub = [typeLabel, placePart].filter(Boolean).join(" · ");
+      return '<li class="civi-city-fallback-choice civi-city-phase-choice">' +
+        '<div class="civi-city-phase-choice-copy"><strong>' + esc(p.label || p.placeLabel || p.id) + '</strong>' +
+        (sub ? ' <small>' + esc(sub) + '</small>' : '') +
+        '</div><button type="button" class="civi-btn" data-civi-fallback-place="' + esc(p.id) + '">Gå hit</button></li>';
+    }).join("");
     return '<div class="civi-city-detail-section civi-city-fallback-choices">' +
       "<h4>" + esc("Velg et konkret " + typeWord + "sted") + "</h4>" +
-      '<p class="civi-city-detail-hint">' + esc("Viser sosiale " + typeWord + "steder i byen.") + "</p>" +
+      '<p class="civi-city-detail-hint">' +
+      esc("Kategoriinngang – velg et konkret sted for denne fasen.") + "</p>" +
       '<ul class="civi-city-detail-list">' + items + "</ul></div>";
   }
 
@@ -1373,6 +1425,7 @@
     resolvePreferredSocialLocation,
     buildFallbackSocialPlaceChoicesHtml,
     buildPlayerPhaseChoicesHtml,
+    buildChosenPlaceStatusHtml,
     applyPlayerChoiceFromDetail,
     getFriendInvites,
     closeDetail,
