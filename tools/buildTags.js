@@ -2,9 +2,31 @@
 // node tools/buildTags.js > data/tags.json
 
 import fs from "fs";
+import path from "path";
 
-function readJSON(path) {
-  return JSON.parse(fs.readFileSync(path, "utf-8"));
+function readJSON(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+}
+
+function normalizeDataPath(filePath) {
+  return filePath.startsWith("data/") ? filePath : path.join("data", filePath);
+}
+
+function readPeopleRows(filePath) {
+  const json = readJSON(filePath);
+  if (Array.isArray(json)) return json;
+  if (Array.isArray(json.people)) return json.people;
+  if (Array.isArray(json.items)) return json.items;
+  throw new Error(`Unsupported people file shape in ${filePath}`);
+}
+
+function readPeopleFromManifest(manifestPath) {
+  const manifest = readJSON(manifestPath);
+  if (!Array.isArray(manifest.files)) {
+    throw new Error(`${manifestPath} must contain a files array`);
+  }
+
+  return manifest.files.flatMap(filePath => readPeopleRows(normalizeDataPath(filePath)));
 }
 
 function titleCase(s) {
@@ -16,7 +38,7 @@ function titleCase(s) {
 }
 
 const places = readJSON("data/places.json");
-const people = readJSON("data/people.json");
+const people = readPeopleFromManifest("data/people/manifest.json");
 const placesOvBy = readJSON("data/overlays/by/places_by.json");
 const peopleOvBy = readJSON("data/overlays/by/people_by.json");
 
