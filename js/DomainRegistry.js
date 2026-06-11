@@ -3,7 +3,8 @@
 // DomainRegistry = EN sannhet for fag/editorial domenenavn
 // - Ingen implisitt normalisering / gjetting
 // - Alias må være eksplisitt
-// - resolve() returnerer canonical fag/editorial id, ikke nødvendigvis runtime badge-id
+// - resolve() returnerer canonical fag/editorial id
+// - popkultur er kortnavn for samme populærkultur-domene som runtime-id populaerkultur
 // - Fail-fast hvis noe er ukjent
 // ───────────────────────────────────────────────
 
@@ -26,10 +27,10 @@
 
   // Alias: kun det du eksplisitt tillater.
   // Nøkkel = det som kan dukke opp i data/UI/import, verdi = canonical fag/editorial id.
-  // NB: Runtime badge/category kan fortsatt bruke legacy-id-er som "populaerkultur".
-  // Bruk ikke resolve() direkte til badge-match uten en bevisst runtime-bro.
+  // NB: Runtime badge/category kan bruke lang id "populaerkultur" for samme domene.
+  // Bruk ikke resolve() til å lage et ekstra badge/progresjonsspor for "popkultur".
   const ALIASES = {
-    "populaerkultur": "popkultur", // legacy runtime/id → fag/editorial id
+    "populaerkultur": "popkultur", // lang runtime-id → kort fag/editorial id for samme badge
     "populærkultur": "popkultur",
     "popular_kultur": "popkultur",
     "popularculture": "popkultur",
