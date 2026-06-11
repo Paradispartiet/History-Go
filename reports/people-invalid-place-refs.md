@@ -1,21 +1,171 @@
 # People invalid place refs audit
 
-Generated: 2026-06-05T06:51:50.504Z
+Generated: 2026-06-11T04:27:23.252Z
 
 ## Sammendrag
 - People-filer lest: **27**
-- People lest: **424**
-- People med ugyldige refs: **0**
-- Ugyldige refs: **0**
-- Unike ugyldige placeId-er: **0**
-- People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **424**
+- People lest: **431**
+- People med ugyldige refs: **30**
+- Ugyldige refs: **64**
+- Unike ugyldige placeId-er: **10**
+- People uten gyldig sted: **30**
+- Duplikate interne place-referanser: **431**
 
 ## Ugyldige refs gruppert per fil/person
+### data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json
+- **eusebio** (Eusébio)
+  - lisbon_estadio_da_luz @ `placeId`
+  - lisbon_estadio_da_luz @ `places[0]`
+- **jose_alvalade** (José Alvalade)
+  - lisbon_estadio_jose_alvalade @ `placeId`
+  - lisbon_estadio_jose_alvalade @ `places[0]`
+- **mario_moniz_pereira** (Mário Moniz Pereira)
+  - lisbon_estadio_universitario @ `placeId`
+  - lisbon_estadio_universitario @ `places[0]`
+### data/people/sport/oslo/people_sport_oslo.json
+- **ada_hegerberg** (Ada Hegerberg)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **erling_haaland** (Erling Braut Haaland)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **ronny_deila** (Ronny Deila)
+  - valle_hovin_stadion @ `placeId`
+  - valle_hovin_stadion @ `places[0]`
+- **marit_bjorgen** (Marit Bjørgen)
+  - holmenkollen_nasjonalanlegg @ `placeId`
+  - holmenkollen_nasjonalanlegg @ `places[0]`
+- **therese_johaug** (Therese Johaug)
+  - holmenkollen_nasjonalanlegg @ `placeId`
+  - holmenkollen_nasjonalanlegg @ `places[0]`
+- **grete_waitz** (Grete Waitz)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **klanen** (Klanen (VIF))
+  - valle_hovin_stadion @ `placeId`
+  - valle_hovin_stadion @ `places[0]`
+- **sonja_henie** (Sonja Henie)
+  - frogner_stadion @ `placeId`
+  - frogner_stadion @ `places[0]`
+  - jordal_amfi @ `places[1]`
+- **oscar_mathisen** (Oscar Mathisen)
+  - frogner_stadion @ `placeId`
+  - frogner_stadion @ `places[0]`
+- **hjalmar_andersen** (Hjalmar Andersen)
+  - bislett_stadion @ `places[1]`
+  - frogner_stadion @ `placeId`
+  - frogner_stadion @ `places[0]`
+- **johann_olav_koss** (Johann Olav Koss)
+  - bislett_stadion @ `places[1]`
+  - frogner_stadion @ `placeId`
+  - frogner_stadion @ `places[0]`
+- **karsten_warholm** (Karsten Warholm)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **jakob_ingebrigtsen** (Jakob Ingebrigtsen)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **ingrid_kristiansen** (Ingrid Kristiansen)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **vebjorn_rodal** (Vebjørn Rodal)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **trine_hattestad** (Trine Hattestad)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **andreas_thorkildsen** (Andreas Thorkildsen)
+  - bislett_stadion @ `placeId`
+  - bislett_stadion @ `places[0]`
+- **kjetil_andre_aamodt** (Kjetil André Aamodt)
+  - holmenkollen_nasjonalanlegg @ `placeId`
+  - holmenkollen_nasjonalanlegg @ `places[0]`
+- **lasse_kjus** (Lasse Kjus)
+  - holmenkollen_nasjonalanlegg @ `placeId`
+  - holmenkollen_nasjonalanlegg @ `places[0]`
+- **cecilie_leganger** (Cecilie Leganger)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **nora_mork** (Nora Mørk)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **sander_sagosen** (Sander Sagosen)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **ole_gunnar_solskjaer** (Ole Gunnar Solskjær)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **nils_arne_eggen** (Nils Arne Eggen)
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **lyn_fotball** (Lyn Fotball)
+  - frogner_stadion @ `places[1]`
+  - ullevaal_stadion @ `placeId`
+  - ullevaal_stadion @ `places[0]`
+- **skeid_fotball** (Skeid Fotball)
+  - nordre_aasen_idrettspark @ `placeId`
+  - nordre_aasen_idrettspark @ `places[0]`
+- **oslo_skoiteklub** (Oslo Skøiteklub)
+  - frogner_stadion @ `placeId`
+  - frogner_stadion @ `places[0]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
+- **bislett_stadion** (likely_rename_to_existing_place, 16 treff)
+  - bislett (confidence: medium)
+- **ullevaal_stadion** (missing_place_candidate, 16 treff)
+  - missing_place_candidate
+- **frogner_stadion** (missing_place_candidate, 11 treff)
+  - missing_place_candidate
+- **holmenkollen_nasjonalanlegg** (missing_place_candidate, 8 treff)
+  - missing_place_candidate
+- **valle_hovin_stadion** (missing_place_candidate, 4 treff)
+  - missing_place_candidate
+- **lisbon_estadio_da_luz** (needs_manual_review, 2 treff)
+  - lisbon_assembleia_da_republica (confidence: low)
+  - lisbon_avenida_da_liberdade (confidence: low)
+  - lisbon_feira_da_ladra (confidence: low)
+  - lisbon_jardim_da_estrela (confidence: low)
+  - lisbon_mercado_da_ribeira (confidence: low)
+- **lisbon_estadio_jose_alvalade** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **lisbon_estadio_universitario** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **nordre_aasen_idrettspark** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **jordal_amfi** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
 
 ## People uten gyldig sted
+- data/people/sport/oslo/people_sport_oslo.json :: ada_hegerberg (Ada Hegerberg)
+- data/people/sport/oslo/people_sport_oslo.json :: erling_haaland (Erling Braut Haaland)
+- data/people/sport/oslo/people_sport_oslo.json :: ronny_deila (Ronny Deila)
+- data/people/sport/oslo/people_sport_oslo.json :: marit_bjorgen (Marit Bjørgen)
+- data/people/sport/oslo/people_sport_oslo.json :: therese_johaug (Therese Johaug)
+- data/people/sport/oslo/people_sport_oslo.json :: grete_waitz (Grete Waitz)
+- data/people/sport/oslo/people_sport_oslo.json :: klanen (Klanen (VIF))
+- data/people/sport/oslo/people_sport_oslo.json :: sonja_henie (Sonja Henie)
+- data/people/sport/oslo/people_sport_oslo.json :: oscar_mathisen (Oscar Mathisen)
+- data/people/sport/oslo/people_sport_oslo.json :: hjalmar_andersen (Hjalmar Andersen)
+- data/people/sport/oslo/people_sport_oslo.json :: johann_olav_koss (Johann Olav Koss)
+- data/people/sport/oslo/people_sport_oslo.json :: karsten_warholm (Karsten Warholm)
+- data/people/sport/oslo/people_sport_oslo.json :: jakob_ingebrigtsen (Jakob Ingebrigtsen)
+- data/people/sport/oslo/people_sport_oslo.json :: ingrid_kristiansen (Ingrid Kristiansen)
+- data/people/sport/oslo/people_sport_oslo.json :: vebjorn_rodal (Vebjørn Rodal)
+- data/people/sport/oslo/people_sport_oslo.json :: trine_hattestad (Trine Hattestad)
+- data/people/sport/oslo/people_sport_oslo.json :: andreas_thorkildsen (Andreas Thorkildsen)
+- data/people/sport/oslo/people_sport_oslo.json :: kjetil_andre_aamodt (Kjetil André Aamodt)
+- data/people/sport/oslo/people_sport_oslo.json :: lasse_kjus (Lasse Kjus)
+- data/people/sport/oslo/people_sport_oslo.json :: cecilie_leganger (Cecilie Leganger)
+- data/people/sport/oslo/people_sport_oslo.json :: nora_mork (Nora Mørk)
+- data/people/sport/oslo/people_sport_oslo.json :: sander_sagosen (Sander Sagosen)
+- data/people/sport/oslo/people_sport_oslo.json :: ole_gunnar_solskjaer (Ole Gunnar Solskjær)
+- data/people/sport/oslo/people_sport_oslo.json :: nils_arne_eggen (Nils Arne Eggen)
+- data/people/sport/oslo/people_sport_oslo.json :: lyn_fotball (Lyn Fotball)
+- data/people/sport/oslo/people_sport_oslo.json :: skeid_fotball (Skeid Fotball)
+- data/people/sport/oslo/people_sport_oslo.json :: oslo_skoiteklub (Oslo Skøiteklub)
+- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: eusebio (Eusébio)
+- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: jose_alvalade (José Alvalade)
+- data/people/sport/europe/portugal/lisbon/people_sport_lisbon.json :: mario_moniz_pereira (Mário Moniz Pereira)
 
 ## Duplikate place-referanser inne i people
 - data/people/by/oslo/people_by_oslo.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
@@ -35,6 +185,7 @@ Generated: 2026-06-05T06:51:50.504Z
 - data/people/by/oslo/people_by_oslo.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
 - data/people/by/oslo/people_by_oslo.json :: thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen x2
 - data/people/by/oslo/people_by_oslo.json :: geir_grung (Geir Grung) -> tjuvholmen x2
+- data/people/by/oslo/people_by_oslo.json :: fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park x2
 - data/people/historie/oslo/people_historie_oslo.json :: kong_sverre (Kong Sverre Sigurdsson) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: haakon_vii_krigstid (Haakon VII (krigstiden)) -> oslo_radhus x2
 - data/people/historie/oslo/people_historie_oslo.json :: olav_den_hellige (Olav den hellige) -> oslo_domkirke x2
@@ -202,6 +353,11 @@ Generated: 2026-06-05T06:51:50.504Z
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: rui_alegre (Rui Alegre) -> lisbon_terminal_de_cruzeiros x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: manuel_tainha (Manuel Tainha) -> lisbon_pestana_palace_hotel x2
 - data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: eduardo_souto_de_moura (Eduardo Souto de Moura) -> lisbon_bairro_alto_hotel_praca_luis_de_camoes x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: reinaldo_manuel_dos_santos (Reinaldo Manuel dos Santos) -> lisbon_cordoaria_nacional x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: fernando_da_silva_ferreira (Fernando da Silva Ferreira) -> lisbon_conserveira_de_lisboa x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: angel_arribas_ugarte (Ángel Arribas Ugarte) -> lisbon_santa_apolonia_station x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: manuel_aires_mateus (Manuel Aires Mateus) -> lisbon_edp_headquarters x2
+- data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json :: miguel_fontes (Miguel Fontes) -> lisbon_hub_criativo_do_beato x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
@@ -412,6 +568,7 @@ Generated: 2026-06-05T06:51:50.504Z
 - data/people/musikk/oslo/people_musikk_oslo.json :: gabrielle (Gabrielle) -> barcode x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: arif (Arif) -> stovnertarnet x2
 - data/people/musikk/oslo/people_musikk_oslo.json :: edvard_grieg (Edvard Grieg) -> operahuset x2
+- data/people/musikk/oslo/people_musikk_oslo.json :: rikard_nordraak (Rikard Nordraak) -> var_frelsers_gravlund x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: maria_severa (Maria Severa) -> lisbon_mouraria_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: alfredo_marceneiro (Alfredo Marceneiro) -> lisbon_museu_do_fado x2
 - data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json :: carlos_do_carmo (Carlos do Carmo) -> lisbon_museu_do_fado x2
@@ -444,3 +601,13 @@ Generated: 2026-06-05T06:51:50.504Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch
+- bislett_stadion (likely_rename_to_existing_place, 16 treff)
+- ullevaal_stadion (missing_place_candidate, 16 treff)
+- frogner_stadion (missing_place_candidate, 11 treff)
+- holmenkollen_nasjonalanlegg (missing_place_candidate, 8 treff)
+- valle_hovin_stadion (missing_place_candidate, 4 treff)
+- lisbon_estadio_da_luz (needs_manual_review, 2 treff)
+- lisbon_estadio_jose_alvalade (missing_place_candidate, 2 treff)
+- lisbon_estadio_universitario (missing_place_candidate, 2 treff)
+- nordre_aasen_idrettspark (missing_place_candidate, 2 treff)
+- jordal_amfi (missing_place_candidate, 1 treff)
