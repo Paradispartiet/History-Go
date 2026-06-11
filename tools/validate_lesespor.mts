@@ -4,7 +4,38 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
-const repoRoot = path.resolve(path.dirname(__filename), '..');
+const currentDir = path.dirname(__filename);
+const repoRoot = path.basename(path.dirname(currentDir)) === 'dist'
+  ? path.resolve(currentDir, '..', '..')
+  : path.resolve(currentDir, '..');
+
+type JsonObject = Record<string, unknown>;
+type JsonArray = unknown[];
+type LesesporManifest = JsonObject & {
+  files?: unknown;
+};
+type BadgeIndex = JsonObject & {
+  files?: unknown;
+};
+type LesesporDocument = JsonObject & {
+  schema?: unknown;
+  city?: unknown;
+  category?: unknown;
+  rights_policy?: unknown;
+  items?: unknown;
+};
+type LesesporItem = JsonObject & {
+  id?: unknown;
+  access?: unknown;
+  url?: unknown;
+  title?: unknown;
+  relevance?: unknown;
+  source_quality?: unknown;
+  curation_status?: unknown;
+  category_hints?: unknown;
+  place_ids?: unknown;
+  person_ids?: unknown;
+};
 
 const MANIFEST_PATH = 'data/lesespor/manifest.json';
 const BADGE_INDEX_PATH = 'data/badges/index.json';
@@ -13,13 +44,13 @@ const PLACES_ROOT = 'data/places';
 const EXPECTED_SCHEMA = 'history_go_lesespor_v1';
 const EXPECTED_CITY = 'oslo';
 const ALLOWED_ACCESS = 'open';
-const ALLOWED_SOURCE_QUALITIES = new Set([
+const ALLOWED_SOURCE_QUALITIES = new Set<unknown>([
   'recognized',
   'institutional',
   'scholarly',
   'canonical',
 ]);
-const ALLOWED_CURATION_STATUSES = new Set([
+const ALLOWED_CURATION_STATUSES = new Set<unknown>([
   'strong_candidate',
   'approved',
 ]);
@@ -31,34 +62,34 @@ const FORBIDDEN_ITEM_FIELDS = new Set([
   'content',
 ]);
 
-const errors = [];
-const warnings = [];
+const errors: string[] = [];
+const warnings: string[] = [];
 
-function rel(...parts) {
+function rel(...parts: string[]): string {
   return path.join(...parts).split(path.sep).join('/');
 }
 
-function fromRoot(...parts) {
+function fromRoot(...parts: string[]): string {
   return path.join(repoRoot, ...parts);
 }
 
-async function readJson(relativePath) {
+async function readJson(relativePath: string): Promise<unknown> {
   const absolutePath = fromRoot(relativePath);
   let raw;
   try {
     raw = await readFile(absolutePath, 'utf8');
   } catch (error) {
-    throw new Error(`could not read ${relativePath}: ${error.message}`);
+    throw new Error(`could not read ${relativePath}: ${(error as Error).message}`);
   }
 
   try {
     return JSON.parse(raw);
   } catch (error) {
-    throw new Error(`invalid JSON in ${relativePath}: ${error.message}`);
+    throw new Error(`invalid JSON in ${relativePath}: ${(error as Error).message}`);
   }
 }
 
-async function fileExists(relativePath) {
+async function fileExists(relativePath: string): Promise<boolean> {
   try {
     await readFile(fromRoot(relativePath));
     return true;
@@ -67,10 +98,10 @@ async function fileExists(relativePath) {
   }
 }
 
-async function findJsonFiles(relativeDir) {
+async function findJsonFiles(relativeDir: string): Promise<string[]> {
   const absoluteDir = fromRoot(relativeDir);
   const entries = await readdir(absoluteDir, { withFileTypes: true });
-  const files = [];
+  const files: string[] = [];
 
   for (const entry of entries) {
     const relativePath = rel(relativeDir, entry.name);
@@ -84,24 +115,24 @@ async function findJsonFiles(relativeDir) {
   return files.sort();
 }
 
-function categoryFromLesesporFilename(relativePath) {
+function categoryFromLesesporFilename(relativePath: string): string | null {
   const basename = path.basename(relativePath, '.json');
   const match = basename.match(/^lesespor_oslo_(.+)$/);
   return match?.[1] ?? null;
 }
 
-function addError(message) {
+function addError(message: string): void {
   errors.push(message);
 }
 
-function addWarning(message) {
+function addWarning(message: string): void {
   warnings.push(message);
 }
 
-function extractPlaceIds(document) {
+function extractPlaceIds(document: unknown): string[] {
   if (Array.isArray(document)) {
     return document
-      .filter((entry) => entry && typeof entry === 'object' && typeof entry.id === 'string')
+      .filter((entry): entry is JsonObject & { id: string } => Boolean(entry) && typeof entry === 'object' && typeof (entry as JsonObject).id === 'string')
       .map((entry) => entry.id);
   }
 
@@ -109,22 +140,23 @@ function extractPlaceIds(document) {
     return [];
   }
 
+  const documentObject = document as JsonObject;
   for (const collectionKey of ['places', 'items', 'features']) {
-    if (Array.isArray(document[collectionKey])) {
-      return document[collectionKey]
-        .filter((entry) => entry && typeof entry === 'object' && typeof entry.id === 'string')
+    if (Array.isArray(documentObject[collectionKey])) {
+      return documentObject[collectionKey]
+        .filter((entry): entry is JsonObject & { id: string } => Boolean(entry) && typeof entry === 'object' && typeof (entry as JsonObject).id === 'string')
         .map((entry) => entry.id);
     }
   }
 
-  return typeof document.id === 'string' ? [document.id] : [];
+  return typeof documentObject.id === 'string' ? [documentObject.id] : [];
 }
 
-function isNonEmptyString(value) {
+function isNonEmptyString(value: unknown): boolean {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-function validateArrayField(file, itemId, fieldName, value) {
+function validateArrayField(file: string, itemId: string, fieldName: string, value: unknown): JsonArray {
   if (value === undefined) {
     return [];
   }
@@ -137,12 +169,12 @@ function validateArrayField(file, itemId, fieldName, value) {
   return value;
 }
 
-const manifest = await readJson(MANIFEST_PATH);
-const badgeIndex = await readJson(BADGE_INDEX_PATH);
-const badgeCategories = new Set(
-  (badgeIndex.files ?? []).map((file) => path.basename(file, '.json')),
+const manifest = await readJson(MANIFEST_PATH) as LesesporManifest;
+const badgeIndex = await readJson(BADGE_INDEX_PATH) as BadgeIndex;
+const badgeCategories = new Set<unknown>(
+  ((badgeIndex.files ?? []) as string[]).map((file) => path.basename(file, '.json')),
 );
-const manifestFiles = manifest.files ?? [];
+const manifestFiles = (manifest.files ?? []) as string[];
 
 if (!Array.isArray(manifestFiles)) {
   addError(`${MANIFEST_PATH}: files must be an array`);
@@ -164,7 +196,7 @@ for (const file of osloLesesporFiles) {
   }
 }
 
-const placeIds = new Set();
+const placeIds = new Set<unknown>();
 const placeFiles = await findJsonFiles(PLACES_ROOT);
 for (const file of placeFiles.filter((candidate) => candidate.includes('/oslo/'))) {
   try {
@@ -173,18 +205,18 @@ for (const file of placeFiles.filter((candidate) => candidate.includes('/oslo/')
       placeIds.add(id);
     }
   } catch (error) {
-    addError(error.message);
+    addError((error as Error).message);
   }
 }
 
-const itemCategoriesById = new Map();
+const itemCategoriesById = new Map<string, unknown[]>();
 
 for (const file of osloLesesporFiles) {
-  let document;
+  let document: LesesporDocument;
   try {
-    document = await readJson(file);
+    document = await readJson(file) as LesesporDocument;
   } catch (error) {
-    addError(error.message);
+    addError((error as Error).message);
     continue;
   }
 
@@ -218,14 +250,15 @@ for (const file of osloLesesporFiles) {
     continue;
   }
 
-  const idsInFile = new Set();
+  const idsInFile = new Set<string>();
   for (const [index, item] of document.items.entries()) {
     if (!item || typeof item !== 'object' || Array.isArray(item)) {
       addError(`${file}: item at index ${index} must be an object`);
       continue;
     }
 
-    const itemId = typeof item.id === 'string' && item.id.length > 0 ? item.id : `<index ${index}>`;
+    const itemRecord = item as LesesporItem;
+    const itemId = typeof itemRecord.id === 'string' && itemRecord.id.length > 0 ? itemRecord.id : `<index ${index}>`;
     if (itemId.startsWith('<index ')) {
       addError(`${file}: item at index ${index} must have a non-empty string id`);
     } else if (idsInFile.has(itemId)) {
@@ -234,45 +267,45 @@ for (const file of osloLesesporFiles) {
       idsInFile.add(itemId);
     }
 
-    if (item.access !== ALLOWED_ACCESS) {
+    if (itemRecord.access !== ALLOWED_ACCESS) {
       addError(`${file}: item ${itemId} access must be ${JSON.stringify(ALLOWED_ACCESS)}`);
     }
 
-    if (typeof item.url !== 'string' || item.url.trim().length === 0) {
+    if (typeof itemRecord.url !== 'string' || itemRecord.url.trim().length === 0) {
       addError(`${file}: item ${itemId} must have a non-empty string url`);
     }
 
-    if (!isNonEmptyString(item.title)) {
+    if (!isNonEmptyString(itemRecord.title)) {
       addError(`${file}: item ${itemId} must have a non-empty title`);
     }
 
-    if (!isNonEmptyString(item.relevance)) {
+    if (!isNonEmptyString(itemRecord.relevance)) {
       addError(`${file}: item ${itemId} must have a non-empty relevance`);
     }
 
-    if (!ALLOWED_SOURCE_QUALITIES.has(item.source_quality)) {
+    if (!ALLOWED_SOURCE_QUALITIES.has(itemRecord.source_quality)) {
       addError(`${file}: item ${itemId} source_quality must be one of ${[...ALLOWED_SOURCE_QUALITIES].join(', ')}`);
     }
 
-    if (!ALLOWED_CURATION_STATUSES.has(item.curation_status)) {
+    if (!ALLOWED_CURATION_STATUSES.has(itemRecord.curation_status)) {
       addError(`${file}: item ${itemId} curation_status must be one of ${[...ALLOWED_CURATION_STATUSES].join(', ')}`);
     }
 
     for (const forbiddenField of FORBIDDEN_ITEM_FIELDS) {
-      if (Object.hasOwn(item, forbiddenField)) {
+      if (Object.hasOwn(itemRecord, forbiddenField)) {
         addError(`${file}: item ${itemId} contains forbidden full-text field ${forbiddenField}`);
       }
     }
 
-    const categoryHints = validateArrayField(file, itemId, 'category_hints', item.category_hints);
+    const categoryHints = validateArrayField(file, itemId, 'category_hints', itemRecord.category_hints);
     for (const categoryHint of categoryHints) {
       if (!badgeCategories.has(categoryHint)) {
         addError(`${file}: item ${itemId} has category_hints value that is not a badge category: ${JSON.stringify(categoryHint)}`);
       }
     }
 
-    const itemPlaceIds = validateArrayField(file, itemId, 'place_ids', item.place_ids);
-    const itemPersonIds = validateArrayField(file, itemId, 'person_ids', item.person_ids);
+    const itemPlaceIds = validateArrayField(file, itemId, 'place_ids', itemRecord.place_ids);
+    const itemPersonIds = validateArrayField(file, itemId, 'person_ids', itemRecord.person_ids);
 
     if (itemPlaceIds.length === 0 && itemPersonIds.length === 0) {
       addError(`${file}: item ${itemId} must reference at least one place_id or person_id`);
@@ -287,7 +320,7 @@ for (const file of osloLesesporFiles) {
     if (!itemCategoriesById.has(itemId)) {
       itemCategoriesById.set(itemId, []);
     }
-    itemCategoriesById.get(itemId).push(document.category);
+    itemCategoriesById.get(itemId)?.push(document.category);
   }
 }
 
