@@ -140,3 +140,131 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.aha-module-shell {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  color: #17202a;
+}
+
+.aha-module-header,
+.aha-module-actions,
+.aha-module-body,
+.aha-module-advanced {
+  border: 1px solid #d8dee6;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 1rem;
+}
+
+.aha-module-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.35rem 0.75rem;
+  align-items: start;
+}
+
+.aha-module-title,
+.aha-module-purpose,
+.aha-module-body p,
+.aha-module-advanced p {
+  margin: 0;
+}
+
+.aha-module-purpose {
+  grid-column: 1 / -1;
+  color: #52616f;
+}
+
+.aha-module-health {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 999px;
+  background: #edf2f7;
+  padding: 0.25rem 0.65rem;
+  color: #344050;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.aha-module-health--ready { background: #e6f6ec; color: #176b3a; }
+.aha-module-health--warning { background: #fff4d6; color: #825b00; }
+.aha-module-health--blocked { background: #fff1f0; color: #b42318; }
+.aha-module-health--empty,
+.aha-module-health--missing,
+.aha-module-health--unknown { background: #edf2f7; color: #52616f; }
+
+.aha-module-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.aha-module-action {
+  max-width: 100%;
+  border: 1px solid #9aa7b5;
+  border-radius: 0.5rem;
+  background: #fff;
+  padding: 0.6rem 0.9rem;
+  color: #17202a;
+  font: inherit;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  text-align: center;
+  text-decoration: none;
+}
+
+.aha-module-action--primary {
+  border-color: #1f5f99;
+  background: #1f5f99;
+  color: #fff;
+}
+
+.aha-module-action[disabled] {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.aha-module-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.aha-module-empty-state { color: #52616f; }
+.aha-module-error-state { color: #b42318; }
+
+.aha-module-advanced summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.aha-module-detail {
+  margin-top: 0.75rem !important;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 40rem) {
+  .aha-module-header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aha-module-purpose {
+    grid-column: auto;
+  }
+
+  .aha-module-health {
+    justify-self: start;
+  }
+
+  .aha-module-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .aha-module-action {
+    width: 100%;
+  }
+}
