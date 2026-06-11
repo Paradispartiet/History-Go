@@ -21,7 +21,7 @@ The same id must be used when the same concept appears in:
 - fag/emne subject id
 - epoke domain id, when an epoke file exists
 
-Do not introduce parallel ids for the same concept.
+Do not introduce parallel badges for the same concept.
 Use aliases only at import/normalization boundaries.
 
 ## 2. Runtime ids in active use now
@@ -44,48 +44,47 @@ These ids are active runtime ids because they are already used by badge/category
 | `vitenskap` | active | science domain |
 | `film_tv` | active badge domain | film/TV is its own badge/category domain |
 | `media` | active badge domain | media/journalism is its own badge/category domain |
-| `populaerkultur` | active legacy runtime id | popular culture badge/category id today |
+| `populaerkultur` | active badge domain | popular culture badge/category id today; `popkultur` is its short fag/editorial alias |
 
-## 3. Editorial target ids
+## 3. Editorial / short ids
 
-These are the ids we want new subject/fag production to use going forward:
+These ids are allowed as fag/editorial ids or short aliases. They must not become separate badges unless this file is changed deliberately.
 
-| target id | rule |
+| short/editorial id | rule |
 |---|---|
-| `popkultur` | editorial/fag target for popular culture |
+| `popkultur` | short form of `populaerkultur`; same badge/domain, not a second badge |
 | `film_tv` | keep as its own badge/domain, not a child of `popkultur` |
 | `media` | keep as its own badge/domain, not a child of `popkultur` |
 | `vitenskap` | includes philosophy-related material; do not add `filosofi` as a top-level runtime domain |
 | `kunst` | includes theatre/scenekunst as subfields unless a separate runtime domain is deliberately created |
 
-Important: `popkultur` is the editorial target, but runtime still has `populaerkultur` in active badge/category data. Do not mix the two in new runtime code. Normalize deliberately.
+Important: `popkultur` and `populaerkultur` name the same popular-culture domain. Runtime badge/category data currently uses the long id `populaerkultur`; fag/editorial files may use the short id `popkultur`. Do not create two badge files or two user progression tracks for them.
 
-## 4. Aliases and legacy ids
+## 4. Aliases and non-top-level ids
 
-Aliases are allowed only in a normalizer/registry layer, not directly in new data.
+Aliases are allowed only in a normalizer/registry layer, not directly as new badge domains.
 
-| alias / legacy | canonical target | note |
+| alias / id | canonical fag/editorial target | note |
 |---|---|---|
-| `populaerkultur` | `popkultur` | legacy runtime id; migrate carefully because badges, places and merits can depend on it |
+| `populaerkultur` | `popkultur` | long runtime id for the same populærkultur badge/domain |
 | `populærkultur` | `popkultur` | spelling alias |
 | `popular_culture` | `popkultur` | English/import alias |
 | `filosofi` | `vitenskap` | philosophy belongs under science/knowledge, not as top-level badge now |
 | `scenekunst` | `kunst` | subfield, not top-level runtime badge unless explicitly promoted later |
 | `teater` | `kunst` | subfield unless a later theatre/scenekunst domain is deliberately created |
 
-## 5. Current exceptions to clean later
+## 5. Current decisions
 
-These are known exceptions. Do not expand them by producing more data in both forms.
-
-### `popkultur` vs `populaerkultur`
-
-Current repo contains `data/fag/popkultur/...`, while badge/progression still has `populaerkultur` active.
+### `popkultur` and `populaerkultur`
 
 Decision:
 
-- New fag/emne data: use `popkultur` path/id.
-- Existing runtime category/badge data: keep `populaerkultur` until a single migration patch updates all dependent places, badges, merits, quiz links and aliases together.
-- Do not create a second active badge file named `popkultur.json` while `populaerkultur.json` is active.
+- They are the same badge/domain.
+- `populaerkultur` remains the active runtime badge/category id for now.
+- `popkultur` is the short fag/editorial id and alias.
+- Do not create `data/badges/popkultur.json` while `data/badges/populaerkultur.json` exists.
+- Do not create a second merit/progression track for `popkultur`.
+- Any future rename from `populaerkultur` to `popkultur` must be one complete migration across places, badges, merits, quiz links, profile state and aliases.
 
 ### `film_tv` and `media`
 
@@ -153,7 +152,7 @@ Subject data should live under:
 data/fag/<subject_id>/
 ```
 
-The subject id must be either an active runtime id or an editorial target id that is explicitly covered by alias normalization in this contract.
+The subject id must be either an active runtime id or an editorial/short id that is explicitly covered by alias normalization in this contract.
 
 ### Epoker
 
@@ -176,8 +175,8 @@ If the id is not listed here:
 
 Recommended order:
 
-1. Add/verify `DomainRegistry` aliases for `populaerkultur -> popkultur`, `filosofi -> vitenskap`, `scenekunst -> kunst`.
-2. Audit `js/core/categories.js` and mark which entries are top-level domains vs subfields.
-3. Keep `film_tv` and `media` as their own badge domains.
-4. Only after that, migrate `populaerkultur` runtime id to `popkultur` if desired.
+1. Keep `populaerkultur` and `popkultur` as one badge/domain with two accepted names.
+2. Keep `film_tv` and `media` as their own badge domains.
+3. Audit data that accidentally treats `popkultur` as a second runtime badge.
+4. Only if desired later, migrate the runtime id `populaerkultur` to `popkultur` in one complete patch.
 5. Then continue epoke production using this contract.
