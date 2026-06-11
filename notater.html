@@ -48,8 +48,9 @@
 
       // hent både personer og steder, slik at vi kan vise kontekst
       Promise.all([
-        fetch("/data/people.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
-        fetch("/data/places.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])    ])
+        loadPeopleForNotes(),
+        fetch("/data/places.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])
+      ])
         .then(([people, places]) => {
           const peopleMap = {};
           (people || []).forEach(p => { if (p && p.id) peopleMap[p.id] = p.name; });
@@ -62,6 +63,40 @@
         .catch(() => {
           renderNotes(root, notes, {}, {});
         });
+    }
+
+    function normalizePeopleManifestPath(entry) {
+      const raw = String(entry || "").trim().replace(/^\.?\//, "");
+      if (!raw) return null;
+      return raw.startsWith("data/") ? raw : `data/${raw}`;
+    }
+
+    function normalizePeopleRows(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data && data.people)) return data.people;
+      if (Array.isArray(data && data.items)) return data.items;
+      return [];
+    }
+
+    function loadPeopleForNotes() {
+      return fetch("/data/people/manifest.json", { cache: "no-store" })
+        .then(r => r.json())
+        .then(manifest => {
+          const files = Array.isArray(manifest && manifest.files)
+            ? manifest.files.map(normalizePeopleManifestPath).filter(Boolean)
+            : [];
+
+          if (!files.length) return [];
+
+          return Promise.all(files.map(file => (
+            fetch(`/${file}`, { cache: "no-store" })
+              .then(r => r.json())
+              .then(normalizePeopleRows)
+              .catch(() => [])
+          )));
+        })
+        .then(groups => (Array.isArray(groups) ? groups.flat() : []))
+        .catch(() => []);
     }
 
     function renderNotes(root, notes, peopleMap, placesMap) {
