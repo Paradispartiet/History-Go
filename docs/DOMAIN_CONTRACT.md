@@ -42,9 +42,9 @@ These ids are active runtime ids because they are already used by badge/category
 | `sport` | active | sport domain |
 | `subkultur` | active | subculture domain |
 | `vitenskap` | active | science domain |
+| `film_tv` | active badge domain | film/TV is its own badge/category domain |
+| `media` | active badge domain | media/journalism is its own badge/category domain |
 | `populaerkultur` | active legacy runtime id | popular culture badge/category id today |
-| `film_tv` | active legacy runtime id | film/TV badge/category id today |
-| `media` | active legacy runtime id | media badge/category id today |
 
 ## 3. Editorial target ids
 
@@ -53,6 +53,8 @@ These are the ids we want new subject/fag production to use going forward:
 | target id | rule |
 |---|---|
 | `popkultur` | editorial/fag target for popular culture |
+| `film_tv` | keep as its own badge/domain, not a child of `popkultur` |
+| `media` | keep as its own badge/domain, not a child of `popkultur` |
 | `vitenskap` | includes philosophy-related material; do not add `filosofi` as a top-level runtime domain |
 | `kunst` | includes theatre/scenekunst as subfields unless a separate runtime domain is deliberately created |
 
@@ -87,11 +89,13 @@ Decision:
 
 ### `film_tv` and `media`
 
-`film_tv` and `media` are active legacy runtime domains today.
+`film_tv` and `media` are active badge domains.
 
 Decision:
 
-- Keep them active until we decide whether they remain separate top-level badges or become subdomains under `popkultur`.
+- Keep `film_tv` as its own top-level badge/domain.
+- Keep `media` as its own top-level badge/domain.
+- Do not collapse them into `popkultur`; they represent different knowledge tracks and progression.
 - Do not add new unrelated domain ids such as `film`, `tv`, `kino`, `journalistikk` as top-level runtime ids without updating this file first.
 
 ### `scenekunst`
@@ -174,6 +178,6 @@ Recommended order:
 
 1. Add/verify `DomainRegistry` aliases for `populaerkultur -> popkultur`, `filosofi -> vitenskap`, `scenekunst -> kunst`.
 2. Audit `js/core/categories.js` and mark which entries are top-level domains vs subfields.
-3. Decide whether `film_tv` and `media` remain top-level or move under `popkultur`.
+3. Keep `film_tv` and `media` as their own badge domains.
 4. Only after that, migrate `populaerkultur` runtime id to `popkultur` if desired.
 5. Then continue epoke production using this contract.
