@@ -91,8 +91,8 @@ assert.ok(resolver, "CivicationSocialPlaceResolver skal være lastet");
 const brandMaster = readJSON("data/brands/brands_master.json");
 const brandByPlace = readJSON("data/brands/brands_by_place.json");
 const placesBy = readJSON("data/places/by/oslo/places_by.json");
-const placesSport = readJSON("data/places/sport/oslo/places_sport.json");
-const placesPlaygrounds = readJSON("data/places/sport/oslo/places_oslo_lekeplasser_trening.json");
+const placesSport = readJSON("data/places/sport/europa/norway/oslo_sport.json");
+const placesPlaygrounds = readJSON("data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json");
 const allPlaces = [].concat(placesBy, placesSport, placesPlaygrounds);
 
 // baseOpts dekker brand-baserte steder (place-metadata fra places_by).

@@ -598,6 +598,212 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Venners generiske faseplassering -> ekte socialPlace (Del A/B)
+  // ---------------------------------------------------------------------------
+  // Vennenes faseplaner (presenceByPhase / phase snapshots) kan peke til
+  // generiske sosiale noder ("cafe", "culture", "football" …). Når det finnes
+  // ekte, konkrete socialPlaces (fra CivicationSocialPlaceResolver) av riktig
+  // type, skal personmarkøren stå på et KONKRET sted i byen i stedet for en
+  // generisk kategoriinngang.
+  //
+  // Resolveren er REN og DETERMINISTISK:
+  //   - Konkret brand_place:* / place:* beholdes uendret.
+  //   - Systemnoder (Hjem/Arbeid/NAV/Psykologirommet) beholdes.
+  //   - Venners simulerte hjem (friend_home_demo_*) beholdes.
+  //   - Generisk sosial node mappes til konkret socialPlace når data finnes.
+  //   - Uten konkrete steder beholdes den generiske fallback-noden.
+  //   - Mangler resolveren data, gjettes det ALDRI.
+  //
+  // Determinisme (Del B): valget er en stabil hash av friendId + fase + generisk
+  // locationId, så samme person på samme fase alltid får samme konkrete sted –
+  // ingen tilfeldig hopping mellom render. Ulike venner kan få ulike steder.
+
+  // Generisk sosial locationId -> ordnet liste over foretrukne socialPlaceType-er.
+  // Første treff med konkrete steder vinner (coffee prioriteres for cafe osv.).
+  const GENERIC_LOCATION_SOCIAL_PLACE_TYPES = {
+    cafe: ["coffee", "hospitality_food"],
+    culture: ["culture"],
+    football: ["sport_football"],
+    park: ["park_public_space"],
+    store: ["retail_social"],
+    gym: ["sport_football"],
+    library: ["book_library"],
+    book: ["book_library"]
+  };
+
+  // Vennens rolle -> socialPlaceType-er som vektes høyere (lett, testbar vekting).
+  // Brukes KUN til å omordne typene en generisk node allerede kan mappe til –
+  // den introduserer aldri en type den generiske noden ikke peker på.
+  const ROLE_SOCIAL_PLACE_PRIORITY = {
+    barista: ["coffee", "hospitality_food", "culture"],
+    student: ["book_library", "culture", "coffee", "retail_social"],
+    lagermedarbeider: ["sport_football", "retail_social"],
+    hjelpepleier: []
+  };
+
+  // Er locationId et konkret ekte sosialt sted (brand_place:* eller place:*)?
+  function isConcreteSocialLocationId(locationId) {
+    const id = norm(locationId);
+    return /^brand_place:/.test(id) || /^place:/.test(id);
+  }
+
+  // Foretrukne socialPlaceType-er for en generisk locationId, justert av rollen.
+  function getPreferredSocialPlaceTypesForGeneric(locationId, friend) {
+    const id = norm(locationId).toLowerCase();
+    const base = GENERIC_LOCATION_SOCIAL_PLACE_TYPES[id];
+    if (!Array.isArray(base) || !base.length) return [];
+    const role = norm(friend && friend.role).toLowerCase();
+    const rolePrefs = ROLE_SOCIAL_PLACE_PRIORITY[role] || [];
+    return base.slice().sort((a, b) => {
+      const ra = rolePrefs.indexOf(a);
+      const rb = rolePrefs.indexOf(b);
+      const wa = ra === -1 ? 999 : ra;
+      const wb = rb === -1 ? 999 : rb;
+      if (wa !== wb) return wa - wb;
+      return base.indexOf(a) - base.indexOf(b);
+    });
+  }
+
+  // Konkrete sosiale steder av en gitt socialPlaceType fra context, stabilt
+  // sortert på locationId (deterministisk). context kan ha en eksplisitt
+  // socialPlaces-liste eller utlede den fra context.locations.
+  function socialPlacesOfType(context, socialPlaceType) {
+    const ctx = context && typeof context === "object" ? context : {};
+    const type = norm(socialPlaceType);
+    if (!type) return [];
+    let list = Array.isArray(ctx.socialPlaces) ? ctx.socialPlaces : null;
+    if (!list) {
+      list = (Array.isArray(ctx.locations) ? ctx.locations : []).filter(isRealSocialPlace);
+    }
+    return list
+      .filter((p) => norm(p && p.socialPlaceType) === type)
+      .slice()
+      .sort((a, b) => {
+        const ai = norm(a && (a.locationId || a.id));
+        const bi = norm(b && (b.locationId || b.id));
+        return ai < bi ? -1 : (ai > bi ? 1 : 0);
+      });
+  }
+
+  // Deterministisk valg av ETT konkret sted for en venn/fase/type. Stabil hash
+  // av friendId + fase + socialPlaceType -> indeks. Null når ingen kandidater.
+  function getPreferredSocialPlaceForFriend(friend, socialPlaceType, phase, context) {
+    const candidates = socialPlacesOfType(context, socialPlaceType);
+    if (!candidates.length) return null;
+    const fid = norm(friend && friend.id);
+    const ph = normalizeSnapshotPhase(phase);
+    const seed = hashString(fid + ":" + ph + ":" + norm(socialPlaceType));
+    return candidates[seed % candidates.length] || null;
+  }
+
+  // Oversett en generisk locationId til et konkret socialPlace-objekt når det
+  // finnes (prøver foretrukne typer i rekkefølge). Null = behold generisk.
+  function resolveGenericPresenceLocationToSocialPlace(locationId, friend, phase, context) {
+    const types = getPreferredSocialPlaceTypesForGeneric(locationId, friend);
+    for (let i = 0; i < types.length; i += 1) {
+      const place = getPreferredSocialPlaceForFriend(friend, types[i], phase, context);
+      if (place) return place;
+    }
+    return null;
+  }
+
+  // Resolver én presence-locationId til en resolution-deskriptor:
+  //   { rawLocationId, locationId, resolvedFromLocationId, resolutionSource,
+  //     socialPlaceType, sourcePlaceId, brandId }
+  // resolutionSource: "concrete" | "system_node" | "friend_home" |
+  //   "social_place_resolver" | "generic_fallback" | "raw".
+  function resolveFriendPresenceLocation(presence, friend, context) {
+    const p = presence && typeof presence === "object" ? presence : {};
+    const ctx = context && typeof context === "object" ? context : {};
+    const rawLocationId = norm(p.locationId) || null;
+    const phase = p.phase || ctx.phase;
+    const out = {
+      rawLocationId: rawLocationId,
+      locationId: rawLocationId,
+      resolvedFromLocationId: null,
+      resolutionSource: "raw",
+      socialPlaceType: null,
+      sourcePlaceId: null,
+      brandId: null
+    };
+    if (!rawLocationId) return out;
+
+    // 1) Allerede konkret ekte sosialt sted -> behold (og berik fra context).
+    if (isConcreteSocialLocationId(rawLocationId)) {
+      out.resolutionSource = "concrete";
+      const loc = locationById(ctx.locations || [], rawLocationId);
+      if (loc) {
+        out.socialPlaceType = norm(loc.socialPlaceType) || null;
+        out.sourcePlaceId = norm(loc.sourcePlaceId) || null;
+        out.brandId = norm(loc.brandId) || null;
+      }
+      return out;
+    }
+
+    // 2) Systemnode / venns simulerte hjem -> behold uendret.
+    const loc = locationById(ctx.locations || [], rawLocationId);
+    if (loc && isSystemLocation(loc)) { out.resolutionSource = "system_node"; return out; }
+    if (loc && isFriendHomeLocation(loc)) { out.resolutionSource = "friend_home"; return out; }
+    if (/^friend_home_demo_/.test(rawLocationId)) { out.resolutionSource = "friend_home"; return out; }
+
+    // 3) Generisk sosial node -> prøv konkret socialPlace.
+    if (getGenericSocialPlaceType({ id: rawLocationId })) {
+      const place = resolveGenericPresenceLocationToSocialPlace(rawLocationId, friend, phase, ctx);
+      if (place) {
+        out.locationId = norm(place.locationId || place.id);
+        out.resolvedFromLocationId = rawLocationId;
+        out.resolutionSource = "social_place_resolver";
+        out.socialPlaceType = norm(place.socialPlaceType) || null;
+        out.sourcePlaceId = norm(place.sourcePlaceId) || null;
+        out.brandId = norm(place.brandId) || null;
+        return out;
+      }
+      out.resolutionSource = "generic_fallback";
+      return out;
+    }
+
+    // 4) Ukjent locationId -> behold uendret.
+    return out;
+  }
+
+  // Bygger en resolved presence-viewmodel: rå presence + resolved locationId og
+  // resolution-felt. rawLocationId bevares alltid for debug/detalj.
+  function buildResolvedFriendPresence(friend, rawPresence, context) {
+    const raw = rawPresence && typeof rawPresence === "object" ? rawPresence : {};
+    const res = resolveFriendPresenceLocation(raw, friend, context);
+    const merged = { ...raw };
+    merged.rawLocationId = res.rawLocationId;
+    merged.locationId = res.locationId;
+    merged.resolvedFromLocationId = res.resolvedFromLocationId;
+    merged.resolutionSource = res.resolutionSource;
+    if (res.socialPlaceType) merged.socialPlaceType = res.socialPlaceType;
+    if (res.sourcePlaceId) merged.sourcePlaceId = res.sourcePlaceId;
+    if (res.brandId) merged.brandId = res.brandId;
+    return merged;
+  }
+
+  // Debug-hjelper: hvordan en venns fase-presence resolves nå (bruker cachene).
+  // Returnerer resolution-deskriptoren + rå presence-locationId for inspeksjon.
+  function getFriendPresenceResolutionDebug(friendId, phase) {
+    const friends = _friendsCache || [];
+    const snapshots = _snapshotsCache || [];
+    const locations = _locationsCache || [];
+    const friend = friends.find((f) => norm(f && f.id) === norm(friendId)) || null;
+    if (!friend) return { found: false, friendId: norm(friendId) };
+    const ph = normalizeSnapshotPhase(phase);
+    const raw = resolveFriendMapPresence(friend, ph, snapshots, 1);
+    const context = { locations: locations };
+    const res = resolveFriendPresenceLocation(raw, friend, context);
+    return {
+      found: true,
+      friendId: norm(friend.id),
+      phase: ph,
+      preferredTypes: getPreferredSocialPlaceTypesForGeneric(raw.locationId, friend),
+      ...res
+    };
+  }
+
+  // ---------------------------------------------------------------------------
   // Fase-minne-resolver (ren, deterministisk)
   // ---------------------------------------------------------------------------
   // Slår opp et venne-snapshot for en gitt semantisk fase i en snapshots-array
@@ -658,7 +864,21 @@
   //   2) Trygg fallback: friends.json presenceByPhase for tilsvarende dagfase.
   //   3) Ingen fasehistorikk -> skjult (visibleOnMap=false, source="none").
   // Ren og deterministisk: samme (friend, phase, snapshots) gir samme resultat.
-  function resolveFriendMapPresence(friend, phase, snapshots, dayIndex) {
+  //
+  // Når et valgfritt `context` ({ socialPlaces?, locations? }) oppgis, resolves
+  // generiske sosiale locationId-er til konkrete socialPlaces (Del A/B). Uten
+  // context beholdes rå (generisk) atferd – bakoverkompatibelt.
+  function resolveFriendMapPresence(friend, phase, snapshots, dayIndex, context) {
+    const result = resolveFriendMapPresenceRaw(friend, phase, snapshots, dayIndex);
+    if (context && (Array.isArray(context.socialPlaces) || Array.isArray(context.locations))) {
+      return buildResolvedFriendPresence(friend, result, context);
+    }
+    return result;
+  }
+
+  // Rå fase-minne-presence (uten socialPlace-resolving). Skilt ut så resolveren
+  // over kan gjenbruke den uten å risikere rekursjon.
+  function resolveFriendMapPresenceRaw(friend, phase, snapshots, dayIndex) {
     const ph = normalizeSnapshotPhase(phase);
     const entry = snapshotEntryFor(snapshots, friend && friend.id, ph);
     if (entry) {
@@ -704,11 +924,13 @@
     };
   }
 
-  // Vennene med resolvet fase-minne-presence for en semantisk fase.
-  function friendSnapshotRows(friends, phase, snapshots, dayIndex) {
+  // Vennene med resolvet fase-minne-presence for en semantisk fase. Et valgfritt
+  // `context` ({ socialPlaces?, locations? }) lar generiske sosiale locationId-er
+  // bli resolvet til konkrete socialPlaces (Del A/B).
+  function friendSnapshotRows(friends, phase, snapshots, dayIndex, context) {
     return (Array.isArray(friends) ? friends : []).map((friend) => ({
       friend,
-      presence: resolveFriendMapPresence(friend, phase, snapshots, dayIndex)
+      presence: resolveFriendMapPresence(friend, phase, snapshots, dayIndex, context)
     }));
   }
 
@@ -1007,7 +1229,10 @@
     const ph = normalizeSnapshotPhase(activePhase);
     const fid = norm(friendId);
     const friend = friends.find((f) => norm(f && f.id) === fid) || null;
-    const snapshot = friend ? resolveFriendMapPresence(friend, ph, snapshots, dayIndex) : null;
+    // Resolver-kontekst (Del A/B): generisk faseplassering -> konkret socialPlace
+    // når data finnes, slik at f.eks. «Henvend deg» bruker konkret locationId.
+    const context = { socialPlaces: Array.isArray(o.socialPlaces) ? o.socialPlaces : undefined, locations: locations };
+    const snapshot = friend ? resolveFriendMapPresence(friend, ph, snapshots, dayIndex, context) : null;
     const target = friend ? resolveFriendActionTargetLocation(friend, snapshot, ph, locations) : null;
     return {
       found: !!friend,
@@ -1147,13 +1372,13 @@
   // Rene rader: venner med EKTE fase-snapshot på samme sted i samme fase som er
   // synlige og åpne for kontakt. Mangler snapshot (kun presence-fallback/ingen
   // historikk) -> personen vises ALDRI som sosialt møte på stedet.
-  function getVisibleFriendsAtSamePhaseLocation(phase, locationId, friendsArg, snapshotsArg, dayIndex) {
+  function getVisibleFriendsAtSamePhaseLocation(phase, locationId, friendsArg, snapshotsArg, dayIndex, context) {
     const ph = normalizeSnapshotPhase(phase);
     const key = norm(locationId);
     if (!key) return [];
     const friends = Array.isArray(friendsArg) ? friendsArg : (_friendsCache || []);
     const snapshots = Array.isArray(snapshotsArg) ? snapshotsArg : (_snapshotsCache || []);
-    return friendSnapshotRows(friends, ph, snapshots, dayIndex).filter((row) => {
+    return friendSnapshotRows(friends, ph, snapshots, dayIndex, context).filter((row) => {
       const p = row.presence;
       return p &&
         p.source === "snapshot" &&            // kun ekte siste fasevalg
@@ -1174,7 +1399,10 @@
     const ph = normalizeSnapshotPhase(phase);
     const key = norm(locationId);
     const location = locationById(locations, key);
-    return getVisibleFriendsAtSamePhaseLocation(ph, key, friends, snapshots, dayIndex)
+    // Resolver-kontekst (Del A/B): konkrete socialPlaces + full location-liste,
+    // slik at generiske faseplasseringer matches mot konkret resolved locationId.
+    const context = { socialPlaces: o.socialPlaces, locations: locations };
+    return getVisibleFriendsAtSamePhaseLocation(ph, key, friends, snapshots, dayIndex, context)
       .map((row) => buildSocialEncounterModel(row.friend, row.presence, ph, location));
   }
 
@@ -1561,6 +1789,10 @@
     const renderLocations = mergedLocations.filter((l) =>
       shouldRenderLocationOnCityMap(l, { locations: mergedLocations }));
 
+    // Del A/B/C: resolver-kontekst slik at venners generiske faseplassering blir
+    // til konkret socialPlace-locationId (med rawLocationId bevart) i view-modellen.
+    const resolverContext = { socialPlaces, locations: mergedLocations };
+
     return {
       phase: dayPhase,
       snapshotPhase,
@@ -1572,7 +1804,7 @@
       renderLocations,
       socialPlaces,
       snapshots,
-      friends: friendSnapshotRows(friends, snapshotPhase, snapshots, dayIndex),
+      friends: friendSnapshotRows(friends, snapshotPhase, snapshots, dayIndex, resolverContext),
       activeLocationIds: activeLocations(mergedLocations, dayPhase).map((l) => norm(l.id))
     };
   }
@@ -1635,6 +1867,16 @@
     getRealSocialPlaceTypes,
     shouldRenderLocationOnCityMap,
     mergeSocialPlacesIntoLocations,
+    // venners generiske faseplassering -> ekte socialPlace (Del A/B)
+    GENERIC_LOCATION_SOCIAL_PLACE_TYPES: JSON.parse(JSON.stringify(GENERIC_LOCATION_SOCIAL_PLACE_TYPES)),
+    ROLE_SOCIAL_PLACE_PRIORITY: JSON.parse(JSON.stringify(ROLE_SOCIAL_PLACE_PRIORITY)),
+    isConcreteSocialLocationId,
+    getPreferredSocialPlaceTypesForGeneric,
+    getPreferredSocialPlaceForFriend,
+    resolveGenericPresenceLocationToSocialPlace,
+    resolveFriendPresenceLocation,
+    buildResolvedFriendPresence,
+    getFriendPresenceResolutionDebug,
     // fase-minne (rene, deterministiske)
     snapshotEntryFor,
     resolveFriendMapPresence,
