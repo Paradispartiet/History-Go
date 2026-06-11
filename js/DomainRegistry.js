@@ -1,8 +1,9 @@
 // js/domainRegistry.js
 // ───────────────────────────────────────────────
-// DomainRegistry = EN sannhet for domenenavn
-// - Ingen normalisering / gjetting
+// DomainRegistry = EN sannhet for fag/editorial domenenavn
+// - Ingen implisitt normalisering / gjetting
 // - Alias må være eksplisitt
+// - resolve() returnerer canonical fag/editorial id, ikke nødvendigvis runtime badge-id
 // - Fail-fast hvis noe er ukjent
 // ───────────────────────────────────────────────
 
@@ -24,18 +25,33 @@
   ];
 
   // Alias: kun det du eksplisitt tillater.
-  // Nøkkel = det som kan dukke opp i data/UI, verdi = canonical id
+  // Nøkkel = det som kan dukke opp i data/UI/import, verdi = canonical fag/editorial id.
+  // NB: Runtime badge/category kan fortsatt bruke legacy-id-er som "populaerkultur".
+  // Bruk ikke resolve() direkte til badge-match uten en bevisst runtime-bro.
   const ALIASES = {
-    "populaerkultur": "popkultur", // quiz/merke → emner
+    "populaerkultur": "popkultur", // legacy runtime/id → fag/editorial id
+    "populærkultur": "popkultur",
     "popular_kultur": "popkultur",
     "popularculture": "popkultur",
+    "popular_culture": "popkultur",
+    "popular-culture": "popkultur",
+    "popular culture": "popkultur",
+
+    "filosofi": "vitenskap",
+    "philosophy": "vitenskap",
     "sci": "vitenskap",
     "science": "vitenskap",
+
+    "scenekunst": "kunst",
+    "teater": "kunst",
+    "theatre": "kunst",
+    "theater": "kunst",
+
     "history": "historie",
     "city": "by"
   };
 
-  // Filnavn (dersom du vil slå opp hvilke filer som brukes for et domene)
+  // Filnavn (dersom du vil slå opp hvilke filer som brukes for et fagdomene)
   // Her låser vi naming-konvensjonen eksplisitt.
   const FILES = {
     emner: (id) => `emner/emner_${id}.json`,
@@ -84,7 +100,7 @@
   window.DomainRegistry = {
     resolve,      // resolve("populaerkultur") => "popkultur"
     list,         // ["by", "historie", ...]
-    aliasMap,     // {populaerkultur:"popkultur", ...}
+    aliasMap,     // {populaerkultur:"popkultur", filosofi:"vitenskap", ...}
     file          // file("quiz","populaerkultur") => "data/quiz/quiz_popkultur.json"
   };
 })();
