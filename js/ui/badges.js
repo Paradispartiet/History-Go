@@ -65,12 +65,28 @@ function getBadgesList() {
   return Array.isArray(window.BADGES) ? window.BADGES : [];
 }
 
+function runtimeCategoryId(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+
+  const bridge = window.DomainRegistry?.toRuntimeCategoryId;
+  if (typeof bridge === "function") {
+    try {
+      return String(bridge(raw) || "").trim();
+    } catch (err) {
+      if (window.DEBUG) console.warn("[HGBadges] unknown runtime category", raw, err);
+    }
+  }
+
+  return raw;
+}
+
 function getBadgeForPlace(place) {
-  const categoryId = String(place?.category || "").trim();
+  const categoryId = runtimeCategoryId(place?.category);
   if (!categoryId) return null;
 
   return getBadgesList().find((/** @type {any} */ badge) =>
-    String(badge?.id || "").trim() === categoryId
+    runtimeCategoryId(badge?.id) === categoryId
   ) || null;
 }
 
@@ -131,7 +147,7 @@ function normalizeBadgeSubcategory(sub) {
 }
 
 function renderBadgeSubcategories(place, badge) {
-  const categoryId = badgeText(place?.category) || "ukjent";
+  const categoryId = runtimeCategoryId(place?.category) || "ukjent";
 
   if (!badge) {
     return `<div class="pc-empty">Badge mangler for category: ${escapeBadgeHtml(categoryId)}</div>`;
@@ -182,7 +198,7 @@ function applyPlaceCardBadgeRound(place) {
   badgesEl.innerHTML = renderBadgeSubcategories(place, badge);
 
   badgesIcon.setAttribute("aria-label", badge ? badgeName : "Badge mangler");
-  badgesIcon.title = badge ? badgeName : `Badge mangler for ${badgeText(place?.category) || "ukjent kategori"}`;
+  badgesIcon.title = badge ? badgeName : `Badge mangler for ${runtimeCategoryId(place?.category) || "ukjent kategori"}`;
 
   if (img) {
     badgesIcon.innerHTML = `<img src="${escapeBadgeHtml(img)}" class="pc-badge-round-img" alt="${escapeBadgeHtml(badgeName)}" title="${escapeBadgeHtml(badgeName)}">`;
