@@ -1686,6 +1686,12 @@
     return locLabel ? "Gå til " + locLabel : "Gå hit";
   }
 
+  function choiceGroupForSystemLocation(loc) {
+    const role = getLocationRole(loc);
+    if (role === LOCATION_ROLES.PLAYER_HOME || role === LOCATION_ROLES.WORK_NODE) return "home_work";
+    return "system";
+  }
+
   function socialChoiceFromPlace(place, phase) {
     const p = place && typeof place === "object" ? place : {};
     const locationId = norm(p.locationId || p.id);
@@ -1699,10 +1705,13 @@
       brandId: norm(p.brandId) || null,
       socialPlaceType: norm(p.socialPlaceType) || null,
       label: "Gå til " + label,
+      displayLabel: label,
       subtitle: choiceSubtitleForSocialPlace(p),
       activity: choiceActivityForPlace(p),
       channel: norm(p.channel) || "social",
-      kind: "social_place"
+      kind: "social_place",
+      group: "concrete",
+      groupLabel: "Konkrete steder"
     };
   }
 
@@ -1712,15 +1721,39 @@
     if (!locationId) return null;
     const label = norm(l.label) || locationId;
     const channel = norm(l.channel) || (locationId === "psychology_room" ? "insight" : "system");
+    const group = choiceGroupForSystemLocation(l);
     return {
       choiceId: "go:" + locationId,
       phase: normalizeSnapshotPhase(phase),
       locationId: locationId,
       label: "Gå til " + label,
+      displayLabel: label,
       subtitle: systemChoiceSubtitle(l),
       activity: "går til " + label,
       channel: channel,
-      kind: "system_node"
+      kind: group === "home_work" ? "home_work" : "system_node",
+      group: group,
+      groupLabel: group === "home_work" ? "Hjem / arbeid" : "Systemvalg"
+    };
+  }
+
+  function fallbackChoiceFromLocation(loc, phase) {
+    const l = loc && typeof loc === "object" ? loc : {};
+    const locationId = norm(l.id || l.locationId);
+    if (!locationId) return null;
+    const label = norm(l.label) || prettifySocialLabel(locationId);
+    return {
+      choiceId: "go:" + locationId,
+      phase: normalizeSnapshotPhase(phase),
+      locationId: locationId,
+      label: "Gå til " + label,
+      displayLabel: label + "valg",
+      subtitle: "Kategoriinngang · konkret sted mangler",
+      activity: "går til " + label,
+      channel: norm(l.channel) || "social",
+      kind: "social_fallback",
+      group: "fallback",
+      groupLabel: "Fallback / kategoriinnganger"
     };
   }
 
@@ -1776,18 +1809,62 @@
       .filter(Boolean);
   }
 
+  function getPlayerFallbackChoicesForPhase(phase, context) {
+    const ph = normalizeSnapshotPhase(phase);
+    const dayPhase = dayPhaseForChoice(phase);
+    const ctx = context && typeof context === "object" ? context : {};
+    const locations = Array.isArray(ctx.locations) ? ctx.locations : [];
+    const realTypes = getRealSocialPlaceTypes(locations);
+    return locations
+      .filter(isGenericSocialFallback)
+      .filter((loc) => !realTypes.has(getGenericSocialPlaceType(loc)))
+      .filter((loc) => phaseMatchesChoicePlace(loc, ph, dayPhase) || norm(loc.phase) === ph || norm(loc.phase) === "social")
+      .map((loc) => fallbackChoiceFromLocation(loc, ph))
+      .filter(Boolean);
+  }
+
   function getPlayerConcreteChoicesForPhase(phase, context) {
     return getPlayerSystemChoicesForPhase(phase, context)
       .concat(getPlayerSocialPlaceChoicesForPhase(phase, context));
   }
 
+  function getPlayerPhaseChoicesForPhase(phase, context) {
+    return getPlayerSocialPlaceChoicesForPhase(phase, context)
+      .concat(getPlayerSystemChoicesForPhase(phase, context))
+      .concat(getPlayerFallbackChoicesForPhase(phase, context));
+  }
+
+  function groupPlayerPhaseChoices(choices) {
+    const order = ["concrete", "system", "home_work", "fallback"];
+    const labels = {
+      concrete: "Konkrete steder",
+      system: "Systemvalg",
+      home_work: "Hjem / arbeid",
+      fallback: "Fallback / kategoriinnganger"
+    };
+    const byGroup = new Map();
+    (Array.isArray(choices) ? choices : []).forEach((choice) => {
+      const c = choice && typeof choice === "object" ? choice : {};
+      const group = norm(c.group) || (c.kind === "social_place" ? "concrete" : (c.kind === "social_fallback" ? "fallback" : "system"));
+      if (!byGroup.has(group)) byGroup.set(group, []);
+      byGroup.get(group).push(c);
+    });
+    return order.filter((id) => byGroup.has(id)).map((id) => ({
+      id: id,
+      label: labels[id] || prettifySocialLabel(id),
+      choices: byGroup.get(id)
+    }));
+  }
+
   function buildPlayerPhaseChoiceModel(phase, context) {
     const ph = normalizeSnapshotPhase(phase);
+    const choices = getPlayerPhaseChoicesForPhase(phase, context);
     return {
       phase: ph,
       phaseLabel: snapshotPhaseLabel(ph),
       dayPhase: dayPhaseForChoice(phase),
-      choices: getPlayerConcreteChoicesForPhase(phase, context)
+      choices: choices,
+      groups: groupPlayerPhaseChoices(choices)
     };
   }
 
@@ -1815,9 +1892,10 @@
       brandId: choice.brandId,
       socialPlaceType: choice.socialPlaceType
     };
-    const state = choice.kind === "social_place" ? "at_social_place" : "at_system_node";
+    const isSocial = choice.kind === "social_place";
+    const isFallback = choice.kind === "social_fallback";
     const snap = capturePlayerPhaseSnapshotAtLocation(loc, choice.phase, {
-      state: state,
+      state: isFallback ? undefined : (isSocial ? "at_social_place" : "at_system_node"),
       locationId: choice.locationId,
       rawLocationId: null,
       sourcePlaceId: choice.sourcePlaceId,
@@ -1825,7 +1903,7 @@
       socialPlaceType: choice.socialPlaceType,
       activity: choice.activity,
       channel: choice.channel,
-      socialAvailability: choice.kind === "social_place" ? "open_to_contact" : undefined,
+      socialAvailability: isSocial ? "open_to_contact" : undefined,
       visibleOnMap: true
     });
     return { choice: choice, snapshot: snap };
