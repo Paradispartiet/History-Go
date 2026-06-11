@@ -257,7 +257,7 @@ Eier:
 ## 3) Data (core)
 
 ### `/data` (statisk)
-- `data/people.json`
+- `data/people/manifest.json` (canonical people-kilde; peker til split people-filer)
 - `data/places.json`
 - `data/routes.json`
 - `data/tags.json`

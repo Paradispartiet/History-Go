@@ -107,7 +107,7 @@ Bruk en lokal webserver (anbefalt):
     quiz-audit.js           # quiz-target audit (PEOPLE/PLACES vs quiz)
 
   /data
-    places.json, people.json, badges.json, tags.json, routes.json
+    places.json, people/manifest.json, badges.json, tags.json, routes.json
     quiz/manifest.json + quizfiler
 
   /AHA

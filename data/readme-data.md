@@ -1,6 +1,6 @@
 /data/
   places.json                # base (felles felter, “sann” ID + koordinat + kort tekst)
-  people.json                # base (felles felter)
+  people/manifest.json       # canonical people-kilde (split people-filer)
   tags.json                  # tagregister (metadata + synonymer)
   emner/
     emner_by.json
