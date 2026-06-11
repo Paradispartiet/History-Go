@@ -13,19 +13,36 @@ function tfUI(key, fallback = "", vars = {}) {
   );
 }
 
+function runtimeBadgeId(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+
+  const bridge = window.DomainRegistry?.toRuntimeCategoryId;
+  if (typeof bridge === "function") {
+    try {
+      return String(bridge(raw) || "").trim();
+    } catch (err) {
+      if (window.DEBUG) console.warn("[badge-modal] unknown runtime badge id", raw, err);
+    }
+  }
+
+  return raw;
+}
+
 async function handleBadgeClick(badgeEl) {
-  const badgeId = badgeEl.getAttribute("data-badge-id");
+  const badgeId = runtimeBadgeId(badgeEl.getAttribute("data-badge-id"));
   const modal = document.getElementById("badgeModal");
   if (!badgeId || !modal) return;
 
   await ensureBadgesLoaded();
-  const badge = BADGES.find(b => String(b.id || "").trim() === String(badgeId || "").trim());
+  const badge = BADGES.find(b => runtimeBadgeId(b.id) === badgeId);
   if (!badge) return;
 
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-const info =
-  localMerits[String(badge.id || "").trim()] ||
-  { points: 0 };
+  const meritKey = runtimeBadgeId(badge.id);
+  const info =
+    localMerits[meritKey] ||
+    { points: 0 };
 
 
   const points = Number(info.points || 0);
@@ -64,4 +81,3 @@ const info =
     };
   }
 }
-
