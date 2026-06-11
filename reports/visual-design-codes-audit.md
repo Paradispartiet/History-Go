@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-11T10:48:57.487Z
+Generert: 2026-06-11T11:19:10.272Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -330,21 +330,21 @@ _Viser 30 av 35. Full liste i `reports/visual-design-codes-audit.json`._
 - family: science
 - entityTypes: article, story, leksikon, lesespor
 - søkeord: `forskning`, `vitenskap`, `laboratorium`, `institutt`, `metode`, `fagfelt`
-- anbefalt: Vurder forskning, vitenskapshistorie, fagmiljøer og laboratorier for eksplisitt article_science_history_miniature (jf. articleBatch6Plan).
+- anbefalt: Vurder forskning, vitenskapshistorie, fagmiljøer og laboratorier for eksplisitt article_science_history_miniature (jf. articleBatch7Plan).
 
 ### `article_food_market_miniature`
 
 - family: food_market
 - entityTypes: article, story, leksikon, lesespor
 - søkeord: `matmarked`, `torghandel`, `mathall`, `markedshall`, `matkultur`, `servering`
-- anbefalt: Vurder matmarked, torghandel, mathall, serverings- og matkultur for eksplisitt article_food_market_miniature (jf. articleBatch6Plan).
+- anbefalt: Vurder matmarked, torghandel, mathall, serverings- og matkultur for eksplisitt article_food_market_miniature (jf. articleBatch7Plan).
 
 ### `article_childhood_play_miniature`
 
 - family: childhood
 - entityTypes: article, story, leksikon, lesespor
 - søkeord: `lekeplass`, `barndom`, `lek`, `barn`, `skolegård`, `aktivitet`
-- anbefalt: Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch6Plan).
+- anbefalt: Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch7Plan).
 
 ## Review-kandidater – ikke nødvendigvis feil
 
@@ -471,21 +471,21 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
 - `article_media_history_miniature`:
   - [P4] Filmkultur i Oslo (`cinemateket_oslo_filmkultur_i_oslo`) — default-fallback; tydelig dyp-tekst treff 'programkino'
 
-## Article default analysis
+## Remaining article default audit
 
 Klassifisering av de gjenværende `article_default_miniature`. Denne
-delen merker **ingen** datafiler – den forbereder en presis batch 6.
+delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 har nok trygge kandidater.
 
 - total `article_default_miniature`: **61**
-- safeBatch6Candidates: 20
-- needsMetadata: 3
-- needsNewDesignCode: 0
-- keepDefaultForNow: 26
-- manualReview: 12
+- safeBatch7Candidates: 15
+- needsMetadata: 5
+- needsNewDesignCode: 20
+- keepDefaultForNow: 7
+- manualReview: 14
 
-### Trygge batch 6-kandidater
+### Trygge batch 7-kandidater
 
-#### safeBatch6Candidates (20)
+#### safeBatch7Candidates (15)
 
 | id / title | suggestedDesignCode | confidence | reason | file |
 | --- | --- | --- | --- | --- |
@@ -498,100 +498,106 @@ delen merker **ingen** datafiler – den forbereder en presis batch 6.
 | trosterud_friomrade_bynatur — Friområde som bynatur | article_nature_route_miniature | high | tydelig eksisterende fagområde (bynatur, friområde) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 | trosterud_friomrade_hovedartikkel — Trosterud friområde | article_nature_route_miniature | high | tydelig eksisterende fagområde (friområde, nærnatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 | trosterud_friomrade_naturstruktur — Naturstruktur og kantsoner | article_nature_route_miniature | high | tydelig eksisterende fagområde (naturstruktur, friområde, kantvegetasjon) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
-| trosterud_friomrade_stier_bruk — Stier og hverdagsbevegelse | article_nature_route_miniature | high | tydelig eksisterende fagområde (friområde) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 | vaterland_historisk_elvelop — Historisk elveløp og byområde der vannlandskapet er omformet. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| vaterland_vaterlandsparken — Vaterlandsparken | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
 | voienfossen — Foss og kraftpunkt langs Akerselva. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, foss) → `article_nature_route_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
 | vulkan_industriomrade — Transformert industrisone ved Akerselva der historiske spor og nye byfunksjoner overlapper. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
+| sofienberg_kirke — Kirkested som speiler byvekst og lokalsamfunn i indre øst. | article_religion_miniature | high | tydelig eksisterende fagområde (kirke, kirkehistorie) → `article_religion_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
 | alna_utlop_bjorvika — Alna utløp i Bjørvika er punktet der ferskvann fra Alna møter brakkvann i indre Oslofjord. Sonen preges av steinsatte kanter, tidevannspåvirkning og sterk ferdsel langs havnepromenaden. | article_nature_route_miniature | medium | tydelig eksisterende fagområde (elv) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| bygdoy_natur — Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo. | article_nature_route_miniature | medium | tydelig eksisterende fagområde (natur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | article_nature_route_miniature | medium | tydelig eksisterende fagområde (skogbelte) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 | kampen_park_grontstruktur — Grøntstruktur i Kampen park | article_nature_route_miniature | medium | tydelig eksisterende fagområde (naturstruktur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
-| sagene_film_tv_lag — Sagene som film- og TV-miljø | article_nature_route_miniature | medium | tydelig eksisterende fagområde (elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
-| spikersuppa — Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane. | article_political_history_miniature | medium | tydelig eksisterende fagområde (storting) → `article_political_history_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
 
 ### Mangler metadata
 
-#### needsMetadata (3)
+#### needsMetadata (5)
 
 | id / title | missing | reason | file |
 | --- | --- | --- | --- |
 | lesespor_bjorvika_001 — Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen | summary.themes, classification.tags, popupDesc | for lite metadata til trygg designCode (category_hints: by) | data/lesespor/oslo/lesespor_oslo_by.json |
 | lesespor_gronland_001 — Aktivitet skaper tryggere byer | summary.themes, classification.tags, popupDesc | for lite metadata til trygg designCode (category_hints: by) | data/lesespor/oslo/lesespor_oslo_by.json |
 | lesespor_gronland_003 — Hva er god byutvikling? | summary.themes, classification.tags, popupDesc | for lite metadata til trygg designCode (category_hints: by/politikk) | data/lesespor/oslo/lesespor_oslo_by.json |
+| bygdoy_natur — Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo. | title, classification.tags | id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | classification.tags | id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 
 ### Trenger mulig ny designCode
 
-#### needsNewDesignCode (0)
+#### needsNewDesignCode (20)
 
-- (ingen)
+- `article_civic_space_miniature` (1):
+  - toyen_torg_torgscene [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
+- `article_event_place_miniature` (1):
+  - slottsplassen_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_event_place_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
+- `article_everyday_life_miniature` (6):
+  - birkelunden [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json`)
+  - kampen_park_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json`)
+  - tigeren [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json`)
+  - oslo_s_sentrum_mobilitet [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
+  - slottsparken [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json`)
+  - stensparken [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature` (`data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json`)
+- `article_neighborhood_identity_miniature` (1):
+  - toyen_torg_identitet [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_neighborhood_identity_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
+- `article_popular_culture_miniature` (10):
+  - cinemateket_oslo_filmkultur_i_oslo [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json`)
+  - colosseum_kino_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+  - frognerstranda_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+  - gronlandsleiret_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+  - house_of_nerds_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+  - kampen_film_tv_lag [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json`)
+  - latter_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+  - sagene_film_tv_lag [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json`)
+  - vaterland_populaerkultur_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+  - folketeateret_hovedartikkel [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
+- `article_social_history_miniature` (1):
+  - vaterland_sanering [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_social_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json`)
 
 ### Bør forbli default foreløpig
 
-#### keepDefaultForNow (26)
+#### keepDefaultForNow (7)
 
 | id / title | reason | file |
 | --- | --- | --- |
-| birkelunden — Birkelunden er et grønt samlingspunkt på Grünerløkka med høy hverdagsbruk i tett byvev. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
-| botsparken — Botsparken er en liten nabolagspark ved Botsfengselet med stor hverdagsverdi i tett by. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
 | bygdoy_roykenvika — Røykensvika på Bygdøy er en fjordvik med strandkant, gruntvann og vegeterte randsoner. Vika markerer en mykere overgang mellom land og sjø. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
 | chateau_neuf_revy_og_studentkultur — Revy og studentkultur | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
-| cinemateket_oslo_filmkultur_i_oslo — Filmkultur i Oslo | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
-| colosseum_kino_hovedartikkel — Colosseum kino som norsk storfilmkino | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
-| folketeateret_hovedartikkel — Folketeateret som storskalateater for musikaler | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
-| frognerstranda_hovedartikkel — Frognerstranda som sesongbasert kjendissone | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
-| gronlandsleiret_hovedartikkel — Grønlandsleiret som sosialrealistisk filmbakteppe | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
 | hellerud_gard_jordbruk_byutvikling — Fra jordbruk til byutvikling | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
-| house_of_nerds_hovedartikkel — House of Nerds som møteplass for nerdkultur | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
-| kampen_park_hovedartikkel — Kampen park | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
 | kampen_park_parkrom_terreng — Parkrom, bakker og terreng i Kampen park | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
 | kampen_topografi_bratte_gater — Kampens topografi og bratte gater | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
-| latter_hovedartikkel — Latter som profesjonell standup-scene | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
-| majorstuen_krysset_hovedartikkel — Majorstuen-krysset som hverdagsspottingsone | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
-| olaf_ryes_plass — Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
 | operahuset — Operahuset er både kulturinstitusjon og offentlig taklandskap i fjordbyen. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
-| oslo_s_sentrum_mobilitet — Porten til sentrum | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| slottsparken — Slottsparken kombinerer kongelig representasjonslandskap med åpen hverdagsbruk midt i byen. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
-| slottsplassen_begreper — Begreper: paradeplass, seremoni og ikon | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
 | slottsplassen_fotografi — Fotografi og turistblikk | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| stensparken — Stensparken er en høydepark som kombinerer utsikt, gjennomgang og nabolagsopphold mellom Bislett og St. Hanshaugen. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
-| tigeren — Bysymbol ved Oslo S med høy synlighet i hverdagsmobiliteten. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
-| toyen_torg_identitet — Tøyen-identitet i sentrumsskala | populærkulturell/blandet artikkel uten klar visuell hovedtype | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
-| toyen_torg_torgscene — Torgflaten som offentlig scene | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
 
 ### Manuell vurdering
 
-#### manualReview (12)
+#### manualReview (14)
 
 | id / title | suggestedDesignCode | reason | file |
 | --- | --- | --- | --- |
-| kampen_film_tv_lag — Kampen som film- og TV-miljø | article_architecture_miniature | flere plausible koder med lik styrke: `article_architecture_miniature` vs `article_place_essay_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
 | schous_bryggeri — Schous plass er et grønt nabolagsrom i Grünerløkkas tette kvartalsstruktur. | article_architecture_miniature | flere plausible koder med lik styrke: `article_architecture_miniature` vs `article_industry_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
-| vaterland_sanering — Saneringen av Vaterland | article_architecture_miniature | flere plausible koder med lik styrke: `article_architecture_miniature` vs `article_place_essay_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
+| botsparken — Botsparken er en liten nabolagspark ved Botsfengselet med stor hverdagsverdi i tett by. | article_childhood_play_miniature | flere plausible koder med lik styrke: `article_childhood_play_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
+| olaf_ryes_plass — Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk. | article_childhood_play_miniature | flere plausible koder med lik styrke: `article_childhood_play_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
+| spikersuppa — Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane. | article_everyday_life_miniature | flere plausible koder med lik styrke: `article_everyday_life_miniature` vs `article_event_place_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
 | schous_plass_hovedartikkel — Schous plass | article_industry_miniature | flere plausible koder med lik styrke: `article_industry_miniature` vs `article_place_essay_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
 | psykologisk_institutt_uio_psykologi_fag — Psykologi som fag ved instituttet | article_institution_miniature | flere plausible koder med lik styrke: `article_institution_miniature` vs `article_science_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_psykologisk_institutt_uio.json |
 | hellerud_gard_hovedartikkel — Hellerud gård | article_memory_place_miniature | flere plausible koder med lik styrke: `article_memory_place_miniature` vs `article_architecture_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 | ankerbrua — Sentral Akerselv-bro med tydelig elveromskobling. | article_nature_route_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_urban_infrastructure_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
 | nydalsdammen — Regulert dammiljø i Akerselva der vannstyring, byhistorie og bynatur møtes. | article_nature_route_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_urban_infrastructure_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
-| sofienberg_kirke — Kirkested som speiler byvekst og lokalsamfunn i indre øst. | article_religion_miniature | flere plausible koder med lik styrke: `article_religion_miniature` vs `article_local_story_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
+| trosterud_friomrade_stier_bruk — Stier og hverdagsbevegelse | article_nature_route_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| vaterland_vaterlandsparken — Vaterlandsparken | article_nature_route_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_social_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
+| majorstuen_krysset_hovedartikkel — Majorstuen-krysset som hverdagsspottingsone | article_popular_culture_miniature | flere plausible koder med lik styrke: `article_popular_culture_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
 | gamle_trikkestallen — Tidlig trikkedriftsanlegg med transport- og arbeidshistorisk verdi. | article_transport_miniature | flere plausible koder med lik styrke: `article_transport_miniature` vs `article_industry_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
 | vaterland_hovedartikkel — Vaterland | article_transport_miniature | flere plausible koder med lik styrke: `article_transport_miniature` vs `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
-| vaterland_populaerkultur_hovedartikkel — Vaterland som filmkulisse for krim og TV-drama | article_transport_miniature | flere plausible koder med lik styrke: `article_transport_miniature` vs `article_nature_route_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
 
-## Forslag til Article batch 6
+## Article batch 7 plan
 
-Anbefalt omfang: **50–90** artikler.
+Anbefalt omfang: **0–40** artikler (ikke press frem batch hvis kandidatgrunnlaget er lite).
+Audit finner bare **15** trygge kandidater nå; det er et lite grunnlag, så en batch 7 bør ikke presses frem.
 Prioritert rekkefølge:
-1. safe high-confidence article defaults
-1. unused/underused existing article designCodes
-1. manual review after human check
+1. safe high/medium-confidence article defaults
+1. only candidates backed by existing metadata
+1. do not include metadata/new-code/default/manual-review groups
 
 Kun trygge kandidater (high/medium-confidence). `needsMetadata` og
 `needsNewDesignCode` tas **ikke** med som direkte batchkandidater.
 
-Topp 20 av 20, gruppert etter `suggestedDesignCode`:
+Topp 15 av 15, gruppert etter `suggestedDesignCode`:
 
-- `article_nature_route_miniature` (19):
+- `article_nature_route_miniature` (14):
   - sagene_akerselva_industrikorridor [high] — tydelig eksisterende fagområde (elva, elve, foss) → `article_nature_route_miniature`
   - skraperudtjern [high] — tydelig eksisterende fagområde (tjern, elva, vassdrag, våtmark) → `article_nature_route_miniature`
   - st_hanshaugen_park [high] — tydelig eksisterende fagområde (bynatur) → `article_nature_route_miniature`
@@ -601,18 +607,13 @@ Topp 20 av 20, gruppert etter `suggestedDesignCode`:
   - trosterud_friomrade_bynatur [high] — tydelig eksisterende fagområde (bynatur, friområde) → `article_nature_route_miniature`
   - trosterud_friomrade_hovedartikkel [high] — tydelig eksisterende fagområde (friområde, nærnatur) → `article_nature_route_miniature`
   - trosterud_friomrade_naturstruktur [high] — tydelig eksisterende fagområde (naturstruktur, friområde, kantvegetasjon) → `article_nature_route_miniature`
-  - trosterud_friomrade_stier_bruk [high] — tydelig eksisterende fagområde (friområde) → `article_nature_route_miniature`
   - vaterland_historisk_elvelop [high] — tydelig eksisterende fagområde (elve) → `article_nature_route_miniature`
-  - vaterland_vaterlandsparken [high] — tydelig eksisterende fagområde (elva) → `article_nature_route_miniature`
   - voienfossen [high] — tydelig eksisterende fagområde (elva, foss) → `article_nature_route_miniature`
   - vulkan_industriomrade [high] — tydelig eksisterende fagområde (elva) → `article_nature_route_miniature`
   - alna_utlop_bjorvika [medium] — tydelig eksisterende fagområde (elv) → `article_nature_route_miniature`
-  - bygdoy_natur [medium] — tydelig eksisterende fagområde (natur) → `article_nature_route_miniature`
-  - furuset_haugerud_skogbelte_boligkant [medium] — tydelig eksisterende fagområde (skogbelte) → `article_nature_route_miniature`
   - kampen_park_grontstruktur [medium] — tydelig eksisterende fagområde (naturstruktur) → `article_nature_route_miniature`
-  - sagene_film_tv_lag [medium] — tydelig eksisterende fagområde (elve) → `article_nature_route_miniature`
-- `article_political_history_miniature` (1):
-  - spikersuppa [medium] — tydelig eksisterende fagområde (storting) → `article_political_history_miniature`
+- `article_religion_miniature` (1):
+  - sofienberg_kirke [high] — tydelig eksisterende fagområde (kirke, kirkehistorie) → `article_religion_miniature`
 
 ## Invalid eksplisitte designCodes
 
