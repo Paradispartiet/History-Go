@@ -28,11 +28,11 @@
     { id: "litteratur",     name: "Litteratur",             icon: "📚", color: "#ffcc66", scope: "runtime_domain" },
     { id: "naeringsliv",    name: "Næringsliv",             icon: "🏭", color: "#9ad0c2", scope: "runtime_domain" },
     { id: "psykologi",      name: "Psykologi",              icon: "🧠", color: "#ff9aa2", scope: "runtime_domain" },
+    { id: "film_tv",        name: "Film & TV",              icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
+    { id: "media",          name: "Medier",                 icon: "🗞️", color: "#c0c0c0", scope: "runtime_domain" },
 
-    // Aktive legacy runtime-id-er. Ikke rename enkeltvis; migrer samlet.
+    // Aktiv legacy runtime-id. Ikke rename enkeltvis; migrer samlet.
     { id: "populaerkultur", name: "Populærkultur",          icon: "📺", color: "#a0a0a0", scope: "legacy_runtime_domain", canonicalFagId: "popkultur" },
-    { id: "film_tv",        name: "Film & TV",              icon: "🎞️", color: "#6c757d", scope: "legacy_runtime_domain", migrationTarget: "undecided" },
-    { id: "media",          name: "Medier",                 icon: "🗞️", color: "#c0c0c0", scope: "legacy_runtime_domain", migrationTarget: "undecided" },
 
     // Subfelt/visning. Beholdes for UI/datafunn, men er ikke toppdomene nå.
     { id: "scenekunst",     name: "Scenekunst",             icon: "🎭", color: "#c59cff", scope: "subfield_display", parentId: "kunst", canonicalFagId: "kunst" }
