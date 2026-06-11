@@ -249,7 +249,7 @@
       phase: ctx.phase,
       threadId: resolvePrivateThreadForFriend(ctx.friendId),
       title: "Henvendelse til " + first,
-      body: "Du henvender deg til " + first + " på " + placeLabel.toLowerCase() +
+      body: "Du henvender deg til " + first + " på " + placeLabel +
         " i " + phaseInWords(ctx.phase) + ".",
       status: "pending_response",
       responseOptions: RESPONSE_OPTIONS.slice()
@@ -428,7 +428,8 @@
     if (actionId === "message") {
       feedbackText = "Personlig melding til " + first + " er klar i Innkommende.";
     } else if (actionId === "approach") {
-      feedbackText = "Henvendelse til " + first + " er lagt i Personlige meldinger.";
+      const place = ctx.locationLabel || ctx.locationId || "stedet";
+      feedbackText = "Du henvender deg til " + first + " på " + place + " i " + phaseInWords(ctx.phase) + ". Henvendelsen er lagt i Personlige meldinger.";
     } else {
       feedbackText = "Invitasjon til " + first + " er lagt i Personlige meldinger.";
     }

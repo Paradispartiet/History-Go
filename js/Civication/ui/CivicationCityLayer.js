@@ -515,10 +515,36 @@
 
     el.innerHTML =
       '<span class="civi-city-self-icon">📍</span>' +
-      '<span class="civi-city-self-text">Denne fasen lagres som din siste ' +
-      esc(phaseLabel) + (placeLabel ? ": <strong>" + esc(placeLabel) + "</strong>" : "") +
-      "</span>";
+      '<span class="civi-city-self-text">' +
+      (placeLabel
+        ? 'Du er nå på <strong>' + esc(placeLabel) + '</strong> i ' + esc(phaseLabel) + '. '
+        : 'Denne fasen lagres som din siste ' + esc(phaseLabel) + '. ') +
+      'Dette er fase-minne, ikke live-posisjon.</span>';
     el.removeAttribute("hidden");
+  }
+
+  function selectedPlayerLocationId(phase) {
+    const eng = engine();
+    if (!eng || !_model || typeof eng.getPlayerSnapshotForPhase !== "function") return "";
+    const snap = eng.getPlayerSnapshotForPhase(phase || _model.snapshotPhase);
+    return snap ? String(snap.locationId || "") : "";
+  }
+
+  function choiceKindClass(choice) {
+    const kind = String((choice && (choice.kind || choice.group)) || "system_node").replace(/_/g, "-");
+    return " is-kind-" + kind;
+  }
+
+  function buildPhaseChoiceRow(choice, selectedId) {
+    const isSelected = selectedId && String(choice.locationId || "") === String(selectedId);
+    const subtitle = choice.subtitle ? '<small>' + esc(choice.subtitle) + '</small>' : '';
+    const label = choice.displayLabel || String(choice.label || "").replace(/^Gå til\s+/, "") || "Gå hit";
+    const buttonLabel = isSelected ? "Valgt" : "Gå hit";
+    return '<li class="civi-city-phase-choice' + choiceKindClass(choice) + (isSelected ? " is-selected-choice" : "") + '">' +
+      '<div class="civi-city-phase-choice-copy"><strong>' + esc(label) + '</strong>' + subtitle + '</div>' +
+      '<button type="button" class="civi-btn" data-civi-player-choice="' + esc(choice.choiceId) + '"' +
+      ' data-location-id="' + esc(choice.locationId) + '"' + (isSelected ? ' aria-pressed="true"' : '') + '>' +
+      esc(buttonLabel) + '</button></li>';
   }
 
   function buildPlayerPhaseChoicesHtml(phase, limit) {
@@ -530,19 +556,30 @@
     });
     const choices = Array.isArray(choiceModel.choices) ? choiceModel.choices : [];
     if (!choices.length) return "";
-    const shown = choices.slice(0, limit || 10);
     const phaseName = String(choiceModel.phaseLabel || "fasen").toLowerCase();
-    const items = shown.map((choice) => {
-      const subtitle = choice.subtitle ? '<small>' + esc(choice.subtitle) + '</small>' : '';
-      return '<li class="civi-city-phase-choice">' +
-        '<div class="civi-city-phase-choice-copy"><strong>' + esc(choice.label || "Gå hit") + '</strong>' + subtitle + '</div>' +
-        '<button type="button" class="civi-btn" data-civi-player-choice="' + esc(choice.choiceId) + '"' +
-        ' data-location-id="' + esc(choice.locationId) + '">Gå hit</button></li>';
+    const max = limit || 12;
+    const selectedId = selectedPlayerLocationId(choiceModel.phase);
+    let remaining = max;
+    const groups = Array.isArray(choiceModel.groups) && choiceModel.groups.length
+      ? choiceModel.groups
+      : [{ id: "choices", label: "Valg", choices: choices }];
+    const groupHtml = groups.map((group) => {
+      const groupChoices = Array.isArray(group.choices) ? group.choices : [];
+      if (!groupChoices.length || remaining <= 0) return "";
+      const shown = groupChoices.slice(0, remaining);
+      remaining -= shown.length;
+      const more = groupChoices.length > shown.length
+        ? '<p class="civi-city-detail-hint civi-city-phase-choice-more">' + esc("Viser " + shown.length + " av " + groupChoices.length + " valg i denne gruppen.") + "</p>"
+        : "";
+      return '<div class="civi-city-phase-choice-group is-group-' + esc(String(group.id || "choices")) + '">' +
+        '<h5>' + esc(group.label || "Valg") + '</h5>' +
+        '<ul class="civi-city-detail-list">' + shown.map((choice) => buildPhaseChoiceRow(choice, selectedId)).join("") + '</ul>' +
+        more + '</div>';
     }).join("");
     return '<div class="civi-city-detail-section civi-city-phase-choices">' +
       '<h4>' + esc('Hvor vil du gå i denne fasen?') + '</h4>' +
-      '<p class="civi-city-detail-hint">' + esc('Velg sted for ' + phaseName + '.') + '</p>' +
-      '<ul class="civi-city-detail-list">' + items + '</ul></div>';
+      '<p class="civi-city-detail-hint">' + esc('Velg konkret sted for ' + phaseName + '. Dette lagres som fase-minne, ikke live-posisjon.') + '</p>' +
+      groupHtml + '</div>';
   }
 
   function applyPlayerChoiceFromDetail(detail, choiceId, locationId) {
@@ -562,7 +599,9 @@
     }
     const feedback = detail && detail.querySelector("[data-encounter-feedback]");
     if (feedback && result && result.choice) {
-      feedback.textContent = result.choice.activity || "Valget er lagret.";
+      const phaseLbl = eng.snapshotPhaseLabel ? eng.snapshotPhaseLabel(_model.snapshotPhase).toLowerCase() : "fasen";
+      const label = result.choice.displayLabel || String(result.choice.label || "").replace(/^Gå til\s+/, "") || result.choice.locationId;
+      feedback.textContent = "Du er nå på " + label + " i " + phaseLbl + ". Dette er fase-minne, ikke live-posisjon.";
       feedback.removeAttribute("hidden");
     }
     try {
@@ -608,12 +647,25 @@
 
     markSelected('[data-place-id="' + cssEscape(placeId) + '"]');
 
+    // Ekte sosialt sted (fra CivicationSocialPlaceResolver) og generisk fallback
+    // må avklares før auto-lagring: en kategoriinngang med konkrete steder skal
+    // ikke lagre generisk locationId bare fordi spilleren åpnet detail-panelet.
+    const resolver = window.CivicationSocialPlaceResolver;
+    const isSocialPlace = resolver &&
+      ((typeof resolver.isSocialPlace === "function" && resolver.isSocialPlace(loc)) ||
+       (typeof resolver.isBrandSocialPlace === "function" && resolver.isBrandSocialPlace(loc)));
+    const buildHeader = resolver &&
+      (resolver.buildSocialPlaceHeaderHtml || resolver.buildBrandPlaceHeaderHtml);
+    const isFallback = (typeof eng.isGenericSocialFallback === "function") && eng.isGenericSocialFallback(loc);
+    const fallbackChoicesHtml = isFallback ? buildFallbackSocialPlaceChoicesHtml(loc, _model.snapshotPhase) : "";
+    const fallbackActive = isFallback && !!fallbackChoicesHtml;
+
     // Bakoverkompatibelt: direkte åpning av et konkret sted lagrer fortsatt et
     // fasevalg. Når åpningen kommer rett etter en eksplisitt "Gå hit"-choice,
     // er snapshotet allerede lagret med choice-aktivitet og må ikke overskrives.
     if (_suppressNextAutoCaptureLocationId === String(placeId || "")) {
       _suppressNextAutoCaptureLocationId = null;
-    } else {
+    } else if (!fallbackActive) {
       capturePlayerSnapshotForPlace(loc);
     }
     renderSelfStatus();
@@ -650,23 +702,9 @@
     const channelHint = CHANNEL_HINTS[String(loc.channel || "")] || "";
     const relatedSection = String(loc.relatedSection || "");
 
-    // Ekte sosialt sted (fra CivicationSocialPlaceResolver): vis socialPlaceType-
-    // label, brandnavn (brand-place) eller ekte stednavn (place-only), tilknyttet
-    // History Go-sted + fase + kort intro i stedet for generisk header.
-    const resolver = window.CivicationSocialPlaceResolver;
-    const isSocialPlace = resolver &&
-      ((typeof resolver.isSocialPlace === "function" && resolver.isSocialPlace(loc)) ||
-       (typeof resolver.isBrandSocialPlace === "function" && resolver.isBrandSocialPlace(loc)));
-    const buildHeader = resolver &&
-      (resolver.buildSocialPlaceHeaderHtml || resolver.buildBrandPlaceHeaderHtml);
-
-    // Del C/E: generisk sosial fallback med ekte steder av samme type -> vis
-    // stedskortet som en inngang/kategori ("Kaféområde"/"Kafévalg") og led til
-    // de konkrete stedene. Uten ekte steder beholdes den generiske møteflyten.
-    const isFallback = (typeof eng.isGenericSocialFallback === "function") && eng.isGenericSocialFallback(loc);
-    const fallbackChoicesHtml = isFallback ? buildFallbackSocialPlaceChoicesHtml(loc, _model.snapshotPhase) : "";
-    const fallbackActive = isFallback && !!fallbackChoicesHtml;
-
+    // Ekte sosialt sted: resolver-header. Generisk sosial fallback med ekte
+    // steder: kategoriinngang som leder til konkrete steder. Uten ekte steder
+    // beholdes generisk møteflyt.
     let headerHtml;
     if (isSocialPlace && typeof buildHeader === "function") {
       headerHtml = buildHeader(loc, _model.snapshotPhase);
@@ -716,11 +754,11 @@
       ? eng.snapshotPhaseLabel(phase)
       : String(phase || "");
     const phaseLow = (phaseLbl || "fase").toLowerCase();
-    const heading = "Folk som også valgte " + placeLabel.toLowerCase() + " i siste " + phaseLow;
+    const heading = "Folk som også valgte " + placeLabel + " i siste " + phaseLow;
 
     if (!list.length) {
       return '<div class="civi-city-detail-section civi-city-encounters">' +
-        "<h4>" + esc("Sosialt møte") + "</h4>" +
+        "<h4>" + esc(heading) + "</h4>" +
         '<p class="civi-city-detail-list muted">' +
         esc("Ingen åpne for kontakt her i siste " + phaseLow + ".") + "</p></div>";
     }

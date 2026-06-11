@@ -227,6 +227,37 @@ check("choice label er norsk og stabil", () => {
   assert.strictEqual(eng.buildPlayerPhaseChoiceLabel(choice), "Gå til Fuglen");
 });
 
+check("player choice view-model grupperer konkrete steder, systemvalg og hjem/arbeid", () => {
+  const model = eng.buildPlayerPhaseChoiceModel("morning", playerChoiceContext);
+  const groups = new Map(model.groups.map((g) => [g.id, g]));
+  assert.ok(groups.has("concrete"), "konkrete steder-gruppe mangler");
+  assert.ok(groups.has("system"), "systemvalg-gruppe mangler");
+  assert.ok(groups.has("home_work"), "hjem/arbeid-gruppe mangler");
+  assert.ok(groups.get("concrete").choices.some((c) => c.displayLabel === "Fuglen" && c.subtitle === "Kaffe · Universitetsplassen"));
+  assert.ok(groups.get("system").choices.some((c) => c.locationId === "psychology_room" && c.subtitle === "Innsikt · AHA"));
+  assert.ok(groups.get("home_work").choices.some((c) => c.locationId === "home"));
+});
+
+check("fallback vises som kategoriinngang bare når konkrete steder mangler", () => {
+  const withReal = eng.buildPlayerPhaseChoiceModel("leisure", playerChoiceContext);
+  const withRealFallbacks = (withReal.groups.find((g) => g.id === "fallback") || { choices: [] }).choices;
+  assert.ok(!withRealFallbacks.some((c) => ["cafe", "park", "football", "culture", "gym"].includes(c.locationId)),
+    "fallback skal ikke konkurrere med konkrete steder av samme type");
+  const withoutReal = eng.buildPlayerPhaseChoiceModel("leisure", { locations: locationsData.phaseLocations, socialPlaces: [] });
+  const fallback = withoutReal.groups.find((g) => g.id === "fallback");
+  assert.ok(fallback, "fallback-gruppe skal finnes uten konkrete steder");
+  assert.ok(fallback.choices.some((c) => c.kind === "social_fallback" && /Kategoriinngang/.test(c.subtitle)));
+});
+
+check("fallback uten konkrete steder kan fortsatt lagres generisk", () => {
+  eng.clearPlayerPhaseSnapshotsForTesting();
+  const result = eng.applyPlayerPhaseChoice("go:cafe", { locations: locationsData.phaseLocations, socialPlaces: [], phase: "leisure" });
+  assert.ok(result && result.snapshot, "fallback-valg skal gi snapshot");
+  assert.strictEqual(result.snapshot.locationId, "cafe");
+  assert.strictEqual(result.snapshot.state, "at_cafe");
+  assert.strictEqual(result.snapshot.socialAvailability, "open_to_contact");
+});
+
 check("valg av brand_place:* lagrer concrete locationId og stedskontekst", () => {
   eng.clearPlayerPhaseSnapshotsForTesting();
   const result = eng.applyPlayerPhaseChoice("go:brand_place:universitetsplassen:fuglen", { ...playerChoiceContext, phase: "leisure" });

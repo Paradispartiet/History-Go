@@ -283,7 +283,7 @@ check("responseOptions inneholder reply/ignore/decline + responseModel labels", 
 check("feedback-tekst for henvendelse matcher UI-kravet", () => {
   const enc = eng.getSocialEncountersForLocation("leisure", "park", opts)[0];
   const bridged = bridge.handleCivicationFriendMessageAction({ ok: true, action: "approach", model: enc });
-  assert.strictEqual(bridged.feedbackText, "Henvendelse til Mariam er lagt i Personlige meldinger.");
+  assert.strictEqual(bridged.feedbackText, "Du henvender deg til Mariam på Park i fritidsfasen. Henvendelsen er lagt i Personlige meldinger.");
 });
 
 check("createApproachMessageFromEncounter kan ta en rå møte-modell direkte", () => {
@@ -395,7 +395,7 @@ check("buildPlaceEncountersHtml viser møtepersoner + Henvend deg-knapp", () => 
   const park = locations.find((l) => l.id === "park");
   const enc = eng.getSocialEncountersForLocation("leisure", "park", opts);
   const html = layer.buildPlaceEncountersHtml(park, "leisure", enc);
-  assert.ok(/Folk som også valgte park i siste fritidsfase/.test(html), "overskrift mangler");
+  assert.ok(/Folk som også valgte Park i siste fritidsfase/.test(html), "overskrift mangler");
   assert.ok(html.includes("Mariam Holt"), "møteperson mangler");
   assert.ok(html.includes('data-civi-social-action="approach"'), "approach-action mangler");
   assert.ok(html.includes('data-friend-id="friend_demo_01"'), "friend-id mangler");
@@ -407,6 +407,7 @@ check("buildPlaceEncountersHtml viser møtepersoner + Henvend deg-knapp", () => 
 check("buildPlaceEncountersHtml viser trygg tom-tilstand uten åpne personer", () => {
   const workplace = locations.find((l) => l.id === "workplace");
   const html = layer.buildPlaceEncountersHtml(workplace, "work", []);
+  assert.ok(/Folk som også valgte Arbeidsplass i siste arbeidsfase/.test(html), "tom-overskrift mangler");
   assert.ok(/Ingen åpne for kontakt her i siste arbeidsfase/.test(html), "tom-tilstand mangler");
   assert.ok(!html.includes("data-civi-social-action"), "ingen approach-knapp uten personer");
 });
