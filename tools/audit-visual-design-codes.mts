@@ -71,7 +71,7 @@ const MD_MAX_ADA_SAFE = 50;
 const MD_MAX_ADA_METADATA = 40;
 const MD_MAX_ADA_KEEP = 30;
 const MD_MAX_ADA_MANUAL = 40;
-const MD_MAX_ADA_BATCH6 = 60;
+const MD_MAX_ADA_BATCH7 = 60;
 
 function readJSON(file: string): unknown {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -534,42 +534,42 @@ const UNUSED_CODE_HINTS = {
     nextAction: "Vurder AHA-/kuriosa-/objektsamling-artikler for eksplisitt article_wonderkammer_miniature."
   },
   // Nye presise artikkelkoder fra "Article register expansion" (PR #1236-oppfølging).
-  // Foreløpig ubrukte – batch 6 kan ta dem i bruk via articleBatch6Plan.
+  // Foreløpig ubrukte – batch 7 kan ta dem i bruk via articleBatch7Plan.
   article_nature_route_miniature: {
     searchTerms: ["elv", "elveløp", "natursti", "turvei", "grøntdrag", "vassdrag", "bekk", "naturkorridor"],
-    nextAction: "Vurder naturstier, elver/bekker, vann, grøntdrag, turveier og natur-/elveforløp for eksplisitt article_nature_route_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder naturstier, elver/bekker, vann, grøntdrag, turveier og natur-/elveforløp for eksplisitt article_nature_route_miniature (jf. articleBatch7Plan)."
   },
   article_media_history_miniature: {
     searchTerms: ["redaksjon", "avis", "journalistikk", "nrk", "kringkasting", "mediehus", "offentlighet"],
-    nextAction: "Vurder avisredaksjoner, NRK/mediehus, pressehistorie og medieoffentlighet for eksplisitt article_media_history_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder avisredaksjoner, NRK/mediehus, pressehistorie og medieoffentlighet for eksplisitt article_media_history_miniature (jf. articleBatch7Plan)."
   },
   article_transport_miniature: {
     searchTerms: ["trikk", "t-bane", "tog", "buss", "stasjon", "knutepunkt", "kollektiv", "terminal"],
-    nextAction: "Vurder trikk/t-bane/tog/buss, stasjoner, knutepunkt og kollektivsystem for eksplisitt article_transport_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder trikk/t-bane/tog/buss, stasjoner, knutepunkt og kollektivsystem for eksplisitt article_transport_miniature (jf. articleBatch7Plan)."
   },
   article_urban_infrastructure_miniature: {
     searchTerms: ["bro", "bru", "tunnel", "akvedukt", "vannforsyning", "infrastruktur", "kraft"],
-    nextAction: "Vurder veier, bruer, tunneler, vannforsyning, kraft og teknisk infrastruktur for eksplisitt article_urban_infrastructure_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder veier, bruer, tunneler, vannforsyning, kraft og teknisk infrastruktur for eksplisitt article_urban_infrastructure_miniature (jf. articleBatch7Plan)."
   },
   article_industry_miniature: {
     searchTerms: ["bryggeri", "fabrikk", "verksted", "industri", "produksjon"],
-    nextAction: "Vurder bryggeri, fabrikk, verksted, produksjon og industrihistorie for eksplisitt article_industry_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder bryggeri, fabrikk, verksted, produksjon og industrihistorie for eksplisitt article_industry_miniature (jf. articleBatch7Plan)."
   },
   article_religion_miniature: {
     searchTerms: ["kirke", "menighet", "trosliv", "religion", "kloster", "moske", "synagoge"],
-    nextAction: "Vurder kirkerom, menighet, trosliv og kirkehistorie (religion mer enn bygning) for eksplisitt article_religion_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder kirkerom, menighet, trosliv og kirkehistorie (religion mer enn bygning) for eksplisitt article_religion_miniature (jf. articleBatch7Plan)."
   },
   article_science_history_miniature: {
     searchTerms: ["forskning", "vitenskap", "laboratorium", "institutt", "metode", "fagfelt"],
-    nextAction: "Vurder forskning, vitenskapshistorie, fagmiljøer og laboratorier for eksplisitt article_science_history_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder forskning, vitenskapshistorie, fagmiljøer og laboratorier for eksplisitt article_science_history_miniature (jf. articleBatch7Plan)."
   },
   article_food_market_miniature: {
     searchTerms: ["matmarked", "torghandel", "mathall", "markedshall", "matkultur", "servering"],
-    nextAction: "Vurder matmarked, torghandel, mathall, serverings- og matkultur for eksplisitt article_food_market_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder matmarked, torghandel, mathall, serverings- og matkultur for eksplisitt article_food_market_miniature (jf. articleBatch7Plan)."
   },
   article_childhood_play_miniature: {
     searchTerms: ["lekeplass", "barndom", "lek", "barn", "skolegård", "aktivitet"],
-    nextAction: "Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch6Plan)."
+    nextAction: "Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch7Plan)."
   }
 };
 
@@ -657,25 +657,39 @@ function reviewReasonFor(type, e, code) {
 // Article default analysis – ren intern analysehelper.
 //
 // Klassifiserer de gjenværende `article_default_miniature`-artiklene før neste
-// data-batch (batch 6). Denne delen leser kun eksisterende felter
+// data-batch (batch 7). Denne delen leser kun eksisterende felter
 // (id/place_id/title/popupDesc/summary/classification/subjects/category_hints)
 // og endrer ingen datafiler, registeret eller resolveren. Den foreslår koder,
-// men merker ingenting. Resultatet brukes til å bygge batch 6 presist i stedet
+// men merker ingenting. Resultatet brukes til å bygge batch 7 presist i stedet
 // for å gjette.
 // ---------------------------------------------------------------------------
 
-// Eksisterende artikkelkoder audit kan foreslå som trygge batch 6-kandidater.
+// Eksisterende artikkelkoder audit kan foreslå som trygge batch 7-kandidater.
 // Rekkefølgen er fra mest til minst spesifikk (brukes som tie-breaker).
 const ARTICLE_DEFAULT_SAFE_RULES: KeywordRule[] = [
   [/gravlund|kirkegård|minnesmerke|minnelund|minnested|krigsminne|okkupasjon|fangeleir|falne|deportasjon|henrettelse/, "article_memory_place_miniature"],
-  [/vigelandsanlegget|skulpturpark|skulptur|utsmykning|kunstmuseum|kunsthall|billedkunst|offentlig kunst|\bgalleri/, "article_art_miniature"],
+  [/biografi|biography|personportrett|portrettartikkel|livsløp|livshistorie/, "article_biography_miniature"],
+  [/folkeliv|befolkning|arbeiderklasse|lokalbefolkning|byoriginal/, "article_people_portrait_miniature"],
+  [/vigelandsanlegget|skulpturpark|skulptur|utsmykning|kunstmuseum|kunsthall|billedkunst|offentlig kunst|\bgalleri|kunstverk/, "article_art_miniature"],
   [/hageby|trehus|gårdsanlegg|byggeskikk|arkitektur|byggekunst|fasade|kvartalsstruktur|boligstruktur|bygningsmiljø/, "article_architecture_miniature"],
   [/bibliotek|universitet|sykehus|hospital|\bfengsel|stiftelse|institutt|studenthus|studentersamfund|departement|forvaltning/, "article_institution_miniature"],
+  [/jernbane|t-?bane|trikk|bussterminal|\bbuss|stasjon|knutepunkt|kollektiv|innfartsvei|motorvei|ring ?\d|drammensbanen|grorudbanen|drammensveien|\be18\b|samferdsel|transitrom|transportknutepunkt/, "article_transport_miniature"],
+  [/byelv|\belv\b|elva|elve|vassdrag|bekk|\bfoss|tjern|innsjø|\bvann\b|vannet|\bmyr\b|våtmark|naturreservat|fjordøy|svaberg|kantvegetasjon|grøntdrag|turvei|friområde|ravine|dalrom|kløft|bynatur|nærnatur|natur\b|naturstruktur|naturhistorie|skogbelte|kongeskogen|miradouro|jardim|monsanto|tapada|markavann/, "article_nature_route_miniature"],
+  [/\bbro\b|\bbrua|akvedukt|aqueduto|energisentral|vannregulering|kloakk|ledningsnett|trafikkmaskin|bispelokket|\bdam\b|dammen/, "article_urban_infrastructure_miniature"],
+  [/redaksjon|avishus|\bavis\b|kringkasting|allmennkringkasting|\bnrk\b|presse|tabloid|lederartikkel|dagsorden|mediefelt|kulturjournalistikk/, "article_media_history_miniature"],
+  [/industriområde|fabrikk|\bmølle\b|bryggeri|verksted|industrikultur|industrihistorie|driftsanlegg|trikkestall|vannkraft/, "article_industry_miniature"],
+  [/\bkirke\b|kapell|menighet|kloster|katedral|domkirke|moske|synagoge|trosliv|kirkehistorie/, "article_religion_miniature"],
+  [/laboratorium|vitenskapshistorie|forskningsmiljø|psykologi|fagmiljø|forskning/, "article_science_history_miniature"],
+  [/torghandel|matmarked|markedshall|restaurantliv|spisested|mathall|matkultur|servering/, "article_food_market_miniature"],
+  [/lekeplass|barndom|barnelek|lek\b/, "article_childhood_play_miniature"],
   [/stadion|fotballklubb|idrettshistorie|friidrett|skøytehall|sportshistorie|tribune/, "article_sports_history_miniature"],
+  [/groundhopper|bortefelt|stadiontur|kampdag/, "article_groundhopper_miniature"],
   [/musikkhistorie|konserthus|plateselskap|jazzklubb|musikkscene/, "article_music_history_miniature"],
   [/forfatterskap|litteraturhistorie|diktning|poesi|romankunst/, "article_literature_miniature"],
   [/storting|regjeringshistorie|partihistorie|valgkamp|demokratihistorie/, "article_political_history_miniature"],
   [/stedsnavn|navnespor|språkhistorie|dialekt|etymologi/, "article_language_miniature"],
+  [/gjenstand|objektfortelling|minnegjenstand|materiell kultur/, "article_object_story_miniature"],
+  [/wonderkammer|raritetskabinett|kuriositet/, "article_wonderkammer_miniature"],
   [/middelalderby|christiania|byhistorie/, "article_history_miniature"],
   [/lokalhistorie|nabolagshistorie|strøkshistorie/, "article_local_story_miniature"],
   [/stedsessay|representasjonsrom|seremoniell byform|byakse|plassrom|\bbyrom/, "article_place_essay_miniature"]
@@ -684,15 +698,14 @@ const ARTICLE_DEFAULT_SAFE_RULES: KeywordRule[] = [
 // Mulige NYE koder audit kan foreslå (men IKKE legge til i registeret i denne
 // PR-en). Disse dekker temaer dagens katalog treffer for grovt.
 const ARTICLE_DEFAULT_NEW_RULES: KeywordRule[] = [
-  [/jernbane|t-?bane|trikk|bussterminal|\bbuss|stasjon|knutepunkt|kollektiv|innfartsvei|motorvei|ring ?\d|drammensbanen|grorudbanen|drammensveien|\be18\b|samferdsel|transitrom|transportknutepunkt/, "article_transport_miniature"],
-  [/byelv|\belv\b|elva|elve|vassdrag|bekk|\bfoss|tjern|innsjø|\bvann\b|vannet|\bmyr\b|våtmark|naturreservat|fjordøy|svaberg|kantvegetasjon|grøntdrag|turvei|friområde|ravine|dalrom|kløft|bynatur|nærnatur|natur\b|naturstruktur|naturhistorie|skogbelte|kongeskogen|miradouro|jardim|monsanto|tapada|markavann/, "article_nature_route_miniature"],
-  [/\bbro\b|\bbrua|akvedukt|aqueduto|energisentral|vannregulering|kloakk|ledningsnett|trafikkmaskin|bispelokket|\bdam\b|dammen/, "article_urban_infrastructure_miniature"],
-  [/redaksjon|avishus|\bavis\b|kringkasting|allmennkringkasting|\bnrk\b|presse|tabloid|lederartikkel|dagsorden|mediefelt|kulturjournalistikk/, "article_media_history_miniature"],
-  [/industriområde|fabrikk|\bmølle\b|bryggeri|verksted|industrikultur|industrihistorie|driftsanlegg|trikkestall/, "article_industry_miniature"],
-  [/\bkirke\b|kapell|menighet|kloster|katedral|domkirke|moske|synagoge/, "article_religion_miniature"],
-  [/lekeplass|barndom|barnelek/, "article_childhood_play_miniature"],
-  [/laboratorium|vitenskapshistorie|forskningsmiljø|psykologi/, "article_science_history_miniature"],
-  [/torghandel|matmarked|markedshall|restaurantliv|spisested/, "article_food_market_miniature"]
+  [/populaerkultur|populærkultur|filmkulisse|filmsted|film[- ]? og tv|film|tv-drama|krim|serie|kjendis|sladder|livsstilsmedier|standup|nerdkultur|sjangerfellesskap/, "article_popular_culture_miniature"],
+  [/hverdagsbruk|hverdagsliv|hverdagskultur|hverdag|møtepunkt|oppholdsplass|uformell rekreasjon|daglig bruk|hverdagsspottingsone/, "article_everyday_life_miniature"],
+  [/sosialhistorie|arbeiderforstad|arbeidsliv|klasse|fattigdom|leiegård|sanering|byfornyelse|boligsosial|rimelige boliger/, "article_social_history_miniature"],
+  [/arrangement|festival|markering|seremoni|parade|demonstrasjon|feiring|event|skøytebane|sesongskifte/, "article_event_place_miniature"],
+  [/uteliv|natteliv|\bbar\b|\bpub\b|klubb|serveringsmiljø|byliv om natten/, "article_nightlife_miniature"],
+  [/utdanning|skole|læring|undervisning|studentmiljø|campus|universitetsmiljø/, "article_education_place_miniature"],
+  [/offentlig rom|offentlig scene|torgflate|byrom|nabolagstorg|plassrom|civic space|borgerrom|demokratisk rom/, "article_civic_space_miniature"],
+  [/nabolagsidentitet|strøksidentitet|identitet|tilhørighet|lokal identitet|områdeløft|sentrumsskala/, "article_neighborhood_identity_miniature"]
 ];
 
 // Temaer som peker mot bevisst generelle/populærkulturelle artikler uten klar
@@ -710,7 +723,7 @@ const ARTICLE_VERY_UNAMBIGUOUS = new Set([
 type ArticleField = { field: string; text: string };
 type CodeScore = { code: string; isNew: boolean; words: string[]; fields: Set<string>; order: number };
 type ArticleDefaultGroup =
-  "safeBatch6Candidates" | "needsMetadata" | "needsNewDesignCode" |
+  "safeBatch7Candidates" | "needsMetadata" | "needsNewDesignCode" |
   "keepDefaultForNow" | "manualReview";
 
 // Finn alle distinkte treff (m[0]) av et mønster i en streng.
@@ -760,7 +773,7 @@ function articleConfidence(s: CodeScore): "high" | "medium" | "low" {
 // regnes som "ny" (needsNewDesignCode) KUN hvis den ikke finnes i registeret
 // ennå. Etter "Article register expansion" finnes de tidligere foreslåtte
 // artikkelkodene (transport, nature_route, media_history, …), så treff på dem
-// blir trygge batch 6-kandidater i stedet for needsNewDesignCode.
+// blir trygge batch 7-kandidater i stedet for needsNewDesignCode.
 function classifyArticleDefault(e: AuditEntity, file: string, validCodes: Set<string>) {
   const fields = articleAnalysisFields(e);
   const sum = e.summary || {};
@@ -789,7 +802,7 @@ function classifyArticleDefault(e: AuditEntity, file: string, validCodes: Set<st
   apply(ARTICLE_DEFAULT_NEW_RULES);
 
   const ranked = [...scores.values()].sort(
-    (a, b) => b.fields.size - a.fields.size || a.order - b.order);
+    (a, b) => b.fields.size - a.fields.size || Number(a.isNew) - Number(b.isNew) || a.order - b.order);
   const popCulture = ARTICLE_DEFAULT_KEEP_RE.test(
     [themes.join(" "), tags.join(" "), oneLiner, lc(e.popupDesc || "")].join(" "));
 
@@ -861,6 +874,22 @@ function classifyArticleDefault(e: AuditEntity, file: string, validCodes: Set<st
 
   const confidence = articleConfidence(top);
 
+  // Id/place_id alene er for svakt som batchgrunnlag selv om ordet matcher.
+  if (fieldsUsed.every((f) => f === "id" || f === "place_id")) {
+    const missing: string[] = [];
+    if (!realTitle) missing.push("title");
+    if (themes.length === 0) missing.push("summary.themes");
+    if (tags.length === 0) missing.push("classification.tags");
+    if (popupLen < 40) missing.push("popupDesc");
+    if (!missing.length) missing.push("strong non-id metadata signal");
+    return {
+      group: "needsMetadata" as ArticleDefaultGroup,
+      entry: baseEntry(top.code, "low",
+        `id/place_id er eneste sterke signal for \`${top.code}\`; trenger bedre metadata før batch`,
+        top.words, fieldsUsed, { missing })
+    };
+  }
+
   // 4) Ny kode trengs (dagens katalog er for grov).
   if (top.isNew) {
     return {
@@ -881,19 +910,19 @@ function classifyArticleDefault(e: AuditEntity, file: string, validCodes: Set<st
     };
   }
 
-  // 6) Trygg batch 6-kandidat med tydelig eksisterende kode.
+  // 6) Trygg batch 7-kandidat med tydelig eksisterende kode.
   return {
-    group: "safeBatch6Candidates" as ArticleDefaultGroup,
+    group: "safeBatch7Candidates" as ArticleDefaultGroup,
     entry: baseEntry(top.code, confidence,
       `tydelig eksisterende fagområde (${top.words.join(", ")}) → \`${top.code}\``,
       top.words, fieldsUsed)
   };
 }
 
-// Bygg hele articleDefaultAnalysis + articleBatch6Plan fra artikkel-entiteter.
+// Bygg hele articleDefaultAnalysis + articleBatch7Plan fra artikkel-entiteter.
 function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn: Resolver, validCodes: Set<string>) {
   const groups: Record<ArticleDefaultGroup, any[]> = {
-    safeBatch6Candidates: [],
+    safeBatch7Candidates: [],
     needsMetadata: [],
     needsNewDesignCode: [],
     keepDefaultForNow: [],
@@ -907,7 +936,7 @@ function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn:
     groups[group].push(entry);
   }
 
-  const total = groups.safeBatch6Candidates.length + groups.needsMetadata.length +
+  const total = groups.safeBatch7Candidates.length + groups.needsMetadata.length +
     groups.needsNewDesignCode.length + groups.keepDefaultForNow.length +
     groups.manualReview.length;
 
@@ -921,15 +950,15 @@ function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn:
 
   const articleDefaultAnalysis = {
     total,
-    safeBatch6Candidates: groups.safeBatch6Candidates,
+    safeBatch7Candidates: groups.safeBatch7Candidates,
     needsMetadata: groups.needsMetadata,
     needsNewDesignCode: groups.needsNewDesignCode,
     keepDefaultForNow: groups.keepDefaultForNow,
     manualReview: groups.manualReview
   };
 
-  // Batch 6-plan: kun trygge, high/medium-confidence kandidater, prioritert.
-  const batchCandidates = groups.safeBatch6Candidates
+  // Batch 7-plan: kun trygge, high/medium-confidence kandidater, prioritert.
+  const batchCandidates = groups.safeBatch7Candidates
     .filter((c) => c.confidence === "high" || c.confidence === "medium")
     .map((c) => ({
       id: c.id, title: c.title, place_id: c.place_id, file: c.file,
@@ -937,17 +966,17 @@ function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn:
       reason: c.reason
     }));
 
-  const articleBatch6Plan = {
-    recommendedScope: { min: 50, max: 90 },
+  const articleBatch7Plan = {
+    recommendedScope: { min: 0, max: 40 },
     priorityOrder: [
-      "safe high-confidence article defaults",
-      "unused/underused existing article designCodes",
-      "manual review after human check"
+      "safe high/medium-confidence article defaults",
+      "only candidates backed by existing metadata",
+      "do not include metadata/new-code/default/manual-review groups"
     ],
     candidates: batchCandidates
   };
 
-  return { articleDefaultAnalysis, articleBatch6Plan };
+  return { articleDefaultAnalysis, articleBatch7Plan };
 }
 
 // ---------------------------------------------------------------------------
@@ -1189,7 +1218,7 @@ function main() {
   };
 
   // Klassifisering av de gjenværende article_default_miniature (audit-only).
-  const { articleDefaultAnalysis, articleBatch6Plan } =
+  const { articleDefaultAnalysis, articleBatch7Plan } =
     buildArticleDefaultAnalysis(articleEntries, resolveForArticle, validCodes);
 
   const report = {
@@ -1246,7 +1275,7 @@ function main() {
     },
     batch3Suggestions: batch3,
     articleDefaultAnalysis,
-    articleBatch6Plan,
+    articleBatch7Plan,
     pilotBatchStatus: {
       batch1Baseline: 73,
       afterBatch2: 169,
@@ -1284,8 +1313,8 @@ function main() {
   console.log(`  review-kandidater:         ${countCand(report.semanticReviewCandidates)}`);
   console.log(`  batch3-forslag:            ${countCand(report.batch3Suggestions)}`);
   const ada = report.articleDefaultAnalysis;
-  console.log(`  article-default analyse:   ${ada.total} (safe ${ada.safeBatch6Candidates.length}, metadata ${ada.needsMetadata.length}, ny-kode ${ada.needsNewDesignCode.length}, keep ${ada.keepDefaultForNow.length}, manuell ${ada.manualReview.length})`);
-  console.log(`  batch6-kandidater:         ${report.articleBatch6Plan.candidates.length}`);
+  console.log(`  article-default analyse:   ${ada.total} (safe ${ada.safeBatch7Candidates.length}, metadata ${ada.needsMetadata.length}, ny-kode ${ada.needsNewDesignCode.length}, keep ${ada.keepDefaultForNow.length}, manuell ${ada.manualReview.length})`);
+  console.log(`  batch7-kandidater:         ${report.articleBatch7Plan.candidates.length}`);
   console.log(`  invalid eksplisitte:       ${invalidExplicit.length}`);
   console.log(`  manglende renderHints:     ${missingRenderHints.length}`);
   console.log(`  designCodes uten bruk:     ${unused.length}`);
@@ -1349,18 +1378,18 @@ function pushBatch3Group(lines, label, items, max) {
   lines.push("");
 }
 
-// Render «Article default analysis»-seksjonen (Del 7) og batch 6-forslaget
+// Render «Article default analysis»-seksjonen (Del 7) og batch 7-forslaget
 // (Del 8). Tall fra JSON, avkortede tabeller for lesbarhet.
 function pushArticleDefaultAnalysis(lines: string[], r: AuditReport) {
   const ada = r.articleDefaultAnalysis;
   if (!ada) return;
-  lines.push("## Article default analysis");
+  lines.push("## Remaining article default audit");
   lines.push("");
   lines.push(`Klassifisering av de gjenværende \`article_default_miniature\`. Denne`);
-  lines.push("delen merker **ingen** datafiler – den forbereder en presis batch 6.");
+  lines.push("delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 har nok trygge kandidater.");
   lines.push("");
   lines.push(`- total \`article_default_miniature\`: **${ada.total}**`);
-  lines.push(`- safeBatch6Candidates: ${ada.safeBatch6Candidates.length}`);
+  lines.push(`- safeBatch7Candidates: ${ada.safeBatch7Candidates.length}`);
   lines.push(`- needsMetadata: ${ada.needsMetadata.length}`);
   lines.push(`- needsNewDesignCode: ${ada.needsNewDesignCode.length}`);
   lines.push(`- keepDefaultForNow: ${ada.keepDefaultForNow.length}`);
@@ -1375,9 +1404,9 @@ function pushArticleDefaultAnalysis(lines: string[], r: AuditReport) {
     { head: "reason", get: (x: any) => x.reason },
     { head: "file", get: (x: any) => x.file }
   ];
-  lines.push("### Trygge batch 6-kandidater");
+  lines.push("### Trygge batch 7-kandidater");
   lines.push("");
-  pushCandidateList(lines, "safeBatch6Candidates", ada.safeBatch6Candidates, MD_MAX_ADA_SAFE, safeCols);
+  pushCandidateList(lines, "safeBatch7Candidates", ada.safeBatch7Candidates, MD_MAX_ADA_SAFE, safeCols);
 
   const metaCols = [
     idTitle,
@@ -1434,19 +1463,22 @@ function pushArticleDefaultAnalysis(lines: string[], r: AuditReport) {
   lines.push("");
   pushCandidateList(lines, "manualReview", ada.manualReview, MD_MAX_ADA_MANUAL, manualCols);
 
-  // ---- Del 8: Forslag til Article batch 6 ----
-  const plan = r.articleBatch6Plan;
+  // ---- Del 8: Forslag til Article batch 7 ----
+  const plan = r.articleBatch7Plan;
   if (plan) {
-    lines.push("## Forslag til Article batch 6");
+    lines.push("## Article batch 7 plan");
     lines.push("");
-    lines.push(`Anbefalt omfang: **${plan.recommendedScope.min}–${plan.recommendedScope.max}** artikler.`);
+    lines.push(`Anbefalt omfang: **${plan.recommendedScope.min}–${plan.recommendedScope.max}** artikler (ikke press frem batch hvis kandidatgrunnlaget er lite).`);
+    if (plan.candidates.length < 20) {
+      lines.push(`Audit finner bare **${plan.candidates.length}** trygge kandidater nå; det er et lite grunnlag, så en batch 7 bør ikke presses frem.`);
+    }
     lines.push("Prioritert rekkefølge:");
     for (const p of plan.priorityOrder) lines.push(`1. ${p}`);
     lines.push("");
     lines.push("Kun trygge kandidater (high/medium-confidence). `needsMetadata` og");
     lines.push("`needsNewDesignCode` tas **ikke** med som direkte batchkandidater.");
     lines.push("");
-    const shown = plan.candidates.slice(0, MD_MAX_ADA_BATCH6);
+    const shown = plan.candidates.slice(0, MD_MAX_ADA_BATCH7);
     lines.push(`Topp ${shown.length} av ${plan.candidates.length}, gruppert etter \`suggestedDesignCode\`:`);
     lines.push("");
     if (!plan.candidates.length) {
@@ -1462,7 +1494,7 @@ function pushArticleDefaultAnalysis(lines: string[], r: AuditReport) {
       }
       if (plan.candidates.length > shown.length) {
         lines.push("");
-        lines.push(`_Viser ${shown.length} av ${plan.candidates.length}. Full liste i \`articleBatch6Plan.candidates\` i JSON._`);
+        lines.push(`_Viser ${shown.length} av ${plan.candidates.length}. Full liste i \`articleBatch7Plan.candidates\` i JSON._`);
       }
     }
     lines.push("");

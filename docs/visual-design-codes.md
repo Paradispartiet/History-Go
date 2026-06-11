@@ -438,53 +438,46 @@ batcher.
 
 ## Article default audit
 
-«Article default audit» er en **ren analyse-utvidelse** av audit-scriptet, ikke
-en data-batch. Etter Article batch 5 falt 175 leksikon-/lesespor-artikler
-fortsatt til `article_default_miniature`, og før batch 6 bygges må vi vite hva de
-restene faktisk er – i stedet for å gjette.
+«Article default audit» (#1236) var en ren analyse-utvidelse av audit-scriptet,
+ikke en data-batch. Den klassifiserte de 175 `article_default_miniature` som
+stod igjen etter Article batch 5, slik at senere artikkelbatcher kunne bygges
+fra eksisterende metadata i stedet for gjetting. Analysen merket ingen
+leksikon-, lesespor- eller story-data, endret ikke registeret og endret ikke
+resolveren.
 
-Denne delen **merker ingen datafiler**. Den endrer ikke registeret
-(`data/visualDesignCodes.json`), resolveren (`js/visualDesignCodes.js`),
-renderere, kart, UI, quiz, relasjoner eller innholdstekster. Den eneste
-endringen er en intern analysehelper i
-[`tools/audit-visual-design-codes.mts`](../tools/audit-visual-design-codes.mts)
-som leser eksisterende felter
-(`id`/`place_id`/`title`/`popupDesc`/`summary.themes`/`classification.tags`
-m.fl.) og klassifiserer hver gjenværende default-artikkel.
+## Remaining article default audit
+
+Etter Article batch 6 (#1262) gjenstår bare **61** artikler som fortsatt løser
+til `article_default_miniature`. Denne PR-en analyserer disse 61 som
+audit-only: den leser eksisterende metadata og rapporterer klassifisering, men
+setter **ingen** nye `visual.designCode` i `data/leksikon`, `data/lesespor` eller
+`data/stories`.
 
 Resultatet ligger i `reports/visual-design-codes-audit.json` under
 `articleDefaultAnalysis`, med fem grupper:
 
-- **`safeBatch6Candidates`** – tydelig eksisterende artikkelkode finnes
-  (f.eks. `article_place_essay_miniature`, `article_art_miniature`,
-  `article_institution_miniature`).
-- **`needsMetadata`** – for lite metadata (mangler `title`, `summary.themes`,
-  `classification.tags` eller har for generisk `popupDesc`) til en trygg kode.
-  Artikkelen rapporteres, men **endres ikke** – metadata bør forbedres først.
-- **`needsNewDesignCode`** – temaet dekkes ikke godt av dagens katalog. Auditen
-  *foreslår* nye koder (f.eks. `article_nature_route_miniature`,
-  `article_transport_miniature`, `article_media_history_miniature`,
-  `article_urban_infrastructure_miniature`, `article_religion_miniature`) men
-  **legger dem ikke til** registeret. Dette er den klart største gruppen, fordi
-  de fleste gjenværende defaults er natur-/elve- og transport-/knutepunktartikler
-  uten en presis eksisterende kode.
-- **`keepDefaultForNow`** – bevisst generelle, blandede eller populærkulturelle
-  artikler der `article_default_miniature` faktisk er bedre enn en smal kode.
-- **`manualReview`** – flere plausible koder med lik styrke; valget bør avgjøres
-  manuelt.
+- **`safeBatch7Candidates`** – eksisterende artikkelkode er tydelig støttet av
+  metadata og kan vurderes for en eventuell batch 7.
+- **`needsMetadata`** – artikkelen mangler nok struktur til trygg klassifisering,
+  for eksempel `summary.themes`, `classification.tags`, konkret tittel eller en
+  informativ `popupDesc`.
+- **`needsNewDesignCode`** – temaet ser reelt ut, men dagens register dekker det
+  ikke godt nok; auditen foreslår mulige fremtidige koder uten å legge dem til.
+- **`keepDefaultForNow`** – default er foreløpig best fordi temaet er bredt,
+  blandet, teknisk/nøytralt eller mangler tydelig visuell identitet.
+- **`manualReview`** – to eller flere koder er like sannsynlige, eller metadata
+  peker i ulike retninger.
 
-Batch 6 skal bygges fra `articleBatch6Plan` i samme rapport. Planen samler kun
-trygge high/medium-confidence kandidater (anbefalt omfang 50–90), prioritert:
-(1) trygge high-confidence article defaults, (2) ubrukte/underbrukte
-eksisterende artikkelkoder, og (3) manuell vurdering etter menneskelig sjekk.
-`needsMetadata` og `needsNewDesignCode` tas **ikke** med som direkte
-batchkandidater – noen artikler trenger bedre metadata før en kode kan settes, og
-noen temaer kan kreve at registeret utvides med nye designCodes i en senere,
-egen register-PR.
+`articleBatch7Plan` i samme rapport er bare en plan. Den inkluderer kun
+`safeBatch7Candidates` med high/medium confidence, og skal bare brukes hvis
+auditen viser nok trygge kandidater. Hvis kandidatgrunnlaget er lite, skal vi
+ikke presse frem Article batch 7. Noen av de 61 artiklene bør kanskje forbli
+`article_default_miniature`, mens andre bør få bedre metadata eller nye
+artikkelkoder i senere, separate PR-er.
 
-Den lesbare oppsummeringen (med avkortede tabeller) ligger i
+Den lesbare oppsummeringen (med korte tabeller og full liste i JSON) ligger i
 [`reports/visual-design-codes-audit.md`](../reports/visual-design-codes-audit.md)
-under «Article default analysis» og «Forslag til Article batch 6».
+under «Remaining article default audit» og «Article batch 7 plan».
 
 ## Article register expansion
 
