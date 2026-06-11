@@ -7,6 +7,10 @@ interface WonderkammerManifest extends JsonObject {
   files?: unknown;
 }
 
+interface PeopleManifest extends JsonObject {
+  files?: unknown;
+}
+
 interface WonderkammerEntry extends JsonObject {
   id?: unknown;
   title?: unknown;
@@ -30,6 +34,7 @@ type IssueList = string[];
 
 const ROOT = process.cwd();
 const MANIFEST_PATH = "data/wonderkammer/index.json";
+const PEOPLE_MANIFEST_PATH = "data/people/manifest.json";
 const REQUIRED_ENTRY_FIELDS = ["id", "title", "type", "description"];
 const ACTIVITY_TEXT_TYPES = new Set([
   "play_zone",
@@ -152,6 +157,66 @@ function collectIds(value: unknown, ids: Set<string>): void {
   for (const child of Object.values(objectValue)) {
     collectIds(child, ids);
   }
+}
+
+function normalizePeopleManifestPath(entry: unknown): string | null {
+  if (typeof entry !== "string") return null;
+
+  const raw = entry.trim().replace(/^\.?\//, "");
+  if (!raw) return null;
+
+  return raw.startsWith("data/") ? raw : `data/${raw}`;
+}
+
+function extractPeopleRows(json: unknown, file: string): unknown[] {
+  if (Array.isArray(json)) return json;
+
+  if (!json || typeof json !== "object") {
+    errors.push(`${file}: people-fil må være array eller objekt med people/items-array`);
+    return [];
+  }
+
+  const typedJson = json as JsonObject;
+  if (Array.isArray(typedJson.people)) return typedJson.people;
+  if (Array.isArray(typedJson.items)) return typedJson.items;
+
+  errors.push(`${file}: people-fil må være array eller objekt med people/items-array`);
+  return [];
+}
+
+async function collectPeopleIdsFromManifest(): Promise<Set<string>> {
+  const ids = new Set<string>();
+  const manifest = await readJson(PEOPLE_MANIFEST_PATH);
+  if (!manifest) return ids;
+
+  const typedManifest = manifest as PeopleManifest;
+  if (!Array.isArray(typedManifest.files)) {
+    errors.push(`${PEOPLE_MANIFEST_PATH}: files må være array`);
+    return ids;
+  }
+
+  for (const manifestFile of typedManifest.files) {
+    const file = normalizePeopleManifestPath(manifestFile);
+    if (!file) {
+      errors.push(`${PEOPLE_MANIFEST_PATH}: ugyldig people-fil i manifest: ${JSON.stringify(manifestFile)}`);
+      continue;
+    }
+
+    const json = await readJson(file);
+    if (!json) continue;
+
+    const rows = extractPeopleRows(json, file);
+    for (const row of rows) {
+      if (!row || typeof row !== "object") continue;
+
+      const id = (row as JsonObject).id;
+      if (typeof id === "string" && id.trim()) {
+        ids.add(id);
+      }
+    }
+  }
+
+  return ids;
 }
 
 async function collectIdsFromRoots(roots: string[]): Promise<Set<string>> {
@@ -449,7 +514,7 @@ async function main(): Promise<void> {
   }
 
   const validPlaceIds = await collectIdsFromRoots(["data/places", "data/places.json"]);
-  const validPersonIds = await collectIdsFromRoots(["data/people", "data/people.json"]);
+  const validPersonIds = await collectPeopleIdsFromManifest();
 
   for (const file of typedManifest.files) {
     if (!(await pathExists(file))) {
