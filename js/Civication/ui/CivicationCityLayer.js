@@ -343,6 +343,7 @@
   // ---------------------------------------------------------------------------
   let _model = null;
   let rendering = false;
+  let _suppressNextAutoCaptureLocationId = null;
 
   async function render() {
     const eng = engine();
@@ -520,6 +521,62 @@
     el.removeAttribute("hidden");
   }
 
+  function buildPlayerPhaseChoicesHtml(phase, limit) {
+    const eng = engine();
+    if (!eng || !_model || typeof eng.buildPlayerPhaseChoiceModel !== "function") return "";
+    const choiceModel = eng.buildPlayerPhaseChoiceModel(phase || _model.snapshotPhase, {
+      locations: _model.locations || [],
+      socialPlaces: _model.socialPlaces || []
+    });
+    const choices = Array.isArray(choiceModel.choices) ? choiceModel.choices : [];
+    if (!choices.length) return "";
+    const shown = choices.slice(0, limit || 10);
+    const phaseName = String(choiceModel.phaseLabel || "fasen").toLowerCase();
+    const items = shown.map((choice) => {
+      const subtitle = choice.subtitle ? '<small>' + esc(choice.subtitle) + '</small>' : '';
+      return '<li class="civi-city-phase-choice">' +
+        '<div class="civi-city-phase-choice-copy"><strong>' + esc(choice.label || "Gå hit") + '</strong>' + subtitle + '</div>' +
+        '<button type="button" class="civi-btn" data-civi-player-choice="' + esc(choice.choiceId) + '"' +
+        ' data-location-id="' + esc(choice.locationId) + '">Gå hit</button></li>';
+    }).join("");
+    return '<div class="civi-city-detail-section civi-city-phase-choices">' +
+      '<h4>' + esc('Hvor vil du gå i denne fasen?') + '</h4>' +
+      '<p class="civi-city-detail-hint">' + esc('Velg sted for ' + phaseName + '.') + '</p>' +
+      '<ul class="civi-city-detail-list">' + items + '</ul></div>';
+  }
+
+  function applyPlayerChoiceFromDetail(detail, choiceId, locationId) {
+    const eng = engine();
+    if (!eng || !_model || typeof eng.applyPlayerPhaseChoice !== "function") return null;
+    const result = eng.applyPlayerPhaseChoice(choiceId, {
+      phase: _model.snapshotPhase,
+      snapshotPhase: _model.snapshotPhase,
+      locations: _model.locations || [],
+      socialPlaces: _model.socialPlaces || []
+    });
+    renderSelfStatus();
+    const targetLocationId = (result && result.choice && result.choice.locationId) || locationId;
+    if (targetLocationId) {
+      _suppressNextAutoCaptureLocationId = String(targetLocationId);
+      setTimeout(function () { openPlaceDetail(String(targetLocationId)); }, 0);
+    }
+    const feedback = detail && detail.querySelector("[data-encounter-feedback]");
+    if (feedback && result && result.choice) {
+      feedback.textContent = result.choice.activity || "Valget er lagret.";
+      feedback.removeAttribute("hidden");
+    }
+    try {
+      window.dispatchEvent(new CustomEvent("civi:playerPhaseChoice", {
+        detail: {
+          choice: result ? result.choice : null,
+          snapshot: result ? result.snapshot : null,
+          source: "civicationCityLayer"
+        }
+      }));
+    } catch (_e) {}
+    return result;
+  }
+
   // ---------------------------------------------------------------------------
   // Detalj-paneler
   // ---------------------------------------------------------------------------
@@ -551,10 +608,14 @@
 
     markSelected('[data-place-id="' + cssEscape(placeId) + '"]');
 
-    // Spilleren velger et sosialt sted i den aktive fasen -> lagre spillerens
-    // siste fasevalg her: phase + locationId + activity + state +
-    // socialAvailability + visibleOnMap (deterministisk fra stedet). Mål 6.
-    capturePlayerSnapshotForPlace(loc);
+    // Bakoverkompatibelt: direkte åpning av et konkret sted lagrer fortsatt et
+    // fasevalg. Når åpningen kommer rett etter en eksplisitt "Gå hit"-choice,
+    // er snapshotet allerede lagret med choice-aktivitet og må ikke overskrives.
+    if (_suppressNextAutoCaptureLocationId === String(placeId || "")) {
+      _suppressNextAutoCaptureLocationId = null;
+    } else {
+      capturePlayerSnapshotForPlace(loc);
+    }
     renderSelfStatus();
 
     // Venner her = de hvis aktive fase-minne (snapshot/fallback) peker hit.
@@ -633,6 +694,7 @@
       headerHtml +
       '<div class="civi-city-detail-status' + (active ? " is-active" : "") + '">' +
         (active ? "Aktivt i denne fasen" : "Roligere i denne fasen") + "</div>" +
+      (fallbackActive ? "" : buildPlayerPhaseChoicesHtml(_model.snapshotPhase, 8)) +
       fallbackChoicesHtml +
       (activitiesHtml ? '<div class="civi-city-detail-section"><h4>Aktiviteter</h4><div class="civi-city-chips">' + activitiesHtml + "</div></div>" : "") +
       '<div class="civi-city-detail-section"><h4>Venner her</h4><ul class="civi-city-detail-list">' + friendsHtml + "</ul></div>" +
@@ -714,11 +776,10 @@
     const typeWord = String((loc && loc.label) || "sosialt sted").toLowerCase();
     if (!real.length) return "";
     const items = real.slice(0, 8).map((p) =>
-      '<li class="civi-city-fallback-choice">' +
-      '<button type="button" class="civi-btn" data-civi-fallback-place="' + esc(p.id) + '">' +
-      "<strong>" + esc(p.label || p.placeLabel || p.id) + "</strong>" +
-      (p.placeLabel && p.placeLabel !== p.label ? ' <small>' + esc(p.placeLabel) + "</small>" : "") +
-      "</button></li>"
+      '<li class="civi-city-fallback-choice civi-city-phase-choice">' +
+      '<div class="civi-city-phase-choice-copy"><strong>' + esc(p.label || p.placeLabel || p.id) + '</strong>' +
+      (p.placeLabel && p.placeLabel !== p.label ? ' <small>' + esc(p.placeLabel) + '</small>' : '') +
+      '</div><button type="button" class="civi-btn" data-civi-fallback-place="' + esc(p.id) + '">Gå hit</button></li>'
     ).join("");
     return '<div class="civi-city-detail-section civi-city-fallback-choices">' +
       "<h4>" + esc("Velg et konkret " + typeWord + "sted") + "</h4>" +
@@ -960,12 +1021,24 @@
       });
     });
 
-    // Generisk fallback -> velg et konkret ekte sted (Del C/E).
+    // Generisk fallback -> velg et konkret ekte sted (Del C/E). Bruker samme
+    // choice-flyt som fasepanelet slik at snapshotet får konkret stedskontekst.
     detail.querySelectorAll("[data-civi-fallback-place]").forEach((btn) => {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        openPlaceDetail(String(btn.getAttribute("data-civi-fallback-place") || ""));
+        const id = String(btn.getAttribute("data-civi-fallback-place") || "");
+        const result = applyPlayerChoiceFromDetail(detail, "go:" + id, id);
+        if (!result && id) openPlaceDetail(id);
+      });
+    });
+
+    // Konkret fasevalg for spilleren -> lagre snapshot og åpne stedet.
+    detail.querySelectorAll("[data-civi-player-choice]").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        applyPlayerChoiceFromDetail(detail, btn.getAttribute("data-civi-player-choice"), btn.getAttribute("data-location-id"));
       });
     });
 
@@ -1261,6 +1334,8 @@
     getRealSocialPlacesForFallback,
     resolvePreferredSocialLocation,
     buildFallbackSocialPlaceChoicesHtml,
+    buildPlayerPhaseChoicesHtml,
+    applyPlayerChoiceFromDetail,
     getFriendInvites,
     closeDetail,
     // Kartnode-roller i DOM (Del A) – eksponert for testing.

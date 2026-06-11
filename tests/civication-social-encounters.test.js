@@ -295,6 +295,56 @@ check("createApproachMessageFromEncounter kan ta en rå møte-modell direkte", (
   assert.deepStrictEqual(msg.responseOptions, ["reply", "ignore", "decline"]);
 });
 
+const concreteSocialPlaces = [
+  { id: "brand_place:plassen_a:fuglen", locationId: "brand_place:plassen_a:fuglen", sourcePlaceId: "plassen_a", brandId: "fuglen", socialPlaceType: "coffee", label: "Fuglen", placeLabel: "Universitetsplassen", type: "cafe", channel: "social", phaseAffinity: ["leisure", "evening"], activePhases: ["lunch", "afternoon", "evening"] },
+  { id: "brand_place:plassen_b:java", locationId: "brand_place:plassen_b:java", sourcePlaceId: "plassen_b", brandId: "java", socialPlaceType: "coffee", label: "Java Kaffebar", placeLabel: "St. Hanshaugen park", type: "cafe", channel: "social", phaseAffinity: ["leisure", "evening"], activePhases: ["lunch", "afternoon", "evening"] }
+];
+const concreteLocations = eng.mergeSocialPlacesIntoLocations(locations, concreteSocialPlaces);
+
+check("player på konkret sted ser venner med samme resolved concrete locationId", () => {
+  const friend = { id: "friend_concrete", name: "Konkret Kari", role: "Barista" };
+  const localSnaps = [{ friendId: "friend_concrete", snapshots: { leisure: {
+    phase: "leisure", state: "at_cafe", locationId: "cafe", activity: "tar kaffe",
+    mood: "åpen", visibleOnMap: true, socialAvailability: "open_to_contact" } } }];
+  const enc = eng.getSocialEncountersForLocation("leisure", "brand_place:plassen_a:fuglen", {
+    friends: [friend], snapshots: localSnaps, locations: concreteLocations, socialPlaces: concreteSocialPlaces, dayIndex: 1
+  });
+  assert.strictEqual(enc.length, 1);
+  assert.strictEqual(enc[0].locationId, "brand_place:plassen_a:fuglen");
+  assert.strictEqual(enc[0].sourcePlaceId, "plassen_a");
+  assert.strictEqual(enc[0].brandId, "fuglen");
+  assert.strictEqual(enc[0].socialPlaceType, "coffee");
+});
+
+check("same phase + same socialPlaceType men ulik concrete locationId gir ikke møte", () => {
+  const friend = { id: "friend_java", name: "Java Jens", role: "Student" };
+  const localSnaps = [{ friendId: "friend_java", snapshots: { leisure: {
+    phase: "leisure", state: "at_cafe", locationId: "brand_place:plassen_b:java", activity: "tar kaffe",
+    mood: "åpen", visibleOnMap: true, socialAvailability: "open_to_contact" } } }];
+  const fuglen = eng.getSocialEncountersForLocation("leisure", "brand_place:plassen_a:fuglen", {
+    friends: [friend], snapshots: localSnaps, locations: concreteLocations, socialPlaces: concreteSocialPlaces, dayIndex: 1
+  });
+  assert.strictEqual(fuglen.length, 0, "coffee på Java skal ikke møtes på Fuglen");
+});
+
+check("Henvend deg og private messages bruker concrete locationId og stedskontekst", () => {
+  const friend = { id: "friend_concrete", name: "Konkret Kari", role: "Barista" };
+  const localSnaps = [{ friendId: "friend_concrete", snapshots: { leisure: {
+    phase: "leisure", state: "at_cafe", locationId: "brand_place:plassen_a:fuglen", activity: "tar kaffe",
+    mood: "åpen", visibleOnMap: true, socialAvailability: "open_to_contact" } } }];
+  const enc = eng.getSocialEncountersForLocation("leisure", "brand_place:plassen_a:fuglen", {
+    friends: [friend], snapshots: localSnaps, locations: concreteLocations, socialPlaces: concreteSocialPlaces, dayIndex: 1
+  })[0];
+  const bridged = bridge.handleCivicationFriendMessageAction({ ok: true, action: "approach", model: enc });
+  assert.strictEqual(bridged.message.channel, "private");
+  assert.strictEqual(bridged.message.locationId, "brand_place:plassen_a:fuglen");
+  assert.strictEqual(bridged.message.sourcePlaceId, "plassen_a");
+  assert.strictEqual(bridged.message.brandId, "fuglen");
+  assert.strictEqual(bridged.message.socialPlaceType, "coffee");
+  assert.strictEqual(bridged.message.career_id, undefined);
+  assert.strictEqual(bridged.message.role_key, undefined);
+});
+
 console.log("Spillerens valg av sosialt sted lagrer snapshot (Mål 6)");
 
 check("kafé i fritidsfasen lagrer riktig locationId + socialAvailability", () => {

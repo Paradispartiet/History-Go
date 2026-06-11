@@ -1610,6 +1610,227 @@
     return SOCIAL_PLACE_BY_ID[id] || SOCIAL_PLACE_BY_TYPE[type] || null;
   }
 
+  // ---------------------------------------------------------------------------
+  // Konkrete fasevalg for spilleren (view-model)
+  // ---------------------------------------------------------------------------
+  // Spilleren skal velge samme type konkrete socialPlaces som vennenes resolvede
+  // fase-minne bruker. Dette er rene view-modeller: ingen DOM, ingen fetch, ingen
+  // GPS/live-posisjon og ingen tilfeldig stedshardkoding.
+
+  const SOCIAL_PLACE_TYPE_LABEL = {
+    coffee: "Kaffe",
+    culture: "Kultur",
+    book_library: "Bok / bibliotek",
+    park_public_space: "Park / byrom",
+    sport_football: "Sport / fotball",
+    hospitality_food: "Servering",
+    retail_social: "Butikk / møteplass",
+    city_walk: "Byvandring"
+  };
+
+  const PLAYER_SYSTEM_CHOICES_BY_PHASE = {
+    morning: ["home", "workplace", "psychology_room"],
+    work: ["workplace", "nav_office"],
+    leisure: ["nav_office"],
+    evening: ["home"],
+    reflection: ["home", "psychology_room", "nav_office"]
+  };
+
+  const PLAYER_DAY_SYSTEM_CHOICES = {
+    morning: ["home", "workplace", "psychology_room"],
+    lunch: ["workplace", "nav_office"],
+    afternoon: ["nav_office"],
+    evening: ["home"],
+    day_end: ["home", "psychology_room", "nav_office"]
+  };
+
+  function getSocialPlaceTypeLabel(socialPlaceType) {
+    return SOCIAL_PLACE_TYPE_LABEL[norm(socialPlaceType)] || prettifySocialLabel(socialPlaceType);
+  }
+
+  function prettifySocialLabel(value) {
+    const s = norm(value);
+    if (!s) return "Sosialt sted";
+    return s.replace(/[_:]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
+  function dayPhaseForChoice(phase) {
+    const raw = norm(phase).toLowerCase();
+    if (DAY_PHASES.includes(raw)) return raw;
+    const ph = normalizeSnapshotPhase(raw);
+    return SNAPSHOT_TO_DAY_PHASE[ph] || raw || "morning";
+  }
+
+  function phaseMatchesChoicePlace(place, semanticPhase, dayPhase) {
+    const p = place && typeof place === "object" ? place : {};
+    const affinity = Array.isArray(p.phaseAffinity) ? p.phaseAffinity.map((x) => norm(x)) : [];
+    const active = Array.isArray(p.activePhases) ? p.activePhases.map((x) => norm(x)) : [];
+    return affinity.indexOf(semanticPhase) !== -1 || active.indexOf(dayPhase) !== -1;
+  }
+
+  function choiceSubtitleForSocialPlace(place) {
+    const typeLabel = getSocialPlaceTypeLabel(place && place.socialPlaceType);
+    const placeLabel = norm(place && place.placeLabel);
+    return [typeLabel, placeLabel].filter(Boolean).join(" · ");
+  }
+
+  function choiceActivityForPlace(place) {
+    const label = norm(place && place.label) || norm(place && place.placeLabel) || "stedet";
+    return "går til " + label;
+  }
+
+  function buildPlayerPhaseChoiceLabel(choice) {
+    const c = choice && typeof choice === "object" ? choice : {};
+    if (norm(c.label)) return norm(c.label);
+    const locLabel = norm(c.locationLabel) || norm(c.placeLabel) || norm(c.locationId);
+    return locLabel ? "Gå til " + locLabel : "Gå hit";
+  }
+
+  function socialChoiceFromPlace(place, phase) {
+    const p = place && typeof place === "object" ? place : {};
+    const locationId = norm(p.locationId || p.id);
+    if (!locationId) return null;
+    const label = norm(p.label) || norm(p.placeLabel) || locationId;
+    return {
+      choiceId: "go:" + locationId,
+      phase: normalizeSnapshotPhase(phase),
+      locationId: locationId,
+      sourcePlaceId: norm(p.sourcePlaceId) || null,
+      brandId: norm(p.brandId) || null,
+      socialPlaceType: norm(p.socialPlaceType) || null,
+      label: "Gå til " + label,
+      subtitle: choiceSubtitleForSocialPlace(p),
+      activity: choiceActivityForPlace(p),
+      channel: norm(p.channel) || "social",
+      kind: "social_place"
+    };
+  }
+
+  function systemChoiceFromLocation(loc, phase) {
+    const l = loc && typeof loc === "object" ? loc : {};
+    const locationId = norm(l.id || l.locationId);
+    if (!locationId) return null;
+    const label = norm(l.label) || locationId;
+    const channel = norm(l.channel) || (locationId === "psychology_room" ? "insight" : "system");
+    return {
+      choiceId: "go:" + locationId,
+      phase: normalizeSnapshotPhase(phase),
+      locationId: locationId,
+      label: "Gå til " + label,
+      subtitle: systemChoiceSubtitle(l),
+      activity: "går til " + label,
+      channel: channel,
+      kind: "system_node"
+    };
+  }
+
+  function systemChoiceSubtitle(loc) {
+    const id = norm(loc && (loc.id || loc.locationId));
+    if (id === "home") return "Hjem · Privat";
+    if (id === "workplace") return "Jobb · Arbeidsfase";
+    if (id === "psychology_room") return "Innsikt · AHA";
+    if (id === "nav_office") return "System · Hjelp";
+    return getLocationKicker(loc) || "Systemnode";
+  }
+
+  function sortedChoicePlaces(context) {
+    const ctx = context && typeof context === "object" ? context : {};
+    const list = Array.isArray(ctx.socialPlaces) ? ctx.socialPlaces :
+      (Array.isArray(ctx.locations) ? ctx.locations.filter(isRealSocialPlace) : []);
+    return list.filter(isRealSocialPlace).slice().sort((a, b) => {
+      const at = norm(a.socialPlaceType);
+      const bt = norm(b.socialPlaceType);
+      if (at !== bt) return at < bt ? -1 : 1;
+      const al = norm(a.label || a.locationId || a.id);
+      const bl = norm(b.label || b.locationId || b.id);
+      if (al !== bl) return al < bl ? -1 : 1;
+      const ai = norm(a.locationId || a.id);
+      const bi = norm(b.locationId || b.id);
+      return ai < bi ? -1 : (ai > bi ? 1 : 0);
+    });
+  }
+
+  function getPlayerSocialPlaceChoicesForPhase(phase, context) {
+    const ph = normalizeSnapshotPhase(phase);
+    const dayPhase = dayPhaseForChoice(phase);
+    const seen = new Set();
+    return sortedChoicePlaces(context)
+      .filter((p) => phaseMatchesChoicePlace(p, ph, dayPhase))
+      .map((p) => socialChoiceFromPlace(p, ph))
+      .filter((c) => {
+        if (!c || seen.has(c.choiceId)) return false;
+        seen.add(c.choiceId);
+        return true;
+      });
+  }
+
+  function getPlayerSystemChoicesForPhase(phase, context) {
+    const ph = normalizeSnapshotPhase(phase);
+    const dayPhase = dayPhaseForChoice(phase);
+    const ctx = context && typeof context === "object" ? context : {};
+    const locations = Array.isArray(ctx.locations) ? ctx.locations : [];
+    const dayIds = PLAYER_DAY_SYSTEM_CHOICES[dayPhase] || null;
+    const ids = dayIds || PLAYER_SYSTEM_CHOICES_BY_PHASE[ph] || [];
+    return ids.map((id) => locationById(locations, id) || { id: id, label: prettifySocialLabel(id) })
+      .map((loc) => systemChoiceFromLocation(loc, ph))
+      .filter(Boolean);
+  }
+
+  function getPlayerConcreteChoicesForPhase(phase, context) {
+    return getPlayerSystemChoicesForPhase(phase, context)
+      .concat(getPlayerSocialPlaceChoicesForPhase(phase, context));
+  }
+
+  function buildPlayerPhaseChoiceModel(phase, context) {
+    const ph = normalizeSnapshotPhase(phase);
+    return {
+      phase: ph,
+      phaseLabel: snapshotPhaseLabel(ph),
+      dayPhase: dayPhaseForChoice(phase),
+      choices: getPlayerConcreteChoicesForPhase(phase, context)
+    };
+  }
+
+  function findPlayerPhaseChoice(choiceId, phase, context) {
+    const id = norm(choiceId);
+    if (!id) return null;
+    const choices = context && Array.isArray(context.choices)
+      ? context.choices
+      : buildPlayerPhaseChoiceModel(phase, context).choices;
+    return choices.find((c) => norm(c && c.choiceId) === id) || null;
+  }
+
+  function applyPlayerPhaseChoice(choiceId, context) {
+    const ctx = context && typeof context === "object" ? context : {};
+    const phase = ctx.phase || ctx.snapshotPhase || getActivePhase();
+    const choice = findPlayerPhaseChoice(choiceId, phase, ctx);
+    if (!choice) return null;
+    const locations = Array.isArray(ctx.locations) ? ctx.locations : [];
+    const loc = locationById(locations, choice.locationId) || {
+      id: choice.locationId,
+      locationId: choice.locationId,
+      label: buildPlayerPhaseChoiceLabel(choice).replace(/^Gå til\s+/, ""),
+      channel: choice.channel,
+      sourcePlaceId: choice.sourcePlaceId,
+      brandId: choice.brandId,
+      socialPlaceType: choice.socialPlaceType
+    };
+    const state = choice.kind === "social_place" ? "at_social_place" : "at_system_node";
+    const snap = capturePlayerPhaseSnapshotAtLocation(loc, choice.phase, {
+      state: state,
+      locationId: choice.locationId,
+      rawLocationId: null,
+      sourcePlaceId: choice.sourcePlaceId,
+      brandId: choice.brandId,
+      socialPlaceType: choice.socialPlaceType,
+      activity: choice.activity,
+      channel: choice.channel,
+      socialAvailability: choice.kind === "social_place" ? "open_to_contact" : undefined,
+      visibleOnMap: true
+    });
+    return { choice: choice, snapshot: snap };
+  }
+
   let _playerPhaseSnapshots = null;
 
   function loadPlayerPhaseSnapshots() {
@@ -1657,7 +1878,8 @@
       updatedAtLabel: norm(s.updatedAtLabel),
       visibleOnMap,
       socialAvailability,
-      channel: norm(s.channel)
+      channel: norm(s.channel),
+      rawLocationId: Object.prototype.hasOwnProperty.call(s, "rawLocationId") ? (norm(s.rawLocationId) || null) : null
     };
     // Ekte stedskobling (CivicationSocialPlaceResolver) – kun når den finnes, så
     // generiske snapshots beholder det opprinnelige formatet.
@@ -1697,7 +1919,8 @@
     const o = overrides && typeof overrides === "object" ? overrides : {};
     return normalizePlayerSnapshot(ph, {
       state: norm(o.state) || profile.state || def.state,
-      locationId: norm(o.locationId) || norm(loc.id) || def.locationId,
+      locationId: norm(o.locationId) || norm(loc.locationId) || norm(loc.id) || def.locationId,
+      rawLocationId: Object.prototype.hasOwnProperty.call(o, "rawLocationId") ? o.rawLocationId : null,
       activity: norm(o.activity) || profile.activity || def.activity,
       mood: norm(o.mood) || def.mood,
       updatedAtLabel: norm(o.updatedAtLabel) || def.updatedAtLabel,
@@ -1916,6 +2139,13 @@
     // lokalt spiller-fase-minne (grunnlag for framtidig synk til venner)
     PLAYER_PHASE_DEFAULTS: { ...PLAYER_PHASE_DEFAULTS },
     resolveSocialPlaceProfile,
+    getSocialPlaceTypeLabel,
+    getPlayerConcreteChoicesForPhase,
+    getPlayerSocialPlaceChoicesForPhase,
+    getPlayerSystemChoicesForPhase,
+    buildPlayerPhaseChoiceModel,
+    buildPlayerPhaseChoiceLabel,
+    applyPlayerPhaseChoice,
     buildPlayerSnapshotFromCurrentState,
     buildPlayerSnapshotForLocation,
     getPlayerPhaseSnapshots,
