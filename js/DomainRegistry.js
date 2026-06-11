@@ -83,8 +83,9 @@
     "popular culture": "populaerkultur"
   };
 
-  // Filnavn (dersom du vil slå opp hvilke filer som brukes for et fagdomene)
-  // Her låser vi naming-konvensjonen eksplisitt.
+  // Filnavn. kind bestemmer retning:
+  // - emner/merke bruker fag/editorial id
+  // - quiz bruker runtime category id fordi dagens quizfiler følger runtime-sporet
   const FILES = {
     emner: (id) => `emner/emner_${id}.json`,
     quiz: (id) => `data/quiz/quiz_${id}.json`,
@@ -160,11 +161,15 @@
   }
 
   function file(kind, domainId) {
-    const id = toFagSubjectId(domainId);
     const fn = FILES[kind];
     if (!fn) {
       throw new Error(`[DomainRegistry] Ukjent file-kind: "${kind}"`);
     }
+
+    const id = kind === "quiz"
+      ? toRuntimeCategoryId(domainId)
+      : toFagSubjectId(domainId);
+
     return fn(id);
   }
 
@@ -177,6 +182,6 @@
     listRuntimeCategories,// ["by", "historie", ..., "populaerkultur", "film_tv", "media"]
     aliasMap,             // {populaerkultur:"popkultur", filosofi:"vitenskap", ...}
     runtimeAliasMap,      // {popkultur:"populaerkultur", ...}
-    file                  // file("quiz","populaerkultur") => "data/quiz/quiz_popkultur.json"
+    file                  // file("quiz","popkultur") => "data/quiz/quiz_populaerkultur.json"
   };
 })();
