@@ -562,3 +562,32 @@ body.civi-mapmode .civi-city-layer {
     grid-template-columns: 1fr;
   }
 }
+
+/* Konkrete fasevalg for spilleren: små, stabile valg i stedskortet. */
+.civi-city-phase-choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.civi-city-phase-choice-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.civi-city-phase-choice-copy small,
+.civi-city-fallback-choice small {
+  font-size: 11px;
+  opacity: 0.72;
+}
+
+.civi-city-phase-choice .civi-btn {
+  flex: 0 0 auto;
+}

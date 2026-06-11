@@ -176,6 +176,89 @@ check("INGEN GPS/live-tracking-felter i player snapshot", () => {
   });
 });
 
+const playerChoiceSocialPlaces = [
+  { id: "brand_place:universitetsplassen:fuglen", locationId: "brand_place:universitetsplassen:fuglen", sourcePlaceId: "universitetsplassen", brandId: "fuglen", socialPlaceType: "coffee", label: "Fuglen", placeLabel: "Universitetsplassen", type: "cafe", channel: "social", phaseAffinity: ["morning", "leisure", "evening"], activePhases: ["lunch", "afternoon", "evening"] },
+  { id: "brand_place:st_hanshaugen:java", locationId: "brand_place:st_hanshaugen:java", sourcePlaceId: "st_hanshaugen", brandId: "java", socialPlaceType: "coffee", label: "Java Kaffebar", placeLabel: "St. Hanshaugen park", type: "cafe", channel: "social", phaseAffinity: ["morning", "leisure", "evening"], activePhases: ["lunch", "afternoon", "evening"] },
+  { id: "place:st_hanshaugen_park", locationId: "place:st_hanshaugen_park", sourcePlaceId: "st_hanshaugen_park", brandId: null, socialPlaceType: "park_public_space", label: "St. Hanshaugen park", placeLabel: "St. Hanshaugen park", type: "park", channel: "social", phaseAffinity: ["leisure", "evening", "reflection"], activePhases: ["afternoon", "evening"] },
+  { id: "brand_place:youngstorget:kulturhuset", locationId: "brand_place:youngstorget:kulturhuset", sourcePlaceId: "youngstorget", brandId: "kulturhuset", socialPlaceType: "culture", label: "Kulturhuset", placeLabel: "Youngstorget", type: "culture", channel: "social", phaseAffinity: ["leisure", "evening", "reflection"], activePhases: ["afternoon", "evening", "day_end"] },
+  { id: "place:bislett_stadion", locationId: "place:bislett_stadion", sourcePlaceId: "bislett_stadion", brandId: null, socialPlaceType: "sport_football", label: "Bislett stadion", placeLabel: "Bislett stadion", type: "training", channel: "social", phaseAffinity: ["leisure", "evening"], activePhases: ["afternoon", "evening"] }
+];
+const playerChoiceLocations = eng.mergeSocialPlacesIntoLocations(locationsData.phaseLocations, playerChoiceSocialPlaces);
+const playerChoiceContext = { locations: playerChoiceLocations, socialPlaces: playerChoiceSocialPlaces };
+
+check("getPlayerConcreteChoicesForPhase returnerer konkrete socialPlaces for relevante faser", () => {
+  const choices = eng.getPlayerConcreteChoicesForPhase("leisure", playerChoiceContext);
+  assert.ok(choices.some((c) => c.locationId === "brand_place:universitetsplassen:fuglen"));
+  assert.ok(choices.some((c) => c.locationId === "place:st_hanshaugen_park"));
+  assert.ok(choices.every((c) => c.choiceId.indexOf("go:") === 0));
+});
+
+check("coffee choices vises i lunch, leisure og evening via activePhases/phaseAffinity", () => {
+  ["lunch", "leisure", "evening"].forEach((phase) => {
+    const coffee = eng.getPlayerSocialPlaceChoicesForPhase(phase, playerChoiceContext)
+      .filter((c) => c.socialPlaceType === "coffee");
+    assert.ok(coffee.length >= 2, phase + " skal ha kaffesteder");
+  });
+});
+
+check("culture, park og sport vises i riktige sosialfaser", () => {
+  const evening = eng.getPlayerSocialPlaceChoicesForPhase("evening", playerChoiceContext);
+  assert.ok(evening.some((c) => c.socialPlaceType === "culture"));
+  assert.ok(evening.some((c) => c.socialPlaceType === "park_public_space"));
+  assert.ok(evening.some((c) => c.socialPlaceType === "sport_football"));
+  const afternoon = eng.getPlayerSocialPlaceChoicesForPhase("afternoon", playerChoiceContext);
+  assert.ok(afternoon.some((c) => c.socialPlaceType === "sport_football"));
+});
+
+check("systemnoder kan fortsatt velges etter fase", () => {
+  const morning = eng.getPlayerSystemChoicesForPhase("morning", playerChoiceContext);
+  assert.ok(morning.some((c) => c.locationId === "home"));
+  assert.ok(morning.some((c) => c.locationId === "workplace"));
+  assert.ok(morning.some((c) => c.locationId === "psychology_room"));
+  const dayEnd = eng.getPlayerSystemChoicesForPhase("day_end", playerChoiceContext);
+  assert.ok(dayEnd.some((c) => c.locationId === "psychology_room"));
+});
+
+check("choice label er norsk og stabil", () => {
+  const choice = eng.getPlayerSocialPlaceChoicesForPhase("leisure", playerChoiceContext)
+    .find((c) => c.locationId === "brand_place:universitetsplassen:fuglen");
+  assert.strictEqual(choice.label, "Gå til Fuglen");
+  assert.strictEqual(choice.subtitle, "Kaffe · Universitetsplassen");
+  assert.strictEqual(eng.buildPlayerPhaseChoiceLabel(choice), "Gå til Fuglen");
+});
+
+check("valg av brand_place:* lagrer concrete locationId og stedskontekst", () => {
+  eng.clearPlayerPhaseSnapshotsForTesting();
+  const result = eng.applyPlayerPhaseChoice("go:brand_place:universitetsplassen:fuglen", { ...playerChoiceContext, phase: "leisure" });
+  assert.ok(result && result.snapshot);
+  assert.strictEqual(result.snapshot.phase, "leisure");
+  assert.strictEqual(result.snapshot.state, "at_social_place");
+  assert.strictEqual(result.snapshot.locationId, "brand_place:universitetsplassen:fuglen");
+  assert.strictEqual(result.snapshot.rawLocationId, null);
+  assert.strictEqual(result.snapshot.sourcePlaceId, "universitetsplassen");
+  assert.strictEqual(result.snapshot.brandId, "fuglen");
+  assert.strictEqual(result.snapshot.socialPlaceType, "coffee");
+  assert.strictEqual(result.snapshot.activity, "går til Fuglen");
+  assert.strictEqual(result.snapshot.socialAvailability, "open_to_contact");
+  assert.strictEqual(result.snapshot.visibleOnMap, true);
+});
+
+check("valg av place:* lagrer sourcePlaceId og socialPlaceType", () => {
+  const result = eng.applyPlayerPhaseChoice("go:place:st_hanshaugen_park", { ...playerChoiceContext, phase: "evening" });
+  assert.strictEqual(result.snapshot.locationId, "place:st_hanshaugen_park");
+  assert.strictEqual(result.snapshot.sourcePlaceId, "st_hanshaugen_park");
+  assert.strictEqual(result.snapshot.brandId, undefined);
+  assert.strictEqual(result.snapshot.socialPlaceType, "park_public_space");
+});
+
+check("valg av systemnode lagrer system locationId", () => {
+  const result = eng.applyPlayerPhaseChoice("go:psychology_room", { ...playerChoiceContext, phase: "reflection" });
+  assert.strictEqual(result.snapshot.state, "at_system_node");
+  assert.strictEqual(result.snapshot.locationId, "psychology_room");
+  assert.strictEqual(result.snapshot.activity, "går til Psykologirommet");
+  assert.strictEqual(result.snapshot.visibleOnMap, true);
+});
+
 check("localStorage speiles når tilgjengelig", () => {
   const ls = makeLocalStorage();
   const engLs = loadEngine({ localStorage: ls });
