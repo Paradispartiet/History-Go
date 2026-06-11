@@ -114,8 +114,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadScriptOnce("js/nextUpRuntime.js");
     });
 
-    // Ikke blokker app-ready på søk/ruter/tunge data.
+    // Ikke blokker app-ready på søk/tunge bakgrunnsdata. Ruteruntime må derimot
+    // finnes før HGRoutes.init planlegges.
     runAfterReady("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
+    await safeRun("loadRoutesRuntime", () => loadScriptOnce("js/routes.js"));
     runAfterReady("HGRoutes.init", () => window.HGRoutes?.init?.());
     runAfterReady("bootBackground", window.bootBackground);
 
