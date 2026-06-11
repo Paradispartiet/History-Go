@@ -7,7 +7,7 @@
 //
 // scope:
 // - runtime_domain: aktiv toppkategori som kan matche badge/merit/category direkte
-// - legacy_runtime_domain: aktiv runtime-id som beholdes til samlet migrering
+// - runtime_domain_alias: aktiv runtime-id med kort/fag-alias; samme badge, ikke nytt spor
 // - subfield_display: visnings-/subfelt-id; ikke nytt toppdomene uten DOMAIN_CONTRACT-endring
 //
 // Se også: docs/DOMAIN_CONTRACT.md
@@ -31,8 +31,8 @@
     { id: "film_tv",        name: "Film & TV",              icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
     { id: "media",          name: "Medier",                 icon: "🗞️", color: "#c0c0c0", scope: "runtime_domain" },
 
-    // Aktiv legacy runtime-id. Ikke rename enkeltvis; migrer samlet.
-    { id: "populaerkultur", name: "Populærkultur",          icon: "📺", color: "#a0a0a0", scope: "legacy_runtime_domain", canonicalFagId: "popkultur" },
+    // Aktiv runtime-id med kort/fag-alias. popkultur er samme badge, ikke et nytt spor.
+    { id: "populaerkultur", name: "Populærkultur",          icon: "📺", color: "#a0a0a0", scope: "runtime_domain_alias", canonicalFagId: "popkultur", aliases: ["popkultur"] },
 
     // Subfelt/visning. Beholdes for UI/datafunn, men er ikke toppdomene nå.
     { id: "scenekunst",     name: "Scenekunst",             icon: "🎭", color: "#c59cff", scope: "subfield_display", parentId: "kunst", canonicalFagId: "kunst" }
