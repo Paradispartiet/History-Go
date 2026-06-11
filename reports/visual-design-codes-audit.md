@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-11T13:13:37.070Z
+Generert: 2026-06-11T18:37:28.821Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -583,6 +583,148 @@ Kun trygge kandidater (high/medium-confidence). `needsMetadata` og
 Topp 0 av 0, gruppert etter `suggestedDesignCode`:
 
 - (ingen)
+
+## Remaining article-default decision
+
+Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-batch. Den merker ingen artikler og endrer ikke register eller resolver.
+
+- total remaining `article_default_miniature`: **46**
+- metadataFirst count: 5
+- registerExpansionCandidates count: 20 artikler / 8 kodeforslag
+- manualReviewBeforeAction count: 14
+- keepDefaultIntentionally count: 7
+- deferSafeButLowValue count: 0
+
+**Anbefalt neste steg:** Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.
+
+### Metadata først
+
+#### metadataFirst (5)
+
+| id/title | missing metadata | recommended metadata | file |
+| --- | --- | --- | --- |
+| lesespor_bjorvika_001 — Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen | summary.themes, classification.tags, popupDesc | themes: byutvikling/boligpolitikk/fjordbyen; tags: byutvikling/rimelige boliger/boligsosial historie; popupDesc: kort presisering av boligpolitikk og Fjordbyen-kontekst | data/lesespor/oslo/lesespor_oslo_by.json |
+| lesespor_gronland_001 — Aktivitet skaper tryggere byer | summary.themes, classification.tags, popupDesc | themes: byutvikling/offentlig rom/sosial byhistorie; tags: Grønland/aktivitet i byrom/trygghet; popupDesc: kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk | data/lesespor/oslo/lesespor_oslo_by.json |
+| lesespor_gronland_003 — Hva er god byutvikling? | summary.themes, classification.tags, popupDesc | themes: byutvikling/offentlig rom/sosial byhistorie; tags: Grønland/aktivitet i byrom/trygghet; popupDesc: kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk | data/lesespor/oslo/lesespor_oslo_by.json |
+| bygdoy_natur — Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo. | title, classification.tags, summary.themes, popupDesc | themes: bynatur/fjordlandskap/kulturlandskap; tags: Bygdøy/naturmiljø/fjordnær naturbruk; popupDesc: kort presisering av naturmiljøets hovedtype og bruk | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | classification.tags, summary.themes, popupDesc | themes: nærnatur/boligkant/hverdagsbevegelse; tags: skogbelte/Alna/naturkant; popupDesc: kort presisering av forholdet mellom boligområde og skogbelte | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+
+### Mulige nye designCodes
+
+#### `article_popular_culture_miniature`
+
+- candidateCount: 10
+- priority: 5
+- shouldAddNow: true
+- eksempelartikler: cinemateket_oslo_filmkultur_i_oslo, colosseum_kino_hovedartikkel, frognerstranda_hovedartikkel, gronlandsleiret_hovedartikkel, house_of_nerds_hovedartikkel
+- reason: Mange gjenværende artikler handler eksplisitt om film, TV, scene, standup, kjendissone eller nerdkultur; dette er et reelt hull i artikkelkatalogen.
+
+#### `article_everyday_life_miniature`
+
+- candidateCount: 6
+- priority: 4
+- shouldAddNow: true
+- eksempelartikler: birkelunden, kampen_park_hovedartikkel, tigeren, oslo_s_sentrum_mobilitet, slottsparken
+- reason: Flere park-, møtepunkt- og mobilitetsartikler beskriver hverdagsbruk heller enn natur, institusjon eller stedsessay.
+
+#### `article_civic_space_miniature`
+
+- candidateCount: 1
+- priority: 3
+- shouldAddNow: false
+- eksempelartikler: toyen_torg_torgscene
+- reason: Tydelig systemverdi for torg og offentlig scene, men bare få sikre kandidater i restgruppen; bør vurderes sammen med manuell byromsgjennomgang.
+
+#### `article_social_history_miniature`
+
+- candidateCount: 1
+- priority: 3
+- shouldAddNow: false
+- eksempelartikler: vaterland_sanering
+- reason: Sosialhistorie er faglig relevant, men restgruppen har få entydige kandidater og flere manuelle grenseflater mot natur/byfornyelse.
+
+#### `article_event_place_miniature`
+
+- candidateCount: 1
+- priority: 2
+- shouldAddNow: false
+- eksempelartikler: slottsplassen_begreper
+- reason: Seremonier, parader og sesonghendelser er et mulig visuelt mønster, men restgruppen har for få entydige kandidater til egen kode nå.
+
+#### `article_neighborhood_identity_miniature`
+
+- candidateCount: 1
+- priority: 2
+- shouldAddNow: false
+- eksempelartikler: toyen_torg_identitet
+- reason: Nabolagsidentitet kan bli nyttig, men én sikker kandidat bør ikke alene drive registerutvidelse.
+
+#### `article_education_place_miniature`
+
+- candidateCount: 0
+- priority: 1
+- shouldAddNow: false
+- eksempelartikler: —
+- reason: Ingen tydelige gjenværende kandidater etter batch 7; ikke legg til kode nå.
+
+#### `article_nightlife_miniature`
+
+- candidateCount: 0
+- priority: 1
+- shouldAddNow: false
+- eksempelartikler: —
+- reason: Ingen tydelige gjenværende kandidater etter batch 7; ikke legg til kode nå.
+
+### Manuell vurdering
+
+#### manualReviewBeforeAction (14)
+
+| id/title | possibleDesignCodes | reason | file |
+| --- | --- | --- | --- |
+| schous_bryggeri — Schous plass er et grønt nabolagsrom i Grünerløkkas tette kvartalsstruktur. | article_architecture_miniature, article_industry_miniature | flere plausible koder med lik styrke: `article_architecture_miniature` vs `article_industry_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
+| botsparken — Botsparken er en liten nabolagspark ved Botsfengselet med stor hverdagsverdi i tett by. | article_childhood_play_miniature, article_everyday_life_miniature | flere plausible koder med lik styrke: `article_childhood_play_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
+| olaf_ryes_plass — Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk. | article_childhood_play_miniature, article_everyday_life_miniature | flere plausible koder med lik styrke: `article_childhood_play_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
+| spikersuppa — Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane. | article_everyday_life_miniature, article_event_place_miniature | flere plausible koder med lik styrke: `article_everyday_life_miniature` vs `article_event_place_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
+| schous_plass_hovedartikkel — Schous plass | article_industry_miniature, article_place_essay_miniature | flere plausible koder med lik styrke: `article_industry_miniature` vs `article_place_essay_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
+| psykologisk_institutt_uio_psykologi_fag — Psykologi som fag ved instituttet | article_institution_miniature, article_science_history_miniature | flere plausible koder med lik styrke: `article_institution_miniature` vs `article_science_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_psykologisk_institutt_uio.json |
+| hellerud_gard_hovedartikkel — Hellerud gård | article_memory_place_miniature, article_architecture_miniature | flere plausible koder med lik styrke: `article_memory_place_miniature` vs `article_architecture_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| ankerbrua — Sentral Akerselv-bro med tydelig elveromskobling. | article_nature_route_miniature, article_urban_infrastructure_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_urban_infrastructure_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
+| nydalsdammen — Regulert dammiljø i Akerselva der vannstyring, byhistorie og bynatur møtes. | article_nature_route_miniature, article_urban_infrastructure_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_urban_infrastructure_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
+| trosterud_friomrade_stier_bruk — Stier og hverdagsbevegelse | article_nature_route_miniature, article_everyday_life_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| vaterland_vaterlandsparken — Vaterlandsparken | article_nature_route_miniature, article_social_history_miniature | flere plausible koder med lik styrke: `article_nature_route_miniature` vs `article_social_history_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
+| majorstuen_krysset_hovedartikkel — Majorstuen-krysset som hverdagsspottingsone | article_popular_culture_miniature, article_everyday_life_miniature | flere plausible koder med lik styrke: `article_popular_culture_miniature` vs `article_everyday_life_miniature` | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
+| gamle_trikkestallen — Tidlig trikkedriftsanlegg med transport- og arbeidshistorisk verdi. | article_transport_miniature, article_industry_miniature | flere plausible koder med lik styrke: `article_transport_miniature` vs `article_industry_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
+| vaterland_hovedartikkel — Vaterland | article_transport_miniature, article_nature_route_miniature | flere plausible koder med lik styrke: `article_transport_miniature` vs `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
+
+### Behold default foreløpig
+
+#### keepDefaultIntentionally (7)
+
+| id/title | reason | file |
+| --- | --- | --- |
+| bygdoy_roykenvika — Røykensvika på Bygdøy er en fjordvik med strandkant, gruntvann og vegeterte randsoner. Vika markerer en mykere overgang mellom land og sjø. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| chateau_neuf_revy_og_studentkultur — Revy og studentkultur | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
+| hellerud_gard_jordbruk_byutvikling — Fra jordbruk til byutvikling | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| kampen_park_parkrom_terreng — Parkrom, bakker og terreng i Kampen park | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
+| kampen_topografi_bratte_gater — Kampens topografi og bratte gater | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
+| operahuset — Operahuset er både kulturinstitusjon og offentlig taklandskap i fjordbyen. | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
+| slottsplassen_fotografi — Fotografi og turistblikk | generell artikkel uten tydelig fagområde; default beholdes | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
+
+### Vent selv om mulig
+
+#### deferSafeButLowValue (0)
+
+- (ingen)
+
+### Anbefalt neste PR-rekkefølge
+
+| step | title | type | reason | scope |
+| --- | --- | --- | --- | --- |
+| 1 | Metadata-first cleanup for thin article defaults | metadata | Fem resterende artikler mangler nok summary.themes, classification.tags eller presis popupDesc til at audit bør foreslå designCode uten gjetting. | Kun metadatafelter i de identifiserte artiklene; ingen visual.designCode i samme PR. |
+| 2 | Register proposal for popular culture and everyday life article codes | register | De største konsoliderte hullene er article_popular_culture_miniature og article_everyday_life_miniature; andre foreslåtte koder bør vente eller samles med manuell vurdering. | Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes. |
+| 3 | Manual review of ambiguous remainder | manual-review | Fjorten artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie og infrastruktur. | Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default. |
+| 4 | Small data batch only after decisions are complete | data-batch | Det finnes ingen trygge batchkandidater i restgruppen nå; Article batch 8 bør ikke opprettes før metadata, register og manuelle valg er avklart. | Eventuell senere batch skal være liten og bare bruke vedtatte eksisterende eller nye koder. |
+| 5 | Accept intentional article defaults | none | Noen brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes. | Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes. |
 
 ## Invalid eksplisitte designCodes
 
