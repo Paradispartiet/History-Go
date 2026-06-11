@@ -141,6 +141,32 @@ check("disclosure sier tydelig at dette IKKE er live-posisjon", () => {
   assert.ok(/simulert fasehistorikk/i.test(html), "disclosure må kalle det simulert fasehistorikk");
 });
 
+check("resolved konkret sted vises først, med diskret 'Fra faseplan'-linje", () => {
+  // Venn resolved fra generisk faseplassering (cafe) til konkret socialPlace.
+  const fuglen = { id: "brand_place:universitetsplassen:fuglen", label: "Fuglen", sourcePlaceId: "universitetsplassen", brandId: "fuglen", socialPlaceType: "coffee", type: "cafe", channel: "social" };
+  const presence = {
+    phase: "leisure", source: "snapshot", visibleOnMap: true, state: "at_cafe",
+    locationId: "brand_place:universitetsplassen:fuglen",
+    resolvedFromLocationId: "cafe",
+    activity: "tar en kaffe", mood: "avslappet",
+    lastSeenText: "Siste fritidsfase"
+  };
+  const html = layer.buildFriendDetailHtml({ friend: mariam, presence }, {
+    locations: locations.concat([fuglen]),
+    snapshotPhase: "leisure",
+    snapshotPhaseLabel: "Fritidsfase"
+  });
+  assert.ok(html.includes("Fuglen"), "resolved konkret sted (Fuglen) skal vises");
+  assert.ok(html.includes("Fra faseplan"), "'Fra faseplan'-linjen mangler");
+  assert.ok(html.includes("Kafé"), "faseplan-kategorien (Kafé) skal vises");
+  assert.ok(/ikke live-posisjon/i.test(html), "disclosure beholdes ved resolved sted");
+});
+
+check("'Fra faseplan'-linjen vises ikke uten resolvedFromLocationId", () => {
+  const html = buildCard(mariam, "leisure");
+  assert.ok(!html.includes("Fra faseplan"), "uresolved presence skal ikke få faseplan-linje");
+});
+
 check("fallback til presence vises trygt når snapshot mangler", () => {
   // Jonas har ingen leisure-snapshot -> faller tilbake til afternoon-presence.
   const html = buildCard(jonas, "leisure");

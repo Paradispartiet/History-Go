@@ -540,6 +540,17 @@ body.civi-mapmode .civi-city-layer {
   opacity: 0.78;
 }
 
+/* Spillerens lagrede fasevalg ("hvor valgte jeg å gå"): grønn ring rundt
+   markøren. Fase-minne, ikke live-posisjon – skilles bevisst fra gull-haloen
+   til is-active (aktiv i fasen) og fra is-selected (åpnet i detaljpanelet). */
+.civi-city-place.is-player-choice {
+  opacity: 1;
+}
+.civi-city-place.is-player-choice .civi-city-place-icon {
+  border-color: rgba(143, 238, 172, 0.7);
+  box-shadow: 0 0 0 3px rgba(118, 214, 148, 0.26), 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
 /* Del C/E: en generisk fallback fremstår som en inngang/kategori som leder til
    konkrete ekte sosiale steder. Gjenbruker detalj-panelets eksisterende stil. */
 .civi-city-fallback-choices .civi-city-fallback-choice {
@@ -554,16 +565,12 @@ body.civi-mapmode .civi-city-layer {
   font-weight: 400;
 }
 
-@media (max-width: 520px) {
-  .civi-city-place-label {
-    max-width: 84px;
-  }
-  .civi-city-detail-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Konkrete fasevalg for spilleren: grupperte, kompakte valg i stedskortet. */
+/* ---------------------------------------------------------------------------
+   Konkrete fasevalg for spilleren ("Hvor vil du gå i denne fasen?")
+   Grupperte, kompakte rader i stedskortet: konkrete steder leses som steder,
+   systemvalg som funksjoner, fallback som nedtonede kategoriinnganger, og
+   spillerens lagrede valg får tydelig valgt-status.
+   --------------------------------------------------------------------------- */
 .civi-city-phase-choices {
   display: grid;
   gap: 10px;
@@ -594,17 +601,20 @@ body.civi-mapmode .civi-city-layer {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Konkrete steder (ekte socialPlaces): grønnlig stedstone. */
 .civi-city-phase-choice.is-kind-social-place {
   background: rgba(76, 175, 115, 0.08);
   border-color: rgba(137, 220, 166, 0.24);
 }
 
+/* Systemvalg + hjem/arbeid: blålig funksjonstone, skilt fra ekte steder. */
 .civi-city-phase-choice.is-kind-system-node,
 .civi-city-phase-choice.is-kind-home-work {
   background: rgba(111, 155, 255, 0.07);
   border-color: rgba(150, 190, 255, 0.2);
 }
 
+/* Fallback/kategoriinnganger: nedtonet + stiplet, aldri som konkret sted. */
 .civi-city-phase-choice.is-kind-social-fallback,
 .civi-city-fallback-choice {
   opacity: 0.78;
@@ -612,6 +622,7 @@ body.civi-mapmode .civi-city-layer {
   border-style: dashed;
 }
 
+/* Spillerens lagrede valg for fasen (fase-minne, ikke live-posisjon). */
 .civi-city-phase-choice.is-selected-choice {
   background: rgba(118, 214, 148, 0.14);
   border-color: rgba(143, 238, 172, 0.52);
@@ -646,6 +657,7 @@ body.civi-mapmode .civi-city-layer {
   background: rgba(76, 175, 115, 0.2);
 }
 
+/* "Henvend deg" (person-/møteknapp) skilles fra "Gå hit" (stedsvalg). */
 .civi-city-approach {
   border-color: rgba(255, 214, 112, 0.38);
   background: rgba(255, 214, 112, 0.1);
@@ -654,4 +666,21 @@ body.civi-mapmode .civi-city-layer {
 .civi-city-phase-choice-more {
   margin: 0;
   font-size: 11px;
+}
+
+/* Status-chip i stedskortet: dette stedet er spillerens lagrede fasevalg. */
+.civi-city-detail-status.is-player-choice {
+  background: rgba(118, 214, 148, 0.16);
+  border-color: rgba(143, 238, 172, 0.5);
+  color: #d9ffe6;
+  margin-left: 6px;
+}
+
+@media (max-width: 520px) {
+  .civi-city-place-label {
+    max-width: 84px;
+  }
+  .civi-city-detail-grid {
+    grid-template-columns: 1fr;
+  }
 }

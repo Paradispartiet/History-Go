@@ -1317,15 +1317,16 @@
   }
 
   // Resultattekst når spilleren henvender seg til en person på et sted. Bevisst
-  // formulert som siste fasevalg, aldri som live-posisjon.
+  // formulert som siste fasevalg, aldri som live-posisjon. Stedsnavnet beholder
+  // sin egen skrivemåte ("på Fuglen", aldri "på fuglen" eller "på kafé").
   function getApproachActionResultText(friend, snapshot, phase, location) {
     const first = friendFirstName(friend);
     const ph = normalizeSnapshotPhase(phase);
     const snap = snapshot && typeof snapshot === "object" ? snapshot : {};
     const loc = location && typeof location === "object" ? location : {};
-    let placeLabel = norm(loc.label) || norm(snap.locationId) || norm(snap.locationLabel);
+    let placeLabel = norm(loc.label) || norm(snap.locationLabel) || norm(snap.locationId);
     if (!placeLabel) placeLabel = "stedet";
-    return "Du henvender deg til " + first + " på " + placeLabel.toLowerCase() +
+    return "Du henvender deg til " + first + " på " + placeLabel +
       " " + snapshotPhaseInWords(ph) + ".";
   }
 

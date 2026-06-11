@@ -258,6 +258,13 @@ check("fallback uten konkrete steder kan fortsatt lagres generisk", () => {
   assert.strictEqual(result.snapshot.socialAvailability, "open_to_contact");
 });
 
+check("fallback-valg lagrer ikke generisk locationId når konkrete steder finnes", () => {
+  eng.clearPlayerPhaseSnapshotsForTesting();
+  const result = eng.applyPlayerPhaseChoice("go:cafe", { ...playerChoiceContext, phase: "leisure" });
+  assert.strictEqual(result, null, "generisk kafévalg skal ikke finnes når konkrete kaffesteder finnes");
+  assert.strictEqual(eng.getPlayerSnapshotForPhase("leisure"), null, "ingen generisk snapshot skal lagres");
+});
+
 check("valg av brand_place:* lagrer concrete locationId og stedskontekst", () => {
   eng.clearPlayerPhaseSnapshotsForTesting();
   const result = eng.applyPlayerPhaseChoice("go:brand_place:universitetsplassen:fuglen", { ...playerChoiceContext, phase: "leisure" });
