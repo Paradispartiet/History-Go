@@ -31,6 +31,11 @@
 - Main-view error copy is short and does not expose raw error objects. Sanitized technical detail remains limited to the existing read-only diagnostics/details surfaces; full payloads, secrets, credentials, connection strings, and raw audit JSON remain excluded.
 - This normalization is UI text and organization only. Sync behavior, database/write flow, adapter behavior, audit writing, state-machine rules, payload contracts, history/details data flow, retry logic, and module-health calculation are unchanged. Auto-sync is still not implemented.
 
+- AHA module page shells are normalized for **Lists**, **Paths**, **Groups**, and **AHAavisa** through a small shared, side-effect-free DOM pattern.
+- Each shell now provides a consistent title, short purpose, textual health badge, action row, content/empty/error area, and optional collapsed **Advanced details** section. Existing module content can be mounted inside the shell without changing item schemas, sorting, filtering, persistence, or module data models.
+- The module runtime files remain lazy-mount-ready and are not added to the Home initial load. Unavailable primary actions are visibly disabled rather than creating new module behavior.
+- This is a UI/structure change only. Sync behavior, database/write flow, adapter behavior, audit writing, state-machine rules, payload contracts, retry logic, and AHA Sync Hub core are unchanged. Auto-sync is still not implemented.
+
 ## Not implemented
 
 - Auto-sync/activation and auto-retry are intentionally not implemented. There is no page-load, history-open, details-open, target-select, modal-open, failed-result, scheduled, or background retry trigger.
@@ -40,4 +45,4 @@
 
 ## Next recommended PR
 
-`chore: improve AHA Home mobile/tablet layout`
+`chore: standardize AHA module empty states`
