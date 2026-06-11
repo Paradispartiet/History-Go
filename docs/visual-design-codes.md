@@ -560,6 +560,20 @@ regenerert audit er eksplisitt artikkelmerking økt til **252**, mens
 artikkel-default er redusert til **61**, fortsatt med 0 ugyldige eksplisitte
 koder og 0 manglende `renderHints`.
 
+
+## Article batch 7
+
+Article batch 7 merker kun de 15 trygge `safeBatch7Candidates` fra audit #1267.
+Dette er en liten og kontrollert data-batch som rydder den siste sikre resten av
+artikkel-defaultene uten å presse usikre artikler inn i feil designCode.
+
+Registeret og resolveren er ikke endret, og batchen endrer heller ingen places-
+eller people-data. Kategoriene `needsMetadata`, `needsNewDesignCode`,
+`keepDefaultForNow` og `manualReview` er bevisst ikke rørt. Etter regenerert
+audit er eksplisitt artikkelmerking økt fra **252** til **267**, mens
+`article_default_miniature` er redusert fra **61** til **46**. Det er fortsatt
+0 ugyldige eksplisitte koder og 0 manglende `renderHints`.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,

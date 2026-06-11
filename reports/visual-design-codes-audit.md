@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-11T11:19:10.272Z
+Generert: 2026-06-11T13:13:37.070Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -27,19 +27,19 @@ Generert: 2026-06-11T11:19:10.272Z
 
 ## Resolusjon
 
-- eksplisitt `visual.designCode`: 514
+- eksplisitt `visual.designCode`: 529
 - per kilde (alle entiteter):
-  - explicit: 514
+  - explicit: 529
   - assetType: 0
   - category: 242
   - heuristic: 450
-  - default: 73
+  - default: 58
 
 | entityType | explicit | assetType | category | heuristic | default |
 | --- | --- | --- | --- | --- | --- |
 | places | 144 | 0 | 116 | 240 | 4 |
 | people | 118 | 0 | 126 | 179 | 8 |
-| articles | 252 | 0 | 0 | 31 | 61 |
+| articles | 267 | 0 | 0 | 31 | 46 |
 
 ## Eksplisitt pilot-merkede designCodes
 
@@ -85,8 +85,8 @@ Generert: 2026-06-11T11:19:10.272Z
   - `person_coach_miniature`: 3
   - `person_urban_planner_miniature`: 2
   - `person_historical_miniature`: 1
-- articles (252):
-  - `article_nature_route_miniature`: 60
+- articles (267):
+  - `article_nature_route_miniature`: 74
   - `article_place_essay_miniature`: 36
   - `article_architecture_miniature`: 33
   - `article_institution_miniature`: 27
@@ -99,8 +99,8 @@ Generert: 2026-06-11T11:19:10.272Z
   - `article_political_history_miniature`: 3
   - `article_urban_infrastructure_miniature`: 3
   - `article_literature_miniature`: 3
+  - `article_religion_miniature`: 2
   - `article_local_story_miniature`: 2
-  - `article_religion_miniature`: 1
   - `article_groundhopper_miniature`: 1
   - `article_object_story_miniature`: 1
   - `article_industry_miniature`: 1
@@ -111,18 +111,18 @@ Generert: 2026-06-11T11:19:10.272Z
 - Batch 1-baseline: 73 eksplisitte `visual.designCode`.
 - Etter batch 2: 169 eksplisitte `visual.designCode`.
 - Etter batch 3: 249 eksplisitte `visual.designCode`.
-- Nåværende total: 514 eksplisitte `visual.designCode` (144 places, 118 people, 252 articles).
-- Endring siden batch 3: 265.
+- Nåværende total: 529 eksplisitte `visual.designCode` (144 places, 118 people, 267 articles).
+- Endring siden batch 3: 280.
 - Omfang: Kontrollerte pilot-batcher for visual.designCode-dekning; nåværende total beregnes fra data.
 
 ## Topp brukte designCodes
 
 - `waterfront_miniature`: 83
-- `article_default_miniature`: 61
-- `article_nature_route_miniature`: 60
+- `article_nature_route_miniature`: 74
 - `park_miniature`: 59
 - `article_place_essay_miniature`: 48
 - `person_writer_miniature`: 46
+- `article_default_miniature`: 46
 - `person_business_miniature`: 45
 - `person_historical_miniature`: 40
 - `person_scientist_miniature`: 40
@@ -160,16 +160,11 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | eckbos_legat | Eckbos Legat | by | data/people/filantroper/oslo/people_filantroper_oslo.json |
 | gjensidigestiftelsen | Gjensidigestiftelsen | by | data/people/filantroper/oslo/people_filantroper_oslo.json |
 
-#### Artikler som fortsatt er `article_default_miniature` (61)
+#### Artikler som fortsatt er `article_default_miniature` (46)
 
 | id | navn/tittel | kategori | fil |
 | --- | --- | --- | --- |
-| trosterud_friomrade | trosterud_friomrade | — | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
 | gamle_trikkestallen | gamle_trikkestallen | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
-| sofienberg_kirke | sofienberg_kirke | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
-| voienfossen | voienfossen | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| vaterland_historisk_elvelop | vaterland_historisk_elvelop | — | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| st_hanshaugen_park | st_hanshaugen_park | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
 | tigeren | tigeren | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json |
 | spikersuppa | spikersuppa | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
 | slottsparken | slottsparken | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json |
@@ -180,11 +175,6 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | operahuset | operahuset | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
 | schous_bryggeri | schous_bryggeri | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
 | nydalsdammen | nydalsdammen | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
-| stilla_nydalen | stilla_nydalen | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
-| vulkan_industriomrade | vulkan_industriomrade | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
-| skraperudtjern | skraperudtjern | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch2.json |
-| alna_utlop_bjorvika | alna_utlop_bjorvika | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| svartdalen | svartdalen | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
 | bygdoy_roykenvika | bygdoy_roykenvika | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
 | bygdoy_natur | bygdoy_natur | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
 | ankerbrua | ankerbrua | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
@@ -194,7 +184,6 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | vaterland_hovedartikkel | Vaterland | — | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
 | vaterland_sanering | Saneringen av Vaterland | — | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
 | vaterland_vaterlandsparken | Vaterlandsparken | — | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json |
-| sagene_akerselva_industrikorridor | Akerselva som industrikorridor langs Sagene | — | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
 | sagene_film_tv_lag | Sagene som film- og TV-miljø | — | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
 | kampen_topografi_bratte_gater | Kampens topografi og bratte gater | — | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
 | kampen_film_tv_lag | Kampen som film- og TV-miljø | — | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
@@ -204,8 +193,19 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | latter_hovedartikkel | Latter som profesjonell standup-scene | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
 | frognerstranda_hovedartikkel | Frognerstranda som sesongbasert kjendissone | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
 | majorstuen_krysset_hovedartikkel | Majorstuen-krysset som hverdagsspottingsone | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
+| vaterland_populaerkultur_hovedartikkel | Vaterland som filmkulisse for krim og TV-drama | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
+| gronlandsleiret_hovedartikkel | Grønlandsleiret som sosialrealistisk filmbakteppe | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json |
+| psykologisk_institutt_uio_psykologi_fag | Psykologi som fag ved instituttet | — | data/leksikon/places/oslo/mixed/leksikon_oslo_psykologisk_institutt_uio.json |
+| kampen_park_hovedartikkel | Kampen park | — | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
+| kampen_park_parkrom_terreng | Parkrom, bakker og terreng i Kampen park | — | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
+| trosterud_friomrade_stier_bruk | Stier og hverdagsbevegelse | — | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| furuset_haugerud_skogbelte_boligkant | Boligkant og naturkant | — | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| hellerud_gard_hovedartikkel | Hellerud gård | — | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| hellerud_gard_jordbruk_byutvikling | Fra jordbruk til byutvikling | — | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+| toyen_torg_torgscene | Torgflaten som offentlig scene | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
+| toyen_torg_identitet | Tøyen-identitet i sentrumsskala | — | data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json |
 
-_Viser 40 av 61. Full liste i `reports/visual-design-codes-audit.json`._
+_Viser 40 av 46. Full liste i `reports/visual-design-codes-audit.json`._
 
 ## Heuristiske kandidater for eksplisitt designCode
 
@@ -430,7 +430,7 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P5] Anne-Cath. Vestly (`anne_cath_vestly`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
   - [P5] Arne Skouen (`arne_skouen`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
 
-#### Artikler (totalt 61, viser 30)
+#### Artikler (totalt 49, viser 30)
 
 - `article_architecture_miniature`:
   - [P3] Colosseum kino som norsk storfilmkino (`colosseum_kino_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'bygning'
@@ -450,10 +450,8 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P3] olaf_ryes_plass (`olaf_ryes_plass`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] operahuset (`operahuset`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] spikersuppa (`spikersuppa`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] st_hanshaugen_park (`st_hanshaugen_park`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] Populærkultur gjennom bruk av stedet (`toyen_torg_byliv`) — heuristisk medium-confidence treff (liv); bør sjekkes før eksplisitt merking
 - `article_childhood_play_miniature`:
-  - [P5] Grøntstruktur i Kampen park (`kampen_park_grontstruktur`) — default-fallback; dyp-tekst treff 'lekeplass' dekker ubrukt kode article_childhood_play_miniature
   - [P5] Kampen park (`kampen_park_hovedartikkel`) — default-fallback; dyp-tekst treff 'lekeplass' dekker ubrukt kode article_childhood_play_miniature
   - [P5] Parkrom, bakker og terreng i Kampen park (`kampen_park_parkrom_terreng`) — default-fallback; dyp-tekst treff 'lekeplass' dekker ubrukt kode article_childhood_play_miniature
 - `article_groundhopper_miniature`:
@@ -468,6 +466,9 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P4] botsparken (`botsparken`) — default-fallback; tydelig dyp-tekst treff 'fengsel'
   - [P3] bygdoy_roykenvika (`bygdoy_roykenvika`) — default-fallback; mulig dyp-tekst treff 'forvaltning'
   - [P3] Sagenes hverdagsstruktur: kirke, skole og torg (`sagene_hverdagsstruktur_kirke_skole_torg`) — heuristisk medium-confidence treff (skole); bør sjekkes før eksplisitt merking
+  - [P3] stensparken (`stensparken`) — default-fallback; mulig dyp-tekst treff 'skole'
+- `article_language_miniature`:
+  - [P3] Språk og begreper rundt screening (`psykologisk_institutt_uio_begreper`) — heuristisk medium-confidence treff (språk); bør sjekkes før eksplisitt merking
 - `article_media_history_miniature`:
   - [P4] Filmkultur i Oslo (`cinemateket_oslo_filmkultur_i_oslo`) — default-fallback; tydelig dyp-tekst treff 'programkino'
 
@@ -476,8 +477,8 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
 Klassifisering av de gjenværende `article_default_miniature`. Denne
 delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 har nok trygge kandidater.
 
-- total `article_default_miniature`: **61**
-- safeBatch7Candidates: 15
+- total `article_default_miniature`: **46**
+- safeBatch7Candidates: 0
 - needsMetadata: 5
 - needsNewDesignCode: 20
 - keepDefaultForNow: 7
@@ -485,25 +486,9 @@ delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 h
 
 ### Trygge batch 7-kandidater
 
-#### safeBatch7Candidates (15)
+#### safeBatch7Candidates (0)
 
-| id / title | suggestedDesignCode | confidence | reason | file |
-| --- | --- | --- | --- | --- |
-| sagene_akerselva_industrikorridor — Akerselva som industrikorridor langs Sagene | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, elve, foss) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json |
-| skraperudtjern — Skraperudtjern er et rolig skogstjern med våtmarkskant i Ljanselvas vassdrag. | article_nature_route_miniature | high | tydelig eksisterende fagområde (tjern, elva, vassdrag, våtmark) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch2.json |
-| st_hanshaugen_park — Høydepark som kombinerer utsikt, rekreasjon og formet bynatur. | article_nature_route_miniature | high | tydelig eksisterende fagområde (bynatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/by/leksikon_oslo_by_batch1.json |
-| stilla_nydalen — Rolig elvesone i Nydalen som viser økologisk variasjon innenfor Akerselva-korridoren. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve, kantvegetasjon, foss, dalrom, elva, natur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
-| svartdalen — Svartdalen er en trang ravinedal der Alna renner mellom bratte sider og tett løvskog. Dalen oppleves som en skogkorridor midt i byens randsoner. | article_nature_route_miniature | high | tydelig eksisterende fagområde (ravine) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| trosterud_friomrade — Hverdagsnatur mellom bolig og skog. | article_nature_route_miniature | high | tydelig eksisterende fagområde (friområde, natur, nærnatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_alna.json |
-| trosterud_friomrade_bynatur — Friområde som bynatur | article_nature_route_miniature | high | tydelig eksisterende fagområde (bynatur, friområde) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
-| trosterud_friomrade_hovedartikkel — Trosterud friområde | article_nature_route_miniature | high | tydelig eksisterende fagområde (friområde, nærnatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
-| trosterud_friomrade_naturstruktur — Naturstruktur og kantsoner | article_nature_route_miniature | high | tydelig eksisterende fagområde (naturstruktur, friområde, kantvegetasjon) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
-| vaterland_historisk_elvelop — Historisk elveløp og byområde der vannlandskapet er omformet. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elve) → `article_nature_route_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| voienfossen — Foss og kraftpunkt langs Akerselva. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva, foss) → `article_nature_route_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json |
-| vulkan_industriomrade — Transformert industrisone ved Akerselva der historiske spor og nye byfunksjoner overlapper. | article_nature_route_miniature | high | tydelig eksisterende fagområde (elva) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
-| sofienberg_kirke — Kirkested som speiler byvekst og lokalsamfunn i indre øst. | article_religion_miniature | high | tydelig eksisterende fagområde (kirke, kirkehistorie) → `article_religion_miniature` | data/leksikon/places/oslo/historie/leksikon_oslo_historie.json |
-| alna_utlop_bjorvika — Alna utløp i Bjørvika er punktet der ferskvann fra Alna møter brakkvann i indre Oslofjord. Sonen preges av steinsatte kanter, tidevannspåvirkning og sterk ferdsel langs havnepromenaden. | article_nature_route_miniature | medium | tydelig eksisterende fagområde (elv) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| kampen_park_grontstruktur — Grøntstruktur i Kampen park | article_nature_route_miniature | medium | tydelig eksisterende fagområde (naturstruktur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json |
+- (ingen)
 
 ### Mangler metadata
 
@@ -586,7 +571,7 @@ delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 h
 ## Article batch 7 plan
 
 Anbefalt omfang: **0–40** artikler (ikke press frem batch hvis kandidatgrunnlaget er lite).
-Audit finner bare **15** trygge kandidater nå; det er et lite grunnlag, så en batch 7 bør ikke presses frem.
+Audit finner bare **0** trygge kandidater nå; det er et lite grunnlag, så en batch 7 bør ikke presses frem.
 Prioritert rekkefølge:
 1. safe high/medium-confidence article defaults
 1. only candidates backed by existing metadata
@@ -595,25 +580,9 @@ Prioritert rekkefølge:
 Kun trygge kandidater (high/medium-confidence). `needsMetadata` og
 `needsNewDesignCode` tas **ikke** med som direkte batchkandidater.
 
-Topp 15 av 15, gruppert etter `suggestedDesignCode`:
+Topp 0 av 0, gruppert etter `suggestedDesignCode`:
 
-- `article_nature_route_miniature` (14):
-  - sagene_akerselva_industrikorridor [high] — tydelig eksisterende fagområde (elva, elve, foss) → `article_nature_route_miniature`
-  - skraperudtjern [high] — tydelig eksisterende fagområde (tjern, elva, vassdrag, våtmark) → `article_nature_route_miniature`
-  - st_hanshaugen_park [high] — tydelig eksisterende fagområde (bynatur) → `article_nature_route_miniature`
-  - stilla_nydalen [high] — tydelig eksisterende fagområde (elve, kantvegetasjon, foss, dalrom, elva, natur) → `article_nature_route_miniature`
-  - svartdalen [high] — tydelig eksisterende fagområde (ravine) → `article_nature_route_miniature`
-  - trosterud_friomrade [high] — tydelig eksisterende fagområde (friområde, natur, nærnatur) → `article_nature_route_miniature`
-  - trosterud_friomrade_bynatur [high] — tydelig eksisterende fagområde (bynatur, friområde) → `article_nature_route_miniature`
-  - trosterud_friomrade_hovedartikkel [high] — tydelig eksisterende fagområde (friområde, nærnatur) → `article_nature_route_miniature`
-  - trosterud_friomrade_naturstruktur [high] — tydelig eksisterende fagområde (naturstruktur, friområde, kantvegetasjon) → `article_nature_route_miniature`
-  - vaterland_historisk_elvelop [high] — tydelig eksisterende fagområde (elve) → `article_nature_route_miniature`
-  - voienfossen [high] — tydelig eksisterende fagområde (elva, foss) → `article_nature_route_miniature`
-  - vulkan_industriomrade [high] — tydelig eksisterende fagområde (elva) → `article_nature_route_miniature`
-  - alna_utlop_bjorvika [medium] — tydelig eksisterende fagområde (elv) → `article_nature_route_miniature`
-  - kampen_park_grontstruktur [medium] — tydelig eksisterende fagområde (naturstruktur) → `article_nature_route_miniature`
-- `article_religion_miniature` (1):
-  - sofienberg_kirke [high] — tydelig eksisterende fagområde (kirke, kirkehistorie) → `article_religion_miniature`
+- (ingen)
 
 ## Invalid eksplisitte designCodes
 
