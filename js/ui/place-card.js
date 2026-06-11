@@ -312,11 +312,32 @@ function setPlaceCardQuizImage(card, quizImgEl, place) {
 // ------------------------------------------------------------
 // Data-renderet quizkort på baksiden av frontImage-flippen
 // ------------------------------------------------------------
-const PLACE_CARD_QUIZ_CARD_COLLECTIONS = Object.freeze([
+const PLACE_CARD_QUIZ_CARD_MANIFEST_PATH = "data/quizcards/litteratur/manifest.json";
+const PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS = Object.freeze([
   "litteratur/topp10_lit_kort.json"
 ]);
 
 let placeCardQuizCollectionsPromise = null;
+
+async function loadPlaceCardQuizCollectionPaths() {
+  try {
+    const response = await fetch(PLACE_CARD_QUIZ_CARD_MANIFEST_PATH, { cache: "default" });
+    if (!response.ok) throw new Error(`Kunne ikke laste quizkort-manifest (${response.status})`);
+
+    const manifest = await response.json();
+    const files = Array.isArray(manifest?.collections)
+      ? manifest.collections
+          .map(file => String(file || "").trim())
+          .filter(Boolean)
+      : [];
+
+    if (!files.length) throw new Error("Quizkort-manifest mangler collections");
+
+    return files.map(file => `litteratur/${file.replace(/^\/+/, "")}`);
+  } catch {
+    return [...PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS];
+  }
+}
 
 function loadPlaceCardQuizCollections() {
   if (placeCardQuizCollectionsPromise) return placeCardQuizCollectionsPromise;
@@ -327,11 +348,13 @@ function loadPlaceCardQuizCollections() {
     return placeCardQuizCollectionsPromise;
   }
 
-  placeCardQuizCollectionsPromise = Promise.all(
-    PLACE_CARD_QUIZ_CARD_COLLECTIONS.map(path =>
-      Promise.resolve(loader(path, { cache: "default" })).catch(() => null)
-    )
-  ).then(collections => collections.filter(Boolean));
+  placeCardQuizCollectionsPromise = loadPlaceCardQuizCollectionPaths()
+    .then(paths => Promise.all(
+      paths.map(path =>
+        Promise.resolve(loader(path, { cache: "default" })).catch(() => null)
+      )
+    ))
+    .then(collections => collections.filter(Boolean));
 
   return placeCardQuizCollectionsPromise;
 }
