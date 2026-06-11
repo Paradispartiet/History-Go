@@ -574,6 +574,28 @@ audit er eksplisitt artikkelmerking økt fra **252** til **267**, mens
 `article_default_miniature` er redusert fra **61** til **46**. Det er fortsatt
 0 ugyldige eksplisitte koder og 0 manglende `renderHints`.
 
+
+## Remaining article-default decision
+
+Etter Article batch 7 gjenstår **46** artikler som bevisst fortsatt løses til
+`article_default_miniature`. Denne beslutningsrunden er **ikke** en data-batch:
+den legger ikke til nye `visual.designCode` i artikler, endrer ikke metadata,
+utvider ikke registeret og endrer ikke resolveren.
+
+Formålet er å avgjøre hva restgruppen faktisk trenger før videre arbeid:
+metadataforbedring for tynne/generiske artikler, mulig registerutvidelse for
+reelle hull i artikkelkatalogen, manuell vurdering der flere koder er like
+plausible, eller en bevisst beslutning om å beholde default. Beslutningen er
+lagret i `remainingArticleDefaultDecision` i auditrapporten og oppsummert i
+Markdown-rapportens seksjon «Remaining article-default decision».
+
+Videre arbeid skal følge anbefalt roadmap i rapporten: metadata først der audit
+mangler nok faglig signal, deretter eventuell smal register-PR for koder som har
+flere reelle kandidater, så manuell vurdering av tvilstilfeller før en eventuell
+senere og liten data-batch. Det er akseptabelt at enkelte brede, blandede eller
+svakt visuelle artikler forblir `article_default_miniature` i stedet for å
+presses inn i en smal designCode.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,

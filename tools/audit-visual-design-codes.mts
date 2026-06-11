@@ -919,6 +919,247 @@ function classifyArticleDefault(e: AuditEntity, file: string, validCodes: Set<st
   };
 }
 
+
+function missingArticleDecisionFields(entry: any): string[] {
+  const missing = new Set<string>();
+  for (const m of entry.missing || []) missing.add(m);
+  if (!entry.title || entry.title === entry.id) missing.add("title");
+  const used = new Set(entry.evidence?.fieldsUsed || []);
+  if (!used.has("summary.themes")) missing.add("summary.themes");
+  if (!used.has("classification.tags")) missing.add("classification.tags");
+  if (!used.has("popupDesc")) missing.add("popupDesc");
+  return [...missing];
+}
+
+function metadataRecommendationFor(entry: any) {
+  const idText = lc(`${entry.id} ${entry.title} ${entry.place_id}`);
+  if (/bjorvika|fjordbyen|rimelige bolig/.test(idText)) {
+    return {
+      "summary.themes": ["byutvikling", "boligpolitikk", "fjordbyen"],
+      "classification.tags": ["byutvikling", "rimelige boliger", "boligsosial historie"],
+      popupDescNeeds: "kort presisering av boligpolitikk og Fjordbyen-kontekst"
+    };
+  }
+  if (/gronland|grønland|tryggere byer|god byutvikling/.test(idText)) {
+    return {
+      "summary.themes": ["byutvikling", "offentlig rom", "sosial byhistorie"],
+      "classification.tags": ["Grønland", "aktivitet i byrom", "trygghet"],
+      popupDescNeeds: "kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk"
+    };
+  }
+  if (/bygdoy_natur|bygdøy natur/.test(idText)) {
+    return {
+      "summary.themes": ["bynatur", "fjordlandskap", "kulturlandskap"],
+      "classification.tags": ["Bygdøy", "naturmiljø", "fjordnær naturbruk"],
+      popupDescNeeds: "kort presisering av naturmiljøets hovedtype og bruk"
+    };
+  }
+  if (/furuset|haugerud|skogbelte|boligkant/.test(idText)) {
+    return {
+      "summary.themes": ["nærnatur", "boligkant", "hverdagsbevegelse"],
+      "classification.tags": ["skogbelte", "Alna", "naturkant"],
+      popupDescNeeds: "kort presisering av forholdet mellom boligområde og skogbelte"
+    };
+  }
+  return {
+    "summary.themes": ["hovedtema må avklares"],
+    "classification.tags": ["presise fagord må legges til"],
+    popupDescNeeds: "kort presisering av hovedtema"
+  };
+}
+
+function decisionEntryFromAnalysis(entry: any, group: string, recommendedAction: string, extra?: Record<string, unknown>) {
+  const evidence = entry.evidence || {};
+  const missingFields = missingArticleDecisionFields(entry);
+  return {
+    id: entry.id,
+    title: entry.title,
+    place_id: entry.place_id || "",
+    file: entry.file,
+    currentDesignCode: "article_default_miniature",
+    group,
+    reason: entry.reason,
+    recommendedAction,
+    confidence: entry.confidence,
+    evidence: {
+      matchedWords: evidence.matchedWords || [],
+      fieldsUsed: evidence.fieldsUsed || [],
+      missingFields
+    },
+    ...(extra || {})
+  };
+}
+
+function buildRemainingArticleDefaultDecision(articleDefaultAnalysis: any) {
+  const metadataFirst = (articleDefaultAnalysis.needsMetadata || []).map((entry: any) =>
+    decisionEntryFromAnalysis(
+      entry,
+      "metadataFirst",
+      "improve article metadata before assigning a designCode",
+      {
+        possibleDesignCode: entry.suggestedDesignCode || "",
+        recommendedMetadata: metadataRecommendationFor(entry)
+      }
+    ));
+
+  const newCodeEntries = (articleDefaultAnalysis.needsNewDesignCode || []).map((entry: any) =>
+    decisionEntryFromAnalysis(
+      entry,
+      "registerExpansionCandidates",
+      "consider register expansion before any data batch",
+      { suggestedDesignCode: entry.suggestedNewDesignCode || entry.suggestedDesignCode }
+    ));
+
+  const bySuggested: Record<string, any[]> = {};
+  for (const entry of newCodeEntries) {
+    const code = entry.suggestedDesignCode;
+    (bySuggested[code] = bySuggested[code] || []).push(entry);
+  }
+
+  const registerPriority: Record<string, { priority: number; shouldAddNow: boolean; reason: string }> = {
+    article_popular_culture_miniature: {
+      priority: 5,
+      shouldAddNow: true,
+      reason: "Mange gjenværende artikler handler eksplisitt om film, TV, scene, standup, kjendissone eller nerdkultur; dette er et reelt hull i artikkelkatalogen."
+    },
+    article_everyday_life_miniature: {
+      priority: 4,
+      shouldAddNow: true,
+      reason: "Flere park-, møtepunkt- og mobilitetsartikler beskriver hverdagsbruk heller enn natur, institusjon eller stedsessay."
+    },
+    article_civic_space_miniature: {
+      priority: 3,
+      shouldAddNow: false,
+      reason: "Tydelig systemverdi for torg og offentlig scene, men bare få sikre kandidater i restgruppen; bør vurderes sammen med manuell byromsgjennomgang."
+    },
+    article_event_place_miniature: {
+      priority: 2,
+      shouldAddNow: false,
+      reason: "Seremonier, parader og sesonghendelser er et mulig visuelt mønster, men restgruppen har for få entydige kandidater til egen kode nå."
+    },
+    article_neighborhood_identity_miniature: {
+      priority: 2,
+      shouldAddNow: false,
+      reason: "Nabolagsidentitet kan bli nyttig, men én sikker kandidat bør ikke alene drive registerutvidelse."
+    },
+    article_social_history_miniature: {
+      priority: 3,
+      shouldAddNow: false,
+      reason: "Sosialhistorie er faglig relevant, men restgruppen har få entydige kandidater og flere manuelle grenseflater mot natur/byfornyelse."
+    },
+    article_nightlife_miniature: {
+      priority: 1,
+      shouldAddNow: false,
+      reason: "Ingen tydelige gjenværende kandidater etter batch 7; ikke legg til kode nå."
+    },
+    article_education_place_miniature: {
+      priority: 1,
+      shouldAddNow: false,
+      reason: "Ingen tydelige gjenværende kandidater etter batch 7; ikke legg til kode nå."
+    }
+  };
+
+  const consideredCodes = new Set([...Object.keys(bySuggested), "article_nightlife_miniature", "article_education_place_miniature"]);
+  const registerExpansionCandidates = [...consideredCodes].sort().map((code) => {
+    const candidates = bySuggested[code] || [];
+    const meta = registerPriority[code] || {
+      priority: candidates.length >= 3 ? 4 : 2,
+      shouldAddNow: candidates.length >= 3,
+      reason: candidates.length >= 3
+        ? "Flere kandidater peker mot samme manglende artikkelkode."
+        : "For få kandidater til å anbefale registerendring nå."
+    };
+    return {
+      suggestedDesignCode: code,
+      candidateCount: candidates.length,
+      candidateIds: candidates.map((c) => c.id),
+      reason: meta.reason,
+      shouldAddNow: meta.shouldAddNow,
+      priority: meta.priority,
+      candidates
+    };
+  }).sort((a, b) => b.priority - a.priority || b.candidateCount - a.candidateCount || a.suggestedDesignCode.localeCompare(b.suggestedDesignCode));
+
+  const manualReviewBeforeAction = (articleDefaultAnalysis.manualReview || []).map((entry: any) => {
+    const possible = [entry.suggestedDesignCode, entry.alternativeDesignCode].filter(Boolean);
+    return decisionEntryFromAnalysis(
+      entry,
+      "manualReviewBeforeAction",
+      "human review required before choosing a designCode or keeping default",
+      {
+        possibleDesignCodes: possible,
+        whyAuditShouldNotDecide: "To eller flere koder har omtrent lik evidens i eksisterende metadata, og automatisk valg vil låse en faglig tolkning.",
+        recommendedHumanDecision: "Velg én hovedlesning for artikkelen (stedstype, bruk, sosialhistorie eller infrastruktur), eller behold default hvis artikkelen er bevisst blandet."
+      }
+    );
+  });
+
+  const keepDefaultIntentionally = (articleDefaultAnalysis.keepDefaultForNow || []).map((entry: any) =>
+    decisionEntryFromAnalysis(
+      entry,
+      "keepDefaultIntentionally",
+      "keep article_default_miniature for now"
+    ));
+
+  const deferSafeButLowValue = (articleDefaultAnalysis.safeBatch7Candidates || [])
+    .filter((entry: any) => entry.confidence !== "high")
+    .map((entry: any) => decisionEntryFromAnalysis(
+      entry,
+      "deferSafeButLowValue",
+      "defer until metadata/register/manual-review work is complete",
+      { possibleDesignCode: entry.suggestedDesignCode }
+    ));
+
+  const recommendedRoadmap = [
+    {
+      step: 1,
+      title: "Metadata-first cleanup for thin article defaults",
+      type: "metadata",
+      reason: "Fem resterende artikler mangler nok summary.themes, classification.tags eller presis popupDesc til at audit bør foreslå designCode uten gjetting.",
+      scope: "Kun metadatafelter i de identifiserte artiklene; ingen visual.designCode i samme PR."
+    },
+    {
+      step: 2,
+      title: "Register proposal for popular culture and everyday life article codes",
+      type: "register",
+      reason: "De største konsoliderte hullene er article_popular_culture_miniature og article_everyday_life_miniature; andre foreslåtte koder bør vente eller samles med manuell vurdering.",
+      scope: "Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes."
+    },
+    {
+      step: 3,
+      title: "Manual review of ambiguous remainder",
+      type: "manual-review",
+      reason: "Fjorten artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie og infrastruktur.",
+      scope: "Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default."
+    },
+    {
+      step: 4,
+      title: "Small data batch only after decisions are complete",
+      type: "data-batch",
+      reason: "Det finnes ingen trygge batchkandidater i restgruppen nå; Article batch 8 bør ikke opprettes før metadata, register og manuelle valg er avklart.",
+      scope: "Eventuell senere batch skal være liten og bare bruke vedtatte eksisterende eller nye koder."
+    },
+    {
+      step: 5,
+      title: "Accept intentional article defaults",
+      type: "none",
+      reason: "Noen brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.",
+      scope: "Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes."
+    }
+  ];
+
+  return {
+    total: articleDefaultAnalysis.total,
+    recommendedNextStep: "Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.",
+    metadataFirst,
+    registerExpansionCandidates,
+    manualReviewBeforeAction,
+    keepDefaultIntentionally,
+    deferSafeButLowValue,
+    recommendedRoadmap
+  };
+}
+
 // Bygg hele articleDefaultAnalysis + articleBatch7Plan fra artikkel-entiteter.
 function buildArticleDefaultAnalysis(articleEntries: WrappedEntity[], resolveFn: Resolver, validCodes: Set<string>) {
   const groups: Record<ArticleDefaultGroup, any[]> = {
@@ -1220,6 +1461,7 @@ function main() {
   // Klassifisering av de gjenværende article_default_miniature (audit-only).
   const { articleDefaultAnalysis, articleBatch7Plan } =
     buildArticleDefaultAnalysis(articleEntries, resolveForArticle, validCodes);
+  const remainingArticleDefaultDecision = buildRemainingArticleDefaultDecision(articleDefaultAnalysis);
 
   const report = {
     schema: "history-go.visual-design-codes-audit.v1",
@@ -1276,6 +1518,7 @@ function main() {
     batch3Suggestions: batch3,
     articleDefaultAnalysis,
     articleBatch7Plan,
+    remainingArticleDefaultDecision,
     pilotBatchStatus: {
       batch1Baseline: 73,
       afterBatch2: 169,
@@ -1501,6 +1744,97 @@ function pushArticleDefaultAnalysis(lines: string[], r: AuditReport) {
   }
 }
 
+
+function pushRemainingArticleDefaultDecision(lines: string[], r: AuditReport) {
+  const d = r.remainingArticleDefaultDecision;
+  if (!d) return;
+  lines.push("## Remaining article-default decision");
+  lines.push("");
+  lines.push("Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-batch. Den merker ingen artikler og endrer ikke register eller resolver.");
+  lines.push("");
+  lines.push(`- total remaining \`article_default_miniature\`: **${d.total}**`);
+  lines.push(`- metadataFirst count: ${d.metadataFirst.length}`);
+  const registerArticleCount = (d.registerExpansionCandidates || []).reduce((sum: number, g: any) => sum + (g.candidateCount || 0), 0);
+  lines.push(`- registerExpansionCandidates count: ${registerArticleCount} artikler / ${(d.registerExpansionCandidates || []).length} kodeforslag`);
+  lines.push(`- manualReviewBeforeAction count: ${d.manualReviewBeforeAction.length}`);
+  lines.push(`- keepDefaultIntentionally count: ${d.keepDefaultIntentionally.length}`);
+  lines.push(`- deferSafeButLowValue count: ${d.deferSafeButLowValue.length}`);
+  lines.push("");
+  lines.push(`**Anbefalt neste steg:** ${mdEscape(d.recommendedNextStep)}`);
+  lines.push("");
+
+  lines.push("### Metadata først");
+  lines.push("");
+  const metaCols = [
+    { head: "id/title", get: (x: any) => `${x.id}${x.title && x.title !== x.id ? " — " + x.title : ""}` },
+    { head: "missing metadata", get: (x: any) => (x.evidence?.missingFields || []).join(", ") || "—" },
+    { head: "recommended metadata", get: (x: any) => {
+      const rm = x.recommendedMetadata || {};
+      const themes = (rm["summary.themes"] || []).join("/");
+      const tags = (rm["classification.tags"] || []).join("/");
+      return `themes: ${themes || "—"}; tags: ${tags || "—"}; popupDesc: ${rm.popupDescNeeds || "—"}`;
+    } },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  pushCandidateList(lines, "metadataFirst", d.metadataFirst, d.metadataFirst.length, metaCols);
+
+  lines.push("### Mulige nye designCodes");
+  lines.push("");
+  if (!d.registerExpansionCandidates.length) {
+    lines.push("- (ingen)");
+    lines.push("");
+  } else {
+    for (const group of d.registerExpansionCandidates) {
+      const examples = (group.candidates || []).slice(0, 5).map((c: any) => c.id).join(", ") || "—";
+      lines.push(`#### \`${group.suggestedDesignCode}\``);
+      lines.push("");
+      lines.push(`- candidateCount: ${group.candidateCount}`);
+      lines.push(`- priority: ${group.priority}`);
+      lines.push(`- shouldAddNow: ${group.shouldAddNow}`);
+      lines.push(`- eksempelartikler: ${mdEscape(examples)}`);
+      lines.push(`- reason: ${mdEscape(group.reason)}`);
+      lines.push("");
+    }
+  }
+
+  lines.push("### Manuell vurdering");
+  lines.push("");
+  const manualCols = [
+    { head: "id/title", get: (x: any) => `${x.id}${x.title && x.title !== x.id ? " — " + x.title : ""}` },
+    { head: "possibleDesignCodes", get: (x: any) => (x.possibleDesignCodes || []).join(", ") },
+    { head: "reason", get: (x: any) => x.reason },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  pushCandidateList(lines, "manualReviewBeforeAction", d.manualReviewBeforeAction, d.manualReviewBeforeAction.length, manualCols);
+
+  lines.push("### Behold default foreløpig");
+  lines.push("");
+  const keepCols = [
+    { head: "id/title", get: (x: any) => `${x.id}${x.title && x.title !== x.id ? " — " + x.title : ""}` },
+    { head: "reason", get: (x: any) => x.reason },
+    { head: "file", get: (x: any) => x.file }
+  ];
+  pushCandidateList(lines, "keepDefaultIntentionally", d.keepDefaultIntentionally, d.keepDefaultIntentionally.length, keepCols);
+
+  lines.push("### Vent selv om mulig");
+  lines.push("");
+  const deferCols = [
+    { head: "id/title", get: (x: any) => `${x.id}${x.title && x.title !== x.id ? " — " + x.title : ""}` },
+    { head: "possibleDesignCode", get: (x: any) => x.possibleDesignCode || "—" },
+    { head: "reason", get: (x: any) => x.reason }
+  ];
+  pushCandidateList(lines, "deferSafeButLowValue", d.deferSafeButLowValue, d.deferSafeButLowValue.length, deferCols);
+
+  lines.push("### Anbefalt neste PR-rekkefølge");
+  lines.push("");
+  lines.push("| step | title | type | reason | scope |");
+  lines.push("| --- | --- | --- | --- | --- |");
+  for (const step of d.recommendedRoadmap || []) {
+    lines.push(`| ${step.step} | ${mdEscape(step.title)} | ${mdEscape(step.type)} | ${mdEscape(step.reason)} | ${mdEscape(step.scope)} |`);
+  }
+  lines.push("");
+}
+
 function toMarkdown(r: AuditReport) {
   const lines = [];
   lines.push("# Visual design codes – audit");
@@ -1661,6 +1995,9 @@ function toMarkdown(r: AuditReport) {
 
   // ---- Article default analysis ----
   pushArticleDefaultAnalysis(lines, r);
+
+  // ---- Restgruppebeslutning etter Article batch 7 ----
+  pushRemainingArticleDefaultDecision(lines, r);
 
   // ---- Eksisterende kvalitetsseksjoner ----
   lines.push("## Invalid eksplisitte designCodes");
