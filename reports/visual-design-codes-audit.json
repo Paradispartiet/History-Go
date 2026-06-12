@@ -1,6 +1,6 @@
 {
   "schema": "history-go.visual-design-codes-audit.v1",
-  "generatedAt": "2026-06-11T18:37:28.821Z",
+  "generatedAt": "2026-06-12T06:29:15.356Z",
   "registry": {
     "totalCodes": 81,
     "byEntityType": {
@@ -497,7 +497,7 @@
       },
       {
         "id": "bygdoy_natur",
-        "nameOrTitle": "bygdoy_natur",
+        "nameOrTitle": "Bygdøy naturmiljø",
         "file": "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
         "category": "",
         "resolvedCode": "article_default_miniature",
@@ -9269,7 +9269,7 @@
       },
       {
         "id": "bygdoy_natur",
-        "nameOrTitle": "bygdoy_natur",
+        "nameOrTitle": "Bygdøy naturmiljø",
         "file": "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
         "entityType": "article",
         "suggestedDesignCode": "article_biography_miniature",
@@ -9574,12 +9574,21 @@
         "priority": 3
       },
       {
+        "id": "lesespor_bjorvika_001",
+        "nameOrTitle": "Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen",
+        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_political_history_miniature",
+        "reason": "default-fallback; mulig dyp-tekst treff 'politikk'",
+        "priority": 3
+      },
+      {
         "id": "lesespor_gronland_003",
         "nameOrTitle": "Hva er god byutvikling?",
         "file": "data/lesespor/oslo/lesespor_oslo_by.json",
         "entityType": "article",
         "suggestedDesignCode": "article_political_history_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'politikk'",
+        "reason": "default-fallback; mulig dyp-tekst treff 'valg'",
         "priority": 3
       },
       {
@@ -9622,101 +9631,26 @@
   },
   "articleDefaultAnalysis": {
     "total": 46,
-    "safeBatch7Candidates": [],
-    "needsMetadata": [
-      {
-        "id": "lesespor_bjorvika_001",
-        "title": "Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen",
-        "place_id": "bjorvika",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "",
-        "confidence": "low",
-        "reason": "for lite metadata til trygg designCode (category_hints: by)",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "subjects",
-            "category_hints"
-          ]
-        },
-        "missing": [
-          "summary.themes",
-          "classification.tags",
-          "popupDesc"
-        ]
-      },
-      {
-        "id": "lesespor_gronland_001",
-        "title": "Aktivitet skaper tryggere byer",
-        "place_id": "gronland_basarene",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "",
-        "confidence": "low",
-        "reason": "for lite metadata til trygg designCode (category_hints: by)",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "subjects",
-            "category_hints"
-          ]
-        },
-        "missing": [
-          "summary.themes",
-          "classification.tags",
-          "popupDesc"
-        ]
-      },
-      {
-        "id": "lesespor_gronland_003",
-        "title": "Hva er god byutvikling?",
-        "place_id": "gronland_basarene",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "",
-        "confidence": "low",
-        "reason": "for lite metadata til trygg designCode (category_hints: by/politikk)",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "subjects",
-            "category_hints"
-          ]
-        },
-        "missing": [
-          "summary.themes",
-          "classification.tags",
-          "popupDesc"
-        ]
-      },
+    "safeBatch7Candidates": [
       {
         "id": "bygdoy_natur",
-        "title": "Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo.",
+        "title": "Bygdøy naturmiljø",
         "place_id": "bygdoy_natur",
         "file": "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
         "currentDesignCode": "article_default_miniature",
         "suggestedDesignCode": "article_nature_route_miniature",
-        "confidence": "low",
-        "reason": "id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (natur, bynatur) → `article_nature_route_miniature`",
         "evidence": {
           "matchedWords": [
-            "natur"
+            "natur",
+            "bynatur"
           ],
           "fieldsUsed": [
-            "id"
+            "id",
+            "summary.themes"
           ]
-        },
-        "missing": [
-          "title",
-          "classification.tags"
-        ]
+        }
       },
       {
         "id": "furuset_haugerud_skogbelte_boligkant",
@@ -9725,22 +9659,68 @@
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json",
         "currentDesignCode": "article_default_miniature",
         "suggestedDesignCode": "article_nature_route_miniature",
-        "confidence": "low",
-        "reason": "id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature`",
         "evidence": {
           "matchedWords": [
-            "skogbelte"
+            "skogbelte",
+            "nærnatur"
           ],
           "fieldsUsed": [
-            "id"
+            "id",
+            "popupDesc",
+            "summary.themes",
+            "classification.tags"
           ]
-        },
-        "missing": [
-          "classification.tags"
-        ]
+        }
       }
     ],
+    "needsMetadata": [],
     "needsNewDesignCode": [
+      {
+        "id": "lesespor_gronland_001",
+        "title": "Aktivitet skaper tryggere byer",
+        "place_id": "gronland_basarene",
+        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_civic_space_miniature",
+        "confidence": "high",
+        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "byrom",
+            "offentlig rom"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.themes",
+            "classification.tags"
+          ]
+        },
+        "suggestedNewDesignCode": "article_civic_space_miniature"
+      },
+      {
+        "id": "lesespor_gronland_003",
+        "title": "Hva er god byutvikling?",
+        "place_id": "gronland_basarene",
+        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_civic_space_miniature",
+        "confidence": "high",
+        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "offentlig rom",
+            "byrom"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.themes",
+            "classification.tags"
+          ]
+        },
+        "suggestedNewDesignCode": "article_civic_space_miniature"
+      },
       {
         "id": "toyen_torg_torgscene",
         "title": "Torgflaten som offentlig scene",
@@ -10091,6 +10071,27 @@
           ]
         },
         "suggestedNewDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "lesespor_bjorvika_001",
+        "title": "Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen",
+        "place_id": "bjorvika",
+        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_social_history_miniature",
+        "confidence": "high",
+        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_social_history_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "rimelige boliger",
+            "boligsosial"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "classification.tags"
+          ]
+        },
+        "suggestedNewDesignCode": "article_social_history_miniature"
       },
       {
         "id": "vaterland_sanering",
@@ -10670,207 +10671,31 @@
       "only candidates backed by existing metadata",
       "do not include metadata/new-code/default/manual-review groups"
     ],
-    "candidates": []
-  },
-  "remainingArticleDefaultDecision": {
-    "total": 46,
-    "recommendedNextStep": "Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.",
-    "metadataFirst": [
-      {
-        "id": "lesespor_bjorvika_001",
-        "title": "Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen",
-        "place_id": "bjorvika",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "metadataFirst",
-        "reason": "for lite metadata til trygg designCode (category_hints: by)",
-        "recommendedAction": "improve article metadata before assigning a designCode",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "subjects",
-            "category_hints"
-          ],
-          "missingFields": [
-            "summary.themes",
-            "classification.tags",
-            "popupDesc"
-          ]
-        },
-        "possibleDesignCode": "",
-        "recommendedMetadata": {
-          "summary.themes": [
-            "byutvikling",
-            "boligpolitikk",
-            "fjordbyen"
-          ],
-          "classification.tags": [
-            "byutvikling",
-            "rimelige boliger",
-            "boligsosial historie"
-          ],
-          "popupDescNeeds": "kort presisering av boligpolitikk og Fjordbyen-kontekst"
-        }
-      },
-      {
-        "id": "lesespor_gronland_001",
-        "title": "Aktivitet skaper tryggere byer",
-        "place_id": "gronland_basarene",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "metadataFirst",
-        "reason": "for lite metadata til trygg designCode (category_hints: by)",
-        "recommendedAction": "improve article metadata before assigning a designCode",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "subjects",
-            "category_hints"
-          ],
-          "missingFields": [
-            "summary.themes",
-            "classification.tags",
-            "popupDesc"
-          ]
-        },
-        "possibleDesignCode": "",
-        "recommendedMetadata": {
-          "summary.themes": [
-            "byutvikling",
-            "offentlig rom",
-            "sosial byhistorie"
-          ],
-          "classification.tags": [
-            "Grønland",
-            "aktivitet i byrom",
-            "trygghet"
-          ],
-          "popupDescNeeds": "kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk"
-        }
-      },
-      {
-        "id": "lesespor_gronland_003",
-        "title": "Hva er god byutvikling?",
-        "place_id": "gronland_basarene",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "metadataFirst",
-        "reason": "for lite metadata til trygg designCode (category_hints: by/politikk)",
-        "recommendedAction": "improve article metadata before assigning a designCode",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "subjects",
-            "category_hints"
-          ],
-          "missingFields": [
-            "summary.themes",
-            "classification.tags",
-            "popupDesc"
-          ]
-        },
-        "possibleDesignCode": "",
-        "recommendedMetadata": {
-          "summary.themes": [
-            "byutvikling",
-            "offentlig rom",
-            "sosial byhistorie"
-          ],
-          "classification.tags": [
-            "Grønland",
-            "aktivitet i byrom",
-            "trygghet"
-          ],
-          "popupDescNeeds": "kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk"
-        }
-      },
+    "candidates": [
       {
         "id": "bygdoy_natur",
-        "title": "Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo.",
+        "title": "Bygdøy naturmiljø",
         "place_id": "bygdoy_natur",
         "file": "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "metadataFirst",
-        "reason": "id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch",
-        "recommendedAction": "improve article metadata before assigning a designCode",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [
-            "natur"
-          ],
-          "fieldsUsed": [
-            "id"
-          ],
-          "missingFields": [
-            "title",
-            "classification.tags",
-            "summary.themes",
-            "popupDesc"
-          ]
-        },
-        "possibleDesignCode": "article_nature_route_miniature",
-        "recommendedMetadata": {
-          "summary.themes": [
-            "bynatur",
-            "fjordlandskap",
-            "kulturlandskap"
-          ],
-          "classification.tags": [
-            "Bygdøy",
-            "naturmiljø",
-            "fjordnær naturbruk"
-          ],
-          "popupDescNeeds": "kort presisering av naturmiljøets hovedtype og bruk"
-        }
+        "suggestedDesignCode": "article_nature_route_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (natur, bynatur) → `article_nature_route_miniature`"
       },
       {
         "id": "furuset_haugerud_skogbelte_boligkant",
         "title": "Boligkant og naturkant",
         "place_id": "furuset_haugerud_skogbelte",
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "metadataFirst",
-        "reason": "id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch",
-        "recommendedAction": "improve article metadata before assigning a designCode",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [
-            "skogbelte"
-          ],
-          "fieldsUsed": [
-            "id"
-          ],
-          "missingFields": [
-            "classification.tags",
-            "summary.themes",
-            "popupDesc"
-          ]
-        },
-        "possibleDesignCode": "article_nature_route_miniature",
-        "recommendedMetadata": {
-          "summary.themes": [
-            "nærnatur",
-            "boligkant",
-            "hverdagsbevegelse"
-          ],
-          "classification.tags": [
-            "skogbelte",
-            "Alna",
-            "naturkant"
-          ],
-          "popupDescNeeds": "kort presisering av forholdet mellom boligområde og skogbelte"
-        }
+        "suggestedDesignCode": "article_nature_route_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature`"
       }
-    ],
+    ]
+  },
+  "remainingArticleDefaultDecision": {
+    "total": 46,
+    "recommendedNextStep": "Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.",
+    "metadataFirst": [],
     "registerExpansionCandidates": [
       {
         "suggestedDesignCode": "article_popular_culture_miniature",
@@ -11341,14 +11166,64 @@
       },
       {
         "suggestedDesignCode": "article_civic_space_miniature",
-        "candidateCount": 1,
+        "candidateCount": 3,
         "candidateIds": [
+          "lesespor_gronland_001",
+          "lesespor_gronland_003",
           "toyen_torg_torgscene"
         ],
         "reason": "Tydelig systemverdi for torg og offentlig scene, men bare få sikre kandidater i restgruppen; bør vurderes sammen med manuell byromsgjennomgang.",
         "shouldAddNow": false,
         "priority": 3,
         "candidates": [
+          {
+            "id": "lesespor_gronland_001",
+            "title": "Aktivitet skaper tryggere byer",
+            "place_id": "gronland_basarene",
+            "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+            "currentDesignCode": "article_default_miniature",
+            "group": "registerExpansionCandidates",
+            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature`",
+            "recommendedAction": "consider register expansion before any data batch",
+            "confidence": "high",
+            "evidence": {
+              "matchedWords": [
+                "byrom",
+                "offentlig rom"
+              ],
+              "fieldsUsed": [
+                "popupDesc",
+                "summary.themes",
+                "classification.tags"
+              ],
+              "missingFields": []
+            },
+            "suggestedDesignCode": "article_civic_space_miniature"
+          },
+          {
+            "id": "lesespor_gronland_003",
+            "title": "Hva er god byutvikling?",
+            "place_id": "gronland_basarene",
+            "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+            "currentDesignCode": "article_default_miniature",
+            "group": "registerExpansionCandidates",
+            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature`",
+            "recommendedAction": "consider register expansion before any data batch",
+            "confidence": "high",
+            "evidence": {
+              "matchedWords": [
+                "offentlig rom",
+                "byrom"
+              ],
+              "fieldsUsed": [
+                "popupDesc",
+                "summary.themes",
+                "classification.tags"
+              ],
+              "missingFields": []
+            },
+            "suggestedDesignCode": "article_civic_space_miniature"
+          },
           {
             "id": "toyen_torg_torgscene",
             "title": "Torgflaten som offentlig scene",
@@ -11380,14 +11255,40 @@
       },
       {
         "suggestedDesignCode": "article_social_history_miniature",
-        "candidateCount": 1,
+        "candidateCount": 2,
         "candidateIds": [
+          "lesespor_bjorvika_001",
           "vaterland_sanering"
         ],
         "reason": "Sosialhistorie er faglig relevant, men restgruppen har få entydige kandidater og flere manuelle grenseflater mot natur/byfornyelse.",
         "shouldAddNow": false,
         "priority": 3,
         "candidates": [
+          {
+            "id": "lesespor_bjorvika_001",
+            "title": "Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen",
+            "place_id": "bjorvika",
+            "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+            "currentDesignCode": "article_default_miniature",
+            "group": "registerExpansionCandidates",
+            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_social_history_miniature`",
+            "recommendedAction": "consider register expansion before any data batch",
+            "confidence": "high",
+            "evidence": {
+              "matchedWords": [
+                "rimelige boliger",
+                "boligsosial"
+              ],
+              "fieldsUsed": [
+                "popupDesc",
+                "classification.tags"
+              ],
+              "missingFields": [
+                "summary.themes"
+              ]
+            },
+            "suggestedDesignCode": "article_social_history_miniature"
+          },
           {
             "id": "vaterland_sanering",
             "title": "Saneringen av Vaterland",

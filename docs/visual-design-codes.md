@@ -596,6 +596,18 @@ senere og liten data-batch. Det er akseptabelt at enkelte brede, blandede eller
 svakt visuelle artikler forblir `article_default_miniature` i stedet for å
 presses inn i en smal designCode.
 
+## Metadata-first cleanup
+
+Metadata-first cleanup følger anbefalt roadmap fra #1273 og auditens
+`remainingArticleDefaultDecision.metadataFirst`. I denne smale oppryddingen ble
+bare metadata for 5 gjenværende article-defaults forbedret: `summary.themes`,
+`classification.tags`, korte `popupDesc`-tekster og manglende `title` der audit
+pekte på det.
+
+Ingen nye `visual.designCode` ble satt i cleanupen. Registeret og resolveren ble
+heller ikke endret. Formålet er å gi audit et bedre faglig grunnlag før en
+eventuell senere data-batch eller register-PR, ikke å starte Article batch 8.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,

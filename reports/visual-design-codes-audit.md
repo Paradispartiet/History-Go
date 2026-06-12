@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-11T18:37:28.821Z
+Generert: 2026-06-12T06:29:15.356Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -176,7 +176,7 @@ ryddelisten – kandidater som kan vurderes for eksplisitt designCode.
 | schous_bryggeri | schous_bryggeri | — | data/leksikon/places/oslo/by/leksikon_oslo_by_batch4.json |
 | nydalsdammen | nydalsdammen | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json |
 | bygdoy_roykenvika | bygdoy_roykenvika | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| bygdoy_natur | bygdoy_natur | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| bygdoy_natur | Bygdøy naturmiljø | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
 | ankerbrua | ankerbrua | — | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json |
 | cinemateket_oslo_filmkultur_i_oslo | Filmkultur i Oslo | — | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
 | chateau_neuf_revy_og_studentkultur | Revy og studentkultur | — | data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json |
@@ -430,7 +430,7 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
   - [P5] Anne-Cath. Vestly (`anne_cath_vestly`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
   - [P5] Arne Skouen (`arne_skouen`) — heuristisk high-confidence treff (forfatter); gjør eksplisitt for stabil visuell identitet
 
-#### Artikler (totalt 49, viser 30)
+#### Artikler (totalt 50, viser 30)
 
 - `article_architecture_miniature`:
   - [P3] Colosseum kino som norsk storfilmkino (`colosseum_kino_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'bygning'
@@ -441,7 +441,7 @@ Lavere prioritet (P1–P2) finnes kun i JSON-rapporten.
 - `article_biography_miniature`:
   - [P3] ankerbrua (`ankerbrua`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] birkelunden (`birkelunden`) — default-fallback; mulig dyp-tekst treff 'liv'
-  - [P3] bygdoy_natur (`bygdoy_natur`) — default-fallback; mulig dyp-tekst treff 'liv'
+  - [P3] Bygdøy naturmiljø (`bygdoy_natur`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] Frognerstranda som sesongbasert kjendissone (`frognerstranda_hovedartikkel`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] gamle_trikkestallen (`gamle_trikkestallen`) — default-fallback; mulig dyp-tekst treff 'liv'
   - [P3] Kampen som film- og TV-miljø (`kampen_film_tv_lag`) — default-fallback; mulig dyp-tekst treff 'liv'
@@ -478,35 +478,34 @@ Klassifisering av de gjenværende `article_default_miniature`. Denne
 delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 har nok trygge kandidater.
 
 - total `article_default_miniature`: **46**
-- safeBatch7Candidates: 0
-- needsMetadata: 5
-- needsNewDesignCode: 20
+- safeBatch7Candidates: 2
+- needsMetadata: 0
+- needsNewDesignCode: 23
 - keepDefaultForNow: 7
 - manualReview: 14
 
 ### Trygge batch 7-kandidater
 
-#### safeBatch7Candidates (0)
+#### safeBatch7Candidates (2)
 
-- (ingen)
+| id / title | suggestedDesignCode | confidence | reason | file |
+| --- | --- | --- | --- | --- |
+| bygdoy_natur — Bygdøy naturmiljø | article_nature_route_miniature | high | tydelig eksisterende fagområde (natur, bynatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
+| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | article_nature_route_miniature | high | tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature` | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
 
 ### Mangler metadata
 
-#### needsMetadata (5)
+#### needsMetadata (0)
 
-| id / title | missing | reason | file |
-| --- | --- | --- | --- |
-| lesespor_bjorvika_001 — Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen | summary.themes, classification.tags, popupDesc | for lite metadata til trygg designCode (category_hints: by) | data/lesespor/oslo/lesespor_oslo_by.json |
-| lesespor_gronland_001 — Aktivitet skaper tryggere byer | summary.themes, classification.tags, popupDesc | for lite metadata til trygg designCode (category_hints: by) | data/lesespor/oslo/lesespor_oslo_by.json |
-| lesespor_gronland_003 — Hva er god byutvikling? | summary.themes, classification.tags, popupDesc | for lite metadata til trygg designCode (category_hints: by/politikk) | data/lesespor/oslo/lesespor_oslo_by.json |
-| bygdoy_natur — Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo. | title, classification.tags | id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | classification.tags | id/place_id er eneste sterke signal for `article_nature_route_miniature`; trenger bedre metadata før batch | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+- (ingen)
 
 ### Trenger mulig ny designCode
 
-#### needsNewDesignCode (20)
+#### needsNewDesignCode (23)
 
-- `article_civic_space_miniature` (1):
+- `article_civic_space_miniature` (3):
+  - lesespor_gronland_001 [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature` (`data/lesespor/oslo/lesespor_oslo_by.json`)
+  - lesespor_gronland_003 [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature` (`data/lesespor/oslo/lesespor_oslo_by.json`)
   - toyen_torg_torgscene [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
 - `article_event_place_miniature` (1):
   - slottsplassen_begreper [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_event_place_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json`)
@@ -530,7 +529,8 @@ delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 h
   - sagene_film_tv_lag [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json`)
   - vaterland_populaerkultur_hovedartikkel [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
   - folketeateret_hovedartikkel [medium] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature` (`data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json`)
-- `article_social_history_miniature` (1):
+- `article_social_history_miniature` (2):
+  - lesespor_bjorvika_001 [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_social_history_miniature` (`data/lesespor/oslo/lesespor_oslo_by.json`)
   - vaterland_sanering [high] — temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_social_history_miniature` (`data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json`)
 
 ### Bør forbli default foreløpig
@@ -571,7 +571,7 @@ delen merker **ingen** datafiler – den klassifiserer om en eventuell batch 7 h
 ## Article batch 7 plan
 
 Anbefalt omfang: **0–40** artikler (ikke press frem batch hvis kandidatgrunnlaget er lite).
-Audit finner bare **0** trygge kandidater nå; det er et lite grunnlag, så en batch 7 bør ikke presses frem.
+Audit finner bare **2** trygge kandidater nå; det er et lite grunnlag, så en batch 7 bør ikke presses frem.
 Prioritert rekkefølge:
 1. safe high/medium-confidence article defaults
 1. only candidates backed by existing metadata
@@ -580,17 +580,19 @@ Prioritert rekkefølge:
 Kun trygge kandidater (high/medium-confidence). `needsMetadata` og
 `needsNewDesignCode` tas **ikke** med som direkte batchkandidater.
 
-Topp 0 av 0, gruppert etter `suggestedDesignCode`:
+Topp 2 av 2, gruppert etter `suggestedDesignCode`:
 
-- (ingen)
+- `article_nature_route_miniature` (2):
+  - bygdoy_natur [high] — tydelig eksisterende fagområde (natur, bynatur) → `article_nature_route_miniature`
+  - furuset_haugerud_skogbelte_boligkant [high] — tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature`
 
 ## Remaining article-default decision
 
 Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-batch. Den merker ingen artikler og endrer ikke register eller resolver.
 
 - total remaining `article_default_miniature`: **46**
-- metadataFirst count: 5
-- registerExpansionCandidates count: 20 artikler / 8 kodeforslag
+- metadataFirst count: 0
+- registerExpansionCandidates count: 23 artikler / 8 kodeforslag
 - manualReviewBeforeAction count: 14
 - keepDefaultIntentionally count: 7
 - deferSafeButLowValue count: 0
@@ -599,15 +601,9 @@ Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-bat
 
 ### Metadata først
 
-#### metadataFirst (5)
+#### metadataFirst (0)
 
-| id/title | missing metadata | recommended metadata | file |
-| --- | --- | --- | --- |
-| lesespor_bjorvika_001 — Ellen de Vibe snakker ut: – Vi sviktet de rimelige boligene i Fjordbyen | summary.themes, classification.tags, popupDesc | themes: byutvikling/boligpolitikk/fjordbyen; tags: byutvikling/rimelige boliger/boligsosial historie; popupDesc: kort presisering av boligpolitikk og Fjordbyen-kontekst | data/lesespor/oslo/lesespor_oslo_by.json |
-| lesespor_gronland_001 — Aktivitet skaper tryggere byer | summary.themes, classification.tags, popupDesc | themes: byutvikling/offentlig rom/sosial byhistorie; tags: Grønland/aktivitet i byrom/trygghet; popupDesc: kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk | data/lesespor/oslo/lesespor_oslo_by.json |
-| lesespor_gronland_003 — Hva er god byutvikling? | summary.themes, classification.tags, popupDesc | themes: byutvikling/offentlig rom/sosial byhistorie; tags: Grønland/aktivitet i byrom/trygghet; popupDesc: kort presisering av om artikkelen primært handler om sosial byutvikling, byrom eller politikk | data/lesespor/oslo/lesespor_oslo_by.json |
-| bygdoy_natur — Bygdøy naturmiljø samler skog, strender, bukter og kulturlandskap på en bynær halvøy. Variasjonen gjør området til et nøkkelsted for fjordnær naturbruk i Oslo. | title, classification.tags, summary.themes, popupDesc | themes: bynatur/fjordlandskap/kulturlandskap; tags: Bygdøy/naturmiljø/fjordnær naturbruk; popupDesc: kort presisering av naturmiljøets hovedtype og bruk | data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json |
-| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | classification.tags, summary.themes, popupDesc | themes: nærnatur/boligkant/hverdagsbevegelse; tags: skogbelte/Alna/naturkant; popupDesc: kort presisering av forholdet mellom boligområde og skogbelte | data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json |
+- (ingen)
 
 ### Mulige nye designCodes
 
@@ -629,18 +625,18 @@ Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-bat
 
 #### `article_civic_space_miniature`
 
-- candidateCount: 1
+- candidateCount: 3
 - priority: 3
 - shouldAddNow: false
-- eksempelartikler: toyen_torg_torgscene
+- eksempelartikler: lesespor_gronland_001, lesespor_gronland_003, toyen_torg_torgscene
 - reason: Tydelig systemverdi for torg og offentlig scene, men bare få sikre kandidater i restgruppen; bør vurderes sammen med manuell byromsgjennomgang.
 
 #### `article_social_history_miniature`
 
-- candidateCount: 1
+- candidateCount: 2
 - priority: 3
 - shouldAddNow: false
-- eksempelartikler: vaterland_sanering
+- eksempelartikler: lesespor_bjorvika_001, vaterland_sanering
 - reason: Sosialhistorie er faglig relevant, men restgruppen har få entydige kandidater og flere manuelle grenseflater mot natur/byfornyelse.
 
 #### `article_event_place_miniature`
