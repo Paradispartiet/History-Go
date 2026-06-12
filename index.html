@@ -150,8 +150,17 @@
 
 </header>
 
-  <!-- nearbylistcontainer -->
-  <div id="nearbyListContainer" class="leftpanel">
+  <!-- utforsk-toggle: åpner/lukker nearby-draweren -->
+  <button id="nearbyExploreToggle"
+          type="button"
+          aria-controls="nearbyListContainer"
+          aria-expanded="false">
+    <span aria-hidden="true">🧭</span>
+    <span data-i18n="ui.static.explore">Utforsk</span>
+  </button>
+
+  <!-- nearbylistcontainer (Utforsk-drawer, lukket som standard) -->
+  <div id="nearbyListContainer" class="leftpanel is-drawer-closed">
 
     <div class="leftpanel-head">
       <div class="leftpanel-title" data-i18n="ui.static.explore">Utforsk</div>

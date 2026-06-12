@@ -130,6 +130,44 @@ function setLeftPanelMode(mode) {
 }
 
 // ============================================================
+// UTFORSK-DRAWER (åpen/lukket)
+// #nearbyListContainer er lukket som standard og åpnes via
+// #nearbyExploreToggle. Tilstanden styres med klassene
+// is-drawer-open / is-drawer-closed (se css/layout.css).
+// ============================================================
+
+function isNearbyDrawerOpen() {
+  const panel = hg$("nearbyListContainer");
+  return !!panel && panel.classList.contains("is-drawer-open");
+}
+
+function setNearbyDrawerOpen(open) {
+  const panel = hg$("nearbyListContainer");
+  if (!panel) return;
+
+  panel.classList.toggle("is-drawer-open", !!open);
+  panel.classList.toggle("is-drawer-closed", !open);
+
+  const toggle = hg$("nearbyExploreToggle");
+  if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+
+  // Listene kan ha endret seg (posisjon, unlocks) mens draweren var lukket.
+  if (open) rerenderActiveLeftPanelMode();
+}
+
+function openNearbyDrawer() {
+  setNearbyDrawerOpen(true);
+}
+
+function closeNearbyDrawer() {
+  setNearbyDrawerOpen(false);
+}
+
+function toggleNearbyDrawer() {
+  setNearbyDrawerOpen(!isNearbyDrawerOpen());
+}
+
+// ============================================================
 // FRAME SYNC (kun header)
 // ============================================================
 
@@ -371,7 +409,35 @@ function initLeftPanel() {
       const m = btn.getAttribute("data-leftmode") || "nearby";
       if (sel) sel.value = m;
       setLeftPanelMode(m);
+      if (!isNearbyDrawerOpen()) openNearbyDrawer();
     });
+  });
+
+  // =====================================
+  // Utforsk-drawer: toggle, Escape, klikk utenfor
+  // =====================================
+
+  // Drawer starter alltid lukket (synker også aria-expanded på togglen).
+  closeNearbyDrawer();
+
+  const exploreToggle = hg$("nearbyExploreToggle");
+  if (exploreToggle) {
+    exploreToggle.addEventListener("click", toggleNearbyDrawer);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !isNearbyDrawerOpen()) return;
+    closeNearbyDrawer();
+    exploreToggle?.focus?.();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!isNearbyDrawerOpen()) return;
+
+    const target = event.target instanceof Element ? event.target : null;
+    if (target?.closest("#nearbyListContainer, #nearbyExploreToggle")) return;
+
+    closeNearbyDrawer();
   });
 
   renderLeftBadges();
@@ -536,6 +602,8 @@ function initLeftPanel() {
 // ============================================================
 
 window.setNearbyCollapsed = function (hidden) {
+  const wantHidden = !!hidden;
+
   // Nearby skal kun kollapse i kartmodus
   if (window.LayerManager?.getMode?.() !== "map") hidden = false;
 
@@ -543,6 +611,10 @@ window.setNearbyCollapsed = function (hidden) {
   if (!panel) return;
 
   panel.classList.toggle("is-hidden", !!hidden);
+
+  // Kartmodus/ruter ber om kollaps: lukk draweren uansett, slik at
+  // explore kommer tilbake med lukket drawer (åpnes via Utforsk-knappen).
+  if (wantHidden) closeNearbyDrawer();
 
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
@@ -563,3 +635,6 @@ if (typeof globalThis.initPlaceCardCollapse === "function") {
 }
 window.rerenderActiveLeftPanelMode = rerenderActiveLeftPanelMode;
 window.renderActiveLeftPanelModeNow = renderActiveLeftPanelModeNow;
+window.openNearbyDrawer = openNearbyDrawer;
+window.closeNearbyDrawer = closeNearbyDrawer;
+window.toggleNearbyDrawer = toggleNearbyDrawer;

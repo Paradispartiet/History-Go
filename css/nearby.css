@@ -14,8 +14,63 @@
 }
 
 /* ============================================================
-   CONTAINER
+   CONTAINER (Utforsk-drawer)
+   Posisjonering + åpen/lukket-tilstand ligger i css/layout.css.
+   Her ligger kun utseendet på selve draweren og toggle-knappen.
    ============================================================ */
+
+#nearbyListContainer{
+  background: rgba(10,10,10,0.96);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+}
+
+/* Mobil-overlay: kant-til-kant, ingen «liten popover»-look */
+body.hg-app.hg-phone #nearbyListContainer{
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+/* Utforsk-toggle: liten pill under header som åpner/lukker draweren */
+#nearbyExploreToggle{
+  position: fixed;
+  top: calc(var(--hg-visual-header-height, 74px) + 10px);
+  left: max(12px, env(safe-area-inset-left));
+  z-index: 85;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(10,10,10,0.92);
+  color: #fff;
+
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+#nearbyExploreToggle:active{ transform: scale(0.98); }
+
+#nearbyExploreToggle[aria-expanded="true"]{
+  background: rgb(0,95,200);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* Kartmodus skal være rent kart: skjul toggle-knappen.
+   Selve draweren skjules av LayerManager (hideInMapMode). */
+body.hg-app.mode-map #nearbyExploreToggle,
+body.hg-app.map-only #nearbyExploreToggle{
+  display: none;
+}
 
 /* Head */
 #nearbyListContainer .leftpanel-head{
@@ -326,6 +381,33 @@ body.hg-app.hg-phone .nearby-row2{
 body.hg-app.hg-phone #nearbyList.nearby-strip .nearby-item{
   width: 180px;
   height: 128px;
+}
+
+/* Mobil-overlay: draweren fyller flaten mellom header og footer.
+   Listene bryter da til rader og scroller vertikalt internt i
+   stedet for å være en lav horisontal strip. */
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .leftpanel-head{
+  flex: 1;
+  min-height: 0;
+}
+
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-row2{
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  align-items: stretch;
+}
+
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
+  height: 100%;
+
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Farger per tab (bakgrunn = farge) */

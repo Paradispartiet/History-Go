@@ -109,27 +109,62 @@ body.hg-app .app-footer{
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
+/* ============================================================
+   UTFORSK-DRAWER (#nearbyListContainer)
+   Lukket som standard – åpnes av #nearbyExploreToggle.
+   Flytende over kartet: tar ALDRI layoutplass (PlaceCard starter
+   derfor rett under header, se PLACE CARD LAYER under).
+   Tablet/desktop: sentrert flytende drawer under header.
+   Mobil (hg-phone): full overlay mellom header og footer.
+   Utseende (bakgrunn/radius/skygge) ligger i css/nearby.css.
+   ============================================================ */
+
 #nearbyListContainer{
   position: fixed;
 
-  top: var(--hg-visual-header-height, 74px);
-  left: 0;
-  right: 0;
-  width: 100vw;
-  height: var(--hg-visual-nearby-height, 260px);
+  top: calc(var(--hg-visual-header-height, 74px) + 56px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(860px, calc(100vw - 32px));
+  max-height: calc(
+    100vh -
+    var(--hg-visual-header-height, 74px) - 56px -
+    var(--hg-visual-footer-height, 80px) - 12px
+  );
+  max-height: calc(
+    100dvh -
+    var(--hg-visual-header-height, 74px) - 56px -
+    var(--hg-visual-footer-height, 80px) - 12px
+  );
   box-sizing: border-box;
 
   z-index: 80;
 
-  background: transparent;
-
-  display: flex;
+  display: none;
   flex-direction: column;
 
   overflow: hidden;
 
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+
+#nearbyListContainer.is-drawer-open{
+  display: flex;
+}
+
+/* Mobil: full/nesten full overlay mellom header og footer.
+   Toppen ligger under Utforsk-knappen slik at den forblir synlig
+   som lukkeknapp; listen scroller internt (se css/nearby.css). */
+body.hg-app.hg-phone #nearbyListContainer{
+  top: calc(var(--hg-visual-header-height, 74px) + 56px);
+  left: 0;
+  right: 0;
+  bottom: var(--hg-visual-footer-height, 80px);
+  transform: none;
+  width: 100vw;
+  max-height: none;
 }
 
 
@@ -161,17 +196,15 @@ body.hg-app .app-footer{
 
 /* ============================================================
    PLACE CARD LAYER
-   Starter rett under header + Nearby (74px + 260px = 334px)
+   Starter rett under header. Nearby er nå en flytende
+   Utforsk-drawer og skyver ikke lenger PlaceCard ned.
    ============================================================ */
 
 body.hg-app #placeCard{
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(
-    var(--hg-design-header-offset, 74px) +
-    var(--hg-design-nearby-offset, 260px)
-  );
+  top: var(--hg-design-header-offset, 74px);
   bottom: var(--hg-design-footer-offset, 80px);
   height: auto;
   z-index: 100;
