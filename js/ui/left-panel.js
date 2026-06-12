@@ -355,11 +355,7 @@ function initLeftPanel() {
     window.HG_NATURE_FILTER =
       localStorage.getItem("hg_nature_filter_v1") || "all";
 
-  let saved = null;
-  try { saved = localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
-
-  // Lagret modus → ellers aktiv tab → ellers "nearby".
-  const mode = saved || hgActiveLeftPanelMode() || "nearby";
+  const mode = hgActiveLeftPanelMode() || "nearby";
   if (sel) sel.value = mode;
 
   setLeftPanelMode(mode);
