@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "domain": "natur",
+  "label": "Natur – epoker",
+  "notes": "Epokene er domenespesifikke natur- og miljøhistoriske rammer. De skal gi kontekst for geologi, landskap, vann, arter, habitat, urban økologi, klima, miljøpåvirkning og regenerasjon – ikke fungere som progresjon eller pensumstige.",
+  "epoker": [
+    {
+      "id": "natur_dyp_tid_berggrunn_og_landform",
+      "label": "Dyp tid, berggrunn og landform",
+      "years": { "from": -4600000000, "to": -12000 },
+      "definition": "Den lange geologiske tidsrammen der berggrunn, forkastninger, havbunn, mineraler, istider, erosjon og landformer legger grunnlaget for dagens landskap og naturtyper.",
+      "markers": ["berggrunn", "mineral", "forkastning", "istid", "erosjon", "landform", "morene"],
+      "tags": ["geologi", "dyp_tid", "berggrunn", "istid", "landskap"],
+      "knagger": ["stein_før_art", "landskap_som_tid", "berggrunn_og_habitat"],
+      "ui_context": "Les stedet gjennom stein, terreng, is, vann og de langsomme prosessene som former habitat."
+    },
+    {
+      "id": "natur_etteristid_suksesjon_og_habitatdannelse",
+      "label": "Etteristid, suksesjon og habitatdannelse",
+      "years": { "from": -12000, "to": -4000 },
+      "definition": "Etter isen trekker seg tilbake, formes nye jordsmonn, innsjøer, våtmarker, skoger, strandlinjer og økologiske nisjer gjennom suksesjon og klimaendring.",
+      "markers": ["etteristid", "suksesjon", "jordsmonn", "våtmark", "skog", "strandlinje", "innsjø"],
+      "tags": ["etteristid", "suksesjon", "habitat", "jordsmonn", "våtmark"],
+      "knagger": ["natur_som_endring", "habitat_blir_til", "vann_og_jord"],
+      "ui_context": "Spør hvordan jord, vann og planter gradvis skaper leveområder for arter."
+    },
+    {
+      "id": "natur_kulturlandskap_jordbruk_og_artssamspill",
+      "label": "Kulturlandskap, jordbruk og artssamspill",
+      "years": { "from": -4000, "to": 1849 },
+      "definition": "Menneskelig bruk av landskapet gjennom beite, slått, dyrking, skogbruk, fiske og ferdsel skaper kulturlandskap, halvnaturlige habitater og nye artsmønstre.",
+      "markers": ["beite", "slåttemark", "dyrking", "skogbruk", "fiske", "kulturlandskap", "kantsoner"],
+      "tags": ["kulturlandskap", "jordbruk", "artssamspill", "beite", "halvnaturlig_habitat"],
+      "knagger": ["menneske_som_okologisk_aktor", "slått_og_beite", "mangfold_i_bruk"],
+      "ui_context": "Les naturen som samspill mellom arter, jord, vann og langvarig menneskelig bruk."
+    },
+    {
+      "id": "natur_industri_urbanisering_og_forurensning",
+      "label": "Industri, urbanisering og forurensning",
+      "years": { "from": 1850, "to": 1945 },
+      "definition": "Industrialisering, byvekst, rørlegging, havneutbygging, avfall, luftforurensning, elveinngrep og tap av habitater endrer naturens plass i byen.",
+      "markers": ["industri", "rørlegging", "elveinngrep", "havneutbygging", "forurensning", "avfall", "habitatfragmentering"],
+      "tags": ["industri", "urbanisering", "forurensning", "elveinngrep", "habitat_tap"],
+      "knagger": ["natur_under_press", "vann_som_infrastruktur", "forurensning_og_helse"],
+      "ui_context": "Koble fabrikker, elver, avfall, luft, jord og arter til byens vekst."
+    },
+    {
+      "id": "natur_velferdsby_parker_friluftsliv_og_forvaltning",
+      "label": "Velferdsby, parker, friluftsliv og forvaltning",
+      "years": { "from": 1945, "to": 1979 },
+      "definition": "Etterkrigstiden preges av parkplanlegging, friluftsliv, naturvern, drikkevann, teknisk forvaltning, forsteder, rekreasjon og nye former for offentlig grønnstruktur.",
+      "markers": ["park", "friluftsliv", "naturvern", "drikkevann", "forstad", "grønnstruktur", "rekreasjon"],
+      "tags": ["velferdsby", "friluftsliv", "naturvern", "park", "grønnstruktur"],
+      "knagger": ["natur_som_velferd", "rekreasjon_og_plan", "forvaltet_natur"],
+      "ui_context": "Spør hvordan natur blir planlagt som helse, fritid, vannforsyning og fellesgode."
+    },
+    {
+      "id": "natur_miljobevegelse_biodiversitet_og_restaurering",
+      "label": "Miljøbevegelse, biodiversitet og restaurering",
+      "years": { "from": 1980, "to": 2009 },
+      "definition": "Miljøbevegelse, naturmangfold, vannkvalitet, forurensningsopprydding, økologiske korridorer, artskartlegging og restaurering gjør naturforvaltning mer systemisk.",
+      "markers": ["miljøbevegelse", "biodiversitet", "vannkvalitet", "restaurering", "økologisk korridor", "artskartlegging", "forvaltning"],
+      "tags": ["miljøbevegelse", "biodiversitet", "restaurering", "vannkvalitet", "forvaltning"],
+      "knagger": ["mangfold_som_verdi", "opprydding_og_restaurering", "økologisk_korridor"],
+      "ui_context": "Les elver, parker og habitater gjennom tap, kartlegging, opprydding og forsøk på regenerasjon."
+    },
+    {
+      "id": "natur_klimakrise_resiliens_og_bynatur",
+      "label": "Klimakrise, resiliens og bynatur",
+      "years": { "from": 2010, "to": null },
+      "definition": "Samtidens naturforståelse preges av klimaendringer, overvann, heteøyer, naturbaserte løsninger, pollinatorer, fremmede arter, karbon, resiliens og bynatur som infrastruktur.",
+      "markers": ["klimaendring", "overvann", "heteøy", "naturbasert løsning", "pollinator", "fremmed art", "karbon", "resiliens"],
+      "tags": ["klima", "resiliens", "bynatur", "pollinator", "overvann", "naturbaserte_løsninger"],
+      "knagger": ["natur_som_infrastruktur", "klima_i_hverdagen", "arter_i_byen"],
+      "ui_context": "Spør hvordan planter, vann, jord, insekter og grøntdrag gjør byen mer robust."
+    }
+  ],
+  "parallel_epoker": [
+    {
+      "id": "natur_vann_vassdrag_og_kretslop",
+      "label": "Vann, vassdrag og kretsløp",
+      "years": { "from": -12000, "to": null },
+      "definition": "Et parallelt spor der elver, bekker, innsjøer, våtmarker, fjord, overvann, drikkevann, vannkvalitet og hydrologiske kretsløp former natur og by.",
+      "markers": ["elv", "bekk", "innsjø", "våtmark", "fjord", "overvann", "drikkevann", "vannkvalitet"],
+      "tags": ["vann", "vassdrag", "hydrologi", "våtmark", "overvann"],
+      "knagger": ["vannets_vei", "vann_som_habitat", "vann_som_risiko"]
+    },
+    {
+      "id": "natur_arter_migrasjon_og_fenologi",
+      "label": "Arter, migrasjon og fenologi",
+      "years": { "from": -12000, "to": null },
+      "definition": "Et parallelt spor for hvordan arter etablerer seg, forsvinner, sprer seg, blomstrer, trekker, overvintrer og endrer rytme med klima, habitat og menneskelig påvirkning.",
+      "markers": ["art", "trekk", "blomstring", "overvintring", "pollinering", "fremmed art", "fenologi"],
+      "tags": ["arter", "fenologi", "pollinering", "migrasjon", "fremmede_arter"],
+      "knagger": ["når_kommer_arten", "samspill_i_tid", "klima_og_rytme"]
+    },
+    {
+      "id": "natur_forvaltning_verneomrader_og_regenerasjon",
+      "label": "Forvaltning, verneområder og regenerasjon",
+      "years": { "from": 1850, "to": null },
+      "definition": "Et parallelt spor for naturvern, parkforvaltning, artsvern, restaurering, skjøtsel, regulering, overvåking, frivillighet og konflikter om bruk og vern.",
+      "markers": ["naturvern", "verneområde", "skjøtsel", "restaurering", "overvåking", "artsvern", "brukskonflikt"],
+      "tags": ["forvaltning", "naturvern", "restaurering", "skjøtsel", "bruk_vern"],
+      "knagger": ["hvem_forvalter_naturen", "vern_og_bruk", "regenerasjon_i_praksis"]
+    }
+  ],
+  "ui": {
+    "default_sort": "from_year_asc",
+    "show_parallel": true,
+    "display_mode": "context_not_progression"
+  }
+}
