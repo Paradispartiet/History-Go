@@ -233,6 +233,7 @@ const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
   [/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/, "article_memory_place_miniature"],
   [/menighet|trosliv|religion|kloster|moske|synagoge|tempel|kirkehistorie|gudstjeneste/, "article_religion_miniature", true],
   [/forskning|vitenskap|laboratorium|forskningsmiljø|fagfelt|fagutvikling|vitenskapshistorie/, "article_science_history_miniature", true],
+  [/populaerkultur|populærkultur|popkultur|filmkultur|\bfilm\b|kino|\btv\b|fjernsyn|scene|standup|komedie|revy|kjendiskultur|kjendis|nerdkultur|gaming|spillkultur|cosplay|fandom|kultfilm|programkino|house of nerds|latter|colosseum kino|cinemateket/, "article_popular_culture_miniature", true],
   [/redaksjon|avishus|\bavis\b|journalistikk|kringkasting|allmennkringkasting|\bnrk\b|mediehus|presse|programkino|medieoffentlighet|mediefelt/, "article_media_history_miniature", true],
   [/natursti|elvesti|turvei|grøntdrag|naturkorridor|parkdrag|elveløp|\belv\b|elva|elve|bekk|vassdrag|naturreservat|bynatur/, "article_nature_route_miniature", true],
   [/trikk|t-?bane|jernbane|\btog\b|bussterminal|\bbuss\b|kollektivtransport|kollektivsystem|knutepunkt|transportåre|mobilitet|samferdsel/, "article_transport_miniature", true],
@@ -246,6 +247,7 @@ const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
   [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
   [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
   [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
+  [/hverdagsliv|hverdagsbruk|hverdagsbevegelse|daglig bruk|møteplass|oppholdssted|nabolagsrom|sosial bruk|byliv|parkbruk|lokalt liv|folks bruk|offentlig rom i bruk|hverdagsspottingsone|sesongbruk|rekreasjon|nærvær|byromsliv/, "article_everyday_life_miniature", true],
   [/litteratur|literature|essay|roman|dikt|bok\b|forfatter/, "article_literature_miniature"],
   [/politikk|politic|valg|parti|demokrati/, "article_political_history_miniature"],
   [/wonderkammer|wonder|aha|kuriosa|cabinet/, "article_wonderkammer_miniature"],
@@ -259,7 +261,10 @@ const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
 const ARTICLE_CATEGORY_TO_CODE: Record<string, string> = {
   historie: "article_history_miniature", sport: "article_sports_history_miniature",
   musikk: "article_music_history_miniature", litteratur: "article_literature_miniature",
-  kunst: "article_art_miniature", arkitektur: "article_architecture_miniature",
+  kunst: "article_art_miniature", popkultur: "article_popular_culture_miniature",
+  "populærkultur": "article_popular_culture_miniature",
+  hverdagsliv: "article_everyday_life_miniature",
+  arkitektur: "article_architecture_miniature",
   politikk: "article_political_history_miniature", sprak: "article_language_miniature",
   "språk": "article_language_miniature", by: "article_local_story_miniature",
   natur: "article_place_essay_miniature"
@@ -570,6 +575,14 @@ const UNUSED_CODE_HINTS = {
   article_childhood_play_miniature: {
     searchTerms: ["lekeplass", "barndom", "lek", "barn", "skolegård", "aktivitet"],
     nextAction: "Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch7Plan)."
+  },
+  article_popular_culture_miniature: {
+    searchTerms: ["populærkultur", "film", "kino", "TV", "standup", "gaming", "kjendis", "scene"],
+    nextAction: "Vurder film-, TV-, scene-, standup-, gaming- og kjendiskulturartikler for eksplisitt article_popular_culture_miniature i en senere liten data-batch."
+  },
+  article_everyday_life_miniature: {
+    searchTerms: ["hverdagsliv", "møteplass", "parkbruk", "sosial bruk", "byliv", "oppholdssted"],
+    nextAction: "Vurder artikler om hverdagsbruk, møteplasser, parkbruk og sosialt byliv for eksplisitt article_everyday_life_miniature i en senere liten data-batch."
   }
 };
 
@@ -680,9 +693,11 @@ const ARTICLE_DEFAULT_SAFE_RULES: KeywordRule[] = [
   [/industriområde|fabrikk|\bmølle\b|bryggeri|verksted|industrikultur|industrihistorie|driftsanlegg|trikkestall|vannkraft/, "article_industry_miniature"],
   [/\bkirke\b|kapell|menighet|kloster|katedral|domkirke|moske|synagoge|trosliv|kirkehistorie/, "article_religion_miniature"],
   [/laboratorium|vitenskapshistorie|forskningsmiljø|psykologi|fagmiljø|forskning/, "article_science_history_miniature"],
+  [/populaerkultur|populærkultur|popkultur|filmkultur|filmkulisse|filmsted|film[- ]? og tv|film|kino|tv-drama|fjernsyn|krim|serie|scene|standup|komedie|revy|kjendiskultur|kjendis|sladder|livsstilsmedier|nerdkultur|gaming|spillkultur|cosplay|fandom|kultfilm|programkino|house of nerds|latter|colosseum kino|cinemateket|sjangerfellesskap/, "article_popular_culture_miniature"],
   [/torghandel|matmarked|markedshall|restaurantliv|spisested|mathall|matkultur|servering/, "article_food_market_miniature"],
   [/lekeplass|barndom|barnelek|lek\b/, "article_childhood_play_miniature"],
   [/stadion|fotballklubb|idrettshistorie|friidrett|skøytehall|sportshistorie|tribune/, "article_sports_history_miniature"],
+  [/hverdagsbruk|hverdagsliv|hverdagskultur|hverdagsbevegelse|hverdag|møteplass|møtepunkt|oppholdssted|oppholdsplass|nabolagsrom|sosial bruk|byliv|parkbruk|lokalt liv|folks bruk|offentlig rom i bruk|uformell rekreasjon|daglig bruk|hverdagsspottingsone|sesongbruk|rekreasjon|nærvær|byromsliv/, "article_everyday_life_miniature"],
   [/groundhopper|bortefelt|stadiontur|kampdag/, "article_groundhopper_miniature"],
   [/musikkhistorie|konserthus|plateselskap|jazzklubb|musikkscene/, "article_music_history_miniature"],
   [/forfatterskap|litteraturhistorie|diktning|poesi|romankunst/, "article_literature_miniature"],
@@ -698,8 +713,6 @@ const ARTICLE_DEFAULT_SAFE_RULES: KeywordRule[] = [
 // Mulige NYE koder audit kan foreslå (men IKKE legge til i registeret i denne
 // PR-en). Disse dekker temaer dagens katalog treffer for grovt.
 const ARTICLE_DEFAULT_NEW_RULES: KeywordRule[] = [
-  [/populaerkultur|populærkultur|filmkulisse|filmsted|film[- ]? og tv|film|tv-drama|krim|serie|kjendis|sladder|livsstilsmedier|standup|nerdkultur|sjangerfellesskap/, "article_popular_culture_miniature"],
-  [/hverdagsbruk|hverdagsliv|hverdagskultur|hverdag|møtepunkt|oppholdsplass|uformell rekreasjon|daglig bruk|hverdagsspottingsone/, "article_everyday_life_miniature"],
   [/sosialhistorie|arbeiderforstad|arbeidsliv|klasse|fattigdom|leiegård|sanering|byfornyelse|boligsosial|rimelige boliger/, "article_social_history_miniature"],
   [/arrangement|festival|markering|seremoni|parade|demonstrasjon|feiring|event|skøytebane|sesongskifte/, "article_event_place_miniature"],
   [/uteliv|natteliv|\bbar\b|\bpub\b|klubb|serveringsmiljø|byliv om natten/, "article_nightlife_miniature"],
@@ -1142,10 +1155,10 @@ function buildRemainingArticleDefaultDecision(articleDefaultAnalysis: any) {
   if (deferSafeButLowValue.length) {
     recommendedRoadmap.push({
       step: recommendedRoadmap.length + 1,
-      title: "Defer safe existing-code candidates",
+      title: "Audit-only review or small safe-candidate data batch",
       type: "data-batch",
-      reason: `${deferSafeButLowValue.length} artikler kan trolig merkes med eksisterende kode, men verdien er lavere enn å avklare register- og manuelle beslutninger først.`,
-      scope: "Ingen Article batch 8 nå; vurder disse bare i en senere, liten data-batch etter beslutningsarbeidet."
+      reason: `${deferSafeButLowValue.length} artikler kan trolig merkes med eksisterende kode etter registerutvidelsen; bruk audit som arbeidsliste og hold batchen liten.`,
+      scope: "Ingen automatisk Article batch 8 i denne PR-en; vurder bare en senere, liten data-batch basert på safe candidates og manuell kontroll."
     });
   }
   if (keepDefaultIntentionally.length) {
@@ -1161,8 +1174,10 @@ function buildRemainingArticleDefaultDecision(articleDefaultAnalysis: any) {
   const recommendedNextStep = metadataFirst.length
     ? "Do not create Article batch 8 now; run metadata-first cleanup before register or data-batch work."
     : shouldAddRegisterCodes.length
-      ? "Do not create Article batch 8 now; consider a narrow register PR for the consolidated popular culture/everyday life gaps, then run manual review before any data batch."
-      : "Do not create Article batch 8 now; run manual review and keep broad or weakly visual articles on article_default_miniature.";
+      ? "Do not create Article batch 8 now; consider a narrow register PR for the remaining consolidated article-code gaps, then run manual review before any data batch."
+      : deferSafeButLowValue.length
+        ? "Do not create Article batch 8 now; use this audit for review or a later small safe-candidate data batch. No immediate register PR is recommended."
+        : "Do not create Article batch 8 now; run manual review and keep broad or weakly visual articles on article_default_miniature.";
 
   return {
     total: articleDefaultAnalysis.total,

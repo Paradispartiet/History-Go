@@ -1,15 +1,15 @@
 {
   "schema": "history-go.visual-design-codes-audit.v1",
-  "generatedAt": "2026-06-12T07:31:38.138Z",
+  "generatedAt": "2026-06-12T10:29:03.821Z",
   "registry": {
-    "totalCodes": 81,
+    "totalCodes": 83,
     "byEntityType": {
       "place": 31,
       "person": 23,
-      "article": 27,
-      "story": 27,
-      "leksikon": 27,
-      "lesespor": 27
+      "article": 29,
+      "story": 29,
+      "leksikon": 29,
+      "lesespor": 29
     },
     "missingRenderHints": []
   },
@@ -186,7 +186,9 @@
     "article_wonderkammer_miniature",
     "article_science_history_miniature",
     "article_food_market_miniature",
-    "article_childhood_play_miniature"
+    "article_childhood_play_miniature",
+    "article_popular_culture_miniature",
+    "article_everyday_life_miniature"
   ],
   "unusedDesignCodeDetails": [
     {
@@ -294,6 +296,46 @@
         "aktivitet"
       ],
       "suggestedNextAction": "Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch7Plan)."
+    },
+    {
+      "code": "article_popular_culture_miniature",
+      "entityTypes": [
+        "article",
+        "story",
+        "leksikon",
+        "lesespor"
+      ],
+      "family": "popular_culture",
+      "suggestedSearchTerms": [
+        "populærkultur",
+        "film",
+        "kino",
+        "TV",
+        "standup",
+        "gaming",
+        "kjendis",
+        "scene"
+      ],
+      "suggestedNextAction": "Vurder film-, TV-, scene-, standup-, gaming- og kjendiskulturartikler for eksplisitt article_popular_culture_miniature i en senere liten data-batch."
+    },
+    {
+      "code": "article_everyday_life_miniature",
+      "entityTypes": [
+        "article",
+        "story",
+        "leksikon",
+        "lesespor"
+      ],
+      "family": "everyday_life",
+      "suggestedSearchTerms": [
+        "hverdagsliv",
+        "møteplass",
+        "parkbruk",
+        "sosial bruk",
+        "byliv",
+        "oppholdssted"
+      ],
+      "suggestedNextAction": "Vurder artikler om hverdagsbruk, møteplasser, parkbruk og sosialt byliv for eksplisitt article_everyday_life_miniature i en senere liten data-batch."
     }
   ],
   "invalidExplicitDesignCodes": [],
@@ -9196,6 +9238,114 @@
         "priority": 5
       },
       {
+        "id": "lesespor_gronland_003",
+        "nameOrTitle": "Hva er god byutvikling?",
+        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'sosial bruk' dekker ubrukt kode article_everyday_life_miniature",
+        "priority": 5
+      },
+      {
+        "id": "slottsparken",
+        "nameOrTitle": "slottsparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'hverdagsbruk' dekker ubrukt kode article_everyday_life_miniature",
+        "priority": 5
+      },
+      {
+        "id": "chateau_neuf_revy_og_studentkultur",
+        "nameOrTitle": "Revy og studentkultur",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'revy' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "cinemateket_oslo_filmkultur_i_oslo",
+        "nameOrTitle": "Filmkultur i Oslo",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'filmkultur' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "colosseum_kino_hovedartikkel",
+        "nameOrTitle": "Colosseum kino som norsk storfilmkino",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'colosseum kino' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "gronlandsleiret_hovedartikkel",
+        "nameOrTitle": "Grønlandsleiret som sosialrealistisk filmbakteppe",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'film' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "house_of_nerds_hovedartikkel",
+        "nameOrTitle": "House of Nerds som møteplass for nerdkultur",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'house of nerds' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "latter_hovedartikkel",
+        "nameOrTitle": "Latter som profesjonell standup-scene",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'latter' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "oslo_s_sentrum_mobilitet",
+        "nameOrTitle": "Porten til sentrum",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'populærkultur' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "sagene_film_tv_lag",
+        "nameOrTitle": "Sagene som film- og TV-miljø",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'film' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "toyen_torg_identitet",
+        "nameOrTitle": "Tøyen-identitet i sentrumsskala",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'populærkultur' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
+        "id": "vaterland_populaerkultur_hovedartikkel",
+        "nameOrTitle": "Vaterland som filmkulisse for krim og TV-drama",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'tv' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 5
+      },
+      {
         "id": "botsparken",
         "nameOrTitle": "botsparken",
         "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
@@ -9203,24 +9353,6 @@
         "suggestedDesignCode": "article_institution_miniature",
         "reason": "default-fallback; tydelig dyp-tekst treff 'fengsel'",
         "priority": 4
-      },
-      {
-        "id": "cinemateket_oslo_filmkultur_i_oslo",
-        "nameOrTitle": "Filmkultur i Oslo",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_media_history_miniature",
-        "reason": "default-fallback; tydelig dyp-tekst treff 'programkino'",
-        "priority": 4
-      },
-      {
-        "id": "colosseum_kino_hovedartikkel",
-        "nameOrTitle": "Colosseum kino som norsk storfilmkino",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_architecture_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'bygning'",
-        "priority": 3
       },
       {
         "id": "frognerparken_broen_og_skulpturrom",
@@ -9367,39 +9499,12 @@
         "priority": 3
       },
       {
-        "id": "folketeateret_hovedartikkel",
-        "nameOrTitle": "Folketeateret som storskalateater for musikaler",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_groundhopper_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'arena'",
-        "priority": 3
-      },
-      {
         "id": "grand_hotel_hovedartikkel",
         "nameOrTitle": "Grand Hotel som arena for prisutdelinger og pressebilder",
         "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
         "entityType": "article",
         "suggestedDesignCode": "article_groundhopper_miniature",
         "reason": "heuristisk medium-confidence treff (arena); bør sjekkes før eksplisitt merking",
-        "priority": 3
-      },
-      {
-        "id": "house_of_nerds_hovedartikkel",
-        "nameOrTitle": "House of Nerds som møteplass for nerdkultur",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_groundhopper_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'arena'",
-        "priority": 3
-      },
-      {
-        "id": "latter_hovedartikkel",
-        "nameOrTitle": "Latter som profesjonell standup-scene",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_groundhopper_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'arena'",
         "priority": 3
       },
       {
@@ -9502,15 +9607,6 @@
         "priority": 3
       },
       {
-        "id": "chateau_neuf_revy_og_studentkultur",
-        "nameOrTitle": "Revy og studentkultur",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_music_history_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'konsert'",
-        "priority": 3
-      },
-      {
         "id": "nydalsdammen",
         "nameOrTitle": "nydalsdammen",
         "file": "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch1.json",
@@ -9520,36 +9616,9 @@
         "priority": 3
       },
       {
-        "id": "sagene_film_tv_lag",
-        "nameOrTitle": "Sagene som film- og TV-miljø",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_nature_route_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'elve'",
-        "priority": 3
-      },
-      {
-        "id": "toyen_torg_identitet",
-        "nameOrTitle": "Tøyen-identitet i sentrumsskala",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_nature_route_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'elve'",
-        "priority": 3
-      },
-      {
         "id": "vaterland_hovedartikkel",
         "nameOrTitle": "Vaterland",
         "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch2.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_nature_route_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'elve'",
-        "priority": 3
-      },
-      {
-        "id": "vaterland_populaerkultur_hovedartikkel",
-        "nameOrTitle": "Vaterland som filmkulisse for krim og TV-drama",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
         "entityType": "article",
         "suggestedDesignCode": "article_nature_route_miniature",
         "reason": "default-fallback; mulig dyp-tekst treff 'elve'",
@@ -9583,12 +9652,21 @@
         "priority": 3
       },
       {
-        "id": "lesespor_gronland_003",
-        "nameOrTitle": "Hva er god byutvikling?",
-        "file": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "id": "folketeateret_hovedartikkel",
+        "nameOrTitle": "Folketeateret som storskalateater for musikaler",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
         "entityType": "article",
-        "suggestedDesignCode": "article_political_history_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'valg'",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'scene' dekker ubrukt kode article_popular_culture_miniature",
+        "priority": 3
+      },
+      {
+        "id": "toyen_torg_torgscene",
+        "nameOrTitle": "Torgflaten som offentlig scene",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "entityType": "article",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "reason": "default-fallback; dyp-tekst treff 'scene' dekker ubrukt kode article_popular_culture_miniature",
         "priority": 3
       },
       {
@@ -9610,15 +9688,6 @@
         "priority": 3
       },
       {
-        "id": "oslo_s_sentrum_mobilitet",
-        "nameOrTitle": "Porten til sentrum",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
-        "entityType": "article",
-        "suggestedDesignCode": "article_transport_miniature",
-        "reason": "default-fallback; mulig dyp-tekst treff 'mobilitet'",
-        "priority": 3
-      },
-      {
         "id": "tigeren",
         "nameOrTitle": "tigeren",
         "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json",
@@ -9632,6 +9701,151 @@
   "articleDefaultAnalysis": {
     "total": 46,
     "safeBatch7Candidates": [
+      {
+        "id": "birkelunden",
+        "title": "Birkelunden er et grønt samlingspunkt på Grünerløkka med høy hverdagsbruk i tett byvev.",
+        "place_id": "birkelunden",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (rekreasjon, hverdagsbruk, hverdag) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "rekreasjon",
+            "hverdagsbruk",
+            "hverdag"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "kampen_park_hovedartikkel",
+        "title": "Kampen park",
+        "place_id": "lekeplass_kampen_park",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdag) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "hverdag"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "olaf_ryes_plass",
+        "title": "Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk.",
+        "place_id": "olaf_ryes_plass",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdagsbruk, møteplass) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "hverdagsbruk",
+            "møteplass"
+          ],
+          "fieldsUsed": [
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "slottsparken",
+        "title": "Slottsparken kombinerer kongelig representasjonslandskap med åpen hverdagsbruk midt i byen.",
+        "place_id": "slottsparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdagsbruk, parkbruk) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "hverdagsbruk",
+            "parkbruk"
+          ],
+          "fieldsUsed": [
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "spikersuppa",
+        "title": "Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane.",
+        "place_id": "spikersuppa",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (møtepunkt, oppholdsplass, sesongbruk, møteplass) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "møtepunkt",
+            "oppholdsplass",
+            "sesongbruk",
+            "møteplass"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "stensparken",
+        "title": "Stensparken er en høydepark som kombinerer utsikt, gjennomgang og nabolagsopphold mellom Bislett og St. Hanshaugen.",
+        "place_id": "stensparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdagsbevegelse, parkbruk) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "hverdagsbevegelse",
+            "parkbruk"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "tigeren",
+        "title": "Bysymbol ved Oslo S med høy synlighet i hverdagsmobiliteten.",
+        "place_id": "tigeren",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (møtepunkt, hverdag) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "møtepunkt",
+            "hverdag"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
       {
         "id": "bygdoy_natur",
         "title": "Bygdøy naturmiljø",
@@ -9671,6 +9885,312 @@
             "popupDesc",
             "summary.themes",
             "classification.tags"
+          ]
+        }
+      },
+      {
+        "id": "chateau_neuf_revy_og_studentkultur",
+        "title": "Revy og studentkultur",
+        "place_id": "chateau_neuf",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (revy, scene) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "revy",
+            "scene"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "cinemateket_oslo_filmkultur_i_oslo",
+        "title": "Filmkultur i Oslo",
+        "place_id": "cinemateket_oslo",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (cinemateket, filmkultur, kino, film) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "cinemateket",
+            "filmkultur",
+            "kino",
+            "film"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "colosseum_kino_hovedartikkel",
+        "title": "Colosseum kino som norsk storfilmkino",
+        "place_id": "colosseum_kino",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (kino, colosseum kino, film, scene, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "kino",
+            "colosseum kino",
+            "film",
+            "scene",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "folketeateret_hovedartikkel",
+        "title": "Folketeateret som storskalateater for musikaler",
+        "place_id": "folketeateret",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (scene, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "scene",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "frognerstranda_hovedartikkel",
+        "title": "Frognerstranda som sesongbasert kjendissone",
+        "place_id": "frognerstranda",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (kjendis, sladder, livsstilsmedier, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "kjendis",
+            "sladder",
+            "livsstilsmedier",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "gronlandsleiret_hovedartikkel",
+        "title": "Grønlandsleiret som sosialrealistisk filmbakteppe",
+        "place_id": "gronlandsleiret",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (film, serie, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "film",
+            "serie",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "house_of_nerds_hovedartikkel",
+        "title": "House of Nerds som møteplass for nerdkultur",
+        "place_id": "house_of_nerds",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (house of nerds, nerdkultur, spillkultur, sjangerfellesskap, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "house of nerds",
+            "nerdkultur",
+            "spillkultur",
+            "sjangerfellesskap",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "kampen_film_tv_lag",
+        "title": "Kampen som film- og TV-miljø",
+        "place_id": "kampen_kirke",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (film, film- og tv) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "film",
+            "film- og tv"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "latter_hovedartikkel",
+        "title": "Latter som profesjonell standup-scene",
+        "place_id": "latter",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (latter, standup, scene, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "latter",
+            "standup",
+            "scene",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "sagene_film_tv_lag",
+        "title": "Sagene som film- og TV-miljø",
+        "place_id": "sagene",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (film, film- og tv, filmsted) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "film",
+            "film- og tv",
+            "filmsted"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "toyen_torg_torgscene",
+        "title": "Torgflaten som offentlig scene",
+        "place_id": "toyen_torg",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (scene) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "scene"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner"
+          ]
+        }
+      },
+      {
+        "id": "vaterland_populaerkultur_hovedartikkel",
+        "title": "Vaterland som filmkulisse for krim og TV-drama",
+        "place_id": "vaterland_historisk_elvelop",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (populaerkultur, filmkulisse, krim, tv-drama, serie, film, populærkultur) → `article_popular_culture_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "populaerkultur",
+            "filmkulisse",
+            "krim",
+            "tv-drama",
+            "serie",
+            "film",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ]
+        }
+      },
+      {
+        "id": "oslo_s_sentrum_mobilitet",
+        "title": "Porten til sentrum",
+        "place_id": "oslo_s",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "medium",
+        "reason": "tydelig eksisterende fagområde (møtepunkt) → `article_everyday_life_miniature`",
+        "evidence": {
+          "matchedWords": [
+            "møtepunkt"
+          ],
+          "fieldsUsed": [
+            "summary.themes"
           ]
         }
       }
@@ -9722,28 +10242,6 @@
         "suggestedNewDesignCode": "article_civic_space_miniature"
       },
       {
-        "id": "toyen_torg_torgscene",
-        "title": "Torgflaten som offentlig scene",
-        "place_id": "toyen_torg",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_civic_space_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "torgflate",
-            "offentlig scene"
-          ],
-          "fieldsUsed": [
-            "title",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_civic_space_miniature"
-      },
-      {
         "id": "slottsplassen_begreper",
         "title": "Begreper: paradeplass, seremoni og ikon",
         "place_id": "slottsplassen",
@@ -9763,69 +10261,6 @@
           ]
         },
         "suggestedNewDesignCode": "article_event_place_miniature"
-      },
-      {
-        "id": "birkelunden",
-        "title": "Birkelunden er et grønt samlingspunkt på Grünerløkka med høy hverdagsbruk i tett byvev.",
-        "place_id": "birkelunden",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "hverdagsbruk",
-            "hverdag"
-          ],
-          "fieldsUsed": [
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_everyday_life_miniature"
-      },
-      {
-        "id": "kampen_park_hovedartikkel",
-        "title": "Kampen park",
-        "place_id": "lekeplass_kampen_park",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "hverdag"
-          ],
-          "fieldsUsed": [
-            "popupDesc",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_everyday_life_miniature"
-      },
-      {
-        "id": "tigeren",
-        "title": "Bysymbol ved Oslo S med høy synlighet i hverdagsmobiliteten.",
-        "place_id": "tigeren",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "møtepunkt",
-            "hverdag"
-          ],
-          "fieldsUsed": [
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_everyday_life_miniature"
       },
       {
         "id": "toyen_torg_identitet",
@@ -9851,226 +10286,6 @@
           ]
         },
         "suggestedNewDesignCode": "article_neighborhood_identity_miniature"
-      },
-      {
-        "id": "cinemateket_oslo_filmkultur_i_oslo",
-        "title": "Filmkultur i Oslo",
-        "place_id": "cinemateket_oslo",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "film"
-          ],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "colosseum_kino_hovedartikkel",
-        "title": "Colosseum kino som norsk storfilmkino",
-        "place_id": "colosseum_kino",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "film",
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "frognerstranda_hovedartikkel",
-        "title": "Frognerstranda som sesongbasert kjendissone",
-        "place_id": "frognerstranda",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "kjendis",
-            "sladder",
-            "livsstilsmedier",
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "gronlandsleiret_hovedartikkel",
-        "title": "Grønlandsleiret som sosialrealistisk filmbakteppe",
-        "place_id": "gronlandsleiret",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "film",
-            "serie",
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "house_of_nerds_hovedartikkel",
-        "title": "House of Nerds som møteplass for nerdkultur",
-        "place_id": "house_of_nerds",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "nerdkultur",
-            "sjangerfellesskap",
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "kampen_film_tv_lag",
-        "title": "Kampen som film- og TV-miljø",
-        "place_id": "kampen_kirke",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "film",
-            "film- og tv"
-          ],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "latter_hovedartikkel",
-        "title": "Latter som profesjonell standup-scene",
-        "place_id": "latter",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "standup",
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "sagene_film_tv_lag",
-        "title": "Sagene som film- og TV-miljø",
-        "place_id": "sagene",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "film",
-            "film- og tv",
-            "filmsted"
-          ],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
-      },
-      {
-        "id": "vaterland_populaerkultur_hovedartikkel",
-        "title": "Vaterland som filmkulisse for krim og TV-drama",
-        "place_id": "vaterland_historisk_elvelop",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "high",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "populaerkultur",
-            "filmkulisse",
-            "krim",
-            "tv-drama",
-            "serie",
-            "film",
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
       },
       {
         "id": "lesespor_bjorvika_001",
@@ -10117,82 +10332,6 @@
           ]
         },
         "suggestedNewDesignCode": "article_social_history_miniature"
-      },
-      {
-        "id": "oslo_s_sentrum_mobilitet",
-        "title": "Porten til sentrum",
-        "place_id": "oslo_s",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "medium",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "møtepunkt"
-          ],
-          "fieldsUsed": [
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_everyday_life_miniature"
-      },
-      {
-        "id": "slottsparken",
-        "title": "Slottsparken kombinerer kongelig representasjonslandskap med åpen hverdagsbruk midt i byen.",
-        "place_id": "slottsparken",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "medium",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "hverdagsbruk"
-          ],
-          "fieldsUsed": [
-            "summary.one_liner"
-          ]
-        },
-        "suggestedNewDesignCode": "article_everyday_life_miniature"
-      },
-      {
-        "id": "stensparken",
-        "title": "Stensparken er en høydepark som kombinerer utsikt, gjennomgang og nabolagsopphold mellom Bislett og St. Hanshaugen.",
-        "place_id": "stensparken",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "medium",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "hverdag"
-          ],
-          "fieldsUsed": [
-            "popupDesc"
-          ]
-        },
-        "suggestedNewDesignCode": "article_everyday_life_miniature"
-      },
-      {
-        "id": "folketeateret_hovedartikkel",
-        "title": "Folketeateret som storskalateater for musikaler",
-        "place_id": "folketeateret",
-        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "confidence": "medium",
-        "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "populærkultur"
-          ],
-          "fieldsUsed": [
-            "summary.themes"
-          ]
-        },
-        "suggestedNewDesignCode": "article_popular_culture_miniature"
       }
     ],
     "keepDefaultForNow": [
@@ -10209,26 +10348,6 @@
           "matchedWords": [],
           "fieldsUsed": [
             "id",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ]
-        }
-      },
-      {
-        "id": "chateau_neuf_revy_og_studentkultur",
-        "title": "Revy og studentkultur",
-        "place_id": "chateau_neuf",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_default_miniature",
-        "confidence": "low",
-        "reason": "generell artikkel uten tydelig fagområde; default beholdes",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
             "popupDesc",
             "summary.one_liner",
             "summary.themes"
@@ -10379,50 +10498,6 @@
         "alternativeDesignCode": "article_everyday_life_miniature"
       },
       {
-        "id": "olaf_ryes_plass",
-        "title": "Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk.",
-        "place_id": "olaf_ryes_plass",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_childhood_play_miniature",
-        "confidence": "low",
-        "reason": "flere plausible koder med lik styrke: `article_childhood_play_miniature` vs `article_everyday_life_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "lek",
-            "hverdagsbruk"
-          ],
-          "fieldsUsed": [
-            "popupDesc",
-            "summary.one_liner"
-          ]
-        },
-        "alternativeDesignCode": "article_everyday_life_miniature"
-      },
-      {
-        "id": "spikersuppa",
-        "title": "Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane.",
-        "place_id": "spikersuppa",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "confidence": "low",
-        "reason": "flere plausible koder med lik styrke: `article_everyday_life_miniature` vs `article_event_place_miniature`",
-        "evidence": {
-          "matchedWords": [
-            "møtepunkt",
-            "oppholdsplass",
-            "skøytebane",
-            "sesongskifte"
-          ],
-          "fieldsUsed": [
-            "popupDesc",
-            "summary.one_liner"
-          ]
-        },
-        "alternativeDesignCode": "article_event_place_miniature"
-      },
-      {
         "id": "schous_plass_hovedartikkel",
         "title": "Schous plass",
         "place_id": "schous_bryggeri",
@@ -10550,7 +10625,7 @@
         "evidence": {
           "matchedWords": [
             "friområde",
-            "hverdag",
+            "hverdagsbevegelse",
             "daglig bruk"
           ],
           "fieldsUsed": [
@@ -10673,6 +10748,69 @@
     ],
     "candidates": [
       {
+        "id": "birkelunden",
+        "title": "Birkelunden er et grønt samlingspunkt på Grünerløkka med høy hverdagsbruk i tett byvev.",
+        "place_id": "birkelunden",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (rekreasjon, hverdagsbruk, hverdag) → `article_everyday_life_miniature`"
+      },
+      {
+        "id": "kampen_park_hovedartikkel",
+        "title": "Kampen park",
+        "place_id": "lekeplass_kampen_park",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdag) → `article_everyday_life_miniature`"
+      },
+      {
+        "id": "olaf_ryes_plass",
+        "title": "Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk.",
+        "place_id": "olaf_ryes_plass",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdagsbruk, møteplass) → `article_everyday_life_miniature`"
+      },
+      {
+        "id": "slottsparken",
+        "title": "Slottsparken kombinerer kongelig representasjonslandskap med åpen hverdagsbruk midt i byen.",
+        "place_id": "slottsparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdagsbruk, parkbruk) → `article_everyday_life_miniature`"
+      },
+      {
+        "id": "spikersuppa",
+        "title": "Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane.",
+        "place_id": "spikersuppa",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (møtepunkt, oppholdsplass, sesongbruk, møteplass) → `article_everyday_life_miniature`"
+      },
+      {
+        "id": "stensparken",
+        "title": "Stensparken er en høydepark som kombinerer utsikt, gjennomgang og nabolagsopphold mellom Bislett og St. Hanshaugen.",
+        "place_id": "stensparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (hverdagsbevegelse, parkbruk) → `article_everyday_life_miniature`"
+      },
+      {
+        "id": "tigeren",
+        "title": "Bysymbol ved Oslo S med høy synlighet i hverdagsmobiliteten.",
+        "place_id": "tigeren",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (møtepunkt, hverdag) → `article_everyday_life_miniature`"
+      },
+      {
         "id": "bygdoy_natur",
         "title": "Bygdøy naturmiljø",
         "place_id": "bygdoy_natur",
@@ -10689,488 +10827,137 @@
         "suggestedDesignCode": "article_nature_route_miniature",
         "confidence": "high",
         "reason": "tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature`"
+      },
+      {
+        "id": "chateau_neuf_revy_og_studentkultur",
+        "title": "Revy og studentkultur",
+        "place_id": "chateau_neuf",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (revy, scene) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "cinemateket_oslo_filmkultur_i_oslo",
+        "title": "Filmkultur i Oslo",
+        "place_id": "cinemateket_oslo",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (cinemateket, filmkultur, kino, film) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "colosseum_kino_hovedartikkel",
+        "title": "Colosseum kino som norsk storfilmkino",
+        "place_id": "colosseum_kino",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (kino, colosseum kino, film, scene, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "folketeateret_hovedartikkel",
+        "title": "Folketeateret som storskalateater for musikaler",
+        "place_id": "folketeateret",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (scene, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "frognerstranda_hovedartikkel",
+        "title": "Frognerstranda som sesongbasert kjendissone",
+        "place_id": "frognerstranda",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (kjendis, sladder, livsstilsmedier, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "gronlandsleiret_hovedartikkel",
+        "title": "Grønlandsleiret som sosialrealistisk filmbakteppe",
+        "place_id": "gronlandsleiret",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (film, serie, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "house_of_nerds_hovedartikkel",
+        "title": "House of Nerds som møteplass for nerdkultur",
+        "place_id": "house_of_nerds",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (house of nerds, nerdkultur, spillkultur, sjangerfellesskap, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "kampen_film_tv_lag",
+        "title": "Kampen som film- og TV-miljø",
+        "place_id": "kampen_kirke",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (film, film- og tv) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "latter_hovedartikkel",
+        "title": "Latter som profesjonell standup-scene",
+        "place_id": "latter",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (latter, standup, scene, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "sagene_film_tv_lag",
+        "title": "Sagene som film- og TV-miljø",
+        "place_id": "sagene",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (film, film- og tv, filmsted) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "toyen_torg_torgscene",
+        "title": "Torgflaten som offentlig scene",
+        "place_id": "toyen_torg",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (scene) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "vaterland_populaerkultur_hovedartikkel",
+        "title": "Vaterland som filmkulisse for krim og TV-drama",
+        "place_id": "vaterland_historisk_elvelop",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "suggestedDesignCode": "article_popular_culture_miniature",
+        "confidence": "high",
+        "reason": "tydelig eksisterende fagområde (populaerkultur, filmkulisse, krim, tv-drama, serie, film, populærkultur) → `article_popular_culture_miniature`"
+      },
+      {
+        "id": "oslo_s_sentrum_mobilitet",
+        "title": "Porten til sentrum",
+        "place_id": "oslo_s",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "suggestedDesignCode": "article_everyday_life_miniature",
+        "confidence": "medium",
+        "reason": "tydelig eksisterende fagområde (møtepunkt) → `article_everyday_life_miniature`"
       }
     ]
   },
   "remainingArticleDefaultDecision": {
     "total": 46,
-    "recommendedNextStep": "Do not create Article batch 8 now; consider a narrow register PR for the consolidated popular culture/everyday life gaps, then run manual review before any data batch.",
+    "recommendedNextStep": "Do not create Article batch 8 now; use this audit for review or a later small safe-candidate data batch. No immediate register PR is recommended.",
     "metadataFirst": [],
     "registerExpansionCandidates": [
       {
-        "suggestedDesignCode": "article_popular_culture_miniature",
-        "candidateCount": 10,
-        "candidateIds": [
-          "cinemateket_oslo_filmkultur_i_oslo",
-          "colosseum_kino_hovedartikkel",
-          "frognerstranda_hovedartikkel",
-          "gronlandsleiret_hovedartikkel",
-          "house_of_nerds_hovedartikkel",
-          "kampen_film_tv_lag",
-          "latter_hovedartikkel",
-          "sagene_film_tv_lag",
-          "vaterland_populaerkultur_hovedartikkel",
-          "folketeateret_hovedartikkel"
-        ],
-        "reason": "Mange gjenværende artikler handler eksplisitt om film, TV, scene, standup, kjendissone eller nerdkultur; dette er et reelt hull i artikkelkatalogen.",
-        "shouldAddNow": true,
-        "priority": 5,
-        "candidates": [
-          {
-            "id": "cinemateket_oslo_filmkultur_i_oslo",
-            "title": "Filmkultur i Oslo",
-            "place_id": "cinemateket_oslo",
-            "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "film"
-              ],
-              "fieldsUsed": [
-                "id",
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "colosseum_kino_hovedartikkel",
-            "title": "Colosseum kino som norsk storfilmkino",
-            "place_id": "colosseum_kino",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "film",
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "frognerstranda_hovedartikkel",
-            "title": "Frognerstranda som sesongbasert kjendissone",
-            "place_id": "frognerstranda",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "kjendis",
-                "sladder",
-                "livsstilsmedier",
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "gronlandsleiret_hovedartikkel",
-            "title": "Grønlandsleiret som sosialrealistisk filmbakteppe",
-            "place_id": "gronlandsleiret",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "film",
-                "serie",
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "house_of_nerds_hovedartikkel",
-            "title": "House of Nerds som møteplass for nerdkultur",
-            "place_id": "house_of_nerds",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "nerdkultur",
-                "sjangerfellesskap",
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "kampen_film_tv_lag",
-            "title": "Kampen som film- og TV-miljø",
-            "place_id": "kampen_kirke",
-            "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "film",
-                "film- og tv"
-              ],
-              "fieldsUsed": [
-                "id",
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "latter_hovedartikkel",
-            "title": "Latter som profesjonell standup-scene",
-            "place_id": "latter",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "standup",
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "sagene_film_tv_lag",
-            "title": "Sagene som film- og TV-miljø",
-            "place_id": "sagene",
-            "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "film",
-                "film- og tv",
-                "filmsted"
-              ],
-              "fieldsUsed": [
-                "id",
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "vaterland_populaerkultur_hovedartikkel",
-            "title": "Vaterland som filmkulisse for krim og TV-drama",
-            "place_id": "vaterland_historisk_elvelop",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "populaerkultur",
-                "filmkulisse",
-                "krim",
-                "tv-drama",
-                "serie",
-                "film",
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "id",
-                "title",
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          },
-          {
-            "id": "folketeateret_hovedartikkel",
-            "title": "Folketeateret som storskalateater for musikaler",
-            "place_id": "folketeateret",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_popular_culture_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "medium",
-            "evidence": {
-              "matchedWords": [
-                "populærkultur"
-              ],
-              "fieldsUsed": [
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags",
-                "popupDesc"
-              ]
-            },
-            "suggestedDesignCode": "article_popular_culture_miniature"
-          }
-        ]
-      },
-      {
-        "suggestedDesignCode": "article_everyday_life_miniature",
-        "candidateCount": 6,
-        "candidateIds": [
-          "birkelunden",
-          "kampen_park_hovedartikkel",
-          "tigeren",
-          "oslo_s_sentrum_mobilitet",
-          "slottsparken",
-          "stensparken"
-        ],
-        "reason": "Flere park-, møtepunkt- og mobilitetsartikler beskriver hverdagsbruk heller enn natur, institusjon eller stedsessay.",
-        "shouldAddNow": true,
-        "priority": 4,
-        "candidates": [
-          {
-            "id": "birkelunden",
-            "title": "Birkelunden er et grønt samlingspunkt på Grünerløkka med høy hverdagsbruk i tett byvev.",
-            "place_id": "birkelunden",
-            "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "hverdagsbruk",
-                "hverdag"
-              ],
-              "fieldsUsed": [
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags",
-                "popupDesc"
-              ]
-            },
-            "suggestedDesignCode": "article_everyday_life_miniature"
-          },
-          {
-            "id": "kampen_park_hovedartikkel",
-            "title": "Kampen park",
-            "place_id": "lekeplass_kampen_park",
-            "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "hverdag"
-              ],
-              "fieldsUsed": [
-                "popupDesc",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_everyday_life_miniature"
-          },
-          {
-            "id": "tigeren",
-            "title": "Bysymbol ved Oslo S med høy synlighet i hverdagsmobiliteten.",
-            "place_id": "tigeren",
-            "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "møtepunkt",
-                "hverdag"
-              ],
-              "fieldsUsed": [
-                "popupDesc",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_everyday_life_miniature"
-          },
-          {
-            "id": "oslo_s_sentrum_mobilitet",
-            "title": "Porten til sentrum",
-            "place_id": "oslo_s",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "medium",
-            "evidence": {
-              "matchedWords": [
-                "møtepunkt"
-              ],
-              "fieldsUsed": [
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags",
-                "popupDesc"
-              ]
-            },
-            "suggestedDesignCode": "article_everyday_life_miniature"
-          },
-          {
-            "id": "slottsparken",
-            "title": "Slottsparken kombinerer kongelig representasjonslandskap med åpen hverdagsbruk midt i byen.",
-            "place_id": "slottsparken",
-            "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "medium",
-            "evidence": {
-              "matchedWords": [
-                "hverdagsbruk"
-              ],
-              "fieldsUsed": [
-                "summary.one_liner"
-              ],
-              "missingFields": [
-                "summary.themes",
-                "classification.tags",
-                "popupDesc"
-              ]
-            },
-            "suggestedDesignCode": "article_everyday_life_miniature"
-          },
-          {
-            "id": "stensparken",
-            "title": "Stensparken er en høydepark som kombinerer utsikt, gjennomgang og nabolagsopphold mellom Bislett og St. Hanshaugen.",
-            "place_id": "stensparken",
-            "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_everyday_life_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "medium",
-            "evidence": {
-              "matchedWords": [
-                "hverdag"
-              ],
-              "fieldsUsed": [
-                "popupDesc"
-              ],
-              "missingFields": [
-                "summary.themes",
-                "classification.tags"
-              ]
-            },
-            "suggestedDesignCode": "article_everyday_life_miniature"
-          }
-        ]
-      },
-      {
         "suggestedDesignCode": "article_civic_space_miniature",
-        "candidateCount": 3,
+        "candidateCount": 2,
         "candidateIds": [
           "lesespor_gronland_001",
-          "lesespor_gronland_003",
-          "toyen_torg_torgscene"
+          "lesespor_gronland_003"
         ],
         "reason": "Tydelig systemverdi for torg og offentlig scene, men bare få sikre kandidater i restgruppen; bør vurderes sammen med manuell byromsgjennomgang.",
         "shouldAddNow": false,
@@ -11221,33 +11008,6 @@
                 "classification.tags"
               ],
               "missingFields": []
-            },
-            "suggestedDesignCode": "article_civic_space_miniature"
-          },
-          {
-            "id": "toyen_torg_torgscene",
-            "title": "Torgflaten som offentlig scene",
-            "place_id": "toyen_torg",
-            "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
-            "currentDesignCode": "article_default_miniature",
-            "group": "registerExpansionCandidates",
-            "reason": "temaet dekkes ikke av dagens artikkelkoder; foreslår ny kode `article_civic_space_miniature`",
-            "recommendedAction": "consider register expansion before any data batch",
-            "confidence": "high",
-            "evidence": {
-              "matchedWords": [
-                "torgflate",
-                "offentlig scene"
-              ],
-              "fieldsUsed": [
-                "title",
-                "summary.one_liner",
-                "summary.themes"
-              ],
-              "missingFields": [
-                "classification.tags",
-                "popupDesc"
-              ]
             },
             "suggestedDesignCode": "article_civic_space_miniature"
           }
@@ -11483,70 +11243,6 @@
         "recommendedHumanDecision": "Velg én hovedlesning for artikkelen (stedstype, bruk, sosialhistorie eller infrastruktur), eller behold default hvis artikkelen er bevisst blandet."
       },
       {
-        "id": "olaf_ryes_plass",
-        "title": "Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk.",
-        "place_id": "olaf_ryes_plass",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "manualReviewBeforeAction",
-        "reason": "flere plausible koder med lik styrke: `article_childhood_play_miniature` vs `article_everyday_life_miniature`",
-        "recommendedAction": "human review required before choosing a designCode or keeping default",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [
-            "lek",
-            "hverdagsbruk"
-          ],
-          "fieldsUsed": [
-            "popupDesc",
-            "summary.one_liner"
-          ],
-          "missingFields": [
-            "summary.themes",
-            "classification.tags"
-          ]
-        },
-        "possibleDesignCodes": [
-          "article_childhood_play_miniature",
-          "article_everyday_life_miniature"
-        ],
-        "whyAuditShouldNotDecide": "To eller flere koder har omtrent lik evidens i eksisterende metadata, og automatisk valg vil låse en faglig tolkning.",
-        "recommendedHumanDecision": "Velg én hovedlesning for artikkelen (stedstype, bruk, sosialhistorie eller infrastruktur), eller behold default hvis artikkelen er bevisst blandet."
-      },
-      {
-        "id": "spikersuppa",
-        "title": "Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane.",
-        "place_id": "spikersuppa",
-        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "manualReviewBeforeAction",
-        "reason": "flere plausible koder med lik styrke: `article_everyday_life_miniature` vs `article_event_place_miniature`",
-        "recommendedAction": "human review required before choosing a designCode or keeping default",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [
-            "møtepunkt",
-            "oppholdsplass",
-            "skøytebane",
-            "sesongskifte"
-          ],
-          "fieldsUsed": [
-            "popupDesc",
-            "summary.one_liner"
-          ],
-          "missingFields": [
-            "summary.themes",
-            "classification.tags"
-          ]
-        },
-        "possibleDesignCodes": [
-          "article_everyday_life_miniature",
-          "article_event_place_miniature"
-        ],
-        "whyAuditShouldNotDecide": "To eller flere koder har omtrent lik evidens i eksisterende metadata, og automatisk valg vil låse en faglig tolkning.",
-        "recommendedHumanDecision": "Velg én hovedlesning for artikkelen (stedstype, bruk, sosialhistorie eller infrastruktur), eller behold default hvis artikkelen er bevisst blandet."
-      },
-      {
         "id": "schous_plass_hovedartikkel",
         "title": "Schous plass",
         "place_id": "schous_bryggeri",
@@ -11722,7 +11418,7 @@
         "evidence": {
           "matchedWords": [
             "friområde",
-            "hverdag",
+            "hverdagsbevegelse",
             "daglig bruk"
           ],
           "fieldsUsed": [
@@ -11900,30 +11596,6 @@
         }
       },
       {
-        "id": "chateau_neuf_revy_og_studentkultur",
-        "title": "Revy og studentkultur",
-        "place_id": "chateau_neuf",
-        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
-        "currentDesignCode": "article_default_miniature",
-        "group": "keepDefaultIntentionally",
-        "reason": "generell artikkel uten tydelig fagområde; default beholdes",
-        "recommendedAction": "keep article_default_miniature for now",
-        "confidence": "low",
-        "evidence": {
-          "matchedWords": [],
-          "fieldsUsed": [
-            "id",
-            "title",
-            "popupDesc",
-            "summary.one_liner",
-            "summary.themes"
-          ],
-          "missingFields": [
-            "classification.tags"
-          ]
-        }
-      },
-      {
         "id": "hellerud_gard_jordbruk_byutvikling",
         "title": "Fra jordbruk til byutvikling",
         "place_id": "hellerud_gard",
@@ -12045,6 +11717,188 @@
     ],
     "deferSafeButLowValue": [
       {
+        "id": "birkelunden",
+        "title": "Birkelunden er et grønt samlingspunkt på Grünerløkka med høy hverdagsbruk i tett byvev.",
+        "place_id": "birkelunden",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (rekreasjon, hverdagsbruk, hverdag) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "rekreasjon",
+            "hverdagsbruk",
+            "hverdag"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
+        "id": "kampen_park_hovedartikkel",
+        "title": "Kampen park",
+        "place_id": "lekeplass_kampen_park",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_kampen_park_good_game.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (hverdag) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "hverdag"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
+        "id": "olaf_ryes_plass",
+        "title": "Olaf Ryes plass er Grünerløkkas nabolagstorg med sterk sosial hverdagsbruk.",
+        "place_id": "olaf_ryes_plass",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (hverdagsbruk, møteplass) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "hverdagsbruk",
+            "møteplass"
+          ],
+          "fieldsUsed": [
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags",
+            "popupDesc"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
+        "id": "slottsparken",
+        "title": "Slottsparken kombinerer kongelig representasjonslandskap med åpen hverdagsbruk midt i byen.",
+        "place_id": "slottsparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (hverdagsbruk, parkbruk) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "hverdagsbruk",
+            "parkbruk"
+          ],
+          "fieldsUsed": [
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags",
+            "popupDesc"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
+        "id": "spikersuppa",
+        "title": "Spikersuppa er et sentralt møtepunkt på Karl Johan med tydelig sesongskifte fra oppholdsplass til skøytebane.",
+        "place_id": "spikersuppa",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (møtepunkt, oppholdsplass, sesongbruk, møteplass) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "møtepunkt",
+            "oppholdsplass",
+            "sesongbruk",
+            "møteplass"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
+        "id": "stensparken",
+        "title": "Stensparken er en høydepark som kombinerer utsikt, gjennomgang og nabolagsopphold mellom Bislett og St. Hanshaugen.",
+        "place_id": "stensparken",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (hverdagsbevegelse, parkbruk) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "hverdagsbevegelse",
+            "parkbruk"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
+        "id": "tigeren",
+        "title": "Bysymbol ved Oslo S med høy synlighet i hverdagsmobiliteten.",
+        "place_id": "tigeren",
+        "file": "data/leksikon/places/oslo/by/leksikon_oslo_by_batch2.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (møtepunkt, hverdag) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "møtepunkt",
+            "hverdag"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
+      },
+      {
         "id": "bygdoy_natur",
         "title": "Bygdøy naturmiljø",
         "place_id": "bygdoy_natur",
@@ -12094,35 +11948,401 @@
           "missingFields": []
         },
         "possibleDesignCode": "article_nature_route_miniature"
+      },
+      {
+        "id": "chateau_neuf_revy_og_studentkultur",
+        "title": "Revy og studentkultur",
+        "place_id": "chateau_neuf",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (revy, scene) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "revy",
+            "scene"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "cinemateket_oslo_filmkultur_i_oslo",
+        "title": "Filmkultur i Oslo",
+        "place_id": "cinemateket_oslo",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_stedspakke_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (cinemateket, filmkultur, kino, film) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "cinemateket",
+            "filmkultur",
+            "kino",
+            "film"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "colosseum_kino_hovedartikkel",
+        "title": "Colosseum kino som norsk storfilmkino",
+        "place_id": "colosseum_kino",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (kino, colosseum kino, film, scene, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "kino",
+            "colosseum kino",
+            "film",
+            "scene",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "folketeateret_hovedartikkel",
+        "title": "Folketeateret som storskalateater for musikaler",
+        "place_id": "folketeateret",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (scene, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "scene",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "frognerstranda_hovedartikkel",
+        "title": "Frognerstranda som sesongbasert kjendissone",
+        "place_id": "frognerstranda",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (kjendis, sladder, livsstilsmedier, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "kjendis",
+            "sladder",
+            "livsstilsmedier",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "gronlandsleiret_hovedartikkel",
+        "title": "Grønlandsleiret som sosialrealistisk filmbakteppe",
+        "place_id": "gronlandsleiret",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (film, serie, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "film",
+            "serie",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "house_of_nerds_hovedartikkel",
+        "title": "House of Nerds som møteplass for nerdkultur",
+        "place_id": "house_of_nerds",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (house of nerds, nerdkultur, spillkultur, sjangerfellesskap, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "house of nerds",
+            "nerdkultur",
+            "spillkultur",
+            "sjangerfellesskap",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "kampen_film_tv_lag",
+        "title": "Kampen som film- og TV-miljø",
+        "place_id": "kampen_kirke",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (film, film- og tv) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "film",
+            "film- og tv"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "latter_hovedartikkel",
+        "title": "Latter som profesjonell standup-scene",
+        "place_id": "latter",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (latter, standup, scene, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "latter",
+            "standup",
+            "scene",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "sagene_film_tv_lag",
+        "title": "Sagene som film- og TV-miljø",
+        "place_id": "sagene",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_sagene_kampen.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (film, film- og tv, filmsted) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "film",
+            "film- og tv",
+            "filmsted"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "toyen_torg_torgscene",
+        "title": "Torgflaten som offentlig scene",
+        "place_id": "toyen_torg",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (scene) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "scene"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner"
+          ],
+          "missingFields": [
+            "summary.themes",
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "vaterland_populaerkultur_hovedartikkel",
+        "title": "Vaterland som filmkulisse for krim og TV-drama",
+        "place_id": "vaterland_historisk_elvelop",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_populaerkultur_sentrum.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (populaerkultur, filmkulisse, krim, tv-drama, serie, film, populærkultur) → `article_popular_culture_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "populaerkultur",
+            "filmkulisse",
+            "krim",
+            "tv-drama",
+            "serie",
+            "film",
+            "populærkultur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "title",
+            "popupDesc",
+            "summary.one_liner",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags"
+          ]
+        },
+        "possibleDesignCode": "article_popular_culture_miniature"
+      },
+      {
+        "id": "oslo_s_sentrum_mobilitet",
+        "title": "Porten til sentrum",
+        "place_id": "oslo_s",
+        "file": "data/leksikon/places/oslo/populaerkultur/leksikon_oslo_popkultur_sentrum_batch1.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (møtepunkt) → `article_everyday_life_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "medium",
+        "evidence": {
+          "matchedWords": [
+            "møtepunkt"
+          ],
+          "fieldsUsed": [
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags",
+            "popupDesc"
+          ]
+        },
+        "possibleDesignCode": "article_everyday_life_miniature"
       }
     ],
     "recommendedRoadmap": [
       {
         "step": 1,
-        "title": "Register proposal for consolidated article-code gaps",
-        "type": "register",
-        "reason": "23 artikler peker mot manglende artikkelkoder; prioriter article_popular_culture_miniature og article_everyday_life_miniature fordi de har flere reelle kandidater og tydelig systemverdi.",
-        "scope": "Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes."
-      },
-      {
-        "step": 2,
         "title": "Manual review of ambiguous remainder",
         "type": "manual-review",
-        "reason": "14 artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie, infrastruktur og mulig ny kode.",
+        "reason": "12 artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie, infrastruktur og mulig ny kode.",
         "scope": "Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default."
       },
       {
-        "step": 3,
-        "title": "Defer safe existing-code candidates",
+        "step": 2,
+        "title": "Audit-only review or small safe-candidate data batch",
         "type": "data-batch",
-        "reason": "2 artikler kan trolig merkes med eksisterende kode, men verdien er lavere enn å avklare register- og manuelle beslutninger først.",
-        "scope": "Ingen Article batch 8 nå; vurder disse bare i en senere, liten data-batch etter beslutningsarbeidet."
+        "reason": "22 artikler kan trolig merkes med eksisterende kode etter registerutvidelsen; bruk audit som arbeidsliste og hold batchen liten.",
+        "scope": "Ingen automatisk Article batch 8 i denne PR-en; vurder bare en senere, liten data-batch basert på safe candidates og manuell kontroll."
       },
       {
-        "step": 4,
+        "step": 3,
         "title": "Accept intentional article defaults",
         "type": "none",
-        "reason": "7 brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.",
+        "reason": "6 brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.",
         "scope": "Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes."
       }
     ]

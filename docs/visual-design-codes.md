@@ -608,6 +608,25 @@ Ingen nye `visual.designCode` ble satt i cleanupen. Registeret og resolveren ble
 heller ikke endret. Formålet er å gi audit et bedre faglig grunnlag før en
 eventuell senere data-batch eller register-PR, ikke å starte Article batch 8.
 
+## Popular culture and everyday life article codes
+
+Auditene etter #1273 og #1282 viste at de største gjenværende hullene i
+`article_default_miniature`-gruppen var populærkultur og hverdagsliv. Denne
+registerutvidelsen legger derfor til `article_popular_culture_miniature` og
+`article_everyday_life_miniature` med egne `renderHints`, resolver-regler og
+audit-regler.
+
+Dette er ikke Article batch 8. Ingen dataartikler merkes i denne PR-en, og
+`data/leksikon`, `data/lesespor` og `data/stories` skal fortsatt være urørt.
+Kodene gjør neste eventuelle batch tryggere og mer presis fordi audit kan skille
+film/TV/standup/gaming/kjendiskultur og hverdagsbruk/møteplasser/parkbruk fra
+bredere stedsessay eller generisk default.
+
+`article_default_miniature` er fortsatt en lovlig og ønsket fallback for brede,
+blandede eller svakt visuelle artikler. Registerutvidelsen betyr bare at tydelige
+populærkultur- og hverdagslivskandidater kan vurderes mer presist i en senere,
+liten data-batch eller audit-only gjennomgang.
+
 ## Audit
 
 `npm run test:visual-design-codes` kjører resolveren (uten DOM) mot place-,
