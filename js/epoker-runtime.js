@@ -131,6 +131,7 @@ const EPOKER_FILES = [
   { domain: "subkultur", path: "data/epoker/epoker_subkultur.json" },
   { domain: "psykologi", path: "data/epoker/epoker_psykologi.json" },
   { domain: "populaerkultur", path: "data/epoker/epoker_populaerkultur.json" },
+  { domain: "media", path: "data/epoker/epoker_media.json" },
 ];
 
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
