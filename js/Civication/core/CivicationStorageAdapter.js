@@ -10,6 +10,7 @@
 (function () {
   "use strict";
 
+  const root = typeof window !== "undefined" ? window : globalThis;
   const PREFIX = "[CivicationStorageAdapter]";
 
   const KEYS = Object.freeze({
@@ -30,6 +31,7 @@
 
   function getStorage() {
     try {
+      if (root && root.localStorage) return root.localStorage;
       if (typeof localStorage !== "undefined" && localStorage) return localStorage;
     } catch (error) {
       warn("localStorage unavailable", error);
@@ -145,5 +147,5 @@
     writeCivicationAccess: (value) => writeJson(KEYS.CIVICATION_ACCESS, value)
   };
 
-  window.CivicationStorageAdapter = adapter;
+  root.CivicationStorageAdapter = adapter;
 })();
