@@ -20,6 +20,10 @@
   let _renderQueued = false;
   let _zoomRenderTimer = null;
   let _lastRenderedBucket = null;
+  let _placeMenu = null;
+  let _activeMenuPlace = null;
+  let _menuReturnFocus = null;
+  let _peopleRequestToken = 0;
 
   const node = (tag) => document.createElementNS(SVG_NS, tag);
   const num = (v) => {
@@ -279,8 +283,218 @@
     return colors[category] || "#cfcfcf";
   }
 
-  function navigate(placeId) {
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function visitHistoryGoPlace(placeId) {
+    if (placeId == null) return;
     window.location.href = `index.html#/place/${encodeURIComponent(placeId)}`;
+  }
+
+  function placeFromInput(placeOrId) {
+    if (placeOrId == null) return null;
+    if (typeof placeOrId === "string" || typeof placeOrId === "number") {
+      const id = String(placeOrId);
+      return (_places || []).find((place) => String(place.id) === id) || { id, name: id, category: "Sted", raw: {} };
+    }
+
+    const raw = placeOrId.raw && typeof placeOrId.raw === "object" ? placeOrId.raw : placeOrId;
+    const normalized = normalize(raw);
+    normalized.id = placeOrId.id || normalized.id;
+    normalized.name = placeOrId.name || placeOrId.title || normalized.name;
+    normalized.category = placeOrId.category || normalized.category;
+    normalized.civiMap = placeOrId.civiMap || normalized.civiMap;
+    ["availableActivities", "activities", "tasks", "actions"].forEach((key) => {
+      if (placeOrId[key] != null) normalized[key] = placeOrId[key];
+    });
+    normalized.raw = raw;
+    return normalized.id ? normalized : null;
+  }
+
+  function placeTypeLabel(place) {
+    const candidates = [
+      place && place.category,
+      place && place.raw && place.raw.category,
+      place && place.civiMap && place.civiMap.assetType
+    ];
+    const value = candidates.find((candidate) => candidate && String(candidate).toLowerCase() !== "unknown");
+    return value ? String(value).replace(/_/g, " ") : "Sted";
+  }
+
+  function itemLabel(item) {
+    if (item == null) return "";
+    if (typeof item === "string" || typeof item === "number") return String(item);
+    return item.label || item.name || item.title || item.description || item.id || "Aktivitet";
+  }
+
+  function activityItems(place) {
+    const raw = (place && place.raw) || {};
+    const candidates = [
+      place && place.availableActivities, raw.availableActivities,
+      place && place.activities, raw.activities,
+      place && place.tasks, raw.tasks,
+      place && place.actions, raw.actions
+    ];
+    const value = candidates.find((candidate) => Array.isArray(candidate) && candidate.length);
+    if (value) return value;
+    const objectValue = candidates.find((candidate) => candidate && typeof candidate === "object" && !Array.isArray(candidate));
+    return objectValue ? Object.values(objectValue) : [];
+  }
+
+  function buildActivitiesForPlaceHtml(place) {
+    const items = activityItems(place);
+    if (!items.length) return '<p class="civi-hg-place-menu-empty">Ingen aktiviteter registrert her ennå.</p>';
+    return "<ul>" + items.map((item) => "<li>" + escapeHtml(itemLabel(item)) + "</li>").join("") + "</ul>";
+  }
+
+  async function buildPeopleForPlaceHtml(place) {
+    const engine = window.CivicationFriendsEngine;
+    if (!engine || typeof engine.getCityModel !== "function") {
+      return '<p class="civi-hg-place-menu-empty">Ingen personer registrert her ennå.</p>';
+    }
+
+    try {
+      const model = await engine.getCityModel();
+      const placeId = String(place.id || "");
+      const matchingLocations = (model && model.locations || []).filter((location) =>
+        String(location && location.sourcePlaceId || "") === placeId ||
+        String(location && location.id || "") === placeId ||
+        String(location && location.locationId || "") === placeId);
+      const locationIds = new Set();
+      matchingLocations.forEach((location) => {
+        if (location.id != null) locationIds.add(String(location.id));
+        if (location.locationId != null) locationIds.add(String(location.locationId));
+      });
+      if ((model && model.locations || []).some((location) => String(location && location.id || "") === placeId)) {
+        locationIds.add(placeId);
+      }
+
+      const people = (model && model.friends || []).filter((row) => {
+        const presence = row && row.presence;
+        return presence && locationIds.has(String(presence.locationId || ""));
+      });
+      if (!people.length) return '<p class="civi-hg-place-menu-empty">Ingen personer registrert her ennå.</p>';
+      return "<ul>" + people.map((row) => {
+        const friend = row.friend || {};
+        const presence = row.presence || {};
+        const detail = presence.statusText || presence.activity || "Registrert her";
+        return "<li><strong>" + escapeHtml(friend.name || friend.id || "Person") + "</strong> – " + escapeHtml(detail) + "</li>";
+      }).join("") + "</ul>";
+    } catch (error) {
+      console.warn("[CivicationHistoryGoPlaceLayer] kunne ikke hente personer for stedet:", error && error.message || error);
+      return '<p class="civi-hg-place-menu-empty">Ingen personer registrert her ennå.</p>';
+    }
+  }
+
+  function handleTravelToPlace(place) {
+    window.dispatchEvent(new CustomEvent("civi:historyGoPlaceTravelRequested", {
+      detail: { placeId: place.id, place, source: "CivicationHistoryGoPlaceLayer" }
+    }));
+    if (_placeMenu) {
+      _placeMenu.feedback.textContent = "Reisehandling er registrert lokalt. Progresjon kobles når travel-motoren finnes.";
+      _placeMenu.feedback.hidden = false;
+    }
+  }
+
+  function closePlaceMenu() {
+    if (!_placeMenu || _placeMenu.root.hidden) return;
+    _peopleRequestToken += 1;
+    _placeMenu.root.hidden = true;
+    _activeMenuPlace = null;
+    if (_menuReturnFocus && typeof _menuReturnFocus.focus === "function") _menuReturnFocus.focus();
+    _menuReturnFocus = null;
+  }
+
+  function ensurePlaceMenu() {
+    if (_placeMenu) return _placeMenu;
+
+    const root = document.createElement("div");
+    root.className = "civi-hg-place-menu";
+    root.hidden = true;
+    root.innerHTML =
+      '<div class="civi-hg-place-menu-backdrop" data-place-menu-close></div>' +
+      '<section class="civi-hg-place-menu-card" role="dialog" aria-modal="true" aria-labelledby="civiHgPlaceMenuTitle">' +
+        '<p class="civi-hg-place-menu-kicker"></p>' +
+        '<h2 class="civi-hg-place-menu-title" id="civiHgPlaceMenuTitle"></h2>' +
+        '<div class="civi-hg-place-menu-actions">' +
+          '<button type="button" data-place-action="visit">Besøk i History Go</button>' +
+          '<button type="button" data-place-action="travel">Dra dit</button>' +
+          '<button type="button" data-place-action="people">Se hvem som er der</button>' +
+          '<button type="button" data-place-action="activities">Se aktiviteter</button>' +
+          '<button type="button" data-place-menu-close>Lukk</button>' +
+        '</div>' +
+        '<div class="civi-hg-place-menu-feedback" role="status" hidden></div>' +
+        '<div class="civi-hg-place-menu-section" data-place-section="people" hidden></div>' +
+        '<div class="civi-hg-place-menu-section" data-place-section="activities" hidden></div>' +
+      '</section>';
+    document.body.appendChild(root);
+
+    _placeMenu = {
+      root,
+      title: root.querySelector(".civi-hg-place-menu-title"),
+      kicker: root.querySelector(".civi-hg-place-menu-kicker"),
+      feedback: root.querySelector(".civi-hg-place-menu-feedback"),
+      people: root.querySelector('[data-place-section="people"]'),
+      activities: root.querySelector('[data-place-section="activities"]'),
+      firstAction: root.querySelector('[data-place-action="visit"]')
+    };
+
+    root.querySelectorAll("[data-place-menu-close]").forEach((button) => button.addEventListener("click", closePlaceMenu));
+    root.querySelector('[data-place-action="visit"]').addEventListener("click", () => {
+      if (_activeMenuPlace) visitHistoryGoPlace(_activeMenuPlace.id);
+    });
+    root.querySelector('[data-place-action="travel"]').addEventListener("click", () => {
+      if (_activeMenuPlace) handleTravelToPlace(_activeMenuPlace);
+    });
+    root.querySelector('[data-place-action="activities"]').addEventListener("click", () => {
+      if (!_activeMenuPlace) return;
+      _placeMenu.activities.innerHTML = "<h3>Aktiviteter</h3>" + buildActivitiesForPlaceHtml(_activeMenuPlace);
+      _placeMenu.activities.hidden = false;
+    });
+    root.querySelector('[data-place-action="people"]').addEventListener("click", async () => {
+      if (!_activeMenuPlace) return;
+      const place = _activeMenuPlace;
+      const token = ++_peopleRequestToken;
+      _placeMenu.people.innerHTML = '<h3>Hvem er her?</h3><p class="civi-hg-place-menu-empty">Henter personer …</p>';
+      _placeMenu.people.hidden = false;
+      const html = await buildPeopleForPlaceHtml(place);
+      if (token === _peopleRequestToken && _activeMenuPlace && _activeMenuPlace.id === place.id) {
+        _placeMenu.people.innerHTML = "<h3>Hvem er her?</h3>" + html;
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && _placeMenu && !_placeMenu.root.hidden) closePlaceMenu();
+    });
+    return _placeMenu;
+  }
+
+  function renderPlaceMenu(place) {
+    const menu = ensurePlaceMenu();
+    menu.title.textContent = place.name || place.id;
+    menu.kicker.textContent = placeTypeLabel(place);
+    menu.feedback.hidden = true;
+    menu.feedback.textContent = "";
+    menu.people.hidden = true;
+    menu.people.innerHTML = "";
+    menu.activities.hidden = true;
+    menu.activities.innerHTML = "";
+    menu.root.hidden = false;
+    menu.firstAction.focus();
+  }
+
+  function openPlaceMenu(placeOrId) {
+    const place = placeFromInput(placeOrId);
+    if (!place) return;
+    _menuReturnFocus = document.activeElement;
+    _activeMenuPlace = place;
+    _peopleRequestToken += 1;
+    renderPlaceMenu(place);
   }
 
   function buildMiniature(place, cx, cy, scale) {
@@ -303,13 +517,13 @@
 
     g.addEventListener("click", (event) => {
       event.stopPropagation();
-      navigate(place.id);
+      openPlaceMenu(place);
     });
     g.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         event.stopPropagation();
-        navigate(place.id);
+        openPlaceMenu(place);
       }
     });
     return g;
@@ -411,6 +625,9 @@
   window.CivicationHistoryGoPlaceLayer = {
     render: scheduleRender,
     getPlaces: () => _places,
+    openPlaceMenu,
+    closePlaceMenu,
+    visitHistoryGoPlace,
     projectOsloLatLonToCiviXY,
     resolveAssetType
   };
