@@ -589,9 +589,9 @@ plausible, eller en bevisst beslutning om å beholde default. Beslutningen er
 lagret i `remainingArticleDefaultDecision` i auditrapporten og oppsummert i
 Markdown-rapportens seksjon «Remaining article-default decision».
 
-Videre arbeid skal følge anbefalt roadmap i rapporten: metadata først der audit
-mangler nok faglig signal, deretter eventuell smal register-PR for koder som har
-flere reelle kandidater, så manuell vurdering av tvilstilfeller før en eventuell
+Videre arbeid skal følge anbefalt roadmap i rapporten: etter metadata-first
+cleanup og den smale registerutvidelsen for populærkultur/hverdagsliv bør neste
+steg være audit-only gjennomgang av safe/deferred kandidater, deretter eventuell
 senere og liten data-batch. Det er akseptabelt at enkelte brede, blandede eller
 svakt visuelle artikler forblir `article_default_miniature` i stedet for å
 presses inn i en smal designCode.
@@ -607,6 +607,14 @@ pekte på det.
 Ingen nye `visual.designCode` ble satt i cleanupen. Registeret og resolveren ble
 heller ikke endret. Formålet er å gi audit et bedre faglig grunnlag før en
 eventuell senere data-batch eller register-PR, ikke å starte Article batch 8.
+
+## Popular culture and everyday life article codes
+
+#1273 og #1282 viste at de største gjenværende hullene blant artikler som fortsatt bruker `article_default_miniature`, var populærkultur og hverdagsliv. Denne registerutvidelsen legger derfor til to smale artikkelkoder: `article_popular_culture_miniature` for film, TV, scene/standup, spillkultur, kjendiskultur og populærkulturell bruk av steder, og `article_everyday_life_miniature` for hverdagsbruk, møteplasser, parkbruk, sosial bruk og vanlig byliv.
+
+Dette er **ikke Article batch 8**. Ingen dataartikler merkes i denne PR-en, og `data/leksikon/**`, `data/lesespor/**` og `data/stories/**` skal ikke få nye `visual.designCode`-felt som del av registerutvidelsen. Kodene legges først inn i registeret, resolveren og audit slik at neste eventuelle batch kan bli tryggere, mindre og mer presis.
+
+`article_default_miniature` er fortsatt en lovlig og ønsket fallback for brede, blandede eller svakt visuelle artikler. De nye kodene skal brukes når audit og metadata peker tydelig på populærkultur eller hverdagsliv som hovedlesning, ikke for å tvinge alle gjenværende defaults inn i smale kategorier.
 
 ## Audit
 

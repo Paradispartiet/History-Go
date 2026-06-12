@@ -233,7 +233,7 @@ const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
   [/gravlund|kirkegård|memorial|minne|minnesmerke|okkupasjon|fangeleir/, "article_memory_place_miniature"],
   [/menighet|trosliv|religion|kloster|moske|synagoge|tempel|kirkehistorie|gudstjeneste/, "article_religion_miniature", true],
   [/forskning|vitenskap|laboratorium|forskningsmiljø|fagfelt|fagutvikling|vitenskapshistorie/, "article_science_history_miniature", true],
-  [/redaksjon|avishus|\bavis\b|journalistikk|kringkasting|allmennkringkasting|\bnrk\b|mediehus|presse|programkino|medieoffentlighet|mediefelt/, "article_media_history_miniature", true],
+  [/redaksjon|avishus|\bavis\b|journalistikk|kringkasting|allmennkringkasting|\bnrk\b|mediehus|presse|medieoffentlighet|mediefelt/, "article_media_history_miniature", true],
   [/natursti|elvesti|turvei|grøntdrag|naturkorridor|parkdrag|elveløp|\belv\b|elva|elve|bekk|vassdrag|naturreservat|bynatur/, "article_nature_route_miniature", true],
   [/trikk|t-?bane|jernbane|\btog\b|bussterminal|\bbuss\b|kollektivtransport|kollektivsystem|knutepunkt|transportåre|mobilitet|samferdsel/, "article_transport_miniature", true],
   [/\bbro\b|\bbru\b|brua|tunnel|akvedukt|vannforsyning|kraftforsyning|teknisk infrastruktur|teknisk anlegg|ledningsnett|kloakk/, "article_urban_infrastructure_miniature", true],
@@ -242,10 +242,13 @@ const ARTICLE_KEYWORD_RULES: KeywordRule[] = [
   [/lekeplass|barndom|barnelek|skolegård/, "article_childhood_play_miniature", true],
   [/arkitektur|architecture|bygning|byggekunst/, "article_architecture_miniature"],
   [/institusjon|institution|skole|hospital|fengsel|prison|kontor|forvaltning/, "article_institution_miniature"],
-  [/kunst|art\b|maleri|galleri|skulptur/, "article_art_miniature"],
+  [/musikkhistorie|music history|konserthistorie|bandhistorie|platehistorie/, "article_music_history_miniature", true],
+  [/populærkultur|populaerkultur|popkultur|filmkultur|\bfilm\b|\bkino\b|\btv\b|fjernsyn|scene|standup|komedie|revy|kjendiskultur|kjendis|nerdkultur|gaming|spillkultur|cosplay|fandom|kultfilm|programkino|house of nerds|latter|colosseum kino|cinemateket/, "article_popular_culture_miniature", true],
+  [/kunstinstitusjon|billedkunst|kunst|art\b|maleri|galleri|skulptur/, "article_art_miniature"],
   [/musikk|music|konsert|band|plate/, "article_music_history_miniature"],
   [/groundhopper|stadion|stadium|arena|fotball|football|tribune/, "article_groundhopper_miniature"],
   [/sport|idrett|friidrett|løp|skøyte/, "article_sports_history_miniature"],
+  [/hverdagsliv|hverdagsbruk|hverdagsbevegelse|daglig bruk|møteplass|møtepunkt|oppholdssted|nabolagsrom|sosial bruk|byliv|parkbruk|lokalt liv|folks bruk|offentlig rom i bruk|hverdagsspottingsone|sesongbruk|rekreasjon|nærvær|byromsliv/, "article_everyday_life_miniature", true],
   [/litteratur|literature|essay|roman|dikt|bok\b|forfatter/, "article_literature_miniature"],
   [/politikk|politic|valg|parti|demokrati/, "article_political_history_miniature"],
   [/wonderkammer|wonder|aha|kuriosa|cabinet/, "article_wonderkammer_miniature"],
@@ -262,7 +265,11 @@ const ARTICLE_CATEGORY_TO_CODE: Record<string, string> = {
   kunst: "article_art_miniature", arkitektur: "article_architecture_miniature",
   politikk: "article_political_history_miniature", sprak: "article_language_miniature",
   "språk": "article_language_miniature", by: "article_local_story_miniature",
-  natur: "article_place_essay_miniature"
+  natur: "article_place_essay_miniature",
+  populærkultur: "article_popular_culture_miniature",
+  populaerkultur: "article_popular_culture_miniature",
+  popkultur: "article_popular_culture_miniature",
+  hverdagsliv: "article_everyday_life_miniature"
 };
 
 function explicitCode(obj: AuditEntity): string | null {
@@ -570,6 +577,14 @@ const UNUSED_CODE_HINTS = {
   article_childhood_play_miniature: {
     searchTerms: ["lekeplass", "barndom", "lek", "barn", "skolegård", "aktivitet"],
     nextAction: "Vurder lekeplasser, barndom/lek og barns bruk av sted for eksplisitt article_childhood_play_miniature (jf. articleBatch7Plan)."
+  },
+  article_popular_culture_miniature: {
+    searchTerms: ["populærkultur", "filmkultur", "kino", "TV", "standup", "gaming", "kjendis"],
+    nextAction: "Vurder film, TV, scene/standup, spillkultur, kjendiskultur og populærkulturell stedsbruk for eksplisitt article_popular_culture_miniature (jf. future small data batch)."
+  },
+  article_everyday_life_miniature: {
+    searchTerms: ["hverdagsliv", "møteplass", "daglig bruk", "parkbruk", "sosial bruk", "byliv"],
+    nextAction: "Vurder hverdagsbruk, møteplasser, parkbruk og sosialt byliv for eksplisitt article_everyday_life_miniature (jf. future small data batch)."
   }
 };
 
@@ -695,11 +710,11 @@ const ARTICLE_DEFAULT_SAFE_RULES: KeywordRule[] = [
   [/stedsessay|representasjonsrom|seremoniell byform|byakse|plassrom|\bbyrom/, "article_place_essay_miniature"]
 ];
 
-// Mulige NYE koder audit kan foreslå (men IKKE legge til i registeret i denne
-// PR-en). Disse dekker temaer dagens katalog treffer for grovt.
+// Smale restgruppe-regler. Kodene som finnes i registeret blir safe/future
+// batch-kandidater; koder som fortsatt mangler blir registerExpansionCandidates.
 const ARTICLE_DEFAULT_NEW_RULES: KeywordRule[] = [
-  [/populaerkultur|populærkultur|filmkulisse|filmsted|film[- ]? og tv|film|tv-drama|krim|serie|kjendis|sladder|livsstilsmedier|standup|nerdkultur|sjangerfellesskap/, "article_popular_culture_miniature"],
-  [/hverdagsbruk|hverdagsliv|hverdagskultur|hverdag|møtepunkt|oppholdsplass|uformell rekreasjon|daglig bruk|hverdagsspottingsone/, "article_everyday_life_miniature"],
+  [/populaerkultur|populærkultur|popkultur|filmkultur|filmkulisse|filmsted|film[- ]? og tv|\bfilm\b|\bkino\b|\btv\b|fjernsyn|tv-drama|krim|serie|scene|standup|komedie|revy|kjendiskultur|kjendis|sladder|livsstilsmedier|nerdkultur|gaming|spillkultur|cosplay|fandom|kultfilm|programkino|house of nerds|latter|colosseum kino|cinemateket|sjangerfellesskap/, "article_popular_culture_miniature"],
+  [/hverdagsbruk|hverdagsliv|hverdagskultur|hverdagsbevegelse|hverdag|daglig bruk|møteplass|møtepunkt|oppholdssted|oppholdsplass|nabolagsrom|sosial bruk|uformell rekreasjon|byliv|parkbruk|lokalt liv|folks bruk|offentlig rom i bruk|hverdagsspottingsone|sesongbruk|rekreasjon|nærvær|byromsliv/, "article_everyday_life_miniature"],
   [/sosialhistorie|arbeiderforstad|arbeidsliv|klasse|fattigdom|leiegård|sanering|byfornyelse|boligsosial|rimelige boliger/, "article_social_history_miniature"],
   [/arrangement|festival|markering|seremoni|parade|demonstrasjon|feiring|event|skøytebane|sesongskifte/, "article_event_place_miniature"],
   [/uteliv|natteliv|\bbar\b|\bpub\b|klubb|serveringsmiljø|byliv om natten/, "article_nightlife_miniature"],
@@ -717,7 +732,8 @@ const ARTICLE_VERY_UNAMBIGUOUS = new Set([
   "gravlund", "kirkegård", "fangeleir", "bibliotek", "universitet", "sykehus",
   "stiftelse", "studentersamfund", "vigelandsanlegget", "skulpturpark",
   "middelalderby", "stedsnavn", "navnespor", "akvedukt", "aqueduto",
-  "naturreservat", "jernbane", "trikkestall", "bryggeri"
+  "naturreservat", "jernbane", "trikkestall", "bryggeri", "populærkultur",
+  "populaerkultur", "filmkultur", "hverdagsliv", "hverdagsbruk", "møteplass"
 ]);
 
 type ArticleField = { field: string; text: string };
@@ -1113,31 +1129,31 @@ function buildRemainingArticleDefaultDecision(articleDefaultAnalysis: any) {
   const recommendedRoadmap = [
     {
       step: 1,
-      title: "Metadata-first cleanup for thin article defaults",
-      type: "metadata",
-      reason: "Fem resterende artikler mangler nok summary.themes, classification.tags eller presis popupDesc til at audit bør foreslå designCode uten gjetting.",
-      scope: "Kun metadatafelter i de identifiserte artiklene; ingen visual.designCode i samme PR."
+      title: "Audit-only review of new popular culture/everyday life candidates",
+      type: "audit",
+      reason: "Registeret har nå egne koder for de to største tidligere hullene; neste steg er å lese de omklassifiserte safe/deferred kandidatene uten å starte en bred artikkelbatch.",
+      scope: "Bruk remainingArticleDefaultDecision og articleBatch7Plan som beslutningsgrunnlag; ingen visual.designCode endres av audit alene."
     },
     {
       step: 2,
-      title: "Register proposal for popular culture and everyday life article codes",
-      type: "register",
-      reason: "De største konsoliderte hullene er article_popular_culture_miniature og article_everyday_life_miniature; andre foreslåtte koder bør vente eller samles med manuell vurdering.",
-      scope: "Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes."
+      title: "Small data batch only for high-confidence candidates",
+      type: "data-batch",
+      reason: "Etter audit-only gjennomgang kan en liten batch merke bare artikler med tydelig metadata og vedtatte koder, inkludert de nye kodene der evidensen er klar.",
+      scope: "Eventuell senere batch skal være smal og eksplisitt ikke en automatisk Article batch 8 over hele restgruppen."
     },
     {
       step: 3,
       title: "Manual review of ambiguous remainder",
       type: "manual-review",
-      reason: "Fjorten artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie og infrastruktur.",
+      reason: "Flere artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie, byrom og infrastruktur.",
       scope: "Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default."
     },
     {
       step: 4,
-      title: "Small data batch only after decisions are complete",
-      type: "data-batch",
-      reason: "Det finnes ingen trygge batchkandidater i restgruppen nå; Article batch 8 bør ikke opprettes før metadata, register og manuelle valg er avklart.",
-      scope: "Eventuell senere batch skal være liten og bare bruke vedtatte eksisterende eller nye koder."
+      title: "Defer further register expansion",
+      type: "register",
+      reason: "Etter popular culture/everyday life-utvidelsen bør nye registerkoder vente til audit viser et nytt, konsolidert hull med flere sikre kandidater.",
+      scope: "Ikke foreslå en ny register-PR umiddelbart; samle civic/social/event/neighborhood-spørsmål med manuell vurdering først."
     },
     {
       step: 5,
@@ -1147,10 +1163,9 @@ function buildRemainingArticleDefaultDecision(articleDefaultAnalysis: any) {
       scope: "Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes."
     }
   ];
-
   return {
     total: articleDefaultAnalysis.total,
-    recommendedNextStep: "Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.",
+    recommendedNextStep: "Do not create Article batch 8 now; run audit-only review of the new popular culture/everyday life candidates, then consider a small high-confidence data batch.",
     metadataFirst,
     registerExpansionCandidates,
     manualReviewBeforeAction,
