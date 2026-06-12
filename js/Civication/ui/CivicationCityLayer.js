@@ -388,9 +388,9 @@
       btn.className = buildPlaceClassList(loc, active, chosenLocationId).join(" ");
       const attrs = buildPlaceDataAttrs(loc);
       Object.keys(attrs).forEach((key) => btn.setAttribute(key, attrs[key]));
+      btn.setAttribute("aria-label", String(loc.label || loc.id || "Sted"));
       btn.innerHTML =
-        '<span class="civi-city-place-icon">' + esc(loc.icon || "📍") + "</span>" +
-        '<span class="civi-city-place-label">' + esc(loc.label || loc.id || "") + "</span>";
+        '<span class="civi-city-place-icon" aria-hidden="true">' + esc(loc.icon || "📍") + "</span>";
       btn._civiLoc = loc;
       btn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -448,10 +448,9 @@
     btn.type = "button";
     btn.className = "civi-city-friend is-" + esc(presence.state || "at_home");
     btn.setAttribute("data-friend-id", String(friend.id || ""));
+    btn.setAttribute("aria-label", String(friend.name || "Person"));
     btn.innerHTML =
-      '<span class="civi-city-friend-figure" style="--friend-color:' + esc(color) + '">' + esc(initial) + "</span>" +
-      '<span class="civi-city-friend-tag">' + esc(friend.name || "") +
-      '<small>' + esc(presence.lastSeenText || presence.statusText || "") + "</small></span>";
+      '<span class="civi-city-friend-figure" aria-hidden="true" style="--friend-color:' + esc(color) + '">' + esc(initial) + "</span>";
     btn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
