@@ -82,9 +82,12 @@ Mål:
 
 ### nearby.css (left panel: nearby/routes/badges)
 Eier:
-- `#nearbyListContainer` og alt inni
+- `#nearbyListContainer` og alt inni (utseendet på Utforsk-draweren)
+- `#nearbyExploreToggle` (Utforsk-knappen som åpner/lukker draweren)
 - Header-offset variabler (`--hg-header-h`) for å ligge under topplinja
 - Horisontal “strip”-mode for nearbys
+- NB: posisjonering + åpen/lukket-tilstand (`is-drawer-open`/`is-drawer-closed`)
+  ligger i layout.css; nearby.css eier kun utseendet.
 
 ---
 

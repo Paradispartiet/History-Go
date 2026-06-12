@@ -243,6 +243,7 @@ declare global {
     clearPos?: any;
     clients?: any;
     closeNatureCard?: any;
+    closeNearbyDrawer?: any;
     currentPos?: any;
     dataHub?: any;
     debugNextUp?: any;
@@ -266,6 +267,7 @@ declare global {
     maplibregl?: any;
     openCivicationStoreEntry?: any;
     openNatureCard?: any;
+    openNearbyDrawer?: any;
     openOnboarding?: any;
     openPersonCard?: any;
     openPlaceCard?: any;
@@ -299,6 +301,7 @@ declare global {
     supabase?: any;
     tagToCat?: any;
     toggleFooterNextUp?: any;
+    toggleNearbyDrawer?: any;
     updateNearbyBadgeFilterButton?: any;
     updateNearbyFilterButton?: any;
     updateNearbySortButton?: any;
