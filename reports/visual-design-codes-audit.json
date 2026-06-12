@@ -1,6 +1,6 @@
 {
   "schema": "history-go.visual-design-codes-audit.v1",
-  "generatedAt": "2026-06-12T06:29:15.356Z",
+  "generatedAt": "2026-06-12T07:31:38.138Z",
   "registry": {
     "totalCodes": 81,
     "byEntityType": {
@@ -10694,7 +10694,7 @@
   },
   "remainingArticleDefaultDecision": {
     "total": 46,
-    "recommendedNextStep": "Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.",
+    "recommendedNextStep": "Do not create Article batch 8 now; consider a narrow register PR for the consolidated popular culture/everyday life gaps, then run manual review before any data batch.",
     "metadataFirst": [],
     "registerExpansionCandidates": [
       {
@@ -12043,41 +12043,86 @@
         }
       }
     ],
-    "deferSafeButLowValue": [],
+    "deferSafeButLowValue": [
+      {
+        "id": "bygdoy_natur",
+        "title": "Bygdøy naturmiljø",
+        "place_id": "bygdoy_natur",
+        "file": "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (natur, bynatur) → `article_nature_route_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "natur",
+            "bynatur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "summary.themes"
+          ],
+          "missingFields": [
+            "classification.tags",
+            "popupDesc"
+          ]
+        },
+        "possibleDesignCode": "article_nature_route_miniature"
+      },
+      {
+        "id": "furuset_haugerud_skogbelte_boligkant",
+        "title": "Boligkant og naturkant",
+        "place_id": "furuset_haugerud_skogbelte",
+        "file": "data/leksikon/places/oslo/mixed/leksikon_oslo_ost_alna_natur_byhistorie.json",
+        "currentDesignCode": "article_default_miniature",
+        "group": "deferSafeButLowValue",
+        "reason": "tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature`",
+        "recommendedAction": "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
+        "confidence": "high",
+        "evidence": {
+          "matchedWords": [
+            "skogbelte",
+            "nærnatur"
+          ],
+          "fieldsUsed": [
+            "id",
+            "popupDesc",
+            "summary.themes",
+            "classification.tags"
+          ],
+          "missingFields": []
+        },
+        "possibleDesignCode": "article_nature_route_miniature"
+      }
+    ],
     "recommendedRoadmap": [
       {
         "step": 1,
-        "title": "Metadata-first cleanup for thin article defaults",
-        "type": "metadata",
-        "reason": "Fem resterende artikler mangler nok summary.themes, classification.tags eller presis popupDesc til at audit bør foreslå designCode uten gjetting.",
-        "scope": "Kun metadatafelter i de identifiserte artiklene; ingen visual.designCode i samme PR."
-      },
-      {
-        "step": 2,
-        "title": "Register proposal for popular culture and everyday life article codes",
+        "title": "Register proposal for consolidated article-code gaps",
         "type": "register",
-        "reason": "De største konsoliderte hullene er article_popular_culture_miniature og article_everyday_life_miniature; andre foreslåtte koder bør vente eller samles med manuell vurdering.",
+        "reason": "23 artikler peker mot manglende artikkelkoder; prioriter article_popular_culture_miniature og article_everyday_life_miniature fordi de har flere reelle kandidater og tydelig systemverdi.",
         "scope": "Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes."
       },
       {
-        "step": 3,
+        "step": 2,
         "title": "Manual review of ambiguous remainder",
         "type": "manual-review",
-        "reason": "Fjorten artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie og infrastruktur.",
+        "reason": "14 artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie, infrastruktur og mulig ny kode.",
         "scope": "Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default."
       },
       {
-        "step": 4,
-        "title": "Small data batch only after decisions are complete",
+        "step": 3,
+        "title": "Defer safe existing-code candidates",
         "type": "data-batch",
-        "reason": "Det finnes ingen trygge batchkandidater i restgruppen nå; Article batch 8 bør ikke opprettes før metadata, register og manuelle valg er avklart.",
-        "scope": "Eventuell senere batch skal være liten og bare bruke vedtatte eksisterende eller nye koder."
+        "reason": "2 artikler kan trolig merkes med eksisterende kode, men verdien er lavere enn å avklare register- og manuelle beslutninger først.",
+        "scope": "Ingen Article batch 8 nå; vurder disse bare i en senere, liten data-batch etter beslutningsarbeidet."
       },
       {
-        "step": 5,
+        "step": 4,
         "title": "Accept intentional article defaults",
         "type": "none",
-        "reason": "Noen brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.",
+        "reason": "7 brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.",
         "scope": "Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes."
       }
     ]

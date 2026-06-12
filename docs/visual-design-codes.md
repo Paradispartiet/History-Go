@@ -589,12 +589,12 @@ plausible, eller en bevisst beslutning om å beholde default. Beslutningen er
 lagret i `remainingArticleDefaultDecision` i auditrapporten og oppsummert i
 Markdown-rapportens seksjon «Remaining article-default decision».
 
-Videre arbeid skal følge anbefalt roadmap i rapporten: metadata først der audit
-mangler nok faglig signal, deretter eventuell smal register-PR for koder som har
-flere reelle kandidater, så manuell vurdering av tvilstilfeller før en eventuell
-senere og liten data-batch. Det er akseptabelt at enkelte brede, blandede eller
-svakt visuelle artikler forblir `article_default_miniature` i stedet for å
-presses inn i en smal designCode.
+Videre arbeid skal følge anbefalt roadmap i rapporten. Etter den smale
+metadata-first cleanupen peker audit nå først på en eventuell register-PR for
+koder som har flere reelle kandidater, deretter manuell vurdering av
+tvilstilfeller før en eventuell senere og liten data-batch. Det er akseptabelt
+at enkelte brede, blandede eller svakt visuelle artikler forblir
+`article_default_miniature` i stedet for å presses inn i en smal designCode.
 
 ## Metadata-first cleanup
 

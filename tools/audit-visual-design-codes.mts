@@ -1102,55 +1102,71 @@ function buildRemainingArticleDefaultDecision(articleDefaultAnalysis: any) {
     ));
 
   const deferSafeButLowValue = (articleDefaultAnalysis.safeBatch7Candidates || [])
-    .filter((entry: any) => entry.confidence !== "high")
     .map((entry: any) => decisionEntryFromAnalysis(
       entry,
       "deferSafeButLowValue",
-      "defer until metadata/register/manual-review work is complete",
+      "defer this otherwise safe existing-code candidate until register and manual-review work is complete",
       { possibleDesignCode: entry.suggestedDesignCode }
     ));
 
-  const recommendedRoadmap = [
-    {
-      step: 1,
+  const registerArticleCount = registerExpansionCandidates.reduce((sum: number, group: any) => sum + (group.candidateCount || 0), 0);
+  const shouldAddRegisterCodes = registerExpansionCandidates.filter((group: any) => group.shouldAddNow && group.candidateCount > 0);
+  const recommendedRoadmap: any[] = [];
+  if (metadataFirst.length) {
+    recommendedRoadmap.push({
+      step: recommendedRoadmap.length + 1,
       title: "Metadata-first cleanup for thin article defaults",
       type: "metadata",
-      reason: "Fem resterende artikler mangler nok summary.themes, classification.tags eller presis popupDesc til at audit bør foreslå designCode uten gjetting.",
+      reason: `${metadataFirst.length} resterende artikler mangler nok summary.themes, classification.tags, title eller presis popupDesc til at audit bør foreslå designCode uten gjetting.`,
       scope: "Kun metadatafelter i de identifiserte artiklene; ingen visual.designCode i samme PR."
-    },
-    {
-      step: 2,
-      title: "Register proposal for popular culture and everyday life article codes",
+    });
+  }
+  if (shouldAddRegisterCodes.length) {
+    recommendedRoadmap.push({
+      step: recommendedRoadmap.length + 1,
+      title: "Register proposal for consolidated article-code gaps",
       type: "register",
-      reason: "De største konsoliderte hullene er article_popular_culture_miniature og article_everyday_life_miniature; andre foreslåtte koder bør vente eller samles med manuell vurdering.",
+      reason: `${registerArticleCount} artikler peker mot manglende artikkelkoder; prioriter ${shouldAddRegisterCodes.map((group: any) => group.suggestedDesignCode).join(" og ")} fordi de har flere reelle kandidater og tydelig systemverdi.`,
       scope: "Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes."
-    },
-    {
-      step: 3,
+    });
+  }
+  if (manualReviewBeforeAction.length) {
+    recommendedRoadmap.push({
+      step: recommendedRoadmap.length + 1,
       title: "Manual review of ambiguous remainder",
       type: "manual-review",
-      reason: "Fjorten artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie og infrastruktur.",
+      reason: `${manualReviewBeforeAction.length} artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie, infrastruktur og mulig ny kode.`,
       scope: "Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default."
-    },
-    {
-      step: 4,
-      title: "Small data batch only after decisions are complete",
+    });
+  }
+  if (deferSafeButLowValue.length) {
+    recommendedRoadmap.push({
+      step: recommendedRoadmap.length + 1,
+      title: "Defer safe existing-code candidates",
       type: "data-batch",
-      reason: "Det finnes ingen trygge batchkandidater i restgruppen nå; Article batch 8 bør ikke opprettes før metadata, register og manuelle valg er avklart.",
-      scope: "Eventuell senere batch skal være liten og bare bruke vedtatte eksisterende eller nye koder."
-    },
-    {
-      step: 5,
+      reason: `${deferSafeButLowValue.length} artikler kan trolig merkes med eksisterende kode, men verdien er lavere enn å avklare register- og manuelle beslutninger først.`,
+      scope: "Ingen Article batch 8 nå; vurder disse bare i en senere, liten data-batch etter beslutningsarbeidet."
+    });
+  }
+  if (keepDefaultIntentionally.length) {
+    recommendedRoadmap.push({
+      step: recommendedRoadmap.length + 1,
       title: "Accept intentional article defaults",
       type: "none",
-      reason: "Noen brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.",
+      reason: `${keepDefaultIntentionally.length} brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes.`,
       scope: "Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes."
-    }
-  ];
+    });
+  }
+
+  const recommendedNextStep = metadataFirst.length
+    ? "Do not create Article batch 8 now; run metadata-first cleanup before register or data-batch work."
+    : shouldAddRegisterCodes.length
+      ? "Do not create Article batch 8 now; consider a narrow register PR for the consolidated popular culture/everyday life gaps, then run manual review before any data batch."
+      : "Do not create Article batch 8 now; run manual review and keep broad or weakly visual articles on article_default_miniature.";
 
   return {
     total: articleDefaultAnalysis.total,
-    recommendedNextStep: "Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.",
+    recommendedNextStep,
     metadataFirst,
     registerExpansionCandidates,
     manualReviewBeforeAction,
