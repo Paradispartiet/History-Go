@@ -856,12 +856,17 @@
       if (d <= t.radius && d < bestDist) { best = t; bestDist = d; }
     });
     if (best && best.place && best.place.id) {
-      navigate(best.place.id);
+      openHistoryGoPlaceMenu(best.place);
     }
   }
 
-  function navigate(placeId) {
-    window.location.href = `index.html#/place/${encodeURIComponent(placeId)}`;
+  function openHistoryGoPlaceMenu(place) {
+    const menu = window.CivicationHistoryGoPlaceLayer;
+    if (menu && typeof menu.openPlaceMenu === "function") {
+      menu.openPlaceMenu(place);
+      return;
+    }
+    if (place && place.id != null) window.location.href = `index.html#/place/${encodeURIComponent(place.id)}`;
   }
 
   function onWheel(e) {

@@ -2704,6 +2704,12 @@
   }
   function openPlace(placeId) {
     if (placeId == null) return;
+    const place = (_places || []).find((candidate) => String(candidate && candidate.id) === String(placeId));
+    const menu = window.CivicationHistoryGoPlaceLayer;
+    if (menu && typeof menu.openPlaceMenu === "function") {
+      menu.openPlaceMenu(place || placeId);
+      return;
+    }
     window.location.href = `index.html#/place/${encodeURIComponent(placeId)}`;
   }
 
