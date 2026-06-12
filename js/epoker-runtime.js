@@ -127,6 +127,7 @@ const EPOKER_FILES = [
   { domain: "politikk", path: "data/epoker/epoker_politikk.json" },
   { domain: "vitenskap", path: "data/epoker/epoker_vitenskap.json" },
   { domain: "natur", path: "data/epoker/epoker_natur.json" },
+  { domain: "naeringsliv", path: "data/epoker/epoker_naeringsliv.json" },
 ];
 
 function normalizeEpokerFilePayload(payload, fallbackDomain) {
