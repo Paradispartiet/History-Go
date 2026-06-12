@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "domain": "historie",
+  "label": "Historie – epoker",
+  "notes": "Epokene er brede historiske orienteringsrammer. De skal hjelpe History Go å plassere steder, personer, institusjoner, konflikter og hverdagsliv i tid, uten å bli progresjonsnivå eller skolepensum. Lokale, nasjonale og globale brudd kan overlappe.",
+  "epoker": [
+    {
+      "id": "historie_forhistorie_og_tidlige_samfunn",
+      "label": "Forhistorie og tidlige samfunn",
+      "years": { "from": -10000, "to": 500 },
+      "definition": "Lang tidsramme for jeger- og sankersamfunn, tidlig jordbruk, bosetting, metallbruk, handel, rituelle steder og de første større samfunnsformene før skriftlige eller byråkratiske kildesystemer dominerer.",
+      "markers": ["bosetting", "gravfelt", "jordbruk", "metallbruk", "handel", "ritualsted"],
+      "tags": ["forhistorie", "tidlige_samfunn", "arkeologi", "bosetting", "ritual"],
+      "knagger": ["spor_i_landskapet", "materialkultur", "før_skriftlige_kilder"],
+      "ui_context": "Les stedet gjennom spor, landskap, materiale, bosetting og hva som mangler i skriftlige kilder."
+    },
+    {
+      "id": "historie_middelalder_makt_kirke_og_by",
+      "label": "Middelalder: makt, kirke og by",
+      "years": { "from": 500, "to": 1537 },
+      "definition": "Periode der kongemakt, kirke, handel, gårder, byer, festninger, klostre, laug og lokale maktstrukturer former samfunn og landskap.",
+      "markers": ["kirke", "kloster", "borg", "middelalderby", "handel", "laug", "tingsted"],
+      "tags": ["middelalder", "kirke", "kongemakt", "handel", "bydannelse"],
+      "knagger": ["kirke_og_makt", "byens_opprinnelse", "skrift_og_institusjon"],
+      "ui_context": "Spør hvordan religion, handel, forsvar og politisk makt organiserer stedet."
+    },
+    {
+      "id": "historie_tidlig_moderne_stat_handel_og_reformasjon",
+      "label": "Tidlig moderne stat, handel og reformasjon",
+      "years": { "from": 1537, "to": 1814 },
+      "definition": "Tidsrom preget av reformasjon, sterkere statsmakt, skatt, embetsverk, militærvesen, handel, koloniale forbindelser, opplysningstid og nye offentligheter.",
+      "markers": ["reformasjon", "embetsstat", "handel", "militær", "skatt", "opplysningstid", "trykkultur"],
+      "tags": ["tidlig_moderne", "reformasjon", "stat", "handel", "opplysning"],
+      "knagger": ["stat_og_kontroll", "handel_og_verden", "religion_og_reform"],
+      "ui_context": "Les stedet gjennom stat, religion, handel, krig, embetsverk og nye kunnskapsformer."
+    },
+    {
+      "id": "historie_revolusjoner_industri_og_demokratisering",
+      "label": "Revolusjoner, industri og demokratisering",
+      "years": { "from": 1814, "to": 1905 },
+      "definition": "1800-tallets endringer med grunnlov, nasjonsbygging, industrialisering, urbanisering, jernbane, arbeiderliv, folkelige bevegelser og gradvis demokratisering.",
+      "markers": ["grunnlov", "industri", "jernbane", "arbeiderliv", "urbanisering", "forening", "nasjonsbygging"],
+      "tags": ["1800_tall", "industrialisering", "demokratisering", "nasjonsbygging", "urbanisering"],
+      "knagger": ["industriell_urbanisering", "folkebevegelser", "nasjonal_fortelling"],
+      "ui_context": "Koble fabrikk, transport, bolig, klasse, nasjon og nye politiske fellesskap."
+    },
+    {
+      "id": "historie_nasjon_massepolitikk_og_moderne_institusjoner",
+      "label": "Nasjon, massepolitikk og moderne institusjoner",
+      "years": { "from": 1905, "to": 1939 },
+      "definition": "Periode preget av selvstendighet, parlamentarisme, arbeiderbevegelse, partier, presse, organisasjonsliv, sosial reform, byvekst og modernisering før andre verdenskrig.",
+      "markers": ["selvstendighet", "partier", "presse", "arbeiderbevegelse", "sosial reform", "byvekst", "institusjonsbygging"],
+      "tags": ["1900_tall", "massepolitikk", "arbeiderbevegelse", "modernisering", "institusjoner"],
+      "knagger": ["organisert_offentlighet", "klasse_og_politikk", "moderne_by"],
+      "ui_context": "Spør hvordan organisasjoner, medier, partier og institusjoner gjør politikk og samfunn mer massedrevet."
+    },
+    {
+      "id": "historie_krig_okkupasjon_og_etterkrigsoppgjor",
+      "label": "Krig, okkupasjon og etterkrigsoppgjør",
+      "years": { "from": 1939, "to": 1949 },
+      "definition": "Tidsrom der krig, okkupasjon, kontroll, motstand, deportasjon, hverdagsvalg, vold, frigjøring og rettsoppgjør setter spor i byrom, institusjoner og minnekultur.",
+      "markers": ["okkupasjon", "motstand", "fengsel", "deportasjon", "minnesmerke", "frigjøring", "rettsoppgjør"],
+      "tags": ["andre_verdenskrig", "okkupasjon", "motstand", "minnekultur", "etterkrigsoppgjor"],
+      "knagger": ["kontrollert_byrom", "motstandsnettverk", "minne_og_glemsel"],
+      "ui_context": "Les stedet gjennom kontroll, risiko, sivile valg, nettverk, vold og hvordan krigen minnes etterpå."
+    },
+    {
+      "id": "historie_velferdsstat_kald_krig_og_sosialdemokrati",
+      "label": "Velferdsstat, kald krig og sosialdemokrati",
+      "years": { "from": 1950, "to": 1979 },
+      "definition": "Etterkrigstidens samfunn bygges gjennom velferdsstat, planlegging, boligbygging, utdanning, arbeidslivsmodell, kald krig, teknokrati og nye hverdagsstandarder.",
+      "markers": ["velferdsstat", "boligbygging", "planlegging", "utdanning", "arbeidsliv", "kald krig", "forstad"],
+      "tags": ["etterkrigstid", "velferdsstat", "planlegging", "kald_krig", "boligpolitikk"],
+      "knagger": ["stat_og_hverdag", "planlagt_by", "sosial_trygghet"],
+      "ui_context": "Koble skole, bolig, helse, arbeidsliv, planlegging og sikkerhetspolitikk til hverdagsliv."
+    },
+    {
+      "id": "historie_senmoderne_globalisering_og_markedsvending",
+      "label": "Senmoderne globalisering og markedsvending",
+      "years": { "from": 1980, "to": 2009 },
+      "definition": "Periode med deregulering, globalisering, oljeøkonomi, migrasjon, byfornyelse, gentrifisering, nye kulturformer, EU/EØS-debatt og endret offentlig sektor.",
+      "markers": ["globalisering", "deregulering", "byfornyelse", "gentrifisering", "migrasjon", "oljeøkonomi", "EØS"],
+      "tags": ["globalisering", "markedsvending", "gentrifisering", "migrasjon", "byfornyelse"],
+      "knagger": ["bolig_som_investering", "ny_okonomi", "kulturelt_mangfold"],
+      "ui_context": "Spør hvem som får nye muligheter, hvem som fortrenges, og hvordan by, arbeid og identitet endres."
+    },
+    {
+      "id": "historie_digital_samtid_kriser_og_ny_offentlighet",
+      "label": "Digital samtid, kriser og ny offentlighet",
+      "years": { "from": 2010, "to": null },
+      "definition": "Nåtidens historiske kontekst preges av digitale plattformer, klima, pandemi, polarisering, sikkerhet, ny geopolitikk, kunstig intelligens og endrede former for offentlighet og hverdagsliv.",
+      "markers": ["digitalisering", "sosiale medier", "klima", "pandemi", "polarisering", "AI", "sikkerhet"],
+      "tags": ["samtid", "digitalisering", "plattform", "klima", "krise", "AI"],
+      "knagger": ["ny_offentlighet", "kriseerfaring", "plattformmakt"],
+      "ui_context": "Les samtidige steder gjennom plattformer, kriser, data, tillit, offentlighet og hverdagsendring."
+    }
+  ],
+  "parallel_epoker": [
+    {
+      "id": "historie_kolonialisme_imperialisme_og_globale_forbindelser",
+      "label": "Kolonialisme, imperialisme og globale forbindelser",
+      "years": { "from": 1500, "to": null },
+      "definition": "Et langvarig parallelt spor der handel, kolonialisme, misjon, råvarer, migrasjon, rasisme, museer, skip, kapital og globale maktforhold kobler lokale steder til verdenshistorien.",
+      "markers": ["handel", "koloniale varer", "skip", "misjon", "museum", "migrasjon", "rasisme"],
+      "tags": ["kolonialisme", "imperialisme", "global_historie", "handel", "migrasjon"],
+      "knagger": ["lokalt_og_globalt", "varestrømmer", "makt_og_utelatelser"]
+    },
+    {
+      "id": "historie_migrasjon_minoritet_og_tilhorighet",
+      "label": "Migrasjon, minoritet og tilhørighet",
+      "years": { "from": 1600, "to": null },
+      "definition": "Et parallelt spor for flytting, diaspora, urfolk, nasjonale minoriteter, arbeidsmigrasjon, flukt, integrering, diskriminering og nye fellesskap.",
+      "markers": ["migrasjon", "diaspora", "urfolk", "minoritet", "arbeidsinnvandring", "flukt", "nabolag"],
+      "tags": ["migrasjon", "minoritet", "tilhorighet", "diaspora", "identitet"],
+      "knagger": ["hvem_horer_til", "grense_og_hjem", "synlighet_og_fravar"]
+    },
+    {
+      "id": "historie_minnekultur_og_historiebruk",
+      "label": "Minnekultur og historiebruk",
+      "years": { "from": 1800, "to": null },
+      "definition": "Et parallelt spor for hvordan samfunn bruker fortiden i monumenter, museer, jubileer, gatenavn, politiske konflikter, skole, populærkultur og offentlige ritualer.",
+      "markers": ["monument", "museum", "gatenavn", "jubileum", "minnesmerke", "ritual", "historiedebatt"],
+      "tags": ["minnekultur", "historiebruk", "monument", "museum", "offentlig_debatt"],
+      "knagger": ["hva_minnes", "hva_ties", "fortid_som_argument"]
+    }
+  ],
+  "ui": {
+    "default_sort": "from_year_asc",
+    "show_parallel": true,
+    "display_mode": "context_not_progression"
+  }
+}
