@@ -55,17 +55,23 @@ body.civi-app .civi-footer {
 body.civi-app .topbar {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  grid-template-areas: "left dashboard right";
+  grid-template-areas: "left metrics right";
   align-items: center;
-  gap: 10px 14px;
+  gap: 8px 12px;
 }
 
 body.civi-app .topbar-left {
   grid-area: left;
 }
 
-body.civi-app #civiDashboardSection {
-  grid-area: dashboard;
+body.civi-app .civi-header-metrics {
+  grid-area: metrics;
+  min-width: 0;
+}
+
+body.civi-app .civi-header-metrics .civi-dashboard-metrics {
+  width: 100%;
+  justify-content: center;
 }
 
 body.civi-app .topbar-right {
@@ -114,17 +120,12 @@ body.civi-app .civi-panels h2 {
 
 #civiDashboardSection {
   order: 0;
-  grid-column: auto;
-  padding: 0;
+  grid-column: 1 / -1;
+  padding: 10px 14px;
   min-width: 0;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
-  background: transparent;
 }
 
 #civiDashboardSection::before {
@@ -208,20 +209,26 @@ body.civi-app .civi-panels h2 {
 .civi-dashboard-metrics {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
-  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.civi-dashboard-metrics::-webkit-scrollbar {
+  display: none;
 }
 
 .civi-dashboard-metric {
+  min-width: 0;
   min-height: 0;
-  padding: 6px 9px;
+  padding: 3px 6px;
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
   justify-content: center;
-  gap: 2px;
-  border-radius: 11px;
+  gap: 4px;
+  border-radius: 999px;
   background: rgba(255,255,255,0.055);
   border: 1px solid rgba(255,255,255,0.09);
   flex: 0 0 auto;
@@ -229,18 +236,18 @@ body.civi-app .civi-panels h2 {
 
 .civi-dashboard-metric span {
   color: rgba(255,255,255,0.62);
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 850;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .civi-dashboard-metric strong {
   margin-top: 0;
   color: #fff;
-  font-size: clamp(15px, 2vw, 16px);
-  line-height: 1.15;
-  font-weight: 860;
+  font-size: clamp(11px, 1.1vw, 13px);
+  line-height: 1.05;
+  font-weight: 850;
   letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -248,9 +255,9 @@ body.civi-app .civi-panels h2 {
 
 .civi-dashboard-metric small {
   margin-top: 0;
-  color: rgba(255,255,255,0.68);
-  font-size: 13px;
-  line-height: 1.1;
+  color: rgba(255,255,255,0.6);
+  font-size: 9px;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -738,23 +745,18 @@ body.civi-app .civi-panels h2 {
 
 @media (max-width: 920px) {
   body.civi-app .topbar {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "left right"
-      "dashboard dashboard";
-    align-items: start;
-  }
-
-  body.civi-app #civiDashboardSection {
-    grid-column: 1 / -1;
-    width: 100%;
-    flex-wrap: wrap;
-    row-gap: 8px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "left metrics right";
+    align-items: center;
   }
 
   body.civi-app #civiDashboardSection .civi-dashboard-copy {
     width: 100%;
     flex-wrap: wrap;
+  }
+
+  .civi-header-metrics .civi-dashboard-metric small {
+    display: none;
   }
 
   body.civi-app .civi-panels {
@@ -801,10 +803,26 @@ body.civi-app .civi-panels h2 {
     border-radius: 16px;
   }
 
-  /* Tittel og tilbake-lenke deler øverste rad (arver ≤920-layouten);
-     det holder headeren lav selv med større dashboardtekst. */
   body.civi-app .topbar {
-    gap: 8px;
+    gap: 6px;
+  }
+
+  body.civi-app .app-title,
+  body.civi-app .back-link {
+    font-size: 13px;
+  }
+
+  .civi-dashboard-metric {
+    padding: 3px 5px;
+    gap: 3px;
+  }
+
+  .civi-dashboard-metric span {
+    font-size: 9px;
+  }
+
+  .civi-dashboard-metric strong {
+    font-size: 11px;
   }
 
   body.civi-app .topbar-right {
