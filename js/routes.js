@@ -30,6 +30,7 @@ console.log("routes.js start");
  *   KnowledgeLearning?: { isUnderstood?: (emne: string) => boolean },
  *   visited?: Record<string, boolean>,
  *   HGRoutes?: any,
+ *   HGHistoricalRoutes?: any,
  *   renderLeftRoutesList?: typeof renderLeftRoutesList,
  *   focusRouteOnMap?: typeof focusRouteOnMap,
  *   showRouteOverlay?: typeof showRouteOverlay,
@@ -783,12 +784,20 @@ async function renderLeftRoutesList() {
   if (!box) return;
 
   _ensureRoutePanelStyles();
-  await loadRoutes();
+  await Promise.all([
+    loadRoutes(),
+    hgWindow.HGHistoricalRoutes?.load?.() || Promise.resolve([])
+  ]);
 
+  const historicalCards = hgWindow.HGHistoricalRoutes?.renderCards?.() || "";
+  const render = (standardContent = "") => {
+    box.innerHTML = historicalCards + standardContent;
+    hgWindow.HGHistoricalRoutes?.bindCards?.(box);
+  };
   const availableRoutes = _validRoutes();
 
   if (!availableRoutes.length) {
-    box.innerHTML = `<div class="muted">${tUI("ui.routes.noneLoaded", "Ingen ruter lastet fra routes.json.")}</div>`;
+    render(historicalCards ? "" : `<div class="muted">${tUI("ui.routes.noneLoaded", "Ingen ruter lastet fra routes.json.")}</div>`);
     return;
   }
 
@@ -799,26 +808,26 @@ async function renderLeftRoutesList() {
   });
 
   if (!learningFilteredRoutes.length) {
-    box.innerHTML = `<div class="muted">${tUI("ui.routes.noneAvailableYet", "Ingen ruter tilgjengelige enda.")}</div>`;
+    render(`<div class="muted">${tUI("ui.routes.noneAvailableYet", "Ingen vanlige ruter tilgjengelige enda.")}</div>`);
     return;
   }
 
   const badgeFilteredRoutes = learningFilteredRoutes.filter(routeMatchesActiveBadge);
 
   if (!badgeFilteredRoutes.length) {
-    box.innerHTML = `
+    render(`
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🏅</div>
-        <div class="hg-empty-guide-title">${tUI("ui.routes.noneTitle", "Ingen ruter")}</div>
+        <div class="hg-empty-guide-title">${tUI("ui.routes.noneTitle", "Ingen vanlige ruter")}</div>
         <div class="hg-empty-guide-text">${_escapeHTML(tfUI("ui.routes.noStopsForBadge", "Ingen ruter har stopp i {badge}. Trykk badgeknappen for å velge et annet badge eller alle.", { badge: activeBadgeNameForRoutes() }))}</div>
       </div>
-    `;
+    `);
     return;
   }
 
   const pos = getUserPos();
   if (!pos) {
-    box.innerHTML = `<div class="muted">${tUI("ui.position.notFoundYet", "Fant ikke posisjon ennå.")}</div>`;
+    render(`<div class="muted">${tUI("ui.position.notFoundYet", "Posisjon trengs bare for vanlige gåruter.")}</div>`);
     return;
   }
 
@@ -826,11 +835,11 @@ async function renderLeftRoutesList() {
   const list = getNearbyRoutesSorted(pos, visitedMap, badgeFilteredRoutes);
 
   if (!list.length) {
-    box.innerHTML = `<div class="muted">${tUI("ui.routes.noValidStops", "Ingen ruter har gyldige stopp i kartdataene.")}</div>`;
+    render(`<div class="muted">${tUI("ui.routes.noValidStops", "Ingen vanlige ruter har gyldige stopp i kartdataene.")}</div>`);
     return;
   }
 
-  box.innerHTML = list.slice(0, 12).map(r => {
+  render(list.slice(0, 12).map(r => {
     const title = r.title || r.name || tUI("ui.routes.fallbackRoute", "Rute");
     const dist = formatDist(r._nearestDistM);
     const stop = r._nearestStopName || "";
@@ -844,10 +853,10 @@ async function renderLeftRoutesList() {
         </div>
       </button>
     `;
-  }).join("");
+  }).join(""));
 
   box.onclick = (e) => {
-    const item = /** @type {Element} */ (e.target).closest(".left-route-item");
+    const item = /** @type {Element} */ (e.target).closest(".left-route-item[data-route]");
     if (!item) return;
 
     const routeId = item.getAttribute("data-route");

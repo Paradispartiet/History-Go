@@ -135,6 +135,7 @@ declare global {
     HGPlaces?: any;
     HGPos?: any;
     HGRoutes?: any;
+    HGHistoricalRoutes?: any;
     HGStories?: any;
     HGStoryDedupe?: any;
     HGStoryEpisodeExtractor?: any;
