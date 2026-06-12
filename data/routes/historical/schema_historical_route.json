@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://historygo.no/schemas/historical_route.v1.json",
+  "title": "History Go historical route",
+  "type": "object",
+  "required": ["id", "title", "type", "feature", "routeArchetype", "playModes", "narrativeText", "chapters", "rewards"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "type": { "const": "historical_route" },
+    "feature": { "const": "historiske_ruter" },
+    "routeArchetype": { "type": "string", "minLength": 1 },
+    "city": { "type": "string" },
+    "region": { "type": "string" },
+    "historicalPeriod": { "type": "string" },
+    "narrativeText": { "type": "string", "minLength": 1 },
+    "playModes": {
+      "type": "object",
+      "required": ["online", "physical"],
+      "properties": {
+        "online": {
+          "type": "object",
+          "required": ["enabled", "completionType"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "completionType": { "type": "string" }
+          }
+        },
+        "physical": {
+          "type": "object",
+          "required": ["enabled", "completionType"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "completionType": { "type": "string" }
+          }
+        }
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sequence", "id", "chapterTitle", "narrativeText", "tasks", "physical"],
+        "properties": {
+          "sequence": { "type": "integer", "minimum": 1 },
+          "id": { "type": "string", "minLength": 1 },
+          "placeId": { "type": "string", "minLength": 1 },
+          "chapterTitle": { "type": "string", "minLength": 1 },
+          "year": { "type": ["integer", "string"] },
+          "era": { "type": "string" },
+          "narrativeText": { "type": "string", "minLength": 1 },
+          "tasks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["type", "prompt"],
+              "properties": {
+                "type": { "type": "string" },
+                "prompt": { "type": "string" },
+                "placeholder": { "type": "boolean" }
+              }
+            }
+          },
+          "physical": {
+            "type": "object",
+            "required": ["enabled", "placeId", "gpsRadius", "physicalCollected"],
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "placeId": { "type": "string", "minLength": 1 },
+              "gpsRadius": { "type": "number", "exclusiveMinimum": 0 },
+              "physicalCollected": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "rewards": {
+      "type": "object",
+      "required": ["progression", "pointsOnline"],
+      "properties": {
+        "progression": { "type": "array", "items": { "enum": ["started", "online_in_progress", "online_completed"] } },
+        "onlineBadgeId": { "type": "string" },
+        "physicalBadgeId": { "type": "string" },
+        "pointsOnline": { "type": "number", "minimum": 0 },
+        "pointsPhysical": { "type": "number", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -293,6 +293,13 @@ async function loadPlacesBase(opts = {}) {
     return fetchJSON(pData("routes.json"), opts);
   }
 
+  async function loadHistoricalRoutes(opts = {}) {
+    const manifest = await fetchJSON(pData("routes/historical/manifest.json"), opts);
+    const files = Array.isArray(manifest?.files) ? manifest.files : [];
+    const batches = await Promise.all(files.map((file) => fetchJSON(pData(`routes/historical/${file}`), opts)));
+    return batches.flatMap((batch) => Array.isArray(batch) ? batch : []);
+  }
+
   // ----------------------------
   // Overlays
   // ----------------------------
@@ -628,6 +635,7 @@ async function loadPlacesBase(opts = {}) {
     loadPeople,
     loadBadges,
     loadRoutes,
+    loadHistoricalRoutes,
     loadFullPlace,
     loadLesespor,
     getLesesporForPlace,

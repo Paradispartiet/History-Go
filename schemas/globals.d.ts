@@ -35,6 +35,7 @@ type DataHubApi = {
   loadPeople?: (opts?: DataHubFetchOptions) => Promise<unknown[]>;
   loadBadges?: (opts?: DataHubFetchOptions) => Promise<unknown[]>;
   loadRoutes?: (opts?: DataHubFetchOptions) => Promise<unknown[]>;
+  loadHistoricalRoutes?: (opts?: DataHubFetchOptions) => Promise<unknown[]>;
   loadFullPlace?: (placeId: string | number | null | undefined, opts?: DataHubFetchOptions) => Promise<Place | null>;
 
   loadPlaceOverlays?: (subjectId: string | null | undefined, opts?: DataHubFetchOptions) => Promise<unknown[]>;

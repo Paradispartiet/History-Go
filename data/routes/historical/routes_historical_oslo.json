@@ -1,0 +1,106 @@
+[
+  {
+    "id": "oslo_fra_middelalderby_til_fjordby",
+    "title": "Oslo: Fra middelalderby til fjordby",
+    "type": "historical_route",
+    "feature": "historiske_ruter",
+    "routeArchetype": "urban_time_route",
+    "city": "oslo",
+    "region": "oslo_sentrum",
+    "historicalPeriod": "ca. 1050–i dag",
+    "narrativeText": "Du reiser gjennom Oslos tidslag, fra middelalderbyen ved Alna og fjorden, via Christianias regulerte sentrum, maktens og handelens plasser, hovedstadens paradeakse og frem til den moderne fjordbyen. Dette er ikke en moderne gåtur, men en historisk reise gjennom ferdselsårer, byflytting, handel og makt.",
+    "routeTension": "Hvordan flytter en by sitt sentrum, sitt navn og sitt forhold til fjorden uten å miste sporene etter det som kom før?",
+    "historicalForces": ["byflytting", "brann", "handel", "religion", "statsmakt", "havneutvikling"],
+    "playModes": {
+      "online": { "enabled": true, "completionType": "narrative" },
+      "physical": { "enabled": true, "completionType": "gps_collection" }
+    },
+    "chapters": [
+      {
+        "sequence": 1,
+        "id": "oslo_tidsreise_01_middelalderbyen",
+        "placeId": "middelalder_oslo",
+        "chapterTitle": "Byen før flyttingen",
+        "year": "ca. 1050–1624",
+        "era": "Middelalderbyen ved fjorden",
+        "narrativeText": "Du begynner i Oslo før byen ble Christiania. Kirker, kongsgård, handel og ferdsel lå tett på fjorden og Alnas utløp. Skip og landeveier bandt byen til omlandet og verden. Ruinene viser ikke en utkant, men et tidligere sentrum som senere byutvikling har lagt seg rundt.",
+        "tasks": [
+          { "type": "reflection", "prompt": "Legg merke til hvordan vann, ferdsel og makt kan ha bestemt hvor middelalderbyen vokste frem.", "placeholder": true }
+        ],
+        "physical": { "enabled": true, "placeId": "middelalder_oslo", "gpsRadius": 160, "physicalCollected": false }
+      },
+      {
+        "sequence": 2,
+        "id": "oslo_tidsreise_02_domkirken",
+        "placeId": "oslo_domkirke",
+        "chapterTitle": "Et nytt religiøst og sosialt sentrum",
+        "year": "1697",
+        "era": "Christiania finner sin form",
+        "narrativeText": "Etter bybrannen i 1624 ble byen flyttet vestover. Ved den nye domkirken møttes tro, markedsliv og byens hverdagsreiser. Veier og mennesker søkte mot et nytt sentrum, mens avstanden til middelalderbyen ble en del av byens nye geografi.",
+        "tasks": [
+          { "type": "quiz_placeholder", "prompt": "Hvorfor kunne en domkirke bli både religiøst sentrum og knutepunkt for byens ferdsel?", "placeholder": true }
+        ],
+        "physical": { "enabled": true, "placeId": "oslo_domkirke", "gpsRadius": 120, "physicalCollected": false }
+      },
+      {
+        "sequence": 3,
+        "id": "oslo_tidsreise_03_christiania_torv",
+        "placeId": "christiania_torv",
+        "chapterTitle": "Den regulerte byen etter 1624",
+        "year": "1624",
+        "era": "Kvadratur, kontroll og kongemakt",
+        "narrativeText": "Ved Christiania Torv trer den planlagte byen frem. Rette gater gjorde ferdselen lesbar og byen lettere å kontrollere. Her møttes rådstue, handel og representasjon. Reisen gjennom Oslo skifter nå fra middelalderens organiske by til kongens regulerte Christiania.",
+        "tasks": [
+          { "type": "observation", "prompt": "Se for deg hvordan et rett gatenett endret bevegelse, handel og kontroll i byen.", "placeholder": true }
+        ],
+        "physical": { "enabled": true, "placeId": "christiania_torv", "gpsRadius": 100, "physicalCollected": false }
+      },
+      {
+        "sequence": 4,
+        "id": "oslo_tidsreise_04_bankplassen",
+        "placeId": "bankplassen",
+        "chapterTitle": "Handelens og institusjonenes tyngde",
+        "year": "1800-tallet",
+        "era": "Penger, sjøfart og offentlighet",
+        "narrativeText": "På Bankplassen blir ruten en fortelling om kapital, sjøfart og institusjoner. Nærheten til havna gjorde Kvadraturen til et sted der varer, kreditt, nyheter og mennesker sirkulerte. Byens ferdselsårer var også økonomiske årer.",
+        "tasks": [
+          { "type": "reflection", "prompt": "Tenk over hvorfor banker, børs, havn og offentlige institusjoner ofte vokser frem nær hverandre.", "placeholder": true }
+        ],
+        "physical": { "enabled": true, "placeId": "bankplassen", "gpsRadius": 100, "physicalCollected": false }
+      },
+      {
+        "sequence": 5,
+        "id": "oslo_tidsreise_05_karl_johan",
+        "placeId": "karl_johan",
+        "chapterTitle": "Hovedstadens maktakse",
+        "year": "1800-tallet",
+        "era": "Paradegate og nasjonsbygging",
+        "narrativeText": "Karl Johans gate knyttet den eldre byen til Slottet og samlet universitet, parlament, handel og folkeliv langs én synlig akse. Her ble ferdsel til iscenesettelse: prosesjoner, protester og hverdagsliv delte den samme gaten.",
+        "tasks": [
+          { "type": "quiz_placeholder", "prompt": "Hva skjer med en gate når den både er transportåre, møteplass og symbol på statsmakt?", "placeholder": true }
+        ],
+        "physical": { "enabled": true, "placeId": "karl_johan", "gpsRadius": 140, "physicalCollected": false }
+      },
+      {
+        "sequence": 6,
+        "id": "oslo_tidsreise_06_bjorvika",
+        "placeId": "bjorvika",
+        "chapterTitle": "Tilbake til fjorden",
+        "year": "2000-tallet",
+        "era": "Havn, trafikkmaskin og fjordby",
+        "narrativeText": "Reisen ender i Bjørvika, nær stedet der den begynte. Havnearealer og trafikkbarrierer er blitt omskrevet til kulturbygg, boliger og offentlige rom. Fjorden er igjen en byfront, men hvem som kan bruke og forme den er fortsatt et historisk spørsmål.",
+        "tasks": [
+          { "type": "reflection", "prompt": "Sammenlign middelalderbyens forhold til fjorden med dagens fjordby. Hva er tilbake, og hva er helt nytt?", "placeholder": true }
+        ],
+        "physical": { "enabled": true, "placeId": "bjorvika", "gpsRadius": 180, "physicalCollected": false }
+      }
+    ],
+    "rewards": {
+      "progression": ["started", "online_in_progress", "online_completed"],
+      "onlineBadgeId": "badge_oslo_tidsreise_reist",
+      "physicalBadgeId": "badge_oslo_tidsreise_samlet",
+      "pointsOnline": 100,
+      "pointsPhysical": 300
+    }
+  }
+]
