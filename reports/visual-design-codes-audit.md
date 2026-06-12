@@ -1,6 +1,6 @@
 # Visual design codes – audit
 
-Generert: 2026-06-12T06:29:15.356Z
+Generert: 2026-06-12T07:31:38.138Z
 
 > Denne rapporten viser ikke bare dekning, men også konkrete kandidater for
 > neste batch. Full, uavkortet liste finnes alltid i
@@ -595,9 +595,9 @@ Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-bat
 - registerExpansionCandidates count: 23 artikler / 8 kodeforslag
 - manualReviewBeforeAction count: 14
 - keepDefaultIntentionally count: 7
-- deferSafeButLowValue count: 0
+- deferSafeButLowValue count: 2
 
-**Anbefalt neste steg:** Do not create Article batch 8 now; run metadata-first cleanup, then consider a narrow register PR for popular culture/everyday life before any data batch.
+**Anbefalt neste steg:** Do not create Article batch 8 now; consider a narrow register PR for the consolidated popular culture/everyday life gaps, then run manual review before any data batch.
 
 ### Metadata først
 
@@ -708,19 +708,21 @@ Dette er en audit-/beslutningsseksjon etter Article batch 7, ikke en ny data-bat
 
 ### Vent selv om mulig
 
-#### deferSafeButLowValue (0)
+#### deferSafeButLowValue (2)
 
-- (ingen)
+| id/title | possibleDesignCode | reason |
+| --- | --- | --- |
+| bygdoy_natur — Bygdøy naturmiljø | article_nature_route_miniature | tydelig eksisterende fagområde (natur, bynatur) → `article_nature_route_miniature` |
+| furuset_haugerud_skogbelte_boligkant — Boligkant og naturkant | article_nature_route_miniature | tydelig eksisterende fagområde (skogbelte, nærnatur) → `article_nature_route_miniature` |
 
 ### Anbefalt neste PR-rekkefølge
 
 | step | title | type | reason | scope |
 | --- | --- | --- | --- | --- |
-| 1 | Metadata-first cleanup for thin article defaults | metadata | Fem resterende artikler mangler nok summary.themes, classification.tags eller presis popupDesc til at audit bør foreslå designCode uten gjetting. | Kun metadatafelter i de identifiserte artiklene; ingen visual.designCode i samme PR. |
-| 2 | Register proposal for popular culture and everyday life article codes | register | De største konsoliderte hullene er article_popular_culture_miniature og article_everyday_life_miniature; andre foreslåtte koder bør vente eller samles med manuell vurdering. | Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes. |
-| 3 | Manual review of ambiguous remainder | manual-review | Fjorten artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie og infrastruktur. | Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default. |
-| 4 | Small data batch only after decisions are complete | data-batch | Det finnes ingen trygge batchkandidater i restgruppen nå; Article batch 8 bør ikke opprettes før metadata, register og manuelle valg er avklart. | Eventuell senere batch skal være liten og bare bruke vedtatte eksisterende eller nye koder. |
-| 5 | Accept intentional article defaults | none | Noen brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes. | Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes. |
+| 1 | Register proposal for consolidated article-code gaps | register | 23 artikler peker mot manglende artikkelkoder; prioriter article_popular_culture_miniature og article_everyday_life_miniature fordi de har flere reelle kandidater og tydelig systemverdi. | Vurder registerutvidelse og renderHints for koder med flere reelle kandidater; ikke merk data før registeret finnes. |
+| 2 | Manual review of ambiguous remainder | manual-review | 14 artikler har to omtrent like plausible koder eller krever faglig valg mellom sted, bruk, sosialhistorie, infrastruktur og mulig ny kode. | Beslutningsnotat per artikkel; kan ende med eksisterende kode, ny kode, metadataarbeid eller bevisst default. |
+| 3 | Defer safe existing-code candidates | data-batch | 2 artikler kan trolig merkes med eksisterende kode, men verdien er lavere enn å avklare register- og manuelle beslutninger først. | Ingen Article batch 8 nå; vurder disse bare i en senere, liten data-batch etter beslutningsarbeidet. |
+| 4 | Accept intentional article defaults | none | 7 brede, blandede eller svakt visuelle artikler bør ikke presses inn i smale designCodes. | Behold article_default_miniature for artiklene i keepDefaultIntentionally til bedre semantisk grunnlag finnes. |
 
 ## Invalid eksplisitte designCodes
 
