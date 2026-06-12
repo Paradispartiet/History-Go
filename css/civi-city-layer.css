@@ -38,10 +38,8 @@ body.civi-mapmode .civi-city-layer {
   position: absolute;
   transform: translate(-50%, -50%);
   will-change: left, top;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  display: grid;
+  place-items: center;
   padding: 0;
   border: 0;
   background: none;
@@ -84,19 +82,6 @@ body.civi-mapmode .civi-city-layer {
   border-style: dashed;
 }
 
-.civi-city-place-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  padding: 2px 7px;
-  border-radius: 8px;
-  background: rgba(12, 18, 26, 0.74);
-  white-space: nowrap;
-  max-width: 124px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 /* ---- Vennefigurer ---- */
 /* left/top settes i px fra kartprojeksjonen + liten deterministisk
    skjermpiksel-offset rundt stedet (flere venner på samme sted). */
@@ -104,10 +89,8 @@ body.civi-mapmode .civi-city-layer {
   position: absolute;
   transform: translate(-50%, -50%);
   will-change: left, top;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  display: grid;
+  place-items: center;
   padding: 0;
   border: 0;
   background: none;
@@ -149,28 +132,10 @@ body.civi-mapmode .civi-city-layer {
 /* Markører uten kartanker (CanvasMap aktiv, men stedet kan ikke projiseres)
    skjules – de skal aldri plasseres tilfeldig midt på kartet. Klassen settes
    av JS i positionMarker(); en egen regel trengs fordi .civi-city-place/.friend
-   setter display:flex og ville ellers overstyre [hidden]. */
+   setter egen display-verdi og ville ellers overstyre [hidden]. */
 .civi-city-place.is-unanchored,
 .civi-city-friend.is-unanchored {
   display: none;
-}
-
-.civi-city-friend-tag {
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1.2;
-  text-align: center;
-  padding: 2px 7px;
-  border-radius: 8px;
-  background: rgba(12, 18, 26, 0.8);
-  white-space: nowrap;
-}
-
-.civi-city-friend-tag small {
-  display: block;
-  font-weight: 400;
-  opacity: 0.82;
-  font-size: 10px;
 }
 
 /* ---- Spillerens eget fase-minne (diskret status) ---- */
@@ -482,17 +447,6 @@ body.civi-mapmode .civi-city-layer {
   box-shadow: 0 0 0 3px rgba(170, 130, 240, 0.2), 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Systemnodenes label leses som funksjonsetikett, ikke stedsnavn. */
-.civi-city-place.is-role-system-node .civi-city-place-label,
-.civi-city-place.is-role-player-home .civi-city-place-label,
-.civi-city-place.is-role-work-node .civi-city-place-label,
-.civi-city-place.is-role-insight-node .civi-city-place-label {
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 11px;
-  opacity: 0.92;
-}
-
 /* Ekte sosiale steder (Fuglen/Tim Wendelboe/St. Hanshaugen park …): konkrete
    møteplasser. Pin-aktig markørstil, sterkere/tydeligere enn fallback. */
 .civi-city-place.is-role-social-place {
@@ -503,10 +457,6 @@ body.civi-mapmode .civi-city-layer {
   background: rgba(16, 22, 18, 0.78);
   border-color: rgba(150, 220, 170, 0.55);
 }
-.civi-city-place.is-role-social-place .civi-city-place-label {
-  font-weight: 700;
-}
-
 /* Venners hjem: spillanker/hjemmepunkt, ikke ekte adresse/GPS. Diskret, stiplet
    ramme – tydelig som "hjem i spillet". (is-friend-home beholdes for
    bakoverkompat; rollen styrer den samme stilen.) */
@@ -515,13 +465,8 @@ body.civi-mapmode .civi-city-layer {
   border-style: dashed;
   background: rgba(20, 24, 34, 0.7);
 }
-.civi-city-place.is-role-friend-home .civi-city-place-label {
-  font-weight: 500;
-  opacity: 0.82;
-}
-
 /* Generiske sosiale fallback-noder (Kafé/Park/Fotballbane/Kultursted …): tones
-   ned og får stiplet ramme/kursiv label slik at de leses som kategoriinnganger
+   ned og får stiplet ramme slik at de leses som kategoriinnganger
    og aldri konkurrerer visuelt med ekte sosiale steder (social_place). */
 .civi-city-place.is-role-social-fallback {
   opacity: 0.6;
@@ -534,12 +479,6 @@ body.civi-mapmode .civi-city-layer {
   border-color: rgba(255, 255, 255, 0.26);
   box-shadow: none;
 }
-.civi-city-place.is-role-social-fallback .civi-city-place-label {
-  font-weight: 500;
-  font-style: italic;
-  opacity: 0.78;
-}
-
 /* Spillerens lagrede fasevalg ("hvor valgte jeg å gå"): grønn ring rundt
    markøren. Fase-minne, ikke live-posisjon – skilles bevisst fra gull-haloen
    til is-active (aktiv i fasen) og fra is-selected (åpnet i detaljpanelet). */
@@ -677,9 +616,6 @@ body.civi-mapmode .civi-city-layer {
 }
 
 @media (max-width: 520px) {
-  .civi-city-place-label {
-    max-width: 96px;
-  }
   .civi-city-detail-grid {
     grid-template-columns: 1fr;
   }
