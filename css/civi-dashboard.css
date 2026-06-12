@@ -8,13 +8,13 @@
 
 :root {
   --civi-page-max: 1180px;
-  --civi-gap: 14px;
+  --civi-gap: 16px;
   --civi-hero-radius: 24px;
   --civi-card-radius: 18px;
-  --civi-soft-line: rgba(255,255,255,0.10);
-  --civi-soft-line-2: rgba(255,255,255,0.16);
-  --civi-panel-bg: linear-gradient(180deg, rgba(28,28,31,0.92), rgba(15,15,18,0.94));
-  --civi-panel-bg-soft: rgba(255,255,255,0.045);
+  --civi-soft-line: rgba(255,255,255,0.12);
+  --civi-soft-line-2: rgba(255,255,255,0.18);
+  --civi-panel-bg: linear-gradient(180deg, rgba(34,44,56,0.93), rgba(22,30,40,0.95));
+  --civi-panel-bg-soft: rgba(255,255,255,0.06);
   --civi-gold: #d6aa3a;
   --civi-green: #5fb879;
   --civi-blue: #7fa7d6;
@@ -26,9 +26,10 @@ body.civi-app {
     radial-gradient(circle at 22% 0%, rgba(214,170,58,0.16), transparent 32%),
     radial-gradient(circle at 85% 10%, rgba(127,167,214,0.13), transparent 34%),
     radial-gradient(circle at 48% 100%, rgba(95,184,121,0.09), transparent 30%),
-    #050506;
+    #111821;
 }
 
+/* Svak vignette – kun litt dybde, skal ikke mørkne kart eller paneler. */
 body.civi-app::before {
   content: "";
   position: fixed;
@@ -36,8 +37,8 @@ body.civi-app::before {
   pointer-events: none;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.28), transparent 26%, rgba(0,0,0,0.52)),
-    radial-gradient(circle at center, transparent 0, rgba(0,0,0,0.34) 78%);
+    linear-gradient(180deg, rgba(0,0,0,0.10), transparent 26%, rgba(0,0,0,0.18)),
+    radial-gradient(circle at center, transparent 0, rgba(0,0,0,0.12) 84%);
 }
 
 body.civi-app .topbar,
@@ -89,7 +90,7 @@ body.civi-app .civi-track-hud {
   border-radius: var(--civi-card-radius);
   background: var(--civi-panel-bg);
   border: 1px solid var(--civi-soft-line);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.32);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.24);
   overflow: hidden;
 }
 
@@ -101,10 +102,10 @@ body.civi-app .civi-panels > section::before {
 }
 
 body.civi-app .civi-panels h2 {
-  font-size: 14px;
-  letter-spacing: 0.08em;
+  font-size: 16px;
+  letter-spacing: 0.06em;
   margin-bottom: 12px;
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.84);
 }
 
 /* ------------------------------------------------------------
@@ -155,9 +156,9 @@ body.civi-app .civi-panels h2 {
 
 #civiDashRole {
   margin: 0;
-  max-width: 230px;
-  font-size: clamp(14px, 2vw, 16px);
-  line-height: 1.1;
+  max-width: 260px;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.15;
   letter-spacing: -0.01em;
   font-weight: 780;
   white-space: nowrap;
@@ -168,8 +169,8 @@ body.civi-app .civi-panels h2 {
 #civiDashSummary {
   margin: 0;
   max-width: 320px;
-  color: rgba(255,255,255,0.72);
-  font-size: 14px;
+  color: rgba(255,255,255,0.78);
+  font-size: 15px;
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
@@ -190,16 +191,16 @@ body.civi-app .civi-panels h2 {
 
 .civi-dashboard-focus-label {
   margin-bottom: 0;
-  color: rgba(255,255,255,0.48);
-  font-size: 12px;
+  color: rgba(255,255,255,0.56);
+  font-size: 13px;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 #civiDashFocus {
-  color: rgba(255,255,255,0.88);
-  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -227,8 +228,8 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-dashboard-metric span {
-  color: rgba(255,255,255,0.54);
-  font-size: 12px;
+  color: rgba(255,255,255,0.62);
+  font-size: 13px;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -237,7 +238,7 @@ body.civi-app .civi-panels h2 {
 .civi-dashboard-metric strong {
   margin-top: 0;
   color: #fff;
-  font-size: clamp(12px, 2vw, 14px);
+  font-size: clamp(15px, 2vw, 16px);
   line-height: 1.15;
   font-weight: 860;
   letter-spacing: -0.01em;
@@ -247,8 +248,8 @@ body.civi-app .civi-panels h2 {
 
 .civi-dashboard-metric small {
   margin-top: 0;
-  color: rgba(255,255,255,0.62);
-  font-size: 12px;
+  color: rgba(255,255,255,0.68);
+  font-size: 13px;
   line-height: 1.1;
   white-space: nowrap;
 }
@@ -279,10 +280,10 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-phase-panel {
   margin: -4px 0 2px;
-  padding: 10px 12px;
-  border: 1px solid rgba(210,225,240,.12);
+  padding: 12px 14px;
+  border: 1px solid rgba(210,225,240,.14);
   border-radius: 14px;
-  background: rgba(16,23,31,.72);
+  background: rgba(26,35,46,.78);
   box-shadow: none;
 
   display: flex;
@@ -303,7 +304,7 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-day-phase-kicker {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: .06em;
   text-transform: uppercase;
   opacity: .7;
@@ -312,7 +313,7 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-phase-title {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: #edf3ff;
   line-height: 1.2;
@@ -321,7 +322,7 @@ body.civi-app .civi-panels h2 {
 .civi-day-phase-meta,
 .civi-day-phase-status {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #dce8f5;
   opacity: .88;
 }
@@ -331,7 +332,7 @@ body.civi-app .civi-panels h2 {
   padding-left: 16px;
   display: grid;
   gap: 2px;
-  font-size: 14px;
+  font-size: 15px;
   opacity: .85;
 }
 
@@ -345,21 +346,21 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.12);
+  border: 1px solid rgba(210,225,240,.14);
   border-radius: 10px;
-  background: rgba(14,20,27,.55);
+  background: rgba(24,33,44,.6);
 }
 
 .civi-day-complete-title {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #edf3ff;
 }
 
 .civi-day-complete-text {
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #dce8f5;
   opacity: .9;
 }
@@ -379,7 +380,7 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-complete-grid dt {
   margin: 0;
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: .05em;
   color: rgba(220,232,245,.72);
@@ -387,7 +388,7 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-complete-grid dd {
   margin: 1px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #edf3ff;
 }
 
@@ -395,13 +396,13 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.14);
+  border: 1px solid rgba(210,225,240,.16);
   border-radius: 10px;
-  background: rgba(14,20,27,.55);
+  background: rgba(24,33,44,.6);
 }
 
 .civi-outcome-kicker {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: .06em;
   text-transform: uppercase;
   opacity: .7;
@@ -431,13 +432,13 @@ body.civi-app .civi-panels h2 {
 .civi-outcome-indicator[data-outcome-kind="morning_choices_expand"] { border-left-color: #e0c06f; }
 
 .civi-outcome-indicator-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #edf3ff;
 }
 
 .civi-outcome-indicator-text {
-  font-size: 14px;
+  font-size: 15px;
   color: #dce8f5;
   opacity: .9;
 }
@@ -446,13 +447,13 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.14);
+  border: 1px solid rgba(210,225,240,.16);
   border-radius: 10px;
-  background: rgba(14,20,27,.45);
+  background: rgba(24,33,44,.5);
 }
 
 .civi-learning-kicker {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: .06em;
   text-transform: uppercase;
   opacity: .7;
@@ -475,13 +476,13 @@ body.civi-app .civi-panels h2 {
 .civi-learning-status[data-learning-status="routine"] { border-left-color: #e0c06f; }
 
 .civi-learning-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #edf3ff;
 }
 
 .civi-learning-detail {
-  font-size: 14px;
+  font-size: 15px;
   color: #dce8f5;
   opacity: .9;
 }
@@ -490,13 +491,13 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.14);
+  border: 1px solid rgba(210,225,240,.16);
   border-radius: 10px;
-  background: rgba(14,20,27,.55);
+  background: rgba(24,33,44,.6);
 }
 
 .civi-reentry-lock-kicker {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: .06em;
   text-transform: uppercase;
   opacity: .7;
@@ -520,13 +521,13 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-reentry-lock-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #edf3ff;
 }
 
 .civi-reentry-lock-detail {
-  font-size: 14px;
+  font-size: 15px;
   color: #dce8f5;
   opacity: .9;
 }
@@ -648,8 +649,8 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-offer-eligibility-muted {
-  font-size: 14px;
-  color: rgba(255,255,255,0.72);
+  font-size: 15px;
+  color: rgba(255,255,255,0.76);
 }
 
 .home-homeless p,
@@ -712,7 +713,7 @@ body.civi-app .civi-panels h2 {
 .civi-workday-sub,
 .civi-workday-task-desc,
 .civi-feed-time {
-  color: rgba(255,255,255,0.58) !important;
+  color: rgba(255,255,255,0.68) !important;
 }
 
 /* ------------------------------------------------------------
@@ -722,7 +723,7 @@ body.civi-app .civi-panels h2 {
 .civi-footer {
   height: 72px;
   padding: 10px max(12px, env(safe-area-inset-left)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-right));
-  background: rgba(5,5,6,0.74);
+  background: rgba(17,24,33,0.78);
 }
 
 .civi-btn {
@@ -800,12 +801,9 @@ body.civi-app .civi-panels h2 {
     border-radius: 16px;
   }
 
+  /* Tittel og tilbake-lenke deler øverste rad (arver ≤920-layouten);
+     det holder headeren lav selv med større dashboardtekst. */
   body.civi-app .topbar {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "dashboard"
-      "right";
     gap: 8px;
   }
 
@@ -838,7 +836,7 @@ body.civi-app .civi-panels h2 {
   .civi-btn {
     min-height: 48px;
     padding-inline: 8px;
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 

@@ -103,7 +103,7 @@ body.civi-app .place-card{
 
 @media (max-width: 920px){
   :root{
-    --civi-shell-header-h: 132px;
+    --civi-shell-header-h: 140px;
   }
 
   body.civi-app .topbar{
@@ -113,9 +113,11 @@ body.civi-app .place-card{
   }
 }
 
+/* Topbar bruker to rader på små skjermer (tittel + dashboard), så
+   headeren kan være lavere enn før selv med større typografi. */
 @media (max-width: 560px){
   :root{
-    --civi-shell-header-h: 184px;
+    --civi-shell-header-h: 176px;
     --civi-shell-footer-h: 78px;
   }
 }
