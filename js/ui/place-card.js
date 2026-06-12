@@ -2048,13 +2048,26 @@ function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
-  let collapsed = false;
-  try {
-    collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1");
-  } catch {}
+  const currentPlaceId = String(pc.dataset.currentPlaceId || "").trim();
 
-  if (collapsed) collapsePlaceCard();
-  else expandPlaceCard();
+  if (!currentPlaceId) {
+    if (window.bottomSheetController?.hide) {
+      window.bottomSheetController.hide();
+    } else {
+      pc.classList.remove("is-open", "is-collapsed");
+      pc.classList.add("is-hidden");
+      pc.setAttribute("aria-hidden", "true");
+    }
+    setPlaceCardMiniVisible(false);
+  } else {
+    let collapsed = false;
+    try {
+      collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1");
+    } catch {}
+
+    if (collapsed) collapsePlaceCard();
+    else expandPlaceCard();
+  }
 
   if (pc.dataset.pcCollapseBound === "1") return;
   pc.dataset.pcCollapseBound = "1";
