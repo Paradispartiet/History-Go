@@ -12,7 +12,8 @@
     "data/stories/stories_manifest_politikk_batch_01.json",
     "data/stories/stories_manifest_popkultur_film_batch_01.json",
     "data/stories/stories_manifest_kunst_batch_01.json",
-    "data/stories/stories_manifest_historie_batch_01.json"
+    "data/stories/stories_manifest_historie_batch_01.json",
+    "data/stories/stories_manifest_lisboa_historie_batch_01.json"
   ];
 
   function ensureArray(value) {
