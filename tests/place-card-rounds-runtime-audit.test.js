@@ -83,7 +83,13 @@ for (const [id, expected] of Object.entries({
   torggata: ['leksikon', 'brands', 'badges', 'routes'],
   damstredet_telthusbakken: ['people', 'badges', 'leksikon', 'routes'],
   bygdoy_kongeskogen: ['nature', 'badges', 'leksikon', 'routes'],
-  bislett_stadion: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes']
+  bislett_stadion: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes'],
+  intility_arena: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes'],
+  valle_hovin_stadion: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes'],
+  holmenkollen_nasjonalanlegg: ['people', 'nature', 'badges', 'brands', 'leksikon', 'routes'],
+  treningssted_sognsvann: ['nature', 'badges', 'leksikon', 'routes'],
+  jernbaneverkstedet_lodalen: ['people', 'badges', 'civication', 'brands', 'leksikon', 'routes'],
+  sofienbergparken_subkultur: ['people', 'nature', 'badges', 'civication', 'brands', 'leksikon', 'routes', 'music']
 })) {
   const found = findPlace(id);
   assert(found, `Fant ikke teststed ${id}`);
