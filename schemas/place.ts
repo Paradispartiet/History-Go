@@ -48,11 +48,14 @@ export interface Place {
   wonderkammer?: unknown;
   /**
    * Datastyrte PlaceCard-rundinger. Bestemmer hvilke runding-knapper kortet
-   * viser for dette stedet, i den rekkefølgen de listes.
-   * Gyldige id-er: people, stories, wonderkammer, nature, badges, routes,
-   * football, lexicon (i tillegg støttes civication, brands, music).
-   * Mangler feltet, brukes standard-fallback: people, stories, wonderkammer,
-   * nature, badges. Se js/ui/place-card.js (PLACE_ROUND_REGISTRY / getPlaceRounds).
+   * viser for dette stedet, i den rekkefølgen de listes. Bruk `rounds` i nye
+   * data; `rundinger` støttes som norsk alias i runtime.
+   * Canonical id-er: people, nature, badges, civication, brands, leksikon,
+   * routes, music, football. `lexicon` støttes kun som alias til `leksikon`.
+   * Stories/Fortellinger, Lesespor og Wonderkammer ligger under Leksikon og
+   * skal ikke brukes som egne PlaceCard-hovedrundinger. Mangler feltet, brukes
+   * standard-fallback: people, nature, badges, civication, brands, leksikon,
+   * routes. Se js/ui/place-card.js (PLACE_ROUND_REGISTRY / getPlaceRounds).
    */
   rounds?: string[];
   /** Alias for `rounds` (legacy). Foretrekk `rounds` i nye data. */

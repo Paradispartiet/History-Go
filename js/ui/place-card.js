@@ -284,22 +284,18 @@ window.HGPlaceNatureProfile = {
 /** @type {PlaceRoundDef[]} */
 const PLACE_ROUND_REGISTRY = [
   { id: "people",       label: "Personer",     fallbackIcon: "👥", iconId: "pcPeopleIcon",          listId: "pcPeopleList",          kind: "people" },
-  { id: "stories",      label: "Historier",    fallbackIcon: "📖", iconId: "pcStoriesIcon",         listId: "pcStoriesList",         kind: "stories" },
-  { id: "wonderkammer", label: "Wonderkammer", fallbackIcon: "🗝️", iconId: "pcWonderkammerIcon",    listId: "pcWonderkammerList",    kind: "wonderkammer" },
   { id: "nature",       label: "Natur",        fallbackIcon: "🌿", iconId: "pcNatureIcon",          listId: "pcNatureList",          kind: "nature" },
   { id: "badges",       label: "Merker",       fallbackIcon: "🏅", iconId: "pcBadgesIcon",          listId: "pcBadgesList",          kind: "badges" },
-  { id: "routes",       label: "Ruter",        fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
-  { id: "football",     label: "Fotball",      fallbackIcon: "⚽", iconId: "pcFootballIcon",        listId: "pcFootballList",        kind: "football" },
-  { id: "lexicon",      label: "Leksikon",     fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["leksikon"] },
-  // Eksisterende tilleggsrundinger: støttet, men ikke del av standard-fallback.
-  // Et sted må deklarere dem eksplisitt i `rounds` for å vise dem.
   { id: "civication",   label: "Civication",   fallbackIcon: "🛒", iconId: "pcCivicationStoreIcon", listId: "pcCivicationStoreList", kind: "civication" },
   { id: "brands",       label: "Brands",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
-  { id: "music",        label: "Musikk",       fallbackIcon: "♫",  iconId: "pcMusicIcon",           listId: "pcMusicList",           kind: "music" }
+  { id: "leksikon",     label: "Leksikon",     fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["lexicon"] },
+  { id: "routes",       label: "Ruter",        fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
+  { id: "music",        label: "Musikk",       fallbackIcon: "♫",  iconId: "pcMusicIcon",           listId: "pcMusicList",           kind: "music" },
+  { id: "football",     label: "Fotball",      fallbackIcon: "⚽", iconId: "pcFootballIcon",        listId: "pcFootballList",        kind: "football" }
 ];
 
 /** Standard rundinger når et sted ikke deklarerer `rounds` (krav 4). */
-const DEFAULT_PLACE_ROUNDS = ["people", "stories", "wonderkammer", "nature", "badges"];
+const DEFAULT_PLACE_ROUNDS = ["people", "nature", "badges", "civication", "brands", "leksikon", "routes"];
 
 /** @type {Record<string, PlaceRoundDef>} id (+ alias) → definisjon. */
 const PLACE_ROUND_BY_ID = (() => {
@@ -762,8 +758,6 @@ const descEl     = document.getElementById("pcDesc");
 const lesesporEl = document.getElementById("pcLesespor");
 
 const peopleIcon          = document.getElementById("pcPeopleIcon");
-const storiesIcon         = document.getElementById("pcStoriesIcon");
-const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const natureIcon          = document.getElementById("pcNatureIcon");
 const badgesIcon          = document.getElementById("pcBadgesIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
@@ -782,8 +776,6 @@ bindPlaceCardQuizFlip(frontCardFlipEl, quizCardImgEl);
 const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
 const peopleEl          = document.getElementById("pcPeopleList");
-const storiesEl         = document.getElementById("pcStoriesList");
-const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const natureEl          = document.getElementById("pcNatureList");
 const badgesEl          = document.getElementById("pcBadgesList");
 const routesEl          = document.getElementById("pcRoutesList");
@@ -814,8 +806,6 @@ if (!card.dataset.pcIconsBound) {
 
   const closeAllLists = () => {
     peopleEl?.classList.remove("is-open");
-    storiesEl?.classList.remove("is-open");
-    wonderkammerEl?.classList.remove("is-open");
     natureEl?.classList.remove("is-open");
     badgesEl?.classList.remove("is-open");
     routesEl?.classList.remove("is-open");
@@ -949,8 +939,6 @@ iconsWrap?.addEventListener("click", (e) => {
 });
 
 bindRoundPopup(peopleIcon, peopleEl, "People", "people");
-bindRoundPopup(storiesIcon, storiesEl, "Historier", "stories");
-bindRoundPopup(wonderkammerIcon, wonderkammerEl, "Wonderkammer", "wonderkammer");
 bindRoundPopup(natureIcon, natureEl, "Natur", "nature");
 bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
@@ -961,8 +949,6 @@ bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
 bindRoundPopup(musicIcon, musicEl, "Musikk", "music");
 
 peopleEl?.addEventListener("click", (e) => e.stopPropagation());
-storiesEl?.addEventListener("click", (e) => e.stopPropagation());
-wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
 natureEl?.addEventListener("click", (e) => e.stopPropagation());
 badgesEl?.addEventListener("click", (e) => e.stopPropagation());
 routesEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -1930,73 +1916,6 @@ if (leksikonEl) {
   `;
 
   setRoundLabel(leksikonIcon, "📚", 1);
-}
-
-// --- STORIES LIST + ICON (historier / lesespor) ---
-if (storiesEl) {
-  /** @type {any[]} */ let storyItems = [];
-  try {
-    if (typeof window.HGStories?.getByPlace === "function") {
-      storyItems = window.HGStories.getByPlace(place.id) || [];
-    }
-  } catch (e) { console.warn("[placeCard.stories]", e); }
-
-  /** @type {any[]} */ let lesesporItems = [];
-  try {
-    if (typeof window.DataHub?.getLesesporForPlace === "function") {
-      lesesporItems = window.DataHub.getLesesporForPlace(place.id) || [];
-    }
-  } catch (e) { console.warn("[placeCard.lesespor]", e); }
-
-  const storyRows = [...storyItems, ...lesesporItems]
-    .map((s) => ({
-      title: String(s?.title || s?.name || s?.id || "").trim(),
-      meta: String(s?.summary || s?.desc || s?.popupDesc || "").trim()
-    }))
-    .filter((row) => row.title);
-
-  storiesEl.innerHTML = storyRows.length
-    ? storyRows.map((row) => `
-        <article class="pc-relation-card">
-          <div class="pc-relation-title">${escapePlaceCardHTML(row.title)}</div>
-          ${row.meta ? `<div class="pc-relation-meta">${escapePlaceCardHTML(row.meta)}</div>` : ""}
-        </article>
-      `).join("")
-    : `<div class="pc-empty">Ingen historier ennå</div>`;
-
-  setRoundLabel(storiesIcon, "📖", storyRows.length);
-}
-
-// --- WONDERKAMMER LIST + ICON ---
-if (wonderkammerEl) {
-  const rawWonder = Array.isArray(place.wonderkammer) ? place.wonderkammer : [];
-  const seenWonder = new Set();
-  const wonderItems = rawWonder
-    .map((item, i) => {
-      if (typeof item === "string") return { id: item, label: item, image: "" };
-      return {
-        id: String(item?.id ?? item?.slug ?? item?.key ?? `wk_${i}`).trim(),
-        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Wonderkammer ${i + 1}`).trim(),
-        image: String(item?.image ?? item?.icon ?? "").trim()
-      };
-    })
-    .filter((item) => item.id && item.label)
-    .filter((item) => {
-      if (seenWonder.has(item.id)) return false;
-      seenWonder.add(item.id);
-      return true;
-    });
-
-  wonderkammerEl.innerHTML = wonderItems.length
-    ? wonderItems.map((item) => `
-        <button class="pc-civi-entry" data-wk="${escapePlaceCardHTML(item.id)}">
-          ${item.image ? `<img src="${escapePlaceCardHTML(item.image)}" class="pc-person-img" alt="">` : `<span class="pc-civi-emoji">🗝️</span>`}
-          <span class="pc-civi-entry-title">${escapePlaceCardHTML(item.label)}</span>
-        </button>
-      `).join("")
-    : `<div class="pc-empty">Ingen wonderkammer-objekter ennå</div>`;
-
-  setRoundLabel(wonderkammerIcon, "🗝️", wonderItems.length);
 }
 
 // --- FOOTBALL / SPORT LIST + ICON (fra place.sport_profile) ---
