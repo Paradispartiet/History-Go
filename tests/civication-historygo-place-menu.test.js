@@ -49,8 +49,8 @@ check("Dra dit sender lokalt travel-request-event uten progresjonslagring", () =
   assert.match(travelHandler[0], /civi:historyGoPlaceTravelRequested/);
   assert.match(travelHandler[0], /detail: \{ placeId: place\.id, place, source: "CivicationHistoryGoPlaceLayer" \}/);
   assert.match(travelHandler[0], /"Mål satt: " \+ \(place\.name \|\| place\.id\)/);
-  assert.doesNotMatch(travelHandler[0], /localStorage|visited_places|merits_by_category|quiz_progress/);
-  assert.doesNotMatch(travelHandler[0], /Reisehandling er registrert lokalt|travel-motoren finnes/);
+  assert.doesNotMatch(travelHandler[0], /localStorage|visited_places|merits_by_category|quiz_progress|CivicationTravelState/);
+  assert.doesNotMatch(layer, /Reisehandling er registrert lokalt|travel-motoren finnes/);
 });
 
 check("Canvas-kartet delegerer place-objektet til felles meny", () => {
