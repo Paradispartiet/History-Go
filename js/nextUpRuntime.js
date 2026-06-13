@@ -58,6 +58,12 @@
     return esc(value);
   }
 
+  function compactText(value, maxLength = 150) {
+    const text = s(value);
+    if (text.length <= maxLength) return text;
+    return `${text.slice(0, Math.max(0, maxLength - 1)).trimEnd()}…`;
+  }
+
   function ensureCss(href) {
     if (document.querySelector(`link[href="${href}"]`)) return;
 
@@ -241,6 +247,7 @@
 
   function suggestionIcon(type) {
     return {
+      historisk_rute: "⏳",
       spatial: "🧭",
       wonderkammer: "🗃️",
       narrative: "📖",
@@ -252,6 +259,7 @@
 
   function suggestionTitle(type) {
     const titles = {
+      historisk_rute: ["ui.nextup.suggestion.historicalRoute", "Historisk rute"],
       spatial: ["ui.nextup.suggestion.nextPlace", "Neste sted"],
       wonderkammer: ["ui.nextup.suggestion.wonderkammer", "Wonderkammer"],
       narrative: ["ui.nextup.suggestion.nextScene", "Neste scene"],
@@ -452,6 +460,93 @@
       .sort((a, b) => b.score - a.score);
   }
 
+  function historicalRouteState(progress = {}) {
+    if (progress?.online?.completed || progress?.status === "online_completed") {
+      return {
+        rank: 3,
+        score: 35,
+        status: "Fullført online",
+        action: "Samle fysisk senere",
+        reason: "Online-reisen er fullført. Fysisk = du samler sporene etter den."
+      };
+    }
+    if (progress?.online?.started || ["started", "online_in_progress"].includes(progress?.status)) {
+      return {
+        rank: 1,
+        score: 110,
+        status: "Påbegynt online",
+        action: "Fortsett reisen",
+        reason: "Du er allerede i gang. Fortsett den historiske reisen der du slapp."
+      };
+    }
+    return {
+      rank: 2,
+      score: 78,
+      status: "Ikke startet",
+      action: "Start reisen",
+      reason: "Reis online gjennom en historisk bevegelseslinje."
+    };
+  }
+
+  function buildHistoricalRouteSuggestion() {
+    const api = window.HGHistoricalRoutes;
+    if (!api?.getAll || !api?.getProgress) return null;
+
+    const candidates = api.getAll()
+      .filter(route => route?.id && route?.playModes?.online?.enabled === true)
+      .map(route => {
+        const progress = api.getProgress(route.id);
+        return { route, progress, state: historicalRouteState(progress) };
+      })
+      .sort((a, b) => a.state.rank - b.state.rank);
+    const picked = candidates[0];
+    if (!picked) return null;
+
+    const { route, progress, state } = picked;
+    const physicalEnabled = route?.playModes?.physical?.enabled === true;
+    return {
+      type: "historisk_rute",
+      target_id: s(route.id),
+      label: s(route.title),
+      reason: state.reason,
+      deep_reason: s(route.narrativeText),
+      evidence: ["HGHistoricalRoutes", s(progress?.status || "not_started")],
+      score: state.score,
+      source: "historisk_rute",
+      href: "",
+      meta: {
+        route_id: s(route.id),
+        experience_mode: "back_to_the_future",
+        route_archetype: s(route.routeArchetype || "historisk reise"),
+        historical_period: s(route.historicalPeriod),
+        narrative_text: compactText(route.narrativeText),
+        status: s(progress?.status || "not_started"),
+        status_label: state.status,
+        action_label: state.action,
+        chapter_count: Array.isArray(route.chapters) ? route.chapters.length : 0,
+        physical_enabled: physicalEnabled
+      }
+    };
+  }
+
+  function suggestionsWithHistoricalRoute(tri) {
+    const suggestions = normalizeSuggestions(tri);
+    const historical = buildHistoricalRouteSuggestion();
+    return historical
+      ? [...suggestions.filter(item => item.type !== "historisk_rute"), historical]
+          .sort((a, b) => b.score - a.score)
+      : suggestions;
+  }
+
+  async function loadHistoricalRouteSuggestion(tri = readTri()) {
+    const api = window.HGHistoricalRoutes;
+    if (!api?.load) return null;
+    await api.load();
+    const suggestion = buildHistoricalRouteSuggestion();
+    renderNextUpV2(tri, { logShow: false, skipHistoricalLoad: true });
+    return suggestion;
+  }
+
   function setOpen(open) {
     const panel = document.getElementById(PANEL_ID);
     const btn = document.getElementById(BUTTON_ID);
@@ -582,6 +677,9 @@
 
     dispatchProfileUpdate();
 
+    if (sug.type === "historisk_rute") {
+      return window.HGHistoricalRoutes?.open?.(sug.meta?.route_id || sug.target_id);
+    }
     if (sug.type === "spatial") return openPlace(sug.meta?.place_id || sug.target_id);
     if (sug.type === "narrative") return openPlace(sug.meta?.next_place_id || sug.target_id);
     if (sug.type === "wonderkammer") return openWonderkammer(sug.meta?.entry_id || sug.target_id);
@@ -616,7 +714,10 @@
     if (!panel) return;
 
     const wasOpen = panel.classList.contains("is-open");
-    const suggestions = normalizeSuggestions(tri);
+    const suggestions = suggestionsWithHistoricalRoute(tri);
+    if (!options.skipHistoricalLoad && !buildHistoricalRouteSuggestion()) {
+      loadHistoricalRouteSuggestion(tri).catch(() => {});
+    }
 
     const activeMode = ensureModeStored();
     const modeRow = `
@@ -648,11 +749,16 @@
     }
 
     panel.innerHTML = modeRow + suggestions.map((sug, index) => `
-      <div class="mp-nextup-line" data-nextup-type="${attr(sug.type)}">
+      <div class="mp-nextup-line ${sug.type === "historisk_rute" ? "nextup-card--historical-route" : ""}" data-nextup-type="${attr(sug.type)}">
         <button class="mp-nextup-link" type="button" data-nextup-index="${index}" title="${attr(sug.deep_reason || sug.reason)}" data-deep-reason="${attr(sug.deep_reason)}">
           ${suggestionIcon(sug.type)} <b>${esc(suggestionTitle(sug.type))}</b>
           <span>${esc(sug.label)}</span>
-          <small>${Math.round(sug.score)} · ${esc(sug.source || "system")}</small>
+          ${sug.type === "historisk_rute" ? `
+            <small class="nextup-source--back-to-the-future">BackToTheFuture · ${esc(sug.meta.route_archetype)} · ${esc(sug.meta.historical_period)}</small>
+            <small>${esc(sug.meta.narrative_text)}</small>
+            <small>${esc(sug.meta.status_label)} · ${Number(sug.meta.chapter_count)} kapitler${sug.meta.physical_enabled ? " · Fysisk samling klargjort" : ""}</small>
+            <strong class="nextup-historical-cta">${esc(sug.meta.action_label)}</strong>
+          ` : `<small>${Math.round(sug.score)} · ${esc(sug.source || "system")}</small>`}
         </button>
       </div>
     `).join("") + pathStatus;
@@ -775,6 +881,10 @@
   }
 
   window.renderNextUpV2 = renderNextUpV2;
+  window["HGNextUpHistoricalRoutes"] = {
+    buildSuggestion: buildHistoricalRouteSuggestion,
+    loadSuggestion: loadHistoricalRouteSuggestion
+  };
   window.toggleFooterNextUp = toggleNextUp;
   window.debugNextUp = debugNextUp;
   window.getNextUpProfileSummary = getNextUpProfileSummary;
@@ -812,4 +922,7 @@
   }
 
   window.addEventListener("load", boot);
+  window.addEventListener("hg:historicalRouteProgress", () => {
+    renderNextUpV2(readTri(), { logShow: false, skipHistoricalLoad: true });
+  });
 })();
