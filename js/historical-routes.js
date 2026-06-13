@@ -325,4 +325,6 @@
     open: renderPlayer,
     close: closePlayer
   };
+
+  window.dispatchEvent(new CustomEvent("hg:historicalRoutesReady"));
 })();

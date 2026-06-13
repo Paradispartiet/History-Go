@@ -547,6 +547,17 @@
     return suggestion;
   }
 
+  let historicalRoutesReadyRefresh = null;
+  function refreshHistoricalRoutesAfterReady() {
+    if (historicalRoutesReadyRefresh) return historicalRoutesReadyRefresh;
+    historicalRoutesReadyRefresh = loadHistoricalRouteSuggestion(readTri())
+      .catch(() => null)
+      .finally(() => {
+        historicalRoutesReadyRefresh = null;
+      });
+    return historicalRoutesReadyRefresh;
+  }
+
   function setOpen(open) {
     const panel = document.getElementById(PANEL_ID);
     const btn = document.getElementById(BUTTON_ID);
@@ -922,6 +933,9 @@
   }
 
   window.addEventListener("load", boot);
+  window.addEventListener("hg:historicalRoutesReady", () => {
+    refreshHistoricalRoutesAfterReady();
+  });
   window.addEventListener("hg:historicalRouteProgress", () => {
     renderNextUpV2(readTri(), { logShow: false, skipHistoricalLoad: true });
   });
