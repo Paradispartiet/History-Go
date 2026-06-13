@@ -44,9 +44,13 @@ check("History Go-navigasjon ligger bak menyvalget Besøk i History Go", () => {
 });
 
 check("Dra dit sender lokalt travel-request-event uten progresjonslagring", () => {
-  assert.match(layer, /civi:historyGoPlaceTravelRequested/);
-  assert.match(layer, /source: "CivicationHistoryGoPlaceLayer"/);
-  assert.doesNotMatch(layer, /localStorage/);
+  const travelHandler = layer.match(/function handleTravelToPlace\(place\) \{[\s\S]*?\n  \}/);
+  assert.ok(travelHandler, "fant ikke handleTravelToPlace");
+  assert.match(travelHandler[0], /civi:historyGoPlaceTravelRequested/);
+  assert.match(travelHandler[0], /detail: \{ placeId: place\.id, place, source: "CivicationHistoryGoPlaceLayer" \}/);
+  assert.match(travelHandler[0], /"Mål satt: " \+ \(place\.name \|\| place\.id\)/);
+  assert.doesNotMatch(travelHandler[0], /localStorage|visited_places|merits_by_category|quiz_progress/);
+  assert.doesNotMatch(travelHandler[0], /Reisehandling er registrert lokalt|travel-motoren finnes/);
 });
 
 check("Canvas-kartet delegerer place-objektet til felles meny", () => {

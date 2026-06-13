@@ -397,7 +397,7 @@
       detail: { placeId: place.id, place, source: "CivicationHistoryGoPlaceLayer" }
     }));
     if (_placeMenu) {
-      _placeMenu.feedback.textContent = "Reisehandling er registrert lokalt. Progresjon kobles når travel-motoren finnes.";
+      _placeMenu.feedback.textContent = "Mål satt: " + (place.name || place.id);
       _placeMenu.feedback.hidden = false;
     }
   }
