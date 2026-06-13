@@ -468,6 +468,24 @@
   white-space: nowrap;
 }
 
+/* Epokelinje (settes av js/ui/place-card-epoke.js) – diskret sekundærlinje
+   på egen rad, IKKE en chip/pill. Holder uttrykket minimalistisk. */
+#placeCard #pcMeta > .pc-epoke{
+  flex-basis: 100%;
+  margin-top: 2px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: normal;
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: rgba(255,255,255,.70);
+}
+
 /* Brødtekst – kort, kontrollert utdrag (full tekst i "Mer info") */
 #placeCard #pcDesc{
   order: 3;
