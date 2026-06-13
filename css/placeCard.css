@@ -48,7 +48,10 @@
   /* Bottom-sheet: stopper over den faste footeren. Posisjon/lag styres
      autoritativt i css/layout.css (body.hg-app #placeCard) – verdiene her
      holdes i synk for robust fallback uten app-spesifisiteten. */
-  bottom: var(--hg-bottom-nav-height, 80px);
+  bottom: var(
+    --hg-bottom-nav-height,
+    calc(80px + env(safe-area-inset-bottom, 0px))
+  );
   top: auto;
 
   /* height:auto lar kortet vokse med innholdet; max-height er
@@ -59,13 +62,13 @@
   max-height: calc(
     100vh
     - var(--hg-visual-header-height, 74px)
-    - var(--hg-bottom-nav-height, 80px)
+    - var(--hg-bottom-nav-height, calc(80px + env(safe-area-inset-bottom, 0px)))
     - 16px
   );
   max-height: calc(
     100dvh
     - var(--hg-visual-header-height, 74px)
-    - var(--hg-bottom-nav-height, 80px)
+    - var(--hg-bottom-nav-height, calc(80px + env(safe-area-inset-bottom, 0px)))
     - 16px
   );
 
