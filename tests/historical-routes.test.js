@@ -59,6 +59,8 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "js/historical-routes.js"), "utf
 
 (async () => {
   const api = context.window.HGHistoricalRoutes;
+  assert.ok(api, "HGHistoricalRoutes API skal finnes før ready-event");
+  assert.strictEqual(dispatched[0]?.type, "hg:historicalRoutesReady");
   await api.load();
   assert.strictEqual(api.getAll().length, 1);
 
