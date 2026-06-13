@@ -65,13 +65,22 @@
           },
           "physical": {
             "type": "object",
-            "required": ["enabled", "placeId", "gpsRadius", "physicalCollected"],
+            "required": ["enabled", "physicalCollected"],
             "properties": {
               "enabled": { "type": "boolean" },
               "placeId": { "type": "string", "minLength": 1 },
               "gpsRadius": { "type": "number", "exclusiveMinimum": 0 },
               "physicalCollected": { "type": "boolean" }
-            }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": { "enabled": { "const": true } },
+                  "required": ["enabled"]
+                },
+                "then": { "required": ["placeId", "gpsRadius"] }
+              }
+            ]
           }
         }
       }

@@ -6,24 +6,45 @@ const vm = require("vm");
 const ROOT = path.resolve(__dirname, "..");
 const routeFile = path.join(ROOT, "data/routes/historical/routes_historical_oslo.json");
 const routes = JSON.parse(fs.readFileSync(routeFile, "utf8"));
-const placeIndex = JSON.parse(fs.readFileSync(path.join(ROOT, "data/places/places_index.json"), "utf8"));
-const placeIds = new Set(placeIndex.map((place) => place.id));
+const placesManifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/places/manifest.json"), "utf8"));
+const placeIds = new Set();
+placesManifest.files.forEach((file) => {
+  const placeFile = path.join(ROOT, "data", file);
+  if (!fs.existsSync(placeFile)) return;
+  const data = JSON.parse(fs.readFileSync(placeFile, "utf8"));
+  const places = Array.isArray(data) ? data : (Array.isArray(data.places) ? data.places : []);
+  places.forEach((place) => {
+    if (place?.id) placeIds.add(place.id);
+  });
+});
 
-assert.strictEqual(routes.length, 1, "v0.1 skal ha én eksempelrute");
+assert.ok(routes.length >= 5, "historiske ruter skal inneholde eksempelrute og v0.3-utvidelser");
 const route = routes[0];
 assert.strictEqual(route.type, "historical_route");
 assert.strictEqual(route.feature, "historiske_ruter");
 assert.strictEqual(route.playModes.online.enabled, true);
 assert.strictEqual(route.playModes.physical.enabled, true);
 assert.ok(route.chapters.length >= 3);
-route.chapters.forEach((chapter) => {
-  assert.ok(placeIds.has(chapter.placeId), `Ukjent placeId: ${chapter.placeId}`);
-  assert.strictEqual(chapter.physical.placeId, chapter.placeId);
-  assert.strictEqual(chapter.physical.enabled, true);
-  assert.ok(chapter.physical.gpsRadius > 0);
-  assert.strictEqual(chapter.physical.physicalCollected, false);
-  assert.ok(chapter.narrativeText);
-  assert.ok(chapter.tasks.length >= 1);
+routes.forEach((historicalRoute) => {
+  assert.strictEqual(historicalRoute.type, "historical_route");
+  assert.strictEqual(historicalRoute.feature, "historiske_ruter");
+  assert.strictEqual(historicalRoute.playModes.online.enabled, true);
+  assert.ok(historicalRoute.chapters.length >= 3);
+  historicalRoute.chapters.forEach((chapter) => {
+    if (chapter.placeId) {
+      assert.ok(placeIds.has(chapter.placeId), `Ukjent placeId: ${chapter.placeId}`);
+      assert.strictEqual(chapter.physical.placeId, chapter.placeId);
+      assert.strictEqual(chapter.physical.enabled, true);
+      assert.ok(chapter.physical.gpsRadius > 0);
+    } else {
+      assert.strictEqual(chapter.physical.enabled, false);
+      assert.strictEqual(chapter.physical.placeId, undefined);
+      assert.strictEqual(chapter.physical.gpsRadius, undefined);
+    }
+    assert.strictEqual(chapter.physical.physicalCollected, false);
+    assert.ok(chapter.narrativeText);
+    assert.ok(chapter.tasks.length >= 1);
+  });
 });
 
 const storage = new Map();
@@ -62,7 +83,7 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "js/historical-routes.js"), "utf
   assert.ok(api, "HGHistoricalRoutes API skal finnes før ready-event");
   assert.strictEqual(dispatched[0]?.type, "hg:historicalRoutesReady");
   await api.load();
-  assert.strictEqual(api.getAll().length, 1);
+  assert.strictEqual(api.getAll().length, routes.length);
 
   let progress = api.startRoute(route.id);
   assert.strictEqual(progress.status, "started");
