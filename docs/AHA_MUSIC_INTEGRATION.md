@@ -82,5 +82,12 @@ The key is `hg_unlocked_music_objects_v1`. Runtime helpers are exposed on `windo
 - `getMusicUnlockSummary()`
 
 A new unlock writes storage and dispatches `window.dispatchEvent(new Event("updateProfile"))`, so the mini/profile UI can refresh live. Duplicate unlocks return the existing object and do not dispatch a second profile update.
+`unlockMusicObject` also revalidates the supported object type, deterministic id and
+relation status before writing. This prevents a `suggested`, rejected or forged
+client-side object from bypassing the runtime normalization.
 
 Profile v1 shows a compact music status: “Musikkfunn”, artists unlocked, tracks unlocked and places with music. The existing collection tab also has a small “Musikk” group for artists and songs. Later extensions can reuse the same object ids for music quizzes, route steps and canon/music-history paths without changing the storage contract.
+
+The read-only `npm run audit:aha-music` output includes generated unlock totals
+for artists and tracks, the number of unique deterministic IDs and any duplicate
+ID collisions, in addition to bridge/placeId health.

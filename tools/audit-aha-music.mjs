@@ -27,6 +27,44 @@ function placeId(relation) {
   ).trim();
 }
 
+const unlockableStatuses = new Set(["verified", "auto_matched", "automatic", "matched"]);
+
+function text(value) {
+  return value == null ? "" : String(value).trim();
+}
+
+function slug(value) {
+  return text(value)
+    .toLowerCase()
+    .replace(/[æǽ]/g, "ae")
+    .replace(/[øö]/g, "o")
+    .replace(/[å]/g, "a")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function first(relation, keys) {
+  for (const key of keys) {
+    if (text(relation?.[key])) return text(relation[key]);
+  }
+  return "";
+}
+
+function unlockId(relation, type, validPlaceIds) {
+  const id = placeId(relation);
+  const status = first(relation, ["status", "matchStatus", "match_status"]).toLowerCase();
+  if (!id || !validPlaceIds.has(id) || !unlockableStatuses.has(status)) return "";
+  const isArtist = type === "music_artist";
+  const primaryId = first(relation, isArtist ? ["artistId", "artist_id", "id"] : ["trackId", "track_id", "id"]);
+  const fallbackName = first(relation, isArtist
+    ? ["artistName", "artist_name", "name"]
+    : ["trackTitle", "track_title", "title", "name"]);
+  const stablePart = primaryId || (fallbackName ? `name_${slug(fallbackName)}` : "");
+  return stablePart ? `${type}__${id}__${stablePart}` : "";
+}
+
 function topByPlace(relations, validPlaceIds, limit = 10) {
   const counts = new Map();
   for (const relation of relations) {
@@ -47,6 +85,9 @@ const allRelations = [...artists, ...tracks];
 const linkedIds = allRelations.map(placeId).filter(Boolean);
 const missingPlaceId = allRelations.filter(relation => !placeId(relation)).length;
 const unknownPlaceIds = [...new Set(linkedIds.filter(id => !validPlaceIds.has(id)))].sort();
+const artistUnlockIds = artists.map(relation => unlockId(relation, "music_artist", validPlaceIds)).filter(Boolean);
+const trackUnlockIds = tracks.map(relation => unlockId(relation, "music_track", validPlaceIds)).filter(Boolean);
+const allUnlockIds = [...artistUnlockIds, ...trackUnlockIds];
 
 const audit = {
   artistPlaceRelations: artists.length,
@@ -57,6 +98,11 @@ const audit = {
     const id = placeId(relation);
     return id && !validPlaceIds.has(id);
   }).length,
+  unlockableMusicObjects: allUnlockIds.length,
+  unlockableArtists: artistUnlockIds.length,
+  unlockableTracks: trackUnlockIds.length,
+  stableUniqueUnlockIds: new Set(allUnlockIds).size,
+  duplicateUnlockIds: allUnlockIds.length - new Set(allUnlockIds).size,
   unknownPlaceIds,
   topPlacesByTracks: topByPlace(tracks, validPlaceIds),
   topPlacesByArtists: topByPlace(artists, validPlaceIds)
