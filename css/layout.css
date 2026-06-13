@@ -94,7 +94,11 @@ body.hg-app .app-footer{
   height: 80px;
   box-sizing: border-box;
 
-  z-index: 90;
+  /* Footer er det øverste faste kontroll-laget over kart/Nearby/PlaceCard.
+     Lagrekkefølge (lav → høy): kart 0 < Nearby 80 < #placeCard 100
+     < .app-footer 110 < .site-header 120. PlaceCard scroller derfor
+     UNDER footer, ikke oppå den. */
+  z-index: 110;
 
   background: #000;
   border-top: 1px solid rgba(255,255,255,.08);
@@ -204,16 +208,18 @@ body.hg-app #placeCard{
   position: absolute;
   left: 12px;
   right: 12px;
-  /* Kortet ankres nederst og vokser med innholdet i stedet for å fylle
-     hele kartet. max-height hindrer at det dekker hele skjermen. */
+  /* PlaceCard er en bottom-sheet-flate som dekker HELT ned til
+     viewport-bunnen (bak footer). Det gir en sammenhengende,
+     ugjennomsiktig flate slik at kartet aldri skinner gjennom nederst.
+     Footer (z-index 110) ligger visuelt og interaktivt over kortet. */
   top: auto;
-  bottom: var(--hg-visual-footer-height, 80px);
+  bottom: 0;
   height: auto;
   /* Visual-heights fordi #placeCard er forankret mot ekte viewport
-     (utenfor app-shell), på linje med #nearbyListContainer. */
+     (utenfor app-shell), på linje med #nearbyListContainer. Laget kan
+     fylle fra rett under header og helt ned til viewport-bunn. */
   max-height: calc(100dvh
     - var(--hg-visual-header-height, 74px)
-    - var(--hg-visual-footer-height, 80px)
     - 16px);
   z-index: 100;
 }

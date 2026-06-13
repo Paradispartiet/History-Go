@@ -45,34 +45,44 @@
   left: 0;
   right: 0;
 
-  bottom: 80px;   /* footer height */
+  /* Bottom-sheet: dekker helt ned til viewport-bunn (bak footer) slik at
+     bunnen aldri er gjennomsiktig. Posisjon/lag styres autoritativt i
+     css/layout.css (body.hg-app #placeCard) – verdiene her holdes i synk. */
+  bottom: 0;
   top: auto;
 
-  /* Content-sized: ingen fast høyde som vinnende regel.
-     height:auto gjør kortet content-sized; max-height er kun en
-     sikkerhetsgrense slik at kortet aldri dekker hele skjermen.
+  /* height:auto lar kortet vokse med innholdet; max-height er
+     sikkerhetsgrensen slik at toppen aldri går over header.
      Bruker visual-heights fordi #placeCard ligger UTENFOR app-shell
      (forankret mot ekte viewport), på linje med #nearbyListContainer. */
   height: auto;
   max-height: calc(
     100dvh
     - var(--hg-visual-header-height, 74px)
-    - var(--hg-visual-footer-height, 80px)
     - 16px
   );
 
-  z-index: 2000;
+  /* Lagrekkefølge eies av css/layout.css: footer (110) > #placeCard (100). */
+  z-index: 100;
 
-  /* Solid, ugjennomsiktig kortflate – kartet skinner ikke gjennom */
-  background:
+  /* Solid, ugjennomsiktig kortflate – kartet skinner ikke gjennom.
+     Solid bunnfarge under gradienten garanterer at flaten aldri er
+     transparent, heller ikke helt nederst bak footer. */
+  background-color: var(--pc-surface-2);
+  background-image:
     linear-gradient(180deg, var(--pc-surface) 0%, var(--pc-surface-2) 100%);
   border: 1px solid var(--pc-border);
-  border-radius: var(--pc-radius);
+  /* Firkantet bunn: nederste hjørner kan ikke slippe kart gjennom.
+     Kun toppen er avrundet. */
+  border-radius: var(--pc-radius) var(--pc-radius) 0 0;
   box-shadow: var(--pc-shadow);
-  /* Synlig overflow slik at runde-pop-outs (people/natur/leksikon osv.)
-     ikke klippes når kortet er content-sized og lavt. Kortet er IKKE en
-     intern scroll-container. */
-  overflow: visible;
+
+  /* Kortlaget klipper innholdet slik at scroll og pop-outs aldri lekker
+     oppå footer-laget. Selve scrollen skjer i .pc-body. Flex-kolonne lar
+     .pc-body fylle og scrolle innenfor kortets høyde. */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   transition: transform .28s ease;
 }
@@ -718,22 +728,29 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 
-/* pc-body er kolonne-layout med FAST form.
-   Kortet vokser med innholdet (ankret nederst, begrenset av max-height) –
-   det er BEVISST ingen intern vertikal scroll her. Lang brødtekst klippes
-   til noen linjer (#pcDesc) og full tekst åpnes i "Mer info"-popupen
-   (window.showPlacePopup). Faner åpnes som egne pop-outs/popups slik at de
-   aldri presser kortet høyere.
-   overflow: visible (ikke auto/hidden) – ingen intern scroll, og de
-   absolutt-posisjonerte runde-pop-outene (som har pc-body som
-   containing block) blir ikke klippet. */
+/* pc-body er PlaceCard sin vertikale scroll-container.
+   Kortet (#placeCard) er begrenset av max-height og klipper med
+   overflow:hidden; .pc-body fyller resten av kortet (flex:1) og scroller
+   internt når innholdet er høyere enn tilgjengelig plass. Innholdet
+   scroller dermed UNDER footer-laget, ikke oppå det.
+   De absolutt-posisjonerte runde-pop-outene har .pc-body som containing
+   block og klippes til kortets flate (aldri oppå footer). */
 #placeCard .pc-body{
-  height: auto;
+  flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: visible;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+
   position: relative;
+
+  /* Nok bunn-luft til at siste innhold kan scrolles fram og ikke blir
+     permanent skjult bak den faste footeren. */
+  padding-bottom: calc(var(--hg-visual-footer-height, 80px) + 16px);
 }
 
 
