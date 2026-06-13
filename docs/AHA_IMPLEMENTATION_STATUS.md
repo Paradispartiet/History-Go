@@ -1,5 +1,17 @@
 # AHA implementation status
 
+## Sync Hub activation review status
+
+- Supabase/session fallback requirements: **reviewed**.
+- Supabase/session fallback implementation: **not activated**.
+- Rollback implementation: **not activated**.
+- Audit write path: **not activated**.
+- Manual sync execution: **NO-GO**.
+- Home: **preview-only**.
+- Auto-sync: **permanently forbidden**.
+- The normative fallback requirements are documented in [`AHA_SYNC_HUB_SUPABASE_SESSION_FALLBACK_BEFORE_EXECUTION.md`](./AHA_SYNC_HUB_SUPABASE_SESSION_FALLBACK_BEFORE_EXECUTION.md).
+- The dedicated execution page remains planned, not implemented. This documentation review does not create an execution page or change runtime behavior.
+
 ## Implemented
 
 - AHA manual sync remains explicitly initiated and gated. There is no auto-sync on page load, Sync Hub open, target selection, confirmation-modal open, history open, or details open.
@@ -45,4 +57,4 @@
 
 ## Next recommended PR
 
-`chore: standardize AHA module empty states`
+`test: lock Sync Hub Supabase session fallback before execution`
