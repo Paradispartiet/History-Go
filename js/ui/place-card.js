@@ -1638,7 +1638,9 @@ if (civicationStoreEl) {
     ...(Array.isArray(place.civication_store) ? place.civication_store : []),
     ...(Array.isArray(place.civicationStore) ? place.civicationStore : []),
     ...(Array.isArray(place.civication_items) ? place.civication_items : []),
-    ...(Array.isArray(place.civicationItems) ? place.civicationItems : [])
+    ...(Array.isArray(place.civicationItems) ? place.civicationItems : []),
+    ...(Array.isArray(place.civication_store_items) ? place.civication_store_items : []),
+    ...(Array.isArray(place.civicationStoreItems) ? place.civicationStoreItems : [])
   ];
 
   const seenStore = new Set();
@@ -1655,7 +1657,12 @@ if (civicationStoreEl) {
       return {
         id: String(item?.id ?? item?.slug ?? item?.key ?? `civi_${i}`).trim(),
         label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Objekt ${i + 1}`).trim(),
-        image: String(item?.image ?? item?.icon ?? "").trim()
+        image: String(item?.image ?? item?.icon ?? "").trim(),
+        placeSpecificReason: String(item?.placeSpecificReason ?? item?.place_specific_reason ?? "").trim(),
+        historicalFunction: String(item?.historicalFunction ?? item?.historical_function ?? "").trim(),
+        storePrice: item?.storePrice ?? item?.store_price ?? item?.price ?? "",
+        currency: String(item?.currency ?? "").trim(),
+        civicationUse: Array.isArray(item?.civicationUse) ? item.civicationUse : Array.isArray(item?.civication_use) ? item.civication_use : []
       };
     })
     .filter(item => item.id && item.label)
@@ -1666,13 +1673,26 @@ if (civicationStoreEl) {
     });
 
   civicationStoreEl.innerHTML = storeItems.length
-    ? storeItems.map(item => `
-        <button class="pc-civi-entry" data-civi-store="${item.id}">
-          ${item.image ? `<img src="${item.image}" class="pc-person-img" alt="">` : `<span class="pc-civi-emoji">🛒</span>`}
-          <span class="pc-civi-entry-title">${item.label}</span>
-        </button>
-      `).join("")
-    : `<div class="pc-empty">Ingen Civication-objekter ennå</div>`;
+    ? storeItems.map(item => {
+        const price = String(item.storePrice ?? "").trim();
+        const currency = String(item.currency || "").trim();
+        const civicationUse = item.civicationUse
+          .map(value => String(value || "").trim())
+          .filter(Boolean)
+          .join(", ");
+
+        return `
+          <button class="pc-civi-entry" data-civi-store="${escapePlaceCardHTML(item.id)}">
+            ${item.image ? `<img src="${escapePlaceCardHTML(item.image)}" class="pc-person-img" alt="">` : `<span class="pc-civi-emoji">🛒</span>`}
+            <span class="pc-civi-entry-title">${escapePlaceCardHTML(item.label)}</span>
+            ${item.placeSpecificReason ? `<span class="pc-civi-entry-meta">${escapePlaceCardHTML(item.placeSpecificReason)}</span>` : ""}
+            ${item.historicalFunction ? `<span class="pc-civi-entry-meta">${escapePlaceCardHTML(item.historicalFunction)}</span>` : ""}
+            ${price ? `<span class="pc-civi-entry-meta">Pris: ${escapePlaceCardHTML(price)}${currency ? ` ${escapePlaceCardHTML(currency)}` : ""}</span>` : ""}
+            ${civicationUse ? `<span class="pc-civi-entry-meta">Bruk i Civication: ${escapePlaceCardHTML(civicationUse)}</span>` : ""}
+          </button>
+        `;
+      }).join("")
+    : `<div class="pc-empty">Ingen stedsspesifikke store-objekter registrert ennå.</div>`;
 
   civicationStoreEl.querySelectorAll("[data-civi-store]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
