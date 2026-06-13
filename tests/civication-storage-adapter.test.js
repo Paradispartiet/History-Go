@@ -97,9 +97,49 @@ for (const method of [
   "readCiviWallet",
   "writeCiviWallet",
   "readCivicationAccess",
-  "writeCivicationAccess"
+  "writeCivicationAccess",
+  "readTravelState",
+  "writeTravelState",
+  "updateTravelState",
+  "appendTravelLog",
+  "clearPendingTravelRequest"
 ]) {
   assert.strictEqual(typeof adapter[method], "function", `${method} is exposed`);
 }
+
+assert.strictEqual(adapter.KEYS.TRAVEL, "hg_civi_travel_v1", "travel key is exposed");
+
+const originalProgression = {
+  visited_places: [{ id: "existing" }],
+  merits_by_category: { sport: { points: 3 } },
+  quiz_progress: { quiz_a: { done: true } }
+};
+localStorage.setItem("visited_places", JSON.stringify(originalProgression.visited_places));
+localStorage.setItem("merits_by_category", JSON.stringify(originalProgression.merits_by_category));
+localStorage.setItem("quiz_progress", JSON.stringify(originalProgression.quiz_progress));
+
+adapter.writeTravelState({ version: 1, pendingTravelRequest: { placeId: "oslo" }, travelLog: [] });
+assert.deepStrictEqual(
+  adapter.readTravelState(),
+  { version: 1, pendingTravelRequest: { placeId: "oslo" }, travelLog: [] },
+  "travel state roundtrip uses the travel key"
+);
+
+adapter.updateTravelState({ currentDestination: { placeId: "oslo", status: "requested" } });
+assert.deepStrictEqual(
+  adapter.readTravelState().currentDestination,
+  { placeId: "oslo", status: "requested" },
+  "updateTravelState patches the travel state"
+);
+
+adapter.appendTravelLog({ status: "requested", placeId: "oslo" });
+assert.strictEqual(adapter.readTravelState().travelLog.length, 1, "appendTravelLog appends to travelLog");
+
+adapter.clearPendingTravelRequest();
+assert.strictEqual(adapter.readTravelState().pendingTravelRequest, null, "clearPendingTravelRequest clears pending travel only");
+
+assert.deepStrictEqual(adapter.readVisitedPlaces(), originalProgression.visited_places, "travel methods do not change visited_places");
+assert.deepStrictEqual(adapter.readMeritsByCategory(), originalProgression.merits_by_category, "travel methods do not change merits_by_category");
+assert.deepStrictEqual(adapter.readQuizProgress(), originalProgression.quiz_progress, "travel methods do not change quiz_progress");
 
 console.log("CivicationStorageAdapter checks passed.");

@@ -26,7 +26,8 @@
     VISITED_PLACES: "visited_places",
     MERITS_BY_CATEGORY: "merits_by_category",
     QUIZ_PROGRESS: "quiz_progress",
-    CIVICATION_ACCESS: "hg_civi_access_v1"
+    CIVICATION_ACCESS: "hg_civi_access_v1",
+    TRAVEL: "hg_civi_travel_v1"
   });
 
   function getStorage() {
@@ -144,7 +145,36 @@
     readQuizProgress: () => readJson(KEYS.QUIZ_PROGRESS, {}),
 
     readCivicationAccess: () => readJson(KEYS.CIVICATION_ACCESS, {}),
-    writeCivicationAccess: (value) => writeJson(KEYS.CIVICATION_ACCESS, value)
+    writeCivicationAccess: (value) => writeJson(KEYS.CIVICATION_ACCESS, value),
+
+    readTravelState: () => readJson(KEYS.TRAVEL, {}),
+    writeTravelState: (value) => writeJson(KEYS.TRAVEL, value),
+    updateTravelState: (patch) => {
+      const current = readJson(KEYS.TRAVEL, {});
+      const base = current && typeof current === "object" && !Array.isArray(current) ? current : {};
+      const next = {
+        ...base,
+        ...(patch && typeof patch === "object" && !Array.isArray(patch) ? patch : {})
+      };
+      writeJson(KEYS.TRAVEL, next);
+      return next;
+    },
+    appendTravelLog: (entry) => {
+      const current = readJson(KEYS.TRAVEL, {});
+      const base = current && typeof current === "object" && !Array.isArray(current) ? current : {};
+      const travelLog = Array.isArray(base.travelLog) ? base.travelLog.slice() : [];
+      travelLog.push(entry);
+      const next = { ...base, travelLog };
+      writeJson(KEYS.TRAVEL, next);
+      return next;
+    },
+    clearPendingTravelRequest: () => {
+      const current = readJson(KEYS.TRAVEL, {});
+      const base = current && typeof current === "object" && !Array.isArray(current) ? current : {};
+      const next = { ...base, pendingTravelRequest: null };
+      writeJson(KEYS.TRAVEL, next);
+      return next;
+    }
   };
 
   root.CivicationStorageAdapter = adapter;
