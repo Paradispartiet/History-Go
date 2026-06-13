@@ -6,6 +6,7 @@ body.hg-app{
   margin: 0;
   overflow: hidden;
   background: #000;
+  isolation: isolate;
 }
 
 
@@ -24,6 +25,20 @@ body.hg-app.map-scroll-locked{
 :root{
   --app-design-w: 900;
   --app-design-h: 1230; /* Standardisert */
+
+  /*
+     Index z-index contract (root stacking context, low → high):
+     map/panel < app-shell < Nearby/Utforsk < PlaceCard < footer < header.
+     #placeCard, #nearbyListContainer, header and footer are deliberately
+     fixed siblings outside the transformed .app-shell so transformed parents
+     cannot trap fixed positioning or change their effective stacking order.
+  */
+  --hg-z-map: 0;
+  --hg-z-shell: 10;
+  --hg-z-nearby: 80;
+  --hg-z-placecard: 100;
+  --hg-z-footer: 110;
+  --hg-z-header: 120;
 }
 
 body.hg-app .app-shell{
@@ -37,7 +52,7 @@ body.hg-app .app-shell{
   transform-origin: top left;
   overflow: hidden;
 
-  z-index: 10;
+  z-index: var(--hg-z-shell);
   pointer-events: none;
 }
 
@@ -58,7 +73,7 @@ body.hg-app .site-header{
   height: 74px;
   box-sizing: border-box;
 
-  z-index: 120;
+  z-index: var(--hg-z-header);
 
   background: #000;
   border-bottom: 1px solid rgba(255,255,255,.06);
@@ -94,11 +109,10 @@ body.hg-app .app-footer{
   height: 80px;
   box-sizing: border-box;
 
-  /* Footer er det øverste faste kontroll-laget over kart/Nearby/PlaceCard.
-     Lagrekkefølge (lav → høy): kart 0 < Nearby 80 < #placeCard 100
-     < .app-footer 110 < .site-header 120. PlaceCard scroller derfor
-     UNDER footer, ikke oppå den. */
-  z-index: 110;
+  /* Footer is a fixed root-level sibling above PlaceCard. Keeping it outside
+     .app-shell (which is transformed by ViewportManager) makes this z-index
+     effective against #placeCard and preserves footer click/tap handling. */
+  z-index: var(--hg-z-footer);
 
   background: #000;
   border-top: 1px solid rgba(255,255,255,.08);
@@ -143,7 +157,7 @@ body.hg-app .app-footer{
   );
   box-sizing: border-box;
 
-  z-index: 80;
+  z-index: var(--hg-z-nearby);
 
   display: none;
   flex-direction: column;
@@ -183,7 +197,7 @@ body.hg-app.hg-phone #nearbyListContainer{
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  z-index: 0;
+  z-index: var(--hg-z-map);
   overflow: hidden;
   background: #000;
 }
@@ -205,7 +219,7 @@ body.hg-app.hg-phone #nearbyListContainer{
    ============================================================ */
 
 body.hg-app #placeCard{
-  position: absolute;
+  position: fixed;
   left: 12px;
   right: 12px;
   /* PlaceCard er en bottom-sheet-flate som dekker HELT ned til
@@ -221,7 +235,7 @@ body.hg-app #placeCard{
   max-height: calc(100dvh
     - var(--hg-visual-header-height, 74px)
     - 16px);
-  z-index: 100;
+  z-index: var(--hg-z-placecard);
 }
 
 

@@ -41,7 +41,7 @@
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
   --pc-popout-top: 96px;
 
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
 
@@ -62,8 +62,8 @@
     - 16px
   );
 
-  /* Lagrekkefølge eies av css/layout.css: footer (110) > #placeCard (100). */
-  z-index: 100;
+  /* Lagrekkefølge eies av css/layout.css: footer > #placeCard. */
+  z-index: var(--hg-z-placecard, 100);
 
   /* Solid, ugjennomsiktig kortflate – kartet skinner ikke gjennom.
      Solid bunnfarge under gradienten garanterer at flaten aldri er
