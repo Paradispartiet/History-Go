@@ -202,11 +202,17 @@ body.hg-app.hg-phone #nearbyListContainer{
 
 body.hg-app #placeCard{
   position: absolute;
-  left: 0;
-  right: 0;
-  top: var(--hg-design-header-offset, 74px);
+  left: 12px;
+  right: 12px;
+  /* Kortet ankres nederst og vokser med innholdet i stedet for å fylle
+     hele kartet. max-height hindrer at det dekker hele skjermen. */
+  top: auto;
   bottom: var(--hg-design-footer-offset, 80px);
   height: auto;
+  max-height: calc(100dvh
+    - var(--hg-design-header-offset, 74px)
+    - var(--hg-design-footer-offset, 80px)
+    - 16px);
   z-index: 100;
 }
 
