@@ -680,7 +680,8 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 #placeCard #pcBadgesList.is-open,
 #placeCard #pcCivicationStoreList.is-open,
 #placeCard #pcBrandsList.is-open,
-#placeCard #pcLeksikonList.is-open{
+#placeCard #pcLeksikonList.is-open,
+#placeCard #pcMusicList.is-open{
   position: absolute;
   right: var(--pc-popout-right);
   z-index: 100;
@@ -692,6 +693,21 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
   pointer-events: auto;
 }
+
+#placeCard .pc-music-profile{ display:grid; gap:18px; color:#fff; }
+#placeCard .pc-music-section h3{ margin:0 0 10px; font-size:18px; }
+#placeCard .pc-music-entry{
+  padding:12px;
+  margin-bottom:9px;
+  border-radius:12px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+}
+#placeCard .pc-music-entry p{ margin:5px 0 0; color:rgba(255,255,255,.76); font-size:14px; }
+#placeCard .pc-music-relation{ margin-top:6px; color:#d9bc72; font-size:13px; font-weight:700; }
+#placeCard .pc-music-artist,
+#placeCard .pc-music-confidence{ display:block; margin-top:4px; color:rgba(255,255,255,.68); font-size:13px; }
+#placeCard .pc-music-entry a{ display:inline-block; margin-top:9px; color:#f0d48d; }
 
 /* Rad 1 */
 #placeCard #pcPeopleList.is-open,

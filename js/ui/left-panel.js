@@ -51,6 +51,7 @@ function renderActiveLeftPanelModeNow() {
   if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
   if (mode === "people" && typeof renderNearbyPeople === "function") renderNearbyPeople();
   if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
+  if (mode === "music" && typeof renderNearbyMusic === "function") renderNearbyMusic();
   if (mode === "routes" && typeof renderLeftRoutesList === "function") renderLeftRoutesList();
   if (mode === "badges" && typeof renderLeftBadges === "function") renderLeftBadges();
 }
@@ -84,6 +85,7 @@ function setLeftPanelMode(mode) {
     nearby: "nearbyList",
     people: "leftPeopleList",
     nature: "leftNatureList",
+    music: "leftMusicList",
     routes: "leftRoutesList",
     badges: "leftBadgesList",
   };

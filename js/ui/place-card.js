@@ -113,6 +113,72 @@ function normalizePlaceCardStringList(value) {
     .filter(Boolean);
 }
 
+function formatMusicRelation(value) {
+  const labels = {
+    formed_in: "Dannet på stedet",
+    born_in: "Født på stedet",
+    based_in: "Basert på stedet",
+    recorded_in: "Spilt inn på stedet",
+    performed_at: "Opptrådte på stedet",
+    through_artist: "Koblet gjennom artist",
+    related_to: "Knyttet til dette stedet"
+  };
+  const key = String(value || "").trim();
+  return labels[key] || key.replace(/[_-]+/g, " ").replace(/^\w/, letter => letter.toUpperCase());
+}
+
+function formatMusicStatus(value) {
+  const status = String(value || "").trim().toLowerCase();
+  if (["verified", "approved", "confirmed"].includes(status)) return "Denne koblingen er verifisert.";
+  if (["automatic", "auto_matched", "matched"].includes(status)) return "Denne koblingen er automatisk matchet.";
+  if (["candidate", "review"].includes(status)) return "Denne koblingen venter på gjennomgang.";
+  return status && status !== "unknown" ? `Status: ${status.replace(/[_-]+/g, " ")}.` : "";
+}
+
+function renderMusicRelationMeta(item) {
+  const confidence = Number.isFinite(item.confidence)
+    ? `<span class="pc-music-confidence">${Math.round(item.confidence * 100)} % sikkerhet</span>`
+    : "";
+  const status = formatMusicStatus(item.status);
+  return `
+    <div class="pc-music-relation">${escapePlaceCardHTML(formatMusicRelation(item.relationType))}</div>
+    ${item.sourceNote ? `<p>${escapePlaceCardHTML(item.sourceNote)}</p>` : ""}
+    ${status ? `<p>${escapePlaceCardHTML(status)}</p>` : ""}
+    ${confidence}
+  `;
+}
+
+function renderPlaceMusic(music) {
+  const artists = music?.artists || [];
+  const tracks = music?.tracks || [];
+  const artistHtml = artists.length ? `
+    <section class="pc-music-section">
+      <h3>Artister knyttet til stedet</h3>
+      ${artists.map(artist => `
+        <article class="pc-music-entry">
+          <strong>${escapePlaceCardHTML(artist.artistName)}</strong>
+          ${renderMusicRelationMeta(artist)}
+          ${artist.ahaMusicUrl ? `<a href="${escapePlaceCardHTML(artist.ahaMusicUrl)}" target="_blank" rel="noopener">Åpne i AHA Music</a>` : ""}
+        </article>
+      `).join("")}
+    </section>
+  ` : "";
+  const trackHtml = tracks.length ? `
+    <section class="pc-music-section">
+      <h3>Sanger fra AHA Music</h3>
+      ${tracks.map(track => `
+        <article class="pc-music-entry">
+          <strong>${escapePlaceCardHTML(track.trackTitle)}</strong>
+          ${track.artistName ? `<div class="pc-music-artist">${escapePlaceCardHTML(track.artistName)}</div>` : ""}
+          ${renderMusicRelationMeta(track)}
+          ${track.ahaMusicUrl ? `<a href="${escapePlaceCardHTML(track.ahaMusicUrl)}" target="_blank" rel="noopener">Åpne i AHA Music</a>` : ""}
+        </article>
+      `).join("")}
+    </section>
+  ` : "";
+  return `<div class="pc-music-profile">${artistHtml}${trackHtml}</div>`;
+}
+
 function resolvePlaceCardNameById(placeId) {
   const id = String(placeId || "").trim();
   if (!id) return "";
@@ -568,6 +634,7 @@ const badgesIcon          = document.getElementById("pcBadgesIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const brandsIcon          = document.getElementById("pcBrandsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
+const musicIcon           = document.getElementById("pcMusicIcon");
   
 const previousPlaceId = String(card.dataset.currentPlaceId || "").trim();
 const nextPlaceId = String(place.id || "").trim();
@@ -583,6 +650,7 @@ const badgesEl          = document.getElementById("pcBadgesList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
 const brandsEl          = document.getElementById("pcBrandsList");
 const leksikonEl        = document.getElementById("pcLeksikonList");
+const musicEl           = document.getElementById("pcMusicList");
 
 const eventsBox         = document.getElementById("pcEventsBox");
 const addEventBtn       = document.getElementById("pcAddEvent");
@@ -610,6 +678,7 @@ if (!card.dataset.pcIconsBound) {
     civicationStoreEl?.classList.remove("is-open");
     brandsEl?.classList.remove("is-open");
     leksikonEl?.classList.remove("is-open");
+    musicEl?.classList.remove("is-open");
   };
 
   const bindRoundPopup = (iconEl, listEl, title, kind) => {
@@ -724,6 +793,7 @@ bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
 bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
 bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
+bindRoundPopup(musicIcon, musicEl, "Musikk", "music");
 
 peopleEl?.addEventListener("click", (e) => e.stopPropagation());
 natureEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -731,6 +801,7 @@ badgesEl?.addEventListener("click", (e) => e.stopPropagation());
 civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
 brandsEl?.addEventListener("click", (e) => e.stopPropagation());
 leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
+musicEl?.addEventListener("click", (e) => e.stopPropagation());
 }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
@@ -845,6 +916,19 @@ if (!card) return;
     (Array.isArray(window.PEOPLE) ? window.PEOPLE : []);
 
   const persons = getPeopleForPlace(place.id);
+  if (!window.HGAhaMusic?.state?.loaded) await window.HGAhaMusic?.load?.();
+  const music = window.HGAhaMusic?.getForPlace?.(place.id);
+
+  if (musicIcon) {
+    const musicCount = (music?.artists?.length || 0) + (music?.tracks?.length || 0);
+    musicIcon.hidden = musicCount === 0;
+    if (musicCount) {
+      setRoundLabel(musicIcon, "♫", musicCount);
+      musicIcon.setAttribute("aria-label", `Musikk: ${music.artists.length} artister og ${music.tracks.length} sanger`);
+      musicIcon.title = "Musikk";
+    }
+  }
+  if (musicEl) musicEl.innerHTML = music ? renderPlaceMusic(music) : "";
 
   // --- FLORA (place.flora = ["flora_id", ...]) ---
   let FLORA_LIST =
