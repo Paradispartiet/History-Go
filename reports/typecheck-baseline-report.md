@@ -1,11 +1,11 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-13T21:10:51.903Z
+- Generated at (UTC): 2026-06-13T21:49:03.711Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 119
-- Files with diagnostics: 27
+- Total diagnostic lines found: 118
+- Files with diagnostics: 26
 - Groups with diagnostics: 4
 - Unparsed/unknown diagnostic lines: 0
 
@@ -13,7 +13,7 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | js/Civication/** | 19 | 103 | js/Civication/civicationCommercial.js<br>js/Civication/map/loadCivicationCityMapEntries.js<br>js/Civication/systems/CivicationSocialConversationEngine.js |
-| other | 5 | 10 | js/app.js<br>js/boot-fast.js<br>js/core/domainRuntime.js |
+| other | 4 | 9 | js/app.js<br>js/boot-fast.js<br>js/core/domainRuntime.js |
 | js/ui/** | 2 | 5 | js/ui/place-card-epoke.js<br>js/ui/place-card.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
 
@@ -44,7 +44,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 79 |
+| TS2339 | 78 |
 | TS2551 | 34 |
 | TS2322 | 2 |
 | TS2367 | 2 |
@@ -55,14 +55,6 @@
 2. Focus first on concentrated hotspots: `js/Civication/ui/CivicationCanvasMap.js` (18), `js/Civication/ui/CivicationCityLayer.js` (14), `js/Civication/systems/civicationFriendMessages.js` (10), `js/Civication/systems/CivicationSocialConversationEngine.js` (9), `js/Civication/ui/CivicationThreeMap.js` (7).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/dataHub.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
-
-## Audit assessment
-
-- The previously committed report was outdated: it was generated on 2026-06-05 and recorded 49 diagnostics across 12 files, while the current checkout produces 119 diagnostics across 27 files.
-- The current diagnostics are internally consistent with the area totals (103 + 10 + 5 + 1 = 119) and error-code totals (79 + 34 + 2 + 2 + 2 = 119).
-- `npm run typecheck:scripts`, `npm run build:scripts`, `npm run typecheck:tools`, and `npm run build:tools` all pass with zero diagnostics. The failing baseline is limited to the root JavaScript/JSDoc typecheck.
-- The safest next TypeScript candidate is `js/profileInsightRoomEntry.js`: its only diagnostic is the local `button.type` access after `document.getElementById()`. A narrow local `HTMLButtonElement` JSDoc cast would address one isolated DOM inference issue without converting the browser file to TypeScript or changing runtime behavior.
-- Keep the larger Civication hotspots for later scoped declaration/contract audits; their repeated missing-window-global and cross-module contract diagnostics make them higher-risk than the isolated button-element candidate.
 
 ## Raw output excerpt (first 80 lines)
 ```
