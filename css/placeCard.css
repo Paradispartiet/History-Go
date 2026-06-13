@@ -45,20 +45,27 @@
   left: 0;
   right: 0;
 
-  /* Bottom-sheet: dekker helt ned til viewport-bunn (bak footer) slik at
-     bunnen aldri er gjennomsiktig. Posisjon/lag styres autoritativt i
-     css/layout.css (body.hg-app #placeCard) – verdiene her holdes i synk. */
-  bottom: 0;
+  /* Bottom-sheet: stopper over den faste footeren. Posisjon/lag styres
+     autoritativt i css/layout.css (body.hg-app #placeCard) – verdiene her
+     holdes i synk for robust fallback uten app-spesifisiteten. */
+  bottom: var(--hg-bottom-nav-height, 80px);
   top: auto;
 
   /* height:auto lar kortet vokse med innholdet; max-height er
-     sikkerhetsgrensen slik at toppen aldri går over header.
+     sikkerhetsgrensen slik at toppen aldri går over header eller footer.
      Bruker visual-heights fordi #placeCard ligger UTENFOR app-shell
      (forankret mot ekte viewport), på linje med #nearbyListContainer. */
   height: auto;
   max-height: calc(
+    100vh
+    - var(--hg-visual-header-height, 74px)
+    - var(--hg-bottom-nav-height, 80px)
+    - 16px
+  );
+  max-height: calc(
     100dvh
     - var(--hg-visual-header-height, 74px)
+    - var(--hg-bottom-nav-height, 80px)
     - 16px
   );
 
@@ -67,7 +74,7 @@
 
   /* Solid, ugjennomsiktig kortflate – kartet skinner ikke gjennom.
      Solid bunnfarge under gradienten garanterer at flaten aldri er
-     transparent, heller ikke helt nederst bak footer. */
+     transparent, heller ikke langs kanten rett over footeren. */
   background-color: var(--pc-surface-2);
   background-image:
     linear-gradient(180deg, var(--pc-surface) 0%, var(--pc-surface-2) 100%);
@@ -738,7 +745,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
    Kortet (#placeCard) er begrenset av max-height og klipper med
    overflow:hidden; .pc-body fyller resten av kortet (flex:1) og scroller
    internt når innholdet er høyere enn tilgjengelig plass. Innholdet
-   scroller dermed UNDER footer-laget, ikke oppå det.
+   forblir dermed innenfor flaten over footer-laget.
    De absolutt-posisjonerte runde-pop-outene har .pc-body som containing
    block og klippes til kortets flate (aldri oppå footer). */
 #placeCard .pc-body{
@@ -754,9 +761,9 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
   position: relative;
 
-  /* Nok bunn-luft til at siste innhold kan scrolles fram og ikke blir
-     permanent skjult bak den faste footeren. */
-  padding-bottom: calc(var(--hg-visual-footer-height, 80px) + 16px);
+  /* Kortet er allerede avgrenset over footeren; kun vanlig innholdsluft
+     trengs for at siste element kan scrolles helt fram. */
+  padding-bottom: 16px;
 }
 
 

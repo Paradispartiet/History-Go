@@ -7,9 +7,9 @@
     MAP_CONTROLS: 50,
 
     NEARBY: 80,
-    FOOTER: 90,
-    NEXTUP: 95,
     PLACECARD: 100,
+    FOOTER: 110,
+    NEXTUP: 115,
     HEADER: 120,
 
     SEARCH: 130,   // #searchResults ligger i header, men ok å reservere

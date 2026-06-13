@@ -39,6 +39,9 @@ body.hg-app.map-scroll-locked{
   --hg-z-placecard: 100;
   --hg-z-footer: 110;
   --hg-z-header: 120;
+
+  /* Full fixed footer box, including the safe-area padding painted inside it. */
+  --hg-bottom-nav-height: var(--hg-visual-footer-height, 80px);
 }
 
 body.hg-app .app-shell{
@@ -222,21 +225,23 @@ body.hg-app #placeCard{
   position: fixed;
   left: 12px;
   right: 12px;
-  /* PlaceCard er en bottom-sheet-flate som dekker HELT ned til
-     viewport-bunnen (bak footer). Det gir en sammenhengende,
-     ugjennomsiktig flate slik at kartet aldri skinner gjennom nederst.
-     Footer (z-index 110) ligger visuelt og interaktivt over kortet. */
+  /* PlaceCard stopper fysisk over den faste footeren. Footeren har samtidig
+     høyere z-index, slik at kontrollaget forblir øverst og klikkbart. */
   top: auto;
-  bottom: 0;
+  bottom: var(--hg-bottom-nav-height);
   height: auto;
   /* Visual-heights fordi #placeCard er forankret mot ekte viewport
-     (utenfor app-shell), på linje med #nearbyListContainer. Laget kan
-     fylle fra rett under header og helt ned til viewport-bunn. */
+     (utenfor app-shell), på linje med #nearbyListContainer. Maksgrensen
+     reserverer både toppklaringen og hele footerflaten. */
+  max-height: calc(100vh
+    - var(--hg-visual-header-height, 74px)
+    - var(--hg-bottom-nav-height)
+    - 16px);
   max-height: calc(100dvh
     - var(--hg-visual-header-height, 74px)
+    - var(--hg-bottom-nav-height)
     - 16px);
   z-index: var(--hg-z-placecard);
 }
-
 
 
