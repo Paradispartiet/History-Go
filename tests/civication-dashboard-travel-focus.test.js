@@ -181,6 +181,14 @@ assert.strictEqual(
   "travel destination event re-renders dashboard and falls back to placeId"
 );
 
+destination = { placeId: "vigelandsparken", placeName: "Vigelandsparken" };
+window.dispatchEvent(new CustomEvent("civi:travelStateUpdated", { detail: { state: { currentDestination: destination } } }));
+assert.strictEqual(
+  global.document.getElementById("civiDashFocus").textContent,
+  "Mål: Vigelandsparken",
+  "travel state update event re-renders dashboard from the current TravelState destination"
+);
+
 assert.deepStrictEqual(localStorage.writes, [], "dashboard travel focus test does not write storage keys");
 
 console.log("PASS: Civication dashboard travel focus test completed.");
