@@ -46,6 +46,17 @@ export interface Place {
   relations?: unknown[];
   people?: unknown[];
   wonderkammer?: unknown;
+  /**
+   * Datastyrte PlaceCard-rundinger. Bestemmer hvilke runding-knapper kortet
+   * viser for dette stedet, i den rekkefølgen de listes.
+   * Gyldige id-er: people, stories, wonderkammer, nature, badges, routes,
+   * football, lexicon (i tillegg støttes civication, brands, music).
+   * Mangler feltet, brukes standard-fallback: people, stories, wonderkammer,
+   * nature, badges. Se js/ui/place-card.js (PLACE_ROUND_REGISTRY / getPlaceRounds).
+   */
+  rounds?: string[];
+  /** Alias for `rounds` (legacy). Foretrekk `rounds` i nye data. */
+  rundinger?: string[];
   /** Legacy nature fields: arrays of flora/fauna ids attached to a place. */
   flora?: string[];
   fauna?: string[];

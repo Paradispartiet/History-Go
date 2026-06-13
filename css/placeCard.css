@@ -387,6 +387,12 @@
     0 0 0 1px rgba(0,0,0,.4) inset;
 }
 
+/* Datastyrte rundinger: skjulte ikoner tar ikke plass i grid-et.
+   Nødvendig fordi .pc-round setter display:flex og ellers overstyrer [hidden]. */
+.pc-round[hidden]{
+  display: none !important;
+}
+
 #placeCard .pc-text{
   height: auto;
   min-height: 0;

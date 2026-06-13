@@ -126,6 +126,8 @@ declare global {
     HGNarratives?: any;
     HGNaturePlaceMap?: any;
     HGPlaceNatureProfile?: any;
+    HGPlaceRounds?: any;
+    getPlaceRounds?: any;
     HGNatureUnlocks?: any;
     HGNavRoutes?: any;
     HGNavigator?: any;
