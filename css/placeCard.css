@@ -780,22 +780,31 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 /* Alle lister skjult som default */
 #placeCard #pcPeopleList,
-#placeCard #pcNatureList,
+#placeCard #pcFortellingerList,
+#placeCard #pcLeksikonList,
+#placeCard #pcWonderkammerList,
 #placeCard #pcBadgesList,
+#placeCard #pcRoutesList,
+#placeCard #pcTasksList,
+#placeCard #pcObservationsList,
 #placeCard #pcCivicationStoreList,
 #placeCard #pcBrandsList,
-#placeCard #pcLeksikonList{
+#placeCard #pcWorksList{
   display: none;
 }
 
 /* Felles chrome */
 #placeCard #pcPeopleList.is-open,
-#placeCard #pcNatureList.is-open,
+#placeCard #pcFortellingerList.is-open,
+#placeCard #pcLeksikonList.is-open,
+#placeCard #pcWonderkammerList.is-open,
 #placeCard #pcBadgesList.is-open,
+#placeCard #pcRoutesList.is-open,
+#placeCard #pcTasksList.is-open,
+#placeCard #pcObservationsList.is-open,
 #placeCard #pcCivicationStoreList.is-open,
 #placeCard #pcBrandsList.is-open,
-#placeCard #pcLeksikonList.is-open,
-#placeCard #pcMusicList.is-open{
+#placeCard #pcWorksList.is-open{
   position: absolute;
   right: var(--pc-popout-right);
   z-index: 100;
@@ -823,48 +832,27 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 #placeCard .pc-music-confidence{ display:block; margin-top:4px; color:rgba(255,255,255,.68); font-size:13px; }
 #placeCard .pc-music-entry a{ display:inline-block; margin-top:9px; color:#f0d48d; }
 
-/* Rad 1 */
+/* Alle runding-popups: fleksibel innholdsboks */
 #placeCard #pcPeopleList.is-open,
-#placeCard #pcNatureList.is-open,
-#placeCard #pcBadgesList.is-open{
+#placeCard #pcFortellingerList.is-open,
+#placeCard #pcLeksikonList.is-open,
+#placeCard #pcWonderkammerList.is-open,
+#placeCard #pcRoutesList.is-open,
+#placeCard #pcBadgesList.is-open,
+#placeCard #pcTasksList.is-open,
+#placeCard #pcObservationsList.is-open,
+#placeCard #pcBrandsList.is-open,
+#placeCard #pcCivicationStoreList.is-open,
+#placeCard #pcWorksList.is-open{
   display: flex;
   top: var(--pc-popout-top);
-}
-
-/* Rad 2 */
-#placeCard #pcCivicationStoreList.is-open,
-#placeCard #pcBrandsList.is-open,
-#placeCard #pcLeksikonList.is-open{
-  display: flex;
-  top: calc(var(--pc-popout-top) + var(--pc-popout-step));
-}
-
-/* People / Nature / Badges = horisontal */
-#placeCard #pcPeopleList.is-open,
-#placeCard #pcNatureList.is-open,
-#placeCard #pcBadgesList.is-open{
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 10px;
-
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Store / Brands / Leksikon = vertikal */
-#placeCard #pcCivicationStoreList.is-open,
-#placeCard #pcBrandsList.is-open,
-#placeCard #pcLeksikonList.is-open{
   flex-direction: column;
   gap: 10px;
-
   width: min(420px, 78vw);
   max-height: 320px;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-
   padding: 10px 12px;
 }
 
@@ -943,7 +931,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
    NATURE
    ========================= */
 
-#placeCard #pcNatureList .pc-flora-row{
+#placeCard #pcWonderkammerList .pc-flora-row{
   display: flex;
   gap: 12px;
   flex-wrap: nowrap;
@@ -952,7 +940,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   border: 0;
 }
 
-#placeCard #pcNatureList .pc-flora{
+#placeCard #pcWonderkammerList .pc-flora{
   width: 64px;
   height: 64px;
   border-radius: 16px;
@@ -965,7 +953,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
     0 0 0 1px rgba(255,255,255,0.04) inset;
 }
 
-#placeCard #pcNatureList .pc-flora img.pc-person-img{
+#placeCard #pcWonderkammerList .pc-flora img.pc-person-img{
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -973,14 +961,14 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   filter: saturate(1.35) contrast(1.10);
 }
 
-#placeCard #pcNatureList .pc-flora:hover{
+#placeCard #pcWonderkammerList .pc-flora:hover{
   border-color: rgba(255,255,255,0.18);
   box-shadow:
     0 14px 34px rgba(0,0,0,0.65),
     0 0 18px rgba(255,255,255,0.08);
 }
 
-#placeCard #pcNatureList .pc-flora:hover img.pc-person-img{
+#placeCard #pcWonderkammerList .pc-flora:hover img.pc-person-img{
   filter: saturate(1.50) contrast(1.14);
 }
 

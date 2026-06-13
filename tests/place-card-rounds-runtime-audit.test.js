@@ -7,7 +7,8 @@ const repo = path.resolve(__dirname, '..');
 const placeCardJs = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf8');
 const indexHtml = fs.readFileSync(path.join(repo, 'index.html'), 'utf8');
 const placeCardCss = fs.readFileSync(path.join(repo, 'css/placeCard.css'), 'utf8');
-const leksikonLoader = fs.readFileSync(path.join(repo, 'js/leksikon/leksikon_loader.js'), 'utf8');
+
+const CANONICAL = ['people', 'fortellinger', 'leksikon', 'wonderkammer', 'routes', 'badges', 'tasks', 'observations', 'brands', 'civication', 'works'];
 
 function extractRoundsRuntime(src) {
   const start = src.indexOf('const PLACE_ROUND_REGISTRY = [');
@@ -26,10 +27,7 @@ function createRoundsHarness() {
         return elements.get(id);
       }
     },
-    console: {
-      warnings: [],
-      warn(...args) { this.warnings.push(args.join(' ')); }
-    }
+    console: { warnings: [], warn(...args) { this.warnings.push(args.join(' ')); } }
   };
   vm.createContext(sandbox);
   vm.runInContext(extractRoundsRuntime(placeCardJs), sandbox);
@@ -44,13 +42,7 @@ function walkJsonFiles(dir, out = []) {
   }
   return out;
 }
-
-function rowsFromJson(value) {
-  if (Array.isArray(value)) return value;
-  if (Array.isArray(value?.places)) return value.places;
-  return [];
-}
-
+function rowsFromJson(value) { return Array.isArray(value) ? value : (Array.isArray(value?.places) ? value.places : []); }
 function findPlace(id) {
   for (const file of walkJsonFiles(path.join(repo, 'data/places'))) {
     if (path.basename(file) === 'places_index.json') continue;
@@ -60,40 +52,60 @@ function findPlace(id) {
   }
   return null;
 }
-
-function idsFor(place) {
-  return Array.from(harness.sandbox.window.HGPlaceRounds.get(place), (def) => def.id);
+function idsFor(place) { return Array.from(harness.sandbox.window.HGPlaceRounds.get(place), (def) => def.id); }
+function assertNineUnique(ids, label) {
+  assert.strictEqual(ids.length, 9, `${label} skal alltid returnere 9 rundinger`);
+  assert.strictEqual(new Set(ids).size, ids.length, `${label} skal ikke ha duplikater`);
+}
+function canonicalize(raw) {
+  return ({ lexicon: 'leksikon', stories: 'fortellinger', story: 'fortellinger', nature: 'wonderkammer', football: 'works', music: 'works' }[raw] || raw);
 }
 
 const harness = createRoundsHarness();
-const defaults = Array.from(harness.sandbox.window.HGPlaceRounds.defaults);
-assert.deepStrictEqual(defaults, ['people', 'nature', 'badges', 'civication', 'brands', 'leksikon', 'routes']);
-
 const registryIds = Array.from(harness.sandbox.window.HGPlaceRounds.registry, (def) => def.id);
-assert(!registryIds.includes('stories'), 'stories skal ikke være canonical PlaceCard-round id');
-assert(!registryIds.includes('wonderkammer'), 'wonderkammer skal ikke være canonical PlaceCard-round id');
-assert(registryIds.includes('brands'), 'brands må være canonical PlaceCard-round id');
-assert(registryIds.includes('leksikon'), 'leksikon må være canonical PlaceCard-round id');
-assert.deepStrictEqual(idsFor({ id: 'fallback_default' }), defaults, 'Steder uten rounds/rundinger skal få standardrundinger');
-assert.deepStrictEqual(idsFor({ id: 'legacy_lexicon', rounds: ['lexicon', 'brands'] }), ['leksikon', 'brands'], 'legacy alias lexicon skal mappe til leksikon');
-assert.deepStrictEqual(idsFor({ id: 'unknown_safe', rounds: ['brands', 'ukjent_round', 'leksikon'] }), ['brands', 'leksikon'], 'Ukjente round ids skal ignoreres trygt');
+assert.deepStrictEqual(registryIds, CANONICAL, 'Canonical registry skal inneholde nøyaktig de 11 nye id-ene');
+for (const oldId of ['nature', 'football', 'music', 'stories', 'story', 'lexicon']) {
+  assert(!registryIds.includes(oldId), `${oldId} skal ikke være canonical PlaceCard-round id`);
+}
+assert.deepStrictEqual(Array.from(harness.sandbox.window.HGPlaceRounds.defaults), CANONICAL);
+
+for (const [alias, expected] of Object.entries({ lexicon: 'leksikon', stories: 'fortellinger', story: 'fortellinger', nature: 'wonderkammer', football: 'works', music: 'works' })) {
+  const ids = idsFor({ id: `alias_${alias}`, rounds: [alias] });
+  assert.strictEqual(ids[0], expected, `${alias} skal mappe til ${expected}`);
+  assertNineUnique(ids, `alias_${alias}`);
+}
+
+let ids = idsFor({ id: 'declared_first', rounds: ['music', 'lexicon', 'stories', 'people'] });
+assert.deepStrictEqual(ids.slice(0, 4), ['works', 'leksikon', 'fortellinger', 'people'], 'Deklarerte rounds skal komme først etter alias-normalisering');
+assertNineUnique(ids, 'declared_first');
+
+ids = idsFor({ id: 'unknown_safe', rounds: ['brands', 'ukjent_round', 'leksikon'] });
+assert.deepStrictEqual(ids.slice(0, 2), ['brands', 'leksikon'], 'Ukjente round ids skal ignoreres uten å ødelegge rekkefølge');
+assertNineUnique(ids, 'unknown_safe');
 assert(harness.sandbox.console.warnings.some((msg) => msg.includes('Ukjent runding ignorert')), 'Ukjent round id skal gi console.warn');
 
-for (const [id, expected] of Object.entries({
+ids = idsFor({ id: 'duplicates', rounds: ['lexicon', 'leksikon', 'story', 'stories', 'music', 'football'] });
+assert.deepStrictEqual(ids.slice(0, 3), ['leksikon', 'fortellinger', 'works']);
+assertNineUnique(ids, 'duplicates');
+assertNineUnique(idsFor({ id: 'fallback_default' }), 'fallback_default');
+
+for (const [id, expectedPrefix] of Object.entries({
   torggata: ['leksikon', 'brands', 'badges', 'routes'],
-  damstredet_telthusbakken: ['people', 'badges', 'leksikon', 'routes'],
-  bygdoy_kongeskogen: ['nature', 'badges', 'leksikon', 'routes'],
-  bislett_stadion: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes'],
-  intility_arena: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes'],
-  valle_hovin_stadion: ['football', 'people', 'badges', 'brands', 'leksikon', 'routes'],
-  holmenkollen_nasjonalanlegg: ['people', 'nature', 'badges', 'brands', 'leksikon', 'routes'],
-  treningssted_sognsvann: ['nature', 'badges', 'leksikon', 'routes'],
-  jernbaneverkstedet_lodalen: ['people', 'badges', 'civication', 'brands', 'leksikon', 'routes'],
-  sofienbergparken_subkultur: ['people', 'nature', 'badges', 'civication', 'brands', 'leksikon', 'routes', 'music']
+  stortinget: [],
+  bislett_stadion: ['works', 'people', 'badges', 'brands', 'leksikon', 'routes'],
+  intility_arena: ['works', 'people', 'badges', 'brands', 'leksikon', 'routes'],
+  treningssted_sognsvann: ['wonderkammer', 'badges', 'leksikon', 'routes'],
+  nasjonalbiblioteket: [],
+  hausmania: ['people', 'badges', 'civication', 'brands', 'leksikon', 'routes', 'works'],
+  botanisk_hage: []
 })) {
   const found = findPlace(id);
   assert(found, `Fant ikke teststed ${id}`);
-  assert.deepStrictEqual(idsFor(found.place), expected, `${id} skal vise bare egne rounds i deklarert rekkefølge (${found.file})`);
+  const got = idsFor(found.place);
+  assertNineUnique(got, `${id} (${found.file})`);
+  const declared = Array.isArray(found.place.rounds) ? found.place.rounds : (Array.isArray(found.place.rundinger) ? found.place.rundinger : []);
+  const prefix = expectedPrefix.length ? expectedPrefix : declared.map(canonicalize).filter((v, i, a) => CANONICAL.includes(v) && a.indexOf(v) === i);
+  assert.deepStrictEqual(got.slice(0, prefix.length), prefix, `${id} skal ha prioriterte ids først (${found.file})`);
 }
 
 harness.sandbox.window.HGPlaceRounds.apply({ id: 'grid_order', rounds: ['leksikon', 'brands', 'badges'] });
@@ -103,16 +115,17 @@ assert.strictEqual(harness.elements.get('pcBrandsIcon').hidden, false);
 assert.strictEqual(harness.elements.get('pcBrandsIcon').style.order, '1');
 assert.strictEqual(harness.elements.get('pcBadgesIcon').hidden, false);
 assert.strictEqual(harness.elements.get('pcBadgesIcon').style.order, '2');
-assert.strictEqual(harness.elements.get('pcPeopleIcon').hidden, true, 'Skjulte rundinger må settes hidden og ikke ta gridplass');
+assert.strictEqual(harness.elements.get('pcWorksIcon').hidden, true, 'Rundinger utenfor de 9 valgte skal hidden');
 
-assert(!indexHtml.includes('pcStoriesIcon'), 'pcStoriesIcon skal ikke finnes i DOM-kontrakten');
-assert(!indexHtml.includes('pcWonderkammerIcon'), 'pcWonderkammerIcon skal ikke finnes i DOM-kontrakten');
-assert(indexHtml.includes('id="pcBrandsIcon"'), 'Brands-rundingen skal finnes i DOM-kontrakten');
-assert(indexHtml.includes('id="pcLeksikonIcon"'), 'Leksikon-rundingen skal finnes i DOM-kontrakten');
+for (const id of ['People', 'Fortellinger', 'Leksikon', 'Wonderkammer', 'Routes', 'Badges', 'Tasks', 'Observations', 'Brands', 'CivicationStore', 'Works']) {
+  assert(indexHtml.includes(`id="pc${id}Icon"`), `pc${id}Icon skal finnes i DOM-kontrakten`);
+  assert(indexHtml.includes(`id="pc${id}List"`), `pc${id}List skal finnes i DOM-kontrakten`);
+}
+for (const id of ['Football', 'Music', 'Nature']) {
+  assert(!indexHtml.includes(`pc${id}Icon`), `pc${id}Icon skal ikke være canonical DOM-runding`);
+  assert(!indexHtml.includes(`pc${id}List`), `pc${id}List skal ikke være canonical DOM-runding`);
+}
 assert(/\.pc-round\[hidden\]\s*\{[\s\S]*display:\s*none\s*!important/.test(placeCardCss), 'Skjulte rundinger skal ha display:none !important');
-assert(leksikonLoader.includes('renderHubCard("Fortellinger"'), 'Fortellinger skal være tilgjengelig via Leksikon-huben');
-assert(leksikonLoader.includes('renderHubCard("Wonderkammer"'), 'Wonderkammer skal være tilgjengelig via Leksikon-huben');
-assert(leksikonLoader.includes('data-wonderkammer-entry'), 'Wonderkammer-entry skal kunne åpnes fra Leksikon-flowen');
 assert(placeCardJs.includes('window.HGLeksikon.openPlace(currentPlaceId)'), 'Klikk på Leksikon-runding skal åpne HGLeksikon.openPlace');
 assert(placeCardJs.includes('bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands")'), 'Klikk på Brands-runding skal være bundet til brands-popup');
 
