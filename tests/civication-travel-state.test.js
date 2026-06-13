@@ -81,6 +81,7 @@ const travel = global.CivicationTravelState;
 
 assert(travel, "window.CivicationTravelState is exported");
 assert.strictEqual(typeof travel.getState, "function", "getState API exists");
+assert.strictEqual(typeof travel.completeCurrentTravel, "function", "completeCurrentTravel API exists");
 
 assert.deepStrictEqual(
   travel.getState(),
@@ -115,9 +116,15 @@ localStorage.writes.length = 0;
 
 let updatedEvent = null;
 let destinationEvent = null;
+let completedEvent = null;
+let updatedEventCount = 0;
 let profileEventCount = 0;
-window.addEventListener("civi:travelStateUpdated", (event) => { updatedEvent = event.detail; });
+window.addEventListener("civi:travelStateUpdated", (event) => {
+  updatedEvent = event.detail;
+  updatedEventCount += 1;
+});
 window.addEventListener("civi:travelDestinationSet", (event) => { destinationEvent = event.detail; });
+window.addEventListener("civi:travelCompleted", (event) => { completedEvent = event.detail; });
 window.addEventListener("updateProfile", () => { profileEventCount += 1; });
 
 window.dispatchEvent(new CustomEvent("civi:historyGoPlaceTravelRequested", {
@@ -162,6 +169,47 @@ assert(destinationEvent, "civi:travelDestinationSet is dispatched");
 assert.strictEqual(destinationEvent.destination.placeName, "Akershus festning", "destination event includes destination");
 assert.strictEqual(destinationEvent.request.status, "pending", "destination event includes request");
 assert.strictEqual(profileEventCount, 1, "updateProfile is dispatched");
+
+localStorage.writes.length = 0;
+const updatedEventsBeforeCompletion = updatedEventCount;
+const completedState = travel.completeCurrentTravel({ tripId: "trip-akershus-1" });
+
+assert(completedState.currentLocation, "completion sets currentLocation");
+assert.strictEqual(completedState.currentLocation.placeId, "akershus_festning", "currentLocation keeps destination placeId");
+assert.strictEqual(completedState.currentLocation.status, "arrived", "currentLocation status is arrived");
+assert.match(completedState.currentLocation.arrivedAt, /^\d{4}-\d{2}-\d{2}T/, "currentLocation has an ISO arrivedAt timestamp");
+assert.strictEqual(completedState.currentDestination, null, "completion clears currentDestination");
+assert.strictEqual(completedState.pendingTravelRequest, null, "completion clears pendingTravelRequest");
+assert.strictEqual(completedState.activeTrip, null, "completion clears activeTrip");
+assert.strictEqual(completedState.lastTravelAt, completedState.currentLocation.arrivedAt, "lastTravelAt records completion time");
+assert.strictEqual(completedState.updatedAt, completedState.currentLocation.arrivedAt, "updatedAt records completion time");
+assert.strictEqual(completedState.travelLog.length, 1, "completion appends one travelLog entry");
+assert.strictEqual(completedState.travelLog[0].status, "completed", "travelLog entry is completed");
+assert.strictEqual(completedState.travelLog[0].tripId, "trip-akershus-1", "travelLog entry keeps tripId");
+
+assert(completedEvent, "civi:travelCompleted is dispatched");
+assert.strictEqual(completedEvent.tripId, "trip-akershus-1", "completed event includes tripId");
+assert.strictEqual(completedEvent.currentLocation.placeId, "akershus_festning", "completed event includes currentLocation");
+assert.strictEqual(completedEvent.previousLocation, null, "completed event includes previousLocation");
+assert.strictEqual(completedEvent.completedAt, completedState.currentLocation.arrivedAt, "completed event includes completion timestamp");
+assert.strictEqual(completedEvent.source, "CivicationTravelState", "completed event identifies its source");
+assert.strictEqual(updatedEventCount, updatedEventsBeforeCompletion + 1, "completion dispatches civi:travelStateUpdated");
+assert.strictEqual(updatedEvent.reason, "completeCurrentTravel", "completion state event includes reason");
+assert.strictEqual(profileEventCount, 2, "completion dispatches updateProfile");
+
+assert.deepStrictEqual([...new Set(localStorage.writes)], ["hg_civi_travel_v1"], "completion writes only hg_civi_travel_v1");
+assert.deepStrictEqual(JSON.parse(localStorage.getItem("visited_places")), originalVisited, "completion leaves visited_places unchanged");
+assert.deepStrictEqual(JSON.parse(localStorage.getItem("merits_by_category")), originalMerits, "completion leaves merits_by_category unchanged");
+assert.deepStrictEqual(JSON.parse(localStorage.getItem("quiz_progress")), originalQuiz, "completion leaves quiz_progress unchanged");
+assert.strictEqual(localStorage.getItem("hg_civi_calendar_v1"), JSON.stringify(originalCalendar), "completion leaves calendar storage unchanged");
+
+localStorage.removeItem("hg_civi_travel_v1");
+localStorage.writes.length = 0;
+completedEvent = null;
+const noOpState = travel.completeCurrentTravel();
+assert.deepStrictEqual(noOpState, travel.getState(), "completion without a destination is a stable no-op");
+assert.strictEqual(completedEvent, null, "no-op completion does not dispatch civi:travelCompleted");
+assert.deepStrictEqual(localStorage.writes, [], "no-op completion does not write storage");
 
 assert.strictEqual(adapter.writeVisitedPlaces, undefined, "writeVisitedPlaces does not exist");
 assert.strictEqual(adapter.writeMeritsByCategory, undefined, "writeMeritsByCategory does not exist");
