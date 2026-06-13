@@ -283,19 +283,37 @@ window.HGPlaceNatureProfile = {
 
 /** @type {PlaceRoundDef[]} */
 const PLACE_ROUND_REGISTRY = [
-  { id: "people",       label: "Personer",     fallbackIcon: "👥", iconId: "pcPeopleIcon",          listId: "pcPeopleList",          kind: "people" },
-  { id: "nature",       label: "Natur",        fallbackIcon: "🌿", iconId: "pcNatureIcon",          listId: "pcNatureList",          kind: "nature" },
-  { id: "badges",       label: "Merker",       fallbackIcon: "🏅", iconId: "pcBadgesIcon",          listId: "pcBadgesList",          kind: "badges" },
-  { id: "civication",   label: "Civication",   fallbackIcon: "🛒", iconId: "pcCivicationStoreIcon", listId: "pcCivicationStoreList", kind: "civication" },
-  { id: "brands",       label: "Brands",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
-  { id: "leksikon",     label: "Leksikon",     fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["lexicon"] },
-  { id: "routes",       label: "Ruter",        fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
-  { id: "music",        label: "Musikk",       fallbackIcon: "♫",  iconId: "pcMusicIcon",           listId: "pcMusicList",           kind: "music" },
-  { id: "football",     label: "Fotball",      fallbackIcon: "⚽", iconId: "pcFootballIcon",        listId: "pcFootballList",        kind: "football" }
+  { id: "people",       label: "Personer",      fallbackIcon: "👥", iconId: "pcPeopleIcon",          listId: "pcPeopleList",          kind: "people" },
+  { id: "fortellinger", label: "Fortellinger",  fallbackIcon: "📖", iconId: "pcFortellingerIcon",    listId: "pcFortellingerList",    kind: "fortellinger", aliases: ["stories", "story"] },
+  { id: "leksikon",     label: "Leksikon",      fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["lexicon"] },
+  { id: "wonderkammer", label: "Wonderkammer",  fallbackIcon: "🔎", iconId: "pcWonderkammerIcon",    listId: "pcWonderkammerList",    kind: "wonderkammer", aliases: ["nature"] },
+  { id: "routes",       label: "Ruter",         fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
+  { id: "badges",       label: "Merker",        fallbackIcon: "🏅", iconId: "pcBadgesIcon",          listId: "pcBadgesList",          kind: "badges" },
+  { id: "tasks",        label: "Oppgaver",      fallbackIcon: "✅", iconId: "pcTasksIcon",           listId: "pcTasksList",           kind: "tasks" },
+  { id: "observations", label: "Observasjoner", fallbackIcon: "📝", iconId: "pcObservationsIcon",    listId: "pcObservationsList",    kind: "observations" },
+  { id: "brands",       label: "Aktører",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
+  { id: "civication",   label: "Civication",    fallbackIcon: "🏛", iconId: "pcCivicationStoreIcon", listId: "pcCivicationStoreList", kind: "civication" },
+  { id: "works",        label: "Verk",          fallbackIcon: "🎭", iconId: "pcWorksIcon",           listId: "pcWorksList",           kind: "works", aliases: ["football", "music"] }
 ];
 
-/** Standard rundinger når et sted ikke deklarerer `rounds` (krav 4). */
-const DEFAULT_PLACE_ROUNDS = ["people", "nature", "badges", "civication", "brands", "leksikon", "routes"];
+/** Standard innholdsrekkefølge når PlaceCard fyller opp til 9 rundinger. */
+const DEFAULT_PLACE_ROUNDS = ["people", "fortellinger", "leksikon", "wonderkammer", "routes", "badges", "tasks", "observations", "brands", "civication", "works"];
+
+const PLACE_ROUND_CATEGORY_FALLBACKS = Object.freeze({
+  by: ["people", "fortellinger", "leksikon", "wonderkammer", "routes", "badges", "observations", "brands", "civication", "tasks", "works"],
+  historie: ["fortellinger", "people", "leksikon", "wonderkammer", "routes", "badges", "works", "observations", "brands", "civication", "tasks"],
+  politikk: ["people", "fortellinger", "leksikon", "routes", "badges", "brands", "civication", "works", "observations", "tasks", "wonderkammer"],
+  kunst: ["works", "people", "fortellinger", "leksikon", "wonderkammer", "brands", "routes", "badges", "observations", "tasks", "civication"],
+  litteratur: ["works", "people", "fortellinger", "leksikon", "brands", "routes", "badges", "observations", "tasks", "civication", "wonderkammer"],
+  vitenskap: ["leksikon", "wonderkammer", "people", "works", "fortellinger", "routes", "badges", "observations", "tasks", "brands", "civication"],
+  musikk: ["works", "people", "fortellinger", "brands", "leksikon", "routes", "badges", "observations", "tasks", "wonderkammer", "civication"],
+  music: ["works", "people", "fortellinger", "brands", "leksikon", "routes", "badges", "observations", "tasks", "wonderkammer", "civication"],
+  sport: ["works", "people", "fortellinger", "brands", "leksikon", "routes", "badges", "tasks", "observations", "wonderkammer", "civication"],
+  natur: ["wonderkammer", "observations", "tasks", "leksikon", "routes", "badges", "fortellinger", "people", "works", "brands", "civication"],
+  nature: ["wonderkammer", "observations", "tasks", "leksikon", "routes", "badges", "fortellinger", "people", "works", "brands", "civication"],
+  subkultur: ["fortellinger", "people", "works", "brands", "leksikon", "routes", "badges", "observations", "tasks", "wonderkammer", "civication"],
+  naeringsliv: ["brands", "civication", "fortellinger", "people", "leksikon", "works", "routes", "badges", "observations", "tasks", "wonderkammer"]
+});
 
 /** @type {Record<string, PlaceRoundDef>} id (+ alias) → definisjon. */
 const PLACE_ROUND_BY_ID = (() => {
@@ -326,27 +344,42 @@ function getPlaceRounds(place) {
     Array.isArray(place?.rundinger) ? place.rundinger :
     null;
 
-  const requested = (declared && declared.length) ? declared : DEFAULT_PLACE_ROUNDS;
+  const requested = (declared && declared.length) ? declared : [];
 
   /** @type {PlaceRoundDef[]} */
   const out = [];
   const seen = new Set();
 
-  for (const entry of requested) {
+  const pushRound = (entry, warnUnknown = false) => {
     const rawId = String(entry || "").trim();
-    if (!rawId) continue;
+    if (!rawId) return;
 
     const def = PLACE_ROUND_BY_ID[rawId];
     if (!def) {
-      console.warn(`[placeCard] Ukjent runding ignorert: "${rawId}" (sted: ${String(place?.id || "ukjent")})`);
-      continue;
+      if (warnUnknown) {
+        console.warn(`[placeCard] Ukjent runding ignorert: "${rawId}" (sted: ${String(place?.id || "ukjent")})`);
+      }
+      return;
     }
-    if (seen.has(def.id)) continue;
+    if (seen.has(def.id)) return;
     seen.add(def.id);
     out.push(def);
+  };
+
+  for (const entry of requested) pushRound(entry, true);
+
+  const category = String(place?.category || place?.categoryId || "").trim().toLowerCase();
+  const fallback = PLACE_ROUND_CATEGORY_FALLBACKS[category] || DEFAULT_PLACE_ROUNDS;
+  for (const id of fallback) {
+    if (out.length >= 9) break;
+    pushRound(id);
+  }
+  for (const id of DEFAULT_PLACE_ROUNDS) {
+    if (out.length >= 9) break;
+    pushRound(id);
   }
 
-  return out;
+  return out.slice(0, 9);
 }
 
 /**
@@ -758,14 +791,16 @@ const descEl     = document.getElementById("pcDesc");
 const lesesporEl = document.getElementById("pcLesespor");
 
 const peopleIcon          = document.getElementById("pcPeopleIcon");
-const natureIcon          = document.getElementById("pcNatureIcon");
+const fortellingerIcon    = document.getElementById("pcFortellingerIcon");
+const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const badgesIcon          = document.getElementById("pcBadgesIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
-const footballIcon        = document.getElementById("pcFootballIcon");
+const tasksIcon           = document.getElementById("pcTasksIcon");
+const observationsIcon    = document.getElementById("pcObservationsIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const brandsIcon          = document.getElementById("pcBrandsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
-const musicIcon           = document.getElementById("pcMusicIcon");
+const worksIcon           = document.getElementById("pcWorksIcon");
   
 const previousPlaceId = String(card.dataset.currentPlaceId || "").trim();
 const nextPlaceId = String(place.id || "").trim();
@@ -776,14 +811,16 @@ bindPlaceCardQuizFlip(frontCardFlipEl, quizCardImgEl);
 const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
 const peopleEl          = document.getElementById("pcPeopleList");
-const natureEl          = document.getElementById("pcNatureList");
+const fortellingerEl    = document.getElementById("pcFortellingerList");
+const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const badgesEl          = document.getElementById("pcBadgesList");
 const routesEl          = document.getElementById("pcRoutesList");
-const footballEl        = document.getElementById("pcFootballList");
+const tasksEl           = document.getElementById("pcTasksList");
+const observationsEl    = document.getElementById("pcObservationsList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
 const brandsEl          = document.getElementById("pcBrandsList");
 const leksikonEl        = document.getElementById("pcLeksikonList");
-const musicEl           = document.getElementById("pcMusicList");
+const worksEl           = document.getElementById("pcWorksList");
 
 const eventsBox         = document.getElementById("pcEventsBox");
 const addEventBtn       = document.getElementById("pcAddEvent");
@@ -806,14 +843,16 @@ if (!card.dataset.pcIconsBound) {
 
   const closeAllLists = () => {
     peopleEl?.classList.remove("is-open");
-    natureEl?.classList.remove("is-open");
+    fortellingerEl?.classList.remove("is-open");
+    wonderkammerEl?.classList.remove("is-open");
     badgesEl?.classList.remove("is-open");
     routesEl?.classList.remove("is-open");
-    footballEl?.classList.remove("is-open");
+    tasksEl?.classList.remove("is-open");
+    observationsEl?.classList.remove("is-open");
     civicationStoreEl?.classList.remove("is-open");
     brandsEl?.classList.remove("is-open");
     leksikonEl?.classList.remove("is-open");
-    musicEl?.classList.remove("is-open");
+    worksEl?.classList.remove("is-open");
   };
 
   const bindRoundPopup = (iconEl, listEl, title, kind) => {
@@ -922,6 +961,15 @@ if (!card.dataset.pcIconsBound) {
       `;
     }
 
+    if (kind === "fortellinger" && currentPlaceId && typeof window.HGStories?.openPlace === "function") {
+      void window.HGStories.openPlace(currentPlaceId);
+      return;
+    }
+
+    if (kind === "tasks") html = `<div class="pc-empty">Ingen oppgaver ennå</div>`;
+    if (kind === "observations") html = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
+    if (kind === "works") html = `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
+
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
         title,
@@ -939,24 +987,28 @@ iconsWrap?.addEventListener("click", (e) => {
 });
 
 bindRoundPopup(peopleIcon, peopleEl, "People", "people");
-bindRoundPopup(natureIcon, natureEl, "Natur", "nature");
+bindRoundPopup(fortellingerIcon, fortellingerEl, "Fortellinger", "fortellinger");
+bindRoundPopup(wonderkammerIcon, wonderkammerEl, "Wonderkammer", "wonderkammer");
 bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
-bindRoundPopup(footballIcon, footballEl, "Fotball", "football");
+bindRoundPopup(tasksIcon, tasksEl, "Oppgaver", "tasks");
+bindRoundPopup(observationsIcon, observationsEl, "Observasjoner", "observations");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
 bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
 bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
-bindRoundPopup(musicIcon, musicEl, "Musikk", "music");
+bindRoundPopup(worksIcon, worksEl, "Verk", "works");
 
 peopleEl?.addEventListener("click", (e) => e.stopPropagation());
-natureEl?.addEventListener("click", (e) => e.stopPropagation());
+fortellingerEl?.addEventListener("click", (e) => e.stopPropagation());
+wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
 badgesEl?.addEventListener("click", (e) => e.stopPropagation());
 routesEl?.addEventListener("click", (e) => e.stopPropagation());
-footballEl?.addEventListener("click", (e) => e.stopPropagation());
+tasksEl?.addEventListener("click", (e) => e.stopPropagation());
+observationsEl?.addEventListener("click", (e) => e.stopPropagation());
 civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
 brandsEl?.addEventListener("click", (e) => e.stopPropagation());
 leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
-musicEl?.addEventListener("click", (e) => e.stopPropagation());
+worksEl?.addEventListener("click", (e) => e.stopPropagation());
 }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
@@ -1081,16 +1133,7 @@ if (!card) return;
   if (!window.HGAhaMusic?.state?.loaded) await window.HGAhaMusic?.load?.();
   const music = window.HGAhaMusic?.getForPlace?.(place.id);
 
-  if (musicIcon) {
-    const musicCount = (music?.artists?.length || 0) + (music?.tracks?.length || 0);
-    musicIcon.hidden = musicCount === 0;
-    if (musicCount) {
-      setRoundLabel(musicIcon, "♫", musicCount);
-      musicIcon.setAttribute("aria-label", `Musikk: ${music.artists.length} artister og ${music.tracks.length} sanger`);
-      musicIcon.title = "Musikk";
-    }
-  }
-  if (musicEl) musicEl.innerHTML = music ? renderPlaceMusic(music) : "";
+  const musicCount = (music?.artists?.length || 0) + (music?.tracks?.length || 0);
 
   // --- FLORA (place.flora = ["flora_id", ...]) ---
   let FLORA_LIST =
@@ -1295,8 +1338,8 @@ if (peopleIcon) {
 }
 
 
-// --- NATURE LIST (fast runding: place.nature_profile + flora) ---
-if (natureEl) {
+// --- WONDERKAMMER LIST (place.wonderkammer + nature_profile + flora) ---
+if (wonderkammerEl) {
   const profileHtml = renderPlaceCardNatureProfile(place);
   const floraHtml = floraHere.length
     ? `
@@ -1314,10 +1357,10 @@ if (natureEl) {
     `
     : "";
 
-  natureEl.innerHTML = `${profileHtml}${floraHtml}`;
+  wonderkammerEl.innerHTML = `${profileHtml}${floraHtml}`;
 
   // flora click (åpne infokort)
-  natureEl.querySelectorAll("[data-flora]").forEach((/** @type {HTMLElement} */ btn) => {
+  wonderkammerEl.querySelectorAll("[data-flora]").forEach((/** @type {HTMLElement} */ btn) => {
     btn.onclick = () => {
       const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
       if (a && typeof window.showFloraPopup === "function") window.showFloraPopup(a);
@@ -1326,13 +1369,13 @@ if (natureEl) {
 }
 
 // nature icon preview (første flora med bilde)
-if (natureIcon) {
+if (wonderkammerIcon) {
   const f0 = floraHere.find(a => (a.imageCard || a.image || a.img));
   const img = f0 ? (f0.imageCard || f0.image || f0.img || "") : "";
   if (img) {
-    natureIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
+    wonderkammerIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
   } else {
-    setRoundLabel(natureIcon, "🌿", floraHere.length);
+    setRoundLabel(wonderkammerIcon, "🔎", floraHere.length);
   }
 }
 
@@ -1918,8 +1961,8 @@ if (leksikonEl) {
   setRoundLabel(leksikonIcon, "📚", 1);
 }
 
-// --- FOOTBALL / SPORT LIST + ICON (fra place.sport_profile) ---
-if (footballEl) {
+// --- WORKS LIST + ICON (verk, musikk og sport/prestasjoner) ---
+if (worksEl) {
   const sp = (place?.sport_profile && typeof place.sport_profile === "object")
     ? /** @type {any} */ (place.sport_profile)
     : null;
@@ -1942,18 +1985,31 @@ if (footballEl) {
     clubs.length ? sportRow("Klubb / lag", clubs.join(" / ")) : ""
   ].filter(Boolean);
 
-  footballEl.innerHTML = footballRows.length
-    ? footballRows.join("")
-    : `<div class="pc-empty">Ingen sportsdata ennå</div>`;
+  const musicHtml = music ? renderPlaceMusic(music) : "";
+  worksEl.innerHTML = [footballRows.join(""), musicHtml].filter(Boolean).join("")
+    || `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
 
-  const footballCount = clubs.length || sports.length || (sp ? 1 : "");
-  setRoundLabel(footballIcon, "⚽", footballCount);
+  const worksCount = musicCount + (clubs.length || sports.length || (sp ? 1 : 0));
+  setRoundLabel(worksIcon, "🎭", worksCount || "");
 }
 
 // --- ROUTES LIST + ICON (åpner eksisterende rute-flyt, se bindRoundPopup) ---
 if (routesEl) {
   routesEl.innerHTML = `<div class="pc-empty">${tt("ui.routes.openForPlace", "Åpne ruter for dette stedet")}</div>`;
   setRoundLabel(routesIcon, "🧭", "");
+}
+
+if (fortellingerEl) {
+  fortellingerEl.innerHTML = `<div class="pc-empty">Ingen fortellinger ennå</div>`;
+  setRoundLabel(fortellingerIcon, "📖", "");
+}
+if (tasksEl) {
+  tasksEl.innerHTML = `<div class="pc-empty">Ingen oppgaver ennå</div>`;
+  setRoundLabel(tasksIcon, "✅", "");
+}
+if (observationsEl) {
+  observationsEl.innerHTML = `<div class="pc-empty">Ingen observasjoner ennå</div>`;
+  setRoundLabel(observationsIcon, "📝", "");
 }
 
 // Datastyrt visning: vis kun rundingene stedet deklarerer (krav 3, 4, 10).

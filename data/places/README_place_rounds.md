@@ -1,42 +1,57 @@
 # PlaceCard-rundinger (`rounds`)
 
-PlaceCard-rundinger er datastyrte per sted. Bruk feltet `rounds` på et sted
-for å velge hvilke hovedrundinger/ikoner som skal vises, og i hvilken rekkefølge.
-`rundinger` støttes som alias for eldre/norske data.
+PlaceCard-rundinger er nå **innholdsmoduler**: en runding er en innholdstype
+eller handling brukeren kan åpne på stedet. Kategori beskriver hva stedet er;
+kategorinavn skal ikke brukes som canonical PlaceCard-rundinger.
 
-## Gyldige id-er
+PlaceCard viser alltid et fast 3x3-grid med **9 synlige rundinger**, valgt fra en
+canonical pool på **11**. Feltet `place.rounds` betyr derfor prioritering og
+relevans: rundingene som listes der kommer først etter alias-normalisering, og
+runtime fyller deretter opp til 9 med relevante standardrundinger. `rundinger`
+støttes som legacy alias for `rounds`.
 
-Canonical PlaceCard-round ids er:
+## Canonical ids
+
+Nye data skal kun bruke disse canonical id-ene:
 
 - `people`
-- `nature`
-- `badges`
-- `civication`
-- `brands`
+- `fortellinger`
 - `leksikon`
+- `wonderkammer`
 - `routes`
-- `music`
-- `football`
+- `badges`
+- `tasks`
+- `observations`
+- `brands`
+- `civication`
+- `works`
 
-`lexicon` støttes kun som bakoverkompatibelt alias til canonical id `leksikon`.
-Nye data skal bruke `leksikon`.
+## Legacy aliases
 
-## Standard-fallback
+Runtime støtter disse bakoverkompatible aliasene slik at eksisterende data ikke
+knekker:
 
-Når et sted mangler både `rounds` og `rundinger`, bruker PlaceCard standardsettet:
+- `lexicon` -> `leksikon`
+- `stories` / `story` -> `fortellinger`
+- `nature` -> `wonderkammer`
+- `football` / `music` -> `works`
+
+Nye data skal **ikke** bruke `lexicon`, `stories`, `story`, `nature`, `football`
+eller `music` i `rounds`.
+
+## Fallback og prioritering
+
+Hvis et sted mangler `rounds`/`rundinger`, eller hvis deklarerte rundinger er
+færre enn 9, fylles kortet fra en bred innholdspool. Generell fallback er:
 
 ```json
-["people", "nature", "badges", "civication", "brands", "leksikon", "routes"]
+["people", "fortellinger", "leksikon", "wonderkammer", "routes", "badges", "tasks", "observations", "brands", "civication", "works"]
 ```
 
-`music` og `football` vises bare når stedet deklarerer dem eksplisitt i `rounds`
-/ `rundinger`.
-
-## Leksikon samler kunnskapsrundingen
-
-Stories/Fortellinger, Lesespor, Wonderkammer, Språkleksikon og øvrige
-leksikon-/kunnskapsobjekter ligger under Leksikon-rundingen. De skal ikke legges
-inn som egne PlaceCard-hovedrundinger eller egne hovedikoner.
+Runtime kan bruke en enkel kategori-spesifikk fallback-profil, men bare med de
+11 canonical innholdsrundingene. Ukjente ids ignoreres med `console.warn`,
+duplikater fjernes etter canonical id, og PlaceCard returnerer aldri mer enn 9
+rundinger.
 
 Eksempel:
 
@@ -47,183 +62,89 @@ Eksempel:
 }
 ```
 
+Dette betyr at `leksikon`, `brands`, `badges` og `routes` prioriteres først;
+PlaceCard fyller resten av 3x3-gridet med relevante innholdsmoduler.
+
 ## Kuratoriske kriterier
 
 ### people
 
-Brukes når stedet naturlig kan knyttes til personer:
+Personer knyttet til stedet: forfattere, kunstnere, politikere, idrettsfolk,
+vitenskapsfolk, arkitekter, musikere, lokale aktører, historiske skikkelser og
+personer som har bodd, virket, opptrådt, bygget, skrevet, forsket, kjempet
+eller blitt minnet der.
 
-- forfattere
-- kunstnere
-- politikere
-- idrettsfolk
-- vitenskapsfolk
-- arkitekter
-- musikere
-- lokale aktører
-- historiske skikkelser
-- personer som har bodd, virket, opptrådt, bygget, skrevet, forsket, kjempet
-  eller blitt minnet der
+### fortellinger
 
-Ikke bruk `people` bare fordi stedet er offentlig eller kjent. Det må finnes
-eller kunne finnes en meningsfull personkobling.
-
-### nature
-
-Brukes når natur, park, vann, landskap, grøntstruktur, flora/fauna, friluftsliv
-eller topografi er en sentral del av stedet.
-
-Eksempler:
-
-- parker
-- gravlunder med landskap/naturpreg
-- vann
-- hager
-- markasteder
-- utsiktspunkter
-- grøntdrag
-
-### badges
-
-Brukes når stedet bør gi samlings-/progresjonsverdi. Dette gjelder de fleste
-kanoniske History Go-steder, men kan utelates for svært tekniske, midlertidige
-eller interne dataobjekter.
-
-### civication
-
-Brukes når stedet kan ha samfunns-, økonomi-, arbeids-, institusjons-,
-politisk-, handel-, bolig-, transport- eller bylivsfunksjon i Civication.
-
-Eksempler:
-
-- rådhus
-- torg
-- skoler
-- stasjoner
-- butikker/handlegater
-- industri
-- kontorområder
-- kulturinstitusjoner
-- offentlige bygg
-- politiske steder
-
-### brands
-
-Brukes når stedet naturlig kan kobles til merkevarer, institusjoner,
-organisasjoner, klubber, scener, museer, medier, bedrifter, offentlige aktører
-eller andre navngitte systemaktører.
-
-Eksempler:
-
-- NRK Marienlyst
-- Nasjonalmuseet
-- MUNCH
-- Ullevaal stadion
-- Stortinget
-- SALT
-- Hausmania
-- Deichman
-
-`brands` betyr ikke bare kommersielle merkevarer. Det inkluderer også
-institusjoner og organisasjoner som fungerer som gjenkjennelige aktører i
-History Go.
+Narrative historier, hendelser, scener, historiske øyeblikk og “hva skjedde
+her”. `fortellinger` dekker behovet for events/hendelser som PlaceCard-runding;
+`events` er ikke egen canonical runding nå.
 
 ### leksikon
 
-Brukes når stedet bør ha utdypende kunnskapsinnhold.
+Forklaringer, begreper, fagord, språkleksikon, kontekst og kunnskapskort.
+Dette er oppslagsverk/forklaring, ikke primært narrativ. Leksikon kan fortsatt
+lenke videre til fortellinger, lesespor og Wonderkammer der huben gjør det.
 
-Leksikon samler:
+### wonderkammer
 
-- Fortellinger / Stories
-- Lesespor
-- Wonderkammer
-- Språkleksikon
-- objekter
-- begreper
-- historiske forklaringer
-- faglige artikler
-- korte kunnskapskort
-
-De fleste historiske, kulturelle, politiske, vitenskapelige, kunstneriske,
-litterære og byanalytiske steder bør ha `leksikon`.
+Ting å se etter på stedet: objekter, skilt, statuer, bygningselementer,
+detaljer, spor, lekeapparater, treningsapparater, kunstobjekter, naturfunn og
+små observasjonsobjekter. Legacy `nature` mappes hit fordi natur i PlaceCard
+skal handle om ting å se, spor, funn og observasjon.
 
 ### routes
 
-Brukes når stedet naturlig inngår i ruter:
+Ruter stedet inngår i: historiske ruter, byvandringer, ferdselslinjer,
+transportlinjer, pilegrimsruter, handelsruter, elveruter, havneruter,
+politiske ruter, kulturvandringer, krigs-/motstandsruter, idretts- eller
+musikkruter.
 
-- historiske ruter
-- byvandringer
-- ferdselslinjer
-- transportlinjer
-- pilegrimsruter
-- handelsruter
-- elveruter
-- havneruter
-- politiske ruter
-- kulturvandringer
-- krigs-/motstandsruter
-- idretts- eller musikkruter
+### badges
 
-`routes` kan brukes både for fysisk History Go-gåing og for online/textual
-historical routes.
+Merker, samling, progresjon og underbadges. Brukes når stedet bør gi
+samlings-/progresjonsverdi eller inngå i et faglig/kuratorisk badge-system.
 
-### music
+### tasks
 
-Brukes kun når stedet har tydelig musikkkobling:
+Oppgaver: quiz, minioppdrag, observasjonsoppgaver, kreative oppgaver, fysiske
+oppgaver, barne-/lekeoppgaver og “gjør noe her”. Ikke bruk `tasks` som løfte om
+ny oppgavemotor; rundingen kan ha tomtilstand til data finnes.
 
-- konsertscene
-- klubb
-- studio
-- festival
-- artiststed
-- musikkhistorisk sted
-- plateselskap
-- AHA Music-relasjon
+### observations
 
-Ikke bruk `music` bare fordi stedet kan ha hatt arrangementer. Musikk må være
-en tydelig del av stedets identitet eller bruk.
+Brukerens egne observasjoner: notater, bilder, minner, funn, feltarbeid og
+“legg til observasjon”. Rundingen peker på observasjonsflyt eller tomtilstand;
+den oppretter ikke ny lagringsmodell alene.
 
-### football
+### brands
 
-Brukes på fotballrelaterte steder:
+Aktører: institusjoner, organisasjoner, klubber, museer, medier, butikker,
+scener, offentlige aktører, bedrifter, idrettslag og andre navngitte system-
+aktører. `brands` betyr ikke bare kommersielle merkevarer.
 
-- stadioner
-- fotballbaner
-- klubbsteder
-- supporterplasser
-- treningsfelt
-- historiske kampsteder
-- steder relevante for HG Football Manager
+### civication
 
-Ikke bruk `football` på generelle idrettssteder uten tydelig fotballkobling.
+Samfunnsfunksjon: arbeid, handel, økonomi, byliv, bolig, offentlig tjeneste,
+institusjon, transportfunksjon og “hva gjør dette stedet i byen?”.
 
-## Anbefalt prioritering
+### works
 
-Hvis et sted har mange mulige rundinger:
+Stedets verk, produksjoner, stats og prestasjoner. Dette kan være bøker,
+sanger, filmer, malerier, skulpturer, teaterstykker, TV-/radioprogrammer,
+arkitekturverk, taler, artikler, kamper, rekorder, mål, finaler,
+idrettsprestasjoner, utstillinger og forestillinger. PlaceCard-`works` handler
+om stedets verk/prestasjoner/produksjoner, ikke om å flytte personens verk inn i
+personmodellen. Legacy `football` og `music` mappes hit fordi kamper, rekorder,
+låter, konserter, utgivelser og prestasjoner hører hjemme i denne rundingen.
 
-1. Ta med rundinger som faktisk gir brukerhandling.
-2. Ta med rundinger som støttes av eksisterende eller planlagt data.
-3. Ikke fyll alle steder med alt.
-4. Bruk fallback for generelle steder uten særskilt kuratering.
-5. Bruk eksplisitt `rounds` når stedet har en tydelig egenprofil.
+## Ikke egne PlaceCard-rundinger nå
 
-## Ikke bruk som PlaceCard-rundinger
-
-Disse skal ikke brukes i `rounds`:
-
-- `stories`
-- `wonderkammer`
-- `lexicon`
-
-Forklaring:
-
-- `stories` og `wonderkammer` ligger under `leksikon`.
-- `lexicon` er bare alias for gamle data; nye data skal bruke `leksikon`.
-
-## Kodekontrakt
-
-- `PLACE_ROUND_REGISTRY` — eneste kilde for kjente rundinger (id, label,
-  ikon-DOM, liste-DOM, alias og kind).
-- `getPlaceRounds(place)` — leser `rounds`/`rundinger`, normaliserer alias og
-  filtrerer ukjente id-er.
-- `applyPlaceRounds(place)` — viser/skjuler PlaceCard-ikonene per sted.
+- Tidslinje er ikke egen runding nå; tids-/epokeinformasjon kan ligge i badges,
+  leksikon, fortellinger eller annet relevant innhold.
+- Nærhet/koblinger håndteres av NextUp/Fortsett reisen, ikke av en egen
+  PlaceCard-runding.
+- Kategorinavn som `nature`, `football`, `music`, `art`, `literature`,
+  `science`, `politics`, `sport`, `media`, `architecture`, `history`, `market`,
+  `transport`, `memorial` og `subculture` skal ikke brukes som canonical
+  PlaceCard-rundinger.
