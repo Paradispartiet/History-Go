@@ -45,7 +45,7 @@
   }
 
   function addButton() {
-    let button = document.getElementById("btnOpenPsychologyRoom");
+    let button = /** @type {HTMLButtonElement | null} */ (document.getElementById("btnOpenPsychologyRoom"));
     const tabs = document.querySelector('.profile-tabs[role="tablist"][aria-label="Profilfaner"]')
       || document.querySelector(".profile-tabs");
     if (!tabs) return;
