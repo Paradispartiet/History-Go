@@ -3,7 +3,8 @@
   const EXTRA_MANIFEST_PATHS = [
     "data/stories/stories_manifest_music_batch_01.json",
     "data/stories/stories_manifest_naeringsliv_batch_01.json",
-    "data/stories/stories_manifest_by_batch_01.json"
+    "data/stories/stories_manifest_by_batch_01.json",
+    "data/stories/stories_manifest_sport_batch_01.json"
   ];
 
   function ensureArray(value) {
