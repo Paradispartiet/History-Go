@@ -125,8 +125,14 @@ aktører. `brands` betyr ikke bare kommersielle merkevarer.
 
 ### civication
 
-Samfunnsfunksjon: arbeid, handel, økonomi, byliv, bolig, offentlig tjeneste,
-institusjon, transportfunksjon og “hva gjør dette stedet i byen?”.
+Civication Store: en stedsspesifikk store-/butikk-/samlingsfunksjon for
+konkrete fysiske objekter knyttet til akkurat dette stedet. Objektene kan
+kjøpes eller samles og brukes videre i Civication, for eksempel som tegn på
+stedets historie, funksjon, institusjon, symboler eller fysiske miljø. Generiske
+objekter skal ikke legges inn: et godt Civication Store-objekt bør miste mye av
+meningen sin hvis det flyttes til et annet sted. `civication` er fortsatt
+canonical PlaceCard-round-id-en, selv om UI-konseptet kan hete “Civication
+Store”.
 
 ### works
 
