@@ -50,6 +50,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     // mangler window.HGLeksikon.openPlace når #pcLeksikonIcon klikkes.
     await safeRun("loadLeksikon", () => loadScriptOnce("js/leksikon/leksikon_loader.js"));
 
+    // Epoke-runtime + tidsresolver + PlaceCard-epoke-UI.
+    // epoker-runtime.js bygger window.EPOKER_INDEX og eksponerer
+    // window.HGEpokerRuntime.ready; time-resolver.js gir
+    // window.HGTimeResolver.resolvePlaceTime; place-card-epoke.js patcher
+    // window.openPlaceCard trygt for å vise en epokelinje i #pcMeta. Lastes
+    // etter place-card.js (og leksikon) slik at wrapper-patchen finner
+    // window.openPlaceCard, og før brukeren rekker å åpne et sted.
+    await safeRun("loadEpokerRuntime", () => loadScriptOnce("js/epoker-runtime.js"));
+    await safeRun("loadTimeResolver", () => loadScriptOnce("js/time-resolver.js"));
+    await safeRun("loadPlaceCardEpoke", () => loadScriptOnce("js/ui/place-card-epoke.js"));
+
     await safeRun("LayerManager.init", () => window.LayerManager?.init?.());
     await safeRun("bottomSheetController.init", () => window.bottomSheetController?.init?.());
 
