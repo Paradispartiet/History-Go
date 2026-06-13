@@ -6,7 +6,8 @@
     "data/stories/stories_manifest_by_batch_01.json",
     "data/stories/stories_manifest_sport_batch_01.json",
     "data/stories/stories_manifest_litteratur_media_batch_01.json",
-    "data/stories/stories_manifest_vitenskap_batch_01.json"
+    "data/stories/stories_manifest_vitenskap_batch_01.json",
+    "data/stories/stories_manifest_subkultur_batch_01.json"
   ];
 
   function ensureArray(value) {
