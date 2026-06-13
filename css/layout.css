@@ -207,11 +207,13 @@ body.hg-app #placeCard{
   /* Kortet ankres nederst og vokser med innholdet i stedet for å fylle
      hele kartet. max-height hindrer at det dekker hele skjermen. */
   top: auto;
-  bottom: var(--hg-design-footer-offset, 80px);
+  bottom: var(--hg-visual-footer-height, 80px);
   height: auto;
+  /* Visual-heights fordi #placeCard er forankret mot ekte viewport
+     (utenfor app-shell), på linje med #nearbyListContainer. */
   max-height: calc(100dvh
-    - var(--hg-design-header-offset, 74px)
-    - var(--hg-design-footer-offset, 80px)
+    - var(--hg-visual-header-height, 74px)
+    - var(--hg-visual-footer-height, 80px)
     - 16px);
   z-index: 100;
 }

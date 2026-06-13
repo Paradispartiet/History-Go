@@ -3,8 +3,6 @@
 /* ===================================================== */
 
 :root{
-  --pc-height: 1000px;   /* litt lavere placeCard */
-
   --pc-radius: 24px;
   --pc-pad: 12px;
   --pc-gap: 17px;
@@ -50,7 +48,18 @@
   bottom: 80px;   /* footer height */
   top: auto;
 
-  height: var(--pc-height);
+  /* Content-sized: ingen fast høyde som vinnende regel.
+     height:auto gjør kortet content-sized; max-height er kun en
+     sikkerhetsgrense slik at kortet aldri dekker hele skjermen.
+     Bruker visual-heights fordi #placeCard ligger UTENFOR app-shell
+     (forankret mot ekte viewport), på linje med #nearbyListContainer. */
+  height: auto;
+  max-height: calc(
+    100dvh
+    - var(--hg-visual-header-height, 74px)
+    - var(--hg-visual-footer-height, 80px)
+    - 16px
+  );
 
   z-index: 2000;
 
@@ -60,7 +69,10 @@
   border: 1px solid var(--pc-border);
   border-radius: var(--pc-radius);
   box-shadow: var(--pc-shadow);
-  overflow: hidden;
+  /* Synlig overflow slik at runde-pop-outs (people/natur/leksikon osv.)
+     ikke klippes når kortet er content-sized og lavt. Kortet er IKKE en
+     intern scroll-container. */
+  overflow: visible;
 
   transition: transform .28s ease;
 }
@@ -689,17 +701,20 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 
 /* pc-body er kolonne-layout med FAST form.
-   Kortet vokser med innholdet (ankret nederst, begrenset av max-height i
-   layout.css) – det er BEVISST ingen intern vertikal scroll her. Lang
-   brødtekst klippes til noen linjer (#pcDesc) og full tekst åpnes i
-   "Mer info"-popupen (window.showPlacePopup). Faner åpnes som egne
-   pop-outs/popups slik at de aldri presser kortet høyere. */
+   Kortet vokser med innholdet (ankret nederst, begrenset av max-height) –
+   det er BEVISST ingen intern vertikal scroll her. Lang brødtekst klippes
+   til noen linjer (#pcDesc) og full tekst åpnes i "Mer info"-popupen
+   (window.showPlacePopup). Faner åpnes som egne pop-outs/popups slik at de
+   aldri presser kortet høyere.
+   overflow: visible (ikke auto/hidden) – ingen intern scroll, og de
+   absolutt-posisjonerte runde-pop-outene (som har pc-body som
+   containing block) blir ikke klippet. */
 #placeCard .pc-body{
   height: auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
 }
 
