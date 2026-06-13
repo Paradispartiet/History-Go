@@ -26,6 +26,8 @@
  *   nature?: unknown[],
  *   tags?: string[],
  *   wonderkammer?: unknown[],
+ *   rounds?: string[],
+ *   rundinger?: string[],
  *   emne_ids?: string[],
  *   quiz_profile?: PlaceCardRecord,
  *   social_profile?: PlaceCardRecord,
@@ -252,6 +254,137 @@ window.HGPlaceNatureProfile = {
   normalize: normalizePlaceCardNatureProfile,
   render: renderPlaceCardNatureProfile
 };
+
+// ============================================================
+// PLACE ROUNDS — datastyrte rundinger per sted
+// ------------------------------------------------------------
+// Hvert sted kan deklarere hvilke rundinger PlaceCard skal vise via
+// `place.rounds` (canonical) eller `place.rundinger` (alias). Registeret
+// under er ENESTE kilde for hvilke runding-id-er som finnes, og kobler hver
+// id til DOM-ikon, liste-container, emoji-fallback og popup-"kind".
+//
+// Tom-tilstand-modell (krav 9): hvis et sted EKSPLISITT deklarerer en runding
+// i `rounds`, vises rundingen alltid — innholdet inni kan vise en tom tilstand
+// (f.eks. "Ingen historier ennå"), fordi rundingen representerer en funksjon
+// brukeren kan åpne. Ukjente id-er ignoreres trygt (console.warn, krav 8).
+// ============================================================
+
+/**
+ * @typedef {{
+ *   id: string,
+ *   label: string,
+ *   fallbackIcon: string,
+ *   iconId: string,
+ *   listId: string,
+ *   kind: string,
+ *   aliases?: string[]
+ * }} PlaceRoundDef
+ */
+
+/** @type {PlaceRoundDef[]} */
+const PLACE_ROUND_REGISTRY = [
+  { id: "people",       label: "Personer",     fallbackIcon: "👥", iconId: "pcPeopleIcon",          listId: "pcPeopleList",          kind: "people" },
+  { id: "stories",      label: "Historier",    fallbackIcon: "📖", iconId: "pcStoriesIcon",         listId: "pcStoriesList",         kind: "stories" },
+  { id: "wonderkammer", label: "Wonderkammer", fallbackIcon: "🗝️", iconId: "pcWonderkammerIcon",    listId: "pcWonderkammerList",    kind: "wonderkammer" },
+  { id: "nature",       label: "Natur",        fallbackIcon: "🌿", iconId: "pcNatureIcon",          listId: "pcNatureList",          kind: "nature" },
+  { id: "badges",       label: "Merker",       fallbackIcon: "🏅", iconId: "pcBadgesIcon",          listId: "pcBadgesList",          kind: "badges" },
+  { id: "routes",       label: "Ruter",        fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
+  { id: "football",     label: "Fotball",      fallbackIcon: "⚽", iconId: "pcFootballIcon",        listId: "pcFootballList",        kind: "football" },
+  { id: "lexicon",      label: "Leksikon",     fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["leksikon"] },
+  // Eksisterende tilleggsrundinger: støttet, men ikke del av standard-fallback.
+  // Et sted må deklarere dem eksplisitt i `rounds` for å vise dem.
+  { id: "civication",   label: "Civication",   fallbackIcon: "🛒", iconId: "pcCivicationStoreIcon", listId: "pcCivicationStoreList", kind: "civication" },
+  { id: "brands",       label: "Brands",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
+  { id: "music",        label: "Musikk",       fallbackIcon: "♫",  iconId: "pcMusicIcon",           listId: "pcMusicList",           kind: "music" }
+];
+
+/** Standard rundinger når et sted ikke deklarerer `rounds` (krav 4). */
+const DEFAULT_PLACE_ROUNDS = ["people", "stories", "wonderkammer", "nature", "badges"];
+
+/** @type {Record<string, PlaceRoundDef>} id (+ alias) → definisjon. */
+const PLACE_ROUND_BY_ID = (() => {
+  /** @type {Record<string, PlaceRoundDef>} */
+  const map = {};
+  for (const def of PLACE_ROUND_REGISTRY) {
+    map[def.id] = def;
+    for (const alias of def.aliases || []) map[alias] = def;
+  }
+  return map;
+})();
+
+/**
+ * Leser stedets deklarerte rundinger og returnerer gyldige runding-
+ * definisjoner i den rekkefølgen stedet definerer dem.
+ *
+ * - Leser `place.rounds` (canonical), faller tilbake til `place.rundinger` (alias).
+ * - Mangler begge → `DEFAULT_PLACE_ROUNDS` (krav 4).
+ * - Filtrerer mot registeret; ukjente id-er ignoreres med console.warn (krav 8).
+ * - Fjerner duplikater og beholder rekkefølge (krav 6 + 7).
+ *
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {PlaceRoundDef[]}
+ */
+function getPlaceRounds(place) {
+  const declared =
+    Array.isArray(place?.rounds) ? place.rounds :
+    Array.isArray(place?.rundinger) ? place.rundinger :
+    null;
+
+  const requested = (declared && declared.length) ? declared : DEFAULT_PLACE_ROUNDS;
+
+  /** @type {PlaceRoundDef[]} */
+  const out = [];
+  const seen = new Set();
+
+  for (const entry of requested) {
+    const rawId = String(entry || "").trim();
+    if (!rawId) continue;
+
+    const def = PLACE_ROUND_BY_ID[rawId];
+    if (!def) {
+      console.warn(`[placeCard] Ukjent runding ignorert: "${rawId}" (sted: ${String(place?.id || "ukjent")})`);
+      continue;
+    }
+    if (seen.has(def.id)) continue;
+    seen.add(def.id);
+    out.push(def);
+  }
+
+  return out;
+}
+
+/**
+ * Viser/skjuler runding-ikonene basert på getPlaceRounds(place), og setter
+ * grid-rekkefølgen slik stedet definerer den (krav 7 + 10). Ikoner som ikke
+ * er aktive skjules via `hidden` (se `.pc-round[hidden]` i placeCard.css).
+ *
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {void}
+ */
+function applyPlaceRounds(place) {
+  const active = getPlaceRounds(place);
+  const activeIds = new Set(active.map(def => def.id));
+
+  for (const def of PLACE_ROUND_REGISTRY) {
+    const el = document.getElementById(def.iconId);
+    if (!el) continue;
+    el.hidden = !activeIds.has(def.id);
+    el.style.order = "";
+  }
+
+  active.forEach((def, index) => {
+    const el = document.getElementById(def.iconId);
+    if (el) el.style.order = String(index);
+  });
+}
+
+window.HGPlaceRounds = {
+  registry: PLACE_ROUND_REGISTRY,
+  defaults: DEFAULT_PLACE_ROUNDS,
+  get: getPlaceRounds,
+  apply: applyPlaceRounds
+};
+window.getPlaceRounds = getPlaceRounds;
 
 const PLACE_CARD_QUIZ_CARD_BY_ID = Object.freeze({
   aker_brygge: "bilder/QuizCards/Akerbrygge.PNG",
@@ -629,8 +762,12 @@ const descEl     = document.getElementById("pcDesc");
 const lesesporEl = document.getElementById("pcLesespor");
 
 const peopleIcon          = document.getElementById("pcPeopleIcon");
+const storiesIcon         = document.getElementById("pcStoriesIcon");
+const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const natureIcon          = document.getElementById("pcNatureIcon");
 const badgesIcon          = document.getElementById("pcBadgesIcon");
+const routesIcon          = document.getElementById("pcRoutesIcon");
+const footballIcon        = document.getElementById("pcFootballIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const brandsIcon          = document.getElementById("pcBrandsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
@@ -645,8 +782,12 @@ bindPlaceCardQuizFlip(frontCardFlipEl, quizCardImgEl);
 const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
 const peopleEl          = document.getElementById("pcPeopleList");
+const storiesEl         = document.getElementById("pcStoriesList");
+const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const natureEl          = document.getElementById("pcNatureList");
 const badgesEl          = document.getElementById("pcBadgesList");
+const routesEl          = document.getElementById("pcRoutesList");
+const footballEl        = document.getElementById("pcFootballList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
 const brandsEl          = document.getElementById("pcBrandsList");
 const leksikonEl        = document.getElementById("pcLeksikonList");
@@ -673,8 +814,12 @@ if (!card.dataset.pcIconsBound) {
 
   const closeAllLists = () => {
     peopleEl?.classList.remove("is-open");
+    storiesEl?.classList.remove("is-open");
+    wonderkammerEl?.classList.remove("is-open");
     natureEl?.classList.remove("is-open");
     badgesEl?.classList.remove("is-open");
+    routesEl?.classList.remove("is-open");
+    footballEl?.classList.remove("is-open");
     civicationStoreEl?.classList.remove("is-open");
     brandsEl?.classList.remove("is-open");
     leksikonEl?.classList.remove("is-open");
@@ -698,6 +843,22 @@ if (!card.dataset.pcIconsBound) {
         void window.HGLeksikon.openPlace(currentPlaceId);
       } else {
         window.showToast?.("Leksikon er ikke lastet ennå");
+      }
+      return;
+    }
+
+    // Ruter-rundingen åpner eksisterende rute-funksjonalitet direkte
+    // (ikke et generisk popup-kort).
+    if (kind === "routes") {
+      if (typeof window.showNavRouteToPlace === "function") {
+        void window.showNavRouteToPlace(currentPlace || place);
+      } else if (typeof window.showRouteTo === "function") {
+        window.showRouteTo(currentPlace || place);
+      } else if (typeof window.setLeftPanelMode === "function") {
+        window.setLeftPanelMode("routes");
+        if (typeof window.renderLeftRoutesList === "function") void window.renderLeftRoutesList();
+      } else {
+        window.showToast?.("Rute-funksjon ikke lastet");
       }
       return;
     }
@@ -788,16 +949,24 @@ iconsWrap?.addEventListener("click", (e) => {
 });
 
 bindRoundPopup(peopleIcon, peopleEl, "People", "people");
+bindRoundPopup(storiesIcon, storiesEl, "Historier", "stories");
+bindRoundPopup(wonderkammerIcon, wonderkammerEl, "Wonderkammer", "wonderkammer");
 bindRoundPopup(natureIcon, natureEl, "Natur", "nature");
 bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
+bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
+bindRoundPopup(footballIcon, footballEl, "Fotball", "football");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
 bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
 bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
 bindRoundPopup(musicIcon, musicEl, "Musikk", "music");
 
 peopleEl?.addEventListener("click", (e) => e.stopPropagation());
+storiesEl?.addEventListener("click", (e) => e.stopPropagation());
+wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
 natureEl?.addEventListener("click", (e) => e.stopPropagation());
 badgesEl?.addEventListener("click", (e) => e.stopPropagation());
+routesEl?.addEventListener("click", (e) => e.stopPropagation());
+footballEl?.addEventListener("click", (e) => e.stopPropagation());
 civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
 brandsEl?.addEventListener("click", (e) => e.stopPropagation());
 leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -823,12 +992,19 @@ const setPcText = (btn, text) => {
   btn.classList.remove("pc-iconbtn");
 };
 
+/**
+ * @param {HTMLElement | null} el
+ * @param {string} emoji
+ * @param {number | string | null} [count] Tom streng/null skjuler tallet.
+ * @returns {void}
+ */
 const setRoundLabel = (el, emoji, count = 0) => {
   if (!el) return;
+  const hasCount = !(count === "" || count == null);
   el.innerHTML = `
     <div class="pc-round-label">
       <span class="pc-round-emoji">${emoji}</span>
-      <span class="pc-round-count">${count}</span>
+      ${hasCount ? `<span class="pc-round-count">${count}</span>` : ""}
     </div>
   `;
 };
@@ -1755,6 +1931,114 @@ if (leksikonEl) {
 
   setRoundLabel(leksikonIcon, "📚", 1);
 }
+
+// --- STORIES LIST + ICON (historier / lesespor) ---
+if (storiesEl) {
+  /** @type {any[]} */ let storyItems = [];
+  try {
+    if (typeof window.HGStories?.getByPlace === "function") {
+      storyItems = window.HGStories.getByPlace(place.id) || [];
+    }
+  } catch (e) { console.warn("[placeCard.stories]", e); }
+
+  /** @type {any[]} */ let lesesporItems = [];
+  try {
+    if (typeof window.DataHub?.getLesesporForPlace === "function") {
+      lesesporItems = window.DataHub.getLesesporForPlace(place.id) || [];
+    }
+  } catch (e) { console.warn("[placeCard.lesespor]", e); }
+
+  const storyRows = [...storyItems, ...lesesporItems]
+    .map((s) => ({
+      title: String(s?.title || s?.name || s?.id || "").trim(),
+      meta: String(s?.summary || s?.desc || s?.popupDesc || "").trim()
+    }))
+    .filter((row) => row.title);
+
+  storiesEl.innerHTML = storyRows.length
+    ? storyRows.map((row) => `
+        <article class="pc-relation-card">
+          <div class="pc-relation-title">${escapePlaceCardHTML(row.title)}</div>
+          ${row.meta ? `<div class="pc-relation-meta">${escapePlaceCardHTML(row.meta)}</div>` : ""}
+        </article>
+      `).join("")
+    : `<div class="pc-empty">Ingen historier ennå</div>`;
+
+  setRoundLabel(storiesIcon, "📖", storyRows.length);
+}
+
+// --- WONDERKAMMER LIST + ICON ---
+if (wonderkammerEl) {
+  const rawWonder = Array.isArray(place.wonderkammer) ? place.wonderkammer : [];
+  const seenWonder = new Set();
+  const wonderItems = rawWonder
+    .map((item, i) => {
+      if (typeof item === "string") return { id: item, label: item, image: "" };
+      return {
+        id: String(item?.id ?? item?.slug ?? item?.key ?? `wk_${i}`).trim(),
+        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Wonderkammer ${i + 1}`).trim(),
+        image: String(item?.image ?? item?.icon ?? "").trim()
+      };
+    })
+    .filter((item) => item.id && item.label)
+    .filter((item) => {
+      if (seenWonder.has(item.id)) return false;
+      seenWonder.add(item.id);
+      return true;
+    });
+
+  wonderkammerEl.innerHTML = wonderItems.length
+    ? wonderItems.map((item) => `
+        <button class="pc-civi-entry" data-wk="${escapePlaceCardHTML(item.id)}">
+          ${item.image ? `<img src="${escapePlaceCardHTML(item.image)}" class="pc-person-img" alt="">` : `<span class="pc-civi-emoji">🗝️</span>`}
+          <span class="pc-civi-entry-title">${escapePlaceCardHTML(item.label)}</span>
+        </button>
+      `).join("")
+    : `<div class="pc-empty">Ingen wonderkammer-objekter ennå</div>`;
+
+  setRoundLabel(wonderkammerIcon, "🗝️", wonderItems.length);
+}
+
+// --- FOOTBALL / SPORT LIST + ICON (fra place.sport_profile) ---
+if (footballEl) {
+  const sp = (place?.sport_profile && typeof place.sport_profile === "object")
+    ? /** @type {any} */ (place.sport_profile)
+    : null;
+
+  const sports = Array.isArray(sp?.sports) ? sp.sports.filter(Boolean) : [];
+  const clubs = Array.isArray(sp?.clubs_or_teams) ? sp.clubs_or_teams.filter(Boolean)
+    : (Array.isArray(sp?.teams) ? sp.teams.filter(Boolean) : []);
+  const venueKind = String(sp?.venue_kind || "").trim();
+
+  const sportRow = (chip, value) => `
+    <article class="pc-relation-card">
+      <div class="pc-relation-chip">${escapePlaceCardHTML(chip)}</div>
+      <div class="pc-relation-title">${escapePlaceCardHTML(value)}</div>
+    </article>
+  `;
+
+  const footballRows = [
+    sports.length ? sportRow("Sport", sports.join(", ")) : "",
+    venueKind ? sportRow("Arena", venueKind) : "",
+    clubs.length ? sportRow("Klubb / lag", clubs.join(" / ")) : ""
+  ].filter(Boolean);
+
+  footballEl.innerHTML = footballRows.length
+    ? footballRows.join("")
+    : `<div class="pc-empty">Ingen sportsdata ennå</div>`;
+
+  const footballCount = clubs.length || sports.length || (sp ? 1 : "");
+  setRoundLabel(footballIcon, "⚽", footballCount);
+}
+
+// --- ROUTES LIST + ICON (åpner eksisterende rute-flyt, se bindRoundPopup) ---
+if (routesEl) {
+  routesEl.innerHTML = `<div class="pc-empty">${tt("ui.routes.openForPlace", "Åpne ruter for dette stedet")}</div>`;
+  setRoundLabel(routesIcon, "🧭", "");
+}
+
+// Datastyrt visning: vis kun rundingene stedet deklarerer (krav 3, 4, 10).
+applyPlaceRounds(place);
 
   
 // --- Mer info ---
