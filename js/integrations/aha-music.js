@@ -3,6 +3,8 @@
   "use strict";
 
   const BASE_PATH = "data/integrations/aha-music";
+  const UNLOCK_STORAGE_KEY = "hg_unlocked_music_objects_v1";
+  const UNLOCKABLE_STATUSES = new Set(["verified", "auto_matched", "automatic", "matched"]);
   const FILES = Object.freeze({
     artists: `${BASE_PATH}/musicArtistPlaceRelations.json`,
     tracks: `${BASE_PATH}/musicTrackPlaceRelations.json`,
@@ -20,6 +22,22 @@
 
   function text(value) {
     return value == null ? "" : String(value).trim();
+  }
+
+  function slug(value) {
+    return text(value)
+      .toLowerCase()
+      .replace(/[æǽ]/g, "ae")
+      .replace(/[øö]/g, "o")
+      .replace(/[å]/g, "a")
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+  }
+
+  function isUnlockableStatus(value) {
+    return UNLOCKABLE_STATUSES.has(text(value).toLowerCase());
   }
 
   function numberOrNull(value) {
@@ -74,6 +92,115 @@
       artistId: text(first(raw, ["artistId", "artist_id"])),
       artistName: text(first(raw, ["artistName", "artist_name"])),
       spotifyTrackId: text(first(raw, ["spotifyTrackId", "spotify_track_id"]))
+    };
+  }
+
+  function musicObjectId(type, placeId, primaryId, fallbackName) {
+    const stablePart = text(primaryId) || `name_${slug(fallbackName)}`;
+    // AHA Music should normally provide artistId/trackId. If it does not, the
+    // normalized display name keeps IDs deterministic while making the fallback
+    // explicit in the stored id.
+    return stablePart && text(placeId) ? `${type}__${text(placeId)}__${stablePart}` : "";
+  }
+
+  function normalizeArtistUnlock(artist) {
+    const placeId = text(artist?.historyGoPlaceId || artist?.placeId);
+    if (!placeId || !isUnlockableStatus(artist?.status)) return null;
+    const id = musicObjectId("music_artist", placeId, artist?.artistId, artist?.artistName);
+    if (!id) return null;
+    return {
+      id,
+      type: "music_artist",
+      artistId: text(artist?.artistId),
+      artistName: text(artist?.artistName) || "Ukjent artist",
+      title: text(artist?.artistName) || "Ukjent artist",
+      spotifyArtistId: text(artist?.spotifyArtistId),
+      placeId,
+      relationType: text(artist?.relationType) || "related_to",
+      confidence: numberOrNull(artist?.confidence),
+      status: text(artist?.status) || "unknown",
+      sourceNote: text(artist?.sourceNote),
+      unlockText: "Denne artisten er knyttet til dette stedet."
+    };
+  }
+
+  function normalizeTrackUnlock(track) {
+    const placeId = text(track?.historyGoPlaceId || track?.placeId);
+    if (!placeId || !isUnlockableStatus(track?.status)) return null;
+    const id = musicObjectId("music_track", placeId, track?.trackId, track?.trackTitle);
+    if (!id) return null;
+    return {
+      id,
+      type: "music_track",
+      trackId: text(track?.trackId),
+      trackTitle: text(track?.trackTitle) || "Ukjent sang",
+      title: text(track?.trackTitle) || "Ukjent sang",
+      artistId: text(track?.artistId),
+      artistName: text(track?.artistName),
+      placeId,
+      relationType: text(track?.relationType) || "through_artist",
+      confidence: numberOrNull(track?.confidence),
+      status: text(track?.status) || "unknown",
+      unlockText: "Denne sangen kan låses opp gjennom artisten."
+    };
+  }
+
+  function getUnlockableObjectsForPlace(placeId) {
+    const entry = getForPlace(placeId);
+    if (!entry) return { artists: [], tracks: [] };
+    return {
+      artists: (entry.artists || []).map(normalizeArtistUnlock).filter(Boolean),
+      tracks: (entry.tracks || []).map(normalizeTrackUnlock).filter(Boolean)
+    };
+  }
+
+  function readUnlockedMusicMap() {
+    try {
+      const parsed = JSON.parse(global.localStorage?.getItem(UNLOCK_STORAGE_KEY) || "{}");
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function writeUnlockedMusicMap(map) {
+    try { global.localStorage?.setItem(UNLOCK_STORAGE_KEY, JSON.stringify(map)); } catch {}
+  }
+
+  function isMusicObjectUnlocked(id) {
+    return Boolean(readUnlockedMusicMap()[text(id)]);
+  }
+
+  function getUnlockedMusicObjects() {
+    return Object.values(readUnlockedMusicMap());
+  }
+
+  function unlockMusicObject(musicObject) {
+    if (!musicObject?.id || !musicObject?.type || !musicObject?.placeId) return { ok: false, reason: "invalid_music_object" };
+    const db = readUnlockedMusicMap();
+    if (db[musicObject.id]) return { ok: true, changed: false, object: db[musicObject.id] };
+    const row = {
+      id: musicObject.id,
+      type: musicObject.type,
+      title: text(musicObject.title || musicObject.artistName || musicObject.trackTitle),
+      placeId: text(musicObject.placeId),
+      unlockedAt: new Date().toISOString(),
+      source: "aha_music"
+    };
+    db[row.id] = row;
+    writeUnlockedMusicMap(db);
+    try { global.dispatchEvent?.(new Event("updateProfile")); } catch {}
+    return { ok: true, changed: true, object: row };
+  }
+
+  function getMusicUnlockSummary() {
+    const rows = getUnlockedMusicObjects();
+    const places = new Set(rows.map(item => text(item?.placeId)).filter(Boolean));
+    return {
+      total: rows.length,
+      artists: rows.filter(item => item?.type === "music_artist").length,
+      tracks: rows.filter(item => item?.type === "music_track").length,
+      places: places.size
     };
   }
 
@@ -178,8 +305,16 @@
   global.HGAhaMusic = Object.freeze({
     FILES,
     state,
+    UNLOCK_STORAGE_KEY,
     buildIndex,
     load,
-    getForPlace
+    getForPlace,
+    normalizeArtistUnlock,
+    normalizeTrackUnlock,
+    getUnlockableObjectsForPlace,
+    unlockMusicObject,
+    isMusicObjectUnlocked,
+    getUnlockedMusicObjects,
+    getMusicUnlockSummary
   });
 })(window);

@@ -150,9 +150,32 @@ function renderMusicRelationMeta(item) {
   `;
 }
 
-function renderPlaceMusic(music) {
-  const artists = music?.artists || [];
-  const tracks = music?.tracks || [];
+/**
+ * @param {any} obj
+ * @param {string} label
+ */
+function renderMusicUnlockAction(obj, label) {
+  if (!obj?.id) return `<p class="pc-music-unlock-text">Foreslått kobling – ikke låsbar ennå.</p>`;
+  const unlocked = Boolean(window.HGAhaMusic?.isMusicObjectUnlocked?.(obj.id));
+  return `
+    <p class="pc-music-unlock-text">${escapePlaceCardHTML(obj.unlockText || "Du har låst opp en musikkoppdagelse.")}</p>
+    <button class="pc-music-unlock" type="button" data-music-unlock-id="${escapePlaceCardHTML(obj.id)}" ${unlocked ? "disabled" : ""}>
+      ${unlocked ? "Låst opp" : escapePlaceCardHTML(label)}
+    </button>
+  `;
+}
+
+/**
+ * @param {any} music
+ * @param {string} placeId
+ */
+function renderPlaceMusic(music, placeId = "") {
+  const unlocks = window.HGAhaMusic?.getUnlockableObjectsForPlace?.(placeId) || { artists: [], tracks: [] };
+  const artistUnlocksByKey = new Map((unlocks.artists || []).map(obj => [String(obj.artistId || obj.artistName || obj.id), obj]));
+  const trackUnlocksByKey = new Map((unlocks.tracks || []).map(obj => [String(obj.trackId || obj.trackTitle || obj.id), obj]));
+  const isRejected = (item) => String(item?.status || "").trim().toLowerCase() === "rejected";
+  const artists = (music?.artists || []).filter(artist => !isRejected(artist));
+  const tracks = (music?.tracks || []).filter(track => !isRejected(track));
   const artistHtml = artists.length ? `
     <section class="pc-music-section">
       <h3>Artister knyttet til stedet</h3>
@@ -161,6 +184,7 @@ function renderPlaceMusic(music) {
           <strong>${escapePlaceCardHTML(artist.artistName)}</strong>
           ${renderMusicRelationMeta(artist)}
           ${artist.ahaMusicUrl ? `<a href="${escapePlaceCardHTML(artist.ahaMusicUrl)}" target="_blank" rel="noopener">Åpne i AHA Music</a>` : ""}
+          ${renderMusicUnlockAction(artistUnlocksByKey.get(String(artist.artistId || artist.artistName || "")), "Lås opp artist")}
         </article>
       `).join("")}
     </section>
@@ -174,11 +198,12 @@ function renderPlaceMusic(music) {
           ${track.artistName ? `<div class="pc-music-artist">${escapePlaceCardHTML(track.artistName)}</div>` : ""}
           ${renderMusicRelationMeta(track)}
           ${track.ahaMusicUrl ? `<a href="${escapePlaceCardHTML(track.ahaMusicUrl)}" target="_blank" rel="noopener">Åpne i AHA Music</a>` : ""}
+          ${renderMusicUnlockAction(trackUnlocksByKey.get(String(track.trackId || track.trackTitle || "")), "Lås opp sang")}
         </article>
       `).join("")}
     </section>
   ` : "";
-  return `<div class="pc-music-profile">${artistHtml}${trackHtml}</div>`;
+  return (artistHtml || trackHtml) ? `<div class="pc-music-profile">${artistHtml}${trackHtml}</div>` : "";
 }
 
 function resolvePlaceCardNameById(placeId) {
@@ -1133,7 +1158,8 @@ if (!card) return;
   if (!window.HGAhaMusic?.state?.loaded) await window.HGAhaMusic?.load?.();
   const music = window.HGAhaMusic?.getForPlace?.(place.id);
 
-  const musicCount = (music?.artists?.length || 0) + (music?.tracks?.length || 0);
+  const musicUnlockables = window.HGAhaMusic?.getUnlockableObjectsForPlace?.(String(place.id || "")) || { artists: [], tracks: [] };
+  const musicCount = (musicUnlockables.artists?.length || 0) + (musicUnlockables.tracks?.length || 0);
 
   // --- FLORA (place.flora = ["flora_id", ...]) ---
   let FLORA_LIST =
@@ -2005,12 +2031,30 @@ if (worksEl) {
     clubs.length ? sportRow("Klubb / lag", clubs.join(" / ")) : ""
   ].filter(Boolean);
 
-  const musicHtml = music ? renderPlaceMusic(music) : "";
+  const musicHtml = music ? renderPlaceMusic(music, String(place.id || "")) : "";
   worksEl.innerHTML = [footballRows.join(""), musicHtml].filter(Boolean).join("")
     || `<div class="pc-empty">Ingen verk eller prestasjoner ennå</div>`;
 
   const worksCount = musicCount + (clubs.length || sports.length || (sp ? 1 : 0));
   setRoundLabel(worksIcon, "🎭", worksCount || "");
+
+  worksEl.querySelectorAll("[data-music-unlock-id]").forEach((node) => {
+    const btn = /** @type {HTMLButtonElement} */ (node);
+    btn.onclick = () => {
+      const id = btn.getAttribute("data-music-unlock-id") || "";
+      const unlocks = window.HGAhaMusic?.getUnlockableObjectsForPlace?.(String(place.id || "")) || { artists: [], tracks: [] };
+      const obj = [...(unlocks.artists || []), ...(unlocks.tracks || [])].find(item => item.id === id);
+      const result = obj ? window.HGAhaMusic?.unlockMusicObject?.(obj) : null;
+      if (result?.ok) {
+        btn.textContent = "Låst opp";
+        btn.setAttribute("disabled", "");
+        const note = document.createElement("div");
+        note.className = "pc-music-unlocked-note";
+        note.textContent = "Du har låst opp en musikkoppdagelse.";
+        btn.insertAdjacentElement("afterend", note);
+      }
+    };
+  });
 }
 
 // --- ROUTES LIST + ICON (åpner eksisterende rute-flyt, se bindRoundPopup) ---

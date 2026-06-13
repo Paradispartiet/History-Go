@@ -102,6 +102,13 @@ declare global {
       load: (options?: { force?: boolean }) => Promise<unknown>;
       getForPlace: (placeId: unknown) => any;
       buildIndex: (artists: unknown, tracks: unknown) => unknown;
+      normalizeArtistUnlock?: (artist: unknown) => any;
+      normalizeTrackUnlock?: (track: unknown) => any;
+      getUnlockableObjectsForPlace?: (placeId: unknown) => { artists: any[]; tracks: any[] };
+      unlockMusicObject?: (musicObject: any) => { ok: boolean; changed?: boolean; object?: any; reason?: string };
+      isMusicObjectUnlocked?: (id: unknown) => boolean;
+      getUnlockedMusicObjects?: () => any[];
+      getMusicUnlockSummary?: () => { total: number; artists: number; tracks: number; places: number };
     };
     saveVisitedFromQuiz?: (placeId: string | number | null | undefined) => void;
     saveMerits?: () => void;

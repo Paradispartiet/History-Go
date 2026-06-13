@@ -156,6 +156,20 @@ function getCompletedQuizUnitCount() {
   return ids.size;
 }
 
+function getMusicUnlockSummary() {
+  if (typeof window.HGAhaMusic?.getMusicUnlockSummary === "function") {
+    return window.HGAhaMusic.getMusicUnlockSummary();
+  }
+  const rows = Object.values(ls("hg_unlocked_music_objects_v1", {}));
+  const places = new Set(rows.map(item => String(item?.placeId || "").trim()).filter(Boolean));
+  return {
+    total: rows.length,
+    artists: rows.filter(item => item?.type === "music_artist").length,
+    tracks: rows.filter(item => item?.type === "music_track").length,
+    places: places.size
+  };
+}
+
 function getCompletedPlaceCount() {
   const visitedIds = /** @type {Set<string>} */ (/** @type {unknown} */ (getVisitedPlaceIds()));
   const placeIds = new Set((Array.isArray(PLACES) ? PLACES : [])
@@ -199,6 +213,12 @@ function renderProfileCard() {
   const quizLabelText = _t("ui.profile.statQuizSets", "Quizsett");
   const streakLabelText = _t("ui.profile.statStreak", "Streak");
   const pcLabelText = _t("ui.profile.statPC", "PC");
+  const musicSummary = getMusicUnlockSummary();
+
+  const musicEl = document.getElementById("statMusicFinds");
+  if (musicEl) musicEl.textContent = String(musicSummary.total);
+  const musicLabel = document.getElementById("statMusicFindsLabel");
+  if (musicLabel) musicLabel.textContent = _t("ui.profile.musicFinds", "Musikkfunn");
 
   const visitedLabel = document.getElementById("statVisitedLabel");
   if (visitedLabel) visitedLabel.textContent = visitedLabelText;
@@ -220,6 +240,11 @@ function renderProfileCard() {
     streakEl,
     streakLabelText,
     _t("ui.profile.statStreakTitle", "Antall dager på rad med aktivitet.")
+  );
+  updateStatusBadgeA11y(
+    musicEl,
+    _t("ui.profile.musicFinds", "Musikkfunn"),
+    `Artister låst opp: ${musicSummary.artists} · Sanger låst opp: ${musicSummary.tracks} · Steder med musikk: ${musicSummary.places}`
   );
 
   renderPC(pcLabelText);
@@ -727,6 +752,29 @@ function renderTimeline() {
   });
 }
 
+
+function renderMusicCollection() {
+  const body = document.getElementById("musicCollectionBody");
+  const meta = document.getElementById("musicCollectionMeta");
+  if (!body) return;
+  const rows = (typeof window.HGAhaMusic?.getUnlockedMusicObjects === "function")
+    ? window.HGAhaMusic.getUnlockedMusicObjects()
+    : Object.values(ls("hg_unlocked_music_objects_v1", {}));
+  const artists = rows.filter(item => item?.type === "music_artist");
+  const tracks = rows.filter(item => item?.type === "music_track");
+  const places = new Set(rows.map(item => String(item?.placeId || "").trim()).filter(Boolean));
+  if (meta) meta.textContent = `Artister låst opp: ${artists.length} · Sanger låst opp: ${tracks.length} · Steder med musikk: ${places.size}`;
+  if (!rows.length) {
+    body.innerHTML = `<div class="muted">Ingen musikkfunn låst opp ennå.</div>`;
+    return;
+  }
+  body.innerHTML = rows.map(item => `
+    <article class="profile-detail-item">
+      <strong>${_esc(item.title || item.id)}</strong>
+      <span>${_esc(item.type === "music_artist" ? "Artist" : "Sang")} · ${_esc(item.placeId || "")}</span>
+    </article>
+  `).join("");
+}
 
 function renderCollectionCards() {
   const body = document.getElementById("collectionCardsBody");
@@ -1258,6 +1306,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("renderPlacesCollection", renderPlacesCollection);
     safeCall("renderTimeline", renderTimeline);
     safeCall("renderCollectionCards", renderCollectionCards);
+    safeCall("renderMusicCollection", renderMusicCollection);
     safeCall("renderLatestKnowledge", renderLatestKnowledge);
     safeCall("renderLatestTrivia", renderLatestTrivia);
     safeCall("renderConcepts", renderConcepts);
@@ -1330,6 +1379,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       safeCall("renderPlacesCollection", renderPlacesCollection);
       safeCall("renderTimeline", renderTimeline);
       safeCall("renderCollectionCards", renderCollectionCards);
+      safeCall("renderMusicCollection", renderMusicCollection);
       safeCall("renderLatestKnowledge", renderLatestKnowledge);
       safeCall("renderLatestTrivia", renderLatestTrivia);
       safeCall("renderConcepts", renderConcepts);

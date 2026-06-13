@@ -102,6 +102,11 @@
                 <span class="profile-stat-icon" aria-hidden="true">🖥️</span>
                 <span id="pcValue" class="profile-stat-value">0</span>
               </div>
+              <div class="profile-stat-card" role="listitem" aria-label="0 musikkfunn" title="Artister, sanger og steder med musikkfunn.">
+                <span class="profile-stat-icon" aria-hidden="true">🎵</span>
+                <span id="statMusicFinds" class="profile-stat-value">0</span>
+                <span id="statMusicFindsLabel" class="profile-stat-label">Musikkfunn</span>
+              </div>
             </div>
             <div class="profile-hero-actions-v2">
               <button id="editProfileBtn" class="btn profile-icon-button profile-edit-button" type="button" aria-label="Endre profil" title="Endre profil">⚙️</button>
@@ -153,6 +158,7 @@
       <div class="profile-tab-panel" data-panel="samling">
         <section class="profile-section profile-strip" id="timelineSection"><div class="section-head"><h2>Tidslinje</h2><div id="timelineProgressText" class="section-meta timeline-progress-text"></div></div><div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div><div id="timelineBody" class="timeline-body"></div></section>
         <section class="profile-section profile-collection-showcase" id="collectionCardsSection"><div class="section-head"><h2>Kortsamling</h2></div><div id="collectionCardsBody" class="collection-cards-body"></div><details class="profile-detail-box"><summary>Vis detaljert stedsliste</summary><div id="collectionGrid" class="profile-detail-list"></div></details></section>
+        <section class="profile-section" id="musicCollectionSection"><div class="section-head"><h2>Musikk</h2><span class="section-meta" id="musicCollectionMeta">Artister og sanger fra AHA Music</span></div><div id="musicCollectionBody" class="profile-detail-list"></div></section>
         <div class="profile-grid-2">
           <section class="profile-section"><div class="section-head"><h2>Steder</h2></div><div id="collectionGridCloneHint" class="muted">Detaljert stedsliste ligger i kortsamling over.</div></section>
           <section class="profile-section"><div class="section-head"><h2>Personer</h2></div><div id="peopleGrid"></div></section>
@@ -341,6 +347,7 @@
 <script src="js/i18n.js"></script>
 <script src="js/learningLog.js"></script>
 <script src="js/aha.js"></script>
+<script src="js/integrations/aha-music.js"></script>
 <script src="js/profileIdentity.js"></script>
 <script src="js/profileInsightRoomEntry.js"></script>
 <script src="js/knowledge.js"></script>
