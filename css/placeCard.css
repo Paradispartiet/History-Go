@@ -5,7 +5,7 @@
 :root{
   --pc-height: 1000px;   /* litt lavere placeCard */
 
-  --pc-radius: 0px;
+  --pc-radius: 24px;
   --pc-pad: 12px;
   --pc-gap: 17px;
 
@@ -22,6 +22,12 @@
 
   --pc-text-inset: 12px;
   --pc-text-h: 230px;
+
+  /* Solid samlekort-flate (mørk kull) + lys ramme */
+  --pc-surface: #14130f;
+  --pc-surface-2: #0d0c0a;
+  --pc-border: rgba(255,255,255,.20);
+  --pc-shadow: 0 22px 60px rgba(0,0,0,.62), 0 2px 0 rgba(255,255,255,.05) inset;
 }
 
 
@@ -47,8 +53,13 @@
   height: var(--pc-height);
 
   z-index: 2000;
-  background: transparent;
-  box-shadow: none;
+
+  /* Solid, ugjennomsiktig kortflate – kartet skinner ikke gjennom */
+  background:
+    linear-gradient(180deg, var(--pc-surface) 0%, var(--pc-surface-2) 100%);
+  border: 1px solid var(--pc-border);
+  border-radius: var(--pc-radius);
+  box-shadow: var(--pc-shadow);
   overflow: hidden;
 
   transition: transform .28s ease;
@@ -99,6 +110,9 @@
   grid-row:1;
 
   aspect-ratio: 3 / 4;
+  /* Hindrer at kortet vokser forbi skjermen på lave/landskaps-viewporter,
+     slik at vi slipper intern scroll. */
+  max-height: 46vh;
   overflow:hidden;
   border-radius:16px;
   background:#000;
@@ -255,11 +269,11 @@
   min-width: 0;
   min-height: 44px;
   max-height: 56px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius:14px;
-  background: rgba(0,0,0,.94);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 10px 28px rgba(0,0,0,.55);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
 
   display:flex;
   flex-direction:row;
@@ -318,7 +332,7 @@
 .pc-event .t{ font-weight:700; }
 .pc-event .m{ font-size:15px; }
 
-/* Rundinger */
+/* Rundinger – jevne, runde "tokens" */
 .pc-round{
   width: 100%;
   min-width: 0;
@@ -326,31 +340,47 @@
 
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: rgba(0,0,0,.96);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 10px 28px rgba(0,0,0,.55);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
+    #1d1b16;
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.5),
+    0 0 0 1px rgba(0,0,0,.4) inset;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   overflow: hidden;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.pc-round:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.30);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.55),
+    0 0 0 1px rgba(0,0,0,.4) inset;
 }
 
 #placeCard .pc-text{
-  height: var(--pc-text-h);
-  min-height: var(--pc-text-h);
-  max-height: var(--pc-text-h);
+  height: auto;
+  min-height: 0;
+  max-height: none;
 
   width: calc(100% - (2 * var(--pc-text-inset)));
   max-width: none;
 
-  margin: 10px var(--pc-text-inset) 0;
-  padding: 10px 14px 12px;
+  margin: 14px var(--pc-text-inset) 2px;
+  padding: 4px 4px 12px;
 
-  background: #000;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.55);
+  /* Sitter direkte på den solide kortflaten – ingen egen boks */
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255,255,255,.08);
   overflow: hidden;
 
   color: #fff;
@@ -358,7 +388,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 0 0 var(--pc-text-h);
+  flex: 0 0 auto;
 
   font-family:
     system-ui,
@@ -392,33 +422,50 @@
 
 /* Tittel */
 #placeCard #pcTitle{
-  font-size: 35px;
+  font-size: 36px;
   color: #fff;
-  line-height: 1.08;
+  line-height: 1.05;
   font-weight: 850;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  order: 2;
 }
 
-/* Meta */
+/* Meta = liten kategori-chip øverst */
 #placeCard #pcMeta{
-  margin-top: 4px;
-  margin-bottom: 8px;
-  font-size: 17px;
-  line-height: 1.15;
+  order: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.1;
   font-weight: 700;
-  color: #fff;
-  opacity: .9;
+  color: rgba(255,255,255,.85);
 }
 
-/* Brødtekst */
-#placeCard #pcDesc{
-  margin: 0;
-  font-size: 23px;
-  line-height: 1.34;
-  color: #fff;
-  font-weight: 650;
+#placeCard #pcMeta > *{
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
-  max-width: none;
+/* Brødtekst – kort, kontrollert utdrag (full tekst i "Mer info") */
+#placeCard #pcDesc{
+  order: 3;
+  margin: 10px 0 0;
+  font-size: 22px;
+  line-height: 1.38;
+  color: rgba(255,255,255,.92);
+  font-weight: 500;
+
+  max-width: 62ch;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -465,16 +512,18 @@ body.hg-app.hg-phone #placeCard .pc-round-count{
 }
 
 body.hg-app.hg-phone #placeCard #pcTitle{
-  font-size: 24px;
+  font-size: 25px;
 }
 
 body.hg-app.hg-phone #placeCard #pcMeta{
-  font-size: 14px;
+  font-size: 11px;
+  margin-bottom: 8px;
 }
 
 body.hg-app.hg-phone #placeCard #pcDesc{
-  font-size: 17px;
-  -webkit-line-clamp: 4;
+  font-size: 16px;
+  line-height: 1.36;
+  -webkit-line-clamp: 3;
 }
 
 
@@ -639,19 +688,18 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 
-/* pc-body er kolonne-layout OG selve scroll-containeren.
-   Innholdet scroller vertikalt inne i kortet når det blir høyere enn
-   tilgjengelig høyde – overscroll-behavior hindrer at scrollen forplanter
-   seg til appen/kartet bak. */
+/* pc-body er kolonne-layout med FAST form.
+   Kortet vokser med innholdet (ankret nederst, begrenset av max-height i
+   layout.css) – det er BEVISST ingen intern vertikal scroll her. Lang
+   brødtekst klippes til noen linjer (#pcDesc) og full tekst åpnes i
+   "Mer info"-popupen (window.showPlacePopup). Faner åpnes som egne
+   pop-outs/popups slik at de aldri presser kortet høyere. */
 #placeCard .pc-body{
-  height: 100%;
+  height: auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  overflow: hidden;
   position: relative;
 }
 
