@@ -188,18 +188,43 @@
     return true;
   }
 
+  const NO_FOCUS_LABEL = "Ingen åpne hendelser";
+
   function getPendingLabel(inbox) {
     const pending = /** @type {any} */ (window.HG_CiviEngine?.getPendingEvent?.());
     const fallbackItem = Array.isArray(inbox) ? inbox.find(isOpenInboxItem) : null;
     const event = pending?.event || fallbackItem?.event || fallbackItem || null;
 
-    if (!event) return "Ingen åpne hendelser";
+    if (!event) return NO_FOCUS_LABEL;
 
     const channel = window.CivicationEventChannels?.classifyEvent?.(event) || "";
     const subject = String(event.subject || event.title || event.kind || "Åpen hendelse");
     if (channel === "milestone") return `Ny milepæl: ${subject}`;
 
     return subject;
+  }
+
+
+  function getTravelFocusLabel() {
+    try {
+      const destination = window.CivicationTravelState?.getCurrentDestination?.();
+      if (!destination || typeof destination !== "object") return null;
+
+      const placeName = String(destination.placeName || "").trim();
+      const placeId = String(destination.placeId || "").trim();
+      const label = placeName || placeId;
+
+      return label ? `Mål: ${label}` : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function getFocusLabel(inbox) {
+    const pendingLabel = getPendingLabel(inbox);
+    if (pendingLabel && pendingLabel !== NO_FOCUS_LABEL) return pendingLabel;
+
+    return getTravelFocusLabel() || pendingLabel;
   }
 
   function render() {
@@ -209,14 +234,17 @@
     const active = getActivePosition();
     const state = getCiviState();
     const inbox = getInbox();
-    const split = window.CivicationEventChannels?.splitInbox?.(inbox) || { messages: inbox, unknown: [], workday: [] };
+    const split = window.CivicationEventChannels?.splitInbox?.(inbox) || { messages: inbox, unknown: [], workday: [], milestones: [] };
     const openInboxItems = ((split.messages || []).concat(split.unknown || [])).filter(isOpenInboxItem);
+    const focusInboxItems = ((split.messages || [])
+      .concat(split.unknown || [], split.workday || [], split.milestones || []))
+      .filter(isOpenInboxItem);
     const inboxCount = openInboxItems.length;
     const walletPC = getWalletPC();
     const weeklyIncome = getWeeklyIncome(active);
     const statusLabel = getStatusLabel(state);
     const homeLabel = getHomeLabel();
-    const pendingLabel = getPendingLabel(openInboxItems);
+    const focusLabel = getFocusLabel(focusInboxItems);
 
     const roleTitle = active?.title ? String(active.title) : "Ingen aktiv rolle";
     const roleField = active
@@ -236,7 +264,7 @@
     setText("civiDashInboxMeta", inboxCount === 1 ? "åpen melding" : "åpne meldinger");
     setText("civiDashHome", homeLabel);
     setText("civiDashHomeMeta", homeLabel === "Ikke valgt" ? "Velg nabolag" : "Bosatt");
-    setText("civiDashFocus", pendingLabel);
+    setText("civiDashFocus", focusLabel);
 
     document.body.classList.toggle("civi-has-active-role", !!active);
     document.body.classList.toggle("civi-has-inbox", inboxCount > 0);
@@ -262,7 +290,9 @@
     "updateProfile",
     "civi:inboxChanged",
     "civi:homeChanged",
-    "civiPublicUpdated"
+    "civiPublicUpdated",
+    "civi:travelStateUpdated",
+    "civi:travelDestinationSet"
   ].forEach(function (eventName) {
     window.addEventListener(eventName, scheduleRender);
   });
