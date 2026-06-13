@@ -261,6 +261,71 @@
     return updateState({ travelLog }, "appendTravelLog");
   }
 
+  function completeCurrentTravel(options) {
+    const state = getState();
+    const destination = state.currentDestination || state.pendingTravelRequest;
+    if (!destination || typeof destination !== "object") return state;
+
+    const safeOptions = options && typeof options === "object" && !Array.isArray(options) ? options : {};
+    const completedAt = nowIso();
+    const tripId = String(
+      safeOptions.tripId ||
+      destination.tripId ||
+      `travel-${destination.placeId || "destination"}-${completedAt}`
+    );
+    const previousLocation = state.currentLocation || null;
+    const currentLocation = {
+      ...destination,
+      status: "arrived",
+      arrivedAt: completedAt
+    };
+    const completedTrip = {
+      tripId,
+      currentLocation,
+      previousLocation,
+      completedAt,
+      status: "completed",
+      source: SOURCE
+    };
+    const travelLog = state.travelLog.slice();
+    travelLog.push(completedTrip);
+    const patch = {
+      currentLocation,
+      currentDestination: null,
+      pendingTravelRequest: null,
+      activeTrip: null,
+      travelLog,
+      lastTravelAt: completedAt
+    };
+    const next = normalizeState({
+      ...state,
+      ...patch,
+      updatedAt: completedAt
+    });
+
+    writeStoredState(next);
+    dispatch("civi:travelCompleted", {
+      tripId,
+      currentLocation,
+      previousLocation,
+      completedAt,
+      source: SOURCE
+    });
+    dispatch("civi:travelStateUpdated", {
+      state: next,
+      patch,
+      reason: "completeCurrentTravel",
+      source: SOURCE,
+      updatedAt: completedAt
+    });
+    dispatch("updateProfile", {
+      source: SOURCE,
+      updatedAt: completedAt
+    });
+
+    return next;
+  }
+
   function handleTravelRequest(eventOrDetail) {
     const normalized = normalizeTravelRequest(eventOrDetail);
     const updatedAt = nowIso();
@@ -307,7 +372,8 @@
     clearPendingTravelRequest,
     getCurrentDestination,
     getCurrentLocation,
-    appendTravelLog
+    appendTravelLog,
+    completeCurrentTravel
   };
 
   root.CivicationTravelState = api;
