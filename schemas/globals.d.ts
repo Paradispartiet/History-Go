@@ -89,6 +89,20 @@ declare global {
       [key: string]: unknown;
     };
     renderNearbyPlaces?: () => void;
+    renderNearbyMusic?: () => void;
+    HG_MUSIC_BY_PLACE?: Record<string, unknown>;
+    HGAhaMusic?: {
+      FILES: Record<string, string>;
+      state: {
+        loaded: boolean;
+        musicByPlace: Record<string, any>;
+        candidates: { artists: any[]; tracks: any[] };
+        report: unknown;
+      };
+      load: (options?: { force?: boolean }) => Promise<unknown>;
+      getForPlace: (placeId: unknown) => any;
+      buildIndex: (artists: unknown, tracks: unknown) => unknown;
+    };
     saveVisitedFromQuiz?: (placeId: string | number | null | undefined) => void;
     saveMerits?: () => void;
     savePeopleCollected?: (personId: string | number | null | undefined) => void;

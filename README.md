@@ -1,5 +1,9 @@
 # 🧭 History GO
 
+> AHA Music-relasjoner kan kobles til steder via den lokale bridge-integrasjonen.
+> Se [AHA Music → History Go](docs/AHA_MUSIC_INTEGRATION.md) for filformat,
+> runtime-indeks, visning og audit.
+
 **History GO** er et stedbasert kunnskaps- og læringsspill der byen fungerer som spillbrett.  
 Prosjektet kombinerer **kart, quiz, progresjon, samling og kunnskapssystemer** til én helhetlig plattform for læring i bevegelse.
 

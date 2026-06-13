@@ -253,6 +253,61 @@ function renderNearbyPlaces() {
   });
 }
 
+function renderNearbyMusic() {
+  const listEl = document.getElementById("leftMusicList");
+  if (!listEl) return;
+
+  const musicByPlace = window.HGAhaMusic?.state?.musicByPlace || {};
+  const places = (window.PLACES || [])
+    .map(place => ({
+      place,
+      music: musicByPlace[String(place?.id || "").trim()],
+      distance: Infinity
+    }))
+    .filter(item => item.music && (item.music.artists.length || item.music.tracks.length));
+  const pos = window.getPos?.();
+
+  places.forEach(item => {
+    item.distance = pos && typeof window.distMeters === "function"
+      ? window.distMeters(pos, { lat: item.place.lat, lon: item.place.lon })
+      : Infinity;
+  });
+  places.sort((a, b) => a.distance - b.distance || String(a.place.name).localeCompare(String(b.place.name), "nb"));
+
+  if (!places.length) {
+    listEl.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">♫</div>
+        <div class="hg-empty-guide-title">Ingen steder med musikk ennå</div>
+        <div class="hg-empty-guide-text">Steder vises her når AHA Music-relasjoner har en gyldig History Go placeId.</div>
+      </div>
+    `;
+    return;
+  }
+
+  listEl.innerHTML = "";
+  places.forEach(({ place, music, distance }) => {
+    const item = document.createElement("div");
+    item.className = "nearby-item nearby-music-item";
+    const distanceText = Number.isFinite(distance) ? `${Math.round(distance)} m · ` : "";
+    item.innerHTML = `
+      <div class="nearby-thumbWrap"><div class="nearby-thumb nearby-thumb-icon" aria-hidden="true">♫</div></div>
+      <div class="nearby-content">
+        <div class="nearby-title">${escapeHTML(place.name || place.id)}</div>
+        <div class="nearby-meta">${distanceText}${music.artists.length} artister · ${music.tracks.length} sanger</div>
+      </div>
+    `;
+    item.addEventListener("click", () => {
+      const next = `#/place/${encodeURIComponent(place.id)}`;
+      if (window.HGAppRouter?.navigate) window.HGAppRouter.navigate(next);
+      else location.hash = next;
+    });
+    listEl.appendChild(item);
+  });
+}
+
+window.renderNearbyMusic = renderNearbyMusic;
+
 function renderNearbyPeople() {
   const listEl = document.getElementById("leftPeopleList");
   if (!listEl) return;

@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadPos", () => loadScriptOnce("js/core/pos.js"));
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadMap", () => loadScriptOnce("js/map.js"));
+    await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
 
     // persistence.js etter lists.js: saveVisited() kaller renderCollection() (lists.js)
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Critical boot gjør bare index brukbar: kart + places_index + markører.
     // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
     await safeRun("bootCritical", window.bootCritical || window.boot);
+    await safeRun("loadAhaMusicData", () => window.HGAhaMusic?.load?.());
     await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
 
     // Profilruntime lastes eksplisitt fra app-entry (samme kanal som resten av
