@@ -1,16 +1,23 @@
 (function () {
   "use strict";
 
-  // Engine z-index plan (låst, deterministisk)
+  function readLayerIndex(property, fallback) {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(property);
+    const parsed = Number.parseInt(value, 10);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  }
+
+  // CSS eier lagkontrakten. Runtime bruker de samme variablene når inline
+  // z-index settes, slik at JS aldri kan gjeninnføre en annen lagrekkefølge.
   const Z = {
-    MAP: 0,
+    MAP: readLayerIndex("--hg-z-map", 0),
     MAP_CONTROLS: 50,
 
-    NEARBY: 80,
-    PLACECARD: 100,
-    FOOTER: 110,
+    NEARBY: readLayerIndex("--hg-z-nearby", 80),
+    PLACECARD: readLayerIndex("--hg-z-placecard", 100),
+    FOOTER: readLayerIndex("--hg-z-footer", 110),
     NEXTUP: 115,
-    HEADER: 120,
+    HEADER: readLayerIndex("--hg-z-header", 120),
 
     SEARCH: 130,   // #searchResults ligger i header, men ok å reservere
     TOAST: 900,

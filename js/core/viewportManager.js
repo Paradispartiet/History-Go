@@ -5,8 +5,9 @@
   const PHONE_BREAKPOINT = 520;
   const PHONE_MIN_DESIGN_HEIGHT = 820;
 
-  // Faste visuelle høyder på de full-bleed lagene (header/footer ligger
+  // Faste innholdshøyder på de full-bleed lagene (header/footer ligger
   // utenfor det skalerte design-canvaset og måles i ekte viewport-piksler).
+  // Footerens safe-area legges til separat i CSS via --hg-bottom-nav-height.
   const HEADER_HEIGHT = 74;
   const FOOTER_HEIGHT = 80;
   const NEARBY_HEIGHT_TABLET = 260;
