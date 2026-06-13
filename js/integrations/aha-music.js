@@ -176,14 +176,23 @@
   }
 
   function unlockMusicObject(musicObject) {
-    if (!musicObject?.id || !musicObject?.type || !musicObject?.placeId) return { ok: false, reason: "invalid_music_object" };
+    const type = text(musicObject?.type);
+    const placeId = text(musicObject?.placeId);
+    const expectedId = type === "music_artist"
+      ? musicObjectId(type, placeId, musicObject?.artistId, musicObject?.artistName || musicObject?.title)
+      : type === "music_track"
+        ? musicObjectId(type, placeId, musicObject?.trackId, musicObject?.trackTitle || musicObject?.title)
+        : "";
+    if (!expectedId || text(musicObject?.id) !== expectedId || !isUnlockableStatus(musicObject?.status)) {
+      return { ok: false, reason: "invalid_music_object" };
+    }
     const db = readUnlockedMusicMap();
-    if (db[musicObject.id]) return { ok: true, changed: false, object: db[musicObject.id] };
+    if (db[expectedId]) return { ok: true, changed: false, object: db[expectedId] };
     const row = {
-      id: musicObject.id,
-      type: musicObject.type,
+      id: expectedId,
+      type,
       title: text(musicObject.title || musicObject.artistName || musicObject.trackTitle),
-      placeId: text(musicObject.placeId),
+      placeId,
       unlockedAt: new Date().toISOString(),
       source: "aha_music"
     };

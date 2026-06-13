@@ -58,6 +58,25 @@ assert.equal(second.changed, false, "duplicate unlock does not double count");
 assert.equal(window.HGAhaMusic.getUnlockedMusicObjects().length, 1, "duplicate unlock keeps one stored row");
 assert.equal(updateProfileEvents, 1, "duplicate unlock does not dispatch updateProfile again");
 
+const suggestedDirectUnlock = window.HGAhaMusic.unlockMusicObject({
+  id: "music_track__oslo__suggested",
+  type: "music_track",
+  trackId: "suggested",
+  trackTitle: "Maybe",
+  title: "Maybe",
+  placeId: "oslo",
+  status: "suggested"
+});
+assert.equal(suggestedDirectUnlock.ok, false, "suggested relations cannot bypass normalization and unlock directly");
+
+const forgedIdUnlock = window.HGAhaMusic.unlockMusicObject({
+  ...unlocks.tracks[0],
+  id: "music_track__oslo__forged"
+});
+assert.equal(forgedIdUnlock.ok, false, "unlock id must match the deterministic runtime id");
+assert.equal(window.HGAhaMusic.getUnlockedMusicObjects().length, 1, "invalid direct unlocks do not change storage");
+assert.equal(updateProfileEvents, 1, "invalid direct unlocks do not dispatch updateProfile");
+
 const summary = window.HGAhaMusic.getMusicUnlockSummary();
 assert.equal(JSON.stringify(summary), JSON.stringify({ total: 1, artists: 1, tracks: 0, places: 1 }));
 console.log("AHA Music unlock audit: ok");
