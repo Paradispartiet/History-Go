@@ -780,5 +780,13 @@ body.profile-page,
 .profile-tab-panel{display:none;height:100%;overflow:auto;padding-right:2px}
 .profile-tab-panel.is-active{display:grid;gap:12px}
 .profile-tab-panel .profile-section{padding:14px;border-radius:18px}
+.profile-games-section .section-head{margin-bottom:12px}
+.profile-games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.profile-game-card{display:grid;grid-template-rows:auto auto 1fr;gap:6px;min-height:132px;padding:14px;border-radius:16px;text-decoration:none;color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 24px rgba(0,0,0,.18);transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.profile-game-card:hover,.profile-game-card:focus-visible{transform:translateY(-1px);border-color:rgba(255,255,255,.34);background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.05));outline:none}
+.profile-game-icon{font-size:24px;line-height:1}
+.profile-game-title{font-weight:850;letter-spacing:.01em}
+.profile-game-desc{color:rgba(255,255,255,.76);font-size:13px;line-height:1.35}
 #timelineBody,#collectionCardsBody,#merits,#peopleGrid{max-height:36dvh;overflow:auto}
-@media (max-width:980px){.profile-dashboard-v2{min-height:0}.profile-dashboard-v2 .profile-shell{min-height:0}}
+@media (max-width:980px){.profile-dashboard-v2{min-height:0}.profile-dashboard-v2 .profile-shell{min-height:0}.profile-games-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:560px){.profile-games-grid{grid-template-columns:1fr}.profile-game-card{min-height:112px}}
