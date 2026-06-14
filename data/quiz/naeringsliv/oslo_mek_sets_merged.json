@@ -1,0 +1,2222 @@
+{
+  "targetId": "oslo_mek",
+  "categoryId": "naeringsliv",
+  "source_quiz_file": "data/quiz/quiz_naeringsliv.json",
+  "generator_version": "v5_1_external_priority_chat_merged_naeringsliv_5x6",
+  "size_class": "normal_place",
+  "generated_from": [
+    "data/quiz/quiz_naeringsliv.json",
+    "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+    "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+    "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+    "https://snl.no/Aker_AS",
+    "https://snl.no/mekanisk_verksted",
+    "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+    "https://oslobyleksikon.no/side/Aker_Brygge",
+    "https://oslobyleksikon.no/side/Stranden",
+    "https://industrimuseum.no/akerselvadigitalt"
+  ],
+  "merge_notes": {
+    "existing_quiz_status": "Existing flat questions found in data/quiz/quiz_naeringsliv.json for oslo_mek: 5 questions. No separate set-file found.",
+    "kept": "Kept useful core: mechanical workshop, shipbuilding/machine production, steam/diesel/shipyard production in corrected form, and current serving/culture/urban reuse.",
+    "corrected": "Corrected target interpretation from literal Oslo Mekaniske Verksted to Akers mek. Verksted/Aker Brygge, because the flat quiz questions about shipbuilding, iron ships and current restaurant/culture use align with Akers mek./Aker Brygge. Did not continue the unverified 'gamle sjøboder og sagbruk' claim about the site.",
+    "not_continued": "Did not continue flat 5-question structure. Did not use generic economics questions or em_by_ prefix.",
+    "added": "Added 5 sets x 6 questions with source-first anchors: 1841 foundation, Øvre Foss, Peter Severin Steenstrup, 1854 move to Holmen/Pipervika, D/S Færdesmanden, diesel engines, docks, Pelle group sabotage, Akergruppen, Ocean Viking, closure in 1982 and reuse as Aker Brygge/Stranden."
+  },
+  "profile_snapshot": {
+    "place_type": "shipyard_to_retail_service_area",
+    "subtype": "akers_mek_verksted_to_aker_brygge",
+    "signature_features": [
+      "Agers/Akers mekaniske Verksted",
+      "start at Øvre Foss and move to Holmen/Pipervika",
+      "shipbuilding, machine production, docks and offshore",
+      "closure in 1982",
+      "Aker Brygge reuse with shops, restaurants, offices and cultural use"
+    ],
+    "primary_angles": [
+      "produksjon",
+      "logistikk",
+      "arbeid",
+      "omstilling"
+    ],
+    "must_include": [
+      "correct naming toward Akers mek. Verksted",
+      "connect shipyard history to Aker Brygge reuse"
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_oslo_mek_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "history_intro_story",
+      "questions": [
+        {
+          "id": "oslo_mek_quiz_1",
+          "quiz_id": "naeringsliv_oslo_mek_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilket historisk verksted er riktig hovedanker for `oslo_mek`-targetet?",
+          "options": [
+            "Akers mek. Verksted",
+            "Oslo Mekaniske Verksted på Grønland",
+            "Oslo Mekaniske Kompani"
+          ],
+          "answer": "Akers mek. Verksted",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "target-avklaring",
+          "knowledge": "Eksisterende flatquiz bruker Oslo Mek-navnet, men spørsmålene om skipsbygging og jernskip peker mot Akers mek. Verksted/Aker Brygge-historien.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1841,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Akers mek. Verksted",
+            "Aker Brygge",
+            "target-avklaring"
+          ],
+          "concept_focus": [
+            "Akers mek. Verksted",
+            "Aker Brygge"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "akers_mek",
+            "target",
+            "kildekritikk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://snl.no/Aker_AS",
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "oslo_mek_quiz_2",
+          "quiz_id": "naeringsliv_oslo_mek_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når ble Akers mekaniske Verksted stiftet?",
+          "options": [
+            "1841",
+            "1854",
+            "1982"
+          ],
+          "answer": "1841",
+          "answerIndex": 0,
+          "dimension": "historie",
+          "topic": "stiftelse",
+          "knowledge": "SNL og Oslo byleksikon oppgir at Akers mekaniske Verksted ble stiftet i 1841.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1841,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "1841",
+            "Agers mechaniske Værksted",
+            "stiftelse"
+          ],
+          "concept_focus": [
+            "1841",
+            "Agers mechaniske Værksted"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1841",
+            "akers_mek",
+            "stiftelse"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Aker_AS",
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://snl.no/mekanisk_verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_3",
+          "quiz_id": "naeringsliv_oslo_mek_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvor ble Akers mekaniske Verksted først etablert?",
+          "options": [
+            "På tomter ved Øvre Foss på Akerselvas østside",
+            "På Grønlikaia",
+            "På Sjølyst"
+          ],
+          "answer": "På tomter ved Øvre Foss på Akerselvas østside",
+          "answerIndex": 0,
+          "dimension": "lokalisering",
+          "topic": "første tomt",
+          "knowledge": "Oslo byleksikon beskriver at verkstedet ble stiftet på to tomter som hadde tilhørt gården Øvre Foss på Akerselvas østside.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1841,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Øvre Foss",
+            "Akerselva",
+            "første lokalisering"
+          ],
+          "concept_focus": [
+            "Øvre Foss",
+            "Akerselva"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "øvre_foss",
+            "akerselva",
+            "første_tomt"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://industrimuseum.no/akerselvadigitalt"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_4",
+          "quiz_id": "naeringsliv_oslo_mek_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når begynte Akers mekaniske Verksted sin virksomhet?",
+          "options": [
+            "1842",
+            "1841",
+            "1855"
+          ],
+          "answer": "1842",
+          "answerIndex": 0,
+          "dimension": "historie",
+          "topic": "driftsstart",
+          "knowledge": "Oslo byleksikon skriver at verkstedet begynte sin virksomhet i 1842.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1842,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "1842",
+            "driftsstart",
+            "mekanisk verksted"
+          ],
+          "concept_focus": [
+            "1842",
+            "driftsstart"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1842",
+            "driftsstart",
+            "akers_mek"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://industrimuseum.no/akerselvadigitalt"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_5",
+          "quiz_id": "naeringsliv_oslo_mek_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvem var en av stifterne og verkstedets daglige leder?",
+          "options": [
+            "Peter Severin Steenstrup",
+            "Halvor Schou",
+            "Christian Schou"
+          ],
+          "answer": "Peter Severin Steenstrup",
+          "answerIndex": 0,
+          "dimension": "personhistorie",
+          "topic": "Peter Severin Steenstrup",
+          "knowledge": "Oslo byleksikon beskriver marineoffiseren Peter Severin Steenstrup som en av stifterne og verkstedets daglige leder.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1841,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Peter Severin Steenstrup",
+            "marineoffiser",
+            "daglig leder"
+          ],
+          "concept_focus": [
+            "Peter Severin Steenstrup",
+            "marineoffiser"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "steenstrup",
+            "stifter",
+            "leder"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://industrimuseum.no/akerselvadigitalt"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_6",
+          "quiz_id": "naeringsliv_oslo_mek_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når flyttet verkstedet til Holmen ved Pipervika?",
+          "options": [
+            "1854",
+            "1842",
+            "1912"
+          ],
+          "answer": "1854",
+          "answerIndex": 0,
+          "dimension": "lokalisering",
+          "topic": "flytting til Pipervika",
+          "knowledge": "SNL og Oslo byleksikon oppgir at verkstedet flyttet til Holmen ved Pipervika i 1854, der Aker Brygge ligger i dag.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1854,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Holmen",
+            "Pipervika",
+            "Aker Brygge"
+          ],
+          "concept_focus": [
+            "Holmen",
+            "Pipervika"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "pipervika",
+            "holmen",
+            "1854"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Aker_AS",
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://oslobyleksikon.no/side/Aker_Brygge"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_oslo_mek_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "local_history_buildings_events",
+      "questions": [
+        {
+          "id": "oslo_mek_quiz_7",
+          "quiz_id": "naeringsliv_oslo_mek_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hva produserte verkstedet de første årene ifølge Oslo byleksikon?",
+          "options": [
+            "Mindre maskiner, sprøyter og pumper",
+            "Kun sjokolade og drops",
+            "Bare skinnsko"
+          ],
+          "answer": "Mindre maskiner, sprøyter og pumper",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "tidlig produksjon",
+          "knowledge": "Oslo byleksikon beskriver tidlig produksjon av mindre maskiner, sprøyter, pumper med mer.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1842,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "mindre maskiner",
+            "sprøyter",
+            "pumper"
+          ],
+          "concept_focus": [
+            "mindre maskiner",
+            "sprøyter"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "maskiner",
+            "pumper",
+            "sprøyter"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_8",
+          "quiz_id": "naeringsliv_oslo_mek_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hva ble mulig først etter kjøpet av Holmen ved Pipervika?",
+          "options": [
+            "Bygging og reparasjon av skip",
+            "Produksjon av såpe og lampeolje",
+            "Butikkdrift i Grensen"
+          ],
+          "answer": "Bygging og reparasjon av skip",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "skipsbygging",
+          "knowledge": "Oslo byleksikon skriver at verkstedet først etter kjøpet av Holmen ved Pipervika i 1854 kunne begynne med bygging og reparasjon av skip.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1854,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "skipsbygging",
+            "skipreparasjon",
+            "Holmen"
+          ],
+          "concept_focus": [
+            "skipsbygging",
+            "skipreparasjon"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "skipsbygging",
+            "reparasjon",
+            "pipervika"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://snl.no/Aker_AS"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_9",
+          "quiz_id": "naeringsliv_oslo_mek_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hva het verkstedets byggenummer 1?",
+          "options": [
+            "D/S Færdesmanden",
+            "M/S Taiwan",
+            "Ocean Viking"
+          ],
+          "answer": "D/S Færdesmanden",
+          "answerIndex": 0,
+          "dimension": "skipsbygging",
+          "topic": "byggenummer 1",
+          "knowledge": "Oslo byleksikon beskriver D/S Færdesmanden som verkstedets byggenummer 1, levert året etter flyttingen til Holmen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1855,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "D/S Færdesmanden",
+            "byggenummer 1",
+            "1855"
+          ],
+          "concept_focus": [
+            "D/S Færdesmanden",
+            "byggenummer 1"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "færdesmanden",
+            "byggenummer_1",
+            "skip"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_10",
+          "quiz_id": "naeringsliv_oslo_mek_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken fart var D/S Færdesmanden beregnet for?",
+          "options": [
+            "Fart på Mjøsa",
+            "Atlanterhavsfart",
+            "Fergerute til Danmark"
+          ],
+          "answer": "Fart på Mjøsa",
+          "answerIndex": 0,
+          "dimension": "skipsbygging",
+          "topic": "D/S Færdesmanden",
+          "knowledge": "Oslo byleksikon oppgir at D/S Færdesmanden var på cirka 90 bruttoregistertonn og beregnet for fart på Mjøsa.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1855,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Mjøsa",
+            "dampskip",
+            "90 brt"
+          ],
+          "concept_focus": [
+            "Mjøsa",
+            "dampskip"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "mjøsa",
+            "dampskip",
+            "færdesmanden"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_11",
+          "quiz_id": "naeringsliv_oslo_mek_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken hovedaktivitet hadde Akers mekaniske Verksted ifølge SNL?",
+          "options": [
+            "Skipsbygging",
+            "Fiskehandel",
+            "Detaljhandel"
+          ],
+          "answer": "Skipsbygging",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "hovedaktivitet",
+          "knowledge": "SNL beskriver skipsbygging som hovedaktiviteten ved Akers mekaniske Verksted.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1841,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "skipsbygging",
+            "mekanisk verksted",
+            "hovedaktivitet"
+          ],
+          "concept_focus": [
+            "skipsbygging",
+            "mekanisk verksted"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "skipsbygging",
+            "aker",
+            "verksted"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Aker_AS",
+            "https://snl.no/mekanisk_verksted",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "oslo_mek_quiz_12",
+          "quiz_id": "naeringsliv_oslo_mek_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken næringslivsfunksjon hadde verkstedet i Oslo havn?",
+          "options": [
+            "Det koblet metallarbeid, maskinverksted, skipsbygging, kai, dokk og havnelogistikk",
+            "Det var først og fremst en kolonialbutikk",
+            "Det var et rent boligområde"
+          ],
+          "answer": "Det koblet metallarbeid, maskinverksted, skipsbygging, kai, dokk og havnelogistikk",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "verft som produksjonssystem",
+          "knowledge": "Akers mek. var ikke bare én fabrikk, men et produksjonssystem med maskinverksted, skipsbygging, dokker, kaier, fagarbeid og maritim logistikk.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": null,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "verft",
+            "maskinverksted",
+            "havnelogistikk"
+          ],
+          "concept_focus": [
+            "verft",
+            "maskinverksted"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "verft",
+            "dokk",
+            "havnelogistikk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Aker_AS",
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://oslobyleksikon.no/side/Aker_Brygge"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_oslo_mek_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "humor_curiosities_life",
+      "questions": [
+        {
+          "id": "oslo_mek_quiz_13",
+          "quiz_id": "naeringsliv_oslo_mek_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når begynte Akers mek. produksjon av dieselmotorer på lisens?",
+          "options": [
+            "1912",
+            "1855",
+            "1982"
+          ],
+          "answer": "1912",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "dieselmotorer",
+          "knowledge": "Oslo byleksikon skriver at produksjon av dieselmotorer på lisens fra Burmeister & Wain startet i 1912.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1912,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "dieselmotorer",
+            "Burmeister & Wain",
+            "lisens"
+          ],
+          "concept_focus": [
+            "dieselmotorer",
+            "Burmeister & Wain"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "dieselmotorer",
+            "1912",
+            "burmeister_wain"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_14",
+          "quiz_id": "naeringsliv_oslo_mek_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilket dansk verft var lisensgiver for dieselmotorproduksjonen?",
+          "options": [
+            "Burmeister & Wain",
+            "Kværner Eureka",
+            "Norrøna Sport"
+          ],
+          "answer": "Burmeister & Wain",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "lisensproduksjon",
+          "knowledge": "Oslo byleksikon oppgir Burmeister & Wain som lisensgiver for dieselmotorproduksjonen fra 1912.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1912,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_arbeidsprosessanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Burmeister & Wain",
+            "lisens",
+            "diesel"
+          ],
+          "concept_focus": [
+            "Burmeister & Wain",
+            "lisens"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "burmeister_wain",
+            "lisens",
+            "diesel"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_15",
+          "quiz_id": "naeringsliv_oslo_mek_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når stod tørrdokken for skip opp til 18 000 dødvekttonn klar?",
+          "options": [
+            "1920",
+            "1912",
+            "1937"
+          ],
+          "answer": "1920",
+          "answerIndex": 0,
+          "dimension": "infrastruktur",
+          "topic": "tørrdokk",
+          "knowledge": "Oslo byleksikon oppgir at tørrdokken for skip opp til 18 000 dødvekttonn stod klar i 1920.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1920,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "tørrdokk",
+            "18 000 dødvekttonn",
+            "1920"
+          ],
+          "concept_focus": [
+            "tørrdokk",
+            "18 000 dødvekttonn"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "tørrdokk",
+            "1920",
+            "18000_dwt"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_16",
+          "quiz_id": "naeringsliv_oslo_mek_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når fikk verkstedet flytedokk for skip opp til 30 000 dødvekttonn?",
+          "options": [
+            "1937",
+            "1920",
+            "1967"
+          ],
+          "answer": "1937",
+          "answerIndex": 0,
+          "dimension": "infrastruktur",
+          "topic": "flytedokk",
+          "knowledge": "Oslo byleksikon beskriver flytedokken fra 1937 for skip opp til 30 000 dødvekttonn.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1937,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "flytedokk",
+            "30 000 dødvekttonn",
+            "1937"
+          ],
+          "concept_focus": [
+            "flytedokk",
+            "30 000 dødvekttonn"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "flytedokk",
+            "1937",
+            "30000_dwt"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_17",
+          "quiz_id": "naeringsliv_oslo_mek_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken sabotasjegruppe angrep skip og anlegg ved Aker og Nyland i november 1944?",
+          "options": [
+            "Pelle-gruppa",
+            "Oslogjengen",
+            "Milorg D13 alene"
+          ],
+          "answer": "Pelle-gruppa",
+          "answerIndex": 0,
+          "dimension": "krigshistorie",
+          "topic": "skipssabotasje",
+          "knowledge": "Oslo byleksikon beskriver Pelle-gruppas samordnede skipssabotasje mot blant annet Aker og Nylands Verksted 23.–24. november 1944.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1944,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Pelle-gruppa",
+            "skipssabotasje",
+            "Aker og Nyland"
+          ],
+          "concept_focus": [
+            "Pelle-gruppa",
+            "skipssabotasje"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "pellegruppa",
+            "1944",
+            "skipssabotasje"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://oslobyleksikon.no/side/Stranden"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_18",
+          "quiz_id": "naeringsliv_oslo_mek_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hva ble firmanavnet Akers mek. Verksted brukt om fra 1960?",
+          "options": [
+            "Holdingselskapet og stabsorganet i Akergruppen",
+            "En enkelt skobutikk i Grensen",
+            "En kommunal fergeterminal"
+          ],
+          "answer": "Holdingselskapet og stabsorganet i Akergruppen",
+          "answerIndex": 0,
+          "dimension": "organisering",
+          "topic": "Akergruppen",
+          "knowledge": "Oslo byleksikon beskriver at firmanavnet Akers mek. Verksted fra 1960 betegnet holdingselskapet og stabsorganet for Akergruppen, mens verftet i Pipervika fikk navnet Akers Verft.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1960,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Akergruppen",
+            "holdingselskap",
+            "Akers Verft"
+          ],
+          "concept_focus": [
+            "Akergruppen",
+            "holdingselskap"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "akergruppen",
+            "1960",
+            "holding"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://snl.no/Aker_AS"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_oslo_mek_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_facts_architecture",
+      "questions": [
+        {
+          "id": "oslo_mek_quiz_19",
+          "quiz_id": "naeringsliv_oslo_mek_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken offshore-leveranse kom fra Akers Verft i 1967?",
+          "options": [
+            "Den første norske boreriggen Ocean Viking",
+            "Den første norske varemessehall",
+            "Den første norske valsemølle"
+          ],
+          "answer": "Den første norske boreriggen Ocean Viking",
+          "answerIndex": 0,
+          "dimension": "offshore",
+          "topic": "Ocean Viking",
+          "knowledge": "Oslo byleksikon beskriver Ocean Viking som den første norske boreriggen, levert fra Akers Verft i 1967.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1967,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ocean Viking",
+            "borerigg",
+            "offshore"
+          ],
+          "concept_focus": [
+            "Ocean Viking",
+            "borerigg"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ocean_viking",
+            "borerigg",
+            "offshore"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_20",
+          "quiz_id": "naeringsliv_oslo_mek_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken ny produksjonsretning ble viktig etter skipsfartskrisen fra midten av 1970-årene?",
+          "options": [
+            "Leveranser til landbasert industri og offshore oljeaktivitet",
+            "Detaljhandel med sko",
+            "Produksjon av linolje og lampeolje"
+          ],
+          "answer": "Leveranser til landbasert industri og offshore oljeaktivitet",
+          "answerIndex": 0,
+          "dimension": "omstilling",
+          "topic": "skipsfartskrise",
+          "knowledge": "Oslo byleksikon beskriver at krisen i skipsfarten rammet Akergruppen hardt, og at produksjonen ble omstilt mot landbasert industri og offshore oljeaktivitet.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1975,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "skipsfartskrise",
+            "landbasert industri",
+            "offshore"
+          ],
+          "concept_focus": [
+            "skipsfartskrise",
+            "landbasert industri"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "offshore",
+            "skipsfartskrise",
+            "omstilling"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://snl.no/Aker_AS"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_21",
+          "quiz_id": "naeringsliv_oslo_mek_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når ble den siste nybygningen i Oslo levert fra verftet?",
+          "options": [
+            "1978",
+            "1982",
+            "1960"
+          ],
+          "answer": "1978",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "siste nybygning",
+          "knowledge": "Oslo byleksikon oppgir at den siste nybygningen i Oslo ble levert i 1978.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1978,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "siste nybygning",
+            "1978",
+            "Akers Verft"
+          ],
+          "concept_focus": [
+            "siste nybygning",
+            "1978"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1978",
+            "siste_nybygning",
+            "verft"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_22",
+          "quiz_id": "naeringsliv_oslo_mek_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvor mange ansatte hadde verftet da den siste nybygningen i Oslo ble levert?",
+          "options": [
+            "Ca. 2000 ansatte",
+            "Ca. 200 ansatte",
+            "Ca. 20 000 ansatte"
+          ],
+          "answer": "Ca. 2000 ansatte",
+          "answerIndex": 0,
+          "dimension": "arbeidsliv",
+          "topic": "arbeidertall 1978",
+          "knowledge": "Oslo byleksikon oppgir at verftet hadde cirka 2000 ansatte da den siste nybygningen i Oslo ble levert i 1978.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1978,
+          "epoke_id": "akers_mek_verksted_og_skipsbygging",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "2000 ansatte",
+            "verftsarbeid",
+            "1978"
+          ],
+          "concept_focus": [
+            "2000 ansatte",
+            "verftsarbeid"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "2000_ansatte",
+            "1978",
+            "verft"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_23",
+          "quiz_id": "naeringsliv_oslo_mek_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når ble verftet i Oslo nedlagt?",
+          "options": [
+            "1982",
+            "1978",
+            "1987"
+          ],
+          "answer": "1982",
+          "answerIndex": 0,
+          "dimension": "omstilling",
+          "topic": "nedleggelse",
+          "knowledge": "SNL og Oslo byleksikon oppgir at verftet ble nedlagt i 1982.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1982,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "1982",
+            "verftsnedleggelse",
+            "Aker Brygge"
+          ],
+          "concept_focus": [
+            "1982",
+            "verftsnedleggelse"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1982",
+            "nedleggelse",
+            "verft"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Aker_AS",
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "oslo_mek_quiz_24",
+          "quiz_id": "naeringsliv_oslo_mek_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvor mange skip hadde verftet bygd gjennom årene ifølge Oslo byleksikon?",
+          "options": [
+            "Ca. 550 skip",
+            "Ca. 55 skip",
+            "Ca. 5500 skip"
+          ],
+          "answer": "Ca. 550 skip",
+          "answerIndex": 0,
+          "dimension": "produksjon",
+          "topic": "skipstall",
+          "knowledge": "Oslo byleksikon skriver at verftet gjennom årene hadde bygd i alt cirka 550 skip.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 1982,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_produksjon_produktivitet",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "550 skip",
+            "skipsbygging",
+            "produksjonsvolum"
+          ],
+          "concept_focus": [
+            "550 skip",
+            "skipsbygging"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "550_skip",
+            "verft",
+            "skipsbygging"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_oslo_mek_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {
+          "id": "oslo_mek_quiz_25",
+          "quiz_id": "naeringsliv_oslo_mek_set_5_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hva ble det gamle verkstedområdet omgjort til?",
+          "options": [
+            "Aker Brygge",
+            "Bryn senter",
+            "Norges Varemesse"
+          ],
+          "answer": "Aker Brygge",
+          "answerIndex": 0,
+          "dimension": "ombruk",
+          "topic": "Aker Brygge",
+          "knowledge": "Oslo byleksikon beskriver at det gamle verkstedområdet etter nedleggelsen ble omgjort til Aker Brygge.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 1982,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Aker Brygge",
+            "ombruk",
+            "verftstomt"
+          ],
+          "concept_focus": [
+            "Aker Brygge",
+            "ombruk"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "aker_brygge",
+            "ombruk",
+            "verft"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://oslobyleksikon.no/side/Aker_Brygge",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "oslo_mek_quiz_26",
+          "quiz_id": "naeringsliv_oslo_mek_set_5_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilket selskap var byggherre da Aker Brygge ble utviklet?",
+          "options": [
+            "Aker Eiendom A/S",
+            "HAV Eiendom",
+            "NOVA Spektrum"
+          ],
+          "answer": "Aker Eiendom A/S",
+          "answerIndex": 0,
+          "dimension": "eiendom",
+          "topic": "byggherre",
+          "knowledge": "Oslo byleksikon beskriver Aker Eiendom A/S som byggherre for utviklingen av Aker Brygge etter verftsnedleggelsen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 1984,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Aker Eiendom",
+            "byggherre",
+            "Aker Brygge"
+          ],
+          "concept_focus": [
+            "Aker Eiendom",
+            "byggherre"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "aker_eiendom",
+            "utbygging",
+            "aker_brygge"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Aker_Brygge"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_27",
+          "quiz_id": "naeringsliv_oslo_mek_set_5_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Når ble de gamle verkstedhallene i Stranden 3–5 tatt i bruk til forretningslokaler og restauranter?",
+          "options": [
+            "1985–1986",
+            "1978–1979",
+            "2009–2010"
+          ],
+          "answer": "1985–1986",
+          "answerIndex": 0,
+          "dimension": "ombruk",
+          "topic": "Stranden 3–5",
+          "knowledge": "Oslo byleksikon beskriver at de gamle verkstedhallene i Stranden 3–5 ble tatt i bruk til forretningslokaler og restauranter i 1985–86.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 1985,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Stranden 3–5",
+            "forretningslokaler",
+            "restauranter"
+          ],
+          "concept_focus": [
+            "Stranden 3–5",
+            "forretningslokaler"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "stranden_3_5",
+            "restauranter",
+            "forretning"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Aker_Brygge",
+            "https://oslobyleksikon.no/side/Stranden"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_28",
+          "quiz_id": "naeringsliv_oslo_mek_set_5_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilket teater holdt til i de ombygde verkstedhallene i Stranden 3–5 fra 1985 til 2003?",
+          "options": [
+            "Black Box teater",
+            "Nationaltheatret",
+            "Det Andre Teatret"
+          ],
+          "answer": "Black Box teater",
+          "answerIndex": 0,
+          "dimension": "kultur",
+          "topic": "Black Box",
+          "knowledge": "Oslo byleksikon beskriver at Black Box teater holdt til i Stranden 3–5 fra 1985 til 2003.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 1985,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Black Box teater",
+            "Stranden 3–5",
+            "kultur"
+          ],
+          "concept_focus": [
+            "Black Box teater",
+            "Stranden 3–5"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "black_box",
+            "stranden",
+            "kultur"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Stranden"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_29",
+          "quiz_id": "naeringsliv_oslo_mek_set_5_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken blåskilt-markering finnes på Aker Brygge knyttet til Akers mek.?",
+          "options": [
+            "Flere gamle verftsbygninger er markert med blå skilt",
+            "Ingen industrihistorie er markert",
+            "Bare en statue av en kjøpmann er markert"
+          ],
+          "answer": "Flere gamle verftsbygninger er markert med blå skilt",
+          "answerIndex": 0,
+          "dimension": "industriarv",
+          "topic": "blå skilt",
+          "knowledge": "Oslo byleksikon beskriver seks gamle verftsbygninger markert med Oslo Byes Vels blå skilt, og Stranden-artikkelen nevner skilt ved verkstedhallene.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "blå skilt",
+            "verftsbygninger",
+            "industriarv"
+          ],
+          "concept_focus": [
+            "blå skilt",
+            "verftsbygninger"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "blå_skilt",
+            "industriarv",
+            "aker_brygge"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://oslobyleksikon.no/side/Stranden"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "oslo_mek_quiz_30",
+          "quiz_id": "naeringsliv_oslo_mek_set_5_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "oslo_mek",
+          "personId": "",
+          "natureId": "",
+          "targetId": "oslo_mek",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for `oslo_mek`?",
+          "options": [
+            "Et verfts- og ombruksområde der Akerselva, Pipervika, mekanisk industri, skip, dokker, offshore, nedleggelse og Aker Brygge må leses sammen",
+            "Et rent skjenkested uten industrihistorie",
+            "Et fisketorg med kjølehaller"
+          ],
+          "answer": "Et verfts- og ombruksområde der Akerselva, Pipervika, mekanisk industri, skip, dokker, offshore, nedleggelse og Aker Brygge må leses sammen",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet næringslivsanalyse",
+          "knowledge": "Targetet bør leses som Akers mek./Aker Brygge-sporet: fra mekanisk verksted ved Øvre Foss til skipsverft i Pipervika, Akergruppen, offshoreomstilling, nedleggelse og urban ombruk.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "aker_brygge_ombruk_retail_servering",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Akers mek.",
+            "skipsverft",
+            "Aker Brygge",
+            "ombruk"
+          ],
+          "concept_focus": [
+            "Akers mek.",
+            "skipsverft"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "oslo_mek",
+            "akers_mek",
+            "aker_brygge"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://snl.no/Aker_AS",
+            "https://oslobyleksikon.no/side/Akers_mek._Verksted",
+            "https://oslobyleksikon.no/side/Aker_Brygge",
+            "https://oslobyleksikon.no/side/Stranden"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "shipyard_to_retail_service_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        }
+      ]
+    }
+  ]
+}
