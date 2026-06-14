@@ -53,6 +53,19 @@
     if (!delta) return null;
 
     const careerId = activeCareerId();
+    const resilience = {};
+    const preview = (key, value) => {
+      const meta = window.CivicationPsyche?.applyPsycheResilienceModifier?.(Number(value || 0), window.CivicationState?.getState?.(), { metric: key, source: "day_consequence" });
+      if (meta?.applied) resilience[key] = meta;
+      return meta?.adjustedDelta ?? Number(value || 0);
+    };
+
+    const adjusted = {
+      integrity: preview("integrity", delta.integrity),
+      visibility: preview("visibility", delta.visibility),
+      economicRoom: preview("economicRoom", delta.economicRoom),
+      trust: preview("trust", delta.trust)
+    };
 
     if (Number(delta.integrity || 0)) {
       window.CivicationPsyche?.updateIntegrity?.(Number(delta.integrity || 0));
@@ -71,10 +84,18 @@
     }
 
     return {
-      integrity: Number(delta.integrity || 0),
-      visibility: Number(delta.visibility || 0),
-      economicRoom: Number(delta.economicRoom || 0),
-      trust: Number(delta.trust || 0)
+      integrity: adjusted.integrity,
+      visibility: adjusted.visibility,
+      economicRoom: adjusted.economicRoom,
+      trust: adjusted.trust,
+      original: {
+        integrity: Number(delta.integrity || 0),
+        visibility: Number(delta.visibility || 0),
+        economicRoom: Number(delta.economicRoom || 0),
+        trust: Number(delta.trust || 0)
+      },
+      resilience,
+      resilienceMessage: Object.keys(resilience).length ? "Psykologisk kompetanse dempet belastningen." : ""
     };
   }
 

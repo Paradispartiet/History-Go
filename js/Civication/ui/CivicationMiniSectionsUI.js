@@ -197,7 +197,8 @@
       accent: "🧠",
       source: "psyAutonomy",
       empty: "Psykeverdier ikke beregnet ennå.",
-      action: "Se psyke",
+      action: "Åpne Psykologrommet",
+      openMode: "psychologyRoom",
       summary: function () {
         const auto = textOf("psyAutonomy");
         const trust = textOf("psyTrust");
@@ -209,7 +210,8 @@
           validText("psyIntegrity") ? `Integritet: ${textOf("psyIntegrity")}` : null,
           validText("psyVisibility") ? `Synlighet: ${textOf("psyVisibility")}` : null,
           validText("psyEconomic") ? `Handlingsrom: ${textOf("psyEconomic")}` : null,
-          textOf("psyBurnout") ? `Burnout/stress: ${textOf("psyBurnout")}` : null
+          textOf("psyBurnout") ? `Burnout/stress: ${textOf("psyBurnout")}` : null,
+          `Psykologisk kompetanse: ${Number(window.CivicationPsyche?.getPsychologyCompetence?.() || 0)}`
         ];
       }
     },
@@ -751,6 +753,49 @@
     };
   }
 
+
+  function ensurePsychologyRoomCss() {
+    if (document.getElementById("psychology-room-css")) return;
+    const link = document.createElement("link");
+    link.id = "psychology-room-css";
+    link.rel = "stylesheet";
+    link.href = "css/psychologyRoom.css";
+    document.head.appendChild(link);
+  }
+
+  function loadPsychologyRoomScript() {
+    return new Promise(function (resolve, reject) {
+      if (window.PsychologyRoom?.open) {
+        resolve();
+        return;
+      }
+      const existing = document.getElementById("psychology-room-script");
+      if (existing) {
+        existing.addEventListener("load", resolve, { once: true });
+        existing.addEventListener("error", reject, { once: true });
+        return;
+      }
+      const script = document.createElement("script");
+      script.id = "psychology-room-script";
+      script.src = "js/psychologyRoom.js";
+      script.onload = resolve;
+      script.onerror = reject;
+      document.body.appendChild(script);
+    });
+  }
+
+  async function openPsychologyRoom() {
+    ensurePsychologyRoomCss();
+    closePopup();
+    try {
+      await loadPsychologyRoomScript();
+      await window.PsychologyRoom?.open?.();
+    } catch (error) {
+      console.warn("[CivicationMiniSectionsUI.openPsychologyRoom]", error);
+      window.showToast?.("Psykologrommet kunne ikke lastes");
+    }
+  }
+
   function ensureModal() {
     let modal = document.getElementById("civiSectionPopup");
     if (modal) return modal;
@@ -790,6 +835,10 @@
 
   function openPopup(section, config) {
     if (!section || !config) return;
+    if (config.openMode === "psychologyRoom") {
+      openPsychologyRoom();
+      return;
+    }
 
     const body = getDirectBody(section);
     if (!body) return;
@@ -851,7 +900,11 @@
 
     const card = document.createElement("div");
     card.className = "civi-mini-card";
-    card.setAttribute("role", "group");
+    card.setAttribute("role", config.openMode === "psychologyRoom" ? "button" : "group");
+    if (config.openMode === "psychologyRoom") {
+      card.tabIndex = 0;
+      card.setAttribute("aria-label", `${config.label || "Seksjon"}: ${config.action || "Åpne"}`);
+    }
 
     card.innerHTML = `
       <div class="civi-mini-title-row">
@@ -873,6 +926,12 @@
     card.addEventListener("click", function (event) {
       const target = /** @type {Element} */ (event.target);
       if (target && target.closest("button")) return;
+      openPopup(section, config);
+    });
+
+    card.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
       openPopup(section, config);
     });
 
@@ -992,7 +1051,8 @@
     "civi:booted",
     "updateProfile",
     "civi:homeChanged",
-    "civiPublicUpdated"
+    "civiPublicUpdated",
+    "civi:psychologyCompetence"
   ].forEach(function (eventName) {
     window.addEventListener(eventName, scheduleRefresh);
   });
