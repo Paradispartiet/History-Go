@@ -460,14 +460,30 @@
       .sort((a, b) => b.score - a.score);
   }
 
-  function historicalRouteState(progress = {}) {
+  function historicalRouteChapterCounts(route = {}) {
+    const chapters = Array.isArray(route?.chapters) ? route.chapters : [];
+    const physicalChapterCount = chapters.filter((chapter) =>
+      chapter?.physical?.enabled === true &&
+      Boolean(s(chapter?.physical?.placeId || chapter?.placeId))
+    ).length;
+    return {
+      chapterCount: chapters.length,
+      physicalChapterCount,
+      textOnlyChapterCount: chapters.length - physicalChapterCount
+    };
+  }
+
+  function historicalRouteState(progress = {}, chapterCounts = {}) {
     if (progress?.online?.completed || progress?.status === "online_completed") {
+      const hasPhysicalChapters = Number(chapterCounts?.physicalChapterCount || 0) > 0;
       return {
         rank: 3,
         score: 35,
         status: "Fullført online",
-        action: "Samle fysisk senere",
-        reason: "Online-reisen er fullført. Fysisk = du samler sporene etter den."
+        action: hasPhysicalChapters ? "Samle fysiske stopp senere" : "Spill reisen på nytt",
+        reason: hasPhysicalChapters
+          ? "Online-reisen er fullført. Du kan senere samle rutens fysiske stopp."
+          : "Online-reisen er fullført og kan spilles på nytt."
       };
     }
     if (progress?.online?.started || ["started", "online_in_progress"].includes(progress?.status)) {
@@ -496,14 +512,18 @@
       .filter(route => route?.id && route?.playModes?.online?.enabled === true)
       .map(route => {
         const progress = api.getProgress(route.id);
-        return { route, progress, state: historicalRouteState(progress) };
+        const chapterCounts = historicalRouteChapterCounts(route);
+        return { route, progress, chapterCounts, state: historicalRouteState(progress, chapterCounts) };
       })
       .sort((a, b) => a.state.rank - b.state.rank);
     const picked = candidates[0];
     if (!picked) return null;
 
-    const { route, progress, state } = picked;
+    const { route, progress, state, chapterCounts } = picked;
     const physicalEnabled = route?.playModes?.physical?.enabled === true;
+    const routeArchetypeLabel = typeof api.getRouteArchetypeLabel === "function"
+      ? api.getRouteArchetypeLabel(route.routeArchetype)
+      : "Historisk rute";
     return {
       type: "historisk_rute",
       target_id: s(route.id),
@@ -518,12 +538,15 @@
         route_id: s(route.id),
         experience_mode: "back_to_the_future",
         route_archetype: s(route.routeArchetype || "historisk reise"),
+        route_archetype_label: s(routeArchetypeLabel),
         historical_period: s(route.historicalPeriod),
         narrative_text: compactText(route.narrativeText),
         status: s(progress?.status || "not_started"),
         status_label: state.status,
         action_label: state.action,
-        chapter_count: Array.isArray(route.chapters) ? route.chapters.length : 0,
+        chapter_count: chapterCounts.chapterCount,
+        physical_chapter_count: chapterCounts.physicalChapterCount,
+        text_only_chapter_count: chapterCounts.textOnlyChapterCount,
         physical_enabled: physicalEnabled
       }
     };
@@ -765,7 +788,7 @@
           ${suggestionIcon(sug.type)} <b>${esc(suggestionTitle(sug.type))}</b>
           <span>${esc(sug.label)}</span>
           ${sug.type === "historisk_rute" ? `
-            <small class="nextup-source--back-to-the-future">BackToTheFuture · ${esc(sug.meta.route_archetype)} · ${esc(sug.meta.historical_period)}</small>
+            <small class="nextup-source--back-to-the-future">BackToTheFuture · ${esc(sug.meta.route_archetype_label || "Historisk rute")} · ${esc(sug.meta.historical_period)}</small>
             <small>${esc(sug.meta.narrative_text)}</small>
             <small>${esc(sug.meta.status_label)} · ${Number(sug.meta.chapter_count)} kapitler${sug.meta.physical_enabled ? " · Fysisk samling klargjort" : ""}</small>
             <strong class="nextup-historical-cta">${esc(sug.meta.action_label)}</strong>
