@@ -47,11 +47,21 @@ body.civi-app.civi-mini-mode #civiDashboardSection {
 }
 
 body.civi-app.civi-mini-mode .civi-dashboard-copy {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 6px;
   min-height: 0;
   min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 16px;
+  background: #161e28;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+  color: rgba(255,255,255,0.96);
+  opacity: 1;
+  isolation: isolate;
 }
 
 body.civi-app.civi-mini-mode .civi-dashboard-kicker {
@@ -70,6 +80,7 @@ body.civi-app.civi-mini-mode #civiDashRole {
 
 body.civi-app.civi-mini-mode #civiDashSummary {
   margin-top: 0;
+  color: rgba(255,255,255,0.88);
   font-size: 14px;
   line-height: 1.15;
   white-space: nowrap;
