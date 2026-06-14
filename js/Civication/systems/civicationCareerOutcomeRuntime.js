@@ -351,8 +351,11 @@
     if (Number.isFinite(delta) && window.CivicationPsyche?.getAutonomy && window.CivicationPsyche?.setAutonomyOverride) {
       const active = /** @type {{ career_id?: string | number | null } | null} */ (getActive());
       const current = Number(window.CivicationPsyche.getAutonomy(active?.career_id || null));
-      const next = clampNumber(current + delta, 0, 100, current);
+      const resilience = window.CivicationPsyche?.applyPsycheResilienceModifier?.(delta, window.CivicationState?.getState?.(), { metric: "autonomy", source: "career_outcome" });
+      const effectiveDelta = Number(resilience?.adjustedDelta ?? delta);
+      const next = clampNumber(current + effectiveDelta, 0, 100, current);
       window.CivicationPsyche.setAutonomyOverride(next);
+      if (resilience?.applied) window.showToast?.(resilience.message || "Psykologisk kompetanse dempet belastningen.");
     }
   }
 

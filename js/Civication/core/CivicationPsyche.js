@@ -108,6 +108,107 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
     return state;
   }
 
+
+  // -----------------------------
+  // PSYCHOLOGICAL COMPETENCE / RESILIENCE
+  // -----------------------------
+  function loadCivicationPlayerState() {
+    try {
+      return window.CivicationState?.getState?.() || {};
+    } catch {
+      return {};
+    }
+  }
+
+  function getPsychologyCompetence(state = null) {
+    const source = state || loadCivicationPlayerState();
+    const value = source?.player?.competence?.psychology;
+    return clamp(Number(value || 0), 0, 100);
+  }
+
+  function getCompletedPsychologyActivities(state = null) {
+    const source = state || loadCivicationPlayerState();
+    const completed = source?.player?.completedPsychologyActivities;
+    return completed && typeof completed === "object" && !Array.isArray(completed) ? completed : {};
+  }
+
+  function addPsychologyCompetence(activity, rawPoints = 4) {
+    const type = String(activity?.type || "activity").trim() || "activity";
+    const sourceId = String(activity?.sourceId || activity?.source_id || "unknown").trim() || "unknown";
+    const today = new Date().toISOString().slice(0, 10);
+    const key = type === "journal" ? `${type}:${sourceId}:${today}` : `${type}:${sourceId}`;
+    const state = loadCivicationPlayerState();
+    const completed = getCompletedPsychologyActivities(state);
+    if (completed[key]) {
+      return { awarded: false, key, delta: 0, competence: getPsychologyCompetence(state), reason: "already_completed" };
+    }
+
+    const current = getPsychologyCompetence(state);
+    const delta = clamp(Math.ceil(Math.max(1, Number(rawPoints || 1)) / 2), 1, 8);
+    const next = clamp(current + delta, 0, 100);
+    const nextCompleted = {
+      ...completed,
+      [key]: {
+        type,
+        source_id: sourceId,
+        title: String(activity?.title || ""),
+        competence_delta: next - current,
+        completed_at: new Date().toISOString()
+      }
+    };
+
+    window.CivicationState?.setState?.({
+      player: {
+        ...(state.player && typeof state.player === "object" ? state.player : {}),
+        competence: {
+          ...(state.player?.competence && typeof state.player.competence === "object" ? state.player.competence : {}),
+          psychology: next
+        },
+        completedPsychologyActivities: nextCompleted
+      }
+    });
+
+    window.dispatchEvent(new Event("updateProfile"));
+    window.dispatchEvent(new CustomEvent("civi:psychologyCompetence", { detail: { competence: next, delta: next - current, key } }));
+    return { awarded: next > current, key, delta: next - current, competence: next, reason: next > current ? "awarded" : "capped" };
+  }
+
+  function applyPsycheResilienceModifier(delta, state = null, context = {}) {
+    const originalDelta = Number(delta || 0);
+    const competence = getPsychologyCompetence(state);
+    if (!Number.isFinite(originalDelta) || originalDelta >= 0) {
+      return { originalDelta, adjustedDelta: originalDelta, reduction: 0, competence, applied: false, context };
+    }
+
+    const reduction = clamp((competence / 100) * 0.45, 0, 0.45);
+    const adjustedDelta = originalDelta * (1 - reduction);
+    const prevented = adjustedDelta - originalDelta;
+    return {
+      originalDelta,
+      adjustedDelta,
+      prevented,
+      reduction,
+      competence,
+      applied: reduction > 0 && prevented > 0,
+      message: reduction > 0 ? "Psykologisk kompetanse dempet belastningen." : "",
+      context
+    };
+  }
+
+  function recordResilienceMeta(meta) {
+    if (!meta?.applied) return;
+    try {
+      const state = window.CivicationState?.getState?.() || {};
+      window.CivicationState?.setState?.({
+        player: {
+          ...(state.player && typeof state.player === "object" ? state.player : {}),
+          lastPsycheResilience: { ...meta, at: new Date().toISOString() }
+        }
+      });
+      window.showToast?.(meta.message);
+    } catch {}
+  }
+
   // -----------------------------
   // TRUST (rolle-spesifikk)
   // Max-regel:
@@ -168,6 +269,9 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
     const mod = getLifestyleTrustModifier();
 
     if (raw < 0) raw *= mod;
+    const resilience = applyPsycheResilienceModifier(raw, loadCivicationPlayerState(), { metric: "trust", careerId: id });
+    raw = resilience.adjustedDelta;
+    recordResilienceMeta(resilience);
 
     const next = clamp(current.value + raw, 0, current.max);
 
@@ -253,7 +357,9 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   }
 
   function updateIntegrity(delta) {
-    return setIntegrity(getIntegrity() + Number(delta || 0));
+    const resilience = applyPsycheResilienceModifier(Number(delta || 0), loadCivicationPlayerState(), { metric: "integrity" });
+    recordResilienceMeta(resilience);
+    return setIntegrity(getIntegrity() + resilience.adjustedDelta);
   }
 
   // -----------------------------
@@ -272,7 +378,9 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   }
 
   function updateVisibility(delta) {
-    return setVisibility(getVisibility() + Number(delta || 0));
+    const resilience = applyPsycheResilienceModifier(Number(delta || 0), loadCivicationPlayerState(), { metric: "visibility" });
+    recordResilienceMeta(resilience);
+    return setVisibility(getVisibility() + resilience.adjustedDelta);
   }
 
   // -----------------------------
@@ -303,7 +411,10 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
     adjusted = rawDelta * mod.pressure;
   }
 
-  return setEconomicRoom(getEconomicRoom() + adjusted);
+  const resilience = applyPsycheResilienceModifier(adjusted, loadCivicationPlayerState(), { metric: "economicRoom" });
+  recordResilienceMeta(resilience);
+
+  return setEconomicRoom(getEconomicRoom() + resilience.adjustedDelta);
 }
 
 
@@ -676,7 +787,8 @@ function getLifestyleTrustModifier() {
       autonomy: getAutonomy(activeCareerId),
       trust: activeTrust,
       trustSummary,
-      burnoutActive: isBurnoutActive()
+      burnoutActive: isBurnoutActive(),
+      psychologyCompetence: getPsychologyCompetence()
     };
   }
 
@@ -691,6 +803,12 @@ function getLifestyleTrustModifier() {
     updateTrust,
     registerCollapse,
     getTrustSummary,
+
+    // competence / resilience
+    getPsychologyCompetence,
+    getCompletedPsychologyActivities,
+    addPsychologyCompetence,
+    applyPsycheResilienceModifier,
 
     // global psyche
     getIntegrity,
