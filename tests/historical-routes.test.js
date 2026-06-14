@@ -84,6 +84,11 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "js/historical-routes.js"), "utf
   assert.strictEqual(dispatched[0]?.type, "hg:historicalRoutesReady");
   await api.load();
   assert.strictEqual(api.getAll().length, routes.length);
+  assert.strictEqual(api.getRouteArchetypeLabel("trade_route"), "Handelsrute");
+  assert.strictEqual(api.getRouteArchetypeLabel("unknown_future_route"), "Unknown future route");
+  assert.strictEqual(api.getRouteArchetypeLabel(""), "Historisk rute");
+  assert.ok(api.renderCards().includes("Tidsreise i byen"));
+  assert.ok(!api.renderCards().includes(">Historisk rute · urban_time_route<"));
 
   let progress = api.startRoute(route.id);
   assert.strictEqual(progress.status, "started");

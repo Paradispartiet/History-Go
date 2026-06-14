@@ -17,15 +17,15 @@ const route = {
   type: "historical_route",
   title: "Historisk Oslo-test",
   narrativeText: "En kort historisk testreise gjennom byen.",
-  routeArchetype: "tidsreise",
+  routeArchetype: "urban_time_route",
   historicalPeriod: "Middelalderbyen",
   playModes: {
     online: { enabled: true },
     physical: { enabled: true }
   },
   chapters: [
-    { id: "kapittel-1" },
-    { id: "kapittel-2" }
+    { id: "kapittel-1", placeId: "sted-1", physical: { enabled: true } },
+    { id: "kapittel-2", physical: { enabled: false } }
   ]
 };
 
@@ -81,6 +81,7 @@ const context = {
       },
       getAll: () => [route],
       getProgress,
+      getRouteArchetypeLabel: () => "Tidsreise i byen",
       open: (routeId) => {
         openedRouteId = routeId;
       }
@@ -119,6 +120,10 @@ function assertHistoricalSuggestion(status, expectedAction) {
   assert.strictEqual(suggestion.meta.route_id, route.id);
   assert.strictEqual(suggestion.meta.status, status);
   assert.strictEqual(suggestion.meta.action_label, expectedAction);
+  assert.strictEqual(suggestion.meta.route_archetype_label, "Tidsreise i byen");
+  assert.strictEqual(suggestion.meta.chapter_count, 2);
+  assert.strictEqual(suggestion.meta.physical_chapter_count, route.chapters[0].physical.enabled ? 1 : 0);
+  assert.strictEqual(suggestion.meta.text_only_chapter_count, route.chapters[0].physical.enabled ? 1 : 2);
 }
 
 (async () => {
@@ -128,7 +133,13 @@ function assertHistoricalSuggestion(status, expectedAction) {
   assertHistoricalSuggestion("not_started", "Start reisen");
   assertHistoricalSuggestion("started", "Fortsett reisen");
   assertHistoricalSuggestion("online_in_progress", "Fortsett reisen");
-  assertHistoricalSuggestion("online_completed", "Samle fysisk senere");
+  assertHistoricalSuggestion("online_completed", "Samle fysiske stopp senere");
+
+  route.chapters.forEach((chapter) => {
+    delete chapter.placeId;
+    chapter.physical = { enabled: false };
+  });
+  assertHistoricalSuggestion("online_completed", "Spill reisen på nytt");
 
   context.window.HGHistoricalRoutes.open(route.id);
   assert.strictEqual(openedRouteId, route.id);

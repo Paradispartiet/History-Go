@@ -4,6 +4,22 @@
 
   const STORAGE_KEY = "hg_historical_routes_progress_v1";
   const MANIFEST_URL = "data/routes/historical/manifest.json";
+  const ROUTE_ARCHETYPE_LABELS = Object.freeze({
+    urban_time_route: "Tidsreise i byen",
+    trade_route: "Handelsrute",
+    escape_route: "Fluktrute",
+    smuggling_route: "Smuglerrute",
+    industrial_work_route: "Industri- og arbeidsrute",
+    pilgrimage_route: "Pilegrimsrute",
+    military_route: "Militærrute",
+    sea_route: "Seilingsled",
+    migration_route: "Migrasjonsrute",
+    postal_route: "Postvei",
+    rail_route: "Jernbanerute",
+    river_route: "Elverute",
+    spy_route: "Spionrute",
+    resistance_route: "Motstandsrute"
+  });
   let routes = [];
   let loadPromise = null;
 
@@ -14,6 +30,20 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  function getRouteArchetypeLabel(routeArchetype) {
+    const archetype = String(routeArchetype || "").trim();
+    if (!archetype) return "Historisk rute";
+    if (ROUTE_ARCHETYPE_LABELS[archetype]) return ROUTE_ARCHETYPE_LABELS[archetype];
+
+    const formatted = archetype
+      .replace(/[_-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    return formatted
+      ? formatted.charAt(0).toLocaleUpperCase("nb-NO") + formatted.slice(1)
+      : "Historisk rute";
   }
 
   function readProgressStore() {
@@ -186,7 +216,7 @@
       const progress = getProgress(route.id);
       return `
         <button class="left-route-item hg-historical-route-card" type="button" data-historical-route="${escapeHTML(route.id)}">
-          <span class="hg-historical-route-kicker">Historisk rute · ${escapeHTML(route.routeArchetype)}</span>
+          <span class="hg-historical-route-kicker">Historisk rute · ${escapeHTML(getRouteArchetypeLabel(route.routeArchetype))}</span>
           <span class="left-route-title">${escapeHTML(route.title)}</span>
           <span class="left-route-meta">
             <span class="left-route-stop">${escapeHTML(route.historicalPeriod || "Historisk reise")}</span>
@@ -237,7 +267,7 @@
       content = `
         <p class="hg-historical-eyebrow">Historiske ruter · Online historisk reise</p>
         <h2 id="hgHistoricalRouteTitle">${escapeHTML(route.title)}</h2>
-        <p class="hg-historical-meta">${escapeHTML(route.historicalPeriod)} · ${route.chapters.length} kapitler</p>
+        <p class="hg-historical-meta">${escapeHTML(getRouteArchetypeLabel(route.routeArchetype))} · ${escapeHTML(route.historicalPeriod)} · ${route.chapters.length} kapitler</p>
         <p class="hg-historical-lead">${escapeHTML(route.narrativeText)}</p>
         <div class="hg-historical-mode-note">
           <strong>Online = du reiser historien.</strong>
@@ -320,6 +350,7 @@
     getProgress,
     startRoute,
     completeCurrentChapter,
+    getRouteArchetypeLabel,
     renderCards,
     bindCards,
     open: renderPlayer,
