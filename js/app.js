@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // som datakilde. Uten DataHub faller den tilbake til utdaterte PLACE_FILES_FALLBACK-
     // stier som ikke matcher dagens place-struktur, og window.PLACES ender som [].
     await safeRun("loadDataHub", () => loadScriptOnce("js/dataHub.js"));
+    await safeRun("loadPlaceCardQuizcardsPatch", () => loadScriptOnce("js/ui/place-card-quizcards-patch.js"));
 
     // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
     await safeRun("loadBootFast", () => loadScriptOnce("js/boot-fast.js"));
