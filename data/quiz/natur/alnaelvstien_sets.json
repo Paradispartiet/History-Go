@@ -1,0 +1,92 @@
+{
+  "targetId": "alnaelvstien",
+  "categoryId": "natur",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_alnaelvstien.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen detaljerte artsfunn uten kilde.",
+      "Ingen dagsaktuelle driftstiltak eller byggearbeider.",
+      "Ingen presise tekniske kulvertdata uten kilde.",
+      "Story-data brukes for turvei, blågrønn struktur, Alnaelva og lesbar byelv."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "natur_alnaelvstien_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"alnaelvstien_s1_q1","quiz_id":"natur_alnaelvstien_set_1_q1","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva gjør Alnaelvstien til mer enn en vanlig snarvei?","options":["Den gjør en presset byelv lesbar gjennom turvei, parkdrag og åpne elvepartier","Den ligger uten kontakt med vann","Den er bare et lukket industriområde"],"answer":"Den gjør en presset byelv lesbar gjennom turvei, parkdrag og åpne elvepartier","answerIndex":0,"knowledge":"Alnaelvstien viser hvordan turvei kan gjøre en skjult og teknisk påvirket byelv synlig igjen.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["alnaelvstien","alnaelva","byelv"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s1_q2","quiz_id":"natur_alnaelvstien_set_1_q2","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva bør spilleren se etter først langs Alnaelvstien?","options":["Vann, kantvegetasjon, broer, kulverter, industrikanter og brudd i stien","Bare butikklogoer","Kun fjelltopper"],"answer":"Vann, kantvegetasjon, broer, kulverter, industrikanter og brudd i stien","answerIndex":0,"knowledge":"Storyen sier at Alnaelvstien bør leses ved å se etter både sammenhenger og brudd langs elva.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","turvei"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s1_q3","quiz_id":"natur_alnaelvstien_set_1_q3","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvor blir elva synlig, og hvor forsvinner den bak teknisk bystruktur?","Hvorfor finnes det ingen elv her?","Hvilket arrangement skjer i kveld?"],"answer":"Hvor blir elva synlig, og hvor forsvinner den bak teknisk bystruktur?","answerIndex":0,"knowledge":"Spørsmålet gjør turveien til en leselinje for byelv, infrastruktur og grøntdrag.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaelvstien_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"alnaelvstien_s2_q1","quiz_id":"natur_alnaelvstien_set_2_q1","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva slags stedsliv peker Alnaelvstien mot?","options":["Ferdsel, hverdagsnatur, orientering og kontakt med en delvis skjult byelv","Kun lukket fabrikkdrift","Bare biltrafikk"],"answer":"Ferdsel, hverdagsnatur, orientering og kontakt med en delvis skjult byelv","answerIndex":0,"knowledge":"Turveien gjør elva til et hverdagsrom der folk kan følge, forstå og bruke landskapet.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["hverdagsnatur","ferdsel"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s2_q2","quiz_id":"natur_alnaelvstien_set_2_q2","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva viser brudd i turveien?","options":["At restaurering av byelv også handler om tilgang, orientering og hukommelse","At elva er uvesentlig","At turvei bare er dekor"],"answer":"At restaurering av byelv også handler om tilgang, orientering og hukommelse","answerIndex":0,"knowledge":"Storyen understreker at man bør se etter brudd: teknisk infrastruktur viser hvorfor byelva ble vanskelig å følge.","difficulty":1,"question_type":"historisk_endring","question_layer":"place_life","tags":["brudd","restaurering"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s2_q3","quiz_id":"natur_alnaelvstien_set_2_q3","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva bør holdes ute av trygg Alnaelvstien-quiz?","options":["Usikre artsfunn, dagsaktuelle byggearbeider og presise kulvertdata uten kilde","Begrepet blågrønn struktur","Observasjon av vann og stier"],"answer":"Usikre artsfunn, dagsaktuelle byggearbeider og presise kulvertdata uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bruker stabile stedstrekk og story-data, ikke uverifiserte tekniske detaljer.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaelvstien_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"alnaelvstien_s3_q1","quiz_id":"natur_alnaelvstien_set_3_q1","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"emne","question":"Hva betyr blågrønn struktur?","options":["Sammenheng mellom vann, vegetasjon, ferdsel og byrom","En tilfeldig fargekode","Et lukket kontor"],"answer":"Sammenheng mellom vann, vegetasjon, ferdsel og byrom","answerIndex":0,"knowledge":"Alnaelvstien er et konkret eksempel på en blågrønn struktur gjennom teknisk bylandskap.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["blagronn_struktur"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaelvstien_s3_q2","quiz_id":"natur_alnaelvstien_set_3_q2","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"emne","question":"Hva betyr byelv?","options":["En elv som er formet av og samtidig former byen rundt seg","En elv uten mennesker","Et vannløst veikryss"],"answer":"En elv som er formet av og samtidig former byen rundt seg","answerIndex":0,"knowledge":"Alnaelva er byelv fordi den påvirkes av veier, industri, jernbane, parkdrag og turvei.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["byelv"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaelvstien_s3_q3","quiz_id":"natur_alnaelvstien_set_3_q3","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"Langs Alnaelvstien betyr stedlesning å koble vann, stier, brudd og teknisk bystruktur.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaelvstien_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"alnaelvstien_s4_q1","quiz_id":"natur_alnaelvstien_set_4_q1","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva er en avansert observasjon langs Alnaelvstien?","options":["Å se hvordan elv, turvei, kulverter, industri og parkdrag veksler mellom synlighet og brudd","Å bare telle trær","Å ignorere teknisk infrastruktur"],"answer":"Å se hvordan elv, turvei, kulverter, industri og parkdrag veksler mellom synlighet og brudd","answerIndex":0,"knowledge":"Avansert stedlesning handler om å lese både sammenhenger og brudd i byelva.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["stedlesning","brudd"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s4_q2","quiz_id":"natur_alnaelvstien_set_4_q2","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva kan Alnaelvstien lære om restaurering av byelver?","options":["At synlighet, tilgang og sammenheng er like viktige som selve vannløpet","At restaurering bare handler om pynt","At byelver ikke kan bli lesbare"],"answer":"At synlighet, tilgang og sammenheng er like viktige som selve vannløpet","answerIndex":0,"knowledge":"Storyen gjør restaurering konkret: byelva må kunne finnes, følges og forstås.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["restaurering","tilgang"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s4_q3","quiz_id":"natur_alnaelvstien_set_4_q3","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"place","question":"Hva bør en god Alnaelvstien-quiz trene spilleren i?","options":["Å lese turvei, byelv, blågrønn struktur og tekniske brudd sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese turvei, byelv, blågrønn struktur og tekniske brudd sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå byelva de følger.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaelvstien_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"alnaelvstien_s5_q1","quiz_id":"natur_alnaelvstien_set_5_q1","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"emne","question":"Hva er den dypere læringen i Alnaelvstien?","options":["At en turvei kan gjøre en skjult og presset byelv lesbar som grønn og blå korridor","At turvei bare er transport","At byelver ikke har historie"],"answer":"At en turvei kan gjøre en skjult og presset byelv lesbar som grønn og blå korridor","answerIndex":0,"knowledge":"Alnaelvstien gjør elva synlig som natur, infrastruktur, historie og hverdagsrute.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["byelv","blagronn_struktur"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s5_q2","quiz_id":"natur_alnaelvstien_set_5_q2","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"emne","question":"Hva kan en skjult byelv lære oss om byutvikling?","options":["At veier, industri, jernbane og lukking kan gjøre natur vanskeligere å følge","At byen aldri påvirker elver","At alle vannløp alltid er synlige"],"answer":"At veier, industri, jernbane og lukking kan gjøre natur vanskeligere å følge","answerIndex":0,"knowledge":"Storyen peker på at Alna lenge ble presset av teknisk bystruktur.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["byutvikling","teknisk_infrastruktur"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaelvstien_s5_q3","quiz_id":"natur_alnaelvstien_set_5_q3","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"emne","question":"Hvordan fungerer Alnaelvstien i en Oslo-elv-fortelling?","options":["Som rute som viser en annen byelv enn Akerselva, med egne brudd og forbindelser","Som helt løsrevet fjellnatur","Som et sted uten vann"],"answer":"Som rute som viser en annen byelv enn Akerselva, med egne brudd og forbindelser","answerIndex":0,"knowledge":"Alnaelvstien utvider History Go fra Akerselva til flere byelver i Oslo.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["oslo_elver","rute"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaelvstien_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"alnaelvstien_s6_q1","quiz_id":"natur_alnaelvstien_set_6_q1","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"concept","question":"Hvilket begrep beskriver sammenheng mellom vann, vegetasjon, ferdsel og byrom?","options":["Blågrønn struktur","Sanering","Privat lager"],"answer":"Blågrønn struktur","answerIndex":0,"knowledge":"Alnaelvstien er et konkret eksempel på blågrønn struktur.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["blagronn_struktur"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaelvstien_s6_q2","quiz_id":"natur_alnaelvstien_set_6_q2","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"concept","question":"Hva betyr byelv?","options":["En elv som er formet av og samtidig former byen rundt seg","En elv uten mennesker","Et sted uten vann"],"answer":"En elv som er formet av og samtidig former byen rundt seg","answerIndex":0,"knowledge":"Alnaelva blir byelv når den leses gjennom turvei, kulverter, industri og parkdrag.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["byelv"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaelvstien_s6_q3","quiz_id":"natur_alnaelvstien_set_6_q3","categoryId":"natur","placeId":"alnaelvstien","targetId":"alnaelvstien","question_scope":"concept","question":"Hvilket begrepspar forklarer Alnaelvstien best?","options":["Byelv og blågrønn struktur","Kongebolig og slagmark","Flyplass og høyfjell"],"answer":"Byelv og blågrønn struktur","answerIndex":0,"knowledge":"Stien blir tydeligst når den leses som rute langs en presset, men synliggjort byelv.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["byelv","blagronn_struktur"],"source":["data/stories/stories_alnaelvstien.json"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
