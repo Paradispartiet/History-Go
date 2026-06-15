@@ -1238,7 +1238,7 @@ function collectCiviInboxMetaValues(target, output) {
  * @returns {"job"|"personal"|"other"}
  */
 function classifyCiviInboxItem(item) {
-  const ev = item?.event || item || {};
+  const ev = /** @type {Record<string, any>} */ (item?.event || item || {});
   const values = new Set();
   collectCiviInboxClassifierValues(item, values);
   collectCiviInboxClassifierValues(ev, values);

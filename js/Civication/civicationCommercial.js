@@ -221,7 +221,7 @@
     const bucket = /** @type {unknown[]} */ (
       bridge?.getBucket ? bridge.getBucket("store") : []
     );
-    const neighborhood = getSelectedNeighborhoodAccess();
+    const neighborhood = /** @type {any} */ (getSelectedNeighborhoodAccess());
     const selectedStore = normalizeList(neighborhood?.store);
 
     return Array.from(new Set(bucket.map(String).concat(selectedStore)));
@@ -232,7 +232,7 @@
     const bucket = /** @type {unknown[]} */ (
       bridge?.getBucket ? bridge.getBucket("housing") : []
     );
-    const neighborhood = getSelectedNeighborhoodAccess();
+    const neighborhood = /** @type {any} */ (getSelectedNeighborhoodAccess());
     const selectedHousing = normalizeList(neighborhood?.housing);
 
     return Array.from(new Set(bucket.map(String).concat(selectedHousing)));

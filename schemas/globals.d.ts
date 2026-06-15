@@ -119,6 +119,15 @@ declare global {
     TEST_MODE?: boolean;
     HG_OPEN_MODE?: boolean;
     OPEN_MODE?: boolean;
+
+    // Verifiserte History GO runtime-globaler (deklarasjon-only, ingen runtime-endring).
+    // Satt i js/boot-fast.js, js/core/domainRuntime.js, js/ui/place-card-quizcards-patch.js,
+    // js/visualDesignCodes.js. Flagg leses/settes som boolske vakter.
+    initQuizEngine?: (...args: unknown[]) => unknown;
+    __HG_QUIZ_ENGINE_APP_API_BOUND__?: boolean;
+    __HG_PLACE_CARD_QUIZCARDS_PATCHED__?: boolean;
+    HGDomainRuntime?: Record<string, (...args: unknown[]) => unknown>;
+    HGVisualDesignCodes?: any;
   }
 }
 

@@ -81,7 +81,7 @@
 
   function getWalletPC() {
     if (typeof window.getPCWallet === "function") {
-      const wallet = window.getPCWallet();
+      const wallet = /** @type {any} */ (window.getPCWallet());
       const fromFn = typeof wallet === "number"
         ? asNumber(wallet, NaN)
         : asNumber(wallet?.pc ?? wallet?.balance ?? wallet?.amount, NaN);

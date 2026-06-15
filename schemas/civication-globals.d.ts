@@ -148,6 +148,28 @@ declare global {
 
     CivicationUI?: CiviUiLike;
     CivicationSectionsUI?: CiviMethodBag;
+
+    // Civication map-motorer og kalibrering. Verifiserte runtime-globaler satt i
+    // js/Civication/ui/*. Map-/kalibrerings-API-ene returnerer blandede
+    // projeksjons-/anker-records, derfor `any` for å ikke overtypes (og ikke
+    // introdusere nye nedstrøms-diagnostics) før formene er kartlagt.
+    CivicationCanvasMap?: any;
+    CivicationThreeMap?: any;
+    CivicationOsloMapCalibration?: any;
+    CivicationHistoryGoPlaceLayer?: CiviMethodBag;
+    CivicationCityLayer?: CiviMethodBag;
+    CivicationMapZoom?: any;
+    CIVI_OSLO_GEO_ANCHORS?: CiviRecord[];
+
+    // Civication map feature-flagg (leses som `=== true`, settes eksternt/i boot).
+    CIVICATION_CANVAS_MAP_ENABLED?: boolean;
+    CIVICATION_THREE_MAP_ENABLED?: boolean;
+    __civiThreeActive?: boolean;
+
+    // Øvrige verifiserte Civication runtime-globaler.
+    CivicationJobEligibilityRuntime?: any;
+    CivicationTravelState?: any;
+    CivicationInboxItemFilters?: any;
     HG_CiviShop?: CiviMethodBag;
     HG_Lifestyle?: CiviMethodBag;
     HG_IdentityCore?: CiviMethodBag;
