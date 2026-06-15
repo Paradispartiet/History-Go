@@ -1,0 +1,93 @@
+{
+  "targetId": "nydalen_industristed",
+  "categoryId": "historie",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
+    "data/quiz/by/nydalen_sets_merged.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen dagsaktuelle campus-, kontor- eller virksomhetsfunksjoner uten kilde.",
+      "Ingen presise fabrikk- eller eierdetaljer utover interne sikre data.",
+      "Ingen usikre personrelasjoner.",
+      "Eksisterende bred Nydalen-quiz brukes som kontekst, men denne filen er route-target for nydalen_industristed."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "historie_nydalen_industristed_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"nydalen_industristed_s1_q1","quiz_id":"historie_nydalen_industristed_set_1_q1","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva gjør Nydalen industristed viktig i Akerselva-ruta?","options":["Det viser hvordan en elvenær industriklynge senere kunne bli ny bybruk","Det ligger uten kontakt med Akerselva","Det er bare et naturreservat uten bygninger"],"answer":"Det viser hvordan en elvenær industriklynge senere kunne bli ny bybruk","answerIndex":0,"knowledge":"Nydalen industristed viser hovedfortellingen om Akerselva: vannkraft, produksjon, arbeid og senere byomforming.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["nydalen_industristed","akerselva","industrihistorie"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"safe_place_data"},
+        {"id":"nydalen_industristed_s1_q2","quiz_id":"historie_nydalen_industristed_set_1_q2","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva bør spilleren se etter først i Nydalen industristed?","options":["Elva, fabrikkspor, store bygningsvolumer og tegn på omforming","Bare trær uten byspor","Kun dagens skilt"],"answer":"Elva, fabrikkspor, store bygningsvolumer og tegn på omforming","answerIndex":0,"knowledge":"Stedet bør leses gjennom både fysisk industriarv og endret bybruk.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","byomforming"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"safe_place_data"},
+        {"id":"nydalen_industristed_s1_q3","quiz_id":"historie_nydalen_industristed_set_1_q3","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hva virker industrielt, og hva virker omformet til ny bybruk?","Hvorfor finnes det ingen historie her?","Hvilket arrangement skjer i kveld?"],"answer":"Hva virker industrielt, og hva virker omformet til ny bybruk?","answerIndex":0,"knowledge":"Spørsmålet kobler observasjon direkte til industriarv og transformasjon.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "historie_nydalen_industristed_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"nydalen_industristed_s2_q1","quiz_id":"historie_nydalen_industristed_set_2_q1","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva slags historisk stedsliv peker Nydalen mot?","options":["Arbeid, fabrikkmiljø, vannkraft, byvekst og senere transformasjon","Bare stille friluftsliv","Kun kongelige seremonier"],"answer":"Arbeid, fabrikkmiljø, vannkraft, byvekst og senere transformasjon","answerIndex":0,"knowledge":"Nydalen industristed er et godt eksempel på hvordan arbeid og produksjon formet hele bymiljøer langs elva.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["arbeid","produksjon"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"safe_place_data"},
+        {"id":"nydalen_industristed_s2_q2","quiz_id":"historie_nydalen_industristed_set_2_q2","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva viser senere byomforming i Nydalen?","options":["At gamle produksjonsområder kan få nye funksjoner uten at alle spor forsvinner","At industrihistorie alltid slettes helt","At elva ikke betyr noe"],"answer":"At gamle produksjonsområder kan få nye funksjoner uten at alle spor forsvinner","answerIndex":0,"knowledge":"Transformasjon kan både videreføre og endre historiske lag.","difficulty":1,"question_type":"historisk_endring","question_layer":"place_life","tags":["transformasjon","byomforming"],"source":["History Go place data: nydalen_industristed","data/quiz/by/nydalen_sets_merged.json"],"claim_basis":"safe_internal_data"},
+        {"id":"nydalen_industristed_s2_q3","quiz_id":"historie_nydalen_industristed_set_2_q3","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva bør holdes ute av trygg route-quiz her?","options":["Dagsaktuelle virksomheter og presise eierdetaljer uten kilde","Begrepet industriarv","Observasjon av bygninger"],"answer":"Dagsaktuelle virksomheter og presise eierdetaljer uten kilde","answerIndex":0,"knowledge":"Stabile steds- og læringspoeng er tryggere enn tidssensitive detaljer.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "historie_nydalen_industristed_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"nydalen_industristed_s3_q1","quiz_id":"historie_nydalen_industristed_set_3_q1","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"emne","question":"Hva betyr industriarv?","options":["Spor og fortellinger etter tidligere industri, arbeid og produksjon","Et ord for urørt natur","En dagsaktuell kampanje"],"answer":"Spor og fortellinger etter tidligere industri, arbeid og produksjon","answerIndex":0,"knowledge":"Nydalen industristed gjør industriarv synlig i byrommet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["industriarv"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"conceptual_safe"},
+        {"id":"nydalen_industristed_s3_q2","quiz_id":"historie_nydalen_industristed_set_3_q2","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"emne","question":"Hva betyr byomforming?","options":["At områder får nye funksjoner når byen vokser og endres","At steder aldri endrer bruk","At historiske spor alltid slettes"],"answer":"At områder får nye funksjoner når byen vokser og endres","answerIndex":0,"knowledge":"Nydalen er en tydelig rute-case for byomforming langs Akerselva.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["byomforming"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"conceptual_safe"},
+        {"id":"nydalen_industristed_s3_q3","quiz_id":"historie_nydalen_industristed_set_3_q3","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"Her betyr stedlesning å koble elv, fabrikkspor, arbeid og transformasjon.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "historie_nydalen_industristed_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"nydalen_industristed_s4_q1","quiz_id":"historie_nydalen_industristed_set_4_q1","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva er en avansert observasjon i Nydalen industristed?","options":["Å se hvordan elv, fabrikkspor, arbeid og ny bybruk overlapper","Å bare se etter ett skilt","Å ignorere bygningene"],"answer":"Å se hvordan elv, fabrikkspor, arbeid og ny bybruk overlapper","answerIndex":0,"knowledge":"Avansert stedlesning handler om å se flere lag samtidig.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["historiske_lag"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"safe_place_data"},
+        {"id":"nydalen_industristed_s4_q2","quiz_id":"historie_nydalen_industristed_set_4_q2","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva gjør Nydalen til godt sammenligningspunkt mot Vulkan?","options":["Begge viser transformasjon fra industri til ny bybruk langs Akerselva","Begge er fjelltopper","Begge mangler industrihistorie"],"answer":"Begge viser transformasjon fra industri til ny bybruk langs Akerselva","answerIndex":0,"knowledge":"Nydalen og Vulkan kan sammen forklare ulike former for industriell transformasjon langs samme elv.","difficulty":2,"question_type":"sammenligning","question_layer":"advanced_place","tags":["vulkan_industriomrade","transformasjon"],"source":["History Go place data: nydalen_industristed","History Go quiz: vulkan_industriomrade"],"claim_basis":"safe_internal_data"},
+        {"id":"nydalen_industristed_s4_q3","quiz_id":"historie_nydalen_industristed_set_4_q3","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"place","question":"Hva bør en god Nydalen industristed-quiz trene spilleren i?","options":["Å lese industrilandskap, arbeid og byomforming sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese industrilandskap, arbeid og byomforming sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå stedet de står ved.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "historie_nydalen_industristed_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"nydalen_industristed_s5_q1","quiz_id":"historie_nydalen_industristed_set_5_q1","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"emne","question":"Hva er den dypere læringen i Nydalen industristed?","options":["At en produksjonsdal kan bli kunnskaps-, bolig- og tjenesteby, men fortsatt bære industriarv","At gamle industristeder alltid slettes helt","At elva bare er pynt"],"answer":"At en produksjonsdal kan bli kunnskaps-, bolig- og tjenesteby, men fortsatt bære industriarv","answerIndex":0,"knowledge":"Stedet viser både brudd og kontinuitet i byutvikling.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["transformasjon","industriarv"],"source":["History Go place data: nydalen_industristed","data/quiz/by/nydalen_sets_merged.json"],"claim_basis":"safe_internal_data"},
+        {"id":"nydalen_industristed_s5_q2","quiz_id":"historie_nydalen_industristed_set_5_q2","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"emne","question":"Hva kan transformasjon skjule?","options":["Tidligere arbeid, produksjon og sosiale konflikter kan bli mindre synlige i ny bybruk","Alt blir alltid tydeligere","Historien blir automatisk komplett"],"answer":"Tidligere arbeid, produksjon og sosiale konflikter kan bli mindre synlige i ny bybruk","answerIndex":0,"knowledge":"Byomforming kan både bevare spor og gjøre andre lag vanskeligere å se.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["gentrifisering","arbeiderhistorie"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"conceptual_safe"},
+        {"id":"nydalen_industristed_s5_q3","quiz_id":"historie_nydalen_industristed_set_5_q3","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"emne","question":"Hva gjør egen route-quiz nødvendig selv om bred Nydalen-quiz finnes?","options":["Denne ID-en låser opp konkret Akerselva-sted og retter læringen mot elv, industri og rute","Fordi bred Nydalen-quiz er feil","Fordi rutepunkter ikke trenger targetId"],"answer":"Denne ID-en låser opp konkret Akerselva-sted og retter læringen mot elv, industri og rute","answerIndex":0,"knowledge":"Route-targets bør ha egen quiz når appen bruker konkrete placeId-er.","difficulty":3,"question_type":"data_prinsipp","question_layer":"advanced_emne","tags":["targetId","rute"],"source":["data/quiz/by/nydalen_sets_merged.json","History Go place data: nydalen_industristed"],"claim_basis":"safe_internal_data"}
+      ]
+    },
+    {
+      "set_id": "historie_nydalen_industristed_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"nydalen_industristed_s6_q1","quiz_id":"historie_nydalen_industristed_set_6_q1","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"concept","question":"Hvilket begrep beskriver spor etter tidligere industri?","options":["Industriarv","Flyplass","Privat lager"],"answer":"Industriarv","answerIndex":0,"knowledge":"Industriarv er nøkkelbegrepet for Nydalen industristed.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["industriarv"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"conceptual_safe"},
+        {"id":"nydalen_industristed_s6_q2","quiz_id":"historie_nydalen_industristed_set_6_q2","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"concept","question":"Hva betyr byomforming?","options":["At områder får nye funksjoner når byen vokser og endres","At steder aldri endrer bruk","At alle spor slettes"],"answer":"At områder får nye funksjoner når byen vokser og endres","answerIndex":0,"knowledge":"Nydalen industristed er et tydelig eksempel på byomforming.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["byomforming"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"conceptual_safe"},
+        {"id":"nydalen_industristed_s6_q3","quiz_id":"historie_nydalen_industristed_set_6_q3","categoryId":"historie","placeId":"nydalen_industristed","targetId":"nydalen_industristed","question_scope":"concept","question":"Hvilket begrepspar forklarer Nydalen industristed best?","options":["Industriarv og byomforming","Kongebolig og slagmark","Flyplass og høyfjell"],"answer":"Industriarv og byomforming","answerIndex":0,"knowledge":"Stedet blir tydeligst når fabrikkarv leses sammen med transformasjon.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["industriarv","byomforming"],"source":["History Go place data: nydalen_industristed"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
