@@ -1,0 +1,2263 @@
+{
+  "targetId": "telegrafbygningen",
+  "categoryId": "naeringsliv",
+  "source_quiz_file": "data/places/naeringsliv/oslo/places_naeringsliv.json",
+  "generator_version": "v5_1_external_priority_chat_merged_naeringsliv_5x6",
+  "size_class": "normal_place",
+  "generated_from": [
+    "data/places/naeringsliv/oslo/places_naeringsliv.json",
+    "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+    "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+    "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+    "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+    "https://oslobyleksikon.no/side/Telegrafbygningen",
+    "https://oslobyleksikon.no/side/Kongens_gate",
+    "https://kimaarkitektur.no/projects/telegrafbygningen1/",
+    "https://www.oslobyesvel.no/kalender/telegrafbygningen",
+    "https://telegrafenoslo.no/",
+    "https://telegrafenoslo.no/historien/",
+    "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21",
+    "https://www.vedal.no/prosjekt/telegrafen/"
+  ],
+  "merge_notes": {
+    "existing_quiz_status": "No flat questions found for telegrafbygningen in the tail of data/quiz/quiz_naeringsliv.json, and no separate set-file found. Target exists in data/places/naeringsliv/oslo/places_naeringsliv.json.",
+    "kept": "Kept useful place-file core: Telegrafbygningen, Kongens gate 21, 1924, main central for telegraphy and telephony, technological centre in Oslo, and communications infrastructure as economic foundation.",
+    "corrected": "Corrected/expanded the place description from 'built in 1924' to full construction period 1916–24, architects Arnstein Arneberg and Magnus Poulsson, Nordic neo-baroque, Telegrafverket, and current Telegrafen Oslo use after rehabilitation.",
+    "not_continued": "Did not create meta questions. Did not use legacy missing emne IDs such as em_naering_telekom_infrastruktur or em_naering_modernisering_teknologi; used canonical em_naering_teknologi_infrastruktur and em_naering_innovasjon_teknologisk_skift plus broader canonical support.",
+    "added": "Added 5 sets x 6 questions about Kongens gate 21, Telegrafverket, Arneberg/Poulsson, Nordisk nybarokk, labradorstein, Alf Rolfsen, Nils Holter 1966, telephone operators during the occupation, Milorg, two blue plaques, BREEAM-NOR Very Good, Vedal/KIMA rehabilitation, Telegrafen Oslo, public ground floor, Cityprisen 2021 and urban service reuse."
+  },
+  "profile_snapshot": {
+    "place_type": "telecommunications_central_to_mixed_use_service_building",
+    "subtype": "telegrafbygningen_kongens_gate_21_telegrafen_oslo",
+    "signature_features": [
+      "Kongens gate 21",
+      "built 1916–24 for Telegrafverket",
+      "architects Arnstein Arneberg and Magnus Poulsson",
+      "telegrafi and telefoni as communications infrastructure",
+      "rehabilitated as Telegrafen Oslo with offices, service and event uses"
+    ],
+    "primary_angles": [
+      "teknologi",
+      "kommunikasjon",
+      "arbeid",
+      "ombruk"
+    ],
+    "must_include": [
+      "anchor quiz in telegraphy/telephony and communications infrastructure",
+      "include occupation-era telephone operators carefully",
+      "include rehabilitation and current Telegrafen Oslo use"
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_telegrafbygningen_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "history_intro_story",
+      "questions": [
+        {
+          "id": "telegrafbygningen_quiz_1",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvor ligger Telegrafbygningen?",
+          "options": [
+            "Kongens gate 21",
+            "Dronningens gate 15",
+            "Langkaia 1"
+          ],
+          "answer": "Kongens gate 21",
+          "answerIndex": 0,
+          "dimension": "lokalisering",
+          "topic": "adresse",
+          "knowledge": "Oslo byleksikon beskriver Telegrafbygningen som Kongens gate 21 i Oslo.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Kongens gate 21",
+            "Kvadraturen",
+            "Telegrafbygningen"
+          ],
+          "concept_focus": [
+            "Kongens gate 21",
+            "Kvadraturen"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "kongens_gate_21",
+            "telegrafen",
+            "kvadraturen"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://telegrafenoslo.no/"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_from_place"
+        },
+        {
+          "id": "telegrafbygningen_quiz_2",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Når ble Telegrafbygningen oppført for Telegrafverket?",
+          "options": [
+            "1916–1924",
+            "1896–1897",
+            "1966–1976"
+          ],
+          "answer": "1916–1924",
+          "answerIndex": 0,
+          "dimension": "byggehistorie",
+          "topic": "oppføring",
+          "knowledge": "Oslo byleksikon oppgir at Telegrafbygningen ble oppført 1916–24 for Telegrafverket.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "1916–24",
+            "Telegrafverket",
+            "hovedsentral"
+          ],
+          "concept_focus": [
+            "1916–24",
+            "Telegrafverket"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1916_1924",
+            "telegrafverket",
+            "oppført"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.oslobyesvel.no/kalender/telegrafbygningen"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        },
+        {
+          "id": "telegrafbygningen_quiz_3",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilke arkitekter tegnet Telegrafbygningen?",
+          "options": [
+            "Arnstein Arneberg og Magnus Poulsson",
+            "Rudolf E. Jacobsen og Bredo Berntsen",
+            "Adolf Schirmer og Johan Nebelong"
+          ],
+          "answer": "Arnstein Arneberg og Magnus Poulsson",
+          "answerIndex": 0,
+          "dimension": "arkitektur",
+          "topic": "arkitekter",
+          "knowledge": "Oslo byleksikon og KIMA beskriver Arneberg og Poulsson som arkitekter for den opprinnelige Telegrafbygningen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Arnstein Arneberg",
+            "Magnus Poulsson",
+            "Nordisk nybarokk"
+          ],
+          "concept_focus": [
+            "Arnstein Arneberg",
+            "Magnus Poulsson"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "arneberg",
+            "poulsson",
+            "arkitektur"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://kimaarkitektur.no/projects/telegrafbygningen1/",
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_4",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hva var bygningens opprinnelige hovedfunksjon?",
+          "options": [
+            "Hovedsentral og administrasjonsbygning for telegraf og telefoni",
+            "Hovedlager for kolonivarer",
+            "Gassverk for gatebelysning"
+          ],
+          "answer": "Hovedsentral og administrasjonsbygning for telegraf og telefoni",
+          "answerIndex": 0,
+          "dimension": "kommunikasjon",
+          "topic": "opprinnelig funksjon",
+          "knowledge": "Place-filen beskriver bygget som hovedsentral for telegraf og telefoni, mens Oslo byleksikon beskriver det som administrasjonsbygning for Telegrafverket.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "telegrafi",
+            "telefoni",
+            "Telegrafverket"
+          ],
+          "concept_focus": [
+            "telegrafi",
+            "telefoni"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "hovedsentral",
+            "telegrafi",
+            "telefoni"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        },
+        {
+          "id": "telegrafbygningen_quiz_5",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hva kaller Oslo byleksikon Telegrafbygningen i tidligere kommunikasjonsrolle?",
+          "options": [
+            "Landets kommunikasjonsmessige nervesenter",
+            "Byens første postgård",
+            "Oslos eldste tollpakkhus"
+          ],
+          "answer": "Landets kommunikasjonsmessige nervesenter",
+          "answerIndex": 0,
+          "dimension": "kommunikasjon",
+          "topic": "nervesenter",
+          "knowledge": "Oslo byleksikon beskriver bygningen som tidligere landets kommunikasjonsmessige nervesenter.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "kommunikasjonsmessig nervesenter",
+            "telegraf",
+            "telefon"
+          ],
+          "concept_focus": [
+            "kommunikasjonsmessig nervesenter",
+            "telegraf"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "nervesenter",
+            "kommunikasjon",
+            "televerk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.oslobyesvel.no/kalender/telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_6",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken næringslivslesning passer best for Telegrafbygningen?",
+          "options": [
+            "Et kommunikasjonsbygg der telegraf, telefoni, sentraldrift, arbeidsliv, krigskontroll, rehabilitering og ny servicebruk må leses sammen",
+            "Et havnelager for importvarer og kolonivarer",
+            "Et kommunalt gassverk for kullgass"
+          ],
+          "answer": "Et kommunikasjonsbygg der telegraf, telefoni, sentraldrift, arbeidsliv, krigskontroll, rehabilitering og ny servicebruk må leses sammen",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet telegrafanalyse",
+          "knowledge": "Telegrafbygningen bør leses som kommunikasjonsinfrastruktur: et teknologisk nav for meldinger og samtaler, senere ombrukt til kontor, servering og arrangementer.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "telegraf",
+            "telefoni",
+            "kontorombruk",
+            "arrangement"
+          ],
+          "concept_focus": [
+            "telegraf",
+            "telefoni"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "kommunikasjon",
+            "teknologi",
+            "ombruk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://telegrafenoslo.no/historien/",
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_telegrafbygningen_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "local_history_buildings_events",
+      "questions": [
+        {
+          "id": "telegrafbygningen_quiz_7",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken stil bruker KIMA og Grønn Byggallianse om den opprinnelige bygningen?",
+          "options": [
+            "Nordisk nybarokk",
+            "Brutalisme",
+            "Funksjonalisme som hovedstil"
+          ],
+          "answer": "Nordisk nybarokk",
+          "answerIndex": 0,
+          "dimension": "arkitektur",
+          "topic": "stil",
+          "knowledge": "KIMA og Grønn Byggallianse omtaler den opprinnelige bygningen som oppført i nordisk nybarokk stil.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Nordisk nybarokk",
+            "Arneberg og Poulsson",
+            "1924"
+          ],
+          "concept_focus": [
+            "Nordisk nybarokk",
+            "Arneberg og Poulsson"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "nordisk_nybarokk",
+            "stil",
+            "telegrafbygningen"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://kimaarkitektur.no/projects/telegrafbygningen1/",
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_8",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvor stort område opptar Telegrafbygningen i Kvadraturen ifølge KIMA?",
+          "options": [
+            "Et helt kvartal",
+            "En liten bakgård",
+            "Bare ett hjørne av kvartalet"
+          ],
+          "answer": "Et helt kvartal",
+          "answerIndex": 0,
+          "dimension": "bygningsstruktur",
+          "topic": "kvartal",
+          "knowledge": "KIMA skriver at Kongens gate 21 utgjør som eneste bygg et helt kvartal i Kvadraturen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "helt kvartal",
+            "Kvadraturen",
+            "Kongens gate 21"
+          ],
+          "concept_focus": [
+            "helt kvartal",
+            "Kvadraturen"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "helt_kvartal",
+            "kvadraturen",
+            "kongens_gate"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://kimaarkitektur.no/projects/telegrafbygningen1/",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_9",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken fasadekledning beskriver Oslo byleksikon?",
+          "options": [
+            "Prikkhamret labradorstein",
+            "Keramiske fliser på sandwichelementer",
+            "Ubehandlet trepanel"
+          ],
+          "answer": "Prikkhamret labradorstein",
+          "answerIndex": 0,
+          "dimension": "arkitektur",
+          "topic": "fasade",
+          "knowledge": "Oslo byleksikon beskriver fasader forblendet med prikkhamret labradorstein.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "prikkhamret labradorstein",
+            "fasade",
+            "påkostet"
+          ],
+          "concept_focus": [
+            "prikkhamret labradorstein",
+            "fasade"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "labradorstein",
+            "fasade",
+            "materialer"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.oslobyesvel.no/kalender/telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_10",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvem dekorerte ekspedisjonshallen i 1922?",
+          "options": [
+            "Alf Rolfsen",
+            "Henrik Sørensen",
+            "Edvard Munch"
+          ],
+          "answer": "Alf Rolfsen",
+          "answerIndex": 0,
+          "dimension": "interiør",
+          "topic": "ekspedisjonshallen",
+          "knowledge": "Oslo byleksikon oppgir at ekspedisjonshallen ble dekorert av Alf Rolfsen i 1922.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1922,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Alf Rolfsen",
+            "ekspedisjonshall",
+            "1922"
+          ],
+          "concept_focus": [
+            "Alf Rolfsen",
+            "ekspedisjonshall"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "alf_rolfsen",
+            "ekspedisjonshallen",
+            "1922"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.oslobyesvel.no/kalender/telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_11",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken funksjon hadde ekspedisjonshallen ifølge KIMA?",
+          "options": [
+            "Publikum kunne henvende seg der, for eksempel for å sende telegrammer",
+            "Tog kunne løftes og repareres der",
+            "Kull ble karbonisert til bygass der"
+          ],
+          "answer": "Publikum kunne henvende seg der, for eksempel for å sende telegrammer",
+          "answerIndex": 0,
+          "dimension": "publikumsfunksjon",
+          "topic": "ekspedisjonshall",
+          "knowledge": "KIMA beskriver ekspedisjonshallen som stedet der publikum kunne henvende seg, for eksempel ved sending av telegrammer.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "telegrammer",
+            "publikum",
+            "ekspedisjon"
+          ],
+          "concept_focus": [
+            "telegrammer",
+            "publikum"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "telegram",
+            "ekspedisjonshall",
+            "publikum"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://kimaarkitektur.no/projects/telegrafbygningen1/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_12",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvem tegnet tilbygget fra 1966?",
+          "options": [
+            "Nils Holter",
+            "Sverre Fehn",
+            "Bredo Berntsen"
+          ],
+          "answer": "Nils Holter",
+          "answerIndex": 0,
+          "dimension": "arkitektur",
+          "topic": "tilbygg 1966",
+          "knowledge": "Oslo byleksikon oppgir Nils Holter som arkitekt for tilbygget fra 1966, og KIMA beskriver det som en automatsentral.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 1966,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Nils Holter",
+            "1966",
+            "automatsentral"
+          ],
+          "concept_focus": [
+            "Nils Holter",
+            "1966"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "nils_holter",
+            "1966",
+            "tilbygg"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://kimaarkitektur.no/projects/telegrafbygningen1/",
+            "https://telegrafenoslo.no/historien/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_telegrafbygningen_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "humor_curiosities_life",
+      "questions": [
+        {
+          "id": "telegrafbygningen_quiz_13",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken type kommunikasjonssystemer var bygningen knyttet til?",
+          "options": [
+            "Telegrafi og telefoni",
+            "Kullgass og gatelys",
+            "Tollklarering og pakkhus"
+          ],
+          "answer": "Telegrafi og telefoni",
+          "answerIndex": 0,
+          "dimension": "teknologi",
+          "topic": "telegraf og telefon",
+          "knowledge": "Place-filen beskriver bygningen som hovedsentral for telegraf og telefoni.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1924,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "telegrafi",
+            "telefoni",
+            "sentral"
+          ],
+          "concept_focus": [
+            "telegrafi",
+            "telefoni"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "telegrafi",
+            "telefoni",
+            "kommunikasjonsnett"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://telegrafenoslo.no/historien/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_14",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken rolle hadde meldinger og samtaler i bygningens næringslivsfunksjon?",
+          "options": [
+            "De bandt handel, forvaltning og offentlig kommunikasjon sammen",
+            "De erstattet havnelager med kolonivarer",
+            "De produserte strøm fra vannfall"
+          ],
+          "answer": "De bandt handel, forvaltning og offentlig kommunikasjon sammen",
+          "answerIndex": 0,
+          "dimension": "kommunikasjonsøkonomi",
+          "topic": "informasjonsflyt",
+          "knowledge": "Telegraf- og telefonnett var næringslivsinfrastruktur fordi de koblet handel, forvaltning og offentlig kommunikasjon gjennom rask informasjonsflyt.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": null,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "informasjonsflyt",
+            "handel",
+            "forvaltning"
+          ],
+          "concept_focus": [
+            "informasjonsflyt",
+            "handel"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "informasjonsflyt",
+            "handel",
+            "forvaltning"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_15",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvor mange telefonistinner arbeidet ved sentralene i bygningen under okkupasjonen ifølge Oslo byleksikon?",
+          "options": [
+            "Nærmere tusen",
+            "Nærmere hundre",
+            "Nærmere ti tusen"
+          ],
+          "answer": "Nærmere tusen",
+          "answerIndex": 0,
+          "dimension": "arbeidsliv",
+          "topic": "telefonistinner",
+          "knowledge": "Oslo byleksikon skriver at nærmere tusen telefonistinner arbeidet ved telefonsentralene i bygningen under okkupasjonen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1940,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "telefonistinner",
+            "nærmere tusen",
+            "telefonsentral"
+          ],
+          "concept_focus": [
+            "telefonistinner",
+            "nærmere tusen"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "telefonistinner",
+            "okkupasjon",
+            "arbeidsliv"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_16",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvordan var telefonistinnene fordelt i arbeidsrommene under okkupasjonen?",
+          "options": [
+            "Hundre i hvert rom, fordelt på sju etasjer",
+            "Ti i hvert rom, fordelt på to etasjer",
+            "Alle i én ekspedisjonshall"
+          ],
+          "answer": "Hundre i hvert rom, fordelt på sju etasjer",
+          "answerIndex": 0,
+          "dimension": "arbeidsliv",
+          "topic": "sentralarbeid",
+          "knowledge": "Oslo byleksikon beskriver hundre telefonistinner i hvert rom, fordelt på sju forskjellige etasjer i bygningen.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1940,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "hundre i hvert rom",
+            "sju etasjer",
+            "arbeidsorganisering"
+          ],
+          "concept_focus": [
+            "hundre i hvert rom",
+            "sju etasjer"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "sju_etasjer",
+            "telefonistinner",
+            "sentral"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_17",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken okkupasjonsfunksjon hadde tyskerne i bygningen?",
+          "options": [
+            "Dienstpoststelle",
+            "Gerätelager I",
+            "Urlauberzüge-terminal"
+          ],
+          "answer": "Dienstpoststelle",
+          "answerIndex": 0,
+          "dimension": "krigshistorie",
+          "topic": "Dienstpoststelle",
+          "knowledge": "Oslo byleksikon skriver at tyskerne under okkupasjonen hadde sitt Dienstpoststelle i Telegrafbygningen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1940,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Dienstpoststelle",
+            "tyske vakter",
+            "telefonsystem"
+          ],
+          "concept_focus": [
+            "Dienstpoststelle",
+            "tyske vakter"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "dienstpoststelle",
+            "okkupasjon",
+            "telegrafbygningen"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_18",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken motstandsrolle nevner Oslo byleksikon i forbindelse med bygningen?",
+          "options": [
+            "Flere telefonistinner som samarbeidet med Milorg fanget opp og forsinket meldinger",
+            "Havnelagerarbeidere skjulte kolonivarer",
+            "Tollere flyttet pakkhus til Bjørvika"
+          ],
+          "answer": "Flere telefonistinner som samarbeidet med Milorg fanget opp og forsinket meldinger",
+          "answerIndex": 0,
+          "dimension": "krigshistorie",
+          "topic": "Milorg og telefonistinner",
+          "knowledge": "Oslo byleksikon skriver at flere telefonistinner som samarbeidet med Milorg klarte å snappe opp viktige meldinger og forsinke andre.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 1940,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Milorg",
+            "meldinger",
+            "motstandsarbeid"
+          ],
+          "concept_focus": [
+            "Milorg",
+            "meldinger"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "milorg",
+            "telefonistinner",
+            "motstand"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_telegrafbygningen_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_facts_architecture",
+      "questions": [
+        {
+          "id": "telegrafbygningen_quiz_19",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvor mange blå skilt har Telegrafbygningen ifølge Oslo byleksikon?",
+          "options": [
+            "To blå skilt",
+            "Ett blått skilt",
+            "Ingen blå skilt"
+          ],
+          "answer": "To blå skilt",
+          "answerIndex": 0,
+          "dimension": "kulturminne",
+          "topic": "blå skilt",
+          "knowledge": "Oslo byleksikon og Oslo Byes Vel oppgir at Telegrafbygningen er markert med to blå skilt.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2022,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "to blå skilt",
+            "Oslo Byes Vel",
+            "Telegrafbygningen"
+          ],
+          "concept_focus": [
+            "to blå skilt",
+            "Oslo Byes Vel"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "blå_skilt",
+            "oslo_byes_vel",
+            "telegrafbygningen"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.oslobyesvel.no/kalender/telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_20",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hva heter det andre blåskilt-motivet ved siden av Telegrafbygningen?",
+          "options": [
+            "Televerkets Installasjonsbygning",
+            "Norsk Tollmuseum",
+            "Oslo Havnelager"
+          ],
+          "answer": "Televerkets Installasjonsbygning",
+          "answerIndex": 0,
+          "dimension": "kulturminne",
+          "topic": "installasjonsbygningen",
+          "knowledge": "Oslo Byes Vel beskriver at det andre skiltet gjelder Televerkets Installasjonsbygning.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2022,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Televerkets Installasjonsbygning",
+            "blått skilt",
+            "Kongens gate"
+          ],
+          "concept_focus": [
+            "Televerkets Installasjonsbygning",
+            "blått skilt"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "installasjonsbygningen",
+            "blå_skilt",
+            "televerk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.oslobyesvel.no/kalender/telegrafbygningen"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_21",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Når ble bygningen ombygd og rehabilitert ifølge Oslo byleksikon?",
+          "options": [
+            "2019–2021",
+            "1982–1985",
+            "1909–1919"
+          ],
+          "answer": "2019–2021",
+          "answerIndex": 0,
+          "dimension": "rehabilitering",
+          "topic": "ombygging 2019–21",
+          "knowledge": "Oslo byleksikon beskriver at bygningen ble ombygd og rehabilitert 2019–21.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "2019–21",
+            "rehabilitering",
+            "Telegrafen Oslo"
+          ],
+          "concept_focus": [
+            "2019–21",
+            "rehabilitering"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "2019_2021",
+            "rehabilitering",
+            "ombruk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21",
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_22",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken BREEAM-NOR-sertifisering fikk rehabiliteringen ifølge Grønn Byggallianse?",
+          "options": [
+            "Very Good",
+            "Outstanding",
+            "Pass"
+          ],
+          "answer": "Very Good",
+          "answerIndex": 0,
+          "dimension": "miljøbygg",
+          "topic": "BREEAM-NOR",
+          "knowledge": "Grønn Byggallianse oppgir BREEAM-NOR Very Good for rehabiliteringen/ombyggingen av Kongens gate 21.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_innovasjon_teknologisk_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "BREEAM-NOR",
+            "Very Good",
+            "rehabilitering"
+          ],
+          "concept_focus": [
+            "BREEAM-NOR",
+            "Very Good"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "breeam",
+            "very_good",
+            "rehabilitering"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_23",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilket areal oppgir Grønn Byggallianse for prosjektet Kongens gate 21?",
+          "options": [
+            "16 670 m²",
+            "1667 m²",
+            "166 700 m²"
+          ],
+          "answer": "16 670 m²",
+          "answerIndex": 0,
+          "dimension": "byggdata",
+          "topic": "areal",
+          "knowledge": "Grønn Byggallianse oppgir areal 16 670 m² for Kongens gate 21-prosjektet.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "16 670 m²",
+            "kontorbygg",
+            "BREEAM"
+          ],
+          "concept_focus": [
+            "16 670 m²",
+            "kontorbygg"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "16670_m2",
+            "byggdata",
+            "kontorbygg"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_24",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvem var entreprenør i rehabiliteringsprosjektet ifølge Vedal og Oslo byleksikon?",
+          "options": [
+            "Vedal Entreprenør AS",
+            "Betonmast alene",
+            "Bane NOR Eiendom"
+          ],
+          "answer": "Vedal Entreprenør AS",
+          "answerIndex": 0,
+          "dimension": "rehabilitering",
+          "topic": "entreprenør",
+          "knowledge": "Oslo byleksikon nevner Vedal Entreprenør AS, og Vedal beskriver Telegrafen som eget rehabiliteringsprosjekt.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Vedal Entreprenør AS",
+            "KIMA Arkitektur",
+            "rehabilitering"
+          ],
+          "concept_focus": [
+            "Vedal Entreprenør AS",
+            "KIMA Arkitektur"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "vedal",
+            "entreprenør",
+            "rehabilitering"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_telegrafbygningen_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {
+          "id": "telegrafbygningen_quiz_25",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_5_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hva heter dagens publikumsrettede konsept i bygningen?",
+          "options": [
+            "Telegrafen Oslo",
+            "Oslo Havnelager",
+            "Posthallen"
+          ],
+          "answer": "Telegrafen Oslo",
+          "answerIndex": 0,
+          "dimension": "nåbruk",
+          "topic": "Telegrafen Oslo",
+          "knowledge": "Oslo byleksikon og Telegrafen Oslo beskriver dagens konsept under navnet Telegrafen Oslo.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Telegrafen Oslo",
+            "arrangement",
+            "møterom"
+          ],
+          "concept_focus": [
+            "Telegrafen Oslo",
+            "arrangement"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "telegrafen_oslo",
+            "nåbruk",
+            "arrangement"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://telegrafenoslo.no/",
+            "https://telegrafenoslo.no/historien/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_26",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_5_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken inngang oppgir Telegrafen Oslo for hovedkonseptet Telegrafen?",
+          "options": [
+            "Prinsens gate",
+            "Tollbugata",
+            "Langkaia"
+          ],
+          "answer": "Prinsens gate",
+          "answerIndex": 0,
+          "dimension": "nåbruk",
+          "topic": "inngang",
+          "knowledge": "Telegrafen Oslo oppgir Telegrafen med inngang Prinsens gate og Faksen med inngang Tollbugata.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2026,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Prinsens gate",
+            "Faksen",
+            "Tollbugata"
+          ],
+          "concept_focus": [
+            "Prinsens gate",
+            "Faksen"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "prinsens_gate",
+            "telegrafen",
+            "faksen"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://telegrafenoslo.no/",
+            "https://telegrafenoslo.no/historien/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_27",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_5_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hva finnes i byggets første etasje etter rehabiliteringen ifølge Vedal?",
+          "options": [
+            "Butikker, restauranter og cafeer",
+            "Togverksteder og gravspor",
+            "Gassretorter og kokslager"
+          ],
+          "answer": "Butikker, restauranter og cafeer",
+          "answerIndex": 0,
+          "dimension": "nåbruk",
+          "topic": "første etasje",
+          "knowledge": "Vedal skriver at byggets første etasje er åpnet for publikum med butikker, restauranter og cafeer.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "butikker",
+            "restauranter",
+            "cafeer"
+          ],
+          "concept_focus": [
+            "butikker",
+            "restauranter"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "butikker",
+            "restauranter",
+            "publikum"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_28",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_5_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvor stort gateplan beskriver Vedal i Telegrafen-prosjektet?",
+          "options": [
+            "3 200 m²",
+            "320 m²",
+            "32 000 m²"
+          ],
+          "answer": "3 200 m²",
+          "answerIndex": 0,
+          "dimension": "byggdata",
+          "topic": "gateplan",
+          "knowledge": "Vedal beskriver gateplanet som 3 200 m² med opplevelser, arrangementer og bevertning.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "3 200 m²",
+            "gateplan",
+            "arrangementer"
+          ],
+          "concept_focus": [
+            "3 200 m²",
+            "gateplan"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "3200_m2",
+            "gateplan",
+            "bevertning"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_29",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_5_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken pris vant prosjektet ifølge Vedal?",
+          "options": [
+            "Cityprisen 2021",
+            "Houens diplom 1931",
+            "Betongelementprisen 1989"
+          ],
+          "answer": "Cityprisen 2021",
+          "answerIndex": 0,
+          "dimension": "pris",
+          "topic": "Cityprisen",
+          "knowledge": "Vedal skriver at Telegrafen-prosjektet vant Cityprisen 2021.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2021,
+          "epoke_id": "telegrafen_rehabilitering_kultur_kontor_service",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Cityprisen 2021",
+            "Telegrafen",
+            "ombruk"
+          ],
+          "concept_focus": [
+            "Cityprisen 2021",
+            "Telegrafen"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "cityprisen",
+            "2021",
+            "rehabilitering"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.vedal.no/prosjekt/telegrafen/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "telegrafbygningen_quiz_30",
+          "quiz_id": "naeringsliv_telegrafbygningen_set_5_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "telegrafbygningen",
+          "personId": "",
+          "natureId": "",
+          "targetId": "telegrafbygningen",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for `telegrafbygningen`?",
+          "options": [
+            "Et teknologisk og urbant ombrukscase der Telegrafverket, telegrafi, telefoni, telefonistinner, krigskontroll, fredning, BREEAM-rehabilitering, kontor og servering henger sammen",
+            "Et rent havnelager for kolonivarer og importgods",
+            "Et kommunalt gassverk med kull, koks og gasslykter"
+          ],
+          "answer": "Et teknologisk og urbant ombrukscase der Telegrafverket, telegrafi, telefoni, telefonistinner, krigskontroll, fredning, BREEAM-rehabilitering, kontor og servering henger sammen",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet næringslivsanalyse",
+          "knowledge": "Telegrafbygningen er best forstått som kommunikasjonsinfrastruktur omformet til moderne urban serviceøkonomi: teknisk sentral, arbeidsplass, krigskontrollpunkt, kulturminne, kontorbygg og publikumsrettet byrom.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "telegrafverket_hovedsentral_og_kommunikasjonsnett",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Telegrafverket",
+            "telefoni",
+            "BREEAM",
+            "Telegrafen Oslo"
+          ],
+          "concept_focus": [
+            "Telegrafverket",
+            "telefoni"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "telegrafbygningen",
+            "kommunikasjon",
+            "ombruk"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/places/naeringsliv/oslo/places_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Telegrafbygningen",
+            "https://www.byggalliansen.no/kunnskapssenter/byggeprosjekter/kongens-gate-21",
+            "https://www.vedal.no/prosjekt/telegrafen/",
+            "https://telegrafenoslo.no/"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "telecommunications_central_to_mixed_use_service_building",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/naeringsliv/tollbukaia_sets_merged.json",
+            "data/places/naeringsliv/oslo/places_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        }
+      ]
+    }
+  ]
+}
