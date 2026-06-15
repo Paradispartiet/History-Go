@@ -386,7 +386,7 @@
         id: m.civicationPlaceId,
         historyGoPlaceId: m.historyGoPlaceId,
         name: m.name,
-        category: "by",
+        category: /** @type {"by"} */ ("by"),
         lat: m.lat,
         lon: m.lon,
         buildingTypeId: m.buildingTypeId,

@@ -281,7 +281,7 @@ async function loadPlacesBase(opts = {}) {
     })().catch((e) => {
       console.warn("[DataHub.loadBadges] kunne ikke laste badge-index", e?.message || e);
       window.BADGES = [];
-      return window.BADGES;
+      return /** @type {any} */ (window.BADGES);
     }).finally(() => {
       _badgesPromise = null;
     });

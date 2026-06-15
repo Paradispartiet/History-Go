@@ -137,6 +137,7 @@
   // Ordered keyword heuristics for places. First match wins. The ice_arena
   // rule stays narrow on purpose so skating-history athletics stadiums (Bislett)
   // still resolve to stadium.
+  /** @type {Array<[RegExp, ...any[]]>} */
   var PLACE_KEYWORD_RULES = [
     [/opera|operahuset/, "opera_miniature"],
     [/slott|palace|palass|kongelig residens/, "palace_miniature"],
@@ -168,6 +169,7 @@
 
   // ---- person heuristics ---------------------------------------------------
 
+  /** @type {Array<[RegExp, ...any[]]>} */
   var PERSON_KEYWORD_RULES = [
     [/trener|coach|manager|head coach/, "person_coach_miniature"],
     [/skøyte|skoyte|skøyteløper|skoyteloper|speed skating|kunstløper|kunstloper|figure skater/, "person_skater_miniature"],
@@ -224,6 +226,7 @@
   // mention a topic word in their id/title – data is marked explicitly in a
   // later, controlled batch instead. Broad/legacy rules keep reading the full
   // haystack (incl. id/title) exactly as before.
+  /** @type {Array<[RegExp, ...any[]]>} */
   var ARTICLE_KEYWORD_RULES = [
     [/biografi|biography|portrett|portrait|liv|personportrett/, "article_biography_miniature"],
     [/sprak|språk|language|dialekt|etymolog/, "article_language_miniature"],
