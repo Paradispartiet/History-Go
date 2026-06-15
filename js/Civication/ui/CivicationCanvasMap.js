@@ -218,8 +218,8 @@
       else host.appendChild(placesCanvas);
     }
 
-    baseCtx = baseCanvas.getContext("2d");
-    placesCtx = placesCanvas.getContext("2d");
+    baseCtx = /** @type {HTMLCanvasElement} */ (baseCanvas).getContext("2d");
+    placesCtx = /** @type {HTMLCanvasElement} */ (placesCanvas).getContext("2d");
     return !!(baseCtx && placesCtx);
   }
 
@@ -849,7 +849,7 @@
 
   function handleTap(e) {
     const { px, py } = relPos(e);
-    let best = null;
+    let best = /** @type {any} */ (null);
     let bestDist = Infinity;
     hitTargets.forEach((t) => {
       const d = Math.hypot(px - t.x, py - t.y);

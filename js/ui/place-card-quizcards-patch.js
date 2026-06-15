@@ -157,7 +157,7 @@
   function applyQuizCard(cardData) {
     const flipEl = document.getElementById("pcFrontCardFlip");
     const contentEl = document.getElementById("pcQuizCardContent");
-    const imgEl = document.getElementById("pcQuizCardImage");
+    const imgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcQuizCardImage"));
     if (!flipEl || !contentEl || !cardData) return;
 
     contentEl.innerHTML = renderQuizCard(cardData);

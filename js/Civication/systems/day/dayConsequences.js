@@ -55,7 +55,7 @@
     const careerId = activeCareerId();
     const resilience = {};
     const preview = (key, value) => {
-      const meta = window.CivicationPsyche?.applyPsycheResilienceModifier?.(Number(value || 0), window.CivicationState?.getState?.(), { metric: key, source: "day_consequence" });
+      const meta = /** @type {any} */ (window.CivicationPsyche?.applyPsycheResilienceModifier?.(Number(value || 0), window.CivicationState?.getState?.(), { metric: key, source: "day_consequence" }));
       if (meta?.applied) resilience[key] = meta;
       return meta?.adjustedDelta ?? Number(value || 0);
     };

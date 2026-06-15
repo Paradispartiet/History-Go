@@ -626,8 +626,9 @@ function getPlaceCardQuizTargetIds(place) {
   push(place?.id);
   push(place?.personId);
   push(place?.targetId);
-  push(place?.quiz_profile?.targetId);
-  push(place?.quiz_profile?.personId);
+  const quizProfile = /** @type {any} */ (place?.quiz_profile);
+  push(quizProfile?.targetId);
+  push(quizProfile?.personId);
 
   if (Array.isArray(place?.people)) {
     for (const person of place.people) {
@@ -808,7 +809,7 @@ window.openPlaceCard = async function (place) {
 const card = document.getElementById("placeCard");
 const frontCardFlipEl = document.getElementById("pcFrontCardFlip");
 const frontImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcFrontImage"));
-const quizCardImgEl = document.getElementById("pcQuizCardImage");
+const quizCardImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcQuizCardImage"));
 const quizCardContentEl = document.getElementById("pcQuizCardContent");
 const titleEl    = document.getElementById("pcTitle");
 const metaEl     = document.getElementById("pcMeta");

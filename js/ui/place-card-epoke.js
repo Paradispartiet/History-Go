@@ -97,7 +97,7 @@
     // Legg årene på kategori-chipen (første meta-linje) når begge finnes,
     // slik at linje 1 blir "Kunst · 1880–1910". Endrer ikke place-card.js.
     if (years) {
-      const firstChip = metaEl.querySelector(":scope > *:not(.pc-epoke)");
+      const firstChip = /** @type {HTMLElement|null} */ (metaEl.querySelector(":scope > *:not(.pc-epoke)"));
       if (firstChip && txt(firstChip.textContent) && !firstChip.dataset.pcEpokeYears) {
         firstChip.dataset.pcEpokeYears = "1";
         firstChip.textContent = `${txt(firstChip.textContent)} · ${years}`;

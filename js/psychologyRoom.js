@@ -697,7 +697,7 @@
     profile.insight_points += points;
     profile.completed_sessions += 1;
     profile.last_session_at = now;
-    const competenceResult = window.CivicationPsyche?.addPsychologyCompetence?.({ type, sourceId, title }, points) || { awarded: false, delta: 0, competence: profile.psychology_competence || 0 };
+    const competenceResult = /** @type {any} */ (window.CivicationPsyche?.addPsychologyCompetence?.({ type, sourceId, title }, points)) || { awarded: false, delta: 0, competence: profile.psychology_competence || 0 };
     profile.psychology_competence = Number(competenceResult.competence || profile.psychology_competence || 0);
     if (screeningResult?.dimensions) {
       profile.screening = mergeScreening(profile.screening, screeningResult.dimensions);

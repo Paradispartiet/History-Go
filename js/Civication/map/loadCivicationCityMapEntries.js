@@ -120,9 +120,10 @@
    */
   function extractCivicationBuildingTypeIds(buildingTypesData) {
     var ids = new Set();
+    var btData = /** @type {any} */ (buildingTypesData);
     var root =
-      buildingTypesData && buildingTypesData.buildingTypes != null
-        ? buildingTypesData.buildingTypes
+      btData && btData.buildingTypes != null
+        ? btData.buildingTypes
         : buildingTypesData;
 
     if (Array.isArray(root)) {
@@ -202,7 +203,7 @@
    * @returns {CiviCityMapResult}
    */
   function transformCivicationCityMapEntries(input) {
-    var safeInput = input || {};
+    var safeInput = /** @type {{ mappingData: any, placesData: any, buildingTypesData: any }} */ (input || {});
     var mappingData = safeInput.mappingData;
     var placesData = safeInput.placesData;
     var buildingTypesData = safeInput.buildingTypesData;
