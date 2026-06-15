@@ -1,16 +1,16 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-06-15T13:45:50.971Z
+Generert: 2026-06-15T14:00:39.468Z
 
 ## Aktiv hovedstatistikk
-- Aktive place-filer lest: **46**
-- Aktive steder lest: **540**
+- Aktive place-filer lest: **47**
+- Aktive steder lest: **548**
 - ok: **307**
 - needs_review: **77**
 - conflict: **6**
 - invalid: **0**
 - duplicate: **0**
-- outside_expected_area: **150**
+- outside_expected_area: **158**
 
 ## Aktive filer (fra manifest)
 - data/places/by/europe/portugal/lisbon/places_lisbon_by.json
@@ -21,6 +21,7 @@ Generert: 2026-06-15T13:45:50.971Z
 - data/places/historie/akershus/places_historie_akershus_batch2.json
 - data/places/historie/akershus/places_historie_akershus_batch3.json
 - data/places/historie/akershus/places_historie_akershus_batch4.json
+- data/places/historie/akershus/places_historie_akershus_batch5.json
 - data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json
 - data/places/historie/oslo/places_historie.json
 - data/places/historie/oslo/places_historie_added_batch_01.json
@@ -105,6 +106,14 @@ Generert: 2026-06-15T13:45:50.971Z
 | data/places/historie/akershus/places_historie_akershus_batch4.json | hakadal_verk | Hakadal Verk | historie | 60.12083 | 10.82278 | 360 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch4.json | seiersten_skanse | Seiersten skanse | historie | 59.6719 | 10.6471 | 260 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch4.json | raelingen_bygdetun | Rælingen bygdetun | historie | 59.9261 | 11.0608 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | frogner_gamle_kirke | Frogner gamle kirke | historie | 60.0247 | 11.1035 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | sorum_kirke | Sørum kirke | historie | 59.9866 | 11.2391 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | feiring_jernverk | Feiring jernverk | historie | 60.5194 | 11.1514 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | gardermoen_militaerleir_tunet | Gardermoen militærleir / Tunet | historie | 60.1986 | 11.0782 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | ullensaker_kirke_kirkested | Ullensaker kirke / Ullinhof kirkested | historie | 60.0798 | 11.1406 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | drobak_kirke | Drøbak kirke | historie | 59.66389 | 10.62949 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | aurskog_holand_bygdetun | Aurskog-Høland bygdetun | historie | 59.7194 | 11.4598 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch5.json | nannestad_bygdemuseum | Nannestad bygdemuseum | historie | 60.217 | 11.012 | 260 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended, area_or_park_needs_manual_review |
 | data/places/kunst/oslo/places_kunst.json | ekebergparken | Ekebergparken skulpturpark | kunst | 59.8997 | 10.7753 | 200 | needs_review | area_or_park_needs_manual_review |
 | data/places/litteratur/oslo/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.92096 | 10.72936 | 30 | needs_review | suspicious_radius_low |
 | data/places/litteratur/oslo/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 | needs_review | low_precision_coord |
