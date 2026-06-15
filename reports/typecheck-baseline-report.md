@@ -1,18 +1,18 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-06-15T06:43:24.284Z
+- Generated at (UTC): 2026-06-15T07:17:22.103Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 101
-- Files with diagnostics: 25
+- Total diagnostic lines found: 92
+- Files with diagnostics: 24
 - Groups with diagnostics: 4
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 17 | 83 | js/Civication/civicationCommercial.js<br>js/Civication/core/CivicationPsyche.js<br>js/Civication/map/loadCivicationCityMapEntries.js |
+| js/Civication/** | 16 | 74 | js/Civication/civicationCommercial.js<br>js/Civication/map/loadCivicationCityMapEntries.js<br>js/Civication/systems/civicationCareerOutcomeRuntime.js |
 | other | 5 | 12 | js/app.js<br>js/boot-fast.js<br>js/core/domainRuntime.js |
 | js/ui/** | 2 | 5 | js/ui/place-card-epoke.js<br>js/ui/place-card.js |
 | js/dataHub.js | 1 | 1 | js/dataHub.js |
@@ -21,7 +21,6 @@
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
 | js/Civication/ui/CivicationCanvasMap.js | 18 | js/Civication/** |
-| js/Civication/core/CivicationPsyche.js | 9 | js/Civication/** |
 | js/Civication/ui/CivicationCityLayer.js | 9 | js/Civication/** |
 | js/Civication/ui/CivicationThreeMap.js | 7 | js/Civication/** |
 | js/Civication/map/loadCivicationCityMapEntries.js | 6 | js/Civication/** |
@@ -40,19 +39,20 @@
 | js/Civication/ui/CivicationInboxTopActionUI.js | 2 | js/Civication/** |
 | js/Civication/ui/CivicationMiniSectionsUI.js | 2 | js/Civication/** |
 | js/ui/place-card-epoke.js | 2 | js/ui/** |
+| js/Civication/ui/CivicationDayPhaseUI.js | 1 | js/Civication/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 78 |
+| TS2339 | 69 |
 | TS2551 | 17 |
 | TS2322 | 2 |
 | TS2367 | 2 |
 | TS2345 | 2 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (83 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/Civication/ui/CivicationCanvasMap.js` (18), `js/Civication/core/CivicationPsyche.js` (9), `js/Civication/ui/CivicationCityLayer.js` (9), `js/Civication/ui/CivicationThreeMap.js` (7), `js/Civication/map/loadCivicationCityMapEntries.js` (6).
+1. Start with **js/Civication/** (74 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/Civication/ui/CivicationCanvasMap.js` (18), `js/Civication/ui/CivicationCityLayer.js` (9), `js/Civication/ui/CivicationThreeMap.js` (7), `js/Civication/map/loadCivicationCityMapEntries.js` (6), `js/Civication/systems/civicationJobEligibilityRuntime.js` (5).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/dataHub.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
@@ -62,15 +62,6 @@
 > tsc -p tsconfig.json
 js/Civication/civicationCommercial.js(225,55): error TS2339: Property 'store' does not exist on type 'object'.
 js/Civication/civicationCommercial.js(236,57): error TS2339: Property 'housing' does not exist on type 'object'.
-js/Civication/core/CivicationPsyche.js(162,19): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(162,42): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(162,70): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(164,21): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(164,56): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(164,95): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(204,21): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(204,44): error TS2339: Property 'player' does not exist on type 'unknown'.
-js/Civication/core/CivicationPsyche.js(204,72): error TS2339: Property 'player' does not exist on type 'unknown'.
 js/Civication/map/loadCivicationCityMapEntries.js(124,46): error TS2339: Property 'buildingTypes' does not exist on type 'unknown'.
 js/Civication/map/loadCivicationCityMapEntries.js(125,29): error TS2339: Property 'buildingTypes' does not exist on type 'unknown'.
 js/Civication/map/loadCivicationCityMapEntries.js(206,33): error TS2339: Property 'mappingData' does not exist on type '{}'.
@@ -138,4 +129,13 @@ js/Civication/ui/CivicationThreeMap.js(20,14): error TS2551: Property 'Civicatio
 js/Civication/ui/CivicationThreeMap.js(188,24): error TS2339: Property 'CivicationOsloMapCalibration' does not exist on type 'Window & typeof globalThis'.
 js/Civication/ui/CivicationThreeMap.js(2246,61): error TS2339: Property 'HGVisualDesignCodes' does not exist on type 'Window & typeof globalThis'.
 js/Civication/ui/CivicationThreeMap.js(2708,25): error TS2339: Property 'CivicationHistoryGoPlaceLayer' does not exist on type 'Window & typeof globalThis'.
+js/Civication/ui/CivicationThreeMap.js(2784,16): error TS2339: Property 'CIVICATION_THREE_MAP_ENABLED' does not exist on type 'Window & typeof globalThis'.
+js/Civication/ui/CivicationThreeMap.js(2831,12): error TS2339: Property '__civiThreeActive' does not exist on type 'Window & typeof globalThis'.
+js/Civication/ui/CivicationThreeMap.js(2904,10): error TS2551: Property 'CivicationThreeMap' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationMap'?
+js/Civication/ui/CivicationUI.js(1246,25): error TS2339: Property 'daily_mail_meta' does not exist on type 'unknown'.
+js/Civication/ui/CivicationUI.js(1247,24): error TS2339: Property 'role_content_meta' does not exist on type 'unknown'.
+js/Civication/ui/CivicationUI.js(1248,24): error TS2339: Property 'life_mail_meta' does not exist on type 'unknown'.
+js/Civication/ui/CivicationUI.js(1249,28): error TS2339: Property 'mail_plan_meta' does not exist on type 'unknown'.
+js/Civication/ui/CivicationUI.js(1250,33): error TS2339: Property 'career_outcome_meta' does not exist on type 'unknown'.
+js/app.js(118,50): error TS2551: Property 'initQuizEngine' does not exist on type 'Window & typeof globalThis'. Did you mean 'QuizEngine'?
 ```
