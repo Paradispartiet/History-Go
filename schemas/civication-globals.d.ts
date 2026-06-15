@@ -132,6 +132,11 @@ declare global {
     CivicationPsyche?: CiviMethodBag;
     CivicationNPCs?: CiviNpcDirectoryLike;
     CivicationThreadBridge?: CiviMethodBag;
+    CivicationFriendsEngine?: any;
+    CivicationFriendMessages?: any;
+    CivicationRelationshipEngine?: any;
+    CivicationSocialConversationEngine?: any;
+    CivicationSocialPlaceResolver?: any;
     DEBUG?: boolean;
 
     HG_CiviEngine?: CiviEngineLike;
