@@ -176,7 +176,7 @@
     },
 
     getByPerson(personId) {
-      return this.byPerson(personId) || [];
+      return this.byPerson[personId] || [];
     },
 
     getByType(type) {
