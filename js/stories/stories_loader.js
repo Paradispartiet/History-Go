@@ -40,7 +40,8 @@
     "data/stories/stories_manifest_naeringsliv_lisboa_batch_03.json",
     "data/stories/stories_manifest_litteratur_lisboa_batch_04.json",
     "data/stories/stories_manifest_popkultur_lisboa_batch_02.json",
-    "data/stories/stories_manifest_musikk_lisboa_batch_02.json"
+    "data/stories/stories_manifest_musikk_lisboa_batch_02.json",
+    "data/stories/stories_manifest_lisboa_alt_batch_01.json"
   ];
 
   function ensureArray(value) {
