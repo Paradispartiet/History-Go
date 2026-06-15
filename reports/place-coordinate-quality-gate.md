@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-06-15T09:50:57.210Z
+Generert: 2026-06-15T12:59:22.968Z
 
 ## Oppsummering
 - Aktive filer validert: **42**
 - Antall steder validert: **504**
 - Harde feil: **0**
-- Varsler: **138**
-- Coordinate review candidates: **207** signaler fordelt på **157** steder
+- Varsler: **137**
+- Coordinate review candidates: **206** signaler fordelt på **156** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -70,7 +70,6 @@ Nivåene betyr:
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#stensparken: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#birkelunden: lav koordinatpresisjon (<4 desimaler)
-- data/places/by/oslo/places_by.json#voienvolden: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/oslo/places_historie.json#damstredet_telthusbakken: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#trefoldighetskirken: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/oslo/places_historie_added_batch_01.json#prinds_christian_augusts_minde: lineært sted uten anchors
@@ -203,14 +202,14 @@ Nivåene betyr:
 
 ## Coordinate review candidates
 
-Totalt 207 signaler fordelt på 157 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 206 signaler fordelt på 156 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
 | lineært sted uten anchors | 33 |
-| lav koordinatpresisjon (<4 desimaler) | 81 |
+| lav koordinatpresisjon (<4 desimaler) | 80 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 39 |
 | coordStatus=verified uten coordPrecisionM | 2 |
 | park/stort område uten anchors eller coordNote | 11 |
@@ -256,7 +255,7 @@ Totalt 207 signaler fordelt på 157 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_instituto_ricardo_jorge | Instituto Nacional de Saúde Doutor Ricardo Jorge | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7693 | -9.1789 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (81)
+### lav koordinatpresisjon (<4 desimaler) (80)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -266,7 +265,6 @@ Totalt 207 signaler fordelt på 157 steder. Et sted kan ha flere signaler. Kandi
 | jernbanetorget | Jernbanetorget | by | data/places/by/oslo/places_by.json | 59.911 | 10.75 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stensparken | Stensparken | by | data/places/by/oslo/places_by.json | 59.9272 | 10.733 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | birkelunden | Birkelunden | by | data/places/by/oslo/places_by.json | 59.927 | 10.7601 | 190 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| voienvolden | Voienvolden | by | data/places/by/oslo/places_by.json | 59.926 | 10.7435 | 170 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trefoldighetskirken | Trefoldighetskirken | historie | data/places/historie/oslo/places_historie.json | 59.9183 | 10.746 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.062 | 10.875 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.938 | 10.76 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
