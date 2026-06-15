@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-06-15T09:22:19.487Z
+Generert: 2026-06-15T09:50:57.210Z
 
 ## Oppsummering
 - Aktive filer validert: **42**
 - Antall steder validert: **504**
 - Harde feil: **0**
-- Varsler: **136**
-- Coordinate review candidates: **208** signaler fordelt på **154** steder
+- Varsler: **138**
+- Coordinate review candidates: **207** signaler fordelt på **157** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -65,9 +65,11 @@ Nivåene betyr:
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
-- data/places/by/oslo/places_by.json#oslo_bussterminal: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#kampen_kirke: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#jernbanetorget: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
-- data/places/by/oslo/places_by.json#universitetsplassen: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#stensparken: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#birkelunden: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#voienvolden: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/oslo/places_historie.json#damstredet_telthusbakken: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#trefoldighetskirken: lav koordinatpresisjon (<4 desimaler)
@@ -201,19 +203,19 @@ Nivåene betyr:
 
 ## Coordinate review candidates
 
-Totalt 208 signaler fordelt på 154 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 207 signaler fordelt på 157 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
 | lineært sted uten anchors | 33 |
-| lav koordinatpresisjon (<4 desimaler) | 79 |
+| lav koordinatpresisjon (<4 desimaler) | 81 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 39 |
 | coordStatus=verified uten coordPrecisionM | 2 |
 | park/stort område uten anchors eller coordNote | 11 |
 | svært stor r (>=500 m) uten coordNote | 17 |
-| identisk/nesten identisk lat/lon som annet sted uten forklaring | 17 |
+| identisk/nesten identisk lat/lon som annet sted uten forklaring | 14 |
 | ligger svært langt fra de andre stedene i samme fil | 10 |
 
 ### lineært sted uten anchors (33)
@@ -221,7 +223,7 @@ Totalt 208 signaler fordelt på 154 steder. Et sted kan ha flere signaler. Kandi
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9077 | 10.7414 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9104 | 10.7397 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | prinds_christian_augusts_minde | Prinds Christian Augusts Minde | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.915289 | 10.75595 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | oslo_kornmagasin | Christiania kornmagasin | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9119 | 10.7428 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
@@ -254,14 +256,16 @@ Totalt 208 signaler fordelt på 154 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_instituto_ricardo_jorge | Instituto Nacional de Saúde Doutor Ricardo Jorge | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7693 | -9.1789 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
 
-### lav koordinatpresisjon (<4 desimaler) (79)
+### lav koordinatpresisjon (<4 desimaler) (81)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trikk_17_18 | Trikkelinje 17/18 | by | data/places/by/oslo/places_by.json | 59.92 | 10.76 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| oslo_bussterminal | Oslo bussterminal | by | data/places/by/oslo/places_by.json | 59.9095 | 10.759 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| universitetsplassen | Universitetsplassen | by | data/places/by/oslo/places_by.json | 59.915 | 10.7397 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| kampen_kirke | Kampen kirke | by | data/places/by/oslo/places_by.json | 59.912 | 10.782 | 160 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| jernbanetorget | Jernbanetorget | by | data/places/by/oslo/places_by.json | 59.911 | 10.75 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| stensparken | Stensparken | by | data/places/by/oslo/places_by.json | 59.9272 | 10.733 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| birkelunden | Birkelunden | by | data/places/by/oslo/places_by.json | 59.927 | 10.7601 | 190 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | voienvolden | Voienvolden | by | data/places/by/oslo/places_by.json | 59.926 | 10.7435 | 170 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trefoldighetskirken | Trefoldighetskirken | historie | data/places/historie/oslo/places_historie.json | 59.9183 | 10.746 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.062 | 10.875 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -427,14 +431,11 @@ Totalt 208 signaler fordelt på 154 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_marchas_populares | Marchas Populares de Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7202 | -9.1455 | 800 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 | lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Forklar den store radiusen med coordNote, eller stram inn r etter kartkontroll. |
 
-### identisk/nesten identisk lat/lon som annet sted uten forklaring (17)
+### identisk/nesten identisk lat/lon som annet sted uten forklaring (14)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| lekeplass_st_hanshaugen | St. Hanshaugen lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9234 | 10.7463 | 120 | Deler punkt med: st_hanshaugen_park. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
-| lekeplass_stensparken | Stensparken lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9268 | 10.7406 | 110 | Deler punkt med: stensparken. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
-| lekeplass_olaf_ryes_plass | Olaf Ryes plass lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9238 | 10.7589 | 100 | Deler punkt med: olaf_ryes_plass. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
-| lekeplass_birkelunden | Birkelunden lekeplass | sport | data/places/sport/europa/norway/places_oslo_lekeplasser_trening.json | 59.9256 | 10.7574 | 110 | Deler punkt med: birkelunden. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
+| bislett_stadion | Bislett Stadion | sport | data/places/sport/europa/norway/oslo_sport.json | 59.924722 | 10.733333 | 180 | Deler punkt med: bislett. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | slottsplassen | Slottsplassen | populaerkultur | data/places/popkultur/oslo/places_oslo_populaerkultur.json | 59.9169 | 10.7276 | 200 | Deler punkt med: slottet. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | good_game_redaksjon | Good Game-redaksjonen (NRK) | media | data/places/media/oslo/places_oslo_media.json | 59.9323 | 10.7182 | 80 | Deler punkt med: nrk_huset_marienlyst, nrk_marienlyst. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | nrk_huset_marienlyst | NRK-huset på Marienlyst | media | data/places/media/oslo/places_oslo_media.json | 59.9323 | 10.7182 | 180 | Deler punkt med: good_game_redaksjon, nrk_marienlyst. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
