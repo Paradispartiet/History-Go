@@ -684,7 +684,7 @@
   // opprettede tilbudet med additiv eligibility-metadata. Alt guardet — feiler aldri
   // den eksisterende offerstrømmen.
   function patchJobsPushOffer() {
-    const jobs = window.CivicationJobs;
+    const jobs = /** @type {any} */ (window.CivicationJobs);
     if (!jobs || jobs.__civicationEligibilityPushOfferPatched === true) return false;
     if (typeof jobs.pushOffer !== "function") return false;
 
@@ -772,7 +772,7 @@
           .map(([category]) => category),
         all_locks: locks,
         answer_patched: window.CivicationEventEngine?.prototype?.__civicationJobEligibilityAnswerPatched === true,
-        push_offer_patched: window.CivicationJobs?.__civicationEligibilityPushOfferPatched === true,
+        push_offer_patched: /** @type {any} */ (window.CivicationJobs)?.__civicationEligibilityPushOfferPatched === true,
         sample_eligibility: getJobOfferEligibility(state, active || {}, { active })
       };
     }

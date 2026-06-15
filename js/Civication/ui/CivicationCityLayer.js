@@ -383,7 +383,7 @@
     const chosenLocationId = selectedPlayerLocationId(_model.snapshotPhase);
     (renderLocations || []).forEach((loc) => {
       const active = eng.isLocationActive(loc, phase);
-      const btn = document.createElement("button");
+      const btn = /** @type {HTMLButtonElement & { _civiLoc?: any, _civiOffset?: any }} */ (document.createElement("button"));
       btn.type = "button";
       btn.className = buildPlaceClassList(loc, active, chosenLocationId).join(" ");
       const attrs = buildPlaceDataAttrs(loc);
@@ -418,7 +418,7 @@
       group.forEach((row, index) => {
         const angle = (index / Math.max(1, group.length)) * Math.PI * 2;
         const multi = group.length > 1;
-        const marker = buildFriendMarker(row);
+        const marker = /** @type {HTMLButtonElement & { _civiLoc?: any, _civiOffset?: any }} */ (buildFriendMarker(row));
         marker._civiLoc = loc;
         marker._civiOffset = {
           angle,
