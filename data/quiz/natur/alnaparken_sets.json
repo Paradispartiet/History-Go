@@ -1,0 +1,92 @@
+{
+  "targetId": "alnaparken",
+  "categoryId": "natur",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_alnaparken.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen detaljerte artsfunn uten kilde.",
+      "Ingen dagsaktuelle skjøtselstiltak eller byggearbeider.",
+      "Ingen presise tekniske elvetiltak uten kilde.",
+      "Story-data brukes for Alnaparken/Nylandsparken, jordvei, beite, Alnaelva, turvei og parkdrag."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "natur_alnaparken_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"alnaparken_s1_q1","quiz_id":"natur_alnaparken_set_1_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva gjør Alnaparken til mer enn et vanlig grøntområde?","options":["Den viser overgangen fra jordvei og beite til parkdrag langs Alnaelva","Den ligger uten kontakt med Alnaelva","Den er bare et lukket industriområde"],"answer":"Den viser overgangen fra jordvei og beite til parkdrag langs Alnaelva","answerIndex":0,"knowledge":"Alnaparken gjør Alnaelva synlig som parkdrag og bærer spor av eldre landskapsbruk og bynær rekreasjon.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["alnaparken","alnaelva","parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s1_q2","quiz_id":"natur_alnaparken_set_1_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva bør spilleren se etter først i Alnaparken?","options":["Elva, turvei, broer, bjerkeskog, åpne flater og spor etter eldre bruk","Bare butikklogoer","Kun fjelltopper"],"answer":"Elva, turvei, broer, bjerkeskog, åpne flater og spor etter eldre bruk","answerIndex":0,"knowledge":"Storyen peker på at parken bør leses gjennom vannløp, stier, vegetasjon og tidligere bruksflater.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","turvei"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s1_q3","quiz_id":"natur_alnaparken_set_1_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan holder elva, vegetasjonen og den gamle bruksflaten sammen et nabolag?","Hvorfor finnes det ingen elv her?","Hvilket arrangement skjer i kveld?"],"answer":"Hvordan holder elva, vegetasjonen og den gamle bruksflaten sammen et nabolag?","answerIndex":0,"knowledge":"Spørsmålet kobler fysisk parkrom til natur, brukshistorie og nærmiljø.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaparken_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"alnaparken_s2_q1","quiz_id":"natur_alnaparken_set_2_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva slags stedsliv peker Alnaparken mot?","options":["Turvei, hverdagsnatur, rekreasjon og lesbar kontakt med Alnaelva","Kun lukket fabrikkdrift","Bare biltrafikk"],"answer":"Turvei, hverdagsnatur, rekreasjon og lesbar kontakt med Alnaelva","answerIndex":0,"knowledge":"Alnaparken gjør elva til et nærmiljørom der man kan gå, stoppe, lese landskapet og oppleve vannløpet.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["hverdagsnatur","rekreasjon"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s2_q2","quiz_id":"natur_alnaparken_set_2_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva forteller storyen om eldre bruk ved Nedre Furuset?","options":["Det var jordvei ned mot elva og beite før området ble parkdrag","At området alltid var motorvei","At stedet aldri hadde lokal bruk"],"answer":"Det var jordvei ned mot elva og beite før området ble parkdrag","answerIndex":0,"knowledge":"Story-dataen beskriver jordvei og beite som et eldre lag under dagens parkrom.","difficulty":1,"question_type":"historisk_lag","question_layer":"place_life","tags":["jordvei","beite","kulturlandskap"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s2_q3","quiz_id":"natur_alnaparken_set_2_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva bør holdes ute av trygg Alnaparken-quiz?","options":["Usikre artsfunn, dagsaktuelle skjøtselstiltak og tekniske elvedetaljer uten kilde","Begrepet parkdrag","Observasjon av turvei og elv"],"answer":"Usikre artsfunn, dagsaktuelle skjøtselstiltak og tekniske elvedetaljer uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bruker varige trekk fra storyen: elv, parkdrag, turvei, eldre jordvei og bynær rekreasjon.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaparken_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"alnaparken_s3_q1","quiz_id":"natur_alnaparken_set_3_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva betyr parkdrag?","options":["Et sammenhengende grønt rom for ferdsel, opphold og naturkontakt","Et lukket kontorbygg","En tilfeldig asfaltflate"],"answer":"Et sammenhengende grønt rom for ferdsel, opphold og naturkontakt","answerIndex":0,"knowledge":"Alnaparken er et parkdrag fordi turvei, elv, vegetasjon og åpne flater virker sammen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaparken_s3_q2","quiz_id":"natur_alnaparken_set_3_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva betyr kulturlandskap?","options":["Landskap formet av både natur og menneskelig bruk over tid","Urørt natur uten mennesker","Et sted uten historie"],"answer":"Landskap formet av både natur og menneskelig bruk over tid","answerIndex":0,"knowledge":"Jordvei, beite, turvei og parkdrag gjør Alnaparken til et kulturlandskap i byen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["kulturlandskap"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaparken_s3_q3","quiz_id":"natur_alnaparken_set_3_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"I Alnaparken betyr stedlesning å koble elv, turvei, parkrom og tidligere landskapsbruk.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaparken_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"alnaparken_s4_q1","quiz_id":"natur_alnaparken_set_4_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva er en avansert observasjon i Alnaparken?","options":["Å se hvordan jordbruksrand, elverom, turvei og rekreasjon overlapper","Å bare telle trær","Å ignorere elva"],"answer":"Å se hvordan jordbruksrand, elverom, turvei og rekreasjon overlapper","answerIndex":0,"knowledge":"Avansert stedlesning handler om å se både eldre bruk og dagens parkfunksjon i samme rom.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["historiske_lag","parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s4_q2","quiz_id":"natur_alnaparken_set_4_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva kan Alnaparken lære om restaurering og tilgjengelighet?","options":["At bynær natur kan bli mer lesbar når elva, vegetasjonen og stiene henger sammen","At restaurering bare betyr villere natur","At parkdrag ikke påvirker nabolag"],"answer":"At bynær natur kan bli mer lesbar når elva, vegetasjonen og stiene henger sammen","answerIndex":0,"knowledge":"Storyen sier at tilgjengelighet ikke bare gjør naturen villere, men lar elv, vegetasjon og bruksflate holde sammen et nabolag.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["tilgjengelighet","restaurering"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s4_q3","quiz_id":"natur_alnaparken_set_4_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"place","question":"Hva bør en god Alnaparken-quiz trene spilleren i?","options":["Å lese elv, parkdrag, kulturlandskap og nærmiljø sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese elv, parkdrag, kulturlandskap og nærmiljø sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå parkrommet de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaparken_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"alnaparken_s5_q1","quiz_id":"natur_alnaparken_set_5_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva er den dypere læringen i Alnaparken?","options":["At et parkdrag kan bære både natur, brukshistorie og nabolagsfunksjon","At parker bare er pynt","At elver ikke former byrom"],"answer":"At et parkdrag kan bære både natur, brukshistorie og nabolagsfunksjon","answerIndex":0,"knowledge":"Alnaparken gjør Alnaelva synlig som natur, nærmiljø og historisk landskap.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["parkdrag","byokologi"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s5_q2","quiz_id":"natur_alnaparken_set_5_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hva kan et tidligere beitelandskap lære oss i dagens by?","options":["At bynatur ofte rommer eldre bruksmåter under dagens rekreasjonsform","At eldre bruk alltid forsvinner helt","At beite og by aldri kan henge sammen"],"answer":"At bynatur ofte rommer eldre bruksmåter under dagens rekreasjonsform","answerIndex":0,"knowledge":"Storyen lar spilleren lese jordvei og beite som historiske lag i dagens park.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["kulturlandskap","historiske_lag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"},
+        {"id":"alnaparken_s5_q3","quiz_id":"natur_alnaparken_set_5_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"emne","question":"Hvordan fungerer Alnaparken i en Alna-fortelling?","options":["Som konkret parkrom der Alnaelvstien følger elva gjennom grøntdraget","Som et sted uten vann","Som et isolert fjellområde"],"answer":"Som konkret parkrom der Alnaelvstien følger elva gjennom grøntdraget","answerIndex":0,"knowledge":"Alnaparken følger naturlig etter Alnaelvstien fordi den viser stien og elva i et tydelig parkrom.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["alnaelvstien","alnaelva"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "natur_alnaparken_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"alnaparken_s6_q1","quiz_id":"natur_alnaparken_set_6_q1","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"concept","question":"Hvilket begrep beskriver landskap formet av både natur og menneskelig bruk?","options":["Kulturlandskap","Flyplass","Privat lager"],"answer":"Kulturlandskap","answerIndex":0,"knowledge":"Alnaparken kan leses som kulturlandskap gjennom jordvei, beite, park og turvei.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["kulturlandskap"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaparken_s6_q2","quiz_id":"natur_alnaparken_set_6_q2","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"concept","question":"Hva betyr byøkologi?","options":["Samspillet mellom natur, mennesker, infrastruktur og byrom","Natur uten mennesker","Et rent butikkbegrep"],"answer":"Samspillet mellom natur, mennesker, infrastruktur og byrom","answerIndex":0,"knowledge":"Alnaparken viser byøkologi fordi elv, vegetasjon, stier og nabolag virker sammen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["byokologi"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"},
+        {"id":"alnaparken_s6_q3","quiz_id":"natur_alnaparken_set_6_q3","categoryId":"natur","placeId":"alnaparken","targetId":"alnaparken","question_scope":"concept","question":"Hvilket begrepspar forklarer Alnaparken best?","options":["Kulturlandskap og parkdrag","Sanering og knutepunkt","Flyplass og høyfjell"],"answer":"Kulturlandskap og parkdrag","answerIndex":0,"knowledge":"Parken blir tydeligst når eldre landskapsbruk leses sammen med dagens parkdrag.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["kulturlandskap","parkdrag"],"source":["data/stories/stories_alnaparken.json"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
