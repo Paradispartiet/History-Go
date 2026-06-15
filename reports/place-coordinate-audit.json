@@ -1,18 +1,22 @@
 {
-  "generatedAt": "2026-06-15T12:59:22.705Z",
-  "activePlaceFilesRead": 42,
-  "activePlacesRead": 504,
-  "ok": 297,
+  "generatedAt": "2026-06-15T13:45:50.971Z",
+  "activePlaceFilesRead": 46,
+  "activePlacesRead": 540,
+  "ok": 307,
   "needs_review": 77,
-  "conflict": 2,
+  "conflict": 6,
   "invalid": 0,
   "duplicate": 0,
-  "outside_expected_area": 128,
+  "outside_expected_area": 150,
   "activeFilesDeclaredInManifest": [
     "data/places/by/europe/portugal/lisbon/places_lisbon_by.json",
     "data/places/by/oslo/places_by.json",
     "data/places/film/oslo/places_oslo_film.json",
     "data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json",
+    "data/places/historie/akershus/places_historie_akershus_batch1.json",
+    "data/places/historie/akershus/places_historie_akershus_batch2.json",
+    "data/places/historie/akershus/places_historie_akershus_batch3.json",
+    "data/places/historie/akershus/places_historie_akershus_batch4.json",
     "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
     "data/places/historie/oslo/places_historie.json",
     "data/places/historie/oslo/places_historie_added_batch_01.json",
@@ -57,6 +61,10 @@
     "data/places/by/oslo/places_by.json",
     "data/places/film/oslo/places_oslo_film.json",
     "data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json",
+    "data/places/historie/akershus/places_historie_akershus_batch1.json",
+    "data/places/historie/akershus/places_historie_akershus_batch2.json",
+    "data/places/historie/akershus/places_historie_akershus_batch3.json",
+    "data/places/historie/akershus/places_historie_akershus_batch4.json",
     "data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json",
     "data/places/historie/oslo/places_historie.json",
     "data/places/historie/oslo/places_historie_added_batch_01.json",
@@ -138,6 +146,90 @@
   },
   "parseErrors": [],
   "highPriorityFindings": [
+    {
+      "file": "data/places/historie/oslo/places_historie.json",
+      "id": "eidsvollsbygningen",
+      "name": "Eidsvollsbygningen",
+      "category": "historie",
+      "lat": 60.3304,
+      "lon": 11.2617,
+      "r": 250,
+      "image": "",
+      "cardImage": "",
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "outside_expected_area",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/historie/oslo/places_historie.json",
+      "id": "oscarsborg_festning",
+      "name": "Oscarsborg festning",
+      "category": "historie",
+      "lat": 59.6759,
+      "lon": 10.6068,
+      "r": 300,
+      "image": "",
+      "cardImage": "",
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "outside_expected_area",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "eidsvollsbygningen",
+      "name": "Eidsvollsbygningen",
+      "category": "historie",
+      "lat": 60.33056,
+      "lon": 11.26139,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "oscarsborg_festning",
+      "name": "Oscarsborg festning",
+      "category": "historie",
+      "lat": 59.676,
+      "lon": 10.606,
+      "r": 360,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "low_precision_coord",
+        "outside_oslo_possible_intended",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "low_precision_coord, outside_oslo_possible_intended, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
     {
       "file": "data/places/musikk/oslo/places_musikk.json",
       "id": "blaa",
@@ -275,12 +367,15 @@
       "image": "",
       "cardImage": "",
       "frontImage": null,
-      "status": "outside_expected_area",
+      "status": "conflict",
       "flags": [
         "outside_oslo_possible_intended",
-        "outside_expected_area"
+        "outside_expected_area",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
       ],
-      "reason": "outside_oslo_possible_intended, outside_expected_area"
+      "reason": "outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
     },
     {
       "file": "data/places/historie/oslo/places_historie.json",
@@ -293,12 +388,15 @@
       "image": "",
       "cardImage": "",
       "frontImage": null,
-      "status": "outside_expected_area",
+      "status": "conflict",
       "flags": [
         "outside_oslo_possible_intended",
-        "outside_expected_area"
+        "outside_expected_area",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
       ],
-      "reason": "outside_oslo_possible_intended, outside_expected_area"
+      "reason": "outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
     },
     {
       "file": "data/places/historie/oslo/places_historie.json",
@@ -316,6 +414,463 @@
         "low_precision_coord"
       ],
       "reason": "low_precision_coord"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "raknehaugen",
+      "name": "Raknehaugen",
+      "category": "historie",
+      "lat": 60.1469,
+      "lon": 11.1366,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "nes_kirkeruiner",
+      "name": "Nes kirkeruiner",
+      "category": "historie",
+      "lat": 60.14899,
+      "lon": 11.45676,
+      "r": 220,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "blaker_skanse",
+      "name": "Blaker skanse",
+      "category": "historie",
+      "lat": 60.00361,
+      "lon": 11.30611,
+      "r": 240,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "eidsvollsbygningen",
+      "name": "Eidsvollsbygningen",
+      "category": "historie",
+      "lat": 60.33056,
+      "lon": 11.26139,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "eidsvoll_verk_andelva",
+      "name": "Eidsvoll Verk / Andelva",
+      "category": "historie",
+      "lat": 60.3297,
+      "lon": 11.2575,
+      "r": 300,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "needs_multiple_anchors",
+        "area_or_park_needs_manual_review"
+      ],
+      "reason": "outside_oslo_possible_intended, needs_multiple_anchors, area_or_park_needs_manual_review"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "fetsund_lenser",
+      "name": "Fetsund lenser",
+      "category": "historie",
+      "lat": 59.9256,
+      "lon": 11.1598,
+      "r": 300,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "tertitten_urskog_holandsbanen",
+      "name": "Tertitten / Urskog-Hølandsbanen",
+      "category": "historie",
+      "lat": 59.98628,
+      "lon": 11.24367,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "oscarsborg_festning",
+      "name": "Oscarsborg festning",
+      "category": "historie",
+      "lat": 59.676,
+      "lon": 10.606,
+      "r": 360,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "low_precision_coord",
+        "outside_oslo_possible_intended",
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "low_precision_coord, outside_oslo_possible_intended, duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch1.json",
+      "id": "trandumskogen",
+      "name": "Trandumskogen",
+      "category": "historie",
+      "lat": 60.2189,
+      "lon": 11.1177,
+      "r": 300,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch2.json",
+      "id": "enebakk_kirke",
+      "name": "Enebakk kirke",
+      "category": "historie",
+      "lat": 59.76234,
+      "lon": 11.14683,
+      "r": 220,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch2.json",
+      "id": "asker_kirke_kirkested",
+      "name": "Asker kirke / gamle kirkested",
+      "category": "historie",
+      "lat": 59.84333,
+      "lon": 10.43664,
+      "r": 220,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch2.json",
+      "id": "gamle_hvam_museum",
+      "name": "Gamle Hvam museum",
+      "category": "historie",
+      "lat": 60.10201,
+      "lon": 11.38486,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch2.json",
+      "id": "heggedal_hovedgard",
+      "name": "Heggedal hovedgård",
+      "category": "historie",
+      "lat": 59.78363,
+      "lon": 10.43882,
+      "r": 220,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch2.json",
+      "id": "hvitsten_sjobodene",
+      "name": "Hvitsten sjøbodene",
+      "category": "historie",
+      "lat": 59.5979,
+      "lon": 10.6541,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch3.json",
+      "id": "son_ladested",
+      "name": "Son ladested",
+      "category": "historie",
+      "lat": 59.5208,
+      "lon": 10.6849,
+      "r": 320,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch3.json",
+      "id": "holen_ladested",
+      "name": "Hølen ladested",
+      "category": "historie",
+      "lat": 59.53984,
+      "lon": 10.73919,
+      "r": 300,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch3.json",
+      "id": "hurdal_verk_glassverk",
+      "name": "Hurdal Verk / Hurdal Glassverk",
+      "category": "historie",
+      "lat": 60.45029,
+      "lon": 11.04809,
+      "r": 360,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch3.json",
+      "id": "stunner_boplass",
+      "name": "Stunner steinalderboplass",
+      "category": "historie",
+      "lat": 59.74657,
+      "lon": 10.91747,
+      "r": 420,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch3.json",
+      "id": "ski_middelalderkirke",
+      "name": "Ski middelalderkirke",
+      "category": "historie",
+      "lat": 59.72241,
+      "lon": 10.86144,
+      "r": 220,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch3.json",
+      "id": "krakstad_kirke_og_gravhaug",
+      "name": "Kråkstad kirke og gravhaug",
+      "category": "historie",
+      "lat": 59.6833,
+      "lon": 10.8833,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch4.json",
+      "id": "hadeland_glassverk",
+      "name": "Hadeland Glassverk",
+      "category": "historie",
+      "lat": 60.23813,
+      "lon": 10.39785,
+      "r": 360,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch4.json",
+      "id": "kistefos_traesliperi",
+      "name": "Kistefos Træsliberi",
+      "category": "historie",
+      "lat": 60.2245,
+      "lon": 10.3715,
+      "r": 420,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch4.json",
+      "id": "lunner_kirke",
+      "name": "Lunner kirke",
+      "category": "historie",
+      "lat": 60.2939,
+      "lon": 10.5866,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended",
+        "area_or_park_needs_manual_review"
+      ],
+      "reason": "outside_oslo_possible_intended, area_or_park_needs_manual_review"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch4.json",
+      "id": "hakadal_verk",
+      "name": "Hakadal Verk",
+      "category": "historie",
+      "lat": 60.12083,
+      "lon": 10.82278,
+      "r": 360,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch4.json",
+      "id": "seiersten_skanse",
+      "name": "Seiersten skanse",
+      "category": "historie",
+      "lat": 59.6719,
+      "lon": 10.6471,
+      "r": 260,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/historie/akershus/places_historie_akershus_batch4.json",
+      "id": "raelingen_bygdetun",
+      "name": "Rælingen bygdetun",
+      "category": "historie",
+      "lat": 59.9261,
+      "lon": 11.0608,
+      "r": 240,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
     },
     {
       "file": "data/places/kunst/oslo/places_kunst.json",

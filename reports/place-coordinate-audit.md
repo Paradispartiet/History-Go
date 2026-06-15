@@ -1,22 +1,26 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-06-15T12:59:22.705Z
+Generert: 2026-06-15T13:45:50.971Z
 
 ## Aktiv hovedstatistikk
-- Aktive place-filer lest: **42**
-- Aktive steder lest: **504**
-- ok: **297**
+- Aktive place-filer lest: **46**
+- Aktive steder lest: **540**
+- ok: **307**
 - needs_review: **77**
-- conflict: **2**
+- conflict: **6**
 - invalid: **0**
 - duplicate: **0**
-- outside_expected_area: **128**
+- outside_expected_area: **150**
 
 ## Aktive filer (fra manifest)
 - data/places/by/europe/portugal/lisbon/places_lisbon_by.json
 - data/places/by/oslo/places_by.json
 - data/places/film/oslo/places_oslo_film.json
 - data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json
+- data/places/historie/akershus/places_historie_akershus_batch1.json
+- data/places/historie/akershus/places_historie_akershus_batch2.json
+- data/places/historie/akershus/places_historie_akershus_batch3.json
+- data/places/historie/akershus/places_historie_akershus_batch4.json
 - data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json
 - data/places/historie/oslo/places_historie.json
 - data/places/historie/oslo/places_historie_added_batch_01.json
@@ -57,6 +61,10 @@ Generert: 2026-06-15T12:59:22.705Z
 - data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json
 
 ## Aktive steder som må rettes
+- data/places/historie/oslo/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord
+- data/places/historie/oslo/places_historie.json | oscarsborg_festning | Oscarsborg festning | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord
+- data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvollsbygningen | Eidsvollsbygningen | conflict | outside_oslo_possible_intended, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord
+- data/places/historie/akershus/places_historie_akershus_batch1.json | oscarsborg_festning | Oscarsborg festning | conflict | low_precision_coord, outside_oslo_possible_intended, duplicate_id, duplicate_id_different_coord, same_name_different_coord
 - data/places/musikk/oslo/places_musikk.json | blaa | Blå | conflict | same_name_different_coord
 - data/places/subkultur/oslo/places_subkultur.json | bla | Blå | conflict | low_precision_coord, same_name_different_coord
 
@@ -68,9 +76,35 @@ Generert: 2026-06-15T12:59:22.705Z
 | data/places/by/oslo/places_by.json | trikk_17_18 | Trikkelinje 17/18 | by | 59.92 | 10.76 | 300 | needs_review | needs_multiple_anchors |
 | data/places/historie/oslo/places_historie.json | middelalder_oslo | Middelalderparken | historie | 59.9048 | 10.7605 | 180 | needs_review | area_or_park_needs_manual_review |
 | data/places/historie/oslo/places_historie.json | gamle_trikkestallen | Gamle trikkestallen på Sagene | historie | 59.9396 | 10.7543 | 160 | needs_review | needs_multiple_anchors |
-| data/places/historie/oslo/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.3304 | 11.2617 | 250 | outside_expected_area | outside_oslo_possible_intended, outside_expected_area |
-| data/places/historie/oslo/places_historie.json | oscarsborg_festning | Oscarsborg festning | historie | 59.6759 | 10.6068 | 300 | outside_expected_area | outside_oslo_possible_intended, outside_expected_area |
+| data/places/historie/oslo/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.3304 | 11.2617 | 250 | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/historie/oslo/places_historie.json | oscarsborg_festning | Oscarsborg festning | historie | 59.6759 | 10.6068 | 300 | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
 | data/places/historie/oslo/places_historie.json | trefoldighetskirken | Trefoldighetskirken | historie | 59.9183 | 10.746 | 110 | needs_review | low_precision_coord |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | raknehaugen | Raknehaugen | historie | 60.1469 | 11.1366 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | nes_kirkeruiner | Nes kirkeruiner | historie | 60.14899 | 11.45676 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | blaker_skanse | Blaker skanse | historie | 60.00361 | 11.30611 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.33056 | 11.26139 | 260 | conflict | outside_oslo_possible_intended, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | historie | 60.3297 | 11.2575 | 300 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | fetsund_lenser | Fetsund lenser | historie | 59.9256 | 11.1598 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | tertitten_urskog_holandsbanen | Tertitten / Urskog-Hølandsbanen | historie | 59.98628 | 11.24367 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | oscarsborg_festning | Oscarsborg festning | historie | 59.676 | 10.606 | 360 | conflict | low_precision_coord, outside_oslo_possible_intended, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | trandumskogen | Trandumskogen | historie | 60.2189 | 11.1177 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch2.json | enebakk_kirke | Enebakk kirke | historie | 59.76234 | 11.14683 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch2.json | asker_kirke_kirkested | Asker kirke / gamle kirkested | historie | 59.84333 | 10.43664 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch2.json | gamle_hvam_museum | Gamle Hvam museum | historie | 60.10201 | 11.38486 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch2.json | heggedal_hovedgard | Heggedal hovedgård | historie | 59.78363 | 10.43882 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch2.json | hvitsten_sjobodene | Hvitsten sjøbodene | historie | 59.5979 | 10.6541 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch3.json | son_ladested | Son ladested | historie | 59.5208 | 10.6849 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch3.json | holen_ladested | Hølen ladested | historie | 59.53984 | 10.73919 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch3.json | hurdal_verk_glassverk | Hurdal Verk / Hurdal Glassverk | historie | 60.45029 | 11.04809 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch3.json | stunner_boplass | Stunner steinalderboplass | historie | 59.74657 | 10.91747 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch3.json | ski_middelalderkirke | Ski middelalderkirke | historie | 59.72241 | 10.86144 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch3.json | krakstad_kirke_og_gravhaug | Kråkstad kirke og gravhaug | historie | 59.6833 | 10.8833 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch4.json | hadeland_glassverk | Hadeland Glassverk | historie | 60.23813 | 10.39785 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch4.json | kistefos_traesliperi | Kistefos Træsliberi | historie | 60.2245 | 10.3715 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch4.json | lunner_kirke | Lunner kirke | historie | 60.2939 | 10.5866 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/akershus/places_historie_akershus_batch4.json | hakadal_verk | Hakadal Verk | historie | 60.12083 | 10.82278 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch4.json | seiersten_skanse | Seiersten skanse | historie | 59.6719 | 10.6471 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/akershus/places_historie_akershus_batch4.json | raelingen_bygdetun | Rælingen bygdetun | historie | 59.9261 | 11.0608 | 240 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/kunst/oslo/places_kunst.json | ekebergparken | Ekebergparken skulpturpark | kunst | 59.8997 | 10.7753 | 200 | needs_review | area_or_park_needs_manual_review |
 | data/places/litteratur/oslo/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.92096 | 10.72936 | 30 | needs_review | suspicious_radius_low |
 | data/places/litteratur/oslo/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 | needs_review | low_precision_coord |
