@@ -26,7 +26,8 @@
     "data/stories/stories_manifest_subkultur_lisboa_batch_01.json",
     "data/stories/stories_manifest_litteratur_lisboa_batch_03.json",
     "data/stories/stories_manifest_kunst_lisboa_batch_02.json",
-    "data/stories/stories_manifest_kunst_lisboa_batch_03.json"
+    "data/stories/stories_manifest_kunst_lisboa_batch_03.json",
+    "data/stories/stories_manifest_historie_lisboa_batch_02.json"
   ];
 
   function ensureArray(value) {
@@ -175,7 +176,7 @@
     },
 
     getByPerson(personId) {
-      return this.byPerson[personId] || [];
+      return this.byPerson(personId) || [];
     },
 
     getByType(type) {
