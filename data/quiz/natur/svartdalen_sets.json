@@ -1,0 +1,92 @@
+{
+  "targetId": "svartdalen",
+  "categoryId": "natur",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_svartdalen.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen detaljerte artsfunn uten kilde.",
+      "Ingen dagsaktuelle bru- eller vedlikeholdsstatus uten kilde.",
+      "Ingen presise geologiske tidsangivelser uten kilde.",
+      "Story-data brukes for ravinedal, stryk/fall, løvskog, turvei og tilgjengelig bynatur."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "natur_svartdalen_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"svartdalen_s1_q1","quiz_id":"natur_svartdalen_set_1_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva gjør Svartdalen til et spesielt Alna-sted?","options":["Den viser Alnaelva som stryk, fall, ravineterreng og løvskog tett ved byen","Den ligger uten kontakt med vann","Den er bare et flatt handlesenter"],"answer":"Den viser Alnaelva som stryk, fall, ravineterreng og løvskog tett ved byen","answerIndex":0,"knowledge":"Svartdalen gjør Alnaelva fysisk tydelig i terrenget, med bratte sider, vannlyd og bynær villmarkspreg.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["svartdalen","alnaelva","ravine"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s1_q2","quiz_id":"natur_svartdalen_set_1_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva bør spilleren se etter først i Svartdalen?","options":["Bratte sider, løvskog, fuktige kanter, stryk, fall og hvordan stien følger terrenget","Bare butikklogoer","Kun åpne asfaltflater"],"answer":"Bratte sider, løvskog, fuktige kanter, stryk, fall og hvordan stien følger terrenget","answerIndex":0,"knowledge":"Storyen ber spilleren se hvordan elva skjærer seg ned og hvordan grøntkorridoren følger dalformen.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","elvegjel"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s1_q3","quiz_id":"natur_svartdalen_set_1_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan former elva terrenget, og hvordan gjør turveien dalen tilgjengelig?","Hvorfor finnes det ingen elv her?","Hvilken kafé er nærmest akkurat nå?"],"answer":"Hvordan former elva terrenget, og hvordan gjør turveien dalen tilgjengelig?","answerIndex":0,"knowledge":"Spørsmålet kobler direkte observasjon til ravinedal, vassdrag og tilgjengelig bynatur.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_svartdalen_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"svartdalen_s2_q1","quiz_id":"natur_svartdalen_set_2_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva slags stedsliv peker Svartdalen mot?","options":["Turvei, hverdagsnatur, vannlyd, bratt terreng og grønn korridor mellom bydeler","Kun lukket industriområde","Bare biltrafikk"],"answer":"Turvei, hverdagsnatur, vannlyd, bratt terreng og grønn korridor mellom bydeler","answerIndex":0,"knowledge":"Svartdalen blir brukbar gjennom turvei og bru, men beholder preg av trang dal og bynær villmark.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["turvei","bynatur"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s2_q2","quiz_id":"natur_svartdalen_set_2_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva gjør turvei og hengebru viktige i storyen?","options":["De gjør et tidligere vanskelig elverom tilgjengelig uten å viske ut dalens preg","De fjerner all natur","De viser at elva ikke betyr noe"],"answer":"De gjør et tidligere vanskelig elverom tilgjengelig uten å viske ut dalens preg","answerIndex":0,"knowledge":"Storyen legger vekt på at tilrettelegging kan gjøre et dramatisk elverom brukbart, samtidig som egenarten beholdes.","difficulty":1,"question_type":"stedfunksjon","question_layer":"place_life","tags":["tilgjengelighet","hengebru"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s2_q3","quiz_id":"natur_svartdalen_set_2_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva bør holdes ute av trygg Svartdalen-quiz?","options":["Usikre artsfunn, dagsaktuell brustatus og presise geologiske tidsangivelser uten kilde","Begrepet ravinedal","Observasjon av stryk og løvskog"],"answer":"Usikre artsfunn, dagsaktuell brustatus og presise geologiske tidsangivelser uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bruker varige trekk fra storyen: ravine, stryk/fall, løvskog, turvei og grønn korridor.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_svartdalen_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"svartdalen_s3_q1","quiz_id":"natur_svartdalen_set_3_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva betyr ravinedal?","options":["En dalform der vann har skåret seg ned i terrenget","Et helt flatt torg","Et lukket kontorbygg"],"answer":"En dalform der vann har skåret seg ned i terrenget","answerIndex":0,"knowledge":"Svartdalen lar spilleren kjenne ravineformen gjennom bratte sider, trang dal og elv i stryk og fall.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["ravinedal"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
+        {"id":"svartdalen_s3_q2","quiz_id":"natur_svartdalen_set_3_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva betyr grønn korridor?","options":["Et sammenhengende grønt rom som binder natur, ferdsel og steder sammen","Et tilfeldig skilt","Et rom uten vegetasjon"],"answer":"Et sammenhengende grønt rom som binder natur, ferdsel og steder sammen","answerIndex":0,"knowledge":"Svartdalen binder Bryn, Kværner og videre elveløp sammen i Alna-fortellingen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["gronn_korridor"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
+        {"id":"svartdalen_s3_q3","quiz_id":"natur_svartdalen_set_3_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva betyr stedlesning?","options":["Å bruke observasjoner på stedet til å forstå større sammenhenger","Å svare uten å se seg rundt","Å pugge løsrevne navn"],"answer":"Å bruke observasjoner på stedet til å forstå større sammenhenger","answerIndex":0,"knowledge":"I Svartdalen betyr stedlesning å koble elv, ravine, løvskog, turvei og bynær villmark.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_svartdalen_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"svartdalen_s4_q1","quiz_id":"natur_svartdalen_set_4_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva er en avansert observasjon i Svartdalen?","options":["Å se hvordan elva former dalen, mens sti og bru gjør terrenget tilgjengelig","Å bare telle trær","Å ignorere vannlyden"],"answer":"Å se hvordan elva former dalen, mens sti og bru gjør terrenget tilgjengelig","answerIndex":0,"knowledge":"Avansert stedlesning kobler naturprosess, terrengform og menneskelig tilrettelegging.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["terreng","tilgjengelighet"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s4_q2","quiz_id":"natur_svartdalen_set_4_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva kan Svartdalen lære om bynær villmark?","options":["At dramatisk terreng, løvskog og vannlyd kan finnes tett ved tett by","At villmark bare finnes langt fra byen","At bynær natur alltid er flat og enkel"],"answer":"At dramatisk terreng, løvskog og vannlyd kan finnes tett ved tett by","answerIndex":0,"knowledge":"Svartdalen er sterk fordi byen smalner, og elva kjennes fysisk i et trangt grønt rom.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["bynær_villmark","løvskog"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s4_q3","quiz_id":"natur_svartdalen_set_4_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"place","question":"Hva bør en god Svartdalen-quiz trene spilleren i?","options":["Å lese ravinedal, stryk/fall, løvskog, turvei og grønn korridor sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese ravinedal, stryk/fall, løvskog, turvei og grønn korridor sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå det dramatiske elverommet de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "natur_svartdalen_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"svartdalen_s5_q1","quiz_id":"natur_svartdalen_set_5_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva er den dypere læringen i Svartdalen?","options":["At byelva kan være en formende naturkraft, ikke bare en linje på kartet","At elver ikke former landskap","At turveier bare er transport"],"answer":"At byelva kan være en formende naturkraft, ikke bare en linje på kartet","answerIndex":0,"knowledge":"Svartdalen viser Alnaelva som fysisk kraft i terrenget gjennom stryk, fall og ravineform.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["byelv","landskapsform"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s5_q2","quiz_id":"natur_svartdalen_set_5_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hva kan tilgjengeliggjøring skjule og vise samtidig?","options":["Den kan gjøre et vanskelig elverom brukbart, men også endre hvordan vi opplever villmarkspreget","Den fjerner automatisk all natur","Den gjør historien irrelevant"],"answer":"Den kan gjøre et vanskelig elverom brukbart, men også endre hvordan vi opplever villmarkspreget","answerIndex":0,"knowledge":"Turvei og bru er både adgang og inngrep, og derfor gode å diskutere i History Go.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["tilgjengelighet","bynatur"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"},
+        {"id":"svartdalen_s5_q3","quiz_id":"natur_svartdalen_set_5_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"emne","question":"Hvordan fungerer Svartdalen i en Alna-fortelling?","options":["Som dramatisk ravineparti som viser samme vassdrag mer fysisk enn Alnaparken","Som et sted uten vann","Som et isolert kjøpesenter"],"answer":"Som dramatisk ravineparti som viser samme vassdrag mer fysisk enn Alnaparken","answerIndex":0,"knowledge":"Svartdalen følger naturlig etter Alnaparken fordi den viser et mer dramatisk parti av Alnaelva.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["alnaparken","alnaelva"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "natur_svartdalen_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"svartdalen_s6_q1","quiz_id":"natur_svartdalen_set_6_q1","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"concept","question":"Hvilket begrep beskriver dalformen der vann har skåret seg ned i terrenget?","options":["Ravinedal","Sanering","Privat lager"],"answer":"Ravinedal","answerIndex":0,"knowledge":"Ravinedal er nøkkelbegrepet for Svartdalen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["ravinedal"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
+        {"id":"svartdalen_s6_q2","quiz_id":"natur_svartdalen_set_6_q2","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"concept","question":"Hva betyr bynær villmark?","options":["Naturpreg som oppleves sterkt selv om stedet ligger tett på byen","Natur langt fra alle mennesker","Et sted uten vegetasjon"],"answer":"Naturpreg som oppleves sterkt selv om stedet ligger tett på byen","answerIndex":0,"knowledge":"Svartdalen har bynær villmarkspreg gjennom trang dal, løvskog, fuktige kanter og lyd av vann.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["bynær_villmark"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"},
+        {"id":"svartdalen_s6_q3","quiz_id":"natur_svartdalen_set_6_q3","categoryId":"natur","placeId":"svartdalen","targetId":"svartdalen","question_scope":"concept","question":"Hvilket begrepspar forklarer Svartdalen best?","options":["Ravinedal og grønn korridor","Sanering og knutepunkt","Flyplass og høyfjell"],"answer":"Ravinedal og grønn korridor","answerIndex":0,"knowledge":"Svartdalen blir tydeligst når terrengformen leses sammen med forbindelsen langs Alnaelva.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["ravinedal","gronn_korridor"],"source":["data/stories/stories_svartdalen.json"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
