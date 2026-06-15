@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-06-15T12:59:22.968Z
+Generert: 2026-06-15T13:45:51.192Z
 
 ## Oppsummering
-- Aktive filer validert: **42**
-- Antall steder validert: **504**
+- Aktive filer validert: **46**
+- Antall steder validert: **540**
 - Harde feil: **0**
-- Varsler: **137**
-- Coordinate review candidates: **206** signaler fordelt på **156** steder
+- Varsler: **148**
+- Coordinate review candidates: **223** signaler fordelt på **170** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -19,6 +19,10 @@ Nivåene betyr:
 - data/places/film/oslo/places_oslo_film.json
 - data/places/historie/oslo/places_historie.json
 - data/places/historie/oslo/places_historie_added_batch_01.json
+- data/places/historie/akershus/places_historie_akershus_batch1.json
+- data/places/historie/akershus/places_historie_akershus_batch2.json
+- data/places/historie/akershus/places_historie_akershus_batch3.json
+- data/places/historie/akershus/places_historie_akershus_batch4.json
 - data/places/kunst/oslo/places_kunst.json
 - data/places/litteratur/oslo/places_litteratur.json
 - data/places/media/oslo/places_oslo_media.json
@@ -62,17 +66,28 @@ Nivåene betyr:
 - Ingen
 
 ## Varsler
+- data/places/by/oslo/places_by.json#torggata: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#gronland_basarene: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#ring_3: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#kampen_kirke: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#jernbanetorget: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#gronlandsleiret: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
 - data/places/by/oslo/places_by.json#stensparken: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#birkelunden: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#barcode: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/oslo/places_historie.json#damstredet_telthusbakken: coordStatus=verified uten coordPrecisionM
 - data/places/historie/oslo/places_historie.json#trefoldighetskirken: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/oslo/places_historie_added_batch_01.json#prinds_christian_augusts_minde: lineært sted uten anchors
+- data/places/historie/akershus/places_historie_akershus_batch1.json#eidsvoll_verk_andelva: lineært sted uten anchors
+- data/places/historie/akershus/places_historie_akershus_batch1.json#eidsvoll_verk_andelva: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch1.json#tertitten_urskog_holandsbanen: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch1.json#oscarsborg_festning: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/akershus/places_historie_akershus_batch1.json#trandumskogen: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch3.json#hurdal_verk_glassverk: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch4.json#hakadal_verk: stort område uten coordNote/coordStatus
 - data/places/litteratur/oslo/places_litteratur.json#alf_proysen_statue_nittedal: lav koordinatpresisjon (<4 desimaler)
 - data/places/litteratur/oslo/places_litteratur.json#oscar_braaten_statuen: lav koordinatpresisjon (<4 desimaler)
 - data/places/litteratur/oslo/places_litteratur.json#alexander_kiellands_plass: lav koordinatpresisjon (<4 desimaler)
@@ -202,70 +217,37 @@ Nivåene betyr:
 
 ## Coordinate review candidates
 
-Totalt 206 signaler fordelt på 156 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 223 signaler fordelt på 170 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| lineært sted uten anchors | 33 |
-| lav koordinatpresisjon (<4 desimaler) | 80 |
-| stasjon/park/gate/torg/elv uten coordinate metadata | 39 |
+| lav koordinatpresisjon (<4 desimaler) | 85 |
+| lineært sted uten anchors | 34 |
+| stasjon/park/gate/torg/elv uten coordinate metadata | 43 |
 | coordStatus=verified uten coordPrecisionM | 2 |
-| park/stort område uten anchors eller coordNote | 11 |
+| park/stort område uten anchors eller coordNote | 16 |
 | svært stor r (>=500 m) uten coordNote | 17 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 14 |
-| ligger svært langt fra de andre stedene i samme fil | 10 |
+| ligger svært langt fra de andre stedene i samme fil | 12 |
 
-### lineært sted uten anchors (33)
-
-| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9104 | 10.7397 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| prinds_christian_augusts_minde | Prinds Christian Augusts Minde | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.915289 | 10.75595 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| oslo_kornmagasin | Christiania kornmagasin | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9119 | 10.7428 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9297 | 10.7576 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| alnaelvstien | Alnaelvstien | natur | data/places/natur/oslo/places_oslo_alna.json | 59.931 | 10.83 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| loelva_historisk | Loelva (historisk vassdrag) | natur | data/places/natur/oslo/places_oslo_alna.json | 59.928 | 10.82 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| alnabru_jernbane_og_logistikk | Alnabru – jernbane og logistikk | by | data/places/natur/oslo/places_oslo_alna.json | 59.936 | 10.814 | 350 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| stilla_nydalen | Stilla ved Nydalen | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9449 | 10.7654 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| bjoelsenparken_elvenaer | Bjølsenparken (elvenær del) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9386 | 10.7588 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| vaterland_historisk_elvelop | Vaterland – historisk elveløp | historie | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9158 | 10.7332 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| noklevann_ljanselva_start | Nøklevann (Ljanselva start) | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8836 | 10.878 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| ljanselva_skullerud | Ljanselva ved Skullerud | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8642 | 10.8423 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8485 | 10.816 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| ljanselva_ljan | Ljanselva ved Ljan | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8359 | 10.8099 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| ljanselva_fiskevollen | Ljanselva ved Fiskevollen | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8319 | 10.8048 | 140 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| ljanselva_bunnefjorden | Ljanselva ut i Bunnefjorden | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8288 | 10.8034 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| brenneriveien_ingens_gate | Brenneriveien / Ingens gate | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| meteorologisk_institutt | Meteorologisk institutt | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9429 | 10.7188 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| nobelinstituttet | Nobelinstituttet | vitenskap | data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json | 59.9198 | 10.7489 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| psykologisk_institutt_uio | Psykologisk institutt, UiO | psykologi | data/places/psykologi/oslo/places_psykologi.json | 59.9419 | 10.7229 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_tribunal_constitucional | Tribunal Constitucional / Palácio Ratton | politikk | data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | 38.7227 | -9.1421 | 100 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_conserveira_de_lisboa | Conserveira de Lisboa | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7098 | -9.1374 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_instituto_superior_tecnico | Instituto Superior Técnico | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7368 | -9.1395 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_instituto_higiene_medicina_tropical | Instituto de Higiene e Medicina Tropical | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7041 | -9.201 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_instituto_ricardo_jorge | Instituto Nacional de Saúde Doutor Ricardo Jorge | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7693 | -9.1789 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-| lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
-
-### lav koordinatpresisjon (<4 desimaler) (80)
+### lav koordinatpresisjon (<4 desimaler) (85)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| torggata | Torggata | by | data/places/by/oslo/places_by.json | 59.915 | 10.7526 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| gronland_basarene | Grønland basarene | by | data/places/by/oslo/places_by.json | 59.9125 | 10.765 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trikk_17_18 | Trikkelinje 17/18 | by | data/places/by/oslo/places_by.json | 59.92 | 10.76 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | kampen_kirke | Kampen kirke | by | data/places/by/oslo/places_by.json | 59.912 | 10.782 | 160 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | jernbanetorget | Jernbanetorget | by | data/places/by/oslo/places_by.json | 59.911 | 10.75 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| gronlandsleiret | Grønlandsleiret | by | data/places/by/oslo/places_by.json | 59.9116 | 10.767 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stensparken | Stensparken | by | data/places/by/oslo/places_by.json | 59.9272 | 10.733 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | birkelunden | Birkelunden | by | data/places/by/oslo/places_by.json | 59.927 | 10.7601 | 190 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| barcode | Barcode | by | data/places/by/oslo/places_by.json | 59.908 | 10.7602 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trefoldighetskirken | Trefoldighetskirken | historie | data/places/historie/oslo/places_historie.json | 59.9183 | 10.746 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| oscarsborg_festning | Oscarsborg festning | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.676 | 10.606 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.062 | 10.875 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.938 | 10.76 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -340,11 +322,54 @@ Totalt 206 signaler fordelt på 156 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_champalimaud_foundation | Fundação Champalimaud | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.6935 | -9.219 | 250 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | lisbon_feira_do_livro | Feira do Livro de Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.727 | -9.1542 | 350 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 
-### stasjon/park/gate/torg/elv uten coordinate metadata (39)
+### lineært sted uten anchors (34)
+
+| id | name | category | fil | lat | lon | r | Foreslått manuell handling |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ring_3 | Ring 3 | by | data/places/by/oslo/places_by.json | 59.931 | 10.792 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| christiania_torv | Christiania Torv | by | data/places/by/oslo/places_by.json | 59.9104 | 10.7397 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| prinds_christian_augusts_minde | Prinds Christian Augusts Minde | historie | data/places/historie/oslo/places_historie_added_batch_01.json | 59.915289 | 10.75595 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 60.3297 | 11.2575 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | data/places/media/oslo/places_oslo_media.json | 59.917 | 10.756 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| oslo_kornmagasin | Christiania kornmagasin | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9119 | 10.7428 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| christiania_seildugsfabrik | Christiania Seildugsfabrik | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9297 | 10.7576 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| akerselva_industri | Akerselva industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9286 | 10.758 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| alnaelvstien | Alnaelvstien | natur | data/places/natur/oslo/places_oslo_alna.json | 59.931 | 10.83 | 300 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| loelva_historisk | Loelva (historisk vassdrag) | natur | data/places/natur/oslo/places_oslo_alna.json | 59.928 | 10.82 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| alnabru_jernbane_og_logistikk | Alnabru – jernbane og logistikk | by | data/places/natur/oslo/places_oslo_alna.json | 59.936 | 10.814 | 350 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| stilla_nydalen | Stilla ved Nydalen | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9449 | 10.7654 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| bjoelsenparken_elvenaer | Bjølsenparken (elvenær del) | natur | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9386 | 10.7588 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| vaterland_historisk_elvelop | Vaterland – historisk elveløp | historie | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | 59.9158 | 10.7332 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| noklevann_ljanselva_start | Nøklevann (Ljanselva start) | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8836 | 10.878 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ljanselva_skullerud | Ljanselva ved Skullerud | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8642 | 10.8423 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ljanselva_hauketo | Ljanselva ved Hauketo | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8485 | 10.816 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ljanselva_ljan | Ljanselva ved Ljan | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8359 | 10.8099 | 170 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ljanselva_fiskevollen | Ljanselva ved Fiskevollen | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8319 | 10.8048 | 140 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| ljanselva_bunnefjorden | Ljanselva ut i Bunnefjorden | natur | data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json | 59.8288 | 10.8034 | 120 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| hausmannsgate_aksen | Hausmannsgate-aksen | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9189 | 10.7513 | 240 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| schweigaards_gate_lodalen | Schweigaards gate–Lodalen veggakse | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9077 | 10.7725 | 260 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| kuba_akselpassasjer | Kuba-passasjene ved Akerselva | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9236 | 10.7558 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| brenneriveien_ingens_gate | Brenneriveien / Ingens gate | subkultur | data/places/subkultur/oslo/places_subkultur.json | 59.9186 | 10.757 | 180 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| meteorologisk_institutt | Meteorologisk institutt | vitenskap | data/places/vitenskap/oslo/places_vitenskap.json | 59.9429 | 10.7188 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| nobelinstituttet | Nobelinstituttet | vitenskap | data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json | 59.9198 | 10.7489 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| psykologisk_institutt_uio | Psykologisk institutt, UiO | psykologi | data/places/psykologi/oslo/places_psykologi.json | 59.9419 | 10.7229 | 160 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_tribunal_constitucional | Tribunal Constitucional / Palácio Ratton | politikk | data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | 38.7227 | -9.1421 | 100 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_conserveira_de_lisboa | Conserveira de Lisboa | naeringsliv | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | 38.7098 | -9.1374 | 60 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_instituto_superior_tecnico | Instituto Superior Técnico | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7368 | -9.1395 | 400 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_instituto_higiene_medicina_tropical | Instituto de Higiene e Medicina Tropical | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7041 | -9.201 | 150 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_instituto_ricardo_jorge | Instituto Nacional de Saúde Doutor Ricardo Jorge | vitenskap | data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json | 38.7693 | -9.1789 | 250 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+| lisbon_santo_antonio_festival | Santo António-festivalen i Lisboa | populaerkultur | data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json | 38.7117 | -9.1297 | 700 | Sjekk strekningen på kart; legg til anchors langs ruta eller coordNote som forklarer valgt punkt. |
+
+### stasjon/park/gate/torg/elv uten coordinate metadata (43)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | middelalder_oslo | Middelalderparken | historie | data/places/historie/oslo/places_historie.json | 59.9048 | 10.7605 | 180 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| nostvet_boplass | Nøstvet-boplassen | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.75109 | 10.7996 | 220 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 60.3297 | 11.2575 | 300 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| kjeller_flyplass | Kjeller flyplass | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.96944 | 11.03889 | 360 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
+| stunner_boplass | Stunner steinalderboplass | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 59.74657 | 10.91747 | 420 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | ekebergparken | Ekebergparken skulpturpark | kunst | data/places/kunst/oslo/places_kunst.json | 59.8997 | 10.7753 | 200 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | inger_hagerups_plass | Inger Hagerups plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9427 | 10.8553 | 130 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
 | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Sjekk punktet manuelt og legg til coordStatus/coordSource/coordNote. |
@@ -391,10 +416,15 @@ Totalt 206 signaler fordelt på 156 steder. Et sted kan ha flere signaler. Kandi
 | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | data/places/historie/oslo/places_historie.json | 59.9236 | 10.7474 | 190 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### park/stort område uten anchors eller coordNote (11)
+### park/stort område uten anchors eller coordNote (16)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 60.3297 | 11.2575 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| tertitten_urskog_holandsbanen | Tertitten / Urskog-Hølandsbanen | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.98628 | 11.24367 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| trandumskogen | Trandumskogen | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 60.2189 | 11.1177 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| hurdal_verk_glassverk | Hurdal Verk / Hurdal Glassverk | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 60.45029 | 11.04809 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| hakadal_verk | Hakadal Verk | historie | data/places/historie/akershus/places_historie_akershus_batch4.json | 60.12083 | 10.82278 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | bryn_industriomrade | Bryn industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9129 | 10.8251 | 250 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
@@ -448,11 +478,13 @@ Totalt 206 signaler fordelt på 156 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_cinema_sao_jorge | Cinema São Jorge | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 100 | Deler punkt med: lisbon_doclisboa. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 250 | Deler punkt med: lisbon_cinema_sao_jorge. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 
-### ligger svært langt fra de andre stedene i samme fil (10)
+### ligger svært langt fra de andre stedene i samme fil (12)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | eidsvollsbygningen | Eidsvollsbygningen | historie | data/places/historie/oslo/places_historie.json | 60.3304 | 11.2617 | 250 | Punktet ligger ~54 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
+| gamle_hvam_museum | Gamle Hvam museum | historie | data/places/historie/akershus/places_historie_akershus_batch2.json | 60.10201 | 11.38486 | 260 | Punktet ligger ~50 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
+| hurdal_verk_glassverk | Hurdal Verk / Hurdal Glassverk | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 60.45029 | 11.04809 | 360 | Punktet ligger ~81 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | proysenhuset_rudshogda | Prøysenhuset – Rudshøgda | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.8827 | 10.9502 | 160 | Punktet ligger ~108 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | valerbanen | Vålerbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.7094 | 11.9052 | 420 | Punktet ligger ~119 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | gardermoen_raceway | Gardermoen Raceway | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1795 | 11.1378 | 320 | Punktet ligger ~52 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
