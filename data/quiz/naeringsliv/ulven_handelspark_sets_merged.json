@@ -1,0 +1,2246 @@
+{
+  "targetId": "ulven_handelspark",
+  "categoryId": "naeringsliv",
+  "source_quiz_file": "data/quiz/quiz_naeringsliv.json",
+  "generator_version": "v5_1_external_priority_chat_merged_naeringsliv_5x6",
+  "size_class": "normal_place",
+  "generated_from": [
+    "data/quiz/quiz_naeringsliv.json",
+    "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+    "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+    "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+    "https://snl.no/Ulven_-_Oslo",
+    "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+    "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+    "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+    "https://www.afgruppen.no/prosjekter/bygg/construction-city/",
+    "https://www.lpo.no/prosjekter/ulven-boliger",
+    "https://www.obos.no/bolig/nabolag/ulven",
+    "https://www.obos.no/bolig/prosjekt/ulven-t"
+  ],
+  "merge_notes": {
+    "existing_quiz_status": "Existing flat questions found in data/quiz/quiz_naeringsliv.json for ulven_handelspark: 5 questions. No separate set-file found.",
+    "kept": "Kept useful core: previous industry/business use, transformation after 2018, OBOS as actor, and combined housing/business objective.",
+    "corrected": "Treated target as Ulven transformation/business district rather than a literal shopping park. Corrected 'massivtre og grønne tak' by not using it as a general answer; sources support industry/logistics-to-green-urban-district, park/torg/gater, BREEAM Excellent for Construction City, and mixed housing/business/service.",
+    "not_continued": "Did not continue flat 5-question structure. Did not use generic questions or em_by_ prefix.",
+    "added": "Added 5 sets x 6 questions with source-first anchors: Ulven location/name, industry and business in north, OBOS 2016 purchase, 280 daa, Hovinbyen, 2000 homes/200000 m2 business/4500 workplaces, Ulven torg, Construction City, BREEAM Excellent, Ulvenparken and local service/transport."
+  },
+  "profile_snapshot": {
+    "place_type": "urban_transformation_mixed_use_business_area",
+    "subtype": "ulven_industry_logistics_to_housing_business_construction_city",
+    "signature_features": [
+      "Ulven between Økern and Teisen",
+      "industry and business use before transformation",
+      "OBOS 2016 purchase of 280 daa",
+      "Hovinbyen transformation",
+      "Construction City and mixed housing/business/service"
+    ],
+    "primary_angles": [
+      "omstilling",
+      "eiendom",
+      "næring",
+      "infrastruktur"
+    ],
+    "must_include": [
+      "do not treat as literal shopping park only",
+      "correct mass timber/green-roof claim unless verified",
+      "connect industry/logistics history to Construction City and urban transformation"
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "naeringsliv_ulven_handelspark_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "history_intro_story",
+      "questions": [
+        {
+          "id": "ulven_handelspark_quiz_1",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_1_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvor ligger Ulven ifølge Store norske leksikon?",
+          "options": [
+            "I bydel Alna mellom Økern og Teisen",
+            "Ved Akershusstranda mellom Bjørvika og Pipervika",
+            "På Sagene ved Akerselva"
+          ],
+          "answer": "I bydel Alna mellom Økern og Teisen",
+          "answerIndex": 0,
+          "dimension": "lokalisering",
+          "topic": "Ulven som strøk",
+          "knowledge": "SNL beskriver Ulven som et strøk i bydel Alna mellom Økern og Teisen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ulven",
+            "Alna",
+            "Økern",
+            "Teisen"
+          ],
+          "concept_focus": [
+            "Ulven",
+            "Alna"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ulven",
+            "alna",
+            "økern"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Ulven_-_Oslo",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_2",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_1_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva kommer navnet Ulven fra ifølge SNL?",
+          "options": [
+            "Norrønt Ulfvin, av alfr og vin",
+            "Latinsk urbanus, bymessig",
+            "Dansk ulvehandel"
+          ],
+          "answer": "Norrønt Ulfvin, av alfr og vin",
+          "answerIndex": 0,
+          "dimension": "navnehistorie",
+          "topic": "Ulven-navnet",
+          "knowledge": "SNL forklarer navnet Ulven fra norrønt Ulfvin, av alfr, grus, og vin, naturlig eng.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ulfvin",
+            "alfr",
+            "vin"
+          ],
+          "concept_focus": [
+            "Ulfvin",
+            "alfr"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "navn",
+            "ulfvin",
+            "ulven"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Ulven_-_Oslo"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_3",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_1_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva beskriver SNL som næringspreg i nordre Ulven før den nye transformasjonen?",
+          "options": [
+            "Industriområde og annen næringsvirksomhet",
+            "Kun fisketorg og fergeterminal",
+            "Bare middelalderkverner"
+          ],
+          "answer": "Industriområde og annen næringsvirksomhet",
+          "answerIndex": 0,
+          "dimension": "historie",
+          "topic": "industri og næring",
+          "knowledge": "SNL beskriver at Ulven hadde industriområde og annen næringsvirksomhet i nord, og blokkbebyggelse fra 1950-årene i sør.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1950,
+          "epoke_id": "ulven_gard_bolig_industri_og_logistikk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "industriområde",
+            "næringsvirksomhet",
+            "boligblokker"
+          ],
+          "concept_focus": [
+            "industriområde",
+            "næringsvirksomhet"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "industri",
+            "næring",
+            "ulven"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://snl.no/Ulven_-_Oslo",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "ulven_handelspark_quiz_4",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_1_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Når ble Ulven transformatorstasjon satt i drift ifølge Oslo byleksikon?",
+          "options": [
+            "1953",
+            "1860",
+            "2018"
+          ],
+          "answer": "1953",
+          "answerIndex": 0,
+          "dimension": "infrastruktur",
+          "topic": "transformatorstasjon",
+          "knowledge": "Oslo byleksikon beskriver Ulven transformatorstasjon som satt i drift i 1953.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1953,
+          "epoke_id": "ulven_gard_bolig_industri_og_logistikk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "transformatorstasjon",
+            "1953",
+            "infrastruktur"
+          ],
+          "concept_focus": [
+            "transformatorstasjon",
+            "1953"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "transformatorstasjon",
+            "1953",
+            "ulven"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_5",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_1_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken boligbygging preget Ulven i 1950-årene?",
+          "options": [
+            "Nærmere 30 blokker i Ulven og Helsfyr borettslag",
+            "Kun eneboliger rundt en gård",
+            "Bare hoteller og kontorer"
+          ],
+          "answer": "Nærmere 30 blokker i Ulven og Helsfyr borettslag",
+          "answerIndex": 0,
+          "dimension": "bolig og byutvikling",
+          "topic": "1950-tallsblokker",
+          "knowledge": "Oslo byleksikon skriver at stor boligbygging i 1950-årene omfattet nærmere 30 blokker i Ulven og Helsfyr borettslag.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": 1950,
+          "epoke_id": "ulven_gard_bolig_industri_og_logistikk",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ulven og Helsfyr borettslag",
+            "30 blokker",
+            "1950-tallet"
+          ],
+          "concept_focus": [
+            "Ulven og Helsfyr borettslag",
+            "30 blokker"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "1950_tallet",
+            "blokker",
+            "borettslag"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://snl.no/Ulven_-_Oslo"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_6",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_1_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken næringslivslesning passer best for Ulven?",
+          "options": [
+            "Et område der gårdshistorie, etterkrigsboliger, industri/logistikk, næring, OBOS-transformasjon og kunnskapsarbeidsplasser må leses sammen",
+            "Et rent kjøpesenter uten bolig- eller næringshistorie",
+            "Et vannkraftdrevet kvernhus ved Akerselva"
+          ],
+          "answer": "Et område der gårdshistorie, etterkrigsboliger, industri/logistikk, næring, OBOS-transformasjon og kunnskapsarbeidsplasser må leses sammen",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet Ulven-analyse",
+          "knowledge": "Ulven bør leses som en stor bytransformasjon: fra gård og etterkrigsboliger via industri/logistikk/næring til Hovinbyen, boliger, næringsbygg og Construction City.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "history_intro_story",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "gårdshistorie",
+            "industri",
+            "næring",
+            "Construction City"
+          ],
+          "concept_focus": [
+            "gårdshistorie",
+            "industri"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ulven",
+            "transformasjon",
+            "næring"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://snl.no/Ulven_-_Oslo",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ulven_handelspark_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "local_history_buildings_events",
+      "questions": [
+        {
+          "id": "ulven_handelspark_quiz_7",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_2_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Når kjøpte OBOS den store Ulven-tomten mellom Økern og Ulvensplitten ifølge Oslo byleksikon?",
+          "options": [
+            "2016",
+            "1995",
+            "2018"
+          ],
+          "answer": "2016",
+          "answerIndex": 0,
+          "dimension": "eierskap",
+          "topic": "OBOS-kjøpet",
+          "knowledge": "Oslo byleksikon beskriver at OBOS i 2016 kjøpte en 280 daa stor tomt mellom Økern og Ulvensplitten.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2016,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "OBOS",
+            "280 daa",
+            "tomtekjøp"
+          ],
+          "concept_focus": [
+            "OBOS",
+            "280 daa"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "obos",
+            "2016",
+            "ulven"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_8",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_2_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvor stor tomt kjøpte OBOS på Ulven ifølge Oslo byleksikon?",
+          "options": [
+            "280 daa",
+            "28 daa",
+            "2800 daa"
+          ],
+          "answer": "280 daa",
+          "answerIndex": 0,
+          "dimension": "eiendom",
+          "topic": "tomtestørrelse",
+          "knowledge": "Oslo byleksikon oppgir at OBOS kjøpte en 280 daa stor tomt mellom Økern og Ulvensplitten.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2016,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "280 daa",
+            "tomt",
+            "Ulven"
+          ],
+          "concept_focus": [
+            "280 daa",
+            "tomt"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "280_daa",
+            "obos",
+            "tomt"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_9",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_2_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken større byutviklingsstruktur er Ulven sentral i ifølge OBOS?",
+          "options": [
+            "Hovinbyen",
+            "Fjordbyen",
+            "Kvadraturen"
+          ],
+          "answer": "Hovinbyen",
+          "answerIndex": 0,
+          "dimension": "byutvikling",
+          "topic": "Hovinbyen",
+          "knowledge": "OBOS beskriver Ulven som sentralt i utviklingen av Hovinbyen, et av de store transformasjonsområdene i Oslo.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2018,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Hovinbyen",
+            "transformasjon",
+            "Ulven"
+          ],
+          "concept_focus": [
+            "Hovinbyen",
+            "transformasjon"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "hovinbyen",
+            "ulven",
+            "byutvikling"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+            "https://www.obos.no/bolig/nabolag/ulven"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_10",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_2_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva planla OBOS i området ifølge Oslo byleksikon per 2022?",
+          "options": [
+            "2000 boliger og 200 000 m² næringslokaler med ca. 4500 arbeidsplasser",
+            "200 boliger og 20 000 m² næring",
+            "20 000 boliger uten næringslokaler"
+          ],
+          "answer": "2000 boliger og 200 000 m² næringslokaler med ca. 4500 arbeidsplasser",
+          "answerIndex": 0,
+          "dimension": "planlegging",
+          "topic": "bolig og næring",
+          "knowledge": "Oslo byleksikon oppgir at OBOS planla 2000 boliger og 200 000 m² næringslokaler med ca. 4500 arbeidsplasser.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2022,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "2000 boliger",
+            "200 000 m² næring",
+            "4500 arbeidsplasser"
+          ],
+          "concept_focus": [
+            "2000 boliger",
+            "200 000 m² næring"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "2000_boliger",
+            "200000_m2",
+            "4500_arbeidsplasser"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_11",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_2_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva var synlig i Ulven-området per 2022 ifølge Oslo byleksikon?",
+          "options": [
+            "Ulven torg, kafé, nærbutikk, innflyttede blokker, grønne gårdsrom, lekeplasser og Ulvenparken",
+            "Bare tomme lagerhaller",
+            "Kun flyplass og hangarer"
+          ],
+          "answer": "Ulven torg, kafé, nærbutikk, innflyttede blokker, grønne gårdsrom, lekeplasser og Ulvenparken",
+          "answerIndex": 0,
+          "dimension": "byliv",
+          "topic": "per 2022",
+          "knowledge": "Oslo byleksikon beskriver kafé og nærbutikk på Ulven torg, innflyttede blokker, under bygging, grønne gårdsrom, lekeplasser og Ulvenparken.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2022,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ulven torg",
+            "Ulvenparken",
+            "grønne gårdsrom"
+          ],
+          "concept_focus": [
+            "Ulven torg",
+            "Ulvenparken"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ulven_torg",
+            "ulvenparken",
+            "byliv"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/bolig/nabolag/ulven",
+            "https://www.obos.no/bolig/prosjekt/ulven-t"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_12",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_2_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken eksisterende flatquiz-kjerne ble beholdt, men presisert?",
+          "options": [
+            "At Ulven forvandles til kombinert bolig- og næringsområde",
+            "At Ulven skal bli et rent kjøpesenter",
+            "At tungindustrien skal gjenreises"
+          ],
+          "answer": "At Ulven forvandles til kombinert bolig- og næringsområde",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "flatquiz-presisering",
+          "knowledge": "Eksisterende flatquiz hadde kombinasjon av bolig og næring som riktig mål. Det beholdes, men presiseres med konkrete tall, OBOS-kjøp og Hovinbyen-ankring.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "local_history_buildings_events",
+          "year": 2022,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "bolig og næring",
+            "OBOS",
+            "Hovinbyen"
+          ],
+          "concept_focus": [
+            "bolig og næring",
+            "OBOS"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "korrigering",
+            "bolig",
+            "næring"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ulven_handelspark_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "humor_curiosities_life",
+      "questions": [
+        {
+          "id": "ulven_handelspark_quiz_13",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_3_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilke aktører ble omtalt som motorene i Construction City på Ulven i 2018?",
+          "options": [
+            "OBOS og AF Gruppen",
+            "Telenor og Equinor",
+            "Schous og Ringnes"
+          ],
+          "answer": "OBOS og AF Gruppen",
+          "answerIndex": 0,
+          "dimension": "næringsklynge",
+          "topic": "aktører",
+          "knowledge": "OBOS skrev i 2018 at OBOS og AF Gruppen skulle være motorene i Construction City på Ulven.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2018,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "OBOS",
+            "AF Gruppen",
+            "Construction City"
+          ],
+          "concept_focus": [
+            "OBOS",
+            "AF Gruppen"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "obos",
+            "af_gruppen",
+            "construction_city"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "ulven_handelspark_quiz_14",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_3_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken bransje skal Construction City samle?",
+          "options": [
+            "Bygg-, anlegg- og eiendomsbransjen",
+            "Bryggeri- og mineralvannsnæringen",
+            "Sjømat- og fergetrafikk"
+          ],
+          "answer": "Bygg-, anlegg- og eiendomsbransjen",
+          "answerIndex": 0,
+          "dimension": "næringsklynge",
+          "topic": "bransjeklynge",
+          "knowledge": "OBOS beskriver Construction City som en næringsklynge for bygg-, anlegg- og eiendomsbransjen.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "bygg",
+            "anlegg",
+            "eiendom"
+          ],
+          "concept_focus": [
+            "bygg",
+            "anlegg"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "bygg",
+            "anlegg",
+            "eiendom"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_15",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_3_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvor stort er Construction City-komplekset ifølge OBOS sin eiendomsside?",
+          "options": [
+            "103 000 m²",
+            "10 300 m²",
+            "1 030 000 m²"
+          ],
+          "answer": "103 000 m²",
+          "answerIndex": 0,
+          "dimension": "næringsbygg",
+          "topic": "areal",
+          "knowledge": "OBOS beskriver Construction City som et 103 000 kvadratmeter stort kompleks på Ulven.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "103 000 m²",
+            "kontor",
+            "Construction City"
+          ],
+          "concept_focus": [
+            "103 000 m²",
+            "kontor"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "103000_m2",
+            "construction_city",
+            "kontor"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_16",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_3_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvor mange arbeidsplasser skal Construction City romme ifølge OBOS sin eiendomsside?",
+          "options": [
+            "Over 4500 arbeidsplasser",
+            "450 arbeidsplasser",
+            "45 000 arbeidsplasser"
+          ],
+          "answer": "Over 4500 arbeidsplasser",
+          "answerIndex": 0,
+          "dimension": "arbeidsliv",
+          "topic": "arbeidsplasser",
+          "knowledge": "OBOS beskriver at over 4500 arbeidsplasser samlokaliseres i Construction City.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "4500 arbeidsplasser",
+            "næringsklynge",
+            "kontor"
+          ],
+          "concept_focus": [
+            "4500 arbeidsplasser",
+            "næringsklynge"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "4500_arbeidsplasser",
+            "construction_city",
+            "arbeid"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_17",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_3_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Når står Construction City klart ifølge OBOS?",
+          "options": [
+            "2025",
+            "2018",
+            "2035"
+          ],
+          "answer": "2025",
+          "answerIndex": 0,
+          "dimension": "prosjektstatus",
+          "topic": "ferdigstilling",
+          "knowledge": "OBOS oppgir at Construction City står klart i 2025.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "2025",
+            "ferdigstilling",
+            "Construction City"
+          ],
+          "concept_focus": [
+            "2025",
+            "ferdigstilling"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "2025",
+            "construction_city",
+            "ferdigstilling"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_18",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_3_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken arbeidsform er sentral i Construction City?",
+          "options": [
+            "Samhandling og kunnskapsdeling mellom aktører i samme bransje",
+            "Isolerte lagerhaller uten fellesfunksjoner",
+            "Bare detaljhandel uten kontorarbeid"
+          ],
+          "answer": "Samhandling og kunnskapsdeling mellom aktører i samme bransje",
+          "answerIndex": 0,
+          "dimension": "arbeidsliv",
+          "topic": "samhandling",
+          "knowledge": "OBOS beskriver Construction City som en samhandlingsarena og kunnskapspark der konkurrenter, samarbeidspartnere og gründere kan møtes.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "humor_curiosities_life",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_arbeid_verdiskaping",
+          "method_id": "met_naering_arbeidslivsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "samhandling",
+            "kunnskapsdeling",
+            "hjerterom"
+          ],
+          "concept_focus": [
+            "samhandling",
+            "kunnskapsdeling"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "samhandling",
+            "kunnskapsdeling",
+            "næringsklynge"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ulven_handelspark_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_facts_architecture",
+      "questions": [
+        {
+          "id": "ulven_handelspark_quiz_19",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_4_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva var Ulven preget av før Ulvenparken-transformasjonen ifølge LPO?",
+          "options": [
+            "Industri og logistikk",
+            "Flyplass og terminalbygninger",
+            "Fisketorg og kai"
+          ],
+          "answer": "Industri og logistikk",
+          "answerIndex": 0,
+          "dimension": "byutvikling",
+          "topic": "industri og logistikk",
+          "knowledge": "LPO beskriver Ulven som transformert fra et område preget av industri og logistikk til en ny urban bydel.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2018,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "industri",
+            "logistikk",
+            "transformasjon"
+          ],
+          "concept_focus": [
+            "industri",
+            "logistikk"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "industri",
+            "logistikk",
+            "ulvenparken"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://www.lpo.no/prosjekter/ulven-boliger"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "ulven_handelspark_quiz_20",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_4_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva beskriver LPO som viktig i Ulvenparken-utviklingen?",
+          "options": [
+            "Grønne parkområder, torg og gater med urbane kvaliteter",
+            "Lukkede lagerhaller uten byrom",
+            "Full gjenreising av tungindustrien"
+          ],
+          "answer": "Grønne parkområder, torg og gater med urbane kvaliteter",
+          "answerIndex": 0,
+          "dimension": "byrom",
+          "topic": "grønne verdier",
+          "knowledge": "LPO skriver at store grønne parkområder skal flettes sammen med boligenes uteområder, samtidig som torg og gater med urbane kvaliteter etableres.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2018,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "grønne parkområder",
+            "torg",
+            "urbane gater"
+          ],
+          "concept_focus": [
+            "grønne parkområder",
+            "torg"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "grønne_parker",
+            "torg",
+            "gater"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://www.lpo.no/prosjekter/ulven-boliger",
+            "https://www.obos.no/bolig/nabolag/ulven"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "ulven_handelspark_quiz_21",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_4_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvem var oppdragsgiver for Ulvenparken B2 ifølge LPO?",
+          "options": [
+            "Ulven AS/OBOS",
+            "HAV Eiendom",
+            "Telenor Eiendom"
+          ],
+          "answer": "Ulven AS/OBOS",
+          "answerIndex": 0,
+          "dimension": "eierskap",
+          "topic": "Ulven AS/OBOS",
+          "knowledge": "LPO oppgir Ulven AS/OBOS som oppdragsgiver for Ulvenparken B2.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2018,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_kapital_finans",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ulven AS",
+            "OBOS",
+            "oppdragsgiver"
+          ],
+          "concept_focus": [
+            "Ulven AS",
+            "OBOS"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ulven_as",
+            "obos",
+            "lpo"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.lpo.no/prosjekter/ulven-boliger"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_22",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_4_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvor mange boliger skulle bygges på det første delfeltet B2 ifølge LPO?",
+          "options": [
+            "374 boliger",
+            "37 boliger",
+            "3740 boliger"
+          ],
+          "answer": "374 boliger",
+          "answerIndex": 0,
+          "dimension": "boligproduksjon",
+          "topic": "Ulvenparken B2",
+          "knowledge": "LPO beskriver at Team Veidekke skulle bygge 374 boliger på første delfelt B2.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2018,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "374 boliger",
+            "B2",
+            "Team Veidekke"
+          ],
+          "concept_focus": [
+            "374 boliger",
+            "B2"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "374_boliger",
+            "ulvenparken",
+            "team_veidekke"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.lpo.no/prosjekter/ulven-boliger"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_23",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_4_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken eksisterende arkitekturpåstand ble ikke videreført som fasit?",
+          "options": [
+            "At arkitekturen kjennetegnes av massivtre og grønne tak",
+            "At området har grønne parkområder og torg",
+            "At området tidligere var preget av industri og logistikk"
+          ],
+          "answer": "At arkitekturen kjennetegnes av massivtre og grønne tak",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "arkitekturpåstand",
+          "knowledge": "Eksisterende flatquiz oppga massivtre og grønne tak. Kildene brukt her bekrefter grønne verdier, torg, parker, BREEAM Excellent for Construction City, men ikke massivtre/grønne tak som generell fasit.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "ikke videreført",
+            "grønne verdier",
+            "BREEAM"
+          ],
+          "concept_focus": [
+            "ikke videreført",
+            "grønne verdier"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "kildekritikk",
+            "massivtre",
+            "grønne_tak"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://www.lpo.no/prosjekter/ulven-boliger",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/",
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "ulven_handelspark_quiz_24",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_4_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken miljøstandard skal Construction City utføres etter ifølge AF Gruppen?",
+          "options": [
+            "BREEAM Excellent",
+            "Passivhus 1995",
+            "Ingen miljøstandard"
+          ],
+          "answer": "BREEAM Excellent",
+          "answerIndex": 0,
+          "dimension": "miljøbygg",
+          "topic": "BREEAM",
+          "knowledge": "AF Gruppen skriver at Construction City skal utføres i henhold til BREEAM Excellent.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_facts_architecture",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "BREEAM Excellent",
+            "Construction City",
+            "miljøstandard"
+          ],
+          "concept_focus": [
+            "BREEAM Excellent",
+            "Construction City"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "breeam_excellent",
+            "construction_city",
+            "miljøbygg"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/",
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        }
+      ]
+    },
+    {
+      "set_id": "naeringsliv_ulven_handelspark_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {
+          "id": "ulven_handelspark_quiz_25",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_5_q1",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hva er Ulven Torg i den nye Ulven-utviklingen?",
+          "options": [
+            "Et lokalt byrom med kafé, nærbutikk og nabolagsfunksjoner",
+            "En fergeterminal",
+            "En vannkraftstasjon"
+          ],
+          "answer": "Et lokalt byrom med kafé, nærbutikk og nabolagsfunksjoner",
+          "answerIndex": 0,
+          "dimension": "handel og service",
+          "topic": "Ulven torg",
+          "knowledge": "Oslo byleksikon beskriver kafé og nærbutikk på Ulven torg, og OBOS beskriver handel og nabolagsfunksjoner i området.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2022,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_forbruk_marked",
+          "method_id": "met_naering_forbruker_og_atferdsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Ulven torg",
+            "kafé",
+            "nærbutikk"
+          ],
+          "concept_focus": [
+            "Ulven torg",
+            "kafé"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ulven_torg",
+            "handel",
+            "nabolag"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/bolig/nabolag/ulven",
+            "https://www.obos.no/bolig/prosjekt/ulven-t"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_26",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_5_q2",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken kollektivforbindelse trekker OBOS fram for Ulven?",
+          "options": [
+            "Kort vei til Økern T-banestasjon og buss",
+            "Kun privatbil via fergekai",
+            "Ingen kollektivforbindelse"
+          ],
+          "answer": "Kort vei til Økern T-banestasjon og buss",
+          "answerIndex": 0,
+          "dimension": "infrastruktur",
+          "topic": "kollektivtilgang",
+          "knowledge": "OBOS beskriver kort vei til Økern T-banestasjon og bussholdeplass, og at T-banen tar cirka ti minutter til Oslo S.",
+          "trivia": [],
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_teknologi_infrastruktur",
+          "method_id": "met_naering_infrastrukturanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "Økern T",
+            "buss",
+            "Oslo S"
+          ],
+          "concept_focus": [
+            "Økern T",
+            "buss"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "økern_t",
+            "buss",
+            "kollektiv"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/bolig/nabolag/ulven",
+            "https://www.obos.no/bolig/prosjekt/ulven-t"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_27",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_5_q3",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken næringsøkonomisk overgang viser Ulven tydeligst?",
+          "options": [
+            "Fra arealkrevende industri/logistikk til tett bolig-, service- og kunnskapsnæring",
+            "Fra kornmølle til vannkraftverk",
+            "Fra bryggeri til hotell"
+          ],
+          "answer": "Fra arealkrevende industri/logistikk til tett bolig-, service- og kunnskapsnæring",
+          "answerIndex": 0,
+          "dimension": "omstilling",
+          "topic": "arealøkonomi",
+          "knowledge": "Ulven viser en arealøkonomisk overgang: industri/logistikk og eldre næringsarealer transformeres til boliger, byrom, service, kontor og Construction City.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "arealkrevende næring",
+            "bolig",
+            "kunnskapsarbeid"
+          ],
+          "concept_focus": [
+            "arealkrevende næring",
+            "bolig"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "arealøkonomi",
+            "logistikk",
+            "kunnskapsnæring"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://snl.no/Ulven_-_Oslo",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.lpo.no/prosjekter/ulven-boliger",
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_28",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_5_q4",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken bransjestrategi ligger bak Construction City?",
+          "options": [
+            "Å samle aktører i samme verdikjede for synergier, samhandling og kunnskapsdeling",
+            "Å spre alle aktører til separate lagerområder",
+            "Å fjerne kontorarbeidsplasser fra Ulven"
+          ],
+          "answer": "Å samle aktører i samme verdikjede for synergier, samhandling og kunnskapsdeling",
+          "answerIndex": 0,
+          "dimension": "verdikjede",
+          "topic": "næringsklynge",
+          "knowledge": "Construction City er bygget som en næringsklynge der bygge-, anleggs- og eiendomsaktører samles for synergi, samarbeid og kunnskapsdeling.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": 2025,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_logistikk_verdikjeder",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "næringsklynge",
+            "samhandling",
+            "verdikjede"
+          ],
+          "concept_focus": [
+            "næringsklynge",
+            "samhandling"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "verdikjede",
+            "næringsklynge",
+            "synergi"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+            "https://www.afgruppen.no/prosjekter/bygg/construction-city/"
+          ],
+          "source_origin": "external",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "added_or_rebuilt"
+        },
+        {
+          "id": "ulven_handelspark_quiz_29",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_5_q5",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken formulering passer bedre enn `handelspark` for `ulven_handelspark`-targetet?",
+          "options": [
+            "Ulven transformasjonsområde med bolig, næring, service og Construction City",
+            "Tradisjonell kjøpesenterpark uten boliger",
+            "Ren industri uten byliv"
+          ],
+          "answer": "Ulven transformasjonsområde med bolig, næring, service og Construction City",
+          "answerIndex": 0,
+          "dimension": "kildekritikk",
+          "topic": "target-presisering",
+          "knowledge": "Kildene peker ikke primært på en tradisjonell handelspark, men på Ulven som transformasjonsområde med boliger, næring, service, parker og Construction City.",
+          "trivia": [],
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_omstillingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "target-presisering",
+            "transformasjonsområde",
+            "Construction City"
+          ],
+          "concept_focus": [
+            "target-presisering",
+            "transformasjonsområde"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "target",
+            "handelspark",
+            "transformasjon"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city",
+            "https://www.lpo.no/prosjekter/ulven-boliger"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_corrected"
+        },
+        {
+          "id": "ulven_handelspark_quiz_30",
+          "quiz_id": "naeringsliv_ulven_handelspark_set_5_q6",
+          "categoryId": "naeringsliv",
+          "placeId": "ulven_handelspark",
+          "personId": "",
+          "natureId": "",
+          "targetId": "ulven_handelspark",
+          "question_scope": "place",
+          "question": "Hvilken samlet analyse passer best for `ulven_handelspark`?",
+          "options": [
+            "Et bytransformasjonscase der industri/logistikk, OBOS-tomtekjøp, Hovinbyen, boliger, service, kollektivtilgang og Construction City må leses sammen",
+            "Et gammelt bryggeri med øltapperi og fusjoner",
+            "Et fisketorg med fiskehall og fergeterminal"
+          ],
+          "answer": "Et bytransformasjonscase der industri/logistikk, OBOS-tomtekjøp, Hovinbyen, boliger, service, kollektivtilgang og Construction City må leses sammen",
+          "answerIndex": 0,
+          "dimension": "syntese",
+          "topic": "samlet næringslivsanalyse",
+          "knowledge": "Ulven er best forstått som et moderne transformasjonscase: arealkrevende industri/logistikk blir tett by, bolig, lokal handel, service og kunnskapsbasert næringsklynge.",
+          "trivia": [],
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "place_concrete_advanced",
+          "year": null,
+          "epoke_id": "ulven_transformasjon_hovinbyen_construction_city",
+          "epoke_domain": "naeringsliv",
+          "emne_id": "em_naering_omstilling_kriser_skift",
+          "method_id": "met_naering_verdiskapingsanalyse",
+          "related_emner": [],
+          "core_concepts": [
+            "industri/logistikk",
+            "OBOS",
+            "Hovinbyen",
+            "Construction City"
+          ],
+          "concept_focus": [
+            "industri/logistikk",
+            "OBOS"
+          ],
+          "learning_paths": [],
+          "tags": [
+            "ulven",
+            "hovinbyen",
+            "construction_city"
+          ],
+          "required_tags": [
+            "external_source",
+            "business_anchor",
+            "em_naering"
+          ],
+          "source": [
+            "data/quiz/quiz_naeringsliv.json",
+            "https://snl.no/Ulven_-_Oslo",
+            "https://oslobyleksikon.no/side/Ulven_%28str%C3%B8k%29",
+            "https://www.obos.no/om-obos/nyheter/construction-city-pa-ulven-16975816",
+            "https://www.lpo.no/prosjekter/ulven-boliger",
+            "https://www.obos.no/naringseiendom/eiendommer/construction-city"
+          ],
+          "source_origin": "mixed",
+          "claim_basis": "external_verified_claim",
+          "business_anchor_type": "urban_transformation_mixed_use_business_area",
+          "external_source_ratio_target": 0.85,
+          "requires_business_anchor": true,
+          "requires_external_claim_basis": true,
+          "guidance_basis": [
+            "SET_MAL_README_v4_3 (1).md",
+            "quiz_generator_rules_by_v5_1_source_priority_patch.json",
+            "supersetQUIZMAL (10).json",
+            "data/fag/naeringsliv/supersetQUIZMAL_naeringsliv.json",
+            "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
+            "data/fag/naeringsliv/methods_naeringsliv_canonical_v4_5.json",
+            "data/quiz/quiz_naeringsliv.json"
+          ],
+          "merge_status": "kept_expanded"
+        }
+      ]
+    }
+  ]
+}
