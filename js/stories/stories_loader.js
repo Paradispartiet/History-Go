@@ -23,7 +23,8 @@
     "data/stories/stories_manifest_popkultur_lisboa_batch_01.json",
     "data/stories/stories_manifest_sport_lisboa_batch_01.json",
     "data/stories/stories_manifest_politikk_lisboa_batch_02.json",
-    "data/stories/stories_manifest_subkultur_lisboa_batch_01.json"
+    "data/stories/stories_manifest_subkultur_lisboa_batch_01.json",
+    "data/stories/stories_manifest_litteratur_lisboa_batch_03.json"
   ];
 
   function ensureArray(value) {
