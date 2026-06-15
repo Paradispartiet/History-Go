@@ -57,7 +57,10 @@ arbeidslogger fra tidligere batcher og ikke autoritative for dagens tilstand.
 - Harde feil (quality gate): **0**
 - Varsler (quality gate): **153**
 - Review candidates (quality gate): **254** signaler på **184** steder
-- Audit needs_review: **227** (invalid/conflict/duplicate: **0**)
+- Audit-status (etter statusprioriterings-fiks): needs_review **97**,
+  outside_expected_area **128**, conflict **2**, duplicate **0**, invalid **0**.
+  Tidligere ble alle flaggede rader (unntatt `invalid_anchor`) tvangs-satt til
+  needs_review (227), slik at conflict/outside aldri ble talt.
 
 ### Review candidates per grunn
 
@@ -155,6 +158,24 @@ Se `reports/place-coordinate-quality-gate.md` for full liste per grunn og
 
 Ingen koordinatdata er endret, ingen kartkode/UI rørt, `places_index.json` ikke
 hånd-patchet.
+
+## Oppfølgingsfiks (status-prioritering i audit)
+
+PR #1338 reparerte koordinatverktøysporet, men audit-scriptet hadde fortsatt en
+status-bug: et separat `if (invalid_anchor) … else if (r.flags.length) …`-ledd
+overskrev alle flaggede rader (unntatt `invalid_anchor`) til `needs_review`
+etter at conflict/duplicate/outside allerede var satt. Derfor kunne rapporten
+vise `conflict: 0` selv om rader hadde konfliktflagg som
+`same_name_different_coord`.
+
+Rettelse: statusklassifiseringen i `tools/audit-place-coordinates.mjs` er nå én
+prioriteringskjede – invalid (inkl. `invalid_anchor`) > conflict > duplicate >
+outside_expected_area > needs_review > ok – uten utilsiktet overskriving.
+
+Endrede tall etter regenerering: conflict **0 → 2** (`blaa`/`bla` «Blå» med
+`same_name_different_coord`), outside_expected_area **0 → 128**, needs_review
+**227 → 97**. `highPriorityFindings` inkluderer nå conflict-radene. Ingen
+koordinatdata er endret.
 
 ## Foreslått neste datarunde (egen PR)
 
