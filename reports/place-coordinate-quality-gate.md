@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-06-15T13:45:51.192Z
+Generert: 2026-06-15T14:00:39.811Z
 
 ## Oppsummering
-- Aktive filer validert: **46**
-- Antall steder validert: **540**
+- Aktive filer validert: **47**
+- Antall steder validert: **548**
 - Harde feil: **0**
-- Varsler: **148**
-- Coordinate review candidates: **223** signaler fordelt på **170** steder
+- Varsler: **150**
+- Coordinate review candidates: **227** signaler fordelt på **174** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -23,6 +23,7 @@ Nivåene betyr:
 - data/places/historie/akershus/places_historie_akershus_batch2.json
 - data/places/historie/akershus/places_historie_akershus_batch3.json
 - data/places/historie/akershus/places_historie_akershus_batch4.json
+- data/places/historie/akershus/places_historie_akershus_batch5.json
 - data/places/kunst/oslo/places_kunst.json
 - data/places/litteratur/oslo/places_litteratur.json
 - data/places/media/oslo/places_oslo_media.json
@@ -88,6 +89,8 @@ Nivåene betyr:
 - data/places/historie/akershus/places_historie_akershus_batch1.json#trandumskogen: stort område uten coordNote/coordStatus
 - data/places/historie/akershus/places_historie_akershus_batch3.json#hurdal_verk_glassverk: stort område uten coordNote/coordStatus
 - data/places/historie/akershus/places_historie_akershus_batch4.json#hakadal_verk: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch5.json#aurskog_holand_bygdetun: stort område uten coordNote/coordStatus
+- data/places/historie/akershus/places_historie_akershus_batch5.json#nannestad_bygdemuseum: lav koordinatpresisjon (<4 desimaler)
 - data/places/litteratur/oslo/places_litteratur.json#alf_proysen_statue_nittedal: lav koordinatpresisjon (<4 desimaler)
 - data/places/litteratur/oslo/places_litteratur.json#oscar_braaten_statuen: lav koordinatpresisjon (<4 desimaler)
 - data/places/litteratur/oslo/places_litteratur.json#alexander_kiellands_plass: lav koordinatpresisjon (<4 desimaler)
@@ -217,22 +220,22 @@ Nivåene betyr:
 
 ## Coordinate review candidates
 
-Totalt 223 signaler fordelt på 170 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 227 signaler fordelt på 174 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
 | Grunn | Antall |
 | --- | --- |
-| lav koordinatpresisjon (<4 desimaler) | 85 |
+| lav koordinatpresisjon (<4 desimaler) | 86 |
 | lineært sted uten anchors | 34 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 43 |
 | coordStatus=verified uten coordPrecisionM | 2 |
-| park/stort område uten anchors eller coordNote | 16 |
+| park/stort område uten anchors eller coordNote | 17 |
 | svært stor r (>=500 m) uten coordNote | 17 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 14 |
-| ligger svært langt fra de andre stedene i samme fil | 12 |
+| ligger svært langt fra de andre stedene i samme fil | 14 |
 
-### lav koordinatpresisjon (<4 desimaler) (85)
+### lav koordinatpresisjon (<4 desimaler) (86)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -248,6 +251,7 @@ Totalt 223 signaler fordelt på 170 steder. Et sted kan ha flere signaler. Kandi
 | barcode | Barcode | by | data/places/by/oslo/places_by.json | 59.908 | 10.7602 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trefoldighetskirken | Trefoldighetskirken | historie | data/places/historie/oslo/places_historie.json | 59.9183 | 10.746 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oscarsborg_festning | Oscarsborg festning | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 59.676 | 10.606 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| nannestad_bygdemuseum | Nannestad bygdemuseum | historie | data/places/historie/akershus/places_historie_akershus_batch5.json | 60.217 | 11.012 | 260 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.062 | 10.875 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.938 | 10.76 | 150 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | data/places/litteratur/oslo/places_litteratur.json | 59.9245 | 10.766 | 120 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -416,7 +420,7 @@ Totalt 223 signaler fordelt på 170 steder. Et sted kan ha flere signaler. Kandi
 | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | data/places/historie/oslo/places_historie.json | 59.9236 | 10.7474 | 190 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### park/stort område uten anchors eller coordNote (16)
+### park/stort område uten anchors eller coordNote (17)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -425,6 +429,7 @@ Totalt 223 signaler fordelt på 170 steder. Et sted kan ha flere signaler. Kandi
 | trandumskogen | Trandumskogen | historie | data/places/historie/akershus/places_historie_akershus_batch1.json | 60.2189 | 11.1177 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | hurdal_verk_glassverk | Hurdal Verk / Hurdal Glassverk | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 60.45029 | 11.04809 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | hakadal_verk | Hakadal Verk | historie | data/places/historie/akershus/places_historie_akershus_batch4.json | 60.12083 | 10.82278 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| aurskog_holand_bygdetun | Aurskog-Høland bygdetun | historie | data/places/historie/akershus/places_historie_akershus_batch5.json | 59.7194 | 11.4598 | 300 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | bryn_industriomrade | Bryn industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9129 | 10.8251 | 250 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
@@ -478,13 +483,15 @@ Totalt 223 signaler fordelt på 170 steder. Et sted kan ha flere signaler. Kandi
 | lisbon_cinema_sao_jorge | Cinema São Jorge | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 100 | Deler punkt med: lisbon_doclisboa. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 | lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json | 38.7202 | -9.1463 | 250 | Deler punkt med: lisbon_cinema_sao_jorge. Bekreft at stedene faktisk overlapper, eller juster koordinatene; dokumenter med coordNote. |
 
-### ligger svært langt fra de andre stedene i samme fil (12)
+### ligger svært langt fra de andre stedene i samme fil (14)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | eidsvollsbygningen | Eidsvollsbygningen | historie | data/places/historie/oslo/places_historie.json | 60.3304 | 11.2617 | 250 | Punktet ligger ~54 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | gamle_hvam_museum | Gamle Hvam museum | historie | data/places/historie/akershus/places_historie_akershus_batch2.json | 60.10201 | 11.38486 | 260 | Punktet ligger ~50 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | hurdal_verk_glassverk | Hurdal Verk / Hurdal Glassverk | historie | data/places/historie/akershus/places_historie_akershus_batch3.json | 60.45029 | 11.04809 | 360 | Punktet ligger ~81 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
+| feiring_jernverk | Feiring jernverk | historie | data/places/historie/akershus/places_historie_akershus_batch5.json | 60.5194 | 11.1514 | 360 | Punktet ligger ~52 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
+| drobak_kirke | Drøbak kirke | historie | data/places/historie/akershus/places_historie_akershus_batch5.json | 59.66389 | 10.62949 | 220 | Punktet ligger ~51 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | proysenhuset_rudshogda | Prøysenhuset – Rudshøgda | litteratur | data/places/litteratur/oslo/places_litteratur.json | 60.8827 | 10.9502 | 160 | Punktet ligger ~108 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | valerbanen | Vålerbanen | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.7094 | 11.9052 | 420 | Punktet ligger ~119 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
 | gardermoen_raceway | Gardermoen Raceway | sport | data/places/sport/europa/norway/places_motorsport_ostlandet.json | 60.1795 | 11.1378 | 320 | Punktet ligger ~52 km fra fil-medianen; sjekk manuelt at lat/lon ikke er forvekslet eller feiltastet. |
