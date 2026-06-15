@@ -1,0 +1,93 @@
+{
+  "targetId": "vaterland_historisk_elvelop",
+  "categoryId": "by",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_vaterland.json",
+    "data/places/places_index.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen presise hus-, gate- eller eiendomsdetaljer uten kilde.",
+      "Ingen dagsaktuelle virksomheter eller trafikkdata.",
+      "Ingen usikre personrelasjoner.",
+      "Story-data brukes for sanering, byfornyelse og knutepunktlag."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "by_vaterland_historisk_elvelop_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"vaterland_historisk_elvelop_s1_q1","quiz_id":"by_vaterland_historisk_elvelop_set_1_q1","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva gjør Vaterland til et viktig historisk elvepunkt?","options":["Området viser hvordan et eldre bystrøk ved Akerselva ble sanert og omformet til knutepunkt","Området ligger uten byhistorie","Området er bare et fjellparti"],"answer":"Området viser hvordan et eldre bystrøk ved Akerselva ble sanert og omformet til knutepunkt","answerIndex":0,"knowledge":"Vaterland viser byutviklingens pris: eldre hverdagsby, sanering og nytt knutepunktlag i samme område.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["vaterland","akerselva","sanering"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s1_q2","quiz_id":"by_vaterland_historisk_elvelop_set_1_q2","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva bør spilleren se etter i dagens Vaterland?","options":["Knutepunkt, trafikkrom, store anlegg og spor etter et eldre bystrøk under dagens lag","Bare urørt natur","Kun boligvillafelt"],"answer":"Knutepunkt, trafikkrom, store anlegg og spor etter et eldre bystrøk under dagens lag","answerIndex":0,"knowledge":"Dagens Vaterland må leses som lag: gammel by, sanering, trafikk og moderne knutepunkt.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","historiske_lag"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s1_q3","quiz_id":"by_vaterland_historisk_elvelop_set_1_q3","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hva er igjen av eldre byliv når området leses gjennom dagens knutepunkt?","Hvorfor finnes det ingen byhistorie her?","Hvilke butikker har åpent akkurat nå?"],"answer":"Hva er igjen av eldre byliv når området leses gjennom dagens knutepunkt?","answerIndex":0,"knowledge":"Spørsmålet kobler stedets synlige nåtid til usynlige historiske lag.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "by_vaterland_historisk_elvelop_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"vaterland_historisk_elvelop_s2_q1","quiz_id":"by_vaterland_historisk_elvelop_set_2_q1","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva slags eldre byliv peker Vaterland-storyen mot?","options":["Tett bystrøk med gater, bakgårder, handel og lokalt hverdagsliv","Kun åpen motorvei","Bare fjell og skog"],"answer":"Tett bystrøk med gater, bakgårder, handel og lokalt hverdagsliv","answerIndex":0,"knowledge":"Før saneringen var Vaterland et tett bystrøk ved Akerselva og overgangen mot Grønland.","difficulty":1,"question_type":"stedsliv","question_layer":"place_life","tags":["hverdagsby","gronland"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s2_q2","quiz_id":"by_vaterland_historisk_elvelop_set_2_q2","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva startet i Vaterland i 1959 ifølge story-data?","options":["Rivingen/saneringen av den eldre bydelen","Byggingen av en middelalderborg","Anleggelsen av en fjellpark"],"answer":"Rivingen/saneringen av den eldre bydelen","answerIndex":0,"knowledge":"Story-dataen bruker 1959 som startpunkt for saneringen av Vaterland.","difficulty":1,"question_type":"historisk_endring","question_layer":"place_life","tags":["1959","sanering"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s2_q3","quiz_id":"by_vaterland_historisk_elvelop_set_2_q3","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva er en trygg måte å omtale dagens Vaterland på?","options":["Som moderne knutepunkt og omformet byområde uten dagsaktuelle virksomhetsdetaljer","Som fullstendig uendret gammel bydel","Som naturtomt uten mennesker"],"answer":"Som moderne knutepunkt og omformet byområde uten dagsaktuelle virksomhetsdetaljer","answerIndex":0,"knowledge":"Quizzen bør bruke stabile hovedlinjer: sanering, knutepunkt og historiske lag.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "by_vaterland_historisk_elvelop_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"vaterland_historisk_elvelop_s3_q1","quiz_id":"by_vaterland_historisk_elvelop_set_3_q1","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"emne","question":"Hva betyr sanering i byhistorie?","options":["Riving og omforming av eldre byområder, ofte med store sosiale konsekvenser","Å plante flere trær i en park","Å bevare alt uendret"],"answer":"Riving og omforming av eldre byområder, ofte med store sosiale konsekvenser","answerIndex":0,"knowledge":"Vaterland er et sterkt eksempel på sanering som slettet eldre bybebyggelse og hverdagsliv.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["sanering"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vaterland_historisk_elvelop_s3_q2","quiz_id":"by_vaterland_historisk_elvelop_set_3_q2","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"emne","question":"Hva betyr kollektivknutepunkt?","options":["Et sted der mange transportlinjer og menneskestrømmer møtes","Et privat låst rom","Et urørt naturområde"],"answer":"Et sted der mange transportlinjer og menneskestrømmer møtes","answerIndex":0,"knowledge":"Dagens Vaterland kan forstås som knutepunktlag rundt sentrum, Oslo S og bussterminalområdet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["kollektivknutepunkt"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vaterland_historisk_elvelop_s3_q3","quiz_id":"by_vaterland_historisk_elvelop_set_3_q3","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"emne","question":"Hva betyr historiske lag?","options":["At flere perioder og bruksmåter kan leses i samme sted","At bare én tid betyr noe","At eldre bruk aldri finnes"],"answer":"At flere perioder og bruksmåter kan leses i samme sted","answerIndex":0,"knowledge":"Vaterland viser lag mellom eldre bystrøk, sanering og moderne knutepunkt.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["historiske_lag"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"conceptual_safe"}
+      ]
+    },
+    {
+      "set_id": "by_vaterland_historisk_elvelop_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"vaterland_historisk_elvelop_s4_q1","quiz_id":"by_vaterland_historisk_elvelop_set_4_q1","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva er en avansert observasjon i Vaterland?","options":["Å se hvordan eldre hverdagsby, sanering og moderne infrastruktur overlapper","Å bare telle butikker","Å ignorere historien"],"answer":"Å se hvordan eldre hverdagsby, sanering og moderne infrastruktur overlapper","answerIndex":0,"knowledge":"Avansert stedlesning handler om å se usynlige historiske lag i svært synlige moderne byrom.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["stedlesning","byomforming"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s4_q2","quiz_id":"by_vaterland_historisk_elvelop_set_4_q2","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva kan saneringen av Vaterland fortelle om byutvikling?","options":["At nye knutepunkter kan skapes ved å fjerne eldre byliv og bebyggelse","At all utvikling skjer uten tap","At eldre strøk alltid bevares"],"answer":"At nye knutepunkter kan skapes ved å fjerne eldre byliv og bebyggelse","answerIndex":0,"knowledge":"Vaterland viser at byutvikling ofte har kostnader: hverdagsmiljøer kan forsvinne når store systemer bygges.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["byfornyelse","sanering"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s4_q3","quiz_id":"by_vaterland_historisk_elvelop_set_4_q3","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"place","question":"Hva bør en god Vaterland-quiz trene spilleren i?","options":["Å lese sanering, knutepunkt og historiske lag sammen","Å overse stedet","Å svare uten observasjon"],"answer":"Å lese sanering, knutepunkt og historiske lag sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå et sammensatt byrom de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "by_vaterland_historisk_elvelop_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"vaterland_historisk_elvelop_s5_q1","quiz_id":"by_vaterland_historisk_elvelop_set_5_q1","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"emne","question":"Hva er den dypere læringen i Vaterland?","options":["At moderne knutepunkter kan bygge på tapte bymiljøer og skjulte historiske lag","At dagens byrom alltid viser hele historien","At sanering aldri påvirker hverdagsliv"],"answer":"At moderne knutepunkter kan bygge på tapte bymiljøer og skjulte historiske lag","answerIndex":0,"knowledge":"Vaterland gjør det mulig å diskutere byutviklingens pris, ikke bare dens resultater.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["byutvikling","historiske_lag"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s5_q2","quiz_id":"by_vaterland_historisk_elvelop_set_5_q2","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"emne","question":"Hva kan sanering skjule?","options":["Tidligere hverdagsliv, små gater, bakgårder og lokale handelsmiljøer","Bare moderne kontorfunksjoner","Ingenting, alt blir alltid tydelig"],"answer":"Tidligere hverdagsliv, små gater, bakgårder og lokale handelsmiljøer","answerIndex":0,"knowledge":"Når et strøk rives, kan både bygninger og sosiale minner bli vanskeligere å lese i dagens byrom.","difficulty":3,"question_type":"kritisk_analyse","question_layer":"advanced_emne","tags":["hverdagsby","sanering"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"},
+        {"id":"vaterland_historisk_elvelop_s5_q3","quiz_id":"by_vaterland_historisk_elvelop_set_5_q3","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"emne","question":"Hvordan fungerer Vaterland i en Akerselva-fortelling?","options":["Som nedre byhistorisk lag der elva møter sentrum, infrastruktur og saneringshistorie","Som helt løsrevet fjellnatur","Som et sted uten byutvikling"],"answer":"Som nedre byhistorisk lag der elva møter sentrum, infrastruktur og saneringshistorie","answerIndex":0,"knowledge":"Vaterland gir Akerselva-ruta en sterk avslutning mot sentrum og moderne knutepunkter.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["akerselva","sentrum"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "by_vaterland_historisk_elvelop_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"vaterland_historisk_elvelop_s6_q1","quiz_id":"by_vaterland_historisk_elvelop_set_6_q1","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"concept","question":"Hvilket begrep beskriver riving og omforming av eldre bystrøk?","options":["Sanering","Vannkraft","Naturreservat"],"answer":"Sanering","answerIndex":0,"knowledge":"Sanering er nøkkelbegrepet for å forstå Vaterlands brudd med eldre bymiljø.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["sanering"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vaterland_historisk_elvelop_s6_q2","quiz_id":"by_vaterland_historisk_elvelop_set_6_q2","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"concept","question":"Hva betyr kollektivknutepunkt?","options":["Et sted der mange transportlinjer og menneskestrømmer møtes","Et lukket privat rom","Et skogsområde uten by"],"answer":"Et sted der mange transportlinjer og menneskestrømmer møtes","answerIndex":0,"knowledge":"Dagens Vaterland kan leses gjennom knutepunktfunksjonen rundt sentrum og transport.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["kollektivknutepunkt"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vaterland_historisk_elvelop_s6_q3","quiz_id":"by_vaterland_historisk_elvelop_set_6_q3","categoryId":"by","placeId":"vaterland_historisk_elvelop","targetId":"vaterland_historisk_elvelop","question_scope":"concept","question":"Hvilket begrepspar forklarer Vaterland best?","options":["Sanering og historiske lag","Vannkraft og mølleøkonomi","Flyplass og høyfjell"],"answer":"Sanering og historiske lag","answerIndex":0,"knowledge":"Vaterland blir tydeligst når tapet av eldre bymiljø leses sammen med dagens knutepunktlag.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["sanering","historiske_lag"],"source":["data/stories/stories_vaterland.json"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
