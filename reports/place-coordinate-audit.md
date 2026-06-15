@@ -1,12 +1,12 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-06-15T08:59:50.817Z
+Generert: 2026-06-15T09:22:19.239Z
 
 ## Aktiv hovedstatistikk
 - Aktive place-filer lest: **42**
 - Aktive steder lest: **504**
-- ok: **277**
-- needs_review: **97**
+- ok: **297**
+- needs_review: **77**
 - conflict: **2**
 - invalid: **0**
 - duplicate: **0**
@@ -64,28 +64,8 @@ Generert: 2026-06-15T08:59:50.817Z
 
 | file | id | name | category | lat | lon | r | status | flags |
 |---|---|---|---|---:|---:|---:|---|---|
-| data/places/by/oslo/places_by.json | karl_johan | Karl Johans gate | by | 59.9138 | 10.7387 | 250 | needs_review | needs_multiple_anchors |
-| data/places/by/oslo/places_by.json | ring_3 | Ring 3 | by | 59.931 | 10.792 | 400 | needs_review | low_precision_coord, needs_multiple_anchors |
-| data/places/by/oslo/places_by.json | trikk_17_18 | Trikkelinje 17/18 | by | 59.92 | 10.76 | 300 | needs_review | low_precision_coord, needs_multiple_anchors |
-| data/places/by/oslo/places_by.json | st_hanshaugen_park | St. Hanshaugen park | by | 59.9234 | 10.7463 | 220 | needs_review | area_or_park_needs_manual_review |
-| data/places/by/oslo/places_by.json | oslo_s | Oslo S | by | 59.911 | 10.7528 | 200 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | oslo_bussterminal | Oslo bussterminal | by | 59.9095 | 10.759 | 180 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | bogstadveien | Bogstadveien | by | 59.9279 | 10.7157 | 220 | needs_review | needs_multiple_anchors |
-| data/places/by/oslo/places_by.json | markveien | Markveien | by | 59.9235 | 10.7584 | 210 | needs_review | needs_multiple_anchors |
-| data/places/by/oslo/places_by.json | christiania_torv | Christiania Torv | by | 59.9074 | 10.741 | 150 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | slottsparken | Slottsparken | by | 59.9166 | 10.7278 | 250 | needs_review | area_or_park_needs_manual_review |
-| data/places/by/oslo/places_by.json | botsparken | Botsparken | by | 59.9053 | 10.769 | 170 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
-| data/places/by/oslo/places_by.json | stensparken | Stensparken | by | 59.9268 | 10.7406 | 200 | needs_review | area_or_park_needs_manual_review |
-| data/places/by/oslo/places_by.json | tjuvholmen | Tjuvholmen | by | 59.9075 | 10.72 | 200 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | bislett | Bislett | by | 59.925 | 10.7328 | 200 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | akerselva | Akerselva | by | 59.9225 | 10.7572 | 420 | needs_review | needs_multiple_anchors, area_or_park_needs_manual_review |
-| data/places/by/oslo/places_by.json | universitetsplassen | Universitetsplassen | by | 59.915 | 10.7397 | 150 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | operahuset | Operahuset | by | 59.9074 | 10.753 | 190 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | barcode | Barcode | by | 59.91 | 10.7594 | 210 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | vigelandsparken | Vigelandsparken | by | 59.927 | 10.7005 | 260 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
-| data/places/by/oslo/places_by.json | voienvolden | Voienvolden | by | 59.926 | 10.7435 | 170 | needs_review | low_precision_coord |
-| data/places/by/oslo/places_by.json | grorud | Grorud | by | 59.9575 | 10.880833 | 600 | needs_review | suspicious_radius_high |
-| data/places/by/oslo/places_by.json | sagene | Sagene | by | 59.937222 | 10.756111 | 550 | needs_review | suspicious_radius_high |
+| data/places/by/oslo/places_by.json | ring_3 | Ring 3 | by | 59.931 | 10.792 | 400 | needs_review | needs_multiple_anchors |
+| data/places/by/oslo/places_by.json | trikk_17_18 | Trikkelinje 17/18 | by | 59.92 | 10.76 | 300 | needs_review | needs_multiple_anchors |
 | data/places/historie/oslo/places_historie.json | middelalder_oslo | Middelalderparken | historie | 59.9048 | 10.7605 | 180 | needs_review | area_or_park_needs_manual_review |
 | data/places/historie/oslo/places_historie.json | gamle_trikkestallen | Gamle trikkestallen på Sagene | historie | 59.9396 | 10.7543 | 160 | needs_review | needs_multiple_anchors |
 | data/places/historie/oslo/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.3304 | 11.2617 | 250 | outside_expected_area | outside_oslo_possible_intended, outside_expected_area |
