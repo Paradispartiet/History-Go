@@ -32,7 +32,8 @@
     "data/stories/stories_manifest_by_lisboa_batch_03.json",
     "data/stories/stories_manifest_by_lisboa_batch_04.json",
     "data/stories/stories_manifest_by_lisboa_batch_05.json",
-    "data/stories/stories_manifest_historie_lisboa_batch_03.json"
+    "data/stories/stories_manifest_historie_lisboa_batch_03.json",
+    "data/stories/stories_manifest_historie_lisboa_batch_04.json"
   ];
 
   function ensureArray(value) {
