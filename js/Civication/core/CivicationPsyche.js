@@ -25,6 +25,15 @@
    *   autonomy?: number,
    *   trust?: number
    * }} CiviPsycheProfile
+   * @typedef {CiviPsycheRecord & {
+   *   player?: CiviPsycheRecord & {
+   *     competence?: CiviPsycheRecord & {
+   *       psychology?: number
+   *     },
+   *     completedPsychologyActivities?: CiviPsycheRecord,
+   *     lastPsycheResilience?: CiviPsycheRecord
+   *   }
+   * }} CivicationPlayerState
    */
 
   const KEY = "hg_psyche_v1";
@@ -112,9 +121,12 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   // -----------------------------
   // PSYCHOLOGICAL COMPETENCE / RESILIENCE
   // -----------------------------
+  /**
+   * @returns {CivicationPlayerState}
+   */
   function loadCivicationPlayerState() {
     try {
-      return window.CivicationState?.getState?.() || {};
+      return /** @type {CivicationPlayerState} */ (window.CivicationState?.getState?.() || {});
     } catch {
       return {};
     }
@@ -198,7 +210,7 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   function recordResilienceMeta(meta) {
     if (!meta?.applied) return;
     try {
-      const state = window.CivicationState?.getState?.() || {};
+      const state = /** @type {CivicationPlayerState} */ (window.CivicationState?.getState?.() || {});
       window.CivicationState?.setState?.({
         player: {
           ...(state.player && typeof state.player === "object" ? state.player : {}),
