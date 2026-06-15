@@ -175,11 +175,12 @@ const invalidFlags = new Set(['missing_lat_lon', 'invalid_lat_lon', 'non_numeric
 const conflictFlags = new Set(['duplicate_id_different_coord', 'same_name_different_coord']);
 for (const r of rows) {
   r.flags = [...new Set(r.flags)];
-  if (r.flags.some((f) => invalidFlags.has(f))) r.status = 'invalid';
+  // Statusprioritering (én kjede, ingen utilsiktet overskriving):
+  // invalid (inkl. invalid_anchor) > conflict > duplicate > outside_expected_area > needs_review > ok.
+  if (r.flags.includes('invalid_anchor') || r.flags.some((f) => invalidFlags.has(f))) r.status = 'invalid';
   else if (r.flags.some((f) => conflictFlags.has(f))) r.status = 'conflict';
   else if (r.flags.includes('duplicate_id')) r.status = 'duplicate';
   else if (r.flags.includes('outside_expected_area') || r.flags.includes('outside_oslo_possible_intended')) r.status = 'outside_expected_area';
-  if (r.flags.includes('invalid_anchor')) r.status = 'invalid';
   else if (r.flags.length) r.status = 'needs_review';
   r.reason = r.flags.join(', ');
 }

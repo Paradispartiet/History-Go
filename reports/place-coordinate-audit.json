@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-15T08:29:08.203Z",
+  "generatedAt": "2026-06-15T08:59:50.817Z",
   "activePlaceFilesRead": 42,
   "activePlacesRead": 504,
   "ok": 277,
-  "needs_review": 227,
-  "conflict": 0,
+  "needs_review": 97,
+  "conflict": 2,
   "invalid": 0,
   "duplicate": 0,
-  "outside_expected_area": 0,
+  "outside_expected_area": 128,
   "activeFilesDeclaredInManifest": [
     "data/places/by/europe/portugal/lisbon/places_lisbon_by.json",
     "data/places/by/oslo/places_by.json",
@@ -137,7 +137,43 @@
     "duplicateFiles": []
   },
   "parseErrors": [],
-  "highPriorityFindings": [],
+  "highPriorityFindings": [
+    {
+      "file": "data/places/musikk/oslo/places_musikk.json",
+      "id": "blaa",
+      "name": "Blå",
+      "category": "musikk",
+      "lat": 59.9223,
+      "lon": 10.7527,
+      "r": 130,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "same_name_different_coord"
+      ],
+      "reason": "same_name_different_coord"
+    },
+    {
+      "file": "data/places/subkultur/oslo/places_subkultur.json",
+      "id": "bla",
+      "name": "Blå",
+      "category": "subkultur",
+      "lat": 59.9186,
+      "lon": 10.757,
+      "r": 90,
+      "image": null,
+      "cardImage": null,
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "low_precision_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "low_precision_coord, same_name_different_coord"
+    }
+  ],
   "coordMetadataSuggestion": {
     "fields": [
       "coordType",
@@ -584,7 +620,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "outside_expected_area"
@@ -602,7 +638,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "outside_expected_area"
@@ -688,7 +724,7 @@
       "image": "bilder/places/proysenhuset_rudshogda.JPG",
       "cardImage": "bilder/places/proysenhuset_rudshogda.JPG",
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "outside_expected_area"
@@ -775,7 +811,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "conflict",
       "flags": [
         "same_name_different_coord"
       ],
@@ -1503,7 +1539,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -1521,7 +1557,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1538,7 +1574,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1555,7 +1591,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "area_or_park_needs_manual_review"
@@ -1573,7 +1609,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1590,7 +1626,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1607,7 +1643,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1624,7 +1660,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1641,7 +1677,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "area_or_park_needs_manual_review"
@@ -1659,7 +1695,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1676,7 +1712,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1693,7 +1729,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -1711,7 +1747,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1728,7 +1764,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1745,7 +1781,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -1763,7 +1799,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1780,7 +1816,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1797,7 +1833,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "area_or_park_needs_manual_review"
@@ -1815,7 +1851,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1832,7 +1868,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1849,7 +1885,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1866,7 +1902,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1883,7 +1919,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -1900,7 +1936,7 @@
       "image": null,
       "cardImage": null,
       "frontImage": null,
-      "status": "needs_review",
+      "status": "conflict",
       "flags": [
         "low_precision_coord",
         "same_name_different_coord"
@@ -2004,7 +2040,7 @@
       "image": "bilder/places/Tvergastein.JPG",
       "cardImage": "bilder/kort/places/tvergastein.PNG",
       "frontImage": null,
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended",
         "outside_expected_area"
@@ -2090,7 +2126,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -2108,7 +2144,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2125,7 +2161,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2143,7 +2179,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2160,7 +2196,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -2178,7 +2214,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2195,7 +2231,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -2213,7 +2249,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2230,7 +2266,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2247,7 +2283,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2264,7 +2300,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2281,7 +2317,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2298,7 +2334,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2315,7 +2351,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -2333,7 +2369,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -2351,7 +2387,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2368,7 +2404,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2385,7 +2421,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2402,7 +2438,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2419,7 +2455,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2437,7 +2473,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "low_precision_coord",
@@ -2456,7 +2492,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2473,7 +2509,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2490,7 +2526,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2507,7 +2543,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2525,7 +2561,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2543,7 +2579,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2561,7 +2597,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2578,7 +2614,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2595,7 +2631,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2612,7 +2648,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2630,7 +2666,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2647,7 +2683,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2664,7 +2700,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2681,7 +2717,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2698,7 +2734,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2715,7 +2751,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2732,7 +2768,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2749,7 +2785,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2767,7 +2803,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2784,7 +2820,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2802,7 +2838,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2819,7 +2855,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2837,7 +2873,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2854,7 +2890,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2872,7 +2908,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2889,7 +2925,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2906,7 +2942,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2923,7 +2959,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2940,7 +2976,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2958,7 +2994,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -2976,7 +3012,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -2993,7 +3029,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3010,7 +3046,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "low_precision_coord",
@@ -3029,7 +3065,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3046,7 +3082,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3063,7 +3099,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3080,7 +3116,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3097,7 +3133,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3114,7 +3150,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3132,7 +3168,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3150,7 +3186,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3167,7 +3203,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3184,7 +3220,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3201,7 +3237,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3219,7 +3255,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3236,7 +3272,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3253,7 +3289,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3271,7 +3307,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3306,7 +3342,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3323,7 +3359,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3340,7 +3376,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3357,7 +3393,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3374,7 +3410,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3391,7 +3427,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3409,7 +3445,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3495,7 +3531,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3512,7 +3548,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3529,7 +3565,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3546,7 +3582,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3563,7 +3599,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3580,7 +3616,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3597,7 +3633,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3614,7 +3650,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3631,7 +3667,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3648,7 +3684,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3666,7 +3702,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3683,7 +3719,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3700,7 +3736,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3717,7 +3753,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3734,7 +3770,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3751,7 +3787,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "outside_oslo_possible_intended"
@@ -3769,7 +3805,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3786,7 +3822,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3803,7 +3839,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3821,7 +3857,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "suspicious_radius_high",
         "low_precision_coord",
@@ -3840,7 +3876,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "low_precision_coord",
         "outside_oslo_possible_intended"
@@ -3858,7 +3894,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3926,7 +3962,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3943,7 +3979,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
@@ -3977,7 +4013,7 @@
       "image": "",
       "cardImage": "",
       "frontImage": "",
-      "status": "needs_review",
+      "status": "outside_expected_area",
       "flags": [
         "outside_oslo_possible_intended"
       ],
