@@ -1,0 +1,92 @@
+{
+  "targetId": "teknisk_museum",
+  "categoryId": "vitenskap",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_teknisk_museum.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen detaljerte gjenstandslister uten kilde.",
+      "Ingen dagsaktuelle utstillinger, åpningstider eller billettdata.",
+      "Ingen usikre personrelasjoner.",
+      "Story-data brukes for 1914, jubileumsutstillingen, Bygdøy 1932, Kjelsås 1986 og nasjonalmuseum 1995."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "vitenskap_teknisk_museum_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"teknisk_museum_s1_q1","quiz_id":"vitenskap_teknisk_museum_set_1_q1","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva gjør Teknisk museum viktig i History Go?","options":["Det viser hvordan teknologi, industri, vitenskap og medisin kan bli samlet samfunnshistorie","Det er bare et tilfeldig lager","Det handler bare om natur uten mennesker"],"answer":"Det viser hvordan teknologi, industri, vitenskap og medisin kan bli samlet samfunnshistorie","answerIndex":0,"knowledge":"Storyen viser museet som et sted der gjenstander, verksteder, magasiner og utstillinger forklarer hvordan kunnskap og samfunn endrer hverandre.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["teknisk_museum","teknologi","vitenskap"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s1_q2","quiz_id":"vitenskap_teknisk_museum_set_1_q2","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva bør spilleren se etter først ved museet?","options":["Gjenstander, utstillinger og tegn på hvordan teknologi blir bevart og forklart","Bare butikklogoer","Kun fjell og skog"],"answer":"Gjenstander, utstillinger og tegn på hvordan teknologi blir bevart og forklart","answerIndex":0,"knowledge":"Et teknisk museum handler ikke bare om maskiner, men om å velge ut, bevare og forklare teknikkens spor.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","samlinger"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s1_q3","quiz_id":"vitenskap_teknisk_museum_set_1_q3","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan blir gamle tekniske ting til kunnskap om samfunnsendring?","Hvorfor finnes det ingen teknologi her?","Hva er dagens billettpris?"],"answer":"Hvordan blir gamle tekniske ting til kunnskap om samfunnsendring?","answerIndex":0,"knowledge":"Spørsmålet kobler observasjon av ting til teknologi-, industri- og vitenskapshistorie.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "vitenskap_teknisk_museum_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"teknisk_museum_s2_q1","quiz_id":"vitenskap_teknisk_museum_set_2_q1","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Når ble Norsk Teknisk Museum etablert ifølge story-data?","options":["1914","1932","1986"],"answer":"1914","answerIndex":0,"knowledge":"Story-dataen sier at museet ble etablert i 1914, samme år som grunnlovsjubileet og jubileumsutstillingen på Frogner.","difficulty":1,"question_type":"historisk_fakta","question_layer":"place_life","tags":["1914","jubileumsutstilling"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s2_q2","quiz_id":"vitenskap_teknisk_museum_set_2_q2","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva skjedde på Kjelsås i 1986 ifølge story-data?","options":["Museet flyttet inn i dagens bygg ved Akerselva","Museet ble grunnlagt på nytt i Bergen","Museet ble en middelalderborg"],"answer":"Museet flyttet inn i dagens bygg ved Akerselva","answerIndex":0,"knowledge":"Storyen sier at museet flyttet inn i dagens bygg ved Akerselva på Kjelsås i 1986.","difficulty":1,"question_type":"historisk_endring","question_layer":"place_life","tags":["1986","kjelsås","akerselva"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s2_q3","quiz_id":"vitenskap_teknisk_museum_set_2_q3","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva bør holdes ute av trygg Teknisk museum-quiz?","options":["Dagsaktuelle utstillinger, åpningstider og detaljerte gjenstandslister uten kilde","Året 1914 fra story-data","Begrepet teknologihistorie"],"answer":"Dagsaktuelle utstillinger, åpningstider og detaljerte gjenstandslister uten kilde","answerIndex":0,"knowledge":"Trygg quizdata bruker stabile hovedlinjer fra storyen, ikke ferske publikums- eller programdetaljer.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "vitenskap_teknisk_museum_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"teknisk_museum_s3_q1","quiz_id":"vitenskap_teknisk_museum_set_3_q1","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"emne","question":"Hva betyr teknologihistorie?","options":["Historien om hvordan tekniske systemer, gjenstander og kunnskap endrer samfunnet","Bare historien om malerier","Et rent naturbegrep"],"answer":"Historien om hvordan tekniske systemer, gjenstander og kunnskap endrer samfunnet","answerIndex":0,"knowledge":"Teknisk museum gjør teknologihistorie konkret gjennom samlinger og utstillinger.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["teknologihistorie"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"conceptual_safe"},
+        {"id":"teknisk_museum_s3_q2","quiz_id":"vitenskap_teknisk_museum_set_3_q2","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"emne","question":"Hva betyr samling i museumsarbeid?","options":["Utvalgte gjenstander og kilder som bevares, ordnes og brukes til å fortelle historie","En tilfeldig haug uten mening","Et sted uten ting"],"answer":"Utvalgte gjenstander og kilder som bevares, ordnes og brukes til å fortelle historie","answerIndex":0,"knowledge":"Storyen sier at museet bygde samlinger fra utstillinger, industri og hverdagsliv.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["samlinger","museum"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"conceptual_safe"},
+        {"id":"teknisk_museum_s3_q3","quiz_id":"vitenskap_teknisk_museum_set_3_q3","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"emne","question":"Hva betyr institusjonalisering av kunnskap?","options":["At kunnskap får varige steder, samlinger, regler og offentlig formidling","At kunnskap bare finnes i tilfeldige samtaler","At gjenstander ikke kan bevares"],"answer":"At kunnskap får varige steder, samlinger, regler og offentlig formidling","answerIndex":0,"knowledge":"Teknisk museum viser hvordan teknisk kunnskap blir bevart og formidlet som institusjon.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["institusjon","formidling"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"conceptual_safe"}
+      ]
+    },
+    {
+      "set_id": "vitenskap_teknisk_museum_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"teknisk_museum_s4_q1","quiz_id":"vitenskap_teknisk_museum_set_4_q1","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva er en avansert observasjon ved Teknisk museum?","options":["Å se hvordan gjenstander blir valgt ut, bevart og forklart som samfunnshistorie","Å bare se om en maskin er gammel","Å ignorere utstillingene"],"answer":"Å se hvordan gjenstander blir valgt ut, bevart og forklart som samfunnshistorie","answerIndex":0,"knowledge":"Avansert stedlesning kobler museumsgjenstander til industri, kommunikasjon, transport, medisin og vitenskap.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["samlinger","formidling"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s4_q2","quiz_id":"vitenskap_teknisk_museum_set_4_q2","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hvorfor er plasseringen ved Akerselva på Kjelsås relevant?","options":["Den knytter museets teknologihistorie til Oslos industri- og energihistorie","Den viser at museet er uten byhistorie","Den gjør museet til en fjellhytte"],"answer":"Den knytter museets teknologihistorie til Oslos industri- og energihistorie","answerIndex":0,"knowledge":"Storyens next_scene peker på at Akerselva knytter museets teknologi til Oslos industri- og energihistorie.","difficulty":2,"question_type":"rutekobling","question_layer":"advanced_place","tags":["akerselva","industrihistorie"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s4_q3","quiz_id":"vitenskap_teknisk_museum_set_4_q3","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"place","question":"Hva bør en god Teknisk museum-quiz trene spilleren i?","options":["Å lese teknologi, industri, vitenskap, medisin og samfunnsendring sammen","Å pugge åpningstider","Å overse gjenstander"],"answer":"Å lese teknologi, industri, vitenskap, medisin og samfunnsendring sammen","answerIndex":0,"knowledge":"Quizzen skal forklare hvordan tekniske ting blir historisk kunnskap og offentlig formidling.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "vitenskap_teknisk_museum_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"teknisk_museum_s5_q1","quiz_id":"vitenskap_teknisk_museum_set_5_q1","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"emne","question":"Hva er den dypere læringen i Teknisk museum?","options":["At teknologi blir historie når samfunnet velger å bevare, ordne og forklare sporene","At gamle ting forklarer seg selv","At teknologi ikke påvirker samfunn"],"answer":"At teknologi blir historie når samfunnet velger å bevare, ordne og forklare sporene","answerIndex":0,"knowledge":"Storyen sier at museet er et system for å velge ut, bevare og forklare ting som ellers raskt blir gammeldagse.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["teknologihistorie","museum"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s5_q2","quiz_id":"vitenskap_teknisk_museum_set_5_q2","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"emne","question":"Hvorfor er 1914-starten viktig i storyen?","options":["Den kobler museet til jubileumsutstillingen og ønsket om å bevare moderne teknikkens spor","Den viser at museet startet som værstasjon","Den handler bare om middelalder"],"answer":"Den kobler museet til jubileumsutstillingen og ønsket om å bevare moderne teknikkens spor","answerIndex":0,"knowledge":"Storyen knytter etableringen i 1914 til grunnlovsjubileet og jubileumsutstillingen på Frogner.","difficulty":3,"question_type":"historisk_sammenheng","question_layer":"advanced_emne","tags":["1914","jubileumsutstilling"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"},
+        {"id":"teknisk_museum_s5_q3","quiz_id":"vitenskap_teknisk_museum_set_5_q3","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"emne","question":"Hvordan fungerer stedet i en vitenskaps- og industrirute?","options":["Som sted der teknologi, industri, medisin og vitenskap blir samlet og forklart","Som et sted uten teknikk","Som et rent handlestrøk"],"answer":"Som sted der teknologi, industri, medisin og vitenskap blir samlet og forklart","answerIndex":0,"knowledge":"Teknisk museum samler flere kunnskapsfelt og knytter dem til samfunnets tekniske utvikling.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["vitenskap","industrihistorie"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "vitenskap_teknisk_museum_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"teknisk_museum_s6_q1","quiz_id":"vitenskap_teknisk_museum_set_6_q1","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"concept","question":"Hvilket begrep beskriver historien om tekniske systemer, gjenstander og samfunnsendring?","options":["Teknologihistorie","Ravinedal","Sanering"],"answer":"Teknologihistorie","answerIndex":0,"knowledge":"Teknologihistorie er nøkkelbegrepet for Teknisk museum.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["teknologihistorie"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"conceptual_safe"},
+        {"id":"teknisk_museum_s6_q2","quiz_id":"vitenskap_teknisk_museum_set_6_q2","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"concept","question":"Hva betyr museumssamling?","options":["Utvalgte gjenstander og kilder som bevares og brukes til kunnskap og formidling","Et tilfeldig rot","Et værvarsel"],"answer":"Utvalgte gjenstander og kilder som bevares og brukes til kunnskap og formidling","answerIndex":0,"knowledge":"Museet bruker samlinger til å gjøre teknologi, industri, vitenskap og medisin til historie.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["samling","museum"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"conceptual_safe"},
+        {"id":"teknisk_museum_s6_q3","quiz_id":"vitenskap_teknisk_museum_set_6_q3","categoryId":"vitenskap","placeId":"teknisk_museum","targetId":"teknisk_museum","question_scope":"concept","question":"Hvilket begrepspar forklarer Teknisk museum best?","options":["Teknologihistorie og samlinger","Overvann og fjordovergang","Sanering og knutepunkt"],"answer":"Teknologihistorie og samlinger","answerIndex":0,"knowledge":"Teknisk museum blir tydeligst når tekniske gjenstander leses som utvalgte spor etter samfunnsendring.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["teknologihistorie","samlinger"],"source":["data/stories/stories_teknisk_museum.json"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
