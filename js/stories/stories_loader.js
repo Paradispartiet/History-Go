@@ -45,7 +45,8 @@
     "data/stories/stories_manifest_sport_lisboa_batch_02.json",
     "data/stories/stories_manifest_sport_lisboa_batch_03.json",
     "data/stories/stories_manifest_vitenskap_lisboa_batch_03.json",
-    "data/stories/stories_manifest_natur_lisboa_batch_03.json"
+    "data/stories/stories_manifest_natur_lisboa_batch_03.json",
+    "data/stories/stories_manifest_by_lisboa_batch_06.json"
   ];
 
   function ensureArray(value) {
