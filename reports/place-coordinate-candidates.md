@@ -1,6 +1,6 @@
 # Place coordinate candidates (pipeline v1)
 
-Generert: 2026-06-15T19:03:44.877Z
+Generert: 2026-06-16T04:04:02.888Z
 
 > Maskinell, kildebasert kandidatgenerering. **Ingen place-koordinater er endret av dette verktøyet.**
 > Kilder: wikidata, nominatim, overpass, official_address. Google Maps / Google Places / Google geocodes brukes ikke som skrapet eller lagret datakilde.
