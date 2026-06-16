@@ -1,0 +1,92 @@
+{
+  "targetId": "vg_huset",
+  "categoryId": "popkultur",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_vg_huset.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen dagsaktuelle redaksjons-, eier- eller mediedriftspåstander.",
+      "Ingen usikre personrelasjoner utover relaterte personer i story-data.",
+      "Ingen nåværende program-, trafikk- eller klikkdata.",
+      "Story-data brukes for VG 1945, Akersgata 55, VG-huset 1994, tabloid offentlighet, nettavis og døgnrytme."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "popkultur_vg_huset_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"vg_huset_s1_q1","quiz_id":"popkultur_vg_huset_set_1_q1","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva gjør VG-huset til et viktig mediehistorisk sted?","options":["Det viser overgangen fra løssalgsavisens forside til nettavisens kontinuerlige nyhetsstrøm","Det er bare et naturpunkt","Det handler bare om radio"],"answer":"Det viser overgangen fra løssalgsavisens forside til nettavisens kontinuerlige nyhetsstrøm","answerIndex":0,"knowledge":"Storyen gjør VG-huset til et kartpunkt for tabloid journalistikk, digital publisering og nasjonal dagsorden.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["vg_huset","tabloid","nettavis"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s1_q2","quiz_id":"popkultur_vg_huset_set_1_q2","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva bør spilleren se etter først ved VG-huset?","options":["Bygget, presseaksen, synlig redaksjonsbygg og tegn på rask nyhetsproduksjon","Bare trær og fugler","Kun fjordkanten"],"answer":"Bygget, presseaksen, synlig redaksjonsbygg og tegn på rask nyhetsproduksjon","answerIndex":0,"knowledge":"VG-huset gjør avisen synlig som redaksjonelt maskineri midt i Akersgatas pressegeografi.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","akersgata_55"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s1_q3","quiz_id":"popkultur_vg_huset_set_1_q3","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan blir nyhetstempo, forsidevalg og digital publisering synlig i et bybygg?","Hvorfor finnes det ingen medier her?","Hvor mange klikk har VG akkurat nå?"],"answer":"Hvordan blir nyhetstempo, forsidevalg og digital publisering synlig i et bybygg?","answerIndex":0,"knowledge":"Spørsmålet kobler stedet til mediearbeid uten å bruke dagsaktuelle trafikk- eller redaksjonsdata.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "popkultur_vg_huset_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"vg_huset_s2_q1","quiz_id":"popkultur_vg_huset_set_2_q1","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Når ble VG etablert ifølge story-data?","options":["1945","1994","2003"],"answer":"1945","answerIndex":0,"knowledge":"Story-dataen sier at VG kom ut etter frigjøringen i 1945 og tok plass i Akersgatas pressegeografi.","difficulty":1,"question_type":"historisk_fakta","question_layer":"place_life","tags":["1945","vg"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s2_q2","quiz_id":"popkultur_vg_huset_set_2_q2","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva skjedde i 1994 ifølge story-data?","options":["VG-huset i Akersgata 55 stod ferdig","VG ble grunnlagt","Aftenposten flyttet til Postgirobygget"],"answer":"VG-huset i Akersgata 55 stod ferdig","answerIndex":0,"knowledge":"Story-dataen sier at VG-huset i Akersgata 55 stod ferdig i 1994.","difficulty":1,"question_type":"historisk_endring","question_layer":"place_life","tags":["1994","akersgata_55"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s2_q3","quiz_id":"popkultur_vg_huset_set_2_q3","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva bør holdes ute av trygg VG-quiz her?","options":["Dagsaktuelle klikk-, program-, redaksjons- og eieropplysninger uten kilde","Året 1945 fra story-data","Begrepet tabloid offentlighet"],"answer":"Dagsaktuelle klikk-, program-, redaksjons- og eieropplysninger uten kilde","answerIndex":0,"knowledge":"Quizzen skal lære stabile mediehistoriske mønstre, ikke oppdatere dagens nyhetsdrift.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "popkultur_vg_huset_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"vg_huset_s3_q1","quiz_id":"popkultur_vg_huset_set_3_q1","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"emne","question":"Hva betyr tabloid offentlighet?","options":["En offentlighet preget av store titler, tydelig prioritering, tempo og bred appell","Et lukket arkiv uten publikum","En type elvedal"],"answer":"En offentlighet preget av store titler, tydelig prioritering, tempo og bred appell","answerIndex":0,"knowledge":"Storyen knytter VG til høyere tempo, løssalg, store titler og en tydelig tabloid offentlighet.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["tabloid_offentlighet"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vg_huset_s3_q2","quiz_id":"popkultur_vg_huset_set_3_q2","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"emne","question":"Hva betyr frontredigering?","options":["Å velge og prioritere hva publikum møter først i en avis eller nettavis","Å bygge broer","Å måle regn"],"answer":"Å velge og prioritere hva publikum møter først i en avis eller nettavis","answerIndex":0,"knowledge":"Storyen gjør frontredigering konkret som en arbeidsprosess i en rask nyhetsredaksjon.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["frontredigering"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vg_huset_s3_q3","quiz_id":"popkultur_vg_huset_set_3_q3","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"emne","question":"Hva betyr døgnrytme i moderne nyhetsarbeid?","options":["At nyheter prioriteres og publiseres kontinuerlig gjennom døgnet","At avisen bare kommer én gang i året","At mediene ikke har tempo"],"answer":"At nyheter prioriteres og publiseres kontinuerlig gjennom døgnet","answerIndex":0,"knowledge":"VG-huset viser hvordan moderne nyhetsrytme ble døgnkontinuerlig redaksjonsarbeid.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["døgnrytme","nettavis"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"conceptual_safe"}
+      ]
+    },
+    {
+      "set_id": "popkultur_vg_huset_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"vg_huset_s4_q1","quiz_id":"popkultur_vg_huset_set_4_q1","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva er en avansert observasjon ved VG-huset?","options":["Å se hvordan papiravis, nettavis, sport, bilder, nyheter og forsidevalg krevde ett aktivt redaksjonsbygg","Å bare lese gatenavnet","Å ignorere pressehistorien"],"answer":"Å se hvordan papiravis, nettavis, sport, bilder, nyheter og forsidevalg krevde ett aktivt redaksjonsbygg","answerIndex":0,"knowledge":"Storyen beskriver bygget som fysisk ramme rundt flere hurtige redaksjonelle arbeidsprosesser.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["redaksjon","nettavis","forsidevalg"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s4_q2","quiz_id":"popkultur_vg_huset_set_4_q2","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva kan VG-huset lære om overgangen i norsk presse?","options":["Fra løssalgsavisens synlige forside til nettavisens kontinuerlige strøm","Fra radio til ravinedal","Fra fjordovergang til vannkvalitet"],"answer":"Fra løssalgsavisens synlige forside til nettavisens kontinuerlige strøm","answerIndex":0,"knowledge":"Storyen oppsummerer VG-huset som sted for overgangen fra papirforside til digital nyhetsstrøm.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["løssalg","digital_publisering"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s4_q3","quiz_id":"popkultur_vg_huset_set_4_q3","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"place","question":"Hva bør en god VG-huset-quiz trene spilleren i?","options":["Å lese tabloid journalistikk, digital publisering og dagsorden sammen","Å pugge dagens trafikkdata","Å overse stedet"],"answer":"Å lese tabloid journalistikk, digital publisering og dagsorden sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå moderne presse gjennom et konkret redaksjonsbygg.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "popkultur_vg_huset_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"vg_huset_s5_q1","quiz_id":"popkultur_vg_huset_set_5_q1","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"emne","question":"Hva er den dypere læringen i VG-huset?","options":["At moderne nyhetsmedier er både bygning, arbeidsrytme, publiseringssystem og offentlig dagsorden","At medier bare er løs tekst uten steder","At nyhetsrytme ikke påvirker offentlighet"],"answer":"At moderne nyhetsmedier er både bygning, arbeidsrytme, publiseringssystem og offentlig dagsorden","answerIndex":0,"knowledge":"VG-huset samler tabloid journalistikk, nettavis og nasjonal dagsorden i ett sted.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["dagsorden","mediehistorie"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s5_q2","quiz_id":"popkultur_vg_huset_set_5_q2","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"emne","question":"Hvorfor er Akersgata viktig i VG-storyen?","options":["Den plasserte VG direkte inn i Oslos presseakse, men med en annen energi enn eldre avishus","Den gjorde VG til en fjellhytte","Den fjernet VG fra offentligheten"],"answer":"Den plasserte VG direkte inn i Oslos presseakse, men med en annen energi enn eldre avishus","answerIndex":0,"knowledge":"Storyen kontrasterer VG med eldre avishus gjennom tempo, løssalg, store titler og senere nettavis.","difficulty":3,"question_type":"historisk_sammenheng","question_layer":"advanced_emne","tags":["akersgata","presseakse"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"},
+        {"id":"vg_huset_s5_q3","quiz_id":"popkultur_vg_huset_set_5_q3","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"emne","question":"Hvordan fungerer VG-huset i en mediehistorisk rute?","options":["Som Oslo-punkt der tabloid presse, digital publisering og døgnkontinuerlig nyhetsarbeid møtes","Som naturpunkt uten medier","Som et rent idrettsanlegg"],"answer":"Som Oslo-punkt der tabloid presse, digital publisering og døgnkontinuerlig nyhetsarbeid møtes","answerIndex":0,"knowledge":"VG-huset gir en konkret inngang til moderne nyhetsmedier og mediebyens raske rytme.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["mediehistorie","oslo"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "popkultur_vg_huset_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"vg_huset_s6_q1","quiz_id":"popkultur_vg_huset_set_6_q1","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"concept","question":"Hvilket begrep beskriver en nyhetsform preget av store titler, tempo og tydelig prioritering?","options":["Tabloid offentlighet","Ravinedal","Overvann"],"answer":"Tabloid offentlighet","answerIndex":0,"knowledge":"Tabloid offentlighet er nøkkelbegrepet for VG-huset.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["tabloid_offentlighet"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vg_huset_s6_q2","quiz_id":"popkultur_vg_huset_set_6_q2","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"concept","question":"Hva betyr frontredigering?","options":["Å velge og prioritere hva publikum møter først i en avis eller nettavis","Å måle vannstand","Å bygge en bru"],"answer":"Å velge og prioritere hva publikum møter først i en avis eller nettavis","answerIndex":0,"knowledge":"Frontredigering forklarer hvordan VG-huset kan leses som sted for raske forside- og nyhetsvalg.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["frontredigering"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"conceptual_safe"},
+        {"id":"vg_huset_s6_q3","quiz_id":"popkultur_vg_huset_set_6_q3","categoryId":"popkultur","placeId":"vg_huset","targetId":"vg_huset","question_scope":"concept","question":"Hvilket begrepspar forklarer VG-huset best?","options":["Tabloid offentlighet og nettavis","Fjordovergang og vannkvalitet","Ravinedal og løvskog"],"answer":"Tabloid offentlighet og nettavis","answerIndex":0,"knowledge":"Stedet blir tydeligst når løssalgsavisens forside leses sammen med nettavisens kontinuerlige strøm.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["tabloid","nettavis"],"source":["data/stories/stories_vg_huset.json"],"claim_basis":"conceptual_safe"}
+      ]
+    }
+  ]
+}
