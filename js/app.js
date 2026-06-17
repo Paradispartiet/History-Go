@@ -145,6 +145,64 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+async function safeRun(label, fn) {
+  if (typeof fn !== "function") return undefined;
+
+  try {
+    return await fn();
+  } catch (e) {
+    console.error(`[${label}]`, e);
+    window.__HG_LAST_ERROR__ = {
+      label,
+      message: String(e?.message || e),
+      stack: e?.stack || null
+    };
+    throw e;
+  }
+}
+
+function loadScriptOnce(src) {
+  const url = String(src || "").trim();
+  if (!url) return Promise.reject(new Error("Missing script src"));
+
+  window.__HG_SCRIPT_PROMISES__ = window.__HG_SCRIPT_PROMISES__ || Object.create(null);
+  if (window.__HG_SCRIPT_PROMISES__[url]) return window.__HG_SCRIPT_PROMISES__[url];
+
+  window.__HG_SCRIPT_PROMISES__[url] = new Promise((resolve, reject) => {
+    const existing = Array.from(document.scripts || []).find(script => {
+      const attr = script.getAttribute("src") || "";
+      if (!attr) return false;
+      try {
+        return new URL(attr, document.baseURI).href === new URL(url, document.baseURI).href;
+      } catch {
+        return attr === url;
+      }
+    });
+
+    if (existing) {
+      if (existing.dataset.hgLoaded === "1") {
+        resolve(existing);
+        return;
+      }
+      existing.addEventListener("load", () => resolve(existing), { once: true });
+      existing.addEventListener("error", () => reject(new Error(`Kunne ikke laste script: ${url}`)), { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = url;
+    script.defer = true;
+    script.onload = () => {
+      script.dataset.hgLoaded = "1";
+      resolve(script);
+    };
+    script.onerror = () => reject(new Error(`Kunne ikke laste script: ${url}`));
+    document.head.appendChild(script);
+  });
+
+  return window.__HG_SCRIPT_PROMISES__[url];
+}
+
 function assertRuntimeCategoryStorage() {
   if (!window.DEBUG) return;
 
