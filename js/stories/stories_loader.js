@@ -58,6 +58,41 @@
     return Array.isArray(value) ? value : [];
   }
 
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function storySourceLabel(source) {
+    if (typeof source === "string") return source;
+    if (!source || typeof source !== "object") return "";
+    return String(source.title || source.url || source.id || "").trim();
+  }
+
+  function renderStoryFallback(stories) {
+    if (!stories.length) return `<div class="hg-no-stories">Ingen historier ennå</div>`;
+
+    return stories.map(story => {
+      const source = storySourceLabel(ensureArray(story.sources)[0]);
+      const year = story.year ? `<div class="hg-story-year">${escapeHtml(story.year)}</div>` : "";
+      return `
+        <article class="hg-story-card">
+          <div class="hg-story-header">
+            <div class="hg-story-type">${escapeHtml(story.type || "story")}</div>
+            ${year}
+          </div>
+          <div class="hg-story-title">${escapeHtml(story.title || "Fortelling")}</div>
+          <div class="hg-story-text">${escapeHtml(story.story || story.summary || "")}</div>
+          ${source ? `<div class="hg-story-source">${escapeHtml(source)}</div>` : ""}
+        </article>
+      `;
+    }).join("");
+  }
+
   function addToIndex(index, key, story) {
     if (!key) return;
     if (!index[key]) index[key] = [];
@@ -109,6 +144,13 @@
       throw new Error(`Kunne ikke laste stories manifest ${path}: ${manifestRes.status}`);
     }
     return manifestRes.json();
+  }
+
+  function resolvePlaceById(placeId) {
+    const id = String(placeId || "").trim();
+    if (!id) return null;
+    return (Array.isArray(window.PLACES) ? window.PLACES : [])
+      .find(place => String(place?.id || "").trim() === id) || null;
   }
 
   window.HGStories = {
@@ -189,6 +231,33 @@
 
       this.ready = true;
       return this;
+    },
+
+    async openPlace(placeId) {
+      const id = String(placeId || "").trim();
+      if (!id) return;
+
+      await this.init();
+      const place = resolvePlaceById(id);
+      const stories = this.getByPlace(id);
+      const container = document.createElement("div");
+      container.className = "hg-story-popup-content";
+
+      if (window.HGStoryUI && typeof window.HGStoryUI.renderPlaceStories === "function") {
+        window.HGStoryUI.renderPlaceStories(id, container);
+      } else {
+        container.innerHTML = renderStoryFallback(stories);
+      }
+
+      if (typeof window.showPlaceCardRoundPopup === "function") {
+        window.showPlaceCardRoundPopup({
+          title: "Fortellinger",
+          subtitle: place?.name || id,
+          html: container.innerHTML,
+          place,
+          kind: "fortellinger"
+        });
+      }
     },
 
     getById(id) {
