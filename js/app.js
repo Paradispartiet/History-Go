@@ -104,14 +104,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     markAppReady();
     releaseQueuedToasts();
 
-    // Stories skal IKKE blokkere app-start. Fortellinger-rundingen kan laste dette
-    // etter at kart/placecard allerede er oppe.
-    runAfterReady("loadStoriesRuntime", async () => {
-      await loadScriptOnce("js/stories/stories_loader.js");
-      await loadScriptOnce("js/stories/stories_utils.js");
-      void window.HGStories?.init?.();
-    });
-
     // QuizEngine lastes fra app-entry (samme kanal som resten av index-runtime).
     // Må være tilgjengelig før AppRouter kan route til #/quiz, og før bootBackground
     // kjører QuizEngine.init i boot-fast sin bakgrunnsfase. Kartet er allerede booted
@@ -225,4 +217,92 @@ function assertCriticalIndexRuntime() {
   console.error("[index runtime sanity check]", error.message);
   window.__HG_INDEX_RUNTIME_MISSING__ = missing;
   return error;
+}
+
+function markAppReady() {
+  document.body?.classList.remove("hg-load-failed");
+  document.body?.classList.add("hg-loaded");
+  window.__HG_APP_READY__ = true;
+
+  try {
+    window.dispatchEvent(new CustomEvent("hg:appReady", {
+      detail: { ready: true, ts: Date.now() }
+    }));
+  } catch {}
+}
+
+function markAppFailed(error) {
+  console.error("[app startup failed]", error);
+
+  window.__HG_APP_READY__ = false;
+  window.__HG_APP_LOAD_ERROR__ = {
+    message: String(error?.message || error),
+    stack: error?.stack || null
+  };
+
+  document.body?.classList.add("hg-load-failed");
+}
+
+function gateToastsUntilAppReady() {
+  const originalShowToast = window.showToast;
+  const queue = [];
+  let released = false;
+
+  if (typeof originalShowToast !== "function") {
+    return () => {};
+  }
+
+  window.showToast = function gatedShowToast(message, ...args) {
+    if (released) {
+      return originalShowToast.call(this, message, ...args);
+    }
+
+    queue.push({ message, args });
+    return undefined;
+  };
+
+  return function releaseQueuedToasts() {
+    released = true;
+    window.showToast = originalShowToast;
+
+    while (queue.length) {
+      const item = queue.shift();
+      originalShowToast.call(window, item.message, ...item.args);
+    }
+  };
+}
+
+function runAfterReady(label, task) {
+  if (typeof task !== "function") return;
+
+  const runner = () => {
+    Promise.resolve()
+      .then(task)
+      .catch(err => console.warn(`[${label}]`, err));
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(runner, { timeout: 1200 });
+  } else {
+    setTimeout(runner, 0);
+  }
+}
+
+function wireMapPlacePopupInMapMode() {
+  if (window.__HG_MAP_PLACE_POPUP_WIRED__) return;
+  window.__HG_MAP_PLACE_POPUP_WIRED__ = true;
+
+  window.addEventListener("hg:place-selected", async (event) => {
+    const place = event?.detail?.place;
+    if (!place) return;
+
+    const routerMode = String(window.HGAppRouter?.currentMode || "").toLowerCase();
+    const hash = String(window.location.hash || "").toLowerCase();
+    const isMapMode = routerMode === "map" || hash === "#/map" || hash === "#map" || hash === "";
+    if (!isMapMode) return;
+
+    if (typeof window.openPlaceCard === "function") {
+      await window.openPlaceCard(place);
+    }
+  });
 }
