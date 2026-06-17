@@ -49,7 +49,8 @@
     "data/stories/stories_manifest_by_lisboa_batch_06.json",
     "data/stories/stories_manifest_media_lisboa_batch_01.json",
     "data/stories/stories_manifest_film_tv_lisboa_batch_01.json",
-    "data/stories/stories_manifest_by_lisboa_batch_07.json"
+    "data/stories/stories_manifest_by_lisboa_batch_07.json",
+    "data/stories/stories_manifest_naeringsliv_lisboa_batch_04.json"
   ];
 
   function ensureArray(value) {
