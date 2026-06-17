@@ -44,12 +44,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
 
-    // Stories-runtime: må være lastet før appReady, ellers Fortellinger-rundingen
-    // finnes i PlaceCard men åpner tomt/ingenting fordi window.HGStories mangler.
-    await safeRun("loadStoriesLoader", () => loadScriptOnce("js/stories/stories_loader.js"));
-    await safeRun("loadStoriesUtils", () => loadScriptOnce("js/stories/stories_utils.js"));
-    await safeRun("initStories", () => window.HGStories?.init?.());
-
     // Leksikon-runtime: leksikon_loader.js definerer window.HGLeksikon og patcher
     // window.openPlaceCard, så den må lastes etter place-card.js (som definerer
     // window.openPlaceCard), men før brukeren rekker å åpne/bruke PlaceCard – ellers
@@ -109,6 +103,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     markAppReady();
     releaseQueuedToasts();
+
+    // Stories skal IKKE blokkere app-start. Fortellinger-rundingen kan laste dette
+    // etter at kart/placecard allerede er oppe.
+    runAfterReady("loadStoriesRuntime", async () => {
+      await loadScriptOnce("js/stories/stories_loader.js");
+      await loadScriptOnce("js/stories/stories_utils.js");
+      void window.HGStories?.init?.();
+    });
 
     // QuizEngine lastes fra app-entry (samme kanal som resten av index-runtime).
     // Må være tilgjengelig før AppRouter kan route til #/quiz, og før bootBackground
