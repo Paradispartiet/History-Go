@@ -1,0 +1,92 @@
+{
+  "targetId": "lisbon_city",
+  "categoryId": "by",
+  "generator_version": "chatgpt_history_go_manual_v1_compact",
+  "generated_from": [
+    "data/stories/stories_lisbon_city.json",
+    "data/quiz/regler/SET_MAL_README_v3.md"
+  ],
+  "manual_production_notes": {
+    "quality_direction": "sted → observasjon → emne → forståelse",
+    "hold_back": [
+      "Ingen dagsaktuelle turist-, transport- eller bydriftsopplysninger.",
+      "Ingen usikre personrelasjoner.",
+      "Ingen detaljerte seismologi- eller dødstallspåstander uten kilde.",
+      "Story-data brukes for jordskjelv, flodbølger og branner i 1755, Baixa Pombalina, rutenett, Tejo, handel, stat og kontrasten Alfama/Baixa."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "by_lisbon_city_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "mode": "place_intro_story",
+      "questions": [
+        {"id":"lisbon_city_s1_q1","quiz_id":"by_lisbon_city_set_1_q1","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva gjør Lisboa til et viktig byhistorisk case i History Go?","options":["Byens moderne form ble sterkt preget av katastrofen i 1755 og gjenreisningen etterpå","Byen er bare et tilfeldig utsiktspunkt","Byen mangler eldre og moderne lag"],"answer":"Byens moderne form ble sterkt preget av katastrofen i 1755 og gjenreisningen etterpå","answerIndex":0,"knowledge":"Storyen beskriver Lisboa som en by der naturfare, handel, stat og byplanlegging kan leses i gatebildet.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["lisboa","jordskjelv","byplanlegging"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s1_q2","quiz_id":"by_lisbon_city_set_1_q2","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva bør spilleren se etter først i Lisboa-storyen?","options":["Forskjellen mellom eldre labyrintiske gateløp og Baixas rette akser","Kun dagens butikkfasader","Bare natur uten byform"],"answer":"Forskjellen mellom eldre labyrintiske gateløp og Baixas rette akser","answerIndex":0,"knowledge":"Storyen sier at kontrasten mellom Alfama og Baixa gjør katastrofe- og handelslogikken lesbar i byen.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","alfama","baixa"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s1_q3","quiz_id":"by_lisbon_city_set_1_q3","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva er et godt første observasjonsspørsmål her?","options":["Hvordan kan en katastrofe tegne en by på nytt?","Hvorfor finnes det ingen historie i gatene?","Hva er dagens turisttall?"],"answer":"Hvordan kan en katastrofe tegne en by på nytt?","answerIndex":0,"knowledge":"Spørsmålet kobler observasjon av byform til naturfare, gjenreisning og makt.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["stedlesning"],"source":["data/quiz/regler/SET_MAL_README_v3.md","data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "by_lisbon_city_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "mode": "place_life_people_events",
+      "questions": [
+        {"id":"lisbon_city_s2_q1","quiz_id":"by_lisbon_city_set_2_q1","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva rammet Lisboa 1. november 1755 ifølge story-data?","options":["Jordskjelv, påfølgende flodbølger og branner","En avisstreik i Akersgata","En fotballfinale"],"answer":"Jordskjelv, påfølgende flodbølger og branner","answerIndex":0,"knowledge":"Story-dataen sier at Lisboa ble rammet av jordskjelv, flodbølger og branner 1. november 1755.","difficulty":1,"question_type":"historisk_fakta","question_layer":"place_life","tags":["1755","jordskjelv"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s2_q2","quiz_id":"by_lisbon_city_set_2_q2","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva ble valgt i stedet for å gjenskape det gamle sentrum?","options":["Et rasjonelt rutenett med brede gater, handelskvartaler og nye konstruksjonsprinsipper","Et helt tilfeldig gatenett","Bare en park uten bystruktur"],"answer":"Et rasjonelt rutenett med brede gater, handelskvartaler og nye konstruksjonsprinsipper","answerIndex":0,"knowledge":"Storyen sier at Baixa ble tegnet på nytt etter katastrofen, ikke bare reparert.","difficulty":1,"question_type":"byform","question_layer":"place_life","tags":["baixa_pombalina","rutenett"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s2_q3","quiz_id":"by_lisbon_city_set_2_q3","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva bør holdes ute av trygg Lisboa-quiz her?","options":["Dagsaktuelle turist-, transport- og detaljerte seismologidata uten kilde","Året 1755 fra story-data","Begrepet Baixa Pombalina"],"answer":"Dagsaktuelle turist-, transport- og detaljerte seismologidata uten kilde","answerIndex":0,"knowledge":"Quizzen skal lære stabile byhistoriske sammenhenger, ikke gi ferske praktiske eller tekniske detaljer uten kilde.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"}
+      ]
+    },
+    {
+      "set_id": "by_lisbon_city_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "mode": "emne_based_foundation",
+      "questions": [
+        {"id":"lisbon_city_s3_q1","quiz_id":"by_lisbon_city_set_3_q1","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"emne","question":"Hva betyr byplanlegging i denne storyen?","options":["Å forme gater, kvartaler og bevegelse etter politiske, tekniske og økonomiske mål","Å la byen vokse helt uten mønster","Å bare dekorere fasader"],"answer":"Å forme gater, kvartaler og bevegelse etter politiske, tekniske og økonomiske mål","answerIndex":0,"knowledge":"Gjenreisningen av Baixa viser byplanlegging som teknisk og politisk prosjekt.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["byplanlegging"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"conceptual_safe"},
+        {"id":"lisbon_city_s3_q2","quiz_id":"by_lisbon_city_set_3_q2","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"emne","question":"Hva betyr rutenettsby?","options":["En byform der gater og kvartaler er ordnet i et systematisk mønster","En by uten gater","Et navn på en radiokanal"],"answer":"En byform der gater og kvartaler er ordnet i et systematisk mønster","answerIndex":0,"knowledge":"Baixa Pombalina er storyens eksempel på rasjonelt rutenett etter 1755.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["rutenett","baixa"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"conceptual_safe"},
+        {"id":"lisbon_city_s3_q3","quiz_id":"by_lisbon_city_set_3_q3","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"emne","question":"Hva betyr katastrofeurbanisme?","options":["Når en katastrofe åpner for ny byform, styring og tekniske løsninger","Når en by aldri endrer seg","Når idrettsklubber danner byplan"],"answer":"Når en katastrofe åpner for ny byform, styring og tekniske løsninger","answerIndex":0,"knowledge":"Lisboa-storyen viser hvordan jordskjelvet i 1755 ble utgangspunkt for en ny byorden.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["katastrofeurbanisme"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"conceptual_safe"}
+      ]
+    },
+    {
+      "set_id": "by_lisbon_city_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "mode": "place_concrete_advanced",
+      "questions": [
+        {"id":"lisbon_city_s4_q1","quiz_id":"by_lisbon_city_set_4_q1","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva er en avansert observasjon i Lisboa etter 1755?","options":["Å se hvordan Baixa binder elv, handel, stat og bevegelse i ett bysystem","Å bare se at gatene er rette","Å ignorere Tejo"],"answer":"Å se hvordan Baixa binder elv, handel, stat og bevegelse i ett bysystem","answerIndex":0,"knowledge":"Storyen sier at Baixa Pombalina bandt Praça do Comércio til Rossio og gjorde elven, handelen og staten til deler av samme urbane orden.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["tejo","handel","stat"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s4_q2","quiz_id":"by_lisbon_city_set_4_q2","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva viser kontrasten mellom Alfama og Baixa?","options":["At Lisboa rommer både eldre havneby og planlagt gjenreisningsby","At hele byen er bygget på én dag","At det ikke finnes historiske lag"],"answer":"At Lisboa rommer både eldre havneby og planlagt gjenreisningsby","answerIndex":0,"knowledge":"Storyen sier at Lisboa rommer to byer samtidig: den middelalderske havnebyen og byen konstruert som svar på 1755.","difficulty":2,"question_type":"kontrast","question_layer":"advanced_place","tags":["alfama","baixa","historiske_lag"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s4_q3","quiz_id":"by_lisbon_city_set_4_q3","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"place","question":"Hva bør en god Lisboa-byquiz trene spilleren i?","options":["Å lese gateform, katastrofe, handel og statlig styring sammen","Å pugge dagens turistkart","Å overse byplanen"],"answer":"Å lese gateform, katastrofe, handel og statlig styring sammen","answerIndex":0,"knowledge":"Quizzen skal gjøre spilleren bedre til å forstå byform som historisk forklaring.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+      ]
+    },
+    {
+      "set_id": "by_lisbon_city_set_5",
+      "level": 5,
+      "order": 5,
+      "xp": 90,
+      "mode": "emne_based_advanced",
+      "questions": [
+        {"id":"lisbon_city_s5_q1","quiz_id":"by_lisbon_city_set_5_q1","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"emne","question":"Hva er den dypere læringen i Lisboa-city-storyen?","options":["At naturfare, kolonihandel, opplysningstid og statsstyring kan samles i en byplan","At byform bare er estetikk","At katastrofer aldri påvirker byer"],"answer":"At naturfare, kolonihandel, opplysningstid og statsstyring kan samles i en byplan","answerIndex":0,"knowledge":"Storyen sier direkte at Lisboa viser hvordan disse kreftene kan samles i en byplan.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["naturfare","kolonihandel","statsstyring"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s5_q2","quiz_id":"by_lisbon_city_set_5_q2","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"emne","question":"Hvorfor er gjenreisningen etter 1755 politisk?","options":["Fordi byrommet forklarer makt: varer, offentlige bygninger og befolkningens bevegelse ble ordnet","Fordi den bare handlet om tilfeldige hus","Fordi byen ble flyttet ut av Lisboa"],"answer":"Fordi byrommet forklarer makt: varer, offentlige bygninger og befolkningens bevegelse ble ordnet","answerIndex":0,"knowledge":"Storyen sier at byrommet ble en forklaring på makt etter katastrofen.","difficulty":3,"question_type":"historisk_sammenheng","question_layer":"advanced_emne","tags":["makt","byrom"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"},
+        {"id":"lisbon_city_s5_q3","quiz_id":"by_lisbon_city_set_5_q3","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"emne","question":"Hvordan fungerer Lisboa-city i en by-rute?","options":["Som hovednøkkel til å forstå Baixa, Tejo, Alfama og den moderne byordenen","Som isolert sportspunkt","Som radiostasjon uten byform"],"answer":"Som hovednøkkel til å forstå Baixa, Tejo, Alfama og den moderne byordenen","answerIndex":0,"knowledge":"Lisboa-city-storyen åpner videre til Baixa Pombalina og Praça do Comércio.","difficulty":3,"question_type":"rutekobling","question_layer":"advanced_emne","tags":["lisboa","baixa_pombalina","tejo"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"}
+      ]
+    },
+    {
+      "set_id": "by_lisbon_city_set_6",
+      "level": 6,
+      "order": 6,
+      "xp": 100,
+      "mode": "concept_based",
+      "questions": [
+        {"id":"lisbon_city_s6_q1","quiz_id":"by_lisbon_city_set_6_q1","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"concept","question":"Hvilket begrep beskriver en systematisk, planlagt byform med rette gater og kvartaler?","options":["Rutenettsby","Kringkastingsarkiv","Vannidrett"],"answer":"Rutenettsby","answerIndex":0,"knowledge":"Baixa Pombalina bruker rutenettet som byhistorisk forklaring.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["rutenettsby"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"conceptual_safe"},
+        {"id":"lisbon_city_s6_q2","quiz_id":"by_lisbon_city_set_6_q2","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"concept","question":"Hva betyr katastrofeurbanisme?","options":["Når byform endres som svar på ødeleggelse, risiko og gjenreisning","Når en by aldri endrer seg","Når aviser lager bykart"],"answer":"Når byform endres som svar på ødeleggelse, risiko og gjenreisning","answerIndex":0,"knowledge":"Lisboa etter 1755 er et tydelig eksempel på katastrofeurbanisme.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["katastrofeurbanisme"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"conceptual_safe"},
+        {"id":"lisbon_city_s6_q3","quiz_id":"by_lisbon_city_set_6_q3","categoryId":"by","placeId":"lisbon_city","targetId":"lisbon_city","question_scope":"concept","question":"Hvilket begrepspar forklarer Lisboa-city best?","options":["Katastrofeurbanisme og rutenettsby","Pressehistorie og offentlighet","Vannidrett og klubbhistorie"],"answer":"Katastrofeurbanisme og rutenettsby","answerIndex":0,"knowledge":"Stedet blir tydeligst når 1755-katastrofen leses sammen med den planlagte Baixa Pombalina.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["katastrofeurbanisme","rutenett"],"source":["data/stories/stories_lisbon_city.json"],"claim_basis":"safe_story_data"}
+      ]
+    }
+  ]
+}
