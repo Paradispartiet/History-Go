@@ -20,11 +20,18 @@
     return match?.label || type;
   }
 
+  function sourceLabel(source) {
+    if (typeof source === "string") return source;
+    if (!source || typeof source !== "object") return "";
+    return String(source.title || source.url || source.id || "").trim();
+  }
+
   function createStoryCard(story) {
     const el = document.createElement("div");
     el.className = "hg-story-card";
 
     const year = story.year ? `<div class="hg-story-year">${escapeHtml(story.year)}</div>` : "";
+    const source = sourceLabel(story.sources?.[0]);
 
     el.innerHTML = `
       <div class="hg-story-header">
@@ -35,7 +42,7 @@
       <div class="hg-story-text">${escapeHtml(shorten(story.story))}</div>
       <div class="hg-story-footer">
         <button type="button" class="hg-story-more">Les mer</button>
-        <div class="hg-story-source">${escapeHtml(story.sources?.[0] ?? "")}</div>
+        <div class="hg-story-source">${escapeHtml(source)}</div>
       </div>
     `;
 
