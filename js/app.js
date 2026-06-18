@@ -346,6 +346,27 @@ function runAfterReady(label, task) {
   }
 }
 
+function wireBackgroundLeftPanelRerenders() {
+  if (window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_WIRED__) return;
+  window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_WIRED__ = true;
+
+  const rerender = () => {
+    try {
+      window.renderNearby?.();
+      window.renderCollection?.();
+      window.initLeftPanel?.();
+    } catch (err) {
+      console.warn("[wireBackgroundLeftPanelRerenders]", err);
+    }
+  };
+
+  window.addEventListener("hg:placesUpdated", rerender);
+  window.addEventListener("hg:visitedUpdated", rerender);
+  window.addEventListener("storage", (event) => {
+    if (event.key === "visited_places" || event.key === "visited") rerender();
+  });
+}
+
 function wireMapPlacePopupInMapMode() {
   if (window.__HG_MAP_PLACE_POPUP_WIRED__) return;
   window.__HG_MAP_PLACE_POPUP_WIRED__ = true;

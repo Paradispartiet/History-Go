@@ -987,9 +987,24 @@ if (!card.dataset.pcIconsBound) {
       `;
     }
 
-    if (kind === "fortellinger" && currentPlaceId && typeof window.HGStories?.openPlace === "function") {
-      void window.HGStories.openPlace(currentPlaceId);
-      return;
+    if (kind === "fortellinger" && currentPlaceId) {
+      if (typeof window.HGStories?.openPlace === "function") {
+        void window.HGStories.openPlace(currentPlaceId).catch((err) => {
+          console.warn("[HGStories.openPlace]", err);
+          if (typeof window.showPlaceCardRoundPopup === "function") {
+            window.showPlaceCardRoundPopup({
+              title,
+              subtitle: currentPlace?.name || "",
+              html: `<div class="pc-empty">Fortellinger lastes ikke ennå</div>`,
+              place: currentPlace,
+              kind
+            });
+          }
+        });
+        return;
+      }
+
+      html = `<div class="pc-empty">Fortellinger lastes ikke ennå</div>`;
     }
 
     if (kind === "tasks") html = `<div class="pc-empty">Ingen oppgaver ennå</div>`;
