@@ -1,9 +1,9 @@
 /* ============================================================
    History Go – Service Worker (precache synkronisert mot index.html)
-   Oppdatert: 2026-06-13
+   Oppdatert: 2026-06-18
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-17-v1.2.891";
+const SW_VERSION = "hg-sw-2026-06-18-v1.2.892";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
