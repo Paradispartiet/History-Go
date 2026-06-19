@@ -1,8 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = process.cwd();
 const HISTORICAL_DIR = path.join(ROOT, "data/routes/historical");
 const ROUTE_MANIFEST = path.join(HISTORICAL_DIR, "manifest.json");
 const PLACE_MANIFEST = path.join(ROOT, "data/places/manifest.json");
