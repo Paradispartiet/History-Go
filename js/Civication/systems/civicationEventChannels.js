@@ -112,6 +112,8 @@
     if (
       sourceType === "role_outcome" ||
       mailType === "job_outcome" ||
+      ev.event_type === "milestone" ||
+      ["promotion", "fired", "stagnation", "warning", "stable"].includes(normalize(ev.career_outcome || ev.job_outcome || ev.role_outcome || ev.stability)) ||
       mailClass === "career_outcome" ||
       sourceType === "brand_progression" ||
       mailClass === "job_milestone" ||

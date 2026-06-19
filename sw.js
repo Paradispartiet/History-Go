@@ -131,6 +131,7 @@ const PRECACHE_URLS = [
   // Civication – core
   "js/Civication/core/civicationState.js",
   "js/Civication/systems/civicationMailEngine.js",
+  "js/Civication/systems/civicationIncomingFlow.js",
   "js/Civication/core/civicationJobs.js",
   "js/Civication/core/civicationEconomyEngine.js",
   "js/Civication/core/civicationEventEngine.js",

@@ -1172,6 +1172,9 @@ function closeTaskModal() {
 
 
 function getInboxItemsForCivicationUi() {
+  const fromFlow = window.CivicationIncomingFlow?.getInbox?.();
+  if (Array.isArray(fromFlow)) return fromFlow;
+
   const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
   if (Array.isArray(fromMailEngine)) return fromMailEngine;
 
@@ -1292,6 +1295,9 @@ function isPrivatePhaseEvent(event) {
 }
 
 function getActiveWorkdayInboxItem() {
+  const fromFlow = window.CivicationIncomingFlow?.getActiveWorkdayItem?.();
+  if (fromFlow) return fromFlow;
+
   const inbox = getInboxItemsForCivicationUi();
   const pendingItems = inbox.filter(function (item) {
     return item && String(item.status || "pending") === "pending";
@@ -1463,16 +1469,12 @@ function renderCivicationInbox() {
         const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
         if (!res?.ok) return;
 
-        // V2 blueprint: hvis valget har triggers_on_choice, enkø
-        // thread-mail i inbox (vises som "Re:"-oppfølger).
         try {
           const chosen = choices.find(c => String(c?.id) === String(id));
-          const tid = chosen?.triggers_on_choice;
-          if (tid && window.CivicationThreadBridge?.enqueueThread) {
-            window.CivicationThreadBridge.enqueueThread(tid, { triggeredBy: ev.id });
-          }
+          window.CivicationIncomingFlow?.applyConsequences?.(ev, chosen, res);
+          window.CivicationIncomingFlow?.enqueueFollowup?.(ev.id, id, res);
         } catch (err) {
-          if (window.DEBUG) console.warn("[Civi] thread enqueue failed", err);
+          if (window.DEBUG) console.warn("[Civi] incoming flow failed", err);
         }
 
         fb.innerHTML = `<div>${res.feedback || "—"}</div>`;
@@ -1520,17 +1522,22 @@ function renderCivicationInbox() {
   if (!host) return;
 
   const buckets = getChannelBuckets();
+  const flow = window.CivicationIncomingFlow;
   const inboxItems = getInboxItemsForCivicationUi();
   const allInboxItems = inboxItems.length
     ? inboxItems
     : buckets.job.concat(buckets.private, buckets.system, buckets.unknown);
   const toEvent = function (item) { return item?.event || item || null; };
-  const jobMails = buckets.job.length
-    ? buckets.job
-    : allInboxItems.filter(function (item) { return classifyCiviInboxItem(item) === "job"; });
-  const privateMessages = buckets.private.length
-    ? buckets.private
-    : allInboxItems.filter(function (item) { return classifyCiviInboxItem(item) === "personal"; });
+  const jobMails = flow?.getPendingJobMails?.().length
+    ? flow.getPendingJobMails()
+    : (buckets.job.length
+      ? buckets.job
+      : allInboxItems.filter(function (item) { return classifyCiviInboxItem(item) === "job"; }));
+  const privateMessages = flow?.getPendingPrivateMessages?.().length
+    ? flow.getPendingPrivateMessages()
+    : (buckets.private.length
+      ? buckets.private
+      : allInboxItems.filter(function (item) { return classifyCiviInboxItem(item) === "personal"; }));
   const otherMessages = (buckets.unknown || []).filter(function (item) {
     const ev = item?.event || item || null;
     return window.CivicationEventChannels?.classifyEvent?.(ev) !== "system";
@@ -1543,8 +1550,12 @@ function renderCivicationInbox() {
       const messageEvent = toEvent(item);
       const vm = buildCiviEventViewModel(messageEvent);
       const isPending = String(item?.status || "pending") === "pending";
+      const batchLabel = [messageEvent?.batch_kind, Number.isFinite(Number(messageEvent?.sequence_index)) ? `#${Number(messageEvent.sequence_index) + 1}` : ""].filter(Boolean).join(" · ");
+      const outcomeLabel = messageEvent?.career_outcome || messageEvent?.job_outcome || messageEvent?.role_outcome || messageEvent?.stability || "";
       return `
         <article class="${vm.cssClass} civi-inbox-list-card${isPending ? " is-pending" : ""}">
+          ${batchLabel ? `<div class="civi-event-meta-line">Bolke: ${batchLabel}</div>` : ""}
+          ${outcomeLabel ? `<div class="civi-event-meta-line">Utfall: ${outcomeLabel}</div>` : ""}
           <div class="civi-event-kicker">${vm.kicker}</div>
           <div class="civi-event-title">${vm.title}</div>
           <div class="civi-event-body">${vm.bodyText}</div>
@@ -1632,14 +1643,11 @@ function renderCivicationInbox() {
       const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
       if (!res?.ok) return;
 
-      // V2 blueprint: enkø thread-mail hvis choice har triggers_on_choice
       try {
-        const tid = c?.triggers_on_choice;
-        if (tid && window.CivicationThreadBridge?.enqueueThread) {
-          window.CivicationThreadBridge.enqueueThread(tid, { triggeredBy: ev.id });
-        }
+        window.CivicationIncomingFlow?.applyConsequences?.(ev, c, res);
+        window.CivicationIncomingFlow?.enqueueFollowup?.(ev.id, id, res);
       } catch (err) {
-        if (window.DEBUG) console.warn("[Civi] thread enqueue failed", err);
+        if (window.DEBUG) console.warn("[Civi] incoming flow failed", err);
       }
 
       if (choiceBox) choiceBox.innerHTML = "";
