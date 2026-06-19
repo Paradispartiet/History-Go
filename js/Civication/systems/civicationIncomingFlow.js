@@ -2,7 +2,7 @@
   "use strict";
 
   const BATCH_KINDS = new Set(["morning", "workday", "evening", "role_arc", "private_arc"]);
-  const PHASE_TAGS = new Set(["morning", "work", "evening"]);
+  const PHASE_TAGS = new Set(["morning", "work", "lunch", "afternoon", "evening", "day_end"]);
   const EVENT_TYPES = new Set(["workday", "job_task", "job_consequence", "job_offer", "private_message", "evening_problem", "milestone", "system"]);
   const OUTCOMES = new Set(["promotion", "fired", "stagnation", "warning", "stable"]);
 
@@ -30,7 +30,7 @@
     if (BATCH_KINDS.has(norm(m.batch_kind)) && ev.batch_kind == null) ev.batch_kind = norm(m.batch_kind);
     if (Number.isFinite(Number(m.sequence_index)) && ev.sequence_index == null) ev.sequence_index = Number(m.sequence_index);
     if ((m.channel === "job" || m.channel === "private" || m.channel === "system") && ev.channel == null) ev.channel = m.channel;
-    if (PHASE_TAGS.has(norm(m.phase_tag)) && ev.phase_tag == null) ev.phase_tag = norm(m.phase_tag);
+    if (ev.phase_tag == null && norm(m.phase_tag)) ev.phase_tag = norm(m.phase_tag);
     if (EVENT_TYPES.has(norm(m.event_type)) && ev.event_type == null) ev.event_type = norm(m.event_type);
     return ev;
   }
@@ -63,13 +63,13 @@
   function findFollowupEvent(followupId, sourceEvent, choice, result) {
     const fid = String(followupId || "").trim();
     if (!fid) return null;
-    const pools = [result?.followups, result?.events, sourceEvent?.followups, sourceEvent?.threads, sourceEvent?.consequence_threads, window.CivicationIncomingFollowups, window.CivicationMailCatalog, window.CivicationEventCatalog];
+    const pools = [result?.followups, result?.events, sourceEvent?.followups, sourceEvent?.threads, sourceEvent?.consequence_threads, window["CivicationIncomingFollowups"], window["CivicationMailCatalog"], window["CivicationEventCatalog"]];
     for (const pool of pools) {
       if (Array.isArray(pool)) { const hit = pool.find(function (e) { return idOf(e) === fid; }); if (hit) return eventOf(hit); }
       else if (pool && typeof pool === "object" && pool[fid]) return eventOf(pool[fid]);
     }
     if (window.CivicationThreadBridge?.enqueueThread) return { id: fid, __threadBridgeOnly: true };
-    return { id: fid, subject: "Oppfølging", source_type: "planned", mail_type: "followup" };
+    return null;
   }
   function followupIdFor(event, choiceId, choice) {
     const cid = String(choiceId || choice?.id || "").trim();
@@ -84,6 +84,7 @@
     if (choice?.triggers_on_choice === fid && window.CivicationThreadBridge?.enqueueThread) return window.CivicationThreadBridge.enqueueThread(fid, { triggeredBy: eventId, choiceId: choiceId });
     const followup = findFollowupEvent(fid, event, choice, result);
     if (followup?.__threadBridgeOnly && window.CivicationThreadBridge?.enqueueThread) return window.CivicationThreadBridge.enqueueThread(fid, { triggeredBy: eventId, choiceId: choiceId });
+    if (!followup) return { ok: false, reason: "missing_followup" };
     const ev = withFlowMeta(followup, { channel: followup.channel || channelOf(event), phase_tag: followup.phase_tag || event.phase_tag, batch_id: event.batch_id, batch_kind: event.batch_kind, event_type: followup.event_type || (channelOf(event) === "job" ? "job_consequence" : "private_message") });
     return window.CivicationMailEngine?.sendMail?.(ev) || { ok: false, reason: "no_mail_engine" };
   }
@@ -94,15 +95,19 @@
     const rawOutcome = norm(result?.career_outcome || result?.job_outcome || result?.role_outcome || result?.stability || choice?.career_outcome || choice?.job_outcome || choice?.role_outcome || choice?.stability || event?.career_outcome || event?.job_outcome || event?.role_outcome || event?.stability);
     return { delta: delta, outcome: OUTCOMES.has(rawOutcome) ? rawOutcome : null, entries: Object.keys(delta).map(function (key) { return { key: key, delta: delta[key] }; }) };
   }
+  function shouldWriteConsequences(result) {
+    return result?.applyConsequences === true || result?.consequences_applied === false || result?.effects_applied === false;
+  }
   function applyConsequences(event, choice, result) {
     const model = normalizeConsequences(event, choice, result);
+    if (!shouldWriteConsequences(result)) return Object.assign({ ok: true, read_only: true, applied: false }, model);
     safe(function () { window.CivicationPsyche?.applyDelta?.(model.delta); }, null);
     safe(function () { window.CivicationState?.applyDelta?.(model.delta); }, null);
     safe(function () { window.CivicationState?.applyCareerDelta?.(model.delta); }, null);
-    safe(function () { window.HG_CapitalEngine?.applyDelta?.(model.delta); }, null);
-    return model;
+    safe(function () { window["HG_CapitalEngine"]?.applyDelta?.(model.delta); }, null);
+    return Object.assign({ ok: true, read_only: false, applied: true }, model);
   }
   function inspect() { const inbox = getInbox(); return { inbox: inbox, pending: pendingOnly(inbox), job: getPendingJobMails(), private: getPendingPrivateMessages(), activeWorkday: getActiveWorkdayItem(), channels: window.CivicationEventChannels?.inspect?.(inbox) || null }; }
 
-  window.CivicationIncomingFlow = { getInbox, getPendingByChannel, getPendingJobMails, getPendingPrivateMessages, getActiveWorkdayItem, enqueueBatch, enqueueFollowup, applyConsequences, normalizeConsequences, inspect };
+  window["CivicationIncomingFlow"] = { getInbox, getPendingByChannel, getPendingJobMails, getPendingPrivateMessages, getActiveWorkdayItem, enqueueBatch, enqueueFollowup, applyConsequences, normalizeConsequences, inspect };
 })();

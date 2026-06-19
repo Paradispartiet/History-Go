@@ -1172,7 +1172,7 @@ function closeTaskModal() {
 
 
 function getInboxItemsForCivicationUi() {
-  const fromFlow = window.CivicationIncomingFlow?.getInbox?.();
+  const fromFlow = window["CivicationIncomingFlow"]?.getInbox?.();
   if (Array.isArray(fromFlow)) return fromFlow;
 
   const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
@@ -1295,7 +1295,7 @@ function isPrivatePhaseEvent(event) {
 }
 
 function getActiveWorkdayInboxItem() {
-  const fromFlow = window.CivicationIncomingFlow?.getActiveWorkdayItem?.();
+  const fromFlow = window["CivicationIncomingFlow"]?.getActiveWorkdayItem?.();
   if (fromFlow) return fromFlow;
 
   const inbox = getInboxItemsForCivicationUi();
@@ -1469,14 +1469,6 @@ function renderCivicationInbox() {
         const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
         if (!res?.ok) return;
 
-        try {
-          const chosen = choices.find(c => String(c?.id) === String(id));
-          window.CivicationIncomingFlow?.applyConsequences?.(ev, chosen, res);
-          window.CivicationIncomingFlow?.enqueueFollowup?.(ev.id, id, res);
-        } catch (err) {
-          if (window.DEBUG) console.warn("[Civi] incoming flow failed", err);
-        }
-
         fb.innerHTML = `<div>${res.feedback || "—"}</div>`;
         const consequence = buildBrandConsequenceText(res);
         if (consequence) { fb.innerHTML += `<div class="civi-choice-consequence">${consequence}</div>`; }
@@ -1522,7 +1514,7 @@ function renderCivicationInbox() {
   if (!host) return;
 
   const buckets = getChannelBuckets();
-  const flow = window.CivicationIncomingFlow;
+  const flow = window["CivicationIncomingFlow"];
   const inboxItems = getInboxItemsForCivicationUi();
   const allInboxItems = inboxItems.length
     ? inboxItems
@@ -1642,13 +1634,6 @@ function renderCivicationInbox() {
     b.onclick = () => {
       const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
       if (!res?.ok) return;
-
-      try {
-        window.CivicationIncomingFlow?.applyConsequences?.(ev, c, res);
-        window.CivicationIncomingFlow?.enqueueFollowup?.(ev.id, id, res);
-      } catch (err) {
-        if (window.DEBUG) console.warn("[Civi] incoming flow failed", err);
-      }
 
       if (choiceBox) choiceBox.innerHTML = "";
       showOk(res.feedback || "—", res);
