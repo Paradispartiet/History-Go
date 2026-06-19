@@ -44,14 +44,14 @@ function toPlaces(data) {
 }
 
 const manifest = readJson(manifestPath);
-const manifestFiles = (manifest.files || []).map((f) => rel(path.join(root, 'data', f)));
+const manifestFiles = ((manifest.files || []) as string[]).map((f) => rel(path.join(root, 'data', f)));
 // Manifesten er sannhetskilden for hva som er aktivt. En fil som er eksplisitt
 // listet der er aktiv selv om navnet tilfeldigvis treffer backup-heuristikken
 // (f.eks. "historiske" som inneholder "historisk"). Derfor filtreres aktive
 // manifest-filer kun på arkiv-sti, slik at audit og quality gate leser samme
 // aktive sett. isBackupLike brukes fortsatt på repo-skann under (inRepoButUnused).
 const activeManifestFiles = manifestFiles.filter((f) => !isArchivePath(f));
-const usedByApp = new Set(activeManifestFiles);
+const usedByApp = new Set<string>(activeManifestFiles);
 
 const allPlaceFiles = findPlaceJsonFiles(dataDir)
   .filter((f) => !/\/quiz\//.test(f))
