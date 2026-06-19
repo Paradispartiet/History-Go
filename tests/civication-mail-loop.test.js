@@ -142,8 +142,51 @@ async function run() {
   });
 
   const debugCandidates = await global.CivicationMailRuntime.debugCandidates();
-  const plannedCandidates = (Array.isArray(debugCandidates) ? debugCandidates : []).filter(c => c && String(c.id || '').startsWith('ekspeditor_'));
-  assert(plannedCandidates.length > 0, 'Expected at least one planned candidate from ekspeditor families');
+  const candidateList = Array.isArray(debugCandidates) ? debugCandidates : [];
+  const firstStepFamily = 'first_week_praksisfortellinger_ekspeditor_job';
+  const firstStepJobFamilyPath = path.join(repoRoot, 'data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json');
+  const firstStepJobCatalog = JSON.parse(fs.readFileSync(firstStepJobFamilyPath, 'utf8'));
+  const firstStepJobFamily = (firstStepJobCatalog.families || []).find(family => family.id === firstStepFamily);
+  assert(firstStepJobFamily, 'Expected first-week ekspeditor job family to be loaded from ekspeditor_job.json');
+  const firstStepJobIds = new Set((firstStepJobFamily.mails || []).map(mail => String(mail.id || '')).filter(Boolean));
+  const firstRelevantCandidate = candidateList.find(candidate => (
+    candidate &&
+    candidate.role_scope === 'ekspeditor' &&
+    candidate.career_id === 'naeringsliv' &&
+    candidate.source_type === 'planned' &&
+    candidate.mail_plan_meta?.plan_id === 'ekspeditor_naeringsliv_v1' &&
+    candidate.mail_family === firstStepFamily &&
+    candidate.mail_type === 'job'
+  ));
+  const candidateDebug = () => {
+    const inspect = global.CivicationMailRuntime.inspect();
+    return JSON.stringify({
+      role_scope: inspect.role_scope,
+      plan_path: inspect.plan_path,
+      family_paths: inspect.family_paths,
+      candidate_count: candidateList.length,
+      first_candidate_ids: candidateList.slice(0, 5).map(candidate => candidate?.id || null),
+      first_candidate_family_types: candidateList.slice(0, 5).map(candidate => ({
+        id: candidate?.id || null,
+        role_scope: candidate?.role_scope || null,
+        career_id: candidate?.career_id || null,
+        source_type: candidate?.source_type || null,
+        plan_id: candidate?.mail_plan_meta?.plan_id || null,
+        mail_family: candidate?.mail_family || null,
+        mail_type: candidate?.mail_type || null
+      }))
+    }, null, 2);
+  };
+
+  assert(candidateList.length > 0, `Expected debugCandidates() to return at least one candidate. Debug:\n${candidateDebug()}`);
+  assert(
+    firstRelevantCandidate,
+    `Expected at least one planned first-step candidate from current ekspeditor job family contract. Debug:\n${candidateDebug()}`
+  );
+  assert(
+    String(firstRelevantCandidate.id || '').startsWith('job_ekspeditor_') || firstStepJobIds.has(firstRelevantCandidate.id),
+    `Expected first-step ekspeditor candidate id to use current job_ekspeditor_ contract or exist in ${firstStepFamily}. Debug:\n${candidateDebug()}`
+  );
 
   const beforePlannedState = global.CivicationState.getState();
   const beforeLifeRuntime = beforePlannedState.life_mail_runtime_v1 || null;
