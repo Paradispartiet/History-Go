@@ -853,8 +853,8 @@ function renderWorkdayPanel() {
   const career = /** @type {any} */ (state?.career || {});
   const progress = career?.progress || {};
   const contract = career?.contract || {};
-  const pending = /** @type {CiviUiInboxItem|null|undefined} */ (window.HG_CiviEngine?.getPendingEvent?.());
-  const ev = pending?.event || null;
+  const activeWorkdayItem = getActiveWorkdayInboxItem();
+  const ev = activeWorkdayItem?.event || activeWorkdayItem || null;
 
   const clock =
     window.CivicationCalendar?.getDisplayModel?.() || null;
@@ -891,12 +891,12 @@ function renderWorkdayPanel() {
   const taskTitle =
     task?.title ||
     ev?.subject ||
-    "Ingen aktiv oppgave";
+    "Ingen aktiv arbeidsoppgave akkurat nå.";
 
   const taskDesc =
     task?.description ||
     (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
-    "—";
+    (ev ? "—" : "Jobbstatus er aktiv, men ingen arbeidsoppgave venter på svar.");
 
   const windowLabel =
     ev?.calendar_label ||
@@ -1239,71 +1239,12 @@ function collectCiviInboxMetaValues(target, output) {
  */
 function classifyCiviInboxItem(item) {
   const ev = /** @type {Record<string, any>} */ (item?.event || item || {});
-  const values = new Set();
-  collectCiviInboxClassifierValues(item, values);
-  collectCiviInboxClassifierValues(ev, values);
+  const kind = window.CivicationEventChannels?.classifyEvent?.(ev);
+  if (kind === "system") return "other";
 
-  const dailyMeta = ev?.daily_mail_meta || item?.daily_mail_meta || null;
-  const roleMeta = ev?.role_content_meta || item?.role_content_meta || null;
-  const lifeMeta = ev?.life_mail_meta || item?.life_mail_meta || null;
-  const mailPlanMeta = ev?.mail_plan_meta || item?.mail_plan_meta || null;
-  const careerOutcomeMeta = ev?.career_outcome_meta || item?.career_outcome_meta || null;
-
-  [dailyMeta, roleMeta, lifeMeta, mailPlanMeta, careerOutcomeMeta].forEach(function (meta) {
-    collectCiviInboxMetaValues(meta, values);
-  });
-
-  if (values.has("system") || values.has("debug") || values.has("status")) {
-    return "other";
-  }
-
-  if (values.has("private") || values.has("personal")) return "personal";
-  if (values.has("job") || values.has("jobmail")) return "job";
-
-  if (lifeMeta ||
-      values.has("life") ||
-      values.has("evening") ||
-      values.has("free_time") ||
-      values.has("leisure") ||
-      values.has("fritid") ||
-      values.has("kveld")) {
-    return "personal";
-  }
-
-  if (dailyMeta ||
-      roleMeta ||
-      mailPlanMeta ||
-      careerOutcomeMeta ||
-      values.has("planned") ||
-      values.has("thread") ||
-      values.has("role") ||
-      values.has("legacy_pack") ||
-      values.has("workday") ||
-      values.has("work") ||
-      values.has("daily_generated") ||
-      values.has("daily_extra") ||
-      values.has("daily_task_gate") ||
-      values.has("daily_workday") ||
-      values.has("task_gate") ||
-      values.has("task") ||
-      values.has("warning") ||
-      values.has("fired") ||
-      values.has("promotion") ||
-      values.has("stagnation") ||
-      values.has("job_outcome") ||
-      values.has("career_outcome") ||
-      values.has("role_outcome") ||
-      values.has("brand_progression")) {
-    return "job";
-  }
-
-  if (values.has("people") ||
-      values.has("relationship") ||
-      values.has("relation") ||
-      values.has("consequence")) {
-    return "personal";
-  }
-
+  const channel = window.CivicationEventChannels?.getMessageChannel?.(ev);
+  if (channel === "job") return "job";
+  if (channel === "private") return "personal";
   return "other";
 }
 
@@ -1312,11 +1253,63 @@ window.classifyCiviInboxItem = classifyCiviInboxItem;
 
 function getChannelBuckets() {
   const inbox = getInboxItemsForCivicationUi();
-  const splitter = window.CivicationEventChannels?.splitInbox;
+  const splitter = window.CivicationEventChannels?.splitInboxByMessageChannel;
   if (typeof splitter !== "function") {
-    return { messages: inbox, workday: [], milestones: [], system: [], unknown: [] };
+    return { job: [], private: inbox, system: [], unknown: [] };
   }
   return splitter(inbox);
+}
+
+function hasWorkdayTaskData(event) {
+  const ev = event || {};
+  return !!(
+    ev.task_id ||
+    ev.task_kind ||
+    ev.task_domain ||
+    ev.work_minutes ||
+    ev.duration_minutes ||
+    ev.calendar_label
+  );
+}
+
+function isPrivatePhaseEvent(event) {
+  const ev = event || {};
+  const values = [
+    ev.source_type, ev.phase_tag, ev.phase, ev.slot, ev.timeSlot, ev.time_slot,
+    ev.channel, ev.messageChannel, ev.mail_class, ev.mail_type, ev.type, ev.kind, ev.track, ev.arc
+  ].map(function (value) { return normalizeCiviInboxClassifierValue(value); });
+
+  return values.some(function (value) {
+    return value === "private" ||
+      value === "life" ||
+      value === "evening" ||
+      value === "free_time" ||
+      value === "leisure" ||
+      value === "fritid" ||
+      value === "personal" ||
+      value === "kveld";
+  });
+}
+
+function getActiveWorkdayInboxItem() {
+  const inbox = getInboxItemsForCivicationUi();
+  const pendingItems = inbox.filter(function (item) {
+    return item && String(item.status || "pending") === "pending";
+  });
+  const channels = window.CivicationEventChannels;
+
+  const workday = pendingItems.find(function (item) {
+    const ev = item?.event || item || null;
+    if (!ev || isPrivatePhaseEvent(ev) || channels?.isPrivateMessage?.(ev)) return false;
+    return channels?.isWorkdayEvent?.(ev) === true;
+  });
+  if (workday) return workday;
+
+  return pendingItems.find(function (item) {
+    const ev = item?.event || item || null;
+    if (!ev || isPrivatePhaseEvent(ev) || channels?.isPrivateMessage?.(ev)) return false;
+    return channels?.isJobMail?.(ev) === true && hasWorkdayTaskData(ev);
+  }) || null;
 }
 
 function findPendingFromItems(items) {
@@ -1530,16 +1523,17 @@ function renderCivicationInbox() {
   const inboxItems = getInboxItemsForCivicationUi();
   const allInboxItems = inboxItems.length
     ? inboxItems
-    : buckets.messages.concat(buckets.workday, buckets.milestones, buckets.system, buckets.unknown);
+    : buckets.job.concat(buckets.private, buckets.system, buckets.unknown);
   const toEvent = function (item) { return item?.event || item || null; };
-  const jobMails = allInboxItems.filter(function (item) {
-    return classifyCiviInboxItem(item) === "job";
-  });
-  const privateMessages = allInboxItems.filter(function (item) {
-    const group = classifyCiviInboxItem(item);
-    // Usikre/andre meldinger vises sammen med personlige meldinger for å
-    // unngå at ukjente mail/event-varianter skjules fra samme innkommende store.
-    return group === "personal" || group === "other";
+  const jobMails = buckets.job.length
+    ? buckets.job
+    : allInboxItems.filter(function (item) { return classifyCiviInboxItem(item) === "job"; });
+  const privateMessages = buckets.private.length
+    ? buckets.private
+    : allInboxItems.filter(function (item) { return classifyCiviInboxItem(item) === "personal"; });
+  const otherMessages = (buckets.unknown || []).filter(function (item) {
+    const ev = item?.event || item || null;
+    return window.CivicationEventChannels?.classifyEvent?.(ev) !== "system";
   });
   const ev = findPendingFromItems(allInboxItems);
 
@@ -1568,6 +1562,12 @@ function renderCivicationInbox() {
       <h2>Personlige meldinger</h2>
       <div id="civiPrivateMessageList">${renderMessageList(privateMessages) || '<div class="civi-inbox-empty">Ingen personlige meldinger akkurat nå.</div>'}</div>
     </section>
+    ${otherMessages.length ? `
+      <section class="civi-inbox-section civi-other-section">
+        <h2>Andre meldinger</h2>
+        <div id="civiOtherMessageList">${renderMessageList(otherMessages)}</div>
+      </section>
+    ` : ""}
   `;
 
   if (!ev) {
@@ -1758,6 +1758,7 @@ window.CivicationUI = {
   render: renderCivication,
   renderInbox: renderCivicationInbox,
   renderWorkdayPanel,
+  getActiveWorkdayInboxItem,
   renderCapital,
   renderPerception,
   buildCiviEventViewModel,
