@@ -38,14 +38,14 @@
     "audit:civication-place-mapping": "node scripts/audit-civication-historygo-place-mapping.mjs",
     "audit:civication-building-types": "node scripts/audit-civication-building-types.mjs",
     "audit:civication-city-map-entries": "node scripts/audit-civication-city-map-entries.mjs",
-    "audit:aha-music": "node tools/audit-aha-music.mjs",
+    "audit:aha-music": "npm run build:tools && node dist/tools/audit-aha-music.mjs",
     "test:aha-music": "node tests/aha-music-bridge.test.js && node tests/aha-music-unlocks.test.js",
     "test:civication-map": "node tests/civication-historygo-place-menu.test.js && node tests/civication-city-layer-icon-only-markers.test.js && node tests/civication-three-map-place-miniatures.test.js && node tests/civication-three-map-projection.test.js && node tests/civication-canvas-map-projection.test.js && node tests/civication-city-layer-map-anchor.test.js && node tests/civication-city-layer-three-map-anchor.test.js && node tests/civication-friend-home-anchors.test.js && node tests/civication-city-map-entries-loader.test.js",
     "test:visual-design-codes": "npm run build:tools && node dist/tools/audit-visual-design-codes.mjs",
     "civication:badge-role-audit": "node scripts/civication-badge-role-audit.mjs",
     "test:historical-routes": "node tests/historical-routes.test.js",
     "test:nextup-historical-routes": "node tests/nextup-historical-routes.test.js",
-    "test:historical-routes:audit": "node tools/audit-historical-routes.mjs"
+    "test:historical-routes:audit": "npm run build:tools && node dist/tools/audit-historical-routes.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
