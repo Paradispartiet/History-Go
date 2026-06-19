@@ -33,4 +33,24 @@ assert.strictEqual(total, mixed.length);
 assert.deepStrictEqual(mixed, originalRefs);
 assert.strictEqual(mixed[0], originalRefs[0]);
 
+assert.strictEqual(
+  ch.getMessageChannel({ source_type: 'workday', task_domain: 'cash_desk' }),
+  'job',
+  'workday-event klassifiseres som jobbkanal'
+);
+assert.strictEqual(
+  ch.getMessageChannel({ source_type: 'life', phase_tag: 'evening' }),
+  'private',
+  'life/evening klassifiseres som privat kanal'
+);
+
+const channelSplit = ch.splitInboxByMessageChannel([
+  { id: 'workday-mail', event: { source_type: 'workday', task_id: 'task-1', task_domain: 'cash_desk' } },
+  { id: 'private-mail', event: { source_type: 'life', phase_tag: 'evening' } },
+  { id: 'system-mail', event: { source_type: 'debug', mail_type: 'status' } }
+]);
+assert.deepStrictEqual(channelSplit.job.map((item) => item.id), ['workday-mail']);
+assert.deepStrictEqual(channelSplit.private.map((item) => item.id), ['private-mail']);
+assert.deepStrictEqual(channelSplit.system.map((item) => item.id), ['system-mail']);
+
 console.log('civication-event-channels.test.js passed');
