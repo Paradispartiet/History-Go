@@ -71,4 +71,30 @@ flow.enqueueBatch([{ id: 'debug-mail', source_type: 'debug', mail_type: 'status'
 assert(!flow.getPendingPrivateMessages().some(item => item.event.id === 'debug-mail'), 'system/debug should not be private');
 assert(global.CivicationEventChannels.splitInboxByMessageChannel(flow.getInbox()).system.some(item => item.event.id === 'debug-mail'));
 
+
+flow.enqueueBatch([{ id: 'unknown-followup-source', channel: 'job', event_type: 'workday', choices: [{ id: 'A', triggers_on_choice: 'missing-thread' }] }], { channel: 'job', batch_kind: 'workday', phase_tag: 'morning' });
+const missingFollowup = flow.enqueueFollowup('unknown-followup-source', 'A', { ok: true });
+assert.deepStrictEqual(missingFollowup, { ok: false, reason: 'missing_followup' });
+assert(!flow.getInbox().some(item => item.event?.subject === 'Oppfølging'), 'IncomingFlow must not create generic fallback followup mail');
+
+flow.enqueueBatch([
+  { id: 'phase-lunch', channel: 'job', event_type: 'workday' },
+  { id: 'phase-afternoon', channel: 'job', event_type: 'workday' },
+  { id: 'phase-day-end', channel: 'job', event_type: 'workday', phase_tag: 'day_end' }
+], { channel: 'job', batch_kind: 'workday', phase_tag: 'lunch' });
+flow.enqueueBatch([{ id: 'phase-afternoon-2', channel: 'job', event_type: 'workday' }], { channel: 'job', batch_kind: 'workday', phase_tag: 'afternoon' });
+assert.strictEqual(flow.getInbox().find(item => item.event.id === 'phase-lunch').event.phase_tag, 'lunch');
+assert.strictEqual(flow.getInbox().find(item => item.event.id === 'phase-afternoon-2').event.phase_tag, 'afternoon');
+assert.strictEqual(flow.getInbox().find(item => item.event.id === 'phase-day-end').event.phase_tag, 'day_end');
+
+let stateWrites = 0;
+global.CivicationState = global.CivicationState || {};
+global.CivicationState.applyDelta = () => { stateWrites += 1; };
+const readOnlyConsequence = flow.applyConsequences({ delta: { score: 1 } }, null, { ok: true });
+assert.strictEqual(readOnlyConsequence.applied, false, 'applyConsequences defaults to read-only after EventEngine answers');
+assert.strictEqual(stateWrites, 0, 'applyConsequences must not write state without an explicit write flag');
+const explicitWrite = flow.applyConsequences({ delta: { score: 1 } }, null, { ok: true, applyConsequences: true });
+assert.strictEqual(explicitWrite.applied, true, 'explicit write flag preserves low-level helper behavior');
+assert.strictEqual(stateWrites, 1, 'explicit write flag may write once');
+
 console.log('civication-incoming-flow.test.js passed');
