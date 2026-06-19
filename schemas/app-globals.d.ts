@@ -112,6 +112,7 @@ declare global {
       toMap?: (options?: { replace?: boolean }) => boolean;
       toPlace?: (placeId?: unknown, options?: { replace?: boolean }) => boolean;
       toQuiz?: (targetId?: unknown, options?: { replace?: boolean }) => boolean;
+      currentMode?: string;
     };
     HGMapView?: {
       showMap?: () => void;
@@ -214,6 +215,9 @@ declare global {
     __HG_INDEX_RUNTIME_MISSING__?: any;
 
     __HG_BACKGROUND_LEFT_PANEL_RERENDERS_BOUND__?: any;
+    __HG_BACKGROUND_LEFT_PANEL_RERENDERS_WIRED__?: boolean;
+    __HG_MAP_PLACE_POPUP_WIRED__?: boolean;
+    __HG_SCRIPT_PROMISES__?: Record<string, Promise<HTMLScriptElement>>;
     bootBackground?: any;
     bootCritical?: any;
     renderGallery?: any;
@@ -280,6 +284,9 @@ declare global {
     places?: any;
     pulseMarker?: any;
     renderGroupedWonderkammerList?: any;
+    renderCollection?: any;
+    rerenderActiveLeftPanelMode?: any;
+    initLeftPanel?: any;
     renderNextUpV2?: any;
     renderPeopleGallery?: any;
     renderProfileNextUp?: any;

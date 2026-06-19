@@ -352,7 +352,11 @@ function wireBackgroundLeftPanelRerenders() {
 
   const rerender = () => {
     try {
-      window.renderNearby?.();
+      if (typeof window.rerenderActiveLeftPanelMode === "function") {
+        window.rerenderActiveLeftPanelMode();
+      } else {
+        window.renderNearbyPlaces?.();
+      }
       window.renderCollection?.();
       window.initLeftPanel?.();
     } catch (err) {
@@ -372,7 +376,8 @@ function wireMapPlacePopupInMapMode() {
   window.__HG_MAP_PLACE_POPUP_WIRED__ = true;
 
   window.addEventListener("hg:place-selected", async (event) => {
-    const place = event?.detail?.place;
+    const selectedEvent = /** @type {CustomEvent<{ place?: unknown }>} */ (event);
+    const place = selectedEvent?.detail?.place;
     if (!place) return;
 
     const routerMode = String(window.HGAppRouter?.currentMode || "").toLowerCase();
