@@ -118,3 +118,23 @@ Guard-testene ligger i `tests/civication-incoming-flow.test.js`:
 - `applyConsequences` skriver ikke state uten eksplisitt flagg.
 
 Eksisterende regresjonstester for channels, UI workday helper, mail loop og ekspeditør first-week skal fortsatt være grønne.
+
+## Ekspeditør UI-flow smoke-status (2026-06-19)
+
+Ny smoke-test `tests/civication-ekspeditor-ui-flow.test.js` verifiserer den eksisterende ekspeditørpakken slik UI/runtime møter spilleren, uten nye mailer eller ny dataarkitektur.
+
+Verifiserte moduler:
+
+- `CivicationState`, `CivicationEventEngine`, `CivicationMailEngine`, `CivicationMailRuntime`, `CivicationEventChannels`, `CivicationIncomingFlow` og `CivicationUI` lastes i en minimal DOM/window/localStorage-runtime.
+- Aktiv rolle `Ekspeditør / butikkmedarbeider` resolver til `role_scope: "ekspeditor"` og plan `ekspeditor_naeringsliv_v1`.
+- Første app-open enqueuer eksisterende planmail fra `first_week_praksisfortellinger_ekspeditor_job` som `source_type: "planned"`, `mail_type: "job"` og Jobbmail-kanal.
+- Ekspeditørens private first-week people-mail klassifiseres som Personlige meldinger, mens system/debug ikke blandes inn i Personlige meldinger. Ukjente meldinger beholdes i bucket/resultat og skjules ikke permanent.
+- Arbeidsdagshjelperen velger jobb/workday/job-task når den finnes, men velger ikke ekspeditørens private/people/evening/life-message som aktiv arbeidsdag.
+- Svar på første choice går via `HG_CiviEngine.answer`, øker `mail_runtime_v1.step_index`, oppdaterer `consumed_ids`, og bruker eksisterende `triggers_on_choice`/thread-mekanisme i `CivicationMailRuntime`.
+- Det opprettes ingen generisk fallback-mail med subject `Oppfølging`.
+- UI/answer-flowen kaller ikke `CivicationIncomingFlow.applyConsequences` eller `CivicationIncomingFlow.enqueueFollowup` etter answer; consequence/followup-eierskap ligger fortsatt hos EventEngine/MailRuntime og tilkoblede runtime-patcher.
+- Etter neste app-open kommer samme answered planned mail ikke tilbake. Eventuell pending thread/followup er legitim runtime-output og ikke fallback-støy.
+
+Gjenstående åpne punkter:
+
+- Smoke-testen kjører uten full browser og verifiserer kontrakten på DOM/window/localStorage-nivå. En separat end-to-end browsertest kan fortsatt være nyttig for visuell regresjon i faktiske paneler, men er ikke nødvendig for runtime-eierskapet som denne auditen dekker.
