@@ -1,10 +1,9 @@
 // js/Civication/ui/CivicationTestModeUI.js
-// Civication testmodus: synlig "Test"-knapp + testpanel for å starte ALLE roller,
+// Civication testmodus: alltid synlig "Test"-knapp + testpanel for å starte ALLE roller,
 // ikke bare Controller, uten konsoll.
 //
 // Prinsipp:
-// - Knappen og panelet vises kun når testmodus er aktiv (?civiTest=1 eller
-//   localStorage civication_test_mode_v1=true, eller CivicationTestMode.enable()).
+// - Knappen monteres alltid i Civication-headeren som et permanent utviklerverktøy.
 // - Rollelisten bygges datadrevet fra data/Civication/roleModels/manifest.json.
 // - Roller startes via eksisterende CivicationRoleStarter.
 // - Arbeidsdagen bygges via eksisterende CivicationDailyMailBuilder.
@@ -37,6 +36,7 @@
   const state = {
     roles: [],
     rolesPromise: null,
+    rolesError: "",
     selectedKey: "",
     startpoint: "week1",
     panelOpen: false,
@@ -63,14 +63,7 @@
   }
 
   function isEnabled() {
-    try {
-      const search = (typeof window !== "undefined" && window.location && window.location.search) || "";
-      const params = new URLSearchParams(search);
-      if (params.get("civiTest") === "1") return true;
-    } catch (e) { /* ignore */ }
-    try {
-      return localStorage.getItem(FLAG_KEY) === "true";
-    } catch (e) { return false; }
+    return true;
   }
 
   async function loadJson(path) {
@@ -108,8 +101,17 @@
   }
 
   async function loadRoles() {
+    state.rolesError = "";
     const manifest = await loadJson(MANIFEST_PATH);
+    if (!manifest) {
+      state.rolesError = "Kunne ikke laste roleModels/manifest.json";
+      return [];
+    }
     const paths = Array.isArray(manifest?.files) ? manifest.files : [];
+    if (!paths.length) {
+      state.rolesError = "Fant ingen roller";
+      return [];
+    }
     const models = await Promise.all(paths.map(async path => ({ path, model: await loadJson(path) })));
     return models
       .map(({ path, model }) => toRole(path, model))
@@ -123,6 +125,7 @@
     if (!state.rolesPromise) {
       state.rolesPromise = loadRoles().then(roles => {
         state.roles = roles;
+        if (!roles.length && !state.rolesError) state.rolesError = "Fant ingen roller";
         return roles;
       });
     }
@@ -188,7 +191,10 @@
 
   function startRole(roleKey) {
     const role = findRole(roleKey);
-    if (!role) return null;
+    if (!role) {
+      renderStatus("Ingen rolle valgt");
+      return null;
+    }
     registerRoleForStarter(role);
     const started = window.CivicationRoleStarter?.startRole?.(role.role_key, { clearInbox: true });
     state.selectedKey = role.role_key;
@@ -206,12 +212,15 @@
     });
     try { window.dispatchEvent(new Event("updateInbox")); } catch (e) { /* ignore */ }
     const sp = startpointByKey(startpointKey);
-    renderStatus(result?.ok ? `Dag startet (${sp.label}).` : `Dag feilet: ${result?.reason || "ukjent"}`);
+    const info = window.CivicationDailyMailBuilder?.inspect?.() || {};
+    const count = Number(info.item_count || 0);
+    renderStatus(result?.ok ? `Dag startet: ${count} elementer (${sp.label}).` : `Dag feilet: ${result?.reason || "ukjent"}`);
     return result || null;
   }
 
   function resetDay() {
-    window.CivicationDailyMailBuilder?.resetToday?.();
+    if (window.CivicationDailyMailBuilder?.resetToday) window.CivicationDailyMailBuilder.resetToday();
+    else window.CivicationState?.setState?.({ mail_day_runtime_v1: null, narrative_day_state_v1: null });
     window.CivicationState?.setInbox?.([]);
     try { window.dispatchEvent(new Event("updateInbox")); } catch (e) { /* ignore */ }
     renderStatus("Testdag nullstilt.");
@@ -228,6 +237,7 @@
       active: window.CivicationState?.getActivePosition?.() || null,
       selectedRole: selected,
       roleCount: state.roles.length,
+      rolesError: state.rolesError || null,
       startpoint: state.startpoint,
       runtimeExists: !!runtime,
       itemCount: dmb ? Number(dmb.item_count || 0) : 0,
@@ -251,8 +261,9 @@
     if (!el) return;
     const info = inspect();
     const active = /** @type {any} */ (info.active || {});
+    const statusMessage = message || (info.selectedRole ? `Valgt rolle: ${info.selectedRole.title}` : "Ingen rolle valgt");
     el.innerHTML = `
-      ${message ? `<p class="civi-test-message">${esc(message)}</p>` : ""}
+      <p class="civi-test-message">${esc(statusMessage)}</p>
       <div><span>aktiv rolle</span><strong>${esc(active.title || "—")}</strong></div>
       <div><span>career_id</span><strong>${esc(active.career_id || "—")}</strong></div>
       <div><span>role_key</span><strong>${esc(active.role_key || active.role_scope || "—")}</strong></div>
@@ -260,7 +271,8 @@
       <div><span>DailyMailBuilder runtime</span><strong>${info.runtimeExists ? "runtime finnes" : "ingen runtime"}</strong></div>
       <div><span>item_count</span><strong>${info.runtimeExists ? esc(info.itemCount) : "—"}</strong></div>
       <div><span>by_phase</span><strong>${esc(countsLabel(info.byPhase))}</strong></div>
-      <div><span>by_status</span><strong>${esc(countsLabel(info.byStatus))}</strong></div>`;
+      <div><span>by_status</span><strong>${esc(countsLabel(info.byStatus))}</strong></div>
+      <div><span>pending subject</span><strong>${esc(info.pending?.subject || "—")}</strong></div>`;
   }
 
   function visibleRoles() {
@@ -279,8 +291,12 @@
     const list = document.getElementById(ROLES_ID);
     if (!list) return;
     const roles = visibleRoles();
+    if (!state.roles.length && state.rolesError) {
+      list.innerHTML = `<p class="civi-test-empty">${esc(state.rolesError)}</p>`;
+      return;
+    }
     if (!roles.length) {
-      list.innerHTML = `<p class="civi-test-empty">Ingen roller matcher.</p>`;
+      list.innerHTML = `<p class="civi-test-empty">${state.roles.length ? "Ingen roller matcher." : "Fant ingen roller"}</p>`;
       return;
     }
     list.innerHTML = roles.map(role => {
@@ -419,7 +435,7 @@
   }
 
   function mount() {
-    if (!isEnabled() || !hasDom()) return;
+    if (!hasDom()) return;
     ensureButton();
   }
 
@@ -438,7 +454,7 @@
 
   function disable() {
     try { localStorage.setItem(FLAG_KEY, "false"); } catch (e) { /* ignore */ }
-    unmount();
+    closePanel();
     return true;
   }
 
@@ -451,6 +467,9 @@
     startDay,
     resetDay,
     inspect,
+    openPanel,
+    closePanel,
+    togglePanel,
     open: openPanel,
     close: closePanel,
     toggle: togglePanel
