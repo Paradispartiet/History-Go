@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
 
-const root = path.resolve(__dirname, '..');
+const root = fs.existsSync(path.resolve(__dirname, '../package.json'))
+  ? path.resolve(__dirname, '..')
+  : path.resolve(__dirname, '../..');
 const category = 'naeringsliv';
 
 const roles = [
