@@ -204,17 +204,38 @@
   }
 
   async function startDay(opts) {
+    const active = window.CivicationState?.getActivePosition?.() || null;
+    if (!active) {
+      renderStatus("Velg og start en rolle først");
+      return { ok: false, reason: "no_active_role" };
+    }
+
+    const builder = window.CivicationDailyMailBuilder;
+    if (!builder?.startToday) {
+      renderStatus("Dag feilet: DailyMailBuilder mangler");
+      return { ok: false, reason: "missing_daily_mail_builder" };
+    }
+
     const startpointKey = norm(opts?.startpoint) || state.startpoint;
+    const sp = startpointByKey(startpointKey);
     applyStartpoint(startpointKey);
-    const result = await window.CivicationDailyMailBuilder?.startToday?.({
+    renderStatus(`Starter dag for ${active.title || active.role_key || "aktiv rolle"} (${sp.label}) …`);
+
+    const result = await builder.startToday({
       forceNew: true,
       ignorePending: true
     });
+
+    try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch (e) { /* ignore */ }
     try { window.dispatchEvent(new Event("updateInbox")); } catch (e) { /* ignore */ }
-    const sp = startpointByKey(startpointKey);
-    const info = window.CivicationDailyMailBuilder?.inspect?.() || {};
+    try { window.dispatchEvent(new Event("updateProfile")); } catch (e) { /* ignore */ }
+
+    const info = builder.inspect?.() || {};
     const count = Number(info.item_count || 0);
-    renderStatus(result?.ok ? `Dag startet: ${count} elementer (${sp.label}).` : `Dag feilet: ${result?.reason || "ukjent"}`);
+    const pendingSubject = info.pending?.subject ? ` Pending: ${info.pending.subject}` : "";
+    renderStatus(result?.ok
+      ? `Dag startet: ${count} elementer (${sp.label}).${pendingSubject}`
+      : `Dag feilet: ${result?.reason || "ukjent"}`);
     return result || null;
   }
 
@@ -361,7 +382,7 @@
 
     document.getElementById("civicationTestClose")?.addEventListener("click", closePanel);
     document.getElementById("civiTestStartRole")?.addEventListener("click", () => startRole(state.selectedKey));
-    document.getElementById("civiTestStartDay")?.addEventListener("click", () => { startDay(); });
+    document.getElementById("civiTestStartDay")?.addEventListener("click", async () => { await startDay(); });
     document.getElementById("civiTestResetDay")?.addEventListener("click", resetDay);
 
     const search = /** @type {any} */ (document.getElementById(SEARCH_ID));
