@@ -1,4 +1,8 @@
 
+// js/Civication/systems/day/dayCarryover.js
+// Dag-til-dag-overføring: leser dagens valg-logg fra kalenderens fasemodell, bygger neste
+// dags carryover og bruker morgen-carryover/-modus på første event neste dag.
+// Globale helpers (getNextDayCarryover / applyMorningCarryoverEffects m.fl.); ingen egen LS-nøkkel.
 function getDayChoiceLog() {
   const cal = window.CivicationCalendar;
   const model = cal?.getPhaseModel?.() || {};

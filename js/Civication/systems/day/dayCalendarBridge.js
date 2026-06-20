@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayCalendarBridge.js
+// Dag-fase-bro: utvider CivicationCalendar med dagsfase-modell
+// (morning/lunch/afternoon/evening/day_end), faseavansering, daglig oppsummering og flagg.
+// Eier ikke kalenderens tid; legger dagsfase-semantikk oppå eksisterende klokke.
 (function () {
   function patchCalendar() {
     const cal = window.CivicationCalendar;

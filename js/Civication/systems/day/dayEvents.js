@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayEvents.js
+// Dagens innholds-/fasemotor: bygger fasekontekst (morgen/lunsj/ettermiddag/kveld),
+// emnevarianter og store-/karriere-flavor, og fører dag-event-historikk
+// (hg_day_event_history_v1). Leverer dagsinnhold som DailyMailBuilder setter sammen.
 function getLunchContext(active) {
   const visitedCount = getVisitedPlacesCount();
   const brandName =

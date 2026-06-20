@@ -1,3 +1,8 @@
+// js/Civication/systems/day/dayActiveRoleStateSync.js
+// CivicationActiveRoleStateSync — holder mail-systemets binding i synk med aktiv rolle.
+// Utleder thread-fase (intro→early→mid→climax→mastery), sikrer mail_system-state for aktiv
+// rolle og rydder nav-pending når en aktiv rolle finnes.
+// Hekter seg på: patcher EventEngine.answer; booter på civi:dataReady / civi:booted.
 (function () {
   "use strict";
 

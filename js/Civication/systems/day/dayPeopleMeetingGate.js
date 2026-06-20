@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayPeopleMeetingGate.js
+// CivicationPeopleMeetingGate — porter people-meeting-mailer inn/ut av dagens kandidatsett.
+// Hekter seg på: patcher makeCandidateMailsForActiveRole.
 (function () {
   "use strict";
 

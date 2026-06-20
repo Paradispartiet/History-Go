@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayFactionChoiceSystem.js
+// CivicationFactionChoiceSystem — eier spillerens aktive fraksjon i hg_civi_active_faction_v1
+// (industri / kontroll / institusjon / menneske). Setter/leser fraksjon ut fra valg.
 (function () {
   "use strict";
 

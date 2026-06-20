@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayChoiceToneVariants.js
+// CivicationChoiceToneVariants — gir valgene tonevarianter (samme effekt, ulik ordlyd).
+// Hekter seg på: patcher makeCandidateMailsForActiveRole og omskriver choice-tekst.
 (function () {
   "use strict";
 

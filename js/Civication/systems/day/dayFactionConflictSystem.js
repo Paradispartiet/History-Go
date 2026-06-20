@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayFactionConflictSystem.js
+// CivicationFactionConflictSystem — eier fraksjonskonflikter i hg_civi_faction_conflicts_v1.
+// Bygger om konflikttilstand på updateProfile / civi:npcReaction.
 (function () {
   "use strict";
 

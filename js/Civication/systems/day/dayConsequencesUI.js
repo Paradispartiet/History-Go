@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayConsequencesUI.js
+// UI-dekoratør: injiserer en konsekvensboks (kapital/psyke-delta) i innboks- og
+// arbeidsdagspanel via patchRenderer (renderCivicationInbox / renderWorkdayPanel).
+// Kun visning; selve effektene beregnes i dayConsequences.
 (function () {
   "use strict";
 

@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayPeopleMeetingRelationshipVariant.js
+// CivicationPeopleMeetingRelationshipVariant — varierer people-meeting-mailer etter
+// relasjonstilstand. Hekter seg på: patcher makeCandidateMailsForActiveRole.
 (function () {
   "use strict";
 

@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayContacts.js
+// Eier spillerens kontakter i hg_civi_contacts_v1: kan opprette en kontakt fra et valg og
+// bygger kontaktlistens HTML. Globale helpers (ingen IIFE).
 const CIVI_CONTACTS_KEY = "hg_civi_contacts_v1";
 function dispatchProfileUpdate() {
   try { window.dispatchEvent(new Event("updateProfile")); } catch {}

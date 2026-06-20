@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayFactionVoice.js
+// CivicationFactionVoice — legger fraksjonens «stemme»/innramming på dagens mailer.
+// Hekter seg på: patcher makeCandidateMailsForActiveRole.
 (function () {
   "use strict";
 

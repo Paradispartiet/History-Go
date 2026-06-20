@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayAllianceSystem.js
+// CivicationAllianceSystem — eier spillerens allianser i hg_civi_alliances_v1.
+// Bygger/oppdaterer allianser ut fra NPC-reaksjoner (civi:npcReaction). Ren state/logikk;
+// scoring av mail mot allianser ligger i dayAllianceMailScoring.
 (function () {
   "use strict";
 

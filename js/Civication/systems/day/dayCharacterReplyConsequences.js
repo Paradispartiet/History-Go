@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayCharacterReplyConsequences.js
+// Når et valg har character_reply: legger karakterens personlige svar inn i NPC-karaktertråden
+// (hg_civi_npc_character_threads_v1). Registreres via ChoiceDirector og kjører på answer.
 (function () {
   "use strict";
 

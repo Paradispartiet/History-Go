@@ -1,4 +1,8 @@
 
+// js/Civication/systems/day/dayKnowledge.js
+// Kunnskaps-gate: utleder kunnskapstagger fra mail, leser merits_by_category og bruker
+// kunnskapskrav på mail-event/task (+ bygger kunnskaps-task-HTML).
+// Sømmen mellom History GO-kunnskap og Civication-oppgaver.
 function getMeritsByCategorySafe() {
   try {
     const raw = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
