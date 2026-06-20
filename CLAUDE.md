@@ -18,9 +18,10 @@ Multiple distinct apps live in this single repo, each its own HTML entry point w
 - `profile.html` + `js/profile.js` — canonical full profile page.
 - `Civication.html` + `js/Civication/**` — a separate career/economy/identity simulation game ("Civication"). Large subsystem, kept out of the index app and out of the TypeScript migration.
 - `AHA/index.html` + `js/aha*.js` + `AHA/*.js` — "AHA" insight/echo layer; imports evidence exported by History GO. Has its own Node backend (`render.yaml`, `AHA/package.json`).
-- Other pages: `knowledge.html`, `emner.html`, `notater.html`.
+- Other pages: `knowledge.html`, `emner.html`, `notater.html`, `merker/merker.html`.
+- Per-domain knowledge pages live under `knowledge/` (e.g. `knowledge/knowledge_historie.html`); root files like `knowledge_by.html` are thin redirect shells into that folder.
 
-Key directories: `js/` (~230 browser JS files, layered — see architecture below), `data/` (manifest-driven JSON content, the source of truth), `tools/` and `scripts/` (Node-only CLI utilities, mostly `.mjs`/`.mts`), `tests/` (plain Node assert test files), `css/` (locked CSS list), `README/` and `docs/` (extensive normative documentation).
+Key directories: `js/` (~234 browser JS files, layered — see architecture below), `data/` (manifest-driven JSON content, the source of truth), `tools/` and `scripts/` (Node-only CLI utilities, mostly `.mjs`/`.mts`), `tests/` (plain Node assert test files), `css/` (locked CSS list), `schemas/` (shared TypeScript `.ts`/`.d.ts` type and global declarations used by the typecheck), `reports/` (generated audit output, not runtime), `README/` and `docs/` (extensive normative documentation).
 
 ## Documentation is normative — read before editing
 
@@ -113,9 +114,12 @@ npm run build:tools        # emit converted tools to dist/tools (needed by *:che
 ### Data / content validation (run before merging content changes)
 
 ```bash
-npm run tools:check        # aggregate: typecheck+build tools, places index sync, emne ids,
-                           # duplicate JSON keys, leksikon ids, place aliases, stories integrity, place health
+npm run tools:check        # aggregate: typecheck+build tools, places index sync, place coordinate
+                           # audit+quality gate, emne ids, duplicate JSON keys, leksikon ids,
+                           # place aliases, stories integrity, place health
 npm run places:index:check # places_index.json is in sync with source
+npm run places:coords:check # place coordinate audit + quality gate
+npm run i18n:places:check  # places i18n audit, quality and worklist (Node-only scripts)
 npm run health             # data health report
 npm run health:places      # place health report
 ```
