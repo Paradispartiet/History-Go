@@ -739,3 +739,286 @@ player choice
   ↓
 state, progression, consumed mails, consequences
 ```
+
+## 19. Civication Daily Runtime v1: én spillbar dag
+
+Civication har nå et dagruntime-lag som ligger over den langsiktige rolleprogresjonen. Dette betyr at systemet ikke bare leverer én jobbmail av gangen. Det kan bygge en faktisk spillbar arbeidsdag med morgen, lunsj, ettermiddag, kveld og dagslutt.
+
+Viktig prinsipp:
+
+```text
+MailRuntime = langsiktig rolleprogresjon
+DailyMailBuilder = dagens spillbare rytme
+MailDayProgram = dagsstruktur og volum
+IncomingFlow = kanal, batch, followups og konsekvenser
+CareerOutcomeRuntime = terminale jobbresultater
+DayPatches = faseflyt, carryover og dagfase-UI
+```
+
+### 19.1 DailyMailBuilder
+
+Filen:
+
+```text
+js/Civication/systems/civicationDailyMailBuilder.js
+```
+
+bygger én faktisk Civication-arbeidsdag fra:
+
+```text
+data/Civication/mailDayProgram.json
+```
+
+DailyMailBuilder eier dagsbunke og rytme. MailRuntime eier fortsatt langsiktig rolleprogresjon. Bare dagens primære planmail skal normalt få `source_type: "planned"` og flytte `rolePlan` videre. Micro-, followup-, knowledge-, consequence- og day_end-mail er dagsinnhold og skal ikke flytte rolePlan alene.
+
+Viktig state-nøkkel:
+
+```text
+mail_day_runtime_v1
+```
+
+Runtime inneholder blant annet:
+
+```text
+date
+role_scope
+role_id
+career_id
+role_title
+plan_id
+target_minutes
+delivered_ids
+answered_ids
+current_index
+items[]
+```
+
+### 19.2 mailDayProgram
+
+Filen:
+
+```text
+data/Civication/mailDayProgram.json
+```
+
+definerer dagsrytmen:
+
+```text
+morning -> lunch -> afternoon -> evening -> day_end
+```
+
+Dagen er delt inn i slots, ikke bare én hendelse. Eksempler:
+
+```text
+morning_brief
+primary_work_mail
+operational_mail
+people_ping
+phase_lunch
+informal_people_mail
+conflict_or_event
+analysis_followup
+knowledge_mail
+phase_evening
+consequence_mail
+relationship_or_status
+day_summary
+```
+
+Målet med dette laget er at en Civication-dag skal føles som en hel arbeidsdag: hovedoppgave, små driftsavklaringer, personer, konflikt, kunnskap, konsekvens og dagsoppsummering.
+
+### 19.3 Faseflyt og dagsslutt
+
+Faseflyten ligger i:
+
+```text
+js/Civication/systems/day/dayPatches.js
+```
+
+Når spilleren svarer på dagens pending event, flyttes kalenderen videre:
+
+```text
+morning -> lunch
+lunch -> afternoon
+afternoon -> evening
+evening -> day_end
+day_end -> resetForNewDay()
+```
+
+Ved `day_end` lagres dagsoppsummering og eventuell ukeslogikk kan ferdigstilles. `dayPatches.js` bygger også dagfase-HUD i arbeidsdagspanelet, slik at spilleren ser hvor i dagen han er.
+
+### 19.4 IncomingFlow
+
+Filen:
+
+```text
+js/Civication/systems/civicationIncomingFlow.js
+```
+
+samler lavnivålogikk for innkommende meldinger:
+
+```text
+getPendingJobMails()
+getPendingPrivateMessages()
+getActiveWorkdayItem()
+enqueueBatch()
+enqueueFollowup()
+normalizeConsequences()
+applyConsequences()
+inspect()
+```
+
+Dette laget kjenner til batch-typer:
+
+```text
+morning
+workday
+evening
+role_arc
+private_arc
+```
+
+og phase-tags:
+
+```text
+morning
+work
+lunch
+afternoon
+evening
+day_end
+```
+
+Det skal sørge for at jobbmail, private meldinger, systemmeldinger, followups og konsekvenser ikke blandes feil.
+
+### 19.5 CareerOutcomeRuntime
+
+Filen:
+
+```text
+js/Civication/systems/civicationCareerOutcomeRuntime.js
+```
+
+eier terminale jobbresultater når en rolePlan er ferdig. Den skal hindre at systemet faller tilbake til gamle legacy/fallback-mails etter at rolleprogresjonen egentlig er over.
+
+Terminale statuser:
+
+```text
+PROMOTED
+STAGNATED
+FIRED
+```
+
+Utfallene bygger på signaler som:
+
+```text
+completionRatio
+score
+strikes
+warningUsed
+stability
+```
+
+Stagnasjon skal merkes som et faktisk spillutfall, ikke som repetert fallback. Det kan gi lavere autonomi, kveldspress og flere morgenvalg. Sparken avslutter aktiv rolle. Forfremmelse markerer at spilleren er klar for mer ansvar.
+
+### 19.6 Controller som første reelle vertical slice
+
+Controller er den tydeligste testede rollen nå. Den har en to-ukers praksisfortelling med veksel mellom jobbmail og private meldinger, konkrete konsekvenstråder, branch flags og effekt-signaler.
+
+Viktig test:
+
+```text
+tests/civication-controller-two-week-flow.test.js
+```
+
+Denne testen sikrer blant annet at:
+
+```text
+controller_plan har 20 første package-steg
+jobbmail og private meldinger ikke lekker til feil kanal
+planned mails ikke bruker fallback progression
+hvert valg kan trigge consequence thread
+choice effects og next_bias flags skrives til branch state
+forskjellige spillstiler gir ulike signalprofiler
+```
+
+Dette betyr at neste arbeid ikke bør starte med ny motor. Neste arbeid bør bruke eksisterende motor til å polere første spillbare opplevelse:
+
+```text
+Civication Dag 1 — Controller
+```
+
+Målet er én tydelig, spillbar dag der spilleren opplever:
+
+```text
+morgenstart
+jobbhovedsak
+private/personlige signaler
+konkret arbeidsvalg
+konsekvens/followup
+kveldspress eller relasjonseffekt
+dagslutt
+carryover til neste dag
+```
+
+### 19.7 Oppdatert arkitektur med dagmotor
+
+```text
+badges.json
+  ↓
+roleModels/{category}/{role_scope}.json
+  ↓
+mailPlans/{category}/{role_scope}_plan.json
+  ↓
+mailFamilies/{category}/{type}/{role_scope}_{type}.json
+  ↓
+CivicationMailRuntime
+  ↓
+CivicationDailyMailBuilder + mailDayProgram.json
+  ↓
+CivicationIncomingFlow / CivicationMailEngine
+  ↓
+Civication UI inbox + WorkdayPanel + dayphase HUD
+  ↓
+player choice
+  ↓
+dayChoiceDirector / dayConsequences / task/capital/psyche effects
+  ↓
+CivicationCareerOutcomeRuntime
+  ↓
+promotion / stagnation / fired / next-day carryover
+```
+
+### 19.8 Nye regler etter dagmotoren
+
+1. Ikke bygg ny dagsmotor før `CivicationDailyMailBuilder`, `mailDayProgram.json` og `dayPatches.js` er kontrollert.
+2. Ikke legg dagsrytme direkte i UI. Dagsrytme skal komme fra `mailDayProgram.json` og runtime.
+3. Ikke la micro/followup/day_end-mail flytte rolePlan med mindre det er et eksplisitt produktvalg.
+4. Ikke bland jobbmail og private meldinger. Bruk `channel`, `messageChannel`, `mail_class`, `mail_type`, `phase_tag` og `CivicationEventChannels`.
+5. Terminale jobbutfall skal gå via `CivicationCareerOutcomeRuntime`, ikke generisk fallback.
+6. Controller-flyten skal brukes som referanse før nye roller bygges like dypt.
+7. Når noe endrer profil/progresjon/psyke/kapital, skal UI oppdateres med `window.dispatchEvent(new Event("updateProfile"));` der det er relevant.
+
+### 19.9 Hurtigsjekk i konsoll
+
+```js
+CivicationDailyMailBuilder.inspect()
+```
+
+```js
+CivicationDailyMailBuilder.inspectNarratives()
+```
+
+```js
+CivicationMailRuntime.inspect()
+```
+
+```js
+CivicationIncomingFlow.inspect()
+```
+
+```js
+CivicationCareerOutcomeRuntime?.inspect?.()
+```
+
+Bruk disse før nye endringer hvis problemet gjelder dagflyt, mailrekkefølge, kanalblanding, progression, outcome eller manglende dagslutt.
