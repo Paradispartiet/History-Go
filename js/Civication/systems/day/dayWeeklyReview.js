@@ -1,4 +1,7 @@
 
+// js/Civication/systems/day/dayWeeklyReview.js
+// Eier ukesoppsummeringen i hg_civi_weekly_review_v1: lagrer daglig oppsummering til uken,
+// ferdigstiller uken, bruker ukentlige konsekvenser og bygger ukesrapport-HTML.
 const CIVI_WEEKLY_REVIEW_KEY = "hg_civi_weekly_review_v1";
 function dispatchProfileUpdate() {
   try { window.dispatchEvent(new Event("updateProfile")); } catch {}

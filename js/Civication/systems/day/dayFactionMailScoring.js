@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayFactionMailScoring.js
+// CivicationFactionMailScoring — vekter dagens mailkandidater etter hvor godt mailfamilien
+// matcher aktiv fraksjon. Hekter seg på: patcher makeCandidateMailsForActiveRole.
 (function () {
   "use strict";
 

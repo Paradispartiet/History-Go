@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayChoiceDirector.js
+// CivicationChoiceDirector — sentralt, prioritert register av valg-håndterere.
+// Patcher EventEngine.answer én gang og kjører registrerte handlere på hvert svar.
+// Felles innstegspunkt for valg-konsekvenser (faction, npc m.fl. registrerer seg her).
 (function () {
   "use strict";
 

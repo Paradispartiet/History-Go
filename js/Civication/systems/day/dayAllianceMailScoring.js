@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayAllianceMailScoring.js
+// CivicationAllianceMailScoring — vekter dagens mailkandidater etter alliansestate.
+// Hekter seg på: patcher makeCandidateMailsForActiveRole (kun kandidat-scoring; eier ikke
+// mailprogresjon). Leser alliansestate fra CivicationAllianceSystem.
 (function () {
   "use strict";
 

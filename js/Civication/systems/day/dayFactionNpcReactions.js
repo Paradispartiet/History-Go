@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayFactionNpcReactions.js
+// Lytter på fraksjonsvalg og sender en fraksjonsfarget NPC-replikk via civi:npcReaction.
+// Produserer reaksjoner; konsumeres av allianse-/konflikt-/karaktertråd-systemene.
 (function () {
   "use strict";
 

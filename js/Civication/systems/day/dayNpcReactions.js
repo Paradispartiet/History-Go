@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayNpcReactions.js
+// Bygger og bruker en NPC-reaksjon på et valg (velger en person fra PeopleEngine) og sender
+// civi:npcReaction. Produsenten av NPC-reaksjoner som dag-loopens øvrige systemer lytter på.
 (function () {
   "use strict";
 

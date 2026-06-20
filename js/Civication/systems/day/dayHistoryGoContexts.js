@@ -1,5 +1,7 @@
 
-
+// js/Civication/systems/day/dayHistoryGoContexts.js
+// History GO-bro inn i dag-events: leser HG-state (besøkte steder, badges, meritter) og gir
+// kontekst-flavor matchet mot karrieren. Leser History GO, skriver ikke tilbake.
 function getVisitedPlacesCount() {
   try {
     const raw = JSON.parse(localStorage.getItem("visited_places") || "[]");

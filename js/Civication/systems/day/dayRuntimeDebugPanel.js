@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayRuntimeDebugPanel.js
+// CivicationRuntimeDebugPanel — utviklerpanel som leser runtime-LS (aktiv posisjon, kapital,
+// fraksjon, allianser m.fl.) for innsyn i dagstilstanden. Kun debugging; skriver ikke state.
 (function () {
   "use strict";
 

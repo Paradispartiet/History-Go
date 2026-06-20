@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayConsequences.js
+// Konsekvensmotor (data-lag, ikke UI): utleder kapital-/psyke-/grenbias-deltaer fra valgets
+// etiketter og bruker dem. Eier ikke visning — den ligger i dayConsequencesUI /
+// dayNarrativeConsequencesUI.
 (function () {
   "use strict";
 

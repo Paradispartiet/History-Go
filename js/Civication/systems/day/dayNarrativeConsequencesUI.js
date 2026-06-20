@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayNarrativeConsequencesUI.js
+// UI-dekoratør: injiserer en narrativ (tillitsbasert) konsekvenstekst i innboks- og
+// arbeidsdagspanel via patchRenderer. Narrativ variant av dayConsequencesUI; kun visning.
 (function () {
   "use strict";
 

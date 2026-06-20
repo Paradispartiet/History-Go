@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayProgressionController.js
+// CivicationDayProgression — eier fasefremdriften gjennom maildagen: finner gjeldende/neste
+// fase, avgjør om fasen kan avanseres og avanserer når dagen er klar.
+// Dispatcher civi:dayPhaseChanged / civi:inboxChanged / updateProfile.
 (function () {
   "use strict";
 

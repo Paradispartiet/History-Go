@@ -1,3 +1,7 @@
+// js/Civication/systems/day/dayPatches.js
+// Sentral dag-fase-patch/bootstrap: fase-HUD, recovery-/onboarding-events, task-kapital fra
+// valg og omtagging av pending event etter fase. Patcher EventEngine.answer og eksponerer
+// window.renderWorkdayPanel — innstegspunktet de øvrige day*UI-modulene dekorerer.
 (function () {
 
 function retagPendingEvent(engine, phaseTag) {

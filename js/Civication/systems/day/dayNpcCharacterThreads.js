@@ -1,3 +1,6 @@
+// js/Civication/systems/day/dayNpcCharacterThreads.js
+// CivicationNpcCharacterThreads — eier tilbakevendende NPC-karaktertråder i
+// hg_civi_npc_character_threads_v1. Reagerer på civi:npcReaction og holder tråd-historikk.
 (function () {
   "use strict";
 
