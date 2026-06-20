@@ -98,8 +98,9 @@ async function run() {
   global.location = { href: 'http://localhost/Civication.html', search: '' };
   global.Event = class Event { constructor(type) { this.type = type; } };
   global.document = makeDom();
+  const dispatchedEvents = [];
   global.addEventListener = () => {};
-  global.dispatchEvent = () => {};
+  global.dispatchEvent = (event) => { dispatchedEvents.push(event?.type); return true; };
   global.fetch = makeFetch(repoRoot);
   global.CivicationCalendar = { getPhase: () => 'morning', setPhase() {}, advanceByMinutes() {} };
 
@@ -131,6 +132,17 @@ async function run() {
   assert.strictEqual(before.roleCount, roles.length, 'inspect skal telle lastede roller');
   assert.deepStrictEqual(before.byPhase, {}, 'inspect byPhase skal være tomt før dagstart');
 
+  // Start Dag uten aktiv rolle skal gi tydelig status og ikke kalle dagmotoren.
+  let startTodayCalls = 0;
+  global.CivicationDailyMailBuilder = {
+    async startToday() { startTodayCalls += 1; return { ok: true }; },
+    inspect() { return { runtime: null, item_count: 0, by_phase: {}, by_status: {}, pending: null }; }
+  };
+  const noRoleDay = await TM.startDay();
+  assert.strictEqual(noRoleDay.ok, false, 'startDay uten aktiv rolle skal feile kontrollert');
+  assert.strictEqual(noRoleDay.reason, 'no_active_role', 'startDay uten aktiv rolle skal be om rolle først');
+  assert.strictEqual(startTodayCalls, 0, 'startDay uten aktiv rolle skal ikke starte dagmotoren');
+
   // Start rolle via eksisterende RoleStarter.
   const started = TM.startRole('controller');
   assert(started, 'startRole skal returnere startet rolle');
@@ -143,6 +155,43 @@ async function run() {
   const afterStart = TM.inspect();
   assert(afterStart.selectedRole && afterStart.selectedRole.role_key === 'controller', 'inspect skal vise valgt rolle');
   assert.strictEqual(afterStart.active.role_key, 'controller', 'inspect skal vise aktiv rolle');
+
+  // Start Dag skal await-e eksisterende DailyMailBuilder.startToday og deretter vise oppdatert runtime-status.
+  let resolved = false;
+  let receivedOptions = null;
+  const runtime = { items: [{ status: 'queued', phase: 'morning' }, { status: 'pending', phase: 'lunch' }] };
+  global.CivicationDailyMailBuilder = {
+    async startToday(options) {
+      startTodayCalls += 1;
+      receivedOptions = options;
+      await Promise.resolve();
+      resolved = true;
+      return { ok: true, runtime };
+    },
+    inspect() {
+      return {
+        runtime: resolved ? runtime : null,
+        item_count: resolved ? 2 : 0,
+        by_phase: resolved ? { morning: 1, lunch: 1 } : {},
+        by_status: resolved ? { queued: 1, pending: 1 } : {},
+        pending: resolved ? { id: 'm2', subject: 'Lunsjrapport', phase_tag: 'lunch' } : null
+      };
+    }
+  };
+
+  const dayResult = await TM.startDay();
+  assert.strictEqual(dayResult.ok, true, 'startDay skal returnere vellykket dagmotor-resultat');
+  assert.deepStrictEqual(receivedOptions, { forceNew: true, ignorePending: true }, 'startDay skal kalle DailyMailBuilder.startToday med testmodus-flagg');
+  assert.strictEqual(startTodayCalls, 1, 'startDay skal starte dagmotoren én gang etter aktiv rolle');
+  assert(dispatchedEvents.includes('civi:inboxChanged'), 'startDay skal dispatch-e civi:inboxChanged etter dagstart');
+  assert(dispatchedEvents.includes('updateProfile'), 'startDay skal dispatch-e updateProfile etter dagstart');
+
+  const afterDay = TM.inspect();
+  assert.strictEqual(afterDay.runtimeExists, true, 'inspect skal vise at runtime finnes etter dagstart');
+  assert.strictEqual(afterDay.itemCount, 2, 'inspect skal vise item_count etter dagstart');
+  assert.deepStrictEqual(afterDay.byPhase, { morning: 1, lunch: 1 }, 'inspect skal vise byPhase etter dagstart');
+  assert.deepStrictEqual(afterDay.byStatus, { queued: 1, pending: 1 }, 'inspect skal vise byStatus etter dagstart');
+  assert.strictEqual(afterDay.pending.subject, 'Lunsjrapport', 'inspect skal vise pending subject etter dagstart');
 
   // Panel skal åpnes via permanent API.
   TM.openPanel();
