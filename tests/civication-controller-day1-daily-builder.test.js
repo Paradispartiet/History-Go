@@ -95,10 +95,33 @@ async function run() {
 
   const plannedItems = runtime.items.filter(row => row.event?.source_type === 'planned');
   assert.strictEqual(plannedItems.length, 1, 'only the primary plan mail should use source_type=planned');
+  assert.strictEqual(
+    plannedItems[0].event.id,
+    'job_controller_week1_month_report_before_explanation',
+    'Controller day 1 should keep the first week month-report mail as primary_work_mail'
+  );
   assert.strictEqual(plannedItems[0].event.daily_mail_meta?.advances_role_plan, true, 'the primary planned mail should be the only role-plan advancing item');
   for (const row of runtime.items.filter(row => row.event?.source_type !== 'planned')) {
     assert.notStrictEqual(row.event?.daily_mail_meta?.advances_role_plan, true, `${row.event?.id} must not advance rolePlan`);
   }
+
+  const lateProgressionItems = runtime.items.filter(row => {
+    const id = `${row.event?.id || ''} ${row.event?.source_mail_id || ''}`;
+    return /week2|second_week/i.test(id);
+  });
+  assert.deepStrictEqual(
+    lateProgressionItems.map(row => row.event?.source_mail_id || row.event?.id),
+    [],
+    'Controller day 1 daily_extra selection must not include week2/second_week mails'
+  );
+
+  const morningBrief = runtime.items.find(row => row.phase === 'morning' && row.slot === 'morning_brief');
+  assert(morningBrief, 'runtime should include a morning_brief slot');
+  assert.notStrictEqual(
+    morningBrief.event?.source_mail_id || morningBrief.event?.id,
+    'job_controller_week2_periodization_or_polishing',
+    'morning_brief must not use the week 2 periodization job mail on day 1'
+  );
 
   const privateItem = runtime.items.find(row => global.CivicationEventChannels.getMessageChannel(row.event) === 'private');
   assert(privateItem, 'Controller day should include private/personal signal mail');

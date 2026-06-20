@@ -245,6 +245,116 @@
     return priority * 100000 + hashString(`${seed}:${mail?.id || ""}`);
   }
 
+  function progressionText(mail) {
+    return [
+      mail?.id,
+      mail?.source_mail_id,
+      mail?.mail_family,
+      mail?.mail_type,
+      mail?.phase,
+      mail?.stage,
+      mail?.package,
+      mail?.package_id,
+      mail?.family_id,
+      ...(Array.isArray(mail?.mail_tags) ? mail.mail_tags : []),
+      ...(Array.isArray(mail?.tags) ? mail.tags : [])
+    ].map(slugify).filter(Boolean).join(" ");
+  }
+
+  function extractProgressionWeek(mail) {
+    const text = progressionText(mail);
+    const weekMatch = text.match(/(?:^|_)week_?([0-9]+)(?:_|$)|(?:^|_)w_?([0-9]+)(?:_|$)/);
+    if (weekMatch) return Number(weekMatch[1] || weekMatch[2] || 0) || null;
+    if (/(^|_)first_week(_|$)/.test(text)) return 1;
+    if (/(^|_)second_week(_|$)/.test(text)) return 2;
+    return null;
+  }
+
+  function stepIndexFromState(state, plan) {
+    const progress = state?.mail_plan_progress && typeof state.mail_plan_progress === "object"
+      ? state.mail_plan_progress
+      : {};
+    const planId = norm(plan?.id);
+    const byPlan = planId && progress[planId] && typeof progress[planId] === "object"
+      ? progress[planId]
+      : null;
+    const candidates = [byPlan?.step_index, progress.step_index, progress.current_step_index];
+    for (const value of candidates) {
+      const n = Number(value);
+      if (Number.isFinite(n) && n >= 0) return Math.floor(n);
+    }
+    return 0;
+  }
+
+  function inferMaxWeekFromPlan(plan, stepIndex, plannedPrimary) {
+    const plannedWeek = extractProgressionWeek(plannedPrimary);
+    if (plannedWeek) return plannedWeek;
+
+    const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
+    const current = sequence[Math.max(0, Math.min(sequence.length - 1, Number(stepIndex || 0)))] || null;
+    const currentText = progressionText({
+      id: `${current?.phase || ""}_${current?.step_goal || ""}`,
+      mail_family: uniqueStrings(current?.allowed_families).join("_")
+    });
+    if (/(^|_)week2(_|$)|(^|_)second_week(_|$)/.test(currentText)) return 2;
+    if (/(^|_)week1(_|$)|(^|_)first_week(_|$)|(^|_)intro(_|$)/.test(currentText)) return 1;
+
+    // Controller-style two-week plans usually model five job/private pairs per week.
+    return Number(stepIndex || 0) >= 10 ? 2 : 1;
+  }
+
+  function getDailyProgressionContext(active, state, plannedPrimary, runtime, plan) {
+    const stepIndex = stepIndexFromState(state, plan);
+    const maxWeek = Math.max(1, inferMaxWeekFromPlan(plan, stepIndex, plannedPrimary));
+    return {
+      role_scope: resolveRoleScope(active),
+      step_index: stepIndex,
+      max_week: maxWeek,
+      planned_primary_id: norm(plannedPrimary?.id),
+      used_ids: consumedSet(state),
+      runtime
+    };
+  }
+
+  function mailMatchesDailyProgression(mail, context) {
+    const id = norm(mail?.id || mail?.source_mail_id);
+    if (!id) return false;
+    if (context?.used_ids?.has?.(id)) return false;
+    if (id === norm(context?.planned_primary_id)) return false;
+
+    const text = progressionText(mail);
+    const week = extractProgressionWeek(mail);
+    const maxWeek = Math.max(1, Number(context?.max_week || 1));
+
+    // Daily extras are allowed to be rich, but not to jump the role arc. These
+    // conservative metadata/string gates catch package ids, family ids and mail
+    // ids such as week2/second_week/advanced/mastery before rolePlan reaches them.
+    if (week && week > maxWeek) return false;
+    if (/(^|_)(advanced|mastery|late_game|later_phase|senere|viderekommen)(_|$)/.test(text) && maxWeek < 2) return false;
+    if (/(^|_)(week2|second_week)(_|$)/.test(text) && maxWeek < 2) return false;
+
+    return true;
+  }
+
+  function filterPoolForDailySlot(pool, phase, slot, context) {
+    const safe = (Array.isArray(pool) ? pool : []).filter(mail => mailMatchesDailyProgression(mail, context));
+    const slotId = slugify(slot?.slot || slot?.type || "");
+    const slotType = slugify(slot?.type || slot?.slot || "");
+
+    if (slotId === "morning_brief" || slotType === "story_or_context") {
+      const contextFirst = safe.filter(mail => {
+        const type = norm(mail?.mail_type);
+        const text = progressionText(mail);
+        if (type === "story" || type === "people") return true;
+        if (/(^|_)(intro|week1|first_week)(_|$)/.test(text) && !/(^|_)(week2|second_week|advanced|mastery)(_|$)/.test(text)) return true;
+        return type !== "job";
+      });
+      return contextFirst.length ? contextFirst : [];
+    }
+
+    return safe;
+  }
+
   function consumedSet(state) {
     const consumed = state?.consumed && typeof state.consumed === "object"
       ? Object.keys(state.consumed)
@@ -445,18 +555,19 @@
     };
   }
 
-  function pickFromPool(pool, wantedTypes, usedSourceIds, seed, phase, count) {
+  function pickFromPool(pool, wantedTypes, usedSourceIds, seed, phase, count, slot, progressionContext) {
     const wanted = new Set((Array.isArray(wantedTypes) ? wantedTypes : [wantedTypes]).map(norm).filter(Boolean));
     if (!wanted.size || [...wanted].some(t => t.startsWith("__generated"))) return [];
+    const slotPool = filterPoolForDailySlot(pool, phase, slot, progressionContext);
 
-    let candidates = pool.filter(mail => {
+    let candidates = slotPool.filter(mail => {
       const id = norm(mail?.id);
       if (!id || usedSourceIds.has(id)) return false;
       return wanted.has(norm(mail?.mail_type));
     });
 
     if (!candidates.length) {
-      candidates = pool.filter(mail => {
+      candidates = slotPool.filter(mail => {
         const id = norm(mail?.id);
         if (!id || usedSourceIds.has(id)) return false;
         return true;
@@ -876,6 +987,7 @@
     setState({ [NARRATIVE_KEY]: nextNarrativeState });
     const plannedPrimary = await getPlannedPrimary(active, state);
     const usedSourceIds = consumedSet(state);
+    const progressionContext = getDailyProgressionContext(active, state, plannedPrimary, null, plan);
     const items = [];
     const phases = Array.isArray(program?.day_structure?.phases)
       ? program.day_structure.phases
@@ -924,7 +1036,7 @@
             continue;
           }
 
-          const picked = pickFromPool(pool, wanted, usedSourceIds, seed, phase, 1)[0];
+          const picked = pickFromPool(pool, wanted, usedSourceIds, seed, phase, 1, slot, progressionContext)[0];
           if (picked) {
             items.push({
               status: "queued",
