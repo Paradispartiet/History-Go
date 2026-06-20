@@ -1,5 +1,5 @@
-// tools/buildTags.js
-// node tools/buildTags.js > data/tags.json
+// tools/buildTags.mts
+// npm run build:tools && node dist/tools/buildTags.mjs > data/tags.json
 
 import fs from "fs";
 import path from "path";
@@ -42,8 +42,8 @@ const people = readPeopleFromManifest("data/people/manifest.json");
 const placesOvBy = readJSON("data/overlays/by/places_by.json");
 const peopleOvBy = readJSON("data/overlays/by/people_by.json");
 
-const legacySubjects = new Set();
-const tagIds = new Set();
+const legacySubjects = new Set<string>();
+const tagIds = new Set<string>();
 
 function addLegacy(arr) {
   (arr || []).forEach(t => {
@@ -73,7 +73,7 @@ peopleOvBy.forEach(o => addTagIds(o.tags));
 const tags = [];
 
 // subjects as first-class too (so UI kan vise dem pent)
-const legacy_map = {};
+const legacy_map: Record<string, string> = {};
 [...legacySubjects].sort().forEach(s => {
   const id = `subject.${s}`;
   legacy_map[s] = id;
