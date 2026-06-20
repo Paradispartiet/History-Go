@@ -76,6 +76,7 @@ function main() {
     total_files: files.length,
     total_places: 0,
     oslo_places: 0,
+    counts: {},
     buckets: {
       missing_lat_lon: [],
       non_oslo_skipped: [],
