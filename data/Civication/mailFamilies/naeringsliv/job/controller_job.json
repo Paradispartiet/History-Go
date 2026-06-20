@@ -135,20 +135,20 @@
           "channel": "job",
           "messageChannel": "job",
           "mail_class": "job_message",
-          "subject": "Månedsrapporten – tallet som kom før forklaringen",
-          "summary": "Varekostnaden avviker fra budsjett, og du må avgjøre om rapporten skal sendes raskt, med forbehold eller med driftsforklaring.",
+          "subject": "08:17 – avviket som må forklares før rapporten går videre",
+          "summary": "Varekostnaden for kampanjevarer avviker før månedsrapporten skal låses, og du må velge hvordan tall, drift og ledelse får møtes i rapporten.",
           "situation": [
-            "Ingrid ber deg lukke månedsrapporten innen klokken 14.",
-            "Varekostnaden ligger 4,8 prosentpoeng over budsjett.",
-            "Marius ser kampanje, prisendring og svinn som mulige forklaringer, men underlaget er ikke ferdig.",
-            "Elin advarer om at rapporten vil få driften til å se ut som de har mistet kontroll hvis tallet sendes uten kommentar.",
-            "Du må velge om rapporten skal være rask, pen eller faktisk nyttig."
+            "Klokken 08:17 ligger månedsrapporten åpen på skjermen din. Ingrid, økonomisjefen, har skrevet i emnefeltet: «Må videre til ledergruppen senest 14:00.»",
+            "På linjen for varekost lyser avviket rødt: 4,8 prosentpoeng over budsjett, 312 000 kroner dårligere enn prognosen. Tallene stemmer nesten med lagerlisten, men ikke med historikken for kampanjevarene.",
+            "Marius i regnskap peker på tre mulige forklaringer: prisendring fra leverandør, feil periodisering av en kampanjefaktura eller svinn som ikke er bokført. Underlaget ligger i tre ulike mapper, og ingen av dem er komplette.",
+            "Elin i drift skriver kort: «Hvis dette går uten forklaring, ser det ut som vi har mistet kontroll på gulvet.» Ingrid svarer at rapportpakken ikke kan vente på en full gransking.",
+            "Som controller eier du ikke driften, men du eier sporet mellom tall og beslutning. Du må velge om rapporten skal være rask, pen eller faktisk nyttig før andre bruker tallet mot noen."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Vente på kort driftsforklaring før rapporten sendes.",
-              "reply": "Jeg ber Elin sende kort forklaring før rapporten lukkes.",
+              "label": "Hold rapporten åpen i 45 minutter og hent forklaring fra drift og regnskap.",
+              "reply": "Jeg holder pakken åpen til 09:15, ber Elin forklare fysisk vareflyt og Marius legge ved faktura-/periodiseringsspor før jeg låser linjen.",
               "effects": {
                 "accuracy": 3,
                 "trust_drift": 2,
@@ -166,8 +166,8 @@
             },
             {
               "id": "B",
-              "label": "Sende rapporten raskt med avviket ukommentert.",
-              "reply": "Jeg sender rapporten innen fristen og lar varekostavviket stå uten driftskommentar.",
+              "label": "Send rapporten nå med avviket ukommentert for å beskytte fristen.",
+              "reply": "Jeg sender rapportpakken med varekostlinjen som den står, uten å vente på driftskommentar eller revisjonsspor.",
               "effects": {
                 "deadline_met": 2,
                 "deadline_pressure": -2,
@@ -185,8 +185,8 @@
             },
             {
               "id": "C",
-              "label": "Sende rapporten med tydelig forbehold.",
-              "reply": "Jeg sender rapporten innen fristen, men legger inn forbehold om at avviket krever driftskommentar før beslutning.",
+              "label": "Send rapporten med rødt forbehold og konkret spørsmål til drift.",
+              "reply": "Jeg sender pakken med et tydelig forbehold: avviket skal ikke brukes som beslutningsgrunnlag før kampanjefaktura, svinn og lagerverdi er avstemt.",
               "effects": {
                 "deadline_met": 1,
                 "accuracy": 1,
@@ -527,10 +527,12 @@
           "messageChannel": "job",
           "mail_class": "job_message",
           "from": "ingrid_okonomisjef",
-          "subject": "Re: Månedsrapporten",
-          "summary": "Rapporten blir litt senere, men mer brukbar.",
+          "subject": "Re: 09:12 – forklaring før rapporten",
+          "summary": "Drift og regnskap rekker en kort forklaring, og rapporten blir senere, men mer styrbar.",
           "situation": [
-            "Rapporten blir litt senere, men mer brukbar."
+            "Elin sender bilde av mottakslisten fra kampanjeleveransen og peker på to paller som ble flyttet før tellingen var låst. Marius finner samtidig en faktura som er bokført i feil periode.",
+            "Ingrid skriver at 45 minutter er dyrt akkurat i dag, men at ledergruppen nå får et avvik med årsak, risiko og neste kontrollpunkt.",
+            "Du merker forskjellen: tallet er fortsatt rødt, men det er ikke lenger en dom over drift. Det er et spor som noen kan følge videre."
           ]
         },
         {
@@ -542,10 +544,12 @@
           "messageChannel": "job",
           "mail_class": "job_message",
           "from": "elin_driftsleder",
-          "subject": "Re: Månedsrapporten",
-          "summary": "Fristen holdes, men avviket blir en dom før analyse.",
+          "subject": "Re: 10:03 – tallet begynner å leve uten forklaring",
+          "summary": "Fristen holdes, men avviket blir en sosial dom før noen har analysert det.",
           "situation": [
-            "Fristen holdes, men avviket blir en dom før analyse."
+            "Rapporten går videre raskt. Før lunsj videresender salgsdirektøren varekostlinjen med kommentaren: «Drift må forklare kontrollsvikten.»",
+            "Elin svarer ikke i tråden, men du ser at hun har lastet ned lagerlisten tre ganger. Marius spør om dere skal lage forklaringen etterpå, når alle allerede har lest tallet.",
+            "Du har beskyttet fristen, men svekket revisjonssporet. Avviket er blitt en fortelling om skyld før det ble en analyse av årsak."
           ]
         },
         {
@@ -557,10 +561,12 @@
           "messageChannel": "job",
           "mail_class": "job_message",
           "from": "marius_regnskap",
-          "subject": "Re: Månedsrapporten",
-          "summary": "Rapporten går med forbehold.",
+          "subject": "Re: 09:48 – forbeholdet som kjøper tid",
+          "summary": "Rapporten går videre, men forbeholdet gjør både ledelse og drift oppmerksomme på risikoen.",
           "situation": [
-            "Rapporten går med forbehold."
+            "Månedsrapporten sendes innen fristen med en rød merknad: «Varekostavvik krever avstemming mot kampanjefaktura, svinn og lagerverdi før tiltak besluttes.»",
+            "Ingrid liker ikke synlig usikkerhet, men lar forbeholdet stå fordi det er konkret. Elin svarer med to linjer om fysisk vareflyt og lover underlag før 13:30.",
+            "Du har ikke løst avviket, men du har hindret at nesten-riktige tall blir behandlet som fasit. Ettermiddagen kommer til å handle om om forbeholdet var presist nok."
           ]
         },
         {

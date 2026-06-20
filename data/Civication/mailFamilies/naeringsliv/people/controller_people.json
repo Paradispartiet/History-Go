@@ -17,19 +17,20 @@
           "channel": "private",
           "messageChannel": "private",
           "mail_class": "private_message",
-          "subject": "Du begynner å telle ting hjemme",
-          "summary": "Controllerblikket følger med hjem og gjør handleposen til en avstemming mellom pris, kvittering og faktisk innhold.",
+          "subject": "12:21 – kvitteringen på kjøkkenbenken",
+          "summary": "Lunsjpausen og handleposen speiler dagens avvik: du oppdager at kontrollbehovet ditt leter etter revisjonsspor også hjemme.",
           "situation": [
-            "Du og Sara pakker ut matvarene etter jobb, og du legger kvitteringen flatt på kjøkkenbenken før varene er kommet i skapet.",
-            "En rabatt ser ut til å mangle. Du teller varene, sammenligner kilopris og begynner å forklare hvorfor små differanser kan gjenta seg.",
-            "Sara spør om dere kan lage middag først og eventuelt se på kvitteringen senere. Hun høres mer sliten enn irritert ut.",
-            "Du merker at arbeidsdagens behov for sporbarhet har flyttet inn i handleposen, der ingen egentlig ba om en kontroll."
+            "Sara sender bilde av en kvittering fra gårsdagens handletur mens du egentlig skal spise lunsj. «Fikk vi egentlig rabatt på kaffen?» skriver hun, mest som en liten irritasjon.",
+            "Du zoomer inn før du har svart på hvordan dagen hennes er. Linjene sorterer seg nesten av seg selv: kampanjepris, kilopris, antall varer, mulig feil i kassesystemet.",
+            "På jobb venter varekostavviket på forklaring. Hjemme ligger en differanse på 28 kroner og ber ingen om internkontroll, men kroppen din kjenner samme drag mot å lukke sporet.",
+            "Sara skriver: «Du trenger ikke etterforske alt. Jeg lurte bare.» Meldingen er mild, men den treffer fordi den høres ut som en versjon av Elin fra drift.",
+            "Du må velge om presisjonen din skal få styre øyeblikket, eller om relasjonen får være mer enn et avvik som skal forklares."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Legg kvitteringen bort og hjelp Sara med middagen.",
-              "reply": "Du har rett. Dette kan vente; jeg vil heller være her sammen med deg nå.",
+              "label": "Svar Sara først som partner, ikke som avstemmer.",
+              "reply": "Du har rett. Jeg gikk rett i kontrollmodus. Hvordan er dagen din? Kvitteringen kan ligge.",
               "effects": {
                 "relationship_private": 2,
                 "relationship_sara": 2,
@@ -43,12 +44,13 @@
                   "controller_private_week1_counting_A"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_counting_A"
+              "triggers_on_choice": "controller_private_week1_counting_A",
+              "feedback": "Du lar ikke alle åpne spor bli en sak. Det koster litt kontroll, men gir rom for at Sara ikke må dokumentere en liten irritasjon."
             },
             {
               "id": "B",
-              "label": "Fullfør kontrollen raskt før du slipper den.",
-              "reply": "Gi meg to minutter, så finner jeg differansen og kan legge det bort.",
+              "label": "Finn kvitteringsfeilen raskt og send henne svaret.",
+              "reply": "Jeg sjekker den nå. Det ser ut som kampanjen ikke slo inn på én pose kaffe.",
               "effects": {
                 "control": 2,
                 "stress": 1,
@@ -61,12 +63,13 @@
                   "controller_private_week1_counting_B"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_counting_B"
+              "triggers_on_choice": "controller_private_week1_counting_B",
+              "feedback": "Du løser differansen, men gjør også lunsjmeldingen til en mini-revisjon. Sara takker kort; samtalen blir ryddig og litt kjøligere."
             },
             {
               "id": "C",
-              "label": "Fortell hva du merker ved deg selv og spør hva Sara trenger.",
-              "reply": "Jeg merker at jeg fortsatt er på jobb i hodet. Vil du at jeg bare legger dette bort?",
+              "label": "Si hva jobbdagen gjør med hodet ditt før du velger.",
+              "reply": "Jeg merker at jeg leter etter avvik overalt i dag. Vil du at jeg sjekker, eller vil du bare at jeg lar det ligge?",
               "effects": {
                 "self_awareness": 3,
                 "relationship_private": 2,
@@ -79,7 +82,8 @@
                   "controller_private_week1_counting_C"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_counting_C"
+              "triggers_on_choice": "controller_private_week1_counting_C",
+              "feedback": "Du gjør kontrollbehovet synlig uten å late som det er omsorg i seg selv. Sara får velge om dette er hjelp eller bare mer støy."
             }
           ]
         },
