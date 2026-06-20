@@ -182,4 +182,4 @@ Denne schema-PR-en gjør ikke følgende:
 ## Planlagte senere PR-er
 
 1. **Deep-link UI:** En senere PR skal lese normalisert `task_payload` og vise en liten, tydelig handling som sender spilleren til riktig History Go-flate.
-2. **Completion bridge:** En senere PR skal la History Go sende fullføringssignal tilbake til Civication, slik at Civication kan registrere progresjon, innsikt eller konsekvens.
+2. **Completion bridge:** En senere PR skal la History Go sende fullføringssignal tilbake til Civication, slik at Civication kan registrere progresjon, innsikt eller konsekvens. Spesifisert i `docs/CIVICATION_HISTORY_GO_COMPLETION_BRIDGE.md`.
