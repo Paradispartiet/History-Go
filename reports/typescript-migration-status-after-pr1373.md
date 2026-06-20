@@ -4,6 +4,8 @@
 
 Denne preflighten ble kjørt etter PR #1373 for å bekrefte at TypeScript-guard fortsatt er grønn etter siste innholds-PR, og for å oppdatere restlisten etter Node-only batchen i PR #1372. Dette er en status-/preflight-PR: ingen migreringer, runtime-endringer, dataendringer, package-scripts, tsconfig-endringer eller kandidatpipeline-endringer er gjort.
 
+Oppdatert validering i denne PR-en: 2026-06-20 UTC.
+
 | Kontroll | Status | Kommando / kilde |
 | --- | --- | --- |
 | Root `typecheck` | Grønn | `npm run typecheck` |
