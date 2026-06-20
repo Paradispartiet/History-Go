@@ -952,3 +952,89 @@ body.civi-mapmode .civi-panels{
 }
 .civi-test-status span { opacity: 0.72; }
 .civi-test-message { margin: 0 0 4px; color: #bcd2ff; }
+
+/* Civication testmodus: synlig knapp + flytende testpanel */
+.civi-test-button {
+  border: 1px solid rgba(75, 128, 255, 0.55);
+  background: rgba(20, 36, 74, 0.95);
+  color: #dce8ff;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.civi-test-button.is-active {
+  background: rgba(75, 128, 255, 0.9);
+  color: #fff;
+}
+.civi-test-mode.civi-test-floating {
+  position: fixed;
+  top: 64px;
+  right: 16px;
+  width: min(440px, 94vw);
+  max-height: 82vh;
+  overflow: auto;
+  z-index: 4000;
+  color: #e9f0ff;
+}
+.civi-test-mode.is-hidden { display: none; }
+.civi-test-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.civi-test-close {
+  border: 0;
+  background: transparent;
+  color: #cdd9ff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.civi-test-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin: 10px 0;
+}
+.civi-test-search,
+.civi-test-filter {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(8, 14, 30, 0.9);
+  color: #e9f0ff;
+}
+.civi-test-roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  max-height: 38vh;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+.civi-test-role {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(12, 20, 42, 0.9);
+  color: #e9f0ff;
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.civi-test-role.is-selected {
+  border-color: rgba(75, 128, 255, 0.95);
+  background: rgba(33, 56, 116, 0.95);
+}
+.civi-test-role-title { font-weight: 700; font-size: 0.92rem; }
+.civi-test-role-meta { font-size: 0.74rem; opacity: 0.72; }
+.civi-test-empty { opacity: 0.7; margin: 4px 0; }
+.civi-test-startpoint { margin: 6px 0 10px; }
+.civi-test-startpoint-label { font-weight: 700; margin-bottom: 6px; }
+.civi-test-weeks { display: flex; flex-wrap: wrap; gap: 12px; }
+.civi-test-week { display: flex; align-items: center; gap: 6px; font-weight: 500; }

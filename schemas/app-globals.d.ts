@@ -69,6 +69,7 @@ declare global {
     CivicationStore?: any;
     CivicationStoreUI?: any;
     CivicationSystemMap?: any;
+    CivicationTestMode?: any;
     CoreEngine?: any;
     DevConsole?: any;
     DiagnosticConsole?: any;
