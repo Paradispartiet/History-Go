@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const fs=require('fs');
+import fs from 'fs';
 const checks=new Set([
  'data/badges.json',
  'data/Civication/hg_careers.json',

@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
 
-const familiesRoot = path.resolve(__dirname, '../data/Civication/mailFamilies');
-const modelPath = path.resolve(__dirname, '../data/Civication/workModels/naeringsliv_work_model.json');
+const root = fs.existsSync(path.resolve(__dirname, '../package.json'))
+  ? path.resolve(__dirname, '..')
+  : path.resolve(__dirname, '../..');
+const familiesRoot = path.resolve(root, 'data/Civication/mailFamilies');
+const modelPath = path.resolve(root, 'data/Civication/workModels/naeringsliv_work_model.json');
 const required = ['id','mail_type','mail_family','role_scope','subject','summary','situation','task_domain','competency','pressure','choice_axis','consequence_axis','narrative_arc','choices'];
 const ids = new Set();
 const domains = new Set();

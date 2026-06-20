@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const fs=require('fs');const cp=require('child_process');
+import fs from 'fs';
+import cp from 'child_process';
 const html=fs.readFileSync('Civication.html','utf8');
 const scripts=[...html.matchAll(/<script\s+src="([^"]+)"/g)].map(m=>m[1]);
 let missing=[];for(const s of scripts){if(!fs.existsSync(s)) missing.push(s);} 
