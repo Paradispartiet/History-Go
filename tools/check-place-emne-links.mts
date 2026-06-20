@@ -1,9 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
+type JsonRecord = Record<string, unknown>;
+
 const root = process.cwd();
 const placesManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/places/manifest.json'), 'utf8'));
-const fagManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/fag/fag_manifest.json'), 'utf8'));
+const fagManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/fag/fag_manifest.json'), 'utf8')) as Record<string, JsonRecord>;
 
 function toArray(data) {
   if (Array.isArray(data)) return data;

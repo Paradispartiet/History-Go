@@ -8,6 +8,8 @@ import {
   toArray,
 } from './lib/placeRefAuditUtils.mjs';
 
+type JsonRecord = Record<string, unknown>;
+
 const root = process.cwd();
 const placesManifestPath = path.join(root, 'data/places/manifest.json');
 const peopleManifestPath = path.join(root, 'data/people/manifest.json');
@@ -89,7 +91,7 @@ const placesIndexPath = path.join(root, 'data/places/places_index.json');
 if (fs.existsSync(placesIndexPath)) {
   try {
     const idx = readJson(placesIndexPath);
-    const rows = toArray(idx);
+    const rows = toArray(idx) as JsonRecord[];
     placesIndexIds = new Set(
       rows.map((r) => (typeof r?.id === 'string' ? r.id.trim() : '')).filter(Boolean),
     );
@@ -98,8 +100,8 @@ if (fs.existsSync(placesIndexPath)) {
   }
 }
 
-const peopleManifest = readJson(peopleManifestPath);
-const manifestListsLegacy = (peopleManifest.files || []).includes(legacyFileRel);
+const peopleManifest = readJson(peopleManifestPath) as JsonRecord;
+const manifestListsLegacy = (Array.isArray(peopleManifest.files) ? peopleManifest.files : []).includes(legacyFileRel);
 
 // Forsiktige kandidatforslag for én ugyldig placeRef. Foreslår KUN, retter aldri.
 function suggestCandidates(invalidPlaceId) {
@@ -160,7 +162,7 @@ function analyzePerson(person) {
 
   // places[].
   const rawPlaces = Array.isArray(person?.places) ? person.places : [];
-  const seen = new Set();
+  const seen = new Set<string>();
   const placeRefs = rawPlaces.map((entry, index) => {
     const value = typeof entry === 'string' ? entry.trim() : '';
     let status;
@@ -177,7 +179,7 @@ function analyzePerson(person) {
 
   const validRefs = placeRefs.filter((r) => r.status === 'valid').map((r) => r.placeRef);
   const invalidRefEntries = placeRefs.filter((r) => r.status === 'invalid');
-  const invalidRefs = [...new Set(invalidRefEntries.map((r) => r.placeRef))].sort((a, b) => a.localeCompare(b, 'nb'));
+  const invalidRefs = [...new Set<string>(invalidRefEntries.map((r) => r.placeRef))].sort((a, b) => a.localeCompare(b, 'nb'));
   const duplicateRefs = placeRefs.filter((r) => r.status === 'duplicate_within_person').map((r) => r.placeRef);
   const emptyRefCount = placeRefs.filter((r) => r.status === 'missing_or_empty').length;
 
@@ -252,7 +254,7 @@ function analyzePerson(person) {
 }
 
 // Les KUN gjenværende personer i legacy-filen.
-const legacyPeople = toArray(readJson(legacyFilePath));
+const legacyPeople = toArray(readJson(legacyFilePath)) as JsonRecord[];
 const analyzed = legacyPeople.map(analyzePerson);
 const analyzedById = new Map(analyzed.map((p) => [p.personId, p]));
 

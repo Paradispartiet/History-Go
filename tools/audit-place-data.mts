@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { PLACE_REF_KEYS, collectRefsByKeys, manifestFilesToPaths, readJson, toArray } from './lib/placeRefAuditUtils.mjs';
 
+type JsonRecord = Record<string, unknown>;
+
 const root = process.cwd();
 const manifestPath = path.join(root, 'data/places/manifest.json');
 const reportPath = path.join(root, 'reports/place-data-audit.md');
@@ -36,8 +38,8 @@ function listJsonFiles(dirPath) {
 
 
 const generatedAt = new Date().toISOString();
-const manifest = readJson(manifestPath);
-const placeFiles = manifest.files.map((rel) => path.join(root, 'data', rel));
+const manifest = readJson(manifestPath) as JsonRecord;
+const placeFiles = (Array.isArray(manifest.files) ? manifest.files : []).map((rel) => path.join(root, 'data', String(rel)));
 
 const allPlaces = [];
 const perFile = [];
@@ -47,7 +49,7 @@ for (const filePath of placeFiles) {
   const rel = path.relative(root, filePath).replace(/\\/g, '/');
   let json;
   try { json = readJson(filePath); } catch (e) { perFile.push({ file: rel, parseError: String(e), places: [] }); continue; }
-  const places = toArray(json);
+  const places = toArray(json) as JsonRecord[];
   const findings = [];
   for (const p of places) {
     const missingRequired = requiredFields.filter((f) => isMissing(p?.[f]));
@@ -77,9 +79,9 @@ const coverageSources = [
   { name: 'external/offisielle lenker', files: listJsonFiles(path.join(root, 'data/external')), keys: PLACE_REF_KEYS },
 ];
 
-const coverageBySource = {};
+const coverageBySource: Record<string, { seen: Set<string>; dangling: JsonRecord[]; files: number }> = {};
 for (const source of coverageSources) {
-  const seen = new Set(); const dangling = [];
+  const seen = new Set<string>(); const dangling: JsonRecord[] = [];
   for (const filePath of source.files) {
     if (!fs.existsSync(filePath)) continue;
     try {
