@@ -17,12 +17,12 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = process.cwd();
 
 const MAPPING_FILE = path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json");
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 
-async function readJSON(file) {
+async function readJSON(file): Promise<Record<string, unknown> | unknown[]> {
   let raw;
   try {
     raw = await readFile(file, "utf8");
@@ -37,23 +37,31 @@ async function readJSON(file) {
   }
 }
 
-function extractBuildingTypeIds(buildingTypesData) {
+type JsonObject = Record<string, unknown>;
+function asObject(value: unknown): JsonObject | null {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as JsonObject : null;
+}
+
+function extractBuildingTypeIds(buildingTypesData: unknown) {
   const ids = new Set();
-  const root = buildingTypesData?.buildingTypes ?? buildingTypesData;
+  const dataObject = asObject(buildingTypesData);
+  const root = dataObject?.buildingTypes ?? buildingTypesData;
 
   if (Array.isArray(root)) {
     for (const item of root) {
-      if (typeof item?.id === "string" && item.id.trim()) {
-        ids.add(item.id);
+      const itemObject = asObject(item);
+      if (typeof itemObject?.id === "string" && itemObject.id.trim()) {
+        ids.add(itemObject.id);
       }
     }
     return ids;
   }
 
   if (root && typeof root === "object") {
-    for (const [key, value] of Object.entries(root)) {
-      if (typeof value?.id === "string" && value.id.trim()) {
-        ids.add(value.id);
+    for (const [key, value] of Object.entries(root as JsonObject)) {
+      const valueObject = asObject(value);
+      if (typeof valueObject?.id === "string" && valueObject.id.trim()) {
+        ids.add(valueObject.id);
       } else if (typeof key === "string" && key.trim()) {
         ids.add(key);
       }
@@ -79,7 +87,8 @@ async function main() {
 
   const fatal = [];
 
-  const mappings = mappingData?.mappings;
+  const mappingObject = asObject(mappingData);
+  const mappings = asObject(mappingObject?.mappings);
   if (!mappings || typeof mappings !== "object" || Array.isArray(mappings)) {
     fatal.push("Mappingfilen mangler et gyldig mappings-objekt");
   }
@@ -90,7 +99,7 @@ async function main() {
   const nonStringBuildingTypeId = [];
   const missingDefinitions = [];
   const mappingEntries = mappings && typeof mappings === "object" && !Array.isArray(mappings)
-    ? Object.entries(mappings)
+    ? Object.entries(mappings) as [string, JsonObject][]
     : [];
 
   for (const [mappingKey, mapping] of mappingEntries) {

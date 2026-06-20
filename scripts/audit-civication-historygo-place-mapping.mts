@@ -22,7 +22,7 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = process.cwd();
 
 const MAPPING_FILE = path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json");
 const PLACES_FILE = path.join(ROOT, "data", "places", "by", "oslo", "places_by.json");

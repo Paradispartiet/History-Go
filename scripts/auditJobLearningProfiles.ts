@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const root = path.resolve(__dirname, '..');
+const root = process.cwd();
 const rolesDir = path.join(root, 'data/Civication/roles');
 const profilesPath = path.join(root, 'data/Civication/jobLearningProfiles.json');
 

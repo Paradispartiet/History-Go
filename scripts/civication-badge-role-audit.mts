@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, '..');
+const repoRoot = process.cwd();
 
 const CAREER_ID = 'naeringsliv';
 const REPORT_PATH = 'docs/CIVICATION_BADGE_ROLE_MAPPING_AUDIT.md';

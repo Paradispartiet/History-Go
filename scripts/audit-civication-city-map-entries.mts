@@ -23,7 +23,7 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = process.cwd();
 
 const MAPPING_FILE = path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json");
 const PLACES_FILE = path.join(ROOT, "data", "places", "by", "oslo", "places_by.json");
@@ -33,7 +33,7 @@ const EXPECTED_SOURCE_FILE = "places/by/oslo/places_by.json";
 const MAPPING_FILE_REL = "data/Civication/map/historyGoPlaceMapping.by.json";
 const PLACES_FILE_REL = "data/places/by/oslo/places_by.json";
 
-async function readJSON(file) {
+async function readJSON(file): Promise<Record<string, unknown> | unknown[]> {
   let raw;
   try {
     raw = await readFile(file, "utf8");
@@ -52,23 +52,31 @@ async function readJSON(file) {
 //   { "buildingTypes": { "<id>": { ... } } }
 //   { "buildingTypes": [ { "id": "..." } ] }
 //   { "<id>": { ... } }
-function extractBuildingTypeIds(buildingTypesData) {
+type JsonObject = Record<string, unknown>;
+function asObject(value: unknown): JsonObject | null {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as JsonObject : null;
+}
+
+function extractBuildingTypeIds(buildingTypesData: unknown) {
   const ids = new Set();
-  const root = buildingTypesData?.buildingTypes ?? buildingTypesData;
+  const dataObject = asObject(buildingTypesData);
+  const root = dataObject?.buildingTypes ?? buildingTypesData;
 
   if (Array.isArray(root)) {
     for (const item of root) {
-      if (typeof item?.id === "string" && item.id.trim()) {
-        ids.add(item.id);
+      const itemObject = asObject(item);
+      if (typeof itemObject?.id === "string" && itemObject.id.trim()) {
+        ids.add(itemObject.id);
       }
     }
     return ids;
   }
 
   if (root && typeof root === "object") {
-    for (const [key, value] of Object.entries(root)) {
-      if (typeof value?.id === "string" && value.id.trim()) {
-        ids.add(value.id);
+    for (const [key, value] of Object.entries(root as JsonObject)) {
+      const valueObject = asObject(value);
+      if (typeof valueObject?.id === "string" && valueObject.id.trim()) {
+        ids.add(valueObject.id);
       } else if (typeof key === "string" && key.trim()) {
         ids.add(key);
       }
@@ -78,14 +86,15 @@ function extractBuildingTypeIds(buildingTypesData) {
   return ids;
 }
 
-function indexPlacesById(placesData) {
+function indexPlacesById(placesData: unknown) {
   const byId = new Map();
   if (!Array.isArray(placesData)) {
     return byId;
   }
   for (const place of placesData) {
-    if (place && typeof place.id === "string") {
-      byId.set(place.id, place);
+    const placeObject = asObject(place);
+    if (typeof placeObject?.id === "string") {
+      byId.set(placeObject.id, placeObject);
     }
   }
   return byId;
@@ -139,13 +148,14 @@ async function main() {
     );
   }
 
-  const mappings = mappingData?.mappings;
+  const mappingObject = asObject(mappingData);
+  const mappings = asObject(mappingObject?.mappings);
   const mappingsIsObject = mappings && typeof mappings === "object" && !Array.isArray(mappings);
   if (!mappingsIsObject) {
     fatal.push("Mappingfilen mangler et gyldig mappings-objekt");
   }
 
-  const placesById = indexPlacesById(placesData);
+  const placesById: Map<string, JsonObject> = indexPlacesById(placesData);
   const placesCount = Array.isArray(placesData) ? placesData.length : 0;
   if (!Array.isArray(placesData)) {
     fatal.push(`${PLACES_FILE_REL} er ikke en liste over steder`);
@@ -153,7 +163,7 @@ async function main() {
 
   const definedBuildingTypeIds = extractBuildingTypeIds(buildingTypesData);
 
-  const mappingEntries = mappingsIsObject ? Object.entries(mappings) : [];
+  const mappingEntries = mappingsIsObject ? Object.entries(mappings as JsonObject) as [string, JsonObject][] : [];
 
   // Tellere for unikhet.
   const seenMappingIds = new Map();
@@ -166,7 +176,7 @@ async function main() {
 
   const cityMapEntries = [];
 
-  function requireString(value) {
+  function requireString(value: unknown): value is string {
     return typeof value === "string" && value.length > 0;
   }
 

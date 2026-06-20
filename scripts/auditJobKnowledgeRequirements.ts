@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const root = path.resolve(__dirname, '..');
+const root = process.cwd();
 const requirementsPath = path.join(root, 'data/Civication/jobKnowledgeRequirements.json');
 const quizDir = path.join(root, 'data/quiz');
 
