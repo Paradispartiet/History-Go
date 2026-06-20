@@ -20,6 +20,18 @@ function retagPendingEvent(engine, phaseTag) {
     return inbox[idx];
   }
 
+function isControllerDayOnePhase(active) {
+  const roleText = [
+    active?.role_scope,
+    active?.role_id,
+    active?.role_key,
+    active?.title,
+    active?.career_id
+  ].map((x) => String(x || "").toLowerCase()).join(" ");
+  const dayIndex = Number(window.CivicationCalendar?.getPhaseModel?.()?.dayIndex || 1);
+  return dayIndex === 1 && roleText.includes("controller");
+}
+
 function clearPendingEventById(engine, eventId) {
   if (!engine || !eventId) return false;
 
@@ -597,6 +609,50 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
 
 
     if (phase === "afternoon") {
+      if (isControllerDayOnePhase(active)) {
+        const ev = {
+          id: `phase_afternoon_controller_day1_${Date.now()}`,
+          stage: "stable",
+          source: "Civication",
+          source_type: "phase",
+          phase_tag: "afternoon",
+          phase_family: "afternoon_work",
+          semantic_event_key: "afternoon:controller_day1_avvik",
+          subject: "Ettermiddag – avviket svarer tilbake",
+          situation: [
+            "Klokken 13:36 kommer reaksjonene. Ingrid vil vite om varekostavviket kan brukes i ledermøtet. Elin vil vite om drift allerede er gjort til forklaring. Marius har funnet en faktura som kanskje hører til forrige periode.",
+            "Det du valgte i morges ligger nå i rommet: sendte du raskt, må du rydde i en fortelling som allerede sprer seg; ventet du, må du forsvare forsinkelsen; tok du forbehold, må du gjøre forbeholdet presist nok til å tåle beslutning.",
+            "Ettermiddagen handler ikke om å vinne diskusjonen. Den handler om å gi tallene nok sporbarhet til at de kan styre uten å knuse tillit."
+          ],
+          task_kind: "work_case",
+          choices: [
+            {
+              id: "A",
+              label: "Samle Ingrid, Elin og Marius i en kort avviksgjennomgang med åpne punkter.",
+              effect: 1,
+              tags: ["traceability", "trust", "process"],
+              feedback: "Du gjør konflikten felles før den blir personlig. Ingen får full seier, men alle ser hvilke fakta som mangler."
+            },
+            {
+              id: "B",
+              label: "Lukk saken alene med beste forklaring og send beslutningsnotat.",
+              effect: 0,
+              tags: ["tempo", "craft", "risk"],
+              feedback: "Du gir ledelsen et svar raskt, men driften kjenner seg mindre hørt. Notatet er effektivt, men skjørt hvis fakturaen viser noe annet."
+            },
+            {
+              id: "C",
+              label: "Eskalér avviket som internkontrollsak før rapportlinjen brukes.",
+              effect: 1,
+              tags: ["control", "governance", "pressure"],
+              feedback: "Du beskytter revisjonssporet, men øker alvoret i organisasjonen. Kontroll blir tydelig støtte for rapporten, men kan oppleves som mistillit."
+            }
+          ]
+        };
+        this.enqueueEvent(ev);
+        return { enqueued: true, type: "job", event: ev };
+      }
+
       const base = this.makeGenericCareerEvent
         ? this.makeGenericCareerEvent(active, state, "day_phase_afternoon")
         : {

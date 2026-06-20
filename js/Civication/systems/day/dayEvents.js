@@ -41,6 +41,18 @@ function getPhaseFamilyByTag(phaseTag) {
   return "phase_generic";
 }
 
+function isControllerDayOne(active) {
+  const roleText = [
+    active?.role_scope,
+    active?.role_id,
+    active?.role_key,
+    active?.title,
+    active?.career_id
+  ].map((x) => String(x || "").toLowerCase()).join(" ");
+  const dayIndex = Number(window.CivicationCalendar?.getPhaseModel?.()?.dayIndex || 1);
+  return dayIndex === 1 && roleText.includes("controller");
+}
+
 function getPhaseSubjectVariants(phaseTag, storeName) {
   const safeName = String(storeName || "miljøet ditt");
   if (phaseTag === "lunch") {
@@ -128,6 +140,47 @@ function buildPhaseContext({
 }
 
 async function makeLunchEvent(active) {
+  if (isControllerDayOne(active)) {
+    return {
+      id: `phase_lunch_controller_day1_${Date.now()}`,
+      stage: "stable",
+      source: "Civication",
+      source_type: "phase",
+      phase_tag: "lunch",
+      phase_family: getPhaseFamilyByTag("lunch"),
+      semantic_event_key: "lunch:controller_day1_avvik",
+      subject: "Lunsj – du tar avviket med deg til bordet",
+      situation: [
+        "Du sitter med brødskiven i den ene hånden og varekostlinjen i den andre. 312 000 kroner er for stort til å være støy, men lite nok til at alle håper det kan forklares pent.",
+        "Elin går forbi kantinebordet og nikker mot skjermen din: «Bare husk at det er folk bak de pallene.» Ingrids frist ligger fortsatt som en klokke i innboksen.",
+        "Lunsjen blir ikke en pause fra controllerrollen. Den blir et valg om du bruker pausen til å samle mennesker, skjerme hodet eller presse enda mer tempo inn i et avvik som allerede presser alle."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Spis med Elin og be henne forklare vareflyten uten å forsvare seg.",
+          effect: 1,
+          tags: ["drift", "trust", "process"],
+          feedback: "Du får ikke full dokumentasjon, men du får et språk for hva som faktisk skjedde på gulvet. Det gjør ettermiddagens kontroll mindre mistenksom."
+        },
+        {
+          id: "B",
+          label: "Spis alene og marker alle åpne kontrollspor før 13:00.",
+          effect: 0,
+          tags: ["traceability", "stress", "craft"],
+          feedback: "Du får en skarpere sjekkliste, men mister en anledning til å høre forklaringen før den blir et forsvar."
+        },
+        {
+          id: "C",
+          label: "Legg skjermen bort i ti minutter så du ikke svarer alle som et avvik.",
+          effect: 1,
+          tags: ["recovery", "self_awareness"],
+          feedback: "Pausen løser ingenting, men gjør deg mindre kantete. Det kan være forskjellen på kontroll som støtte og kontroll som mistillit."
+        }
+      ]
+    };
+  }
+
   const ctx = getLunchContext(active);
   const store = pickStoreContext(active, "lunch");
 
@@ -237,6 +290,47 @@ async function makeLunchEvent(active) {
 }
 
 async function makeEveningEvent(active) {
+  if (isControllerDayOne(active)) {
+    return {
+      id: `phase_evening_controller_day1_${Date.now()}`,
+      stage: "stable",
+      source: "Civication",
+      source_type: "phase",
+      phase_tag: "evening",
+      phase_family: getPhaseFamilyByTag("evening"),
+      semantic_event_key: "evening:controller_day1_home",
+      subject: "Kveld – tallene slipper ikke helt taket",
+      situation: [
+        "På vei hjem ser du fortsatt varekostlinjen når du blunker. Ikke som et regneark nå, men som mennesker: Elin som ikke vil dømmes, Ingrid som trenger beslutningsgrunnlag, Marius som leter etter en faktura i feil periode.",
+        "Telefonen ligger i hånden. Du kan åpne rapporten en gang til, sende en presisering, eller la kvelden begynne før du gjør hjemmet til enda en kontrollflate.",
+        "Controllerarbeidet har gitt deg et språk for ansvar. Spørsmålet er om du klarer å legge språket ned før det gjør alt privat til dokumentasjon."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Send én kort presisering og lukk jobbmailen for kvelden.",
+          effect: 1,
+          tags: ["boundary", "traceability"],
+          feedback: "Du etterlater et tydelig spor uten å la hele kvelden bli etterarbeid. Kontroll blir en ramme, ikke et rom du bor i."
+        },
+        {
+          id: "B",
+          label: "Åpne rapportpakken og gå gjennom alle linjene en gang til.",
+          effect: -1,
+          tags: ["control", "fatigue"],
+          feedback: "Du finner ingen ny feil, bare flere måter å tvile på. Presisjonen blir dyr når den ikke vet når den skal stoppe."
+        },
+        {
+          id: "C",
+          label: "La telefonen ligge og fortell hjemme at dagen sitter i kroppen.",
+          effect: 1,
+          tags: ["relationship", "self_awareness"],
+          feedback: "Du oversetter ikke alt til tall. Det gjør ikke avviket mindre viktig, men det gjør deg mer til stede når arbeidsdagen er over."
+        }
+      ]
+    };
+  }
+
   const visitedCount = getVisitedPlacesCount();
   const store = pickStoreContext(active, "evening");
 
@@ -407,6 +501,35 @@ function makeDayEndEvent() {
   };
 
   cal?.setDailySummary?.(summary);
+
+  if (isControllerDayOne(window.CivicationState?.getActivePosition?.())) {
+    const semanticEventKey = `day_end:controller_day1:${summary.dayIndex}`;
+    return {
+      id: `phase_day_end_controller_day1_${Date.now()}`,
+      stage: "stable",
+      source: "Civication",
+      source_type: "phase",
+      phase_tag: "day_end",
+      phase_family: getPhaseFamilyByTag("day_end"),
+      semantic_event_key: semanticEventKey,
+      subject: "Dag 1 er over – avviket fikk en forklaring, men ikke fred",
+      situation: [
+        `Dag 1 som controller lukker med ${summary.completedPhases} av 4 hovedfaser fullført. Hovedlinjen var enkel og tung: et varekostavvik måtte forklares før rapporten gikk videre.`,
+        "Du lærte at 312 000 kroner ikke bare er en differanse. Det er et press på drift, et beslutningsgrunnlag for ledelse og et revisjonsspor som enten kan hjelpe folk eller brukes mot dem.",
+        choiceLog.length ? `Dagens siste registrerte valg viser rytmen din: ${choiceLog.slice(-3).map((x) => String(x?.label || "").trim()).filter(Boolean).join(" · ")}.` : "Dagen har få registrerte valg, så systemet kan ikke se hele mønsteret ditt ennå.",
+        "Det som følger med videre er ikke bare avviket, men balansen mellom presisjon og tempo, dokumentasjon og relasjon, forbehold og beslutning."
+      ],
+      phase_context: buildPhaseContext({
+        phaseTag: "day_end",
+        semanticEventKey,
+        store: null,
+        variantId: "controller_day1_day_end_v1"
+      }),
+      day_end_context: summary,
+      choices: [],
+      feedback: "Controllerdagen lukkes. Neste dag starter med sporene du valgte å etterlate."
+    };
+  }
 
   let line1 = `Dag ${summary.dayIndex} går mot slutten. Du fullførte ${summary.completedPhases} av 4 hovedfaser.`;
   let line2 = `Statusen din er ${summary.stability.toLowerCase()}, og dagen står igjen som ${summary.quality}.`;
