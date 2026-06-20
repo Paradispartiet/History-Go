@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { PLACE_REF_KEYS, buildActivePlaceIdSet, collectRefsByKeys, manifestFilesToPaths, readJson, toArray } from './lib/placeRefAuditUtils.mjs';
 
+type JsonRecord = Record<string, unknown>;
+
 const root = process.cwd();
 const placesManifestPath = path.join(root, 'data/places/manifest.json');
 const peopleManifestPath = path.join(root, 'data/people/manifest.json');
@@ -29,7 +31,7 @@ function similarity(a, b) {
   return inter / Math.max(at.size, bt.size);
 }
 
-const peopleManifest = readJson(peopleManifestPath);
+const peopleManifest = readJson(peopleManifestPath) as JsonRecord;
 const placeIds = buildActivePlaceIdSet(root, placesManifestPath);
 
 const validPlaceIds = [...placeIds].sort((a, b) => a.localeCompare(b, 'nb'));
@@ -48,7 +50,7 @@ let peopleCount = 0;
 
 for (const filePath of manifestFilesToPaths(root, peopleManifestPath)) {
   const sourceFile = path.relative(root, filePath).replace(/\\/g, '/');
-  const people = toArray(readJson(filePath));
+  const people = toArray(readJson(filePath)) as JsonRecord[];
 
   for (const person of people) {
     peopleCount += 1;
@@ -112,7 +114,7 @@ const invalidGroups = [...invalidByFile.entries()].map(([sourceFile, peopleMap])
   people: [...peopleMap.entries()].map(([personId, refs]) => ({
     personId,
     personName: refs[0]?.personName || '(missing-name)',
-    invalidPlaceIds: [...new Set(refs.map((r) => r.invalidPlaceId))].sort((a, b) => a.localeCompare(b, 'nb')),
+    invalidPlaceIds: [...new Set<string>(refs.map((r) => r.invalidPlaceId))].sort((a, b) => a.localeCompare(b, 'nb')),
     invalidRefs: refs.sort((a, b) => a.invalidPlaceId.localeCompare(b.invalidPlaceId, 'nb') || a.field.localeCompare(b.field, 'nb')),
   })),
 })).sort((a, b) => a.sourceFile.localeCompare(b.sourceFile, 'nb'));
@@ -138,7 +140,7 @@ const report = {
     peopleJsonUsed: false,
   },
   summary: {
-    peopleFilesRead: (peopleManifest.files || []).length,
+    peopleFilesRead: (Array.isArray(peopleManifest.files) ? peopleManifest.files : []).length,
     peopleRead: peopleCount,
     peopleWithInvalidRefs: new Set([].concat(...[...invalidByPlaceId.values()].map((arr) => arr.map((r) => `${r.sourceFile}::${r.personId}`)))).size,
     invalidRefs: [...invalidByPlaceId.values()].reduce((n, arr) => n + arr.length, 0),

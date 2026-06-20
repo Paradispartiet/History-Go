@@ -39,11 +39,13 @@ jobs:
 
       - name: Check scripts
         run: |
-          node --check tools/validate_nature_maps.mjs
+          npm ci
+          npm run build:tools
+          node --check dist/tools/validate_nature_maps.mjs
           node --check tools/build_nature_place_candidates_v2.mjs
 
       - name: Validate active nature maps
-        run: node tools/validate_nature_maps.mjs
+        run: node dist/tools/validate_nature_maps.mjs
 
       - name: Build candidates from Artskart into temp file
         run: node tools/build_nature_place_candidates_v2.mjs --out="$NATURE_CANDIDATES_TMP" --retries=4 --retry-base-delay-ms=1500

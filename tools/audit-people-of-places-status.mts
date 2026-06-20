@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { buildActivePlaceIdSet, manifestFilesToPaths, readJson, toArray } from './lib/placeRefAuditUtils.mjs';
 
+type JsonRecord = Record<string, unknown>;
+
 const root = process.cwd();
 const peopleManifestPath = path.join(root, 'data/people/manifest.json');
 const placesManifestPath = path.join(root, 'data/places/manifest.json');
@@ -134,19 +136,19 @@ function suggestedInvalidAction(invalidPlaceId) {
 }
 
 const generatedAt = new Date().toISOString();
-const peopleManifest = readJson(peopleManifestPath);
-const manifestFiles = uniqueSorted((peopleManifest.files || []).map(normalizeManifestEntry));
+const peopleManifest = readJson(peopleManifestPath) as JsonRecord;
+const manifestFiles = uniqueSorted((Array.isArray(peopleManifest.files) ? peopleManifest.files : []).map(normalizeManifestEntry));
 const manifestSet = new Set(manifestFiles);
 const placeIds = buildActivePlaceIdSet(root, placesManifestPath);
 let placesIndexIds = new Set();
 if (fs.existsSync(placesIndexPath)) {
   const indexData = readJson(placesIndexPath);
-  const indexRows = Array.isArray(indexData) ? indexData : Object.values(indexData || {});
-  placesIndexIds = new Set(indexRows.map((row) => typeof row === 'string' ? row : row?.id).filter(Boolean));
+  const indexRows = (Array.isArray(indexData) ? indexData : Object.values((indexData || {}) as JsonRecord)) as Array<string | JsonRecord>;
+  placesIndexIds = new Set(indexRows.map((row) => typeof row === 'string' ? row : row?.id).filter((id): id is string => typeof id === 'string' && id.length > 0));
 }
 const validPlaceIds = new Set([...placeIds, ...placesIndexIds]);
 
-const peopleFiles = manifestFiles.map((rel) => path.join(root, rel));
+const peopleFiles = manifestFiles.map((rel) => path.join(root, String(rel)));
 const fileReports = [];
 const categoryMap = new Map();
 const allPeople = [];
@@ -165,7 +167,7 @@ for (const filePath of peopleFiles) {
   const listedInManifest = manifestSet.has(sourceFile);
   const categoryGuess = fileCategoryGuess(sourceFile);
   const geographicStructure = isGeographicPeopleFile(sourceFile);
-  const people = toArray(readJson(filePath));
+  const people = toArray(readJson(filePath)) as JsonRecord[];
   const kind = schemaKind(sourceFile, people);
   const idsInFile = new Map();
 

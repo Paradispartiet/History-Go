@@ -6,6 +6,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+type JsonRecord = Record<string, unknown>;
+
 const ROOT = process.cwd();
 
 const CONFIG = {
@@ -130,7 +132,7 @@ async function main() {
 
   for (const mapPath of CONFIG.maps) {
     const raw = await readJson(mapPath);
-    const entries = raw?.places && typeof raw.places === "object" ? raw.places : raw;
+    const entries = (raw?.places && typeof raw.places === "object" ? raw.places : raw) as Record<string, JsonRecord>;
     const placeCount = Object.keys(entries || {}).length;
     let floraRefCount = 0;
     let faunaRefCount = 0;
