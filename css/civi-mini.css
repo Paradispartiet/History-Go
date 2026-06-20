@@ -32,7 +32,7 @@ body.civi-app.civi-mini-mode .civi-panels {
 ------------------------------------------------------------ */
 
 body.civi-app.civi-mini-mode #civiDashboardSection {
-  grid-column: auto;
+  grid-column: span 4;
   padding: 0;
   min-height: 0;
   min-width: 0;
@@ -54,6 +54,8 @@ body.civi-app.civi-mini-mode .civi-dashboard-copy {
   gap: 6px;
   min-height: 0;
   min-width: 0;
+  width: 100%;
+  flex: 1 1 auto;
   padding: 10px 12px;
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 16px;
@@ -608,4 +610,17 @@ body.civi-app.civi-mini-mode .civi-inbox-answer-meta span{
 @media (max-width: 760px) {
   body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: 1 / -1; }
+}
+
+
+@media (max-width: 1200px) {
+  body.civi-app.civi-mini-mode #civiDashboardSection {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 820px) {
+  body.civi-app.civi-mini-mode #civiDashboardSection {
+    grid-column: 1 / -1;
+  }
 }
