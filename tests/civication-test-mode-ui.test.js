@@ -4,7 +4,7 @@
 // - Controller finnes i rollelisten
 // - kan starte rolle via eksisterende CivicationRoleStarter
 // - inspect() returnerer status uten DOM-feil
-// - panel/knapp rendres bare når testmodus er aktiv
+// - Test-knappen rendres alltid uten query-param
 
 const fs = require('fs');
 const path = require('path');
@@ -111,10 +111,10 @@ async function run() {
   const TM = global.CivicationTestMode;
   assert(TM, 'CivicationTestMode global skal eksponeres');
 
-  // Panel/knapp skal IKKE rendres når testmodus er av.
-  assert.strictEqual(TM.isEnabled(), false, 'testmodus skal være av uten flagg/param');
-  assert.strictEqual(global.document.getElementById('civicationTestButton'), null, 'ingen testknapp når av');
-  assert.strictEqual(global.document.getElementById('civicationTestModePanel'), null, 'ingen testpanel når av');
+  // Testknappen skal rendres permanent uten query-param/localStorage-flagg.
+  assert.strictEqual(TM.isEnabled(), true, 'testmodus-UI skal være permanent tilgjengelig');
+  assert(global.document.getElementById('civicationTestButton'), 'testknapp skal opprettes uten flagg');
+  assert.strictEqual(global.document.getElementById('civicationTestModePanel'), null, 'testpanel opprettes først når det åpnes');
 
   // Rolleliste bygges datadrevet fra manifest.
   const roles = await TM.listRoles();
@@ -127,7 +127,7 @@ async function run() {
 
   // inspect() uten DOM-feil før noe er startet.
   const before = TM.inspect();
-  assert.strictEqual(before.enabled, false, 'inspect skal rapportere enabled=false');
+  assert.strictEqual(before.enabled, true, 'inspect skal rapportere enabled=true');
   assert.strictEqual(before.roleCount, roles.length, 'inspect skal telle lastede roller');
   assert.deepStrictEqual(before.byPhase, {}, 'inspect byPhase skal være tomt før dagstart');
 
@@ -144,19 +144,15 @@ async function run() {
   assert(afterStart.selectedRole && afterStart.selectedRole.role_key === 'controller', 'inspect skal vise valgt rolle');
   assert.strictEqual(afterStart.active.role_key, 'controller', 'inspect skal vise aktiv rolle');
 
-  // Panel/knapp skal rendres når testmodus aktiveres.
-  TM.enable();
-  assert.strictEqual(TM.isEnabled(), true, 'enable skal slå på testmodus');
-  assert(global.document.getElementById('civicationTestButton'), 'testknapp skal opprettes når aktiv');
-
-  TM.open();
+  // Panel skal åpnes via permanent API.
+  TM.openPanel();
   assert(global.document.getElementById('civicationTestModePanel'), 'testpanel skal opprettes når åpnet');
   assert.strictEqual(TM.inspect().panelOpen, true, 'inspect skal vise at panelet er åpent');
 
-  // disable rydder opp uten DOM-feil.
-  TM.disable();
-  assert.strictEqual(TM.isEnabled(), false, 'disable skal slå av testmodus');
-  assert.strictEqual(global.document.getElementById('civicationTestButton'), null, 'knapp fjernes ved disable');
+  // closePanel rydder panelstatus uten DOM-feil, men knappen blir liggende permanent.
+  TM.closePanel();
+  assert.strictEqual(TM.inspect().panelOpen, false, 'closePanel skal lukke panelet');
+  assert(global.document.getElementById('civicationTestButton'), 'testknapp skal fortsatt være synlig');
 
   console.log('civication-test-mode-ui.test.js passed');
 }
