@@ -3,12 +3,11 @@
 Dette er spesifikasjonen for den siste gjenstående produsenten i Civication↔History GO-loopen:
 en faktisk **debatt-/standpunkt-flate i History GO** som lar spilleren delta i en debatt og
 velge standpunkt, og som skriver `HGDebates.record(...)`. Signalet (`hg_debate_log_v1`),
-completion-bridgen og deep-link-resolveren finnes allerede — denne flaten er den manglende
-produsenten.
+completion-bridgen og deep-link-resolveren er koblet mot denne implementerte flaten.
 
 > Status: **implementert** (MVP). `data/debates/`, `js/debates/debates_loader.js`
 > (`HGDebatesContent`), `#/debate/:id`-ruten, `HGMapView.openDebate`, deep-link og PlaceCard-
-> inngangen er på plass med tester. Resten av dokumentet beskriver designet og gjenstående faser.
+> inngangen er på plass med tester. Resten av dokumentet beskriver implementert kontrakt, design og gjenstående faser.
 
 ## 1. Hvorfor / kontekst
 
@@ -20,9 +19,10 @@ quiz, person, story, leksikon). For debatt finnes **forbruker-siden ferdig**:
 - Broen (`civicationHistoryGoTaskBridge`) fullfører `debate_participated` (deltatt) og
   `position_chosen` (posisjon satt), matchet på `debate_id` / `conflict_id` / `target_id`.
 
-Det som mangler er **noe som faktisk kaller `HGDebates.record(...)`** — en flate spilleren går
-til. `data/Civication/conflicts/*.json` er Civication-interne rolle-akser (`teori_vs_praksis`
-o.l.), ikke spiller-vendt debattinnhold, så debatt trenger sin egen datakilde.
+Den implementerte debattflaten er produsenten som faktisk kaller `HGDebates.record(...)` når spilleren
+åpner en debatt eller velger standpunkt. `data/Civication/conflicts/*.json` er Civication-interne
+rolle-akser (`teori_vs_praksis` o.l.), ikke spiller-vendt debattinnhold, så debatt har sin egen
+datakilde i `data/debates/`.
 
 ## 2. Avgrensning
 
@@ -173,16 +173,22 @@ standpunkt, og broen fullfører `position_chosen`/`debate_participated` ved retu
 - **Standpunkt-poler og tendens**: hvert standpunkt har en `pole` = den aksesiden det lener mot
   (eller `midt`). `HGDebatesContent.leaning(conflictId)` teller spillerens registrerte standpunkt
   på tvers av alle debatter på samme akse og rapporterer dominerende pol. Popup viser «Din tendens
-  på aksen: …» når spilleren har tatt standpunkt i ≥2 debatter på samme konflikt.
-- **Tendens-oversikt**: `HGDebatesContent.leaningAll()` gir lean på tvers av alle aksene spilleren
-  har engasjert seg i. «Se alle dine tendenser» i debatt-popupen åpner et «Dine debatt-tendenser»-
-  panel (`openOverview`) som lister hver verdikonflikt med dominerende pol og antall standpunkt.
+  på aksen: …» når spilleren har tatt standpunkt i ≥2 debatter på samme konflikt. Når en debatt
+  åpnes på nytt, hentes tidligere standpunkt fra `hg_debate_log_v1` og vises uten å dobbelttelle
+  den gamle posisjonen.
+- **Tendens-oversikt**: `HGDebatesContent.leaningAll()` kaller `leaning(conflictId)` for alle
+  innlastede konfliktakser, men returnerer bare akser der spilleren faktisk har registrert
+  standpunkt. «Se alle dine tendenser» i debatt-popupen åpner et «Dine debatt-tendenser»-panel
+  (`openOverview`) som lister hver engasjerte verdikonflikt med dominerende pol og antall
+  standpunkt.
 - **Inngang for spilleren**: kommer spilleren til debatt kun via Civication deep-link i v1, eller
   også via en History Go-inngang (kart/PlaceCard)? Foreslår: **kun deep-link i v1**, PlaceCard-
   inngang i fase 2.
 - **`conflict_id` vs `debate_id`**: debatten nøkles på `debate_id` (= debattens `id`). `conflict_id`
   er valgfritt og **må** være en ekte Civication-konfliktakse (`primary`/`secondary` i
-  `data/Civication/conflicts/*`) — ikke en oppfunnet id (SYSTEM_REGISTRY: ikke gjett). Alle 14
-  debattene er nå koblet til en akse. For at en konflikt-rettet task (`conflict_id`, uten
-  `debate_id`) skal kunne fullføres, vedlikeholder `HGDebates.record(...)` en sekundærindeks
-  `hg_debate_log_v1.byConflict` (`conflictId → byId-nøkkel`) som broen slår opp i.
+  `data/Civication/conflicts/*`) — ikke en oppfunnet id (SYSTEM_REGISTRY: ikke gjett). Dagens
+  innhold har 20 debatter over 8 domener/kategorier, og alle 20 har en `conflict_id` som validerer
+  mot Civication conflict axes. For at en konflikt-rettet task (`conflict_id`, uten `debate_id`) skal
+  kunne fullføres, vedlikeholder `HGDebates.record(...)` en sekundærindeks
+  `hg_debate_log_v1.byConflict` (`conflictId → byId-nøkkel`) som broen slår opp i. Broen leser den
+  persisterte debattloggen (`hg_debate_log_v1`), ikke en løs runtime-global.
