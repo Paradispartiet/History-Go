@@ -7,7 +7,7 @@
 
   /** @typedef {{ replace?: boolean }} NavigateOptions */
   /** @typedef {{ raw: string, name: string, params: string[] }} AppRoute */
-  /** @typedef {{ start: () => void, navigate: (hash: string, options?: NavigateOptions) => boolean, render: () => void, parseHash: (hash?: string) => AppRoute, normalizeHash: (hash?: string) => string, mapPath: () => string, placePath: (placeId?: unknown) => string, quizPath: (targetId?: unknown) => string, toMap: (options?: NavigateOptions) => boolean, toPlace: (placeId?: unknown, options?: NavigateOptions) => boolean, toQuiz: (targetId?: unknown, options?: NavigateOptions) => boolean }} AppRouterApi */
+  /** @typedef {{ start: () => void, navigate: (hash: string, options?: NavigateOptions) => boolean, render: () => void, parseHash: (hash?: string) => AppRoute, normalizeHash: (hash?: string) => string, mapPath: () => string, placePath: (placeId?: unknown) => string, quizPath: (targetId?: unknown) => string, debatePath: (debateId?: unknown) => string, toMap: (options?: NavigateOptions) => boolean, toPlace: (placeId?: unknown, options?: NavigateOptions) => boolean, toQuiz: (targetId?: unknown, options?: NavigateOptions) => boolean, toDebate: (debateId?: unknown, options?: NavigateOptions) => boolean }} AppRouterApi */
 
   const DEFAULT_ROUTE = "#/map";
   let started = false;
@@ -38,6 +38,12 @@
   function quizPath(targetId) {
     const id = encodeRoutePart(targetId);
     return id ? `#/quiz/${id}` : mapPath();
+  }
+
+  /** @param {unknown} debateId */
+  function debatePath(debateId) {
+    const id = encodeRoutePart(debateId);
+    return id ? `#/debate/${id}` : mapPath();
   }
 
   /** @param {string} [hash]
@@ -95,6 +101,13 @@
     return navigate(quizPath(targetId), options);
   }
 
+  /** @param {unknown} debateId
+   * @param {NavigateOptions} [options]
+   */
+  function toDebate(debateId, options = {}) {
+    return navigate(debatePath(debateId), options);
+  }
+
   function render() {
     const route = parseHash(location.hash);
 
@@ -111,6 +124,12 @@
 
     if (route.name === "quiz") {
       const ok = window.HGMapView?.openQuiz?.(route.params[0]);
+      if (!ok) window.HGMapView?.showMap?.();
+      return;
+    }
+
+    if (route.name === "debate") {
+      const ok = window.HGMapView?.openDebate?.(route.params[0]);
       if (!ok) window.HGMapView?.showMap?.();
       return;
     }
@@ -153,8 +172,10 @@
     mapPath,
     placePath,
     quizPath,
+    debatePath,
     toMap,
     toPlace,
-    toQuiz
+    toQuiz,
+    toDebate
   };
 })();

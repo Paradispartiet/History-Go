@@ -81,15 +81,20 @@ assert(DL && typeof DL.resolve === "function", "deep link module exposes resolve
     null,
     "knowledge category-only -> null"
   );
-  // debate has no route
-  assert.strictEqual(
-    DL.resolve(norm({ task_kind: "history_go_debate", target_type: "debate", debate_id: "d1", completion_mode: "position_chosen" })),
-    null,
-    "debate -> null"
-  );
   // junk
   assert.strictEqual(DL.resolve(null), null, "null payload -> null");
   assert.strictEqual(DL.resolve({}), null, "empty payload -> null");
+}
+
+// debate -> #/debate/:id
+{
+  const link = DL.resolve(norm({ task_kind: "history_go_debate", target_type: "debate", debate_id: "d1", completion_mode: "position_chosen" }));
+  assert.ok(link, "debate resolves");
+  assert.strictEqual(link.href, "index.html#/debate/d1", "debate href");
+  assert.strictEqual(link.target_type, "debate");
+  // debate via conflict_id fallback
+  const link2 = DL.resolve(norm({ task_kind: "history_go_debate", target_type: "debate", conflict_id: "c2", completion_mode: "debate_participated" }));
+  assert.strictEqual(link2.href, "index.html#/debate/c2", "debate via conflict id");
 }
 
 console.log("civication history-go deeplink ok");

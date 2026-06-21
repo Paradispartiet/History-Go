@@ -215,10 +215,10 @@ det relaterte Civication-svaret — uten at broen tar gameplay-beslutninger selv
   - person åpnet → `showPersonPopup` (`HGReads.recordPerson` + personens stories)
   - story lest → `HGStories.openPlace` + `showPlacePopup` (`HGReads.recordStory`)
   - leksikon lest → `HGLeksikon.openPlace` (`HGReads.recordLeksikon` for sted + kategori + emne)
-- **Det eneste som gjenstår på produsent-siden er debatt**: `HGDebates.record(...)` fra en
-  faktisk debatt-/standpunkt-flate i History Go (finnes ikke ennå), pluss en `#/debate`-rute så
-  deep-link kan navigere dit (deep-link dekker allerede place/quiz). Spesifisert i
-  `docs/CIVICATION_HISTORY_GO_DEBATE_SURFACE.md`.
+  - debatt → `HGDebatesContent` (debatt-flate via `#/debate/:id` + «Debatter her» på PlaceCard,
+    `HGDebates.record` ved deltakelse/standpunkt). Deep-link dekker nå også debatt.
+    Se `docs/CIVICATION_HISTORY_GO_DEBATE_SURFACE.md`.
+- **Loopen er nå komplett ende-til-ende** for alle `history_go`-completion-modes.
 - **Merk leksikon-begrensning:** emne-treff for `read_leksikon` avhenger av at stedet har
   `emne_ids`; leksikon-artiklene selv bærer ikke emne-id.
 - **Eksakt testmodus-flagg** i Civication må verifiseres mot `CivicationState` ved implementasjon.

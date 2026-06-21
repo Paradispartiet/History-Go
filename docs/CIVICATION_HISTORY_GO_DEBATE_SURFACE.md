@@ -6,7 +6,9 @@ velge standpunkt, og som skriver `HGDebates.record(...)`. Signalet (`hg_debate_l
 completion-bridgen og deep-link-resolveren finnes allerede — denne flaten er den manglende
 produsenten.
 
-> Status: **spec / kontrakt**, ikke implementert. Avventer godkjenning.
+> Status: **implementert** (MVP). `data/debates/`, `js/debates/debates_loader.js`
+> (`HGDebatesContent`), `#/debate/:id`-ruten, `HGMapView.openDebate`, deep-link og PlaceCard-
+> inngangen er på plass med tester. Resten av dokumentet beskriver designet og gjenstående faser.
 
 ## 1. Hvorfor / kontekst
 

@@ -53,7 +53,14 @@
       }
     }
 
-    // person/knowledge uten quiz, debatt, eller manglende id -> ingen trygg rute.
+    if (type === "debate") {
+      const debateId = clean(p.debate_id) || clean(p.conflict_id) || clean(p.target_id);
+      if (debateId) {
+        return { href: `index.html#/debate/${encodeURIComponent(debateId)}`, label: "Gå til debatten i History Go", target_type: "debate" };
+      }
+    }
+
+    // person/knowledge uten quiz, eller manglende id -> ingen trygg rute.
     void personId;
     return null;
   }
