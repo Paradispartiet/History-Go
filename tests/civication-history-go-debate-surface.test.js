@@ -16,7 +16,11 @@ let popupHtml = null;
 
 global.window = global;
 global.console = { ...console, warn() {}, error() {} };
-global.HGDebates = { record: (x) => records.push(x) };
+const positionsById = {};
+global.HGDebates = {
+  record: (x) => { records.push(x); if (x && x.position) positionsById[x.debateId] = x.position; },
+  getById: (id) => (positionsById[id] ? { id, position: positionsById[id] } : null)
+};
 global.showToast = () => {};
 global.makePopup = (html) => { popupHtml = html; };
 global.openPlaceCard = undefined; // patchPlaceCard: no original -> skipped
@@ -83,6 +87,11 @@ assert(C && typeof C.open === "function", "HGDebatesContent exposed");
     { debateId: "d1", position: "pro" },
     "position recorded on click"
   );
+
+  // reopening the debate recalls the prior position: chip + pre-marked button + note
+  await C.open("d1");
+  assert.ok(/class="hg-debate__position is-chosen"[^>]*data-debate-position="pro"/.test(popupHtml), "prior position pre-marked on reopen");
+  assert.ok(/Du valgte: Pro/.test(popupHtml), "prior position note shown");
 
   console.log("hg debate surface ok");
 })().catch((err) => { console.error(err); process.exit(1); });
