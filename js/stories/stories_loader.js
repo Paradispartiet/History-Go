@@ -240,6 +240,15 @@
       await this.init();
       const place = resolvePlaceById(id);
       const stories = this.getByPlace(id);
+
+      // History Go read-signal: å åpne stedets fortellinger teller som read_story.
+      // Civication-broen matcher hg_reads_v1.stories på placeId.
+      try {
+        (stories || []).forEach(function (st) {
+          window.HGReads?.recordStory?.({ storyId: st && st.id, placeId: id });
+        });
+      } catch {}
+
       const container = document.createElement("div");
       container.className = "hg-story-popup-content";
 

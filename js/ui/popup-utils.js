@@ -1271,6 +1271,15 @@ function renderStoriesSection(stories) {
 window.showPersonPopup = function(person) {
   if (!person) return;
 
+  // History Go read-signal: åpning av personprofil teller som open_person/read_profile,
+  // og personens fortellinger som read_story. Civication-broen leser hg_reads_v1.
+  try {
+    window.HGReads?.recordPerson?.({ personId: person.id });
+    (window.HGStories?.getByPerson?.(person.id) || []).forEach(function (st) {
+      window.HGReads?.recordStory?.({ storyId: st && st.id, personId: person.id, placeId: st && st.place_id });
+    });
+  } catch {}
+
   const face    = person.image;      // portrett
   const cardImg = person.imageCard;  // kortbilde
   const works   = person.works || [];
@@ -1494,6 +1503,14 @@ function renderWonderkammerDossier(doc) {
 
 window.showPlacePopup = function(place) {
   if (!place) return;
+
+  // History Go read-signal: fortellingene som vises for stedet teller som read_story.
+  // Civication-broen matcher hg_reads_v1.stories på placeId.
+  try {
+    (window.HGStories?.getByPlace?.(place.id) || []).forEach(function (st) {
+      window.HGReads?.recordStory?.({ storyId: st && st.id, placeId: place.id });
+    });
+  } catch {}
 
   // RIKTIG: kun stedsbilde
   const img = place.image || "";
