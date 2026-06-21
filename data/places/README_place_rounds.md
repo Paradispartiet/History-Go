@@ -1,30 +1,39 @@
 # PlaceCard-rundinger (`rounds`)
 
-PlaceCard-rundinger er nå **innholdsmoduler**: en runding er en innholdstype
-eller handling brukeren kan åpne på stedet. Kategori beskriver hva stedet er;
-kategorinavn skal ikke brukes som canonical PlaceCard-rundinger.
+PlaceCard-rundingene er nå et **fast 3x3-grid** med 9 faste innganger. Gridet
+skal være visuelt stabilt fra sted til sted, og `rounds` / `rundinger` skal ikke
+lenger brukes til å flytte rundinger visuelt.
 
-PlaceCard viser alltid et fast 3x3-grid med **9 synlige rundinger**, valgt fra en
-canonical pool på **11**. Feltet `place.rounds` betyr derfor prioritering og
-relevans: rundingene som listes der kommer først etter alias-normalisering, og
-runtime fyller deretter opp til 9 med relevante standardrundinger. `rundinger`
-støttes som legacy alias for `rounds`.
+Fast plassering:
+
+```text
+Row 1: people | works        | badges
+Row 2: tasks  | civication   | brands
+Row 3: routes | fortellinger | leksikon
+```
+
+Det betyr blant annet at `people` alltid ligger øverst til venstre, `badges`
+alltid øverst til høyre, `fortellinger` alltid nederst i midten og `leksikon`
+alltid nederst til høyre.
 
 ## Canonical ids
 
-Nye data skal kun bruke disse canonical id-ene:
+Canonical PlaceCard-rundinger er nøyaktig disse 9 id-ene, i fast grid-rekkefølge:
 
 - `people`
-- `fortellinger`
-- `leksikon`
-- `wonderkammer`
-- `routes`
+- `works`
 - `badges`
 - `tasks`
-- `observations`
-- `brands`
 - `civication`
-- `works`
+- `brands`
+- `routes`
+- `fortellinger`
+- `leksikon`
+
+Nye data trenger normalt ikke å sette `rounds`. Hvis `rounds` eller `rundinger`
+finnes i eldre data, kan feltet beholdes som legacy/kuratorisk metadata, men det
+styrer ikke lenger hvilke rundinger som vises eller hvilken visuell rekkefølge de
+har i PlaceCard.
 
 ## Legacy aliases
 
@@ -33,37 +42,29 @@ knekker:
 
 - `lexicon` -> `leksikon`
 - `stories` / `story` -> `fortellinger`
-- `nature` -> `wonderkammer`
+- `wonderkammer` / `nature` -> `leksikon`
 - `football` / `music` -> `works`
+- `observations` -> `tasks` (legacy / ikke anbefalt i nye data)
 
-Nye data skal **ikke** bruke `lexicon`, `stories`, `story`, `nature`, `football`
-eller `music` i `rounds`.
+Nye data skal bruke canonical id-er hvis metadatafeltet fortsatt trengs.
 
-## Fallback og prioritering
+## Leksikon og Wonderkammer
 
-Hvis et sted mangler `rounds`/`rundinger`, eller hvis deklarerte rundinger er
-færre enn 9, fylles kortet fra en bred innholdspool. Generell fallback er:
+`leksikon` er kunnskaps- og oppdagelsesinngangen i PlaceCard. Wonderkammer er
+ikke lenger en egen hovedrunding, men skal fortsatt eksistere som innholdstype og
+ligge under Leksikon-flowen / Leksikon-huben sammen med for eksempel begreper,
+språk, forklaringer, objekter, detaljer og lesespor.
 
-```json
-["people", "fortellinger", "leksikon", "wonderkammer", "routes", "badges", "tasks", "observations", "brands", "civication", "works"]
-```
+Naturinnhold skal heller ikke ha en egen fast PlaceCard-runding. Natur kan ligge
+under `leksikon` når det gjelder arter, naturbegreper og økologi, under `tasks`
+når det gjelder natur-oppgaver, eller under `fortellinger` når det gjelder
+stedets naturhistorie.
 
-Runtime kan bruke en enkel kategori-spesifikk fallback-profil, men bare med de
-11 canonical innholdsrundingene. Ukjente ids ignoreres med `console.warn`,
-duplikater fjernes etter canonical id, og PlaceCard returnerer aldri mer enn 9
-rundinger.
+## Observasjoner
 
-Eksempel:
-
-```json
-{
-  "id": "torggata",
-  "rounds": ["leksikon", "brands", "badges", "routes"]
-}
-```
-
-Dette betyr at `leksikon`, `brands`, `badges` og `routes` prioriteres først;
-PlaceCard fyller resten av 3x3-gridet med relevante innholdsmoduler.
+`observations` er ikke en canonical PlaceCard-runding nå. Eventuelle eksisterende
+observasjons-, notat- eller “legg til”-flyter skal beholdes som handlinger utenfor
+runding-gridet. Ikke bruk `observations` som ny PlaceCard-runding.
 
 ## Kuratoriske kriterier
 
@@ -71,34 +72,17 @@ PlaceCard fyller resten av 3x3-gridet med relevante innholdsmoduler.
 
 Personer knyttet til stedet: forfattere, kunstnere, politikere, idrettsfolk,
 vitenskapsfolk, arkitekter, musikere, lokale aktører, historiske skikkelser og
-personer som har bodd, virket, opptrådt, bygget, skrevet, forsket, kjempet
-eller blitt minnet der.
+personer som har bodd, virket, opptrådt, bygget, skrevet, forsket, kjempet eller
+blitt minnet der.
 
-### fortellinger
+### works
 
-Narrative historier, hendelser, scener, historiske øyeblikk og “hva skjedde
-her”. `fortellinger` dekker behovet for events/hendelser som PlaceCard-runding;
-`events` er ikke egen canonical runding nå.
-
-### leksikon
-
-Forklaringer, begreper, fagord, språkleksikon, kontekst og kunnskapskort.
-Dette er oppslagsverk/forklaring, ikke primært narrativ. Leksikon kan fortsatt
-lenke videre til fortellinger, lesespor og Wonderkammer der huben gjør det.
-
-### wonderkammer
-
-Ting å se etter på stedet: objekter, skilt, statuer, bygningselementer,
-detaljer, spor, lekeapparater, treningsapparater, kunstobjekter, naturfunn og
-små observasjonsobjekter. Legacy `nature` mappes hit fordi natur i PlaceCard
-skal handle om ting å se, spor, funn og observasjon.
-
-### routes
-
-Ruter stedet inngår i: historiske ruter, byvandringer, ferdselslinjer,
-transportlinjer, pilegrimsruter, handelsruter, elveruter, havneruter,
-politiske ruter, kulturvandringer, krigs-/motstandsruter, idretts- eller
-musikkruter.
+Stedets verk, produksjoner, stats og prestasjoner. Dette kan være bøker, sanger,
+filmer, malerier, skulpturer, teaterstykker, TV-/radioprogrammer,
+arkitekturverk, taler, artikler, kamper, rekorder, mål, finaler,
+idrettsprestasjoner, utstillinger og forestillinger. Legacy `football` og
+`music` mappes hit fordi kamper, rekorder, låter, konserter, utgivelser og
+prestasjoner hører hjemme i denne rundingen.
 
 ### badges
 
@@ -111,41 +95,46 @@ Oppgaver: quiz, minioppdrag, observasjonsoppgaver, kreative oppgaver, fysiske
 oppgaver, barne-/lekeoppgaver og “gjør noe her”. Ikke bruk `tasks` som løfte om
 ny oppgavemotor; rundingen kan ha tomtilstand til data finnes.
 
-### observations
+### civication
 
-Brukerens egne observasjoner: notater, bilder, minner, funn, feltarbeid og
-“legg til observasjon”. Rundingen peker på observasjonsflyt eller tomtilstand;
-den oppretter ikke ny lagringsmodell alene.
+Civication Store: en stedsspesifikk store-/butikk-/samlingsfunksjon for konkrete
+fysiske objekter knyttet til akkurat dette stedet. Objektene kan kjøpes eller
+samles og brukes videre i Civication, for eksempel som tegn på stedets historie,
+funksjon, institusjon, symboler eller fysiske miljø. Generiske objekter skal ikke
+legges inn: et godt Civication Store-objekt bør miste mye av meningen sin hvis
+det flyttes til et annet sted. `civication` er fortsatt canonical
+PlaceCard-round-id-en, selv om UI-konseptet kan hete “Civication Store”.
 
 ### brands
 
 Aktører: institusjoner, organisasjoner, klubber, museer, medier, butikker,
-scener, offentlige aktører, bedrifter, idrettslag og andre navngitte system-
-aktører. `brands` betyr ikke bare kommersielle merkevarer.
+scener, offentlige aktører, bedrifter, idrettslag og andre navngitte
+systemaktører. `brands` betyr ikke bare kommersielle merkevarer.
 
-### civication
+### routes
 
-Civication Store: en stedsspesifikk store-/butikk-/samlingsfunksjon for
-konkrete fysiske objekter knyttet til akkurat dette stedet. Objektene kan
-kjøpes eller samles og brukes videre i Civication, for eksempel som tegn på
-stedets historie, funksjon, institusjon, symboler eller fysiske miljø. Generiske
-objekter skal ikke legges inn: et godt Civication Store-objekt bør miste mye av
-meningen sin hvis det flyttes til et annet sted. `civication` er fortsatt
-canonical PlaceCard-round-id-en, selv om UI-konseptet kan hete “Civication
-Store”.
+Ruter stedet inngår i: historiske ruter, byvandringer, ferdselslinjer,
+transportlinjer, pilegrimsruter, handelsruter, elveruter, havneruter, politiske
+ruter, kulturvandringer, krigs-/motstandsruter, idretts- eller musikkruter.
 
-### works
+### fortellinger
 
-Stedets verk, produksjoner, stats og prestasjoner. Dette kan være bøker,
-sanger, filmer, malerier, skulpturer, teaterstykker, TV-/radioprogrammer,
-arkitekturverk, taler, artikler, kamper, rekorder, mål, finaler,
-idrettsprestasjoner, utstillinger og forestillinger. PlaceCard-`works` handler
-om stedets verk/prestasjoner/produksjoner, ikke om å flytte personens verk inn i
-personmodellen. Legacy `football` og `music` mappes hit fordi kamper, rekorder,
-låter, konserter, utgivelser og prestasjoner hører hjemme i denne rundingen.
+Narrative historier, hendelser, scener, historiske øyeblikk og “hva skjedde
+her”. `fortellinger` dekker behovet for events/hendelser som PlaceCard-runding;
+`stories` / `story` er bare legacy aliases.
+
+### leksikon
+
+Forklaringer, begreper, fagord, språkleksikon, kontekst, kunnskapskort og
+Wonderkammer-innhold som objekter, detaljer og ting å se etter på stedet.
+Leksikon kan fortsatt lenke videre til fortellinger, lesespor og Wonderkammer der
+huben gjør det.
 
 ## Ikke egne PlaceCard-rundinger nå
 
+- `wonderkammer` er ikke egen hovedrunding; det ligger under `leksikon`.
+- `observations` er ikke egen hovedrunding; observasjoner håndteres som handling
+  eller separat flyt utenfor gridet.
 - Tidslinje er ikke egen runding nå; tids-/epokeinformasjon kan ligge i badges,
   leksikon, fortellinger eller annet relevant innhold.
 - Nærhet/koblinger håndteres av NextUp/Fortsett reisen, ikke av en egen

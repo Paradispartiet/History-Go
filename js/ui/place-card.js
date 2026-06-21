@@ -309,36 +309,18 @@ window.HGPlaceNatureProfile = {
 /** @type {PlaceRoundDef[]} */
 const PLACE_ROUND_REGISTRY = [
   { id: "people",       label: "Personer",      fallbackIcon: "👥", iconId: "pcPeopleIcon",          listId: "pcPeopleList",          kind: "people" },
-  { id: "fortellinger", label: "Fortellinger",  fallbackIcon: "📖", iconId: "pcFortellingerIcon",    listId: "pcFortellingerList",    kind: "fortellinger", aliases: ["stories", "story"] },
-  { id: "leksikon",     label: "Leksikon",      fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["lexicon"] },
-  { id: "wonderkammer", label: "Wonderkammer",  fallbackIcon: "🔎", iconId: "pcWonderkammerIcon",    listId: "pcWonderkammerList",    kind: "wonderkammer", aliases: ["nature"] },
-  { id: "routes",       label: "Ruter",         fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
+  { id: "works",        label: "Verk",          fallbackIcon: "🎭", iconId: "pcWorksIcon",           listId: "pcWorksList",           kind: "works", aliases: ["football", "music"] },
   { id: "badges",       label: "Merker",        fallbackIcon: "🏅", iconId: "pcBadgesIcon",          listId: "pcBadgesList",          kind: "badges" },
-  { id: "tasks",        label: "Oppgaver",      fallbackIcon: "✅", iconId: "pcTasksIcon",           listId: "pcTasksList",           kind: "tasks" },
-  { id: "observations", label: "Observasjoner", fallbackIcon: "📝", iconId: "pcObservationsIcon",    listId: "pcObservationsList",    kind: "observations" },
-  { id: "brands",       label: "Aktører",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
+  { id: "tasks",        label: "Oppgaver",      fallbackIcon: "✅", iconId: "pcTasksIcon",           listId: "pcTasksList",           kind: "tasks", aliases: ["observations"] },
   { id: "civication",   label: "Civication",    fallbackIcon: "🏛", iconId: "pcCivicationStoreIcon", listId: "pcCivicationStoreList", kind: "civication" },
-  { id: "works",        label: "Verk",          fallbackIcon: "🎭", iconId: "pcWorksIcon",           listId: "pcWorksList",           kind: "works", aliases: ["football", "music"] }
+  { id: "brands",       label: "Aktører",       fallbackIcon: "🏷️", iconId: "pcBrandsIcon",          listId: "pcBrandsList",          kind: "brands" },
+  { id: "routes",       label: "Ruter",         fallbackIcon: "🧭", iconId: "pcRoutesIcon",          listId: "pcRoutesList",          kind: "routes" },
+  { id: "fortellinger", label: "Fortellinger",  fallbackIcon: "📖", iconId: "pcFortellingerIcon",    listId: "pcFortellingerList",    kind: "fortellinger", aliases: ["stories", "story"] },
+  { id: "leksikon",     label: "Leksikon",      fallbackIcon: "📚", iconId: "pcLeksikonIcon",        listId: "pcLeksikonList",        kind: "leksikon", aliases: ["lexicon", "wonderkammer", "nature"] }
 ];
 
-/** Standard innholdsrekkefølge når PlaceCard fyller opp til 9 rundinger. */
-const DEFAULT_PLACE_ROUNDS = ["people", "fortellinger", "leksikon", "wonderkammer", "routes", "badges", "tasks", "observations", "brands", "civication", "works"];
-
-const PLACE_ROUND_CATEGORY_FALLBACKS = Object.freeze({
-  by: ["people", "fortellinger", "leksikon", "wonderkammer", "routes", "badges", "observations", "brands", "civication", "tasks", "works"],
-  historie: ["fortellinger", "people", "leksikon", "wonderkammer", "routes", "badges", "works", "observations", "brands", "civication", "tasks"],
-  politikk: ["people", "fortellinger", "leksikon", "routes", "badges", "brands", "civication", "works", "observations", "tasks", "wonderkammer"],
-  kunst: ["works", "people", "fortellinger", "leksikon", "wonderkammer", "brands", "routes", "badges", "observations", "tasks", "civication"],
-  litteratur: ["works", "people", "fortellinger", "leksikon", "brands", "routes", "badges", "observations", "tasks", "civication", "wonderkammer"],
-  vitenskap: ["leksikon", "wonderkammer", "people", "works", "fortellinger", "routes", "badges", "observations", "tasks", "brands", "civication"],
-  musikk: ["works", "people", "fortellinger", "brands", "leksikon", "routes", "badges", "observations", "tasks", "wonderkammer", "civication"],
-  music: ["works", "people", "fortellinger", "brands", "leksikon", "routes", "badges", "observations", "tasks", "wonderkammer", "civication"],
-  sport: ["works", "people", "fortellinger", "brands", "leksikon", "routes", "badges", "tasks", "observations", "wonderkammer", "civication"],
-  natur: ["wonderkammer", "observations", "tasks", "leksikon", "routes", "badges", "fortellinger", "people", "works", "brands", "civication"],
-  nature: ["wonderkammer", "observations", "tasks", "leksikon", "routes", "badges", "fortellinger", "people", "works", "brands", "civication"],
-  subkultur: ["fortellinger", "people", "works", "brands", "leksikon", "routes", "badges", "observations", "tasks", "wonderkammer", "civication"],
-  naeringsliv: ["brands", "civication", "fortellinger", "people", "leksikon", "works", "routes", "badges", "observations", "tasks", "wonderkammer"]
-});
+/** Fast PlaceCard-grid: row 1 people|works|badges, row 2 tasks|civication|brands, row 3 routes|fortellinger|leksikon. */
+const DEFAULT_PLACE_ROUNDS = PLACE_ROUND_REGISTRY.map(def => def.id);
 
 /** @type {Record<string, PlaceRoundDef>} id (+ alias) → definisjon. */
 const PLACE_ROUND_BY_ID = (() => {
@@ -352,65 +334,31 @@ const PLACE_ROUND_BY_ID = (() => {
 })();
 
 /**
- * Leser stedets deklarerte rundinger og returnerer gyldige runding-
- * definisjoner i den rekkefølgen stedet definerer dem.
- *
- * - Leser `place.rounds` (canonical), faller tilbake til `place.rundinger` (alias).
- * - Mangler begge → `DEFAULT_PLACE_ROUNDS` (krav 4).
- * - Filtrerer mot registeret; ukjente id-er ignoreres med console.warn (krav 8).
- * - Fjerner duplikater og beholder rekkefølge (krav 6 + 7).
+ * Returnerer det faste PlaceCard-gridet. `place.rounds`/`rundinger` kan fortsatt
+ * inneholde legacy metadata, men styrer ikke lenger visuell rekkefølge eller
+ * hvilke canonical rundinger som vises.
  *
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @returns {PlaceRoundDef[]}
  */
 function getPlaceRounds(place) {
-  const declared =
-    Array.isArray(place?.rounds) ? place.rounds :
+  const declared = Array.isArray(place?.rounds) ? place.rounds :
     Array.isArray(place?.rundinger) ? place.rundinger :
-    null;
+    [];
 
-  const requested = (declared && declared.length) ? declared : [];
-
-  /** @type {PlaceRoundDef[]} */
-  const out = [];
-  const seen = new Set();
-
-  const pushRound = (entry, warnUnknown = false) => {
+  for (const entry of declared) {
     const rawId = String(entry || "").trim();
-    if (!rawId) return;
-
-    const def = PLACE_ROUND_BY_ID[rawId];
-    if (!def) {
-      if (warnUnknown) {
-        console.warn(`[placeCard] Ukjent runding ignorert: "${rawId}" (sted: ${String(place?.id || "ukjent")})`);
-      }
-      return;
+    if (rawId && !PLACE_ROUND_BY_ID[rawId]) {
+      console.warn(`[placeCard] Ukjent runding ignorert: "${rawId}" (sted: ${String(place?.id || "ukjent")})`);
     }
-    if (seen.has(def.id)) return;
-    seen.add(def.id);
-    out.push(def);
-  };
-
-  for (const entry of requested) pushRound(entry, true);
-
-  const category = String(place?.category || place?.categoryId || "").trim().toLowerCase();
-  const fallback = PLACE_ROUND_CATEGORY_FALLBACKS[category] || DEFAULT_PLACE_ROUNDS;
-  for (const id of fallback) {
-    if (out.length >= 9) break;
-    pushRound(id);
-  }
-  for (const id of DEFAULT_PLACE_ROUNDS) {
-    if (out.length >= 9) break;
-    pushRound(id);
   }
 
-  return out.slice(0, 9);
+  return PLACE_ROUND_REGISTRY.slice();
 }
 
 /**
- * Viser/skjuler runding-ikonene basert på getPlaceRounds(place), og setter
- * grid-rekkefølgen slik stedet definerer den (krav 7 + 10). Ikoner som ikke
- * er aktive skjules via `hidden` (se `.pc-round[hidden]` i placeCard.css).
+ * Viser de 9 canonical PlaceCard-rundingene i fast registry-rekkefølge.
+ * Legacy/ikke-canonical DOM-rundinger skjules dersom de fortsatt finnes i eldre markup.
  *
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @returns {void}
@@ -418,23 +366,28 @@ function getPlaceRounds(place) {
 function applyPlaceRounds(place) {
   const active = getPlaceRounds(place);
   const activeIds = new Set(active.map(def => def.id));
+  const canonicalIconIds = new Set(PLACE_ROUND_REGISTRY.map(def => def.iconId));
 
   for (const def of PLACE_ROUND_REGISTRY) {
     const el = document.getElementById(def.iconId);
     if (!el) continue;
     el.hidden = !activeIds.has(def.id);
-    el.style.order = "";
+    el.style.order = String(DEFAULT_PLACE_ROUNDS.indexOf(def.id));
   }
 
-  active.forEach((def, index) => {
-    const el = document.getElementById(def.iconId);
-    if (el) el.style.order = String(index);
-  });
+  for (const legacyIconId of ["pcWonderkammerIcon", "pcObservationsIcon", "pcNatureIcon", "pcFootballIcon", "pcMusicIcon"]) {
+    if (canonicalIconIds.has(legacyIconId)) continue;
+    const el = document.getElementById(legacyIconId);
+    if (!el) continue;
+    el.hidden = true;
+    el.style.order = "";
+  }
 }
 
 window.HGPlaceRounds = {
   registry: PLACE_ROUND_REGISTRY,
   defaults: DEFAULT_PLACE_ROUNDS,
+  byId: PLACE_ROUND_BY_ID,
   get: getPlaceRounds,
   apply: applyPlaceRounds
 };
