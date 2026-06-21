@@ -36,12 +36,13 @@ function collectFamilies(roleScope) {
   const files = [
     `${base}/job/${roleScope}_intro_v2.json`,
     `${base}/job/${roleScope}_job.json`,
+    `${base}/people/${roleScope}_people.json`,
     `${base}/conflict/${roleScope}_conflict.json`,
     `${base}/story/${roleScope}_story.json`,
     `${base}/event/${roleScope}_event.json`
   ];
 
-  const catalogs = files.map(readJson);
+  const catalogs = files.filter(file => fs.existsSync(path.join(root, file))).map(readJson);
   const families = new Map();
   const mails = [];
 

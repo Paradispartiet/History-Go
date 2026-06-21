@@ -50,7 +50,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_drops_customer_voice",
-              "feedback": "Bra. Jeg vil helst være person, ikke henvendelse."
+              "feedback": "Bra. Jeg vil helst være person, ikke henvendelse.",
+              "effect": {
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "stress": -1,
+                "service_mask": -1
+              },
+              "tags": [
+                "ekspeditor_week1_drops_customer_voice"
+              ]
             },
             {
               "id": "B",
@@ -68,7 +77,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_jokes_customer_voice",
-              "feedback": "Avslag. For mye butikk. Men litt morsomt."
+              "feedback": "Avslag. For mye butikk. Men litt morsomt.",
+              "effect": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week1_jokes_customer_voice"
+              ]
             },
             {
               "id": "C",
@@ -86,9 +104,24 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_overpolite_at_home",
-              "feedback": "Nå ble det verre. Du kundebehandler meg."
+              "feedback": "Nå ble det verre. Du kundebehandler meg.",
+              "effect": {
+                "service_mask": 2,
+                "relationship_sara": -1,
+                "stress": 1,
+                "stagnation_private": 1
+              },
+              "tags": [
+                "ekspeditor_week1_overpolite_at_home"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_serviceblikk",
+          "competency": "relasjonell_grensesetting",
+          "pressure": "kundeblikk_vs_narhet",
+          "choice_axis": "service_refleks_vs_ekte_tilstedevaerelse",
+          "consequence_axis": "relasjonell_tillit_vs_emosjonell_slitasje",
+          "narrative_arc": "ekspeditor_first_week_service_role_at_home"
         },
         {
           "id": "personal_ekspeditor_week1_friend_not_customer",
@@ -126,7 +159,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_answers_as_friend",
-              "feedback": "Der ja. Ikke perfekt formulert. Bare faktisk deg."
+              "feedback": "Der ja. Ikke perfekt formulert. Bare faktisk deg.",
+              "effect": {
+                "relationship_jonas": 3,
+                "self_awareness": 2,
+                "service_mask": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_answers_as_friend"
+              ]
             },
             {
               "id": "B",
@@ -144,7 +186,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_friend_department_joke",
-              "feedback": "Greit. Men kompisavdelingen må være mer uprofesjonell."
+              "feedback": "Greit. Men kompisavdelingen må være mer uprofesjonell.",
+              "effect": {
+                "relationship_jonas": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week1_friend_department_joke"
+              ]
             },
             {
               "id": "C",
@@ -162,9 +213,24 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_defends_service_phrase",
-              "feedback": "Jeg skjønner det. Men du hørtes mer opplært enn nær ut."
+              "feedback": "Jeg skjønner det. Men du hørtes mer opplært enn nær ut.",
+              "effect": {
+                "relationship_jonas": -1,
+                "service_mask": 1,
+                "conflict": 1,
+                "self_awareness": 0
+              },
+              "tags": [
+                "ekspeditor_week1_defends_service_phrase"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_serviceblikk",
+          "competency": "relasjonell_grensesetting",
+          "pressure": "kundeblikk_vs_narhet",
+          "choice_axis": "service_refleks_vs_ekte_tilstedevaerelse",
+          "consequence_axis": "relasjonell_tillit_vs_emosjonell_slitasje",
+          "narrative_arc": "ekspeditor_first_week_service_role_at_home"
         },
         {
           "id": "personal_ekspeditor_week1_everyone_asks_for_something",
@@ -202,7 +268,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_answers_more_openly",
-              "feedback": "Bra. Jeg ville bare si hei. Det er lov det også."
+              "feedback": "Bra. Jeg ville bare si hei. Det er lov det også.",
+              "effect": {
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "service_mask": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_answers_more_openly"
+              ]
             },
             {
               "id": "B",
@@ -220,7 +295,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_processes_hello_joke",
-              "feedback": "Hei er godkjent. Men ikke gjør meg til kølapp."
+              "feedback": "Hei er godkjent. Men ikke gjør meg til kølapp.",
+              "effect": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week1_processes_hello_joke"
+              ]
             },
             {
               "id": "C",
@@ -238,9 +322,24 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_just_helpful_private",
-              "feedback": "Jeg vet. Men noen ganger er hjelpsomhet litt smal hvis den bare ser behov."
+              "feedback": "Jeg vet. Men noen ganger er hjelpsomhet litt smal hvis den bare ser behov.",
+              "effect": {
+                "service_mask": 1,
+                "relationship_sara": -1,
+                "stagnation_private": 1,
+                "self_awareness": 0
+              },
+              "tags": [
+                "ekspeditor_week1_just_helpful_private"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_serviceblikk",
+          "competency": "relasjonell_grensesetting",
+          "pressure": "kundeblikk_vs_narhet",
+          "choice_axis": "service_refleks_vs_ekte_tilstedevaerelse",
+          "consequence_axis": "relasjonell_tillit_vs_emosjonell_slitasje",
+          "narrative_arc": "ekspeditor_first_week_service_role_at_home"
         },
         {
           "id": "personal_ekspeditor_week1_customer_service_dinner",
@@ -278,7 +377,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_puts_service_voice_away",
-              "feedback": "Der. Salt uten kundereise. Perfekt."
+              "feedback": "Der. Salt uten kundereise. Perfekt.",
+              "effect": {
+                "relationship_jonas": 2,
+                "self_awareness": 2,
+                "service_mask": -2,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_puts_service_voice_away"
+              ]
             },
             {
               "id": "B",
@@ -296,7 +404,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_salt_delivery_joke",
-              "feedback": "Greit. Men bare fordi leveransen var rask."
+              "feedback": "Greit. Men bare fordi leveransen var rask.",
+              "effect": {
+                "relationship_jonas": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week1_salt_delivery_joke"
+              ]
             },
             {
               "id": "C",
@@ -314,9 +431,24 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_overpolite_dinner",
-              "feedback": "Du er fortsatt på jobb. Bare med middag."
+              "feedback": "Du er fortsatt på jobb. Bare med middag.",
+              "effect": {
+                "service_mask": 2,
+                "relationship_jonas": -1,
+                "stagnation_private": 1,
+                "stress": 1
+              },
+              "tags": [
+                "ekspeditor_week1_overpolite_dinner"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_serviceblikk",
+          "competency": "relasjonell_grensesetting",
+          "pressure": "kundeblikk_vs_narhet",
+          "choice_axis": "service_refleks_vs_ekte_tilstedevaerelse",
+          "consequence_axis": "relasjonell_tillit_vs_emosjonell_slitasje",
+          "narrative_arc": "ekspeditor_first_week_service_role_at_home"
         },
         {
           "id": "personal_ekspeditor_week1_weekend_without_queue",
@@ -356,7 +488,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_private_boundary",
-              "feedback": "Det tar litt tid før smilet slutter å være uniform. Så blir ansiktet ditt mer ditt igjen."
+              "feedback": "Det tar litt tid før smilet slutter å være uniform. Så blir ansiktet ditt mer ditt igjen.",
+              "effect": {
+                "energy_weekend": 4,
+                "stress": -3,
+                "service_mask": -3,
+                "relationship_private": 3,
+                "autonomy_private": 2
+              },
+              "tags": [
+                "ekspeditor_week1_private_boundary"
+              ]
             },
             {
               "id": "B",
@@ -374,7 +516,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_social_without_customer_mode",
-              "feedback": "Du var ikke på jobb. Det burde være et lavt krav. Men det var faktisk hyggelig."
+              "feedback": "Du var ikke på jobb. Det burde være et lavt krav. Men det var faktisk hyggelig.",
+              "effect": {
+                "relationship_private": 4,
+                "mood": 2,
+                "stress": -2,
+                "self_awareness": 2
+              },
+              "tags": [
+                "ekspeditor_week1_social_without_customer_mode"
+              ]
             },
             {
               "id": "C",
@@ -392,7 +543,16 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_withdraws_from_faces",
-              "feedback": "Det er lov. Bare si at du er tom, ikke at alle mennesker er kunder."
+              "feedback": "Det er lov. Bare si at du er tom, ikke at alle mennesker er kunder.",
+              "effect": {
+                "energy_weekend": 2,
+                "relationship_private": -1,
+                "stress": -1,
+                "guilt": 1
+              },
+              "tags": [
+                "ekspeditor_week1_withdraws_from_faces"
+              ]
             },
             {
               "id": "D",
@@ -411,9 +571,25 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_keeps_service_mask_home",
-              "feedback": "Du er snill. Men du er ikke helt hjemme."
+              "feedback": "Du er snill. Men du er ikke helt hjemme.",
+              "effect": {
+                "service_mask": 3,
+                "stress": 2,
+                "relationship_private": -2,
+                "energy_weekend": -2,
+                "stagnation_private": 2
+              },
+              "tags": [
+                "ekspeditor_week1_keeps_service_mask_home"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_serviceblikk",
+          "competency": "relasjonell_grensesetting",
+          "pressure": "kundeblikk_vs_narhet",
+          "choice_axis": "service_refleks_vs_ekte_tilstedevaerelse",
+          "consequence_axis": "relasjonell_tillit_vs_emosjonell_slitasje",
+          "narrative_arc": "ekspeditor_first_week_service_role_at_home"
         }
       ],
       "threads": [
@@ -702,7 +878,16 @@
                   "ekspeditor_week2_drops_complaint_lens"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_drops_complaint_lens"
+              "triggers_on_choice": "ekspeditor_week2_drops_complaint_lens",
+              "effect": {
+                "relationship_sara": 3,
+                "self_awareness": 2,
+                "service_mask": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week2_drops_complaint_lens"
+              ]
             },
             {
               "id": "B",
@@ -720,7 +905,16 @@
                   "ekspeditor_week2_jokes_about_kitchen_complaint"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_jokes_about_kitchen_complaint"
+              "triggers_on_choice": "ekspeditor_week2_jokes_about_kitchen_complaint",
+              "effect": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week2_jokes_about_kitchen_complaint"
+              ]
             },
             {
               "id": "C",
@@ -739,9 +933,25 @@
                   "ekspeditor_week2_immediate_home_fix"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_immediate_home_fix"
+              "triggers_on_choice": "ekspeditor_week2_immediate_home_fix",
+              "effect": {
+                "control": 2,
+                "relationship_sara": -1,
+                "stress": 1,
+                "stagnation_private": 1,
+                "service_mask": 1
+              },
+              "tags": [
+                "ekspeditor_week2_immediate_home_fix"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_arbeidsrolle",
+          "competency": "rolleavkobling_og_egenomsorg",
+          "pressure": "butikkmodus_vs_fritid",
+          "choice_axis": "kontrollere_situasjonen_vs_vaere_i_den",
+          "consequence_axis": "hvile_og_narhet_vs_rolleutmattelse",
+          "narrative_arc": "ekspeditor_second_week_leaving_the_shop_floor"
         },
         {
           "id": "personal_ekspeditor_week2_living_room_as_store",
@@ -779,7 +989,16 @@
                   "ekspeditor_week2_drops_shopfloor_lens"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_drops_shopfloor_lens"
+              "triggers_on_choice": "ekspeditor_week2_drops_shopfloor_lens",
+              "effect": {
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "control": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week2_drops_shopfloor_lens"
+              ]
             },
             {
               "id": "B",
@@ -797,7 +1016,16 @@
                   "ekspeditor_week2_jokes_living_room_store"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_jokes_living_room_store"
+              "triggers_on_choice": "ekspeditor_week2_jokes_living_room_store",
+              "effect": {
+                "relationship_sara": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week2_jokes_living_room_store"
+              ]
             },
             {
               "id": "C",
@@ -815,9 +1043,24 @@
                   "ekspeditor_week2_reorganizes_living_room"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_reorganizes_living_room"
+              "triggers_on_choice": "ekspeditor_week2_reorganizes_living_room",
+              "effect": {
+                "control": 2,
+                "relationship_sara": -1,
+                "stress": 1,
+                "stagnation_private": 1
+              },
+              "tags": [
+                "ekspeditor_week2_reorganizes_living_room"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_arbeidsrolle",
+          "competency": "rolleavkobling_og_egenomsorg",
+          "pressure": "butikkmodus_vs_fritid",
+          "choice_axis": "kontrollere_situasjonen_vs_vaere_i_den",
+          "consequence_axis": "hvile_og_narhet_vs_rolleutmattelse",
+          "narrative_arc": "ekspeditor_second_week_leaving_the_shop_floor"
         },
         {
           "id": "personal_ekspeditor_week2_friend_not_complaint",
@@ -855,7 +1098,16 @@
                   "ekspeditor_week2_answers_friend_as_friend"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_answers_friend_as_friend"
+              "triggers_on_choice": "ekspeditor_week2_answers_friend_as_friend",
+              "effect": {
+                "relationship_jonas": 3,
+                "self_awareness": 2,
+                "service_mask": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week2_answers_friend_as_friend"
+              ]
             },
             {
               "id": "B",
@@ -873,7 +1125,16 @@
                   "ekspeditor_week2_defends_serious_service_tone"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_defends_serious_service_tone"
+              "triggers_on_choice": "ekspeditor_week2_defends_serious_service_tone",
+              "effect": {
+                "relationship_jonas": 0,
+                "service_mask": 1,
+                "self_awareness": 0,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week2_defends_serious_service_tone"
+              ]
             },
             {
               "id": "C",
@@ -891,9 +1152,24 @@
                   "ekspeditor_week2_friend_complaint_joke"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_friend_complaint_joke"
+              "triggers_on_choice": "ekspeditor_week2_friend_complaint_joke",
+              "effect": {
+                "relationship_jonas": 1,
+                "mood": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "ekspeditor_week2_friend_complaint_joke"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_arbeidsrolle",
+          "competency": "rolleavkobling_og_egenomsorg",
+          "pressure": "butikkmodus_vs_fritid",
+          "choice_axis": "kontrollere_situasjonen_vs_vaere_i_den",
+          "consequence_axis": "hvile_og_narhet_vs_rolleutmattelse",
+          "narrative_arc": "ekspeditor_second_week_leaving_the_shop_floor"
         },
         {
           "id": "personal_ekspeditor_week2_day_as_register_close",
@@ -931,7 +1207,16 @@
                   "ekspeditor_week2_leaves_day_unbalanced"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_leaves_day_unbalanced"
+              "triggers_on_choice": "ekspeditor_week2_leaves_day_unbalanced",
+              "effect": {
+                "relationship_sara": 2,
+                "stress": -2,
+                "control": -1,
+                "self_awareness": 2
+              },
+              "tags": [
+                "ekspeditor_week2_leaves_day_unbalanced"
+              ]
             },
             {
               "id": "B",
@@ -949,7 +1234,16 @@
                   "ekspeditor_week2_explains_closing_head"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_explains_closing_head"
+              "triggers_on_choice": "ekspeditor_week2_explains_closing_head",
+              "effect": {
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "stress": -1,
+                "service_mask": -1
+              },
+              "tags": [
+                "ekspeditor_week2_explains_closing_head"
+              ]
             },
             {
               "id": "C",
@@ -967,9 +1261,24 @@
                   "ekspeditor_week2_private_improvement_ledger"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_private_improvement_ledger"
+              "triggers_on_choice": "ekspeditor_week2_private_improvement_ledger",
+              "effect": {
+                "control": 2,
+                "stress": 2,
+                "energy_weekend": -1,
+                "stagnation_private": 1
+              },
+              "tags": [
+                "ekspeditor_week2_private_improvement_ledger"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_arbeidsrolle",
+          "competency": "rolleavkobling_og_egenomsorg",
+          "pressure": "butikkmodus_vs_fritid",
+          "choice_axis": "kontrollere_situasjonen_vs_vaere_i_den",
+          "consequence_axis": "hvile_og_narhet_vs_rolleutmattelse",
+          "narrative_arc": "ekspeditor_second_week_leaving_the_shop_floor"
         },
         {
           "id": "personal_ekspeditor_week2_weekend_without_shop_floor",
@@ -1009,7 +1318,17 @@
                   "ekspeditor_week2_private_boundary"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_private_boundary"
+              "triggers_on_choice": "ekspeditor_week2_private_boundary",
+              "effect": {
+                "energy_weekend": 5,
+                "stress": -4,
+                "service_mask": -4,
+                "relationship_private": 4,
+                "autonomy_private": 3
+              },
+              "tags": [
+                "ekspeditor_week2_private_boundary"
+              ]
             },
             {
               "id": "B",
@@ -1027,7 +1346,16 @@
                   "ekspeditor_week2_present_without_expedition"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_present_without_expedition"
+              "triggers_on_choice": "ekspeditor_week2_present_without_expedition",
+              "effect": {
+                "relationship_private": 4,
+                "mood": 2,
+                "self_awareness": 2,
+                "stress": -2
+              },
+              "tags": [
+                "ekspeditor_week2_present_without_expedition"
+              ]
             },
             {
               "id": "C",
@@ -1045,7 +1373,16 @@
                   "ekspeditor_week2_withdraws_from_social_needs"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_withdraws_from_social_needs"
+              "triggers_on_choice": "ekspeditor_week2_withdraws_from_social_needs",
+              "effect": {
+                "energy_weekend": 2,
+                "relationship_private": -2,
+                "stress": -1,
+                "guilt": 1
+              },
+              "tags": [
+                "ekspeditor_week2_withdraws_from_social_needs"
+              ]
             },
             {
               "id": "D",
@@ -1064,9 +1401,25 @@
                   "ekspeditor_week2_compensates_with_service_mask"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_compensates_with_service_mask"
+              "triggers_on_choice": "ekspeditor_week2_compensates_with_service_mask",
+              "effect": {
+                "service_mask": 3,
+                "stress": 2,
+                "relationship_private": -2,
+                "energy_weekend": -2,
+                "stagnation_private": 2
+              },
+              "tags": [
+                "ekspeditor_week2_compensates_with_service_mask"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_arbeidsrolle",
+          "competency": "rolleavkobling_og_egenomsorg",
+          "pressure": "butikkmodus_vs_fritid",
+          "choice_axis": "kontrollere_situasjonen_vs_vaere_i_den",
+          "consequence_axis": "hvile_og_narhet_vs_rolleutmattelse",
+          "narrative_arc": "ekspeditor_second_week_leaving_the_shop_floor"
         }
       ],
       "threads": [

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs';
 const checks=new Set([
- 'data/badges.json',
+ 'data/badges/index.json',
  'data/Civication/hg_careers.json',
  'data/Civication/lifeMails/life_manifest.json',
  'data/Civication/jobbmails/naeringsliv/naeringslivCivic.json',
