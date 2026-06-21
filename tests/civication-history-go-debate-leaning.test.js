@@ -83,5 +83,21 @@ const C = global.HGDebatesContent;
   assert.strictEqual(C.poleLabel("myke_trafikanter"), "Myke trafikanter", "pole label humanized");
   assert.strictEqual(C.poleLabel("midt"), "Midt imellom", "midt label");
 
+  // leaningAll: only axes with recorded positions, sorted by engagement
+  const all = C.leaningAll();
+  assert.strictEqual(all.length, 1, "only the engaged axis is listed");
+  assert.strictEqual(all[0].conflictId, "bevaring_vs_utvikling", "engaged axis surfaced");
+
+  // overview popup reflects the engaged axis and lean
+  const overview = C.overviewHtml();
+  assert.ok(/Dine debatt-tendenser/.test(overview), "overview titled");
+  assert.ok(/Bevaring vs\. utvikling/.test(overview), "overview lists axis");
+  assert.ok(/Utvikling/.test(overview), "overview shows lean");
+
+  // engage a second axis -> it appears too
+  positionsById.other = "x";
+  const all2 = C.leaningAll();
+  assert.strictEqual(all2.length, 2, "second engaged axis appears");
+
   console.log("hg debate leaning ok");
 })().catch((err) => { console.error(err); process.exit(1); });

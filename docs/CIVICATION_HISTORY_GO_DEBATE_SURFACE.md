@@ -174,6 +174,9 @@ standpunkt, og broen fullfører `position_chosen`/`debate_participated` ved retu
   (eller `midt`). `HGDebatesContent.leaning(conflictId)` teller spillerens registrerte standpunkt
   på tvers av alle debatter på samme akse og rapporterer dominerende pol. Popup viser «Din tendens
   på aksen: …» når spilleren har tatt standpunkt i ≥2 debatter på samme konflikt.
+- **Tendens-oversikt**: `HGDebatesContent.leaningAll()` gir lean på tvers av alle aksene spilleren
+  har engasjert seg i. «Se alle dine tendenser» i debatt-popupen åpner et «Dine debatt-tendenser»-
+  panel (`openOverview`) som lister hver verdikonflikt med dominerende pol og antall standpunkt.
 - **Inngang for spilleren**: kommer spilleren til debatt kun via Civication deep-link i v1, eller
   også via en History Go-inngang (kart/PlaceCard)? Foreslår: **kun deep-link i v1**, PlaceCard-
   inngang i fase 2.
