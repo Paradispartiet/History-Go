@@ -100,10 +100,10 @@ Alle finnes allerede; broen leser dem, hovedappen fortsetter å skrive dem.
 | `updateProfile` (event) | generisk «noe endret seg» | debounced re-reconcile (samme `window`) |
 
 > Debatt-signalet (`HGDebates.record(...)` → `hg_debate_log_v1`) er **kontrakten/produsenten**,
-> analogt med hvordan `HGUnlocks.recordFromQuiz` skrives av `quizzes.js`. Det gjenstår en faktisk
-> History Go debatt-/standpunkt-flate som kaller `HGDebates.record(...)`, og en rute å deep-linke
-> til (det finnes ingen `#/debate`-rute ennå). Til den finnes vil deep-link returnere `null` for
-> debatt, men broen fullfører debatt-tasks så snart loggen har en oppføring.
+> analogt med hvordan `HGUnlocks.recordFromQuiz` skrives av `quizzes.js`. History Go har nå en
+> implementert debatt-/standpunkt-flate og `#/debate/:id`-rute som skriver denne persisterte loggen.
+> Broen leser `hg_debate_log_v1.byId`/`byConflict` fra localStorage, ikke en løs runtime-global, og
+> fullfører debatt-tasks når loggen har `participated` eller `position` etter valgt `completion_mode`.
 
 ## 6. Completion-mode → tilfredsstillende signal
 
