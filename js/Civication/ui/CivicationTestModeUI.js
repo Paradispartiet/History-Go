@@ -36,6 +36,8 @@
   const state = {
     roles: [],
     rolesPromise: null,
+    rolesLoading: false,
+    rolesLoaded: false,
     rolesError: "",
     selectedKey: "",
     startpoint: "week1",
@@ -85,17 +87,25 @@
 
   function toRole(path, model) {
     const fallback = fallbackRoleFromPath(path);
-    const category = norm(model?.category || fallback.category);
-    const roleScope = norm(model?.role_scope || fallback.role_scope);
-    const roleKey = roleScope || slugify(model?.title || fallback.title);
+    const category = norm(model?.category || model?.source?.badge_id || fallback.category);
+    const title = norm(model?.title || model?.source?.tier_label || fallback.title);
+    const resolved = window.CivicationCareerRoleResolver?.resolveCareerRole?.({
+      career_id: category,
+      title,
+      role_key: model?.role_key || model?.role_scope || fallback.role_scope,
+      role_id: model?.role_id
+    }) || {};
+    const roleScope = norm(model?.role_scope || resolved.role_scope || fallback.role_scope);
+    const roleKey = norm(model?.role_key || resolved.role_key || roleScope || slugify(title));
     return {
-      title: norm(model?.title || fallback.title),
+      title,
       category,
+      career: norm(model?.source?.badge_name || category),
       career_id: category,
       career_name: norm(model?.source?.badge_name || category),
       role_scope: roleScope,
       role_key: roleKey,
-      role_id: norm(model?.role_id),
+      role_id: norm(model?.role_id || resolved.role_id),
       path
     };
   }
@@ -119,17 +129,32 @@
       .sort((a, b) => (a.category + a.title).localeCompare(b.category + b.title, "no"));
   }
 
-  // Bygger (og cacher) rollelisten. Brukes både av UI og test-API-et.
-  function listRoles() {
-    if (state.roles.length) return Promise.resolve(state.roles);
+  // Bygger (og cacher) rollelisten. loadRolesAsync brukes av UI-et for å vente
+  // på fetch, mens listRoles() er bevisst synkron for konsoll/API: den returnerer
+  // alltid en Array og starter bakgrunnslasting hvis listen ikke er klar ennå.
+  function loadRolesAsync() {
+    if (state.rolesLoaded) return Promise.resolve(state.roles);
     if (!state.rolesPromise) {
+      state.rolesLoading = true;
       state.rolesPromise = loadRoles().then(roles => {
         state.roles = roles;
+        state.rolesLoaded = true;
+        state.rolesLoading = false;
         if (!roles.length && !state.rolesError) state.rolesError = "Fant ingen roller";
         return roles;
+      }).catch(error => {
+        state.rolesLoading = false;
+        state.rolesLoaded = true;
+        state.rolesError = state.rolesError || `Kunne ikke laste roleModels/manifest.json: ${error?.message || "ukjent feil"}`;
+        return state.roles;
       });
     }
     return state.rolesPromise;
+  }
+
+  function listRoles() {
+    if (!state.rolesLoaded && !state.rolesLoading) loadRolesAsync();
+    return state.roles.slice();
   }
 
   function findRole(roleKey) {
@@ -258,6 +283,8 @@
       active: window.CivicationState?.getActivePosition?.() || null,
       selectedRole: selected,
       roleCount: state.roles.length,
+      roleLoading: state.rolesLoading,
+      roleLoaded: state.rolesLoaded,
       rolesError: state.rolesError || null,
       startpoint: state.startpoint,
       runtimeExists: !!runtime,
@@ -282,9 +309,10 @@
     if (!el) return;
     const info = inspect();
     const active = /** @type {any} */ (info.active || {});
-    const statusMessage = message || (info.selectedRole ? `Valgt rolle: ${info.selectedRole.title}` : "Ingen rolle valgt");
+    const statusMessage = message || (state.rolesLoading ? "Laster roller …" : (info.selectedRole ? `Valgt rolle: ${info.selectedRole.title}` : "Ingen rolle valgt"));
     el.innerHTML = `
       <p class="civi-test-message">${esc(statusMessage)}</p>
+      <div><span>roller</span><strong>${esc(info.roleCount)}${state.rolesLoading ? " (laster)" : ""}</strong></div>
       <div><span>aktiv rolle</span><strong>${esc(active.title || "—")}</strong></div>
       <div><span>career_id</span><strong>${esc(active.career_id || "—")}</strong></div>
       <div><span>role_key</span><strong>${esc(active.role_key || active.role_scope || "—")}</strong></div>
@@ -312,6 +340,10 @@
     const list = document.getElementById(ROLES_ID);
     if (!list) return;
     const roles = visibleRoles();
+    if (!state.roles.length && state.rolesLoading) {
+      list.innerHTML = `<p class="civi-test-empty">Laster roller …</p>`;
+      return;
+    }
     if (!state.roles.length && state.rolesError) {
       list.innerHTML = `<p class="civi-test-empty">${esc(state.rolesError)}</p>`;
       return;
@@ -369,46 +401,55 @@
   function ensurePanel() {
     if (!hasDom()) return null;
     let panel = document.getElementById(PANEL_ID);
-    if (panel) return panel;
+    if (!panel) {
+      panel = document.createElement("section");
+      panel.id = PANEL_ID;
+      panel.className = "civi-test-mode civi-test-floating is-hidden";
+      const host = document.body || document.querySelector(".civi-panels");
+      if (!host) return null;
+      // Flytende testpanel ligger direkte i body, ikke inni .civi-panels-gridet.
+      // Det gjør at panelet alltid har en synlig render-host uavhengig av
+      // dashboard-layout, scrolling og seksjonsstiler.
+      host.appendChild(panel);
+    }
 
-    panel = document.createElement("section");
-    panel.id = PANEL_ID;
-    panel.className = "civi-test-mode civi-test-floating is-hidden";
-    panel.innerHTML = buildPanelHtml();
+    const needsBody = !document.getElementById(ROLES_ID) || !document.getElementById(STATUS_ID);
+    if (needsBody) panel.innerHTML = buildPanelHtml();
 
-    const host = document.querySelector(".civi-panels") || document.body;
-    if (host && host.firstChild) host.insertBefore(panel, host.firstChild);
-    else if (host) host.appendChild(panel);
+    if (needsBody || panel.dataset?.civiTestBound !== "true") {
+      document.getElementById("civicationTestClose")?.addEventListener("click", closePanel);
+      document.getElementById("civiTestStartRole")?.addEventListener("click", () => startRole(state.selectedKey));
+      document.getElementById("civiTestStartDay")?.addEventListener("click", async () => { await startDay(); });
+      document.getElementById("civiTestResetDay")?.addEventListener("click", resetDay);
 
-    document.getElementById("civicationTestClose")?.addEventListener("click", closePanel);
-    document.getElementById("civiTestStartRole")?.addEventListener("click", () => startRole(state.selectedKey));
-    document.getElementById("civiTestStartDay")?.addEventListener("click", async () => { await startDay(); });
-    document.getElementById("civiTestResetDay")?.addEventListener("click", resetDay);
+      const search = /** @type {any} */ (document.getElementById(SEARCH_ID));
+      search?.addEventListener("input", () => { state.query = search.value || ""; renderRoles(); });
 
-    const search = /** @type {any} */ (document.getElementById(SEARCH_ID));
-    search?.addEventListener("input", () => { state.query = search.value || ""; renderRoles(); });
+      const filter = /** @type {any} */ (document.getElementById(FILTER_ID));
+      filter?.addEventListener("change", () => { state.category = filter.value || ""; renderRoles(); });
 
-    const filter = /** @type {any} */ (document.getElementById(FILTER_ID));
-    filter?.addEventListener("change", () => { state.category = filter.value || ""; renderRoles(); });
+      const roles = document.getElementById(ROLES_ID);
+      roles?.addEventListener("click", event => {
+        const button = /** @type {any} */ (event.target)?.closest?.(".civi-test-role");
+        const key = button?.dataset?.roleKey;
+        if (!key) return;
+        state.selectedKey = key;
+        renderRoles();
+        renderStatus(`Valgt rolle: ${esc(findRole(key)?.title || key)}`);
+      });
 
-    const roles = document.getElementById(ROLES_ID);
-    roles?.addEventListener("click", event => {
-      const button = /** @type {any} */ (event.target)?.closest?.(".civi-test-role");
-      const key = button?.dataset?.roleKey;
-      if (!key) return;
-      state.selectedKey = key;
-      renderRoles();
-      renderStatus(`Valgt rolle: ${esc(findRole(key)?.title || key)}`);
-    });
+      panel.querySelectorAll?.(`input[name="${WEEK_NAME}"]`).forEach((/** @type {any} */ input) => {
+        input.addEventListener("change", () => { if (input.checked) state.startpoint = input.value; });
+      });
+      if (panel.dataset) panel.dataset.civiTestBound = "true";
+    }
 
-    panel.querySelectorAll?.(`input[name="${WEEK_NAME}"]`).forEach((/** @type {any} */ input) => {
-      input.addEventListener("change", () => { if (input.checked) state.startpoint = input.value; });
-    });
-
-    listRoles().then(() => {
+    loadRolesAsync().then(() => {
       renderCategories();
       renderRoles();
-      renderStatus(`${state.roles.length} roller lastet fra roleModels-manifest.`);
+      renderStatus(state.roles.length
+        ? `${state.roles.length} roller lastet fra roleModels-manifest.`
+        : (state.rolesError || "Fant ingen roller"));
     });
     renderStatus();
     return panel;
@@ -416,7 +457,22 @@
 
   function openPanel() {
     const panel = ensurePanel();
-    if (!panel) return;
+    if (!panel) {
+      state.panelOpen = false;
+      state.rolesError = state.rolesError || "Panel-body/host mangler";
+      return;
+    }
+    // Hver åpning repopulerer synlige felt. Dette hindrer en tom boks hvis
+    // panelet finnes fra før, eller hvis første rollelasting fortsatt pågår.
+    renderCategories();
+    renderRoles();
+    renderStatus();
+    loadRolesAsync().then(() => {
+      if (!state.panelOpen) return;
+      renderCategories();
+      renderRoles();
+      renderStatus(state.roles.length ? `${state.roles.length} roller lastet fra roleModels-manifest.` : (state.rolesError || "Fant ingen roller"));
+    });
     panel.classList?.remove("is-hidden");
     state.panelOpen = true;
     const button = document.getElementById(BUTTON_ID);
@@ -458,6 +514,7 @@
   function mount() {
     if (!hasDom()) return;
     ensureButton();
+    loadRolesAsync();
   }
 
   function unmount() {
@@ -484,6 +541,7 @@
     disable,
     isEnabled,
     listRoles,
+    loadRoles: loadRolesAsync,
     startRole,
     startDay,
     resetDay,
