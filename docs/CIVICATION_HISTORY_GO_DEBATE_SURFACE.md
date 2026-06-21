@@ -171,5 +171,9 @@ standpunkt, og broen fullfører `position_chosen`/`debate_participated` ved retu
 - **Inngang for spilleren**: kommer spilleren til debatt kun via Civication deep-link i v1, eller
   også via en History Go-inngang (kart/PlaceCard)? Foreslår: **kun deep-link i v1**, PlaceCard-
   inngang i fase 2.
-- **`conflict_id` vs `debate_id`**: v1 bruker `debate_id` = debattens `id`. `conflict_id` kobles
-  kun hvis en debatt eksplisitt speiler en Civication-konflikt (valgfritt felt).
+- **`conflict_id` vs `debate_id`**: debatten nøkles på `debate_id` (= debattens `id`). `conflict_id`
+  er valgfritt og **må** være en ekte Civication-konfliktakse (`primary`/`secondary` i
+  `data/Civication/conflicts/*`) — ikke en oppfunnet id (SYSTEM_REGISTRY: ikke gjett). Alle 14
+  debattene er nå koblet til en akse. For at en konflikt-rettet task (`conflict_id`, uten
+  `debate_id`) skal kunne fullføres, vedlikeholder `HGDebates.record(...)` en sekundærindeks
+  `hg_debate_log_v1.byConflict` (`conflictId → byId-nøkkel`) som broen slår opp i.

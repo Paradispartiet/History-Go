@@ -62,6 +62,7 @@
       quizProgress: safeParse(localStorage.getItem("quiz_progress"), {}) || {},
       merits: safeParse(localStorage.getItem("merits_by_category"), {}) || {},
       debateById: readStore("hg_debate_log_v1", "byId"),
+      debateByConflict: readStore("hg_debate_log_v1", "byConflict"),
       readStories: readStore("hg_reads_v1", "stories"),
       readLeksikon: readStore("hg_reads_v1", "leksikon"),
       readPersons: readStore("hg_reads_v1", "persons")
@@ -198,7 +199,11 @@
         .filter(Boolean);
       let row = null;
       for (let i = 0; i < ids.length; i += 1) {
-        if (state.debateById[ids[i]]) { row = state.debateById[ids[i]]; break; }
+        const id = ids[i];
+        // Direkte treff på debateId, eller via conflict-aksen (byConflict -> byId-nøkkel).
+        const viaConflict = state.debateByConflict[id];
+        if (state.debateById[id]) { row = state.debateById[id]; break; }
+        if (viaConflict && state.debateById[viaConflict]) { row = state.debateById[viaConflict]; break; }
       }
       if (!row) return null;
       if (mode === "position_chosen") {
