@@ -78,10 +78,14 @@
     return human ? human.charAt(0).toUpperCase() + human.slice(1) : raw;
   }
 
-  function debateHtml(debate) {
+  function debateHtml(debate, priorPosition) {
     const context = Array.isArray(debate.context) ? debate.context : [];
     const positions = Array.isArray(debate.positions) ? debate.positions : [];
     const conflict = norm(debate.conflict_id);
+    const prior = norm(priorPosition);
+    const priorLabel = prior
+      ? ((positions.find(function (p) { return norm(p.id) === prior; }) || {}).label || prior)
+      : "";
     return (
       `<div class="hg-debate">` +
       `<h2 class="hg-debate__title">${esc(debate.title || debate.question || "Debatt")}</h2>` +
@@ -93,8 +97,10 @@
       context.map(function (line) { return `<p class="hg-debate__context">${esc(line)}</p>`; }).join("") +
       `<div class="hg-debate__positions">` +
       positions.map(function (pos) {
+        const isChosen = prior && norm(pos.id) === prior;
         return (
-          `<button type="button" class="hg-debate__position" ` +
+          `<button type="button" class="hg-debate__position${isChosen ? " is-chosen" : ""}" ` +
+          (isChosen ? `aria-pressed="true" ` : "") +
           `data-debate-position="${esc(pos.id)}" data-debate-id="${esc(debate.id)}">` +
           `<span class="hg-debate__position-label">${esc(pos.label || pos.id)}</span>` +
           (pos.blurb ? `<span class="hg-debate__position-blurb">${esc(pos.blurb)}</span>` : "") +
@@ -102,7 +108,7 @@
         );
       }).join("") +
       `</div>` +
-      `<p class="hg-debate__hint" data-debate-feedback></p>` +
+      `<p class="hg-debate__hint" data-debate-feedback>${prior ? "Du valgte: " + esc(priorLabel) : ""}</p>` +
       `</div>`
     );
   }
@@ -144,10 +150,18 @@
       window.HGDebates?.record?.({ debateId: debateId, conflictId: debate.conflict_id || null });
     } catch {}
 
+    // Hent tidligere standpunkt (om noen) så popupen kan vise og forhåndsmarkere valget.
+    let priorPosition = "";
+    try {
+      const row = window.HGDebates?.getById?.(debateId)
+        || (debate.conflict_id ? window.HGDebates?.getById?.(debate.conflict_id) : null);
+      priorPosition = row && row.position ? row.position : "";
+    } catch {}
+
     ensureStyles();
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      popupFn(debateHtml(debate), "hg-debate-popup");
+      popupFn(debateHtml(debate, priorPosition), "hg-debate-popup");
     } else {
       window.showToast?.("Popup-systemet er ikke lastet");
     }
