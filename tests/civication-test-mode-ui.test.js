@@ -117,9 +117,12 @@ async function run() {
   assert(global.document.getElementById('civicationTestButton'), 'testknapp skal opprettes uten flagg');
   assert.strictEqual(global.document.getElementById('civicationTestModePanel'), null, 'testpanel opprettes først når det åpnes');
 
-  // Rolleliste bygges datadrevet fra manifest.
-  const roles = await TM.listRoles();
-  assert(Array.isArray(roles) && roles.length > 50, `rolleliste skal bygges fra data (fikk ${roles.length})`);
+  // Rolleliste bygges datadrevet fra manifest. loadRoles() venter på async
+  // datahenting, mens listRoles() er det synkrone konsoll-API-et.
+  await TM.loadRoles();
+  const roles = TM.listRoles();
+  assert(Array.isArray(roles), 'listRoles skal returnere en Array');
+  assert(roles.length > 50, `rolleliste skal bygges fra data (fikk ${roles.length})`);
 
   // Controller finnes i rollelisten.
   const controller = roles.find(r => r.role_key === 'controller' && r.career_id === 'naeringsliv');
