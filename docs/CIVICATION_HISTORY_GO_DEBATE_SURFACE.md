@@ -170,6 +170,10 @@ standpunkt, og broen fullfører `position_chosen`/`debate_participated` ved retu
   ekte steder og ekte konfliktakser, validert av `tests/debates-content.test.js`. Debatt-popup
   viser konflikt-tilhørighet som en avledet etikett (`HGDebatesContent.conflictLabel`, f.eks.
   `bevaring_vs_utvikling` → «Bevaring vs. utvikling»). Full redaksjon er fortsatt en egen jobb.
+- **Standpunkt-poler og tendens**: hvert standpunkt har en `pole` = den aksesiden det lener mot
+  (eller `midt`). `HGDebatesContent.leaning(conflictId)` teller spillerens registrerte standpunkt
+  på tvers av alle debatter på samme akse og rapporterer dominerende pol. Popup viser «Din tendens
+  på aksen: …» når spilleren har tatt standpunkt i ≥2 debatter på samme konflikt.
 - **Inngang for spilleren**: kommer spilleren til debatt kun via Civication deep-link i v1, eller
   også via en History Go-inngang (kart/PlaceCard)? Foreslår: **kun deep-link i v1**, PlaceCard-
   inngang i fase 2.

@@ -61,6 +61,10 @@ for (const file of manifest.files) {
       linked++;
     }
 
+    // Valid poles for this debate's axis: the two sides of conflict_id, plus the neutral "midt".
+    const validPoles = new Set(["midt"]);
+    if (d.conflict_id) String(d.conflict_id).split("_vs_").forEach((s) => validPoles.add(s));
+
     assert(Array.isArray(d.positions) && d.positions.length >= 2, `${where}: >=2 positions`);
     const posIds = new Set();
     for (const pos of d.positions) {
@@ -68,6 +72,9 @@ for (const file of manifest.files) {
       assert(!posIds.has(pos.id), `${where}: duplicate position id ${pos.id}`);
       posIds.add(pos.id);
       assert(typeof pos.label === "string" && pos.label.trim(), `${where}: position label`);
+      // each position leans to a pole of its axis (or "midt"); enables the leaning() reading.
+      assert(typeof pos.pole === "string" && pos.pole.trim(), `${where}/${pos.id}: pole`);
+      assert(validPoles.has(pos.pole), `${where}/${pos.id}: pole is a side of the axis or "midt" (got ${pos.pole})`);
     }
     total++;
   }
