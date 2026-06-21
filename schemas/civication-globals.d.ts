@@ -117,6 +117,7 @@ declare global {
     CivicationMailRuntime?: any;
     CiviRoleStoryletBridge?: any;
     CivicationTaskEngine?: any;
+    CivicationHistoryGoTaskBridge?: any;
     CiviStoryResolver?: any;
     CivicationConflicts?: any;
     CivicationEventChannels?: any;
