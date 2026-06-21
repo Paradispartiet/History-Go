@@ -152,6 +152,7 @@ declare global {
     HGStorySourceCollector?: any;
     HGStoryTypes?: any;
     HGStoryUI?: any;
+    HGDebates?: any;
     HGTimeResolver?: any;
     HGUnlocks?: any;
     HGUserProfile?: any;

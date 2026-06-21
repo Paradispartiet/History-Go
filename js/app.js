@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // hg_unlocks.js FØR quizzes.js: quizzes.js kaller window.HGUnlocks.recordFromQuiz
     // ved riktig svar, og recordFromQuiz dispatcher updateProfile (miniProfile-refresh).
     await safeRun("loadHGUnlocks", () => loadScriptOnce("js/hg_unlocks.js"));
+    await safeRun("loadHGDebates", () => loadScriptOnce("js/hgDebates.js"));
     await safeRun("loadQuizzes", () => loadScriptOnce("js/quizzes.js"));
 
     // QuizEngine må bindes til det ekte app-API-et (window.PLACES) FØR routeren
