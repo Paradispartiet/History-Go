@@ -921,6 +921,15 @@
     if (typeof popupFn === "function") {
       const place = await resolvePlaceForArticle(article) || resolvePlaceById(requestedPlaceId);
       const effectivePlaceId = norm(place?.id || article?.place_id || requestedPlaceId);
+
+      // History Go read-signal: å åpne leksikon for stedet teller som read_leksikon.
+      // Civication-broen matcher hg_reads_v1.leksikon på emne/kategori/target.
+      try {
+        leksikonReadRecordsForPlace(place, effectivePlaceId).forEach(function (r) {
+          window.HGReads?.recordLeksikon?.(r);
+        });
+      } catch {}
+
       const mainArticle = resolveMainLeksikonArticle(articles, place) || article || null;
       const sprakArticle = await loadSprakForPlace(effectivePlaceId);
       currentLeksikonContext.placeId = effectivePlaceId;
@@ -1135,12 +1144,28 @@
     filterLesesporList(/** @type {Element} */ (event.target).closest(".pc-leksikon-lesespor") || document);
   });
 
+  // History Go read-signal: utled hvilke read_leksikon-treff en leksikonvisning for et sted
+  // dekker. Steder bærer category + emne_ids, så vi kan oppfylle kategori-, emne- og
+  // stedsmålrettede read_leksikon-oppgaver. Ren funksjon for testbarhet.
+  function leksikonReadRecordsForPlace(place, placeId) {
+    const catId = norm(place?.category);
+    const out = [];
+    const baseId = norm(placeId) || catId;
+    if (baseId) out.push({ leksikonId: baseId, categoryId: catId });
+    (Array.isArray(place?.emne_ids) ? place.emne_ids : []).forEach(function (e) {
+      const em = norm(e);
+      if (em) out.push({ leksikonId: em, emneId: em, categoryId: catId });
+    });
+    return out;
+  }
+
   window.HGLeksikon = {
     init,
     openPlace,
     renderPlaceList,
     renderArticle,
-    patchPlaceCard
+    patchPlaceCard,
+    leksikonReadRecordsForPlace
   };
 
   window.HGLesespor = {
