@@ -25,9 +25,14 @@ function bootstrap(activePosition = null) {
   global.window = global;
   global.localStorage = makeStorage();
   global.Event = class Event { constructor(type) { this.type = type; } };
+  global.CustomEvent = class CustomEvent { constructor(type, init) { this.type = type; this.detail = (init && init.detail) || null; } };
   global.document = { readyState: 'complete', addEventListener() {} };
   const events = [];
-  global.dispatchEvent = (ev) => { events.push(ev?.type); };
+  const consequences = [];
+  global.dispatchEvent = (ev) => {
+    events.push(ev?.type);
+    if (ev?.type === 'civication:consequence') consequences.push(ev.detail);
+  };
   global.addEventListener = () => {};
   global.location = { href: 'http://localhost/Civication.html' };
 
@@ -41,7 +46,7 @@ function bootstrap(activePosition = null) {
   loadScript('js/Civication/systems/civicationMailRuntime.js');
 
   global.CivicationState.setActivePosition(activePosition);
-  return { events };
+  return { events, consequences };
 }
 
 (async function run() {
@@ -63,6 +68,11 @@ function bootstrap(activePosition = null) {
   assert((state.byBrandRole[key].metrics.kundetillit || 0) > 0);
   assert((state.byBrandRole[key].metrics.brand_tillit || 0) > 0);
   assert((state.byBrandRole[key].metrics.faglighet || 0) > 0);
+  // an applied consequence emits a UI feedback signal carrying the delta
+  assert.strictEqual(env.consequences.length, 1, 'civication:consequence dispatched once');
+  assert.ok(env.consequences[0] && env.consequences[0].delta, 'consequence carries a delta');
+  assert.strictEqual(env.consequences[0].brand_name, 'Norli', 'consequence carries brand');
+  assert((env.consequences[0].delta.kundetillit || 0) > 0, 'delta reflects the metric change');
 
   // D
   env = bootstrap({ brand_id: 'narvesen', brand_name: 'Narvesen', career_id: 'naeringsliv', role_id: 'naer_ekspeditor' });

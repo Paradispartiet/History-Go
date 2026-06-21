@@ -35,6 +35,7 @@ declare global {
     CivicationBrandJobProgression?: any;
     CivicationBrandJobState?: any;
     CivicationBrandJobUI?: any;
+    CivicationConsequenceFeedback?: any;
     CivicationCareerOutcomeRuntime?: any;
     CivicationChoiceDirector?: any;
     CivicationChoiceToneVariants?: any;

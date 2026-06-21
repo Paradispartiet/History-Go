@@ -202,6 +202,22 @@
       updated_at: new Date().toISOString()
     };
     const saved = setState(nextState);
+    if (saved.changed) {
+      // Synlig konsekvens-feedback: la UI-laget vise «svaret ga X». Kilden eier signalet;
+      // CivicationConsequenceFeedback (UI) lytter og rendrer. Display-only, ingen skriving her.
+      try {
+        window.dispatchEvent(new CustomEvent("civication:consequence", {
+          detail: {
+            delta,
+            brand_id: eventBrandId,
+            brand_name: norm(eventObj?.brand_name || active?.brand_name),
+            role_scope: roleScope,
+            mail_id: mailId,
+            choice_id: choiceId
+          }
+        }));
+      } catch {}
+    }
     return { ok: true, changed: saved.changed, key, delta };
   }
 
