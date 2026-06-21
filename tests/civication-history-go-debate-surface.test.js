@@ -36,6 +36,7 @@ const DATA = [
     question: "Q?",
     context: ["bakgrunn"],
     place_id: "p1",
+    conflict_id: "bevaring_vs_utvikling",
     positions: [{ id: "pro", label: "Pro" }, { id: "con", label: "Con" }]
   }
 ];
@@ -57,8 +58,14 @@ assert(C && typeof C.open === "function", "HGDebatesContent exposed");
   // open records participation (no position yet) and renders position buttons
   const ok = await C.open("d1");
   assert.strictEqual(ok, true, "open returns true");
-  assert.deepStrictEqual(records[0], { debateId: "d1", conflictId: null }, "participation recorded");
+  assert.deepStrictEqual(records[0], { debateId: "d1", conflictId: "bevaring_vs_utvikling" }, "participation recorded with conflict");
   assert.ok(/data-debate-position="pro"/.test(popupHtml), "popup renders positions");
+
+  // conflict chip is rendered with a human-readable, derived label
+  assert.strictEqual(C.conflictLabel("bevaring_vs_utvikling"), "Bevaring vs. utvikling", "derived conflict label");
+  assert.strictEqual(C.conflictLabel(""), "", "no conflict -> empty label");
+  assert.ok(/hg-debate__conflict/.test(popupHtml), "popup renders conflict chip");
+  assert.ok(/Bevaring vs\. utvikling/.test(popupHtml), "chip shows derived label");
 
   // unknown debate -> false
   assert.strictEqual(await C.open("ghost"), false, "unknown debate -> false");

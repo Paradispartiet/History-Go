@@ -165,9 +165,11 @@ standpunkt, og broen fullfører `position_chosen`/`debate_participated` ved retu
 
 ## 11. Åpne spørsmål (avklar før bygg)
 
-- **Innholdseierskap**: hvem skriver debatt-tekstene? MVP har nå 14 debatter over 5 domener
-  (`by`, `historie`, `kunst`, `natur`, `politikk`), alle knyttet til ekte steder og validert av
-  `tests/debates-content.test.js`. Full redaksjon / flere domener er en egen jobb.
+- **Innholdseierskap**: hvem skriver debatt-tekstene? MVP har nå 20 debatter over 8 domener
+  (`by`, `historie`, `kunst`, `musikk`, `natur`, `politikk`, `sport`, `vitenskap`), alle knyttet til
+  ekte steder og ekte konfliktakser, validert av `tests/debates-content.test.js`. Debatt-popup
+  viser konflikt-tilhørighet som en avledet etikett (`HGDebatesContent.conflictLabel`, f.eks.
+  `bevaring_vs_utvikling` → «Bevaring vs. utvikling»). Full redaksjon er fortsatt en egen jobb.
 - **Inngang for spilleren**: kommer spilleren til debatt kun via Civication deep-link i v1, eller
   også via en History Go-inngang (kart/PlaceCard)? Foreslår: **kun deep-link i v1**, PlaceCard-
   inngang i fase 2.
