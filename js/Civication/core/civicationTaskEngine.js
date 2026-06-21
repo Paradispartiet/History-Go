@@ -1,5 +1,6 @@
 (function () {
   const LS_TASKS = "hg_civi_tasks_v1";
+  const LS_TASK_RESULTS = "hg_civi_task_results_v1";
 
   const HISTORY_GO_TARGET_TYPES = [
     "place",
@@ -387,6 +388,61 @@
       });
   }
 
+  // Open tasks that point to a History Go action (normalized HG payload).
+  function findOpenHistoryGoTasks() {
+    return listOpenTasks().filter(function (task) {
+      return isHistoryGoTaskPayload(task && task.task_payload);
+    });
+  }
+
+  // Mirror the History Go result into the legacy interactive-result store that
+  // CivicationEventEngine.answer already reads (+1 / 0 modifier on the choice).
+  function writeTaskResult(taskId, correct) {
+    const cleanId = cleanString(taskId);
+    if (!cleanId) return;
+    const results = safeParse(localStorage.getItem(LS_TASK_RESULTS), {}) || {};
+    const value = correct ? 1 : 0;
+    if (results[cleanId] === value) return;
+    results[cleanId] = value;
+    localStorage.setItem(LS_TASK_RESULTS, JSON.stringify(results));
+  }
+
+  // Record that the History Go part of a task is done. Idempotent: once
+  // history_go.completed_at is set, further calls for the same task are ignored.
+  // Does NOT flip task.status — the mail answer still owns open -> completed.
+  // match = { completion_source, completion_mode, matched_target, correct }
+  function markHistoryGoComplete(taskId, match = {}) {
+    const cleanId = cleanString(taskId);
+    if (!cleanId) return null;
+
+    const store = getStore();
+    const current = store.byId?.[cleanId];
+    if (!current) return null;
+    if (current.history_go && current.history_go.completed_at) {
+      return current;
+    }
+
+    const nextTask = {
+      ...current,
+      history_go: {
+        completed_at: new Date().toISOString(),
+        completion_source: cleanString(match.completion_source),
+        completion_mode: cleanString(match.completion_mode),
+        matched_target:
+          match.matched_target && typeof match.matched_target === "object"
+            ? { ...match.matched_target }
+            : null,
+        correct: !!match.correct
+      }
+    };
+
+    store.byId[cleanId] = nextTask;
+    setStore(store);
+    writeTaskResult(cleanId, nextTask.history_go.correct);
+
+    return nextTask;
+  }
+
   window.CivicationTaskEngine = {
     getStore,
     setStore,
@@ -397,6 +453,8 @@
     createTaskForMail,
     ensureTaskForMail,
     completeByMail,
-    listOpenTasks
+    listOpenTasks,
+    findOpenHistoryGoTasks,
+    markHistoryGoComplete
   };
 })();
