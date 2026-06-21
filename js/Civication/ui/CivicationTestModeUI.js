@@ -89,12 +89,12 @@
     const fallback = fallbackRoleFromPath(path);
     const category = norm(model?.category || model?.source?.badge_id || fallback.category);
     const title = norm(model?.title || model?.source?.tier_label || fallback.title);
-    const resolved = window.CivicationCareerRoleResolver?.resolveCareerRole?.({
+    const resolved = /** @type {any} */ (window.CivicationCareerRoleResolver?.resolveCareerRole?.({
       career_id: category,
       title,
       role_key: model?.role_key || model?.role_scope || fallback.role_scope,
       role_id: model?.role_id
-    }) || {};
+    }) || {});
     const roleScope = norm(model?.role_scope || resolved.role_scope || fallback.role_scope);
     const roleKey = norm(model?.role_key || resolved.role_key || roleScope || slugify(title));
     return {
@@ -229,7 +229,7 @@
   }
 
   async function startDay(opts) {
-    const active = window.CivicationState?.getActivePosition?.() || null;
+    const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.() || null);
     if (!active) {
       renderStatus("Velg og start en rolle først");
       return { ok: false, reason: "no_active_role" };

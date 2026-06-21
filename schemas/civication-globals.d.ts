@@ -118,6 +118,7 @@ declare global {
     CiviRoleStoryletBridge?: any;
     CivicationTaskEngine?: any;
     CivicationHistoryGoTaskBridge?: any;
+    CivicationHistoryGoDeepLink?: any;
     CiviStoryResolver?: any;
     CivicationConflicts?: any;
     CivicationEventChannels?: any;
