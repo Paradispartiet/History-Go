@@ -8,7 +8,10 @@ const placeCardJs = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf
 const indexHtml = fs.readFileSync(path.join(repo, 'index.html'), 'utf8');
 const placeCardCss = fs.readFileSync(path.join(repo, 'css/placeCard.css'), 'utf8');
 
-const CANONICAL = ['people', 'works', 'badges', 'tasks', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
+const POOL = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon', 'play', 'training', 'tasks'];
+const BY = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
+const SPORT = ['people', 'training', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
+const LEKEPLASS = ['play', 'nature', 'badges', 'tasks', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
 
 function extractRoundsRuntime(src) {
   const start = src.indexOf('const PLACE_ROUND_REGISTRY = [');
@@ -34,59 +37,69 @@ function createRoundsHarness() {
   return { sandbox, elements };
 }
 
+const harness = createRoundsHarness();
 function idsFor(place) { return Array.from(harness.sandbox.window.HGPlaceRounds.get(place), (def) => def.id); }
 
-const harness = createRoundsHarness();
 const registryIds = Array.from(harness.sandbox.window.HGPlaceRounds.registry, (def) => def.id);
-assert.deepStrictEqual(registryIds, CANONICAL, 'Canonical registry skal inneholde nøyaktig de 9 faste id-ene i grid-rekkefølge');
-assert.deepStrictEqual(Array.from(harness.sandbox.window.HGPlaceRounds.defaults), CANONICAL);
+assert.deepStrictEqual(registryIds, POOL, 'Canonical registry skal inneholde nøyaktig rundingspoolen');
+assert.deepStrictEqual(Array.from(harness.sandbox.window.HGPlaceRounds.defaults), BY);
 
-for (const oldId of ['wonderkammer', 'observations', 'nature', 'football', 'music', 'stories', 'story', 'lexicon']) {
+for (const oldId of ['wonderkammer', 'observations', 'football', 'music', 'stories', 'story', 'lexicon']) {
   assert(!registryIds.includes(oldId), `${oldId} skal ikke være canonical PlaceCard-round id`);
 }
 
-const fixed = idsFor({ id: 'fallback_default' });
-assert.deepStrictEqual(fixed, CANONICAL, 'getPlaceRounds skal alltid returnere fast 3x3-grid');
-assert.deepStrictEqual(idsFor({ id: 'legacy_order', rounds: ['leksikon', 'brands', 'badges', 'routes'] }), CANONICAL, 'place.rounds skal ikke endre visuell output');
-assert.deepStrictEqual(idsFor({ id: 'rundinger_legacy', rundinger: ['music', 'lexicon', 'stories'] }), CANONICAL, 'place.rundinger skal ikke endre visuell output');
+assert.deepStrictEqual(idsFor({ id: 'fallback_default' }), BY, 'ukjent/blank kategori skal bruke by-profil');
+assert.deepStrictEqual(idsFor({ id: 'sport_profile', category: 'sport' }), SPORT, 'sport skal bruke fast sportprofil');
+assert.deepStrictEqual(idsFor({ id: 'playground_profile', category: 'lekeplass' }), LEKEPLASS, 'lekeplass skal bruke fast lekeplassprofil');
+for (const [category, profile] of Object.entries(harness.sandbox.window.HGPlaceRounds.profiles)) {
+  assert.strictEqual(profile.length, 9, `${category} skal ha nøyaktig 9 profilslots`);
+  assert.strictEqual(new Set(profile).size, 9, `${category} skal ikke ha duplikater`);
+  assert.deepStrictEqual(idsFor({ id: `${category}_profile`, category }), Array.from(profile), `${category} skal returnere profilens 9 rundinger`);
+}
+assert.strictEqual(idsFor({ id: 'natur_profile', category: 'natur' }).length, 9, 'natur skal alltid gi 9 rundinger');
+
+const overridden = idsFor({ id: 'manual_override', category: 'by', rounds: ['training'] });
+assert.strictEqual(overridden.length, 9, 'override-output skal fortsatt ha 9 rundinger');
+assert.strictEqual(new Set(overridden).size, 9, 'override-output skal ikke ha duplikater');
+assert(overridden.includes('training'), 'place.rounds kan erstatte en slot ved behov');
 
 for (const [alias, expected] of Object.entries({
   lexicon: 'leksikon',
   stories: 'fortellinger',
   story: 'fortellinger',
   wonderkammer: 'leksikon',
-  nature: 'leksikon',
   football: 'works',
-  music: 'works',
-  observations: 'tasks'
+  music: 'works'
 })) {
   const def = harness.sandbox.window.HGPlaceRounds.byId?.[alias]
     || harness.sandbox.PLACE_ROUND_BY_ID?.[alias];
   assert(def, `${alias} skal finnes som legacy alias`);
   assert.strictEqual(def.id, expected, `${alias} skal mappe til ${expected}`);
 }
+assert(!harness.sandbox.window.HGPlaceRounds.byId?.observations, 'observations skal ikke mappe til canonical runding nå');
 
 idsFor({ id: 'unknown_safe', rounds: ['ukjent_round'] });
 assert(harness.sandbox.console.warnings.some((msg) => msg.includes('Ukjent runding ignorert')), 'Ukjent round id skal gi console.warn');
 
-harness.sandbox.window.HGPlaceRounds.apply({ id: 'grid_order', rounds: ['leksikon', 'brands', 'badges'] });
-for (const [index, def] of harness.sandbox.window.HGPlaceRounds.registry.entries()) {
+harness.sandbox.window.HGPlaceRounds.apply({ id: 'grid_order', category: 'sport' });
+for (const [index, id] of SPORT.entries()) {
+  const def = harness.sandbox.window.HGPlaceRounds.byId[id];
   const el = harness.elements.get(def.iconId);
   assert(el, `${def.iconId} skal finnes i apply-harness`);
   assert.strictEqual(el.hidden, false, `${def.id} skal vises`);
-  assert.strictEqual(el.style.order, String(index), `${def.id} skal ha fast order ${index}`);
+  assert.strictEqual(el.style.order, String(index), `${def.id} skal ha kategori-order ${index}`);
 }
-for (const legacyIconId of ['pcWonderkammerIcon', 'pcObservationsIcon', 'pcNatureIcon', 'pcFootballIcon', 'pcMusicIcon']) {
+for (const legacyIconId of ['pcWonderkammerIcon', 'pcObservationsIcon', 'pcFootballIcon', 'pcMusicIcon']) {
   const el = harness.elements.get(legacyIconId);
   assert(el, `${legacyIconId} skal håndteres som legacy DOM hvis den finnes`);
   assert.strictEqual(el.hidden, true, `${legacyIconId} skal skjules som legacy/ikke-canonical DOM`);
 }
 
-for (const id of ['People', 'Works', 'Badges', 'Tasks', 'CivicationStore', 'Brands', 'Routes', 'Fortellinger', 'Leksikon']) {
+for (const id of ['People', 'Nature', 'Works', 'Badges', 'Tasks', 'CivicationStore', 'Brands', 'Routes', 'Fortellinger', 'Leksikon', 'Play', 'Training']) {
   assert(indexHtml.includes(`id="pc${id}Icon"`), `pc${id}Icon skal finnes i DOM-kontrakten`);
   assert(indexHtml.includes(`id="pc${id}List"`), `pc${id}List skal finnes i DOM-kontrakten`);
 }
-for (const id of ['Wonderkammer', 'Observations', 'Nature', 'Football', 'Music']) {
+for (const id of ['Wonderkammer', 'Observations', 'Football', 'Music']) {
   assert(!indexHtml.includes(`pc${id}Icon`), `pc${id}Icon skal ikke være canonical DOM-runding`);
   assert(!indexHtml.includes(`pc${id}List`), `pc${id}List skal ikke være canonical DOM-runding`);
 }
