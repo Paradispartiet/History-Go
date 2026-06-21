@@ -50,6 +50,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // mangler window.HGLeksikon.openPlace når #pcLeksikonIcon klikkes.
     await safeRun("loadLeksikon", () => loadScriptOnce("js/leksikon/leksikon_loader.js"));
 
+    // Debatt-runtime: debates_loader.js definerer window.HGDebatesContent og patcher
+    // window.openPlaceCard (Debatter her-knapp). Lastes etter place-card.js, og før
+    // AppRouter kan route til #/debate.
+    await safeRun("loadDebates", () => loadScriptOnce("js/debates/debates_loader.js"));
+
     // Epoke-runtime + tidsresolver + PlaceCard-epoke-UI.
     // epoker-runtime.js bygger window.EPOKER_INDEX og eksponerer
     // window.HGEpokerRuntime.ready; time-resolver.js gir

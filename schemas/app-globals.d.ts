@@ -110,9 +110,11 @@ declare global {
       mapPath?: () => string;
       placePath?: (placeId?: unknown) => string;
       quizPath?: (targetId?: unknown) => string;
+      debatePath?: (debateId?: unknown) => string;
       toMap?: (options?: { replace?: boolean }) => boolean;
       toPlace?: (placeId?: unknown, options?: { replace?: boolean }) => boolean;
       toQuiz?: (targetId?: unknown, options?: { replace?: boolean }) => boolean;
+      toDebate?: (debateId?: unknown, options?: { replace?: boolean }) => boolean;
       currentMode?: string;
     };
     HGMapView?: {
@@ -120,6 +122,7 @@ declare global {
       show?: () => void;
       openPlace?: (placeId?: unknown) => boolean;
       openQuiz?: (targetId?: unknown) => boolean;
+      openDebate?: (debateId?: unknown) => boolean;
     };
     HGInsights?: any;
     HGLeksikon?: any;
@@ -153,6 +156,7 @@ declare global {
     HGStoryTypes?: any;
     HGStoryUI?: any;
     HGDebates?: any;
+    HGDebatesContent?: any;
     HGReads?: any;
     HGTimeResolver?: any;
     HGUnlocks?: any;

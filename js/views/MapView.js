@@ -5,7 +5,7 @@
   "use strict";
 
   /** @typedef {import("../../schemas/place").Place} Place */
-  /** @typedef {{ showMap: () => void, show: () => void, openPlace: (placeId?: unknown) => boolean, openQuiz: (targetId?: unknown) => boolean }} MapViewApi */
+  /** @typedef {{ showMap: () => void, show: () => void, openPlace: (placeId?: unknown) => boolean, openQuiz: (targetId?: unknown) => boolean, openDebate: (debateId?: unknown) => boolean }} MapViewApi */
 
   function getPlaceCard() {
     return document.getElementById("placeCard");
@@ -123,6 +123,22 @@
       }, { once: true });
 
       window.showToast?.("Quiz lastes inn …");
+      return true;
+    },
+
+    openDebate(debateId) {
+      const id = String(debateId || "").trim();
+      if (!id) return false;
+      showExploreBase();
+      // HGDebatesContent.open is async (loads data, then renders); kick it off optimistically.
+      if (window.HGDebatesContent?.open) {
+        void window.HGDebatesContent.open(id);
+        return true;
+      }
+      window.addEventListener("hg:backgroundReady", function () {
+        window.HGDebatesContent?.open?.(id);
+      }, { once: true });
+      window.showToast?.("Debatt lastes inn …");
       return true;
     }
   };
