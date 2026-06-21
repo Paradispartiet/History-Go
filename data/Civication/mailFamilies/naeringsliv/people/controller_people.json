@@ -45,7 +45,18 @@
                 ]
               },
               "triggers_on_choice": "controller_private_week1_counting_A",
-              "feedback": "Du lar ikke alle åpne spor bli en sak. Det koster litt kontroll, men gir rom for at Sara ikke må dokumentere en liten irritasjon."
+              "feedback": "Du lar ikke alle åpne spor bli en sak. Det koster litt kontroll, men gir rom for at Sara ikke må dokumentere en liten irritasjon.",
+              "effect": {
+                "relationship_private": 2,
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "control": -2,
+                "stress": -1,
+                "mood": 1
+              },
+              "tags": [
+                "controller_private_week1_counting_A"
+              ]
             },
             {
               "id": "B",
@@ -64,7 +75,17 @@
                 ]
               },
               "triggers_on_choice": "controller_private_week1_counting_B",
-              "feedback": "Du løser differansen, men gjør også lunsjmeldingen til en mini-revisjon. Sara takker kort; samtalen blir ryddig og litt kjøligere."
+              "feedback": "Du løser differansen, men gjør også lunsjmeldingen til en mini-revisjon. Sara takker kort; samtalen blir ryddig og litt kjøligere.",
+              "effect": {
+                "control": 2,
+                "stress": 1,
+                "relationship_private": -1,
+                "relationship_sara": -1,
+                "guilt": 1
+              },
+              "tags": [
+                "controller_private_week1_counting_B"
+              ]
             },
             {
               "id": "C",
@@ -83,9 +104,25 @@
                 ]
               },
               "triggers_on_choice": "controller_private_week1_counting_C",
-              "feedback": "Du gjør kontrollbehovet synlig uten å late som det er omsorg i seg selv. Sara får velge om dette er hjelp eller bare mer støy."
+              "feedback": "Du gjør kontrollbehovet synlig uten å late som det er omsorg i seg selv. Sara får velge om dette er hjelp eller bare mer støy.",
+              "effect": {
+                "self_awareness": 3,
+                "relationship_private": 2,
+                "relationship_sara": 2,
+                "control": -1,
+                "autonomy_private": 1
+              },
+              "tags": [
+                "controller_private_week1_counting_C"
+              ]
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_kontrollblikk",
+          "competency": "tillit_uten_overkontroll",
+          "pressure": "sporbarhet_vs_narhet",
+          "choice_axis": "analysere_vs_lytte",
+          "consequence_axis": "relasjonell_tillit_vs_kontrollslitasje",
+          "narrative_arc": "controller_first_week_control_gaze_at_home"
         },
         {
           "id": "personal_controller_week1_friend_not_controlled",
@@ -120,7 +157,18 @@
                   "controller_private_week1_friend_A"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_friend_A"
+              "triggers_on_choice": "controller_private_week1_friend_A",
+              "effect": {
+                "relationship_private": 2,
+                "relationship_jonas": 3,
+                "self_awareness": 2,
+                "control": -2,
+                "mood": 1
+              },
+              "tags": [
+                "controller_private_week1_friend_A"
+              ],
+              "feedback": "Beklager. Jeg gikk rett i analyse. Hvordan har du det i alt dette?"
             },
             {
               "id": "B",
@@ -138,7 +186,18 @@
                   "controller_private_week1_friend_B"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_friend_B"
+              "triggers_on_choice": "controller_private_week1_friend_B",
+              "effect": {
+                "relationship_jonas": -2,
+                "relationship_private": -1,
+                "control": 2,
+                "guilt": 1,
+                "stress": 1
+              },
+              "tags": [
+                "controller_private_week1_friend_B"
+              ],
+              "feedback": "Jeg prøver ikke å kontrollere deg; jeg vil bare være sikker på at du har tenkt gjennom risikoen."
             },
             {
               "id": "C",
@@ -155,9 +214,25 @@
                   "controller_private_week1_friend_C"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_friend_C"
+              "triggers_on_choice": "controller_private_week1_friend_C",
+              "effect": {
+                "relationship_jonas": 2,
+                "autonomy_private": 2,
+                "self_awareness": 2,
+                "control": -1
+              },
+              "tags": [
+                "controller_private_week1_friend_C"
+              ],
+              "feedback": "Vil du at jeg bare lytter nå, eller vil du at vi ser på alternativer senere?"
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_kontrollblikk",
+          "competency": "tillit_uten_overkontroll",
+          "pressure": "sporbarhet_vs_narhet",
+          "choice_axis": "analysere_vs_lytte",
+          "consequence_axis": "relasjonell_tillit_vs_kontrollslitasje",
+          "narrative_arc": "controller_first_week_control_gaze_at_home"
         },
         {
           "id": "personal_controller_week1_pattern_in_conversation",
@@ -192,7 +267,18 @@
                   "controller_private_week1_pattern_A"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_pattern_A"
+              "triggers_on_choice": "controller_private_week1_pattern_A",
+              "effect": {
+                "relationship_sara": 3,
+                "relationship_private": 2,
+                "self_awareness": 2,
+                "control": -2,
+                "mood": 2
+              },
+              "tags": [
+                "controller_private_week1_pattern_A"
+              ],
+              "feedback": "Det høres vondt og ensomt ut. Jeg er her, og jeg skal ikke løse det nå."
             },
             {
               "id": "B",
@@ -210,7 +296,18 @@
                   "controller_private_week1_pattern_B"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_pattern_B"
+              "triggers_on_choice": "controller_private_week1_pattern_B",
+              "effect": {
+                "control": 2,
+                "relationship_sara": -2,
+                "relationship_private": -1,
+                "stagnation_private": 1,
+                "guilt": 1
+              },
+              "tags": [
+                "controller_private_week1_pattern_B"
+              ],
+              "feedback": "Jeg skjønner, men dette mønsteret er viktig; hvis vi finner det, kan du stå sterkere neste gang."
             },
             {
               "id": "C",
@@ -227,9 +324,25 @@
                   "controller_private_week1_pattern_C"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_pattern_C"
+              "triggers_on_choice": "controller_private_week1_pattern_C",
+              "effect": {
+                "autonomy_private": 3,
+                "relationship_sara": 2,
+                "self_awareness": 2,
+                "control": -1
+              },
+              "tags": [
+                "controller_private_week1_pattern_C"
+              ],
+              "feedback": "Jeg legger analysen bort. Hvis du vil se på mønsteret en annen dag, bestemmer du når."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_kontrollblikk",
+          "competency": "tillit_uten_overkontroll",
+          "pressure": "sporbarhet_vs_narhet",
+          "choice_axis": "analysere_vs_lytte",
+          "consequence_axis": "relasjonell_tillit_vs_kontrollslitasje",
+          "narrative_arc": "controller_first_week_control_gaze_at_home"
         },
         {
           "id": "personal_controller_week1_dinner_as_spreadsheet",
@@ -264,7 +377,18 @@
                   "controller_private_week1_dinner_A"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_dinner_A"
+              "triggers_on_choice": "controller_private_week1_dinner_A",
+              "effect": {
+                "relationship_private": 2,
+                "relationship_jonas": 2,
+                "autonomy_private": 2,
+                "control": -2,
+                "mood": 2
+              },
+              "tags": [
+                "controller_private_week1_dinner_A"
+              ],
+              "feedback": "Greit, ingen modell. Vi velger det som frister og tåler litt sløsing med planen."
             },
             {
               "id": "B",
@@ -282,7 +406,18 @@
                   "controller_private_week1_dinner_B"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_dinner_B"
+              "triggers_on_choice": "controller_private_week1_dinner_B",
+              "effect": {
+                "control": 2,
+                "relationship_jonas": -1,
+                "relationship_private": -1,
+                "stagnation_private": 1,
+                "mood": -1
+              },
+              "tags": [
+                "controller_private_week1_dinner_B"
+              ],
+              "feedback": "Pasta gir lavest kostnad og minst tidsrisiko, så det er det mest fornuftige valget."
             },
             {
               "id": "C",
@@ -299,9 +434,25 @@
                   "controller_private_week1_dinner_C"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_dinner_C"
+              "triggers_on_choice": "controller_private_week1_dinner_C",
+              "effect": {
+                "self_awareness": 2,
+                "autonomy_private": 2,
+                "relationship_private": 2,
+                "control": -1
+              },
+              "tags": [
+                "controller_private_week1_dinner_C"
+              ],
+              "feedback": "Jeg kan sjekke allergier og handleliste, men dere velger hva vi faktisk har lyst på."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_kontrollblikk",
+          "competency": "tillit_uten_overkontroll",
+          "pressure": "sporbarhet_vs_narhet",
+          "choice_axis": "analysere_vs_lytte",
+          "consequence_axis": "relasjonell_tillit_vs_kontrollslitasje",
+          "narrative_arc": "controller_first_week_control_gaze_at_home"
         },
         {
           "id": "personal_controller_week1_weekend_without_variance",
@@ -337,7 +488,19 @@
                   "controller_private_week1_weekend_A"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_weekend_A"
+              "triggers_on_choice": "controller_private_week1_weekend_A",
+              "effect": {
+                "energy_weekend": 3,
+                "autonomy_private": 3,
+                "stress": -2,
+                "control": -2,
+                "mood": 2,
+                "self_awareness": 2
+              },
+              "tags": [
+                "controller_private_week1_weekend_A"
+              ],
+              "feedback": "Lørdagen får være åpen. Jeg vil øve på at hvile ikke trenger dokumentasjon."
             },
             {
               "id": "B",
@@ -355,7 +518,18 @@
                   "controller_private_week1_weekend_B"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_weekend_B"
+              "triggers_on_choice": "controller_private_week1_weekend_B",
+              "effect": {
+                "control": 3,
+                "energy_weekend": -1,
+                "stress": 1,
+                "stagnation_private": 2,
+                "relationship_private": -1
+              },
+              "tags": [
+                "controller_private_week1_weekend_B"
+              ],
+              "feedback": "Jeg følger planen og vurderer søndag kveld om helgen ga ønsket effekt."
             },
             {
               "id": "C",
@@ -373,9 +547,26 @@
                   "controller_private_week1_weekend_C"
                 ]
               },
-              "triggers_on_choice": "controller_private_week1_weekend_C"
+              "triggers_on_choice": "controller_private_week1_weekend_C",
+              "effect": {
+                "energy_weekend": 2,
+                "autonomy_private": 2,
+                "mood": 1,
+                "control": -1,
+                "guilt": -1
+              },
+              "tags": [
+                "controller_private_week1_weekend_C"
+              ],
+              "feedback": "Jeg beholder én avtale, men lar resten av helgen utvikle seg uten kontrollskjema."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_kontrollblikk",
+          "competency": "tillit_uten_overkontroll",
+          "pressure": "sporbarhet_vs_narhet",
+          "choice_axis": "analysere_vs_lytte",
+          "consequence_axis": "relasjonell_tillit_vs_kontrollslitasje",
+          "narrative_arc": "controller_first_week_control_gaze_at_home"
         }
       ],
       "threads": [
@@ -677,7 +868,18 @@
                   "controller_week2_private_feeling_A"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_feeling_A"
+              "triggers_on_choice": "controller_week2_private_feeling_A",
+              "effect": {
+                "relationship_sara": 3,
+                "relationship_private": 3,
+                "self_awareness": 3,
+                "control": -1,
+                "stress": -1
+              },
+              "tags": [
+                "controller_week2_private_feeling_A"
+              ],
+              "feedback": "Jeg skriver at hun har rett, og at jeg ikke trenger dokumentasjon for å ta følelsen hennes alvorlig."
             },
             {
               "id": "B",
@@ -695,7 +897,18 @@
                   "controller_week2_private_feeling_B"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_feeling_B"
+              "triggers_on_choice": "controller_week2_private_feeling_B",
+              "effect": {
+                "control": 1,
+                "relationship_sara": -1,
+                "relationship_private": -1,
+                "self_awareness": 0,
+                "conflict": 1
+              },
+              "tags": [
+                "controller_week2_private_feeling_B"
+              ],
+              "feedback": "Jeg skriver at jeg bare prøvde å forstå hva som gjorde at hun opplevde meg fjern."
             },
             {
               "id": "C",
@@ -713,9 +926,26 @@
                   "controller_week2_private_feeling_C"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_feeling_C"
+              "triggers_on_choice": "controller_week2_private_feeling_C",
+              "effect": {
+                "energy": 1,
+                "relationship_sara": -2,
+                "relationship_private": -2,
+                "guilt": 2,
+                "stagnation_private": 1
+              },
+              "tags": [
+                "controller_week2_private_feeling_C"
+              ],
+              "feedback": "Jeg lar meldingen ligge fordi jeg ikke vet hvordan jeg skal svare uten å gjøre det analytisk igjen."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_tillit",
+          "competency": "samtale_uten_bevisforsel",
+          "pressure": "dokumentasjonstrang_vs_fortrolighet",
+          "choice_axis": "kreve_bevis_vs_gi_tillit",
+          "consequence_axis": "narhet_vs_fremmedgjoring",
+          "narrative_arc": "controller_second_week_without_audit_trail"
         },
         {
           "id": "personal_controller_week2_friend_says_you_do_not_believe_me",
@@ -748,7 +978,18 @@
                   "controller_week2_private_friend_A"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_friend_A"
+              "triggers_on_choice": "controller_week2_private_friend_A",
+              "effect": {
+                "relationship_jonas": 3,
+                "relationship_private": 3,
+                "self_awareness": 2,
+                "control": -1,
+                "stress": -1
+              },
+              "tags": [
+                "controller_week2_private_friend_A"
+              ],
+              "feedback": "Jeg skriver at jeg tror ham, og at spørsmålene kom for tidlig. Først vil jeg bare høre hvordan det var."
             },
             {
               "id": "B",
@@ -766,7 +1007,18 @@
                   "controller_week2_private_friend_B"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_friend_B"
+              "triggers_on_choice": "controller_week2_private_friend_B",
+              "effect": {
+                "control": 2,
+                "relationship_jonas": -2,
+                "relationship_private": -2,
+                "conflict": 1,
+                "self_awareness": -1
+              },
+              "tags": [
+                "controller_week2_private_friend_B"
+              ],
+              "feedback": "Jeg skriver at jeg bare trengte mer kontekst for å forstå situasjonen riktig."
             },
             {
               "id": "C",
@@ -784,9 +1036,26 @@
                   "controller_week2_private_friend_C"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_friend_C"
+              "triggers_on_choice": "controller_week2_private_friend_C",
+              "effect": {
+                "mood": 1,
+                "relationship_jonas": 1,
+                "relationship_private": 1,
+                "self_awareness": 1,
+                "stress": 0
+              },
+              "tags": [
+                "controller_week2_private_friend_C"
+              ],
+              "feedback": "Jeg skriver at jeg skal slutte å være privat etterforskningsutvalg."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_tillit",
+          "competency": "samtale_uten_bevisforsel",
+          "pressure": "dokumentasjonstrang_vs_fortrolighet",
+          "choice_axis": "kreve_bevis_vs_gi_tillit",
+          "consequence_axis": "narhet_vs_fremmedgjoring",
+          "narrative_arc": "controller_second_week_without_audit_trail"
         },
         {
           "id": "personal_controller_week2_auditing_own_words",
@@ -819,7 +1088,18 @@
                   "controller_week2_private_words_A"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_words_A"
+              "triggers_on_choice": "controller_week2_private_words_A",
+              "effect": {
+                "relationship_sara": 3,
+                "relationship_private": 3,
+                "self_awareness": 3,
+                "stress": -1,
+                "control": -1
+              },
+              "tags": [
+                "controller_week2_private_words_A"
+              ],
+              "feedback": "Jeg skriver at jeg var fjern, og at det ikke var rettferdig overfor henne."
             },
             {
               "id": "B",
@@ -837,7 +1117,18 @@
                   "controller_week2_private_words_B"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_words_B"
+              "triggers_on_choice": "controller_week2_private_words_B",
+              "effect": {
+                "control": 2,
+                "relationship_sara": -1,
+                "relationship_private": -1,
+                "stagnation_private": 1,
+                "self_awareness": 1
+              },
+              "tags": [
+                "controller_week2_private_words_B"
+              ],
+              "feedback": "Jeg forklarer nyansert at jeg var mentalt til stede i perioder, men emosjonelt mindre tilgjengelig."
             },
             {
               "id": "C",
@@ -855,9 +1146,26 @@
                   "controller_week2_private_words_C"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_words_C"
+              "triggers_on_choice": "controller_week2_private_words_C",
+              "effect": {
+                "energy": 1,
+                "guilt": 2,
+                "relationship_sara": -2,
+                "relationship_private": -2,
+                "stagnation_private": 2
+              },
+              "tags": [
+                "controller_week2_private_words_C"
+              ],
+              "feedback": "Jeg lar meldingen ligge til jeg finner en formulering som ikke blir feil."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_tillit",
+          "competency": "samtale_uten_bevisforsel",
+          "pressure": "dokumentasjonstrang_vs_fortrolighet",
+          "choice_axis": "kreve_bevis_vs_gi_tillit",
+          "consequence_axis": "narhet_vs_fremmedgjoring",
+          "narrative_arc": "controller_second_week_without_audit_trail"
         },
         {
           "id": "personal_controller_week2_conversation_without_evidence",
@@ -890,7 +1198,18 @@
                   "controller_week2_private_conversation_A"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_conversation_A"
+              "triggers_on_choice": "controller_week2_private_conversation_A",
+              "effect": {
+                "relationship_jonas": 3,
+                "relationship_private": 3,
+                "self_awareness": 2,
+                "control": -2,
+                "stress": -1
+              },
+              "tags": [
+                "controller_week2_private_conversation_A"
+              ],
+              "feedback": "Jeg sier ja og lar samtalen gå uten å oppsummere, tolke eller avklare den."
             },
             {
               "id": "B",
@@ -908,7 +1227,18 @@
                   "controller_week2_private_conversation_B"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_conversation_B"
+              "triggers_on_choice": "controller_week2_private_conversation_B",
+              "effect": {
+                "control": 1,
+                "relationship_jonas": -1,
+                "relationship_private": -1,
+                "stress": 0,
+                "stagnation_private": 1
+              },
+              "tags": [
+                "controller_week2_private_conversation_B"
+              ],
+              "feedback": "Jeg spør hva han egentlig vil snakke om, så jeg skjønner rammen."
             },
             {
               "id": "C",
@@ -926,9 +1256,26 @@
                   "controller_week2_private_conversation_C"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_conversation_C"
+              "triggers_on_choice": "controller_week2_private_conversation_C",
+              "effect": {
+                "energy": 1,
+                "relationship_jonas": -1,
+                "relationship_private": -1,
+                "guilt": 1,
+                "stress": -1
+              },
+              "tags": [
+                "controller_week2_private_conversation_C"
+              ],
+              "feedback": "Jeg sier at jeg er for sliten til en åpen samtale i kveld."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_tillit",
+          "competency": "samtale_uten_bevisforsel",
+          "pressure": "dokumentasjonstrang_vs_fortrolighet",
+          "choice_axis": "kreve_bevis_vs_gi_tillit",
+          "consequence_axis": "narhet_vs_fremmedgjoring",
+          "narrative_arc": "controller_second_week_without_audit_trail"
         },
         {
           "id": "personal_controller_week2_weekend_without_audit_trail",
@@ -962,7 +1309,18 @@
                   "controller_week2_private_weekend_A"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_weekend_A"
+              "triggers_on_choice": "controller_week2_private_weekend_A",
+              "effect": {
+                "energy_weekend": 4,
+                "stress": -4,
+                "autonomy_private": 3,
+                "relationship_private": 2,
+                "control": -2
+              },
+              "tags": [
+                "controller_week2_private_weekend_A"
+              ],
+              "feedback": "Jeg bestemmer at helgen ikke skal dokumenteres, måles, avstemmes eller evalueres."
             },
             {
               "id": "B",
@@ -979,7 +1337,17 @@
                   "controller_week2_private_weekend_B"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_weekend_B"
+              "triggers_on_choice": "controller_week2_private_weekend_B",
+              "effect": {
+                "relationship_private": 4,
+                "mood": 2,
+                "stress": -2,
+                "self_awareness": 2
+              },
+              "tags": [
+                "controller_week2_private_weekend_B"
+              ],
+              "feedback": "Jeg møter Sara eller Jonas og lar samtalene være vanlige, uten mønsteranalyse."
             },
             {
               "id": "C",
@@ -996,7 +1364,17 @@
                   "controller_week2_private_weekend_C"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_weekend_C"
+              "triggers_on_choice": "controller_week2_private_weekend_C",
+              "effect": {
+                "control": 2,
+                "stress": 1,
+                "energy_weekend": -1,
+                "stagnation_private": 1
+              },
+              "tags": [
+                "controller_week2_private_weekend_C"
+              ],
+              "feedback": "Jeg lager en enkel helgeplan for penger, tid, mat og hvile, men prøver å holde den uformell."
             },
             {
               "id": "D",
@@ -1014,9 +1392,26 @@
                   "controller_week2_private_weekend_D"
                 ]
               },
-              "triggers_on_choice": "controller_week2_private_weekend_D"
+              "triggers_on_choice": "controller_week2_private_weekend_D",
+              "effect": {
+                "control": -1,
+                "stress": 2,
+                "guilt": 1,
+                "stagnation_private": 2,
+                "energy_weekend": 0
+              },
+              "tags": [
+                "controller_week2_private_weekend_D"
+              ],
+              "feedback": "Jeg lar være å planlegge, men går rundt med følelsen av at noe burde vært avklart."
             }
-          ]
+          ],
+          "task_domain": "privatliv_og_tillit",
+          "competency": "samtale_uten_bevisforsel",
+          "pressure": "dokumentasjonstrang_vs_fortrolighet",
+          "choice_axis": "kreve_bevis_vs_gi_tillit",
+          "consequence_axis": "narhet_vs_fremmedgjoring",
+          "narrative_arc": "controller_second_week_without_audit_trail"
         }
       ],
       "threads": [

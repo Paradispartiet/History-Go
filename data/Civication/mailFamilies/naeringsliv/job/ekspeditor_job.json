@@ -53,7 +53,18 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_checks_price_openly",
-              "feedback": "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid."
+              "feedback": "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid.",
+              "effect": {
+                "accuracy": 3,
+                "customer_trust": 3,
+                "queue_pressure": 1,
+                "service_quality": 3,
+                "stress": 1,
+                "manager_trust": 2
+              },
+              "tags": [
+                "ekspeditor_week1_checks_price_openly"
+              ]
             },
             {
               "id": "B",
@@ -72,7 +83,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_quick_price_fix",
-              "feedback": "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon."
+              "feedback": "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon.",
+              "effect": {
+                "queue_flow": 2,
+                "customer_trust": 1,
+                "accuracy": -1,
+                "future_risk": 2,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_quick_price_fix"
+              ]
             },
             {
               "id": "C",
@@ -91,9 +112,25 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_system_over_customer",
-              "feedback": "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?"
+              "feedback": "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?",
+              "effect": {
+                "queue_flow": 1,
+                "customer_trust": -3,
+                "conflict": 2,
+                "manager_trust": -1,
+                "future_risk": 2
+              },
+              "tags": [
+                "ekspeditor_week1_system_over_customer"
+              ]
             }
-          ]
+          ],
+          "task_domain": "kasse_og_kundemote",
+          "competency": "service_med_noyaktighet",
+          "pressure": "ko_press_vs_riktig_handling",
+          "choice_axis": "flyt_vs_grenser",
+          "consequence_axis": "kundetillit_vs_drift_risiko",
+          "narrative_arc": "ekspeditor_first_week_frontline_responsibility"
         },
         {
           "id": "job_ekspeditor_week1_customer_thinks_you_decide",
@@ -134,7 +171,18 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_clear_return_boundary",
-              "feedback": "Fint. Du sa nei, men ikke bare nei. Kunden fikk en vei videre uten at du lovet noe du ikke kunne holde."
+              "feedback": "Fint. Du sa nei, men ikke bare nei. Kunden fikk en vei videre uten at du lovet noe du ikke kunne holde.",
+              "effect": {
+                "boundary": 3,
+                "customer_trust": 2,
+                "conflict": -1,
+                "manager_trust": 2,
+                "queue_pressure": 1,
+                "stress": 1
+              },
+              "tags": [
+                "ekspeditor_week1_clear_return_boundary"
+              ]
             },
             {
               "id": "B",
@@ -153,7 +201,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_unauthorized_exception",
-              "feedback": "Du må ikke love unntak alene. Det kan virke som god service der og da, men det skaper problemer neste gang kunden, eller andre kunder, forventer det samme."
+              "feedback": "Du må ikke love unntak alene. Det kan virke som god service der og da, men det skaper problemer neste gang kunden, eller andre kunder, forventer det samme.",
+              "effect": {
+                "conflict": -2,
+                "customer_trust": 1,
+                "manager_trust": -3,
+                "future_risk": 3,
+                "boundary": -3
+              },
+              "tags": [
+                "ekspeditor_week1_unauthorized_exception"
+              ]
             },
             {
               "id": "C",
@@ -172,9 +230,25 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_cold_rule_answer",
-              "feedback": "Så det er bare nei? Det kunne du sagt uten å få meg til å stå her og føle meg dum."
+              "feedback": "Så det er bare nei? Det kunne du sagt uten å få meg til å stå her og føle meg dum.",
+              "effect": {
+                "queue_flow": 2,
+                "customer_trust": -2,
+                "conflict": 2,
+                "service_quality": -2,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_cold_rule_answer"
+              ]
             }
-          ]
+          ],
+          "task_domain": "kasse_og_kundemote",
+          "competency": "service_med_noyaktighet",
+          "pressure": "ko_press_vs_riktig_handling",
+          "choice_axis": "flyt_vs_grenser",
+          "consequence_axis": "kundetillit_vs_drift_risiko",
+          "narrative_arc": "ekspeditor_first_week_frontline_responsibility"
         },
         {
           "id": "job_ekspeditor_week1_item_not_available",
@@ -214,7 +288,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_honest_stock_check",
-              "feedback": "Fint. Jeg vil heller vente litt enn å bli sendt rundt etter noe som ikke finnes."
+              "feedback": "Fint. Jeg vil heller vente litt enn å bli sendt rundt etter noe som ikke finnes.",
+              "effect": {
+                "accuracy": 3,
+                "customer_trust": 3,
+                "queue_flow": -1,
+                "service_quality": 3,
+                "stress": 1
+              },
+              "tags": [
+                "ekspeditor_week1_honest_stock_check"
+              ]
             },
             {
               "id": "B",
@@ -233,7 +317,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_offers_alternative",
-              "feedback": "Greit nok hvis du ikke har tid til å lete. Men når systemet viser lager, bør du helst sjekke eller forklare usikkerheten."
+              "feedback": "Greit nok hvis du ikke har tid til å lete. Men når systemet viser lager, bør du helst sjekke eller forklare usikkerheten.",
+              "effect": {
+                "queue_flow": 1,
+                "service_quality": 1,
+                "accuracy": 0,
+                "customer_trust": 1,
+                "future_risk": 1
+              },
+              "tags": [
+                "ekspeditor_week1_offers_alternative"
+              ]
             },
             {
               "id": "C",
@@ -252,9 +346,25 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_bluffed_stock",
-              "feedback": "Ikke gjør det. Systemet er ikke det samme som vare i hånda. Kunden kommer tilbake mer irritert når hun ikke finner den."
+              "feedback": "Ikke gjør det. Systemet er ikke det samme som vare i hånda. Kunden kommer tilbake mer irritert når hun ikke finner den.",
+              "effect": {
+                "queue_flow": 2,
+                "accuracy": -3,
+                "customer_trust": -3,
+                "future_risk": 3,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_bluffed_stock"
+              ]
             }
-          ]
+          ],
+          "task_domain": "kasse_og_kundemote",
+          "competency": "service_med_noyaktighet",
+          "pressure": "ko_press_vs_riktig_handling",
+          "choice_axis": "flyt_vs_grenser",
+          "consequence_axis": "kundetillit_vs_drift_risiko",
+          "narrative_arc": "ekspeditor_first_week_frontline_responsibility"
         },
         {
           "id": "job_ekspeditor_week1_register_mistake",
@@ -294,7 +404,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_corrects_register_openly",
-              "feedback": "Veldig bra. Du eide feilen mens den fortsatt kunne rettes. Det bygger mer tillit enn å late som alt gikk glatt."
+              "feedback": "Veldig bra. Du eide feilen mens den fortsatt kunne rettes. Det bygger mer tillit enn å late som alt gikk glatt.",
+              "effect": {
+                "accuracy": 4,
+                "customer_trust": 4,
+                "queue_pressure": 2,
+                "manager_trust": 3,
+                "stress": 2
+              },
+              "tags": [
+                "ekspeditor_week1_corrects_register_openly"
+              ]
             },
             {
               "id": "B",
@@ -313,7 +433,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_customer_left_overcharged",
-              "feedback": "Ikke bra. Når kunden har betalt for mye, er ikke etterpå egentlig etterpå. Da er det for sent for tilliten."
+              "feedback": "Ikke bra. Når kunden har betalt for mye, er ikke etterpå egentlig etterpå. Da er det for sent for tilliten.",
+              "effect": {
+                "queue_flow": 2,
+                "accuracy": -2,
+                "customer_trust": -3,
+                "future_risk": 3,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week1_customer_left_overcharged"
+              ]
             },
             {
               "id": "C",
@@ -332,9 +462,25 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_panic_register_fix",
-              "feedback": "Stopp. Når du ikke vet hva du trykker på, jobber du ikke raskere. Du bare lager flere ting å rette."
+              "feedback": "Stopp. Når du ikke vet hva du trykker på, jobber du ikke raskere. Du bare lager flere ting å rette.",
+              "effect": {
+                "stress": 3,
+                "accuracy": -2,
+                "queue_pressure": 2,
+                "future_risk": 3,
+                "manager_trust": -2
+              },
+              "tags": [
+                "ekspeditor_week1_panic_register_fix"
+              ]
             }
-          ]
+          ],
+          "task_domain": "kasse_og_kundemote",
+          "competency": "service_med_noyaktighet",
+          "pressure": "ko_press_vs_riktig_handling",
+          "choice_axis": "flyt_vs_grenser",
+          "consequence_axis": "kundetillit_vs_drift_risiko",
+          "narrative_arc": "ekspeditor_first_week_frontline_responsibility"
         },
         {
           "id": "job_ekspeditor_week1_first_week_behind_counter",
@@ -375,7 +521,18 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_honest_learning_summary",
-              "feedback": "Dette er en god oppsummering. Du later ikke som du er ferdig utlært. Det gjør det mye lettere å gi deg riktig ansvar neste uke."
+              "feedback": "Dette er en god oppsummering. Du later ikke som du er ferdig utlært. Det gjør det mye lettere å gi deg riktig ansvar neste uke.",
+              "effect": {
+                "self_awareness": 3,
+                "manager_trust": 4,
+                "accuracy": 3,
+                "training_path": 3,
+                "stress": 1,
+                "future_risk": -2
+              },
+              "tags": [
+                "ekspeditor_week1_honest_learning_summary"
+              ]
             },
             {
               "id": "B",
@@ -394,7 +551,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_smooth_summary",
-              "feedback": "Stort sett håndtert kan være sant. Men det sier ikke hva du trenger før lørdagsrushet sier det for deg."
+              "feedback": "Stort sett håndtert kan være sant. Men det sier ikke hva du trenger før lørdagsrushet sier det for deg.",
+              "effect": {
+                "manager_pressure": -1,
+                "stress": -1,
+                "stagnation": 3,
+                "future_risk": 3,
+                "training_path": -1
+              },
+              "tags": [
+                "ekspeditor_week1_smooth_summary"
+              ]
             },
             {
               "id": "C",
@@ -413,7 +580,17 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_speed_first_summary",
-              "feedback": "Bra at du vil ta mer. Men tempo uten trygghet i feilretting er ikke modenhet ennå. Vi bygger ansvar gradvis."
+              "feedback": "Bra at du vil ta mer. Men tempo uten trygghet i feilretting er ikke modenhet ennå. Vi bygger ansvar gradvis.",
+              "effect": {
+                "queue_flow": 3,
+                "manager_trust": 1,
+                "accuracy": -1,
+                "future_risk": 2,
+                "service_quality": -1
+              },
+              "tags": [
+                "ekspeditor_week1_speed_first_summary"
+              ]
             },
             {
               "id": "D",
@@ -432,9 +609,25 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_blames_customers",
-              "feedback": "Noen kunder er vanskelige. Men hvis det blir hovedforklaringen, lærer du mindre av situasjonene. Vi må se hva du kan styre i møtet."
+              "feedback": "Noen kunder er vanskelige. Men hvis det blir hovedforklaringen, lærer du mindre av situasjonene. Vi må se hva du kan styre i møtet.",
+              "effect": {
+                "conflict": 1,
+                "self_awareness": -1,
+                "manager_trust": -1,
+                "stagnation": 2,
+                "customer_trust": -1
+              },
+              "tags": [
+                "ekspeditor_week1_blames_customers"
+              ]
             }
-          ]
+          ],
+          "task_domain": "kasse_og_kundemote",
+          "competency": "service_med_noyaktighet",
+          "pressure": "ko_press_vs_riktig_handling",
+          "choice_axis": "flyt_vs_grenser",
+          "consequence_axis": "kundetillit_vs_drift_risiko",
+          "narrative_arc": "ekspeditor_first_week_frontline_responsibility"
         }
       ],
       "threads": [
@@ -777,7 +970,18 @@
                   "ekspeditor_week2_handles_returning_customer_well"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_handles_returning_customer_well"
+              "triggers_on_choice": "ekspeditor_week2_handles_returning_customer_well",
+              "effect": {
+                "customer_trust": 4,
+                "accuracy": 4,
+                "manager_trust": 3,
+                "queue_pressure": 1,
+                "service_quality": 3,
+                "stress": 1
+              },
+              "tags": [
+                "ekspeditor_week2_handles_returning_customer_well"
+              ]
             },
             {
               "id": "B",
@@ -797,7 +1001,18 @@
                   "ekspeditor_week2_quick_refund_without_check"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_quick_refund_without_check"
+              "triggers_on_choice": "ekspeditor_week2_quick_refund_without_check",
+              "effect": {
+                "queue_flow": 2,
+                "customer_trust": 1,
+                "accuracy": -1,
+                "future_risk": 2,
+                "manager_trust": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week2_quick_refund_without_check"
+              ]
             },
             {
               "id": "C",
@@ -816,9 +1031,25 @@
                   "ekspeditor_week2_blames_customer_timing"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_blames_customer_timing"
+              "triggers_on_choice": "ekspeditor_week2_blames_customer_timing",
+              "effect": {
+                "customer_trust": -4,
+                "conflict": 3,
+                "queue_flow": 1,
+                "manager_trust": -2,
+                "future_risk": 3
+              },
+              "tags": [
+                "ekspeditor_week2_blames_customer_timing"
+              ]
             }
-          ]
+          ],
+          "task_domain": "butikkdrift_og_ansvar",
+          "competency": "selvstendig_service_og_drift",
+          "pressure": "servicepress_vs_rutineansvar",
+          "choice_axis": "hjelpsomhet_vs_sporbarhet",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_flyt",
+          "narrative_arc": "ekspeditor_second_week_responsibility_under_pressure"
         },
         {
           "id": "job_ekspeditor_week2_queue_before_closing",
@@ -859,7 +1090,18 @@
                   "ekspeditor_week2_closing_clear_boundary"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_closing_clear_boundary"
+              "triggers_on_choice": "ekspeditor_week2_closing_clear_boundary",
+              "effect": {
+                "boundary": 4,
+                "queue_flow": 3,
+                "service_quality": 2,
+                "customer_trust": 1,
+                "manager_trust": 3,
+                "stress": 1
+              },
+              "tags": [
+                "ekspeditor_week2_closing_clear_boundary"
+              ]
             },
             {
               "id": "B",
@@ -879,7 +1121,18 @@
                   "ekspeditor_week2_overextends_service"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_overextends_service"
+              "triggers_on_choice": "ekspeditor_week2_overextends_service",
+              "effect": {
+                "customer_trust": 3,
+                "service_quality": 2,
+                "queue_flow": -3,
+                "manager_trust": -2,
+                "closing_quality": -3,
+                "stress": 3
+              },
+              "tags": [
+                "ekspeditor_week2_overextends_service"
+              ]
             },
             {
               "id": "C",
@@ -899,9 +1152,26 @@
                   "ekspeditor_week2_closing_cold_no"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_closing_cold_no"
+              "triggers_on_choice": "ekspeditor_week2_closing_cold_no",
+              "effect": {
+                "queue_flow": 2,
+                "boundary": 2,
+                "customer_trust": -3,
+                "service_quality": -3,
+                "conflict": 2,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week2_closing_cold_no"
+              ]
             }
-          ]
+          ],
+          "task_domain": "butikkdrift_og_ansvar",
+          "competency": "selvstendig_service_og_drift",
+          "pressure": "servicepress_vs_rutineansvar",
+          "choice_axis": "hjelpsomhet_vs_sporbarhet",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_flyt",
+          "narrative_arc": "ekspeditor_second_week_responsibility_under_pressure"
         },
         {
           "id": "job_ekspeditor_week2_forgotten_order",
@@ -942,7 +1212,18 @@
                   "ekspeditor_week2_tracks_stock_root_cause"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_tracks_stock_root_cause"
+              "triggers_on_choice": "ekspeditor_week2_tracks_stock_root_cause",
+              "effect": {
+                "accuracy": 4,
+                "stock_reliability": 4,
+                "customer_trust": 2,
+                "manager_trust": 3,
+                "process_quality": 3,
+                "stress": 2
+              },
+              "tags": [
+                "ekspeditor_week2_tracks_stock_root_cause"
+              ]
             },
             {
               "id": "B",
@@ -961,7 +1242,17 @@
                   "ekspeditor_week2_reorders_without_root_cause"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_reorders_without_root_cause"
+              "triggers_on_choice": "ekspeditor_week2_reorders_without_root_cause",
+              "effect": {
+                "stock_reliability": 1,
+                "deadline_met": 1,
+                "future_risk": 2,
+                "accuracy": -1,
+                "stress": -1
+              },
+              "tags": [
+                "ekspeditor_week2_reorders_without_root_cause"
+              ]
             },
             {
               "id": "C",
@@ -980,9 +1271,25 @@
                   "ekspeditor_week2_stock_answer_without_fix"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_stock_answer_without_fix"
+              "triggers_on_choice": "ekspeditor_week2_stock_answer_without_fix",
+              "effect": {
+                "queue_flow": 1,
+                "service_quality": 1,
+                "accuracy": -1,
+                "future_risk": 2,
+                "customer_trust": 0
+              },
+              "tags": [
+                "ekspeditor_week2_stock_answer_without_fix"
+              ]
             }
-          ]
+          ],
+          "task_domain": "butikkdrift_og_ansvar",
+          "competency": "selvstendig_service_og_drift",
+          "pressure": "servicepress_vs_rutineansvar",
+          "choice_axis": "hjelpsomhet_vs_sporbarhet",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_flyt",
+          "narrative_arc": "ekspeditor_second_week_responsibility_under_pressure"
         },
         {
           "id": "job_ekspeditor_week2_first_closing_responsibility",
@@ -1023,7 +1330,18 @@
                   "ekspeditor_week2_closing_routine_done"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_closing_routine_done"
+              "triggers_on_choice": "ekspeditor_week2_closing_routine_done",
+              "effect": {
+                "closing_quality": 4,
+                "manager_trust": 4,
+                "accuracy": 3,
+                "process_quality": 3,
+                "future_risk": -2,
+                "stress": 2
+              },
+              "tags": [
+                "ekspeditor_week2_closing_routine_done"
+              ]
             },
             {
               "id": "B",
@@ -1042,7 +1360,17 @@
                   "ekspeditor_week2_partial_closing"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_partial_closing"
+              "triggers_on_choice": "ekspeditor_week2_partial_closing",
+              "effect": {
+                "closing_quality": 1,
+                "stress": -1,
+                "future_risk": 2,
+                "manager_trust": 0,
+                "process_quality": -1
+              },
+              "tags": [
+                "ekspeditor_week2_partial_closing"
+              ]
             },
             {
               "id": "C",
@@ -1061,9 +1389,25 @@
                   "ekspeditor_week2_rushed_closing"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_rushed_closing"
+              "triggers_on_choice": "ekspeditor_week2_rushed_closing",
+              "effect": {
+                "stress": -1,
+                "closing_quality": -3,
+                "future_risk": 3,
+                "manager_trust": -2,
+                "accuracy": -2
+              },
+              "tags": [
+                "ekspeditor_week2_rushed_closing"
+              ]
             }
-          ]
+          ],
+          "task_domain": "butikkdrift_og_ansvar",
+          "competency": "selvstendig_service_og_drift",
+          "pressure": "servicepress_vs_rutineansvar",
+          "choice_axis": "hjelpsomhet_vs_sporbarhet",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_flyt",
+          "narrative_arc": "ekspeditor_second_week_responsibility_under_pressure"
         },
         {
           "id": "job_ekspeditor_week2_second_week_behind_counter",
@@ -1104,7 +1448,18 @@
                   "ekspeditor_week2_ready_for_guided_responsibility"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_ready_for_guided_responsibility"
+              "triggers_on_choice": "ekspeditor_week2_ready_for_guided_responsibility",
+              "effect": {
+                "manager_trust": 5,
+                "self_awareness": 4,
+                "training_path": 4,
+                "accuracy": 3,
+                "future_risk": -3,
+                "stress": 1
+              },
+              "tags": [
+                "ekspeditor_week2_ready_for_guided_responsibility"
+              ]
             },
             {
               "id": "B",
@@ -1123,7 +1478,17 @@
                   "ekspeditor_week2_overstates_readiness"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_overstates_readiness"
+              "triggers_on_choice": "ekspeditor_week2_overstates_readiness",
+              "effect": {
+                "manager_pressure": -1,
+                "manager_trust": 1,
+                "future_risk": 2,
+                "stagnation": 2,
+                "training_path": -1
+              },
+              "tags": [
+                "ekspeditor_week2_overstates_readiness"
+              ]
             },
             {
               "id": "C",
@@ -1142,7 +1507,17 @@
                   "ekspeditor_week2_speed_identity"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_speed_identity"
+              "triggers_on_choice": "ekspeditor_week2_speed_identity",
+              "effect": {
+                "queue_flow": 4,
+                "accuracy": -1,
+                "service_quality": -1,
+                "future_risk": 3,
+                "manager_trust": 0
+              },
+              "tags": [
+                "ekspeditor_week2_speed_identity"
+              ]
             },
             {
               "id": "D",
@@ -1161,9 +1536,25 @@
                   "ekspeditor_week2_blames_pressure"
                 ]
               },
-              "triggers_on_choice": "ekspeditor_week2_blames_pressure"
+              "triggers_on_choice": "ekspeditor_week2_blames_pressure",
+              "effect": {
+                "stress": -1,
+                "self_awareness": -1,
+                "manager_trust": -2,
+                "stagnation": 3,
+                "conflict": 1
+              },
+              "tags": [
+                "ekspeditor_week2_blames_pressure"
+              ]
             }
-          ]
+          ],
+          "task_domain": "butikkdrift_og_ansvar",
+          "competency": "selvstendig_service_og_drift",
+          "pressure": "servicepress_vs_rutineansvar",
+          "choice_axis": "hjelpsomhet_vs_sporbarhet",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_flyt",
+          "narrative_arc": "ekspeditor_second_week_responsibility_under_pressure"
         }
       ],
       "threads": [

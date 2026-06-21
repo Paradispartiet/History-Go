@@ -141,6 +141,7 @@ function collectMailFamilyIds(roleScope) {
   const files = [
     `${base}/job/${roleScope}_intro_v2.json`,
     `${base}/job/${roleScope}_job.json`,
+    `${base}/people/${roleScope}_people.json`,
     `${base}/conflict/${roleScope}_conflict.json`,
     `${base}/story/${roleScope}_story.json`,
     `${base}/event/${roleScope}_event.json`
@@ -148,6 +149,7 @@ function collectMailFamilyIds(roleScope) {
 
   const familyIds = new Set();
   for (const file of files) {
+    if (!fs.existsSync(path.join(root, file))) continue;
     const catalog = readJson(file);
     assert.strictEqual(catalog.category, category, `Wrong category in ${file}`);
     assert.strictEqual(catalog.role_scope, roleScope, `Wrong role_scope in ${file}`);

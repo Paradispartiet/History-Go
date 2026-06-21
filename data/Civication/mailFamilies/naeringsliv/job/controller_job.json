@@ -162,7 +162,20 @@
                   "controller_week1_explanation_before_report"
                 ]
               },
-              "triggers_on_choice": "controller_week1_month_report_A"
+              "triggers_on_choice": "controller_week1_month_report_A",
+              "effect": {
+                "accuracy": 3,
+                "trust_drift": 2,
+                "trust_manager": 2,
+                "deadline_pressure": 1,
+                "report_quality": 3,
+                "stress": 1
+              },
+              "tags": [
+                "controller_week1_explanation_before_report",
+                "controller_week1_month_report_A"
+              ],
+              "feedback": "Jeg holder pakken åpen til 09:15, ber Elin forklare fysisk vareflyt og Marius legge ved faktura-/periodiseringsspor før jeg låser linjen."
             },
             {
               "id": "B",
@@ -181,7 +194,20 @@
                   "controller_week1_fast_unexplained_report"
                 ]
               },
-              "triggers_on_choice": "controller_week1_month_report_B"
+              "triggers_on_choice": "controller_week1_month_report_B",
+              "effect": {
+                "deadline_met": 2,
+                "deadline_pressure": -2,
+                "trust_drift": -2,
+                "future_risk": 2,
+                "report_quality": -2,
+                "stagnation": 1
+              },
+              "tags": [
+                "controller_week1_fast_unexplained_report",
+                "controller_week1_month_report_B"
+              ],
+              "feedback": "Jeg sender rapportpakken med varekostlinjen som den står, uten å vente på driftskommentar eller revisjonsspor."
             },
             {
               "id": "C",
@@ -199,9 +225,27 @@
                   "controller_week1_report_with_caveat"
                 ]
               },
-              "triggers_on_choice": "controller_week1_month_report_C"
+              "triggers_on_choice": "controller_week1_month_report_C",
+              "effect": {
+                "deadline_met": 1,
+                "accuracy": 1,
+                "trust_manager": 1,
+                "trust_drift": 1,
+                "report_quality": 1
+              },
+              "tags": [
+                "controller_week1_report_with_caveat",
+                "controller_week1_month_report_C"
+              ],
+              "feedback": "Jeg sender pakken med et tydelig forbehold: avviket skal ikke brukes som beslutningsgrunnlag før kampanjefaktura, svinn og lagerverdi er avstemt."
             }
-          ]
+          ],
+          "task_domain": "avvik_og_rapportering",
+          "competency": "avviksanalyse_og_sporbarhet",
+          "pressure": "rapportfrist_vs_forklaring",
+          "choice_axis": "tempo_vs_presisjon",
+          "consequence_axis": "styringskvalitet_vs_fremtidig_risiko",
+          "narrative_arc": "controller_first_week_numbers_as_responsibility"
         },
         {
           "id": "job_controller_week1_reconciliation_almost_matches",
@@ -237,7 +281,19 @@
                   "controller_week1_trace_before_close"
                 ]
               },
-              "triggers_on_choice": "controller_week1_reconciliation_A"
+              "triggers_on_choice": "controller_week1_reconciliation_A",
+              "effect": {
+                "traceability": 3,
+                "accuracy": 3,
+                "trust_drift": 1,
+                "deadline_pressure": 1,
+                "process_quality": 2
+              },
+              "tags": [
+                "controller_week1_trace_before_close",
+                "controller_week1_reconciliation_A"
+              ],
+              "feedback": "Jeg ber om faktura, mottakslinje og driftskontroll før avstemmingen godkjennes."
             },
             {
               "id": "B",
@@ -255,7 +311,19 @@
                   "controller_week1_close_with_note"
                 ]
               },
-              "triggers_on_choice": "controller_week1_reconciliation_B"
+              "triggers_on_choice": "controller_week1_reconciliation_B",
+              "effect": {
+                "deadline_met": 1,
+                "traceability": 1,
+                "future_risk": 1,
+                "process_quality": 0,
+                "stress": -1
+              },
+              "tags": [
+                "controller_week1_close_with_note",
+                "controller_week1_reconciliation_B"
+              ],
+              "feedback": "Jeg godkjenner avstemmingen med kommentar og ber om oppfølging neste periode."
             },
             {
               "id": "C",
@@ -273,9 +341,27 @@
                   "controller_week1_materiality_shortcut"
                 ]
               },
-              "triggers_on_choice": "controller_week1_reconciliation_C"
+              "triggers_on_choice": "controller_week1_reconciliation_C",
+              "effect": {
+                "deadline_met": 2,
+                "deadline_pressure": -2,
+                "traceability": -2,
+                "future_risk": 2,
+                "stagnation": 1
+              },
+              "tags": [
+                "controller_week1_materiality_shortcut",
+                "controller_week1_reconciliation_C"
+              ],
+              "feedback": "Jeg godkjenner avstemmingen fordi beløpet er lite og ikke vesentlig for rapporten."
             }
-          ]
+          ],
+          "task_domain": "avvik_og_rapportering",
+          "competency": "avviksanalyse_og_sporbarhet",
+          "pressure": "rapportfrist_vs_forklaring",
+          "choice_axis": "tempo_vs_presisjon",
+          "consequence_axis": "styringskvalitet_vs_fremtidig_risiko",
+          "narrative_arc": "controller_first_week_numbers_as_responsibility"
         },
         {
           "id": "job_controller_week1_operations_explains_variance",
@@ -311,7 +397,19 @@
                   "controller_week1_graded_explanation"
                 ]
               },
-              "triggers_on_choice": "controller_week1_operations_A"
+              "triggers_on_choice": "controller_week1_operations_A",
+              "effect": {
+                "accuracy": 4,
+                "trust_drift": 2,
+                "trust_manager": 3,
+                "report_quality": 3,
+                "stress": 1
+              },
+              "tags": [
+                "controller_week1_graded_explanation",
+                "controller_week1_operations_A"
+              ],
+              "feedback": "Jeg skriver rapportkommentar som skiller dokumenterte årsaker, sannsynlige årsaker og usikker rest."
             },
             {
               "id": "B",
@@ -328,7 +426,18 @@
                   "controller_week1_accepts_story"
                 ]
               },
-              "triggers_on_choice": "controller_week1_operations_B"
+              "triggers_on_choice": "controller_week1_operations_B",
+              "effect": {
+                "trust_drift": 2,
+                "deadline_pressure": -1,
+                "accuracy": -1,
+                "future_risk": 2
+              },
+              "tags": [
+                "controller_week1_accepts_story",
+                "controller_week1_operations_B"
+              ],
+              "feedback": "Jeg legger Elins forklaring inn som hovedforklaring uten å skille dokumentert og sannsynlig."
             },
             {
               "id": "C",
@@ -346,9 +455,27 @@
                   "controller_week1_hard_documentation"
                 ]
               },
-              "triggers_on_choice": "controller_week1_operations_C"
+              "triggers_on_choice": "controller_week1_operations_C",
+              "effect": {
+                "accuracy": 2,
+                "trust_drift": -2,
+                "conflict": 2,
+                "deadline_pressure": 2,
+                "report_quality": 1
+              },
+              "tags": [
+                "controller_week1_hard_documentation",
+                "controller_week1_operations_C"
+              ],
+              "feedback": "Jeg skriver at avviket ikke kan forklares før alle punkter er dokumentert."
             }
-          ]
+          ],
+          "task_domain": "avvik_og_rapportering",
+          "competency": "avviksanalyse_og_sporbarhet",
+          "pressure": "rapportfrist_vs_forklaring",
+          "choice_axis": "tempo_vs_presisjon",
+          "consequence_axis": "styringskvalitet_vs_fremtidig_risiko",
+          "narrative_arc": "controller_first_week_numbers_as_responsibility"
         },
         {
           "id": "job_controller_week1_forecast_everyone_wants_certain",
@@ -384,7 +511,19 @@
                   "controller_week1_scenario_forecast"
                 ]
               },
-              "triggers_on_choice": "controller_week1_forecast_A"
+              "triggers_on_choice": "controller_week1_forecast_A",
+              "effect": {
+                "forecast_quality": 4,
+                "trust_manager": 3,
+                "accuracy": 3,
+                "decision_quality": 3,
+                "stress": 2
+              },
+              "tags": [
+                "controller_week1_scenario_forecast",
+                "controller_week1_forecast_A"
+              ],
+              "feedback": "Jeg lager basis-, forsiktig- og risikoscenario og forklarer hva som må avklares."
             },
             {
               "id": "B",
@@ -402,7 +541,19 @@
                   "controller_week1_single_number_forecast"
                 ]
               },
-              "triggers_on_choice": "controller_week1_forecast_B"
+              "triggers_on_choice": "controller_week1_forecast_B",
+              "effect": {
+                "manager_pressure": -1,
+                "forecast_quality": 0,
+                "future_risk": 2,
+                "decision_quality": -1,
+                "stress": -1
+              },
+              "tags": [
+                "controller_week1_single_number_forecast",
+                "controller_week1_forecast_B"
+              ],
+              "feedback": "Jeg lager ett hovedestimat og skriver at avviket trolig normaliseres neste periode."
             },
             {
               "id": "C",
@@ -420,9 +571,27 @@
                   "controller_week1_high_risk_warning"
                 ]
               },
-              "triggers_on_choice": "controller_week1_forecast_C"
+              "triggers_on_choice": "controller_week1_forecast_C",
+              "effect": {
+                "risk_visibility": 3,
+                "trust_manager": 1,
+                "conflict": 1,
+                "manager_pressure": 2,
+                "stress": 2
+              },
+              "tags": [
+                "controller_week1_high_risk_warning",
+                "controller_week1_forecast_C"
+              ],
+              "feedback": "Jeg skriver at det er risiko for varig budsjettoverskridelse dersom svinn og feilplukk viser seg å være mønster."
             }
-          ]
+          ],
+          "task_domain": "avvik_og_rapportering",
+          "competency": "avviksanalyse_og_sporbarhet",
+          "pressure": "rapportfrist_vs_forklaring",
+          "choice_axis": "tempo_vs_presisjon",
+          "consequence_axis": "styringskvalitet_vs_fremtidig_risiko",
+          "narrative_arc": "controller_first_week_numbers_as_responsibility"
         },
         {
           "id": "job_controller_week1_numbers_as_responsibility",
@@ -458,7 +627,19 @@
                   "controller_week1_precise_summary"
                 ]
               },
-              "triggers_on_choice": "controller_week1_summary_A"
+              "triggers_on_choice": "controller_week1_summary_A",
+              "effect": {
+                "accuracy": 5,
+                "trust_manager": 4,
+                "trust_drift": 3,
+                "decision_quality": 3,
+                "stress": 2
+              },
+              "tags": [
+                "controller_week1_precise_summary",
+                "controller_week1_summary_A"
+              ],
+              "feedback": "Jeg skriver kort hva som er dokumentert, sannsynlig og usikkert, og foreslår oppfølging på svinn, feilplukk og konto 4300."
             },
             {
               "id": "B",
@@ -476,7 +657,19 @@
                   "controller_week1_smooth_summary"
                 ]
               },
-              "triggers_on_choice": "controller_week1_summary_B"
+              "triggers_on_choice": "controller_week1_summary_B",
+              "effect": {
+                "manager_pressure": -2,
+                "stress": -1,
+                "stagnation": 3,
+                "future_risk": 3,
+                "trust_drift": -1
+              },
+              "tags": [
+                "controller_week1_smooth_summary",
+                "controller_week1_summary_B"
+              ],
+              "feedback": "Jeg skriver at avvikene i hovedsak er forklart, prognosen er under kontroll, og oppfølging skjer neste uke."
             },
             {
               "id": "C",
@@ -494,7 +687,19 @@
                   "controller_week1_hard_control_summary"
                 ]
               },
-              "triggers_on_choice": "controller_week1_summary_C"
+              "triggers_on_choice": "controller_week1_summary_C",
+              "effect": {
+                "accuracy": 2,
+                "control": 3,
+                "trust_drift": -3,
+                "conflict": 3,
+                "manager_pressure": 1
+              },
+              "tags": [
+                "controller_week1_hard_control_summary",
+                "controller_week1_summary_C"
+              ],
+              "feedback": "Jeg skriver at dokumentasjonen fra drift er utilstrekkelig og at avviket ikke bør anses forklart."
             },
             {
               "id": "D",
@@ -512,9 +717,27 @@
                   "controller_week1_needs_more_evidence"
                 ]
               },
-              "triggers_on_choice": "controller_week1_summary_D"
+              "triggers_on_choice": "controller_week1_summary_D",
+              "effect": {
+                "accuracy": 1,
+                "deadline_pressure": 2,
+                "manager_pressure": 2,
+                "decision_quality": 1,
+                "stress": 2
+              },
+              "tags": [
+                "controller_week1_needs_more_evidence",
+                "controller_week1_summary_D"
+              ],
+              "feedback": "Jeg skriver at grunnlaget fortsatt er for uferdig til å konkludere, og ber om at vurderingen holdes åpen til mandag."
             }
-          ]
+          ],
+          "task_domain": "avvik_og_rapportering",
+          "competency": "avviksanalyse_og_sporbarhet",
+          "pressure": "rapportfrist_vs_forklaring",
+          "choice_axis": "tempo_vs_presisjon",
+          "consequence_axis": "styringskvalitet_vs_fremtidig_risiko",
+          "narrative_arc": "controller_first_week_numbers_as_responsibility"
         }
       ],
       "threads": [
@@ -879,7 +1102,20 @@
                   "controller_week2_targeted_followup"
                 ]
               },
-              "triggers_on_choice": "controller_week2_variance_A"
+              "triggers_on_choice": "controller_week2_variance_A",
+              "effect": {
+                "accuracy": 4,
+                "traceability": 3,
+                "trust_drift": 2,
+                "trust_manager": 3,
+                "report_quality": 3,
+                "stress": 1
+              },
+              "tags": [
+                "controller_week2_targeted_followup",
+                "controller_week2_variance_A"
+              ],
+              "feedback": "Jeg avgrenser videre analyse til mottak, feilplukk og kampanjerelaterte justeringer, og ber drift om konkret underlag på disse punktene."
             },
             {
               "id": "B",
@@ -898,7 +1134,20 @@
                   "controller_week2_broad_control_request"
                 ]
               },
-              "triggers_on_choice": "controller_week2_variance_B"
+              "triggers_on_choice": "controller_week2_variance_B",
+              "effect": {
+                "control": 3,
+                "accuracy": 1,
+                "trust_drift": -3,
+                "conflict": 2,
+                "deadline_pressure": 2,
+                "future_risk": 1
+              },
+              "tags": [
+                "controller_week2_broad_control_request",
+                "controller_week2_variance_B"
+              ],
+              "feedback": "Jeg ber drift dokumentere alle relevante bevegelser rundt varekost, mottak, svinn, feilplukk og kampanjeuttak."
             },
             {
               "id": "C",
@@ -916,9 +1165,27 @@
                   "controller_week2_variance_minimized"
                 ]
               },
-              "triggers_on_choice": "controller_week2_variance_C"
+              "triggers_on_choice": "controller_week2_variance_C",
+              "effect": {
+                "deadline_pressure": -1,
+                "manager_pressure": -1,
+                "stagnation": 3,
+                "future_risk": 3,
+                "accuracy": -1
+              },
+              "tags": [
+                "controller_week2_variance_minimized",
+                "controller_week2_variance_C"
+              ],
+              "feedback": "Jeg skriver at avviket ser ut til å være på vei ned, og anbefaler å følge det videre uten ny analyse nå."
             }
-          ]
+          ],
+          "task_domain": "internkontroll_og_styring",
+          "competency": "kontrollkommunikasjon_og_revisjonsspor",
+          "pressure": "kontrolltrykk_vs_tillit",
+          "choice_axis": "dokumentasjon_vs_handlingsrom",
+          "consequence_axis": "tillit_i_drift_vs_ledelsesrisiko",
+          "narrative_arc": "controller_second_week_numbers_as_governance"
         },
         {
           "id": "job_controller_week2_operations_stop_explaining",
@@ -954,7 +1221,20 @@
                   "controller_week2_explanation_levels"
                 ]
               },
-              "triggers_on_choice": "controller_week2_operations_A"
+              "triggers_on_choice": "controller_week2_operations_A",
+              "effect": {
+                "process_quality": 4,
+                "trust_drift": 4,
+                "trust_manager": 3,
+                "accuracy": 3,
+                "report_quality": 3,
+                "stress": 1
+              },
+              "tags": [
+                "controller_week2_explanation_levels",
+                "controller_week2_operations_A"
+              ],
+              "feedback": "Jeg foreslår fire nivåer: tidlig driftsforklaring, foreløpig sannsynlig årsak, dokumentert årsak og åpent punkt."
             },
             {
               "id": "B",
@@ -972,7 +1252,19 @@
                   "controller_week2_documentation_gate"
                 ]
               },
-              "triggers_on_choice": "controller_week2_operations_B"
+              "triggers_on_choice": "controller_week2_operations_B",
+              "effect": {
+                "control": 3,
+                "accuracy": 2,
+                "trust_drift": -4,
+                "conflict": 3,
+                "future_risk": 2
+              },
+              "tags": [
+                "controller_week2_documentation_gate",
+                "controller_week2_operations_B"
+              ],
+              "feedback": "Jeg skriver at drift må dokumentere forklaringer bedre før de kan brukes i rapportering."
             },
             {
               "id": "C",
@@ -990,9 +1282,27 @@
                   "controller_week2_loose_explanations"
                 ]
               },
-              "triggers_on_choice": "controller_week2_operations_C"
+              "triggers_on_choice": "controller_week2_operations_C",
+              "effect": {
+                "trust_drift": 1,
+                "accuracy": -1,
+                "report_quality": -1,
+                "future_risk": 2,
+                "stagnation": 1
+              },
+              "tags": [
+                "controller_week2_loose_explanations",
+                "controller_week2_operations_C"
+              ],
+              "feedback": "Jeg sier at vi kan bruke driftsforklaringer mer fleksibelt og bare være tydelige i teksten."
             }
-          ]
+          ],
+          "task_domain": "internkontroll_og_styring",
+          "competency": "kontrollkommunikasjon_og_revisjonsspor",
+          "pressure": "kontrolltrykk_vs_tillit",
+          "choice_axis": "dokumentasjon_vs_handlingsrom",
+          "consequence_axis": "tillit_i_drift_vs_ledelsesrisiko",
+          "narrative_arc": "controller_second_week_numbers_as_governance"
         },
         {
           "id": "job_controller_week2_periodization_or_polishing",
@@ -1028,7 +1338,20 @@
                   "controller_week2_substance_over_polish"
                 ]
               },
-              "triggers_on_choice": "controller_week2_periodization_A"
+              "triggers_on_choice": "controller_week2_periodization_A",
+              "effect": {
+                "integrity": 4,
+                "accuracy": 4,
+                "trust_manager": 3,
+                "conflict": 2,
+                "manager_pressure": 3,
+                "report_quality": 3
+              },
+              "tags": [
+                "controller_week2_substance_over_polish",
+                "controller_week2_periodization_A"
+              ],
+              "feedback": "Jeg skriver at bare dokumentert flerperiodeeffekt bør periodiseres, og at resten må belastes nå selv om det gjør resultatet svakere."
             },
             {
               "id": "B",
@@ -1046,7 +1369,19 @@
                   "controller_week2_result_polishing"
                 ]
               },
-              "triggers_on_choice": "controller_week2_periodization_B"
+              "triggers_on_choice": "controller_week2_periodization_B",
+              "effect": {
+                "manager_pressure": -2,
+                "report_smoothness": 3,
+                "integrity": -3,
+                "future_risk": 3,
+                "accuracy": -2
+              },
+              "tags": [
+                "controller_week2_result_polishing",
+                "controller_week2_periodization_B"
+              ],
+              "feedback": "Jeg anbefaler å periodisere en større del av kampanjekostnaden fordi effekten forventes å komme senere."
             },
             {
               "id": "C",
@@ -1064,9 +1399,27 @@
                   "controller_week2_avoids_periodization_recommendation"
                 ]
               },
-              "triggers_on_choice": "controller_week2_periodization_C"
+              "triggers_on_choice": "controller_week2_periodization_C",
+              "effect": {
+                "stress": -1,
+                "manager_pressure": 1,
+                "decision_quality": -1,
+                "stagnation": 2,
+                "accuracy": 1
+              },
+              "tags": [
+                "controller_week2_avoids_periodization_recommendation",
+                "controller_week2_periodization_C"
+              ],
+              "feedback": "Jeg skriver at det finnes argumenter begge veier og ber Ingrid ta endelig vurdering."
             }
-          ]
+          ],
+          "task_domain": "internkontroll_og_styring",
+          "competency": "kontrollkommunikasjon_og_revisjonsspor",
+          "pressure": "kontrolltrykk_vs_tillit",
+          "choice_axis": "dokumentasjon_vs_handlingsrom",
+          "consequence_axis": "tillit_i_drift_vs_ledelsesrisiko",
+          "narrative_arc": "controller_second_week_numbers_as_governance"
         },
         {
           "id": "job_controller_week2_audit_trail",
@@ -1102,7 +1455,20 @@
                   "controller_week2_clean_audit_trail"
                 ]
               },
-              "triggers_on_choice": "controller_week2_audit_A"
+              "triggers_on_choice": "controller_week2_audit_A",
+              "effect": {
+                "traceability": 4,
+                "process_quality": 4,
+                "trust_manager": 3,
+                "trust_drift": 2,
+                "audit_readiness": 4,
+                "stress": 1
+              },
+              "tags": [
+                "controller_week2_clean_audit_trail",
+                "controller_week2_audit_A"
+              ],
+              "feedback": "Jeg lager et kort notat som skiller grunnlag, konklusjon, forklaringsnivå og åpne punkter."
             },
             {
               "id": "B",
@@ -1120,7 +1486,19 @@
                   "controller_week2_document_dump"
                 ]
               },
-              "triggers_on_choice": "controller_week2_audit_B"
+              "triggers_on_choice": "controller_week2_audit_B",
+              "effect": {
+                "traceability": 1,
+                "process_quality": -1,
+                "future_risk": 2,
+                "stress": -1,
+                "audit_readiness": 1
+              },
+              "tags": [
+                "controller_week2_document_dump",
+                "controller_week2_audit_B"
+              ],
+              "feedback": "Jeg samler alle filer, mailer og forklaringer i mappen, men skriver ikke eget beslutningsnotat."
             },
             {
               "id": "C",
@@ -1138,9 +1516,27 @@
                   "controller_week2_overdocumented"
                 ]
               },
-              "triggers_on_choice": "controller_week2_audit_C"
+              "triggers_on_choice": "controller_week2_audit_C",
+              "effect": {
+                "traceability": 3,
+                "stress": 3,
+                "deadline_pressure": 2,
+                "decision_quality": -1,
+                "process_quality": 0
+              },
+              "tags": [
+                "controller_week2_overdocumented",
+                "controller_week2_audit_C"
+              ],
+              "feedback": "Jeg skriver et langt notat med alle vurderinger, forbehold, mulige tolkninger og åpne spørsmål."
             }
-          ]
+          ],
+          "task_domain": "internkontroll_og_styring",
+          "competency": "kontrollkommunikasjon_og_revisjonsspor",
+          "pressure": "kontrolltrykk_vs_tillit",
+          "choice_axis": "dokumentasjon_vs_handlingsrom",
+          "consequence_axis": "tillit_i_drift_vs_ledelsesrisiko",
+          "narrative_arc": "controller_second_week_numbers_as_governance"
         },
         {
           "id": "job_controller_week2_numbers_as_governance",
@@ -1177,7 +1573,21 @@
                   "controller_week2_precise_governance"
                 ]
               },
-              "triggers_on_choice": "controller_week2_summary_A"
+              "triggers_on_choice": "controller_week2_summary_A",
+              "effect": {
+                "accuracy": 5,
+                "integrity": 5,
+                "trust_manager": 4,
+                "trust_drift": 3,
+                "decision_quality": 4,
+                "audit_readiness": 3,
+                "stress": 2
+              },
+              "tags": [
+                "controller_week2_precise_governance",
+                "controller_week2_summary_A"
+              ],
+              "feedback": "Jeg anbefaler konservativ periodisering, gradert bruk av driftsforklaringer, oppfølging av konto 4300 og kort revisjonsspor med åpne punkter."
             },
             {
               "id": "B",
@@ -1195,7 +1605,19 @@
                   "controller_week2_smooth_control"
                 ]
               },
-              "triggers_on_choice": "controller_week2_summary_B"
+              "triggers_on_choice": "controller_week2_summary_B",
+              "effect": {
+                "manager_pressure": -2,
+                "report_smoothness": 3,
+                "stagnation": 3,
+                "future_risk": 3,
+                "accuracy": -1
+              },
+              "tags": [
+                "controller_week2_smooth_control",
+                "controller_week2_summary_B"
+              ],
+              "feedback": "Jeg skriver at avvikene i hovedsak er forklart, periodiseringen kan brukes moderat, og resterende punkter følges opp."
             },
             {
               "id": "C",
@@ -1214,7 +1636,20 @@
                   "controller_week2_hard_control_line"
                 ]
               },
-              "triggers_on_choice": "controller_week2_summary_C"
+              "triggers_on_choice": "controller_week2_summary_C",
+              "effect": {
+                "control": 4,
+                "accuracy": 2,
+                "conflict": 4,
+                "trust_drift": -4,
+                "manager_pressure": 2,
+                "audit_readiness": 2
+              },
+              "tags": [
+                "controller_week2_hard_control_line",
+                "controller_week2_summary_C"
+              ],
+              "feedback": "Jeg skriver at driftsforklaringene fortsatt er for svakt dokumentert, periodisering bør avvises, og konto 4300 kan indikere kontrollsvikt."
             },
             {
               "id": "D",
@@ -1232,9 +1667,27 @@
                   "controller_week2_caveat_collector"
                 ]
               },
-              "triggers_on_choice": "controller_week2_summary_D"
+              "triggers_on_choice": "controller_week2_summary_D",
+              "effect": {
+                "accuracy": 1,
+                "manager_pressure": 3,
+                "decision_quality": -2,
+                "stagnation": 3,
+                "stress": 2
+              },
+              "tags": [
+                "controller_week2_caveat_collector",
+                "controller_week2_summary_D"
+              ],
+              "feedback": "Jeg skriver at vurderingen bør holdes åpen til mer dokumentasjon foreligger, særlig rundt svinn, konto 4300 og periodisering."
             }
-          ]
+          ],
+          "task_domain": "internkontroll_og_styring",
+          "competency": "kontrollkommunikasjon_og_revisjonsspor",
+          "pressure": "kontrolltrykk_vs_tillit",
+          "choice_axis": "dokumentasjon_vs_handlingsrom",
+          "consequence_axis": "tillit_i_drift_vs_ledelsesrisiko",
+          "narrative_arc": "controller_second_week_numbers_as_governance"
         }
       ],
       "threads": [
