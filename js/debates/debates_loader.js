@@ -65,12 +65,30 @@
     return byPlace[norm(placeId)] || [];
   }
 
+  // Lesbar etikett for en Civication-konfliktakse. Aksene har ingen label-registry, så vi
+  // utleder deterministisk fra id-en: "bevaring_vs_utvikling" -> "Bevaring vs. utvikling".
+  function conflictLabel(id) {
+    const raw = norm(id);
+    if (!raw) return "";
+    const sides = raw.split("_vs_");
+    const human = sides
+      .map(function (side) { return side.replace(/_/g, " ").trim(); })
+      .filter(Boolean)
+      .join(" vs. ");
+    return human ? human.charAt(0).toUpperCase() + human.slice(1) : raw;
+  }
+
   function debateHtml(debate) {
     const context = Array.isArray(debate.context) ? debate.context : [];
     const positions = Array.isArray(debate.positions) ? debate.positions : [];
+    const conflict = norm(debate.conflict_id);
     return (
       `<div class="hg-debate">` +
       `<h2 class="hg-debate__title">${esc(debate.title || debate.question || "Debatt")}</h2>` +
+      (conflict
+        ? `<div class="hg-debate__conflict" title="Knyttet til en Civication-verdikonflikt">` +
+          `⚖️ <span class="hg-debate__conflict-label">${esc(conflictLabel(conflict))}</span></div>`
+        : "") +
       (debate.question ? `<p class="hg-debate__question">${esc(debate.question)}</p>` : "") +
       context.map(function (line) { return `<p class="hg-debate__context">${esc(line)}</p>`; }).join("") +
       `<div class="hg-debate__positions">` +
@@ -96,6 +114,8 @@
     style.textContent =
       ".hg-debate{display:flex;flex-direction:column;gap:8px}" +
       ".hg-debate__title{margin:0;font-size:18px}" +
+      ".hg-debate__conflict{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;" +
+      "padding:3px 10px;border-radius:999px;background:#eef2ff;color:#3730a3;font-size:12px;font-weight:600}" +
       ".hg-debate__question{margin:0;font-weight:600}" +
       ".hg-debate__context{margin:0;opacity:.85;font-size:14px}" +
       ".hg-debate__positions{display:flex;flex-direction:column;gap:8px;margin-top:6px}" +
@@ -210,6 +230,7 @@
     getById,
     getByPlace,
     open,
-    debateHtml
+    debateHtml,
+    conflictLabel
   };
 })();
