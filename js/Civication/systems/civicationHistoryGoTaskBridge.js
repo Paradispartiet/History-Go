@@ -46,19 +46,22 @@
   }
 
   // Snapshot av relevant, persistert History Go-state (delt localStorage).
-  function readHistoryGoState() {
-    let unlockByQuiz = {};
-    try {
-      unlockByQuiz = window.HGUnlocks?.load?.()?.byQuiz || {};
-    } catch {
-      unlockByQuiz = {};
-    }
+  // Leser localStorage-nøklene direkte, ikke via window.HGUnlocks/HGDebates: de globalene
+  // finnes bare i hovedappen (index.html), mens broen kjører på Civication.html. Kun delt
+  // localStorage krysser sidene.
+  function readStore(key, subKey) {
+    const raw = safeParse(localStorage.getItem(key), {}) || {};
+    const sub = raw[subKey];
+    return sub && typeof sub === "object" ? sub : {};
+  }
 
+  function readHistoryGoState() {
     return {
       visitedPlaces: asSet(safeParse(localStorage.getItem("visited_places"), [])),
-      unlockByQuiz: unlockByQuiz && typeof unlockByQuiz === "object" ? unlockByQuiz : {},
+      unlockByQuiz: readStore("hg_unlocks_v1", "byQuiz"),
       quizProgress: safeParse(localStorage.getItem("quiz_progress"), {}) || {},
-      merits: safeParse(localStorage.getItem("merits_by_category"), {}) || {}
+      merits: safeParse(localStorage.getItem("merits_by_category"), {}) || {},
+      debateById: readStore("hg_debate_log_v1", "byId")
     };
   }
 
@@ -154,7 +157,22 @@
       return null;
     }
 
-    // debate: forutsetter et History Go-debatt-signal som ikke finnes ennå
+    if (type === "debate") {
+      const ids = [p.debate_id, p.conflict_id, p.target_id]
+        .map(function (v) { return String(v || "").trim(); })
+        .filter(Boolean);
+      let row = null;
+      for (let i = 0; i < ids.length; i += 1) {
+        if (state.debateById[ids[i]]) { row = state.debateById[ids[i]]; break; }
+      }
+      if (!row) return null;
+      if (mode === "position_chosen") {
+        return row.position ? { source: "debate_log", correct: true } : null;
+      }
+      // debate_participated (eller annen debatt-mode): deltakelse holder
+      return row.participated ? { source: "debate_log", correct: true } : null;
+    }
+
     return null;
   }
 

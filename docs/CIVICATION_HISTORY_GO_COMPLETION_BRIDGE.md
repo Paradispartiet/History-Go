@@ -94,11 +94,15 @@ Alle finnes allerede; broen leser dem, hovedappen fortsetter å skrive dem.
 | `quiz_progress`, `hg_quiz_sets_v1` | quiz-fremdrift/sett | `quiz_completed` |
 | `merits_by_category` | `{ [category]: { points } }` | kategori-nivå kunnskapskrav |
 | `hg_learning_log_v1` (append-only) | læringslogg med `category`/`emne`-hits | `emne_id`-baserte krav |
+| `hg_debate_log_v1` (`js/hgDebates.js`) | `{ byId: { [id]: { debateId, conflictId, participated, position, positions[] } } }`. `id = debateId \|\| conflictId`. | `debate_participated` / `position_chosen` (kryss-side) |
+| `hg:debate-participated` (event) | `{ id, debateId, conflictId, position }` | trigger re-reconcile (samme `window`) |
 | `updateProfile` (event) | generisk «noe endret seg» | debounced re-reconcile (samme `window`) |
 
-> History Go har i dag **ingen stabil `debate_id`/`conflict_id`-emitter** (jf. flow audit §4C).
-> `history_go_debate`-tasks defineres i schema, men completion for dem krever en HG-side debatt-/
-> posisjonshendelse som er en egen, senere forutsetning. Broen lar dem stå åpne til det finnes.
+> Debatt-signalet (`HGDebates.record(...)` → `hg_debate_log_v1`) er **kontrakten/produsenten**,
+> analogt med hvordan `HGUnlocks.recordFromQuiz` skrives av `quizzes.js`. Det gjenstår en faktisk
+> History Go debatt-/standpunkt-flate som kaller `HGDebates.record(...)`, og en rute å deep-linke
+> til (det finnes ingen `#/debate`-rute ennå). Til den finnes vil deep-link returnere `null` for
+> debatt, men broen fullfører debatt-tasks så snart loggen har en oppføring.
 
 ## 6. Completion-mode → tilfredsstillende signal
 
@@ -113,7 +117,8 @@ Alle finnes allerede; broen leser dem, hovedappen fortsetter å skrive dem.
 | `history_go_knowledge` | `quiz_completed` | `quiz_id ∈ HGUnlocks.byQuiz` / `quiz_progress` |
 | | `correct_answer` | `quiz_id ∈ HGUnlocks.byQuiz` (indeksen skrives kun ved riktig svar → `correct:true`) |
 | | `read_leksikon` | (krever HG leksikon-read-signal; se §8) |
-| `history_go_debate` | `debate_participated` / `position_chosen` | **forutsetning mangler** — venter på HG debatt-signal |
+| `history_go_debate` | `debate_participated` | `hg_debate_log_v1[id].participated` (id = `debate_id`\|`conflict_id`\|`target_id`) |
+| `history_go_debate` | `position_chosen` | `hg_debate_log_v1[id].position` er satt |
 | `history_go_unlock` | `unlocked` | `unlock_id` til stede i relevant indeks for `required_kind` |
 
 Matching av `target_id`: bruk den normaliserte `target_id` fra `task_payload` (som allerede
@@ -193,7 +198,8 @@ det relaterte Civication-svaret — uten at broen tar gameplay-beslutninger selv
 - **Idempotens:** to reconciles → kun én `updateProfile`, uendret `completed_at`.
 - **Negativ:** `open_place` uten quiz → `correct:false`; ingen feilaktig `correct:true`.
 - **Ingen falsk fullføring:** task uten matchende HG-state forblir `open`.
-- **Debatt-task:** forblir åpen (ingen HG-debatt-signal).
+- **Debatt-task:** forblir åpen uten signal; fullføres når `hg_debate_log_v1` har en oppføring
+  (`participated` for `debate_participated`, `position` satt for `position_chosen`).
 - **Testmodus:** reconcile i testmodus skriver ingenting.
 - **Eierskap:** broen kaller TaskEngine-API; ingen direkte `localStorage.setItem("hg_civi_tasks_v1")`.
 
@@ -202,8 +208,9 @@ det relaterte Civication-svaret — uten at broen tar gameplay-beslutninger selv
 - **Story-read- og leksikon-read-signal** finnes ikke som stabil persistert markør i dag.
   `read_story`/`read_leksikon` trenger enten et HG-signal (f.eks. en `read`-logg) eller fjernes
   som completion-modes til det finnes.
-- **Debatt/konflikt** trenger en HG-side debatt-id og deltakelses-/posisjonshendelse (flow audit
-  §4C/§5). Spesifiseres separat.
+- **Debatt-signalet finnes nå** (`js/hgDebates.js` → `hg_debate_log_v1`, broen leser det).
+  Det som gjenstår er en faktisk History Go debatt-/standpunkt-**flate** som kaller
+  `HGDebates.record(...)`, samt en `#/debate`-rute så deep-link kan navigere dit.
 - **Person «åpnet»** (uten quiz) trenger en persistert «person besøkt»-markør tilsvarende
   `visited_places`; bekreft hva popup-/profil-systemet allerede lagrer.
 - **Eksakt testmodus-flagg** i Civication må verifiseres mot `CivicationState` ved implementasjon.

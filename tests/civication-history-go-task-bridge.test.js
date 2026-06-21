@@ -126,7 +126,7 @@ function results() {
     quiz_id: "quiz_oslo_1",
     completion_mode: "correct_answer"
   });
-  global.window.HGUnlocks = { load: () => ({ byQuiz: { quiz_oslo_1: { quizId: "quiz_oslo_1" } } }) };
+  global.localStorage.setItem("hg_unlocks_v1", JSON.stringify({ byQuiz: { quiz_oslo_1: { quizId: "quiz_oslo_1" } } }));
 
   assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1, "first marks");
   const completedAt = getTask(taskId).history_go.completed_at;
@@ -171,7 +171,7 @@ function results() {
   assert.strictEqual(getTask(taskId).history_go, undefined, "no history_go written");
 }
 
-// --- 5. Debate task stays open (no HG signal exists) ---
+// --- 5. Debate: stays open without signal, completes once the debate log has a position ---
 {
   freshEnv();
   const taskId = seedOpenTask({
@@ -180,8 +180,20 @@ function results() {
     debate_id: "debate_1",
     completion_mode: "position_chosen"
   });
-  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0, "debate not satisfiable");
-  assert.strictEqual(getTask(taskId).history_go, undefined, "debate stays open");
+  // no hg_debate_log_v1 yet
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0, "debate not satisfiable yet");
+  assert.strictEqual(getTask(taskId).history_go, undefined, "debate stays open without signal");
+
+  // participation without a position does not satisfy position_chosen
+  global.localStorage.setItem("hg_debate_log_v1", JSON.stringify({ byId: { debate_1: { id: "debate_1", debateId: "debate_1", participated: true, position: null } } }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0, "participation alone != position_chosen");
+
+  // now a position is recorded -> completes
+  global.localStorage.setItem("hg_debate_log_v1", JSON.stringify({ byId: { debate_1: { id: "debate_1", debateId: "debate_1", participated: true, position: "industri" } } }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1, "position_chosen satisfied");
+  const task = getTask(taskId);
+  assert.strictEqual(task.history_go.correct, true, "debate position is correct");
+  assert.strictEqual(task.history_go.completion_source, "debate_log", "source is debate_log");
 }
 
 // --- 6. Test mode: reconcile writes nothing ---
