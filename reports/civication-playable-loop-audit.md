@@ -121,3 +121,18 @@ Dekning som finnes:
 4. Legg til **én integrasjonstest** som dokumenterer akkurat denne synlige handoveren etter svar (planned brand mail → consequence persisted → milestone pending).
 
 Dette gir størst brukerforståelse uten å endre core/dataarkitektur.
+
+## 6) Statusoppdatering (2026-06-21): konsekvens-feedback bygget
+
+Hullet i §4 ("tydelig, konsistent «svar ga konsekvens X» feedback i UI-laget") er nå lukket:
+
+- `CivicationBrandJobState.applyChoiceConsequences` dispatcher et `civication:consequence`-event
+  med metrikk-`delta` (+ brand/mail/choice) når en konsekvens faktisk lagres (`changed`).
+- Ny display-only UI-modul `js/Civication/ui/CivicationConsequenceFeedback.js` lytter og viser en
+  flyktig «Svaret ga konsekvens»-melding med lesbare deltaer (f.eks. «Kundetillit +1»,
+  «Integritet −1»), grønt for opp / rødt for ned. Selvstendige injiserte stiler (CSS-lista låst),
+  lastet i `Civication.html`.
+- Tester: `tests/civication-consequence-feedback.test.js` (formatering + rendering) og en ny
+  assertion i `tests/civication-brand-job-state.test.js` (event dispatches med delta).
+
+Gjenstår fortsatt fra §4: tydeligere milestone-highlight i hovedflate (egen sak).
