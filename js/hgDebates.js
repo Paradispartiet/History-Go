@@ -86,6 +86,16 @@
 
     db.byId[id] = row;
 
+    // Sekundærindeks: conflictId -> byId-nøkkel, slik at Civication-broen kan slå opp en
+    // debatt på konflikt-aksen (task med conflict_id) selv når raden er nøklet på debateId.
+    if (cId) {
+      db.byConflict = db.byConflict || {};
+      if (db.byConflict[cId] !== id) {
+        db.byConflict[cId] = id;
+        changed = true;
+      }
+    }
+
     if (changed) {
       row.ts_last = now;
       save(db);

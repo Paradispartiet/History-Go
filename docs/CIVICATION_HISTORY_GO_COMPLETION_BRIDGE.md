@@ -94,7 +94,7 @@ Alle finnes allerede; broen leser dem, hovedappen fortsetter å skrive dem.
 | `quiz_progress`, `hg_quiz_sets_v1` | quiz-fremdrift/sett | `quiz_completed` |
 | `merits_by_category` | `{ [category]: { points } }` | kategori-nivå kunnskapskrav |
 | `hg_learning_log_v1` (append-only) | læringslogg med `category`/`emne`-hits | `emne_id`-baserte krav |
-| `hg_debate_log_v1` (`js/hgDebates.js`) | `{ byId: { [id]: { debateId, conflictId, participated, position, positions[] } } }`. `id = debateId \|\| conflictId`. | `debate_participated` / `position_chosen` (kryss-side) |
+| `hg_debate_log_v1` (`js/hgDebates.js`) | `{ byId: { [id]: { debateId, conflictId, participated, position, positions[] } }, byConflict: { [conflictId]: byId-nøkkel } }`. `id = debateId \|\| conflictId`; `byConflict` gjør konfliktakser oppslagbare når raden er nøklet på `debateId`. | `debate_participated` / `position_chosen` (kryss-side, matchet på `debate_id`/`conflict_id`/`target_id`) |
 | `hg_reads_v1` (`js/hgReads.js`) | `{ stories: {[id]:{placeId,personId}}, leksikon: {[id]:{categoryId,emneId}}, persons: {[id]} }` | `read_story` / `read_leksikon` / `open_person` / `read_profile` (kryss-side) |
 | `hg:debate-participated` (event) | `{ id, debateId, conflictId, position }` | trigger re-reconcile (samme `window`) |
 | `updateProfile` (event) | generisk «noe endret seg» | debounced re-reconcile (samme `window`) |

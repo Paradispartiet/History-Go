@@ -198,6 +198,24 @@ function results() {
   assert.strictEqual(task.history_go.completion_source, "debate_log", "source is debate_log");
 }
 
+// --- 5b. Debate keyed by conflict axis: a conflict-targeted task resolves via byConflict ---
+{
+  freshEnv();
+  const taskId = seedOpenTask({
+    task_kind: "history_go_debate",
+    target_type: "debate",
+    conflict_id: "ideal_vs_budsjett",
+    completion_mode: "position_chosen"
+  });
+  // Log row is keyed by debateId (as HGDebates.record does), with the conflict axis only in byConflict.
+  global.localStorage.setItem("hg_debate_log_v1", JSON.stringify({
+    byId: { munch_offentlig_kunst: { id: "munch_offentlig_kunst", debateId: "munch_offentlig_kunst", conflictId: "ideal_vs_budsjett", participated: true, position: "satsing" } },
+    byConflict: { ideal_vs_budsjett: "munch_offentlig_kunst" }
+  }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1, "conflict-targeted debate satisfied via byConflict");
+  assert.strictEqual(getTask(taskId).history_go.correct, true, "conflict debate correct");
+}
+
 // --- 6. Test mode: reconcile writes nothing ---
 {
   freshEnv();

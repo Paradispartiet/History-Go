@@ -62,6 +62,17 @@ assert(HG && typeof HG.record === "function", "HGDebates.record exists");
   assert.strictEqual(HG.getById("c9").position, "menneske", "conflict position stored");
 }
 
+// byConflict index: a debate keyed by debateId is still resolvable by its conflict axis,
+// mirroring how the Civication task bridge matches a conflict-targeted debate task.
+{
+  HG.record({ debateId: "munch_offentlig_kunst", conflictId: "ideal_vs_budsjett", position: "satsing" });
+  const db = HG.load();
+  assert.strictEqual(db.byConflict.ideal_vs_budsjett, "munch_offentlig_kunst", "byConflict maps axis -> debate key");
+  // bridge-style resolution: conflict id -> byId key -> row
+  const key = db.byConflict.ideal_vs_budsjett;
+  assert.strictEqual(db.byId[key].position, "satsing", "conflict axis resolves to the debate row");
+}
+
 // junk: no id -> null, no write
 {
   assert.strictEqual(HG.record({}), null, "no id -> null");
