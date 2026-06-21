@@ -153,6 +153,7 @@ declare global {
     HGStoryTypes?: any;
     HGStoryUI?: any;
     HGDebates?: any;
+    HGReads?: any;
     HGTimeResolver?: any;
     HGUnlocks?: any;
     HGUserProfile?: any;

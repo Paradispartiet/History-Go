@@ -95,6 +95,7 @@ Alle finnes allerede; broen leser dem, hovedappen fortsetter å skrive dem.
 | `merits_by_category` | `{ [category]: { points } }` | kategori-nivå kunnskapskrav |
 | `hg_learning_log_v1` (append-only) | læringslogg med `category`/`emne`-hits | `emne_id`-baserte krav |
 | `hg_debate_log_v1` (`js/hgDebates.js`) | `{ byId: { [id]: { debateId, conflictId, participated, position, positions[] } } }`. `id = debateId \|\| conflictId`. | `debate_participated` / `position_chosen` (kryss-side) |
+| `hg_reads_v1` (`js/hgReads.js`) | `{ stories: {[id]:{placeId,personId}}, leksikon: {[id]:{categoryId,emneId}}, persons: {[id]} }` | `read_story` / `read_leksikon` / `open_person` / `read_profile` (kryss-side) |
 | `hg:debate-participated` (event) | `{ id, debateId, conflictId, position }` | trigger re-reconcile (samme `window`) |
 | `updateProfile` (event) | generisk «noe endret seg» | debounced re-reconcile (samme `window`) |
 
@@ -111,12 +112,12 @@ Alle finnes allerede; broen leser dem, hovedappen fortsetter å skrive dem.
 | `history_go_place` | `open_place` | `place_id ∈ visited_places` **eller** target-unlock for `id` (`correct:false` hvis kun åpnet) |
 | | `visit_place` | `place_id ∈ visited_places` |
 | | `place_quiz` | `hg:target-unlock {kind:"place", id}` eller `HGUnlocks.byQuiz` har quiz for stedet |
-| | `read_story` | (krever HG story-read-signal; se §8 åpne punkter) |
-| `history_go_person` | `open_person` / `read_profile` | person besøkt/åpnet (person-unlock eller HG profil-signal) |
+| | `read_story` | `hg_reads_v1.stories` har en oppføring med `placeId === place_id/target_id` |
+| `history_go_person` | `open_person` / `read_profile` | `hg_reads_v1.persons[person_id]` finnes (person åpnet/profil lest) |
 | | `person_quiz` | `hg:target-unlock {kind:"person", id}` eller `HGUnlocks` |
 | `history_go_knowledge` | `quiz_completed` | `quiz_id ∈ HGUnlocks.byQuiz` / `quiz_progress` |
 | | `correct_answer` | `quiz_id ∈ HGUnlocks.byQuiz` (indeksen skrives kun ved riktig svar → `correct:true`) |
-| | `read_leksikon` | (krever HG leksikon-read-signal; se §8) |
+| | `read_leksikon` | `hg_reads_v1.leksikon` har treff på `emne_id` / `category_id` / `target_id` |
 | `history_go_debate` | `debate_participated` | `hg_debate_log_v1[id].participated` (id = `debate_id`\|`conflict_id`\|`target_id`) |
 | `history_go_debate` | `position_chosen` | `hg_debate_log_v1[id].position` er satt |
 | `history_go_unlock` | `unlocked` | `unlock_id` til stede i relevant indeks for `required_kind` |
@@ -205,14 +206,15 @@ det relaterte Civication-svaret — uten at broen tar gameplay-beslutninger selv
 
 ## 12. Åpne punkter / forutsetninger
 
-- **Story-read- og leksikon-read-signal** finnes ikke som stabil persistert markør i dag.
-  `read_story`/`read_leksikon` trenger enten et HG-signal (f.eks. en `read`-logg) eller fjernes
-  som completion-modes til det finnes.
-- **Debatt-signalet finnes nå** (`js/hgDebates.js` → `hg_debate_log_v1`, broen leser det).
-  Det som gjenstår er en faktisk History Go debatt-/standpunkt-**flate** som kaller
-  `HGDebates.record(...)`, samt en `#/debate`-rute så deep-link kan navigere dit.
-- **Person «åpnet»** (uten quiz) trenger en persistert «person besøkt»-markør tilsvarende
-  `visited_places`; bekreft hva popup-/profil-systemet allerede lagrer.
+- **Alle signal-kontraktene finnes nå** som persisterte markører broen leser:
+  - quiz/unlock: `hg_unlocks_v1` (`HGUnlocks`, skrevet av `quizzes.js`)
+  - sted: `visited_places`
+  - debatt: `hg_debate_log_v1` (`HGDebates`)
+  - story/leksikon/person-åpnet: `hg_reads_v1` (`HGReads`)
+- **Det som gjenstår er produsent-siden** — å kalle signalene fra faktiske History Go-flater:
+  `HGReads.recordStory/recordLeksikon/recordPerson(...)` fra story-/leksikon-/personvisning, og
+  `HGDebates.record(...)` fra en debatt-/standpunkt-flate. Pluss en `#/debate`-rute så deep-link
+  kan navigere til debatt (deep-link dekker allerede place/quiz).
 - **Eksakt testmodus-flagg** i Civication må verifiseres mot `CivicationState` ved implementasjon.
 
 ## 13. Utenfor scope
