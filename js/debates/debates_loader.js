@@ -78,7 +78,59 @@
     return human ? human.charAt(0).toUpperCase() + human.slice(1) : raw;
   }
 
-  function debateHtml(debate, priorPosition) {
+  // Lesbar etikett for én pol av en akse: "myke_trafikanter" -> "Myke trafikanter",
+  // "midt" -> "Midt imellom".
+  function poleLabel(pole) {
+    const p = norm(pole);
+    if (!p) return "";
+    if (p === "midt") return "Midt imellom";
+    const human = p.replace(/_/g, " ").trim();
+    return human.charAt(0).toUpperCase() + human.slice(1);
+  }
+
+  // Spillerens tendens på en konfliktakse: teller registrerte standpunkt (via HGDebates) på
+  // tvers av alle debatter som deler conflict_id, og mapper hvert valg til sin pol.
+  function leaning(conflictId) {
+    const cId = norm(conflictId);
+    const sides = cId.split("_vs_");
+    const out = {
+      conflictId: cId,
+      poleA: sides[0] || "",
+      poleB: sides[1] || "",
+      counts: {},
+      total: 0,
+      lean: null
+    };
+    if (!cId) return out;
+    out.counts[out.poleA] = 0;
+    out.counts[out.poleB] = 0;
+    out.counts.midt = 0;
+    Object.keys(byId).forEach(function (did) {
+      const debate = byId[did];
+      if (!debate || norm(debate.conflict_id) !== cId) return;
+      let chosen = "";
+      try {
+        const row = window.HGDebates && window.HGDebates.getById ? window.HGDebates.getById(did) : null;
+        chosen = row && row.position ? norm(row.position) : "";
+      } catch {}
+      if (!chosen) return;
+      const pos = (debate.positions || []).find(function (p) { return norm(p.id) === chosen; });
+      const pole = pos ? norm(pos.pole) : "";
+      if (pole && Object.prototype.hasOwnProperty.call(out.counts, pole)) {
+        out.counts[pole] += 1;
+        out.total += 1;
+      }
+    });
+    const a = out.counts[out.poleA];
+    const b = out.counts[out.poleB];
+    if (out.total === 0) out.lean = null;
+    else if (a > b) out.lean = out.poleA;
+    else if (b > a) out.lean = out.poleB;
+    else out.lean = "midt";
+    return out;
+  }
+
+  function debateHtml(debate, priorPosition, tendencyText) {
     const context = Array.isArray(debate.context) ? debate.context : [];
     const positions = Array.isArray(debate.positions) ? debate.positions : [];
     const conflict = norm(debate.conflict_id);
@@ -92,6 +144,9 @@
       (conflict
         ? `<div class="hg-debate__conflict" title="Knyttet til en Civication-verdikonflikt">` +
           `⚖️ <span class="hg-debate__conflict-label">${esc(conflictLabel(conflict))}</span></div>`
+        : "") +
+      (norm(tendencyText)
+        ? `<div class="hg-debate__tendency">📊 <span>${esc(tendencyText)}</span></div>`
         : "") +
       (debate.question ? `<p class="hg-debate__question">${esc(debate.question)}</p>` : "") +
       context.map(function (line) { return `<p class="hg-debate__context">${esc(line)}</p>`; }).join("") +
@@ -122,6 +177,8 @@
       ".hg-debate__title{margin:0;font-size:18px}" +
       ".hg-debate__conflict{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;" +
       "padding:3px 10px;border-radius:999px;background:#eef2ff;color:#3730a3;font-size:12px;font-weight:600}" +
+      ".hg-debate__tendency{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;" +
+      "font-size:12px;font-weight:600;color:#3730a3}" +
       ".hg-debate__question{margin:0;font-weight:600}" +
       ".hg-debate__context{margin:0;opacity:.85;font-size:14px}" +
       ".hg-debate__positions{display:flex;flex-direction:column;gap:8px;margin-top:6px}" +
@@ -158,10 +215,22 @@
       priorPosition = row && row.position ? row.position : "";
     } catch {}
 
+    // Tendens på aksen vises kun når spilleren har tatt standpunkt i >=2 debatter på samme
+    // konflikt — da er det en reell tverr-debatt-lesning, ikke bare gjentakelse av dette valget.
+    let tendencyText = "";
+    try {
+      if (debate.conflict_id) {
+        const l = leaning(debate.conflict_id);
+        if (l.total >= 2 && l.lean) {
+          tendencyText = "Din tendens på aksen: " + poleLabel(l.lean);
+        }
+      }
+    } catch {}
+
     ensureStyles();
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      popupFn(debateHtml(debate, priorPosition), "hg-debate-popup");
+      popupFn(debateHtml(debate, priorPosition, tendencyText), "hg-debate-popup");
     } else {
       window.showToast?.("Popup-systemet er ikke lastet");
     }
@@ -245,6 +314,8 @@
     getByPlace,
     open,
     debateHtml,
-    conflictLabel
+    conflictLabel,
+    poleLabel,
+    leaning
   };
 })();
