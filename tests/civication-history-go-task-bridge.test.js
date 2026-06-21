@@ -36,6 +36,8 @@ function freshEnv() {
   const listeners = {};
   const dispatched = [];
   global.window = global;
+  // Reset per-case globals so state (e.g. test-mode flag) doesn't leak between cases.
+  global.CivicationState = undefined;
   global.localStorage = createLocalStorage();
   global.document = {
     readyState: "complete",
@@ -220,6 +222,51 @@ function results() {
     !/localStorage\.setItem\(\s*["']hg_civi_tasks_v1/.test(src),
     "bridge never writes the task store directly"
   );
+}
+
+// --- 8. read_story: completes when a story for the place is logged ---
+{
+  freshEnv();
+  const taskId = seedOpenTask({
+    task_kind: "history_go_place",
+    target_type: "place",
+    place_id: "akershus_festning",
+    completion_mode: "read_story"
+  });
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0, "read_story not satisfiable yet");
+  global.localStorage.setItem("hg_reads_v1", JSON.stringify({ stories: { s1: { id: "s1", placeId: "akershus_festning" } } }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1, "read_story satisfied by story for place");
+  assert.strictEqual(getTask(taskId).history_go.completion_source, "reads_story", "source reads_story");
+}
+
+// --- 9. open_person: completes when the person is logged as opened ---
+{
+  freshEnv();
+  const taskId = seedOpenTask({
+    task_kind: "history_go_person",
+    target_type: "person",
+    person_id: "p1",
+    completion_mode: "read_profile"
+  });
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0, "person not opened yet");
+  global.localStorage.setItem("hg_reads_v1", JSON.stringify({ persons: { p1: { id: "p1" } } }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1, "read_profile satisfied");
+  assert.strictEqual(getTask(taskId).history_go.completion_source, "reads_person", "source reads_person");
+}
+
+// --- 10. read_leksikon: completes on emne match ---
+{
+  freshEnv();
+  const taskId = seedOpenTask({
+    task_kind: "history_go_knowledge",
+    target_type: "knowledge",
+    emne_id: "e1",
+    completion_mode: "read_leksikon"
+  });
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 0, "leksikon not read yet");
+  global.localStorage.setItem("hg_reads_v1", JSON.stringify({ leksikon: { lx1: { id: "lx1", emneId: "e1" } } }));
+  assert.strictEqual(global.CivicationHistoryGoTaskBridge.reconcile(), 1, "read_leksikon satisfied by emne");
+  assert.strictEqual(getTask(taskId).history_go.completion_source, "reads_leksikon", "source reads_leksikon");
 }
 
 console.log("civication history-go task bridge ok");

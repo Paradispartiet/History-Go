@@ -61,8 +61,22 @@
       unlockByQuiz: readStore("hg_unlocks_v1", "byQuiz"),
       quizProgress: safeParse(localStorage.getItem("quiz_progress"), {}) || {},
       merits: safeParse(localStorage.getItem("merits_by_category"), {}) || {},
-      debateById: readStore("hg_debate_log_v1", "byId")
+      debateById: readStore("hg_debate_log_v1", "byId"),
+      readStories: readStore("hg_reads_v1", "stories"),
+      readLeksikon: readStore("hg_reads_v1", "leksikon"),
+      readPersons: readStore("hg_reads_v1", "persons")
     };
+  }
+
+  // Finn en read-oppføring der et gitt felt matcher en id (eller selve nøkkelen matcher).
+  function readHas(bucket, field, id) {
+    const wanted = String(id || "").trim();
+    if (!wanted) return false;
+    if (bucket[wanted]) return true;
+    return Object.keys(bucket).some(function (key) {
+      const row = bucket[key];
+      return row && field && String(row[field] || "") === wanted;
+    });
   }
 
   function quizIsUnlocked(state, quizId) {
@@ -110,14 +124,25 @@
         }
         return null;
       }
-      return null; // read_story: ingen signal ennå
+      if (mode === "read_story") {
+        if (readHas(state.readStories, "placeId", p.place_id || p.target_id)) {
+          return { source: "reads_story", correct: true };
+        }
+        return null;
+      }
+      return null;
     }
 
     if (type === "person") {
       if (mode === "person_quiz" && quizIsUnlocked(state, p.quiz_id)) {
         return { source: "unlock_index", correct: true };
       }
-      return null; // open_person / read_profile: ingen persistert markør ennå
+      if (mode === "open_person" || mode === "read_profile") {
+        if (readHas(state.readPersons, null, p.person_id || p.target_id)) {
+          return { source: "reads_person", correct: true };
+        }
+      }
+      return null;
     }
 
     if (type === "knowledge") {
@@ -139,10 +164,20 @@
         }
         return null;
       }
+      if (mode === "read_leksikon") {
+        if (
+          readHas(state.readLeksikon, "emneId", p.emne_id) ||
+          readHas(state.readLeksikon, "categoryId", p.category_id) ||
+          readHas(state.readLeksikon, null, p.target_id)
+        ) {
+          return { source: "reads_leksikon", correct: true };
+        }
+        return null;
+      }
       if (categoryHasPoints(state, p.category_id)) {
         return { source: "merits", correct: true };
       }
-      return null; // read_leksikon: ingen signal ennå
+      return null;
     }
 
     if (type === "unlock") {
