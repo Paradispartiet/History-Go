@@ -720,5 +720,6 @@ Safety markers: safety-first, local-only, no GPS/live/followers, and no automati
   - `completeObjectiveFromSignals(options?)` — returns objectives newly completed by signals and saves only when `{ save: true }` is passed.
   - `getSummary()` — returns compact agenda counts for runtime panels.
   - `health()` — checks storage, generation, status refresh, Today Hub integration, action router, panel, and privacy.
+  - `pinObjective(id)`, `dismissObjective(id)`, and `restoreObjective(id)` — optional local-only agenda list helpers; they do not count as completion or mutate gameplay.
 - Status: local-only, privacy-safe, no backend, and no gameplay mutation.
 - Safe route keys include `open_public_profile_preview`, `open_match_graph`, `open_runtime_health`, `open_social_demo`, `open_today_explanation`, `open_place`, `open_route_viewer`, `open_observation_ui`, and `read_only`.
