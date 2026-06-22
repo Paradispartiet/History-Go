@@ -628,3 +628,23 @@ Registered privacy-safe CustomEvents, all explicit-action only and not geolocati
 - `localStorage` key `hg_public_profile_settings_v1` stores local-only settings. It is not backend storage and is not global publication.
 - Events: `hg:publicProfileSettingsChanged` and `hg:publicProfilePreviewRefreshed` dispatch privacy-safe payloads containing only enabled state, signal count, and visible section flags.
 - Privacy status: local-only, privacy-safe, not backend, and not global publication yet. The model blocks GPS/live status/followers/last-seen/feed tracking fields and forbidden visible wording.
+
+## HG Social Match Graph
+
+### `window.HG_SocialMatchGraph`
+
+Local-only, privacy-safe public-profile matching API.
+
+- `buildSelfProfile()` reads `HG_PublicProfileReadModel.getReadModel()` and normalizes the local preview profile.
+- `getCandidateProfiles()` uses seeded HG Social demo profiles only in `HG_TEST_MODE`; production returns `backend_not_enabled` unless future safe public local profiles are provided.
+- `buildMatchGraph()`, `getMatches()`, `getMatchesForPlace()`, `getMatchReasons()`, `getSuggestedActivities()`, and `explainMatch()` produce deterministic knowledge-based suggestions.
+- No backend, GPS, presence, follower/following metrics, last-seen values, distance, or real user discovery.
+- Demo candidates remain `demoOnly:true` and must never be inserted into `PEOPLE`.
+
+### `window.HG_SocialMatchGraphPanel`
+
+Optional local panel for preview/debug rendering of the match graph. It shows self profile, top matches, place matches, privacy notes, and warnings. It is local-only and does not call a backend.
+
+### `localStorage: hg_social_match_graph_cache_v1`
+
+Reserved optional cache key for derived, privacy-safe match results. Current implementation computes live and only exposes `clearCacheForTestMode()` for this key. It must not store raw private profile data, observations, exact timestamps, GPS/coordinates, presence, follower/following metrics, last-seen values, or visit logs.

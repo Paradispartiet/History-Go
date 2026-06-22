@@ -194,6 +194,32 @@
       checks.socialDemoVisible = check(!leaked.length && !!adapter && profiles.length >= 8 && list(demoMatches.value).length > 0, leaked.length ? "blocker" : "ok", "Social demo synlighet kontrollert.", { profiles: profiles.length, matches: list(demoMatches.value).length });
     }
 
+
+    if (!root.HG_SocialMatchGraph) {
+      blockers.push(blocker("social_match_graph_missing", "HG_SocialMatchGraph mangler.", {}, "socialMatchGraph"));
+      checks.socialMatchGraph = check(false, "blocker", "Social match graph mangler.");
+    } else {
+      const a = safeSync(() => root.HG_SocialMatchGraph.buildMatchGraph({ limit: 10 }));
+      const b = safeSync(() => root.HG_SocialMatchGraph.buildMatchGraph({ limit: 10 }));
+      const h = safeSync(() => root.HG_SocialMatchGraph.health());
+      if (a.error) blockers.push(blocker("social_match_graph_build_failed", "buildMatchGraph feilet.", { error: errorMessage(a.error) }, "socialMatchGraph"));
+      if (h.value && h.value.ok === false) pushReportIssues(h.value, blockers, warnings, "socialMatchGraph", { privacy: true });
+      const matches = list(a.value?.matches);
+      if (isEnabled()) {
+        const seeded = root.HG_SocialDemo?.snapshot?.().seeded === true;
+        if (seeded && matches.length < 3) blockers.push(blocker("social_match_graph_demo_low", "TEST_MODE demo gir færre enn 3 matcher.", { matches: matches.length }, "socialMatchGraph"));
+      }
+      const samplePlace = list(root.PLACES)[0]?.id || "factory_memory";
+      const placeMatches = safeSync(() => root.HG_SocialMatchGraph.getMatchesForPlace(samplePlace, { limit: 10 }));
+      if (placeMatches.error) blockers.push(blocker("social_match_graph_place_failed", "getMatchesForPlace feilet.", { error: errorMessage(placeMatches.error) }, "socialMatchGraph"));
+      const stable = JSON.stringify(list(a.value?.matches).map((m)=>[m.candidateId,m.score])) === JSON.stringify(list(b.value?.matches).map((m)=>[m.candidateId,m.score]));
+      if (!stable) blockers.push(blocker("social_match_graph_not_deterministic", "Match graph scoring er ikke deterministisk.", {}, "socialMatchGraph"));
+      const fakeIds = new Set(list(root.HG_SocialDemo?.snapshot?.().profiles).map((p)=>p?.userId).filter(Boolean));
+      const leaked = list(root.PEOPLE).filter((p)=>fakeIds.has(p?.id)||fakeIds.has(p?.userId));
+      if (leaked.length) blockers.push(blocker("demo_users_leaked_global_people", "Demo users leaked into global PEOPLE", { count: leaked.length }, "socialMatchGraph"));
+      checks.socialMatchGraph = check(!a.error && !placeMatches.error && stable && (!isEnabled() || matches.length >= 3), a.error || placeMatches.error || !stable ? "blocker" : "ok", "Social match graph kontrollert.", { matches: matches.length, candidates: count(a.value?.candidates), placeMatches: count(placeMatches.value) });
+    }
+
     const privacyFound = [];
     scanForbidden({ runtimeReport, runtimeSnapshot, socialReport, socialSnapshot }, "snapshots", privacyFound, new WeakSet());
     privacyFound.forEach((item) => blockers.push(blocker("privacy_forbidden_field", `Forbudt personvernfelt funnet: ${item.path}`, item, "privacy")));

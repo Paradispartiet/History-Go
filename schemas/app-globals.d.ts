@@ -427,6 +427,9 @@ declare global {
   var updateKnowledgeFingerprint: ((context?: Record<string, unknown>) => unknown) | undefined;
   var updateSocialMatchIndex: ((context?: Record<string, unknown>) => unknown) | undefined;
   var visited: any;
+  var HG_SocialMatchGraph: any;
+  var HG_SocialMatchGraphPanel: any;
+  var HGSocialMatchGraphPanel: any;
 }
 
 export {};

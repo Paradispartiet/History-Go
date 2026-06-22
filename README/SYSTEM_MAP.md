@@ -506,3 +506,15 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - The model intentionally excludes GPS, coordinates, live status, followers/following, last-seen state, exact persisted timestamps, private visit logs, and raw free-text observations.
 - `js/social/HGPublicProfilePreviewPanel.js` exposes `window.HG_PublicProfilePreviewPanel` for a local preview panel with privacy checklist, section cards, and TEST_MODE-only clear controls.
 - Runtime social diagnostics and smoke checks can include the read-model health so future matching and real public profile surfaces can use one canonical, privacy-validated source.
+
+## HG Social Match Graph
+
+HG Social Match Graph is a local-only knowledge matching engine exposed as `window.HG_SocialMatchGraph`. It builds a normalized self profile from `HG_PublicProfileReadModel.getReadModel()` and compares it with privacy-safe candidate public profiles.
+
+- In `HG_TEST_MODE`, seeded HG Social demo candidates are used for local/manual social surfaces.
+- Outside test mode there is no backend discovery yet; the graph returns an explicit `backend_not_enabled` source/warning unless future safe public candidates are available.
+- The graph never uses GPS, live status, follower metrics, distance, real user discovery, or backend persistence.
+- Match output is derived and privacy-safe: scores, shared knowledge domains, shared concepts, badges, routes, favorite places, observation tags, Norwegian reasons, and suggested preset activities.
+- PlaceCard demo surfaces, the public profile preview, runtime health/smoke, and future Min dag surfaces can read this graph without inserting demo users into `PEOPLE`.
+
+Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top matches, place matches, privacy status, and warnings without CSS or backend calls.
