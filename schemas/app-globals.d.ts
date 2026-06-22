@@ -41,6 +41,7 @@ declare global {
     HG_CiviWorkdaySnapshot?: () => any;
     HG_CiviProfileSnapshot?: () => any;
     HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any> };
+    openSpotMatchList?: (...args: any[]) => any;
     CivicationCareerOutcomeRuntime?: any;
     CivicationChoiceDirector?: any;
     CivicationChoiceToneVariants?: any;

@@ -361,7 +361,7 @@ async function renderCivicationShop() {
   hintEl.textContent = "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
 
   const ownedPacks = civiShopRecord(inv.packs);
-  const ownedItems = civiShopRecord(inv.ownedItems);
+  const ownedItems = civiShopRecord(/** @type {any} */ (inv).ownedItems);
   packsEl.innerHTML = packs.map(function (pack) {
     const packRecord = civiShopRecord(pack);
     const packId = String(packRecord.id || "").trim();
@@ -492,8 +492,8 @@ function renderCivicationSummary() {
       const points = Number(activeCareerId ? merits?.[activeCareerId]?.points || 0 : 0);
       const badge = Array.isArray(window.BADGES) ? window.BADGES.find((b) => b && String(b.id) === activeCareerId) : null;
       const tierIndex = badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
-      const career = Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS.find((c) => c && String(c.career_id) === activeCareerId) : null;
-      weekly = (career && typeof window.calculateWeeklySalary === "function") ? window.calculateWeeklySalary(career, tierIndex) : NaN;
+      const career = Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS.find((c) => c && String(/** @type {any} */ (c).career_id) === activeCareerId) : null;
+      weekly = (career && typeof window.calculateWeeklySalary === "function") ? Number(window.calculateWeeklySalary(career, tierIndex)) : NaN;
     } catch {}
     salaryLn.textContent = Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
   }
