@@ -58,7 +58,8 @@ declare global {
     HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_SocialDebug?: { snapshot?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_RuntimeHealth?: { snapshot?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
-    HG_RuntimeHealthPanel?: { render?: () => any; refresh?: () => Promise<any> | any; remove?: () => void; isEnabled?: () => boolean };
+    HG_RuntimeSmokeRunner?: { run?: () => Promise<any> | any; print?: () => Promise<any> | any; isEnabled?: () => boolean };
+    HG_RuntimeHealthPanel?: { render?: () => any; refresh?: () => Promise<any> | any; remove?: () => void; isEnabled?: () => boolean; runSmoke?: () => Promise<any> | any };
     HG_TEST_MODE?: any;
     HGTestMode?: any;
     HG_TestMode?: any;

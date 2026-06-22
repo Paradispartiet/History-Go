@@ -114,6 +114,26 @@ History Go er delt i tydelige lag:
 
 ---
 
+## Runtime diagnostics
+
+**Ansvar**
+- Runtime health er passiv readiness: den samler eksisterende health/snapshot-signaler uten å endre state.
+- Smoke runner er en manuell runtime smoke check som bare finnes i TEST_MODE (`HG_TEST_MODE=1`).
+- Smoke runner er read-only og oppretter ikke demodata, brukere, invites, circles, routes, unlocks eller andre gameplay-endringer.
+
+**Filer**
+
+- js/debug/HGRuntimeHealth.js
+- js/debug/HGRuntimeSmokeRunner.js
+- js/debug/HGRuntimeHealthPanel.js
+
+**Eier**
+- window.HG_RuntimeHealth
+- window.HG_RuntimeSmokeRunner
+- window.HG_RuntimeHealthPanel
+
+---
+
 ## 4. GEO / MAP / ROUTING
 
 **Ansvar**
