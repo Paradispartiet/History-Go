@@ -63,6 +63,12 @@ const C = global.HGDebatesContent;
   assert.strictEqual(l.total, 3, "three positions counted");
   assert.strictEqual(l.counts.bevaring, 2, "two bevaring");
   assert.strictEqual(l.counts.utvikling, 1, "one utvikling");
+  assert.strictEqual(l.counts.midt, 0, "zero midt");
+  assert.deepStrictEqual(
+    l.distribution.map((item) => [item.pole, item.label, item.count]),
+    [["bevaring", "Bevaring", 2], ["utvikling", "Utvikling", 1], ["midt", "Midt imellom", 0]],
+    "distribution exposes labels and counts"
+  );
   assert.strictEqual(l.lean, "bevaring", "dominant lean is bevaring");
 
   // a tie between the two poles resolves to midt
@@ -74,6 +80,23 @@ const C = global.HGDebatesContent;
   l = C.leaning("bevaring_vs_utvikling");
   assert.strictEqual(l.counts.midt, 1, "midt counted");
   assert.strictEqual(l.lean, "utvikling", "2 utvikling vs 0 bevaring -> utvikling");
+
+  // side-pole equality resolves to midt
+  positionsById.d_a = "keep";
+  positionsById.d_b = "build";
+  positionsById.d_c = undefined;
+  l = C.leaning("bevaring_vs_utvikling");
+  assert.strictEqual(l.counts.bevaring, 1, "one bevaring in side-pole tie");
+  assert.strictEqual(l.counts.utvikling, 1, "one utvikling in side-pole tie");
+  assert.strictEqual(l.lean, "midt", "side-pole equality -> midt");
+
+  // midt dominance resolves to midt
+  positionsById.d_a = "mid";
+  positionsById.d_b = "mid";
+  positionsById.d_c = "keep";
+  l = C.leaning("bevaring_vs_utvikling");
+  assert.strictEqual(l.counts.midt, 2, "two midt positions counted");
+  assert.strictEqual(l.lean, "midt", "midt dominance -> midt");
 
   // a different axis is independent
   const other = C.leaning("ideal_vs_budsjett");
@@ -92,7 +115,19 @@ const C = global.HGDebatesContent;
   const overview = C.overviewHtml();
   assert.ok(/Dine debatt-tendenser/.test(overview), "overview titled");
   assert.ok(/Bevaring vs\. utvikling/.test(overview), "overview lists axis");
-  assert.ok(/Utvikling/.test(overview), "overview shows lean");
+  assert.ok(/Midt imellom/.test(overview), "overview shows midt lean");
+  assert.ok(/3 standpunkt/.test(overview), "overview shows total count");
+  assert.ok(/Bevaring 1 · Utvikling 0 · Midt imellom 2/.test(overview), "overview shows distribution counts");
+
+  // empty overview state still works when no axes are engaged
+  delete positionsById.d_a;
+  delete positionsById.d_b;
+  delete positionsById.d_c;
+  let emptyOverview = C.overviewHtml();
+  assert.ok(/Du har ikke tatt standpunkt/.test(emptyOverview), "empty state shown");
+
+  // restore one engaged axis before checking leaningAll and a second axis
+  positionsById.d_a = "keep";
 
   // engage a second axis -> it appears too
   positionsById.other = "x";

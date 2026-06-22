@@ -123,10 +123,17 @@
     });
     const a = out.counts[out.poleA];
     const b = out.counts[out.poleB];
+    const mid = out.counts.midt;
     if (out.total === 0) out.lean = null;
+    else if (mid > a && mid > b) out.lean = "midt";
     else if (a > b) out.lean = out.poleA;
     else if (b > a) out.lean = out.poleB;
     else out.lean = "midt";
+    out.distribution = [
+      { pole: out.poleA, label: poleLabel(out.poleA), count: a },
+      { pole: out.poleB, label: poleLabel(out.poleB), count: b },
+      { pole: "midt", label: poleLabel("midt"), count: mid }
+    ];
     return out;
   }
 
@@ -144,6 +151,18 @@
       .sort(function (a, b) { return b.total - a.total; });
   }
 
+  function overviewDistribution(l) {
+    const counts = l && l.counts ? l.counts : {};
+    const items = Array.isArray(l && l.distribution) ? l.distribution : [
+      { pole: l && l.poleA, label: poleLabel(l && l.poleA), count: counts[l && l.poleA] || 0 },
+      { pole: l && l.poleB, label: poleLabel(l && l.poleB), count: counts[l && l.poleB] || 0 },
+      { pole: "midt", label: poleLabel("midt"), count: counts.midt || 0 }
+    ];
+    return items.map(function (item) {
+      return esc(item.label) + " " + esc(item.count);
+    }).join(" · ");
+  }
+
   function overviewHtml() {
     const rows = leaningAll();
     const body = rows.length
@@ -151,9 +170,14 @@
           const lean = l.lean === "midt" ? "Midt imellom" : poleLabel(l.lean);
           return (
             `<div class="hg-debate-overview__row">` +
+            `<div class="hg-debate-overview__main">` +
             `<div class="hg-debate-overview__axis">⚖️ ${esc(conflictLabel(l.conflictId))}</div>` +
-            `<div class="hg-debate-overview__lean">${esc(lean)} ` +
-            `<span class="hg-debate-overview__count">(${l.total} standpunkt)</span></div>` +
+            `<div class="hg-debate-overview__distribution">${overviewDistribution(l)}</div>` +
+            `</div>` +
+            `<div class="hg-debate-overview__summary">` +
+            `<div class="hg-debate-overview__lean">${esc(lean)}</div>` +
+            `<div class="hg-debate-overview__count">${esc(l.total)} standpunkt</div>` +
+            `</div>` +
             `</div>`
           );
         }).join("")
@@ -242,10 +266,13 @@
       ".hg-debate-overview{display:flex;flex-direction:column;gap:8px}" +
       ".hg-debate-overview__intro{margin:0;opacity:.85;font-size:14px}" +
       ".hg-debate-overview__empty{margin:6px 0;opacity:.85;font-size:14px}" +
-      ".hg-debate-overview__row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;" +
+      ".hg-debate-overview__row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;" +
       "padding:8px 0;border-top:1px solid rgba(0,0,0,.08)}" +
+      ".hg-debate-overview__main{min-width:0}" +
       ".hg-debate-overview__axis{font-size:13px;color:#3730a3;font-weight:600}" +
-      ".hg-debate-overview__lean{font-size:14px;font-weight:700;white-space:nowrap}" +
+      ".hg-debate-overview__distribution{margin-top:2px;font-size:12px;opacity:.72}" +
+      ".hg-debate-overview__summary{text-align:right;white-space:nowrap}" +
+      ".hg-debate-overview__lean{font-size:14px;font-weight:700}" +
       ".hg-debate-overview__count{font-size:12px;font-weight:400;opacity:.7}";
     document.head?.appendChild(style);
   }
