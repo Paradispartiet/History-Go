@@ -1,0 +1,166 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "linjen_pa_kartet",
+      "purpose": "Kjernefortelling om hva en kartlinje betyr",
+      "learning_focus": [
+        "linjen_pa_kartet"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_story_linje_001",
+          "mail_type": "story",
+          "mail_family": "linjen_pa_kartet",
+          "role_scope": "by_radgiver_plan",
+          "phase": "morning",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "gis_plankart_arbeidsflate",
+          "subject": "Hva slags by bygger du når du flytter en linje?",
+          "summary": "En liten justering i plankartet flytter verdi, trafikk, sol og ansvar mellom utbygger og nabolag.",
+          "purpose": "En liten justering i plankartet flytter verdi, trafikk, sol og ansvar mellom utbygger og nabolag.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "En liten justering i plankartet flytter verdi, trafikk, sol og ansvar mellom utbygger og nabolag.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "rolleforstaelse",
+          "task_kind": "story",
+          "competency": "etisk_arealblikk",
+          "learning_focus": [
+            "rolleforstaelse",
+            "etisk_arealblikk"
+          ],
+          "pressure": "kart_er_ikke_noytralt",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "kart_er_ikke_noytralt",
+              "rolleforstaelse"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_story_kveld_001",
+          "mail_type": "story",
+          "mail_family": "linjen_pa_kartet",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_refleksjon",
+          "sender": "privat_refleksjon",
+          "person_id": "privat_refleksjon",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Kveld: du ser din egen bydel som et plankart",
+          "summary": "På vei hjem merker du at du måler fortau, snarveier og skygger også der ingen har bedt deg gjøre det.",
+          "purpose": "På vei hjem merker du at du måler fortau, snarveier og skygger også der ingen har bedt deg gjøre det.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "På vei hjem merker du at du måler fortau, snarveier og skygger også der ingen har bedt deg gjøre det.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "refleksjon",
+          "task_kind": "story",
+          "competency": "profesjonell_distanse",
+          "learning_focus": [
+            "refleksjon",
+            "profesjonell_distanse"
+          ],
+          "pressure": "arbeid_blir_med_hjem",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "arbeid_blir_med_hjem",
+              "refleksjon"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

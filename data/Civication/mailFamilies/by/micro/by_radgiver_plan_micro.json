@@ -1,0 +1,166 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "driftsavklaringer_lillebekk",
+      "purpose": "Små operative avklaringer",
+      "learning_focus": [
+        "driftsavklaringer_lillebekk"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_micro_parkering_001",
+          "mail_type": "micro",
+          "mail_family": "driftsavklaringer_lillebekk",
+          "role_scope": "by_radgiver_plan",
+          "phase": "morning",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "oddvar_vei_vann",
+          "sender": "oddvar_vei_vann",
+          "person_id": "oddvar_vei_vann",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Parkeringsnormen endrer hele prosjektøkonomien",
+          "summary": "En kort avklaring om parkeringsnorm kan flytte både kjellerkostnad, uteareal og politisk salgbarhet.",
+          "purpose": "En kort avklaring om parkeringsnorm kan flytte både kjellerkostnad, uteareal og politisk salgbarhet.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "En kort avklaring om parkeringsnorm kan flytte både kjellerkostnad, uteareal og politisk salgbarhet.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "parkeringsnorm",
+          "task_kind": "micro",
+          "competency": "systemforstaelse",
+          "learning_focus": [
+            "parkeringsnorm",
+            "systemforstaelse"
+          ],
+          "pressure": "okonomi_vs_arealkvalitet",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "okonomi_vs_arealkvalitet",
+              "parkeringsnorm"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_micro_kollektiv_001",
+          "mail_type": "micro",
+          "mail_family": "driftsavklaringer_lillebekk",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "tariq_trafikk_skolevei",
+          "sender": "tariq_trafikk_skolevei",
+          "person_id": "tariq_trafikk_skolevei",
+          "place_id": "kollektivknutepunkt_bryn",
+          "subject": "Kollektivdekningen brukes som argument for nesten alt",
+          "summary": "Kollektivknutepunktet ligger nært, men snarveien dit er utrygg og dårlig belyst.",
+          "purpose": "Kollektivknutepunktet ligger nært, men snarveien dit er utrygg og dårlig belyst.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Kollektivknutepunktet ligger nært, men snarveien dit er utrygg og dårlig belyst.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "kollektivdekning",
+          "task_kind": "micro",
+          "competency": "mobilitetsanalyse",
+          "learning_focus": [
+            "kollektivdekning",
+            "mobilitetsanalyse"
+          ],
+          "pressure": "kartavstand_vs_opplevd_avstand",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "kartavstand_vs_opplevd_avstand",
+              "kollektivdekning"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

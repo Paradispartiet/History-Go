@@ -3,21 +3,23 @@
   "id": "by_radgiver_plan_v1",
   "category": "by",
   "role_scope": "by_radgiver_plan",
-  "description": "Dramaturgisk plan for Byrådgiver og planlegger: fra stedsanalyse og målkonflikter til planfaglige anbefalinger som veier areal, medvirkning, bykvalitet og gjennomføring.",
+  "description": "Dramaturgisk plan for Arealplanlegger: en konkret reguleringssak i Lillebekk der plankart, grøntdrag, skolevei, utbyggerpress, naboprotester og politisk behandling kolliderer.",
   "arc": {
-    "from": "Du får analyser, innspill, kart og politiske mål som alle peker i hver sin retning, og må begynne å gjøre konfliktene lesbare.",
-    "to": "Du forstår at planfaglig rådgivning handler om å anbefale tydelige avveiinger, ikke å late som alle gode mål kan oppfylles samtidig.",
+    "from": "Du åpner plankartet for Lillebekk og ser et tilsynelatende ryddig fortettingsprosjekt.",
+    "to": "Du sender saken videre med et faglig spor som gjør konflikten, risikoen og prioriteringene politisk lesbare.",
     "core_questions": [
-      "Hva sier stedet imot målbildet?",
-      "Hvilke gode formål kjemper om samme areal?",
-      "Hvordan tar du medvirkning alvorlig uten å gi alle ønsker lik vekt?",
-      "Når blir gjennomførbarhet en trussel mot bykvalitet?",
-      "Hvordan skriver du en anbefaling som gjør konflikten tydelig nok til at noen kan ta ansvar?"
+      "Hva skjuler plankartet når det ser ryddig ut?",
+      "Hvilke arealformål tåler ikke å presses inn i samme restareal?",
+      "Når blir medvirkning kunnskap, ikke bare støy?",
+      "Hva må stå juridisk presist før politikken kan velge?",
+      "Hva slags by bygger du når du flytter en linje?"
     ]
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "by_planfag_kompromiss_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "by_planfag_kompromiss_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -38,65 +44,106 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
-      "step_goal": "Etablere at stedsanalysen kan motsi ønsket målbildet.",
-      "allowed_families": ["stedsanalyse_og_malbildet"],
-      "fallback_types": ["job"]
+      "step_goal": "Arealplanlegger-bue: plankart og bestemmelser",
+      "allowed_families": [
+        "plankart_og_bestemmelser"
+      ],
+      "fallback_types": [
+        "job",
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
-      "phase": "intro",
-      "step_goal": "La spilleren møte første tydelige arealkonflikt mellom flere gode formål.",
-      "allowed_families": ["arealbruk_og_prioritering"],
-      "fallback_types": ["job"]
+      "phase": "early",
+      "step_goal": "Arealplanlegger-bue: arealbruk og prioritering",
+      "allowed_families": [
+        "arealbruk_og_prioritering"
+      ],
+      "fallback_types": [
+        "job",
+        "job"
+      ]
     },
     {
       "step": 3,
-      "type": "job",
+      "type": "people",
       "phase": "early",
-      "step_goal": "Introdusere medvirkning som planfaglig materiale, ikke bare vedlegg.",
-      "allowed_families": ["medvirkning_og_planfag"],
-      "fallback_types": ["job"]
+      "step_goal": "Arealplanlegger-bue: aktorer og press",
+      "allowed_families": [
+        "aktorer_og_press"
+      ],
+      "fallback_types": [
+        "people",
+        "job"
+      ]
     },
     {
       "step": 4,
-      "type": "job",
-      "phase": "early",
-      "step_goal": "Vise hvordan gjennomførbarhet kan begynne å spise av bykvaliteten.",
-      "allowed_families": ["bykvalitet_og_gjennomforing"],
-      "fallback_types": ["job"]
+      "type": "conflict",
+      "phase": "mid",
+      "step_goal": "Arealplanlegger-bue: grontdrag skolevei stoy",
+      "allowed_families": [
+        "grontdrag_skolevei_stoy"
+      ],
+      "fallback_types": [
+        "conflict",
+        "job"
+      ]
     },
     {
       "step": 5,
-      "type": "job",
+      "type": "story",
       "phase": "mid",
-      "step_goal": "Teste om spilleren gjør målkonflikten synlig i stedet for å skrive den bort.",
-      "allowed_families": ["stedsanalyse_og_malbildet", "arealbruk_og_prioritering"],
-      "fallback_types": ["job"]
+      "step_goal": "Arealplanlegger-bue: linjen pa kartet",
+      "allowed_families": [
+        "linjen_pa_kartet"
+      ],
+      "fallback_types": [
+        "story",
+        "job"
+      ]
     },
     {
       "step": 6,
-      "type": "job",
-      "phase": "mid",
-      "step_goal": "La lokal erfaring utfordre en planfaglig standardløsning.",
-      "allowed_families": ["medvirkning_og_planfag"],
-      "fallback_types": ["job"]
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "Arealplanlegger-bue: frist for utvalg",
+      "allowed_families": [
+        "frist_for_utvalg"
+      ],
+      "fallback_types": [
+        "event",
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
-      "step_goal": "La budsjett, framdrift og realiserbarhet true et viktig bykvalitetspunkt.",
-      "allowed_families": ["bykvalitet_og_gjennomforing", "arealbruk_og_prioritering"],
-      "fallback_types": ["job"]
+      "step_goal": "Arealplanlegger-bue: rekkefolgekrav og juss",
+      "allowed_families": [
+        "rekkefolgekrav_og_juss"
+      ],
+      "fallback_types": [
+        "job",
+        "job"
+      ]
     },
     {
       "step": 8,
-      "type": "job",
+      "type": "event",
       "phase": "mastery",
-      "step_goal": "Avrunde rollen: en god anbefaling viser konflikten tydelig og prioriterer ansvarlig.",
-      "allowed_families": ["stedsanalyse_og_malbildet", "medvirkning_og_planfag", "bykvalitet_og_gjennomforing"],
-      "fallback_types": ["job"]
+      "step_goal": "Arealplanlegger-bue: faglig spor videre",
+      "allowed_families": [
+        "faglig_spor_videre"
+      ],
+      "fallback_types": [
+        "event",
+        "story",
+        "job"
+      ]
     }
   ]
 }

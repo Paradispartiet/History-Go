@@ -1,0 +1,92 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "planfag_kunnskap",
+      "purpose": "Faglige forklaringsmailer",
+      "learning_focus": [
+        "planfag_kunnskap"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_knowledge_001",
+          "mail_type": "knowledge",
+          "mail_family": "planfag_kunnskap",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "grontdrag_lillebekk",
+          "subject": "Hensynssone er ikke pynt på kartet",
+          "summary": "Byøkologen forklarer hvorfor hensynssone for flomvei og grønnstruktur må følges av bestemmelser som virker.",
+          "purpose": "Byøkologen forklarer hvorfor hensynssone for flomvei og grønnstruktur må følges av bestemmelser som virker.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Byøkologen forklarer hvorfor hensynssone for flomvei og grønnstruktur må følges av bestemmelser som virker.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "hensynssoner",
+          "task_kind": "knowledge",
+          "competency": "kobling_kart_bestemmelse",
+          "learning_focus": [
+            "hensynssoner",
+            "kobling_kart_bestemmelse"
+          ],
+          "pressure": "symbol_vs_virkning",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "symbol_vs_virkning",
+              "hensynssoner"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
