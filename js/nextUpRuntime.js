@@ -253,7 +253,8 @@
       narrative: "📖",
       concept: "🧠",
       quiz: "❓",
-      badge: "🏅"
+      badge: "🏅",
+      social: "🤝"
     }[type] || "➜";
   }
 
@@ -265,7 +266,8 @@
       narrative: ["ui.nextup.suggestion.nextScene", "Neste scene"],
       concept: ["ui.nextup.suggestion.understand", "Forstå"],
       quiz: ["ui.nextup.suggestion.nextQuiz", "Neste quiz"],
-      badge: ["ui.nextup.suggestion.nextBadge", "Neste merke"]
+      badge: ["ui.nextup.suggestion.nextBadge", "Neste merke"],
+      social: ["ui.nextup.suggestion.social", "Utforsk med andre"]
     };
     const picked = titles[type] || ["ui.nextup.suggestion.next", "Neste"];
     return tUI(picked[0], picked[1]);
@@ -438,12 +440,40 @@
     return out.filter(x => x.type && x.target_id && x.label);
   }
 
+  function buildSocialSuggestion() {
+    const matches = typeof window.getKnowledgeMatches === "function" ? window.getKnowledgeMatches().filter((m) => Number(m.matchScore || 0) >= 35) : [];
+    const routes = typeof window.getSharedRoutes === "function" ? window.getSharedRoutes().filter((r) => r.completionState !== "completed") : [];
+    const meetups = typeof window.getOpenMeetups === "function" ? window.getOpenMeetups() : [];
+    const circles = typeof window.getLearningCircles === "function" ? window.getLearningCircles().filter((c) => (c.members || []).includes(window.HG_CURRENT_USER_ID || "local-user")) : [];
+    if (!matches.length && !routes.length && !meetups.length && !circles.length) return null;
+    const best = matches[0];
+    const reason = best
+      ? `Høy konseptmatch med ${best.displayName} (${best.matchScore}%)`
+      : routes.length ? "Delt rute kan fullføres"
+      : meetups.length ? "Åpent meetup finnes"
+      : "Circle-aktivitet finnes";
+    return {
+      type: "social",
+      target_id: best?.targetUserId || routes[0]?.routeId || meetups[0]?.meetupId || circles[0]?.circleId || "social",
+      label: "Utforsk med andre",
+      reason,
+      deep_reason: "Sosialt forslag bygger på konseptuell nærhet og felles læringsmulighet, ikke fysisk nærhet.",
+      evidence: ["kunnskapsmatch", "delt aktivitet", "privat sosial læring"],
+      score: best ? Math.max(72, Number(best.matchScore || 0)) : 62,
+      source: "hg-social",
+      meta: { matchUserId: best?.targetUserId || "" }
+    };
+  }
+
   function normalizeSuggestions(tri) {
     const raw = Array.isArray(tri?.suggestions) && tri.suggestions.length
       ? tri.suggestions
       : legacySuggestions(tri);
 
-    return raw
+    const social = buildSocialSuggestion();
+    const withSocial = social ? [...raw, social] : raw;
+
+    return withSocial
       .filter(sug => sug && s(sug.type) && s(sug.target_id) && s(sug.label))
       .map(sug => ({
         type: s(sug.type),

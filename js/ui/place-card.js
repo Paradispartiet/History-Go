@@ -849,6 +849,7 @@ const btnInfo   = document.getElementById("pcInfo");
 const btnQuiz   = document.getElementById("pcQuiz");
 const btnUnlock = /** @type {HTMLButtonElement|null} */ (document.getElementById("pcUnlock"));
 const btnRoute  = document.getElementById("pcRoute");
+const btnExploreTogether = document.getElementById("pcExploreTogether");
 const btnNote   = document.getElementById("pcNote");
 const btnObs    = document.getElementById("pcObserve");
 const btnClose  = document.getElementById("pcClose");
@@ -1098,6 +1099,7 @@ if (isNarrow) {
   setPcIcon(btnInfo,  "ℹ️", tt("ui.place.moreInfo", "Mer info"));
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
+  setPcIcon(btnExploreTogether, "🤝", "Utforsk sammen");
   setPcIcon(btnObs,   "👁️", tt("ui.place.observe", "Observer"));
   setPcIcon(btnNote,  "📝", tt("ui.place.note", "Notat"));
   setPcIcon(btnClose, "✕",  tt("ui.quiz.close", "Lukk"));
@@ -1106,6 +1108,7 @@ if (isNarrow) {
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   // btnUnlock settes lenger nede av unlock-UI – la den være
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
+  setPcText(btnExploreTogether, "Utforsk sammen");
   setPcText(btnObs,   tt("ui.place.observe", "Observer"));
   setPcText(btnNote,  tt("ui.place.note", "Notat"));
   setPcText(btnClose, tt("ui.quiz.close", "Lukk"));
@@ -2175,6 +2178,44 @@ if (btnRoute) {
 
     document.addEventListener("click", closeOnOutsideClick);
     window.addEventListener("resize", closeOnResize);
+  };
+}
+
+// --- Utforsk sammen ---
+if (btnExploreTogether) {
+  btnExploreTogether.onclick = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    document.getElementById("pcExploreTogetherMenu")?.remove();
+    const footer = btnExploreTogether.closest(".app-footer") || document.body;
+    const menu = document.createElement("div");
+    menu.id = "pcExploreTogetherMenu";
+    menu.className = "pc-route-menu pc-social-menu";
+    menu.setAttribute("role", "menu");
+    menu.setAttribute("aria-label", "Utforsk sammen");
+    menu.innerHTML = `
+      <div class="pc-social-menu-title">Utforsk sammen</div>
+      <button type="button" role="menuitem" data-social-action="matches">Se kunnskapsmatcher</button>
+      <button type="button" role="menuitem" data-social-action="quiz">Inviter til quiz</button>
+      <button type="button" role="menuitem" data-social-action="observation">Inviter til observasjon</button>
+      <button type="button" role="menuitem" data-social-action="route">Inviter til rute</button>
+    `;
+    menu.addEventListener("click", (menuEvent) => {
+      const action = menuEvent.target?.closest?.("[data-social-action]")?.dataset?.socialAction;
+      if (!action) return;
+      menu.remove();
+      const placeId = String(place.id || "").trim();
+      if (action === "matches") return window.openSpotMatchList?.(placeId);
+      const matches = typeof window.getKnowledgeMatches === "function" ? window.getKnowledgeMatches().slice(0, 2).map((m) => m.targetUserId) : [];
+      if (action === "quiz") { window.startSharedQuiz?.(placeId, matches, "co-op"); window.showToast?.("Felles quiz opprettet"); return; }
+      if (action === "observation") { window.createSharedObservation?.({ spotId: placeId, users: matches, observations: ["invited"] }); window.showToast?.("Felles observasjon opprettet"); return; }
+      if (action === "route") { window.startSharedRoute?.({ spots: [placeId], participants: matches, routeType: matches.length > 1 ? "circle" : "pair" }); window.showToast?.("Delt rute opprettet"); }
+    });
+    footer.appendChild(menu);
+    const footerRect = footer.getBoundingClientRect();
+    const btnRect = btnExploreTogether.getBoundingClientRect();
+    menu.style.left = `${btnRect.left - footerRect.left + (btnRect.width / 2)}px`;
+    setTimeout(() => document.addEventListener("click", function close(ev) { if (!menu.contains(ev.target) && !btnExploreTogether.contains(ev.target)) { menu.remove(); document.removeEventListener("click", close); } }), 0);
   };
 }
 
