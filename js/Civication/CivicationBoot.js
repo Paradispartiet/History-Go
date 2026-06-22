@@ -109,6 +109,198 @@ async function ensureCiviCareerRulesLoaded() {
 
 window.ensureCiviCareerRulesLoaded = ensureCiviCareerRulesLoaded;
 
+
+/**
+ * @template T
+ * @param {() => T} fn
+ * @param {T} fallback
+ * @returns {T}
+ */
+function civiDebugSafe(fn, fallback) {
+  try {
+    const value = fn();
+    return value === undefined ? fallback : value;
+  } catch {
+    return fallback;
+  }
+}
+
+/**
+ * @param {string} key
+ * @param {unknown} fallback
+ * @returns {unknown}
+ */
+function civiDebugReadJson(key, fallback) {
+  return civiDebugSafe(() => {
+    const raw = window.localStorage?.getItem?.(key);
+    if (!raw) return fallback;
+    return JSON.parse(raw);
+  }, fallback);
+}
+
+/**
+ * @param {unknown} activePosition
+ * @returns {string|null}
+ */
+function civiDebugActiveCareerId(activePosition) {
+  if (!activePosition || typeof activePosition !== "object") return null;
+  const record = /** @type {{ career_id?: unknown, careerId?: unknown, id?: unknown }} */ (activePosition);
+  const id = record.career_id || record.careerId || record.id;
+  return id ? String(id) : null;
+}
+
+/** @returns {Promise<unknown[]>} */
+async function civiDebugVisibleStores() {
+  return Promise.resolve(civiDebugSafe(() => window.HG_CiviShop?.getVisibleStores?.(), []))
+    .then((stores) => Array.isArray(stores) ? stores : [])
+    .catch(() => []);
+}
+
+/** @returns {Promise<unknown[]>} */
+async function civiDebugVisiblePacks() {
+  return Promise.resolve(civiDebugSafe(() => window.HG_CiviShop?.getVisiblePacks?.(), []))
+    .then((packs) => Array.isArray(packs) ? packs : [])
+    .catch(() => []);
+}
+
+/**
+ * @param {unknown} inventory
+ * @returns {number}
+ */
+function civiDebugOwnedPackCount(inventory) {
+  if (!inventory || typeof inventory !== "object") return 0;
+  const packs = /** @type {{ packs?: unknown }} */ (inventory).packs;
+  if (Array.isArray(packs)) return packs.length;
+  if (packs && typeof packs === "object") return Object.keys(packs).length;
+  return 0;
+}
+
+/**
+ * @param {unknown} value
+ * @returns {number|string|null}
+ */
+function civiDebugWalletBalance(value) {
+  if (value && typeof value === "object") {
+    const balance = /** @type {{ balance?: unknown, amount?: unknown }} */ (value).balance ??
+      /** @type {{ balance?: unknown, amount?: unknown }} */ (value).amount;
+    return typeof balance === "number" || typeof balance === "string" ? balance : null;
+  }
+  return typeof value === "number" || typeof value === "string" ? value : null;
+}
+
+/**
+ * @param {unknown} activePosition
+ * @returns {string|null}
+ */
+function civiDebugActiveRole(activePosition) {
+  if (!activePosition || typeof activePosition !== "object") return null;
+  const record = /** @type {{ title?: unknown, role_title?: unknown, role?: unknown, career_name?: unknown, career_id?: unknown }} */ (activePosition);
+  const role = record.title || record.role_title || record.role || record.career_name || record.career_id;
+  return role ? String(role) : null;
+}
+
+/**
+ * @param {unknown} home
+ * @returns {{ district: string|null, status: string|null }}
+ */
+function civiDebugHomeSummary(home) {
+  if (!home || typeof home !== "object") return { district: null, status: null };
+  const record = /** @type {{ district?: unknown, selectedDistrict?: unknown, district_id?: unknown, status?: unknown, homeStatus?: unknown }} */ (home);
+  return {
+    district: record.district || record.selectedDistrict || record.district_id ? String(record.district || record.selectedDistrict || record.district_id) : null,
+    status: record.status || record.homeStatus ? String(record.status || record.homeStatus) : null
+  };
+}
+
+/**
+ * @param {unknown} pendingEvent
+ * @returns {string|null}
+ */
+function civiDebugEventSubject(pendingEvent) {
+  if (!pendingEvent || typeof pendingEvent !== "object") return null;
+  const record = /** @type {{ subject?: unknown, title?: unknown, headline?: unknown, id?: unknown }} */ (pendingEvent);
+  const subject = record.subject || record.title || record.headline || record.id;
+  return subject ? String(subject) : null;
+}
+
+/**
+ * @param {unknown} psyche
+ * @returns {{ autonomy: unknown, integrity: unknown, visibility: unknown }|null}
+ */
+function civiDebugPsycheSummary(psyche) {
+  if (!psyche || typeof psyche !== "object") return null;
+  const record = /** @type {{ autonomy?: unknown, integrity?: unknown, visibility?: unknown }} */ (psyche);
+  return {
+    autonomy: record.autonomy ?? null,
+    integrity: record.integrity ?? null,
+    visibility: record.visibility ?? null
+  };
+}
+
+(function () {
+  /** @returns {Promise<Record<string, unknown>>} */
+  async function snapshot() {
+    const wallet = civiDebugSafe(() => window.CivicationState?.getWallet?.(), null);
+    const legacyWallet = civiDebugReadJson("hg_pc_wallet_v1", null);
+    const inventory = civiDebugSafe(() => window.HG_CiviShop?.getInv?.(), null);
+    const activePosition = civiDebugSafe(() => window.CivicationState?.getActivePosition?.(), null);
+    const activeCareerId = civiDebugActiveCareerId(activePosition);
+    const civiState = civiDebugSafe(() => window.CivicationState?.getState?.(), null);
+    const capital = civiDebugReadJson("hg_capital_v1", null);
+    const psyche = civiDebugSafe(() => window.CivicationPsyche?.getSnapshot?.(activeCareerId), null);
+    const home = civiDebugSafe(() => window.CivicationHome?.getState?.(), null);
+    const visibleStores = await civiDebugVisibleStores();
+    const visiblePacks = await civiDebugVisiblePacks();
+    const inbox = civiDebugSafe(() => window.CivicationState?.getInbox?.(), []);
+    const pendingEvent = civiDebugSafe(() => window.HG_CiviEngine?.getPendingEvent?.(), null);
+    const profileSnapshot = civiDebugSafe(() => window.HG_CiviProfileSnapshot?.(), null);
+    const merits = civiDebugReadJson("merits_by_category", {});
+
+    return {
+      wallet,
+      legacyWallet,
+      inventory,
+      activePosition,
+      civiState,
+      capital,
+      psyche,
+      home,
+      visibleStores,
+      visiblePacks,
+      inbox: Array.isArray(inbox) ? inbox : [],
+      pendingEvent,
+      profileSnapshot,
+      merits: merits && typeof merits === "object" ? merits : {},
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  /** @returns {Promise<Record<string, unknown>>} */
+  async function print() {
+    const snap = await snapshot();
+    const homeSummary = civiDebugHomeSummary(snap.home);
+    const psycheSummary = civiDebugPsycheSummary(snap.psyche);
+
+    console.table([{
+      walletBalance: civiDebugWalletBalance(snap.wallet),
+      activeRole: civiDebugActiveRole(snap.activePosition),
+      ownedPackCount: civiDebugOwnedPackCount(snap.inventory),
+      visiblePackCount: Array.isArray(snap.visiblePacks) ? snap.visiblePacks.length : 0,
+      inboxCount: Array.isArray(snap.inbox) ? snap.inbox.length : 0,
+      pendingEventSubject: civiDebugEventSubject(snap.pendingEvent),
+      homeDistrict: homeSummary.district,
+      homeStatus: homeSummary.status,
+      psycheAutonomy: psycheSummary?.autonomy ?? null,
+      psycheIntegrity: psycheSummary?.integrity ?? null,
+      psycheVisibility: psycheSummary?.visibility ?? null
+    }]);
+
+    return snap;
+  }
+
+  window.HG_CiviDebug = { snapshot, print };
+})();
+
 /**
  * @param {string} src
  * @returns {Promise<boolean>}

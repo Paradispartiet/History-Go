@@ -18,6 +18,7 @@ Følgende globals er eksplisitt tillatt:
 - window.HGPos
 - window.OPEN_MODE
 - window.API
+- window.HG_CiviDebug
 
 Ingen andre globals skal introduseres uten beslutning.
 
@@ -506,3 +507,11 @@ Deprecations
 - Canonical shop inventory: `HG_CiviShop` using `hg_pc_inventory_v1`.
 - Inventory shape: `packs`, `ownedItems`, and `style_counts`.
 - Profile/shop renderers may read these contracts but must not redefine wallet logic, inventory logic, badge gating, prices, or data.
+---
+
+## Civication debug helper contract
+
+- `window.HG_CiviDebug` is an allowed global exposed by `js/Civication/CivicationBoot.js` for browser-console inspection only.
+- Allowed methods: `snapshot()` and `print()`. Both may be asynchronous and must be safe to call as `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
+- Debug helpers must be read-only. They must not mutate Civication state, wallet state, shop inventory, inbox, profile state, localStorage contents, UI, gameplay flow, or create new storage keys.
+- Debug helpers must handle missing runtimes, malformed localStorage, and failed visible-pack/store loading defensively.
