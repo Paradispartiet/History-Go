@@ -390,6 +390,21 @@
         }
 
         appendLearningEvent(evt);
+        try {
+          if (typeof window.createSharedObservation === "function") {
+            window.createSharedObservation({
+              spotId: evt.targetId,
+              targetId: evt.targetId,
+              users: [window.HG_CURRENT_USER_ID || "local-user"],
+              observations: evt.selected,
+              tags: evt.tags,
+              participantIds: evt.collaborators || [],
+              meetId: evt.meetId || ""
+            });
+          }
+        } catch (err) {
+          console.warn("[HG Social] observation integration failed", err);
+        }
 
         API.showToast(tUI("ui.observations.saved", "📝 Observasjon lagret"));
         API.dispatchProfileUpdate();

@@ -216,6 +216,20 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   updateMeritLevel(badgeId, oldPoints, newPoints);
 
   showToast(`🏅 +1 poeng i ${badgeId}!`);
+  try {
+    if (typeof window.updateKnowledgeFingerprint === "function") {
+      window.updateKnowledgeFingerprint({ categoryId: badgeId, quizId });
+    }
+    if (typeof window.updateSocialMatchIndex === "function") {
+      window.updateSocialMatchIndex({ reason: "quiz_completed", categoryId: badgeId, quizId });
+    }
+    if (typeof window.checkSharedQuizOpportunities === "function") {
+      window.checkSharedQuizOpportunities(quizId, { categoryId: badgeId });
+    }
+  } catch (err) {
+    console.warn("[HG Social] quiz integration failed", err);
+  }
+
   window.dispatchEvent(new Event("updateProfile"));
 }
 
