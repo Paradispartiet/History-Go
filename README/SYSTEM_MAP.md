@@ -321,8 +321,10 @@ History Go er delt i tydelige lag:
 
 **Boot/debug helpers**
 - `window.HG_CiviDebug` lives in `js/Civication/CivicationBoot.js`.
-- It is a read-only browser-console helper for `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
-- It summarizes Civication runtime state defensively and must not mutate wallet, inventory, profile, inbox, shop visibility, psyche, home, capital, or gameplay state.
+- It is a read-only browser-console helper for `await HG_CiviDebug.snapshot()`, `await HG_CiviDebug.print()`, `await HG_CiviDebug.health()`, and `await HG_CiviDebug.printHealth()`.
+- `HG_CiviDebug.snapshot()` is raw state inspection: it gathers wallet, inventory, profile, inbox, shop visibility, psyche, home, economy, capital, and related debug state without interpreting playability.
+- `HG_CiviDebug.health()` is readiness/playability interpretation layered on top of the snapshot: it reports checks, blockers, warnings, a score, and a short Norwegian summary for whether Civication is playable right now.
+- Both snapshot and health helpers are read-only and must not mutate wallet, inventory, profile, inbox, shop visibility, psyche, home, economy, capital, localStorage, DOM, rendering, or gameplay state.
 
 ---
 
