@@ -1315,6 +1315,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
     safeCall("renderGroundhopperProfilePanel", renderGroundhopperProfilePanel);
     safeCall("renderKnowledgeEnginePanel", renderKnowledgeEnginePanel);
+    safeCall("renderKnowledgeMatches", () => window.HGKnowledgeMatch?.renderKnowledgeMatches?.());
 
     // Markører etter at PLACES er lastet
     safeCall("updateProfileMarkers", updateProfileMarkers);
@@ -1388,6 +1389,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
       safeCall("renderGroundhopperProfilePanel", renderGroundhopperProfilePanel);
       safeCall("renderKnowledgeEnginePanel", renderKnowledgeEnginePanel);
+      safeCall("renderKnowledgeMatches", () => window.HGKnowledgeMatch?.renderKnowledgeMatches?.());
       safeCall("updateProfileMarkers", updateProfileMarkers);
     });
 
