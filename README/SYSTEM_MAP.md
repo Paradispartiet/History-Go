@@ -96,7 +96,7 @@ History Go er delt i tydelige lag:
 - js/hgConceptIndex.js
 - js/emnerLoader.js
 - js/emneDekning.js
-- js/fagkartLoader.js
+- js/fagkartLoader.ts (migrert til TS ESM; bundlet til dist/web/fagkartLoader.js, publiserer fortsatt window.Fagkart)
 - js/epoker-runtime.js
 - js/DomainRegistry.js
 - js/domainHealthReport.js

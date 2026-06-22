@@ -6,7 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 History GO is a location-based knowledge game where the city (Oslo) is the game board. Users check in at real-world places (GPS or QR), take short quizzes, and collect badges, diplomas and cards while a personal "knowledge diary" tracks progression (Amatør → Student → Doktor → Professor).
 
-It is a **vanilla browser app** (no framework, no bundler). HTML loads classic `<script src="...js">` tags; there is no build step for the browser runtime. TypeScript exists only as a static type-checker over JavaScript (`allowJs` + `checkJs`) and for a few Node-only CLI tools/scripts.
+It is a **framework-free browser app**. Historically it had no bundler and no build step — HTML loaded classic `<script src="...js">` tags directly, and TypeScript was only a static type-checker over JavaScript (`allowJs` + `checkJs`). The project has now **decided to adopt esbuild as a bundler** so browser files can become real TypeScript (`.ts`) ESM modules. This migration is a **strangler**: files are converted one at a time from classic global-scope `.js` to `.ts` ESM modules bundled by esbuild (`npm run build:web`), while not-yet-migrated files keep loading as classic `<script>` tags. The Node-only tracks (`scripts/`, `tools/`) are already fully TypeScript. See `docs/typescript-migration-plan.md`.
+
+**Interop contract (non-negotiable during migration):** any migrated module that previously exposed a global (`window.X`) MUST still publish that same global as a load-time side effect, so classic (non-migrated) consumers keep working unchanged. esbuild builds these as `iife` bundles. Migrated entrypoints are listed in `build/build-web.mjs` and output to `dist/web/` (gitignored); the owning HTML page loads `dist/web/<name>.js` and therefore now requires `npm run build:web` before serving.
 
 Most documentation is in Norwegian, and most code identifiers, data, and content are Norwegian. Match that language when editing docs and content.
 
@@ -94,7 +96,15 @@ Allowed globals (do not introduce others without a decision): `window.PLACES, PE
 
 ## Commands
 
-Requires Node (repo uses v22). No `npm install` of runtime deps is needed for the browser app — `devDependencies` are just TypeScript + `@types/node`. There is **no `npm run build`** and no bundler for the browser app by design.
+Requires Node (repo uses v22). `devDependencies` are TypeScript, `@types/node`, and **esbuild** (the browser bundler adopted for the TS migration). Browser pages that have not yet been migrated still load classic `<script>` tags and need no build; pages that load a migrated module from `dist/web/` require `npm run build:web` first.
+
+Browser bundle build:
+
+```bash
+npm run typecheck:web      # tsc over migrated js/**/*.ts (DOM lib, noEmit)
+npm run build:web          # esbuild -> dist/web/*.js (iife bundles)
+npm run build:web:watch    # rebuild on change during dev
+```
 
 ### Running locally
 
@@ -154,7 +164,7 @@ There are also many `audit:*` scripts (e.g. `audit:aha-music`, `audit:job-learni
 
 ## Conventions
 
-- **TypeScript migration is gradual and deliberate.** Browser files stay `.js` (HTML loads them directly). Node-only tools/scripts are being converted to `.mts`/`.ts` one at a time, only after their npm usage is verified. Civication is explicitly **excluded** from the migration and stays `checkJs`/JSDoc-typed JavaScript. See `docs/typescript-migration-plan.md`.
+- **TypeScript migration is gradual and deliberate.** Node-only `scripts/` and `tools/` are fully `.ts`/`.mts`. Browser files (`js/**`) are being converted one at a time from classic global `.js` to `.ts` ESM modules bundled by esbuild — each migrated file is added to `build/build-web.mjs`, must keep publishing its `window.X` global (interop contract), and its owning HTML page is repointed to `dist/web/<name>.js`. Don't convert a browser file without registering it in `build/build-web.mjs` and verifying the bundle still publishes the expected global. Civication (`js/Civication/**`, loaded by `Civication.html`/`index.html`/`profile.html`) is explicitly **excluded** and stays `checkJs`/JSDoc-typed JavaScript. See `docs/typescript-migration-plan.md`.
 - **CSS file list is LOCKED.** Don't add a CSS file without updating the list and the per-entrypoint load order in `README/SYSTEM_REGISTRY.md` §7.
 - Don't bypass `QuizEngine` / `HGInsights` / the knowledge hooks — they are the only path binding quiz flow to rewards.
 - Test mode is fully isolated: it must never write unlocks, progression, or rewards.

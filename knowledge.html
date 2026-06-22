@@ -126,7 +126,9 @@
   <script src="js/knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
   <script src="js/emnerLoader.js"></script>
-  <script src="js/fagkartLoader.js"></script>
+  <!-- Migrert til TypeScript ESM-modul, bundlet med esbuild (npm run build:web).
+       Publiserer fortsatt window.Fagkart for klassiske konsumenter. -->
+  <script src="dist/web/fagkartLoader.js"></script>
 
   <!-- 1) GLOBAL KONSTANT – FELT-LABELS -->
   <script>

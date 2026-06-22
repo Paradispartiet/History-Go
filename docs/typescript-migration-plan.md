@@ -2,6 +2,49 @@
 
 Denne planen beskriver hvordan History Go kan migreres fra TypeScript-sjekket JavaScript til ekte TypeScript-filer uten å endre runtime-logikk, appflyt, filplasseringer eller HTML/script-oppsett i første omgang.
 
+## Beslutning: browser-runtime migreres med esbuild (strangler)
+
+Prosjektet har besluttet å innføre **esbuild** som bundler for browser-runtime, slik at `js/**` kan bli ekte TypeScript (`.ts`) ESM-moduler. Dette overstyrer den tidligere «vanilla, ingen bundler, ingen build»-regelen i `CLAUDE.md`, som nå er oppdatert.
+
+### Faktisk arkitektur (utgangspunktet)
+
+Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små batcher:
+
+- **Ingen ESM:** 0 av 248 `js/`-filer bruker `import`/`export`. Alle er klassiske global-scope-scripts.
+- **Globaler:** 197 filer skriver til `window.X`; kryssfilreferanser skjer via globalt scope og lasterekkefølge, ikke via moduler.
+- **Lastemodeller per entrypoint:**
+  - `index.html`: 5 statiske tagger + `app.js` (`type="module"`) som dynamisk laster ~44 filer via en egen `loadScriptOnce(...)`-sekvens i bevisst rekkefølge.
+  - `profile.html`: 41 statiske klassiske tagger.
+  - `Civication.html`: 111 statiske klassiske tagger (migrering deferred).
+  - `knowledge.html` / `emner.html`: 4 statiske tagger hver.
+- **Delte filer:** flere kjernefiler (`knowledge.js`, `hgInsights.js`, `emnerLoader.js`, …) lastes av flere entrypoints samtidig. En delt fil kan derfor ikke migreres isolert for én side uten at de andre konsumentene fortsatt får sin `window.X`-global.
+
+### Strategi: strangler med interop-kontrakt
+
+- Konverter **én fil om gangen** fra klassisk `js/<navn>.js` til `js/<navn>.ts` (ESM med eksplisitte `export`).
+- **Interop-kontrakt:** hver migrert modul som tidligere eksponerte en global MÅ fortsatt publisere samme `window.X` som sideeffekt ved last. Bundles bygges som `iife` slik at de kjører ved last uten at HTML trenger `type="module"` eller import.
+- esbuild bygger via `build/build-web.mjs` (entry-manifest) til `dist/web/<navn>.js` (gitignored). Den eide HTML-siden repekes fra `js/<navn>.js` til `dist/web/<navn>.js`.
+- Typecheck av migrerte browser-filer: `npm run typecheck:web` (`tsconfig.web.json`, DOM-lib, `noEmit`). Bygg: `npm run build:web`.
+- Ikke-migrerte filer fortsetter uendret som klassiske `<script>`-tagger. En side som laster en migrert modul krever `npm run build:web` før servering; rene klassiske sider trenger fortsatt ingen build.
+
+### Pilot (fullført)
+
+`js/fagkartLoader.js` → `js/fagkartLoader.ts`:
+
+- Selvstendig modul, lastet kun av `knowledge.html`, konsumert ellers kun via globalen `Fagkart` (i `js/hgchips.js` og inline-script).
+- Konvertert til ESM med `export`, publiserer fortsatt `window.Fagkart`. Registrert i `build/build-web.mjs`, bundlet til `dist/web/fagkartLoader.js`, og `knowledge.html` peker nå dit.
+- Verifisert: `npm run typecheck:web` grønn, `npm run build:web` grønn, og IIFE-bundelen kjørt i en stubbed browser-kontekst (Node `vm`) bekrefter at `window.Fagkart` publiseres med uendret API og oppførsel.
+
+### Anbefalt utrullingsrekkefølge for browser-batcher
+
+1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.
+2. **Delte kjernefiler uten DOM** (`js/core/*`, `knowledge.js`, `emnerLoader.js`, `hgInsights.js`): migrer med uendret `window.X`-publisering slik at alle konsumenter (statiske tagger og `loadScriptOnce`) fungerer. For `index.html` betyr det at `loadScriptOnce("js/<navn>.js")` enten må peke på bygget output eller erstattes når filen migreres.
+3. **Data loaders og UI** etter at kjerne + interop er stabil og hver batch er røyktestet i nettleser.
+4. **`app.js`/boot og `loadScriptOnce`-orkestreringen** til slutt: når nok av kjeden er ESM, kan den dynamiske lasteren erstattes av ekte `import`-grafer per entrypoint.
+5. **Civication deferred** som før.
+
+**Verifisering per batch:** fordi browser-runtime ikke kan typecheckes til full trygghet alene, må hver batch røyktestes i nettleser (last den eide siden, sjekk at `window.X`-globaler finnes og at siden booter uten konsollfeil). `DomainHealthReport.run()` og `QuizAudit.run()` der det er relevant.
+
 ## Statusoppdatering: Node-only-flaten er ferdig migrert
 
 Hele den ikke-browser-lastede Node-only-flaten (`scripts/` og `tools/`) er nå konvertert til TypeScript:

@@ -8,6 +8,9 @@
     "build:scripts": "tsc -p tsconfig.scripts.build.json",
     "typecheck:tools": "tsc -p tsconfig.tools.json",
     "build:tools": "tsc -p tsconfig.tools.build.json",
+    "typecheck:web": "tsc -p tsconfig.web.json",
+    "build:web": "node build/build-web.mjs",
+    "build:web:watch": "node build/build-web.mjs --watch",
     "tools:check": "npm run typecheck:tools && npm run build:tools && npm run places:index:check && npm run places:coords:check && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places",
     "places:coords:audit": "npm run build:tools && node dist/tools/audit-place-coordinates.mjs",
     "places:coords:gate": "npm run build:tools && node dist/tools/place-coordinate-quality-gate.mjs",
@@ -63,6 +66,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
+    "esbuild": "^0.28.1",
     "typescript": "^5.9.0"
   }
 }
