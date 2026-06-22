@@ -43,6 +43,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies and build tools
+        run: |
+          npm ci
+          npm run build:tools
 
       - name: Preflight approved candidates
         env:
@@ -142,7 +148,7 @@ jobs:
           NODE
 
       - name: Apply approved place image candidates
-        run: node tools/apply_place_image_candidates.mjs
+        run: node dist/tools/apply_place_image_candidates.mjs
 
       - name: Verify applied output
         run: |
@@ -207,10 +213,10 @@ jobs:
           NODE
 
       - name: Rebuild places index
-        run: node tools/build_places_index.mjs
+        run: node dist/tools/build_places_index.mjs
 
       - name: Check places index sync
-        run: node tools/check_places_index_sync.mjs
+        run: node dist/tools/check_places_index_sync.mjs
 
       - name: Upload applied output artifact
         uses: actions/upload-artifact@v4
