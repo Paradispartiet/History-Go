@@ -107,7 +107,11 @@ Browser-migrert så langt (oppdatert): + `hgInsights` (8 filer).
 4. **`app.js`/boot og `loadScriptOnce`-orkestreringen** til slutt: når nok av kjeden er ESM, kan den dynamiske lasteren erstattes av ekte `import`-grafer per entrypoint.
 5. **Civication deferred** som før.
 
-**Verifisering per batch:** fordi browser-runtime ikke kan typecheckes til full trygghet alene, må hver batch røyktestes i nettleser (last den eide siden, sjekk at `window.X`-globaler finnes og at siden booter uten konsollfeil). `DomainHealthReport.run()` og `QuizAudit.run()` der det er relevant.
+**Verifisering per batch (tre lag):**
+
+1. **Statisk:** `npm run typecheck:web` + `npm run build:web` (esbuild bygger uten feil), og `npm run typecheck` skal ikke vise NY feil.
+2. **Automatisk headless røyktest:** `npm run smoke:web` kjører `build/smoke-web.mjs`, som bruker JSDOM (ren JS, ingen browser-binær) til å laste de faktiske HTML-sidene fra disk, kjøre `<script>`-taggene i rekkefølge (inkl. dist/web-bundlene) og verifisere at (a) ingen `dist/web/*.js`-bundle mangler/404-er og (b) alle forventede `window.X`-globaler publiseres. Den skiller migreringsfeil (hard fail) fra støy som JSDOM ikke støtter (CSS-parsing, eksterne CDN-scripts uten nett, canvas/MapLibre). Legg til nye sider/globaler i `TARGETS` i `build/smoke-web.mjs` når de migreres.
+3. **Manuell nettleser** (anbefalt for kjernebaner som quiz/belønning): server repoet og åpne siden; `DomainHealthReport.run()` og `QuizAudit.run()` der det er relevant. JSDOM gjør ikke layout og dekker ikke `index.html` (MapLibre/canvas), så index-batcher krever ekte nettleser.
 
 ## Statusoppdatering: Node-only-flaten er ferdig migrert
 

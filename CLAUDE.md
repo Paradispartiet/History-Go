@@ -104,7 +104,14 @@ Browser bundle build:
 npm run typecheck:web      # tsc over migrated js/**/*.ts (DOM lib, noEmit)
 npm run build:web          # esbuild -> dist/web/*.js (iife bundles)
 npm run build:web:watch    # rebuild on change during dev
+npm run smoke:web          # headless JSDOM smoke test: loads real pages, checks
+                           # dist/web bundles load + window.X globals publish
 ```
+
+`smoke:web` (`build/smoke-web.mjs`) is the automated per-batch check when no real
+browser is available — it does not cover `index.html` (MapLibre/canvas) or layout;
+those still need a manual browser test. Add newly migrated pages/globals to its
+`TARGETS` list.
 
 ### Running locally
 
