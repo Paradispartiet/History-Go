@@ -49,7 +49,8 @@
       badges: cleanList(stored.badges),
       completedEmner: cleanList(stored.completedEmner),
       coreConcepts: cleanList(stored.coreConcepts),
-      interests: cleanList(stored.interests)
+      interests: cleanList(stored.interests),
+      avatar: String(stored.avatar || stored.avatarUrl || "")
     };
   }
 
@@ -122,7 +123,8 @@
       badges: cleanList(row?.badges),
       completedEmner: cleanList(row?.completedEmner),
       coreConcepts: cleanList(row?.coreConcepts),
-      interests: cleanList(row?.interests)
+      interests: cleanList(row?.interests),
+      avatar: String(row?.avatar || row?.avatarUrl || "")
     })).filter((row) => row.userId && row.publicProfile);
   }
 
@@ -142,6 +144,105 @@
       const reasonText = sharedConcepts.length ? `Deler ${sharedConcepts.length} kjernebegrep` : sharedBadges.length ? `Deler ${sharedBadges.length} merker` : "Lignende kunnskapsdomener";
       return { targetUserId: target.userId, displayName: target.displayName, matchScore, sharedConcepts, sharedBadges, sharedEmner, reasonText };
     }).filter((match) => match.matchScore > 0).sort((a, b) => b.matchScore - a.matchScore);
+  }
+
+  function getMatchForUser(userId) {
+    const id = String(userId || "").trim();
+    if (!id) return null;
+    return getKnowledgeMatches(getPublicProfile().userId).find((match) => match.targetUserId === id) || null;
+  }
+
+  function getProfileByUserId(userId) {
+    const id = String(userId || "").trim();
+    if (!id) return null;
+    if (id === getPublicProfile().userId) return getPublicProfile();
+    return getDirectory().find((profile) => profile.userId === id) || null;
+  }
+
+  function renderChips(items, emptyText) {
+    const list = cleanList(items);
+    if (!list.length) return `<p class="match-profile-empty">${escapeHtml(emptyText || "Ingen offentlige spor ennå.")}</p>`;
+    return `<div class="match-profile-chips">${list.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>`;
+  }
+
+  function initials(name) {
+    return String(name || "HG").trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0).toUpperCase()).join("") || "HG";
+  }
+
+  function closeMatchProfilePopup() {
+    document.getElementById("matchProfilePopup")?.remove();
+  }
+
+  function renderMatchProfile(profile) {
+    if (!profile) return "";
+    const match = getMatchForUser(profile.userId) || { sharedConcepts: [], sharedBadges: [], reasonText: "" };
+    const avatar = String(profile.avatar || "").trim();
+    const avatarHtml = avatar
+      ? `<img class="match-profile-avatar" src="${escapeHtml(avatar)}" alt="">`
+      : `<div class="match-profile-avatar match-profile-avatar-fallback" aria-hidden="true">${escapeHtml(initials(profile.displayName))}</div>`;
+    return `
+      <div class="hg-modal match-profile-modal">
+        <header class="hg-modal-header match-profile-header">
+          ${avatarHtml}
+          <div>
+            <p class="hg-modal-meta">Kunnskapsmatch</p>
+            <h2 class="hg-modal-title">${escapeHtml(profile.displayName || "History Go bruker")}</h2>
+            <p class="match-profile-bio">${escapeHtml(profile.bio || "Offentlig kunnskapsprofil i History Go.")}</p>
+          </div>
+        </header>
+        <div class="hg-modal-body match-profile-body">
+          <section class="hg-section match-profile-section">
+            <h3>Kunnskap</h3>
+            <div class="match-profile-grid">
+              <div><h4>Badges</h4>${renderChips(profile.badges, "Ingen offentlige badges.")}</div>
+              <div><h4>Completed emner</h4>${renderChips(profile.completedEmner, "Ingen offentlige emner.")}</div>
+              <div><h4>Core concepts</h4>${renderChips(profile.coreConcepts, "Ingen offentlige kjernebegrep.")}</div>
+              <div><h4>Interests</h4>${renderChips(profile.interests, "Ingen offentlige interesser.")}</div>
+            </div>
+          </section>
+          <section class="hg-section match-profile-section">
+            <h3>Felles</h3>
+            <div class="match-profile-grid">
+              <div><h4>Shared concepts</h4>${renderChips(match.sharedConcepts, "Ingen delte begrep i denne matchen.")}</div>
+              <div><h4>Shared badges</h4>${renderChips(match.sharedBadges, "Ingen delte badges i denne matchen.")}</div>
+              <div class="match-profile-reason"><h4>Match reason</h4><p>${escapeHtml(match.reasonText || "Lignende kunnskapsdomener")}</p></div>
+            </div>
+          </section>
+          <div class="match-profile-actions">
+            <button type="button" class="match-profile-meet" data-match-action="meet">Foreslå møte</button>
+            <button type="button" class="match-profile-close" data-match-action="close">Lukk</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function openMatchProfile(userId) {
+    const profile = getProfileByUserId(userId);
+    if (!profile) return null;
+    closeMatchProfilePopup();
+    const popup = document.createElement("div");
+    popup.id = "matchProfilePopup";
+    popup.className = "hg-popup match-profile-popup";
+    popup.setAttribute("role", "dialog");
+    popup.setAttribute("aria-modal", "true");
+    popup.innerHTML = `<div class="hg-popup-inner">${renderMatchProfile(profile)}</div>`;
+    popup.addEventListener("click", (event) => {
+      if (event.target === popup) closeMatchProfilePopup();
+      const action = /** @type {Element | null} */ (event.target)?.closest?.("[data-match-action]")?.getAttribute("data-match-action");
+      if (action === "close") closeMatchProfilePopup();
+      if (action === "meet") {
+        closeMatchProfilePopup();
+        window["openMeetInviteModal"]?.(profile.userId);
+      }
+    });
+    document.body.appendChild(popup);
+    return popup;
+  }
+
+  function openMeetInviteModal(targetUserId) {
+    window.dispatchEvent(new CustomEvent("hg:openMeetInviteModal", { detail: { targetUserId: String(targetUserId || "") } }));
+    if (typeof window["HGOpenMeetInviteModal"] === "function") return window["HGOpenMeetInviteModal"](targetUserId);
+    return null;
   }
 
   function sendMeetInvite(targetUserId, spotId, options) {
@@ -182,6 +283,9 @@
       savePublicProfile({ publicProfile: Boolean(/** @type {HTMLInputElement} */ (event.target).checked) });
       renderKnowledgeMatches();
     });
+    root.querySelectorAll("[data-view-profile]").forEach((button) => {
+      button.addEventListener("click", () => openMatchProfile(button.getAttribute("data-view-profile")));
+    });
   }
 
   function escapeHtml(s) { return String(s ?? "").replace(/[&<>\"']/g, (ch) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#039;" }[ch])); }
@@ -190,5 +294,8 @@
   window.buildKnowledgeFingerprint = buildKnowledgeFingerprint;
   window.getKnowledgeMatches = getKnowledgeMatches;
   window.sendMeetInvite = sendMeetInvite;
-  window.HGKnowledgeMatch = { getPublicProfile, savePublicProfile, buildKnowledgeFingerprint, getKnowledgeMatches, sendMeetInvite, renderKnowledgeMatches, presets: PRESETS };
+  window["openMatchProfile"] = openMatchProfile;
+  window["renderMatchProfile"] = renderMatchProfile;
+  window["openMeetInviteModal"] = window["openMeetInviteModal"] || openMeetInviteModal;
+  window.HGKnowledgeMatch = { getPublicProfile, savePublicProfile, buildKnowledgeFingerprint, getKnowledgeMatches, getProfileByUserId, openMatchProfile, renderMatchProfile, sendMeetInvite, renderKnowledgeMatches, presets: PRESETS };
 })();
