@@ -22,6 +22,15 @@ Følgende globals er eksplisitt tillatt:
 
 Ingen andre globals skal introduseres uten beslutning.
 
+### Civication read-only debug-globals
+
+Disse er eksplisitt tillatt, men er **kun read-only inspeksjon** (ingen gameplay, ingen skriving):
+
+- `window.HG_CiviWorkdaySnapshot()` — returnerer et øyeblikksbilde av arbeidsdag-state
+  (`CivicationUI.getCurrentWorkdaySnapshot`). Ren lesning av `CivicationState`,
+  `CivicationCalendar`, `CivicationTaskEngine` og innboksen via den delte `computeWorkdayModel()`
+  som `renderWorkdayPanel()` også bruker. Rører ikke DOM og endrer ikke rendering.
+
 ---
 
 ## INIT-REGLER

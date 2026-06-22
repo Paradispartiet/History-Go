@@ -38,6 +38,7 @@ declare global {
     CivicationConsequenceFeedback?: any;
     CivicationMilestoneHighlight?: any;
     CivicationOutcomeStatusUI?: any;
+    HG_CiviWorkdaySnapshot?: () => any;
     CivicationCareerOutcomeRuntime?: any;
     CivicationChoiceDirector?: any;
     CivicationChoiceToneVariants?: any;
