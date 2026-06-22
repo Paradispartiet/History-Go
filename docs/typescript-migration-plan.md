@@ -87,6 +87,18 @@ Browser-migrert så langt: `fagkartLoader`, `fagHealthReport`, `hgKnowledgeEngin
 
 Browser-migrert så langt (oppdatert): + `emnerLoader` (7 filer).
 
+### Batch 6 (fullført) — `hgInsights.js` (quiz-belønningsbanen)
+
+`js/hgInsights.js` → `.ts` (ren IIFE `(function(global){…})(window)`, publiserer `window.HGInsights` med `logCorrectQuizAnswer`, `getUserConcepts`, `clearAll`):
+
+- **Trygghetsanalyse:** `logCorrectQuizAnswer` så ut som en bare-global pga. innrykk, men er IIFE-scopet. ALLE konsumenter (`boot.js`, `quizzes.js`, `boot-fast.js`, `profile.js`, `emneDekning.js`, `knowledge.js`) aksesserer den defensivt via `window.HGInsights?.…`, aldri som bart navn. Filen lastes ikke på `index.html`, så index er upåvirket (de defensive referansene degraderer som før).
+- **Full dekning:** `profile.html`, `emner.html`, `knowledge.html` (`js/…` → `dist/web/…`) + 13 `knowledge/`-sider (`../js/…` → `../dist/web/…`). `sw.js` `PRECACHE_URLS` oppdatert + `SW_VERSION` bumpet. Arkiv/data-foreldreløse utelatt som før.
+- Liten typefiks (`options: { categoryId?: string } = {}`).
+- Verifisert: `typecheck:web` + `build:web` grønn; `vm`-funksjonstest (logg riktig svar → `getUserConcepts` returnerer begrepene) bekrefter uendret oppførsel; `npm run typecheck` ingen ny feil; null gjenværende gammel-sti-referanser.
+- **Krever nettleser-røyktest:** `emner.html`, `knowledge.html`, `profile.html` — sjekk `window.HGInsights` finnes; ta en quiz og bekreft at riktig svar fortsatt lagres (kjernebelønningsbanen).
+
+Browser-migrert så langt (oppdatert): + `hgInsights` (8 filer).
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.

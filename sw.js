@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-22-v1.2.922";
+const SW_VERSION = "hg-sw-2026-06-22-v1.2.923";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -60,7 +60,7 @@ const PRECACHE_URLS = [
   "js/knowledge.js",
   "js/knowledge_component.js",
   "js/trivia.js",
-  "js/hgInsights.js",
+  "dist/web/hgInsights.js",
   "js/dataHub.js",
   "js/profile.js",
 

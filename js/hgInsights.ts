@@ -55,7 +55,7 @@ function logCorrectQuizAnswer(userId, quizItem) {
 }
 
   // Hent begreper for en bruker
-  function getUserConcepts(userId, options = {}) {
+  function getUserConcepts(userId, options: { categoryId?: string } = {}) {
     const u = userId || "anon";
     const { categoryId } = options;
 

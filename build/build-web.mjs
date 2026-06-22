@@ -38,6 +38,7 @@ const ENTRIES = [
   { in: "js/hgSocialPrivacy.ts", out: "hgSocialPrivacy" },
   { in: "js/hgModeration.ts", out: "hgModeration" },
   { in: "js/emnerLoader.ts", out: "emnerLoader" },
+  { in: "js/hgInsights.ts", out: "hgInsights" },
   { in: "js/profileInsightRoomEntry.ts", out: "profileInsightRoomEntry" }
 ];
 
