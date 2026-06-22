@@ -99,6 +99,17 @@ Browser-migrert så langt (oppdatert): + `emnerLoader` (7 filer).
 
 Browser-migrert så langt (oppdatert): + `hgInsights` (8 filer).
 
+### Batch 7 (fullført) — `knowledge.js` (stor delt kjernemodul med bare-globaler)
+
+`js/knowledge.js` → `.ts` (12 top-level-funksjoner + 2 interne IIFE-er), `// @ts-nocheck` (stor JSDoc-modul, adferdsidentisk):
+
+- **Bare-global-interop:** i motsetning til de andre var dette en klassisk fil med top-level-funksjoner i globalt scope. Auditerte hvert navn mot resten av repoet. La til `window`-publisering for de tre eksternt forbrukte som manglet det (`getKnowledgeUniverse`, `saveKnowledgePoint`, `renderKnowledgeSection`); resten var enten allerede publisert (`saveKnowledgeFromQuiz`, `computeEmneDekning(V2)`, `getLearningLog`, …) eller kun internt brukt (`capitalize`, `saveKnowledgeUniverse`, `getKnowledgeForCategory`).
+- **Base-typecheck-vern:** da fila forlot base-`.js`-programmet mistet konsumenter typene som `window.X = …` i knowledge.js tidligere ga implisitt. La derfor til en ambient `function getKnowledgeUniverse()` (bart forbruk i `js/aha.js`) og `Window`-felter for de publiserte knowledge-globalene i `schemas/globals.d.ts`. `npm run typecheck` er grønn igjen (kun den eksisterende `HG_SocialGuards`).
+- **Full dekning inkl. shim:** topp-nivå `knowledge.html`/`emner.html`/`profile.html` (`js/…` → `dist/web/…`), `knowledge/knowledge_by.html` (direkte ref), og **root-shimen `knowledge.js`** (`document.write` for `knowledge/`-sidene) oppdatert til å skrive `dist/web/knowledge.js`. `sw.js` oppdatert + `SW_VERSION` bumpet.
+- Verifisert: `typecheck:web` + `build:web` grønn, `npm run typecheck` ingen ny feil, og `npm run smoke:web` PASS på alle fire sider (knowledge-bundelen lastes direkte på topp-nivå og via shim på `knowledge/`-sider; alle knowledge-globaler publiseres). MERK: `knowledge/`-siden viser en JSDOM-only `renderKnowledgeSection is not defined`-advarsel pga. `document.write`-timing i JSDOM (eksisterte før migreringen; i ekte nettleser kjører parser-innsatte document.write-scripts synkront). Anbefaler manuell nettlesersjekk av en `knowledge/`-side.
+
+Browser-migrert så langt (oppdatert): + `knowledge` (9 filer). Alle de store delte kjernefilene (`emnerLoader`, `hgInsights`, `knowledge`) er nå migrert.
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.

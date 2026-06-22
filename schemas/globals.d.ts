@@ -97,6 +97,20 @@ declare global {
     buildKnowledgeFingerprint?: any;
     getKnowledgeMatches?: any;
     sendMeetInvite?: any;
+    // Publisert av js/knowledge.ts (migrert TS, lastet som dist/web/knowledge.js).
+    // Tidligere ga window.X = ... i knowledge.js disse typene implisitt; nå som
+    // fila er ute av base-.js-programmet må de deklareres for at konsumenter
+    // (js/quizzes.js, js/emneDekning.js, m.fl.) skal typecheck-e.
+    saveKnowledgeFromQuiz?: (...args: any[]) => any;
+    saveKnowledgePoint?: (...args: any[]) => any;
+    getKnowledgeUniverse?: (...args: any[]) => any;
+    renderKnowledgeSection?: (...args: any[]) => any;
+    computeEmneDekning?: (...args: any[]) => any;
+    computeEmneDekningV2?: (...args: any[]) => any;
+    getLearningLog?: (...args: any[]) => any;
+    getUserConceptsFromLearningLog?: (...args: any[]) => any;
+    getUserEmneHitsFromLearningLog?: (...args: any[]) => any;
+    HGCourseUI?: any;
     HGAhaMusic?: {
       FILES: Record<string, string>;
       state: {
@@ -135,6 +149,12 @@ declare global {
     HGDomainRuntime?: Record<string, (...args: unknown[]) => unknown>;
     HGVisualDesignCodes?: any;
   }
+
+  // js/knowledge.js er migrert til TS og lastes nå som dist/web-bundle, så den
+  // ligger ikke lenger i base-.js-programmet. js/aha.js refererer
+  // getKnowledgeUniverse ved bart navn (typeof-guard), så den trenger en
+  // ambient global-deklarasjon for at `npm run typecheck` skal forbli grønn.
+  function getKnowledgeUniverse(): any;
 }
 
 export {};

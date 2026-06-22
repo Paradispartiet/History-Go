@@ -1,3 +1,8 @@
+// @ts-nocheck — migrert til TS ESM (bundlet med esbuild til dist/web/knowledge.js).
+// Stor JSDoc-typet kjernemodul; migreres adferdsidentisk med midlertidig
+// @ts-nocheck. Interop: alle top-level-funksjoner som forbrukes av andre filer
+// (statiske scripts og inline-HTML) publiseres eksplisitt på window nedenfor,
+// slik at bart-navn-oppslag (f.eks. renderKnowledgeSection()) fortsatt virker.
 /* ============================================================
    KNOWLEDGE SYSTEM – History Go
    Lagrer kunnskapspunkter lærte gjennom quizer
@@ -470,6 +475,12 @@ window.getLearningLog = getLearningLog;
 window.getUserConceptsFromLearningLog = getUserConceptsFromLearningLog;
 window.getUserEmneHitsFromLearningLog = getUserEmneHitsFromLearningLog;
 window.computeEmneDekningV2 = computeEmneDekningV2;
+// Interop ifm. TS-migrering: disse top-level-funksjonene forbrukes av andre
+// (klassiske) scripts / inline-HTML ved bart navn, så de må eksponeres på window
+// nå som denne fila bundles som ESM-modul (top-level blir ellers modul-scopet).
+window.getKnowledgeUniverse = getKnowledgeUniverse;
+window.saveKnowledgePoint = saveKnowledgePoint;
+window.renderKnowledgeSection = renderKnowledgeSection;
 
 
 // ------------------------------------------------------------

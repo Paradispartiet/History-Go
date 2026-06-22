@@ -29,13 +29,14 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
  * @type {{ page: string; globals: string[] }[]}
  */
 const TARGETS = [
-  { page: "emner.html", globals: ["Emner", "HGInsights"] },
-  { page: "knowledge.html", globals: ["Emner", "HGInsights", "Fagkart"] },
+  { page: "emner.html", globals: ["Emner", "HGInsights", "computeEmneDekningV2"] },
+  { page: "knowledge.html", globals: ["Emner", "HGInsights", "Fagkart", "getKnowledgeUniverse", "renderKnowledgeSection"] },
   {
     page: "profile.html",
-    globals: ["HGInsights", "FagHealthReport", "HGKnowledgeEngine", "HG_SOCIAL_INDEX", "HGModeration"]
+    globals: ["HGInsights", "FagHealthReport", "HGKnowledgeEngine", "HG_SOCIAL_INDEX", "HGModeration", "getKnowledgeUniverse"]
   },
-  { page: "knowledge/knowledge_historie.html", globals: ["Emner", "HGInsights"] }
+  // Laster knowledge-motoren via root-shim (../knowledge.js -> document.write dist/web/knowledge.js)
+  { page: "knowledge/knowledge_historie.html", globals: ["Emner", "HGInsights", "getKnowledgeUniverse", "renderKnowledgeSection"] }
 ];
 
 const onlyArg = process.argv.slice(2).filter((a) => !a.startsWith("-"));
