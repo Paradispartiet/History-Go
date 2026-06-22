@@ -249,6 +249,7 @@ function civiDebugPsycheSummary(psyche) {
     const capital = civiDebugReadJson("hg_capital_v1", null);
     const psyche = civiDebugSafe(() => window.CivicationPsyche?.getSnapshot?.(activeCareerId), null);
     const home = civiDebugSafe(() => window.CivicationHome?.getState?.(), null);
+    const homeSnapshot = civiDebugSafe(() => window.CivicationHome?.getHomeSnapshot?.(), null);
     const visibleStores = await civiDebugVisibleStores();
     const visiblePacks = await civiDebugVisiblePacks();
     const inbox = civiDebugSafe(() => window.CivicationState?.getInbox?.(), []);
@@ -266,6 +267,7 @@ function civiDebugPsycheSummary(psyche) {
       capital,
       psyche,
       home,
+      homeSnapshot,
       visibleStores,
       visiblePacks,
       inbox: Array.isArray(inbox) ? inbox : [],

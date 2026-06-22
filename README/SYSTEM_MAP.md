@@ -287,6 +287,7 @@ History Go er delt i tydelige lag:
 
 **Filer — UI**
 - js/Civication/ui/CivicationHome.js
+  - Home/nabolag-state bor her og lagres kanonisk i `civi_home_v1`. Kapital leses fra `hg_capital_v1`; Home UI er en renderer over `CivicationHome`-state, ikke en egen gameplay-kilde. `getDistrictViewModels()` og `getHomeSnapshot()` er read-only helpers for UI/debug og endrer ikke state.
 - js/Civication/ui/CivicationPublicLayer.js
 - js/Civication/ui/CivicationMap.js
 - js/Civication/ui/CivicationUI.js

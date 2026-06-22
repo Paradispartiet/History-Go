@@ -30,6 +30,12 @@ Disse er eksplisitt tillatt, men er **kun read-only inspeksjon** (ingen gameplay
   (`CivicationUI.getCurrentWorkdaySnapshot`). Ren lesning av `CivicationState`,
   `CivicationCalendar`, `CivicationTaskEngine` og innboksen via den delte `computeWorkdayModel()`
   som `renderWorkdayPanel()` også bruker. Rører ikke DOM og endrer ikke rendering.
+- `window.CivicationHome.getHomeSnapshot()` — read-only Home/nabolag-øyeblikksbilde fra
+  `CivicationHome` / `civi_home_v1`, med kapital lest fra `hg_capital_v1`. Endrer ikke
+  gameplay-state, priser, husleie eller boligpress.
+- `window.CivicationHome.getDistrictViewModels()` — read-only district view models for
+  UI/debug. Bruker eksisterende distriktsdata, låseregler og kapital-lesning, men skriver
+  ingenting og endrer ikke kjøps-/flytteregler.
 
 ---
 

@@ -36,6 +36,10 @@ declare global {
     CivicationBrandJobState?: any;
     CivicationBrandJobUI?: any;
     CivicationConsequenceFeedback?: any;
+    CivicationHome?: any & {
+      getHomeSnapshot?: () => any;
+      getDistrictViewModels?: () => any;
+    };
     CivicationMilestoneHighlight?: any;
     CivicationOutcomeStatusUI?: any;
     HG_CiviWorkdaySnapshot?: () => any;
