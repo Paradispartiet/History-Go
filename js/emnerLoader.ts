@@ -18,7 +18,7 @@
  */
 
 window.Emner = (function () {
-  const DEBUG = !!window.DEBUG;
+  const DEBUG = !!(window as any).DEBUG;
 
   // Prosjektrot beregnet fra denne scriptfilen, ikke fra HTML-siden.
   // Dette gjør loaderen trygg både fra index.html og fra /knowledge/*.html.

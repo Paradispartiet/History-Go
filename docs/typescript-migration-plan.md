@@ -75,6 +75,18 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 
 Browser-migrert så langt: `fagkartLoader`, `fagHealthReport`, `hgKnowledgeEngine`, `hgSocialPrivacy`, `hgModeration`, `profileInsightRoomEntry` (6 filer).
 
+### Batch 5 (fullført) — første delte kjernefil med full dekning
+
+`js/emnerLoader.js` → `.ts` (ren IIFE: publiserer `window.Emner`, augmenterer `window.DataHub`):
+
+- **Full konsument-dekning** (lærdommen fra batch 4): oppdaterte ALLE aktive konsumenter — topp-nivå `emner.html` + `knowledge.html` (`js/…` → `dist/web/…`) og 13 `knowledge/`-sider (`../js/…` → `../dist/web/…`, inkl. `knowledge_sport.htm` og dupliserte tagger i historie/kunst).
+- **Bevisst utelatt (pre-eksisterende foreldreløse, allerede ødelagte før migrering, peker på ikke-eksisterende stier):** `knowledge/arkiv/knowledge_by.html` (`../js/` fra arkiv → `knowledge/js/`) og `data/fag/vitenskap/merke_vitenskap (2).html` (`../emnerLoader.js`). Disse endres ikke av renamet.
+- Liten typefiks (`(window as any).DEBUG`). Ikke i `sw.js`.
+- Verifisert: `typecheck:web` + `build:web` grønn, `vm`-kjøring bekrefter `window.Emner` (full API) + `window.DataHub`-augmentering, `npm run typecheck` ingen ny feil, og `grep` bekrefter null gjenværende gammel-sti-referanser utenom de to foreldreløse.
+- **Krever nettleser-røyktest** (mange sider): `emner.html`, `knowledge.html`, og et par `knowledge/knowledge_*.html` — sjekk at `window.Emner` finnes og at emne-listene rendrer.
+
+Browser-migrert så langt (oppdatert): + `emnerLoader` (7 filer).
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.
