@@ -1961,13 +1961,11 @@ if (eventsBox) {
       : ""
   ].filter(Boolean).join("");
 
-  const compactStatus = tfUI("ui.events.peopleFriendsHere", "{people} her · {friends} venner", { people: peopleCount, friends: friendsCount });
-  const compactEvents = canonicalForPlace.length
-    ? tfUI("ui.events.countHere", "{count} ting skjer her", { count: canonicalForPlace.length })
-    : tt("ui.events.none", "Ingen hendelser");
+  const compactStatus = tt("ui.events.knowledgeMeet", "Møt folk");
+  const compactEvents = tt("ui.events.knowledgeMeetHint", "Kunnskapsmatcher · ikke lokasjon");
 
   const body = `
-    <div class="pc-events-preview-line" title="${escapePlaceCardHTML(compactStatus)}">${escapePlaceCardHTML(compactStatus)}</div>
+    <button class="pc-events-action" type="button" data-knowledge-spot-match="${escapePlaceCardHTML(String(place.id || ""))}">${escapePlaceCardHTML(compactStatus)}</button>
     <div class="pc-events-preview-line" title="${escapePlaceCardHTML(compactEvents)}">${escapePlaceCardHTML(compactEvents)}</div>
   `;
 
@@ -1983,35 +1981,15 @@ if (eventsBox) {
     };
   }
 
-  eventsBox.onclick = () => {
-    const socialPopupHtml = `
-      <section class="pc-events-section">
-        <div class="pc-event-entry-title">${tt("ui.events.hereNow", "Her nå")}</div>
-        <div class="pc-events-row">${tt("ui.events.people", "Personer:")} ${peopleCount}</div>
-        <div class="pc-events-row">${tt("ui.events.friends", "Venner:")} ${friendsCount}</div>
-      </section>
-      <section class="pc-events-section">
-        <div class="pc-event-entry-title">${tt("ui.events.happeningHere", "Skjer her")}</div>
-        ${canonicalForPlace.length
-          ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
-          : `<div class="pc-events-row">${tt("ui.events.noCanonicalYet", "Ingen kanoniserte hendelser lagt til ennå.")}</div>`
-        }
-      </section>
-      <section class="pc-events-section">
-        <div class="pc-event-entry-title">${tt("ui.events.social", "Sosialt")}</div>
-        ${modeButtons}
-      </section>
-    `;
-
-    if (typeof window.showPlaceCardRoundPopup === "function") {
-      window.showPlaceCardRoundPopup({
-        title: tt("ui.static.onSite", "På stedet"),
-        subtitle: place?.name || "",
-        html: socialPopupHtml,
-        place,
-        kind: "events"
-      });
+  eventsBox.onclick = (event) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
+    if (typeof window.openSpotMatchList === "function") {
+      window.openSpotMatchList(currentPlaceId);
+      return;
     }
+    window.showToast?.("Kunnskapsmatcher er ikke lastet ennå");
   };
 }
 
