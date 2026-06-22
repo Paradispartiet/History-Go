@@ -415,3 +415,11 @@ Avvik fra dette skal enten refaktoreres eller dokumenteres eksplisitt.
 - The economy engine owns the weekly PC tick and a read-only economy model (`HG_CiviEconomySnapshot` / `CivicationEconomyEngine.getEconomySnapshot`) that explains wallet, job income, job expenses, home rent, affordability, and next-tick status without running the tick.
 - Wallet remains owned by `CivicationState`; home rent remains owned by `CivicationHome`. The economy snapshot may combine wallet/job/home/shop data, but it is read-only and must not create gameplay state.
 - The profile shop UI is renderer-only: it displays visible packs, owned state, style tag counts, and delegates purchase attempts to `HG_CiviShop.buyPack(packId)`.
+
+## Civication Home / Nabolag gameplay v1
+Status: implemented
+Purpose: makes district/home choice affect rent pressure, housing status and progression.
+
+- `js/Civication/ui/CivicationHome.js` owns the `civi_home_v1` home gameplay state: `currentDistrictId`, `unlockedDistrictIds`, rent due/payment markers, housing status, move history, and eviction warnings.
+- Home movement now runs through `canMoveToDistrict()`, `unlockDistrict()`, and `moveToDistrict()`, so locked districts require knowledge/progress/visit state or explicit unlock state before the player can live there.
+- `applyRentTick()` applies weekly rent against existing PC/economic capital storage and worsens `housingStatus` when rent cannot be paid; unemployment/no-income state raises rent pressure and support eligibility without implementing full NAV.
