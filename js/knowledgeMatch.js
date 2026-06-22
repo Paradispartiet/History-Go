@@ -253,12 +253,142 @@
       spotId: String(spotId || ""),
       proposedTime: String(options?.proposedTime || ""),
       messagePreset: PRESETS.includes(options?.messagePreset) ? options.messagePreset : PRESETS[0],
-      status: "pending"
+      status: "pending",
+      fromDisplayName: getDisplayName(),
+      toDisplayName: getProfileByUserId(targetUserId)?.displayName || "",
+      spotTitle: String(options?.spotTitle || ""),
+      createdAt: new Date().toISOString()
     };
-    const invites = readJson(INVITES_KEY, []);
+    const invites = getMeetInvites();
     invites.push(invite);
-    writeJson(INVITES_KEY, invites);
+    saveMeetInvites(invites);
+    renderMeetInviteInbox();
     return invite;
+  }
+
+
+  function getMeetInvites() {
+    return (Array.isArray(readJson(INVITES_KEY, [])) ? readJson(INVITES_KEY, []) : []).map((invite) => ({
+      inviteId: String(invite?.inviteId || ""),
+      fromUserId: String(invite?.fromUserId || ""),
+      toUserId: String(invite?.toUserId || ""),
+      fromDisplayName: String(invite?.fromDisplayName || ""),
+      toDisplayName: String(invite?.toDisplayName || ""),
+      spotId: String(invite?.spotId || ""),
+      spotTitle: String(invite?.spotTitle || ""),
+      proposedTime: String(invite?.proposedTime || ""),
+      messagePreset: PRESETS.includes(invite?.messagePreset) ? invite.messagePreset : PRESETS[0],
+      status: ["pending", "accepted", "declined", "cancelled"].includes(invite?.status) ? invite.status : "pending",
+      createdAt: String(invite?.createdAt || "")
+    })).filter((invite) => invite.inviteId && invite.fromUserId && invite.toUserId);
+  }
+
+  function saveMeetInvites(invites) {
+    writeJson(INVITES_KEY, Array.isArray(invites) ? invites : []);
+  }
+
+  function getIncomingMeetInvites(userId) {
+    const id = String(userId || getCurrentUserId());
+    return getMeetInvites().filter((invite) => invite.toUserId === id).sort(sortInvites);
+  }
+
+  function getOutgoingMeetInvites(userId) {
+    const id = String(userId || getCurrentUserId());
+    return getMeetInvites().filter((invite) => invite.fromUserId === id).sort(sortInvites);
+  }
+
+  function sortInvites(a, b) {
+    return String(b.createdAt || b.inviteId).localeCompare(String(a.createdAt || a.inviteId));
+  }
+
+  function updateMeetInviteStatus(inviteId, status) {
+    const id = String(inviteId || "");
+    const invites = getMeetInvites();
+    const invite = invites.find((row) => row.inviteId === id);
+    if (!invite) return null;
+    invite.status = status;
+    saveMeetInvites(invites);
+    renderMeetInviteInbox();
+    return invite;
+  }
+
+  function acceptMeetInvite(inviteId) {
+    return updateMeetInviteStatus(inviteId, "accepted");
+  }
+
+  function declineMeetInvite(inviteId) {
+    return updateMeetInviteStatus(inviteId, "declined");
+  }
+
+  function cancelMeetInvite(inviteId) {
+    return updateMeetInviteStatus(inviteId, "cancelled");
+  }
+
+  function getSpotTitle(invite) {
+    if (invite?.spotTitle) return invite.spotTitle;
+    const id = String(invite?.spotId || "");
+    const localSpots = readJson("hg_mock_meet_spots_v1", []);
+    const candidates = Array.isArray(localSpots) ? localSpots : [];
+    const place = candidates.concat(Array.isArray(window.PLACES) ? window.PLACES : []).find((spot) => String(spot?.id || spot?.placeId || spot?.slug || "") === id);
+    return String(place?.title || place?.name || id || "Valgt sted");
+  }
+
+  function getInviteDisplayName(invite, direction) {
+    const userId = direction === "incoming" ? invite.fromUserId : invite.toUserId;
+    const storedName = direction === "incoming" ? invite.fromDisplayName : invite.toDisplayName;
+    return storedName || getProfileByUserId(userId)?.displayName || "History Go bruker";
+  }
+
+  function renderInviteCards(invites, direction) {
+    if (!invites.length) return `<p class="knowledge-match-empty">Ingen ${direction === "incoming" ? "innkommende" : "utgående"} møteforespørsler ennå.</p>`;
+    return invites.map((invite) => {
+      const nameLabel = direction === "incoming" ? "Fra" : "Til";
+      const canAct = invite.status === "pending";
+      const actions = direction === "incoming"
+        ? `<button type="button" data-invite-action="accept" data-invite-id="${escapeHtml(invite.inviteId)}" ${canAct ? "" : "disabled"}>Accept</button><button type="button" data-invite-action="decline" data-invite-id="${escapeHtml(invite.inviteId)}" ${canAct ? "" : "disabled"}>Decline</button>`
+        : `<button type="button" data-invite-action="cancel" data-invite-id="${escapeHtml(invite.inviteId)}" ${canAct ? "" : "disabled"}>Cancel</button>`;
+      return `
+        <article class="knowledge-match-card meet-invite-card">
+          <div><strong>${nameLabel}: ${escapeHtml(getInviteDisplayName(invite, direction))}</strong><b>${escapeHtml(invite.status)}</b></div>
+          <p><strong>Spot:</strong> ${escapeHtml(getSpotTitle(invite))}</p>
+          <p><strong>Proposed time:</strong> ${escapeHtml(invite.proposedTime || "Ikke satt")}</p>
+          <p><strong>Preset message:</strong> ${escapeHtml(invite.messagePreset)}</p>
+          <div class="meet-invite-actions">${actions}</div>
+        </article>`;
+    }).join("");
+  }
+
+  function renderMeetInviteInbox() {
+    const root = document.getElementById("meet-invite-inbox");
+    if (!root) return;
+    const selected = root.getAttribute("data-selected-tab") === "outgoing" ? "outgoing" : "incoming";
+    const userId = getCurrentUserId();
+    const incoming = getIncomingMeetInvites(userId);
+    const outgoing = getOutgoingMeetInvites(userId);
+    root.innerHTML = `
+      <section class="meet-invite-inbox-panel" aria-label="Meet invite inbox">
+        <div class="section-head"><h3>Meet Invite Inbox</h3><span class="section-meta">LocalStorage v1 · preset-only meldinger · ingen GPS, live location, visit history eller fri chat</span></div>
+        <div class="knowledge-match-controls meet-invite-tabs" role="tablist" aria-label="Meet invite tabs">
+          <button type="button" data-meet-tab="incoming" aria-selected="${selected === "incoming"}">Incoming (${incoming.length})</button>
+          <button type="button" data-meet-tab="outgoing" aria-selected="${selected === "outgoing"}">Outgoing (${outgoing.length})</button>
+        </div>
+        <div class="meet-invite-list">${renderInviteCards(selected === "incoming" ? incoming : outgoing, selected)}</div>
+      </section>`;
+    root.querySelectorAll("[data-meet-tab]").forEach((button) => {
+      button.addEventListener("click", () => {
+        root.setAttribute("data-selected-tab", button.getAttribute("data-meet-tab") || "incoming");
+        renderMeetInviteInbox();
+      });
+    });
+    root.querySelectorAll("[data-invite-action]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = button.getAttribute("data-invite-id");
+        const action = button.getAttribute("data-invite-action");
+        if (action === "accept") acceptMeetInvite(id);
+        if (action === "decline") declineMeetInvite(id);
+        if (action === "cancel") cancelMeetInvite(id);
+      });
+    });
   }
 
   function renderKnowledgeMatches() {
@@ -286,6 +416,7 @@
     root.querySelectorAll("[data-view-profile]").forEach((button) => {
       button.addEventListener("click", () => openMatchProfile(button.getAttribute("data-view-profile")));
     });
+    renderMeetInviteInbox();
   }
 
   function escapeHtml(s) { return String(s ?? "").replace(/[&<>\"']/g, (ch) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#039;" }[ch])); }
@@ -294,8 +425,14 @@
   window.buildKnowledgeFingerprint = buildKnowledgeFingerprint;
   window.getKnowledgeMatches = getKnowledgeMatches;
   window.sendMeetInvite = sendMeetInvite;
+  window.getIncomingMeetInvites = getIncomingMeetInvites;
+  window.getOutgoingMeetInvites = getOutgoingMeetInvites;
+  window.renderMeetInviteInbox = renderMeetInviteInbox;
+  window.acceptMeetInvite = acceptMeetInvite;
+  window.declineMeetInvite = declineMeetInvite;
+  window.cancelMeetInvite = cancelMeetInvite;
   window["openMatchProfile"] = openMatchProfile;
   window["renderMatchProfile"] = renderMatchProfile;
   window["openMeetInviteModal"] = window["openMeetInviteModal"] || openMeetInviteModal;
-  window.HGKnowledgeMatch = { getPublicProfile, savePublicProfile, buildKnowledgeFingerprint, getKnowledgeMatches, getProfileByUserId, openMatchProfile, renderMatchProfile, sendMeetInvite, renderKnowledgeMatches, presets: PRESETS };
+  window.HGKnowledgeMatch = { getPublicProfile, savePublicProfile, buildKnowledgeFingerprint, getKnowledgeMatches, getProfileByUserId, openMatchProfile, renderMatchProfile, sendMeetInvite, getIncomingMeetInvites, getOutgoingMeetInvites, renderMeetInviteInbox, acceptMeetInvite, declineMeetInvite, cancelMeetInvite, renderKnowledgeMatches, presets: PRESETS };
 })();
