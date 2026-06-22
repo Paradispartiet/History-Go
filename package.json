@@ -20,6 +20,8 @@
     "places:coords:candidates": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs",
     "places:coords:candidates:by-oslo": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs --file data/places/by/oslo/places_by.json",
     "places:coords:candidates:all": "npm run build:tools && node dist/tools/generate-place-coordinate-candidates.mjs --all-active",
+    "places:coords:apply": "npm run build:tools && node dist/tools/apply-coordinate-candidates.mjs",
+    "places:coords:apply:write": "npm run build:tools && node dist/tools/apply-coordinate-candidates.mjs --write",
     "i18n:places:check": "npm run typecheck:scripts && npm run build:scripts && npm run i18n:places:audit && npm run i18n:places:quality && npm run i18n:places:worklist",
     "i18n:places:audit": "npm run build:scripts && node dist/scripts/i18n-audit-places.js",
     "i18n:places:quality": "npm run build:scripts && node dist/scripts/i18n-quality-places.js",
