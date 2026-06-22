@@ -391,3 +391,12 @@ History Go er delt i tydelige lag:
 ## SLUTT
 Dette dokumentet er normativt.
 Avvik fra dette skal enten refaktoreres eller dokumenteres eksplisitt.
+
+---
+
+## Civication profile/shop visibility
+
+- Civication profile panel (`profile.html` via `js/Civication/ui/CivicationUI.js`) is a defensive renderer for the player's Civication status.
+- The panel reads career/role and PC wallet state from `CivicationState`, shop inventory and visible packs from `HG_CiviShop`, and salary/psyche context from CapitalEngine-compatible salary helpers and `CivicationPsyche`.
+- Profile does not own the PC wallet or shop inventory. Wallet and inventory mutations remain in the Civication state/shop systems.
+- The profile shop UI is renderer-only: it displays visible packs, owned state, style tag counts, and delegates purchase attempts to `HG_CiviShop.buyPack(packId)`.

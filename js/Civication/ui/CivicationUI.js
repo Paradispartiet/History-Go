@@ -30,7 +30,7 @@ async function init() {
     window.CivicationState?.getInbox?.() ||
     [];
   if (
-    !window.CivicationState.getActivePosition() &&
+    !window.CivicationState?.getActivePosition?.() &&
     (!Array.isArray(inbox) || inbox.length === 0)
   ) {
     await window.HG_CiviEngine?.onAppOpen?.();
@@ -51,6 +51,7 @@ async function init() {
   renderHomeStatus();
   renderPublicFeed();
   renderTrackHUD();
+  renderCivicationSummary();
   renderCivicationShop();
 
   window.addEventListener("updateProfile", () => {
@@ -62,6 +63,7 @@ async function init() {
     renderHomeStatus();
     renderPerception();
     renderTrackHUD();
+    renderCivicationSummary();
     renderCivicationShop();
   });
 
@@ -359,18 +361,19 @@ async function renderCivicationShop() {
   hintEl.textContent = "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
 
   const ownedPacks = civiShopRecord(inv.packs);
+  const ownedItems = civiShopRecord(inv.ownedItems);
   packsEl.innerHTML = packs.map(function (pack) {
     const packRecord = civiShopRecord(pack);
     const packId = String(packRecord.id || "").trim();
     const title = String(packRecord.title || packRecord.name || packId || "Pakke");
     const price = packRecord.price_pc ?? packRecord.price ?? 0;
-    const isOwned = !!ownedPacks[packId];
+    const isOwned = !!ownedPacks[packId] || !!ownedItems[packId];
 
     return `
       <div class="civi-shop-pack">
         <div><strong>${escapeOfferHtml(title)}</strong></div>
         <div>Pris: ${formatCiviShopPc(price)} PC</div>
-        <div>${isOwned ? "Allerede kjøpt" : `<button type="button" data-civi-buy-pack="${escapeOfferHtml(packId)}">Kjøp</button>`}</div>
+        <div>${isOwned ? "Kjøpt" : `<button type="button" data-civi-buy-pack="${escapeOfferHtml(packId)}">Kjøp</button>`}</div>
       </div>
     `;
   }).join("");
@@ -392,6 +395,7 @@ async function renderCivicationShop() {
       }
 
       if (res?.ok) {
+        renderCivicationSummary();
         await renderCivicationShop();
         window.dispatchEvent(new Event("updateProfile"));
         return;
@@ -404,6 +408,107 @@ async function renderCivicationShop() {
       }
     });
   });
+}
+
+
+/**
+ * @param {string} key
+ * @param {unknown} fallback
+ * @returns {unknown}
+ */
+function readCiviProfileJson(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+/**
+ * @returns {{ activePosition: unknown, wallet: unknown, inventory: unknown, visiblePackCount: number, ownedPackCount: number, styleCounts: Record<string, unknown>, psyche: unknown, merits: unknown }}
+ */
+function getCivicationProfileSnapshot() {
+  let activePosition = null;
+  let wallet = null;
+  let inventory = null;
+  let visiblePacks = [];
+  let psyche = null;
+
+  try { activePosition = window.CivicationState?.getActivePosition?.() || null; } catch {}
+  try { wallet = window.CivicationState?.getWallet?.() || window.HG_CiviShop?.getWallet?.() || null; } catch {}
+  try { inventory = window.HG_CiviShop?.getInv?.() || null; } catch {}
+  try {
+    const visible = window.HG_CiviShop?.getVisiblePacks?.() || [];
+    visiblePacks = Array.isArray(visible) ? visible : [];
+  } catch {}
+
+  const packs = civiShopRecord(civiShopRecord(inventory).packs);
+  const ownedItems = civiShopRecord(civiShopRecord(inventory).ownedItems);
+  const styleCounts = civiShopRecord(civiShopRecord(inventory).style_counts);
+  const activeCareerId = civiShopRecord(activePosition).career_id || null;
+  try { psyche = window.CivicationPsyche?.getSnapshot?.(activeCareerId) || null; } catch {}
+
+  return {
+    activePosition,
+    wallet,
+    inventory,
+    visiblePackCount: visiblePacks.length,
+    ownedPackCount: Object.keys(packs).filter((key) => Boolean(packs[key])).length + Object.keys(ownedItems).filter((key) => Boolean(ownedItems[key])).length,
+    styleCounts,
+    psyche,
+    merits: readCiviProfileJson("merits_by_category", {})
+  };
+}
+
+/**
+ * @returns {void}
+ */
+function renderCivicationSummary() {
+  const title = document.getElementById("civiRoleTitle");
+  const details = document.getElementById("civiRoleDetails");
+  const salaryLn = document.getElementById("civiSalaryLine");
+  const meritLn = document.getElementById("civiMeritLine");
+  const burnoutEl = document.getElementById("civiBurnoutStatus");
+  if (!title && !details && !salaryLn && !meritLn && !burnoutEl) return;
+
+  try { syncRoleBaseline(); } catch {}
+
+  const active = /** @type {CiviUiActivePosition|null} */ (window.CivicationState?.getActivePosition?.() || null);
+  const activeCareerId = active?.career_id ? String(active.career_id) : "";
+  const merits = /** @type {Record<string, any>} */ (readCiviProfileJson("merits_by_category", {}));
+  const psyche = /** @type {any} */ (window.CivicationPsyche?.getSnapshot?.(activeCareerId || null) || null);
+
+  if (title) title.textContent = active?.title ? `Rolle: ${active.title}` : "Rolle: —";
+  if (details) {
+    const field = active?.career_name || active?.career_id || "—";
+    const status = active ? "Aktiv" : "Ingen aktiv jobb";
+    details.textContent = active ? `Status: ${status} · Felt: ${field}` : "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
+  }
+
+  if (salaryLn) {
+    let weekly = NaN;
+    try {
+      const points = Number(activeCareerId ? merits?.[activeCareerId]?.points || 0 : 0);
+      const badge = Array.isArray(window.BADGES) ? window.BADGES.find((b) => b && String(b.id) === activeCareerId) : null;
+      const tierIndex = badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
+      const career = Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS.find((c) => c && String(c.career_id) === activeCareerId) : null;
+      weekly = (career && typeof window.calculateWeeklySalary === "function") ? window.calculateWeeklySalary(career, tierIndex) : NaN;
+    } catch {}
+    salaryLn.textContent = Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
+  }
+
+  if (meritLn) {
+    const points = activeCareerId ? Number(merits?.[activeCareerId]?.points || 0) : NaN;
+    const label = active?.career_name || active?.career_id || "aktiv karriere";
+    meritLn.textContent = Number.isFinite(points) && activeCareerId ? `Merit: ${points} poeng · ${label}` : "Merit: —";
+  }
+
+  if (burnoutEl) {
+    const activeBurnout = psyche?.burnoutActive === true || window.CivicationPsyche?.isBurnoutActive?.() === true;
+    burnoutEl.style.display = activeBurnout ? "" : "none";
+    burnoutEl.textContent = activeBurnout ? "🔥 Burnout aktiv: Autonomi midlertidig redusert." : "";
+  }
 }
 
 // ============================================================
@@ -431,51 +536,7 @@ async function renderCivication() {
     title && details && meritLn && salaryLn && oBox && oTitle && oMeta;
 
   if (isProfile) {
-    const active = /** @type {CiviUiActivePosition|null|undefined} */ (
-      window.CivicationState.getActivePosition()
-    );
-    syncRoleBaseline();
-
-    if (active && active.title) {
-      title.textContent = `Rolle: ${active.title}`;
-
-      const cn = active.career_name || active.career_id || "—";
-      const dt = active.achieved_at
-        ? new Date(active.achieved_at).toLocaleDateString("no-NO")
-        : "";
-
-      details.textContent =
-        `Status: Aktiv · Felt: ${cn}` + (dt ? ` · Satt: ${dt}` : "");
-    } else {
-      title.textContent = "Rolle: —";
-      details.textContent =
-        "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
-    }
-
-    // LØNN
-    if (salaryLn && active?.career_id) {
-      const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-      const points = Number(merits[active.career_id]?.points || 0);
-
-      const badge = Array.isArray(window.BADGES)
-        ? window.BADGES.find((/** @type {any} */ b) => b && String(b.id) === String(active.career_id))
-        : null;
-
-      const tierIndex =
-        badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
-
-      const career = Array.isArray(window.HG_CAREERS)
-        ? window.HG_CAREERS.find((/** @type {any} */ c) => c && String(c.career_id) === String(active.career_id))
-        : null;
-
-      const weekly =
-        (career && typeof window.calculateWeeklySalary === "function")
-          ? window.calculateWeeklySalary(career, tierIndex)
-          : NaN;
-
-      salaryLn.textContent =
-        Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
-    }
+    renderCivicationSummary();
 
     // JOBBTILBUD (profil = indikator, ingen handling)
     const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
@@ -496,63 +557,6 @@ async function renderCivication() {
       const jobTxt = offer.career_name || offer.career_id || "Jobb";
       oMeta.textContent = `${jobTxt} · Utløper: ${expTxt} · Åpne Civication for å svare.`;
     }
-
-    // BESTE ROLLE (MERIT-PROFIL) – samme som din nå
-    const merits2 = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-    const keys = Object.keys(merits2 || {});
-
-    if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
-      meritLn.textContent = "Merit: —";
-      return;
-    }
-
-    const history = window.HGLearningLog?.getQuizHistory?.() ?? [];
-
-    let best = null;
-
-    for (const k of keys) {
-      const badge = BADGES.find(b => String(b?.id) === String(k));
-      if (!badge) continue;
-
-      const points = Number(merits2[k]?.points || 0);
-      const { tierIndex, label } = deriveTierFromPoints(badge, points);
-
-      const last =
-        history
-          .filter(h => String(h?.categoryId) === String(k))
-          .map(h => h?.date ? new Date(h.date).getTime() : 0)
-          .reduce((mx, t) => Math.max(mx, t), 0);
-
-      const item = {
-        badgeName: badge.name || k,
-        roleLabel: label || "Nybegynner",
-        tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
-        points,
-        lastQuizAt: last
-      };
-
-      if (!best) best = item;
-      else if (
-        item.tierIndex > best.tierIndex ||
-        (item.tierIndex === best.tierIndex && item.points > best.points)
-      ) {
-        best = item;
-      }
-    }
-
-    if (!best) {
-      meritLn.textContent = "Merit: —";
-      return;
-    }
-
-    const lastTxt =
-      best.lastQuizAt
-        ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
-        : "aldri";
-
-    meritLn.textContent =
-      `Merit: ${best.roleLabel} (${best.badgeName}) · ` +
-      `${best.points} poeng · Sist: ${lastTxt}`;
 
     return;
   }
@@ -1886,19 +1890,29 @@ function renderTrackHUD() {
     .join("");
 }
 
+async function render() {
+  await renderCivication();
+  renderCivicationSummary();
+  await renderCivicationShop();
+}
+
+window.HG_CiviProfileSnapshot = getCivicationProfileSnapshot;
+
 // ============================================================
 // EXPORT
 // ============================================================
 
 window.CivicationUI = {
   init,
-  render: renderCivication,
+  render,
   renderInbox: renderCivicationInbox,
   renderWorkdayPanel,
   getActiveWorkdayInboxItem,
   renderCapital,
   renderPerception,
   renderCivicationShop,
+  renderCivicationSummary,
+  getCivicationProfileSnapshot,
   buildCiviEventViewModel,
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml
