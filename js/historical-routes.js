@@ -94,6 +94,11 @@
     window.dispatchEvent(new CustomEvent("hg:historicalRouteProgress", {
       detail: { routeId, progress: nextProgress }
     }));
+    if (nextProgress?.online?.completed || nextProgress?.status === "online_completed") {
+      window.dispatchEvent(new CustomEvent("hg:routeCompleted", {
+        detail: { routeId, strength: 2 }
+      }));
+    }
     window.rerenderActiveLeftPanelMode?.();
     return nextProgress;
   }

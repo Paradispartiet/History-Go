@@ -58,6 +58,8 @@ declare global {
     HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_SocialDebug?: { snapshot?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_SocialSurfaceContract?: any;
+    HG_SocialSignals?: any;
+    HG_SocialSignalBridge?: any;
     HG_SocialDemo?: any & { sendDemoInvite?: (args: any) => any; getPresetMessages?: () => any; getActions?: () => any; clearActions?: () => any };
     HG_SocialDemoAdapter?: any;
     HG_SocialDemoProfile?: any;
@@ -397,6 +399,8 @@ declare global {
   var FLORA: any;
   var HG: any;
   var HG_CURRENT_USER_ID: string | undefined;
+  var HG_SocialSignals: any;
+  var HG_SocialSignalBridge: any;
   var HGEngine: any;
   var HGMap: any;
   var L: any;

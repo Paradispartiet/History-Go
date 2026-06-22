@@ -2,7 +2,7 @@
   "use strict";
 
   const root = /** @type {any} */ (typeof window !== "undefined" ? window : globalThis);
-  const FORBIDDEN_FIELDS = new Set(["lat", "lng", "latitude", "longitude", "gps", "liveLocation", "presence", "isOnline", "lastSeen", "followers", "followerCount", "following"]);
+  const FORBIDDEN_FIELDS = new Set(["lat", "lng", "latitude", "longitude", "gps", "location", "liveLocation", "presence", "isOnline", "lastSeen", "visitLog", "visitedAt", "timestampedVisits", "followers", "followerCount", "following", "feedTracking"]);
 
   function isEnabled() {
     try {
@@ -108,6 +108,19 @@
         warnings.push(warning(`${name}_health_missing`, `${globalName}.health mangler.`, {}, name));
         checks[name] = check(true, "warning", `${name} health mangler.`);
       }
+    }
+
+    if (!root.HG_SocialSignals) {
+      warnings.push(warning("social_signals_missing", "HG_SocialSignals mangler.", {}, "socialSignals"));
+      checks.socialSignals = check(true, "warning", "Social signals module mangler.");
+    } else {
+      const signalHealth = safeSync(() => root.HG_SocialSignals.health());
+      if (signalHealth.value && signalHealth.value.ok === false) pushReportIssues(signalHealth.value, blockers, warnings, "socialSignals", { privacy: true });
+      const signalSummary = safeSync(() => root.HG_SocialSignals.getSummary());
+      const signals = safeSync(() => root.HG_SocialSignals.getSignals());
+      const demoMixed = list(signals.value).filter((x) => x?.demoOnly === true || x?.userId || x?.handle || x?.displayName);
+      if (demoMixed.length) blockers.push(blocker("social_signals_demo_mixed", "Demo users/data finnes i real signals.", { count: demoMixed.length }, "socialSignals"));
+      checks.socialSignals = check(!signalHealth.error && signalHealth.value?.ok !== false && demoMixed.length === 0, signalHealth.value?.ok === false || demoMixed.length ? "blocker" : "ok", "Social signals kontrollert.", { signalCount: signalSummary.value?.signalCount || 0 });
     }
 
     const prof = safeSync(() => typeof root.HG_CiviProfileSnapshot === "function" ? root.HG_CiviProfileSnapshot() : undefined);

@@ -472,3 +472,28 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - Invites are preset-only. The demo invite path accepts only known preset message ids and rejects free text.
 - The contract forbids GPS, live location, presence, follower/following metrics, last-seen language, distance wording, and free-text chat on visible social surfaces.
 - `window.HG_SocialDemoProfile` defines the future public profile direction with avatar, handle, bio, knowledge fields, badges, learned concepts, favorite places, shared activities, and an explicit privacy checklist.
+
+---
+
+## HG Social Signals
+
+**Filer**
+- `js/social/HGSocialSignals.js`
+- `js/social/HGSocialSignalBridge.js`
+- `js/social/HGSocialDebug.js`
+- `js/debug/HGRuntimeHealth.js`
+- `js/debug/HGRuntimeSmokeRunner.js`
+
+**Formål**
+- `window.HG_SocialSignals` is the real local learning/social signal layer for the current player.
+- Signals are produced only by explicit player actions: completed quizzes, completed routes, saved observations, earned badge/merit tiers, and explicit place affinity from already-recorded learning actions.
+- The storage key is `hg_social_signals_v1`; it stores deterministic sequence numbers instead of exact timestamps.
+- The read models power future public profiles and matching through `getSummary()` and `getPublicProfileSeed()`.
+
+**Privacy contract**
+- No GPS, coordinates, passive proximity, live status, followers/following counts, backend users, free-text chat, or exact timestamps.
+- Demo state remains separate in `HG_SocialDemo`; demo users must never be written into real signals.
+- `health()` scans stored signals, summary, and profile seed for forbidden field names and visible wording.
+
+**Event bridge**
+- `window.HG_SocialSignalBridge` listens for privacy-safe explicit-action events and forwards them to `HG_SocialSignals` without changing gameplay outcomes, points, unlocks, or UI.

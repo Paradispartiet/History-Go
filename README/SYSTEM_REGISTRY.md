@@ -603,3 +603,20 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - `window.HG_SocialDemo.clearActions()` clears only the demo action log key.
 - `window.HG_SocialDemo.sendDemoInvite({ toUserId, placeId, presetMessageId, sourceSurface })` creates or reuses a demo-only preset invite and rejects free text.
 - `window.HG_SocialDemo.getPresetMessages()` returns the allowed preset demo invite labels. Demo surfaces are TEST_MODE-only; the contract is read-only; production social must follow the contract before exposing real social UI.
+
+---
+
+## HG Social Signals Registry
+
+- `window.HG_SocialSignals` is the real, local, privacy-safe learning/social signal API. It exposes `recordSignal`, typed record helpers, `getSignals`, `getSummary`, `getPublicProfileSeed`, `clearSignalsForTestMode`, and `health`.
+- `window.HG_SocialSignalBridge` is the event bridge for explicit player actions. It exposes `bind`, `unbind`, `isBound`, typed record-from-event helpers, and `health`.
+- Storage: `hg_social_signals_v1` only. The model uses deterministic `seq` values, not exact timestamps.
+- These APIs are not geolocation tracking, do not use passive proximity, and must not store live status, follower/following data, GPS/coordinates, backend users, or demo users.
+
+Registered privacy-safe CustomEvents, all explicit-action only and not geolocation tracking:
+
+- `hg:quizCompleted` — emitted after successful quiz/set completion payloads with quiz/place/domain/concept/tag fields only.
+- `hg:routeCompleted` — emitted only after an explicit route completion, never on route open.
+- `hg:observationAdded` — emitted after a saved observation with tags/concepts/title-safe fields only, not raw note bodies.
+- `hg:badgeEarned` — reserved for earned badge/merit tier payloads.
+- `hg:placeAffinity` — reserved for explicit place unlock/visited/quiz-completion affinity, not GPS or passive map movement.

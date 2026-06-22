@@ -1012,6 +1012,22 @@ if (setList.length) {
       if (remainingSets > 0) toastParts.push(tfUI("ui.quiz.remainingSets", "{count} sett gjenstår", { count: remainingSets }));
       else toastParts.push(tt("ui.quiz.allSetsCompleted", "alle sett fullført"));
 
+      try {
+        const percent = total > 0 ? Math.round((correct / total) * 100) : null;
+        window.dispatchEvent(new CustomEvent("hg:quizCompleted", { detail: {
+          quizId: compositeSetId,
+          targetId: tid,
+          placeId: place ? tid : null,
+          domain: categoryId,
+          categoryId,
+          conceptIds: Array.isArray(meta?.conceptsCorrect) ? meta.conceptsCorrect : [],
+          tags: [setMeta.set_id, setName].filter(Boolean),
+          correct,
+          total,
+          percent
+        }}));
+      } catch {}
+
       API.showToast(toastParts.join(" • "));
       API.dispatchProfileUpdate();
 
