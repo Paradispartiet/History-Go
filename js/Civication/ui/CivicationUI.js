@@ -361,7 +361,7 @@ async function renderCivicationShop() {
   hintEl.textContent = "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
 
   const ownedPacks = civiShopRecord(inv.packs);
-  const ownedItems = civiShopRecord(inv.ownedItems);
+  const ownedItems = civiShopRecord(/** @type {any} */ (inv).ownedItems);
   packsEl.innerHTML = packs.map(function (pack) {
     const packRecord = civiShopRecord(pack);
     const packId = String(packRecord.id || "").trim();
@@ -492,8 +492,8 @@ function renderCivicationSummary() {
       const points = Number(activeCareerId ? merits?.[activeCareerId]?.points || 0 : 0);
       const badge = Array.isArray(window.BADGES) ? window.BADGES.find((b) => b && String(b.id) === activeCareerId) : null;
       const tierIndex = badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
-      const career = Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS.find((c) => c && String(c.career_id) === activeCareerId) : null;
-      weekly = (career && typeof window.calculateWeeklySalary === "function") ? window.calculateWeeklySalary(career, tierIndex) : NaN;
+      const career = Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS.find((c) => c && String(/** @type {any} */ (c).career_id) === activeCareerId) : null;
+      weekly = (career && typeof window.calculateWeeklySalary === "function") ? Number(window.calculateWeeklySalary(career, tierIndex)) : NaN;
     } catch {}
     salaryLn.textContent = Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
   }
@@ -992,11 +992,39 @@ document.getElementById("closeDistrictModal")
 /**
  * @returns {void}
  */
-function renderWorkdayPanel() {
-  const host = document.getElementById("civiWorkdayPanel");
-  if (!host) return;
+/**
+ * @typedef {{
+ *   hasActiveJob: boolean,
+ *   activePosition: CiviUiActivePosition|null,
+ *   state: CiviUiState,
+ *   clock: any,
+ *   activeWorkdayItem: any,
+ *   pendingEvent: any,
+ *   task: any,
+ *   eventViewModel: any,
+ *   statusLabel: string,
+ *   stability: string,
+ *   roleLabel: string,
+ *   placeLabel: string,
+ *   currentTime: string,
+ *   shiftLabel: string,
+ *   taskTitle: string,
+ *   taskDescription: string,
+ *   timeWindowLabel: string,
+ *   weekProgress: { answered: number, expected: number, pct: number },
+ *   contractPressure: { daysLeft: number, daysSinceStart: number, fireAfterDays: number }
+ * }} CiviUiWorkdayModel
+ */
 
-  const active = /** @type {CiviUiActivePosition|null|undefined} */ (window.CivicationState?.getActivePosition?.());
+/**
+ * Single source of truth for the workday panel's data. Pure read of CivicationState,
+ * CivicationCalendar, CivicationTaskEngine and the inbox — no DOM, no side effects. Both the
+ * renderer (renderWorkdayPanel) and the read-only snapshot (getCurrentWorkdaySnapshot) use it,
+ * so there is exactly one computation, not two.
+ * @returns {CiviUiWorkdayModel}
+ */
+function computeWorkdayModel() {
+  const active = /** @type {CiviUiActivePosition|null|undefined} */ (window.CivicationState?.getActivePosition?.()) || null;
   const state = /** @type {CiviUiState} */ (window.CivicationState?.getState?.() || {});
   const career = /** @type {any} */ (state?.career || {});
   const progress = career?.progress || {};
@@ -1004,16 +1032,90 @@ function renderWorkdayPanel() {
   const activeWorkdayItem = getActiveWorkdayInboxItem();
   const ev = activeWorkdayItem?.event || activeWorkdayItem || null;
 
-  const clock =
-    window.CivicationCalendar?.getDisplayModel?.() || null;
+  const clock = window.CivicationCalendar?.getDisplayModel?.() || null;
 
   const task =
     ev?.task_id && window.CivicationTaskEngine?.getTaskById
       ? window.CivicationTaskEngine.getTaskById(ev.task_id)
       : null;
-  const eventModel = ev ? buildCiviEventViewModel(ev, { activePosition: active }) : null;
+  const eventViewModel = ev ? buildCiviEventViewModel(ev, { activePosition: active }) : null;
 
-  if (!active) {
+  const placeLabel =
+    String(active?.brand_name || "").trim() ||
+    String(ev?.brand_name || "").trim() ||
+    "Ikke satt";
+
+  const currentTime = clock?.currentLabel || "—";
+  const shiftLabel = clock ? `${clock.shiftStartLabel}–${clock.shiftEndLabel}` : "—";
+
+  const taskTitle =
+    task?.title ||
+    ev?.subject ||
+    "Ingen aktiv arbeidsoppgave akkurat nå.";
+
+  const taskDescription =
+    task?.description ||
+    (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
+    (ev ? "—" : "Jobbstatus er aktiv, men ingen arbeidsoppgave venter på svar.");
+
+  const timeWindowLabel =
+    ev?.calendar_label ||
+    (task?.time_window
+      ? `${task.time_window.startsAtLabel}–${task.time_window.deadlineAtLabel}`
+      : "—");
+
+  const answered = Number(progress?.answeredCount || 0);
+  const expected = Number(progress?.expectedCount || 0);
+  const pct = Math.max(0, Math.min(100, Math.round(Number(progress?.completionRate || 0) * 100)));
+
+  const stability = String(state?.stability || "STABLE").toUpperCase();
+  const statusLabel =
+    stability === "WARNING" ? "Advarsel" : stability === "FIRED" ? "Sparket" : "Stabil";
+
+  const daysSinceStart = Number(progress?.daysSinceStart || 0);
+  const fireAfterDays = Number(contract?.fireAfterDays || 14);
+  const daysLeft = Math.max(0, fireAfterDays - Math.floor(daysSinceStart));
+
+  return {
+    hasActiveJob: !!active,
+    activePosition: active,
+    state,
+    clock,
+    activeWorkdayItem,
+    pendingEvent: ev,
+    task,
+    eventViewModel,
+    statusLabel,
+    stability,
+    roleLabel: String(active?.title || "—"),
+    placeLabel,
+    currentTime,
+    shiftLabel,
+    taskTitle,
+    taskDescription,
+    timeWindowLabel,
+    weekProgress: { answered, expected, pct },
+    contractPressure: { daysLeft, daysSinceStart, fireAfterDays }
+  };
+}
+
+/**
+ * Read-only snapshot of the current workday state for debugging and future UI work. Does not
+ * touch the DOM and does not depend on the panel host existing — safe to call any time.
+ * Exposed as window.HG_CiviWorkdaySnapshot (see README/SYSTEM_REGISTRY.md).
+ * @returns {CiviUiWorkdayModel}
+ */
+function getCurrentWorkdaySnapshot() {
+  return computeWorkdayModel();
+}
+
+function renderWorkdayPanel() {
+  const host = document.getElementById("civiWorkdayPanel");
+  if (!host) return;
+
+  const model = computeWorkdayModel();
+
+  if (!model.hasActiveJob) {
     host.innerHTML = `
       <div class="civi-workday-empty">
         <div>Ingen aktiv jobb akkurat nå.</div>
@@ -1023,56 +1125,20 @@ function renderWorkdayPanel() {
     return;
   }
 
-  const brandName =
-    String(active?.brand_name || "").trim() ||
-    String(ev?.brand_name || "").trim() ||
-    "Ikke satt";
-
-  const currentTime =
-    clock?.currentLabel || "—";
-
-  const shiftLabel =
-    clock
-      ? `${clock.shiftStartLabel}–${clock.shiftEndLabel}`
-      : "—";
-
-  const taskTitle =
-    task?.title ||
-    ev?.subject ||
-    "Ingen aktiv arbeidsoppgave akkurat nå.";
-
-  const taskDesc =
-    task?.description ||
-    (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
-    (ev ? "—" : "Jobbstatus er aktiv, men ingen arbeidsoppgave venter på svar.");
-
-  const windowLabel =
-    ev?.calendar_label ||
-    (task?.time_window
-      ? `${task.time_window.startsAtLabel}–${task.time_window.deadlineAtLabel}`
-      : "—");
-
-  const answered = Number(progress?.answeredCount || 0);
-  const expected = Number(progress?.expectedCount || 0);
-  const pct = Math.max(
-    0,
-    Math.min(100, Math.round(Number(progress?.completionRate || 0) * 100))
-  );
-
-  const stability = String(state?.stability || "STABLE").toUpperCase();
-
-  const statusLabel =
-    stability === "WARNING"
-      ? "Advarsel"
-      : stability === "FIRED"
-        ? "Sparket"
-        : "Stabil";
-
-  const daysSinceStart = Number(progress?.daysSinceStart || 0);
-  const daysLeft = Math.max(
-    0,
-    Number(contract?.fireAfterDays || 14) - Math.floor(daysSinceStart)
-  );
+  const active = model.activePosition;
+  const ev = model.pendingEvent;
+  const eventModel = model.eventViewModel;
+  const brandName = model.placeLabel;
+  const currentTime = model.currentTime;
+  const shiftLabel = model.shiftLabel;
+  const statusLabel = model.statusLabel;
+  const taskTitle = model.taskTitle;
+  const taskDesc = model.taskDescription;
+  const windowLabel = model.timeWindowLabel;
+  const answered = model.weekProgress.answered;
+  const expected = model.weekProgress.expected;
+  const pct = model.weekProgress.pct;
+  const daysLeft = model.contractPressure.daysLeft;
 
   host.innerHTML = `
   <div class="civi-workday">
@@ -1908,6 +1974,7 @@ window.CivicationUI = {
   renderInbox: renderCivicationInbox,
   renderWorkdayPanel,
   getActiveWorkdayInboxItem,
+  getCurrentWorkdaySnapshot,
   renderCapital,
   renderPerception,
   renderCivicationShop,
@@ -1917,3 +1984,7 @@ window.CivicationUI = {
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml
 };
+
+// Read-only debug/helper global: inspect current workday state without touching rendering.
+// Registered in README/SYSTEM_REGISTRY.md. Never write through this — it is a pure snapshot.
+window.HG_CiviWorkdaySnapshot = getCurrentWorkdaySnapshot;

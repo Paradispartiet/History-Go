@@ -254,6 +254,7 @@ function civiDebugPsycheSummary(psyche) {
     const inbox = civiDebugSafe(() => window.CivicationState?.getInbox?.(), []);
     const pendingEvent = civiDebugSafe(() => window.HG_CiviEngine?.getPendingEvent?.(), null);
     const profileSnapshot = civiDebugSafe(() => window.HG_CiviProfileSnapshot?.(), null);
+    const workday = civiDebugSafe(() => window.HG_CiviWorkdaySnapshot?.(), null);
     const merits = civiDebugReadJson("merits_by_category", {});
 
     return {
@@ -270,6 +271,7 @@ function civiDebugPsycheSummary(psyche) {
       inbox: Array.isArray(inbox) ? inbox : [],
       pendingEvent,
       profileSnapshot,
+      workday,
       merits: merits && typeof merits === "object" ? merits : {},
       timestamp: new Date().toISOString()
     };

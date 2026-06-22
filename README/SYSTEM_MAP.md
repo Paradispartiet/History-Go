@@ -290,6 +290,11 @@ History Go er delt i tydelige lag:
 - js/Civication/ui/CivicationPublicLayer.js
 - js/Civication/ui/CivicationMap.js
 - js/Civication/ui/CivicationUI.js
+  - Arbeidsdag-panelet er en **renderer** over `CivicationState`, `CivicationCalendar`,
+    `CivicationTaskEngine` og innboks/event-data. `computeWorkdayModel()` er den ene
+    datakilden; `renderWorkdayPanel()` tegner den, og `getCurrentWorkdaySnapshot()`
+    (eksponert read-only som `window.HG_CiviWorkdaySnapshot`) returnerer den uendret for
+    debugging/inspeksjon — skriver ingenting, rører ikke DOM.
 
 **Filer — utils / systems**
 - js/Civication/utils/storyResolver.js
