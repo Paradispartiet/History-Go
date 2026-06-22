@@ -16,6 +16,14 @@
       if(!sh.ok) list(sh.blockers).forEach(b=>blockers.push(item('social_signal_privacy','HG Social Signals har personvernbrudd.',b)));
       if((sh.signalCount||0)===0) warnings.push(item('social_signals_idle','Ingen lokale learning/social signaler ennå.',{signalCount:0}));
     }
+    const publicProfile=root.HG_PublicProfileReadModel;
+    if(!publicProfile) warnings.push(item('public_profile_missing','HG_PublicProfileReadModel mangler.'));
+    else {
+      const ph=publicProfile.health?.()||{ok:true,blockers:[],warnings:[]};
+      checks.publicProfile={ok:ph.ok,publicProfileEnabled:!!ph.publicProfileEnabled,signalCount:ph.signalCount||0};
+      if(!ph.ok) list(ph.blockers).forEach(b=>blockers.push(item('public_profile_privacy','Offentlig profil har personvernbrudd.',b)));
+      list(ph.warnings).forEach(w=>warnings.push(item(w.key||'public_profile_warning',w.message||'Offentlig profil har advarsel.',w)));
+    }
     if(tm()){
       root.HG_SocialDemo?.logDemoAction?.('health_checked');
       const s=root.HG_SocialDemo?.snapshot?.()||{};
@@ -25,6 +33,6 @@
     } else { checks.visibleTextPrivacy={ok:true,skipped:true}; checks.demoInviteUX={ok:true,skipped:true}; }
     return {ok:blockers.length===0,summary:blockers.length?'HG Social har blokkere.':'HG Social OK.',checks,blockers,warnings};
   }
-  function snapshot(){const demo=root.HG_SocialDemo?.snapshot?.()||{}; return {...demo,signals:root.HG_SocialSignals?.getSummary?.()||null,signalHealth:root.HG_SocialSignals?.health?.()||null};}
+  function snapshot(){const demo=root.HG_SocialDemo?.snapshot?.()||{}; return {...demo,signals:root.HG_SocialSignals?.getSummary?.()||null,signalHealth:root.HG_SocialSignals?.health?.()||null,publicProfile:root.HG_PublicProfileReadModel?.getReadModel?.()||null,publicProfileHealth:root.HG_PublicProfileReadModel?.health?.()||null};}
   root.HG_SocialDebug={health,snapshot,printHealth:async()=>{const h=await health(); console.info('HG Social health',h); return h;}};
 }());

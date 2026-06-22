@@ -60,6 +60,8 @@ declare global {
     HG_SocialSurfaceContract?: any;
     HG_SocialSignals?: any;
     HG_SocialSignalBridge?: any;
+    HG_PublicProfileReadModel?: any;
+    HG_PublicProfilePreviewPanel?: any;
     HG_SocialDemo?: any & { sendDemoInvite?: (args: any) => any; getPresetMessages?: () => any; getActions?: () => any; clearActions?: () => any };
     HG_SocialDemoAdapter?: any;
     HG_SocialDemoProfile?: any;

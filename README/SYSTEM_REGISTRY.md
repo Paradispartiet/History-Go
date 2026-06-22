@@ -620,3 +620,11 @@ Registered privacy-safe CustomEvents, all explicit-action only and not geolocati
 - `hg:observationAdded` — emitted after a saved observation with tags/concepts/title-safe fields only, not raw note bodies.
 - `hg:badgeEarned` — reserved for earned badge/merit tier payloads.
 - `hg:placeAffinity` — reserved for explicit place unlock/visited/quiz-completion affinity, not GPS or passive map movement.
+
+## HG Public Profile Read-model registry
+
+- `window.HG_PublicProfileReadModel` is exposed by `js/social/HGPublicProfileReadModel.js`. It provides `getSettings`, `saveSettings`, `isPublicEnabled`, `setPublicEnabled`, `getReadModel`, `getPreview`, `validate`, `health`, and `clearSettingsForTestMode` for a privacy-safe local public-profile preview.
+- `window.HG_PublicProfilePreviewPanel` is exposed by `js/social/HGPublicProfilePreviewPanel.js`. It provides `render`, `refresh`, `remove`, and `isEnabled` for the current user's local preview only.
+- `localStorage` key `hg_public_profile_settings_v1` stores local-only settings. It is not backend storage and is not global publication.
+- Events: `hg:publicProfileSettingsChanged` and `hg:publicProfilePreviewRefreshed` dispatch privacy-safe payloads containing only enabled state, signal count, and visible section flags.
+- Privacy status: local-only, privacy-safe, not backend, and not global publication yet. The model blocks GPS/live status/followers/last-seen/feed tracking fields and forbidden visible wording.

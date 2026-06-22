@@ -98,6 +98,8 @@
     const social = await safeAwait(() => root.HG_SocialDebug?.health?.(), null);
     const socialSignals = safeCall(() => root.HG_SocialSignals?.getSummary?.(), null);
     const socialSignalHealth = safeCall(() => root.HG_SocialSignals?.health?.(), null);
+    const publicProfile = safeCall(() => root.HG_PublicProfileReadModel?.getReadModel?.(), null);
+    const publicProfileHealth = safeCall(() => root.HG_PublicProfileReadModel?.health?.(), null);
     const places = root.PLACES;
     const people = root.PEOPLE;
     const tags = root.TAGS_REGISTRY;
@@ -143,6 +145,8 @@
       },
       socialSignals,
       socialSignalHealth,
+      publicProfile,
+      publicProfileHealth,
       timestamp: now()
     };
   }
@@ -223,7 +227,9 @@
       details: item,
       subsystem: "social"
     }));
-    blockers.push(...civBlockers, ...socialBlockers, ...signalBlockers);
+    const profileBlockers = listFrom(snap.publicProfileHealth?.blockers).map((item) => ({key:item?.key||'public_profile_privacy',message:item?.message||'Public profile privacy blocker',details:item,subsystem:'social'}));
+    if (snap.publicProfileHealth?.warnings) listFrom(snap.publicProfileHealth.warnings).forEach((item)=>warnings.push({key:item?.key||'public_profile_warning',message:item?.message||'Public profile warning',details:item,subsystem:'social'}));
+    blockers.push(...civBlockers, ...socialBlockers, ...signalBlockers, ...profileBlockers);
     warnings.push(...civiWarnings, ...socialWarnings);
 
     const checks = {
@@ -232,10 +238,10 @@
       data: makeCheck(snap.data.places > 0, snap.data.places > 0 ? (warnings.some((w) => ["badges_missing", "careers_missing", "data_tags_missing"].includes(w.key)) ? "warning" : "ok") : "blocker", "Datagrunnlag er vurdert.", snap.data),
       profile: makeCheck(!!root.HGLearningLog || snap.profile.completedQuizCount != null || snap.profile.visitedCount != null, warnings.some((w) => ["quiz_history_unavailable", "visited_history_unavailable"].includes(w.key)) ? "warning" : "ok", "Profil/learning-log er vurdert.", snap.profile),
       civication: makeCheck(civBlockers.length === 0, civBlockers.length ? "blocker" : civiWarnings.length ? "warning" : snap.civication ? "ok" : "not_loaded", snap.civication ? "Civication diagnostics er aggregert." : "Civication diagnostics er ikke lastet på denne siden.", snap.civication || {}),
-      social: makeCheck(socialBlockers.length === 0 && signalBlockers.length === 0, socialBlockers.length || signalBlockers.length ? "blocker" : socialWarnings.length ? "warning" : (snap.social || snap.socialSignals) ? "ok" : "not_loaded", snap.social ? "HG Social diagnostics er aggregert." : "HG Social diagnostics er ikke lastet på denne siden.", { ...(snap.social || {}), details: { signals: snap.socialSignals, signalHealth: snap.socialSignalHealth } })
+      social: makeCheck(socialBlockers.length === 0 && signalBlockers.length === 0 && profileBlockers.length === 0, socialBlockers.length || signalBlockers.length || profileBlockers.length ? "blocker" : socialWarnings.length ? "warning" : (snap.social || snap.socialSignals) ? "ok" : "not_loaded", snap.social ? "HG Social diagnostics er aggregert." : "HG Social diagnostics er ikke lastet på denne siden.", { ...(snap.social || {}), details: { signals: snap.socialSignals, signalHealth: snap.socialSignalHealth, publicProfile: snap.publicProfile ? { ...snap.publicProfile, timestamp: null } : null, publicProfileHealth: snap.publicProfileHealth } })
     };
 
-    const subsystemBlockerCount = civBlockers.length + socialBlockers.length + signalBlockers.length;
+    const subsystemBlockerCount = civBlockers.length + socialBlockers.length + signalBlockers.length + profileBlockers.length;
     const ownBlockerCount = Math.max(0, blockers.length - subsystemBlockerCount);
     const score = Math.max(0, 100 - ownBlockerCount * 25 - subsystemBlockerCount * 15 - warnings.length * 5);
     const hasPrivacyBlocker = socialBlockers.some((b) => /privacy|personvern/i.test(`${b.key} ${b.message}`));

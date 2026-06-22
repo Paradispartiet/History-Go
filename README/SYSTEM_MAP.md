@@ -497,3 +497,12 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 
 **Event bridge**
 - `window.HG_SocialSignalBridge` listens for privacy-safe explicit-action events and forwards them to `HG_SocialSignals` without changing gameplay outcomes, points, unlocks, or UI.
+
+## HG Public Profile Read-model
+
+- `js/social/HGPublicProfileReadModel.js` exposes `window.HG_PublicProfileReadModel`, a local-only, privacy-safe read-model for previewing what the current user's HG public profile could show if the user chooses to make it public.
+- The read-model is built from `HG_SocialSignals.getPublicProfileSeed()` and the dedicated local settings key `hg_public_profile_settings_v1`; it does not add backend publishing, create real social visibility, or publish to global users.
+- Public profile state is disabled by default and uses alias-first identity (`Historieutforsker` with the compass avatar) unless a future safe explicit display-name source is available.
+- The model intentionally excludes GPS, coordinates, live status, followers/following, last-seen state, exact persisted timestamps, private visit logs, and raw free-text observations.
+- `js/social/HGPublicProfilePreviewPanel.js` exposes `window.HG_PublicProfilePreviewPanel` for a local preview panel with privacy checklist, section cards, and TEST_MODE-only clear controls.
+- Runtime social diagnostics and smoke checks can include the read-model health so future matching and real public profile surfaces can use one canonical, privacy-validated source.

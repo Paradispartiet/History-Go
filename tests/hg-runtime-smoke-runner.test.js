@@ -73,6 +73,7 @@ function boot({ testMode = true } = {}) {
   global.clearTimeout = () => {};
   global.addEventListener = () => {};
   for (const key of ['HG_RuntimeSmokeRunner', 'HG_RuntimeHealth', 'HG_RuntimeHealthPanel', 'HG_CiviDebug', 'HG_SocialDebug', 'HGLearningLog', 'PLACES', 'PEOPLE', 'TAGS_REGISTRY', 'HG_CiviProfileSnapshot', 'openPlaceCard', 'HGMapView']) delete global[key];
+  vm.runInThisContext(fs.readFileSync('js/social/HGPublicProfileReadModel.js', 'utf8'), { filename: 'HGPublicProfileReadModel.js' });
   vm.runInThisContext(fs.readFileSync('js/debug/HGRuntimeSmokeRunner.js', 'utf8'), { filename: 'HGRuntimeSmokeRunner.js' });
   return { runner: global.HG_RuntimeSmokeRunner, storage: global.localStorage, document: global.document };
 }
