@@ -3,25 +3,30 @@ name: Build place image candidates
 on:
   workflow_dispatch:
     inputs:
-      limit:
-        description: "Optional limit for test runs, for example 10. Use 0 or empty for no limit."
-        required: false
-        default: "10"
-      debug:
-        description: "Enable debug output"
-        required: false
-        type: boolean
-        default: true
       include_existing:
         description: "Include places that already have image/cardImage"
         required: false
-        type: boolean
-        default: false
-      commit_output:
-        description: "Commit data/places/place_image_candidates.json back to the repo"
+        type: choice
+        default: "false"
+        options: ["false", "true"]
+      limit:
+        description: "Optional numeric limit. Use 0 or empty for no limit."
         required: false
-        type: boolean
-        default: false
+        default: ""
+      ids:
+        description: "Optional comma-separated place.id list"
+        required: false
+        default: ""
+      commit_output:
+        description: "Commit data/places/place_image_candidates.json to a branch"
+        required: false
+        type: choice
+        default: "false"
+        options: ["false", "true"]
+      commit_branch:
+        description: "Branch to commit candidate output to"
+        required: false
+        default: "image-candidate-output"
 
 permissions:
   contents: write
@@ -34,8 +39,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -55,27 +58,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           cmd=(node dist/tools/build_place_image_candidates.mjs)
-
-          if [[ "${{ inputs.debug }}" == "true" ]]; then
-            cmd+=(--debug)
-          fi
-
-          if [[ "${{ inputs.include_existing }}" == "true" ]]; then
-            cmd+=(--include-existing)
-          fi
-
+          if [[ "${{ inputs.include_existing }}" == "true" ]]; then cmd+=(--include-existing); fi
           limit_value="${{ inputs.limit }}"
-          if [[ -n "$limit_value" ]] && [[ "$limit_value" =~ ^[0-9]+$ ]] && (( limit_value > 0 )); then
-            cmd+=("--limit=${limit_value}")
+          if [[ -n "$limit_value" ]]; then
+            if [[ ! "$limit_value" =~ ^[0-9]+$ ]]; then echo "limit must be numeric."; exit 1; fi
+            if (( limit_value > 0 )); then cmd+=("--limit=${limit_value}"); fi
           fi
-
+          ids_value="${{ inputs.ids }}"
+          if [[ -n "$ids_value" ]]; then cmd+=("--ids=${ids_value}"); fi
           echo "Running: ${cmd[*]}"
           "${cmd[@]}"
 
       - name: Verify output file exists
-        run: test -f data/places/place_image_candidates.json
+        run: test -s data/places/place_image_candidates.json
 
       - name: Print summary
         run: |
@@ -84,40 +80,34 @@ jobs:
           const file = "data/places/place_image_candidates.json";
           const data = JSON.parse(fs.readFileSync(file, "utf8"));
           const counts = data.meta?.counts || {};
-          const diagnostics = data.meta?.diagnostics || {};
-          const summary = {
+          console.log(JSON.stringify({
             schema: data.schema || null,
-            manifestFiles: counts.manifestFiles ?? null,
             placesTotal: counts.placesTotal ?? null,
             placesChecked: counts.placesChecked ?? null,
             placesWithCandidates: counts.placesWithCandidates ?? null,
-            candidatesTotal: counts.candidatesTotal ?? null,
-            diagnostics
-          };
-          console.log(JSON.stringify(summary, null, 2));
+            candidatesTotal: counts.candidatesTotal ?? null
+          }, null, 2));
           NODE
 
       - name: Commit candidate file
-        if: ${{ inputs.commit_output == true }}
+        if: ${{ inputs.commit_output == 'true' }}
+        env:
+          TARGET_BRANCH: ${{ inputs.commit_branch }}
         shell: bash
         run: |
           set -euo pipefail
-
+          if [ -z "${TARGET_BRANCH}" ]; then echo "commit_branch cannot be empty."; exit 1; fi
+          case "${TARGET_BRANCH}" in main|master|refs/heads/main|refs/heads/master) echo "Refusing to push directly to ${TARGET_BRANCH}."; exit 1;; esac
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
+          git switch -c "${TARGET_BRANCH}"
           git add data/places/place_image_candidates.json
-
-          if git diff --cached --quiet; then
-            echo "No candidate file changes to commit."
-            exit 0
-          fi
-
-          git commit -m "Update place image candidate review file"
-          git push
+          if git diff --cached --quiet; then echo "No candidate file changes to commit."; exit 0; fi
+          git commit -m "chore(data): update place image candidates"
+          git push origin "HEAD:${TARGET_BRANCH}" --force-with-lease
 
       - name: Upload candidate artifact
-        # Download and review this artifact manually before running dist/tools/apply_place_image_candidates.mjs.
+        if: ${{ inputs.commit_output == 'false' }}
         uses: actions/upload-artifact@v4
         with:
           name: place-image-candidates

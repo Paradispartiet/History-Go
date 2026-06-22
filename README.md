@@ -597,3 +597,17 @@ Viktig:
 - Ikke commit privat nøkkel.
 - For offentlig repo/GitHub Pages må nøkkelen være en offentlig browser-key med domene-restriksjoner.
 - Hvis nøkkel mangler, beholder appen standardkart og logger tydelig `console.warn`.
+
+## Bildekandidat-review for steder
+
+`tools/place-image-review.html` er en nettleserbasert review-side for `data/places/place_image_candidates.json`. Den lagrer bare valg i `localStorage`; den bruker ingen tokens eller GitHub-secrets i nettleseren, og den committer ikke direkte fra GitHub Pages.
+
+Kort flyt:
+
+1. Åpne `tools/place-image-review.html` lokalt eller fra Pages.
+2. Marker kandidater som `approve`, `reject` eller `maybe`.
+3. Trykk **Legg inn godkjente bilder**.
+4. Kopier `approved_ids` fra dialogen.
+5. Kjør GitHub Actions-workflowen **Apply approved place image candidates** med `approved_ids` og ønsket output-branch.
+6. Review branch/PR før merge.
+7. Ved dårlige eller utdaterte forslag: trykk **Slett forslag og hent nye**, og kjør **Build place image candidates**-workflowen eller `tools/build_place_image_candidates.mjs` lokalt for å lage en ny kandidatfil.

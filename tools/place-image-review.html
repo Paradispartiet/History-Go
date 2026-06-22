@@ -276,10 +276,12 @@
   <header>
     <h1>Bildekandidat-review</h1>
     <p class="lead">
-      Viser kandidater fra <code>data/places/place_image_candidates.json</code>. Dette verktøyet endrer ikke filer, kjører ikke apply og godkjenner ikke automatisk.
-      Valgene lagres bare i nettleserens localStorage og kan kopieres som review-liste.
+      Review skjer i nettleseren og valgene lagres bare i localStorage. Apply/build skjer via GitHub Actions eller lokalt script,
+      og denne siden bruker ingen hemmelige tokens i nettleseren eller direkte commits fra GitHub Pages.
     </p>
     <div class="toolbar">
+      <button id="applyApproved" type="button">Legg inn godkjente bilder</button>
+      <button id="rebuildCandidates" type="button">Slett forslag og hent nye</button>
       <button id="copyApproved" type="button">Kopier approved-ID-er</button>
       <button id="copyReview" type="button">Kopier full review</button>
       <button id="clearReview" type="button">Nullstill lokal review</button>
@@ -305,6 +307,9 @@
   <script>
     const CANDIDATE_PATH = "../data/places/place_image_candidates.json";
     const STORAGE_KEY = "hg_place_image_review_v1";
+    const APPLY_WORKFLOW_URL = "https://github.com/Paradispartiet/History-Go/actions/workflows/apply-place-image-candidates.yml";
+    const BUILD_WORKFLOW_URL = "https://github.com/Paradispartiet/History-Go/actions/workflows/build-place-image-candidates.yml";
+    const BUILD_WORKFLOW_EXISTS = true;
 
     const statusEl = document.getElementById("status");
     const gridEl = document.getElementById("grid");
@@ -412,6 +417,12 @@
       }).join("");
     }
 
+    function approvedIds() {
+      return places
+        .filter(place => review[place.id]?.decision === "approve")
+        .map(place => place.id);
+    }
+
     function reviewRows() {
       return places.map(place => {
         const candidate = firstCandidate(place);
@@ -431,11 +442,45 @@
       });
     }
 
-    function showCopy(text) {
+    function showCopy(text, title = "Kopier review", note = "Dette er bare tekst. Ingen repo-filer er endret.") {
+      dialogEl.querySelector("h2").textContent = title;
+      dialogEl.querySelector("p").innerHTML = note;
       copyTextEl.value = text;
       dialogEl.showModal();
       copyTextEl.focus();
       copyTextEl.select();
+    }
+
+    async function copyToClipboard(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      copyTextEl.value = text;
+      copyTextEl.focus();
+      copyTextEl.select();
+      document.execCommand("copy");
+    }
+
+    function showApplyDialog() {
+      const ids = approvedIds();
+      const approvedIdsText = ids.join(",");
+      showCopy(
+        approvedIdsText,
+        "Legg inn godkjente bilder",
+        `Antall godkjente: <strong>${ids.length}</strong>. Kopier <code>approved_ids</code> og kjør apply manuelt i GitHub Actions. Siden har ikke committet noe. <a href="${APPLY_WORKFLOW_URL}" target="_blank" rel="noopener">Åpne apply-workflow</a>.`
+      );
+    }
+
+    function showRebuildDialog() {
+      const workflowText = BUILD_WORKFLOW_EXISTS
+        ? `<a href="${BUILD_WORKFLOW_URL}" target="_blank" rel="noopener">Åpne build-workflow</a> for å bygge ny kandidatfil.`
+        : "Build-workflow finnes ikke ennå og må opprettes før nye kandidater kan bygges fra nettleserflyten.";
+      showCopy(
+        "",
+        "Slett forslag og hent nye",
+        `Lokale valg nullstilles etter bekreftelse. Ny <code>data/places/place_image_candidates.json</code> må deretter bygges via workflow eller lokalt script. ${workflowText}`
+      );
     }
 
     document.addEventListener("click", event => {
@@ -444,9 +489,21 @@
       setDecision(button.dataset.id, button.dataset.action);
     });
 
+    document.getElementById("applyApproved").addEventListener("click", () => {
+      showApplyDialog();
+    });
+
+    document.getElementById("rebuildCandidates").addEventListener("click", () => {
+      showRebuildDialog();
+      if (!confirm("Nullstille lokal review i denne nettleseren? Nye forslag må bygges via workflow eller lokalt script.")) return;
+      review = {};
+      saveReview();
+      render();
+      if (BUILD_WORKFLOW_EXISTS) window.open(BUILD_WORKFLOW_URL, "_blank", "noopener");
+    });
+
     document.getElementById("copyApproved").addEventListener("click", () => {
-      const rows = reviewRows().filter(row => row.decision === "approve");
-      showCopy(JSON.stringify(rows, null, 2));
+      showCopy(approvedIds().join(","), "Kopier approved-ID-er");
     });
 
     document.getElementById("copyReview").addEventListener("click", () => {
@@ -458,6 +515,15 @@
       review = {};
       saveReview();
       render();
+    });
+
+    copyTextEl.addEventListener("click", () => {
+      copyTextEl.select();
+    });
+
+    dialogEl.querySelector(".actions").insertAdjacentHTML("afterbegin", '<button id="copyDialogText" type="button">Kopier tekst</button>');
+    document.getElementById("copyDialogText").addEventListener("click", async () => {
+      await copyToClipboard(copyTextEl.value);
     });
 
     document.getElementById("closeDialog").addEventListener("click", () => {
