@@ -20,6 +20,7 @@ Følgende globals er eksplisitt tillatt:
 - window.API
 - window.HG_CiviDebug
 - window.HG_RuntimeHealth
+- window.HG_RuntimeHealthPanel
 - window.HG_CiviEconomySnapshot
 
 Ingen andre globals skal introduseres uten beslutning.
@@ -36,6 +37,8 @@ Allowed methods:
 - `HG_RuntimeHealth.printHealth()` — prints the report compactly in the console and returns the same health object.
 
 This helper is **read-only diagnostics only**. It may aggregate existing subsystem diagnostics, including `HG_CiviDebug.health()` and `HG_SocialDebug.health()`, but it must not own or change Civication logic, HG Social logic, map logic, profile logic, data loading, UI, gameplay flow, rendering, or localStorage contents.
+
+`window.HG_RuntimeHealthPanel` is an allowed global exposed by `js/debug/HGRuntimeHealthPanel.js` for **TEST_MODE-only** in-app diagnostics UI. It exposes `render()`, `refresh()`, `remove()`, and `isEnabled()`. The panel may render `HG_RuntimeHealth.health()` for manual testing only when test mode is enabled; it is read-only diagnostics UI, not production UI, and must not mutate gameplay, profile, map, data, Civication, HG Social, or localStorage state.
 
 
 ### Civication read-only debug-globals

@@ -434,3 +434,5 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - It answers whether History Go is playable right now by checking core globals, map readiness, data counts, profile/learning-log availability, Civication diagnostics, and HG Social diagnostics.
 - It aggregates `window.HG_CiviDebug.health()` and `window.HG_SocialDebug.health()` when those subsystem diagnostics are loaded on the current page.
 - It does not own Civication logic, HG Social logic, map behavior, profile behavior, data loading, UI, or gameplay state. It must not mutate state, create data, write localStorage, or change rendering.
+- `window.HG_RuntimeHealthPanel` lives in `js/debug/HGRuntimeHealthPanel.js` and is loaded by `js/app.js` after `HG_RuntimeHealth`. It is a **TEST_MODE-only** read-only panel: it renders `HG_RuntimeHealth.health()` inside the app only when `HG_TEST_MODE` is enabled, and it is not production UI.
+- The panel is only diagnostic visibility for manual testing (for example iPad smoke checks). It must not create demo data, profiles, invites, circles, economy ticks, mail answers, unlocks, or other gameplay/profile/map/data mutations.
