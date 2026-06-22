@@ -8,6 +8,9 @@
 //   3. Set exactly one candidate per place to "approved": true
 //   4. node tools/apply_place_image_candidates.mjs
 //
+// Or pass browser-reviewed IDs without editing the candidate file:
+//   node tools/apply_place_image_candidates.mjs --approved-ids=id1,id2
+//
 // Optional overwrite existing image/cardImage:
 //   node tools/apply_place_image_candidates.mjs --overwrite
 //
@@ -20,7 +23,12 @@ import process from "node:process";
 
 const ROOT = process.cwd();
 const CANDIDATES_PATH = "data/places/place_image_candidates.json";
-const OVERWRITE = process.argv.includes("--overwrite");
+const argv = process.argv.slice(2);
+const OVERWRITE = argv.includes("--overwrite");
+const APPROVED_IDS_ARG = argv.find(arg => arg.startsWith("--approved-ids="));
+const APPROVED_IDS = APPROVED_IDS_ARG
+  ? APPROVED_IDS_ARG.split("=")[1].split(",").map(id => id.trim()).filter(Boolean)
+  : [];
 const USER_AGENT = "HistoryGoImageCandidateBot/1.0 (https://github.com/Paradispartiet/History-Go)";
 
 const abs = rel => path.join(ROOT, rel);
@@ -52,6 +60,54 @@ function getApprovedCandidate(placeEntry) {
     throw new Error(`${placeEntry.id} har mer enn én approved kandidat. Velg bare én.`);
   }
   return approved[0] || null;
+}
+
+function firstCandidateForApprovedId(placeEntry) {
+  const candidates = Array.isArray(placeEntry?.candidates) ? placeEntry.candidates : [];
+  return candidates[0] || null;
+}
+
+function assertCandidateUsable(entry, candidate) {
+  assertNewSourceFile(entry?.sourceFile);
+  if (!candidate) throw new Error(`${entry?.id || "<missing id>"} mangler kandidat`);
+  if (!candidate?.originalUrl) throw new Error(`${entry.id} mangler originalUrl`);
+
+  const suggestedImage = candidate?.suggested?.image;
+  const suggestedCardImage = candidate?.suggested?.cardImage;
+  if (!hasText(suggestedImage)) {
+    throw new Error(`${entry.id} mangler suggested.image`);
+  }
+  assertLocalImagePath(suggestedImage);
+  if (hasText(suggestedCardImage)) {
+    assertLocalImagePath(suggestedCardImage);
+  }
+  if (hasText(suggestedCardImage) && suggestedImage === suggestedCardImage) {
+    throw new Error(`${entry.id} har ugyldig kandidat: suggested.image og suggested.cardImage kan ikke være samme fil (${suggestedImage}).`);
+  }
+}
+
+function selectEntries(candidatesFile) {
+  const places = Array.isArray(candidatesFile.places) ? candidatesFile.places : [];
+  if (!APPROVED_IDS.length) {
+    return places
+      .map(entry => ({ entry, candidate: getApprovedCandidate(entry) }))
+      .filter(item => item.candidate);
+  }
+
+  const seen = new Set();
+  const ids = [];
+  for (const id of APPROVED_IDS) {
+    if (seen.has(id)) throw new Error(`Duplikat i --approved-ids: ${id}`);
+    seen.add(id);
+    ids.push(id);
+  }
+
+  const byId = new Map(places.map(entry => [entry?.id, entry]));
+  return ids.map(id => {
+    const entry = byId.get(id);
+    if (!entry) throw new Error(`${id} finnes ikke i ${CANDIDATES_PATH}`);
+    return { entry, candidate: firstCandidateForApprovedId(entry) };
+  });
 }
 
 async function downloadImage(url, relPath) {
@@ -97,9 +153,7 @@ async function main() {
     throw new Error(`${CANDIDATES_PATH} har ukjent schema: ${candidatesFile?.schema}`);
   }
 
-  const approvedEntries = (candidatesFile.places || [])
-    .map(entry => ({ entry, candidate: getApprovedCandidate(entry) }))
-    .filter(item => item.candidate);
+  const approvedEntries = selectEntries(candidatesFile);
 
   if (!approvedEntries.length) {
     console.log("Ingen approved kandidater funnet. Ingenting endret.");
@@ -109,17 +163,10 @@ async function main() {
   const bySourceFile = new Map();
 
   for (const { entry, candidate } of approvedEntries) {
-    assertNewSourceFile(entry.sourceFile);
-    if (!candidate?.originalUrl) throw new Error(`${entry.id} mangler originalUrl`);
+    assertCandidateUsable(entry, candidate);
 
-    const suggestedImage = candidate?.suggested?.image;
+    const imagePath = candidate.suggested.image;
     const suggestedCardImage = candidate?.suggested?.cardImage;
-    if (hasText(suggestedImage) && hasText(suggestedCardImage) && suggestedImage === suggestedCardImage) {
-      throw new Error(`${entry.id} har ugyldig kandidat: suggested.image og suggested.cardImage kan ikke være samme fil (${suggestedImage}).`);
-    }
-
-    const imagePath = suggestedImage;
-    assertLocalImagePath(imagePath);
 
     if (!bySourceFile.has(entry.sourceFile)) {
       const places = await readJson(entry.sourceFile);
