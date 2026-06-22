@@ -136,3 +136,21 @@ Hullet i §4 ("tydelig, konsistent «svar ga konsekvens X» feedback i UI-laget"
   assertion i `tests/civication-brand-job-state.test.js` (event dispatches med delta).
 
 Gjenstår fortsatt fra §4: tydeligere milestone-highlight i hovedflate (egen sak).
+
+## 7) Statusoppdatering (2026-06-21): milepæl-highlight bygget
+
+Det andre hullet i §4 ("klar milestone-highlight i hovedflate, ikke bare som en melding blant
+andre") er nå lukket:
+
+- `CivicationBrandJobProgression.evaluateEntry` dispatcher et `civication:milestone`-event med
+  `{ subject, metric, threshold, value, brand_name, summary }` når en NY milepæl legges i
+  innboksen (ikke ved already_pending).
+- Ny display-only UI-modul `js/Civication/ui/CivicationMilestoneHighlight.js` lytter og viser et
+  fremtredende, klikk-for-å-lukke kort («🏆 Milepæl nådd» + tittel + «metrikk nådde N» + summary).
+  Gjenbruker metrikk-etikettene fra CivicationConsequenceFeedback. Selvstendige injiserte stiler,
+  lastet i `Civication.html` etter progresjons-kilden.
+- Tester: `tests/civication-milestone-highlight.test.js` (reason-linje + rendering) og nye
+  assertions i `tests/civication-brand-job-progression.test.js` (signal fyrer én gang per ny
+  milepæl, ikke ved gjentakelse).
+
+Med dette er begge §4-hullene (konsekvens-feedback + milestone-highlight) lukket.

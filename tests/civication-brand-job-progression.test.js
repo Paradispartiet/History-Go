@@ -25,9 +25,14 @@ function bootstrap(activePosition) {
   global.window = global;
   global.localStorage = makeStorage();
   global.Event = class Event { constructor(type) { this.type = type; } };
-  global.document = { readyState: 'complete', addEventListener() {} };
+  global.CustomEvent = class CustomEvent { constructor(type, init) { this.type = type; this.detail = (init && init.detail) || null; } };
   const events = [];
-  global.dispatchEvent = (ev) => { events.push(ev?.type); };
+  const milestones = [];
+  global.document = { readyState: 'complete', addEventListener() {} };
+  global.dispatchEvent = (ev) => {
+    events.push(ev?.type);
+    if (ev?.type === 'civication:milestone') milestones.push(ev.detail);
+  };
   global.addEventListener = () => {};
   global.location = { href: 'http://localhost/Civication.html' };
 
@@ -37,7 +42,7 @@ function bootstrap(activePosition) {
   loadScript('js/Civication/systems/civicationBrandJobProgression.js');
 
   global.CivicationState.setActivePosition(activePosition);
-  return { events };
+  return { events, milestones };
 }
 
 function countMilestones() {
@@ -66,11 +71,12 @@ function applyMail(id, tags, brand = 'norli') {
 }
 
 (function testNorliFaglighetMilestone() {
-  bootstrap({ brand_id: 'norli', brand_name: 'Norli', career_id: 'naeringsliv', role_id: 'naer_ekspeditor' });
+  const env = bootstrap({ brand_id: 'norli', brand_name: 'Norli', career_id: 'naeringsliv', role_id: 'naer_ekspeditor' });
 
   applyMail('norli_fag_1', ['fag']);
   applyMail('norli_fag_2', ['fag']);
   assert.strictEqual(countMilestones(), 0, 'threshold should not trigger before 3');
+  assert.strictEqual(env.milestones.length, 0, 'no milestone signal before threshold');
 
   const result = applyMail('norli_fag_3', ['fag']);
   assert.strictEqual(result.changed, true);
@@ -85,11 +91,18 @@ function applyMail(id, tags, brand = 'norli') {
   assert.strictEqual(event.threshold, 3);
   assert.strictEqual(event.id, 'brand_progress_norli_faglighet_3');
 
+  // a new milestone emits a single highlight signal carrying subject + metric
+  assert.strictEqual(env.milestones.length, 1, 'milestone highlight signal fired once');
+  assert.strictEqual(env.milestones[0].metric, 'faglighet', 'signal carries metric');
+  assert.strictEqual(env.milestones[0].threshold, 3, 'signal carries threshold');
+  assert.ok(env.milestones[0].subject, 'signal carries a subject');
+
   const progression = global.CivicationBrandJobProgression.getState();
   assert(progression.triggered['norli:ekspeditor:norli_ekspeditor_faglighet_3']);
 
   applyMail('norli_fag_4', ['fag']);
   assert.strictEqual(countMilestones(), 1, 'same milestone should not repeat');
+  assert.strictEqual(env.milestones.length, 1, 'no duplicate highlight signal on repeat');
 })();
 
 (function testWrongBrandDoesNotTrigger() {

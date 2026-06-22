@@ -299,6 +299,25 @@
       const enqueued = enqueueMilestone(rule, entry);
       if (!enqueued.ok) continue;
 
+      // Fremhev en NY milepæl i UI. Kilden eier signalet; CivicationMilestoneHighlight (UI)
+      // lytter og viser et tydelig kort. Kun ved faktisk ny innboks-oppføring (ikke already_pending).
+      if (enqueued.enqueued) {
+        try {
+          window.dispatchEvent(new CustomEvent("civication:milestone", {
+            detail: {
+              rule_id: rule.id,
+              subject: rule.subject,
+              summary: rule.feedback,
+              metric: rule.metric,
+              threshold: rule.threshold,
+              value,
+              brand_id: rule.brand_id,
+              brand_name: rule.brand_name
+            }
+          }));
+        } catch {}
+      }
+
       next.triggered[key] = makeTriggeredEntry(rule, value, enqueued.reason === "already_pending" ? "already_pending" : "enqueued");
       triggered.push(key);
     }
