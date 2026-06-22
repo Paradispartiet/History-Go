@@ -370,9 +370,11 @@
 <script src="js/epoker-runtime.js"></script>
 <script src="js/time-resolver.js"></script>
 <script src="js/DomainRegistry.js"></script>
-<script src="js/fagHealthReport.js"></script>
+<!-- Migrert til TS ESM, bundlet med esbuild (npm run build:web); publiserer fortsatt window.FagHealthReport -->
+<script src="dist/web/fagHealthReport.js"></script>
 <script src="js/courses.js"></script>
-<script src="js/hgKnowledgeEngine.js"></script>
+<!-- Migrert til TS ESM, bundlet med esbuild (npm run build:web); publiserer fortsatt window.HGKnowledgeEngine -->
+<script src="dist/web/hgKnowledgeEngine.js"></script>
 <script src="js/hgSocialPrivacy.js"></script>
 <script src="js/hgModeration.js"></script>
 <script src="js/hgSocialGuards.js"></script>

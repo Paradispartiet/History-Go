@@ -1,9 +1,9 @@
 /* ============================================================
    History Go – Service Worker (precache synkronisert mot index.html)
-   Oppdatert: 2026-06-18
+   Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-18-v1.2.921";
+const SW_VERSION = "hg-sw-2026-06-22-v1.2.922";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -65,9 +65,10 @@ const PRECACHE_URLS = [
   "js/profile.js",
 
   "js/DomainRegistry.js",
-  "js/fagHealthReport.js",
+  // Migrert til TS ESM, bundlet med esbuild til dist/web (npm run build:web)
+  "dist/web/fagHealthReport.js",
   "js/courses.js",
-  "js/hgKnowledgeEngine.js",
+  "dist/web/hgKnowledgeEngine.js",
   "js/domainHealthReport.js",
 
   // Dev / console

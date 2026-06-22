@@ -1,4 +1,7 @@
-// js/hgKnowledgeEngine.js
+// @ts-nocheck — migrert til TS ESM (bundlet med esbuild, publiserer fortsatt
+// window.HGKnowledgeEngine). JSDoc-tunge analysemoduler migreres adferdsidentisk
+// med midlertidig @ts-nocheck; typene strammes i en senere egen runde.
+// js/hgKnowledgeEngine.ts
 // History Go Knowledge Engine v1.3 (read-only analysis)
 (function () {
   "use strict";

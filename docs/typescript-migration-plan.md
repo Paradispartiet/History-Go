@@ -27,6 +27,17 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 - Typecheck av migrerte browser-filer: `npm run typecheck:web` (`tsconfig.web.json`, DOM-lib, `noEmit`). Bygg: `npm run build:web`.
 - Ikke-migrerte filer fortsetter uendret som klassiske `<script>`-tagger. En side som laster en migrert modul krever `npm run build:web` før servering; rene klassiske sider trenger fortsatt ingen build.
 
+### Per-fil migreringssjekkliste (følg for hver fil)
+
+1. **Velg en trygg fil:** helst en fullt innkapslet IIFE (`window.X = (function(){...})()` eller `(function(){ ...; window.X = ... })()`) som kun lekker via `window.X`. Unngå filer som deklarerer bare top-level-navn (funksjoner/`var`) som andre filer bruker som globaler — de blir modul-scopet i bundelen og forsvinner. Hvis slike navn må beholdes, må de eksplisitt festes på `window`.
+2. `git mv js/<navn>.js js/<navn>.ts`.
+3. Fjern typefeil. Enkle moduler types fullt. JSDoc-tunge moduler kan migreres adferdsidentisk med midlertidig `// @ts-nocheck` øverst (samme konvensjon som finnes i repoet fra før), og typestrammes i en senere egen runde.
+4. Behold interop-kontrakten: modulen MÅ fortsatt publisere samme `window.X` ved last.
+5. Registrer entrypoint i `build/build-web.mjs`.
+6. Repek HTML-siden(e) fra `js/<navn>.js` til `dist/web/<navn>.js`.
+7. **Sjekk `sw.js`:** hvis `PRECACHE_URLS` lister `js/<navn>.js`, oppdater til `dist/web/<navn>.js` og bump `SW_VERSION`. (Lett å glemme — gammel sti vil ellers 404 ved precache.)
+8. Verifiser: `npm run typecheck:web`, `npm run build:web`, og kjør IIFE-bundelen i en stubbed browser-kontekst (Node `vm`) for å bekrefte at `window.X` publiseres med uendret API. Kjør `npm run typecheck` og sjekk at ingen NY feil dukker opp (hvis en konsument mister en global-type, legg deklarasjon i `schemas/app-globals.d.ts`).
+
 ### Pilot (fullført)
 
 `js/fagkartLoader.js` → `js/fagkartLoader.ts`:
@@ -34,6 +45,15 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 - Selvstendig modul, lastet kun av `knowledge.html`, konsumert ellers kun via globalen `Fagkart` (i `js/hgchips.js` og inline-script).
 - Konvertert til ESM med `export`, publiserer fortsatt `window.Fagkart`. Registrert i `build/build-web.mjs`, bundlet til `dist/web/fagkartLoader.js`, og `knowledge.html` peker nå dit.
 - Verifisert: `npm run typecheck:web` grønn, `npm run build:web` grønn, og IIFE-bundelen kjørt i en stubbed browser-kontekst (Node `vm`) bekrefter at `window.Fagkart` publiseres med uendret API og oppførsel.
+
+### Batch 2 (fullført)
+
+`js/fagHealthReport.js` → `.ts` og `js/hgKnowledgeEngine.js` → `.ts`:
+
+- Begge er fullt innkapslede IIFE-er lastet kun av `profile.html` (statiske tagger), konsumert ellers kun via `window.FagHealthReport` / `window.HGKnowledgeEngine` (i `js/profile.js`, ved runtime).
+- Adferdsidentisk konvertering med midlertidig `// @ts-nocheck` (JSDoc-tunge analysemoduler). Registrert i `build/build-web.mjs`; `profile.html` peker nå på `dist/web/`.
+- `sw.js` `PRECACHE_URLS` oppdatert fra `js/fagHealthReport.js`/`js/hgKnowledgeEngine.js` til `dist/web/...`, og `SW_VERSION` bumpet.
+- Verifisert: `typecheck:web` grønn, `build:web` grønn, `vm`-kjøring bekrefter at begge globaler publiseres med uendret API, og `npm run typecheck` viser ingen ny feil.
 
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 

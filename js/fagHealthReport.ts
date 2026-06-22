@@ -1,4 +1,7 @@
-// js/fagHealthReport.js
+// @ts-nocheck — migrert til TS ESM (bundlet med esbuild, publiserer fortsatt
+// window.FagHealthReport). JSDoc-tunge analysemoduler migreres adferdsidentisk
+// med midlertidig @ts-nocheck; typene strammes i en senere egen runde.
+// js/fagHealthReport.ts
 // Validerer data/fag/fag_manifest.json og alle erklærte fagfiler.
 
 (function () {
