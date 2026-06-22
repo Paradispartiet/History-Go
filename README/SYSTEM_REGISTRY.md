@@ -648,3 +648,24 @@ Optional local panel for preview/debug rendering of the match graph. It shows se
 ### `localStorage: hg_social_match_graph_cache_v1`
 
 Reserved optional cache key for derived, privacy-safe match results. Current implementation computes live and only exposes `clearCacheForTestMode()` for this key. It must not store raw private profile data, observations, exact timestamps, GPS/coordinates, presence, follower/following metrics, last-seen values, or visit logs.
+
+## HG Today Hub / Min dag registry
+
+- `window.HG_TodayHub` is exposed by `js/today/HGTodayHub.js`.
+- Methods:
+  - `snapshot()` — builds the v1 read-only Today Hub snapshot.
+  - `getSections()` — returns ordered UI sections: overview, priority, civication, learning, social, routes, observations, diagnostics.
+  - `getActions()` — returns all read-only action suggestions.
+  - `getPriorityActions()` — returns up to seven ranked suggestions.
+  - `health()` — returns runtime/civication/social/learning/routes/observations/panel/privacy checks.
+  - `explain(actionIdOrSectionId)` — explains a suggestion or section and its safe next step.
+  - `refresh()` — rebuilds the read-model only.
+- `window.HG_TodayHubPanel` is exposed by `js/today/HGTodayHubPanel.js`.
+- Panel methods:
+  - `render()`
+  - `refresh()`
+  - `remove()`
+  - `isEnabled()`
+- Status: read-only, local, no backend, no production auto-open.
+- The hub reads existing models only and must not run economy ticks, start or complete routes/workdays, create observations, create invites, publish profiles, unlock anything, seed demo data, or alter localStorage during snapshot/health/render.
+- Privacy status: local and knowledge-based. The hub blocks forbidden field names and visible wording associated with GPS, live status, followers/following, last-seen, passive tracking, and distance language.
