@@ -59,6 +59,8 @@ declare global {
     HG_SocialDebug?: { snapshot?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_SocialSurfaceContract?: any;
     HG_SocialSignals?: any;
+    HG_TodayHub?: any;
+    HG_TodayHubPanel?: any;
     HG_SocialSignalBridge?: any;
     HG_PublicProfileReadModel?: any;
     HG_PublicProfilePreviewPanel?: any;
@@ -402,6 +404,8 @@ declare global {
   var HG: any;
   var HG_CURRENT_USER_ID: string | undefined;
   var HG_SocialSignals: any;
+  var HG_TodayHub: any;
+  var HG_TodayHubPanel: any;
   var HG_SocialSignalBridge: any;
   var HGEngine: any;
   var HGMap: any;

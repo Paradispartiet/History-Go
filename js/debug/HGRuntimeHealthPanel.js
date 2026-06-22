@@ -62,10 +62,14 @@
     const smokeButton = isEnabled() && window.HG_RuntimeSmokeRunner?.isEnabled?.() && window.HG_RuntimeSmokeRunner?.run
       ? '<button type="button" data-hg-rhp-smoke>Smoke</button>'
       : '';
-    panel.innerHTML = `<h2>Runtime health</h2><div class="hg-rhp-body">Laster …</div><div>${smokeButton}<button type="button" data-hg-rhp-refresh>Oppdater</button><button type="button" data-hg-rhp-hide>Skjul</button></div>`;
+    const todayButton = window.HG_TodayHubPanel?.render
+      ? '<button type="button" data-hg-rhp-today>Min dag</button>'
+      : '';
+    panel.innerHTML = `<h2>Runtime health</h2><div class="hg-rhp-body">Laster …</div><div>${todayButton}${smokeButton}<button type="button" data-hg-rhp-refresh>Oppdater</button><button type="button" data-hg-rhp-hide>Skjul</button></div>`;
     panel.querySelector("[data-hg-rhp-refresh]")?.addEventListener("click", () => { refresh(); });
     panel.querySelector("[data-hg-rhp-hide]")?.addEventListener("click", () => { remove(); });
     panel.querySelector("[data-hg-rhp-smoke]")?.addEventListener("click", () => { runSmoke(); });
+    panel.querySelector("[data-hg-rhp-today]")?.addEventListener("click", () => { window.HG_TodayHubPanel?.render?.(); });
     document.body?.appendChild(panel);
     return panel;
   }

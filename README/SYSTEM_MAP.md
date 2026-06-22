@@ -518,3 +518,20 @@ HG Social Match Graph is a local-only knowledge matching engine exposed as `wind
 - PlaceCard demo surfaces, the public profile preview, runtime health/smoke, and future Min dag surfaces can read this graph without inserting demo users into `PEOPLE`.
 
 Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top matches, place matches, privacy status, and warnings without CSS or backend calls.
+
+## HG Today Hub / Min dag
+
+**Files**
+- `js/today/HGTodayHub.js`
+- `js/today/HGTodayHubPanel.js`
+
+**Purpose**
+- `window.HG_TodayHub` is a read-only orchestration layer for answering what the player can do next in History Go.
+- It pulls existing read-models from Civication, workday, economy, home/nabolag, learning signals, social profile/matches, routes, observations, and runtime diagnostics.
+- It does not own gameplay rules and must not mutate state, create rewards, start workdays, run economy ticks, create routes, create observations, create invites, unlock anything, or change scoring.
+- It is a future main dashboard candidate, but v1 is read-model first and UI second.
+- The privacy contract is local and knowledge-based: no GPS, live location, followers/following, presence, last-seen, passive tracking, backend discovery, or distance wording.
+
+**Panel**
+- `window.HG_TodayHubPanel` renders the optional inline-styled `Min dag` panel when called manually or from TEST_MODE/debug surfaces.
+- The panel does not auto-open in production. Buttons either refresh the read-model, hide the panel, open diagnostics, or call a small allow-list of existing safe read-only panels.
