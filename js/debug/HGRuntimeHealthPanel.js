@@ -4,7 +4,7 @@
   const PANEL_ID = "hgRuntimeHealthPanel";
   const STYLE_ID = "hgRuntimeHealthPanelStyle";
   const REFRESH_DELAY_MS = 180;
-  const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged"];
+  const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged", "hg:socialDemoChanged"];
   let refreshTimer = null;
   let listenersAttached = false;
   let lastHealth = null;
@@ -43,6 +43,7 @@
       #${PANEL_ID} button{margin-right:6px;border:0;border-radius:8px;padding:5px 8px;background:#e5e7eb;color:#111827;font:inherit}
       #${PANEL_ID} button:hover{background:#fff}
       #${PANEL_ID} .hg-rhp-smoke{margin:6px 0;font-weight:700}
+      #${PANEL_ID} .hg-rhp-demo{margin:6px 0;padding:6px;border:1px solid rgba(255,255,255,.2);border-radius:8px}
     `;
     document.head?.appendChild(style);
   }
@@ -103,6 +104,20 @@
     return "Smoke: OK";
   }
 
+  function demoHtml() {
+    if (!isEnabled()) return "";
+    const seeded = window.HG_SocialDemo?.snapshot?.().seeded === true;
+    const summary = window.HG_SocialDemoAdapter?.getPanelSummary?.() || { profileCount: 0, inviteCount: 0, privacy: { ok: false } };
+    const privacy = summary.privacy?.ok === true ? "OK" : "Blokkere";
+    return `<div class="hg-rhp-demo">${seeded ? `<div>Demo users: ${Number(summary.profileCount || 0)}</div><div>Demo invites: ${Number(summary.inviteCount || 0)}</div><div>Privacy: ${escapeHtml(privacy)}</div><button type="button" data-hg-rhp-demo-open>Åpne demo</button><button type="button" data-hg-rhp-demo-reset>Reset demo</button>` : `<button type="button" data-hg-rhp-demo-seed>Seed demo</button>`}</div>`;
+  }
+
+  function bindDemoButtons(panel) {
+    panel.querySelector("[data-hg-rhp-demo-open]")?.addEventListener("click", () => window.HG_SocialDemoPanel?.render?.());
+    panel.querySelector("[data-hg-rhp-demo-seed]")?.addEventListener("click", () => { window.HG_SocialDemo?.seed?.({ resetFirst: true }); refresh(); });
+    panel.querySelector("[data-hg-rhp-demo-reset]")?.addEventListener("click", () => { window.HG_SocialDemo?.reset?.(); refresh(); });
+  }
+
   function paint(health) {
     const panel = ensurePanel();
     const body = panel.querySelector(".hg-rhp-body");
@@ -115,9 +130,11 @@
     body.innerHTML = `
       <div class="hg-rhp-status">${escapeHtml(statusLabel(health))}</div>
       ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
+      ${demoHtml()}
       <div class="hg-rhp-meta"><span>Score</span><strong>${Number(health?.score ?? 0)}</strong><span>Summary</span><span>${escapeHtml(String(health?.summary || "Ingen summary"))}</span><span>Blokkere</span><span>${blockers.length}</span><span>Advarsler</span><span>${warnings.length}</span><span>Sist oppdatert</span><span>${updated}</span></div>
       <ul>${issues.map((item) => `<li>${escapeHtml(itemText(item))}</li>`).join("") || "<li>Ingen blokkere/advarsler</li>"}</ul>
     `;
+    bindDemoButtons(panel);
   }
 
   async function runSmoke() {

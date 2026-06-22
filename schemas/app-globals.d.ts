@@ -57,6 +57,9 @@ declare global {
     HG_CiviEconomySnapshotAsync?: () => Promise<any>;
     HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_SocialDebug?: { snapshot?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
+    HG_SocialDemo?: any & { sendDemoInvite?: (args: any) => any; getPresetMessages?: () => any };
+    HG_SocialDemoAdapter?: any;
+    HG_SocialDemoProfile?: any;
     HG_RuntimeHealth?: { snapshot?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_RuntimeSmokeRunner?: { run?: () => Promise<any> | any; print?: () => Promise<any> | any; isEnabled?: () => boolean };
     HG_RuntimeHealthPanel?: { render?: () => any; refresh?: () => Promise<any> | any; remove?: () => void; isEnabled?: () => boolean; runSmoke?: () => Promise<any> | any };
