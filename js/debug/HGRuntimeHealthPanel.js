@@ -118,12 +118,24 @@
     panel.querySelector("[data-hg-rhp-profile-preview]")?.addEventListener("click", () => window.HG_PublicProfilePreviewPanel?.render?.());
   }
 
+  function matchGraphHtml() {
+    const api = window.HG_SocialMatchGraph;
+    if (!api) return "";
+    let h = null;
+    try { h = api.health?.(); } catch (_error) {}
+    return `<div class="hg-rhp-demo">Matches: ${Number(h?.matchCount || 0)}<br><button type="button" data-hg-rhp-match-graph>Match graph</button></div>`;
+  }
+
   function demoHtml() {
     if (!isEnabled()) return "";
     const seeded = window.HG_SocialDemo?.snapshot?.().seeded === true;
     const summary = window.HG_SocialDemoAdapter?.getPanelSummary?.() || { profileCount: 0, inviteCount: 0, privacy: { ok: false } };
     const privacy = summary.privacy?.ok === true ? "OK" : "Blokkere";
     return `<div class="hg-rhp-demo">${seeded ? `<div>Demo users: ${Number(summary.profileCount || 0)}</div><div>Demo invites: ${Number(summary.inviteCount || 0)}</div><div>Privacy: ${escapeHtml(privacy)}</div><button type="button" data-hg-rhp-demo-open>Åpne demo</button><button type="button" data-hg-rhp-demo-reset>Reset demo</button>` : `<button type="button" data-hg-rhp-demo-seed>Seed demo</button>`}</div>`;
+  }
+
+  function bindMatchGraphButtons(panel) {
+    panel.querySelector("[data-hg-rhp-match-graph]")?.addEventListener("click", () => window.HG_SocialMatchGraphPanel?.render?.());
   }
 
   function bindDemoButtons(panel) {
@@ -145,11 +157,13 @@
       <div class="hg-rhp-status">${escapeHtml(statusLabel(health))}</div>
       ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
       ${publicProfileHtml()}
+      ${matchGraphHtml()}
       ${demoHtml()}
       <div class="hg-rhp-meta"><span>Score</span><strong>${Number(health?.score ?? 0)}</strong><span>Summary</span><span>${escapeHtml(String(health?.summary || "Ingen summary"))}</span><span>Blokkere</span><span>${blockers.length}</span><span>Advarsler</span><span>${warnings.length}</span><span>Sist oppdatert</span><span>${updated}</span></div>
       <ul>${issues.map((item) => `<li>${escapeHtml(itemText(item))}</li>`).join("") || "<li>Ingen blokkere/advarsler</li>"}</ul>
     `;
     bindPublicProfileButtons(panel);
+    bindMatchGraphButtons(panel);
     bindDemoButtons(panel);
   }
 
