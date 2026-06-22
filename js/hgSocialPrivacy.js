@@ -40,6 +40,10 @@
     const legacy = id === currentUserId() ? readJson(KEYS.currentProfile, {}) : {};
     return { ...DEFAULT_PRIVACY, ...(all[id] || {}), publicProfile: Boolean((all[id]?.publicProfile ?? legacy.publicProfile ?? DEFAULT_PRIVACY.publicProfile)) };
   }
+  function refreshSocialIndex() {
+    window.HG_SOCIAL_INDEX = getSocialIndex();
+    return window.HG_SOCIAL_INDEX;
+  }
   function savePrivacySettings(userId, patch) {
     const id = String(userId || currentUserId());
     const all = readJson(KEYS.privacy, {});
@@ -48,6 +52,7 @@
     writeJson(KEYS.privacy, all);
     if (id === currentUserId() && typeof window.savePublicProfile === "function") window.savePublicProfile({ publicProfile: next.publicProfile });
     renderPrivacySettings();
+    refreshSocialIndex();
     return next;
   }
   function getBlockedUsers(userId = currentUserId()) { return cleanList(readJson(KEYS.blocks, {})[String(userId)]); }
@@ -68,21 +73,22 @@
     writeJson(KEYS.circles, readJson(KEYS.circles, []).map((c) => ({ ...c, members: cleanList(c.members).filter((m) => !(m === uid && cleanList(c.members).includes(tid)) && !(m === tid && cleanList(c.members).includes(uid))), invites: (Array.isArray(c.invites) ? c.invites : []).filter((x) => ![x.fromUserId, x.toUserId].includes(uid) || ![x.fromUserId, x.toUserId].includes(tid)) })));
     removeTrustLink(uid, tid);
     window.renderKnowledgeMatches?.(); window.renderMeetInviteInbox?.(); window.renderConfirmedMeets?.(); window.renderLearningCircles?.();
+    refreshSocialIndex();
     return true;
   }
-  function unblockUser(userId, targetId) { const blocks = readJson(KEYS.blocks, {}); blocks[String(userId || currentUserId())] = getBlockedUsers(userId).filter((id) => id !== String(targetId)); writeJson(KEYS.blocks, blocks); return true; }
+  function unblockUser(userId, targetId) { const blocks = readJson(KEYS.blocks, {}); blocks[String(userId || currentUserId())] = getBlockedUsers(userId).filter((id) => id !== String(targetId)); writeJson(KEYS.blocks, blocks); refreshSocialIndex(); return true; }
   function canSeeProfile(viewerId, targetId) { if (String(viewerId) === String(targetId)) return true; if (isBlocked(viewerId, targetId)) return false; return Boolean(getPrivacySettings(targetId).publicProfile && getProfile(targetId)?.publicProfile !== false); }
   function canSeeMatch(viewerId, targetId) { if (!canSeeProfile(viewerId, targetId)) return false; return Boolean(getPrivacySettings(viewerId).visibleInMatchLists && getPrivacySettings(targetId).visibleInMatchLists); }
   function canSendInvite(viewerId, targetId) { if (!canSeeProfile(viewerId, targetId)) return false; return Boolean(getPrivacySettings(targetId).allowMeetInvites && getTrust(viewerId, targetId).trustScore >= 0); }
   function canViewCircle(viewerId, circleId) { const c = getCircles().find((x) => String(x?.circleId) === String(circleId)); if (!c) return false; if (cleanList(c.members).includes(String(viewerId))) return true; return cleanList(c.members).some((id) => !isBlocked(viewerId, id) && getTrust(viewerId, id).trustScore >= 0.25); }
   function canViewSocialHistory(viewerId, targetId) { if (String(viewerId) === String(targetId)) return true; if (!canSeeProfile(viewerId, targetId)) return false; return Boolean(getPrivacySettings(targetId).showSocialReputation && getTrust(viewerId, targetId).trustScore >= 0.25); }
-  function reportUser(userId, targetId, reason) { const normalized = REPORT_REASONS.includes(reason) ? reason : "Other"; const rows = readJson(KEYS.reports, []); const report = { reportId: `report-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, userId: String(userId || currentUserId()), targetId: String(targetId || ""), reason: normalized, status: "open", createdAt: new Date().toISOString() }; writeJson(KEYS.reports, [...rows, report]); return report; }
+  function reportUser(userId, targetId, reason) { const normalized = REPORT_REASONS.includes(reason) ? reason : "Other"; const rows = readJson(KEYS.reports, []); const report = { reportId: `report-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, userId: String(userId || currentUserId()), targetId: String(targetId || ""), reason: normalized, status: "open", createdAt: new Date().toISOString() }; writeJson(KEYS.reports, [...rows, report]); refreshSocialIndex(); return report; }
   function getReports() { return readJson(KEYS.reports, []); }
-  function resolveReport(reportId) { const rows = getReports(); const r = rows.find((x) => x.reportId === String(reportId)); if (r) { r.status = "resolved"; r.resolvedAt = new Date().toISOString(); writeJson(KEYS.reports, rows); } return r || null; }
+  function resolveReport(reportId) { const rows = getReports(); const r = rows.find((x) => x.reportId === String(reportId)); if (r) { r.status = "resolved"; r.resolvedAt = new Date().toISOString(); writeJson(KEYS.reports, rows); refreshSocialIndex(); } return r || null; }
   function getSocialIndex() { return { profiles: getProfiles(), matches: typeof window.getKnowledgeMatches === "function" ? window.getKnowledgeMatches(currentUserId()) : [], invites: readJson(KEYS.invites, []), confirmedMeets: typeof window.getConfirmedMeetInvites === "function" ? window.getConfirmedMeetInvites(currentUserId()) : [], trust: readJson(KEYS.log, {}).relations || [], circles: getCircles(), sharedRoutes: readJson(KEYS.routes, []), sharedQuiz: readJson(KEYS.quizzes, []), sharedObservations: readJson(KEYS.observations, []), blocks: readJson(KEYS.blocks, {}), reports: getReports(), privacySettings: readJson(KEYS.privacy, {}) }; }
   function escapeHtml(s) { return String(s ?? "").replace(/[&<>\"']/g, (ch) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#039;" }[ch])); }
   function renderPrivacySettings() { const root = document.getElementById("social-privacy-settings"); if (!root) return; const settings = getPrivacySettings(); const controls = [["publicProfile","Public Profile"],["visibleInMatchLists","Visible in Match Lists"],["allowMeetInvites","Allow Meet Invites"],["allowCircleInvites","Allow Circle Invites"],["showSocialReputation","Show Social Reputation"]]; root.innerHTML = `<section class="meet-invite-inbox-panel social-privacy-panel"><div class="section-head"><h2>Privacy Settings</h2><span class="section-meta">Knowledge graph, never location graph.</span></div>${controls.map(([key,label]) => `<label class="social-privacy-toggle"><span>${escapeHtml(label)}</span><input type="checkbox" data-social-privacy="${key}" ${settings[key] ? "checked" : ""}></label>`).join("")}</section>`; root.querySelectorAll("[data-social-privacy]").forEach((el) => el.addEventListener("change", () => savePrivacySettings(currentUserId(), { [el.dataset.socialPrivacy]: el.checked }))); }
 
-  Object.assign(window, { HG_SOCIAL_INDEX: getSocialIndex(), HG_SOCIAL_INDEX_KEYS: KEYS, HG_SOCIAL_PRIVACY_DEFAULTS: DEFAULT_PRIVACY, getPrivacySettings, savePrivacySettings, canSeeProfile, canSeeMatch, canSendInvite, canViewCircle, canViewSocialHistory, blockUser, unblockUser, getBlockedUsers, isBlocked, reportUser, getReports, resolveReport, refreshSocialIndex: () => (window.HG_SOCIAL_INDEX = getSocialIndex()), renderPrivacySettings });
+  Object.assign(window, { HG_SOCIAL_INDEX: getSocialIndex(), HG_SOCIAL_INDEX_KEYS: KEYS, HG_SOCIAL_PRIVACY_DEFAULTS: DEFAULT_PRIVACY, getPrivacySettings, savePrivacySettings, canSeeProfile, canSeeMatch, canSendInvite, canViewCircle, canViewSocialHistory, blockUser, unblockUser, getBlockedUsers, isBlocked, reportUser, getReports, resolveReport, refreshSocialIndex, renderPrivacySettings });
   document.addEventListener("DOMContentLoaded", renderPrivacySettings);
 })();
