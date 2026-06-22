@@ -257,12 +257,47 @@ function renderPC(labelText = _t("ui.profile.statPC", "PC")) {
   const el = document.getElementById("pcValue");
   if (!el) return;
 
-  const pc =
-    (typeof window.getPCWallet === "function")
-      ? Number(window.getPCWallet() || 0)
-      : Number(
-          JSON.parse(localStorage.getItem("hg_pc_wallet_v1") || "{}").pc || 0
-        );
+  const finiteNumber = (value) => {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  };
+
+  const walletValue = (wallet, key) => {
+    if (!wallet || typeof wallet !== "object") return null;
+    return finiteNumber(wallet[key]);
+  };
+
+  const readLegacyWallet = () => {
+    try {
+      const raw = localStorage.getItem("hg_pc_wallet_v1");
+      const wallet = raw ? JSON.parse(raw) : {};
+      const balance = walletValue(wallet, "balance");
+      if (balance !== null) return balance;
+      return walletValue(wallet, "pc");
+    } catch {
+      return null;
+    }
+  };
+
+  const sources = [
+    () => walletValue(window.CivicationState?.getWallet?.(), "balance"),
+    () => walletValue(window.HG_CiviShop?.getWallet?.(), "balance"),
+    () => finiteNumber(window.getPCWallet?.()),
+    readLegacyWallet
+  ];
+
+  let pc = 0;
+  for (const read of sources) {
+    try {
+      const value = read();
+      if (value !== null) {
+        pc = value;
+        break;
+      }
+    } catch {
+      // Keep the profile safe if any wallet bridge is unavailable or malformed.
+    }
+  }
 
   el.textContent = String(pc);
   updateStatusBadgeA11y(
