@@ -91,6 +91,12 @@ declare global {
     renderNearbyPlaces?: () => void;
     renderNearbyMusic?: () => void;
     HG_MUSIC_BY_PLACE?: Record<string, unknown>;
+    HGAha?: any;
+    HG_PUBLIC_PROFILE?: any;
+    HGKnowledgeMatch?: any;
+    buildKnowledgeFingerprint?: any;
+    getKnowledgeMatches?: any;
+    sendMeetInvite?: any;
     HGAhaMusic?: {
       FILES: Record<string, string>;
       state: {
