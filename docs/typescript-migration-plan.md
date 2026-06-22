@@ -63,7 +63,17 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 - Adferdsidentisk konvertering; registrert i `build/build-web.mjs`; `profile.html` peker nå på `dist/web/`. Ikke i `sw.js` `PRECACHE_URLS`.
 - Verifisert: `typecheck:web` + `build:web` grønn, `vm`-kjøring bekrefter begge globaler, `npm run typecheck` ingen ny feil.
 
-Browser-migrert så langt: `fagkartLoader`, `fagHealthReport`, `hgKnowledgeEngine`, `hgSocialPrivacy`, `hgModeration` (5 filer).
+### Batch 4 (fullført)
+
+`js/profileInsightRoomEntry.js` → `.ts`:
+
+- Ren DOM-sideeffekt-modul (injiserer CSS + flytter Psykologrom-inngang), lastet kun av `profile.html`, publiserer ingen global. Interop-kontrakten gjelder ikke (ingenting å publisere).
+- Små typefikser (cast på utypede `window`-globaler, `Promise<void>`, `HTMLButtonElement`). Registrert i `build/build-web.mjs`; `profile.html` peker nå på `dist/web/`. Ikke i `sw.js`.
+- Verifisert: `typecheck:web` + `build:web` grønn, `vm`-kjøring bekrefter at modulen laster uten å kaste, `npm run typecheck` ingen ny feil.
+
+**Lærdom (viktig for fremtidige batcher):** `emnerLoader.js` ble forsøkt i denne batchen, men ble reversert fordi den lastes av mange flere sider enn først antatt — også alle `knowledge/knowledge_<domene>.html`-sidene via `../js/emnerLoader.js`. Sjekk ALLTID hele repoet (inkludert `knowledge/`-undermappen og relative `../js/`-stier), ikke bare topp-nivå `*.html`, før en delt fil migreres. Delte kjernefiler (`emnerLoader`, `knowledge.js`, `hgInsights.js`) bør tas i egne batcher som dekker alle konsumenter og helst røyktestes i nettleser.
+
+Browser-migrert så langt: `fagkartLoader`, `fagHealthReport`, `hgKnowledgeEngine`, `hgSocialPrivacy`, `hgModeration`, `profileInsightRoomEntry` (6 filer).
 
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 

@@ -36,7 +36,8 @@ const ENTRIES = [
   { in: "js/fagHealthReport.ts", out: "fagHealthReport" },
   { in: "js/hgKnowledgeEngine.ts", out: "hgKnowledgeEngine" },
   { in: "js/hgSocialPrivacy.ts", out: "hgSocialPrivacy" },
-  { in: "js/hgModeration.ts", out: "hgModeration" }
+  { in: "js/hgModeration.ts", out: "hgModeration" },
+  { in: "js/profileInsightRoomEntry.ts", out: "profileInsightRoomEntry" }
 ];
 
 const watch = process.argv.includes("--watch");

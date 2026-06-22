@@ -11,15 +11,15 @@
   }
 
   function loadRoomScript() {
-    return new Promise((resolve, reject) => {
-      if (window.PsychologyRoom?.open) {
+    return new Promise<void>((resolve, reject) => {
+      if ((window as any).PsychologyRoom?.open) {
         resolve();
         return;
       }
 
       const existing = document.getElementById("psychology-room-script");
       if (existing) {
-        existing.addEventListener("load", resolve, { once: true });
+        existing.addEventListener("load", () => resolve(), { once: true });
         existing.addEventListener("error", reject, { once: true });
         return;
       }
@@ -27,7 +27,7 @@
       const script = document.createElement("script");
       script.id = "psychology-room-script";
       script.src = "js/psychologyRoom.js";
-      script.onload = resolve;
+      script.onload = () => resolve();
       script.onerror = reject;
       document.body.appendChild(script);
     });
@@ -40,7 +40,7 @@
       window.PsychologyRoom?.open?.();
     } catch (error) {
       console.warn("[profileInsightRoomEntry]", error);
-      window.showToast?.("Psykologrommet kunne ikke lastes");
+      (window as any).showToast?.("Psykologrommet kunne ikke lastes");
     }
   }
 
@@ -53,7 +53,7 @@
     if (!button) {
       button = document.createElement("button");
       button.id = "btnOpenPsychologyRoom";
-      button.type = "button";
+      (button as HTMLButtonElement).type = "button";
       button.textContent = "R";
       button.setAttribute("aria-label", "Psykologrommet");
       button.title = "Åpne screening, refleksjon og innsiktsprofil";
