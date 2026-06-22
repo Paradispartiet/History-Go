@@ -144,7 +144,54 @@
   function inspectDailyRuntime() { return window.CivicationDailyMailBuilder?.inspect?.() || null; }
   async function inspectGaps(roleKey) { return (await buildDebugMap(roleKey)).gaps; }
 
-  const api = { inspect, debugCandidates: candidates, simulate: candidates, inspectRole, inspectActive, inspectDailyRuntime, inspectGaps, buildDebugMap };
+  // Read-only diagnose av de parallelle arbeidsdagssporene (se
+  // docs/CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md). Samler patch-flagg og de tre
+  // stedene som tracker dagens fase (Calendar vs. DailyMailBuilder item-fase vs.
+  // DayProgression) slik at fase-"ping-pong" mellom dayPatches.answer og DailyMailBuilder
+  // er rask å se. Endrer ingenting.
+  function inspectWorkdayPhaseIntegration() {
+    const proto = window.CivicationEventEngine?.prototype || null;
+    const daily = inspectDailyRuntime();
+    const items = Array.isArray(daily?.runtime?.items) ? daily.runtime.items : [];
+    const currentIndex = Math.max(0, Number(daily?.runtime?.current_index || 0));
+    const currentItem = items[currentIndex] || null;
+    const itemPhase = norm(currentItem?.phase || currentItem?.event?.phase_tag) || null;
+
+    const dayProg = window.CivicationDayProgression?.inspect?.() || null;
+    const calendarPhase = norm(window.CivicationCalendar?.getPhase?.()) || null;
+
+    const patches = {
+      dayPatches_onAppOpen_answer: proto?.__dayPhasePatched === true,
+      mailRuntime: proto?.__civicationMailRuntimePatched === true,
+      dailyMailBuilder: proto?.__civicationDailyMailBuilderPatched === true,
+      dailyTaskGates: proto?.__civicationDailyTaskGatesPatched === true
+    };
+
+    const phaseTrackers = {
+      calendar_phase: calendarPhase,
+      dailymailbuilder_item_phase: itemPhase,
+      dayprogression_phase: norm(dayProg?.phase) || null
+    };
+    const phaseValues = Object.values(phaseTrackers).filter(Boolean);
+    const phaseAgreement = phaseValues.length > 0 && new Set(phaseValues).size === 1;
+
+    return {
+      patches,
+      multiple_onappopen_owners: [patches.dayPatches_onAppOpen_answer, patches.dailyMailBuilder, patches.dailyTaskGates].filter(Boolean).length,
+      phase_trackers: phaseTrackers,
+      phase_agreement: phaseAgreement,
+      phase_mismatch: !phaseAgreement,
+      day_runtime_exists: !!daily?.runtime,
+      by_phase: daily?.by_phase || null,
+      by_status: daily?.by_status || null,
+      open_items_in_phase: dayProg?.openItemsInPhase ?? null,
+      can_advance: dayProg?.canAdvance ?? null,
+      next_phase: dayProg?.nextPhase ?? null,
+      task_gates: (window.CivicationDailyTaskGates?.inspect?.() || {})?.task_gates || []
+    };
+  }
+
+  const api = { inspect, debugCandidates: candidates, simulate: candidates, inspectRole, inspectActive, inspectDailyRuntime, inspectGaps, buildDebugMap, inspectWorkdayPhaseIntegration };
   Object.assign(api, { simulateRepeated: candidates, simulateRepeatedAll: candidates, simulateArbeider: candidates, simulateFagarbeider: candidates, simulateMellomleder: candidates, simulateArbeiderRepeated: candidates, simulateFagarbeiderRepeated: candidates, simulateMellomlederRepeated: candidates });
   window.CiviMailPlanDebug = api;
   window.CivicationDebug = Object.assign(window.CivicationDebug || {}, api);
