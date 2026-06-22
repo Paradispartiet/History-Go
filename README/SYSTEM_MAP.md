@@ -313,6 +313,11 @@ History Go er delt i tydelige lag:
 - hg_capital_v1
 - hg_civi_task_results_v1
 
+**Boot/debug helpers**
+- `window.HG_CiviDebug` lives in `js/Civication/CivicationBoot.js`.
+- It is a read-only browser-console helper for `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
+- It summarizes Civication runtime state defensively and must not mutate wallet, inventory, profile, inbox, shop visibility, psyche, home, capital, or gameplay state.
+
 ---
 
 ## 10. LOADERE (data-loadere utenfor DataHub)
