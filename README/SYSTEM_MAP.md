@@ -562,6 +562,7 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 - Objectives are suggestions only. They do not start workdays, run economy ticks, complete quizzes/routes, save observations, send invites, buy items, move homes, unlock places, or change scoring.
 - Completion is refreshed only from existing real signals/read-models such as quiz-completed, route-completed, observation-added, public-profile readiness, warning-cleared, or diagnostic-cleared states.
 - The panel renders 3–5 agenda items at the top of `Min dag` and routes all buttons through `HG_TodayActionRouter`.
+- Agenda pin/dismiss/restore helpers are local-only list controls; hiding or pinning a card never completes objectives and never changes gameplay state.
 
 **Privacy and storage**
 - Storage key: `hg_daily_objectives_v1`.
