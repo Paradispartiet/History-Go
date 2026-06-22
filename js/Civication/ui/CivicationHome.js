@@ -203,6 +203,18 @@
     return rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`;
   }
 
+  function getEconomicCapital(capital = getCapital()) {
+    return Number(capital?.economic || 0);
+  }
+
+  function getAffordabilityLabel(district, capital = getCapital()) {
+    const baseCost = Number(district?.baseCost || 0);
+    if (baseCost <= 0) return "Gratis";
+
+    const economic = getEconomicCapital(capital);
+    return economic >= baseCost ? "Du har råd" : `Mangler ${baseCost - economic} kapital`;
+  }
+
   function requirementText(district) {
     const parts = [];
     const reqs = district?.quizRequirements || {};
@@ -338,6 +350,66 @@
     }
 
     return influence;
+  }
+
+  function getDistrictViewModels() {
+    const state = ensure(load());
+    const currentId = state?.home?.district || null;
+    const capital = getCapital();
+
+    return getAvailableDistricts().map((district) => {
+      const lockReason = getDistrictLockReason(district);
+      const isCurrent = String(currentId || "") === String(district.id || "");
+
+      return {
+        id: district.id,
+        name: district.name,
+        isCurrent,
+        isStartOption: district.isStartOption === true,
+        canSelect: !lockReason || isCurrent,
+        lockReason,
+        cost: Number(district.baseCost || 0),
+        costLabel: formatCost(district),
+        rent: Number(district.rent || 0),
+        rentLabel: formatRent(district),
+        prestige: Number(district.prestige || 0),
+        shortDesc: district.shortDesc || "",
+        requirementText: requirementText(district),
+        visitRequirementPlaceIds: normalizeList(district.visitRequirementPlaceIds),
+        quizRequirements: { ...(district.quizRequirements || {}) },
+        housing_access: normalizeList(district.housing_access),
+        store_access: normalizeList(district.store_access),
+        choice_tags: normalizeList(district.choice_tags),
+        modifiers: { ...(district.modifiers || {}) },
+        affordabilityLabel: getAffordabilityLabel(district, capital)
+      };
+    });
+  }
+
+  function getHomeSnapshot() {
+    const state = ensure(load());
+    const currentDistrict = getDistrict(state?.home?.district);
+    const selectedAccess = getSelectedDistrictAccess();
+    const capital = getCapital();
+    const districts = getDistrictViewModels();
+    const rent = Number(currentDistrict?.rent || 0);
+
+    return {
+      state,
+      currentDistrict,
+      selectedAccess,
+      capital,
+      economicCapital: getEconomicCapital(capital),
+      districts,
+      startDistricts: districts.filter((district) => district.isStartOption),
+      settled: state?.home?.status === "settled" && !!currentDistrict,
+      housingPressure: state?.home?.housingPressure || "none",
+      rentArrears: Number(state?.home?.rentArrears || 0),
+      lastRentAmount: Number(state?.home?.lastRentAmount || 0),
+      moveCount: Number(state?.home?.moveCount || 0),
+      monthlyRentLabel: rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`,
+      homeInfluence: getHomeInfluence()
+    };
   }
 
   function applyHousingPeriodCosts(force = false) {
@@ -530,10 +602,12 @@
 
   function renderDistrictCard(district, currentId) {
     const isCurrent = String(currentId || "") === String(district.id || "");
-    const canSelect = canPurchaseDistrict(district.id);
     const reason = getDistrictLockReason(district);
+    const canSelect = !reason || isCurrent;
     const tagText = normalizeList(district.choice_tags).join(" · ");
+    const storeText = normalizeList(district.store_access).join(" · ");
     const classes = ["civi-district-card"];
+    const affordability = getAffordabilityLabel(district);
 
     if (district.isStartOption) classes.push("is-start-option");
     if (isCurrent) classes.push("is-current");
@@ -543,16 +617,19 @@
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
           <div>
             <div style="font-weight:700;">${district.name}</div>
-            <div style="font-size:0.88rem;opacity:0.78;margin-top:3px;">${district.isStartOption ? "Startnabolag" : "Låses opp senere"} · ${formatCost(district)} · ${formatRent(district)} · Prestige ${Number(district.prestige || 0)}</div>
+            <div style="font-size:0.88rem;opacity:0.78;margin-top:3px;">${district.isStartOption ? "Startnabolag" : "Låses opp senere"} · ${isCurrent ? "Valgt nå" : "Ikke valgt"}</div>
           </div>
           ${isCurrent ? `<span style="font-size:0.82rem;opacity:0.8;">Valgt</span>` : ""}
         </div>
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
-        <div style="font-size:0.86rem;opacity:0.78;margin-top:8px;">${requirementText(district)}</div>
-        ${tagText ? `<div style="font-size:0.82rem;opacity:0.7;margin-top:6px;">${tagText}</div>` : ""}
-        ${!canSelect && !isCurrent && reason ? `<div style="font-size:0.82rem;opacity:0.74;margin-top:6px;">${reason}</div>` : ""}
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Krav: ${requirementText(district)}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Råd: ${affordability}</div>
+        ${storeText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Butikktilgang: ${storeText}</div>` : ""}
+        ${tagText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Valgtagger: ${tagText}</div>` : ""}
+        ${!canSelect && reason ? `<div style="font-size:0.82rem;opacity:0.78;margin-top:6px;">Låst: ${reason}</div>` : ""}
         <div style="margin-top:10px;">
-          <button class="btn" data-civi-district-select="${district.id}" ${canSelect || isCurrent ? "" : "disabled"}>${isCurrent ? "Valgt" : "Velg"}</button>
+          <button class="btn" data-civi-district-select="${district.id}" ${canSelect ? "" : "disabled"}>${isCurrent ? "Valgt" : "Velg"}</button>
         </div>
       </div>
     `;
@@ -600,6 +677,14 @@
     }
 
     const access = getSelectedDistrictAccess();
+    const capital = getCapital();
+    const influence = getHomeInfluence();
+    const storeText = access.store.length ? access.store.join(" · ") : "Ingen ekstra butikktilgang";
+    const choiceTagText = access.choice_tags.length ? access.choice_tags.join(" · ") : "Ingen egne valgtagger";
+    const influenceText = Object.entries(influence)
+      .filter(([, value]) => Number(value || 0) !== 0)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join(" · ") || "Ingen ekstra påvirkning";
     const pressure = state?.home?.housingPressure || "none";
     const arrears = Number(state?.home?.rentArrears || 0);
     const pressureText = pressure === "crisis"
@@ -616,6 +701,10 @@
       </div>
       <div style="margin-top:10px;padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
         <div style="font-weight:700;">Boligstatus</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Økonomisk kapital nå: ${getEconomicCapital(capital)}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Hjem-påvirkning: ${influenceText}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Butikktilgang: ${storeText}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Valgtagger: ${choiceTagText}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Husleie: ${formatRent(current)}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Prestige: ${access.prestige}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Boligtilgang: ${access.housing.length ? access.housing.join(" · ") : "Ingen egne boligtagger"}</div>
@@ -835,6 +924,9 @@
     getAvailableDistricts,
     getStartDistricts,
     getSelectedDistrictAccess,
+    getHomeSnapshot,
+    getDistrictViewModels,
+    getDistrictLockReason,
     purchaseHomeObject,
     sellHomeObject,
     purchaseDistrict,
