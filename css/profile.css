@@ -1482,3 +1482,94 @@ body.hg-app .hg-popup.match-profile-popup .hg-popup-inner,
   cursor: not-allowed;
   opacity: 0.55;
 }
+
+.profile-social-stack {
+  width: min(1180px, calc(100% - 28px));
+  margin: 16px auto;
+  display: grid;
+  gap: 14px;
+}
+
+.social-mini-profile-anchor {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.04);
+  font-weight: 800;
+}
+
+.knowledge-match-card-head {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+.knowledge-match-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.knowledge-match-avatar.match-profile-avatar-fallback {
+  display: grid;
+  place-items: center;
+  color: #151515;
+  background: var(--hg-user-color, #f6c800);
+  font-weight: 950;
+}
+
+.meet-invite-tabs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.meet-invite-tabs button,
+.meet-invite-actions button,
+.match-profile-actions button {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.meet-invite-tabs button[aria-selected="true"],
+.match-profile-actions button:first-child,
+.meet-invite-actions button:first-child {
+  background: var(--hg-user-color, #f6c800);
+  color: #151515;
+}
+
+.match-profile-grid,
+.social-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.match-profile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.match-profile-chips span,
+.social-history-grid span {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.match-profile-actions,
+.meet-invite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
