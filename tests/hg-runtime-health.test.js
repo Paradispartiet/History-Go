@@ -35,6 +35,7 @@ function boot(overrides = {}) {
   delete global.HG_SocialDebug;
   delete global.HG_RuntimeHealth;
   Object.assign(global, overrides);
+  vm.runInThisContext(fs.readFileSync('js/social/HGPublicProfileReadModel.js', 'utf8'), { filename: 'HGPublicProfileReadModel.js' });
   vm.runInThisContext(fs.readFileSync('js/debug/HGRuntimeHealth.js', 'utf8'), { filename: 'HGRuntimeHealth.js' });
   return global.HG_RuntimeHealth;
 }

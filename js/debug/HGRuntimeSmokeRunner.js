@@ -123,6 +123,28 @@
       checks.socialSignals = check(!signalHealth.error && signalHealth.value?.ok !== false && demoMixed.length === 0, signalHealth.value?.ok === false || demoMixed.length ? "blocker" : "ok", "Social signals kontrollert.", { signalCount: signalSummary.value?.signalCount || 0 });
     }
 
+    if (!root.HG_PublicProfileReadModel) {
+      blockers.push(blocker("public_profile_read_model_missing", "HG_PublicProfileReadModel mangler.", {}, "publicProfileReadModel"));
+      checks.publicProfileReadModel = check(false, "blocker", "Public profile read-model mangler.");
+    } else {
+      const modelResult = safeSync(() => root.HG_PublicProfileReadModel.getReadModel());
+      const previewResult = safeSync(() => root.HG_PublicProfileReadModel.getPreview());
+      const healthResult = safeSync(() => root.HG_PublicProfileReadModel.health());
+      if (modelResult.error) blockers.push(blocker("public_profile_read_model_failed", "getReadModel feilet.", { error: errorMessage(modelResult.error) }, "publicProfileReadModel"));
+      if (previewResult.error) blockers.push(blocker("public_profile_preview_failed", "getPreview feilet.", { error: errorMessage(previewResult.error) }, "publicProfileReadModel"));
+      if (healthResult.value && healthResult.value.ok === false) pushReportIssues(healthResult.value, blockers, warnings, "publicProfileReadModel", { privacy: true });
+      const model = modelResult.value || {};
+      const preview = previewResult.value || {};
+      const signalCount = Number(model.counts?.signalCount || 0);
+      if (model.publicProfileEnabled === true && signalCount === 0) warnings.push(warning("public_profile_enabled_no_signals", "Offentlig profil er på uten signaler.", { signalCount }, "publicProfileReadModel"));
+      if (signalCount > 0 && Number(model.source?.signalCount || 0) !== signalCount) blockers.push(blocker("public_profile_signal_count_mismatch", "Public profile source/count mismatch.", { counts: model.counts, source: model.source }, "publicProfileReadModel"));
+      const forbidden = safeSync(() => root.HG_PublicProfileReadModel.validate(model));
+      if (forbidden.value && forbidden.value.publicSafe === false) pushReportIssues(forbidden.value, blockers, warnings, "publicProfileReadModel", { privacy: true });
+      if (model.identity?.demoOnly === true || JSON.stringify(model).includes('demoOnlyUser')) blockers.push(blocker("public_profile_demo_mixed", "Demo users finnes i real public profile.", {}, "publicProfileReadModel"));
+      const hasSections = Array.isArray(preview.sections) && preview.sections.length > 0;
+      checks.publicProfileReadModel = check(!modelResult.error && !previewResult.error && healthResult.value?.ok !== false && hasSections, modelResult.error || previewResult.error || healthResult.value?.ok === false ? "blocker" : (model.publicProfileEnabled === true && signalCount === 0) ? "warning" : "ok", "Public profile read-model kontrollert.", { signalCount, publicProfileEnabled: !!model.publicProfileEnabled, sections: preview.sections?.length || 0 });
+    }
+
     const prof = safeSync(() => typeof root.HG_CiviProfileSnapshot === "function" ? root.HG_CiviProfileSnapshot() : undefined);
     if (prof.error) warnings.push(warning("profile_snapshot_failed", "HG_CiviProfileSnapshot feilet.", { error: errorMessage(prof.error) }, "profile"));
     if (typeof root.HG_CiviProfileSnapshot !== "function") warnings.push(warning("profile_snapshot_missing", "HG_CiviProfileSnapshot mangler.", {}, "profile"));

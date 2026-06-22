@@ -104,6 +104,20 @@
     return "Smoke: OK";
   }
 
+  function publicProfileHtml() {
+    const api = window.HG_PublicProfileReadModel;
+    if (!api) return "";
+    let model = null;
+    try { model = api.getReadModel?.(); } catch (_error) {}
+    const enabled = model?.publicProfileEnabled ? "på" : "av";
+    const count = Number(model?.counts?.signalCount || 0);
+    return `<div class="hg-rhp-demo">Public profile: ${escapeHtml(enabled)} · ${count} signaler<br><button type="button" data-hg-rhp-profile-preview>Profil-preview</button></div>`;
+  }
+
+  function bindPublicProfileButtons(panel) {
+    panel.querySelector("[data-hg-rhp-profile-preview]")?.addEventListener("click", () => window.HG_PublicProfilePreviewPanel?.render?.());
+  }
+
   function demoHtml() {
     if (!isEnabled()) return "";
     const seeded = window.HG_SocialDemo?.snapshot?.().seeded === true;
@@ -130,10 +144,12 @@
     body.innerHTML = `
       <div class="hg-rhp-status">${escapeHtml(statusLabel(health))}</div>
       ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
+      ${publicProfileHtml()}
       ${demoHtml()}
       <div class="hg-rhp-meta"><span>Score</span><strong>${Number(health?.score ?? 0)}</strong><span>Summary</span><span>${escapeHtml(String(health?.summary || "Ingen summary"))}</span><span>Blokkere</span><span>${blockers.length}</span><span>Advarsler</span><span>${warnings.length}</span><span>Sist oppdatert</span><span>${updated}</span></div>
       <ul>${issues.map((item) => `<li>${escapeHtml(itemText(item))}</li>`).join("") || "<li>Ingen blokkere/advarsler</li>"}</ul>
     `;
+    bindPublicProfileButtons(panel);
     bindDemoButtons(panel);
   }
 
