@@ -10,7 +10,7 @@
   /**
    * @typedef {Record<string, any>} CiviCommercialRecord
    * @typedef {CiviCommercialRecord & { balance?: number, last_tick_iso?: string | null }} CiviCommercialWallet
-   * @typedef {CiviCommercialRecord & { packs?: Record<string, boolean>, style_counts?: Record<string, number> }} CiviCommercialInventory
+   * @typedef {CiviCommercialRecord & { packs?: Record<string, boolean>, ownedItems?: string[], style_counts?: Record<string, number> }} CiviCommercialInventory
    * @typedef {CiviCommercialRecord & { id?: string, store_id?: string, price_pc?: number, price?: number, styles?: unknown[], tags?: unknown[], effects?: CiviCommercialRecord }} CiviCommercialPack
    * @typedef {CiviCommercialRecord & { id?: string, type?: string }} CiviCommercialStore
    */
@@ -45,45 +45,91 @@
   // ============================================================
 
   /**
+   * @param {CiviCommercialWallet | CiviCommercialRecord | number | null | undefined} wallet
    * @returns {CiviCommercialWallet}
    */
-  function getWallet() {
+  function normalizeWallet(wallet) {
+    const normalizeBalance = (value) => {
+      const n = Number(value || 0);
+      return Number.isFinite(n) ? n : 0;
+    };
 
-    if (typeof window.getPCWallet === "function") {
-      /** @type {CiviCommercialWallet | CiviCommercialRecord | null | undefined} */
-      const w = window.getPCWallet();
-      if (w && typeof w.balance === "number") return w;
+    if (typeof wallet === "number") {
+      return { balance: normalizeBalance(wallet), last_tick_iso: null };
     }
 
-    /** @type {CiviCommercialWallet | CiviCommercialRecord} */
-    const w = readJSON(LS_WALLET, {
-      balance: 0,
-      last_tick_iso: null
-    });
+    if (!wallet || typeof wallet !== "object") {
+      return { balance: 0, last_tick_iso: null };
+    }
 
     return {
-      balance: Number(w.balance || 0),
-      last_tick_iso: w.last_tick_iso || null
+      balance: normalizeBalance(wallet.balance ?? wallet.pc ?? 0),
+      last_tick_iso: wallet.last_tick_iso || null
     };
   }
 
   /**
-   * @param {CiviCommercialWallet | CiviCommercialRecord | null | undefined} wallet
+   * @returns {CiviCommercialWallet}
+   */
+  function getLegacyWallet() {
+    return normalizeWallet(readJSON(LS_WALLET, {
+      balance: 0,
+      last_tick_iso: null
+    }));
+  }
+
+  /**
+   * @returns {CiviCommercialWallet}
+   */
+  function getWallet() {
+    const state = window.CivicationState;
+
+    if (state && typeof state.getWallet === "function") {
+      const stateWallet = normalizeWallet(state.getWallet());
+      const legacyWallet = getLegacyWallet();
+
+      if (stateWallet.balance === 0 && legacyWallet.balance > 0) {
+        stateWallet.balance = legacyWallet.balance;
+        if (typeof state.updateWallet === "function") {
+          state.updateWallet(stateWallet);
+        }
+      }
+
+      return stateWallet;
+    }
+
+    return getLegacyWallet();
+  }
+
+  /**
+   * @param {CiviCommercialWallet | CiviCommercialRecord | number | null | undefined} wallet
    * @returns {void}
    */
   function setWallet(wallet) {
+    const next = normalizeWallet(wallet);
+    const state = window.CivicationState;
 
-    if (!wallet || typeof wallet.balance !== "number") {
-      wallet = { balance: 0, last_tick_iso: null };
+    if (state && typeof state.updateWallet === "function") {
+      state.updateWallet(next);
     }
 
-    if (typeof window.savePCWallet === "function") {
-      window.savePCWallet(wallet);
-      return;
-    }
-
-    writeJSON(LS_WALLET, wallet);
+    const legacyWallet = readJSON(LS_WALLET, {});
+    writeJSON(LS_WALLET, {
+      ...(legacyWallet && typeof legacyWallet === "object" ? legacyWallet : {}),
+      balance: next.balance,
+      pc: next.balance,
+      last_tick_iso: next.last_tick_iso || null
+    });
   }
+
+  window.getPCWallet = function () {
+    return Number(getWallet().balance || 0);
+  };
+
+  window.savePCWallet = function (wallet) {
+    setWallet(wallet);
+    return getWallet();
+  };
 
   // ============================================================
   // INVENTORY
@@ -97,9 +143,14 @@
     /** @type {CiviCommercialInventory | CiviCommercialRecord | null} */
     const inv = readJSON(LS_INV, null);
 
-    if (inv && typeof inv === "object") return inv;
+    if (inv && typeof inv === "object") {
+      inv.packs = inv.packs && typeof inv.packs === "object" ? inv.packs : {};
+      inv.ownedItems = Array.isArray(inv.ownedItems) ? inv.ownedItems.map(String) : [];
+      inv.style_counts = inv.style_counts && typeof inv.style_counts === "object" ? inv.style_counts : {};
+      return inv;
+    }
 
-    const fresh = { packs: {}, style_counts: {} };
+    const fresh = { packs: {}, ownedItems: [], style_counts: {} };
     writeJSON(LS_INV, fresh);
     return fresh;
   }
@@ -352,9 +403,11 @@
     const key = String(pack.id);
 
     if (!inv.packs) inv.packs = {};
+    if (!Array.isArray(inv.ownedItems)) inv.ownedItems = [];
     if (!inv.style_counts) inv.style_counts = {};
 
     inv.packs[key] = true;
+    if (!inv.ownedItems.includes(key)) inv.ownedItems.push(key);
 
     const styles =
       Array.isArray(pack.styles)
@@ -389,6 +442,7 @@
   // ============================================================
 
   window.HG_CiviShop = {
+    getWallet,
     getInv,
     getPacks,
     getStores,
