@@ -39,6 +39,15 @@ declare global {
     CivicationHome?: any & {
       getHomeSnapshot?: () => any;
       getDistrictViewModels?: () => any;
+      unlockDistrict?: (districtId: string, reason?: string) => boolean;
+      canMoveToDistrict?: (districtId: string) => any;
+      moveToDistrict?: (districtId: string) => boolean;
+      getCurrentDistrict?: () => any;
+      getRentPressure?: () => any;
+      applyRentTick?: (force?: boolean) => any;
+      getHousingStatus?: () => string;
+      getHousingStatusLabel?: () => string;
+      getHomeConsequences?: () => any;
     };
     CivicationMilestoneHighlight?: any;
     CivicationOutcomeStatusUI?: any;

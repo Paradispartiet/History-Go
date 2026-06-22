@@ -541,3 +541,13 @@ Deprecations
 - `window.HG_CiviEconomySnapshot` is an allowed read-only global exposed by `js/Civication/core/civicationEconomyEngine.js` for browser-console and debug inspection.
 - The snapshot may combine wallet/job/home/shop data to explain current PC economy, but it must not mutate wallet, home, capital, shop, career state, localStorage contents, or gameplay flow.
 - Economy snapshots must handle missing runtimes and unavailable visible packs defensively.
+
+## Civication Home / Nabolag gameplay v1
+Status: implemented
+Purpose: makes district/home choice affect rent pressure, housing status and progression.
+
+- `window.CivicationHome.unlockDistrict(districtId, reason)` — records district unlocks in `civi_home_v1`.
+- `window.CivicationHome.canMoveToDistrict(districtId)` — returns whether a district can be moved into and why it is blocked.
+- `window.CivicationHome.moveToDistrict(districtId)` — updates current home district and move history when the district is unlocked/available.
+- `window.CivicationHome.applyRentTick(force)` — applies weekly rent using existing PC/economic capital and updates rent due/housing status.
+- `window.CivicationHome.getHomeSnapshot()` now includes current district, rent pressure, rent due, unlocked ids, available/blocked moves, housing status, and support eligibility.
