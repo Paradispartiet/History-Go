@@ -435,7 +435,15 @@ async function nominatimCandidates(place, region, opts) {
 async function overpassCandidates(place, region, opts) {
   if (!isNum(place.lat) || !isNum(place.lon)) return [];
   if (!['venue', 'area', 'statue', 'point'].includes(place._physType)) return [];
-  const safeName = String(place.name).replace(/[\\"\n]/g, ' ').slice(0, 60);
+  // Overpass tolker name-verdien som regex (operatoren ~). Nøytraliser regex-
+  // metategn og anførselstegn slik at navn som "Blå (klubb)" eller "Café [1]"
+  // ikke gir ugyldig query (HTTP 400) eller utilsiktet treff.
+  const safeName = String(place.name)
+    .replace(/[\\^$.*+?()[\]{}|"~\n]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 60);
+  if (!safeName) return [];
   const around = place._physType === 'area' ? 1200 : 500;
   const query = `[out:json][timeout:25];nwr["name"~"${safeName}",i](around:${around},${place.lat},${place.lon});out center 5;`;
   const url = `${OVERPASS_API}?data=${encodeURIComponent(query)}`;
@@ -555,8 +563,10 @@ function decideApproval(ctx) {
   }
 
   // Parker/områder: semantic_anchor; auto bare ved sterk, flerkildig enighet.
+  // crossAgree teller distinkte kilder innen 30 m av valgt kandidat og inkluderer
+  // kandidatens egen kilde, så >= 2 betyr at minst én uavhengig kilde er enig.
   if (physType === 'area') {
-    if (conf >= 0.9 && crossAgree >= 1) {
+    if (conf >= 0.9 && crossAgree >= 2) {
       return { status: 'auto_approved', reason: 'Område: representativt punkt med sterk kilde og flerkildig enighet.' };
     }
     return { status: 'needs_review', reason: 'Område/park: bekreft at punktet ligger inne i området (semantic_anchor).' };
@@ -653,6 +663,10 @@ async function main() {
     console.log('Se filhode for CLI-flagg. Eksempel:');
     console.log('  node tools/generate-place-coordinate-candidates.mjs --all-active --limit 25');
     return;
+  }
+  // Ugyldig --limit skal feile tydelig, ikke stille analysere alle steder.
+  if (args.limit !== null && (!Number.isFinite(args.limit) || args.limit <= 0)) {
+    throw new Error(`Ugyldig --limit: må være et positivt heltall.`);
   }
   // Standard: hvis verken --file eller --all-active er gitt, analyser alle aktive filer.
   if (!args.file && !args.allActive) args.allActive = true;
