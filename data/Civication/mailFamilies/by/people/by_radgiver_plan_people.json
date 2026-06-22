@@ -233,6 +233,386 @@
               "frist_for_utvalg"
             ]
           }
+        },
+        {
+          "id": "by_areal_people_plansjef_004",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "morning",
+          "priority": 72,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marta_plansjef",
+          "sender": "marta_plansjef",
+          "person_id": "marta_plansjef",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Plansjefen vil ha en enklere vurdering før møtet",
+          "summary": "Plansjefen ber deg skjære saken ned til det utvalget faktisk må forstå før formannskapets arbeidsmøte.",
+          "purpose": "Plansjefen ber deg skjære saken ned til det utvalget faktisk må forstå før formannskapets arbeidsmøte.",
+          "stakes": "Valget påvirker hvordan Lillebekk-saken blir forstått av folk, fagmiljø og politisk nivå.",
+          "situation": [
+            "Plansjefen ber deg skjære saken ned til det utvalget faktisk må forstå før formannskapets arbeidsmøte.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både menneskene i saken og den juridiske planlogikken blir synlige."
+          ],
+          "task_domain": "plansjef_dialog",
+          "task_kind": "people",
+          "competency": "politisk_lesbarhet",
+          "learning_focus": [
+            "plansjef_dialog",
+            "politisk_lesbarhet"
+          ],
+          "pressure": "tempo_vs_faglighet",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
+              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "trust"
+              ],
+              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+            },
+            {
+              "id": "B",
+              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
+              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "tempo_vs_faglighet",
+              "plansjef_dialog"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "by_areal_people_plansjef_004_presisjon"
+            ],
+            "B": [
+              "by_areal_people_plansjef_004_tempo_risiko"
+            ]
+          },
+          "channel": "job",
+          "messageChannel": "job"
+        },
+        {
+          "id": "by_areal_people_skolevei_005",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "lunch",
+          "priority": 68,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "selma_skolevei",
+          "sender": "selma_skolevei",
+          "person_id": "selma_skolevei",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Skolekontakt peker på snarveien bak parkeringskjelleren",
+          "summary": "Trafikksikkerhetskontakten har sett at barnas faktiske skolevei ikke ligger der plankartet antar.",
+          "purpose": "Trafikksikkerhetskontakten har sett at barnas faktiske skolevei ikke ligger der plankartet antar.",
+          "stakes": "Valget påvirker hvordan Lillebekk-saken blir forstått av folk, fagmiljø og politisk nivå.",
+          "situation": [
+            "Trafikksikkerhetskontakten har sett at barnas faktiske skolevei ikke ligger der plankartet antar.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både menneskene i saken og den juridiske planlogikken blir synlige."
+          ],
+          "task_domain": "skolevei",
+          "task_kind": "people",
+          "competency": "trafikksikkerhet",
+          "learning_focus": [
+            "skolevei",
+            "trafikksikkerhet"
+          ],
+          "pressure": "kartlogikk_vs_bruk",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
+              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "trust"
+              ],
+              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+            },
+            {
+              "id": "B",
+              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
+              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "kartlogikk_vs_bruk",
+              "skolevei"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "by_areal_people_skolevei_005_presisjon"
+            ],
+            "B": [
+              "by_areal_people_skolevei_005_tempo_risiko"
+            ]
+          },
+          "channel": "job",
+          "messageChannel": "job"
+        },
+        {
+          "id": "by_areal_people_juridisk_006",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 74,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas_juridisk_plan",
+          "sender": "jonas_juridisk_plan",
+          "person_id": "jonas_juridisk_plan",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Juridisk rådgiver: rekkefølgekravet er for svakt",
+          "summary": "Plansaksjuristen advarer om at grøntdrag og skolevei kan bli intensjoner uten håndhevbar rekkefølge.",
+          "purpose": "Plansaksjuristen advarer om at grøntdrag og skolevei kan bli intensjoner uten håndhevbar rekkefølge.",
+          "stakes": "Valget påvirker hvordan Lillebekk-saken blir forstått av folk, fagmiljø og politisk nivå.",
+          "situation": [
+            "Plansaksjuristen advarer om at grøntdrag og skolevei kan bli intensjoner uten håndhevbar rekkefølge.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både menneskene i saken og den juridiske planlogikken blir synlige."
+          ],
+          "task_domain": "plansaksjuss",
+          "task_kind": "people",
+          "competency": "juridisk_presisjon",
+          "learning_focus": [
+            "plansaksjuss",
+            "juridisk_presisjon"
+          ],
+          "pressure": "tempo_vs_hjemmel",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
+              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "trust"
+              ],
+              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+            },
+            {
+              "id": "B",
+              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
+              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "tempo_vs_hjemmel",
+              "plansaksjuss"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "by_areal_people_juridisk_006_presisjon"
+            ],
+            "B": [
+              "by_areal_people_juridisk_006_tempo_risiko"
+            ]
+          },
+          "channel": "job",
+          "messageChannel": "job"
+        },
+        {
+          "id": "by_areal_people_politisk_007",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 66,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_utvalgssekretaer",
+          "sender": "elin_utvalgssekretaer",
+          "person_id": "elin_utvalgssekretaer",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Utvalgssekretæren spør hva som egentlig er politisk valg",
+          "summary": "Utvalgssekretæren trenger en sakstekst som skiller faglig risiko fra politisk prioritering.",
+          "purpose": "Utvalgssekretæren trenger en sakstekst som skiller faglig risiko fra politisk prioritering.",
+          "stakes": "Valget påvirker hvordan Lillebekk-saken blir forstått av folk, fagmiljø og politisk nivå.",
+          "situation": [
+            "Utvalgssekretæren trenger en sakstekst som skiller faglig risiko fra politisk prioritering.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både menneskene i saken og den juridiske planlogikken blir synlige."
+          ],
+          "task_domain": "utvalgssak",
+          "task_kind": "people",
+          "competency": "demokratisk_lesbarhet",
+          "learning_focus": [
+            "utvalgssak",
+            "demokratisk_lesbarhet"
+          ],
+          "pressure": "fag_vs_politikk",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
+              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "trust"
+              ],
+              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+            },
+            {
+              "id": "B",
+              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
+              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "fag_vs_politikk",
+              "utvalgssak"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "by_areal_people_politisk_007_presisjon"
+            ],
+            "B": [
+              "by_areal_people_politisk_007_tempo_risiko"
+            ]
+          },
+          "channel": "job",
+          "messageChannel": "job"
+        },
+        {
+          "id": "by_areal_people_arkitekt_008",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 64,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "noah_plankonsulent",
+          "sender": "noah_plankonsulent",
+          "person_id": "noah_plankonsulent",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Plankonsulenten sender en ny høydeillustrasjon etter arbeidstid",
+          "summary": "Arkitektens kveldsmelding viser mindre skygge på torget, men forutsetter at grøntdraget smalnes inn.",
+          "purpose": "Arkitektens kveldsmelding viser mindre skygge på torget, men forutsetter at grøntdraget smalnes inn.",
+          "stakes": "Valget påvirker hvordan Lillebekk-saken blir forstått av folk, fagmiljø og politisk nivå.",
+          "situation": [
+            "Arkitektens kveldsmelding viser mindre skygge på torget, men forutsetter at grøntdraget smalnes inn.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både menneskene i saken og den juridiske planlogikken blir synlige."
+          ],
+          "task_domain": "plankonsulentdialog",
+          "task_kind": "people",
+          "competency": "romlig_forstaelse",
+          "learning_focus": [
+            "plankonsulentdialog",
+            "romlig_forstaelse"
+          ],
+          "pressure": "hoyde_vs_grontdrag",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
+              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "trust"
+              ],
+              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+            },
+            {
+              "id": "B",
+              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
+              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "hoyde_vs_grontdrag",
+              "plankonsulentdialog"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "by_areal_people_arkitekt_008_presisjon"
+            ],
+            "B": [
+              "by_areal_people_arkitekt_008_tempo_risiko"
+            ]
+          },
+          "channel": "private",
+          "messageChannel": "private"
         }
       ]
     }

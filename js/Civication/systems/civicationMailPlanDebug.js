@@ -45,7 +45,15 @@
     const manifest = await loadJson(MANIFEST_PATH);
     const scope = slugify(role?.role_scope || role?.role_key || role?.title);
     const cat = slugify(role?.career_id || role?.category);
-    return (manifest?.files || []).find(p => { const parts = norm(p).split("/"); return slugify(parts[2] || "") === cat && slugify(p).includes(scope); }) || null;
+    for (const path of (manifest?.files || [])) {
+      const parts = norm(path).split("/");
+      const pathCategory = slugify(parts[3] || "");
+      if (cat && pathCategory && pathCategory !== cat) continue;
+      if (scope && slugify(path).includes(scope)) return path;
+      const model = await loadJson(path);
+      if (model && [model.role_key, model.role_scope, model.role_id, model.title].some(v => slugify(v) === scope || slugify(v).includes(scope))) return path;
+    }
+    return null;
   }
 
   function flattenFamilies(catalog, path) {
@@ -101,7 +109,11 @@
     const dailyItems = (daily?.runtime?.items || []).map((row, i) => ({ index: i, status: row.status, phase: row.phase || row.event?.phase_tag, slot: row.slot || row.event?.slot, id: row.id || row.event?.id, source_mail_id: row.source_mail_id || row.event?.source_mail_id, subject: row.subject || row.event?.subject, mail_type: row.mail_type || row.event?.mail_type, mail_class: row.mail_class || row.event?.mail_class, source_type: row.source_type || row.event?.source_type, channel: row.channel || row.event?.channel, planned: row.planned === true || row.event?.source_type === "planned", daily_extra: row.daily_extra === true, generated: row.generated === true, task_gate: row.task_gate || row.event?.task_gate || null, narrative: row.narrative || row.event?.narrative_stream_id || null }));
     const familyRows = families.map(f => ({ id: f.id, type: f.type || "annet", path: f.path, mail_count: f.mails.length, thread_count: f.threads.length, used_in_mailPlan: used.has(f.id), package: f.raw.package || null, week: f.raw.week || null }));
     const byType = familyRows.reduce((a, f) => ((a[f.type] ||= []).push(f), a), {});
-    const phases = new Set(Object.keys(daily?.by_phase || {}).concat(dailyItems.map(x => x.phase).filter(Boolean)));
+    const familyPhases = families.flatMap(f => [
+      ...f.mails.map(m => m?.phase || m?.phase_tag),
+      ...f.threads.map(t => t?.phase || t?.phase_tag)
+    ]).map(norm).filter(Boolean);
+    const phases = new Set(Object.keys(daily?.by_phase || {}).concat(dailyItems.map(x => x.phase).filter(Boolean), familyPhases));
     const gaps = [];
     if (!model) gaps.push("roleModel mangler"); if (!plan) gaps.push("mailPlan mangler");
     [...used].filter(id => !families.some(f => f.id === id)).forEach(id => gaps.push(`mailPlan peker til missing family: ${id}`));
