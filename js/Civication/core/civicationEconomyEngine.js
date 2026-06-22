@@ -564,9 +564,185 @@ function qualifiesForCareer(player, career) {
 }
 
 
+
+/** @returns {CiviEconomyRecord} */
+function readMeritsByCategorySafe() {
+  try {
+    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    return merits && typeof merits === "object" ? merits : {};
+  } catch {
+    return {};
+  }
+}
+
+/** @returns {CiviEconomyRecord | null} */
+function getHomeSnapshotSafe() {
+  try {
+    const snap = window.CivicationHome?.getHomeSnapshot?.();
+    if (snap && typeof snap === "object") return snap;
+  } catch {}
+  try {
+    const state = window.CivicationHome?.getState?.();
+    return state && typeof state === "object" ? state : null;
+  } catch {}
+  return null;
+}
+
+/** @param {CiviEconomyRecord | null} home @returns {number} */
+function getHomeRent(home) {
+  const candidates = [
+    home?.currentDistrict?.rent,
+    home?.district?.rent,
+    home?.home?.currentDistrict?.rent,
+    home?.state?.currentDistrict?.rent,
+    home?.state?.home?.currentDistrict?.rent,
+    home?.state?.home?.rent,
+    home?.rent,
+    home?.lastRentAmount
+  ];
+  for (const value of candidates) {
+    const n = Number(value);
+    if (Number.isFinite(n)) return n;
+  }
+  return 0;
+}
+
+/** @returns {string} */
+function currentEconomyWeekKey() {
+  try {
+    if (typeof weekKey === "function") return String(weekKey(new Date()));
+  } catch {}
+  try {
+    if (typeof window.weekKey === "function") return String(window.weekKey(new Date()));
+  } catch {}
+  return new Date().toISOString().slice(0, 10);
+}
+
+/** @param {string | null | undefined} iso @returns {string | null} */
+function economyWeekKeyFromIso(iso) {
+  if (!iso) return null;
+  try {
+    if (typeof weekKey === "function") return String(weekKey(new Date(iso)));
+  } catch {}
+  try {
+    if (typeof window.weekKey === "function") return String(window.weekKey(new Date(iso)));
+  } catch {}
+  return null;
+}
+
+/** @param {number} balance @returns {CiviEconomyRecord} */
+function getAffordabilitySnapshot(balance) {
+  const base = {
+    balance,
+    canAffordVisiblePacksCount: null,
+    cheapestVisiblePackPrice: null,
+    cheapestVisiblePackId: null,
+    canAffordCheapestVisiblePack: null,
+    notes: []
+  };
+  try {
+    const visible = window.HG_CiviShop?.getVisiblePacks?.();
+    if (!Array.isArray(visible)) {
+      base.notes.push("visible_packs_async_or_unavailable");
+      return base;
+    }
+    let cheapest = null;
+    let count = 0;
+    for (const pack of visible) {
+      if (!pack || typeof pack !== "object") continue;
+      const price = Number(pack.price_pc ?? pack.price ?? pack.pc ?? pack.cost);
+      if (!Number.isFinite(price)) continue;
+      if (balance >= price) count += 1;
+      if (!cheapest || price < cheapest.price) cheapest = { id: pack.id ?? pack.pack_id ?? null, price };
+    }
+    return {
+      ...base,
+      canAffordVisiblePacksCount: count,
+      cheapestVisiblePackPrice: cheapest ? cheapest.price : null,
+      cheapestVisiblePackId: cheapest ? cheapest.id : null,
+      canAffordCheapestVisiblePack: cheapest ? balance >= cheapest.price : null,
+      notes: base.notes
+    };
+  } catch {
+    base.notes.push("visible_packs_async_or_unavailable");
+    return base;
+  }
+}
+
+/** @returns {CiviEconomyRecord} */
+function getEconomySnapshot() {
+  const warnings = [];
+  let rawWallet = null;
+  try { rawWallet = window.CivicationState?.getWallet?.() || null; } catch {}
+  if (!rawWallet || typeof rawWallet !== "object") warnings.push("wallet_missing");
+  const wallet = normalizeWallet(rawWallet || { balance: 0, last_tick_iso: null });
+  const balance = Number(wallet.balance || 0);
+
+  /** @type {CiviEconomyCareer | null} */
+  let activePosition = null;
+  try { activePosition = window.CivicationState?.getActivePosition?.() || null; } catch {}
+  const careerId = String(activePosition?.career_id || "").trim();
+  if (!careerId) warnings.push("no_active_position");
+
+  /** @type {CiviEconomyCareer | null} */
+  const career = careerId && Array.isArray(window.HG_CAREERS)
+    ? (window.HG_CAREERS.find(c => c && String(/** @type {CiviEconomyCareer} */ (c).career_id) === careerId) || null)
+    : null;
+  if (careerId && !career) warnings.push("no_career_data");
+
+  /** @type {CiviEconomyBadge | null} */
+  const badge = careerId && Array.isArray(window.BADGES)
+    ? (window.BADGES.find(b => b && String(b.id) === careerId) || null)
+    : null;
+  const merits = readMeritsByCategorySafe();
+  const points = Number(merits?.[careerId]?.points || 0);
+  let tierIndex = 0;
+  try { tierIndex = badge ? Number(deriveTierFromPoints(badge, points).tierIndex || 0) : 0; } catch { tierIndex = 0; }
+  const tierLabel = badge?.tiers?.[tierIndex]?.label || null;
+  const weeklySalary = career ? calculateWeeklySalary(career, tierIndex) : 0;
+  const baseExpense = Number(career?.economy?.weekly_expenses?.base || 0);
+  const riskMod = Number(career?.economy?.weekly_expenses?.risk_modifier || 1);
+  const weeklyJobExpenses = Number.isFinite(baseExpense * riskMod) ? baseExpense * riskMod : 0;
+  const weeklyNetBeforeHome = weeklySalary - weeklyJobExpenses;
+  const home = getHomeSnapshotSafe();
+  const homeRent = getHomeRent(home);
+  const estimatedNetAfterHome = weeklySalary - weeklyJobExpenses - homeRent;
+  const lastTickIso = wallet.last_tick_iso || null;
+  const currentWeekKey = currentEconomyWeekKey();
+  const alreadyTickedThisWeek = economyWeekKeyFromIso(lastTickIso) === currentWeekKey;
+  if (alreadyTickedThisWeek) warnings.push("already_ticked_this_week");
+  if (estimatedNetAfterHome < 0) warnings.push("negative_estimated_net");
+  if (["pressure", "crisis"].includes(String(home?.housingPressure || home?.state?.home?.housingPressure || ""))) warnings.push("rent_pressure");
+
+  return {
+    wallet,
+    activePosition,
+    career,
+    badge,
+    merits,
+    tierIndex,
+    tierLabel,
+    weeklySalary,
+    weeklyJobExpenses,
+    weeklyNetBeforeHome,
+    home,
+    homeRent,
+    estimatedNetAfterHome,
+    balance,
+    lastTickIso,
+    tickStatus: { lastTickIso, currentWeekKey, alreadyTickedThisWeek, canTickNow: !alreadyTickedThisWeek },
+    affordability: getAffordabilitySnapshot(balance),
+    warnings
+  };
+}
+
+
   
 window.CivicationEconomyEngine = {
-  tickWeekly: tickPCIncomeWeekly
+  tickWeekly: tickPCIncomeWeekly,
+  getEconomySnapshot
 };
+
+window.HG_CiviEconomySnapshot = getEconomySnapshot;
 
 })();
