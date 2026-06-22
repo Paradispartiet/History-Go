@@ -41,6 +41,7 @@ declare global {
     HG_CiviWorkdaySnapshot?: () => any;
     HG_CiviProfileSnapshot?: () => any;
     HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any> };
+    HG_CURRENT_USER_ID?: string;
     openSpotMatchList?: (...args: any[]) => any;
     CivicationCareerOutcomeRuntime?: any;
     CivicationChoiceDirector?: any;
@@ -262,10 +263,12 @@ declare global {
     clearActiveNextUpPath?: any;
     clearNextUpPath?: any;
     clearPos?: any;
+    checkSharedQuizOpportunities?: (quizId?: unknown, context?: Record<string, unknown>) => unknown;
     clients?: any;
     closeNatureCard?: any;
     closeNearbyDrawer?: any;
     currentPos?: any;
+    createSharedObservation?: (data?: Record<string, unknown>) => unknown;
     dataHub?: any;
     debugNextUp?: any;
     debugNextUpPath?: any;
@@ -275,11 +278,14 @@ declare global {
     el?: any;
     flyToPlace?: any;
     getActiveNextUpPath?: any;
+    getLearningCircles?: () => Array<{ members?: string[]; [key: string]: unknown }>;
     getLesesporForPlace?: any;
     getNaturePlaces?: any;
     getNextUpHistory?: any;
     getNextUpProfileSummary?: any;
+    getOpenMeetups?: () => Array<Record<string, unknown>>;
     getPos?: any;
+    getSharedRoutes?: () => Array<{ completionState?: string; [key: string]: unknown }>;
     getZones?: any;
     globalSearch?: any;
     hgConsole?: any;
@@ -321,11 +327,15 @@ declare global {
     showRewardPlace?: any;
     showRouteTo?: any;
     skipWaiting?: any;
+    startSharedQuiz?: (...args: any[]) => unknown;
+    startSharedRoute?: (data?: Record<string, unknown>) => unknown;
     summarizeActiveNextUpPath?: any;
     supabase?: any;
     tagToCat?: any;
     toggleFooterNextUp?: any;
     toggleNearbyDrawer?: any;
+    updateKnowledgeFingerprint?: (context?: Record<string, unknown>) => unknown;
+    updateSocialMatchIndex?: (context?: Record<string, unknown>) => unknown;
     updateNearbyBadgeFilterButton?: any;
     updateNearbyFilterButton?: any;
     updateNearbySortButton?: any;
@@ -345,6 +355,7 @@ declare global {
   var DomainRegistry: any;
   var FLORA: any;
   var HG: any;
+  var HG_CURRENT_USER_ID: string | undefined;
   var HGEngine: any;
   var HGMap: any;
   var L: any;
@@ -352,6 +363,11 @@ declare global {
   var QuizEngine: any;
   var ViewportManager: any;
   var catIdFromDisplay: any;
+  var checkSharedQuizOpportunities: ((quizId?: unknown, context?: Record<string, unknown>) => unknown) | undefined;
+  var createSharedObservation: ((data?: Record<string, unknown>) => unknown) | undefined;
+  var getLearningCircles: (() => Array<{ members?: string[]; [key: string]: unknown }>) | undefined;
+  var getOpenMeetups: (() => Array<Record<string, unknown>>) | undefined;
+  var getSharedRoutes: (() => Array<{ completionState?: string; [key: string]: unknown }>) | undefined;
   var maplibregl: any;
   var openPlaceCard: any;
 
@@ -359,6 +375,10 @@ declare global {
   var wire: any;
   var showPersonPopup: any;
   var showPlacePopup: any;
+  var startSharedQuiz: ((...args: any[]) => unknown) | undefined;
+  var startSharedRoute: ((data?: Record<string, unknown>) => unknown) | undefined;
+  var updateKnowledgeFingerprint: ((context?: Record<string, unknown>) => unknown) | undefined;
+  var updateSocialMatchIndex: ((context?: Record<string, unknown>) => unknown) | undefined;
   var visited: any;
 }
 

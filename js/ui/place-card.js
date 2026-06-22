@@ -2201,7 +2201,9 @@ if (btnExploreTogether) {
       <button type="button" role="menuitem" data-social-action="route">Inviter til rute</button>
     `;
     menu.addEventListener("click", (menuEvent) => {
-      const action = menuEvent.target?.closest?.("[data-social-action]")?.dataset?.socialAction;
+      const target = menuEvent.target instanceof Element ? menuEvent.target : null;
+      const actionButton = target?.closest("[data-social-action]");
+      const action = actionButton instanceof HTMLElement ? actionButton.dataset.socialAction : "";
       if (!action) return;
       menu.remove();
       const placeId = String(place.id || "").trim();
@@ -2215,7 +2217,7 @@ if (btnExploreTogether) {
     const footerRect = footer.getBoundingClientRect();
     const btnRect = btnExploreTogether.getBoundingClientRect();
     menu.style.left = `${btnRect.left - footerRect.left + (btnRect.width / 2)}px`;
-    setTimeout(() => document.addEventListener("click", function close(ev) { if (!menu.contains(ev.target) && !btnExploreTogether.contains(ev.target)) { menu.remove(); document.removeEventListener("click", close); } }), 0);
+    setTimeout(() => document.addEventListener("click", function close(ev) { const target = ev.target instanceof Node ? ev.target : null; if (target && !menu.contains(target) && !btnExploreTogether.contains(target)) { menu.remove(); document.removeEventListener("click", close); } }), 0);
   };
 }
 
