@@ -34,7 +34,9 @@ const OUT_DIR = path.join(ROOT, "dist/web");
 const ENTRIES = [
   { in: "js/fagkartLoader.ts", out: "fagkartLoader" },
   { in: "js/fagHealthReport.ts", out: "fagHealthReport" },
-  { in: "js/hgKnowledgeEngine.ts", out: "hgKnowledgeEngine" }
+  { in: "js/hgKnowledgeEngine.ts", out: "hgKnowledgeEngine" },
+  { in: "js/hgSocialPrivacy.ts", out: "hgSocialPrivacy" },
+  { in: "js/hgModeration.ts", out: "hgModeration" }
 ];
 
 const watch = process.argv.includes("--watch");

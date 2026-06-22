@@ -55,6 +55,16 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 - `sw.js` `PRECACHE_URLS` oppdatert fra `js/fagHealthReport.js`/`js/hgKnowledgeEngine.js` til `dist/web/...`, og `SW_VERSION` bumpet.
 - Verifisert: `typecheck:web` grønn, `build:web` grønn, `vm`-kjøring bekrefter at begge globaler publiseres med uendret API, og `npm run typecheck` viser ingen ny feil.
 
+### Batch 3 (fullført)
+
+`js/hgSocialPrivacy.js` → `.ts` og `js/hgModeration.js` → `.ts`:
+
+- Begge er rene IIFE-er lastet kun av `profile.html`, publiserer globaler via `Object.assign(window, …)` (`HG_SOCIAL_INDEX`, `getPrivacySettings`, … / `HGModeration`, `canInteract`, …). Hadde `// @ts-nocheck` fra før.
+- Adferdsidentisk konvertering; registrert i `build/build-web.mjs`; `profile.html` peker nå på `dist/web/`. Ikke i `sw.js` `PRECACHE_URLS`.
+- Verifisert: `typecheck:web` + `build:web` grønn, `vm`-kjøring bekrefter begge globaler, `npm run typecheck` ingen ny feil.
+
+Browser-migrert så langt: `fagkartLoader`, `fagHealthReport`, `hgKnowledgeEngine`, `hgSocialPrivacy`, `hgModeration` (5 filer).
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.
