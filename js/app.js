@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("assertRuntimeCategoryStorage", assertRuntimeCategoryStorage);
     await safeRun("loadLearningLog", () => loadScriptOnce("js/learningLog.js"));
     await safeRun("loadRuntimeHealth", () => loadScriptOnce("js/debug/HGRuntimeHealth.js"));
+    await safeRun("loadRuntimeHealthPanel", () => loadScriptOnce("js/debug/HGRuntimeHealthPanel.js"));
+    await safeRun("renderRuntimeHealthPanel", () => window.HG_RuntimeHealthPanel?.render?.());
     await safeRun("loadState", () => loadScriptOnce("js/state/state.js"));
 
     await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));
