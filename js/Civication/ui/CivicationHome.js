@@ -36,19 +36,47 @@
   }
 
   function ensure(state) {
-    state.home ||= {
-      status: "homeless",
-      district: null,
-      level: 0,
-      moveCount: 0,
-      housingPressure: "none",
-      rentArrears: 0,
-      lastRentPeriod: null
-    };
+    state = state && typeof state === "object" ? state : {};
+    const availableIds = Object.keys(DISTRICTS || {});
+    const startId = availableIds.includes("sagene") ? "sagene" : (availableIds[0] || null);
 
+    state.home ||= {};
+    state.objects ||= [];
+
+    const currentDistrictId = state.currentDistrictId || state.home.district || null;
+    const unlockedDistrictIds = uniqueStrings([
+      ...(state.unlockedDistrictIds || []),
+      ...(state.home.unlockedDistrictIds || []),
+      ...getStartDistricts().map(d => d.id),
+      ...(currentDistrictId ? [currentDistrictId] : [])
+    ]);
+
+    state.currentDistrictId = currentDistrictId;
+    state.unlockedDistrictIds = unlockedDistrictIds;
+    state.rentDue = Number(state.rentDue || state.home.rentDue || 0);
+    state.rentPaidThisWeek = Boolean(state.rentPaidThisWeek || state.home.rentPaidThisWeek || false);
+    state.lastRentTickDate = state.lastRentTickDate || state.home.lastRentTickDate || null;
+    state.housingStatus = state.housingStatus || state.home.housingStatus || (currentDistrictId ? "stable" : "homeless");
+    state.moveHistory = Array.isArray(state.moveHistory) ? state.moveHistory : (Array.isArray(state.home.moveHistory) ? state.home.moveHistory : []);
+    state.evictionWarnings = Array.isArray(state.evictionWarnings) ? state.evictionWarnings : (Array.isArray(state.home.evictionWarnings) ? state.home.evictionWarnings : []);
+
+    state.home.status = currentDistrictId ? "settled" : "homeless";
+    state.home.district = currentDistrictId;
+    state.home.level = Number(state.home.level || (currentDistrictId ? 1 : 0));
+    state.home.moveCount = Number(state.home.moveCount || state.moveHistory.length || 0);
     state.home.housingPressure ||= "none";
     state.home.rentArrears = Number(state.home.rentArrears || 0);
-    state.objects ||= [];
+    state.home.rentDue = state.rentDue;
+    state.home.rentPaidThisWeek = state.rentPaidThisWeek;
+    state.home.lastRentTickDate = state.lastRentTickDate;
+    state.home.housingStatus = state.housingStatus;
+    state.home.unlockedDistrictIds = unlockedDistrictIds;
+    state.home.moveHistory = state.moveHistory;
+    state.home.evictionWarnings = state.evictionWarnings;
+
+    if (!state.currentDistrictId && startId && state.home.autoStart !== false) {
+      state.unlockedDistrictIds = uniqueStrings(state.unlockedDistrictIds.concat(startId));
+    }
 
     return state;
   }
@@ -76,6 +104,13 @@
   function currentPeriodKey() {
     const d = new Date();
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+  }
+
+  function weekKey(date) {
+    const d = new Date(date);
+    const first = new Date(d.getFullYear(), 0, 1);
+    const days = Math.floor((d.getTime() - first.getTime()) / 86400000);
+    return `${d.getFullYear()}-W${String(Math.ceil((days + first.getDay() + 1) / 7)).padStart(2, "0")}`;
   }
 
   function normalizeList(xs) {
@@ -156,7 +191,7 @@
 
   function getCurrentDistrict() {
     const state = ensure(load());
-    return getDistrict(state?.home?.district);
+    return getDistrict(state?.currentDistrictId || state?.home?.district);
   }
 
   function getAvailableDistricts() {
@@ -201,6 +236,49 @@
   function formatRent(district) {
     const rent = Number(district?.rent || 0);
     return rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`;
+  }
+
+  function getEconomicCapital(capital = getCapital()) {
+    return Number(capital?.economic || 0);
+  }
+
+  function getAffordabilityLabel(district, capital = getCapital()) {
+    const baseCost = Number(district?.baseCost || 0);
+    if (baseCost <= 0) return "Gratis";
+
+    const economic = getEconomicCapital(capital);
+    return economic >= baseCost ? "Du har råd" : `Mangler ${baseCost - economic} kapital`;
+  }
+
+  function getDistrictTitle(district) {
+    return district?.title || district?.name || String(district?.id || "");
+  }
+
+  function uniqueStrings(values) {
+    return Array.from(new Set(normalizeList(values)));
+  }
+
+  function getIncomeSnapshot() {
+    const state = /** @type {any} */ (window.CivicationState?.getState?.() || {});
+    const active = /** @type {any} */ (window.CivicationState?.getActivePosition?.() || state?.career?.activeJob || null);
+    const wallet = /** @type {any} */ (window.CivicationState?.getWallet?.() || {});
+    const jobStatus = String(active?.status || state?.career?.status || "").toLowerCase();
+    const income = Number(wallet.weekly_income ?? wallet.weeklyIncome ?? active?.salary ?? active?.weekly_income ?? state?.career?.weeklyIncome ?? 0);
+    const hasJob = !!(active?.career_id || active?.id || active?.role_id || state?.career?.activeJob);
+    const fired = jobStatus === "fired" || jobStatus === "terminated" || state?.stability === "FIRED";
+    return { hasJob, fired, income, noIncome: !hasJob || fired || income <= 0 };
+  }
+
+  function getSupportEligibility() {
+    const income = getIncomeSnapshot();
+    const status = getHousingStatus();
+    const eligible = income.noIncome || status === "at_risk" || status === "homeless";
+    return {
+      eligibleForSupport: eligible,
+      supportReason: eligible
+        ? (income.noIncome ? "Ingen jobb eller inntekt registrert" : "Boligstatus er presset")
+        : "Ikke støtteberettiget nå"
+    };
   }
 
   function requirementText(district) {
@@ -304,6 +382,117 @@
   // Public API
   // ----------------------------------------------------------
 
+  function unlockDistrict(districtId, reason = "manual") {
+    const district = getDistrict(districtId);
+    if (!district) return false;
+    const state = ensure(load());
+    state.unlockedDistrictIds = uniqueStrings(state.unlockedDistrictIds.concat(district.id));
+    state.unlockReasons ||= {};
+    state.unlockReasons[district.id] = String(reason || "manual");
+    state.home.unlockedDistrictIds = state.unlockedDistrictIds;
+    save(state);
+    dispatchHomeChanged();
+    return true;
+  }
+
+  function canMoveToDistrict(districtId) {
+    const district = getDistrict(districtId);
+    if (!district) return { ok: false, reason: "Ukjent nabolag" };
+    const state = ensure(load());
+    const unlocked = state.unlockedDistrictIds.includes(district.id);
+    const lockReason = unlocked ? "" : getDistrictLockReason(district);
+    return { ok: unlocked || !lockReason, reason: lockReason };
+  }
+
+  function moveToDistrict(districtId) {
+    const district = getDistrict(districtId);
+    if (!district) return false;
+    const access = canMoveToDistrict(districtId);
+    if (!access.ok) return false;
+    const state = ensure(load());
+    const from = state.currentDistrictId || null;
+    if (from === district.id) return true;
+    state.currentDistrictId = district.id;
+    state.unlockedDistrictIds = uniqueStrings(state.unlockedDistrictIds.concat(district.id));
+    state.housingStatus = state.housingStatus === "homeless" ? "stable" : state.housingStatus;
+    state.moveHistory.push({ from, to: district.id, at: new Date().toISOString() });
+    state.home.district = district.id;
+    state.home.status = "settled";
+    state.home.moveCount = Number(state.home.moveCount || 0) + (from ? 1 : 0);
+    save(state);
+    dispatchHomeChanged();
+    return true;
+  }
+
+  function getRentPressure() {
+    const state = ensure(load());
+    const district = getDistrict(state.currentDistrictId);
+    const rent = Number(district?.rent || 0);
+    const economic = getEconomicCapital();
+    const income = getIncomeSnapshot();
+    let score = rent <= 0 ? 0 : Math.round((rent / Math.max(1, economic + rent)) * 100);
+    if (rent >= 10) score += 15;
+    if (rent <= 4) score -= 10;
+    if (income.noIncome) score += 30;
+    score = Math.max(0, Math.min(100, score));
+    return { score, label: score >= 75 ? "Kritisk" : score >= 50 ? "Høyt" : score >= 25 ? "Moderat" : "Lavt", rent, noIncome: income.noIncome };
+  }
+
+  function worsenHousingStatus(status) {
+    return status === "stable" ? "strained" : status === "strained" ? "at_risk" : "homeless";
+  }
+
+  function getHousingStatus() {
+    const state = ensure(load());
+    const pressure = getRentPressure();
+    if (state.housingStatus === "stable" && pressure.noIncome && pressure.rent > 0) return "strained";
+    return state.housingStatus || "homeless";
+  }
+
+  function getHousingStatusLabel() {
+    return ({ stable: "Stabil", strained: "Anstrengt", at_risk: "Utkastelsesfare", homeless: "Uten bolig" })[getHousingStatus()] || "Ukjent";
+  }
+
+  function getHomeConsequences() {
+    const current = getCurrentDistrict();
+    const pressure = getRentPressure();
+    return {
+      economy: -Number(current?.rent || 0),
+      prestige: Number(current?.prestige || 0),
+      pressure: pressure.score,
+      eligibleForSupport: getSupportEligibility().eligibleForSupport
+    };
+  }
+
+  function applyRentTick(force = false) {
+    const state = ensure(load());
+    const district = getDistrict(state.currentDistrictId);
+    if (!district) return { ok: false, reason: "no_district" };
+    const week = weekKey(new Date());
+    if (!force && state.lastRentTickDate === week) return { ok: true, skipped: true, week };
+    const rent = Number(district.rent || 0);
+    state.lastRentTickDate = week;
+    state.rentPaidThisWeek = false;
+    state.rentDue = Number(state.rentDue || 0) + rent;
+    const capital = getCapital();
+    const before = getEconomicCapital(capital);
+    if (rent > 0 && before >= rent) {
+      capital.economic = before - rent;
+      state.rentDue = Math.max(0, state.rentDue - rent);
+      state.rentPaidThisWeek = true;
+      state.housingStatus = getIncomeSnapshot().noIncome ? "strained" : "stable";
+      saveCapital(capital);
+    } else if (rent > 0) {
+      state.housingStatus = worsenHousingStatus(state.housingStatus || "stable");
+      state.evictionWarnings.push({ districtId: district.id, rentDue: state.rentDue, at: new Date().toISOString() });
+    }
+    state.home.housingStatus = state.housingStatus;
+    state.home.rentDue = state.rentDue;
+    save(state);
+    dispatchHomeChanged();
+    return { ok: true, week, rent, before, rentDue: state.rentDue, housingStatus: state.housingStatus };
+  }
+
   function getState() {
     return ensure(load());
   }
@@ -338,6 +527,81 @@
     }
 
     return influence;
+  }
+
+  function getDistrictViewModels() {
+    const state = ensure(load());
+    const currentId = state?.currentDistrictId || state?.home?.district || null;
+    const capital = getCapital();
+
+    return getAvailableDistricts().map((district) => {
+      const lockReason = getDistrictLockReason(district);
+      const isCurrent = String(currentId || "") === String(district.id || "");
+
+      const unlocked = state.unlockedDistrictIds.includes(district.id);
+      const unlockReason = state.unlockReasons?.[district.id] || (district.isStartOption ? "Startnabolag" : (unlocked ? "Låst opp" : ""));
+
+      return {
+        id: district.id,
+        districtId: district.id,
+        name: district.name,
+        title: getDistrictTitle(district),
+        isCurrent,
+        isStartOption: district.isStartOption === true,
+        canSelect: unlocked || !lockReason || isCurrent,
+        unlockReason,
+        lockReason: (unlocked || isCurrent) ? "" : lockReason,
+        cost: Number(district.baseCost || 0),
+        costLabel: formatCost(district),
+        rent: Number(district.rent || 0),
+        rentLabel: formatRent(district),
+        prestige: Number(district.prestige || 0),
+        shortDesc: district.shortDesc || "",
+        requirementText: requirementText(district),
+        visitRequirementPlaceIds: normalizeList(district.visitRequirementPlaceIds),
+        requirements: { ...(district.quizRequirements || {}) },
+        quizRequirements: { ...(district.quizRequirements || {}) },
+        tags: normalizeList(district.choice_tags),
+        housing_access: normalizeList(district.housing_access),
+        store_access: normalizeList(district.store_access),
+        choice_tags: normalizeList(district.choice_tags),
+        modifiers: { ...(district.modifiers || {}) },
+        affordabilityLabel: getAffordabilityLabel(district, capital)
+      };
+    });
+  }
+
+  function getHomeSnapshot() {
+    const state = ensure(load());
+    const currentDistrict = getDistrict(state?.home?.district);
+    const selectedAccess = getSelectedDistrictAccess();
+    const capital = getCapital();
+    const districts = getDistrictViewModels();
+    const rent = Number(currentDistrict?.rent || 0);
+
+    return {
+      state,
+      currentDistrict,
+      selectedAccess,
+      capital,
+      economicCapital: getEconomicCapital(capital),
+      districts,
+      startDistricts: districts.filter((district) => district.isStartOption),
+      settled: state?.home?.status === "settled" && !!currentDistrict,
+      housingPressure: state?.home?.housingPressure || "none",
+      rentArrears: Number(state?.home?.rentArrears || 0),
+      lastRentAmount: Number(state?.home?.lastRentAmount || 0),
+      moveCount: Number(state?.home?.moveCount || 0),
+      monthlyRentLabel: rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`,
+      housingStatus: getHousingStatus(),
+      rentPressure: getRentPressure(),
+      rentDue: Number(state.rentDue || 0),
+      unlockedDistrictIds: uniqueStrings(state.unlockedDistrictIds),
+      availableMoves: districts.filter(d => d.canSelect && !d.isCurrent),
+      blockedMoves: districts.filter(d => !d.canSelect),
+      supportEligibility: getSupportEligibility(),
+      homeInfluence: getHomeInfluence()
+    };
   }
 
   function applyHousingPeriodCosts(force = false) {
@@ -464,64 +728,19 @@
   // ----------------------------------------------------------
 
   function canPurchaseDistrict(districtId) {
-    const district = getDistrict(districtId);
-    return !getDistrictLockReason(district);
+    return canMoveToDistrict(districtId).ok;
   }
 
   function purchaseDistrict(districtId) {
-    const district = getDistrict(districtId);
-    if (!district) return false;
-    if (!canPurchaseDistrict(districtId)) return false;
-
-    const state = ensure(load());
-
-    state.home.status = "settled";
-    state.home.district = district.id;
-    state.home.level = Math.max(1, Number(state.home.level || 0));
-    state.home.selectedAt = Date.now();
-    state.home.housingPressure = "none";
-    state.home.rentArrears = Math.max(0, Number(state.home.rentArrears || 0));
-
-    save(state);
-    dispatchHomeChanged();
-
-    return true;
+    return moveToDistrict(districtId);
   }
 
   function moveDistrict(newId) {
-    const district = getDistrict(newId);
-    if (!district) return false;
-
-    const state = ensure(load());
-
-    if (state.home.status !== "settled") return false;
-    if (state.home.district === newId) return true;
-    if (!canPurchaseDistrict(newId)) return false;
-
-    state.home.district = district.id;
-    state.home.moveCount = (state.home.moveCount || 0) + 1;
-    state.home.movedAt = Date.now();
-    state.home.housingPressure = "none";
-
-    save(state);
-
-    if (window.CivicationPsyche?.updateIntegrity) {
-      window.CivicationPsyche.updateIntegrity(-5);
-    }
-
-    dispatchHomeChanged();
-
-    return true;
+    return moveToDistrict(newId);
   }
 
   function selectDistrict(districtId) {
-    const state = ensure(load());
-
-    if (state.home.status === "settled") {
-      return moveDistrict(districtId);
-    }
-
-    return purchaseDistrict(districtId);
+    return moveToDistrict(districtId);
   }
 
   // ----------------------------------------------------------
@@ -530,10 +749,12 @@
 
   function renderDistrictCard(district, currentId) {
     const isCurrent = String(currentId || "") === String(district.id || "");
-    const canSelect = canPurchaseDistrict(district.id);
     const reason = getDistrictLockReason(district);
+    const canSelect = !reason || isCurrent;
     const tagText = normalizeList(district.choice_tags).join(" · ");
+    const storeText = normalizeList(district.store_access).join(" · ");
     const classes = ["civi-district-card"];
+    const affordability = getAffordabilityLabel(district);
 
     if (district.isStartOption) classes.push("is-start-option");
     if (isCurrent) classes.push("is-current");
@@ -542,17 +763,20 @@
       <div class="${classes.join(" ")}" style="padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
           <div>
-            <div style="font-weight:700;">${district.name}</div>
-            <div style="font-size:0.88rem;opacity:0.78;margin-top:3px;">${district.isStartOption ? "Startnabolag" : "Låses opp senere"} · ${formatCost(district)} · ${formatRent(district)} · Prestige ${Number(district.prestige || 0)}</div>
+            <div style="font-weight:700;">${getDistrictTitle(district)}</div>
+            <div style="font-size:0.88rem;opacity:0.78;margin-top:3px;">${district.isStartOption ? "Startnabolag" : "Låses opp senere"} · ${isCurrent ? "Valgt nå" : "Ikke valgt"}</div>
           </div>
           ${isCurrent ? `<span style="font-size:0.82rem;opacity:0.8;">Valgt</span>` : ""}
         </div>
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
-        <div style="font-size:0.86rem;opacity:0.78;margin-top:8px;">${requirementText(district)}</div>
-        ${tagText ? `<div style="font-size:0.82rem;opacity:0.7;margin-top:6px;">${tagText}</div>` : ""}
-        ${!canSelect && !isCurrent && reason ? `<div style="font-size:0.82rem;opacity:0.74;margin-top:6px;">${reason}</div>` : ""}
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Krav: ${requirementText(district)}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Råd: ${affordability}</div>
+        ${storeText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Butikktilgang: ${storeText}</div>` : ""}
+        ${tagText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Valgtagger: ${tagText}</div>` : ""}
+        ${!canSelect && reason ? `<div style="font-size:0.82rem;opacity:0.78;margin-top:6px;">Låst: ${reason}</div>` : `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Låst opp: ${district.isStartOption ? "Startnabolag" : "Krav oppfylt"}</div>`}
         <div style="margin-top:10px;">
-          <button class="btn" data-civi-district-select="${district.id}" ${canSelect || isCurrent ? "" : "disabled"}>${isCurrent ? "Valgt" : "Velg"}</button>
+          <button class="btn" data-civi-district-select="${district.id}" ${canSelect ? "" : "disabled"}>${isCurrent ? "Bor her" : (canSelect ? "Flytt hit" : "Se krav")}</button>
         </div>
       </div>
     `;
@@ -600,8 +824,18 @@
     }
 
     const access = getSelectedDistrictAccess();
+    const capital = getCapital();
+    const influence = getHomeInfluence();
+    const storeText = access.store.length ? access.store.join(" · ") : "Ingen ekstra butikktilgang";
+    const choiceTagText = access.choice_tags.length ? access.choice_tags.join(" · ") : "Ingen egne valgtagger";
+    const influenceText = Object.entries(influence)
+      .filter(([, value]) => Number(value || 0) !== 0)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join(" · ") || "Ingen ekstra påvirkning";
     const pressure = state?.home?.housingPressure || "none";
     const arrears = Number(state?.home?.rentArrears || 0);
+    const rentPressure = getRentPressure();
+    const support = getSupportEligibility();
     const pressureText = pressure === "crisis"
       ? `Krise: ${arrears} PC i boligpress`
       : pressure === "pressure"
@@ -616,13 +850,19 @@
       </div>
       <div style="margin-top:10px;padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
         <div style="font-weight:700;">Boligstatus</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Økonomisk kapital nå: ${getEconomicCapital(capital)}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Hjem-påvirkning: ${influenceText}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Butikktilgang: ${storeText}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Valgtagger: ${choiceTagText}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Husleie: ${formatRent(current)}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Prestige: ${access.prestige}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Boligtilgang: ${access.housing.length ? access.housing.join(" · ") : "Ingen egne boligtagger"}</div>
-        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Boligpress: ${pressureText}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Status: ${getHousingStatusLabel()}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Boligpress: ${pressureText} · ${rentPressure.label} (${rentPressure.score}/100)</div>
+        ${rentPressure.noIncome ? `<div style="font-size:0.9rem;color:#ffd27a;margin-top:6px;">Advarsel: ingen jobb eller inntekt registrert. ${support.supportReason}.</div>` : ""}
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Flyttinger: ${Number(state?.home?.moveCount || 0)}</div>
         <button class="btn" data-civi-open-districts style="margin-top:10px;">Bytt nabolag</button>
-        <button class="btn" data-civi-apply-rent style="margin-top:10px;margin-left:6px;">Kjør boligperiode</button>
+        <button class="btn" data-civi-apply-rent style="margin-top:10px;margin-left:6px;">Betal husleie</button>
       </div>
     `;
 
@@ -660,7 +900,7 @@
       const rentButton = target.closest("[data-civi-apply-rent]");
       if (rentButton) {
         event.preventDefault();
-        applyHousingPeriodCosts(true);
+        applyRentTick(true);
         renderHomeStatus();
         return;
       }
@@ -685,7 +925,7 @@
 
   function boot() {
     bindHandlers();
-    applyHousingPeriodCosts(false);
+    applyRentTick(false);
     renderHomeStatus();
   }
 
@@ -752,6 +992,34 @@
         visibility: -5,
         autonomy: 5
       }
+    },
+
+    gronland: {
+      id: "gronland", name: "Grønland", baseCost: 20, rent: 5, prestige: 3, isStartOption: false,
+      shortDesc: "Tett, mangfoldig og billigere sentrumsnært. Krever litt lokal kunnskap.",
+      quizRequirements: { samfunn: 1 }, visitRequirementPlaceIds: ["gronland"],
+      housing_access: ["urban_core", "budget"], store_access: ["home", "food"], choice_tags: ["local", "budget", "community"], modifiers: { cultural: 5, autonomy: 5 }
+    },
+
+    toyen: {
+      id: "toyen", name: "Tøyen", baseCost: 25, rent: 5, prestige: 4, isStartOption: false,
+      shortDesc: "Park, kultur og nabolagsliv med moderat press.",
+      quizRequirements: { kunst: 1 }, visitRequirementPlaceIds: ["toyen", "toyenparken"],
+      housing_access: ["stable_home", "creative_collective"], store_access: ["home"], choice_tags: ["culture", "local", "budget"], modifiers: { cultural: 8 }
+    },
+
+    majorstuen: {
+      id: "majorstuen", name: "Majorstuen", baseCost: 55, rent: 9, prestige: 7, isStartOption: false,
+      shortDesc: "Knutepunkt med høyere leie, god mobilitet og mer status.",
+      quizRequirements: { naeringsliv: 1 }, visitRequirementPlaceIds: ["majorstuen"],
+      housing_access: ["central_comfort", "high_density"], store_access: ["home", "coffee"], choice_tags: ["mobility", "status"], modifiers: { visibility: 8 }
+    },
+
+    gamle_oslo: {
+      id: "gamle_oslo", name: "Gamle Oslo", baseCost: 10, rent: 4, prestige: 3, isStartOption: false,
+      shortDesc: "Lavere kostnader og sterk lokal forankring.",
+      quizRequirements: {}, visitRequirementPlaceIds: ["gamle_oslo"],
+      housing_access: ["stable_home", "budget"], store_access: ["home"], choice_tags: ["local", "frugality"], modifiers: { autonomy: 5 }
     },
 
     frogner: {
@@ -835,6 +1103,18 @@
     getAvailableDistricts,
     getStartDistricts,
     getSelectedDistrictAccess,
+    getHomeSnapshot,
+    getDistrictViewModels,
+    getDistrictLockReason,
+    unlockDistrict,
+    canMoveToDistrict,
+    moveToDistrict,
+    getRentPressure,
+    applyRentTick,
+    getHousingStatus,
+    getHousingStatusLabel,
+    getHomeConsequences,
+    getSupportEligibility,
     purchaseHomeObject,
     sellHomeObject,
     purchaseDistrict,

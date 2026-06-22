@@ -18,6 +18,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadDomainRuntime", () => loadScriptOnce("js/core/domainRuntime.js"));
     await safeRun("assertRuntimeCategoryStorage", assertRuntimeCategoryStorage);
     await safeRun("loadLearningLog", () => loadScriptOnce("js/learningLog.js"));
+    await safeRun("loadRuntimeHealth", () => loadScriptOnce("js/debug/HGRuntimeHealth.js"));
+    await safeRun("loadRuntimeSmokeRunner", () => loadScriptOnce("js/debug/HGRuntimeSmokeRunner.js"));
+    await safeRun("loadHGSocialSignals", () => loadScriptOnce("js/social/HGSocialSignals.js"));
+    await safeRun("loadHGSocialSignalBridge", () => loadScriptOnce("js/social/HGSocialSignalBridge.js"));
+    await safeRun("loadHGSocialDemo", () => loadScriptOnce("js/social/HGSocialDemo.js"));
+    await safeRun("loadHGSocialDemoAdapter", () => loadScriptOnce("js/social/HGSocialDemoAdapter.js"));
+    await safeRun("loadHGSocialDemoProfile", () => loadScriptOnce("js/social/HGSocialDemoProfile.js"));
+    await safeRun("loadHGSocialDemoPanel", () => loadScriptOnce("js/social/HGSocialDemoPanel.js"));
+    await safeRun("loadRuntimeHealthPanel", () => loadScriptOnce("js/debug/HGRuntimeHealthPanel.js"));
+    await safeRun("renderRuntimeHealthPanel", () => window.HG_RuntimeHealthPanel?.render?.());
     await safeRun("loadState", () => loadScriptOnce("js/state/state.js"));
 
     await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));

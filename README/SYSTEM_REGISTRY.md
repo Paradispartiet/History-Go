@@ -19,8 +19,39 @@ Følgende globals er eksplisitt tillatt:
 - window.OPEN_MODE
 - window.API
 - window.HG_CiviDebug
+- window.HG_RuntimeHealth
+- window.HG_RuntimeSmokeRunner
+- window.HG_RuntimeHealthPanel
+- window.HG_CiviEconomySnapshot
 
 Ingen andre globals skal introduseres uten beslutning.
+
+
+### Top-level runtime health diagnostics
+
+`window.HG_RuntimeHealth` is an allowed global exposed by `js/debug/HGRuntimeHealth.js` for browser-console diagnostics only.
+
+Allowed methods:
+
+- `HG_RuntimeHealth.snapshot()` — read-only snapshot of Civication health, HG Social health, core globals, map availability, profile/learning-log availability, and basic data counts.
+- `HG_RuntimeHealth.health()` — read-only top-level readiness report returning `{ ok, score, checks, blockers, warnings, summary, timestamp }`.
+- `HG_RuntimeHealth.printHealth()` — prints the report compactly in the console and returns the same health object.
+
+This helper is **read-only diagnostics only**. It may aggregate existing subsystem diagnostics, including `HG_CiviDebug.health()` and `HG_SocialDebug.health()`, but it must not own or change Civication logic, HG Social logic, map logic, profile logic, data loading, UI, gameplay flow, rendering, or localStorage contents.
+
+
+`window.HG_RuntimeSmokeRunner` is an allowed global exposed by `js/debug/HGRuntimeSmokeRunner.js` for **TEST_MODE-only** manual runtime smoke checks. It is enabled only when `localStorage.getItem("HG_TEST_MODE") === "1"`.
+
+Allowed methods:
+
+- `HG_RuntimeSmokeRunner.isEnabled()` — reads the TEST_MODE flag.
+- `HG_RuntimeSmokeRunner.run()` — performs a read-only smoke check of runtime health, map data readiness, learning-log read APIs, Civication/HG Social debug health, profile snapshot availability, PlaceCard readiness, and privacy field leaks.
+- `HG_RuntimeSmokeRunner.print()` — runs the same smoke check and prints compact console output.
+
+This helper is **read-only diagnostics only**. It must not create demo data, fake users, invites, circles, routes, unlocks, economy ticks, mail answers, place-card opens, or gameplay/profile/map/data mutations. When TEST_MODE is disabled, `run()` only reads `HG_TEST_MODE` and returns a skipped result.
+
+`window.HG_RuntimeHealthPanel` is an allowed global exposed by `js/debug/HGRuntimeHealthPanel.js` for **TEST_MODE-only** in-app diagnostics UI. It exposes `render()`, `refresh()`, `remove()`, and `isEnabled()`. The panel may render `HG_RuntimeHealth.health()` for manual testing only when test mode is enabled; it is read-only diagnostics UI, not production UI, and must not mutate gameplay, profile, map, data, Civication, HG Social, or localStorage state.
+
 
 ### Civication read-only debug-globals
 
@@ -30,6 +61,12 @@ Disse er eksplisitt tillatt, men er **kun read-only inspeksjon** (ingen gameplay
   (`CivicationUI.getCurrentWorkdaySnapshot`). Ren lesning av `CivicationState`,
   `CivicationCalendar`, `CivicationTaskEngine` og innboksen via den delte `computeWorkdayModel()`
   som `renderWorkdayPanel()` også bruker. Rører ikke DOM og endrer ikke rendering.
+- `window.CivicationHome.getHomeSnapshot()` — read-only Home/nabolag-øyeblikksbilde fra
+  `CivicationHome` / `civi_home_v1`, med kapital lest fra `hg_capital_v1`. Endrer ikke
+  gameplay-state, priser, husleie eller boligpress.
+- `window.CivicationHome.getDistrictViewModels()` — read-only district view models for
+  UI/debug. Bruker eksisterende distriktsdata, låseregler og kapital-lesning, men skriver
+  ingenting og endrer ikke kjøps-/flytteregler.
 
 ---
 
@@ -521,6 +558,65 @@ Deprecations
 ## Civication debug helper contract
 
 - `window.HG_CiviDebug` is an allowed global exposed by `js/Civication/CivicationBoot.js` for browser-console inspection only.
-- Allowed methods: `snapshot()` and `print()`. Both may be asynchronous and must be safe to call as `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
+- Allowed methods: `snapshot()`, `print()`, `health()`, and `printHealth()`. These may be asynchronous and must be safe to call as `await HG_CiviDebug.snapshot()`, `await HG_CiviDebug.print()`, `await HG_CiviDebug.health()`, and `await HG_CiviDebug.printHealth()`.
 - Debug helpers must be read-only. They must not mutate Civication state, wallet state, shop inventory, inbox, profile state, localStorage contents, UI, gameplay flow, or create new storage keys.
 - Debug helpers must handle missing runtimes, malformed localStorage, and failed visible-pack/store loading defensively.
+- `HG_CiviDebug.health()` is a registered read-only readiness helper that reuses the debug snapshot and returns `{ ok, score, checks, blockers, warnings, summary, timestamp }` for browser-console playability triage.
+- `HG_CiviDebug.printHealth()` is a registered read-only debug helper that prints the health report compactly and returns the same health object; it must not add UI, mutate state, or change rendering.
+
+---
+
+## Civication economy snapshot contract
+
+- `window.HG_CiviEconomySnapshot` is an allowed read-only global exposed by `js/Civication/core/civicationEconomyEngine.js` for browser-console and debug inspection.
+- The snapshot may combine wallet/job/home/shop data to explain current PC economy, but it must not mutate wallet, home, capital, shop, career state, localStorage contents, or gameplay flow.
+- Economy snapshots must handle missing runtimes and unavailable visible packs defensively.
+
+## Civication Home / Nabolag gameplay v1
+Status: implemented
+Purpose: makes district/home choice affect rent pressure, housing status and progression.
+
+- `window.CivicationHome.unlockDistrict(districtId, reason)` — records district unlocks in `civi_home_v1`.
+- `window.CivicationHome.canMoveToDistrict(districtId)` — returns whether a district can be moved into and why it is blocked.
+- `window.CivicationHome.moveToDistrict(districtId)` — updates current home district and move history when the district is unlocked/available.
+- `window.CivicationHome.applyRentTick(force)` — applies weekly rent using existing PC/economic capital and updates rent due/housing status.
+- `window.CivicationHome.getHomeSnapshot()` now includes current district, rent pressure, rent due, unlocked ids, available/blocked moves, housing status, and support eligibility.
+
+## HG Social Demo visible surfaces
+
+`window.HG_SocialDemo` is a TEST_MODE-only, demo-only, privacy-safe sandbox API. New public functions:
+
+- `HG_SocialDemo.sendDemoInvite({ toUserId, placeId, presetMessageId })` — writes or updates only demo invites in `hg_social_demo_state_v1`; it is not production data and not a real social graph invite.
+- `HG_SocialDemo.getPresetMessages()` — returns the allowed preset demo invitation messages; no free text is accepted.
+
+`window.HG_SocialDemoAdapter` is a TEST_MODE-only and seeded-demo-only adapter for visible manual-testing surfaces. It is demo-only, privacy-safe, not production data, and not a real social graph. It exposes `isEnabled`, place match readers, panel summary helpers, `renderPlaceSocialBlock`, `attachToPlaceCard`, and `detachFromPlaceCard` without mutating `PEOPLE`, `PLACES`, or real social storage.
+
+`window.HG_SocialDemoProfile` is a TEST_MODE-only demo profile card renderer. It is demo-only, privacy-safe, not production data, and not a real profile/social surface. It exposes `open`, `close`, and `renderCard` for fake demo users only.
+
+## HG Social Surface Contract Registry
+
+- `window.HG_SocialSurfaceContract` is a read-only contract global exposed by `js/social/HGSocialSurfaceContract.js`. It exposes `getContract`, `getLabels`, `getActions`, `getPrivacyRules`, `validateSurfaceItem`, `normalizeReason`, and `normalizeAction`. Production social surfaces must follow this contract.
+- `window.HG_SocialDemoAdapter` is TEST_MODE-only and seeded-demo-only. It may render demo PlaceCard social blocks and read seeded demo matches, but must never mutate `PEOPLE`, real social storage, real profile storage, production auth, or production place/person data.
+- `window.HG_SocialDemoProfile` is TEST_MODE-only. It renders a demo-only profile card and compare-knowledge action using seeded demo state only.
+- `window.HG_SocialDemoPanel` is TEST_MODE-only. It renders the stacked demo overview, profiles, matches, invites, circles, shared activities, timeline, and privacy checklist.
+- `window.HG_SocialDemo.getActions()` returns the deterministic demo action log from `hg_social_demo_actions_v1`.
+- `window.HG_SocialDemo.clearActions()` clears only the demo action log key.
+- `window.HG_SocialDemo.sendDemoInvite({ toUserId, placeId, presetMessageId, sourceSurface })` creates or reuses a demo-only preset invite and rejects free text.
+- `window.HG_SocialDemo.getPresetMessages()` returns the allowed preset demo invite labels. Demo surfaces are TEST_MODE-only; the contract is read-only; production social must follow the contract before exposing real social UI.
+
+---
+
+## HG Social Signals Registry
+
+- `window.HG_SocialSignals` is the real, local, privacy-safe learning/social signal API. It exposes `recordSignal`, typed record helpers, `getSignals`, `getSummary`, `getPublicProfileSeed`, `clearSignalsForTestMode`, and `health`.
+- `window.HG_SocialSignalBridge` is the event bridge for explicit player actions. It exposes `bind`, `unbind`, `isBound`, typed record-from-event helpers, and `health`.
+- Storage: `hg_social_signals_v1` only. The model uses deterministic `seq` values, not exact timestamps.
+- These APIs are not geolocation tracking, do not use passive proximity, and must not store live status, follower/following data, GPS/coordinates, backend users, or demo users.
+
+Registered privacy-safe CustomEvents, all explicit-action only and not geolocation tracking:
+
+- `hg:quizCompleted` — emitted after successful quiz/set completion payloads with quiz/place/domain/concept/tag fields only.
+- `hg:routeCompleted` — emitted only after an explicit route completion, never on route open.
+- `hg:observationAdded` — emitted after a saved observation with tags/concepts/title-safe fields only, not raw note bodies.
+- `hg:badgeEarned` — reserved for earned badge/merit tier payloads.
+- `hg:placeAffinity` — reserved for explicit place unlock/visited/quiz-completion affinity, not GPS or passive map movement.

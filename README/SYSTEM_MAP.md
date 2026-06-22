@@ -114,6 +114,26 @@ History Go er delt i tydelige lag:
 
 ---
 
+## Runtime diagnostics
+
+**Ansvar**
+- Runtime health er passiv readiness: den samler eksisterende health/snapshot-signaler uten å endre state.
+- Smoke runner er en manuell runtime smoke check som bare finnes i TEST_MODE (`HG_TEST_MODE=1`).
+- Smoke runner er read-only og oppretter ikke demodata, brukere, invites, circles, routes, unlocks eller andre gameplay-endringer.
+
+**Filer**
+
+- js/debug/HGRuntimeHealth.js
+- js/debug/HGRuntimeSmokeRunner.js
+- js/debug/HGRuntimeHealthPanel.js
+
+**Eier**
+- window.HG_RuntimeHealth
+- window.HG_RuntimeSmokeRunner
+- window.HG_RuntimeHealthPanel
+
+---
+
 ## 4. GEO / MAP / ROUTING
 
 **Ansvar**
@@ -287,6 +307,7 @@ History Go er delt i tydelige lag:
 
 **Filer — UI**
 - js/Civication/ui/CivicationHome.js
+  - Home/nabolag-state bor her og lagres kanonisk i `civi_home_v1`. Kapital leses fra `hg_capital_v1`; Home UI er en renderer over `CivicationHome`-state, ikke en egen gameplay-kilde. `getDistrictViewModels()` og `getHomeSnapshot()` er read-only helpers for UI/debug og endrer ikke state.
 - js/Civication/ui/CivicationPublicLayer.js
 - js/Civication/ui/CivicationMap.js
 - js/Civication/ui/CivicationUI.js
@@ -320,8 +341,10 @@ History Go er delt i tydelige lag:
 
 **Boot/debug helpers**
 - `window.HG_CiviDebug` lives in `js/Civication/CivicationBoot.js`.
-- It is a read-only browser-console helper for `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
-- It summarizes Civication runtime state defensively and must not mutate wallet, inventory, profile, inbox, shop visibility, psyche, home, capital, or gameplay state.
+- It is a read-only browser-console helper for `await HG_CiviDebug.snapshot()`, `await HG_CiviDebug.print()`, `await HG_CiviDebug.health()`, and `await HG_CiviDebug.printHealth()`.
+- `HG_CiviDebug.snapshot()` is raw state inspection: it gathers wallet, inventory, profile, inbox, shop visibility, psyche, home, economy, capital, and related debug state without interpreting playability.
+- `HG_CiviDebug.health()` is readiness/playability interpretation layered on top of the snapshot: it reports checks, blockers, warnings, a score, and a short Norwegian summary for whether Civication is playable right now.
+- Both snapshot and health helpers are read-only and must not mutate wallet, inventory, profile, inbox, shop visibility, psyche, home, economy, capital, localStorage, DOM, rendering, or gameplay state.
 
 ---
 
@@ -407,6 +430,70 @@ Avvik fra dette skal enten refaktoreres eller dokumenteres eksplisitt.
 ## Civication profile/shop visibility
 
 - Civication profile panel (`profile.html` via `js/Civication/ui/CivicationUI.js`) is a defensive renderer for the player's Civication status.
-- The panel reads career/role and PC wallet state from `CivicationState`, shop inventory and visible packs from `HG_CiviShop`, and salary/psyche context from CapitalEngine-compatible salary helpers and `CivicationPsyche`.
+- The panel reads career/role and PC wallet state from `CivicationState`, shop inventory and visible packs from `HG_CiviShop`, and salary/psyche context from CapitalEngine-compatible salary helpers, the economy snapshot, and `CivicationPsyche`.
 - Profile does not own the PC wallet or shop inventory. Wallet and inventory mutations remain in the Civication state/shop systems.
+- The economy engine owns the weekly PC tick and a read-only economy model (`HG_CiviEconomySnapshot` / `CivicationEconomyEngine.getEconomySnapshot`) that explains wallet, job income, job expenses, home rent, affordability, and next-tick status without running the tick.
+- Wallet remains owned by `CivicationState`; home rent remains owned by `CivicationHome`. The economy snapshot may combine wallet/job/home/shop data, but it is read-only and must not create gameplay state.
 - The profile shop UI is renderer-only: it displays visible packs, owned state, style tag counts, and delegates purchase attempts to `HG_CiviShop.buyPack(packId)`.
+
+## Civication Home / Nabolag gameplay v1
+Status: implemented
+Purpose: makes district/home choice affect rent pressure, housing status and progression.
+
+- `js/Civication/ui/CivicationHome.js` owns the `civi_home_v1` home gameplay state: `currentDistrictId`, `unlockedDistrictIds`, rent due/payment markers, housing status, move history, and eviction warnings.
+- Home movement now runs through `canMoveToDistrict()`, `unlockDistrict()`, and `moveToDistrict()`, so locked districts require knowledge/progress/visit state or explicit unlock state before the player can live there.
+- `applyRentTick()` applies weekly rent against existing PC/economic capital storage and worsens `housingStatus` when rent cannot be paid; unemployment/no-income state raises rent pressure and support eligibility without implementing full NAV.
+
+---
+
+## Top-level runtime health diagnostics
+
+**Boot/debug helper**
+- `window.HG_RuntimeHealth` lives in `js/debug/HGRuntimeHealth.js` and is loaded by `js/app.js` as a browser-console diagnostic helper.
+- It is a top-level, read-only runtime diagnosis for `await HG_RuntimeHealth.snapshot()`, `await HG_RuntimeHealth.health()`, and `await HG_RuntimeHealth.printHealth()`.
+- It answers whether History Go is playable right now by checking core globals, map readiness, data counts, profile/learning-log availability, Civication diagnostics, and HG Social diagnostics.
+- It aggregates `window.HG_CiviDebug.health()` and `window.HG_SocialDebug.health()` when those subsystem diagnostics are loaded on the current page.
+- It does not own Civication logic, HG Social logic, map behavior, profile behavior, data loading, UI, or gameplay state. It must not mutate state, create data, write localStorage, or change rendering.
+- `window.HG_RuntimeHealthPanel` lives in `js/debug/HGRuntimeHealthPanel.js` and is loaded by `js/app.js` after `HG_RuntimeHealth`. It is a **TEST_MODE-only** read-only panel: it renders `HG_RuntimeHealth.health()` inside the app only when `HG_TEST_MODE` is enabled, and it is not production UI.
+- The panel is only diagnostic visibility for manual testing (for example iPad smoke checks). It must not create demo data, profiles, invites, circles, economy ticks, mail answers, unlocks, or other gameplay/profile/map/data mutations.
+
+## HG Social Demo Adapter and TEST_MODE-visible demo surfaces
+
+- `js/social/HGSocialDemo.js` owns the isolated HG Social demo sandbox. It is TEST_MODE-only, requires manual `HG_SocialDemo.seed()`, stores demo state only in `hg_social_demo_state_v1`, and exposes demo-only preset invite writes through `sendDemoInvite()` plus `getPresetMessages()`.
+- `js/social/HGSocialDemoAdapter.js` exposes `window.HG_SocialDemoAdapter` as a read-only bridge from seeded demo state into visible app surfaces. It never inserts fake users into `PEOPLE`, never mutates real social graphs, and marks returned objects with `demoOnly: true`.
+- `js/ui/place-card.js` calls the adapter for a TEST_MODE-only PlaceCard block titled `Demo: kunnskapsfolk her`. The block shows fake knowledge matches and its invite action writes only to demo storage.
+- `js/social/HGSocialDemoProfile.js` exposes `window.HG_SocialDemoProfile` for a small inline-styled demo profile popover. It shows demo-only profile fields and preset demo invite controls without chat, free text, place tracking, or follower data.
+- `js/social/HGSocialDemoPanel.js`, `js/debug/HGRuntimeHealthPanel.js`, and `js/debug/HGRuntimeSmokeRunner.js` surface seeded demo counts, privacy status, smoke checks, reset controls, and leak detection only when `localStorage.getItem("HG_TEST_MODE") === "1"`.
+
+## HG Social Surface Contract
+
+- `js/social/HGSocialSurfaceContract.js` owns the read-only HG Social surface contract for demo and future production social surfaces. Social surfaces are knowledge-based: they describe shared themes, learned concepts, badges, routes, quizzes, observations, circles, and timeline items rather than proximity or presence.
+- The PlaceCard social block is TEST_MODE demo UI today and a future production direction later. It must stay isolated from real users, real backend/auth, real persistence, and real place/person data until a production social implementation adopts the contract.
+- Invites are preset-only. The demo invite path accepts only known preset message ids and rejects free text.
+- The contract forbids GPS, live location, presence, follower/following metrics, last-seen language, distance wording, and free-text chat on visible social surfaces.
+- `window.HG_SocialDemoProfile` defines the future public profile direction with avatar, handle, bio, knowledge fields, badges, learned concepts, favorite places, shared activities, and an explicit privacy checklist.
+
+---
+
+## HG Social Signals
+
+**Filer**
+- `js/social/HGSocialSignals.js`
+- `js/social/HGSocialSignalBridge.js`
+- `js/social/HGSocialDebug.js`
+- `js/debug/HGRuntimeHealth.js`
+- `js/debug/HGRuntimeSmokeRunner.js`
+
+**Formål**
+- `window.HG_SocialSignals` is the real local learning/social signal layer for the current player.
+- Signals are produced only by explicit player actions: completed quizzes, completed routes, saved observations, earned badge/merit tiers, and explicit place affinity from already-recorded learning actions.
+- The storage key is `hg_social_signals_v1`; it stores deterministic sequence numbers instead of exact timestamps.
+- The read models power future public profiles and matching through `getSummary()` and `getPublicProfileSeed()`.
+
+**Privacy contract**
+- No GPS, coordinates, passive proximity, live status, followers/following counts, backend users, free-text chat, or exact timestamps.
+- Demo state remains separate in `HG_SocialDemo`; demo users must never be written into real signals.
+- `health()` scans stored signals, summary, and profile seed for forbidden field names and visible wording.
+
+**Event bridge**
+- `window.HG_SocialSignalBridge` listens for privacy-safe explicit-action events and forwards them to `HG_SocialSignals` without changing gameplay outcomes, points, unlocks, or UI.

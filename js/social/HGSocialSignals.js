@@ -1,0 +1,38 @@
+(function(){
+  'use strict';
+  const root=typeof window!=='undefined'?window:globalThis;
+  const KEY='hg_social_signals_v1';
+  const VERSION=1;
+  const TYPES=new Set(['quiz_completed','route_completed','observation_added','badge_earned','place_affinity']);
+  const SOURCES=new Set(['quiz','route','observation','badge','place']);
+  const FORBIDDEN_FIELDS=new Set(['lat','lng','latitude','longitude','gps','location','liveLocation','presence','isOnline','lastSeen','visitLog','visitedAt','timestampedVisits','followers','followerCount','following','feedTracking']);
+  const FORBIDDEN_WORDS=['nearby','distance','GPS','live location','online','last seen','followers','following','feed','avstand','i nærheten','live-posisjon','pålogget','sist sett','følgere','følger'];
+  const ALLOWED_WORD_FIELDS=new Set(['placeId','favoritePlaces']);
+  function arr(v){return Array.isArray(v)?v.filter(x=>x!=null&&String(x).trim()).map(x=>String(x).trim()):v==null?[]:[String(v).trim()].filter(Boolean);}
+  function str(v){return v==null?null:String(v).trim()||null;}
+  function num(v,d){const n=Number(v);return Number.isFinite(n)?n:d;}
+  function storage(){try{return root.localStorage||null;}catch{return null;}}
+  function empty(){return {version:VERSION,signals:[],summary:{},updatedSeq:0};}
+  function read(){try{const raw=storage()?.getItem(KEY); if(!raw)return empty(); const data=JSON.parse(raw); return {version:VERSION,signals:Array.isArray(data?.signals)?data.signals:[],summary:data?.summary&&typeof data.summary==='object'?data.summary:{},updatedSeq:num(data?.updatedSeq,0)};}catch{return empty();}}
+  function write(data){const st=storage(); if(!st)return false; st.setItem(KEY,JSON.stringify(data)); return true;}
+  function inc(map,key,by){if(!key)return; map[key]=(map[key]||0)+(by||1);}
+  function top(map){return Object.entries(map).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([id,count])=>({id,count}));}
+  function summarize(signals){const domains={},concepts={},places={},routes={},badges={},observations={},strengths={}; list(signals).forEach(s=>{inc(domains,s.domain,1); arr(s.conceptIds).forEach(c=>inc(concepts,c,1)); inc(places,s.placeId,1); inc(routes,s.routeId,1); inc(badges,s.badgeId,1); inc(observations,s.observationId,1); inc(strengths,String(s.strength||1),1);}); return {signalCount:list(signals).length,domains,topDomains:top(domains),concepts,topConcepts:top(concepts),places,routes,badges,observations,strengths,lastSeq:list(signals).reduce((m,s)=>Math.max(m,num(s.seq,0)),0)};}
+  function list(v){return Array.isArray(v)?v:[];}
+  function clean(input){const source=str(input?.source); const type=str(input?.type); if(!TYPES.has(type)) return {error:'invalid_type'}; if(!SOURCES.has(source)) return {error:'invalid_source'}; const signal={id:null,seq:null,type,source,demoOnly:false}; ['domain','placeId','routeId','quizId','badgeId','observationId'].forEach(k=>{const v=str(input?.[k]??(k==='placeId'?input?.targetId:null)); if(v)signal[k]=v;}); const conceptIds=arr(input?.conceptIds||input?.concepts||input?.related_emner); if(conceptIds.length)signal.conceptIds=conceptIds; const tags=arr(input?.tags); if(str(input?.title)) tags.push(str(input.title)); if(tags.length)signal.tags=Array.from(new Set(tags)); signal.strength=Math.max(1,Math.min(3,num(input?.strength,1))); return {signal};}
+  function dedupeKey(s){return [s.type,s.source,s.domain,s.placeId,s.routeId,s.quizId,s.badgeId,s.observationId].map(v=>v||'').join('|');}
+  function recordSignal(input){const c=clean(input||{}); if(c.error)return {ok:false,created:false,updated:false,signal:null,reason:c.error}; const data=read(); const key=dedupeKey(c.signal); const existing=data.signals.find(s=>dedupeKey(s)===key); if(existing){let updated=false; if(num(c.signal.strength,1)>num(existing.strength,1)){existing.strength=c.signal.strength; updated=true;} data.summary=summarize(data.signals); write(data); return {ok:true,created:false,updated,signal:existing,reason:updated?'strength_updated':'duplicate'};} const seq=num(data.updatedSeq,0)+1; const signal={...c.signal,seq,id:`sig_${seq}`}; data.signals.push(signal); data.updatedSeq=seq; data.summary=summarize(data.signals); write(data); return {ok:true,created:true,updated:false,signal,reason:'created'};}
+  function scoreStrength(d){const pct=Number(d?.percent??d?.scorePercent); if(Number.isFinite(pct)) return pct>=100?3:pct>=75?2:1; const correct=Number(d?.correct??d?.correctCount), total=Number(d?.total); if(Number.isFinite(correct)&&Number.isFinite(total)&&total>0) return correct>=total?3:(correct/total>=0.75?2:1); return num(d?.strength,1);}
+  function recordQuizCompleted(d){return recordSignal({...d,type:'quiz_completed',source:'quiz',placeId:d?.placeId||d?.targetId,domain:d?.domain||d?.categoryId,strength:scoreStrength(d)});}
+  function recordRouteCompleted(d){return recordSignal({...d,type:'route_completed',source:'route',domain:d?.domain||d?.categoryId,strength:num(d?.strength,2)});}
+  function recordObservationAdded(d){return recordSignal({...d,type:'observation_added',source:'observation',domain:d?.domain||d?.categoryId,strength:num(d?.strength,2)});}
+  function recordBadgeEarned(d){return recordSignal({...d,type:'badge_earned',source:'badge',badgeId:d?.badgeId||d?.categoryId,domain:d?.domain||d?.categoryId,tags:[...arr(d?.tags),str(d?.tier)].filter(Boolean),strength:num(d?.strength||d?.tier,2)});}
+  function recordPlaceAffinity(d){return recordSignal({...d,type:'place_affinity',source:'place',domain:d?.domain||d?.categoryId,strength:num(d?.strength,1)});}
+  function getSignals(){return read().signals.slice();}
+  function getSummary(){const data=read(); return summarize(data.signals);}
+  function getPublicProfileSeed(){const s=getSummary(); const signals=getSignals(); return {publicProfileReady:s.signalCount>0,knowledgeDomains:s.topDomains.map(x=>x.id),badges:Object.keys(s.badges),learnedConcepts:s.topConcepts.map(x=>x.id),favoritePlaces:Object.keys(s.places),routes:Object.keys(s.routes),quizStrengths:signals.filter(x=>x.type==='quiz_completed').map(x=>({quizId:x.quizId||null,strength:x.strength||1})),observationTags:Array.from(new Set(signals.filter(x=>x.type==='observation_added').flatMap(x=>arr(x.tags)))),signalCount:s.signalCount,privacyLabels:['Kunnskapsbasert','Ingen GPS','Ingen live-status','Ingen følgere']};}
+  function scan(v,path,found,seen){if(v&&typeof v==='object'){if(seen.has(v))return; seen.add(v); Object.keys(v).forEach(k=>{const p=path?`${path}.${k}`:k; if(FORBIDDEN_FIELDS.has(k))found.push({type:'field',field:k,path:p}); scan(v[k],p,found,seen);}); return;} if(typeof v==='string'){if(path.includes('privacyLabels'))return; const lower=v.toLowerCase(); FORBIDDEN_WORDS.forEach(w=>{if(lower.includes(w.toLowerCase())&&!ALLOWED_WORD_FIELDS.has(path.split('.').pop()))found.push({type:'word',word:w,path});});}}
+  function health(){const payload={signals:getSignals(),summary:getSummary(),publicProfileSeed:getPublicProfileSeed()}; const blockers=[]; scan(payload,'root',blockers,new WeakSet()); return {ok:blockers.length===0,summary:blockers.length?'Social signals privacy blocker.':'Social signals OK.',blockers,warnings:[],storageKey:KEY,signalCount:payload.summary.signalCount};}
+  function clearSignalsForTestMode(){let enabled=false; try{enabled=storage()?.getItem('HG_TEST_MODE')==='1'||root.HG_TEST_MODE==='1';}catch{} if(!enabled)return {ok:true,skipped:true,reason:'test_mode_disabled'}; storage()?.removeItem(KEY); return {ok:true,skipped:false,removed:[KEY]};}
+  root.HG_SocialSignals={recordSignal,recordQuizCompleted,recordRouteCompleted,recordObservationAdded,recordBadgeEarned,recordPlaceAffinity,getSignals,getSummary,getPublicProfileSeed,clearSignalsForTestMode,health,STORAGE_KEY:KEY};
+}());

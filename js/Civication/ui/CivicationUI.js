@@ -495,7 +495,20 @@ function renderCivicationSummary() {
       const career = Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS.find((c) => c && String(/** @type {any} */ (c).career_id) === activeCareerId) : null;
       weekly = (career && typeof window.calculateWeeklySalary === "function") ? Number(window.calculateWeeklySalary(career, tierIndex)) : NaN;
     } catch {}
-    salaryLn.textContent = Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
+    try {
+      const snap = /** @type {any} */ (window.CivicationEconomyEngine?.getEconomySnapshot?.());
+      if (snap) {
+        const salary = Number(snap.weeklySalary || 0);
+        const expenses = Number(snap.weeklyJobExpenses || 0);
+        const rent = Number(snap.homeRent || 0);
+        const net = Number(snap.estimatedNetAfterHome || 0);
+        salaryLn.textContent = `Lønn: ${salary} PC / uke · Utgifter: ${expenses} · Husleie: ${rent} · Netto: ${net}`;
+      } else {
+        salaryLn.textContent = Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
+      }
+    } catch {
+      salaryLn.textContent = Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
+    }
   }
 
   if (meritLn) {
@@ -596,6 +609,17 @@ async function renderCivication() {
       if (Number.isFinite(weekly)) salaryTxt = `Lønn: ${weekly} PC / uke`;
     } catch {}
   }
+
+  try {
+    const snap = /** @type {any} */ (window.CivicationEconomyEngine?.getEconomySnapshot?.());
+    if (snap) {
+      const salary = Number(snap.weeklySalary || 0);
+      const expenses = Number(snap.weeklyJobExpenses || 0);
+      const rent = Number(snap.homeRent || 0);
+      const net = Number(snap.estimatedNetAfterHome || 0);
+      salaryTxt = `Lønn: ${salary} PC / uke · Utgifter: ${expenses} · Husleie: ${rent} · Netto: ${net}`;
+    }
+  } catch {}
 
   host.innerHTML = `
     <div>
