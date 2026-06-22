@@ -546,3 +546,25 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 - Does not call backend APIs, publish profile data, run economy ticks, complete routes/quizzes, save observations, send real invites, unlock places, buy items, or move homes.
 - Avoids GPS/live/follower surfaces and scans visible action copy/payloads for privacy blockers before routing.
 - Is a future main dashboard candidate while remaining safety-first, local-only, and non-mutating.
+
+## HG Daily Objectives / Agenda
+
+**Files**
+- `js/objectives/HGDailyObjectives.js`
+- `js/today/HGTodayHub.js`
+- `js/today/HGTodayHubPanel.js`
+- `js/debug/HGRuntimeHealth.js`
+- `js/debug/HGRuntimeSmokeRunner.js`
+
+**Purpose**
+- `window.HG_DailyObjectives` is the local agenda layer behind `Min dag`.
+- It turns existing Today Hub, Civication, learning, social, route, observation, profile, and runtime read-models into 3–7 concrete daily objectives.
+- Objectives are suggestions only. They do not start workdays, run economy ticks, complete quizzes/routes, save observations, send invites, buy items, move homes, unlock places, or change scoring.
+- Completion is refreshed only from existing real signals/read-models such as quiz-completed, route-completed, observation-added, public-profile readiness, warning-cleared, or diagnostic-cleared states.
+- The panel renders 3–5 agenda items at the top of `Min dag` and routes all buttons through `HG_TodayActionRouter`.
+
+**Privacy and storage**
+- Storage key: `hg_daily_objectives_v1`.
+- The agenda is local-only, has deterministic sequence fields, and does not use backend storage.
+- It avoids GPS, coordinates, live status, follower/following metrics, last-seen state, exact persisted timestamps, private visit logs, and raw observation bodies.
+- Privacy violations become blockers and mark offending objectives as blocked.
