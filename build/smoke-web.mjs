@@ -36,7 +36,9 @@ const TARGETS = [
     globals: ["HGInsights", "FagHealthReport", "HGKnowledgeEngine", "HG_SOCIAL_INDEX", "HGModeration", "getKnowledgeUniverse", "getTriviaUniverse", "saveTriviaPoint", "HGCourses"]
   },
   // Laster knowledge-motoren via root-shim (../knowledge.js -> document.write dist/web/knowledge.js)
-  { page: "knowledge/knowledge_historie.html", globals: ["Emner", "HGInsights", "getKnowledgeUniverse", "renderKnowledgeSection"] }
+  { page: "knowledge/knowledge_historie.html", globals: ["Emner", "HGInsights", "getKnowledgeUniverse", "renderKnowledgeSection"] },
+  // Laster i tillegg js/emneDekning.ts (dist/web/emneDekning.js) -> window.computeEmneDekning
+  { page: "knowledge/knowledge_natur.html", globals: ["Emner", "HGInsights", "renderKnowledgeSection", "computeEmneDekning"] }
 ];
 
 const onlyArg = process.argv.slice(2).filter((a) => !a.startsWith("-"));

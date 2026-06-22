@@ -135,6 +135,18 @@ Browser-migrert så langt (oppdatert): + `trivia` (10 filer).
 
 Browser-migrert så langt (oppdatert): + `courses` (11 filer).
 
+### Batch 10 (fullført) — `emneDekning.js`
+
+`js/emneDekning.js` → `.ts` (ren IIFE, `0` bare-globaler, `0` DOM-referanser — ren logikk), fullt typet:
+
+- Publiserer kun `window.computeEmneDekning` (allerede deklarert på `Window` fra knowledge-batchen, så ingen ny base-typecheck-deklarasjon). Konsumenter: 12 `knowledge/`-sider (ikke index, ikke `app.js`/boot/`sw.js`).
+- Full dekning: 11 aktive `knowledge/`-sider repeket `../js/…` → `../dist/web/…` (arkiv-foreldreløs utelatt). Ikke i `sw.js`.
+- Verifisert: `typecheck:web` + `build:web` grønn, `npm run typecheck` ingen ny feil, `npm run smoke:web` PASS (nytt mål `knowledge/knowledge_natur.html` asserter `computeEmneDekning`), `build:web:check` grønn.
+
+**Branch-divergens (viktig for integrasjon):** denne migreringsbranchen (`claude/typescript-migration-status-e6o2t5`) er ikke merget til `origin/main` — main har 41 commits parallelt arbeid (HG Social, innholdsbatcher, test-mode, `sw.js`-bump) som ikke er her, og mine 12 migreringscommits er ikke på main. `emneDekning.js` ble valgt bl.a. fordi main ikke har rørt den (konfliktfri). Filer jeg har endret som main også endret (`sw.js`, `package.json`, `profile.html`) vil gi merge-konflikter ved endelig integrasjon og må reconcileres bevisst.
+
+Browser-migrert så langt (oppdatert): + `emneDekning` (12 filer).
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.
