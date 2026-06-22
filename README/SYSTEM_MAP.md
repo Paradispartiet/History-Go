@@ -464,3 +464,11 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - `js/ui/place-card.js` calls the adapter for a TEST_MODE-only PlaceCard block titled `Demo: kunnskapsfolk her`. The block shows fake knowledge matches and its invite action writes only to demo storage.
 - `js/social/HGSocialDemoProfile.js` exposes `window.HG_SocialDemoProfile` for a small inline-styled demo profile popover. It shows demo-only profile fields and preset demo invite controls without chat, free text, place tracking, or follower data.
 - `js/social/HGSocialDemoPanel.js`, `js/debug/HGRuntimeHealthPanel.js`, and `js/debug/HGRuntimeSmokeRunner.js` surface seeded demo counts, privacy status, smoke checks, reset controls, and leak detection only when `localStorage.getItem("HG_TEST_MODE") === "1"`.
+
+## HG Social Surface Contract
+
+- `js/social/HGSocialSurfaceContract.js` owns the read-only HG Social surface contract for demo and future production social surfaces. Social surfaces are knowledge-based: they describe shared themes, learned concepts, badges, routes, quizzes, observations, circles, and timeline items rather than proximity or presence.
+- The PlaceCard social block is TEST_MODE demo UI today and a future production direction later. It must stay isolated from real users, real backend/auth, real persistence, and real place/person data until a production social implementation adopts the contract.
+- Invites are preset-only. The demo invite path accepts only known preset message ids and rejects free text.
+- The contract forbids GPS, live location, presence, follower/following metrics, last-seen language, distance wording, and free-text chat on visible social surfaces.
+- `window.HG_SocialDemoProfile` defines the future public profile direction with avatar, handle, bio, knowledge fields, badges, learned concepts, favorite places, shared activities, and an explicit privacy checklist.

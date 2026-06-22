@@ -592,3 +592,14 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 `window.HG_SocialDemoAdapter` is a TEST_MODE-only and seeded-demo-only adapter for visible manual-testing surfaces. It is demo-only, privacy-safe, not production data, and not a real social graph. It exposes `isEnabled`, place match readers, panel summary helpers, `renderPlaceSocialBlock`, `attachToPlaceCard`, and `detachFromPlaceCard` without mutating `PEOPLE`, `PLACES`, or real social storage.
 
 `window.HG_SocialDemoProfile` is a TEST_MODE-only demo profile card renderer. It is demo-only, privacy-safe, not production data, and not a real profile/social surface. It exposes `open`, `close`, and `renderCard` for fake demo users only.
+
+## HG Social Surface Contract Registry
+
+- `window.HG_SocialSurfaceContract` is a read-only contract global exposed by `js/social/HGSocialSurfaceContract.js`. It exposes `getContract`, `getLabels`, `getActions`, `getPrivacyRules`, `validateSurfaceItem`, `normalizeReason`, and `normalizeAction`. Production social surfaces must follow this contract.
+- `window.HG_SocialDemoAdapter` is TEST_MODE-only and seeded-demo-only. It may render demo PlaceCard social blocks and read seeded demo matches, but must never mutate `PEOPLE`, real social storage, real profile storage, production auth, or production place/person data.
+- `window.HG_SocialDemoProfile` is TEST_MODE-only. It renders a demo-only profile card and compare-knowledge action using seeded demo state only.
+- `window.HG_SocialDemoPanel` is TEST_MODE-only. It renders the stacked demo overview, profiles, matches, invites, circles, shared activities, timeline, and privacy checklist.
+- `window.HG_SocialDemo.getActions()` returns the deterministic demo action log from `hg_social_demo_actions_v1`.
+- `window.HG_SocialDemo.clearActions()` clears only the demo action log key.
+- `window.HG_SocialDemo.sendDemoInvite({ toUserId, placeId, presetMessageId, sourceSurface })` creates or reuses a demo-only preset invite and rejects free text.
+- `window.HG_SocialDemo.getPresetMessages()` returns the allowed preset demo invite labels. Demo surfaces are TEST_MODE-only; the contract is read-only; production social must follow the contract before exposing real social UI.
