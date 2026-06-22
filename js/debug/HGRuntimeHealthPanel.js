@@ -100,6 +100,17 @@
     return "Blokkere";
   }
 
+  function todayHealthHtml() {
+    const h = lastTodayHealth;
+    if (!h) return "";
+    const blockers = Array.isArray(h.blockers) ? h.blockers.length : 0;
+    const warnings = Array.isArray(h.warnings) ? h.warnings.length : 0;
+    const label = blockers ? "Min dag: blokkere" : warnings ? "Min dag: advarsler" : "Min dag: klar";
+    return `<div class="hg-rhp-smoke">${escapeHtml(label)}</div>`;
+  }
+
+  let lastTodayHealth = null;
+
   function smokeLabel(smoke) {
     if (!smoke) return null;
     if (smoke.skipped) return "Smoke: Skippet";
@@ -160,6 +171,7 @@
     body.innerHTML = `
       <div class="hg-rhp-status">${escapeHtml(statusLabel(health))}</div>
       ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
+      ${todayHealthHtml()}
       ${publicProfileHtml()}
       ${matchGraphHtml()}
       ${demoHtml()}
@@ -189,6 +201,7 @@
   }
 
   async function refresh() {
+    try { lastTodayHealth = await window.HG_TodayHub?.health?.(); } catch (_error) { lastTodayHealth = null; }
     if (!isEnabled()) return;
     if (!window.HG_RuntimeHealth?.health) {
       paintMissing();

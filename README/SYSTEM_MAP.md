@@ -535,3 +535,14 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 **Panel**
 - `window.HG_TodayHubPanel` renders the optional inline-styled `Min dag` panel when called manually or from TEST_MODE/debug surfaces.
 - The panel does not auto-open in production. Buttons either refresh the read-model, hide the panel, open diagnostics, or call a small allow-list of existing safe read-only panels.
+
+## Min dag product surface
+
+`Min dag` is the first player-facing hub surface for History Go. It is rendered by `js/today/HGTodayHubPanel.js` from read-only snapshots in `window.HG_TodayHub` and uses `window.HG_TodayActionRouter` for safe action routing.
+
+- Orchestrates Civication, HG Social, learning, routes, observations, and runtime diagnosis as local read-model cards.
+- Has a visible compact app entry point in the main header (`#btnMinDag`) and can also be opened from runtime health.
+- Uses safe route keys for existing read-only panels such as public profile preview, match graph, runtime health, and read-only explanations.
+- Does not call backend APIs, publish profile data, run economy ticks, complete routes/quizzes, save observations, send real invites, unlock places, buy items, or move homes.
+- Avoids GPS/live/follower surfaces and scans visible action copy/payloads for privacy blockers before routing.
+- Is a future main dashboard candidate while remaining safety-first, local-only, and non-mutating.
