@@ -8,6 +8,7 @@
   let refreshTimer = null;
   let listenersAttached = false;
   let lastHealth = null;
+  let lastSmoke = null;
 
   function safeTestModeGlobal() {
     const candidates = [
@@ -41,6 +42,7 @@
       #${PANEL_ID} ul{margin:6px 0 8px;padding-left:18px}
       #${PANEL_ID} button{margin-right:6px;border:0;border-radius:8px;padding:5px 8px;background:#e5e7eb;color:#111827;font:inherit}
       #${PANEL_ID} button:hover{background:#fff}
+      #${PANEL_ID} .hg-rhp-smoke{margin:6px 0;font-weight:700}
     `;
     document.head?.appendChild(style);
   }
@@ -56,9 +58,13 @@
     panel = document.createElement("aside");
     panel.id = PANEL_ID;
     panel.setAttribute("aria-live", "polite");
-    panel.innerHTML = '<h2>Runtime health</h2><div class="hg-rhp-body">Laster …</div><div><button type="button" data-hg-rhp-refresh>Oppdater</button><button type="button" data-hg-rhp-hide>Skjul</button></div>';
+    const smokeButton = isEnabled() && window.HG_RuntimeSmokeRunner?.isEnabled?.() && window.HG_RuntimeSmokeRunner?.run
+      ? '<button type="button" data-hg-rhp-smoke>Smoke</button>'
+      : '';
+    panel.innerHTML = `<h2>Runtime health</h2><div class="hg-rhp-body">Laster …</div><div>${smokeButton}<button type="button" data-hg-rhp-refresh>Oppdater</button><button type="button" data-hg-rhp-hide>Skjul</button></div>`;
     panel.querySelector("[data-hg-rhp-refresh]")?.addEventListener("click", () => { refresh(); });
     panel.querySelector("[data-hg-rhp-hide]")?.addEventListener("click", () => { remove(); });
+    panel.querySelector("[data-hg-rhp-smoke]")?.addEventListener("click", () => { runSmoke(); });
     document.body?.appendChild(panel);
     return panel;
   }
@@ -89,6 +95,14 @@
     return "Blokkere";
   }
 
+  function smokeLabel(smoke) {
+    if (!smoke) return null;
+    if (smoke.skipped) return "Smoke: Skippet";
+    if (Array.isArray(smoke.blockers) && smoke.blockers.length) return "Smoke: Blokkere";
+    if (Array.isArray(smoke.warnings) && smoke.warnings.length) return "Smoke: Advarsler";
+    return "Smoke: OK";
+  }
+
   function paint(health) {
     const panel = ensurePanel();
     const body = panel.querySelector(".hg-rhp-body");
@@ -97,11 +111,24 @@
     const warnings = Array.isArray(health?.warnings) ? health.warnings : [];
     const issues = blockers.concat(warnings).slice(0, 5);
     const updated = new Date().toLocaleTimeString("nb-NO", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    const smoke = smokeLabel(lastSmoke);
     body.innerHTML = `
       <div class="hg-rhp-status">${escapeHtml(statusLabel(health))}</div>
+      ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
       <div class="hg-rhp-meta"><span>Score</span><strong>${Number(health?.score ?? 0)}</strong><span>Summary</span><span>${escapeHtml(String(health?.summary || "Ingen summary"))}</span><span>Blokkere</span><span>${blockers.length}</span><span>Advarsler</span><span>${warnings.length}</span><span>Sist oppdatert</span><span>${updated}</span></div>
       <ul>${issues.map((item) => `<li>${escapeHtml(itemText(item))}</li>`).join("") || "<li>Ingen blokkere/advarsler</li>"}</ul>
     `;
+  }
+
+  async function runSmoke() {
+    if (!isEnabled() || !window.HG_RuntimeSmokeRunner?.run) return null;
+    try {
+      lastSmoke = await window.HG_RuntimeSmokeRunner.run();
+    } catch (error) {
+      lastSmoke = { ok: false, blockers: [{ message: `Smoke feilet: ${error?.message || error}` }], warnings: [], summary: "Smoke-test fant blokkere." };
+    }
+    if (lastHealth) paint(lastHealth);
+    return lastSmoke;
   }
 
   function paintMissing() {
@@ -149,7 +176,7 @@
     document.getElementById(STYLE_ID)?.remove?.();
   }
 
-  window.HG_RuntimeHealthPanel = { render, refresh, remove, isEnabled };
+  window.HG_RuntimeHealthPanel = { render, refresh, remove, isEnabled, runSmoke };
 
   if (isEnabled()) {
     if (document.readyState === "loading") {

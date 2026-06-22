@@ -20,6 +20,7 @@ Følgende globals er eksplisitt tillatt:
 - window.API
 - window.HG_CiviDebug
 - window.HG_RuntimeHealth
+- window.HG_RuntimeSmokeRunner
 - window.HG_RuntimeHealthPanel
 - window.HG_CiviEconomySnapshot
 
@@ -37,6 +38,17 @@ Allowed methods:
 - `HG_RuntimeHealth.printHealth()` — prints the report compactly in the console and returns the same health object.
 
 This helper is **read-only diagnostics only**. It may aggregate existing subsystem diagnostics, including `HG_CiviDebug.health()` and `HG_SocialDebug.health()`, but it must not own or change Civication logic, HG Social logic, map logic, profile logic, data loading, UI, gameplay flow, rendering, or localStorage contents.
+
+
+`window.HG_RuntimeSmokeRunner` is an allowed global exposed by `js/debug/HGRuntimeSmokeRunner.js` for **TEST_MODE-only** manual runtime smoke checks. It is enabled only when `localStorage.getItem("HG_TEST_MODE") === "1"`.
+
+Allowed methods:
+
+- `HG_RuntimeSmokeRunner.isEnabled()` — reads the TEST_MODE flag.
+- `HG_RuntimeSmokeRunner.run()` — performs a read-only smoke check of runtime health, map data readiness, learning-log read APIs, Civication/HG Social debug health, profile snapshot availability, PlaceCard readiness, and privacy field leaks.
+- `HG_RuntimeSmokeRunner.print()` — runs the same smoke check and prints compact console output.
+
+This helper is **read-only diagnostics only**. It must not create demo data, fake users, invites, circles, routes, unlocks, economy ticks, mail answers, place-card opens, or gameplay/profile/map/data mutations. When TEST_MODE is disabled, `run()` only reads `HG_TEST_MODE` and returns a skipped result.
 
 `window.HG_RuntimeHealthPanel` is an allowed global exposed by `js/debug/HGRuntimeHealthPanel.js` for **TEST_MODE-only** in-app diagnostics UI. It exposes `render()`, `refresh()`, `remove()`, and `isEnabled()`. The panel may render `HG_RuntimeHealth.health()` for manual testing only when test mode is enabled; it is read-only diagnostics UI, not production UI, and must not mutate gameplay, profile, map, data, Civication, HG Social, or localStorage state.
 
