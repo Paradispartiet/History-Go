@@ -1,8 +1,8 @@
 /* ============================================================
-   Civication Home Module v2
+   Civication Home Module v3
    - Canonical storage: civi_home_v1
    - Velgbare nabolag/distrikter fra start
-   - Tre gratis startalternativer
+   - Rent/prestige/visit-gate/housing pressure
    ============================================================ */
 
 (function () {
@@ -10,6 +10,12 @@
   const KEY = "civi_home_v1";
   const CAPITAL_KEY = "hg_capital_v1";
   const MERITS_KEY = "merits_by_category";
+  const VISITED_KEYS = [
+    "hg_visited_places_v1",
+    "visited_places",
+    "visitedPlaces",
+    "HG_VISITED_PLACES"
+  ];
 
   // ----------------------------------------------------------
   // Helpers
@@ -30,14 +36,18 @@
   }
 
   function ensure(state) {
-
     state.home ||= {
       status: "homeless",
       district: null,
       level: 0,
-      moveCount: 0
+      moveCount: 0,
+      housingPressure: "none",
+      rentArrears: 0,
+      lastRentPeriod: null
     };
 
+    state.home.housingPressure ||= "none";
+    state.home.rentArrears = Number(state.home.rentArrears || 0);
     state.objects ||= [];
 
     return state;
@@ -63,6 +73,15 @@
     } catch {}
   }
 
+  function currentPeriodKey() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+  }
+
+  function normalizeList(xs) {
+    return Array.isArray(xs) ? xs.map(String).map(x => x.trim()).filter(Boolean) : [];
+  }
+
   function hasCompletedPlace(placeId) {
     const history = window.HGLearningLog?.getQuizHistory?.() ?? [];
 
@@ -71,8 +90,58 @@
     );
   }
 
-  function normalizeList(xs) {
-    return Array.isArray(xs) ? xs.map(String).filter(Boolean) : [];
+  function readVisitedIdsFromValue(value) {
+    if (!value) return [];
+
+    if (Array.isArray(value)) {
+      return value
+        .map(item => {
+          if (typeof item === "string") return item;
+          if (item && typeof item === "object") return item.id || item.placeId || item.targetId;
+          return "";
+        })
+        .map(String)
+        .map(x => x.trim())
+        .filter(Boolean);
+    }
+
+    if (value && typeof value === "object") {
+      return Object.keys(value).filter(key => value[key]);
+    }
+
+    return [];
+  }
+
+  function getVisitedPlaceIds() {
+    const out = new Set();
+
+    try {
+      const runtimeVisits = window.HGLearningLog?.getVisitHistory?.() || [];
+      readVisitedIdsFromValue(runtimeVisits).forEach(id => out.add(id));
+    } catch {}
+
+    for (const key of VISITED_KEYS) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) continue;
+        readVisitedIdsFromValue(JSON.parse(raw)).forEach(id => out.add(id));
+      } catch {}
+    }
+
+    return Array.from(out);
+  }
+
+  function hasVisitedPlace(placeId) {
+    const id = String(placeId || "").trim();
+    if (!id) return false;
+    if (hasCompletedPlace(id)) return true;
+    return getVisitedPlaceIds().some(visitedId => String(visitedId).trim() === id);
+  }
+
+  function hasVisitedDistrict(district) {
+    const ids = normalizeList(district?.visitRequirementPlaceIds);
+    if (!ids.length) return true;
+    return ids.some(hasVisitedPlace);
   }
 
   function getDistrict(districtId) {
@@ -107,7 +176,9 @@
         name: null,
         housing: [],
         store: [],
-        choice_tags: []
+        choice_tags: [],
+        rent: 0,
+        prestige: 0
       };
     }
 
@@ -116,7 +187,9 @@
       name: district.name,
       housing: normalizeList(district.housing_access),
       store: normalizeList(district.store_access),
-      choice_tags: normalizeList(district.choice_tags)
+      choice_tags: normalizeList(district.choice_tags),
+      rent: Number(district.rent || 0),
+      prestige: Number(district.prestige || 0)
     };
   }
 
@@ -125,15 +198,106 @@
     return cost <= 0 ? "Gratis" : `${cost} kapital`;
   }
 
+  function formatRent(district) {
+    const rent = Number(district?.rent || 0);
+    return rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`;
+  }
+
   function requirementText(district) {
+    const parts = [];
     const reqs = district?.quizRequirements || {};
     const entries = Object.entries(reqs);
 
-    if (!entries.length) return "Åpent fra start";
+    if (entries.length) {
+      parts.push(entries.map(([cat, value]) => `${cat}: ${value}`).join(" · "));
+    }
 
-    return entries
-      .map(([cat, value]) => `${cat}: ${value}`)
-      .join(" · ");
+    const visitIds = normalizeList(district?.visitRequirementPlaceIds);
+    if (visitIds.length) {
+      parts.push(hasVisitedDistrict(district) ? "Besøkt" : "Må besøkes først");
+    }
+
+    return parts.length ? parts.join(" · ") : "Åpent fra start";
+  }
+
+  function getDistrictLockReason(district) {
+    if (!district) return "Ukjent nabolag";
+
+    const capital = getCapital();
+    if ((capital.economic || 0) < Number(district.baseCost || 0)) return "For lite kapital";
+
+    if (!hasVisitedDistrict(district)) return "Besøk nabolaget først";
+
+    let merits = {};
+    try {
+      merits = JSON.parse(localStorage.getItem(MERITS_KEY) || "{}");
+    } catch {}
+
+    const requirements = district.quizRequirements || {};
+    for (const cat in requirements) {
+      const needed = requirements[cat];
+      const points = merits[cat]?.points || 0;
+      if (points < needed) return `Mangler ${cat}: ${needed}`;
+    }
+
+    return "";
+  }
+
+  function enqueueHousingFallMail(district, deficit, state) {
+    const period = currentPeriodKey();
+    const eventId = `housing_pressure_${district.id}_${period}`;
+
+    const mail = {
+      id: eventId,
+      event_id: eventId,
+      status: "pending",
+      type: "housing_pressure",
+      channel: "nav",
+      enqueued_at: new Date().toISOString(),
+      event: {
+        id: eventId,
+        type: "housing_pressure",
+        channel: "nav",
+        stage: "unemployed",
+        title: "NAV: Boligpress",
+        subject: "NAV: Boligpress",
+        from: "NAV / Civication",
+        body: `Husleien i ${district.name} presset økonomien din denne perioden. Du manglet ${deficit} PC. Du kan ta en hvilken som helst jobb, bygge kapital raskt eller flytte til et billigere nabolag.`,
+        feedback: "Boligpress registrert. Det er ikke game over — det er ny historie.",
+        choices: [
+          {
+            id: "take_any_job",
+            label: "Ta hvilken som helst jobb",
+            feedback: "Du velger stabilitet først."
+          },
+          {
+            id: "move_cheaper",
+            label: "Flytt billigere",
+            feedback: "Du reduserer presset, men mister noe status."
+          },
+          {
+            id: "hold_on",
+            label: "Hold ut litt til",
+            feedback: "Du tar risikoen og blir boende."
+          }
+        ]
+      }
+    };
+
+    try {
+      const existing = window.CivicationMailEngine?.getInbox?.() || window.CivicationState?.getInbox?.() || [];
+      if (Array.isArray(existing) && existing.some(item => String(item?.event?.id || item?.id || "") === eventId)) return false;
+      if (Array.isArray(existing) && existing.some(item => item?.status === "pending")) return false;
+      const next = Array.isArray(existing) ? existing.concat(mail) : [mail];
+      if (window.CivicationMailEngine?.replaceInbox) {
+        window.CivicationMailEngine.replaceInbox(next);
+      } else if (window.CivicationState?.setInbox) {
+        window.CivicationState.setInbox(next);
+      }
+    } catch {}
+
+    state.home.lastHousingMail = eventId;
+    return true;
   }
 
   // ----------------------------------------------------------
@@ -151,7 +315,9 @@
       economic: 0,
       cultural: 0,
       symbolic: 0,
-      autonomy: 0
+      autonomy: 0,
+      prestige: 0,
+      rent: 0
     };
 
     const district = getDistrict(state?.home?.district);
@@ -161,6 +327,8 @@
     influence.cultural += Number(districtModifiers.cultural || 0);
     influence.symbolic += Number(districtModifiers.symbolic || 0);
     influence.autonomy += Number(districtModifiers.autonomy || 0);
+    influence.prestige += Number(district?.prestige || 0);
+    influence.rent += Number(district?.rent || 0);
 
     for (const obj of state.objects) {
       influence.economic += obj.economic || 0;
@@ -172,12 +340,58 @@
     return influence;
   }
 
+  function applyHousingPeriodCosts(force = false) {
+    const state = ensure(load());
+    const district = getDistrict(state?.home?.district);
+    if (!district) return { ok: false, reason: "no_district" };
+
+    const period = currentPeriodKey();
+    if (!force && state.home.lastRentPeriod === period) {
+      return { ok: true, skipped: true, period };
+    }
+
+    const rent = Number(district.rent || 0);
+    state.home.lastRentPeriod = period;
+    state.home.lastRentAmount = rent;
+
+    if (rent <= 0) {
+      state.home.housingPressure = "none";
+      save(state);
+      return { ok: true, rent: 0, period };
+    }
+
+    const capital = getCapital();
+    const before = Number(capital.economic || 0);
+    const after = before - rent;
+
+    if (after >= 0) {
+      capital.economic = after;
+      state.home.housingPressure = "none";
+      state.home.rentArrears = Math.max(0, Number(state.home.rentArrears || 0) - rent);
+      saveCapital(capital);
+      save(state);
+      dispatchHomeChanged();
+      return { ok: true, rent, before, after, period };
+    }
+
+    const deficit = Math.abs(after);
+    capital.economic = 0;
+    state.home.rentArrears = Number(state.home.rentArrears || 0) + deficit;
+    state.home.housingPressure = state.home.rentArrears >= rent * 2 ? "crisis" : "pressure";
+
+    saveCapital(capital);
+    enqueueHousingFallMail(district, deficit, state);
+    save(state);
+    dispatchHomeChanged();
+
+    return { ok: true, rent, before, after: 0, deficit, period, pressure: state.home.housingPressure };
+  }
+
   // ----------------------------------------------------------
   // Purchase Object
   // ----------------------------------------------------------
 
   function canPurchaseHomeObject(obj) {
-
     if (!obj || !obj.placeId) return false;
     if (!hasCompletedPlace(obj.placeId)) return false;
 
@@ -188,21 +402,17 @@
   }
 
   function purchaseHomeObject(obj) {
-
     if (!obj || !obj.id || !obj.placeId) return false;
     if (!canPurchaseHomeObject(obj)) return false;
 
     const capital = getCapital();
     const cost = Number(obj.cost || 0);
 
-    capital.economic =
-      Math.max(0, (capital.economic || 0) - cost);
-
+    capital.economic = Math.max(0, (capital.economic || 0) - cost);
     saveCapital(capital);
 
     const state = ensure(load());
 
-    // Ikke tillat duplikat
     if (state.objects.some(o => o.id === obj.id)) return false;
 
     state.objects.push({
@@ -226,7 +436,6 @@
   // ----------------------------------------------------------
 
   function sellHomeObject(objectId) {
-
     if (!objectId) return false;
 
     const state = ensure(load());
@@ -234,9 +443,7 @@
 
     if (index === -1) return false;
 
-    const originalDef =
-      window.CIVI_HOME_OBJECTS?.find(o => o.id === objectId);
-
+    const originalDef = window.CIVI_HOME_OBJECTS?.find(o => o.id === objectId);
     const originalCost = Number(originalDef?.cost || 0);
     const refund = Math.round(originalCost * 0.7);
 
@@ -257,29 +464,11 @@
   // ----------------------------------------------------------
 
   function canPurchaseDistrict(districtId) {
-
     const district = getDistrict(districtId);
-    if (!district) return false;
-
-    const capital = getCapital();
-    if ((capital.economic || 0) < Number(district.baseCost || 0)) return false;
-
-    const merits =
-      JSON.parse(localStorage.getItem(MERITS_KEY) || "{}");
-
-    const requirements = district.quizRequirements || {};
-
-    for (const cat in requirements) {
-      const needed = requirements[cat];
-      const points = merits[cat]?.points || 0;
-      if (points < needed) return false;
-    }
-
-    return true;
+    return !getDistrictLockReason(district);
   }
 
   function purchaseDistrict(districtId) {
-
     const district = getDistrict(districtId);
     if (!district) return false;
     if (!canPurchaseDistrict(districtId)) return false;
@@ -290,6 +479,8 @@
     state.home.district = district.id;
     state.home.level = Math.max(1, Number(state.home.level || 0));
     state.home.selectedAt = Date.now();
+    state.home.housingPressure = "none";
+    state.home.rentArrears = Math.max(0, Number(state.home.rentArrears || 0));
 
     save(state);
     dispatchHomeChanged();
@@ -298,7 +489,6 @@
   }
 
   function moveDistrict(newId) {
-
     const district = getDistrict(newId);
     if (!district) return false;
 
@@ -309,9 +499,9 @@
     if (!canPurchaseDistrict(newId)) return false;
 
     state.home.district = district.id;
-    state.home.moveCount =
-      (state.home.moveCount || 0) + 1;
+    state.home.moveCount = (state.home.moveCount || 0) + 1;
     state.home.movedAt = Date.now();
+    state.home.housingPressure = "none";
 
     save(state);
 
@@ -341,6 +531,7 @@
   function renderDistrictCard(district, currentId) {
     const isCurrent = String(currentId || "") === String(district.id || "");
     const canSelect = canPurchaseDistrict(district.id);
+    const reason = getDistrictLockReason(district);
     const tagText = normalizeList(district.choice_tags).join(" · ");
     const classes = ["civi-district-card"];
 
@@ -352,13 +543,14 @@
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
           <div>
             <div style="font-weight:700;">${district.name}</div>
-            <div style="font-size:0.88rem;opacity:0.78;margin-top:3px;">${district.isStartOption ? "Startnabolag" : "Låses opp senere"} · ${formatCost(district)}</div>
+            <div style="font-size:0.88rem;opacity:0.78;margin-top:3px;">${district.isStartOption ? "Startnabolag" : "Låses opp senere"} · ${formatCost(district)} · ${formatRent(district)} · Prestige ${Number(district.prestige || 0)}</div>
           </div>
           ${isCurrent ? `<span style="font-size:0.82rem;opacity:0.8;">Valgt</span>` : ""}
         </div>
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
         <div style="font-size:0.86rem;opacity:0.78;margin-top:8px;">${requirementText(district)}</div>
         ${tagText ? `<div style="font-size:0.82rem;opacity:0.7;margin-top:6px;">${tagText}</div>` : ""}
+        ${!canSelect && !isCurrent && reason ? `<div style="font-size:0.82rem;opacity:0.74;margin-top:6px;">${reason}</div>` : ""}
         <div style="margin-top:10px;">
           <button class="btn" data-civi-district-select="${district.id}" ${canSelect || isCurrent ? "" : "disabled"}>${isCurrent ? "Valgt" : "Velg"}</button>
         </div>
@@ -395,7 +587,7 @@
         <div class="latest-knowledge-box">
           <div class="lk-topic">Velg nabolag</div>
           <div class="lk-category">Tre gratis alternativer fra start</div>
-          <div class="lk-text">Nabolaget setter hjemfølelse, hverdag, butikktilgang og boligspor i Civication.</div>
+          <div class="lk-text">Nabolaget setter hjemfølelse, hverdag, butikktilgang, boligspor, husleie og prestige i Civication.</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
           ${startDistricts.map((district) => renderDistrictCard(district, null)).join("")}
@@ -408,6 +600,13 @@
     }
 
     const access = getSelectedDistrictAccess();
+    const pressure = state?.home?.housingPressure || "none";
+    const arrears = Number(state?.home?.rentArrears || 0);
+    const pressureText = pressure === "crisis"
+      ? `Krise: ${arrears} PC i boligpress`
+      : pressure === "pressure"
+        ? `Press: ${arrears} PC i boligpress`
+        : "Stabilt";
 
     host.innerHTML = `
       <div class="latest-knowledge-box">
@@ -416,10 +615,14 @@
         <div class="lk-text">${current.shortDesc || "Du har valgt nabolag."}</div>
       </div>
       <div style="margin-top:10px;padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
-        <div style="font-weight:700;">Boligtilgang</div>
-        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">${access.housing.length ? access.housing.join(" · ") : "Ingen egne boligtagger"}</div>
+        <div style="font-weight:700;">Boligstatus</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Husleie: ${formatRent(current)}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Prestige: ${access.prestige}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Boligtilgang: ${access.housing.length ? access.housing.join(" · ") : "Ingen egne boligtagger"}</div>
+        <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Boligpress: ${pressureText}</div>
         <div style="font-size:0.9rem;opacity:0.82;margin-top:6px;">Flyttinger: ${Number(state?.home?.moveCount || 0)}</div>
         <button class="btn" data-civi-open-districts style="margin-top:10px;">Bytt nabolag</button>
+        <button class="btn" data-civi-apply-rent style="margin-top:10px;margin-left:6px;">Kjør boligperiode</button>
       </div>
     `;
 
@@ -454,6 +657,14 @@
         return;
       }
 
+      const rentButton = target.closest("[data-civi-apply-rent]");
+      if (rentButton) {
+        event.preventDefault();
+        applyHousingPeriodCosts(true);
+        renderHomeStatus();
+        return;
+      }
+
       const selectButton = target.closest("[data-civi-district-select]");
       if (selectButton) {
         event.preventDefault();
@@ -474,6 +685,7 @@
 
   function boot() {
     bindHandlers();
+    applyHousingPeriodCosts(false);
     renderHomeStatus();
   }
 
@@ -487,9 +699,12 @@
       id: "grunerlokka",
       name: "Grünerløkka",
       baseCost: 0,
+      rent: 6,
+      prestige: 5,
       isStartOption: true,
       shortDesc: "Kreativt, sosialt og litt kantete. Bra for kultur, små steder, kollektivfølelse og byliv.",
       quizRequirements: {},
+      visitRequirementPlaceIds: [],
       housing_access: ["stable_home", "collective", "edge_district", "creative_collective"],
       store_access: ["home"],
       choice_tags: ["culture", "local", "community", "street"],
@@ -504,9 +719,12 @@
       id: "sagene",
       name: "Sagene",
       baseCost: 0,
+      rent: 4,
+      prestige: 4,
       isStartOption: true,
       shortDesc: "Roligere hverdagsby med park, rutiner og nabolagsfølelse. Bra for stabilitet og hjemlig rytme.",
       quizRequirements: {},
+      visitRequirementPlaceIds: [],
       housing_access: ["stable_home", "quiet_district", "family_friendly"],
       store_access: ["home"],
       choice_tags: ["family", "security", "local", "budget"],
@@ -520,9 +738,12 @@
       id: "sondre_nordstrand",
       name: "Søndre Nordstrand",
       baseCost: 0,
+      rent: 3,
+      prestige: 2,
       isStartOption: true,
       shortDesc: "Mer plass, grønnere kanter og større avstand til sentrum. Bra for ro, natur og handlingsrom.",
       quizRequirements: {},
+      visitRequirementPlaceIds: [],
       housing_access: ["stable_home", "quiet_district", "green_edge"],
       store_access: ["home"],
       choice_tags: ["outdoor", "security", "family", "frugality"],
@@ -537,12 +758,15 @@
       id: "frogner",
       name: "Frogner",
       baseCost: 70,
+      rent: 12,
+      prestige: 9,
       isStartOption: false,
       shortDesc: "Status, fasade og tung symbolsk kapital. Dyrt, synlig og sosialt kodet.",
       quizRequirements: {
         naeringsliv: 2,
         kunst: 1
       },
+      visitRequirementPlaceIds: ["frogner", "frognerparken", "vigelandsparken"],
       housing_access: ["status_district", "central_comfort", "representational"],
       store_access: ["home", "luxury"],
       choice_tags: ["status", "luxury", "visibility"],
@@ -557,11 +781,14 @@
       id: "ullern",
       name: "Ullern",
       baseCost: 65,
+      rent: 10,
+      prestige: 8,
       isStartOption: false,
       shortDesc: "Komfort, familieøkonomi og trygg avstand. Stabilt, men krevende å opprettholde.",
       quizRequirements: {
         naeringsliv: 2
       },
+      visitRequirementPlaceIds: ["ullern"],
       housing_access: ["quiet_district", "family_friendly", "status_district"],
       store_access: ["home"],
       choice_tags: ["family", "security", "status"],
@@ -575,12 +802,15 @@
       id: "sentrum",
       name: "Sentrum",
       baseCost: 80,
+      rent: 14,
+      prestige: 7,
       isStartOption: false,
       shortDesc: "Tett, dyrt og effektivt. Gir nærhet til alt, men også mer press og mindre ro.",
       quizRequirements: {
         politikk: 2,
         naeringsliv: 2
       },
+      visitRequirementPlaceIds: ["sentrum", "torggata", "youngstorget"],
       housing_access: ["urban_core", "high_density", "central_comfort"],
       store_access: ["home", "electronics", "coffee"],
       choice_tags: ["mobility", "status", "visibility", "process"],
@@ -612,6 +842,8 @@
     selectDistrict,
     canPurchaseDistrict,
     canPurchaseHomeObject,
+    hasVisitedDistrict,
+    applyHousingPeriodCosts,
     render: renderHomeStatus,
     boot,
     DISTRICTS
