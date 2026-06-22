@@ -23,9 +23,10 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 
 - Konverter **én fil om gangen** fra klassisk `js/<navn>.js` til `js/<navn>.ts` (ESM med eksplisitte `export`).
 - **Interop-kontrakt:** hver migrert modul som tidligere eksponerte en global MÅ fortsatt publisere samme `window.X` som sideeffekt ved last. Bundles bygges som `iife` slik at de kjører ved last uten at HTML trenger `type="module"` eller import.
-- esbuild bygger via `build/build-web.mjs` (entry-manifest) til `dist/web/<navn>.js` (gitignored). Den eide HTML-siden repekes fra `js/<navn>.js` til `dist/web/<navn>.js`.
+- esbuild bygger via `build/build-web.mjs` (entry-manifest) til `dist/web/<navn>.js`. Den eide HTML-siden repekes fra `js/<navn>.js` til `dist/web/<navn>.js`.
+- **`dist/web/` committes** (resten av `dist/` er fortsatt gitignored), slik at sidene virker når repoet serveres uten et build-steg. Etter endring av en migrert `.ts` MÅ man kjøre `npm run build:web` og committe bundlene; `npm run build:web:check` feiler hvis committet `dist/web` er ute av sync (esbuild-output er deterministisk).
 - Typecheck av migrerte browser-filer: `npm run typecheck:web` (`tsconfig.web.json`, DOM-lib, `noEmit`). Bygg: `npm run build:web`.
-- Ikke-migrerte filer fortsetter uendret som klassiske `<script>`-tagger. En side som laster en migrert modul krever `npm run build:web` før servering; rene klassiske sider trenger fortsatt ingen build.
+- Ikke-migrerte filer fortsetter uendret som klassiske `<script>`-tagger. Siden `dist/web/` committes, trenger man ikke bygge før servering; men utviklere må bygge + committe på nytt etter `.ts`-endringer (håndheves av `build:web:check`).
 
 ### Per-fil migreringssjekkliste (følg for hver fil)
 
@@ -33,7 +34,7 @@ Undersøkelse av kodebasen viser hvorfor dette må gjøres forsiktig og i små b
 2. `git mv js/<navn>.js js/<navn>.ts`.
 3. Fjern typefeil. Enkle moduler types fullt. JSDoc-tunge moduler kan migreres adferdsidentisk med midlertidig `// @ts-nocheck` øverst (samme konvensjon som finnes i repoet fra før), og typestrammes i en senere egen runde.
 4. Behold interop-kontrakten: modulen MÅ fortsatt publisere samme `window.X` ved last.
-5. Registrer entrypoint i `build/build-web.mjs`.
+5. Registrer entrypoint i `build/build-web.mjs`, kjør `npm run build:web` og **commit den nye `dist/web/<navn>.js`** (+ `.map`).
 6. Repek HTML-siden(e) fra `js/<navn>.js` til `dist/web/<navn>.js`.
 7. **Sjekk `sw.js`:** hvis `PRECACHE_URLS` lister `js/<navn>.js`, oppdater til `dist/web/<navn>.js` og bump `SW_VERSION`. (Lett å glemme — gammel sti vil ellers 404 ved precache.)
 8. Verifiser: `npm run typecheck:web`, `npm run build:web`, og kjør IIFE-bundelen i en stubbed browser-kontekst (Node `vm`) for å bekrefte at `window.X` publiseres med uendret API. Kjør `npm run typecheck` og sjekk at ingen NY feil dukker opp (hvis en konsument mister en global-type, legg deklarasjon i `schemas/app-globals.d.ts`).
@@ -120,7 +121,7 @@ Browser-migrert så langt (oppdatert): + `knowledge` (9 filer). Alle de store de
 
 **Verifisering per batch (tre lag):**
 
-1. **Statisk:** `npm run typecheck:web` + `npm run build:web` (esbuild bygger uten feil), og `npm run typecheck` skal ikke vise NY feil.
+1. **Statisk:** `npm run typecheck:web` + `npm run build:web` (esbuild bygger uten feil), og `npm run typecheck` skal ikke vise NY feil. Commit de oppdaterte `dist/web`-bundlene; `npm run build:web:check` skal være grønn.
 2. **Automatisk headless røyktest:** `npm run smoke:web` kjører `build/smoke-web.mjs`, som bruker JSDOM (ren JS, ingen browser-binær) til å laste de faktiske HTML-sidene fra disk, kjøre `<script>`-taggene i rekkefølge (inkl. dist/web-bundlene) og verifisere at (a) ingen `dist/web/*.js`-bundle mangler/404-er og (b) alle forventede `window.X`-globaler publiseres. Den skiller migreringsfeil (hard fail) fra støy som JSDOM ikke støtter (CSS-parsing, eksterne CDN-scripts uten nett, canvas/MapLibre). Legg til nye sider/globaler i `TARGETS` i `build/smoke-web.mjs` når de migreres.
 3. **Manuell nettleser** (anbefalt for kjernebaner som quiz/belønning): server repoet og åpne siden; `DomainHealthReport.run()` og `QuizAudit.run()` der det er relevant. JSDOM gjør ikke layout og dekker ikke `index.html` (MapLibre/canvas), så index-batcher krever ekte nettleser.
 

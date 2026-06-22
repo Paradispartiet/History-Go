@@ -106,7 +106,15 @@ async function smokePage({ page, globals }) {
   const html = fs.readFileSync(abs, "utf8");
   const bundleRefs = checkBundleRefs(html, abs);
 
-  const dom = new JSDOM(html, {
+  // Fjern eksterne http(s)-scripts/links (leaflet, supabase, MapLibre, CDN-er).
+  // De er ikke migreringsrelevante, og JSDOM henger på nettverksforsøk mot dem
+  // (nettverkspolicy blokkerer) — det gjorde testen flaky. Lokale dist/web/js
+  // er relative og påvirkes ikke.
+  const htmlForDom = html
+    .replace(/<script\b[^>]*\ssrc=["']https?:\/\/[^"']*["'][^>]*><\/script>/gi, "<!-- ext script stripped -->")
+    .replace(/<link\b[^>]*\shref=["']https?:\/\/[^"']*["'][^>]*\/?>/gi, "<!-- ext link stripped -->");
+
+  const dom = new JSDOM(htmlForDom, {
     url: pathToFileURL(abs).href,
     runScripts: "dangerously",
     resources: "usable",
@@ -144,7 +152,7 @@ async function smokePage({ page, globals }) {
   });
 
   // Vent på at DOMContentLoaded-handlere + async last skal kjøre.
-  await new Promise((r) => setTimeout(r, 800));
+  await new Promise((r) => setTimeout(r, 1200));
 
   const win = dom.window;
 

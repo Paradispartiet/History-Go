@@ -8,7 +8,9 @@ History GO is a location-based knowledge game where the city (Oslo) is the game 
 
 It is a **framework-free browser app**. Historically it had no bundler and no build step — HTML loaded classic `<script src="...js">` tags directly, and TypeScript was only a static type-checker over JavaScript (`allowJs` + `checkJs`). The project has now **decided to adopt esbuild as a bundler** so browser files can become real TypeScript (`.ts`) ESM modules. This migration is a **strangler**: files are converted one at a time from classic global-scope `.js` to `.ts` ESM modules bundled by esbuild (`npm run build:web`), while not-yet-migrated files keep loading as classic `<script>` tags. The Node-only tracks (`scripts/`, `tools/`) are already fully TypeScript. See `docs/typescript-migration-plan.md`.
 
-**Interop contract (non-negotiable during migration):** any migrated module that previously exposed a global (`window.X`) MUST still publish that same global as a load-time side effect, so classic (non-migrated) consumers keep working unchanged. esbuild builds these as `iife` bundles. Migrated entrypoints are listed in `build/build-web.mjs` and output to `dist/web/` (gitignored); the owning HTML page loads `dist/web/<name>.js` and therefore now requires `npm run build:web` before serving.
+**Interop contract (non-negotiable during migration):** any migrated module that previously exposed a global (`window.X`) MUST still publish that same global as a load-time side effect, so classic (non-migrated) consumers keep working unchanged. esbuild builds these as `iife` bundles. Migrated entrypoints are listed in `build/build-web.mjs` and output to `dist/web/`; the owning HTML page loads `dist/web/<name>.js`.
+
+**`dist/web/` is committed** (unlike the rest of `dist/`, which stays gitignored) so the app works when the repo is served as-is — no build step required before serving. The trade-off is committed generated code: after editing any migrated `js/**/*.ts`, run `npm run build:web` and commit the rebuilt bundles. `npm run build:web:check` rebuilds and fails if `dist/web` is out of sync with source (the esbuild output is deterministic); run it before committing browser changes.
 
 Most documentation is in Norwegian, and most code identifiers, data, and content are Norwegian. Match that language when editing docs and content.
 
@@ -96,13 +98,14 @@ Allowed globals (do not introduce others without a decision): `window.PLACES, PE
 
 ## Commands
 
-Requires Node (repo uses v22). `devDependencies` are TypeScript, `@types/node`, and **esbuild** (the browser bundler adopted for the TS migration). Browser pages that have not yet been migrated still load classic `<script>` tags and need no build; pages that load a migrated module from `dist/web/` require `npm run build:web` first.
+Requires Node (repo uses v22). `devDependencies` are TypeScript, `@types/node`, **esbuild** (the browser bundler adopted for the TS migration), and **jsdom** (headless smoke test). `dist/web/` bundles are committed, so serving the repo works without a build step; rebuild and commit them after editing any migrated `js/**/*.ts`.
 
 Browser bundle build:
 
 ```bash
 npm run typecheck:web      # tsc over migrated js/**/*.ts (DOM lib, noEmit)
-npm run build:web          # esbuild -> dist/web/*.js (iife bundles)
+npm run build:web          # esbuild -> dist/web/*.js (iife bundles, committed)
+npm run build:web:check    # rebuild + fail if committed dist/web is out of sync
 npm run build:web:watch    # rebuild on change during dev
 npm run smoke:web          # headless JSDOM smoke test: loads real pages, checks
                            # dist/web bundles load + window.X globals publish

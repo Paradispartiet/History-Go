@@ -11,6 +11,7 @@
     "typecheck:web": "tsc -p tsconfig.web.json",
     "build:web": "node build/build-web.mjs",
     "build:web:watch": "node build/build-web.mjs --watch",
+    "build:web:check": "npm run build:web && node -e \"const s=require('child_process').execSync('git status --porcelain dist/web').toString().trim(); if(s){console.error('dist/web er ute av sync med kilden \\u2014 kjor npm run build:web og commit:\\n'+s);process.exit(1)} else console.log('dist/web i sync \\u2705')\"",
     "smoke:web": "npm run build:web && node build/smoke-web.mjs",
     "tools:check": "npm run typecheck:tools && npm run build:tools && npm run places:index:check && npm run places:coords:check && npm run places:emner:check && npm run i18n:dupkeys:check && npm run leksikon:ids:check && npm run places:aliases:check && npm run check:stories && npm run health:places",
     "places:coords:audit": "npm run build:tools && node dist/tools/audit-place-coordinates.mjs",

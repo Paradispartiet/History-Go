@@ -1,6 +1,10 @@
 node_modules/
 
-dist/
+# Generert TS-build-output ignoreres, MEN dist/web (esbuild browser-bundler)
+# committes bevisst slik at migrerte sider virker når repoet serveres uten et
+# build-steg. Hold bundlene i sync med kilden via `npm run build:web:check`.
+dist/*
+!dist/web/
 
 # Lokal koordinatkilde-cache (generate-place-coordinate-candidates.mjs).
 # Cache committes ikke; den regenereres ved behov fra kildene.
