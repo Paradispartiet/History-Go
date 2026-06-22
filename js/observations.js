@@ -391,6 +391,17 @@
 
         appendLearningEvent(evt);
         try {
+          window.dispatchEvent(new CustomEvent("hg:observationAdded", { detail: {
+            observationId: [evt.targetId, evt.lens_id, evt.field_id].filter(Boolean).join("::"),
+            placeId: evt.targetId,
+            targetId: evt.targetId,
+            domain: evt.categoryId,
+            categoryId: evt.categoryId,
+            conceptIds: evt.concepts,
+            tags: Array.from(new Set([...(evt.tags || []), ...(evt.selected || [])]))
+          }}));
+        } catch {}
+        try {
           if (typeof window.createSharedObservation === "function") {
             window.createSharedObservation({
               spotId: evt.targetId,
