@@ -456,3 +456,11 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - It does not own Civication logic, HG Social logic, map behavior, profile behavior, data loading, UI, or gameplay state. It must not mutate state, create data, write localStorage, or change rendering.
 - `window.HG_RuntimeHealthPanel` lives in `js/debug/HGRuntimeHealthPanel.js` and is loaded by `js/app.js` after `HG_RuntimeHealth`. It is a **TEST_MODE-only** read-only panel: it renders `HG_RuntimeHealth.health()` inside the app only when `HG_TEST_MODE` is enabled, and it is not production UI.
 - The panel is only diagnostic visibility for manual testing (for example iPad smoke checks). It must not create demo data, profiles, invites, circles, economy ticks, mail answers, unlocks, or other gameplay/profile/map/data mutations.
+
+## HG Social Demo Adapter and TEST_MODE-visible demo surfaces
+
+- `js/social/HGSocialDemo.js` owns the isolated HG Social demo sandbox. It is TEST_MODE-only, requires manual `HG_SocialDemo.seed()`, stores demo state only in `hg_social_demo_state_v1`, and exposes demo-only preset invite writes through `sendDemoInvite()` plus `getPresetMessages()`.
+- `js/social/HGSocialDemoAdapter.js` exposes `window.HG_SocialDemoAdapter` as a read-only bridge from seeded demo state into visible app surfaces. It never inserts fake users into `PEOPLE`, never mutates real social graphs, and marks returned objects with `demoOnly: true`.
+- `js/ui/place-card.js` calls the adapter for a TEST_MODE-only PlaceCard block titled `Demo: kunnskapsfolk her`. The block shows fake knowledge matches and its invite action writes only to demo storage.
+- `js/social/HGSocialDemoProfile.js` exposes `window.HG_SocialDemoProfile` for a small inline-styled demo profile popover. It shows demo-only profile fields and preset demo invite controls without chat, free text, place tracking, or follower data.
+- `js/social/HGSocialDemoPanel.js`, `js/debug/HGRuntimeHealthPanel.js`, and `js/debug/HGRuntimeSmokeRunner.js` surface seeded demo counts, privacy status, smoke checks, reset controls, and leak detection only when `localStorage.getItem("HG_TEST_MODE") === "1"`.

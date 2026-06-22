@@ -581,3 +581,14 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - `window.CivicationHome.moveToDistrict(districtId)` — updates current home district and move history when the district is unlocked/available.
 - `window.CivicationHome.applyRentTick(force)` — applies weekly rent using existing PC/economic capital and updates rent due/housing status.
 - `window.CivicationHome.getHomeSnapshot()` now includes current district, rent pressure, rent due, unlocked ids, available/blocked moves, housing status, and support eligibility.
+
+## HG Social Demo visible surfaces
+
+`window.HG_SocialDemo` is a TEST_MODE-only, demo-only, privacy-safe sandbox API. New public functions:
+
+- `HG_SocialDemo.sendDemoInvite({ toUserId, placeId, presetMessageId })` — writes or updates only demo invites in `hg_social_demo_state_v1`; it is not production data and not a real social graph invite.
+- `HG_SocialDemo.getPresetMessages()` — returns the allowed preset demo invitation messages; no free text is accepted.
+
+`window.HG_SocialDemoAdapter` is a TEST_MODE-only and seeded-demo-only adapter for visible manual-testing surfaces. It is demo-only, privacy-safe, not production data, and not a real social graph. It exposes `isEnabled`, place match readers, panel summary helpers, `renderPlaceSocialBlock`, `attachToPlaceCard`, and `detachFromPlaceCard` without mutating `PEOPLE`, `PLACES`, or real social storage.
+
+`window.HG_SocialDemoProfile` is a TEST_MODE-only demo profile card renderer. It is demo-only, privacy-safe, not production data, and not a real profile/social surface. It exposes `open`, `close`, and `renderCard` for fake demo users only.

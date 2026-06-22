@@ -121,6 +121,30 @@
     checks.placeCardReadiness = check(placeReady, placeReady ? openerReady ? "ok" : "warning" : "blocker", "PlaceCard-readiness kontrollert uten å åpne kort.", { hasReadablePlace: placeReady, hasOpener: openerReady });
     if (placeReady && !openerReady) warnings.push(warning("place_card_opener_missing", "openPlaceCard/HGMapView.openPlaceCard mangler.", {}, "placeCardReadiness"));
 
+
+    const demoSnap = safeSync(() => root.HG_SocialDemo?.snapshot?.());
+    if (!isEnabled()) {
+      checks.socialDemoVisible = check(true, "ok", "Social demo ikke synlig uten TEST_MODE.");
+    } else if (!demoSnap.value?.seeded) {
+      warnings.push(warning("social_demo_not_seeded", "HG Social demo er ikke seedet.", {}, "socialDemoVisible"));
+      checks.socialDemoVisible = check(true, "warning", "Social demo ikke seedet.");
+    } else {
+      const profiles = list(demoSnap.value.profiles);
+      const adapter = root.HG_SocialDemoAdapter;
+      const fakeIds = new Set(profiles.map((p) => p?.userId).filter(Boolean));
+      const leaked = list(root.PEOPLE).filter((p) => fakeIds.has(p?.userId || p?.id));
+      if (leaked.length) blockers.push(blocker("demo_users_leaked_global_people", "Demo users leaked into global PEOPLE", { count: leaked.length }, "socialDemoVisible"));
+      if (!adapter) blockers.push(blocker("social_demo_adapter_missing", "HG_SocialDemoAdapter mangler.", {}, "socialDemoVisible"));
+      if (profiles.length < 8) blockers.push(blocker("social_demo_profiles_low", "Demo profile count er under 8.", { count: profiles.length }, "socialDemoVisible"));
+      const samplePlace = list(root.PLACES)[0] || { id: "factory_memory" };
+      const demoMatches = safeSync(() => adapter?.getPeopleForPlace?.(samplePlace));
+      if (!list(demoMatches.value).length) blockers.push(blocker("social_demo_place_matches_missing", "Ingen demo-matcher for teststed.", {}, "socialDemoVisible"));
+      if (typeof root.HG_SocialDemo?.sendDemoInvite !== "function") blockers.push(blocker("social_demo_invite_missing", "sendDemoInvite mangler.", {}, "socialDemoVisible"));
+      const demoPrivacy = root.HG_SocialDemo?.scanForbiddenFields?.(demoSnap.value);
+      if (demoPrivacy && demoPrivacy.ok === false) list(demoPrivacy.blockers).forEach((item) => blockers.push(blocker("social_demo_privacy", "Demo personvernscan feilet.", item, "socialDemoVisible")));
+      checks.socialDemoVisible = check(!leaked.length && !!adapter && profiles.length >= 8 && list(demoMatches.value).length > 0, leaked.length ? "blocker" : "ok", "Social demo synlighet kontrollert.", { profiles: profiles.length, matches: list(demoMatches.value).length });
+    }
+
     const privacyFound = [];
     scanForbidden({ runtimeReport, runtimeSnapshot, socialReport, socialSnapshot }, "snapshots", privacyFound, new WeakSet());
     privacyFound.forEach((item) => blockers.push(blocker("privacy_forbidden_field", `Forbudt personvernfelt funnet: ${item.path}`, item, "privacy")));

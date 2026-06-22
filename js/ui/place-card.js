@@ -1378,6 +1378,8 @@ if (peopleEl) {
   });
 }
 
+window.HG_SocialDemoAdapter?.attachToPlaceCard?.(peopleEl || card, place);
+
 // people icon preview (første person)
 if (peopleIcon) {
   const p0 = persons?.[0];
