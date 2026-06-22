@@ -53,8 +53,28 @@
     return scan(payload, "");
   }
 
+  function loadHGSocialDemoScript(src) {
+    if (typeof document === "undefined") return;
+    if (document.querySelector(`script[src="${src}"]`)) return;
+    const script = document.createElement("script");
+    script.src = src;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
+  function loadHGSocialDemoPanel() {
+    if (typeof document === "undefined") return;
+    if (!document.getElementById("profileSocialLayer") && !document.getElementById("confirmed-meets")) return;
+    loadHGSocialDemoScript("js/hgSocialDemoData.js");
+    loadHGSocialDemoScript("js/hgSocialSmokePanel.js");
+  }
+
   window.HG_SOCIAL_FORBIDDEN_FIELDS = HG_SOCIAL_FORBIDDEN_FIELDS;
   window.HG_SocialGuards = {
     assertNoSocialPrivacyLeak
   };
+  window.assertNoSocialPrivacyLeak = assertNoSocialPrivacyLeak;
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", loadHGSocialDemoPanel);
+  else loadHGSocialDemoPanel();
 })();
