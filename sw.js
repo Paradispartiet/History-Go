@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-22-v1.2.925";
+const SW_VERSION = "hg-sw-2026-06-22-v1.2.926";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -67,7 +67,7 @@ const PRECACHE_URLS = [
   "js/DomainRegistry.js",
   // Migrert til TS ESM, bundlet med esbuild til dist/web (npm run build:web)
   "dist/web/fagHealthReport.js",
-  "js/courses.js",
+  "dist/web/courses.js",
   "dist/web/hgKnowledgeEngine.js",
   "js/domainHealthReport.js",
 

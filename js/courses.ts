@@ -4,8 +4,8 @@
 (function () {
   "use strict";
 
-  function dlog(...a) { if (window.DEBUG) console.log("[HGCourses]", ...a); }
-  function dwarn(...a) { if (window.DEBUG) console.warn("[HGCourses]", ...a); }
+  function dlog(...a) { if ((window as any).DEBUG) console.log("[HGCourses]", ...a); }
+  function dwarn(...a) { if ((window as any).DEBUG) console.warn("[HGCourses]", ...a); }
 
   function s(x) { return String(x ?? "").trim(); }
   function arr(x) { return Array.isArray(x) ? x : []; }
@@ -319,7 +319,7 @@
   // --------------------------------------------
   // Public API
   // --------------------------------------------
-  const HGCourses = {};
+  const HGCourses: any = {};
 
   HGCourses.loadPensum = loadPensum;
 

@@ -41,6 +41,7 @@ const ENTRIES = [
   { in: "js/hgInsights.ts", out: "hgInsights" },
   { in: "js/knowledge.ts", out: "knowledge" },
   { in: "js/trivia.ts", out: "trivia" },
+  { in: "js/courses.ts", out: "courses" },
   { in: "js/profileInsightRoomEntry.ts", out: "profileInsightRoomEntry" }
 ];
 

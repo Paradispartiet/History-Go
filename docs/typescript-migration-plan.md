@@ -122,6 +122,19 @@ Browser-migrert så langt (oppdatert): + `knowledge` (9 filer). Alle de store de
 
 Browser-migrert så langt (oppdatert): + `trivia` (10 filer).
 
+### Batch 9 (fullført) — `courses.js`
+
+`js/courses.js` → `.ts` (ren IIFE, `0` bare-globaler, publiserer kun `window.HGCourses`), fullt typet:
+
+- Konsumenter: `profile.html` + `emner.html` (begge røyktestet), ikke i index/`app.js`-lasteren. `window.HGCourses` forbrukes bare i emner.html-inline, så ingen base-typecheck-deklarasjon trengs.
+- Små typefikser: `(window as any).DEBUG`, `const HGCourses: any = {}`.
+- `profile.html`/`emner.html` repeker til `dist/web/courses.js`; `sw.js` oppdatert + `SW_VERSION` bumpet.
+- Verifisert: `typecheck:web` + `build:web` grønn, `npm run typecheck` ingen ny feil, `npm run smoke:web` PASS med `HGCourses` asserted, `build:web:check` grønn.
+
+**`profile.js` ble bevisst utsatt:** den er sidekontrolleren (1542L) og bruker et kart (`setupProfileMap`/Leaflet), som JSDOM ikke kan verifisere. Den hører til samme «krever ekte nettlesertest»-klasse som index-kjeden og bør tas når manuell nettlesertest er tilgjengelig.
+
+Browser-migrert så langt (oppdatert): + `courses` (11 filer).
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.
