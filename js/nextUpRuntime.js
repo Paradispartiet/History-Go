@@ -452,7 +452,7 @@
       : routes.length ? "Delt rute kan fullføres"
       : meetups.length ? "Åpent meetup finnes"
       : "Circle-aktivitet finnes";
-    return {
+    const suggestion = {
       type: "social",
       target_id: best?.targetUserId || routes[0]?.routeId || meetups[0]?.meetupId || circles[0]?.circleId || "social",
       label: "Utforsk med andre",
@@ -463,6 +463,8 @@
       source: "hg-social",
       meta: { matchUserId: best?.targetUserId || "" }
     };
+    window.HG_SocialGuards?.assertNoSocialPrivacyLeak?.(suggestion, "nextUpSocial");
+    return suggestion;
   }
 
   function normalizeSuggestions(tri) {
