@@ -345,11 +345,61 @@
   }
 
   /**
+   * @param {string} badgeId
+   * @returns {string[]}
+   */
+  function getBadgeIdAliases(badgeId) {
+    const id = String(badgeId || "").trim();
+    if (!id) return [];
+
+    const aliases = {
+      populaerkultur: "popkultur",
+      popkultur: "populaerkultur",
+      næringsliv: "naeringsliv",
+      naeringsliv: "næringsliv"
+    };
+
+    return Array.from(new Set([id, aliases[id]].filter(Boolean)));
+  }
+
+  /**
+   * @param {unknown} merit
+   * @returns {number}
+   */
+  function getMeritPoints(merit) {
+    const points = merit && typeof merit === "object"
+      ? Number(/** @type {{ points?: unknown }} */ (merit).points)
+      : Number(merit);
+
+    return Number.isFinite(points) ? points : 0;
+  }
+
+  /**
+   * @param {CiviCommercialPack | CiviCommercialStore | CiviCommercialRecord} item
+   * @returns {boolean}
+   */
+  function hasRequiredBadgeAccess(item) {
+    const required = normalizeList(item?.gating?.requires_badges_any);
+    if (!required.length) return true;
+
+    const merits = readJSON("merits_by_category", {});
+    const meritMap = merits && typeof merits === "object" ? merits : {};
+
+    return required.some((badgeId) => (
+      getBadgeIdAliases(badgeId).some((alias) => (
+        getMeritPoints(/** @type {Record<string, unknown>} */ (meritMap)[alias]) > 0
+      ))
+    ));
+  }
+
+  /**
    * @returns {Promise<CiviCommercialStore[]>}
    */
   async function getVisibleStores() {
     const stores = await getStores();
-    return stores.filter(storeMatchesHistoryGoAccess);
+    return stores.filter((store) => (
+      storeMatchesHistoryGoAccess(store) && hasRequiredBadgeAccess(store)
+    ));
   }
 
   /**
@@ -363,6 +413,7 @@
       const storeId = String(pack?.store_id || "");
       if (storeId && !allowedStoreIds.has(storeId)) return false;
       if (!hasRequiredNeighborhoodAccess(pack)) return false;
+      if (!hasRequiredBadgeAccess(pack)) return false;
       return true;
     });
   }
