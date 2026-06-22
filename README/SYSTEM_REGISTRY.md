@@ -19,6 +19,7 @@ Følgende globals er eksplisitt tillatt:
 - window.OPEN_MODE
 - window.API
 - window.HG_CiviDebug
+- window.HG_CiviEconomySnapshot
 
 Ingen andre globals skal introduseres uten beslutning.
 
@@ -530,3 +531,11 @@ Deprecations
 - Allowed methods: `snapshot()` and `print()`. Both may be asynchronous and must be safe to call as `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
 - Debug helpers must be read-only. They must not mutate Civication state, wallet state, shop inventory, inbox, profile state, localStorage contents, UI, gameplay flow, or create new storage keys.
 - Debug helpers must handle missing runtimes, malformed localStorage, and failed visible-pack/store loading defensively.
+
+---
+
+## Civication economy snapshot contract
+
+- `window.HG_CiviEconomySnapshot` is an allowed read-only global exposed by `js/Civication/core/civicationEconomyEngine.js` for browser-console and debug inspection.
+- The snapshot may combine wallet/job/home/shop data to explain current PC economy, but it must not mutate wallet, home, capital, shop, career state, localStorage contents, or gameplay flow.
+- Economy snapshots must handle missing runtimes and unavailable visible packs defensively.

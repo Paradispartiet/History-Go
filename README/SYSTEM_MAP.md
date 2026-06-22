@@ -408,6 +408,8 @@ Avvik fra dette skal enten refaktoreres eller dokumenteres eksplisitt.
 ## Civication profile/shop visibility
 
 - Civication profile panel (`profile.html` via `js/Civication/ui/CivicationUI.js`) is a defensive renderer for the player's Civication status.
-- The panel reads career/role and PC wallet state from `CivicationState`, shop inventory and visible packs from `HG_CiviShop`, and salary/psyche context from CapitalEngine-compatible salary helpers and `CivicationPsyche`.
+- The panel reads career/role and PC wallet state from `CivicationState`, shop inventory and visible packs from `HG_CiviShop`, and salary/psyche context from CapitalEngine-compatible salary helpers, the economy snapshot, and `CivicationPsyche`.
 - Profile does not own the PC wallet or shop inventory. Wallet and inventory mutations remain in the Civication state/shop systems.
+- The economy engine owns the weekly PC tick and a read-only economy model (`HG_CiviEconomySnapshot` / `CivicationEconomyEngine.getEconomySnapshot`) that explains wallet, job income, job expenses, home rent, affordability, and next-tick status without running the tick.
+- Wallet remains owned by `CivicationState`; home rent remains owned by `CivicationHome`. The economy snapshot may combine wallet/job/home/shop data, but it is read-only and must not create gameplay state.
 - The profile shop UI is renderer-only: it displays visible packs, owned state, style tag counts, and delegates purchase attempts to `HG_CiviShop.buyPack(packId)`.
