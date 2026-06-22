@@ -153,6 +153,20 @@ declare global {
     HGOnboarding?: any;
     HGPlaces?: any;
     HGPos?: any;
+    HG_SocialGuards?: {
+      assertNoSocialPrivacyLeak?: (payload?: unknown, context?: unknown) => boolean;
+      [key: string]: unknown;
+    };
+    HG_SOCIAL_FORBIDDEN_FIELDS?: ReadonlyArray<string>;
+    assertNoSocialPrivacyLeak?: (payload?: unknown, context?: unknown) => boolean;
+    HGSocialSmokeTest?: {
+      runHGSocialSmokeTest?: () => unknown;
+      [key: string]: unknown;
+    };
+    runHGSocialSmokeTest?: () => unknown;
+    seedHGSocialDemoData?: () => unknown;
+    clearHGSocialDemoData?: () => unknown;
+    enableHGSocialDemoMode?: () => unknown;
     HGRoutes?: any;
     HGHistoricalRoutes?: any;
     HGStories?: any;
