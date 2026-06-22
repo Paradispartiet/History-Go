@@ -528,9 +528,11 @@ Deprecations
 ## Civication debug helper contract
 
 - `window.HG_CiviDebug` is an allowed global exposed by `js/Civication/CivicationBoot.js` for browser-console inspection only.
-- Allowed methods: `snapshot()` and `print()`. Both may be asynchronous and must be safe to call as `await HG_CiviDebug.snapshot()` and `await HG_CiviDebug.print()`.
+- Allowed methods: `snapshot()`, `print()`, `health()`, and `printHealth()`. These may be asynchronous and must be safe to call as `await HG_CiviDebug.snapshot()`, `await HG_CiviDebug.print()`, `await HG_CiviDebug.health()`, and `await HG_CiviDebug.printHealth()`.
 - Debug helpers must be read-only. They must not mutate Civication state, wallet state, shop inventory, inbox, profile state, localStorage contents, UI, gameplay flow, or create new storage keys.
 - Debug helpers must handle missing runtimes, malformed localStorage, and failed visible-pack/store loading defensively.
+- `HG_CiviDebug.health()` is a registered read-only readiness helper that reuses the debug snapshot and returns `{ ok, score, checks, blockers, warnings, summary, timestamp }` for browser-console playability triage.
+- `HG_CiviDebug.printHealth()` is a registered read-only debug helper that prints the health report compactly and returns the same health object; it must not add UI, mutate state, or change rendering.
 
 ---
 

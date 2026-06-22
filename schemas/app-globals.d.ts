@@ -46,7 +46,7 @@ declare global {
     HG_CiviProfileSnapshot?: () => any;
     HG_CiviEconomySnapshot?: () => any;
     HG_CiviEconomySnapshotAsync?: () => Promise<any>;
-    HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any> };
+    HG_CiviDebug?: { snapshot?: () => Promise<any>; print?: () => Promise<any>; health?: () => Promise<any>; printHealth?: () => Promise<any> };
     HG_CURRENT_USER_ID?: string;
     openSpotMatchList?: (...args: any[]) => any;
     CivicationCareerOutcomeRuntime?: any;
