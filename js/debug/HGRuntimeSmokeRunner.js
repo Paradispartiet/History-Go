@@ -122,6 +122,9 @@
     if (placeReady && !openerReady) warnings.push(warning("place_card_opener_missing", "openPlaceCard/HGMapView.openPlaceCard mangler.", {}, "placeCardReadiness"));
 
 
+    checks.socialSurfaceContract = check(!!root.HG_SocialSurfaceContract, root.HG_SocialSurfaceContract ? "ok" : "blocker", "Social Surface Contract kontrollert.");
+    if (!root.HG_SocialSurfaceContract) blockers.push(blocker("social_surface_contract_missing", "HG_SocialSurfaceContract mangler.", {}, "socialSurfaceContract"));
+
     const demoSnap = safeSync(() => root.HG_SocialDemo?.snapshot?.());
     if (!isEnabled()) {
       checks.socialDemoVisible = check(true, "ok", "Social demo ikke synlig uten TEST_MODE.");
@@ -142,6 +145,17 @@
       if (typeof root.HG_SocialDemo?.sendDemoInvite !== "function") blockers.push(blocker("social_demo_invite_missing", "sendDemoInvite mangler.", {}, "socialDemoVisible"));
       const demoPrivacy = root.HG_SocialDemo?.scanForbiddenFields?.(demoSnap.value);
       if (demoPrivacy && demoPrivacy.ok === false) list(demoPrivacy.blockers).forEach((item) => blockers.push(blocker("social_demo_privacy", "Demo personvernscan feilet.", item, "socialDemoVisible")));
+      const blockHtml = String(adapter?.renderPlaceSocialBlock?.(samplePlace) || "");
+      const visibleScan = root.HG_SocialSurfaceContract?.scanVisibleText?.(blockHtml);
+      if (visibleScan && !visibleScan.ok) list(visibleScan.blockers).forEach((item) => blockers.push(blocker("social_visible_text_privacy", "Synlig demo-tekst bryter personvernspråk.", item, "socialDemoVisible")));
+      const beforeInvites = list(root.HG_SocialDemo?.snapshot?.().invites).length;
+      const target = profiles[0]?.userId;
+      const invA = root.HG_SocialDemo?.sendDemoInvite?.({toUserId:target,placeId:"smoke-demo-place",presetMessageId:"meet_here",sourceSurface:"demoPanel"});
+      const invB = root.HG_SocialDemo?.sendDemoInvite?.({toUserId:target,placeId:"smoke-demo-place",presetMessageId:"meet_here",sourceSurface:"demoPanel"});
+      const afterInvites = list(root.HG_SocialDemo?.snapshot?.().invites).length;
+      if (!invA?.ok || !invB?.ok || afterInvites > beforeInvites + 1) blockers.push(blocker("social_demo_invite_duplicate", "Demo-invitasjon dupliseres.", {beforeInvites,afterInvites}, "socialDemoVisible"));
+      const actionKeysOk = Object.keys(root.localStorage?.dump?.()||{}).every((k)=>["HG_TEST_MODE","hg_social_demo_state_v1","hg_social_demo_actions_v1"].includes(k));
+      if (!actionKeysOk) blockers.push(blocker("social_demo_action_keys", "Demo action log bruker uventet lagringsnøkkel.", {}, "socialDemoVisible"));
       checks.socialDemoVisible = check(!leaked.length && !!adapter && profiles.length >= 8 && list(demoMatches.value).length > 0, leaked.length ? "blocker" : "ok", "Social demo synlighet kontrollert.", { profiles: profiles.length, matches: list(demoMatches.value).length });
     }
 
