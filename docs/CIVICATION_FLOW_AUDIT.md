@@ -406,3 +406,19 @@ Et første steg på «Daily phase UI» fra seksjon 7. Ingen ny arc, message dire
 - `CivicationDayPhaseUI` rendrer view-modellen som en kort «Karrierestatus»-seksjon i dagsfase-panelet. `career_stagnated` viser rutine/stagnasjon (med autonomi-tall fra `CivicationPsyche` når tilgjengelig), `evening_pressure` viser kveldspress («jobben følger med hjem»), og `morning_choices_expand` viser en urolig-morgen-indikator. Sistnevnte er bevisst kun en synlig status som forbereder neste PR; faktisk utvidet morgenvalglogikk er ikke bygget her.
 - Test: `tests/civication-career-outcome-view-model.test.js` dekker tom/delvis state, kort statuslabel per terminaltilstand, korrekt lesing av de tre flaggene, og en ende-til-ende-sjekk på at STAGNATED `applyOutcomeState` fortsatt setter flaggene og at view-modellen reflekterer dem. Koblet inn i `npm run test:civication`.
 - Gjenstår fortsatt: faktisk utvidet morgenvalglogikk, History Go completion bridge, og at outcome-status også vises robust etter FIRED når aktiv jobb (og dermed dagsfase-panelet) er ryddet bort.
+
+## 9. Robust outcome-visning etter FIRED (2026-06-22)
+
+Lukker det gjenstående punktet fra §8: «outcome-status også vises robust etter FIRED når aktiv
+jobb (og dermed dagsfase-panelet) er ryddet bort.»
+
+- Dagsfase-panelet (`CivicationDayPhaseUI`) eier outcome-banneret, men når en FIRED-outcome rydder
+  bort den aktive jobben forsvinner hele panelet — og statusen med det.
+- Ny display-only UI-modul `js/Civication/ui/CivicationOutcomeStatusUI.js` viser en frittstående
+  karrierestatus i den alltid-tilstedeværende `.civi-panels`-containeren **kun** når
+  `getOutcomeViewModel().hasOutcome` er sann og det ikke finnes en aktiv jobb (`shouldShow`). Da er
+  dagsfase-panelet borte, så det er ingen dobbeltvisning. Re-rendrer på `updateProfile` /
+  `civi:inboxChanged`. Leser kun `CivicationCareerOutcomeRuntime.getOutcomeViewModel`; skriver ingenting.
+- Test: `tests/civication-outcome-status-ui.test.js` dekker `shouldShow`-logikken, at FIRED uten
+  aktiv jobb gir banner i `.civi-panels`, at banneret fjernes når en jobb er aktiv igjen, og
+  re-render via `updateProfile`.
