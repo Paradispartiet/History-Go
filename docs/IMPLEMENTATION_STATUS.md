@@ -25,3 +25,9 @@ Backend contract: defined
 Status: added
 
 Purpose: runtime privacy guard against forbidden social/location fields
+
+## HG Social Demo + Smoke Test
+
+Status: added
+
+Purpose: local visual verification of knowledge-based social layer
