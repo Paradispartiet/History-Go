@@ -111,6 +111,17 @@ Browser-migrert så langt (oppdatert): + `hgInsights` (8 filer).
 
 Browser-migrert så langt (oppdatert): + `knowledge` (9 filer). Alle de store delte kjernefilene (`emnerLoader`, `hgInsights`, `knowledge`) er nå migrert.
 
+### Batch 8 (fullført) — `trivia.js`
+
+`js/trivia.js` → `.ts` (5 top-level-funksjoner, samme bare-global-mønster som `knowledge.js`, men liten — full typing uten `@ts-nocheck`):
+
+- Eneste konsument er `profile.html`. Eksternt forbruk: `window.getTriviaUniverse` (js/profile.js) og `window.saveTriviaPoint` (js/quizzes.js), begge via `window.X` med typeof-guard. Publiserer disse to på window; de tre andre er internt brukt.
+- Base-typecheck-vern: la til `getTriviaUniverse`/`saveTriviaPoint` på `Window` i `schemas/globals.d.ts` (fila forlot base-`.js`-programmet). `npm run typecheck` grønn (kun `HG_SocialGuards`).
+- `profile.html` repeker til `dist/web/trivia.js`; `sw.js` oppdatert + `SW_VERSION` bumpet.
+- Verifisert: `typecheck:web` + `build:web` grønn, `npm run smoke:web` PASS (stabilt) med `getTriviaUniverse`/`saveTriviaPoint` asserted, `build:web:check` grønn.
+
+Browser-migrert så langt (oppdatert): + `trivia` (10 filer).
+
 ### Anbefalt utrullingsrekkefølge for browser-batcher
 
 1. **Isolerte leaf-filer** lastet av kun én side og uten egne avhengigheter (som piloten). Lavest risiko.

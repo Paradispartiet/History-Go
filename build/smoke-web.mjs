@@ -33,7 +33,7 @@ const TARGETS = [
   { page: "knowledge.html", globals: ["Emner", "HGInsights", "Fagkart", "getKnowledgeUniverse", "renderKnowledgeSection"] },
   {
     page: "profile.html",
-    globals: ["HGInsights", "FagHealthReport", "HGKnowledgeEngine", "HG_SOCIAL_INDEX", "HGModeration", "getKnowledgeUniverse"]
+    globals: ["HGInsights", "FagHealthReport", "HGKnowledgeEngine", "HG_SOCIAL_INDEX", "HGModeration", "getKnowledgeUniverse", "getTriviaUniverse", "saveTriviaPoint"]
   },
   // Laster knowledge-motoren via root-shim (../knowledge.js -> document.write dist/web/knowledge.js)
   { page: "knowledge/knowledge_historie.html", globals: ["Emner", "HGInsights", "getKnowledgeUniverse", "renderKnowledgeSection"] }

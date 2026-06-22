@@ -40,6 +40,7 @@ const ENTRIES = [
   { in: "js/emnerLoader.ts", out: "emnerLoader" },
   { in: "js/hgInsights.ts", out: "hgInsights" },
   { in: "js/knowledge.ts", out: "knowledge" },
+  { in: "js/trivia.ts", out: "trivia" },
   { in: "js/profileInsightRoomEntry.ts", out: "profileInsightRoomEntry" }
 ];
 

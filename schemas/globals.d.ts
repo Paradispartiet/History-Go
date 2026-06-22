@@ -111,6 +111,9 @@ declare global {
     getUserConceptsFromLearningLog?: (...args: any[]) => any;
     getUserEmneHitsFromLearningLog?: (...args: any[]) => any;
     HGCourseUI?: any;
+    // Publisert av js/trivia.ts (migrert TS, lastet som dist/web/trivia.js).
+    getTriviaUniverse?: (...args: any[]) => any;
+    saveTriviaPoint?: (...args: any[]) => any;
     HGAhaMusic?: {
       FILES: Record<string, string>;
       state: {

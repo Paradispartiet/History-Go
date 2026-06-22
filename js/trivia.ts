@@ -48,8 +48,8 @@ function saveTriviaPoint(entry) {
   window.dispatchEvent(new Event("updateProfile"));
 
   // Sync til AHA hvis tilgjengelig
-  if (typeof window.syncHistoryGoToAHA === "function") {
-    window.syncHistoryGoToAHA();
+  if (typeof (window as any).syncHistoryGoToAHA === "function") {
+    (window as any).syncHistoryGoToAHA();
   }
 }
 
@@ -72,13 +72,20 @@ function renderTriviaSection(categoryId) {
   }
 
   return Object.entries(data)
-    .map(([id, list]) => `
+    .map(([id, list]: [string, any]) => `
       <div class="trivia-block">
         <h3>${id.replace(/_/g, " ")}</h3>
         <ul>
-          ${list.map(t => `<li>${t}</li>`).join("")}
+          ${list.map((t: any) => `<li>${t}</li>`).join("")}
         </ul>
       </div>
     `)
     .join("");
 }
+
+// Interop ifm. TS-migrering: denne fila bundles nå som ESM-modul, så top-level
+// blir modul-scopet. Publiser de eksternt forbrukte funksjonene på window slik
+// at klassiske konsumenter fortsatt finner dem (js/profile.js leser
+// window.getTriviaUniverse, js/quizzes.js leser window.saveTriviaPoint).
+(window as any).getTriviaUniverse = getTriviaUniverse;
+(window as any).saveTriviaPoint = saveTriviaPoint;
