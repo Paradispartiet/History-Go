@@ -1,17 +1,17 @@
 # Place coordinate candidates (pipeline v1)
 
-Generert: 2026-06-15T19:03:44.877Z
+Generert: 2026-06-22T22:28:43.640Z
 
 > Maskinell, kildebasert kandidatgenerering. **Ingen place-koordinater er endret av dette verktøyet.**
 > Kilder: wikidata, nominatim, overpass, official_address. Google Maps / Google Places / Google geocodes brukes ikke som skrapet eller lagret datakilde.
 
 ## Oppsummering
-- Steder analysert: **581** (fra 51 fil(er))
+- Steder analysert: **869** (fra 86 fil(er))
 - auto_approved: **0**
-- needs_review: **581**
+- needs_review: **869**
 - rejected: **0**
 - category_overlap-funn: **1**
-- Modus: offline/cache-only (nett: 0 ok / 0 feil / 0 cache-treff)
+- Modus: offline/cache-only (nett: 0 ok / 3 feil / 0 cache-treff)
 
 > ⚠ Nettverk var utilgjengelig eller deaktivert. Steder uten cachet kilde står som needs_review («ingen kilde funnet»). Kjør på nytt med nettverkstilgang for å fylle inn kandidater.
 
@@ -127,8 +127,6 @@ Kan være samme fysiske venue (f.eks. Blå i musikk og subkultur) – ikke nødv
 | gamle_aker_kirke | Gamle Aker kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | var_frelsers_gravlund | Vår Frelsers gravlund | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | hovedoya_kloster | Hovedøya kloster | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| eidsvollsbygningen | Eidsvollsbygningen | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| oscarsborg_festning | Oscarsborg festning | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | grini_fangeleir | Grini fangeleir | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | villa_grande | Villa Grande | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | bogstad_gard | Bogstad gård | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
@@ -219,39 +217,41 @@ Kan være samme fysiske venue (f.eks. Blå i musikk og subkultur) – ikke nødv
 | rakkestad_prestegard_1814 | Rakkestad prestegård | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | aremark_kirke_kirkested | Aremark kirke / kirkested | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| nasjonalmuseet | Nasjonalmuseet | kunst | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| munch_museet | MUNCH | kunst | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| astrup_fearnley | Astrup Fearnley Museet | kunst | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| ekebergparken | Ekebergparken skulpturpark | kunst | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| ibsen_quotes | Ibsen sitater | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| nasjonalbiblioteket | Nasjonalbiblioteket | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| camilla_collett_statue | Camilla Collett-statuen | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| henrik_wergeland_statue | Henrik Wergeland-statuen | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| grotta | Grotten | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| nationaltheatret | Nationaltheatret | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| litteraturhuset | Litteraturhuset | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| tronsmo_bokhandel | Tronsmo Bokhandel | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| eldorado_bokhandel | Eldorado Bokhandel | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| gamle_deichman | Gamle Deichman | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| deichman_grunerlokka | Deichman Grünerløkka | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| kulturkirken_jakob_litteratur | Kulturkirken Jakob | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| norli_universitetsgata | Norli Universitetsgata | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| sigrid_undset_statue | Sigrid Undset-statuen | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| ruth_maier_minne | Ruth Maier-minnesmerke | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| proysenhuset_rudshogda | Prøysenhuset – Rudshøgda | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| inger_hagerups_plass | Inger Hagerups plass | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| alexander_kiellands_plass | Alexander Kiellands plass | litteratur | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| good_game_redaksjon | Good Game-redaksjonen (NRK) | media | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| vg_huset | VG-huset | media | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| nrk_huset_marienlyst | NRK-huset på Marienlyst | media | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| aftenposten_akersgata | Aftenposten i Akersgata | media | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| dagbladet_akersgata | Dagbladet i Akersgata | media | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| klassekampen_redaksjon | Klassekampen-redaksjonen (Hausmanns gate) | media | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| salt | SALT | musikk | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| det_norske_teatret | Det Norske Teatret | musikk | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
-| blaa | Blå | musikk | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| brekke_sluser_haldenkanalen | Brekke sluser / Haldenkanalen | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| stromsfoss_sluser | Strømsfoss sluser | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| moss_mollebyen_industri | Møllebyen / Moss by- og industrimuseum | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| tomb_herregard | Tomb herregård | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| tune_kirke_kirkested | Tune kirke / kirkested | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| idd_kirke | Idd kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| hobol_kirke | Hobøl kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| rakkestad_kirke | Rakkestad kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| folkenborg_museum | Folkenborg Museum | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| elingaard_herregard | Elingaard herregård | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| nes_lensemuseum | Nes lensemuseum | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| homlungen_fyr | Homlungen fyr | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| spydeberg_kirke | Spydeberg kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| trogstad_kirke | Trøgstad kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| skiptvet_kirke | Skiptvet kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| momarken_markedsplass | Momarken markedsplass | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| veien_kulturminnepark | Veien Kulturminnepark | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| norderhov_prestegard_1716 | Norderhov gamle prestegård | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| kongsberg_solvverk | Kongsberg Sølvverk | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| blaafarvevaerket_modum | Blaafarveværket | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| nore_stavkirke | Nore stavkirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| uvdal_stavkirke | Uvdal stavkirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| rollag_stavkirke | Rollag stavkirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| flesberg_stavkirke | Flesberg stavkirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| fossesholm_herregard | Fossesholm Herregård | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| torpo_stavkirke | Torpo stavkirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| hol_gamle_kyrkje | Hol gamle kyrkje | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| hallingdal_museum_nesbyen | Hallingdal Museum Nesbyen | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| nostetangen_glassverk | Nøstetangen glassverk | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| drammen_museum_marienlyst | Drammen Museum / Marienlyst | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| haug_kirke_eiker | Haug kirke / Eiker kirkested | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| lier_bygdetun | Lier Bygdetun | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| boensnes_kirke | Bønsnes kirke | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
+| stein_gard_halvdanshaugen | Stein gård / Halvdanshaugen | historie | needs_review | Ingen kilde funnet (mangler treff eller nettverk utilgjengelig). |
 
 ## Neste steg
 - Gå gjennom needs_review manuelt mot kart.
