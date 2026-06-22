@@ -220,6 +220,29 @@
       checks.socialMatchGraph = check(!a.error && !placeMatches.error && stable && (!isEnabled() || matches.length >= 3), a.error || placeMatches.error || !stable ? "blocker" : "ok", "Social match graph kontrollert.", { matches: matches.length, candidates: count(a.value?.candidates), placeMatches: count(placeMatches.value) });
     }
 
+    const todayBefore = JSON.stringify(root.localStorage?.dump?.() || {});
+    let todaySurfaceOk = !!(root.HG_TodayHub && root.HG_TodayHubPanel && root.HG_TodayActionRouter);
+    if (!root.HG_TodayHub) warnings.push(warning("today_hub_missing", "HG_TodayHub mangler.", {}, "todayHubProductSurface"));
+    if (!root.HG_TodayHubPanel) warnings.push(warning("today_panel_missing", "HG_TodayHubPanel mangler.", {}, "todayHubProductSurface"));
+    if (!root.HG_TodayActionRouter) warnings.push(warning("today_action_router_missing", "HG_TodayActionRouter mangler.", {}, "todayHubProductSurface"));
+    if (root.HG_TodayHub && root.HG_TodayHubPanel && root.HG_TodayActionRouter) {
+      const snapR = await safeAsync(() => root.HG_TodayHub.snapshot());
+      const healthR = await safeAsync(() => root.HG_TodayHub.health());
+      const renderR = await safeAsync(() => root.HG_TodayHubPanel.render({ context: { sourceSurface: "smoke" } }));
+      const actions = list(snapR.value?.priority || snapR.value?.actions);
+      const routeR = safeSync(() => root.HG_TodayActionRouter.route(actions[0] || { title: "Lesemodus", routeKey: "read_only", enabled: true }));
+      const after = JSON.stringify(root.localStorage?.dump?.() || {});
+      todaySurfaceOk = !snapR.error && !healthR.error && !renderR.error && !routeR.error && actions.length >= 0 && todayBefore === after && healthR.value?.privacy?.ok !== false && !list(healthR.value?.privacyViolations).length;
+      if (snapR.error) blockers.push(blocker("today_snapshot_failed", "Min dag snapshot feilet.", { error: errorMessage(snapR.error) }, "todayHubProductSurface"));
+      if (healthR.error) blockers.push(blocker("today_health_failed", "Min dag health feilet.", { error: errorMessage(healthR.error) }, "todayHubProductSurface"));
+      if (renderR.error) blockers.push(blocker("today_render_failed", "Min dag render feilet.", { error: errorMessage(renderR.error) }, "todayHubProductSurface"));
+      if (routeR.error) blockers.push(blocker("today_route_failed", "Min dag action route feilet.", { error: errorMessage(routeR.error) }, "todayHubProductSurface"));
+      if (todayBefore !== after) blockers.push(blocker("today_local_storage_mutation", "Min dag endret localStorage under smoke.", {}, "todayHubProductSurface"));
+      pushReportIssues(healthR.value, blockers, warnings, "todayHubProductSurface", { privacy: true });
+    }
+    checks.todayHubProductSurface = check(todaySurfaceOk, todaySurfaceOk ? "ok" : "warning", "Min dag product surface kontrollert.", { hasHub: !!root.HG_TodayHub, hasPanel: !!root.HG_TodayHubPanel, hasRouter: !!root.HG_TodayActionRouter });
+
+
     const privacyFound = [];
     scanForbidden({ runtimeReport, runtimeSnapshot, socialReport, socialSnapshot }, "snapshots", privacyFound, new WeakSet());
     privacyFound.forEach((item) => blockers.push(blocker("privacy_forbidden_field", `Forbudt personvernfelt funnet: ${item.path}`, item, "privacy")));

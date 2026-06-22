@@ -669,3 +669,38 @@ Reserved optional cache key for derived, privacy-safe match results. Current imp
 - Status: read-only, local, no backend, no production auto-open.
 - The hub reads existing models only and must not run economy ticks, start or complete routes/workdays, create observations, create invites, publish profiles, unlock anything, seed demo data, or alter localStorage during snapshot/health/render.
 - Privacy status: local and knowledge-based. The hub blocks forbidden field names and visible wording associated with GPS, live status, followers/following, last-seen, passive tracking, and distance language.
+
+## Min dag product surface / safe action router
+
+- `window.HG_TodayActionRouter` is exposed by `js/today/HGTodayActionRouter.js`.
+- The normal app entry point is the compact `#btnMinDag` header button in `index.html`; it calls `window.HG_TodayHubPanel.render()` and no-ops with a console warning if the panel is missing.
+- `window.HG_TodayHubPanel.render(options?)` accepts optional context such as `{ context: { placeId, domain, sourceSurface } }` and remains local/read-only.
+
+Supported safe route keys:
+
+- `open_public_profile_preview`
+- `open_match_graph`
+- `open_social_demo` (TEST_MODE only)
+- `open_runtime_health`
+- `open_civication_summary`
+- `open_workday`
+- `open_home`
+- `open_place`
+- `open_route`
+- `open_observation`
+- `read_only`
+
+Forbidden mutating route keys:
+
+- `start_workday`
+- `run_economy_tick`
+- `complete_route`
+- `complete_quiz`
+- `save_observation`
+- `send_real_invite`
+- `publish_profile_backend`
+- `unlock_place`
+- `buy_item`
+- `move_home`
+
+Safety markers: safety-first, local-only, no GPS/live/followers, and no automatic gameplay mutation.
