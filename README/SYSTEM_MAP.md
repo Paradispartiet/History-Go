@@ -569,3 +569,14 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 - The agenda is local-only, has deterministic sequence fields, and does not use backend storage.
 - It avoids GPS, coordinates, live status, follower/following metrics, last-seen state, exact persisted timestamps, private visit logs, and raw observation bodies.
 - Privacy violations become blockers and mark offending objectives as blocked.
+
+## HG Daily Progress / Dagens framgang
+
+`HG Daily Progress` is the local progress layer for `Min dag`. It listens to explicit, privacy-safe player action events such as quiz completion, route completion, observations, badges, public profile settings, place affinity, and daily objective changes.
+
+- Completion comes from real signals and read-models through `HG_DailyObjectives.completeObjectiveFromSignals`; it does not fake-complete goals and does not mutate quiz, route, observation, badge, Civication, or HG Social scoring systems.
+- Progress is agenda/session based for the current `Min dag` loop, not calendar tracking.
+- State is local-only in `localStorage` under `hg_daily_progress_v1`; there is no backend sync.
+- Progress events avoid exact timestamps, GPS/coordinate fields, live status, relation counts, and raw observation bodies.
+- `Min dag` surfaces the `Dagens framgang` section with completed objective count, recent safe progress labels, and source summaries.
+- The optional toast is non-modal, quiet, and only appears for objective completion or similar safe progress events.

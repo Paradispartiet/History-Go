@@ -723,3 +723,17 @@ Safety markers: safety-first, local-only, no GPS/live/followers, and no automati
   - `pinObjective(id)`, `dismissObjective(id)`, and `restoreObjective(id)` — optional local-only agenda list helpers; they do not count as completion or mutate gameplay.
 - Status: local-only, privacy-safe, no backend, and no gameplay mutation.
 - Safe route keys include `open_public_profile_preview`, `open_match_graph`, `open_runtime_health`, `open_social_demo`, `open_today_explanation`, `open_place`, `open_route_viewer`, `open_observation_ui`, and `read_only`.
+
+## HG Daily Progress / Dagens framgang
+
+- `window.HG_DailyProgress` is exposed by `js/progress/HGDailyProgress.js`.
+  - API: `bind`, `unbind`, `isBound`, `recordProgressEvent`, `refreshFromSignals`, `getProgress`, `getSummary`, `clearProgressForTestMode`, `health`.
+  - Local-only, privacy-safe, no gameplay mutation, no backend.
+- `window.HG_DailyProgressToast` is exposed by `js/progress/HGDailyProgressToast.js`.
+  - API: `show`, `hide`, `isVisible`.
+  - Non-blocking UI only; no modal and no sound.
+- localStorage key: `hg_daily_progress_v1`.
+  - Stores deterministic sequence-based progress events only; no exact timestamps, GPS/coordinates, live status, relation lists/counts, or raw observation text.
+- Event: `hg:dailyProgressChanged`.
+  - Payload contains only `{ eventCount, completedObjectiveCount, lastEventType }`.
+  - Local-only, privacy-safe, no gameplay mutation, no backend.
