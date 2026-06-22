@@ -62,6 +62,7 @@ function parseArgs(argv) {
     limit: null,
     dryRun: false,
     offline: false,
+    help: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const t = argv[i];
@@ -256,8 +257,8 @@ function categoryFits(physType, klass, type, tags) {
 // Cache + ratelimited fetch (cache-first, degraderer trygt)
 // ---------------------------------------------------------------------------
 
-const caches = {}; // source -> { data: {}, dirty: bool }
-const lastRequestAt = {}; // host -> ms
+const caches: Record<string, any> = {}; // source -> { data: {}, dirty: bool }
+const lastRequestAt: Record<string, number> = {}; // host -> ms
 let consecutiveNetErrors = 0;
 let networkBlocked = false;
 const netStats = { attempts: 0, ok: 0, failed: 0, cacheHits: 0 };
@@ -306,7 +307,7 @@ async function rateLimit(host) {
  * Cachet henting. Returnerer { ok, data } eller { ok:false, error }.
  * Hopper over nettverk hvis offline/blokkert; bruker da bare cache.
  */
-async function cachedFetch(source, key, url, { offline, json = true } = {}) {
+async function cachedFetch(source, key, url, { offline, json = true }: { offline?: boolean; json?: boolean } = {}) {
   await loadCache(source);
   const hit = cacheGet(source, key);
   if (hit !== undefined) {
@@ -369,8 +370,8 @@ async function wikidataCandidates(place, region, opts) {
       const coordClaim = entity?.claims?.P625?.[0]?.mainsnak?.datavalue?.value;
       if (!coordClaim || !isNum(coordClaim.latitude) || !isNum(coordClaim.longitude)) continue;
       const labelCandidates = [];
-      for (const l of Object.values(entity.labels || {})) labelCandidates.push(l.value);
-      for (const arr of Object.values(entity.aliases || {}))
+      for (const l of Object.values(entity.labels || {}) as any[]) labelCandidates.push(l.value);
+      for (const arr of Object.values(entity.aliases || {}) as any[])
         for (const al of arr) labelCandidates.push(al.value);
       const bestLabel = labelCandidates
         .map((lbl) => ({ lbl, sim: nameSimilarity(place.name, lbl) }))

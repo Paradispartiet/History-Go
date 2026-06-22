@@ -36,9 +36,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies and build tools
+        run: |
+          npm ci
+          npm run build:tools
 
       - name: Build place image candidates for selected IDs
-        run: node tools/build_place_image_candidates.mjs --ids="${{ inputs.ids }}"
+        run: node dist/tools/build_place_image_candidates.mjs --ids="${{ inputs.ids }}"
 
       - name: Verify output file exists
         run: test -f data/places/place_image_candidates.json

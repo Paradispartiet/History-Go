@@ -2,6 +2,16 @@
 
 Denne planen beskriver hvordan History Go kan migreres fra TypeScript-sjekket JavaScript til ekte TypeScript-filer uten å endre runtime-logikk, appflyt, filplasseringer eller HTML/script-oppsett i første omgang.
 
+## Statusoppdatering: Node-only-flaten er ferdig migrert
+
+Hele den ikke-browser-lastede Node-only-flaten (`scripts/` og `tools/`) er nå konvertert til TypeScript:
+
+- **`scripts/`:** Alle Node-only scriptfiler er nå `.ts`/`.mts`. De to siste, `scripts/generate-civication-mails.ts` og `scripts/verify-civication-boot-smoke.ts`, er konvertert og inngår i `tsconfig.scripts.json` (typecheck) og `tsconfig.scripts.build.json` (emit til `dist/scripts`). Nye npm-entrypoints `npm run civication:mails:generate` og `npm run civication:boot-smoke` kjører de bygde filene.
+- **`tools/`:** Alle Node-only tools er nå `.mts`. De siste sju — `build_place_image_candidates`, `apply_place_image_candidates`, `build_nature_place_candidates`, `build_nature_place_candidates_v2`, `generate-place-coordinate-candidates`, `fetch-place-coordinate-sources` og `apply-verified-coordinate-candidates` — er lagt til i `tsconfig.tools.json`/`tsconfig.tools.build.json` og bygges til `dist/tools/*.mjs`.
+- **CI rewiring:** Disse sju tools kjøres fra GitHub Actions, ikke fra `package.json`. Workflowene (`place-image-candidates.yml`, `build-place-image-candidates.yml`, `apply-place-image-candidates.yml`, `build-nature-place-candidates.yml`, `build-nature-candidates.yml`) er oppdatert til å kjøre `npm ci && npm run build:tools` og deretter `node dist/tools/<navn>.mjs`. `node --check` peker nå på `dist/tools`-output, og path-filtrene bruker `*.mts`. `npm run places:coords:candidates*` bygger nå tools først og kjører fra `dist/tools`.
+- **Civication-presisering:** «Civication deferred» gjelder kun browser-lastede Civication-filer (lastet fra `Civication.html`, `index.html`, `profile.html`). Node-only Civication-scripts (audits, validators, mail-generator, boot-smoke) er en del av Node-only-flaten og er nå migrert.
+- **Konsekvens:** Det gjenstår ingen Node-only `.js`/`.mjs`-filer i `scripts/` eller `tools/` å migrere. Neste reelle TypeScript-arbeid er browser-runtime (`js/**`, ~248 filer), som fortsatt er blokkert av at det ikke finnes en build-/transpile-strategi som emitter `.js` til samme stier som HTML laster. Browser-lastede Civication-filer er fortsatt deferred.
+
 ## Nåværende status
 
 - **Prosjektbeslutning:** Civication holdes utenfor TypeScript-migrering inntil videre. Det skal fortsatt jobbes aktivt videre med Civication-funksjoner i JavaScript, og Civication kan fortsatt være `checkJs`-/JSDoc-typekontrollert JavaScript under dagens TypeScript-sjekk.

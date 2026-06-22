@@ -39,10 +39,10 @@ js/nature_place_map_bridge.js
 Bridge mellom `nature_place_map.json` og PlaceCard/Natur-rundingen.
 
 ```text
-tools/build_nature_place_candidates.mjs
+tools/build_nature_place_candidates.mts
 ```
 
-Dev-script som henter Artskart-observasjoner per sted og matcher dem mot eksisterende arter i repoet.
+Dev-script som henter Artskart-observasjoner per sted og matcher dem mot eksisterende arter i repoet. Kildefilen er TypeScript (`.mts`) og bygges til `dist/tools/build_nature_place_candidates.mjs` via `npm run build:tools` før den kjøres.
 
 ## Datakilder
 
@@ -65,7 +65,7 @@ Brukes som lokal kontrollkilde for naturverdier, grøntdrag, restaurerte naturmi
 1. Kjør kandidatbyggeren lokalt:
 
 ```bash
-node tools/build_nature_place_candidates.mjs
+npm run build:tools && node dist/tools/build_nature_place_candidates.mjs
 ```
 
 2. Scriptet skriver:

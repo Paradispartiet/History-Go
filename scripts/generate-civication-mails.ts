@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const outPath = path.resolve(__dirname, '../data/Civication/workModels/naeringsliv_work_model.json');
+const root = fs.existsSync(path.resolve(__dirname, '../package.json'))
+  ? path.resolve(__dirname, '..')
+  : path.resolve(__dirname, '../..');
+const outPath = path.resolve(root, 'data/Civication/workModels/naeringsliv_work_model.json');
 
-const baseChoices = (a,b)=>[
+const baseChoices = (a: string, b: string)=>[
   { id:'A', label:a, effect:1, tags:['kvalitet','kunde'], feedback:'Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket.'},
   { id:'B', label:b, effect:-1, tags:['tempo','snarvei'], feedback:'Du løser presset raskt nå, men skyver risikoen videre til neste skift.'}
 ];

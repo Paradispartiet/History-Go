@@ -52,7 +52,7 @@ function loadSeedEntries(seedData) {
   if (seedData && typeof seedData === "object") {
     return Object.entries(seedData)
       .filter(([key]) => key !== "schema" && key !== "seeds")
-      .map(([place_id, value]) => ({ place_id, ...(value || {}) }));
+      .map(([place_id, value]) => ({ place_id, ...((value as any) || {}) }));
   }
   return [];
 }
@@ -432,7 +432,7 @@ async function wikidataCandidates(place, diagnostics) {
   }
 
   const out = [];
-  for (const entity of Object.values(data?.entities || {})) {
+  for (const entity of Object.values(data?.entities || {}) as any[]) {
     const file = entity?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
     if (!file) continue;
     incDiag(diagnostics, "wikidataEntitiesWithP18");
@@ -642,7 +642,9 @@ async function main() {
       counts: {
         manifestFiles: entries.length,
         placesTotal: places.length,
-        placesChecked: targets.length
+        placesChecked: targets.length,
+        placesWithCandidates: 0,
+        candidatesTotal: 0
       }
     },
     places: []

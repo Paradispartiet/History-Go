@@ -41,16 +41,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies and build tools
+        run: |
+          npm ci
+          npm run build:tools
 
       - name: Check builder script syntax
-        run: node --check tools/build_place_image_candidates.mjs
+        run: node --check dist/tools/build_place_image_candidates.mjs
 
       - name: Build place image candidates
         shell: bash
         run: |
           set -euo pipefail
 
-          cmd=(node tools/build_place_image_candidates.mjs)
+          cmd=(node dist/tools/build_place_image_candidates.mjs)
 
           if [[ "${{ inputs.debug }}" == "true" ]]; then
             cmd+=(--debug)
@@ -111,7 +117,7 @@ jobs:
           git push
 
       - name: Upload candidate artifact
-        # Download and review this artifact manually before running tools/apply_place_image_candidates.mjs.
+        # Download and review this artifact manually before running dist/tools/apply_place_image_candidates.mjs.
         uses: actions/upload-artifact@v4
         with:
           name: place-image-candidates
