@@ -61,6 +61,8 @@ declare global {
     HG_SocialSignals?: any;
     HG_TodayHub?: any;
     HG_DailyObjectives?: any;
+    HG_DailyProgress?: any;
+    HG_DailyProgressToast?: any;
     HG_TodayHubPanel?: { render?: (options?: any) => any; refresh?: (options?: any) => any; remove?: () => any; [key: string]: any };
     HG_TodayActionRouter?: any;
     HG_SocialSignalBridge?: any;
@@ -408,6 +410,8 @@ declare global {
   var HG_SocialSignals: any;
   var HG_TodayHub: any;
   var HG_DailyObjectives: any;
+  var HG_DailyProgress: any;
+  var HG_DailyProgressToast: any;
   var HG_TodayHubPanel: { render?: (options?: any) => any; refresh?: (options?: any) => any; remove?: () => any; [key: string]: any };
   var HG_TodayActionRouter: any;
   var HG_SocialSignalBridge: any;

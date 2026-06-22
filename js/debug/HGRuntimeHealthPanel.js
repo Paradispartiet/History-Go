@@ -4,7 +4,7 @@
   const PANEL_ID = "hgRuntimeHealthPanel";
   const STYLE_ID = "hgRuntimeHealthPanelStyle";
   const REFRESH_DELAY_MS = 180;
-  const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged", "hg:socialDemoChanged", "hg:dailyObjectivesChanged"];
+  const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged", "hg:socialDemoChanged", "hg:dailyObjectivesChanged", "hg:dailyProgressChanged"];
   let refreshTimer = null;
   let listenersAttached = false;
   let lastHealth = null;
@@ -120,6 +120,14 @@
     return "Smoke: OK";
   }
 
+  function progressHtml() {
+    const h = window.HG_DailyProgress?.health?.();
+    const s = window.HG_DailyProgress?.getSummary?.();
+    if (!s) return "";
+    const blocked = Array.isArray(h?.blockers) && h.blockers.length;
+    return `<div class="hg-rhp-demo">Framgang: ${blocked ? "blokkere" : Number(s.completedObjectiveCount || 0) + " mål fullført"}</div>`;
+  }
+
   function agendaHtml() {
     const s = window.HG_DailyObjectives?.getSummary?.();
     if (!s) return "";
@@ -180,6 +188,7 @@
       ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
       ${todayHealthHtml()}
       ${agendaHtml()}
+      ${progressHtml()}
       ${publicProfileHtml()}
       ${matchGraphHtml()}
       ${demoHtml()}

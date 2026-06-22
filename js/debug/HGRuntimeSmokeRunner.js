@@ -273,6 +273,37 @@
       checks.dailyObjectives = check(dailyOk, dailyOk ? "ok" : "blocker", "Daily objectives kontrollert.", { objectiveCount: list(genR.value?.objectives).length });
     }
 
+
+
+    const progressBefore = JSON.stringify(root.localStorage?.dump?.() || {});
+    let dailyProgressOk = !!root.HG_DailyProgress;
+    if (!root.HG_DailyProgress) {
+      warnings.push(warning("daily_progress_missing", "HG_DailyProgress mangler.", {}, "dailyProgress"));
+    } else {
+      const bindR = safeSync(() => { root.HG_DailyProgress.bind(); root.HG_DailyProgress.unbind(); return true; });
+      const getR = safeSync(() => root.HG_DailyProgress.getProgress());
+      const afterGet = JSON.stringify(root.localStorage?.dump?.() || {});
+      const readR = safeSync(() => root.HG_DailyProgress.refreshFromSignals({ save: false }));
+      const afterRead = JSON.stringify(root.localStorage?.dump?.() || {});
+      const badField = safeSync(() => root.HG_DailyProgress.recordProgressEvent({ type: "objective_completed", source: "quiz", title: "Mål", lat: 1 }));
+      const badWord = safeSync(() => root.HG_DailyProgress.recordProgressEvent({ type: "objective_completed", source: "quiz", title: "GPS" }));
+      const saveR = safeSync(() => root.HG_DailyProgress.refreshFromSignals({ save: true }));
+      const afterSave = root.localStorage?.dump?.() || {};
+      const changed = Object.keys(afterSave).filter((k)=>JSON.parse(progressBefore || "{}")[k] !== afterSave[k]);
+      const resetOutside = safeSync(() => { const old = root.localStorage?.getItem?.("HG_TEST_MODE"); root.localStorage?.setItem?.("HG_TEST_MODE", "0"); const r = root.HG_DailyProgress.clearProgressForTestMode(); root.localStorage?.setItem?.("HG_TEST_MODE", old || "1"); return r; });
+      if (bindR.error) blockers.push(blocker("daily_progress_bind_failed", "Framgang bind/unbind feilet.", { error: errorMessage(bindR.error) }, "dailyProgress"));
+      if (getR.error) blockers.push(blocker("daily_progress_get_failed", "getProgress feilet.", { error: errorMessage(getR.error) }, "dailyProgress"));
+      if (progressBefore !== afterGet) blockers.push(blocker("daily_progress_get_mutated_storage", "getProgress endret localStorage.", {}, "dailyProgress"));
+      if (afterGet !== afterRead) blockers.push(blocker("daily_progress_refresh_read_mutated_storage", "refreshFromSignals read-only endret localStorage.", {}, "dailyProgress"));
+      if (badField.value?.ok !== false || badWord.value?.ok !== false) blockers.push(blocker("daily_progress_privacy_save_allowed", "Personvernbrudd ble lagret.", {}, "dailyProgress"));
+      if (changed.some((k)=>!["hg_daily_progress_v1","hg_daily_objectives_v1","HG_TEST_MODE"].includes(k))) blockers.push(blocker("daily_progress_storage_scope", "Framgang skrev uventet localStorage key.", { changed }, "dailyProgress"));
+      if (resetOutside.value !== false) blockers.push(blocker("daily_progress_clear_outside_test", "Clear progress virket uten TEST_MODE.", {}, "dailyProgress"));
+      dailyProgressOk = !bindR.error && !getR.error && progressBefore === afterGet && afterGet === afterRead && badField.value?.ok === false && badWord.value?.ok === false;
+      const healthR = safeSync(() => root.HG_DailyProgress.health());
+      if (healthR.value?.ok === false) pushReportIssues(healthR.value, blockers, warnings, "dailyProgress", { privacy: true });
+    }
+    checks.dailyProgress = check(dailyProgressOk, dailyProgressOk ? "ok" : "blocker", "Daily progress kontrollert.", { hasModule: !!root.HG_DailyProgress });
+
     const privacyFound = [];
     scanForbidden({ runtimeReport, runtimeSnapshot, socialReport, socialSnapshot }, "snapshots", privacyFound, new WeakSet());
     privacyFound.forEach((item) => blockers.push(blocker("privacy_forbidden_field", `Forbudt personvernfelt funnet: ${item.path}`, item, "privacy")));
