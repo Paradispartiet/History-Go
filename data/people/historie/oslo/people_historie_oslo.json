@@ -7,13 +7,16 @@
     "tags": [
       "historie"
     ],
-    "placeId": "oslo_domkirke",
+    "placeId": "nidarosdomen",
     "category": "historie",
     "year": 1184,
-    "popupDesc": "Kong Sverre var en av de mest markante skikkelsene i middelalderens Norge, kjent for sin konfrontasjon med kirken og for sin strategiske bruk av både ord og våpen. Oslo domkirke-området, tidligere byens religiøse sentrum, er et passende sted for å formidle hans rolle i maktkampen mellom konge og kirke. Det var i slike religiøse og politiske knutepunkter Sverres reformer og konflikter fikk konkrete konsekvenser.",
+    "popupDesc": "Kong Sverre hører til borgerkrigstiden og ble enekonge etter seieren ved Fimreite i 1184. Nidarosdomen og Erkebispegården viser konflikten mellom kongemakt og kirkemakt, Bergenhus og Håkonshallen peker mot kongelig maktutøvelse i Bergen, mens Fimreite og Kalvskinnet gir konkrete slagsteder. Disse stedene gir en sterkere historisk stedskobling for Sverre enn en generell Oslo-kobling.",
     "places": [
-      "oslo_domkirke",
-      "middelalder_oslo"
+      "nidarosdomen",
+      "nidaros_erkebispegarden",
+      "bergenhus_haakonshallen",
+      "fimreite_slagsted",
+      "kalvskinnet_slagsted"
     ],
     "image": "bilder/kort/people/kong_sverre.PNG",
     "cardImage": "bilder/kort/people/kong_sverre.PNG",
@@ -21,7 +24,14 @@
       "em_his_middelalder_oslo",
       "em_his_kongemakt_kirke_konflikt",
       "em_his_kirke_kloster_middelalder"
-    ]
+    ],
+    "placeIdStatus": {
+      "nidarosdomen": "active_verified_place",
+      "nidaros_erkebispegarden": "active_verified_place",
+      "bergenhus_haakonshallen": "active_verified_place",
+      "fimreite_slagsted": "active_verified_place",
+      "kalvskinnet_slagsted": "active_verified_place"
+    }
   },
   {
     "id": "haakon_vii_krigstid",
@@ -55,13 +65,15 @@
     "tags": [
       "historie"
     ],
-    "placeId": "oslo_domkirke",
+    "placeId": "stiklestad",
     "category": "historie",
     "year": 1030,
-    "popupDesc": "Olav den hellige står som en av de mest sentrale skikkelsene i norsk middelalder. Kristningen av landet og utviklingen av et samlet kongedømme knyttes direkte til hans tid. Oslo Domkirke og området rundt representerer det historiske sentrum for kirkemakt, tro og nasjonale markeringer i senere århundrer, og fungerer derfor som et naturlig formidlingssted for Olavs betydning som både helgen og nasjonalt symbol.",
+    "popupDesc": "Stiklestad er den sterkeste stedskoblingen for Olav den hellige, fordi han falt der i 1030 og slaget ble et vendepunkt i fortellingen om kongemakt og kristning. Nidaros og Nidarosdomen ble sentrum for Olavskulten og helgenstatusen, med Erkebispegården som viktig kirkelig maktsted. Moster knytter ham i tillegg til kristnings- og lovtradisjonen i norsk middelalder.",
     "places": [
-      "oslo_domkirke",
-      "middelalder_oslo"
+      "stiklestad",
+      "nidarosdomen",
+      "nidaros_erkebispegarden",
+      "moster_gamle_kyrkje"
     ],
     "image": "bilder/kort/people/olav_den_hellige.PNG",
     "cardImage": "bilder/kort/people/olav_den_hellige.PNG",
@@ -69,7 +81,13 @@
       "em_his_middelalder_oslo",
       "em_his_kongemakt_kirke_konflikt",
       "em_his_kirke_kloster_middelalder"
-    ]
+    ],
+    "placeIdStatus": {
+      "stiklestad": "active_verified_place",
+      "nidarosdomen": "active_verified_place",
+      "nidaros_erkebispegarden": "active_verified_place",
+      "moster_gamle_kyrkje": "active_verified_place"
+    }
   },
   {
     "id": "harald_harfagre",
@@ -79,12 +97,13 @@
     "tags": [
       "historie"
     ],
-    "placeId": "akerhus_slott",
+    "placeId": "hafrsfjord",
     "category": "historie",
     "year": 872,
-    "popupDesc": "Harald Hårfagre forbindes med rikssamlingen og etableringen av et tidlig norsk kongedømme. Selv om hendelsene ligger over tusen år tilbake, er Akershusområdet i Oslo et naturlig sted for hans historiske tilstedeværelse i moderne formidling: festningen og havneområdet er knutepunkter for norsk kongshistorie, statsdannelse og militær maktutøvelse. Haralds skikkelse står som starten på kongerekken som senere ble forvaltet her.",
+    "popupDesc": "Harald Hårfagre forbindes med rikssamlingen og etableringen av et tidlig norsk kongedømme. Hafrsfjord er den sterkeste stedskoblingen på grunn av slagtradisjonen som knytter området til samlingen av Norge. Avaldsnes er også relevant som kongsgårds- og maktsted langs Nordvegen, der kontroll over seilingsleden var sentralt for kongemakten.",
     "places": [
-      "akerhus_slott"
+      "hafrsfjord",
+      "avaldsnes_kongsgard"
     ],
     "image": "bilder/kort/people/harald_harfagre.PNG",
     "cardImage": "bilder/kort/people/harald_harfagre.PNG",
@@ -92,7 +111,11 @@
       "em_his_kongemakt_kirke_konflikt",
       "em_his_nasjonal_identitet_fortellinger",
       "em_his_samtid_ettertid_fortelling"
-    ]
+    ],
+    "placeIdStatus": {
+      "hafrsfjord": "active_verified_place",
+      "avaldsnes_kongsgard": "active_verified_place"
+    }
   },
   {
     "id": "max_manus",
@@ -1178,7 +1201,9 @@
   },
   {
     "id": "wilhelm_von_hanno",
-    "visual": { "designCode": "person_architect_miniature" },
+    "visual": {
+      "designCode": "person_architect_miniature"
+    },
     "name": "Wilhelm von Hanno",
     "initials": "WH",
     "desc": "Arkitekt som fullførte Trefoldighetskirken og satte preg på 1800-tallets Christiania.",
