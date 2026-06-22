@@ -51,6 +51,7 @@ async function init() {
   renderHomeStatus();
   renderPublicFeed();
   renderTrackHUD();
+  renderCivicationShop();
 
   window.addEventListener("updateProfile", () => {
     renderCivication();
@@ -61,6 +62,7 @@ async function init() {
     renderHomeStatus();
     renderPerception();
     renderTrackHUD();
+    renderCivicationShop();
   });
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
@@ -260,6 +262,148 @@ function buildOfferEligibilityHtml(offer) {
   }
 
   return "<div class=\"civi-offer-eligibility\" aria-label=\"Hvorfor finnes dette jobbtilbudet\">" + rows.join("") + "</div>";
+}
+
+// ============================================================
+// PROFILE CIVICATION SHOP
+// ============================================================
+
+/**
+ * @param {unknown} value
+ * @returns {string}
+ */
+function formatCiviShopPc(value) {
+  const num = Number(value || 0);
+  return Number.isFinite(num) ? num.toLocaleString("no-NO") : "0";
+}
+
+/**
+ * @param {unknown} value
+ * @returns {Record<string, unknown>}
+ */
+function civiShopRecord(value) {
+  return value && typeof value === "object" ? /** @type {Record<string, unknown>} */ (value) : {};
+}
+
+/**
+ * @returns {Promise<void>}
+ */
+async function renderCivicationShop() {
+  const box = document.getElementById("civiShopBox");
+  const balanceEl = document.getElementById("civiPcBalance");
+  const hintEl = document.getElementById("civiShopHint");
+  const packsEl = document.getElementById("civiShopPacks");
+  const stylesEl = document.getElementById("civiStyleCounts");
+
+  if (!box || !balanceEl || !hintEl || !packsEl || !stylesEl) return;
+
+  const shop = window.HG_CiviShop;
+  if (!shop) {
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "";
+
+  let wallet = /** @type {{ balance?: unknown }} */ ({});
+  let inv = /** @type {{ packs?: Record<string, unknown>, style_counts?: Record<string, unknown> }} */ ({});
+  let packs = /** @type {any[]} */ ([]);
+
+  try {
+    wallet = civiShopRecord(shop.getWallet?.());
+  } catch {
+    wallet = {};
+  }
+
+  try {
+    inv = /** @type {{ packs?: Record<string, unknown>, style_counts?: Record<string, unknown> }} */ (civiShopRecord(shop.getInv?.()));
+  } catch {
+    inv = {};
+  }
+
+  try {
+    const visible = await shop.getVisiblePacks?.();
+    packs = Array.isArray(visible) ? visible : [];
+  } catch {
+    packs = [];
+  }
+
+  balanceEl.textContent = formatCiviShopPc(wallet.balance);
+
+  const styleCounts = civiShopRecord(inv.style_counts);
+  const styleEntries = Object.entries(styleCounts)
+    .map(function ([key, value]) {
+      const label = String(key || "").trim();
+      const count = Number(value || 0);
+      if (!label || !Number.isFinite(count) || count <= 0) return null;
+      return { label, count };
+    })
+    .filter(Boolean);
+
+  if (!styleEntries.length) {
+    stylesEl.textContent = "Ingen stil-tags ennå";
+  } else {
+    stylesEl.innerHTML = styleEntries
+      .map(function (entry) {
+        return `<span>${escapeOfferHtml(entry.label)} × ${formatCiviShopPc(entry.count)}</span>`;
+      })
+      .join(" ");
+  }
+
+  if (!packs.length) {
+    hintEl.textContent = "Ingen pakker tilgjengelige ennå. Lås opp relevante merker eller steder.";
+    packsEl.innerHTML = `<div>Ingen pakker tilgjengelige ennå. Lås opp relevante merker eller steder.</div>`;
+    return;
+  }
+
+  hintEl.textContent = "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
+
+  const ownedPacks = civiShopRecord(inv.packs);
+  packsEl.innerHTML = packs.map(function (pack) {
+    const packRecord = civiShopRecord(pack);
+    const packId = String(packRecord.id || "").trim();
+    const title = String(packRecord.title || packRecord.name || packId || "Pakke");
+    const price = packRecord.price_pc ?? packRecord.price ?? 0;
+    const isOwned = !!ownedPacks[packId];
+
+    return `
+      <div class="civi-shop-pack">
+        <div><strong>${escapeOfferHtml(title)}</strong></div>
+        <div>Pris: ${formatCiviShopPc(price)} PC</div>
+        <div>${isOwned ? "Allerede kjøpt" : `<button type="button" data-civi-buy-pack="${escapeOfferHtml(packId)}">Kjøp</button>`}</div>
+      </div>
+    `;
+  }).join("");
+
+  packsEl.querySelectorAll("[data-civi-buy-pack]").forEach(function (btn) {
+    const buyBtn = /** @type {HTMLButtonElement} */ (btn);
+    buyBtn.addEventListener("click", async function () {
+      const packId = buyBtn.getAttribute("data-civi-buy-pack");
+      if (!packId || !shop?.buyPack) return;
+
+      buyBtn.disabled = true;
+      let res = /** @type {{ ok?: boolean, reason?: string }} */ ({ ok: false });
+      try {
+        res = /** @type {{ ok?: boolean, reason?: string }} */ (await shop.buyPack(packId));
+      } catch {
+        res = { ok: false };
+      } finally {
+        buyBtn.disabled = false;
+      }
+
+      if (res?.ok) {
+        await renderCivicationShop();
+        window.dispatchEvent(new Event("updateProfile"));
+        return;
+      }
+
+      if (res?.reason === "NOT_ENOUGH_PC") {
+        hintEl.textContent = "Ikke nok PC til å kjøpe denne pakken.";
+      } else if (res?.reason === "PACK_NOT_FOUND") {
+        hintEl.textContent = "Pakken finnes ikke lenger eller er ikke låst opp.";
+      }
+    });
+  });
 }
 
 // ============================================================
@@ -1754,6 +1898,7 @@ window.CivicationUI = {
   getActiveWorkdayInboxItem,
   renderCapital,
   renderPerception,
+  renderCivicationShop,
   buildCiviEventViewModel,
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml
