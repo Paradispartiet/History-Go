@@ -4,7 +4,7 @@
   const PANEL_ID = "hgRuntimeHealthPanel";
   const STYLE_ID = "hgRuntimeHealthPanelStyle";
   const REFRESH_DELAY_MS = 180;
-  const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged", "hg:socialDemoChanged"];
+  const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged", "hg:socialDemoChanged", "hg:dailyObjectivesChanged"];
   let refreshTimer = null;
   let listenersAttached = false;
   let lastHealth = null;
@@ -63,13 +63,14 @@
       ? '<button type="button" data-hg-rhp-smoke>Smoke</button>'
       : '';
     const todayButton = window.HG_TodayHubPanel?.render
-      ? '<button type="button" data-hg-rhp-today>Min dag</button>'
+      ? '<button type="button" data-hg-rhp-today>Min dag</button><button type="button" data-hg-rhp-agenda>Agenda</button>'
       : '';
     panel.innerHTML = `<h2>Runtime health</h2><div class="hg-rhp-body">Laster …</div><div>${todayButton}${smokeButton}<button type="button" data-hg-rhp-refresh>Oppdater</button><button type="button" data-hg-rhp-hide>Skjul</button></div>`;
     panel.querySelector("[data-hg-rhp-refresh]")?.addEventListener("click", () => { refresh(); });
     panel.querySelector("[data-hg-rhp-hide]")?.addEventListener("click", () => { remove(); });
     panel.querySelector("[data-hg-rhp-smoke]")?.addEventListener("click", () => { runSmoke(); });
     panel.querySelector("[data-hg-rhp-today]")?.addEventListener("click", () => { window.HG_TodayHubPanel?.render?.(); });
+    panel.querySelector("[data-hg-rhp-agenda]")?.addEventListener("click", () => { window.HG_TodayHubPanel?.render?.(); });
     document.body?.appendChild(panel);
     return panel;
   }
@@ -117,6 +118,12 @@
     if (Array.isArray(smoke.blockers) && smoke.blockers.length) return "Smoke: Blokkere";
     if (Array.isArray(smoke.warnings) && smoke.warnings.length) return "Smoke: Advarsler";
     return "Smoke: OK";
+  }
+
+  function agendaHtml() {
+    const s = window.HG_DailyObjectives?.getSummary?.();
+    if (!s) return "";
+    return `<div class="hg-rhp-demo">Agenda: ${Number(s.objectiveCount || 0)} mål</div>`;
   }
 
   function publicProfileHtml() {
@@ -172,6 +179,7 @@
       <div class="hg-rhp-status">${escapeHtml(statusLabel(health))}</div>
       ${smoke ? `<div class="hg-rhp-smoke">${escapeHtml(smoke)}</div>` : ""}
       ${todayHealthHtml()}
+      ${agendaHtml()}
       ${publicProfileHtml()}
       ${matchGraphHtml()}
       ${demoHtml()}

@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   const root=typeof window!=='undefined'?window:globalThis;
-  const SAFE=['open_public_profile_preview','open_match_graph','open_social_demo','open_runtime_health','open_civication_summary','open_workday','open_home','open_place','open_route','open_observation','read_only'];
+  const SAFE=['open_public_profile_preview','open_match_graph','open_social_demo','open_runtime_health','open_civication_summary','open_workday','open_home','open_place','open_route_viewer','open_observation_ui','open_today_explanation','open_route','open_observation','read_only'];
   const FORBIDDEN=['start_workday','run_economy_tick','complete_route','complete_quiz','save_observation','send_real_invite','publish_profile_backend','unlock_place','buy_item','move_home'];
   const FIELDS=['lat','lng','latitude','longitude','gps','location','liveLocation','presence','isOnline','lastSeen','visitLog','visitedAt','timestampedVisits','followers','followerCount','following','feedTracking'];
   const WORDS=['nearby','distance','GPS','live location','online','last seen','followers','following','feed','avstand','i nærheten','live-posisjon','pålogget','sist sett','følgere','følger'];

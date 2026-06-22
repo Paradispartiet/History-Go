@@ -704,3 +704,21 @@ Forbidden mutating route keys:
 - `move_home`
 
 Safety markers: safety-first, local-only, no GPS/live/followers, and no automatic gameplay mutation.
+
+## HG Daily Objectives / Agenda registry
+
+- `window.HG_DailyObjectives` is exposed by `js/objectives/HGDailyObjectives.js`.
+- Local storage key: `hg_daily_objectives_v1`.
+- Event: `hg:dailyObjectivesChanged` with a privacy-safe payload containing objective, completed, active, and blocker counts.
+- Methods:
+  - `generate(options?)` — builds a deterministic local agenda from read-models only.
+  - `getAgenda()` — returns a saved agenda if valid, otherwise returns a fresh read-only generated agenda.
+  - `saveAgenda(agenda)` — validates/sanitizes and writes only `hg_daily_objectives_v1`.
+  - `resetAgendaForTestMode()` — removes only the agenda key and only when `HG_TEST_MODE === "1"`.
+  - `getObjectiveStatus(id)` — reads the current local status for one objective.
+  - `refreshStatus(agenda)` — derives objective status from existing signals/read-models without fake completion.
+  - `completeObjectiveFromSignals(options?)` — returns objectives newly completed by signals and saves only when `{ save: true }` is passed.
+  - `getSummary()` — returns compact agenda counts for runtime panels.
+  - `health()` — checks storage, generation, status refresh, Today Hub integration, action router, panel, and privacy.
+- Status: local-only, privacy-safe, no backend, and no gameplay mutation.
+- Safe route keys include `open_public_profile_preview`, `open_match_graph`, `open_runtime_health`, `open_social_demo`, `open_today_explanation`, `open_place`, `open_route_viewer`, `open_observation_ui`, and `read_only`.

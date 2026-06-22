@@ -243,6 +243,36 @@
     checks.todayHubProductSurface = check(todaySurfaceOk, todaySurfaceOk ? "ok" : "warning", "Min dag product surface kontrollert.", { hasHub: !!root.HG_TodayHub, hasPanel: !!root.HG_TodayHubPanel, hasRouter: !!root.HG_TodayActionRouter });
 
 
+    const agendaBefore = JSON.stringify(root.localStorage?.dump?.() || {});
+    let dailyOk = !!root.HG_DailyObjectives;
+    if (!root.HG_DailyObjectives) {
+      warnings.push(warning("daily_objectives_missing", "HG_DailyObjectives mangler.", {}, "dailyObjectives"));
+    } else {
+      const genR = safeSync(() => root.HG_DailyObjectives.generate());
+      const getR = safeSync(() => root.HG_DailyObjectives.getAgenda());
+      const afterGet = JSON.stringify(root.localStorage?.dump?.() || {});
+      const healthR = safeSync(() => root.HG_DailyObjectives.health());
+      const routes = list(genR.value?.objectives).map((o)=>o?.routeKey).filter(Boolean);
+      const unsafeRoutes = routes.filter((r)=>!list(root.HG_DailyObjectives._safeRoutes).includes(r));
+      const forbiddenRejected = ["complete_quiz","complete_route","save_observation","run_economy_tick","start_workday","send_real_invite","buy_item","move_home","unlock_place"].every((routeKey)=>root.HG_TodayActionRouter?.canRoute?.({routeKey,enabled:true})?.ok === false);
+      if (genR.error) blockers.push(blocker("daily_objectives_generate_failed", "Agenda generate feilet.", { error: errorMessage(genR.error) }, "dailyObjectives"));
+      if (getR.error) blockers.push(blocker("daily_objectives_get_failed", "Agenda getAgenda feilet.", { error: errorMessage(getR.error) }, "dailyObjectives"));
+      if (agendaBefore !== afterGet) blockers.push(blocker("daily_objectives_get_mutated_storage", "getAgenda endret localStorage.", {}, "dailyObjectives"));
+      if (unsafeRoutes.length) blockers.push(blocker("daily_objectives_unsafe_routes", "Agenda har utrygge routeKeys.", { unsafeRoutes }, "dailyObjectives"));
+      if (!forbiddenRejected) blockers.push(blocker("daily_objectives_mutating_route_allowed", "Muterende routeKey ble ikke avvist.", {}, "dailyObjectives"));
+      if (healthR.value?.ok === false) pushReportIssues(healthR.value, blockers, warnings, "dailyObjectives", { privacy: true });
+      const beforeSave = root.localStorage?.dump?.() || {};
+      const saveR = safeSync(() => root.HG_DailyObjectives.saveAgenda(genR.value));
+      const afterSave = root.localStorage?.dump?.() || {};
+      const changed = Object.keys(afterSave).filter((k)=>beforeSave[k] !== afterSave[k]);
+      if (saveR.error) blockers.push(blocker("daily_objectives_save_failed", "Agenda saveAgenda feilet.", { error: errorMessage(saveR.error) }, "dailyObjectives"));
+      if (changed.some((k)=>k !== "hg_daily_objectives_v1")) blockers.push(blocker("daily_objectives_storage_scope", "Agenda skrev uventet localStorage key.", { changed }, "dailyObjectives"));
+      const resetOutside = safeSync(() => { const old = root.localStorage?.getItem?.("HG_TEST_MODE"); root.localStorage?.setItem?.("HG_TEST_MODE", "0"); const r = root.HG_DailyObjectives.resetAgendaForTestMode(); root.localStorage?.setItem?.("HG_TEST_MODE", old || "1"); return r; });
+      if (resetOutside.value !== false) blockers.push(blocker("daily_objectives_reset_outside_test", "Reset virket uten TEST_MODE.", {}, "dailyObjectives"));
+      dailyOk = !genR.error && !getR.error && !saveR.error && agendaBefore === afterGet && !unsafeRoutes.length && forbiddenRejected;
+      checks.dailyObjectives = check(dailyOk, dailyOk ? "ok" : "blocker", "Daily objectives kontrollert.", { objectiveCount: list(genR.value?.objectives).length });
+    }
+
     const privacyFound = [];
     scanForbidden({ runtimeReport, runtimeSnapshot, socialReport, socialSnapshot }, "snapshots", privacyFound, new WeakSet());
     privacyFound.forEach((item) => blockers.push(blocker("privacy_forbidden_field", `Forbudt personvernfelt funnet: ${item.path}`, item, "privacy")));
