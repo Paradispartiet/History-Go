@@ -19,3 +19,9 @@ Moderation: implemented
 Trust: protected
 
 Backend contract: defined
+
+## HG Social QA + Guards
+
+Status: added
+
+Purpose: runtime privacy guard against forbidden social/location fields
