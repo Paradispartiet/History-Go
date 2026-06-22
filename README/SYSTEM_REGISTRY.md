@@ -496,3 +496,13 @@ Roller (oppdatert, uten å fjerne gamle beskrivelser)
 
 Deprecations
 - Structure: fjernet fra runtime. Referanser i originaltekst er historiske.
+
+---
+
+## Civication wallet and shop inventory contracts
+
+- Canonical PC wallet: `CivicationState` using `hg_civi_wallet_v1`.
+- Legacy PC wallet: `hg_pc_wallet_v1` is a mirror only and must not be treated as canonical.
+- Canonical shop inventory: `HG_CiviShop` using `hg_pc_inventory_v1`.
+- Inventory shape: `packs`, `ownedItems`, and `style_counts`.
+- Profile/shop renderers may read these contracts but must not redefine wallet logic, inventory logic, badge gating, prices, or data.
