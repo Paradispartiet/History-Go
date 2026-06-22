@@ -19,9 +19,24 @@ Følgende globals er eksplisitt tillatt:
 - window.OPEN_MODE
 - window.API
 - window.HG_CiviDebug
+- window.HG_RuntimeHealth
 - window.HG_CiviEconomySnapshot
 
 Ingen andre globals skal introduseres uten beslutning.
+
+
+### Top-level runtime health diagnostics
+
+`window.HG_RuntimeHealth` is an allowed global exposed by `js/debug/HGRuntimeHealth.js` for browser-console diagnostics only.
+
+Allowed methods:
+
+- `HG_RuntimeHealth.snapshot()` — read-only snapshot of Civication health, HG Social health, core globals, map availability, profile/learning-log availability, and basic data counts.
+- `HG_RuntimeHealth.health()` — read-only top-level readiness report returning `{ ok, score, checks, blockers, warnings, summary, timestamp }`.
+- `HG_RuntimeHealth.printHealth()` — prints the report compactly in the console and returns the same health object.
+
+This helper is **read-only diagnostics only**. It may aggregate existing subsystem diagnostics, including `HG_CiviDebug.health()` and `HG_SocialDebug.health()`, but it must not own or change Civication logic, HG Social logic, map logic, profile logic, data loading, UI, gameplay flow, rendering, or localStorage contents.
+
 
 ### Civication read-only debug-globals
 

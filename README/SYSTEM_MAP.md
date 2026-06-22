@@ -423,3 +423,14 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 - `js/Civication/ui/CivicationHome.js` owns the `civi_home_v1` home gameplay state: `currentDistrictId`, `unlockedDistrictIds`, rent due/payment markers, housing status, move history, and eviction warnings.
 - Home movement now runs through `canMoveToDistrict()`, `unlockDistrict()`, and `moveToDistrict()`, so locked districts require knowledge/progress/visit state or explicit unlock state before the player can live there.
 - `applyRentTick()` applies weekly rent against existing PC/economic capital storage and worsens `housingStatus` when rent cannot be paid; unemployment/no-income state raises rent pressure and support eligibility without implementing full NAV.
+
+---
+
+## Top-level runtime health diagnostics
+
+**Boot/debug helper**
+- `window.HG_RuntimeHealth` lives in `js/debug/HGRuntimeHealth.js` and is loaded by `js/app.js` as a browser-console diagnostic helper.
+- It is a top-level, read-only runtime diagnosis for `await HG_RuntimeHealth.snapshot()`, `await HG_RuntimeHealth.health()`, and `await HG_RuntimeHealth.printHealth()`.
+- It answers whether History Go is playable right now by checking core globals, map readiness, data counts, profile/learning-log availability, Civication diagnostics, and HG Social diagnostics.
+- It aggregates `window.HG_CiviDebug.health()` and `window.HG_SocialDebug.health()` when those subsystem diagnostics are loaded on the current page.
+- It does not own Civication logic, HG Social logic, map behavior, profile behavior, data loading, UI, or gameplay state. It must not mutate state, create data, write localStorage, or change rendering.
