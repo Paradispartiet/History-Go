@@ -31,3 +31,9 @@ Purpose: runtime privacy guard against forbidden social/location fields
 Status: added
 
 Purpose: local visual verification of knowledge-based social layer
+
+## Main Health Checkpoint after HG Social v3
+
+Status: green
+
+Purpose: confirms social layer, profile hooks, Civication Home snapshots, browser globals and smoke tooling are stable on main.
