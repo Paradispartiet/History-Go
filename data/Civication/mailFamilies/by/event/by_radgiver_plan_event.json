@@ -1,0 +1,249 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "frist_for_utvalg",
+      "purpose": "Frister før møte og politisk behandling",
+      "learning_focus": [
+        "frist_for_utvalg"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_event_utvalg_001",
+          "mail_type": "event",
+          "mail_family": "frist_for_utvalg",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maja_utvalgssekretaer",
+          "sender": "maja_utvalgssekretaer",
+          "person_id": "maja_utvalgssekretaer",
+          "place_id": "politisk_utvalg_moterom",
+          "subject": "Frist klokken 15:00: saken skal inn i utvalgslisten",
+          "summary": "Utvalgssekretæren trenger en formulering som forklarer grøntdrag, skolevei og juridisk risiko uten å bli en roman.",
+          "purpose": "Utvalgssekretæren trenger en formulering som forklarer grøntdrag, skolevei og juridisk risiko uten å bli en roman.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Utvalgssekretæren trenger en formulering som forklarer grøntdrag, skolevei og juridisk risiko uten å bli en roman.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "saksframlegg",
+          "task_kind": "event",
+          "competency": "politisk_behandling",
+          "learning_focus": [
+            "saksframlegg",
+            "politisk_behandling"
+          ],
+          "pressure": "frist_vs_presisjon",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "frist_vs_presisjon",
+              "saksframlegg"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_event_medvirkning_001",
+          "mail_type": "event",
+          "mail_family": "frist_for_utvalg",
+          "role_scope": "by_radgiver_plan",
+          "phase": "lunch",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "subject": "Lunsj før beboermøtet: gjør teksten litt enklere",
+          "summary": "Plansjefen ber deg forenkle fagnotatet før medvirkningsmøtet uten å fjerne uenigheten.",
+          "purpose": "Plansjefen ber deg forenkle fagnotatet før medvirkningsmøtet uten å fjerne uenigheten.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Plansjefen ber deg forenkle fagnotatet før medvirkningsmøtet uten å fjerne uenigheten.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "medvirkningsforberedelse",
+          "task_kind": "event",
+          "competency": "klar_formidling",
+          "learning_focus": [
+            "medvirkningsforberedelse",
+            "klar_formidling"
+          ],
+          "pressure": "forenkling_vs_faglighet",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "forenkling_vs_faglighet",
+              "medvirkningsforberedelse"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "faglig_spor_videre",
+      "purpose": "Konsekvenser av tidligere faglige valg",
+      "learning_focus": [
+        "faglig_spor_videre"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_event_closure_001",
+          "mail_type": "event",
+          "mail_family": "faglig_spor_videre",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "radhuset_planavdeling",
+          "subject": "Den presise formuleringen gjør klagerisikoen synlig",
+          "summary": "Juridisk rådgiver melder at notatet ditt gir bedre sporbarhet, men også gjør den politiske avveiingen vanskeligere å skjule.",
+          "purpose": "Juridisk rådgiver melder at notatet ditt gir bedre sporbarhet, men også gjør den politiske avveiingen vanskeligere å skjule.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Juridisk rådgiver melder at notatet ditt gir bedre sporbarhet, men også gjør den politiske avveiingen vanskeligere å skjule.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "konsekvens",
+          "task_kind": "consequence",
+          "competency": "sporbarhet",
+          "learning_focus": [
+            "konsekvens",
+            "sporbarhet"
+          ],
+          "pressure": "synlig_konflikt_vs_prosessro",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "synlig_konflikt_vs_prosessro",
+              "konsekvens"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

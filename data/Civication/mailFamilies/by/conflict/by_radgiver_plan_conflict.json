@@ -1,0 +1,166 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "grontdrag_skolevei_stoy",
+      "purpose": "Dagens hovedkonflikter i arealet",
+      "learning_focus": [
+        "grontdrag_skolevei_stoy"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_conflict_gront_001",
+          "mail_type": "conflict",
+          "mail_family": "grontdrag_skolevei_stoy",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "grontdrag_lillebekk",
+          "subject": "Grøntdraget som blir restareal",
+          "summary": "Byøkologen advarer om at grøntdraget reduseres til restareal uten jorddybde, flomvei eller oppholdskvalitet.",
+          "purpose": "Byøkologen advarer om at grøntdraget reduseres til restareal uten jorddybde, flomvei eller oppholdskvalitet.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Byøkologen advarer om at grøntdraget reduseres til restareal uten jorddybde, flomvei eller oppholdskvalitet.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "gronnstruktur",
+          "task_kind": "conflict",
+          "competency": "arealavveiing",
+          "learning_focus": [
+            "gronnstruktur",
+            "arealavveiing"
+          ],
+          "pressure": "boligbehov_vs_grontstruktur",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "boligbehov_vs_grontstruktur",
+              "gronnstruktur"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_conflict_stoy_001",
+          "mail_type": "conflict",
+          "mail_family": "grontdrag_skolevei_stoy",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "tariq_trafikk_skolevei",
+          "sender": "tariq_trafikk_skolevei",
+          "person_id": "tariq_trafikk_skolevei",
+          "place_id": "skolevei_lillebekk",
+          "subject": "Støyskjermen løser én ting og ødelegger en annen",
+          "summary": "Trafikksikkerhetskontakten ser at støyskjermen demper fasaden, men gjør skoleveien mørkere og smalere.",
+          "purpose": "Trafikksikkerhetskontakten ser at støyskjermen demper fasaden, men gjør skoleveien mørkere og smalere.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Trafikksikkerhetskontakten ser at støyskjermen demper fasaden, men gjør skoleveien mørkere og smalere.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "stoy_og_skolevei",
+          "task_kind": "conflict",
+          "competency": "tverrfaglig_avveiing",
+          "learning_focus": [
+            "stoy_og_skolevei",
+            "tverrfaglig_avveiing"
+          ],
+          "pressure": "teknisk_losning_vs_hverdagsrisiko",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "teknisk_losning_vs_hverdagsrisiko",
+              "stoy_og_skolevei"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

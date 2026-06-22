@@ -1,0 +1,92 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "faglig_spor_videre",
+      "purpose": "Konsekvenser av tidligere faglige valg",
+      "learning_focus": [
+        "faglig_spor_videre"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_conseq_001",
+          "mail_type": "consequence",
+          "mail_family": "faglig_spor_videre",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "radhuset_planavdeling",
+          "subject": "Den presise formuleringen gjør klagerisikoen synlig",
+          "summary": "Juridisk rådgiver melder at notatet ditt gir bedre sporbarhet, men også gjør den politiske avveiingen vanskeligere å skjule.",
+          "purpose": "Juridisk rådgiver melder at notatet ditt gir bedre sporbarhet, men også gjør den politiske avveiingen vanskeligere å skjule.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Juridisk rådgiver melder at notatet ditt gir bedre sporbarhet, men også gjør den politiske avveiingen vanskeligere å skjule.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "konsekvens",
+          "task_kind": "consequence",
+          "competency": "sporbarhet",
+          "learning_focus": [
+            "konsekvens",
+            "sporbarhet"
+          ],
+          "pressure": "synlig_konflikt_vs_prosessro",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
+              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "effect": 1,
+              "tags": [
+                "precision",
+                "integrity"
+              ],
+              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+            },
+            {
+              "id": "B",
+              "label": "Gi en rask avklaring med forbehold",
+              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "effect": 0,
+              "tags": [
+                "tempo",
+                "risk"
+              ],
+              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "synlig_konflikt_vs_prosessro",
+              "konsekvens"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
