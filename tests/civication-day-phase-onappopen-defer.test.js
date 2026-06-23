@@ -42,6 +42,9 @@ async function run() {
   global.document = { readyState: 'complete', addEventListener() {} };
   global.addEventListener = () => {};
   global.dispatchEvent = () => {};
+  // PR E: skipDailyMailBuilder-grenen delegerer nå til den underliggende motoren, som kan
+  // forsøke å hente data. Vi svarer 404 på alt, så delegeringen kjører uten å treffe nett.
+  global.fetch = async () => ({ ok: false, status: 404, async json() { return null; } });
 
   let phase = 'lunch';
   global.CivicationCalendar = {
@@ -156,10 +159,14 @@ async function run() {
     'no legacy dayPatches phase-event should be enqueued alongside the program'
   );
 
-  // 2) Escape-hatch: skipDailyMailBuilder skal bevare den eldre fase-generatoren.
-  const legacy = await engine.onAppOpen({ force: true, skipDailyMailBuilder: true });
-  assert.strictEqual(legacy?.type, 'lunch', `skipDailyMailBuilder should run the legacy lunch generator (got ${JSON.stringify(legacy)})`);
-  assert.strictEqual(gen.lunch, 1, 'makeLunchEvent should run exactly once via the skipDailyMailBuilder escape hatch');
+  // 2) PR E: de gamle fase-genererte onAppOpen-grenene er fjernet. Selv med
+  // skipDailyMailBuilder (escape-hatchen forbi PR B-deferren) skal dayPatches.onAppOpen IKKE
+  // generere et fase-event lenger — den delegerer til den underliggende motoren, og
+  // makeLunchEvent/makeEveningEvent/makeDayEndEvent kalles aldri fra dayPatches.
+  await engine.onAppOpen({ force: true, skipDailyMailBuilder: true });
+  assert.strictEqual(gen.lunch, 0, 'makeLunchEvent must not run from dayPatches.onAppOpen after PR E');
+  assert.strictEqual(gen.evening, 0, 'makeEveningEvent must not run from dayPatches.onAppOpen after PR E');
+  assert.strictEqual(gen.dayEnd, 0, 'makeDayEndEvent must not run from dayPatches.onAppOpen after PR E');
 
   console.log('civication-day-phase-onappopen-defer.test.js passed');
 }
