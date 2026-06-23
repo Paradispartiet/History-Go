@@ -446,6 +446,19 @@ function patchEventEngine() {
       return { enqueued: false, reason: "onboarding_incomplete" };
     }
 
+    // PR B: DailyMailBuilder + mailDayProgram.json er den autoritative dagrytmen. Når en bygd
+    // dag finnes for aktiv rolle, skal denne eldre fase-først-generatoren IKKE lage en parallell
+    // fase-event (morgen/lunsj/ettermiddag/kveld/dagslutt). Lunch/evening/day_end-events skal
+    // komme fra programmet via DailyMailBuilder.enqueueNext. DailyMailBuilder short-circuiter
+    // allerede onAppOpen i normalflyten; denne sjekken gjør det eksplisitt også for fall-through-
+    // tilfeller (f.eks. når DailyMailBuilder er blokkert av en åpen task-gate), slik at dagen ikke
+    // får et legacy-fase-event ved siden av programmet. skipDailyMailBuilder beholdes som escape-
+    // hatch for den eldre flyten (samme flagg DailyMailBuilder selv respekterer).
+    if (!opts?.skipDailyMailBuilder
+      && window.CivicationDailyMailBuilder?.hasBuiltDayForActiveRole?.()) {
+      return { enqueued: false, reason: "deferred_to_daily_mail_builder" };
+    }
+
     const phase = window.CivicationCalendar?.getPhase?.() || "morning";
     const state = this.getState ? this.getState() : {};
 

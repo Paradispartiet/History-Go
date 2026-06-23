@@ -1080,6 +1080,18 @@
     return rt && typeof rt === "object" ? rt : null;
   }
 
+  // Read-only: er det bygd en dag (mail_day_runtime_v1 med items) for aktiv rolle i dag?
+  // Brukes av dayPatches.onAppOpen (PR B) for å avgjøre at programmet eier dagrytmen, slik at
+  // den eldre fase-generatoren ikke lager en parallell fase-event.
+  function hasBuiltDayForActiveRole(options = {}) {
+    const active = options.active || getActive();
+    if (!active) return false;
+    const rt = getRuntime();
+    if (!rt || !Array.isArray(rt.items) || !rt.items.length) return false;
+    const date = norm(options.date || todayKey());
+    return norm(rt.date) === date && norm(rt.role_scope) === resolveRoleScope(active);
+  }
+
   async function ensureRuntime(active, options = {}) {
     const roleScope = resolveRoleScope(active);
     const date = norm(options.date || todayKey());
@@ -1580,6 +1592,7 @@
     enqueueNext,
     markAnswered,
     isDailyEvent,
+    hasBuiltDayForActiveRole,
     loadJson,
     getFamilyPaths
   };
