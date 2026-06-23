@@ -986,43 +986,16 @@ function patchTaskEngine() {
 
   window.__civiDayPhaseUiPatched = true;
 
-  function buildPhaseHud(model) {
-    const flags = model.dailyFlags || {};
-    const phaseOrder = [
-      { id: "morning", label: "Morgen", doneKey: "morning_done" },
-      { id: "lunch", label: "Lunsj", doneKey: "lunch_done" },
-      { id: "afternoon", label: "Ettermiddag", doneKey: "afternoon_done" },
-      { id: "evening", label: "Kveld", doneKey: "evening_done" },
-      { id: "day_end", label: "Dagslutt", doneKey: null }
-    ];
-
-    return `
-      <div class="civi-dayphase-hud" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
-        <div style="font-weight:700;margin-bottom:8px;">Dag ${model.dayIndex} · ${model.phaseLabel}</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          ${phaseOrder
-            .map((item) => {
-              const isActive = item.id === model.phase;
-              const isDone = item.doneKey ? !!flags[item.doneKey] : false;
-              const badge = isDone ? "✅" : isActive ? "🔵" : "⬜";
-              return `<span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);">${badge} ${item.label}</span>`;
-            })
-            .join("")}
-        </div>
-      </div>
-    `;
-  }
-
+  // PR D: fase-HUD-en eies nå nativt av CivicationUI.renderWorkdayPanel
+  // (buildDayPhaseSectionHtml), som leser CivicationDayProgression + DailyMailBuilder i stedet
+  // for Calendar.dailyFlags. Denne monkey-patchen dekorerer fortsatt panelet med ukesrapport,
+  // kontakter og kunnskaps-task, men legger ikke lenger på sin egen fase-HUD (unngår to fase-eiere).
   window.renderWorkdayPanel = function () {
     legacyRenderWorkdayPanel.call(window.CivicationUI || window);
 
     const host = document.getElementById("civiWorkdayPanel");
     if (!host) return;
 
-    const model = window.CivicationCalendar?.getPhaseModel?.();
-    if (!model) return;
-
-    host.querySelector(".civi-dayphase-hud")?.remove();
     host.querySelector(".civi-weekly-report")?.remove();
     host.querySelector(".civi-contacts-report")?.remove();
     host.querySelector(".civi-knowledge-report")?.remove();
@@ -1038,7 +1011,7 @@ function patchTaskEngine() {
 
     host.insertAdjacentHTML(
       "afterbegin",
-      `${knowledgeHtml}${contactsHtml}${weeklyHtml}${buildPhaseHud(model)}`
+      `${knowledgeHtml}${contactsHtml}${weeklyHtml}`
     );
   };
 
