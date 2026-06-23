@@ -321,8 +321,12 @@ History Go er delt i tydelige lag:
     `CivicationDailyMailBuilder.inspect()` — kaller ikke `onAppOpen`/`enqueue`.
     `buildDayPhaseSectionHtml()` tegner fase-HUD-en nativt øverst i panelet. Panelet **leser**
     fasen; det starter ingen arbeidsdag (faseavansering eies av
-    `CivicationDayPhaseUI`/`CivicationDayProgression`). Erstatter den tidligere fase-HUD-en
-    som `dayPatches.patchUI` la på via monkey-patch.
+    `CivicationDayPhaseUI`/`CivicationDayProgression`).
+  - **PR G:** `renderWorkdayPanel()` rendrer nå hele panelet nativt — fase-HUD **+** ukesrapport,
+    kontakter og kunnskaps-task (via de globale `buildWeeklyReportHtml`/`buildContactsHtml`/
+    `buildKnowledgeTaskHtml`). `dayPatches.patchUI`-monkey-patchen er **fjernet**; CivicationUI
+    eier `window.renderWorkdayPanel` (innstegspunktet `dayConsequencesUI`/
+    `dayNarrativeConsequencesUI`/`CivicationHistoryGoDeepLink` dekorerer via `patchRenderer`).
 
 **Filer — utils / systems**
 - js/Civication/utils/storyResolver.js

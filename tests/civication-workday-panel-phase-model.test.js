@@ -101,6 +101,34 @@ assert(html.includes('Primæroppgave'), 'native section lists the open morning i
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml({ hasBundle: false }), '', 'no section without a built bundle');
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml(null), '', 'no section for null model');
 
+// --- PR G #5: CivicationUI eier window.renderWorkdayPanel og rendrer dekorasjonene nativt ---
+assert.strictEqual(typeof global.window.renderWorkdayPanel, 'function', 'CivicationUI should publish window.renderWorkdayPanel (entrypoint other day*UI-modules decorate)');
+
+let workdayHostHtml = '';
+const fakeHost = {
+  set innerHTML(v) { workdayHostHtml = String(v); },
+  get innerHTML() { return workdayHostHtml; },
+  insertAdjacentHTML(pos, html) {
+    if (pos === 'afterbegin') workdayHostHtml = String(html) + workdayHostHtml;
+    else workdayHostHtml += String(html);
+  },
+  querySelectorAll() { return []; },
+  querySelector() { return null; }
+};
+global.document.getElementById = (id) => (id === 'civiWorkdayPanel' ? fakeHost : null);
+
+// De globale day*-helperne (klassiske script i nettleser) — markører for å bevise native rendring.
+global.buildWeeklyReportHtml = () => '<div class="civi-weekly-report">UKE_MARK</div>';
+global.buildContactsHtml = () => '<div class="civi-contacts-report">KONTAKT_MARK</div>';
+global.buildKnowledgeTaskHtml = () => '<div class="civi-knowledge-report">KUNNSKAP_MARK</div>';
+
+global.window.renderWorkdayPanel();
+assert(workdayHostHtml.includes('UKE_MARK'), 'native renderWorkdayPanel should include the weekly report (no monkey-patch needed)');
+assert(workdayHostHtml.includes('KONTAKT_MARK'), 'native renderWorkdayPanel should include contacts');
+assert(workdayHostHtml.includes('KUNNSKAP_MARK'), 'native renderWorkdayPanel should include the knowledge task');
+assert(workdayHostHtml.includes('Dag 1 · Morgen'), 'native renderWorkdayPanel should include the phase HUD');
+global.document.getElementById = () => null;
+
 // Modellen skal være trygg også uten DayProgression/DailyMailBuilder (defensive read).
 delete global.CivicationDayProgression;
 delete global.CivicationDailyMailBuilder;

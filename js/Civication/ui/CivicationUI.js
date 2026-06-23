@@ -1329,10 +1329,21 @@ function renderWorkdayPanel() {
   </div>
 `;
 
-// PR D: native fasevisning øverst i panelet (erstatter dayPatches sin fase-HUD-monkey-patch).
+// PR D/G: native fasevisning + dag-dekorasjoner øverst i panelet. Erstatter dayPatches sin
+// renderWorkdayPanel-monkey-patch fullstendig: fase-HUD (buildDayPhaseSectionHtml) + ukesrapport,
+// kontakter og kunnskaps-task, lest fra de eksisterende globale day*-helperne (defensivt — de
+// lastes som klassiske script og finnes på runtime). Samme rekkefølge som monkey-patchen ga:
+// kunnskap · kontakter · ukesrapport · fase-HUD · arbeidsdag-innhold.
 const dayPhaseHtml = buildDayPhaseSectionHtml(model.dayPhase);
-if (dayPhaseHtml) {
-  host.insertAdjacentHTML("afterbegin", dayPhaseHtml);
+const weeklyHtml = typeof window.buildWeeklyReportHtml === "function" ? (window.buildWeeklyReportHtml() || "") : "";
+const contactsHtml = typeof window.buildContactsHtml === "function" ? (window.buildContactsHtml() || "") : "";
+const activePhaseTasks = window.CivicationTaskEngine?.listOpenTasksForCurrentPhase?.() || [];
+const firstPhaseTask = Array.isArray(activePhaseTasks) && activePhaseTasks.length ? activePhaseTasks[0] : null;
+const knowledgeHtml = typeof window.buildKnowledgeTaskHtml === "function" ? (window.buildKnowledgeTaskHtml(firstPhaseTask) || "") : "";
+
+const prependHtml = `${knowledgeHtml}${contactsHtml}${weeklyHtml}${dayPhaseHtml}`;
+if (prependHtml) {
+  host.insertAdjacentHTML("afterbegin", prependHtml);
 }
 
 host.querySelectorAll("[data-open-task]").forEach(function (btn) {
@@ -2117,6 +2128,12 @@ window.CivicationUI = {
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml
 };
+
+// PR G: CivicationUI eier nå window.renderWorkdayPanel (innstegspunktet de øvrige day*UI-modulene
+// dekorerer via patchRenderer). Tidligere ble denne publisert av dayPatches.patchUI-monkey-patchen;
+// CivicationUI lastes før dayPatches og dekoratørene, så entrypoint-et finnes tidligere og kjeden
+// (dayConsequencesUI / dayNarrativeConsequencesUI / CivicationHistoryGoDeepLink) wrapper den uendret.
+window.renderWorkdayPanel = renderWorkdayPanel;
 
 // Read-only debug/helper global: inspect current workday state without touching rendering.
 // Registered in README/SYSTEM_REGISTRY.md. Never write through this — it is a pure snapshot.
