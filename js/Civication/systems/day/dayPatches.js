@@ -72,6 +72,31 @@ function isRecoveryEvent(eventObj) {
   return String(eventObj?.mail_class || "").trim() === "recovery";
 }
 
+// Et daily-event er et item DailyMailBuilder har bygd fra mailDayProgram.json og levert
+// via enqueueNext. For slike events eier DailyMailBuilder + CivicationDayProgression
+// fasen (Calendar følger item.phase, og fasen avanseres først når fasens items er tomme).
+// dayPatches.answer skal derfor IKKE flytte Calendar-fasen ett hakk per svar for disse,
+// ellers ping-ponger fasen (f.eks. morning -> lunch etter første av flere morgen-items).
+// Bruker DailyMailBuilders egen klassifisering når den finnes, med en lokal fallback som
+// speiler den (mail_class === "daily_workday" / source_type starter med "daily_" /
+// daily_mail_meta finnes) slik at sjekken er robust uavhengig av lastrekkefølge.
+function isDailyRuntimeEvent(eventObj) {
+  if (!eventObj || typeof eventObj !== "object") return false;
+
+  const builderCheck = window.CivicationDailyMailBuilder?.isDailyEvent;
+  if (typeof builderCheck === "function") {
+    try {
+      return !!builderCheck(eventObj);
+    } catch {}
+  }
+
+  const mailClass = String(eventObj.mail_class || "").trim();
+  const sourceType = String(eventObj.source_type || "").trim();
+  return mailClass === "daily_workday"
+    || sourceType.startsWith("daily_")
+    || !!eventObj.daily_mail_meta;
+}
+
 /** @typedef {{ reason?: unknown, previous_role?: { title?: unknown } }} RecoveryStateLike */
 /** @typedef {{ complete?: unknown }} OnboardingStateLike */
 /** @typedef {{ career_id?: unknown }} PositionLike */
@@ -805,33 +830,43 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
       const cal = window.CivicationCalendar;
       if (!cal) return result;
 
-      if (phaseTag === "morning") {
-        cal.markDailyFlag?.("morning_done", true);
-        cal.setPhase?.("lunch");
-      } else if (phaseTag === "lunch") {
-        cal.markDailyFlag?.("lunch_done", true);
-        cal.setPhase?.("afternoon");
-      } else if (phaseTag === "afternoon") {
-        cal.markDailyFlag?.("afternoon_done", true);
-        cal.setPhase?.("evening");
-      } else if (phaseTag === "evening") {
-        cal.markDailyFlag?.("evening_done", true);
-        cal.setPhase?.("day_end");
-     } else if (phaseTag === "day_end") {
-       const summary = cal.getDailySummary?.();
-       if (summary) {
-        saveDailySummaryToWeek(summary);
+      // For daily-events eier DailyMailBuilder fasen via item.phase (satt i enqueueNext),
+      // og CivicationDayProgression.advancePhaseIfReady avanserer først når fasens items er
+      // tomme. dayPatches skal da ikke flytte fasen selv — ellers blir det to fase-eiere
+      // og fasen ping-ponger. Etter-svar-effektene over (logg, fase-/kapitaleffekter, task,
+      // kontakter, karriere-hooks) beholdes for alle events. Den eldre fase-først-flyten
+      // (legacy/non-daily events) beholder per-svar-avanseringen sin uendret.
+      const dailyRuntimeEvent = isDailyRuntimeEvent(pending?.event);
 
-        const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
-          window.CivicationState?.getActivePosition?.()
-        );
-        const activeCareerId =
-        activePosition?.career_id || "";
+      if (!dailyRuntimeEvent) {
+        if (phaseTag === "morning") {
+          cal.markDailyFlag?.("morning_done", true);
+          cal.setPhase?.("lunch");
+        } else if (phaseTag === "lunch") {
+          cal.markDailyFlag?.("lunch_done", true);
+          cal.setPhase?.("afternoon");
+        } else if (phaseTag === "afternoon") {
+          cal.markDailyFlag?.("afternoon_done", true);
+          cal.setPhase?.("evening");
+        } else if (phaseTag === "evening") {
+          cal.markDailyFlag?.("evening_done", true);
+          cal.setPhase?.("day_end");
+        } else if (phaseTag === "day_end") {
+          const summary = cal.getDailySummary?.();
+          if (summary) {
+            saveDailySummaryToWeek(summary);
 
-        finalizeWeekIfNeeded(activeCareerId);
-       }
-       cal.resetForNewDay?.();
-     }
+            const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
+              window.CivicationState?.getActivePosition?.()
+            );
+            const activeCareerId =
+            activePosition?.career_id || "";
+
+            finalizeWeekIfNeeded(activeCareerId);
+          }
+          cal.resetForNewDay?.();
+        }
+      }
 
       clearPendingEventById(engine, pendingEventId);
 

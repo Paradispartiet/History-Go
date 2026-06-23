@@ -1579,6 +1579,7 @@
     buildQueue,
     enqueueNext,
     markAnswered,
+    isDailyEvent,
     loadJson,
     getFamilyPaths
   };
