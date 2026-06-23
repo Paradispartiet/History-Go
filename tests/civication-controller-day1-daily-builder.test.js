@@ -73,10 +73,16 @@ async function run() {
 
   const engine = new global.CivicationEventEngine();
   global.HG_CiviEngine = engine;
-  const runtime = await global.CivicationDailyMailBuilder.buildQueue(global.CivicationState.getActivePosition(), { date: '2026-06-20' });
+  // Bygg dagen for DAGENS dato og legg den i state, slik at den senere onAppOpen-en gjenbruker
+  // nøyaktig samme runtime (ensureRuntime gjenbruker kun når runtime.date === todayKey()).
+  // Tidligere bygde testen med en fast dato og kalte resetToday(), som tvang en ny, ikke-
+  // deterministisk gjenbygging (annen seed + narrativ-state) — derav den datostyrte flakingen.
+  const today = new Date().toISOString().slice(0, 10);
+  const runtime = await global.CivicationDailyMailBuilder.buildQueue(global.CivicationState.getActivePosition(), { date: today });
+  global.CivicationState.setState({ mail_day_runtime_v1: runtime });
 
   assert(runtime, 'mail_day_runtime_v1 should be built for Controller day 1');
-  assert.strictEqual(runtime.date, '2026-06-20', 'runtime should keep requested date');
+  assert.strictEqual(runtime.date, today, 'runtime should keep requested (today) date');
   assert.strictEqual(runtime.career_id, 'naeringsliv', 'runtime should keep controller career_id');
   assert.strictEqual(runtime.role_scope, 'controller', 'runtime should resolve controller role_scope');
   assert.strictEqual(runtime.role_id, 'naer_controller', 'runtime should keep active role_id');
@@ -127,7 +133,8 @@ async function run() {
   assert(privateItem, 'Controller day should include private/personal signal mail');
   assert.strictEqual(privateItem.event.channel, 'private', 'private signal should keep channel=private');
 
-  await global.CivicationDailyMailBuilder.resetToday();
+  // Ikke resetToday(): runtime ligger i state for dagens dato, så onAppOpen gjenbruker den og
+  // leverer det første item-et i den samme bunken (deterministisk).
   const first = await engine.onAppOpen({ force: true });
   assert.strictEqual(first.enqueued, true, 'opening the app should deliver the first daily item');
   assert.strictEqual(pendingEvent().id, runtime.items[0].event.id, 'pending mail should be first daily runtime event');
