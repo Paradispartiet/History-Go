@@ -316,13 +316,22 @@ History Go er delt i tydelige lag:
     datakilden; `renderWorkdayPanel()` tegner den, og `getCurrentWorkdaySnapshot()`
     (eksponert read-only som `window.HG_CiviWorkdaySnapshot`) returnerer den uendret for
     debugging/inspeksjon — skriver ingenting, rører ikke DOM.
+  - **Fasevisning (native):** `computeWorkdayModel()` inkluderer `dayPhase` (aktiv fase +
+    dagsbunke per fase), lest read-only fra `CivicationDayProgression.inspect()` +
+    `CivicationDailyMailBuilder.inspect()` — kaller ikke `onAppOpen`/`enqueue`.
+    `buildDayPhaseSectionHtml()` tegner fase-HUD-en nativt øverst i panelet. Panelet **leser**
+    fasen; det starter ingen arbeidsdag (faseavansering eies av
+    `CivicationDayPhaseUI`/`CivicationDayProgression`). Erstatter den tidligere fase-HUD-en
+    som `dayPatches.patchUI` la på via monkey-patch.
 
 **Filer — utils / systems**
 - js/Civication/utils/storyResolver.js
 - js/Civication/utils/conflictLoader.js
 - js/Civication/systems/civicationMailPlanPatchRuntime.js
 - js/Civication/systems/civicationMailPlanDebug.js
+- js/Civication/systems/civicationDailyMailBuilder.js
 - js/Civication/systems/day/dayCalendarBridge.js
+- js/Civication/systems/day/dayProgressionController.js (`CivicationDayProgression`)
 - js/Civication/systems/day/dayHistoryGoContexts.js
 - js/Civication/systems/day/dayCarryover.js
 - js/Civication/systems/day/dayWeeklyReview.js
@@ -330,6 +339,24 @@ History Go er delt i tydelige lag:
 - js/Civication/systems/day/dayKnowledge.js
 - js/Civication/systems/day/dayEvents.js
 - js/Civication/systems/day/dayPatches.js
+- js/Civication/ui/CivicationDayPhaseUI.js
+
+**Arbeidsdag / dagsfaser — eierskap (én dagrytme)**
+- `data/Civication/mailDayProgram.json` + `CivicationDailyMailBuilder` er den **autoritative
+  dagrytmen**: builder bygger hele dagen (alle faser × slots) til `mail_day_runtime_v1.items[]`
+  og leverer items ett om gangen via `enqueueNext`.
+- **Fasen følger item:** `enqueueNext` setter `CivicationCalendar.setPhase(item.phase)`.
+  `CivicationDayProgression.advancePhaseIfReady()` avanserer fasen **først når fasens items er
+  tomme** (auto eller via «Gå til neste fase» i `CivicationDayPhaseUI`). Dette er de eneste to
+  fase-skriverne.
+- **`dayPatches` genererer ikke arbeidsdag/fase.** `dayPatches.answer` flytter **ikke** fasen
+  for daily-events (kjenner dem igjen via `DailyMailBuilder.isDailyEvent`), men beholder
+  etter-svar-effektene (logg, fase-/kapitaleffekter, task, kontakter, karriere-hooks).
+  `dayPatches.onAppOpen` håndterer kun recovery/onboarding og deferrer ellers til
+  DailyMailBuilder (`hasBuiltDayForActiveRole`) — de gamle fase-genererte grenene er fjernet.
+- **Fase-innhold:** `dayEvents`-generatorene (`makeLunchEvent`/`makeEveningEvent`/
+  `makeDayEndEvent`, inkl. controller-Dag-1) er slot-generatorer som `DailyMailBuilder` kaller
+  **lazy ved levering** for `phase`-/`day_end`-slots; output pakkes inn som daily-event.
 
 **Eier**
 - addCompletedQuizAndMaybePoint

@@ -60,13 +60,37 @@ Disse er eksplisitt tillatt, men er **kun read-only inspeksjon** (ingen gameplay
 - `window.HG_CiviWorkdaySnapshot()` — returnerer et øyeblikksbilde av arbeidsdag-state
   (`CivicationUI.getCurrentWorkdaySnapshot`). Ren lesning av `CivicationState`,
   `CivicationCalendar`, `CivicationTaskEngine` og innboksen via den delte `computeWorkdayModel()`
-  som `renderWorkdayPanel()` også bruker. Rører ikke DOM og endrer ikke rendering.
+  som `renderWorkdayPanel()` også bruker. Inkluderer `dayPhase` (aktiv fase + dagsbunke per
+  fase), lest read-only fra `CivicationDayProgression.inspect()` +
+  `CivicationDailyMailBuilder.inspect()`. Rører ikke DOM, kaller ikke `onAppOpen`/`enqueue` og
+  endrer ikke rendering.
 - `window.CivicationHome.getHomeSnapshot()` — read-only Home/nabolag-øyeblikksbilde fra
   `CivicationHome` / `civi_home_v1`, med kapital lest fra `hg_capital_v1`. Endrer ikke
   gameplay-state, priser, husleie eller boligpress.
 - `window.CivicationHome.getDistrictViewModels()` — read-only district view models for
   UI/debug. Bruker eksisterende distriktsdata, låseregler og kapital-lesning, men skriver
   ingenting og endrer ikke kjøps-/flytteregler.
+
+### Civication arbeidsdag / dagsfaser — eierskap (hard rule)
+
+Arbeidsdagen har **én** dagrytme og **ett** sett fase-skrivere. Ikke innfør parallelle.
+
+- **Dagrytme:** `data/Civication/mailDayProgram.json` + `CivicationDailyMailBuilder` er
+  autoritativt. Builder bygger hele dagen til `mail_day_runtime_v1.items[]` og leverer items
+  ett om gangen via `enqueueNext`. Ingen annen `onAppOpen`-gren skal generere en parallell dag.
+- **Fase-skrivere (kun to):** `DailyMailBuilder.enqueueNext` setter
+  `CivicationCalendar.setPhase(item.phase)`, og `CivicationDayProgression.advancePhaseIfReady()`
+  avanserer fasen når fasens items er tomme. `dayPatches.answer` skal **ikke** flytte fasen for
+  daily-events (gjenkjent via `CivicationDailyMailBuilder.isDailyEvent`); den beholder bare
+  etter-svar-effektene.
+- **`dayPatches` eier ikke arbeidsdag/fase.** `dayPatches.onAppOpen` håndterer kun
+  recovery/onboarding og deferrer ellers til DailyMailBuilder
+  (`CivicationDailyMailBuilder.hasBuiltDayForActiveRole`); de gamle fase-genererte grenene er
+  fjernet. `dayEvents`-generatorene (`makeLunchEvent`/`makeEveningEvent`/`makeDayEndEvent`,
+  inkl. controller-Dag-1) kalles av DailyMailBuilder som slot-generatorer ved levering.
+- **UI leser, eier ikke:** `CivicationUI.renderWorkdayPanel`/`computeWorkdayModel.dayPhase` og
+  `CivicationDayPhaseUI` **leser** fase/dagsbunke fra DayProgression/DailyMailBuilder. Faseavansering
+  skjer kun via `CivicationDayProgression.advancePhaseIfReady` (knapp i `CivicationDayPhaseUI`).
 
 ---
 
