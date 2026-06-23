@@ -1,8 +1,9 @@
 // js/Civication/systems/day/dayPatches.js
 // Dag-fase-patch/bootstrap: recovery-/onboarding-events, task-kapital fra valg, og etter-svar-
-// effekter. Patcher EventEngine.answer/onAppOpen og dekorerer window.renderWorkdayPanel med
-// ukesrapport/kontakter/kunnskaps-task. Dagrytmen og fase-genereringen eies av DailyMailBuilder
-// + mailDayProgram (PR A–E); denne modulen genererer ikke lenger fase-events selv.
+// effekter. Patcher EventEngine.answer/onAppOpen, TaskEngine og Jobs. Dagrytmen og fase-
+// genereringen eies av DailyMailBuilder + mailDayProgram (PR A–E). Arbeidsdagspanelet (inkl.
+// fase-HUD + ukesrapport/kontakter/kunnskaps-task) rendres nativt av CivicationUI.renderWorkdayPanel
+// (PR D/G) — denne modulen monkey-patcher ikke lenger renderWorkdayPanel.
 (function () {
 
 function clearPendingEventById(engine, eventId) {
@@ -672,57 +673,14 @@ function patchTaskEngine() {
     };
   }
 
-  function patchUI() {
-  if (window.__civiDayPhaseUiPatched) return;
-
-  const legacyRenderWorkdayPanel =
-    typeof window.renderWorkdayPanel === "function"
-      ? window.renderWorkdayPanel
-      : window.CivicationUI?.renderWorkdayPanel;
-
-  if (typeof legacyRenderWorkdayPanel !== "function") return;
-
-  window.__civiDayPhaseUiPatched = true;
-
-  // PR D: fase-HUD-en eies nå nativt av CivicationUI.renderWorkdayPanel
-  // (buildDayPhaseSectionHtml), som leser CivicationDayProgression + DailyMailBuilder i stedet
-  // for Calendar.dailyFlags. Denne monkey-patchen dekorerer fortsatt panelet med ukesrapport,
-  // kontakter og kunnskaps-task, men legger ikke lenger på sin egen fase-HUD (unngår to fase-eiere).
-  window.renderWorkdayPanel = function () {
-    legacyRenderWorkdayPanel.call(window.CivicationUI || window);
-
-    const host = document.getElementById("civiWorkdayPanel");
-    if (!host) return;
-
-    host.querySelector(".civi-weekly-report")?.remove();
-    host.querySelector(".civi-contacts-report")?.remove();
-    host.querySelector(".civi-knowledge-report")?.remove();
-
-    const weeklyHtml = buildWeeklyReportHtml();
-    const contactsHtml = buildContactsHtml();
-
-    const activeTasks =
-      window.CivicationTaskEngine?.listOpenTasksForCurrentPhase?.() || [];
-    const firstTask =
-      Array.isArray(activeTasks) && activeTasks.length ? activeTasks[0] : null;
-    const knowledgeHtml = buildKnowledgeTaskHtml(firstTask);
-
-    host.insertAdjacentHTML(
-      "afterbegin",
-      `${knowledgeHtml}${contactsHtml}${weeklyHtml}`
-    );
-  };
-
-  if (window.CivicationUI) {
-    window.CivicationUI.renderWorkdayPanel = window.renderWorkdayPanel;
-  }
-}
+  // PR G: renderWorkdayPanel-monkey-patchen er fjernet. CivicationUI.renderWorkdayPanel rendrer nå
+  // fase-HUD + ukesrapport/kontakter/kunnskaps-task nativt og publiserer selv window.renderWorkdayPanel.
+  // dayPatches eier fortsatt EventEngine-/TaskEngine-/Jobs-patchene + etter-svar-effektene.
 
   function initPatches() {
   patchEventEngine();
   patchTaskEngine();
   patchJobs();
-  patchUI();
 }
 
   if (document.readyState === "loading") {

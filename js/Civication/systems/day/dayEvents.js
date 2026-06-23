@@ -462,17 +462,40 @@ async function makeEveningEvent(active) {
   return finalEvent;
 }
 
+// PR G (#3): teller fullførte hovedfaser (morgen/lunsj/ettermiddag/kveld) fra DailyMailBuilder-
+// runtime i stedet for Calendar.dailyFlags. Etter PR A settes ikke dailyFlags lenger per fase for
+// daily-events, så flagg-tellingen viste ofte 0. En fase regnes som fullført når den har items og
+// alle er besvart. Returnerer null hvis ingen runtime finnes (legacy → fall tilbake til flagg).
+function countCompletedWorkPhasesFromRuntime() {
+  const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+  const items = Array.isArray(runtime?.items) ? runtime.items : null;
+  if (!items || !items.length) return null;
+
+  const workPhases = ["morning", "lunch", "afternoon", "evening"];
+  let done = 0;
+  for (const phaseId of workPhases) {
+    const rows = items.filter(
+      (r) => String(r?.phase || r?.event?.phase_tag || "") === phaseId
+    );
+    if (rows.length && rows.every((r) => String(r?.status || "") === "answered")) done += 1;
+  }
+  return done;
+}
+
 function makeDayEndEvent() {
   const cal = window.CivicationCalendar;
   const model = cal?.getPhaseModel?.() || {};
   const flags = model.dailyFlags || {};
 
-  const doneCount = [
-    "morning_done",
-    "lunch_done",
-    "afternoon_done",
-    "evening_done"
-  ].filter((k) => !!flags[k]).length;
+  const runtimeDone = countCompletedWorkPhasesFromRuntime();
+  const doneCount = runtimeDone != null
+    ? runtimeDone
+    : [
+        "morning_done",
+        "lunch_done",
+        "afternoon_done",
+        "evening_done"
+      ].filter((k) => !!flags[k]).length;
 
   /** @type {{ score?: unknown, stability?: unknown }} */
   const state = window.CivicationState?.getState?.() || {};
