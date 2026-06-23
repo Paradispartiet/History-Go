@@ -209,6 +209,29 @@
 
     const calendar = getCalendar();
     const fromPhase = state.phase;
+
+    // PR F: dagsrullnings (day_end → ny dag) skal ferdigstille ukesoppsummeringen. For daily-events
+    // kjører ikke lenger dayPatches.answer sin day_end-gren (PR A), så `saveDailySummaryToWeek` +
+    // `finalizeWeekIfNeeded` var foreldreløse — uke-review ble aldri skrevet, og det inert-gjorde
+    // det ukentlige carryover-signalet (visibility/process/fatigue). Vi lagrer dagens summary til
+    // uken FØR rullnings, fordi `advancePhase()` ved day_end nullstiller dagen og fjerner
+    // dailySummary. Begge helperne er idempotente (dag-oppdatering by index + applied-flagg).
+    if (fromPhase === "day_end") {
+      try {
+        const summary = calendar?.getDailySummary?.();
+        if (summary && typeof window.saveDailySummaryToWeek === "function") {
+          window.saveDailySummaryToWeek(summary);
+        }
+        if (typeof window.finalizeWeekIfNeeded === "function") {
+          const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
+            window.CivicationState?.getActivePosition?.()
+          );
+          const careerId = activePosition?.career_id || "";
+          window.finalizeWeekIfNeeded(careerId);
+        }
+      } catch {}
+    }
+
     calendar?.advancePhase?.();
     const toPhase = getCurrentPhase();
 

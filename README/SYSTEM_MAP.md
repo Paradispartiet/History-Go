@@ -357,6 +357,12 @@ History Go er delt i tydelige lag:
 - **Fase-innhold:** `dayEvents`-generatorene (`makeLunchEvent`/`makeEveningEvent`/
   `makeDayEndEvent`, inkl. controller-Dag-1) er slot-generatorer som `DailyMailBuilder` kaller
   **lazy ved levering** for `phase`-/`day_end`-slots; output pakkes inn som daily-event.
+- **Dagslutt/uke:** ved rullnings fra `day_end` ferdigstiller
+  `DayProgression.advancePhaseIfReady` ukesoppsummeringen (`saveDailySummaryToWeek` +
+  `finalizeWeekIfNeeded`, begge idempotente) før `resetForNewDay`. Det ukentlige
+  carryover-signalet (`buildCarryoverFromChoiceLog` → visibility/process/fatigue-dager i
+  `dayWeeklyReview`) lever her; den gamle morgen-carryoveren (justerte morgendagens valg) er
+  fjernet og er ikke lenger en mekanikk.
 
 **Eier**
 - addCompletedQuizAndMaybePoint

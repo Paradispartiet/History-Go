@@ -20,15 +20,21 @@ function setup() {
   let dayIndex = 7;
   const DAY_PHASES = ['morning', 'lunch', 'afternoon', 'evening', 'day_end'];
 
+  // PR F: ved day_end-rullnings skal dagens summary ferdigstilles til uken. advancePhase ved
+  // day_end nullstiller dagen og fjerner dailySummary, så DayProgression må lese den FØR.
+  let dailySummary = { dayIndex: 7, completedPhases: 4, score: 2, quality: 'sterk', choiceLog: [] };
+
   global.CivicationCalendar = {
     DAY_PHASES,
     getPhase: () => phase,
     getPhaseLabel: (p) => String(p || ''),
     getClock: () => ({ dayIndex }),
+    getDailySummary: () => dailySummary,
     advancePhase: () => {
       if (phase === 'day_end') {
         dayIndex += 1;
         phase = 'morning';
+        dailySummary = null;
         return;
       }
       const idx = DAY_PHASES.indexOf(phase);
@@ -39,6 +45,15 @@ function setup() {
   global.CivicationDailyMailBuilder = {
     inspect: () => ({ runtime: { items: [] } })
   };
+
+  global.CivicationState = {
+    getActivePosition: () => ({ career_id: 'naeringsliv' })
+  };
+
+  // Spioner på ukesavslutningen.
+  global.__weekly = { savedSummaries: [], finalizeCareerIds: [] };
+  global.saveDailySummaryToWeek = (summary) => { global.__weekly.savedSummaries.push(summary); return summary; };
+  global.finalizeWeekIfNeeded = (careerId) => { global.__weekly.finalizeCareerIds.push(careerId); return null; };
 
   loadScript('js/Civication/systems/day/dayProgressionController.js');
 }
@@ -59,6 +74,12 @@ async function run() {
   const after = global.CivicationDayProgression.inspect();
   assert.strictEqual(after.phase, 'morning');
   assert.strictEqual(after.dayIndex, 8);
+
+  // PR F: rullnings fra day_end skal ha ferdigstilt ukesoppsummeringen FØR dagen ble nullstilt.
+  assert.strictEqual(global.__weekly.savedSummaries.length, 1, 'day_end rollover should save the daily summary to the week');
+  assert.strictEqual(global.__weekly.savedSummaries[0]?.dayIndex, 7, 'the captured summary should be the day_end day (before reset)');
+  assert.strictEqual(global.__weekly.savedSummaries[0]?.quality, 'sterk', 'the full summary should be passed to the week');
+  assert.deepStrictEqual(global.__weekly.finalizeCareerIds, ['naeringsliv'], 'day_end rollover should finalize the week for the active career');
 
   console.log('civication day progression day_end rollover ok');
 }
