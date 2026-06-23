@@ -555,6 +555,71 @@
     };
   }
 
+  // PR C: hvilke phase-/day_end-slot som skal fylles av dayEvents-generatorene
+  // (makeLunchEvent / makeEveningEvent / makeDayEndEvent) i stedet for den generiske
+  // placeholder-teksten. Disse generatorene bærer også controller-Dag-1-tekstene (lunsj/kveld/
+  // dagslutt) via sin egen isControllerDayOne-gren. Dagrytmen eies fortsatt av programmet.
+  function phaseGeneratorKind(phase, slot) {
+    const slotType = slugify(slot?.type || slot?.slot || "");
+    const phaseId = norm(phase?.id);
+    if (slotType === "day_end" || phaseId === "day_end") return "day_end";
+    if (slotType === "phase") {
+      if (phaseId === "lunch") return "lunch";
+      if (phaseId === "evening") return "evening";
+    }
+    return null;
+  }
+
+  // Kjøres ved levering (enqueueNext), ikke ved bygging — slik at innholdet leser fersk
+  // kontekst (besøkte steder, butikk-rotasjon, dagsoppsummering) og day_end ikke skriver en
+  // tom oppsummering allerede om morgenen. Returnerer null hvis generatoren ikke er lastet.
+  async function generatePhaseEvent(kind, active) {
+    const k = norm(kind);
+    if (k === "lunch" && typeof window.makeLunchEvent === "function") return await window.makeLunchEvent(active);
+    if (k === "evening" && typeof window.makeEveningEvent === "function") return await window.makeEveningEvent(active);
+    if (k === "day_end" && typeof window.makeDayEndEvent === "function") return window.makeDayEndEvent();
+    return null;
+  }
+
+  // Pakker et dayEvents-generert event inn i daily-konvolutten slik at PR A/PR B fortsatt
+  // kjenner det igjen som et daily-event (mail_class/daily_mail_meta), uten å endre teksten.
+  function toDailyGeneratedPhaseMail(active, generated, phase, slot, index) {
+    const base = generated && typeof generated === "object" ? generated : {};
+    const phaseId = norm(phase?.id || base.phase_tag || "morning");
+    const slotId = slugify(slot?.slot || slot?.type || `slot_${index}`);
+    const date = todayKey();
+    return {
+      ...base,
+      id: norm(base.id) || `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${date}_${index}`,
+      source: norm(base.source) || "Civication",
+      source_type: "daily_generated",
+      mail_class: "daily_workday",
+      phase_tag: phaseId,
+      role_scope: resolveRoleScope(active),
+      career_id: norm(active?.career_id),
+      role_id: norm(active?.role_id),
+      stage: norm(base.stage || "stable") || "stable",
+      // Behold generatorens valg verbatim (day_end leveres bevisst uten valg).
+      choices: Array.isArray(base.choices) ? base.choices : [],
+      daily_mail_meta: {
+        date,
+        phase: phaseId,
+        phase_label: phaseLabel(phase),
+        slot: norm(slot?.slot || slot?.type),
+        source_generator: `day_events_${phaseId}`,
+        advances_role_plan: false
+      },
+      mail_tags: uniqueStrings([
+        ...(Array.isArray(base.mail_tags) ? base.mail_tags : []),
+        "daily_mail",
+        "daily_phase_generated",
+        phaseId,
+        norm(slot?.type),
+        norm(slot?.slot)
+      ])
+    };
+  }
+
   function pickFromPool(pool, wantedTypes, usedSourceIds, seed, phase, count, slot, progressionContext) {
     const wanted = new Set((Array.isArray(wantedTypes) ? wantedTypes : [wantedTypes]).map(norm).filter(Boolean));
     if (!wanted.size || [...wanted].some(t => t.startsWith("__generated"))) return [];
@@ -1047,10 +1112,14 @@
             continue;
           }
 
+          const generatorKind = phaseGeneratorKind(phase, slot);
           items.push({
             status: "queued",
             phase: norm(phase?.id || "morning"),
             slot: norm(slot?.slot || slot?.type),
+            // PR C: fase-/dagslutt-slot regenereres fra dayEvents ved levering. makeGeneratedEvent
+            // beholdes som placeholder/fallback dersom dayEvents ikke er tilgjengelig.
+            ...(generatorKind ? { phase_generator: generatorKind } : {}),
             event: makeGeneratedEvent(active, phase, slot, ordinal)
           });
         }
@@ -1078,6 +1147,18 @@
     const state = getState();
     const rt = state?.[DAY_RUNTIME_KEY];
     return rt && typeof rt === "object" ? rt : null;
+  }
+
+  // Read-only: er det bygd en dag (mail_day_runtime_v1 med items) for aktiv rolle i dag?
+  // Brukes av dayPatches.onAppOpen (PR B) for å avgjøre at programmet eier dagrytmen, slik at
+  // den eldre fase-generatoren ikke lager en parallell fase-event.
+  function hasBuiltDayForActiveRole(options = {}) {
+    const active = options.active || getActive();
+    if (!active) return false;
+    const rt = getRuntime();
+    if (!rt || !Array.isArray(rt.items) || !rt.items.length) return false;
+    const date = norm(options.date || todayKey());
+    return norm(rt.date) === date && norm(rt.role_scope) === resolveRoleScope(active);
   }
 
   async function ensureRuntime(active, options = {}) {
@@ -1269,8 +1350,26 @@
     if (idx < 0) return { enqueued: false, reason: "day_complete", runtime };
 
     const item = runtimeWithBlock.items[idx];
-    const event = item?.event;
+    let event = item?.event;
     if (!event) return { enqueued: false, reason: "missing_event", runtime };
+
+    // PR C: fase-/dagslutt-slot fylles av dayEvents-generatorene ved levering. Innholdet (inkl.
+    // controller-Dag-1 lunsj/kveld/dagslutt) blir dermed ferskt og kontekstuelt, mens dagrytmen
+    // fortsatt eies av programmet. makeGeneratedEvent-placeholderet brukes hvis dayEvents mangler.
+    if (item?.phase_generator) {
+      try {
+        const generated = await generatePhaseEvent(item.phase_generator, active);
+        if (generated && typeof generated === "object") {
+          event = toDailyGeneratedPhaseMail(active, generated, { id: item.phase }, { slot: item.slot }, idx);
+        }
+      } catch (error) {
+        if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] fase-generator feilet", item.phase_generator, error);
+      }
+    }
+
+    // Leveringsraden må bære det (eventuelt regenererte) eventet, slik at inbox, runtime og
+    // markAnswered refererer til samme event.id.
+    const deliveredRow = event === item?.event ? item : { ...item, event };
 
     const phase = norm(item.phase || event.phase_tag || "morning");
     try { window.CivicationCalendar?.setPhase?.(phase); } catch {}
@@ -1279,6 +1378,7 @@
       if (i !== idx) return row;
       return {
         ...row,
+        event,
         status: "delivered",
         delivered_at: new Date().toISOString()
       };
@@ -1297,7 +1397,7 @@
     };
 
     setRuntime(nextRuntime);
-    deliverRuntimeItemToInbox(item, engine);
+    deliverRuntimeItemToInbox(deliveredRow, engine);
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
 
@@ -1580,6 +1680,7 @@
     enqueueNext,
     markAnswered,
     isDailyEvent,
+    hasBuiltDayForActiveRole,
     loadJson,
     getFamilyPaths
   };

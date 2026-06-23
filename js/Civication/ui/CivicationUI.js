@@ -1036,9 +1036,110 @@ document.getElementById("closeDistrictModal")
  *   taskDescription: string,
  *   timeWindowLabel: string,
  *   weekProgress: { answered: number, expected: number, pct: number },
- *   contractPressure: { daysLeft: number, daysSinceStart: number, fireAfterDays: number }
+ *   contractPressure: { daysLeft: number, daysSinceStart: number, fireAfterDays: number },
+ *   dayPhase?: any
  * }} CiviUiWorkdayModel
  */
+
+const DAY_PHASE_ORDER = [
+  { id: "morning", label: "Morgen" },
+  { id: "lunch", label: "Lunsj" },
+  { id: "afternoon", label: "Ettermiddag" },
+  { id: "evening", label: "Kveld" },
+  { id: "day_end", label: "Dagslutt" }
+];
+
+/**
+ * PR D: native fasevisning for arbeidsdagspanelet. Leser fasen + dagens bunke direkte fra
+ * CivicationDayProgression.inspect() og CivicationDailyMailBuilder.inspect() — begge er
+ * read-only. Kaller IKKE onAppOpen/enqueue og rører ikke DOM. Erstatter fase-HUD-en som
+ * tidligere ble lagt på via dayPatches.patchUI-monkey-patchen.
+ * @returns {any}
+ */
+function computeDayPhaseModel() {
+  const prog = window.CivicationDayProgression?.inspect?.() || null;
+  const inspected = window.CivicationDailyMailBuilder?.inspect?.() || null;
+  const items = Array.isArray(inspected?.runtime?.items) ? inspected.runtime.items : [];
+
+  const phases = DAY_PHASE_ORDER.map((p) => {
+    const rows = items.filter((row) => String(row?.phase || row?.event?.phase_tag || "") === p.id);
+    const answered = rows.filter((r) => String(r?.status || "") === "answered").length;
+    const delivered = rows.filter((r) => String(r?.status || "") === "delivered").length;
+    const total = rows.length;
+    const open = rows.filter((r) => String(r?.status || "") !== "answered").length;
+    return {
+      id: p.id,
+      label: p.label,
+      total,
+      answered,
+      delivered,
+      open,
+      done: total > 0 && open === 0,
+      items: rows.map((r) => ({
+        id: String(r?.event?.id || ""),
+        subject: String(r?.event?.subject || ""),
+        slot: String(r?.slot || ""),
+        status: String(r?.status || "queued")
+      }))
+    };
+  });
+
+  const phase = String(prog?.phase || window.CivicationCalendar?.getPhase?.() || "morning");
+  const fallbackModel = window.CivicationCalendar?.getPhaseModel?.() || {};
+
+  return {
+    hasBundle: items.length > 0,
+    dayIndex: Number(prog?.dayIndex || fallbackModel.dayIndex || 1),
+    phase,
+    phaseLabel: String(prog?.phaseLabel || window.CivicationCalendar?.getPhaseLabel?.(phase) || ""),
+    openItemsInPhase: Number(prog?.openItemsInPhase || 0),
+    openItemSubjects: Array.isArray(prog?.openItemSubjects) ? prog.openItemSubjects : [],
+    nextPhase: prog?.nextPhase ?? null,
+    canAdvance: !!prog?.canAdvance,
+    reason: String(prog?.reason || ""),
+    phases
+  };
+}
+
+/**
+ * Pure HTML for the native day-phase section. Read-only: WorkdayPanel viser fase + dagsbunke,
+ * men starter ingen arbeidsdag selv (advansering eies av CivicationDayPhaseUI/DayProgression).
+ * @param {any} dayPhase
+ * @returns {string}
+ */
+function buildDayPhaseSectionHtml(dayPhase) {
+  if (!dayPhase || !dayPhase.hasBundle) return "";
+
+  const chips = (Array.isArray(dayPhase.phases) ? dayPhase.phases : [])
+    .map((p) => {
+      const isActive = p.id === dayPhase.phase;
+      const badge = p.done ? "✅" : isActive ? "🔵" : "⬜";
+      const count = p.total ? ` ${p.answered}/${p.total}` : "";
+      const activeStyle = isActive ? "border-color:rgba(255,255,255,0.4);font-weight:700;" : "";
+      return `<span class="civi-workday-phase-chip${isActive ? " is-active" : ""}" style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);${activeStyle}">${badge} ${p.label}${count}</span>`;
+    })
+    .join("");
+
+  const current = (Array.isArray(dayPhase.phases) ? dayPhase.phases : []).find((p) => p.id === dayPhase.phase) || null;
+  const openItems = current && Array.isArray(current.items)
+    ? current.items.filter((it) => it.status !== "answered")
+    : [];
+
+  const openList = openItems.length
+    ? `<ul class="civi-workday-phase-open" style="margin:6px 0 0;padding-left:18px;">${openItems
+        .map((it) => `<li>${it.status === "delivered" ? "🔵" : "⬜"} ${it.subject || it.slot || it.id}</li>`)
+        .join("")}</ul>`
+    : `<div class="civi-workday-sub">Ingen åpne leveranser i denne fasen.</div>`;
+
+  return `
+    <div class="civi-workday-phase" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
+      <div class="civi-workday-phase-head" style="font-weight:700;margin-bottom:8px;">Dag ${dayPhase.dayIndex} · ${dayPhase.phaseLabel || dayPhase.phase}</div>
+      <div class="civi-workday-phase-chips" style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
+      <div class="civi-workday-phase-open-head" style="margin-top:8px;font-weight:600;">Åpne i fasen: ${dayPhase.openItemsInPhase}</div>
+      ${openList}
+    </div>
+  `;
+}
 
 /**
  * Single source of truth for the workday panel's data. Pure read of CivicationState,
@@ -1119,7 +1220,8 @@ function computeWorkdayModel() {
     taskDescription,
     timeWindowLabel,
     weekProgress: { answered, expected, pct },
-    contractPressure: { daysLeft, daysSinceStart, fireAfterDays }
+    contractPressure: { daysLeft, daysSinceStart, fireAfterDays },
+    dayPhase: computeDayPhaseModel()
   };
 }
 
@@ -1226,6 +1328,12 @@ function renderWorkdayPanel() {
     </div>
   </div>
 `;
+
+// PR D: native fasevisning øverst i panelet (erstatter dayPatches sin fase-HUD-monkey-patch).
+const dayPhaseHtml = buildDayPhaseSectionHtml(model.dayPhase);
+if (dayPhaseHtml) {
+  host.insertAdjacentHTML("afterbegin", dayPhaseHtml);
+}
 
 host.querySelectorAll("[data-open-task]").forEach(function (btn) {
   btn.addEventListener("click", function () {
@@ -1999,6 +2107,7 @@ window.CivicationUI = {
   renderWorkdayPanel,
   getActiveWorkdayInboxItem,
   getCurrentWorkdaySnapshot,
+  buildDayPhaseSectionHtml,
   renderCapital,
   renderPerception,
   renderCivicationShop,
