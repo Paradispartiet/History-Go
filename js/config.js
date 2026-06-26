@@ -5,3 +5,13 @@ window.HG_MAPTILER_KEY = "Yi8j8sLhEo4NyPygVmbN";
 // Ikke legg API-key her.
 // Ikke legg viewer-URL her.
 window.HG_NATURTRO_STYLE_ID = "streets-v4";
+
+// Midlertidig runtime-bro: lastes etter app-entry har rukket å eksponere HG_DailyObjectives.
+// Bryter sirkelen Min dag -> RuntimeHealth -> DailyObjectives -> RuntimeHealth.
+window.setTimeout?.(() => {
+  if (document.querySelector('script[src="js/objectives/HGDailyObjectivesRuntimeGuard.js"]')) return;
+  const script = document.createElement("script");
+  script.src = "js/objectives/HGDailyObjectivesRuntimeGuard.js";
+  script.defer = true;
+  document.head.appendChild(script);
+}, 250);
