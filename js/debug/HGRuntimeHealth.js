@@ -206,7 +206,14 @@
     }));
   }
 
+  let healthDepth = 0;
+
   async function health() {
+    if (healthDepth > 0) {
+      return { ok: true, score: 100, checks: {}, blockers: [], warnings: [{ key: "runtime_health_reentrant", message: "RuntimeHealth health is already running.", subsystem: "runtime" }], summary: "RuntimeHealth reentrant call skipped.", timestamp: now() };
+    }
+    healthDepth += 1;
+    try {
     const snap = await snapshot();
     const blockers = [];
     const warnings = [];
@@ -274,6 +281,9 @@
           : "History Go ser spillbart ut.";
 
     return { ok: blockers.length === 0, score, checks, blockers, warnings, summary, timestamp: now() };
+    } finally {
+      healthDepth = Math.max(0, healthDepth - 1);
+    }
   }
 
   async function printHealth() {
