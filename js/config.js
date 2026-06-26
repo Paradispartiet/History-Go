@@ -1,17 +1,19 @@
-// Lim inn MapTiler browser-key her, ikke hele style-URL-en.
 window.HG_MAPTILER_KEY = "Yi8j8sLhEo4NyPygVmbN";
-
-// Detaljert kartstil: bruk MapTiler style-id her, f.eks. "streets-v4", "outdoor-v2" eller "basic-v2".
-// Ikke legg API-key her.
-// Ikke legg viewer-URL her.
 window.HG_NATURTRO_STYLE_ID = "streets-v4";
-
-// Midlertidig runtime-bro: lastes etter app-entry har rukket å eksponere HG_DailyObjectives.
-// Bryter sirkelen Min dag -> RuntimeHealth -> DailyObjectives -> RuntimeHealth.
-window.setTimeout?.(() => {
-  if (document.querySelector('script[src="js/objectives/HGDailyObjectivesRuntimeGuard.js"]')) return;
-  const script = document.createElement("script");
-  script.src = "js/objectives/HGDailyObjectivesRuntimeGuard.js";
-  script.defer = true;
-  document.head.appendChild(script);
-}, 250);
+(function(){
+  let tries = 0;
+  function run(){
+    if (window.HG_DailyObjectives && window.HG_RuntimeHealth) {
+      if (document.querySelector('script[src="js/objectives/HGDailyObjectivesRuntimeGuard.js"]')) return;
+      const script = document.createElement("script");
+      script.src = "js/objectives/HGDailyObjectivesRuntimeGuard.js";
+      script.defer = true;
+      document.head.appendChild(script);
+      return;
+    }
+    tries += 1;
+    if (tries < 160) window.setTimeout(run, 25);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run, { once: true });
+  else run();
+}());
