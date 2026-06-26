@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "History Go",
+  "purpose": "Felles register for uavhengige History Go-spill som kan lese felles samlinger og skrive progresjon tilbake til AHA/profil uten å eies av Civication.",
+  "sharedCollectionsOwnedByHistoryGo": [
+    "places",
+    "people",
+    "works",
+    "institutions",
+    "routes",
+    "badges",
+    "objects",
+    "relations"
+  ],
+  "profileUpdateContract": "Når et spill endrer progresjon, unlocks, badges, steder, personer, verk eller poeng, skal det kalle window.dispatchEvent(new Event(\"updateProfile\"));",
+  "games": [
+    {
+      "gameId": "hgFootballManager",
+      "displayName": "HG Football Manager",
+      "shortDescription": "Uavhengig manager- og læringsspill for fotballhistorie, klubber, grounds, spillere, formasjoner og stedskoblet supporterkultur.",
+      "status": "external_scaffold",
+      "entryPath": "https://paradispartiet.github.io/HistoryGo-FootballManager/",
+      "readsFromHistoryGo": ["places", "people", "institutions", "routes", "badges", "relations"],
+      "writesBackToProfile": ["progression", "unlocks", "badges", "places", "people", "points"],
+      "independenceRule": "HG Football Manager er et uavhengig History Go-spill. Civication kan lenke til spillet og vise status, men Civication skal ikke være motor, datakildeeier eller progresjonseier for spillet."
+    },
+    {
+      "gameId": "hgFilmProducer",
+      "displayName": "HG Film Producer",
+      "shortDescription": "Uavhengig produsent- og læringsspill for filmsteder, personer, verk, scener, locations, produksjonsvalg og filmhistoriske koblinger.",
+      "status": "data_scaffold",
+      "entryPath": "games/film-producer/",
+      "readsFromHistoryGo": ["places", "people", "works", "institutions", "routes", "badges", "objects", "relations"],
+      "writesBackToProfile": ["progression", "unlocks", "badges", "places", "people", "works", "points"],
+      "independenceRule": "HG Film Producer er et uavhengig History Go-spill. Civication kan lenke til spillet og vise status, men Civication skal ikke være motor, datakildeeier eller progresjonseier for spillet."
+    },
+    {
+      "gameId": "hgArtSchool",
+      "displayName": "Kunstskolen",
+      "shortDescription": "Uavhengig læringsspill for kunsthistorie, verk, institusjoner, byrom, teknikker, motiver og visuelle analyser.",
+      "status": "data_scaffold",
+      "entryPath": "games/art-school/",
+      "readsFromHistoryGo": ["places", "people", "works", "institutions", "routes", "badges", "objects", "relations"],
+      "writesBackToProfile": ["progression", "unlocks", "badges", "places", "people", "works", "points"],
+      "independenceRule": "Kunstskolen er et uavhengig History Go-spill. Civication kan lenke til spillet og vise status, men Civication skal ikke være motor, datakildeeier eller progresjonseier for spillet."
+    },
+    {
+      "gameId": "hgWritingAcademy",
+      "displayName": "Skrivekunstakademiet",
+      "shortDescription": "Uavhengig læringsspill der brukeren lærer av forfattere, steder, verk, scener, fortellerstemmer, dialog, essay, rytme og komposisjon uten å kopiere beskyttet tekst.",
+      "status": "data_scaffold_v1",
+      "entryPath": "games/writing-academy/",
+      "readsFromHistoryGo": ["places", "people", "works", "institutions", "routes", "badges", "objects", "relations"],
+      "writesBackToProfile": ["progression", "unlocks", "badges", "places", "people", "works", "points"],
+      "independenceRule": "Skrivekunstakademiet er et uavhengig History Go-spill. Civication kan lenke til spillet og vise status, men Civication skal ikke være motor, datakildeeier eller progresjonseier for spillet."
+    }
+  ]
+}
