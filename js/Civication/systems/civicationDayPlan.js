@@ -5,8 +5,8 @@
   "use strict";
 
   const KEY = "civication_day_plan_v1";
-  const FALLBACK_PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
-  const PHASE_LABELS = { morning: "Morgen", lunch: "Dag / lunsj", afternoon: "Ettermiddag", evening: "Kveld", day_end: "Natt" };
+  const FALLBACK_PHASES = ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
+  const PHASE_LABELS = { morning: "Morgen", forenoon: "Formiddag", workday: "Arbeidsdag", lunch: "Lunsj", afternoon: "Ettermiddag", dinner: "Middag", evening: "Kveld", day_end: "Dagslutt / Natt" };
   const DAY_NAMES = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   const CATEGORIES = new Set(["arbeid", "struktur", "hvile", "sosialt", "kompetanse", "trening", "hobby", "familie", "økonomi", "praktisk", "søvn"]);
   const EFFECT_KEYS = new Set(["psyke", "energi", "kompetanse", "penger", "pc", "relasjoner", "handlingsrom", "status", "sleepQuality", "søvnkvalitet"]);

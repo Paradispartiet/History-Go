@@ -95,7 +95,7 @@ async function run() {
   const runtime = await global.CivicationDailyMailBuilder.buildQueue(active, { date: '2026-06-22' });
   assert(runtime && runtime.role_scope === 'by_radgiver_plan', 'DailyMailBuilder should build a by_radgiver_plan runtime');
   assert(runtime.items.length > 0, 'DailyMailBuilder should queue mail items');
-  assert.deepStrictEqual([...new Set(runtime.items.map(row => row.phase))], ['morning', 'lunch', 'afternoon', 'evening', 'day_end'], 'runtime should cover the full day');
+  assert.deepStrictEqual([...new Set(runtime.items.map(row => row.phase))], ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'], 'runtime should cover the full day');
   assert(new Set(runtime.items.map(row => row.event?.mail_type)).size > 2, 'runtime should include several mail family types');
 
   const map = await global.CivicationDebug.buildDebugMap('by_radgiver_plan');

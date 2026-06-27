@@ -87,7 +87,7 @@ assert.strictEqual(byId.morning.done, false, 'morning not done while an item is 
 assert.strictEqual(byId.lunch.total, 2, 'two lunch items in the bundle');
 assert.strictEqual(byId.lunch.open, 2, 'both lunch items open');
 assert.strictEqual(byId.day_end.total, 1, 'one day_end item in the bundle');
-assert.deepStrictEqual(dp.phases.map((p) => p.id), ['morning', 'lunch', 'afternoon', 'evening', 'day_end'], 'phases kept in day order');
+assert.deepStrictEqual(dp.phases.map((p) => p.id), ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'], 'phases kept in day order');
 assert.strictEqual(byId.afternoon.total, 0, 'empty phases still represented');
 
 // --- native HTML-seksjon (ren streng, ingen DOM) ---
@@ -134,6 +134,6 @@ delete global.CivicationDayProgression;
 delete global.CivicationDailyMailBuilder;
 const snap2 = global.HG_CiviWorkdaySnapshot();
 assert.strictEqual(snap2.dayPhase.hasBundle, false, 'no bundle when builders are absent');
-assert(Array.isArray(snap2.dayPhase.phases) && snap2.dayPhase.phases.length === 5, 'phase scaffold still present');
+assert(Array.isArray(snap2.dayPhase.phases) && snap2.dayPhase.phases.length === 8, 'phase scaffold still present');
 
 console.log('civication-workday-panel-phase-model.test.js passed');

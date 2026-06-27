@@ -48,6 +48,10 @@
     return String(value || "").trim();
   }
 
+  function uniqueStrings(values) {
+    return [...new Set((Array.isArray(values) ? values : []).map(norm).filter(Boolean))];
+  }
+
   function getCalendar() {
     return window.CivicationCalendar || null;
   }
@@ -143,7 +147,7 @@
     const phases = getCalendar()?.DAY_PHASES;
     return Array.isArray(phases) && phases.length
       ? phases.map(norm).filter(Boolean)
-      : ["morning", "lunch", "afternoon", "evening", "day_end"];
+      : ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
   }
 
   function getNextPhase(phase) {
@@ -151,6 +155,64 @@
     const idx = phases.indexOf(norm(phase));
     if (idx < 0) return phases[0] || "morning";
     return phases[idx + 1] || null;
+  }
+
+  function getPhaseItems(phase) {
+    const wanted = norm(phase || getCurrentPhase());
+    return getRuntimeItems().filter((row) => belongsToPhase(row, wanted));
+  }
+
+  function getQueuedItemsForPhase(phase) {
+    return getPhaseItems(phase).filter((row) => norm(row?.status).toLowerCase() === "queued");
+  }
+
+  function getDeliveredItemsForPhase(phase) {
+    return getPhaseItems(phase).filter((row) => ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
+  }
+
+  function getAnsweredItemsForPhase(phase) {
+    return getPhaseItems(phase).filter((row) => norm(row?.status).toLowerCase() === "answered" || row?.resolved === true || row?.answered_at || row?.answeredAt);
+  }
+
+  function isRequiredRow(row) {
+    return norm(row?.required).toLowerCase() !== "false" && row?.optional !== true;
+  }
+
+  function summarizeRow(row) {
+    return { id: norm(row?.event?.id || row?.id), subject: norm(row?.event?.subject || row?.subject), slot: norm(row?.slot || row?.event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: getPhaseForRow(row), required: isRequiredRow(row) };
+  }
+
+  function getPhaseCompletion(phase) {
+    const rows = getPhaseItems(phase);
+    const required = rows.filter(isRequiredRow);
+    const answered = getAnsweredItemsForPhase(phase);
+    const completedRequired = required.filter((row) => answered.includes(row) || norm(row?.status).toLowerCase() === "answered");
+    return { requiredCount: required.length, completedCount: completedRequired.length, isComplete: required.length === 0 || completedRequired.length >= required.length };
+  }
+
+  function getCurrentPhaseItems() {
+    return getPhaseItems(getCurrentPhase()).map(summarizeRow);
+  }
+
+  function getCurrentPhaseBundle() {
+    const phase = getCurrentPhase();
+    const items = getPhaseItems(phase);
+    const pendingItems = getDeliveredItemsForPhase(phase);
+    const queuedItems = getQueuedItemsForPhase(phase);
+    const answeredItems = getAnsweredItemsForPhase(phase);
+    const completion = getPhaseCompletion(phase);
+    return {
+      phase,
+      phaseLabel: getPhaseLabel(phase),
+      items: items.map(summarizeRow),
+      pendingItems: pendingItems.map(summarizeRow),
+      queuedItems: queuedItems.map(summarizeRow),
+      answeredItems: answeredItems.map(summarizeRow),
+      requiredCount: completion.requiredCount,
+      completedCount: completion.completedCount,
+      isComplete: completion.isComplete && queuedItems.length === 0 && pendingItems.length === 0,
+      nextPhase: getNextPhase(phase)
+    };
   }
 
   /**
@@ -195,6 +257,7 @@
       openItemSubjects: openRows.map((row) => norm(row?.event?.subject || row?.subject || row?.event?.id)).filter(Boolean),
       pendingItem: pendingRow ? { id: norm(pendingRow?.event?.id || pendingRow?.id), subject: norm(pendingRow?.event?.subject || pendingRow?.subject), status: norm(pendingRow?.status), phase: getPhaseForRow(pendingRow) } : null,
       nextQueuedItem: nextQueuedRow ? { id: norm(nextQueuedRow?.event?.id || nextQueuedRow?.id), subject: norm(nextQueuedRow?.event?.subject || nextQueuedRow?.subject), status: norm(nextQueuedRow?.status), phase: getPhaseForRow(nextQueuedRow) } : null,
+      phaseBundle: getCurrentPhaseBundle(),
       nextPhase,
       canAdvance,
       reason
@@ -259,9 +322,54 @@
     return { advanced: true, fromPhase, toPhase };
   }
 
+  function getDayEndSummary() {
+    const items = getRuntimeItems();
+    const phases = getPhaseList();
+    const phaseBundles = phases.map((phase) => {
+      const rows = getPhaseItems(phase);
+      const answered = getAnsweredItemsForPhase(phase);
+      const required = rows.filter(isRequiredRow);
+      const completedRequired = required.filter(row => answered.includes(row) || norm(row?.status).toLowerCase() === "answered");
+      return { phase, phaseLabel: getPhaseLabel(phase), total: rows.length, answered: answered.length, required: required.length, complete: rows.length > 0 && completedRequired.length >= required.length && getQueuedItemsForPhase(phase).length === 0 && getDeliveredItemsForPhase(phase).length === 0 };
+    });
+    const answeredItems = items.filter(row => norm(row?.status).toLowerCase() === "answered");
+    const openRequired = items.filter(row => isRequiredRow(row) && isOpenRow(row));
+    const peopleContacts = new Set(answeredItems.filter(row => /people|person|kollega|friend|family/i.test(`${row?.event?.mail_type || ""} ${row?.slot || ""} ${row?.event?.mail_family || ""}`)).map(row => norm(row?.event?.source || row?.event?.from || row?.event?.id)).filter(Boolean));
+    const tasksCompleted = answeredItems.filter(row => norm(row?.event?.mail_type) === "task_gate" || norm(row?.slot) === "task_gate").length;
+    const learningTags = uniqueStrings(answeredItems.flatMap(row => [row?.event?.competency, ...(Array.isArray(row?.event?.mail_tags) ? row.event.mail_tags : []), ...(Array.isArray(row?.event?.choices) ? row.event.choices.flatMap(c => c.tags || []) : [])]).filter(tag => /learn|kompet|fag|jurid|plan|process|knowledge/i.test(norm(tag))));
+    const relationshipTags = answeredItems.flatMap(row => Array.isArray(row?.event?.choices) ? row.event.choices.flatMap(c => c.tags || []) : []).filter(tag => /relasjon|trust|people|social|tillit/i.test(norm(tag))).length;
+    const completedPhases = phaseBundles.filter(p => p.complete).length;
+    const score = Math.max(0, Math.min(100, Math.round(answeredItems.length * 4 + completedPhases * 6 + tasksCompleted * 8 + learningTags.length * 2 + relationshipTags * 2 - openRequired.length * 8)));
+    return {
+      title: "Dagen er over",
+      dayIndex: getDayIndex(),
+      completedPhases,
+      totalPhases: phases.length,
+      handledItems: answeredItems.length,
+      peopleMet: peopleContacts.size,
+      tasksCompleted,
+      importantChoices: answeredItems.map(row => norm(row?.event?.subject || row?.subject)).filter(Boolean).slice(0, 6),
+      score,
+      scoreExplanation: "Score = besvarte saker + fullførte bolker + task gates + læring/relasjon - åpne required saker.",
+      roleDevelopment: learningTags.length ? `Rolleutvikling: Du har styrket ${learningTags.slice(0, 3).join(", ")}.` : "Ingen tydelig rolleutvikling i dag",
+      learning: learningTags.slice(0, 8),
+      effects: { psyche: null, energy: null, money: null },
+      carryover: openRequired.length ? `${openRequired.length} required saker følger med.` : "Ingen åpne required saker følger med til i morgen.",
+      phases: phaseBundles
+    };
+  }
+
   window.CivicationDayProgression = {
     inspect,
     canAdvancePhase,
-    advancePhaseIfReady
+    advancePhaseIfReady,
+    getCurrentPhaseItems,
+    getCurrentPhaseBundle,
+    getOpenItemsForPhase: (phase) => getPhaseItems(phase).filter(isOpenRow).map(summarizeRow),
+    getQueuedItemsForPhase: (phase) => getQueuedItemsForPhase(phase).map(summarizeRow),
+    getDeliveredItemsForPhase: (phase) => getDeliveredItemsForPhase(phase).map(summarizeRow),
+    getAnsweredItemsForPhase: (phase) => getAnsweredItemsForPhase(phase).map(summarizeRow),
+    getPhaseCompletion,
+    getDayEndSummary
   };
 })();

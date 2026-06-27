@@ -25,34 +25,102 @@
       {
         "id": "morning",
         "label": "Morgen",
-        "clock_anchor": "08:00",
-        "target_minutes": 15,
-        "target_words_min": 2100,
-        "target_words_max": 3000,
+        "clock_anchor": "06:00",
+        "target_minutes": 10,
         "mail_slots": [
           {
             "slot": "morning_brief",
             "type": "story_or_context",
             "count": 1,
-            "purpose": "Åpne dagen med rolle, miljø, carryover eller større situasjon."
+            "purpose": "Dagens brief, rolle og carryover."
           },
+          {
+            "slot": "first_message",
+            "type": "people",
+            "count": 1,
+            "purpose": "Første melding fra person eller miljø."
+          },
+          {
+            "slot": "preparation",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Forberedelse før arbeid starter."
+          },
+          {
+            "slot": "day_goal_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Valg av dagens mål."
+          }
+        ]
+      },
+      {
+        "id": "forenoon",
+        "label": "Formiddag",
+        "clock_anchor": "09:00",
+        "target_minutes": 12,
+        "mail_slots": [
           {
             "slot": "primary_work_mail",
             "type": "job",
             "count": 1,
-            "purpose": "Dagens hovedoppgave. Skal være lang, konkret og faglig."
+            "purpose": "Viktig jobbmail eller hovedsak tidlig på dagen."
           },
           {
             "slot": "operational_mail",
             "type": "job_micro",
-            "count": 2,
-            "purpose": "Korte, konkrete drifts-/arbeidsmailer som gir volum og realisme."
+            "count": 1,
+            "purpose": "Operativ avklaring."
           },
           {
             "slot": "people_ping",
             "type": "people",
             "count": 1,
-            "purpose": "En person i miljøet reagerer, spør eller ber om avklaring."
+            "purpose": "Kollega/person ber om avklaring."
+          },
+          {
+            "slot": "small_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Lite faglig/praktisk valg."
+          }
+        ]
+      },
+      {
+        "id": "workday",
+        "label": "Arbeidsdag",
+        "clock_anchor": "10:00",
+        "target_minutes": 18,
+        "mail_slots": [
+          {
+            "slot": "main_delivery",
+            "type": "job",
+            "count": 1,
+            "purpose": "Dagens hovedleveranse."
+          },
+          {
+            "slot": "task_gate",
+            "type": "task_gate",
+            "count": 1,
+            "purpose": "Oppgaveport som må fullføres hvis opprettet."
+          },
+          {
+            "slot": "conflict_or_event",
+            "type": "conflict_or_event",
+            "count": 1,
+            "purpose": "Konflikt, møte eller hendelse."
+          },
+          {
+            "slot": "analysis_followup",
+            "type": "followup",
+            "count": 1,
+            "purpose": "Faglig oppfølging/analyse."
+          },
+          {
+            "slot": "operational_batch",
+            "type": "job_micro",
+            "count": 1,
+            "purpose": "Samlet operativ arbeidsbunke."
           }
         ]
       },
@@ -61,104 +129,200 @@
         "label": "Lunsj",
         "clock_anchor": "12:00",
         "target_minutes": 8,
-        "target_words_min": 1000,
-        "target_words_max": 1600,
         "mail_slots": [
           {
             "slot": "phase_lunch",
             "type": "phase",
             "count": 1,
-            "purpose": "Lunsjhending med by-, butikk-, nettverk- eller History Go-kontekst."
+            "purpose": "Lunsjpause med sosial/mental avklaring."
           },
           {
             "slot": "informal_people_mail",
             "type": "people",
             "count": 1,
-            "purpose": "Uformell reaksjon fra kollega, leder, bank, drift eller miljø."
+            "purpose": "Uformell kollega/person."
           },
           {
-            "slot": "small_choice",
+            "slot": "lunch_place_choice",
             "type": "micro_choice",
             "count": 1,
-            "purpose": "Lite valg som påvirker synlighet, tillit, stress eller læring."
+            "purpose": "Velg lunsjsted: pult, kollega, rolig pause eller tur."
+          },
+          {
+            "slot": "recovery_or_social_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Restitusjon/fokus eller sosialt signal."
           }
         ]
       },
       {
         "id": "afternoon",
         "label": "Ettermiddag",
-        "clock_anchor": "14:00",
-        "target_minutes": 22,
-        "target_words_min": 3200,
-        "target_words_max": 4400,
+        "clock_anchor": "15:00",
+        "target_minutes": 10,
         "mail_slots": [
           {
-            "slot": "conflict_or_event",
-            "type": "conflict_or_event",
+            "slot": "commute_or_transition",
+            "type": "phase",
             "count": 1,
-            "purpose": "Dagens hovedpress: konflikt, frist, bank, styre, drift eller risiko."
+            "purpose": "Overgang etter jobb/skole: hjemreise eller skifte til privatliv."
           },
           {
-            "slot": "analysis_followup",
-            "type": "followup",
-            "count": 2,
-            "purpose": "Oppfølginger som utdyper konsekvenser av dagens hovedmail."
-          },
-          {
-            "slot": "operational_batch",
-            "type": "job_micro",
-            "count": 3,
-            "purpose": "Arbeidsvolum: små saker, avklaringer, rapportlinjer, notater, telefoner."
-          },
-          {
-            "slot": "knowledge_mail",
-            "type": "knowledge",
+            "slot": "family_or_practical",
+            "type": "people",
             "count": 1,
-            "purpose": "Faglig forklaring eller kort casehistorie fra stillingen/miljøet."
+            "purpose": "Familie/praktisk melding."
+          },
+          {
+            "slot": "errand_or_training",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Handling, trening eller praktisk ærend."
+          },
+          {
+            "slot": "friend_or_private_message",
+            "type": "people",
+            "count": 1,
+            "purpose": "Privat/sosial melding."
+          },
+          {
+            "slot": "afternoon_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Valg som påvirker energi, relasjon og kveldens handlingsrom."
+          }
+        ]
+      },
+      {
+        "id": "dinner",
+        "label": "Middag",
+        "clock_anchor": "17:00",
+        "target_minutes": 8,
+        "mail_slots": [
+          {
+            "slot": "dinner_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Middagsvalg hjemme/ute/alene/sammen."
+          },
+          {
+            "slot": "family_meal",
+            "type": "people",
+            "count": 1,
+            "purpose": "Familie eller nære relasjoner rundt mat."
+          },
+          {
+            "slot": "eat_alone",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Spis alene og koble av."
+          },
+          {
+            "slot": "cheap_meal",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Billig middag for økonomi/PC."
+          },
+          {
+            "slot": "eat_out",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Bestill/spis ute for hvile eller sosialt rom."
+          },
+          {
+            "slot": "dinner_with_friend",
+            "type": "people",
+            "count": 1,
+            "purpose": "Middag med venn."
+          },
+          {
+            "slot": "practical_food_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Matvalg som påvirker kveldens energi."
           }
         ]
       },
       {
         "id": "evening",
         "label": "Kveld",
-        "clock_anchor": "17:00",
+        "clock_anchor": "19:00",
         "target_minutes": 10,
-        "target_words_min": 1400,
-        "target_words_max": 2200,
         "mail_slots": [
           {
             "slot": "phase_evening",
             "type": "phase",
             "count": 1,
-            "purpose": "Kveldshending: blir du igjen, drar hjem, møter folk eller tar ekstra arbeid?"
+            "purpose": "Kveldsbolk etter middag."
+          },
+          {
+            "slot": "learning_or_hobby",
+            "type": "knowledge",
+            "count": 1,
+            "purpose": "Læring, fagstoff eller hobby."
+          },
+          {
+            "slot": "rest_or_social",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Hvile eller sosialt valg."
           },
           {
             "slot": "consequence_mail",
             "type": "consequence",
             "count": 1,
-            "purpose": "Konsekvens eller reaksjon på valg fra tidligere i dagen."
+            "purpose": "Konsekvens fra tidligere valg."
           },
           {
             "slot": "relationship_or_status",
             "type": "people_or_status",
             "count": 1,
-            "purpose": "Hvordan dagen påvirker tillit, status, stress eller posisjon."
+            "purpose": "Relasjon/status."
+          },
+          {
+            "slot": "plan_tomorrow",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Planlegg morgendagen."
           }
         ]
       },
       {
         "id": "day_end",
-        "label": "Dagslutt",
-        "clock_anchor": "19:00",
-        "target_minutes": 5,
-        "target_words_min": 600,
-        "target_words_max": 1000,
+        "label": "Dagslutt / Natt",
+        "clock_anchor": "23:00",
+        "target_minutes": 6,
         "mail_slots": [
           {
             "slot": "day_summary",
             "type": "day_end",
             "count": 1,
-            "purpose": "Oppsummer dagen, valg, konsekvenser, carryover og startpunkt for neste dag."
+            "purpose": "Dagen er over: oppsummer hva som ble gjort."
+          },
+          {
+            "slot": "score_summary",
+            "type": "day_end",
+            "count": 1,
+            "purpose": "Forklar enkel dagscore."
+          },
+          {
+            "slot": "role_progress_summary",
+            "type": "day_end",
+            "count": 1,
+            "purpose": "Rolleutvikling hvis data finnes."
+          },
+          {
+            "slot": "sleep_or_recovery",
+            "type": "day_end",
+            "count": 1,
+            "purpose": "Søvn/restitusjon."
+          },
+          {
+            "slot": "carryover",
+            "type": "day_end",
+            "count": 1,
+            "purpose": "Hva følger med til i morgen."
           }
         ]
       }

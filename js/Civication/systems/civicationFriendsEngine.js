@@ -18,7 +18,7 @@
   const SNAPSHOTS_PATH = "data/Civication/map/friendPhaseSnapshots.json";
   const PLAYER_SNAPSHOTS_KEY = "civi.playerPhaseSnapshots.v1";
 
-  const DAY_PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
+  const DAY_PHASES = ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
 
   // Tilstander som aldri vises som figur på kartet.
   const HIDDEN_STATES = new Set(["unavailable", "offline_simulated"]);
@@ -49,8 +49,11 @@
   // Deterministisk oppslag, ingen klokkeslett-logikk på toppen av spillfasen.
   const DAY_PHASE_TO_SNAPSHOT = {
     morning: "morning",
+    forenoon: "work",
+    workday: "work",
     lunch: "work",
     afternoon: "leisure",
+    dinner: "leisure",
     evening: "evening",
     day_end: "evening"
   };
@@ -59,7 +62,7 @@
   // friends.json presenceByPhase når et snapshot mangler for den aktive fasen.
   const SNAPSHOT_TO_DAY_PHASE = {
     morning: "morning",
-    work: "lunch",
+    work: "workday",
     leisure: "afternoon",
     evening: "evening",
     reflection: "day_end"

@@ -1043,10 +1043,13 @@ document.getElementById("closeDistrictModal")
 
 const DAY_PHASE_ORDER = [
   { id: "morning", label: "Morgen" },
+  { id: "forenoon", label: "Formiddag" },
+  { id: "workday", label: "Arbeidsdag" },
   { id: "lunch", label: "Lunsj" },
   { id: "afternoon", label: "Ettermiddag" },
+  { id: "dinner", label: "Middag" },
   { id: "evening", label: "Kveld" },
-  { id: "day_end", label: "Dagslutt" }
+  { id: "day_end", label: "Dagslutt / Natt" }
 ];
 
 /**
@@ -1091,11 +1094,11 @@ function computeDayPhaseModel() {
   const phaseTotal = Number(activePhase?.total || 0);
   const phaseCompleted = Number(activePhase?.answered || 0);
   const eveningSuggestions = phase === "evening" && phaseTotal === 0
-    ? ["Hvil", "Les fagstoff", "Ring en venn", "Tren lett", "Planlegg morgendagen", "Legg deg tidlig"]
+    ? ["Hvil", "Les fagstoff", "Ring en venn", "Tren lett", "Planlegg morgendagen", "Legg deg tidlig", "Hobby", "Gaming / TV / lesing", "Ta en test"]
     : [];
   const blockingItems = Number(prog?.queuedItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0) + Number(prog?.openItemsInPhase || 0);
   const nextAction = Number(prog?.queuedItemsInPhase || 0) > 0
-    ? { kind: "open_next", label: "Åpne neste hendelse" }
+    ? { kind: "open_bundle", label: "Åpne hele bolken" }
     : Number(prog?.openItemsInPhase || 0) > 0 || Number(prog?.deliveredItemsInPhase || 0) > 0
       ? { kind: "answer_open", label: "Svar på åpen hendelse" }
       : (prog?.canAdvance && prog?.nextPhase && blockingItems === 0)
@@ -1160,8 +1163,9 @@ function buildDayPhaseSectionHtml(dayPhase) {
     : `<div class="civi-workday-sub">Ingen åpne leveranser i denne fasen.</div>`;
 
   const action = dayPhase.nextAction || {};
-  const actionHtml = action.kind === "open_next"
-    ? `<button class="civi-btn" type="button" data-civi-open-next-event>Åpne neste hendelse</button>`
+  const remainingText = Number(dayPhase.queuedItemsInPhase || 0) > 0 ? `<div class="civi-workday-sub"><strong>${dayPhase.phaseLabel}bolk</strong> · ${dayPhase.queuedItemsInPhase} hendelser gjenstår</div>` : "";
+  const actionHtml = action.kind === "open_bundle"
+    ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>Åpne hele bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-next-event>Åpne neste</button>`
     : action.kind === "advance_phase"
       ? `<button class="civi-btn" type="button" data-civi-advance-phase>Gå til neste fase</button>`
       : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
@@ -1175,6 +1179,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
       <div class="civi-workday-phase-chips" style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
       <div class="civi-workday-phase-open-head" style="margin-top:8px;font-weight:600;">Åpne i fasen: ${dayPhase.openItemsInPhase}</div>
       <div class="civi-workday-sub">Fullført/totalt i fasen: ${dayPhase.completedItemsInPhase || 0}/${dayPhase.totalItemsInPhase || ((dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0))} · Pending: ${(dayPhase.pendingItem && (dayPhase.pendingItem.subject || dayPhase.pendingItem.id)) || "—"} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Task gate/blokkering: ${dayPhase.canAdvance ? "ingen" : (dayPhase.reason || "ukjent")}</div>
+      ${remainingText}
       <div class="civi-workday-phase-action" style="margin-top:8px;">${actionHtml}</div>
       ${suggestionsHtml}
       ${openList}
@@ -1387,6 +1392,13 @@ const prependHtml = `${knowledgeHtml}${contactsHtml}${weeklyHtml}${dayPlanHtml}$
 if (prependHtml) {
   host.insertAdjacentHTML("afterbegin", prependHtml);
 }
+
+host.querySelectorAll("[data-civi-open-phase-bundle]").forEach(function (btn) {
+  btn.addEventListener("click", async function () {
+    await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  });
+});
 
 host.querySelectorAll("[data-civi-open-next-event]").forEach(function (btn) {
   btn.addEventListener("click", async function () {
