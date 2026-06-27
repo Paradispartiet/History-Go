@@ -48,15 +48,27 @@ for (const game of registry.games) {
 assert.match(profileHtml, /class="profile-games-grid"/, "profile.html has a games grid target");
 assert.match(profileHtml, /<script src="js\/historyGoGameRegistry\.js"><\/script>/, "profile.html loads the registry renderer");
 assert.match(source, /const REGISTRY_PATH = "data\/historygo\/shared\/game_registry\.json"/, "renderer points to the shared registry path");
+assert.match(source, /normalizeProfileGamesTab/, "renderer normalizes the profile games tab away from the legacy civication key");
 assert.doesNotMatch(source + profileHtml, /My Rating|Date Added|Date Read|Private Notes/, "Goodreads-private fields are not exposed in the profile game surface");
 
 (async () => {
   let requestedUrl = null;
   const warnings = [];
   const grid = { innerHTML: "" };
+  const gameTab = { textContent: "Spill", dataset: { tab: "civication" } };
+  const gamePanel = { dataset: { panel: "civication" } };
+  const gamesSection = {
+    closest(selector) {
+      assert.strictEqual(selector, ".profile-tab-panel", "games section searches for its profile panel");
+      return gamePanel;
+    }
+  };
   const documentStub = {
     querySelector(selector) {
-      return selector === ".profile-games-grid" ? grid : null;
+      if (selector === ".profile-games-grid") return grid;
+      if (selector === '.profile-tab[data-tab="civication"]') return gameTab;
+      if (selector === ".profile-games-section") return gamesSection;
+      return null;
     },
     addEventListener() {}
   };
@@ -76,6 +88,11 @@ assert.doesNotMatch(source + profileHtml, /My Rating|Date Added|Date Read|Privat
 
   assert.ok(context.window.HGGameRegistry, "renderer exposes window.HGGameRegistry");
   assert.strictEqual(context.window.HGGameRegistry.registryPath, "data/historygo/shared/game_registry.json", "registry path is public for diagnostics");
+  assert.strictEqual(typeof context.window.HGGameRegistry.normalizeProfileGamesTab, "function", "tab normalizer is exposed for tests/diagnostics");
+
+  context.window.HGGameRegistry.normalizeProfileGamesTab();
+  assert.strictEqual(gameTab.dataset.tab, "spill", "profile games tab uses spill as runtime key");
+  assert.strictEqual(gamePanel.dataset.panel, "spill", "profile games panel uses spill as runtime key");
 
   const loaded = await context.window.HGGameRegistry.loadGameRegistry();
   assert.strictEqual(requestedUrl, "data/historygo/shared/game_registry.json", "loader fetches the shared registry file");
