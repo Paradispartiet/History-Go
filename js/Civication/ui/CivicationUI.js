@@ -1086,6 +1086,7 @@ function computeDayPhaseModel() {
 
   const phase = String(prog?.phase || window.CivicationCalendar?.getPhase?.() || "morning");
   const fallbackModel = window.CivicationCalendar?.getPhaseModel?.() || {};
+  const dayPlan = window.CivicationDayPlan?.getTodayPlan?.() || null;
 
   return {
     hasBundle: items.length > 0,
@@ -1097,8 +1098,29 @@ function computeDayPhaseModel() {
     nextPhase: prog?.nextPhase ?? null,
     canAdvance: !!prog?.canAdvance,
     reason: String(prog?.reason || ""),
+    pendingItem: prog?.pendingItem || null,
+    nextQueuedItem: prog?.nextQueuedItem || null,
+    completedItemsInPhase: Number(prog?.completedItemsInPhase || 0),
+    queuedItemsInPhase: Number(prog?.queuedItemsInPhase || 0),
+    deliveredItemsInPhase: Number(prog?.deliveredItemsInPhase || 0),
+    dayPlan,
     phases
   };
+}
+
+
+function buildDayPlanSectionHtml(plan) {
+  if (!plan || !Array.isArray(plan.phases)) return "";
+  const effectText = (effects) => Object.entries(effects || {}).map(([k, v]) => `${k} ${Number(v) > 0 ? "+" : ""}${v}`).join(" · ");
+  const cards = plan.phases.map((phase) => {
+    const activities = Array.isArray(phase.activities) ? phase.activities : [];
+    const list = activities.length
+      ? `<ul style="margin:6px 0 0;padding-left:18px;">${activities.map((a) => `<li>${a.status === "completed" ? "✅" : a.isFixed ? "📌" : "○"} ${a.startTime || ""} ${a.title}${effectText(a.effects) ? ` <span class="muted">(${effectText(a.effects)})</span>` : ""}</li>`).join("")}</ul>`
+      : (phase.id === "evening" ? `<div class="muted">Kvelden din er tom. Velg forslag: Planlegg morgendagen · Hvil · Ta en test · Gjør noe sosialt · Tren lett · Les fagstoff · Se serie · Gaming · Legg deg tidlig.</div>` : `<div class="muted">Tomt tidsrom.</div>`);
+    return `<div class="civi-day-plan-card" style="padding:10px;border:1px solid rgba(255,255,255,0.10);border-radius:12px;background:rgba(255,255,255,0.03);"><strong>${phase.label}</strong>${list}</div>`;
+  }).join("");
+  const next = plan.nextActivity ? `${plan.nextActivity.title} (${plan.nextActivity.startTime || "—"})` : "Ingen neste aktivitet";
+  return `<section class="civi-day-plan" style="margin-bottom:12px;padding:12px;border:1px solid rgba(126,200,255,0.22);border-radius:14px;background:rgba(126,200,255,0.05);"><div style="font-weight:700;margin-bottom:6px;">Dagplan</div><div class="muted">Neste aktivitet: ${next}</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:8px;">${cards}</div><div class="muted" style="margin-top:8px;">Handlinger: legg til aktivitet · gjør fast · fullfør · velg forslag.</div></section>`;
 }
 
 /**
@@ -1136,6 +1158,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
       <div class="civi-workday-phase-head" style="font-weight:700;margin-bottom:8px;">Dag ${dayPhase.dayIndex} · ${dayPhase.phaseLabel || dayPhase.phase}</div>
       <div class="civi-workday-phase-chips" style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
       <div class="civi-workday-phase-open-head" style="margin-top:8px;font-weight:600;">Åpne i fasen: ${dayPhase.openItemsInPhase}</div>
+      <div class="civi-workday-sub">Fullført/åpne i fasen: ${dayPhase.completedItemsInPhase || 0}/${(dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0)} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Blokkering: ${dayPhase.canAdvance ? "ingen" : (dayPhase.reason || "ukjent")}</div>
       ${openList}
     </div>
   `;
@@ -1334,6 +1357,7 @@ function renderWorkdayPanel() {
 // kontakter og kunnskaps-task, lest fra de eksisterende globale day*-helperne (defensivt — de
 // lastes som klassiske script og finnes på runtime). Samme rekkefølge som monkey-patchen ga:
 // kunnskap · kontakter · ukesrapport · fase-HUD · arbeidsdag-innhold.
+const dayPlanHtml = buildDayPlanSectionHtml(model.dayPhase?.dayPlan);
 const dayPhaseHtml = buildDayPhaseSectionHtml(model.dayPhase);
 const weeklyHtml = typeof window.buildWeeklyReportHtml === "function" ? (window.buildWeeklyReportHtml() || "") : "";
 const contactsHtml = typeof window.buildContactsHtml === "function" ? (window.buildContactsHtml() || "") : "";
@@ -1341,7 +1365,7 @@ const activePhaseTasks = window.CivicationTaskEngine?.listOpenTasksForCurrentPha
 const firstPhaseTask = Array.isArray(activePhaseTasks) && activePhaseTasks.length ? activePhaseTasks[0] : null;
 const knowledgeHtml = typeof window.buildKnowledgeTaskHtml === "function" ? (window.buildKnowledgeTaskHtml(firstPhaseTask) || "") : "";
 
-const prependHtml = `${knowledgeHtml}${contactsHtml}${weeklyHtml}${dayPhaseHtml}`;
+const prependHtml = `${knowledgeHtml}${contactsHtml}${weeklyHtml}${dayPlanHtml}${dayPhaseHtml}`;
 if (prependHtml) {
   host.insertAdjacentHTML("afterbegin", prependHtml);
 }
@@ -2119,6 +2143,7 @@ window.CivicationUI = {
   getActiveWorkdayInboxItem,
   getCurrentWorkdaySnapshot,
   buildDayPhaseSectionHtml,
+  buildDayPlanSectionHtml,
   renderCapital,
   renderPerception,
   renderCivicationShop,
