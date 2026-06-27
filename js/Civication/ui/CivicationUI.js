@@ -1086,7 +1086,21 @@ function computeDayPhaseModel() {
 
   const phase = String(prog?.phase || window.CivicationCalendar?.getPhase?.() || "morning");
   const fallbackModel = window.CivicationCalendar?.getPhaseModel?.() || {};
-  const dayPlan = window.CivicationDayPlan?.getTodayPlan?.() || null;
+
+  const activePhase = phases.find((p) => p.id === phase) || null;
+  const phaseTotal = Number(activePhase?.total || 0);
+  const phaseCompleted = Number(activePhase?.answered || 0);
+  const eveningSuggestions = phase === "evening" && phaseTotal === 0
+    ? ["Hvil", "Les fagstoff", "Ring en venn", "Tren lett", "Planlegg morgendagen", "Legg deg tidlig"]
+    : [];
+  const blockingItems = Number(prog?.queuedItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0) + Number(prog?.openItemsInPhase || 0);
+  const nextAction = Number(prog?.queuedItemsInPhase || 0) > 0
+    ? { kind: "open_next", label: "Åpne neste hendelse" }
+    : Number(prog?.openItemsInPhase || 0) > 0 || Number(prog?.deliveredItemsInPhase || 0) > 0
+      ? { kind: "answer_open", label: "Svar på åpen hendelse" }
+      : (prog?.canAdvance && prog?.nextPhase && blockingItems === 0)
+        ? { kind: "advance_phase", label: "Gå til neste fase" }
+        : { kind: "wait", label: "Ingen handling" };
 
   return {
     hasBundle: items.length > 0,
@@ -1103,24 +1117,16 @@ function computeDayPhaseModel() {
     completedItemsInPhase: Number(prog?.completedItemsInPhase || 0),
     queuedItemsInPhase: Number(prog?.queuedItemsInPhase || 0),
     deliveredItemsInPhase: Number(prog?.deliveredItemsInPhase || 0),
-    dayPlan,
+    totalItemsInPhase: phaseTotal,
+    nextAction,
+    eveningSuggestions,
     phases
   };
 }
 
 
-function buildDayPlanSectionHtml(plan) {
-  if (!plan || !Array.isArray(plan.phases)) return "";
-  const effectText = (effects) => Object.entries(effects || {}).map(([k, v]) => `${k} ${Number(v) > 0 ? "+" : ""}${v}`).join(" · ");
-  const cards = plan.phases.map((phase) => {
-    const activities = Array.isArray(phase.activities) ? phase.activities : [];
-    const list = activities.length
-      ? `<ul style="margin:6px 0 0;padding-left:18px;">${activities.map((a) => `<li>${a.status === "completed" ? "✅" : a.isFixed ? "📌" : "○"} ${a.startTime || ""} ${a.title}${effectText(a.effects) ? ` <span class="muted">(${effectText(a.effects)})</span>` : ""}</li>`).join("")}</ul>`
-      : (phase.id === "evening" ? `<div class="muted">Kvelden din er tom. Velg forslag: Planlegg morgendagen · Hvil · Ta en test · Gjør noe sosialt · Tren lett · Les fagstoff · Se serie · Gaming · Legg deg tidlig.</div>` : `<div class="muted">Tomt tidsrom.</div>`);
-    return `<div class="civi-day-plan-card" style="padding:10px;border:1px solid rgba(255,255,255,0.10);border-radius:12px;background:rgba(255,255,255,0.03);"><strong>${phase.label}</strong>${list}</div>`;
-  }).join("");
-  const next = plan.nextActivity ? `${plan.nextActivity.title} (${plan.nextActivity.startTime || "—"})` : "Ingen neste aktivitet";
-  return `<section class="civi-day-plan" style="margin-bottom:12px;padding:12px;border:1px solid rgba(126,200,255,0.22);border-radius:14px;background:rgba(126,200,255,0.05);"><div style="font-weight:700;margin-bottom:6px;">Dagplan</div><div class="muted">Neste aktivitet: ${next}</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:8px;">${cards}</div><div class="muted" style="margin-top:8px;">Handlinger: legg til aktivitet · gjør fast · fullfør · velg forslag.</div></section>`;
+function buildDayPlanSectionHtml(_plan) {
+  return "";
 }
 
 /**
@@ -1153,12 +1159,24 @@ function buildDayPhaseSectionHtml(dayPhase) {
         .join("")}</ul>`
     : `<div class="civi-workday-sub">Ingen åpne leveranser i denne fasen.</div>`;
 
+  const action = dayPhase.nextAction || {};
+  const actionHtml = action.kind === "open_next"
+    ? `<button class="civi-btn" type="button" data-civi-open-next-event>Åpne neste hendelse</button>`
+    : action.kind === "advance_phase"
+      ? `<button class="civi-btn" type="button" data-civi-advance-phase>Gå til neste fase</button>`
+      : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
+  const suggestionsHtml = Array.isArray(dayPhase.eveningSuggestions) && dayPhase.eveningSuggestions.length
+    ? `<div class="civi-workday-evening-suggestions"><strong>Kveldsforslag:</strong> ${dayPhase.eveningSuggestions.join(" · ")}</div>`
+    : "";
+
   return `
     <div class="civi-workday-phase" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
       <div class="civi-workday-phase-head" style="font-weight:700;margin-bottom:8px;">Dag ${dayPhase.dayIndex} · ${dayPhase.phaseLabel || dayPhase.phase}</div>
       <div class="civi-workday-phase-chips" style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
       <div class="civi-workday-phase-open-head" style="margin-top:8px;font-weight:600;">Åpne i fasen: ${dayPhase.openItemsInPhase}</div>
-      <div class="civi-workday-sub">Fullført/åpne i fasen: ${dayPhase.completedItemsInPhase || 0}/${(dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0)} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Blokkering: ${dayPhase.canAdvance ? "ingen" : (dayPhase.reason || "ukjent")}</div>
+      <div class="civi-workday-sub">Fullført/totalt i fasen: ${dayPhase.completedItemsInPhase || 0}/${dayPhase.totalItemsInPhase || ((dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0))} · Pending: ${(dayPhase.pendingItem && (dayPhase.pendingItem.subject || dayPhase.pendingItem.id)) || "—"} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Task gate/blokkering: ${dayPhase.canAdvance ? "ingen" : (dayPhase.reason || "ukjent")}</div>
+      <div class="civi-workday-phase-action" style="margin-top:8px;">${actionHtml}</div>
+      ${suggestionsHtml}
       ${openList}
     </div>
   `;
@@ -1369,6 +1387,19 @@ const prependHtml = `${knowledgeHtml}${contactsHtml}${weeklyHtml}${dayPlanHtml}$
 if (prependHtml) {
   host.insertAdjacentHTML("afterbegin", prependHtml);
 }
+
+host.querySelectorAll("[data-civi-open-next-event]").forEach(function (btn) {
+  btn.addEventListener("click", async function () {
+    await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false });
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  });
+});
+host.querySelectorAll("[data-civi-advance-phase]").forEach(function (btn) {
+  btn.addEventListener("click", async function () {
+    await window.CivicationDayProgression?.advancePhaseIfReady?.();
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  });
+});
 
 host.querySelectorAll("[data-open-task]").forEach(function (btn) {
   btn.addEventListener("click", function () {

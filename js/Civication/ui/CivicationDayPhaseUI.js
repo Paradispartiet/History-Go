@@ -23,13 +23,18 @@
 
   function getStatusText(inspection) {
     if (inspection?.canAdvance === true && inspection?.nextPhase) return "Fasen er klar. Du kan gå videre til neste fase.";
+    if (inspection?.reason === "queued_items_in_phase") return "Det finnes flere hendelser i denne fasen. Åpne neste hendelse før du går videre.";
+    if (inspection?.reason === "delivered_items_in_phase") return "Åpne og svar på leverte hendelser i denne fasen før du går videre.";
     if (inspection?.reason === "open_items_in_phase") return "Svar på åpne meldinger i denne fasen for å gå videre.";
     if (inspection?.reason === "at_last_phase") return "Dagen er fullført.";
     return formatReason(inspection?.reason);
   }
 
   function getLoopHint(inspection) {
-    if (inspection?.reason === "open_items_in_phase") {
+    if (inspection?.reason === "queued_items_in_phase") {
+      return "Åpne neste hendelse for å fortsette i samme fase.";
+    }
+    if (inspection?.reason === "open_items_in_phase" || inspection?.reason === "delivered_items_in_phase") {
       return "Åpne meldinger med valg er aktiv handling nå. Når de er besvart, låses neste fase opp.";
     }
     if (inspection?.canAdvance === true && inspection?.nextPhase) {
@@ -301,6 +306,18 @@
     return panel;
   }
 
+  function bindOpenNextButton(panel) {
+    const button = panel.querySelector("[data-civi-day-phase-open-next]");
+    if (!button) return;
+    button.onclick = async function () {
+      if (button.disabled) return;
+      await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false });
+      render();
+      window.CivicationInboxTopActionUI?.renderSections?.();
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+    };
+  }
+
   function bindAdvanceButton(panel) {
     const button = panel.querySelector("[data-civi-day-phase-advance]");
     if (!button) return;
@@ -327,7 +344,9 @@
 
     const nextPhase = inspection.nextPhase || null;
     const nextPhaseLabel = getNextPhaseLabel(nextPhase);
-    const canAdvance = inspection.canAdvance === true && !!nextPhase;
+    const blockingItems = Number(inspection.queuedItemsInPhase || 0) + Number(inspection.deliveredItemsInPhase || 0) + Number(inspection.openItemsInPhase || 0);
+    const canOpenNext = Number(inspection.queuedItemsInPhase || 0) > 0;
+    const canAdvance = inspection.canAdvance === true && !!nextPhase && blockingItems === 0;
     const buttonText = nextPhase ? "Gå til neste fase" : "Dagen er ferdig";
     const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
     const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
@@ -348,11 +367,11 @@
       + dayCompleteSummary
       + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
       + "<div class=\"civi-day-phase-actions\">"
-      + "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">"
-      + escapeHtml(buttonText)
-      + "</button>"
+      + (canOpenNext ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-next>Åpne neste hendelse</button>" : "")
+      + (blockingItems === 0 ? ("<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">" + escapeHtml(buttonText) + "</button>") : "")
       + "</div>";
 
+    bindOpenNextButton(panel);
     bindAdvanceButton(panel);
     return true;
   }
