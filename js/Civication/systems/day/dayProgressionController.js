@@ -42,7 +42,7 @@
    * }} DayProgAdvanceResult
    */
 
-  const OPEN_STATUSES = new Set(["pending", "delivered", "open"]);
+  const OPEN_STATUSES = new Set(["queued", "pending", "delivered", "open"]);
 
   function norm(value) {
     return String(value || "").trim();
@@ -161,6 +161,10 @@
     /** @type {DayProgRuntimeItem[]} */
     const items = getRuntimeItems();
     const openRows = items.filter((row) => belongsToPhase(row, phase) && isOpenRow(row));
+    const queuedRows = items.filter((row) => belongsToPhase(row, phase) && norm(row?.status).toLowerCase() === "queued");
+    const deliveredRows = items.filter((row) => belongsToPhase(row, phase) && ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
+    const nextQueuedRow = queuedRows[0] || null;
+    const pendingRow = deliveredRows[0] || null;
     const nextPhase = getNextPhase(phase);
 
     let reason = "ready_to_advance";
@@ -179,7 +183,12 @@
       phaseLabel: getPhaseLabel(phase),
       dayIndex: getDayIndex(),
       openItemsInPhase: openRows.length,
+      queuedItemsInPhase: queuedRows.length,
+      deliveredItemsInPhase: deliveredRows.length,
+      completedItemsInPhase: items.filter((row) => belongsToPhase(row, phase) && norm(row?.status).toLowerCase() === "answered").length,
       openItemSubjects: openRows.map((row) => norm(row?.event?.subject || row?.subject || row?.event?.id)).filter(Boolean),
+      pendingItem: pendingRow ? { id: norm(pendingRow?.event?.id || pendingRow?.id), subject: norm(pendingRow?.event?.subject || pendingRow?.subject), status: norm(pendingRow?.status), phase: getPhaseForRow(pendingRow) } : null,
+      nextQueuedItem: nextQueuedRow ? { id: norm(nextQueuedRow?.event?.id || nextQueuedRow?.id), subject: norm(nextQueuedRow?.event?.subject || nextQueuedRow?.subject), status: norm(nextQueuedRow?.status), phase: getPhaseForRow(nextQueuedRow) } : null,
       nextPhase,
       canAdvance,
       reason
@@ -238,6 +247,7 @@
 
     try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch {}
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
+    try { await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false }); } catch {}
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
 
     return { advanced: true, fromPhase, toPhase };

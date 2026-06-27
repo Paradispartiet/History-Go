@@ -1532,6 +1532,10 @@
 
       const result = await previousAnswer.call(this, eventId, choiceId);
 
+      if (daily && result?.ok !== false) {
+        try { await enqueueNext(this, { ignorePending: false }); } catch (error) { if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] auto-next feilet", error); }
+      }
+
       if (daily && result?.ok === false) {
         // Restore as delivered if the answer did not go through.
         const runtime = getRuntime();
