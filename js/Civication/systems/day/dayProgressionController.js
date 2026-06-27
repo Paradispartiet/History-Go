@@ -176,6 +176,12 @@
     } else if (openRows.length > 0) {
       canAdvance = false;
       reason = "open_items_in_phase";
+    } else if (queuedRows.length > 0) {
+      canAdvance = false;
+      reason = "queued_items_in_phase";
+    } else if (deliveredRows.length > 0) {
+      canAdvance = false;
+      reason = "delivered_items_in_phase";
     }
 
     return {

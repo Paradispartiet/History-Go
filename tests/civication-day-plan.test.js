@@ -9,7 +9,8 @@ let state = {};
 global.CivicationState = { getState:()=>state, setState:(p)=>{ state = { ...state, ...p }; return state; } };
 vm.runInThisContext(fs.readFileSync(path.join(__dirname,'..','js/Civication/systems/civicationDayPlan.js'),'utf8'), { filename:'civicationDayPlan.js' });
 const dp = global.CivicationDayPlan;
-assert(dp.inspect().today.phases.length === 5, 'plan shows morning/day/afternoon/evening/night');
+assert(dp.inspect().today.phases.length === 5, 'helper mirrors existing DailyMailBuilder/Calendar phase order');
+assert.strictEqual(dp.inspect().today.activities.length, 0, 'helper does not seed its own parallel day plan');
 const a = dp.addActivity({ id:'train', title:'Tren lett', phase:'evening', repeat:['tuesday','thursday'], category:'trening', effects:{ energi:-1, psyke:1 }, isFixed:false });
 assert.strictEqual(a.phase, 'evening');
 assert(dp.getActivitiesForPhase('evening').some(x=>x.id==='train') || true, 'can query activities per phase');
@@ -20,7 +21,7 @@ assert(dp.getTodayPlan(new Date('2026-06-25T12:00:00Z')).activities.some(x=>x.id
 assert(dp.getTodayPlan(new Date('2026-06-27T12:00:00Z')).activities.some(x=>x.id==='weekend'), 'weekend repeat works');
 assert(dp.getTodayPlan(new Date('2026-06-25T12:00:00Z')).activities.some(x=>x.id==='train'), 'specific weekdays repeat works');
 const emptyStore = storage(); global.localStorage = emptyStore; vm.runInThisContext(fs.readFileSync(path.join(__dirname,'..','js/Civication/systems/civicationDayPlan.js'),'utf8'));
-assert(global.CivicationDayPlan.getSuggestionsForPhase('evening').length >= 9, 'empty evening has suggestions');
+assert.deepStrictEqual(global.CivicationDayPlan.getSuggestionsForPhase('evening').map(x => x.title), ['Hvil','Les fagstoff','Ring en venn','Tren lett','Planlegg morgendagen','Legg deg tidlig'], 'empty evening has UI suggestions only');
 const sleep = global.CivicationDayPlan.addActivity({ id:'sleep-test', title:'Søvn', phase:'day_end', category:'søvn', effects:{ energi:2, sleepQuality:2 }});
 const done = global.CivicationDayPlan.completeActivity(sleep.id);
 assert(done.ok, 'can complete activity');

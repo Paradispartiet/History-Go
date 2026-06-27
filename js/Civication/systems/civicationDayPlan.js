@@ -1,31 +1,24 @@
 // js/Civication/systems/civicationDayPlan.js
-// Enkel personlig Civication-dagplan: livsrytme rundt DailyMailBuilder (morgen/dag/kveld/natt).
+// Ren activity/suggestion-helper. Eier ikke fasestruktur eller dagfremdrift; fasen leses fra
+// CivicationCalendar/DayProgression og DailyMailBuilder eier dagens runtime-items.
 (function () {
   "use strict";
 
   const KEY = "civication_day_plan_v1";
-  const PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
+  const FALLBACK_PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
   const PHASE_LABELS = { morning: "Morgen", lunch: "Dag / lunsj", afternoon: "Ettermiddag", evening: "Kveld", day_end: "Natt" };
   const DAY_NAMES = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   const CATEGORIES = new Set(["arbeid", "struktur", "hvile", "sosialt", "kompetanse", "trening", "hobby", "familie", "økonomi", "praktisk", "søvn"]);
   const EFFECT_KEYS = new Set(["psyke", "energi", "kompetanse", "penger", "pc", "relasjoner", "handlingsrom", "status", "sleepQuality", "søvnkvalitet"]);
 
-  const DEFAULT_ACTIVITIES = [
-    { id: "fixed-morning-routine", title: "Morgenrutine", phase: "morning", startTime: "07:30", endTime: "08:00", repeat: "daily", category: "struktur", isFixed: true, effects: { energi: 1, handlingsrom: 1 }, source: "default" },
-    { id: "fixed-work-block", title: "Jobb og dagens meldinger", phase: "lunch", startTime: "09:00", endTime: "15:30", repeat: "weekdays", category: "arbeid", isFixed: true, effects: { kompetanse: 1, energi: -1 }, source: "default" },
-    { id: "fixed-evening-plan", title: "Planlegg morgendagen", phase: "evening", startTime: "21:00", endTime: "21:30", repeat: "daily", category: "struktur", isFixed: true, effects: { handlingsrom: 2, psyke: 1, energi: -1, sleepQuality: 1 }, source: "default" },
-    { id: "fixed-sleep", title: "Søvn", phase: "day_end", startTime: "23:00", endTime: "07:00", repeat: "daily", category: "søvn", isFixed: true, effects: { energi: 2, psyke: 1, sleepQuality: 2 }, source: "default" }
-  ];
+  const DEFAULT_ACTIVITIES = [];
 
   const EVENING_SUGGESTIONS = [
-    ["evening-plan-tomorrow", "Planlegg morgendagen", "struktur", { handlingsrom: 2, psyke: 1, energi: -1, sleepQuality: 1 }],
     ["evening-rest", "Hvil", "hvile", { psyke: 2, energi: 1, sleepQuality: 1 }],
-    ["evening-test", "Ta en test", "kompetanse", { kompetanse: 2, energi: -1 }],
-    ["evening-social", "Gjør noe sosialt", "sosialt", { relasjoner: 2, psyke: 1, energi: -1 }],
-    ["evening-light-training", "Tren lett", "trening", { energi: -1, psyke: 1, sleepQuality: 1 }],
     ["evening-read", "Les fagstoff", "kompetanse", { kompetanse: 1, psyke: 1 }],
-    ["evening-tv", "Se serie", "hobby", { psyke: 1, energi: -1 }],
-    ["evening-gaming", "Gaming", "hobby", { psyke: 1, energi: -1 }],
+    ["evening-call-friend", "Ring en venn", "sosialt", { relasjoner: 2, psyke: 1 }],
+    ["evening-light-training", "Tren lett", "trening", { energi: -1, psyke: 1, sleepQuality: 1 }],
+    ["evening-plan-tomorrow", "Planlegg morgendagen", "struktur", { handlingsrom: 2, psyke: 1, energi: -1, sleepQuality: 1 }],
     ["evening-early-bed", "Legg deg tidlig", "søvn", { energi: 2, psyke: 1, sleepQuality: 2 }]
   ];
 
@@ -37,11 +30,17 @@
   function read() { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } }
   function write(data) { localStorage.setItem(KEY, JSON.stringify(data || {})); return data; }
 
+  function getPhaseOrder() {
+    const fromCalendar = window.CivicationCalendar?.DAY_PHASES;
+    return Array.isArray(fromCalendar) && fromCalendar.length ? fromCalendar.map(norm).filter(Boolean) : FALLBACK_PHASES.slice();
+  }
+
   function normalizePhase(phase) {
     const p = norm(phase);
     if (p === "day" || p === "dag") return "lunch";
     if (p === "night" || p === "natt") return "day_end";
-    return PHASES.includes(p) ? p : "evening";
+    const phases = getPhaseOrder();
+    return phases.includes(p) ? p : norm(window.CivicationCalendar?.getPhase?.()) || "evening";
   }
 
   function normalizeActivity(activity) {
@@ -92,10 +91,11 @@
   function getTodayPlan(date = new Date()) {
     const data = ensureStore();
     const activities = data.activities.map(normalizeActivity).filter((a) => matchesRepeat(a, date));
-    const byPhase = Object.fromEntries(PHASES.map((phase) => [phase, activities.filter((a) => a.phase === phase)]));
+    const phases = getPhaseOrder();
+    const byPhase = Object.fromEntries(phases.map((phase) => [phase, activities.filter((a) => a.phase === phase)]));
     const nextActivity = activities.find((a) => a.status !== "completed") || null;
-    const emptyPhases = PHASES.filter((p) => !byPhase[p].length);
-    return { date: todayKey(), phases: PHASES.map((id) => ({ id, label: PHASE_LABELS[id], activities: byPhase[id] })), activities, byPhase, nextActivity, emptyPhases, carryover: data.carryover || {} };
+    const emptyPhases = phases.filter((p) => !byPhase[p].length);
+    return { date: todayKey(), activePhase: normalizePhase(window.CivicationCalendar?.getPhase?.()), phases: phases.map((id) => ({ id, label: window.CivicationCalendar?.getPhaseLabel?.(id) || PHASE_LABELS[id] || id, activities: byPhase[id] })), activities, byPhase, nextActivity, emptyPhases, carryover: data.carryover || {} };
   }
 
   function getActivitiesForPhase(phase) { return getTodayPlan().byPhase[normalizePhase(phase)] || []; }
