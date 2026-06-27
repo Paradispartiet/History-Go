@@ -24,6 +24,19 @@
     return /^https?:\/\//i.test(String(path || ""));
   }
 
+  function normalizeProfileGamesTab() {
+    const tab = document.querySelector('.profile-tab[data-tab="civication"]');
+    if (tab && String(tab.textContent || "").trim() === "Spill" && tab.dataset?.tab === "civication") {
+      tab.dataset.tab = "spill";
+    }
+
+    const gamesSection = document.querySelector(".profile-games-section");
+    const panel = gamesSection?.closest?.(".profile-tab-panel");
+    if (panel?.dataset?.panel === "civication") {
+      panel.dataset.panel = "spill";
+    }
+  }
+
   function renderGameRegistry(registry) {
     const grid = document.querySelector(".profile-games-grid");
     if (!grid || !Array.isArray(registry?.games)) return;
@@ -55,9 +68,10 @@
     return response.json();
   }
 
-  window.HGGameRegistry = { loadGameRegistry, renderGameRegistry, registryPath: REGISTRY_PATH };
+  window.HGGameRegistry = { loadGameRegistry, normalizeProfileGamesTab, renderGameRegistry, registryPath: REGISTRY_PATH };
 
   document.addEventListener("DOMContentLoaded", () => {
+    normalizeProfileGamesTab();
     loadGameRegistry()
       .then(renderGameRegistry)
       .catch((error) => console.warn("[HGGameRegistry]", error));
