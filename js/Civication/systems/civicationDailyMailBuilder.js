@@ -388,6 +388,7 @@
     if (type === "knowledge") return ["knowledge", "story", "job"];
     if (type === "consequence") return ["consequence", "followup", "people"];
     if (type === "micro_choice") return ["micro", "people"];
+    if (type === "task_gate" || slotId === "task_gate") return ["task_gate", "job", "micro"];
     if (type === "day_end") return ["__generated_day_end"];
 
     return [type || "job"];
@@ -397,10 +398,13 @@
     const id = norm(phase?.id);
     return norm(phase?.label) || ({
       morning: "Morgen",
+      forenoon: "Formiddag",
+      workday: "Arbeidsdag",
       lunch: "Lunsj",
       afternoon: "Ettermiddag",
+      dinner: "Middag",
       evening: "Kveld",
-      day_end: "Dagslutt"
+      day_end: "Dagslutt / Natt"
     })[id] || id || "Arbeidsdag";
   }
 
@@ -412,14 +416,17 @@
     const isDayEnd = type === "day_end" || phaseId === "day_end";
     const isLunch = phaseId === "lunch";
     const isEvening = phaseId === "evening";
+    const isDinner = phaseId === "dinner";
 
     const subject = isDayEnd
       ? "Dagslutt: hva ble faktisk gjort?"
       : isLunch
         ? "Lunsj: en liten avklaring midt i dagen"
-        : isEvening
-          ? "Kveld: det som følger med hjem"
-          : `${phaseLabel(phase)}: neste avklaring`;
+        : isDinner
+          ? "Middag: mat, energi og hvem du spiser med"
+          : isEvening
+            ? "Kveld: hvile, læring eller sosialt rom"
+            : `${phaseLabel(phase)}: neste avklaring`;
 
     const situation = isDayEnd
       ? [
@@ -667,28 +674,55 @@
         phases: [
           { id: "morning", label: "Morgen", mail_slots: [
             { slot: "morning_brief", type: "story_or_context", count: 1 },
+            { slot: "first_message", type: "people", count: 1 },
+            { slot: "preparation", type: "micro_choice", count: 1 },
+            { slot: "day_goal_choice", type: "micro_choice", count: 1 }
+          ]},
+          { id: "forenoon", label: "Formiddag", mail_slots: [
             { slot: "primary_work_mail", type: "job", count: 1 },
-            { slot: "operational_mail", type: "job_micro", count: 2 },
-            { slot: "people_ping", type: "people", count: 1 }
+            { slot: "operational_mail", type: "job_micro", count: 1 },
+            { slot: "people_ping", type: "people", count: 1 },
+            { slot: "small_choice", type: "micro_choice", count: 1 }
+          ]},
+          { id: "workday", label: "Arbeidsdag", mail_slots: [
+            { slot: "main_delivery", type: "job", count: 1 },
+            { slot: "task_gate", type: "task_gate", count: 1 },
+            { slot: "conflict_or_event", type: "conflict_or_event", count: 1 },
+            { slot: "analysis_followup", type: "followup", count: 1 },
+            { slot: "operational_batch", type: "job_micro", count: 1 }
           ]},
           { id: "lunch", label: "Lunsj", mail_slots: [
             { slot: "phase_lunch", type: "phase", count: 1 },
             { slot: "informal_people_mail", type: "people", count: 1 },
-            { slot: "small_choice", type: "micro_choice", count: 1 }
+            { slot: "lunch_place_choice", type: "micro_choice", count: 1 },
+            { slot: "recovery_or_social_choice", type: "micro_choice", count: 1 }
           ]},
           { id: "afternoon", label: "Ettermiddag", mail_slots: [
-            { slot: "conflict_or_event", type: "conflict_or_event", count: 1 },
-            { slot: "analysis_followup", type: "followup", count: 2 },
-            { slot: "operational_batch", type: "job_micro", count: 3 },
-            { slot: "knowledge_mail", type: "knowledge", count: 1 }
+            { slot: "commute_or_transition", type: "phase", count: 1 },
+            { slot: "family_or_practical", type: "people", count: 1 },
+            { slot: "errand_or_training", type: "micro_choice", count: 1 },
+            { slot: "friend_or_private_message", type: "people", count: 1 },
+            { slot: "afternoon_choice", type: "micro_choice", count: 1 }
+          ]},
+          { id: "dinner", label: "Middag", mail_slots: [
+            { slot: "dinner_choice", type: "micro_choice", count: 1 },
+            { slot: "family_meal", type: "people", count: 1 },
+            { slot: "cheap_meal", type: "micro_choice", count: 1 },
+            { slot: "dinner_with_friend", type: "people", count: 1 }
           ]},
           { id: "evening", label: "Kveld", mail_slots: [
             { slot: "phase_evening", type: "phase", count: 1 },
+            { slot: "learning_or_hobby", type: "knowledge", count: 1 },
+            { slot: "rest_or_social", type: "micro_choice", count: 1 },
             { slot: "consequence_mail", type: "consequence", count: 1 },
-            { slot: "relationship_or_status", type: "people_or_status", count: 1 }
+            { slot: "plan_tomorrow", type: "micro_choice", count: 1 }
           ]},
-          { id: "day_end", label: "Dagslutt", mail_slots: [
-            { slot: "day_summary", type: "day_end", count: 1 }
+          { id: "day_end", label: "Dagslutt / Natt", mail_slots: [
+            { slot: "day_summary", type: "day_end", count: 1 },
+            { slot: "score_summary", type: "day_end", count: 1 },
+            { slot: "role_progress_summary", type: "day_end", count: 1 },
+            { slot: "sleep_or_recovery", type: "day_end", count: 1 },
+            { slot: "carryover", type: "day_end", count: 1 }
           ]}
         ]
       }
@@ -779,7 +813,7 @@
   }
 
   function storyletsForSlot(streams, phaseId, usedStorylets, active, state, narrativeState) {
-    const slotMap = { morning:["work","personal"], lunch:["people","class_case"], afternoon:["work","conflict"], evening:["leisure","conflict","personal"], day_end:["consequence","carryover"] };
+    const slotMap = { morning:["personal","work"], forenoon:["work","people"], workday:["work","conflict"], lunch:["people","class_case"], afternoon:["leisure","personal","people"], dinner:["leisure","personal","people"], evening:["leisure","conflict","personal"], day_end:["consequence","carryover"] };
     const allow = slotMap[phaseId] || [];
     const picks=[];
     for (const stream of streams) {
@@ -853,7 +887,7 @@
     if (type === "conflict") return ["evening", "day_end"];
     if (type === "leisure") return ["evening"];
     if (type === "class_case" || type === "class_cases") return ["lunch", "afternoon"];
-    if (type === "work") return ["afternoon"];
+    if (type === "work") return ["forenoon", "workday"];
     return [];
   }
 
@@ -1324,6 +1358,67 @@
     return { ok: !!enqueued, via: "engine_enqueue_fallback" };
   }
 
+  function rowsForPhase(runtime, phase) {
+    const wanted = norm(phase || window.CivicationCalendar?.getPhase?.() || "morning");
+    return (Array.isArray(runtime?.items) ? runtime.items : []).filter(row => norm(row?.phase || row?.event?.phase_tag) === wanted);
+  }
+
+  function rowSummary(row) {
+    return { id: norm(row?.event?.id || row?.id), subject: norm(row?.event?.subject || row?.subject), slot: norm(row?.slot || row?.event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: norm(row?.phase || row?.event?.phase_tag), required: row?.optional !== true };
+  }
+
+  function getPhaseBundle(phase) {
+    const runtime = getRuntime();
+    const phaseId = norm(phase || window.CivicationCalendar?.getPhase?.() || "morning");
+    const rows = rowsForPhase(runtime, phaseId);
+    const queued = rows.filter(row => norm(row?.status).toLowerCase() === "queued");
+    const pending = rows.filter(row => ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
+    const answered = rows.filter(row => norm(row?.status).toLowerCase() === "answered" || row?.resolved === true);
+    const required = rows.filter(row => row?.optional !== true);
+    const completedRequired = required.filter(row => answered.includes(row));
+    const phases = window.CivicationCalendar?.DAY_PHASES || ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
+    const nextPhase = phases[phases.indexOf(phaseId) + 1] || null;
+    return { phase: phaseId, phaseLabel: phaseLabel({ id: phaseId }), items: rows.map(rowSummary), pendingItems: pending.map(rowSummary), queuedItems: queued.map(rowSummary), answeredItems: answered.map(rowSummary), requiredCount: required.length, completedCount: completedRequired.length, isComplete: queued.length === 0 && pending.length === 0 && completedRequired.length >= required.length, nextPhase };
+  }
+
+  async function enqueuePhaseBundle(engine, options = {}) {
+    const active = options.active || getActive();
+    if (!active) return { enqueued: false, reason: "no_active_role" };
+    const runtime = await ensureRuntime(active, options);
+    const phase = norm(options.phase || window.CivicationCalendar?.getPhase?.() || "morning");
+    const limit = Math.max(1, Math.min(5, Number(options.limit || 5)));
+    const queuedIndexes = (Array.isArray(runtime?.items) ? runtime.items : [])
+      .map((row, index) => ({ row, index }))
+      .filter(({ row }) => norm(row?.phase || row?.event?.phase_tag) === phase && norm(row?.status).toLowerCase() === "queued")
+      .slice(0, limit);
+    if (!queuedIndexes.length) return { enqueued: false, reason: "no_queued_items_in_phase", runtime, phase };
+
+    const delivered = [];
+    const now = new Date().toISOString();
+    const nextItems = runtime.items.map((row, index) => {
+      if (!queuedIndexes.some(q => q.index === index)) return row;
+      let event = row?.event || null;
+      if (event) delivered.push(event);
+      return { ...row, status: "delivered", delivered_at: now };
+    });
+    const deliveredIds = delivered.map(event => norm(event?.id)).filter(Boolean);
+    const nextRuntime = {
+      ...runtime,
+      current_index: queuedIndexes[0].index,
+      delivered_ids: uniqueStrings([...(Array.isArray(runtime.delivered_ids) ? runtime.delivered_ids : []), ...deliveredIds]),
+      items: nextItems,
+      updated_at: now
+    };
+    setRuntime(nextRuntime);
+    for (const { index } of queuedIndexes) {
+      deliverRuntimeItemToInbox(nextRuntime.items[index], engine);
+    }
+    try { window.CivicationCalendar?.setPhase?.(phase); } catch {}
+    try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+    return { enqueued: true, count: delivered.length, events: delivered, runtime: nextRuntime, phase };
+  }
+
   async function enqueueNext(engine, options = {}) {
     const active = options.active || getActive();
     if (!active) return { enqueued: false, reason: "no_active_role" };
@@ -1533,7 +1628,7 @@
       const result = await previousAnswer.call(this, eventId, choiceId);
 
       if (daily && result?.ok !== false) {
-        try { await enqueueNext(this, { ignorePending: false }); } catch (error) { if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] auto-next feilet", error); }
+        try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch (error) { if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] refresh feilet", error); }
       }
 
       if (daily && result?.ok === false) {
@@ -1682,6 +1777,15 @@
     startToday,
     buildQueue,
     enqueueNext,
+    enqueuePhaseBundle,
+    getCurrentPhaseBundle: () => getPhaseBundle(),
+    getCurrentPhaseItems: () => getPhaseBundle().items,
+    getOpenItemsForPhase: (phase) => getPhaseBundle(phase).pendingItems,
+    getQueuedItemsForPhase: (phase) => getPhaseBundle(phase).queuedItems,
+    getDeliveredItemsForPhase: (phase) => getPhaseBundle(phase).pendingItems,
+    getAnsweredItemsForPhase: (phase) => getPhaseBundle(phase).answeredItems,
+    getPhaseCompletion: (phase) => { const b = getPhaseBundle(phase); return { requiredCount: b.requiredCount, completedCount: b.completedCount, isComplete: b.isComplete }; },
+    getDaySummary: () => window.CivicationDayProgression?.getDayEndSummary?.() || null,
     markAnswered,
     isDailyEvent,
     hasBuiltDayForActiveRole,

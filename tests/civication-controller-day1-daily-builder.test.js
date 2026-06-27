@@ -92,7 +92,7 @@ async function run() {
   assert(Array.isArray(runtime.items) && runtime.items.length >= 18, 'runtime should build a full day of queued items');
 
   const phases = runtime.items.map(row => row.phase);
-  assert.deepStrictEqual([...new Set(phases)], ['morning', 'lunch', 'afternoon', 'evening', 'day_end'], 'runtime should preserve full day phase order');
+  assert.deepStrictEqual([...new Set(phases)], ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'], 'runtime should preserve full day phase order');
   for (const row of runtime.items) {
     assert(row.slot, `${row.event?.id} should have a daily slot`);
     assert(row.event?.id, 'each runtime item should carry an event id');

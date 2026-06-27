@@ -3,7 +3,7 @@
 
   const MANIFEST_PATH = "data/Civication/roleModels/manifest.json";
   const MAIL_TYPES = ["job", "people", "conflict", "story", "event", "brand", "faction_choice"];
-  const DAY_PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
+  const DAY_PHASES = ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
   const cache = new Map();
 
   function norm(value) { return String(value || "").trim(); }

@@ -8,7 +8,7 @@
     if (!cal || cal.__dayPhasePatched) return;
     cal.__dayPhasePatched = true;
 
-    const DAY_PHASES = ["morning", "lunch", "afternoon", "evening", "day_end"];
+    const DAY_PHASES = ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end"];
 
     function getSafeClock() {
       const clock = cal.getClock ? cal.getClock() : {};
@@ -28,11 +28,14 @@
   const shiftStart = Number(clock?.shiftStartMinutes || 8 * 60);
 
   const anchors = {
-    morning: shiftStart,        // 08:00
-    lunch: shiftStart + 4 * 60, // 12:00
-    afternoon: shiftStart + 6 * 60, // 14:00
-    evening: shiftStart + 9 * 60,   // 17:00
-    day_end: shiftStart + 11 * 60   // 19:00
+    morning: shiftStart - 2 * 60, // 06:00
+    forenoon: shiftStart + 60,     // 09:00
+    workday: shiftStart + 2 * 60,  // 10:00
+    lunch: shiftStart + 4 * 60,    // 12:00
+    afternoon: shiftStart + 7 * 60, // 15:00
+    dinner: shiftStart + 9 * 60,   // 17:00
+    evening: shiftStart + 11 * 60, // 19:00
+    day_end: shiftStart + 15 * 60  // 23:00
   };
 
   return Number(anchors[String(phase)] || shiftStart);
@@ -60,14 +63,20 @@ function setPhase(phase) {
       switch (String(phase || "")) {
         case "morning":
           return "Morgen";
+        case "forenoon":
+          return "Formiddag";
+        case "workday":
+          return "Arbeidsdag";
         case "lunch":
           return "Lunsj";
         case "afternoon":
           return "Ettermiddag";
+        case "dinner":
+          return "Middag";
         case "evening":
           return "Kveld";
         case "day_end":
-          return "Dagslutt";
+          return "Dagslutt / Natt";
         default:
           return "Morgen";
       }
