@@ -34,3 +34,24 @@
 .hg-caravan-stage dt{ color:rgba(255,255,255,.58); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
 .hg-caravan-stage dd{ margin:0; color:rgba(255,255,255,.9); }
 @media (max-width: 640px){ .hg-caravan-panel{ inset: 76px 10px 82px; width:auto; } }
+.hg-caravan-node-marker{
+  width:16px;
+  height:16px;
+  border-radius:999px;
+  border:2px solid rgba(255,255,255,.92);
+  background:rgba(109,83,45,.88);
+  box-shadow:0 0 0 3px rgba(109,83,45,.18), 0 2px 8px rgba(0,0,0,.28);
+  cursor:pointer;
+  padding:0;
+}
+.hg-caravan-node-marker:hover,.hg-caravan-node-marker:focus-visible{
+  transform:scale(1.12);
+  outline:2px solid rgba(255,224,166,.78);
+  outline-offset:2px;
+}
+.hg-caravan-node-card{ color:#18202b; min-width:210px; }
+.hg-caravan-node-card h3{ margin:0 0 8px; font-size:16px; }
+.hg-caravan-node-card dl{ margin:0; display:grid; gap:7px; }
+.hg-caravan-node-card .hg-caravan-stage-field{ gap:1px; }
+.hg-caravan-node-card dt{ color:#5e6672; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+.hg-caravan-node-card dd{ margin:0; color:#1f2937; font-size:13px; }

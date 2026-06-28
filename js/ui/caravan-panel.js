@@ -13,6 +13,8 @@
   };
 
   let selectedRouteId = "";
+  let caravanMarkers = [];
+
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
@@ -46,6 +48,16 @@
     return items.length ? items.join(", ") : empty;
   }
 
+  function formatNodeList(value, empty = "—") {
+    const items = asArray(value).map(cleanText).filter(Boolean);
+    return items.length ? items.join(", ") : empty;
+  }
+
+  function num(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+
   function uniqueModesForRoute(routeId) {
     const seen = new Set();
     for (const stage of getStages(routeId)) {
@@ -72,6 +84,32 @@
       ? indexed
       : asArray(runtime.stages).filter((stage) => cleanText(stage?.route_id) === key);
     return stages.slice().sort((a, b) => Number(a?.order ?? 0) - Number(b?.order ?? 0));
+  }
+
+  function getMap() {
+    return window.HGMap?.getMap?.() || window.map || null;
+  }
+
+  function getNodesForRoute(routeId = selectedRouteId) {
+    const runtime = getRuntime();
+    if (!runtime) return [];
+    const id = cleanText(routeId);
+    if (!id) return asArray(runtime.nodes);
+
+    const seen = new Set();
+    const nodes = [];
+    for (const stage of getStages(id)) {
+      for (const nodeId of [stage?.from_node, stage?.to_node]) {
+        const key = cleanText(nodeId);
+        if (!key || seen.has(key)) continue;
+        const node = runtime.indexes?.nodesById?.[key] || asArray(runtime.nodes).find((item) => cleanText(item?.id) === key);
+        if (node) {
+          seen.add(key);
+          nodes.push(node);
+        }
+      }
+    }
+    return nodes;
   }
 
   function nodeTitle(nodeId) {
@@ -137,6 +175,7 @@
 
   function render(selected = selectedRouteId) {
     selectedRouteId = cleanText(selected);
+    showNodes(selectedRouteId);
     const panel = ensurePanel();
     const runtime = getRuntime();
 
@@ -179,11 +218,64 @@
     });
   }
 
+  function popupHtml(node) {
+    return `
+      <article class="hg-caravan-node-card">
+        <h3>${esc(node?.title || node?.id || "Karavane-node")}</h3>
+        <dl>
+          ${field("Land", node?.country)}
+          ${field("Node-type", node?.node_type)}
+          ${field("Karavane-rolle", node?.caravan_role)}
+          ${field("Læringskroker", formatNodeList(node?.learning_hooks))}
+          ${field("Tags", formatNodeList(node?.tags))}
+        </dl>
+      </article>`;
+  }
+
+  function clearNodes() {
+    caravanMarkers.forEach((marker) => {
+      try { marker.remove(); } catch {}
+    });
+    caravanMarkers = [];
+  }
+
+  function showNodes(routeId = selectedRouteId) {
+    clearNodes();
+    const map = getMap();
+    const Marker = window.maplibregl?.Marker;
+    if (!map || !Marker) return [];
+
+    const Popup = window.maplibregl?.Popup;
+    const visible = [];
+    for (const node of getNodesForRoute(routeId)) {
+      const lat = num(node?.lat);
+      const lng = num(node?.lng);
+      if (lat == null || lng == null) continue;
+
+      const el = document.createElement("button");
+      el.type = "button";
+      el.className = "hg-caravan-node-marker";
+      el.setAttribute("aria-label", `Karavane-node: ${cleanText(node?.title || node?.id)}`);
+      el.dataset.caravanNodeId = cleanText(node?.id);
+
+      const marker = new Marker({ element: el, anchor: "center" }).setLngLat([lng, lat]).addTo(map);
+      if (Popup) marker.setPopup(new Popup({ closeButton: true, closeOnClick: true, maxWidth: "280px" }).setHTML(popupHtml(node)));
+      caravanMarkers.push(marker);
+      visible.push(cleanText(node?.id));
+    }
+    return visible;
+  }
+
+  function getVisibleNodeIds() {
+    return caravanMarkers.map((marker) => cleanText(marker?.getElement?.()?.dataset?.caravanNodeId)).filter(Boolean);
+  }
+
   function open(routeId) {
     const panel = render(routeId || selectedRouteId);
     panel.hidden = false;
     panel.setAttribute("aria-hidden", "false");
     document.body.classList.add("hg-caravan-open");
+    showNodes(selectedRouteId);
   }
 
   function close() {
@@ -191,13 +283,14 @@
     panel.hidden = true;
     panel.setAttribute("aria-hidden", "true");
     document.body.classList.remove("hg-caravan-open");
+    clearNodes();
   }
 
   function bindEntryButton() {
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId) };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
