@@ -1,43 +1,87 @@
 # Civication mailsystem og roleModels
 
-Dette dokumentet forklarer hvordan Civication-mailsystemet henger sammen med `badges.json`, `roleModels`, `mailPlans`, `mailFamilies`, runtime-lagene, state og UI. Målet er å gjøre videre arbeid presist: først forstå stillingen, deretter bygge simuleringer av stillingens faktiske utfordringer.
+Oppdatert: 2026-06-28
+
+Dette dokumentet forklarer hvordan Civication-mailsystemet henger sammen med `badges.json`, `roleModels`, `mailPlans`, `mailFamilies`, runtime-lagene, state, UI, dagmotoren og History Go-koblingene.
+
+Målet er å gjøre videre arbeid presist:
+
+1. Forstå stillingen.
+2. Definere stillingens historie.
+3. Lage personer, arbeidsoppgaver, konflikter og faglige begreper.
+4. Lage en dramaturgisk mailPlan.
+5. Skrive konkrete mailFamilies som faktisk simulerer jobben.
+6. La runtime, dagmotor, innboks, svar, psyke og konsekvenser spille sammen.
 
 ## Kort prinsipp
 
-Civication-mailer skal ikke bare være tilfeldige hendelser med valg. De skal være rollebaserte simuleringer. Spilleren skal lære en stilling gjennom arbeidsoppgaver, faglige problemer, miljø, personer, kunnskap, press, risiko og konsekvenser.
+Civication-mailer skal ikke bare være tilfeldige hendelser med valg. De skal være rollebaserte simuleringer.
 
-Den riktige arbeidsrekkefølgen er:
+Spilleren skal lære en stilling gjennom:
 
-1. `data/badges.json` definerer kategorier og tier-labels.
-2. `data/Civication/roleModels/` gir hver stilling en faglig og narrativ modell.
-3. `data/Civication/mailPlans/` definerer stillingens dramaturgiske progresjon.
-4. `data/Civication/mailFamilies/` inneholder konkrete mail-simuleringer.
-5. Runtime-lagene velger, dekorerer, viser og besvarer mailer.
-6. State/localStorage lagrer progresjon, aktive roller, brukte mailer og konsekvenser.
+- arbeidsoppgaver
+- faglige problemer
+- miljø og institusjoner
+- personer og relasjoner
+- kunnskap
+- press
+- risiko
+- konsekvenser
+- identitet
+- kollaps eller mestring
 
-Kort sagt:
+Hver jobb må derfor behandles som en liten fortelling.
+
+En stilling er ikke bare en tittel. Den er et rom med folk, rutiner, makt, frister, konflikter, fagbegreper og personlige kostnader.
+
+## Kort systemkjede
 
 ```text
-badge tier -> roleModel -> mailPlan -> mailFamily -> MailRuntime/EventEngine -> MailEngine/inbox -> UI -> answer/state
+badge tier
+  -> roleModel
+  -> mailPlan
+  -> mailFamily
+  -> MailRuntime / DailyMailBuilder / EventEngine
+  -> MailEngine / inbox
+  -> UI
+  -> answer / state / psyche / capital / followup / outcome
+```
+
+Mer presist:
+
+```text
+data/badges.json
+  -> data/Civication/roleModels/{category}/{role_scope}.json
+  -> data/Civication/mailPlans/{category}/{role_scope}_plan.json
+  -> data/Civication/mailFamilies/{category}/{mail_type}/{role_scope}_{mail_type}.json
+  -> js/Civication/systems/civicationMailRuntime.js
+  -> js/Civication/systems/civicationDailyMailBuilder.js
+  -> js/Civication/systems/civicationMailEngine.js
+  -> js/Civication/core/civicationEventEngine.js
+  -> Civication UI / WorkdayPanel / inbox
+  -> hg_civi_state_v1 / hg_civi_mail_v1 / hg_psyche_v1
 ```
 
 ## 1. badges.json: kilden til stillingene
 
-`data/badges.json` er øverste kilde for kategorier og stillingsstiger. Hver badge-kategori har `tiers`, og hver tier-label representerer en mulig stilling eller statusrolle i Civication.
+`data/badges.json` og/eller badge-kategorifilene definerer kategorier og tier-labels.
 
-Eksempel fra Næringsliv:
+Hver badge-kategori har `tiers`, og hver tier-label representerer en mulig stilling eller statusrolle i Civication.
+
+Eksempel:
 
 ```text
-Ekspeditør / butikkmedarbeider
-Lager- og driftsmedarbeider
-Fagarbeider
-Controller
-Finansanalytiker
-Mellomleder
-...
+By & arkitektur
+  -> Beboer
+  -> Nabolagsobservatør
+  -> Byvandrer
+  -> Rådgiver plan
+  -> Arealplanlegger
+  -> Byplanlegger
+  -> Prosjektleder byutvikling
 ```
 
-Disse tier-labelene ble brukt til å generere `roleModels`.
+Disse tier-labelene brukes til å generere eller knytte `roleModels`, men genererte rollemodeller er bare startpunkt. De må forbedres manuelt før de brukes som kvalitetskilde for avanserte mailer.
 
 ## 2. roleModels: stillingens faglige og narrative grunnmodell
 
@@ -53,15 +97,15 @@ Manifestet ligger her:
 data/Civication/roleModels/manifest.json
 ```
 
-Strukturen ble opprettet fra `badges.json` med ett roleModel-dokument per tier-label. Det finnes 244 rollefiler + manifest.
-
 Hver roleModel følger schema:
 
 ```text
 civication_role_model_v1
 ```
 
-En roleModel skal forklare hva en stilling er før vi lager mailene. Den skal normalt inneholde:
+En roleModel skal forklare hva stillingen er før vi lager mailene.
+
+Den skal normalt inneholde:
 
 ```text
 source
@@ -83,111 +127,47 @@ ideal_type_problems
 notes
 ```
 
-### Hva roleModel skal brukes til
+### Hva roleModel skal svare på
 
-RoleModel er ikke en mail. Den er grunnmodellen som mailene skal bygge på.
+RoleModel er ikke en mail. Den er rollebibelen.
 
 Den skal svare på:
 
 - Hva gjør denne stillingen i hverdagen?
+- Hvilke stereotype arbeidsoppgaver finnes i rollen?
 - Hvilket fagfelt og hvilke begreper må spilleren lære?
 - Hvilke miljøer, institusjoner og arbeidsformer finnes rundt rollen?
+- Hvilke personer møter spilleren?
+- Hvem hjelper, presser, manipulerer, forsinker eller utfordrer spilleren?
 - Hvilke typiske konflikter oppstår?
 - Hvilke dilemmaer definerer stillingen?
+- Hva er rollens hovedplot?
 - Hvilke karriereveier finnes videre?
-- Hvilke mailtyper bør rollen mate: `job`, `conflict`, `story`, `event`, `people`, `brand`, `faction_choice`?
+- Hvilke mailtyper bør rollen mate: `job`, `micro`, `people`, `conflict`, `story`, `event`, `followup`, `knowledge`, `consequence`, `brand`, `faction_choice`?
 
-Eksempel:
-
-```text
-Controller skal ikke bare ha mailer om tall.
-RoleModel må forklare controllerens verden:
-- avviksanalyse
-- internkontroll
-- periodisering
-- lagerverdi
-- revisjonsspor
-- budsjett/prognose
-- tall som sosial makt
-- kontroll som støtte vs overvåking
-```
+### Regel
 
 ```text
-Finansanalytiker skal ikke bare ha mailer om penger.
-RoleModel må forklare analytikerens verden:
-- datakvalitet
-- historiske tall vs estimater
-- modellrisiko
-- EBITDA/marginer
-- multipler og peer group
-- scenarioanalyse
-- investeringsnotat
-- kapitalfortelling
-- analyse som ansvar
+Ikke skriv avanserte mailFamilies før roleModel finnes og er god nok.
 ```
 
-## 3. civicationRoleModelRuntime.js
-
-Filen:
-
-```text
-js/Civication/systems/civicationRoleModelRuntime.js
-```
-
-kobler mailer til roleModels.
-
-Viktig prinsipp i filen:
-
-```text
-MailRuntime/EventEngine eier fortsatt mailflyten.
-RoleModelRuntime legger bare faglig metadata på mailene som allerede velges.
-Ingen økonomi, NAV, job offers eller UI endres her.
-```
-
-RoleModelRuntime gjør dette:
-
-1. Leser aktiv rolle fra `CivicationState.getActivePosition()`.
-2. Prøver å finne riktig roleModel-fil.
-3. Leser `data/Civication/roleModels/manifest.json`.
-4. Dekorerer mail-pakken med roleModel-metadata.
-5. Legger `role_model_meta` og `role_model_refs` på mailene når relevant.
-6. Patcher `CivicationEventEngine.prototype.buildMailPool`, men endrer ikke selve mailflyten.
-
-RoleModelRuntime har blant annet:
-
-```text
-resolveRoleModelPath(active)
-loadRoleModel(active)
-decorateMail(mail, active, roleModel)
-decoratePack(pack, active)
-inspect()
-```
-
-### Viktig begrensning
-
-RoleModels ble først generert automatisk. Mange av dem er derfor generiske. De må forbedres manuelt før de brukes som kvalitetskilde for avanserte mailer.
-
-Derfor er standarden fremover:
+Arbeidsrekkefølge:
 
 ```text
 1. Forbedre roleModel-filen for stillingen.
-2. Deretter forbedre mailPlans og mailFamilies.
-3. Ikke skriv avanserte mailer uten at roleModel finnes eller oppdateres.
+2. Definer jobbens historie og hovedcase.
+3. Definer personkart, konfliktkart og kompetanseakser.
+4. Lag mailPlan.
+5. Lag mailFamilies.
+6. Valider at runtime finner alt.
 ```
 
-## 4. mailPlans: stillingens dramaturgiske plan
+## 3. mailPlans: stillingens dramaturgiske plan
 
 MailPlans ligger her:
 
 ```text
 data/Civication/mailPlans/{category}/{role_scope}_plan.json
-```
-
-Eksempel:
-
-```text
-data/Civication/mailPlans/naeringsliv/controller_plan.json
-data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json
 ```
 
 En mailPlan definerer hvilken type simulering spilleren skal møte over tid. Den inneholder en `sequence` med steg.
@@ -196,12 +176,12 @@ Typiske stegtyper:
 
 ```text
 job
+people
 conflict
 story
 event
-people
-brand
 faction_choice
+brand
 ```
 
 Hvert steg peker på `allowed_families`.
@@ -213,20 +193,49 @@ Eksempel:
   "step": 1,
   "type": "job",
   "phase": "intro",
-  "allowed_families": ["controller_intro_v2"],
-  "fallback_types": ["job", "conflict", "story"]
+  "step_goal": "Lær hva som faktisk står på spill i rollen",
+  "allowed_families": ["plankart_og_bestemmelser"],
+  "fallback_types": ["job", "story"]
 }
 ```
 
 MailPlan skal ikke inneholde selve mailteksten. Den skal forklare progresjonen:
 
 - Hva skal spilleren lære først?
+- Når kommer faglig arbeid?
+- Når kommer menneskene?
 - Når kommer konflikt?
 - Når kommer story/rolleidentitet?
 - Når kommer event/krise/frister?
+- Når kommer konsekvens?
 - Hvilke familier kan brukes på hvert steg?
 
-## 5. mailFamilies: konkrete simuleringer
+### MailPlan er plottet
+
+MailPlan skal leses som en sesongplan.
+
+Dårlig:
+
+```text
+step 1: job
+step 2: conflict
+step 3: event
+```
+
+Godt:
+
+```text
+step 1: Spilleren ser et tilsynelatende ryddig fagproblem.
+step 2: Det viser seg at fagproblemet skjuler en målkonflikt.
+step 3: En person presser saken fra én side.
+step 4: En annen person avslører hva kartet ikke viser.
+step 5: Konflikten må formuleres slik at den kan behandles politisk.
+step 6: Frist eller krise tvinger spilleren til å velge presisjon eller tempo.
+step 7: Juridisk/faglig etterprøving viser konsekvensen av tidligere valg.
+step 8: Spilleren sender saken videre med et tydelig eller utydelig faglig spor.
+```
+
+## 4. mailFamilies: konkrete simuleringer
 
 MailFamilies ligger her:
 
@@ -237,11 +246,11 @@ data/Civication/mailFamilies/{category}/{mail_type}/{role_scope}_{mail_type}.jso
 Eksempel:
 
 ```text
-data/Civication/mailFamilies/naeringsliv/job/controller_intro_v2.json
-data/Civication/mailFamilies/naeringsliv/job/controller_job.json
-data/Civication/mailFamilies/naeringsliv/conflict/controller_conflict.json
-data/Civication/mailFamilies/naeringsliv/story/controller_story.json
-data/Civication/mailFamilies/naeringsliv/event/controller_event.json
+data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json
+data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json
+data/Civication/mailFamilies/by/conflict/by_radgiver_plan_conflict.json
+data/Civication/mailFamilies/by/story/by_radgiver_plan_story.json
+data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json
 ```
 
 MailFamilies inneholder konkrete mailer. Disse skal være simuleringer, ikke bare meldinger.
@@ -253,12 +262,17 @@ id
 mail_type
 mail_family
 role_scope
+phase
+priority
+from / sender / person_id
+place_id
 subject
 summary
 purpose
 stakes
 situation
 task_domain
+task_kind
 competency
 pressure
 choice_axis
@@ -266,6 +280,8 @@ consequence_axis
 narrative_arc
 learning_focus
 choices
+next_bias
+triggers_on_choice
 ```
 
 ### Standard for gode Civication-mails
@@ -278,7 +294,7 @@ Hver mail skal helst inneholde:
 4. Et miljø eller en organisasjon rundt problemet.
 5. En reell beslutning under press.
 6. To eller flere valg som ikke bare er rett/galt.
-7. Konsekvenser for tillit, status, risiko, læring, kapital eller kontroll.
+7. Konsekvenser for tillit, status, risiko, læring, kapital, kontroll eller psyke.
 8. Et lite stykke kunnskap om stillingen.
 9. En kobling til stillingens større narrative bue.
 
@@ -297,15 +313,63 @@ Kommentarfeltet fra drift er tomt.
 Rapporten kan sendes nå, men da blir tallet stående som forklaring i seg selv.
 ```
 
-## 6. CivicationMailRuntime: autoritativ jobbmailflyt
+## 5. Mailtypene
 
-Filen:
+Mailtypene bør forstås som dramatiske funksjoner, ikke bare tekniske kategorier.
+
+| Mailtype | Funksjon i historien | Eksempel |
+|---|---|---|
+| `job` | Faglig hovedarbeid | Les plankart, vurder regnskap, skriv notat, analyser avvik |
+| `micro` / `job_micro` | Små operative avklaringer | En rapportlinje, en frist, et vedlegg, et spørsmål |
+| `people` | Personer som presser, hjelper eller manipulerer | Kollega, sjef, kunde, beboer, utbygger, jurist |
+| `conflict` | Åpen målkonflikt | Tempo vs presisjon, boliger vs grøntdrag, salg vs kvalitet |
+| `story` | Rolleidentitet og indre narrativ | “Du skjønner hva jobben egentlig gjør med deg” |
+| `event` | Frist, møte, krise, behandling, deadline | Utvalgsmøte fredag, revisjonsfrist, presseoppslag |
+| `followup` | Konsekvens av tidligere valg | Du valgte tempo; nå kommer klagen |
+| `knowledge` | Læring eller History Go-kobling | Lær fagbegrep, sted, person, quiz, konflikt eller institusjon |
+| `consequence` | Ettervirkning | Tillit opp/ned, juridisk risiko, autonomi, burnout |
+| `faction_choice` | Retning/allianse | Bli faglig hard, politisk smidig, utbygger-nær, kontrollorientert |
+| `brand` | Arbeidsgiver-/institusjonsspesifikk variant | Samme rolle i annen organisasjon får annen kultur |
+| `lifeMails` | Privatliv/livssituasjon utenfor jobben | Kveld, økonomi, familie, slitasje, sosialt rom |
+
+## 6. Runtime-lagene
+
+### 6.1 CivicationRoleModelRuntime
+
+Fil:
+
+```text
+js/Civication/systems/civicationRoleModelRuntime.js
+```
+
+Kobler mailer til roleModels.
+
+Prinsipp:
+
+```text
+MailRuntime/EventEngine eier fortsatt mailflyten.
+RoleModelRuntime legger faglig metadata på mailene som allerede velges.
+Ingen økonomi, NAV, job offers eller UI endres her.
+```
+
+RoleModelRuntime gjør typisk dette:
+
+1. Leser aktiv rolle fra `CivicationState.getActivePosition()`.
+2. Prøver å finne riktig roleModel-fil.
+3. Leser `data/Civication/roleModels/manifest.json`.
+4. Dekorerer mail-pakken med roleModel-metadata.
+5. Legger `role_model_meta` og `role_model_refs` på mailene når relevant.
+6. Patcher `CivicationEventEngine.prototype.buildMailPool`, men endrer ikke selve mailflyten.
+
+### 6.2 CivicationMailRuntime
+
+Fil:
 
 ```text
 js/Civication/systems/civicationMailRuntime.js
 ```
 
-har ansvar for den autoritative jobbmailflyten.
+Dette er autoritativ jobbmailflyt.
 
 Den gjør typisk dette:
 
@@ -317,121 +381,106 @@ Den gjør typisk dette:
 data/Civication/mailPlans/${category}/${roleScope}_plan.json
 ```
 
-4. Bygger path til intro-family:
-
-```text
-data/Civication/mailFamilies/${category}/job/${roleScope}_intro_v2.json
-```
-
-5. Laster øvrige mailFamilies etter type.
+4. Bygger paths til mailFamilies.
+5. Laster mailFamilies etter type.
 6. Filtrerer bort brukte mailer.
 7. Velger kandidat basert på plansteg, familie og scoring.
 8. Oppdaterer progresjon og consumed IDs.
 9. Håndterer eventuelle thread-mails via `triggers_on_choice`.
 
-MailRuntime er altså laget som hovedsystemet for jobbmailer.
+MailRuntime velger hvilken jobbmail som skal komme.
 
-## 7. CiviMailPlanBridge: eldre bro og scoringlag
+### 6.3 CivicationDailyMailBuilder
 
-Filen:
-
-```text
-js/Civication/mailPlanBridge.js
-```
-
-finnes fortsatt som bro mellom aktiv rolle, planfiler og mailfamilier. Den har også scoring- og fallbacklogikk.
-
-Den bør ikke utvides ukritisk med nye sannheter hvis `CivicationMailRuntime` allerede gjør jobben. På sikt bør den brukes som kompatibilitetslag eller ryddes slik at én runtime eier jobbmailflyten.
-
-Regel:
+Fil:
 
 ```text
-Ikke legg ny hardkodet rollelogikk i mailPlanBridge hvis resolver/runtime kan eie den.
+js/Civication/systems/civicationDailyMailBuilder.js
 ```
 
-## 8. CivicationCareerRoleResolver: autoritativ rolle-resolusjon
-
-Filen:
+Bygger én faktisk Civication-arbeidsdag fra:
 
 ```text
-js/Civication/systems/civicationCareerRoleResolver.js
+data/Civication/mailDayProgram.json
 ```
 
-skal være autoritativ for:
+Prinsipp:
 
 ```text
-role_scope
-role_id
-role_key
+MailRuntime = langsiktig rolleprogresjon
+DailyMailBuilder = dagens spillbare rytme
+mailDayProgram = dagsstruktur og volum
 ```
 
-Eksempel:
+DailyMailBuilder eier dagsbunke og rytme. MailRuntime eier fortsatt langsiktig rolleprogresjon.
+
+Bare dagens primære planmail skal normalt få `source_type: "planned"` og flytte rolePlan videre.
+
+Micro-, followup-, knowledge-, consequence- og day_end-mails er dagsinnhold og skal ikke flytte rolePlan alene.
+
+### 6.4 mailDayProgram
+
+Fil:
 
 ```text
-Controller
--> role_scope: controller
--> role_id: naer_controller
--> role_key: controller
+data/Civication/mailDayProgram.json
 ```
+
+Definerer dagsrytmen.
+
+Dagen er delt i faser og slots:
 
 ```text
-Finansanalytiker
--> role_scope: finansanalytiker
--> role_id: naer_finansanalytiker
--> role_key: finansanalytiker
+morning
+forenoon
+workday
+lunch
+afternoon
+dinner
+evening
+day_end
 ```
 
-Regel:
+Eksempler på slots:
 
 ```text
-Ikke lag lokale ROLE_ID_BY_TITLE-mappinger i EventEngine, UI eller andre systemer.
-Bruk resolveren.
+morning_brief
+first_message
+preparation
+day_goal_choice
+primary_work_mail
+operational_mail
+people_ping
+main_delivery
+task_gate
+conflict_or_event
+analysis_followup
+phase_lunch
+informal_people_mail
+phase_evening
+learning_or_hobby
+consequence_mail
+relationship_or_status
+plan_tomorrow
+day_summary
+score_summary
+role_progress_summary
+carryover
 ```
 
-## 9. CivicationRoleStarter og ActivePositionRecovery
+Målet er at en Civication-dag skal føles som en hel arbeidsdag: hovedoppgave, små driftsavklaringer, personer, konflikt, kunnskap, konsekvens og dagsoppsummering.
 
-`CivicationRoleStarter` ligger her:
+### 6.5 CivicationMailEngine
 
-```text
-js/Civication/systems/civicationRoleStarter.js
-```
-
-Den kan starte en rolle direkte, for eksempel:
-
-```js
-CivicationRoleStarter.startRole("controller")
-CivicationRoleStarter.startRole("finansanalytiker")
-```
-
-Den setter aktiv posisjon, mail runtime-state, mail system-state og progresjon.
-
-`CivicationActivePositionRecovery` ligger her:
-
-```text
-js/Civication/systems/civicationActivePositionRecovery.js
-```
-
-Den gjenoppretter aktiv rolle etter refresh/appstart ved hjelp av:
-
-```text
-active_role_key
-mail_runtime_v1.role_plan_id
-mail_system.role_plan_id
-mail_plan_progress.role_plan_id
-backup i localStorage
-```
-
-Disse filene må oppdateres hvis nye roller skal kunne startes eller recoveres direkte.
-
-## 10. CivicationMailEngine: innboks og lagring
-
-Filen:
+Fil:
 
 ```text
 js/Civication/systems/civicationMailEngine.js
 ```
 
-har ansvar for mailstore/innboks. Den håndterer blant annet:
+MailEngine eier mailstore/innboks.
+
+Den håndterer:
 
 ```text
 mail envelopes
@@ -449,15 +498,17 @@ MailRuntime velger hvilken mail som skal komme.
 MailEngine lagrer og viser mailen som innboksobjekt.
 ```
 
-## 11. CivicationEventEngine: generisk hendelsesmotor
+### 6.6 CivicationEventEngine
 
-Filen:
+Fil:
 
 ```text
 js/Civication/core/civicationEventEngine.js
 ```
 
-er eldre/generisk hendelsesmotor. Den brukes fortsatt for:
+EventEngine er generisk hendelsesmotor.
+
+Den brukes fortsatt for:
 
 ```text
 generisk enqueue
@@ -466,9 +517,12 @@ fallback-events
 warning/fired/NAV-mails
 gamle packs
 state-overganger
+choice effects
+followup
+obligation response
+task completion
+capital/psyche effects
 ```
-
-MailRuntime og RoleModelRuntime patcher/bruker deler av EventEngine, men EventEngine skal ikke eie den nye rollemodellen alene.
 
 Regel:
 
@@ -476,7 +530,71 @@ Regel:
 EventEngine skal ikke ha egne utdaterte rolle-mappings som overstyrer resolveren.
 ```
 
-## 12. Life mails
+### 6.7 CiviMailPlanBridge
+
+Fil:
+
+```text
+js/Civication/mailPlanBridge.js
+```
+
+Dette er eldre bro og scoringlag mellom aktiv rolle, planfiler og mailfamilier.
+
+Den bør ikke utvides ukritisk med nye sannheter hvis `CivicationMailRuntime` allerede gjør jobben.
+
+Regel:
+
+```text
+Ikke legg ny hardkodet rollelogikk i mailPlanBridge hvis resolver/runtime kan eie den.
+```
+
+### 6.8 CivicationCareerRoleResolver
+
+Fil:
+
+```text
+js/Civication/systems/civicationCareerRoleResolver.js
+```
+
+Skal være autoritativ for:
+
+```text
+role_scope
+role_id
+role_key
+```
+
+Regel:
+
+```text
+Ikke lag lokale ROLE_ID_BY_TITLE-mappinger i EventEngine, UI eller andre systemer.
+Bruk resolveren.
+```
+
+### 6.9 CivicationRoleStarter og ActivePositionRecovery
+
+Filer:
+
+```text
+js/Civication/systems/civicationRoleStarter.js
+js/Civication/systems/civicationActivePositionRecovery.js
+```
+
+Disse må oppdateres hvis nye roller skal kunne startes eller recoveres direkte.
+
+Starter setter aktiv posisjon, mail runtime-state, mail system-state og progresjon.
+
+Recovery gjenoppretter aktiv rolle etter refresh/appstart ved hjelp av blant annet:
+
+```text
+active_role_key
+mail_runtime_v1.role_plan_id
+mail_system.role_plan_id
+mail_plan_progress.role_plan_id
+backup i localStorage
+```
+
+### 6.10 Life mails
 
 Life-mails ligger her:
 
@@ -484,7 +602,7 @@ Life-mails ligger her:
 data/Civication/lifeMails/
 ```
 
-og kjøres av:
+Runtime:
 
 ```text
 js/Civication/systems/civicationLifeMailRuntime.js
@@ -496,11 +614,16 @@ Life-mails er ikke bundet til én jobbrolle på samme måte som jobbmailer. De h
 arbeidsledig
 alkohol/risk
 subkultur/skurk/kantliv
+økonomi
+familie
+kveld
+sosialt rom
+slitasje
 ```
 
-Disse skal fortsatt holdes adskilt fra roleModel-baserte jobbmailer.
+De skal fortsatt holdes adskilt fra roleModel-baserte jobbmailer.
 
-## 13. Day/choice/faction/alliance-lag
+## 7. Day/choice/faction/alliance-lag
 
 Det finnes tilleggslag som kan påvirke valg, scoring og videre mailflyt:
 
@@ -515,10 +638,17 @@ Disse brukes til å gjøre mailsystemet mer dynamisk:
 - valg kan sette fraksjon eller retning
 - mailer kan scores etter allianser/fiender
 - mailer kan vekte bestemte konflikter eller identiteter
+- personer kan få mer betydning basert på tidligere valg
+- konfliktfamilier kan bli mer sannsynlige hvis spilleren har skapt press
 
-Disse lagene bør ikke definere stillingen fra bunnen. De skal bruke roleModel/mailPlan/mailFamily som grunnlag.
+Viktig:
 
-## 14. State og localStorage
+```text
+Disse lagene skal ikke definere stillingen fra bunnen.
+De skal bruke roleModel, mailPlan og mailFamily som grunnlag.
+```
+
+## 8. State og localStorage
 
 Viktige state-nøkler:
 
@@ -526,11 +656,19 @@ Viktige state-nøkler:
 hg_civi_state_v1
 hg_civi_mail_v1
 hg_civi_inbox_v1
-hg_civi_forced_role_key_v1
-hg_civi_last_active_position_v1
+hg_active_position_v1
+hg_job_history_v1
+hg_civi_calendar_v1
+hg_civi_tasks_v1
+hg_civi_task_results_v1
+hg_psyche_v1
+hg_capital_v1
 mail_runtime_v1
+mail_day_runtime_v1
+life_mail_runtime_v1
 mail_system
 mail_plan_progress
+narrative_state_v1
 ```
 
 Prinsipp:
@@ -539,15 +677,35 @@ Prinsipp:
 State skal lagre hva spilleren har gjort.
 Datafilene skal definere hva rollen og mailene er.
 Runtime skal binde dem sammen.
+UI skal vise state, ikke eie progresjonen.
 ```
 
-Ikke hardkod progresjon i UI hvis den egentlig hører hjemme i `mailPlans` eller `roleModels`.
+Ikke hardkod progresjon i UI hvis den egentlig hører hjemme i `mailPlans`, `roleModels`, `mailFamilies` eller runtime.
 
-## 15. Anbefalt arbeidsflyt for nye stillinger
+## 9. Svar, konsekvens og progresjon
+
+Når spilleren svarer på en mail:
+
+1. UI svarer via `CivicationMailEngine.answerMail(mailId, choiceId)` når mulig.
+2. MailEngine finner mailen.
+3. MailEngine kaller `HG_CiviEngine.answer(eventId, choiceId)`.
+4. EventEngine beregner choice-effect.
+5. EventEngine kan endre score, strikes, stability, consumed events, identity tags, tracks, capital, task completion, obligation response, autonomy, lifestyle og psyche.
+6. Mail markeres resolved hvis svaret lykkes.
+7. Eventuelle followups, warnings eller fired-events kan enqueues.
+
+Konsekvenssystemet er viktigere enn moral.
+
+```text
+Civication er ikke et moralsystem.
+Det er et konsekvenssystem.
+```
+
+## 10. Standard arbeidsflyt for nye stillinger
 
 Når en ny stilling skal få ordentlig mailspor:
 
-### Steg 1: Les badge og roleModel
+### Steg 1: Finn badge og roleModel
 
 Finn rollefil:
 
@@ -557,25 +715,61 @@ data/Civication/roleModels/{category}/{role_scope}.json
 
 Les den. Hvis den er generisk, forbedre den først.
 
-### Steg 2: Forbedre roleModel
+### Steg 2: Skriv rollehistorien
 
-Fyll ut:
+Hver stilling skal ha en liten historie.
+
+Minimum:
 
 ```text
-core_narrative
-work_life.daily_work
-work_life.responsibilities
-work_life.work_environment
-career_path
-required_knowledge
-challenges
-dilemmas
-mail_integration.recommended_mail_families
-competence_axes
-ideal_type_problems
+Tittel
+Hovedcase
+Kjernefortelling
+Daglige arbeidsoppgaver
+Stereotype oppgaver
+Faglige begreper
+Arbeidsmiljø
+Personkart
+Konfliktkart
+Dilemmaer
+Kompetanseakser
+Mulige utfall
 ```
 
-### Steg 3: Lag eller oppdater mailPlan
+### Steg 3: Definer personkart
+
+Personer skal ikke bare være pynt. De skal ha funksjon.
+
+For hver person:
+
+```text
+id
+navn
+rolle
+relasjon til spilleren
+hva personen vil
+hva personen presser på
+hva personen vet som andre ikke vet
+hvilke mailtyper personen kan sende
+hvilken konflikt personen aktiverer
+```
+
+### Steg 4: Definer konfliktkart
+
+For hver rolle bør man skrive 4-8 konfliktakser.
+
+Eksempel:
+
+```text
+tempo_vs_presisjon
+fag_vs_politikk
+lokal_kunnskap_vs_formell_prosess
+økonomi_vs_kvalitet
+kontroll_vs_tillit
+synlighet_vs_integritet
+```
+
+### Steg 5: Lag mailPlan
 
 Path:
 
@@ -583,138 +777,703 @@ Path:
 data/Civication/mailPlans/{category}/{role_scope}_plan.json
 ```
 
-Planen skal ha en dramaturgisk bue:
+Planen skal ha en dramaturgisk bue.
+
+Standardbue:
 
 ```text
-intro -> job -> conflict -> story -> event -> advanced job -> mastery conflict -> identity/story
+intro
+  -> første faglige oppgave
+  -> første personpress
+  -> åpen konflikt
+  -> rolleidentitet/story
+  -> frist eller event
+  -> juridisk/faglig etterprøving
+  -> konsekvens
+  -> faglig spor videre / stagnasjon / fired / promotion
 ```
 
-### Steg 4: Lag mailFamilies
+### Steg 6: Lag mailFamilies
 
-Minimum:
+Minimum for en spillbar rolle:
 
 ```text
-job/{role_scope}_intro_v2.json
 job/{role_scope}_job.json
+people/{role_scope}_people.json
 conflict/{role_scope}_conflict.json
 story/{role_scope}_story.json
 event/{role_scope}_event.json
 ```
 
-Eventuelt:
+Anbefalt for en god rolle:
 
 ```text
-people/{role_scope}_people.json
-brand/{role_scope}_{brand}.json
+micro/{role_scope}_micro.json
+followup/{role_scope}_followup.json
+knowledge/{role_scope}_knowledge.json
+consequence/{role_scope}_consequence.json
 faction_choice/{role_scope}_faction_choice.json
+brand/{role_scope}_{brand}.json
 ```
 
-### Steg 5: Koble rolle teknisk
+### Steg 7: Koble History Go
 
-Sjekk:
+Civication skal skape behovet. History Go skal være kunnskaps- og handlingsrommet.
+
+Hovedregel:
 
 ```text
-CivicationCareerRoleResolver
-CivicationRoleStarter
-CivicationActivePositionRecovery
-CivicationMailRuntime path-resolving
+Civication skaper problemet.
+History Go gir stedet, personen, kunnskapen, debatten eller oppgaven.
+Civication mottar resultatet som task/progresjon/konsekvens.
 ```
 
-Hvis runtime allerede bruker dynamisk path basert på `role_scope`, skal det normalt ikke trengs nye hardkodede paths.
-
-### Steg 6: Valider
-
-Lag eller bruk validator:
+Civication-task bør kunne peke til:
 
 ```text
-scripts/validate-civication-mails.js
-scripts/validate-civication-finance-mails.js
+placeId / place_id
+personId / person_id
+quizId
+categoryId
+emneId
+debateId
+conflictId
+unlockId
+storyId
 ```
+
+### Steg 8: Valider
 
 Sjekk minst:
 
 ```text
 JSON parse
+roleModel finnes
+mailPlan finnes
 allowed_families finnes som family.id
 alle mailer har påkrevde felt
 choices har minst to valg
 role_scope matcher fil og plan
 role_id/role_key matcher resolver/starter/recovery
+mail_type matcher folder
+people-mails har person_id der relevant
+place-koblede mailer har place_id der relevant
 ```
 
-### Steg 7: Test i app
+## 11. Minimumsvolum per rolle
+
+En rolle skal ikke bare ha 8 store mailer. Den skal kunne fylle en arbeidsdag og helst flere dager.
+
+Anbefalt førsteversjon:
+
+```text
+job: 12-16
+people: 8-12
+conflict: 6-8
+story: 6-8
+event: 4-6
+micro: 16-24
+followup: 8-12
+knowledge: 6-8
+consequence: 6-8
+```
+
+For en 8-12 dagers rolle:
+
+```text
+long_role_mails: 24-36
+medium_followups_or_conflicts: 32-48
+micro_operational_mails: 64-96
+people_or_status_mails: 24-36
+phase_or_dayend_generated: true
+```
+
+Målet er ikke 20 store mailer hver dag. Målet er:
+
+```text
+3-5 store/medium mailer
+mange små operative mailer
+noen people/status-mails
+noen followups/consequences
+fase- og dagsluttinnhold
+```
+
+## 12. Hvordan en jobb blir en liten historie
+
+For hver rolle skal vi planlegge på tre nivåer:
+
+### 12.1 Rollefortelling
+
+Dette er stillingens store historie.
 
 Eksempel:
 
-```js
-CivicationRoleStarter.startRole("controller")
+```text
+Arealplanleggeren står mellom kartet, lovverket, bydelen, utbyggeren, naboene og politikerne.
+Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.
+En linje på plankartet kan bety flere boliger, mindre sol, tryggere skolevei, høyere tomteverdi, mer trafikk, tapt grøntdrag eller juridisk risiko.
 ```
 
-```js
-CivicationRoleModelRuntime.inspect()
-```
+### 12.2 Saksfortelling
 
-```js
-CivicationMailRuntime.inspect()
-```
+Dette er caset spilleren står i.
 
-Sjekk at:
+Eksempel:
 
 ```text
-aktiv rolle er riktig
-roleModel-path finnes
-plan-path finnes
-første mail kommer fra riktig intro_v2
-svar oppdaterer progresjon
-mail gjentas ikke feil
+Lillebekk kvartal skal fortettes.
+På papiret er det en ryddig reguleringssak.
+I praksis kolliderer grøntdrag, skolevei, støy, overvann, parkering, utbyggerpress, naboprotester og politisk behandling.
 ```
 
-## 16. Nåværende kvalitetstilstand
+### 12.3 Mailfortelling
 
-RoleModels-strukturen finnes og dekker hele badge-systemet, men mange rollemodeller er automatisk generert og må forbedres manuelt.
+Dette er scenene.
 
-Næringsliv har kommet lengst, spesielt:
+Hver mail er en liten scene:
 
 ```text
-Ekspeditør / butikkmedarbeider
-Controller
-Finansanalytiker
+Noen vil noe.
+Noe haster.
+Et faglig problem ligger under.
+Valget har en kostnad.
+Konsekvensen kan komme senere.
 ```
 
-Controller og Finansanalytiker har nå egne:
+## 13. Arealplanlegger: anbefalt plan
+
+Dette er første tydelige modell for hvordan en rolle bør bygges som en liten historie.
+
+### 13.1 Eksisterende filer
+
+Arealplanlegger finnes allerede i følgende retning:
 
 ```text
-role_scope
-role_id
-mailPlan
-intro/job/conflict/story/event mailFamilies
-validator
+data/Civication/roleModels/by/arealplanlegger.json
+data/Civication/mailPlans/by/by_radgiver_plan_plan.json
+data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json
+data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json
+data/Civication/mailFamilies/by/conflict/by_radgiver_plan_conflict.json
+data/Civication/mailFamilies/by/story/by_radgiver_plan_story.json
+data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json
+tests/civication-arealplanlegger-mail-plan.test.js
 ```
 
-Neste kvalitetsløft bør skje roleModel-først:
+### 13.2 Viktig teknisk avklaring
+
+Det finnes en navneforskyvning:
 
 ```text
-1. Forbedre data/Civication/roleModels/naeringsliv/controller.json
-2. Forbedre data/Civication/roleModels/naeringsliv/finansanalytiker.json
-3. Kontrollere at mailFamilies bruker samme begreper, dilemmaer og læringsmål
+roleModel:
+  role_scope: arealplanlegger
+  role_id: by_arealplanlegger
+  role_key: by_radgiver_plan
+
+mailPlan/mailFamilies/test:
+  role_scope: by_radgiver_plan
 ```
 
-## 17. Viktige regler fremover
+Dette må enten standardiseres eller resolveren må eksplisitt eie koblingen.
+
+Foreløpig bør `by_radgiver_plan` behandles som runtime-scope for mailPlan/mailFamilies, fordi eksisterende plan, familier og test bruker dette.
+
+Regel:
+
+```text
+Ikke lag enda en lokal mapping for dette.
+Avklar i CivicationCareerRoleResolver og hold roleModel/mailPlan/mailFamilies konsistente.
+```
+
+### 13.3 Tittel
+
+```text
+Linjen på kartet
+```
+
+### 13.4 Premiss
+
+Du får ansvar for å ferdigstille planfaglig vurdering av Lillebekk kvartal.
+
+På papiret er det en ryddig fortettingssak.
+
+I praksis er det en kamp om hvem byen er til for.
+
+### 13.5 Hovedplot
+
+```text
+Dag 1: Kartet ser ryddig ut.
+Dag 2: Stedet motsier målbildet.
+Dag 3: Utbyggeren vil ha signaler.
+Dag 4: Naboene virker vanskelige, men har rett i én ting.
+Dag 5: Grøntdrag, skolevei og støy krasjer.
+Dag 6: Juristen finner svak hjemmel.
+Dag 7: Politikerne vil ha enkel sak.
+Dag 8: Du må formulere det faglige sporet.
+Dag 9-12: Konsekvenser, klage, omkamp, tillit, stagnasjon eller opprykk.
+```
+
+### 13.6 Kjernefortelling
+
+```text
+Arealplanleggeren står mellom kartet, lovverket, bydelen, utbyggeren, naboene og politikerne.
+Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.
+En linje på plankartet kan bety flere boliger, mindre sol, tryggere skolevei, høyere tomteverdi, mer trafikk, tapt grøntdrag eller juridisk risiko.
+```
+
+### 13.7 Daglige arbeidsoppgaver
+
+Arealplanlegger-mailer bør simulere:
+
+```text
+lese plankart
+lese planbestemmelser
+vurdere arealformål
+vurdere hensynssoner
+vurdere rekkefølgekrav
+lese ROS-tema
+lese støy-/solstudier
+vurdere overvann
+vurdere grønnstruktur
+vurdere skolevei
+vurdere parkering og mobilitet
+oppsummere høringsinnspill
+skrive fagnotat
+skrive saksframlegg
+forberede medvirkningsmøte
+svare utbygger
+svare naboer
+avklare med jurist
+avklare med vei/vann/drift
+forklare saken politisk
+```
+
+### 13.8 Personkart
+
+| Person | Funksjon | Press |
+|---|---|---|
+| Plansjef | Vil ha saken ferdig og politisk lesbar | Tempo / styring |
+| Utbygger | Vil ha signaler om høyde, parkering og volum | Framdrift / verdi |
+| Beboerrepresentant | Skriver langt og sint, men har lokal kunnskap | Legitimitet / medvirkning |
+| Byøkolog | Ser grøntdrag, jorddybde, flomvei og opphold | Langsiktig bykvalitet |
+| Trafikk/skolevei | Ser barns faktiske ruter | Hverdagsrisiko |
+| Planjurist | Ser svake bestemmelser og klagerisiko | Juridisk presisjon |
+| Utvalgssekretær | Trenger politisk lesbar sak | Demokratisk formidling |
+| Plankonsulent | Vil selge plankartet som ryddig | Profesjonelt press |
+| Vei/vann/drift | Ser praktiske følgefeil | Gjennomførbarhet |
+
+### 13.9 Konfliktkart
+
+Arealplanlegger bør ha minst disse konfliktaksene:
+
+```text
+kart_vs_levd_nabolag
+boligbehov_vs_grontstruktur
+utbyggerpress_vs_offentlig_integritet
+medvirkning_vs_framdrift
+juridisk_presisjon_vs_politisk_tempo
+teknisk_losning_vs_hverdagsrisiko
+faglig_risiko_vs_politisk_valg
+fortetting_vs_hverdagskvalitet
+```
+
+### 13.10 Kompetanseakser
+
+```text
+plankartforståelse
+juridisk_presisjon
+arealavveiing
+medvirkning
+tverrfaglig_koordinering
+politisk_lesbarhet
+stedsanalyse
+overvann_og_gronnstruktur
+mobilitet_og_skolevei
+```
+
+## 14. Arealplanlegger: narrative mailbuer
+
+### 14.1 “Kartet lyver ikke, men det tier”
+
+Introfortelling.
+
+Spilleren lærer at plankartet kan være formelt korrekt og likevel skjule hverdagskonsekvenser.
+
+Mailtyper:
+
+```text
+job
+story
+knowledge
+micro
+```
+
+Eksempel:
+
+```text
+Fra: Plansjef
+Emne: Målbildet sier aktivt byliv, men stedet viser gjennomfart
+
+Bestillingen ber om aktivt byliv.
+Kart, tellinger og befaring viser først og fremst folk i bevegelse gjennom området.
+Du kan skrive dette positivt, men da mister saken det stedet faktisk gjør i dag.
+
+A: Skriv tydelig at stedet primært fungerer som gjennomfart.
+B: Vinkle analysen mot potensial for byliv.
+```
+
+### 14.2 “Alle gode formål får ikke plass”
+
+Arealavveiingsfortelling.
+
+Boliger, grøntdrag, varelevering, skolevei, støy, overvann og byliv er alle legitime. Men arealet er begrenset.
+
+Mailtyper:
+
+```text
+job
+conflict
+followup
+consequence
+```
+
+Eksempel:
+
+```text
+Fra: Byøkolog
+Emne: Bolig, grøntdrag og varelevering vil bruke samme kant
+
+Boligprosjektet trenger inngangssone.
+Grøntgrepet trenger jorddybde og sammenheng.
+Driften trenger varelevering uten å blokkere fortauet.
+Alle tre formålene er legitime. De får bare ikke plass samtidig.
+
+A: Beskriv konflikten tydelig og anbefal prioritet.
+B: Foreslå fleksibelt kompromiss.
+```
+
+### 14.3 “Den irriterende nabomailen har ett sant punkt”
+
+Medvirkningsfortelling.
+
+Spilleren må lære at medvirkning ikke bare er folk som klager. Det er ofte støyende, langt, emosjonelt og upresist, men kan inneholde lokal kunnskap som kartet mangler.
+
+Mailtyper:
+
+```text
+people
+knowledge
+conflict
+followup
+```
+
+Eksempel:
+
+```text
+Fra: Hanne Mo, beboerrepresentant
+Emne: Den lange nabomailen har faktisk ett avgjørende poeng
+
+Mailen er for lang.
+Den blander parkering, sol, barnevogner, renovasjon og mistillit til kommunen.
+Men midt i teksten ligger en faktisk skolevei som ikke vises i plankartet.
+
+A: Løft skoleveien inn i saksgrunnlaget.
+B: Svar formelt på høringsinnspillet og gå videre.
+```
+
+### 14.4 “Utbyggeren spør ikke om lov, han spør om signal”
+
+Integritetsfortelling.
+
+Utbyggeren vil ha tidlige signaler. Ikke nødvendigvis korrupt, men tempoet forsøker å gjøre offentlig planbehandling til en servicefunksjon for prosjektet.
+
+Mailtyper:
+
+```text
+people
+conflict
+faction_choice
+consequence
+```
+
+Eksempel:
+
+```text
+Fra: Ivar Kranstad
+Emne: Kan vi få et signal før nabomøtet?
+
+Vi trenger bare å vite om høyde og parkering er innenfor.
+Ikke et formelt ja.
+Bare et signal, så vi ikke bruker tid på feil alternativ.
+
+A: Si at kommunen ikke gir forhåndssignal før fagnotatet er ferdig.
+B: Gi et uformelt signal med forbehold.
+```
+
+### 14.5 “Støyskjermen løser én ting og ødelegger en annen”
+
+Tverrfaglig konflikt.
+
+En teknisk løsning kan gjøre saken verre sosialt. Støyskjerm kan hjelpe fasadeverdier, men gjøre skoleveien mørkere, smalere og mer utrygg.
+
+Mailtyper:
+
+```text
+conflict
+event
+followup
+knowledge
+```
+
+Eksempel:
+
+```text
+Fra: Trafikk/skolevei
+Emne: Støyskjermen løser én ting og ødelegger en annen
+
+Støyskjermen demper fasadestøy.
+Men den gjør barnas snarvei mørkere og smalere.
+Teknisk sett er ett krav bedre.
+Hverdagsmessig kan området bli dårligere.
+
+A: Krev ny samlet vurdering av støy, trygghet og skolevei.
+B: Godta støygrepet og legg inn avbøtende tiltak.
+```
+
+### 14.6 “Politisk lesbarhet uten å skjule faglig risiko”
+
+Sluttfortelling.
+
+Utvalget trenger et saksframlegg som kan forstås. Men forenkling må ikke gjøre risiko usynlig.
+
+Spilleren må skille:
+
+```text
+hva er faglig risiko?
+hva er juridisk risiko?
+hva er politisk valg?
+hva er administrasjonens anbefaling?
+hva er reelt alternativ?
+```
+
+Mailtyper:
+
+```text
+event
+story
+consequence
+job
+```
+
+Eksempel:
+
+```text
+Fra: Utvalgssekretær
+Emne: Hva er egentlig det politiske valget her?
+
+Politikerne forstår at saken er komplisert.
+Men de trenger ikke alle fagdetaljer.
+De trenger å vite hva de faktisk velger bort.
+
+A: Lag en tydelig tabell: bolig, grøntdrag, skolevei, støy, juridisk risiko.
+B: Skriv en kort anbefaling med mer teknisk vedlegg.
+```
+
+## 15. Arealplanlegger: anbefalt mailPlan
+
+Eksisterende plan har 8 hovedsteg. Den bør leses slik:
+
+```text
+1. Plankart og bestemmelser
+   -> spilleren lærer at kartet ser ryddigere ut enn virkeligheten
+
+2. Arealbruk og prioritering
+   -> spilleren lærer at alle gode formål ikke får plass
+
+3. Aktører og press
+   -> utbygger, naboer og interne fagfolk vil ulike ting
+
+4. Grøntdrag, skolevei og støy
+   -> den åpne arealkonflikten blir synlig
+
+5. Linjen på kartet
+   -> rolleidentiteten oppstår: en linje er et politisk/faglig valg
+
+6. Frist for utvalg
+   -> saken må gjøres lesbar under tidspress
+
+7. Rekkefølgekrav og juss
+   -> intensjoner må bli håndhevbare bestemmelser
+
+8. Faglig spor videre
+   -> spilleren sender saken videre, men konsekvensene følger med
+```
+
+## 16. Arealplanlegger: anbefalt mailfamilie-struktur
+
+Minimum:
+
+```text
+job:
+  stedsanalyse_og_malbildet
+  arealbruk_og_prioritering
+  medvirkning_og_planfag
+  rekkefolgekrav_og_juss
+
+people:
+  aktorer_og_press
+  interne_fagmiljoer
+  politisk_lesbarhet
+
+conflict:
+  grontdrag_skolevei_stoy
+  utbyggerpress_og_integritet
+  kart_vs_levd_nabolag
+
+story:
+  linjen_pa_kartet
+  planleggerens_integritet
+  kartet_er_ikke_noytralt
+
+event:
+  frist_for_utvalg
+  nabomote
+  politisk_behandling
+  klage_eller_omkamp
+
+micro:
+  plankart_avklaringer
+  vedlegg_og_figurer
+  korte_interne_svar
+  kalender_og_moter
+
+followup:
+  tempo_ble_risiko
+  presisjon_ble_friksjon
+  lokal_kunnskap_endret_saken
+  utbygger_signal_kommer_tilbake
+
+knowledge:
+  reguleringsplan
+  hensynssone
+  rekkefolgekrav
+  medvirkning
+  overvann
+  stoy
+  skolevei
+
+consequence:
+  tillit_i_planavdeling
+  juridisk_risiko
+  politisk_uro
+  faglig_integritet
+  burnout_eller_autonomi
+```
+
+## 17. Arealplanlegger: History Go-koblinger
+
+Arealplanlegger bør kobles til History Go gjennom steder, begreper, personer og debatter.
+
+Mulige place targets:
+
+```text
+radhuset_planavdeling
+oslo_planomrade_indre_by
+grontdrag_lillebekk
+skolevei_lillebekk
+kollektivknutepunkt_bryn
+politisk_utvalg_moterom
+gis_plankart_arbeidsflate
+```
+
+Mulige knowledge targets:
+
+```text
+reguleringsplan
+arealformål
+hensynssone
+rekkefølgekrav
+planbestemmelser
+ROS-analyse
+medvirkning
+støy
+sol/skygge
+overvann
+grønnstruktur
+parkering
+kollektivdekning
+skolevei
+```
+
+Mulige History Go-oppgaver:
+
+```text
+Åpne stedet i History Go.
+Les stedskontekst.
+Ta quiz om reguleringsplan.
+Lås opp begrep om hensynssone.
+Les person-/institusjonskort om planavdeling.
+Delta i debatt om fortetting vs grøntdrag.
+Fullfør task før bedre svaralternativ gir full effekt.
+```
+
+## 18. Arealplanlegger: konsekvensmodell
+
+Typiske valg og konsekvenser:
+
+| Valgstil | Kort effekt | Senere risiko | Psyke/rolle |
+|---|---|---|---|
+| Faglig presisjon | Øker tillit hos fagmiljø | Mer friksjon med utbygger/politikk | Mer integritet, mer synlighet |
+| Tempo og smidighet | Saken går raskere | Klage, svak juss, svakere tillit | Mindre integritet, mer risiko |
+| Politisk forenkling | Lettere behandling | Reell konflikt skjules | Mer synlighet, mindre autonomi |
+| Medvirkning tas alvorlig | Bedre lokalkunnskap | Forsinkelse og irritasjon | Mer tillit, lavere tempo |
+| Utbyggerdialog blir for tett | Kortvarig framdrift | Integritets- og habilitetsfølelse | Lavere autonomy / høyere burnout |
+
+## 19. Arealplanlegger: validator-krav
+
+Testen bør sikre:
+
+```text
+roleModel finnes
+mailPlan finnes
+mailFamilies finnes for job, people, story, conflict, event
+allowed_families finnes som family.id
+people-mails har bred cast
+DailyMailBuilder kan bygge full dag
+runtime dekker morning, forenoon, workday, lunch, afternoon, dinner, evening, day_end
+runtime inkluderer flere mail_type
+ingen debug gaps for people/story/conflict/event/lunsj/kveld
+```
+
+Dette finnes allerede delvis i:
+
+```text
+tests/civication-arealplanlegger-mail-plan.test.js
+```
+
+## 20. Generelle regler fremover
 
 1. Les kildefilene før endring.
 2. Ikke gjett schema.
 3. Ikke lag quick-fix i UI for dataproblemer.
 4. RoleModel først, mailFamily etterpå.
-5. Resolveren eier rolleidentitet.
-6. MailPlan eier dramaturgisk progresjon.
-7. MailFamily eier konkrete situasjoner.
-8. MailRuntime eier valg av neste jobbmail.
-9. MailEngine eier innboks/lagring.
-10. EventEngine eier generisk hendelsesflyt/fallback.
-11. LifeMailRuntime eier livshendelser utenfor jobbspor.
-12. Valider JSON og family-koblinger etter hver strukturelle endring.
+5. Hver jobb skal ha en historie.
+6. Hver rolle skal ha et personkart.
+7. Hver rolle skal ha et konfliktkart.
+8. Hver rolle skal ha et hovedcase.
+9. Resolveren eier rolleidentitet.
+10. MailPlan eier dramaturgisk progresjon.
+11. MailFamily eier konkrete situasjoner.
+12. MailRuntime eier valg av neste jobbmail.
+13. DailyMailBuilder eier dagens rytme.
+14. MailEngine eier innboks/lagring.
+15. EventEngine eier generisk hendelsesflyt/fallback/svar.
+16. LifeMailRuntime eier livshendelser utenfor jobbspor.
+17. Day/faction/alliance-lag scorer og vekter. De skal ikke definere rollen fra bunnen.
+18. History Go skal være kunnskaps- og handlingsrommet.
+19. Valider JSON og family-koblinger etter hver strukturelle endring.
+20. Ikke bygg ny motor hvis eksisterende runtime kan løse problemet med bedre data.
 
-## 18. Kort arkitekturdiagram
+## 21. Kort arkitekturdiagram
 
 ```text
 badges.json
@@ -724,249 +1483,6 @@ roleModels/manifest.json
 roleModels/{category}/{role_scope}.json
   ↓
 CivicationRoleModelRuntime
-  ↓
-mailPlans/{category}/{role_scope}_plan.json
-  ↓
-mailFamilies/{category}/{type}/{role_scope}_{type}.json
-  ↓
-CivicationMailRuntime / CivicationEventEngine
-  ↓
-CivicationMailEngine
-  ↓
-Civication UI inbox / arbeidsdag
-  ↓
-player choice
-  ↓
-state, progression, consumed mails, consequences
-```
-
-## 19. Civication Daily Runtime v1: én spillbar dag
-
-Civication har nå et dagruntime-lag som ligger over den langsiktige rolleprogresjonen. Dette betyr at systemet ikke bare leverer én jobbmail av gangen. Det kan bygge en faktisk spillbar arbeidsdag med morgen, lunsj, ettermiddag, kveld og dagslutt.
-
-Viktig prinsipp:
-
-```text
-MailRuntime = langsiktig rolleprogresjon
-DailyMailBuilder = dagens spillbare rytme
-MailDayProgram = dagsstruktur og volum
-IncomingFlow = kanal, batch, followups og konsekvenser
-CareerOutcomeRuntime = terminale jobbresultater
-DayPatches = faseflyt, carryover og dagfase-UI
-```
-
-### 19.1 DailyMailBuilder
-
-Filen:
-
-```text
-js/Civication/systems/civicationDailyMailBuilder.js
-```
-
-bygger én faktisk Civication-arbeidsdag fra:
-
-```text
-data/Civication/mailDayProgram.json
-```
-
-DailyMailBuilder eier dagsbunke og rytme. MailRuntime eier fortsatt langsiktig rolleprogresjon. Bare dagens primære planmail skal normalt få `source_type: "planned"` og flytte `rolePlan` videre. Micro-, followup-, knowledge-, consequence- og day_end-mail er dagsinnhold og skal ikke flytte rolePlan alene.
-
-Viktig state-nøkkel:
-
-```text
-mail_day_runtime_v1
-```
-
-Runtime inneholder blant annet:
-
-```text
-date
-role_scope
-role_id
-career_id
-role_title
-plan_id
-target_minutes
-delivered_ids
-answered_ids
-current_index
-items[]
-```
-
-### 19.2 mailDayProgram
-
-Filen:
-
-```text
-data/Civication/mailDayProgram.json
-```
-
-definerer dagsrytmen:
-
-```text
-morning -> lunch -> afternoon -> evening -> day_end
-```
-
-Dagen er delt inn i slots, ikke bare én hendelse. Eksempler:
-
-```text
-morning_brief
-primary_work_mail
-operational_mail
-people_ping
-phase_lunch
-informal_people_mail
-conflict_or_event
-analysis_followup
-knowledge_mail
-phase_evening
-consequence_mail
-relationship_or_status
-day_summary
-```
-
-Målet med dette laget er at en Civication-dag skal føles som en hel arbeidsdag: hovedoppgave, små driftsavklaringer, personer, konflikt, kunnskap, konsekvens og dagsoppsummering.
-
-### 19.3 Faseflyt og dagsslutt
-
-Faseflyten ligger i:
-
-```text
-js/Civication/systems/day/dayPatches.js
-```
-
-Når spilleren svarer på dagens pending event, flyttes kalenderen videre:
-
-```text
-morning -> lunch
-lunch -> afternoon
-afternoon -> evening
-evening -> day_end
-day_end -> resetForNewDay()
-```
-
-Ved `day_end` lagres dagsoppsummering og eventuell ukeslogikk kan ferdigstilles. `dayPatches.js` bygger også dagfase-HUD i arbeidsdagspanelet, slik at spilleren ser hvor i dagen han er.
-
-### 19.4 IncomingFlow
-
-Filen:
-
-```text
-js/Civication/systems/civicationIncomingFlow.js
-```
-
-samler lavnivålogikk for innkommende meldinger:
-
-```text
-getPendingJobMails()
-getPendingPrivateMessages()
-getActiveWorkdayItem()
-enqueueBatch()
-enqueueFollowup()
-normalizeConsequences()
-applyConsequences()
-inspect()
-```
-
-Dette laget kjenner til batch-typer:
-
-```text
-morning
-workday
-evening
-role_arc
-private_arc
-```
-
-og phase-tags:
-
-```text
-morning
-work
-lunch
-afternoon
-evening
-day_end
-```
-
-Det skal sørge for at jobbmail, private meldinger, systemmeldinger, followups og konsekvenser ikke blandes feil.
-
-### 19.5 CareerOutcomeRuntime
-
-Filen:
-
-```text
-js/Civication/systems/civicationCareerOutcomeRuntime.js
-```
-
-eier terminale jobbresultater når en rolePlan er ferdig. Den skal hindre at systemet faller tilbake til gamle legacy/fallback-mails etter at rolleprogresjonen egentlig er over.
-
-Terminale statuser:
-
-```text
-PROMOTED
-STAGNATED
-FIRED
-```
-
-Utfallene bygger på signaler som:
-
-```text
-completionRatio
-score
-strikes
-warningUsed
-stability
-```
-
-Stagnasjon skal merkes som et faktisk spillutfall, ikke som repetert fallback. Det kan gi lavere autonomi, kveldspress og flere morgenvalg. Sparken avslutter aktiv rolle. Forfremmelse markerer at spilleren er klar for mer ansvar.
-
-### 19.6 Controller som første reelle vertical slice
-
-Controller er den tydeligste testede rollen nå. Den har en to-ukers praksisfortelling med veksel mellom jobbmail og private meldinger, konkrete konsekvenstråder, branch flags og effekt-signaler.
-
-Viktig test:
-
-```text
-tests/civication-controller-two-week-flow.test.js
-```
-
-Denne testen sikrer blant annet at:
-
-```text
-controller_plan har 20 første package-steg
-jobbmail og private meldinger ikke lekker til feil kanal
-planned mails ikke bruker fallback progression
-hvert valg kan trigge consequence thread
-choice effects og next_bias flags skrives til branch state
-forskjellige spillstiler gir ulike signalprofiler
-```
-
-Dette betyr at neste arbeid ikke bør starte med ny motor. Neste arbeid bør bruke eksisterende motor til å polere første spillbare opplevelse:
-
-```text
-Civication Dag 1 — Controller
-```
-
-Målet er én tydelig, spillbar dag der spilleren opplever:
-
-```text
-morgenstart
-jobbhovedsak
-private/personlige signaler
-konkret arbeidsvalg
-konsekvens/followup
-kveldspress eller relasjonseffekt
-dagslutt
-carryover til neste dag
-```
-
-### 19.7 Oppdatert arkitektur med dagmotor
-
-```text
-badges.json
-  ↓
-roleModels/{category}/{role_scope}.json
   ↓
 mailPlans/{category}/{role_scope}_plan.json
   ↓
@@ -982,6 +1498,8 @@ Civication UI inbox + WorkdayPanel + dayphase HUD
   ↓
 player choice
   ↓
+CivicationEventEngine answer/resolution
+  ↓
 dayChoiceDirector / dayConsequences / task/capital/psyche effects
   ↓
 CivicationCareerOutcomeRuntime
@@ -989,17 +1507,9 @@ CivicationCareerOutcomeRuntime
 promotion / stagnation / fired / next-day carryover
 ```
 
-### 19.8 Nye regler etter dagmotoren
+## 22. Hurtigsjekk i konsoll
 
-1. Ikke bygg ny dagsmotor før `CivicationDailyMailBuilder`, `mailDayProgram.json` og `dayPatches.js` er kontrollert.
-2. Ikke legg dagsrytme direkte i UI. Dagsrytme skal komme fra `mailDayProgram.json` og runtime.
-3. Ikke la micro/followup/day_end-mail flytte rolePlan med mindre det er et eksplisitt produktvalg.
-4. Ikke bland jobbmail og private meldinger. Bruk `channel`, `messageChannel`, `mail_class`, `mail_type`, `phase_tag` og `CivicationEventChannels`.
-5. Terminale jobbutfall skal gå via `CivicationCareerOutcomeRuntime`, ikke generisk fallback.
-6. Controller-flyten skal brukes som referanse før nye roller bygges like dypt.
-7. Når noe endrer profil/progresjon/psyke/kapital, skal UI oppdateres med `window.dispatchEvent(new Event("updateProfile"));` der det er relevant.
-
-### 19.9 Hurtigsjekk i konsoll
+Bruk disse før nye endringer hvis problemet gjelder dagflyt, mailrekkefølge, kanalblanding, progresjon, outcome eller manglende dagslutt.
 
 ```js
 CivicationDailyMailBuilder.inspect()
@@ -1014,6 +1524,10 @@ CivicationMailRuntime.inspect()
 ```
 
 ```js
+CivicationRoleModelRuntime.inspect()
+```
+
+```js
 CivicationIncomingFlow.inspect()
 ```
 
@@ -1021,4 +1535,24 @@ CivicationIncomingFlow.inspect()
 CivicationCareerOutcomeRuntime?.inspect?.()
 ```
 
-Bruk disse før nye endringer hvis problemet gjelder dagflyt, mailrekkefølge, kanalblanding, progression, outcome eller manglende dagslutt.
+## 23. Arbeidsregel for neste rolle
+
+Når neste rolle skal bygges, start med denne korte malen:
+
+```text
+Rolle:
+Hovedcase:
+Tittel på minifortelling:
+Kjernefortelling:
+Daglige arbeidsoppgaver:
+Personkart:
+Konfliktkart:
+Kompetanseakser:
+MailPlan 8-12 steg:
+MailFamilies:
+History Go targets:
+Konsekvensmodell:
+Validator:
+```
+
+Hvis dette ikke kan fylles ut, er rollen ikke klar for avanserte mailer.
