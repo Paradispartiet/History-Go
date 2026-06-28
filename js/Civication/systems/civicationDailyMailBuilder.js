@@ -1366,7 +1366,7 @@
   function rowSummary(row) {
     const event = row?.event || {};
     const choices = Array.isArray(event?.choices) ? event.choices : [];
-    return { id: norm(event?.id || row?.id), subject: norm(event?.subject || row?.subject), mail_type: norm(event?.mail_type || event?.type || row?.mail_type), slot: norm(row?.slot || event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: norm(row?.phase || event?.phase_tag), required: row?.optional !== true, optional: row?.optional === true, hasChoices: choices.length > 0, choiceCount: choices.length };
+    return { id: norm(event?.id || row?.id), subject: norm(event?.subject || row?.subject), mail_type: norm(event?.mail_type || event?.type || row?.mail_type), type: norm(event?.type), slot: norm(row?.slot || event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: norm(row?.phase || event?.phase_tag), required: row?.optional !== true, optional: row?.optional === true, hasChoices: choices.length > 0, choiceCount: choices.length, choices: choices.map(choice => ({ id: norm(choice?.id), label: norm(choice?.label || choice?.text || choice?.id) })).filter(choice => choice.id), body: norm(event?.body), text: norm(event?.text), situation: Array.isArray(event?.situation) ? event.situation.map(norm).filter(Boolean) : norm(event?.situation), description: norm(event?.description), snippet: norm(event?.snippet), prompt: norm(event?.prompt), summary: norm(event?.summary), task_id: norm(event?.task_id || row?.task_id) };
   }
 
   function getPhaseBundle(phase) {
@@ -1797,6 +1797,7 @@
     getPhaseCompletion: (phase) => { const b = getPhaseBundle(phase); return { requiredCount: b.requiredCount, completedCount: b.completedCount, isComplete: b.isComplete }; },
     getDaySummary: () => window.CivicationDayProgression?.getDayEndSummary?.() || null,
     markAnswered,
+    answerBundleItem: markAnswered,
     markHandled,
     isDailyEvent,
     hasBuiltDayForActiveRole,

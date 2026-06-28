@@ -4,7 +4,7 @@ global.window=global; global.Event=function(t){this.type=t}; global.dispatchEven
 let phase='forenoon'; const inbox=[];
 const runtime={date:new Date().toISOString().slice(0,10),role_scope:"arealplanlegger",current_index:0,items:[
  {phase:'forenoon',slot:'primary_work_mail',status:'queued',event:{id:'w1',subject:'Plansak',phase_tag:'forenoon'}},
- {phase:'forenoon',slot:'people_ping',status:'queued',event:{id:'w2',subject:'Kollega',phase_tag:'forenoon',mail_type:'people',choices:[{id:'A',label:'Svar'}]}},
+ {phase:'forenoon',slot:'people_ping',status:'queued',event:{id:'w2',subject:'Kollega',phase_tag:'forenoon',mail_type:'people',body:'Hva gjør du med innspillet?',choices:[{id:'A',label:'Stå på faglig vurdering'},{id:'B',label:'Be om mer medvirkning'}]}},
  {phase:'forenoon',slot:'context',status:'queued',event:{id:'w0',subject:'Les dette',phase_tag:'forenoon',mail_type:'generated'}},
  {phase:'forenoon',slot:'small_choice',status:'answered',event:{id:'w3',subject:'Valg',phase_tag:'forenoon'}},
  {phase:'workday',slot:'main_delivery',status:'queued',event:{id:'wd1',subject:'Leveranse',phase_tag:'workday'}}
@@ -25,10 +25,15 @@ vm.runInThisContext(fs.readFileSync(path.join(__dirname,'..','js/Civication/syst
  assert.strictEqual(opened.pendingItems.length,3,'delivered bundle items are visible/actionable');
  assert.strictEqual(opened.pendingItems.find(x=>x.id==='w0').hasChoices,false,'generated/read-only item exposes no choices');
  assert.strictEqual(opened.pendingItems.find(x=>x.id==='w2').hasChoices,true,'choice item still exposes choices');
+ assert.deepStrictEqual(opened.pendingItems.find(x=>x.id==='w2').choices.map(c=>c.label), ['Stå på faglig vurdering','Be om mer medvirkning'], 'bundle summaries expose inline choice labels');
+ assert.strictEqual(opened.pendingItems.find(x=>x.id==='w2').body, 'Hva gjør du med innspillet?', 'bundle summaries expose body/snippet text');
  assert.strictEqual(global.CivicationDayProgression.inspect().canAdvance,false,'delivered required items block phase advance');
  await global.CivicationDailyMailBuilder.markHandled('w0');
  assert.strictEqual(runtime.items.find(x=>x.event.id==='w0').status,'answered','read-only/generated item can be marked handled');
- assert.strictEqual(global.CivicationDayProgression.inspect().canAdvance,false,'choice/required delivered items still block');
+ await global.CivicationDailyMailBuilder.answerBundleItem('w2','B');
+ assert.strictEqual(runtime.items.find(x=>x.event.id==='w2').status,'answered','inline choice wrapper marks runtime row answered');
+ assert.strictEqual(runtime.items.find(x=>x.event.id==='w2').choice_id,'B','inline choice wrapper stores selected choice id');
+ assert.strictEqual(global.CivicationDayProgression.inspect().canAdvance,false,'remaining delivered required items still block');
  runtime.items.filter(x=>x.phase==='forenoon').forEach(x=>x.status='answered');
  assert.strictEqual(global.CivicationDayProgression.inspect().canAdvance,true,'answered bundle can advance');
  console.log('civication-phase-bundle.test.js passed');

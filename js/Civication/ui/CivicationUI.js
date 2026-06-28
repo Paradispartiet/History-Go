@@ -1149,6 +1149,27 @@ function buildDayPlanSectionHtml(_plan) {
  * @param {any} dayPhase
  * @returns {string}
  */
+function getBundleItemText(item) {
+  const fields = [item?.body, item?.text, item?.situation, item?.description, item?.snippet, item?.prompt, item?.summary];
+  for (const field of fields) {
+    if (Array.isArray(field)) {
+      const text = field.map((part) => String(part || "").trim()).filter(Boolean).join(" ");
+      if (text) return text;
+      continue;
+    }
+    const text = String(field || "").trim();
+    if (text) return text;
+  }
+  return String(item?.subject || "").trim();
+}
+
+function isBundleTaskGate(item) {
+  return [item?.mail_type, item?.type, item?.slot, item?.kind]
+    .map((value) => String(value || "").toLowerCase())
+    .join(" ")
+    .includes("task_gate");
+}
+
 function buildDayPhaseSectionHtml(dayPhase) {
   if (!dayPhase || !dayPhase.hasBundle) return "";
 
@@ -1172,15 +1193,26 @@ function buildDayPhaseSectionHtml(dayPhase) {
         .map((it) => {
           const id = String(it.id || "");
           const optional = it.optional === true || it.required === false;
-          const hasChoices = it.hasChoices === true || Number(it.choiceCount || 0) > 0;
-          const action = hasChoices
-            ? `<button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Svar</button>`
-            : `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}">Marker håndtert</button>`;
-          const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}" data-civi-skip-optional="true">Hopp over</button>` : "";
+          const choices = Array.isArray(it.choices) ? it.choices : [];
+          const hasChoices = choices.length > 0 || it.hasChoices === true || Number(it.choiceCount || 0) > 0;
+          const bodyText = getBundleItemText(it);
+          const taskGate = isBundleTaskGate(it);
+          let action = "";
+          if (taskGate) {
+            action = `<p class="civi-workday-sub">Oppgave som må gjøres før du kan gå videre</p><button class="civi-btn secondary" type="button" data-civi-bundle-task="${escapeHtml(id)}">Gjør oppgave</button>`;
+          } else if (hasChoices && choices.length) {
+            action = `<div class="civi-workday-bundle-choices" role="group" aria-label="Svaralternativer">${choices.map((choice) => `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${escapeHtml(id)}" data-civi-bundle-choice="${escapeHtml(choice.id || "")}">${escapeHtml(choice.label || choice.id || "Velg")}</button>`).join(" ")}</div>`;
+          } else if (hasChoices) {
+            action = `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${escapeHtml(id)}" data-civi-bundle-choice="A">Vis valg</button>`;
+          } else {
+            action = `<p class="civi-workday-sub">Dette er en beskjed / automatisk hendelse.</p><button class="civi-btn secondary" type="button" data-civi-bundle-handled="${escapeHtml(id)}" title="Marker håndtert">Ferdig med denne</button>`;
+          }
+          const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-bundle-skip="${escapeHtml(id)}">Hopp over</button>` : "";
           return `<article class="civi-workday-bundle-card" style="padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;">
             <strong>${escapeHtml(it.subject || it.slot || it.id || "Hendelse")}</strong>
-            <div class="civi-workday-sub">${escapeHtml(it.mail_type || "mail")} · ${escapeHtml(it.slot || "slot")} · ${escapeHtml(it.status || "status")} · ${optional ? "valgfri" : "påkrevd"}</div>
-            <div style="margin-top:6px;"><button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Åpne</button> ${action} ${skip}</div>
+            <div class="civi-workday-sub">${escapeHtml(it.mail_type || "mail")} · ${escapeHtml(it.slot || "slot")} · ${escapeHtml(it.status || "status")} · ${optional ? "Valgfri" : "Påkrevd"}</div>
+            ${bodyText ? `<p class="civi-workday-sub">${escapeHtml(bodyText)}</p>` : ""}
+            <div style="margin-top:6px;">${action} ${skip}</div>
           </article>`;
         })
         .join("")}</div>`
@@ -1191,7 +1223,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
   const actionHtml = action.kind === "open_bundle"
     ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>Åpne hele bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-next-event>Åpne neste</button>`
     : action.kind === "continue_bundle"
-      ? `<button class="civi-btn" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Fortsett bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Åpne neste i bolken</button>`
+      ? `<span class="civi-workday-sub">Fortsett bolken: svar direkte i kortene under.</span>`
       : action.kind === "advance_phase"
       ? `<button class="civi-btn" type="button" data-civi-advance-phase>Gå til neste fase</button>`
       : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
@@ -1419,36 +1451,51 @@ if (prependHtml) {
   host.insertAdjacentHTML("afterbegin", prependHtml);
 }
 
-host.querySelectorAll("[data-civi-open-phase-bundle]").forEach(function (btn) {
-  btn.addEventListener("click", async function () {
-    const res = await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
-    const inspection = window.CivicationDayProgression?.inspect?.();
-    openFirstDailyMailFromInspection(inspection || { phaseBundle: { items: (res?.events || []).map(function (ev) { return { id: ev?.id, status: "delivered" }; }) } });
-    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+if (typeof host.addEventListener === "function" && !host.__civiWorkdayBundleDelegated) {
+  host.__civiWorkdayBundleDelegated = true;
+  host.addEventListener("click", async function (event) {
+    const btn = event.target?.closest?.("button");
+    if (!btn || !host.contains(btn) || btn.disabled) return;
+    if (btn.matches("[data-civi-open-phase-bundle]")) {
+      event.preventDefault();
+      await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+      return;
+    }
+    if (btn.matches("[data-civi-open-next-event]")) {
+      event.preventDefault();
+      await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false });
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+      return;
+    }
+    if (btn.matches("[data-civi-bundle-choice]")) {
+      event.preventDefault();
+      const mailId = btn.getAttribute("data-civi-bundle-event");
+      const choiceId = btn.getAttribute("data-civi-bundle-choice");
+      if (mailId && choiceId) {
+        const builder = window.CivicationDailyMailBuilder;
+        if (typeof builder?.answerBundleItem === "function") await builder.answerBundleItem(mailId, choiceId);
+        else await builder?.markAnswered?.(mailId, choiceId);
+        try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+      }
+      return;
+    }
+    if (btn.matches("[data-civi-bundle-handled], [data-civi-bundle-skip]")) {
+      event.preventDefault();
+      const mailId = btn.getAttribute("data-civi-bundle-handled") || btn.getAttribute("data-civi-bundle-skip");
+      if (mailId) {
+        await window.CivicationDailyMailBuilder?.markHandled?.(mailId, btn.matches("[data-civi-bundle-skip]") ? "skipped" : "handled");
+        try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+      }
+      return;
+    }
+    if (btn.matches("[data-civi-bundle-task]")) {
+      event.preventDefault();
+      const mailId = btn.getAttribute("data-civi-bundle-task");
+      if (mailId) openTaskModalByMailId(mailId);
+    }
   });
-});
-
-host.querySelectorAll("[data-civi-open-next-event]").forEach(function (btn) {
-  btn.addEventListener("click", async function () {
-    await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false });
-    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-  });
-});
-host.querySelectorAll("[data-civi-open-bundle-item]").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    const mailId = btn.getAttribute("data-civi-open-bundle-item");
-    if (!mailId) return;
-    openDailyMailById(mailId);
-  });
-});
-host.querySelectorAll("[data-civi-mark-bundle-item-handled]").forEach(function (btn) {
-  btn.addEventListener("click", async function () {
-    const mailId = btn.getAttribute("data-civi-mark-bundle-item-handled");
-    if (!mailId) return;
-    await window.CivicationDailyMailBuilder?.markHandled?.(mailId, btn.getAttribute("data-civi-skip-optional") ? "skipped" : "handled");
-    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-  });
-});
+}
 
 host.querySelectorAll("[data-civi-advance-phase]").forEach(function (btn) {
   btn.addEventListener("click", async function () {
