@@ -194,6 +194,55 @@ async function run() {
     'Day 1 should include a day_end carryover slot'
   );
 
+  const dayOneAudit = runtime.items.map((row, index) => ({
+    index,
+    phase: row.phase,
+    slot: row.slot,
+    type: row.event?.mail_type,
+    id: row.event?.source_mail_id || row.event?.id,
+    subject: row.event?.subject
+  }));
+  console.log('Arealplanlegger Day 1 audit map:');
+  console.table(dayOneAudit);
+
+  const expectedPhaseOrder = ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'];
+  assert.deepStrictEqual(
+    [...new Set(dayOneAudit.map(row => row.phase))],
+    expectedPhaseOrder,
+    'Day 1 should be auditable as one coherent day in the expected phase order'
+  );
+
+  const phaseText = phase => JSON.stringify(runtime.items
+    .filter(row => row.phase === phase)
+    .map(row => row.event || {})).toLowerCase();
+  const hasAny = (text, terms) => terms.some(term => text.includes(term));
+  assert(hasAny(phaseText('morning'), ['lillebekk', 'plankart', 'linje']), 'morning should open Lillebekk/plankart context');
+  assert(hasAny(phaseText('forenoon'), ['plankart', 'stedsanalyse', 'analyse', 'nabolag', 'høydeillustrasjon']), 'forenoon should establish plankart/stedsanalyse work');
+  assert(hasAny(phaseText('workday'), ['konflikt', 'utvalg', 'frist', 'målkonflikt', 'politisk', 'grøntdrag', 'skolevei', 'støy']), 'workday should introduce area-planning conflict');
+  assert(hasAny(phaseText('lunch'), ['nabo', 'skolekontakt', 'lokal', 'snarveien', 'medvirkning']), 'lunch should add people/local knowledge');
+  assert(hasAny(phaseText('afternoon'), ['utbygger', 'grønnstruktur', 'sol/skygge', 'konflikt', 'press']), 'afternoon should follow up conflict or pressure');
+  assert(hasAny(phaseText('evening'), ['knowledge', 'consequence', 'hensynssone', 'planbestemmelser', 'læring', 'risiko']), 'evening should land in knowledge/consequence');
+  assert(hasAny(phaseText('day_end'), ['følger med', 'carryover', 'i morgen', 'læringspunkt', 'dagslutt']), 'day_end should carry the day forward');
+
+  const sourceBackedItems = runtime.items.filter(row => row.event?.source_type !== 'daily_generated');
+  for (const row of sourceBackedItems) {
+    const mail = row.event || {};
+    for (const field of ['learning_focus', 'narrative_arc', 'choice_axis', 'consequence_axis']) {
+      assert(mail[field] !== undefined && mail[field] !== null, `${mail.id} should declare ${field} in Day 1 runtime`);
+    }
+    assert(mail.from || mail.sender || mail.person_id || mail.source, `${mail.id} should have a concrete sender in Day 1 runtime`);
+    assert(mail.task_domain || mail.pressure, `${mail.id} should have a concrete work task or pressure in Day 1 runtime`);
+    assert(Array.isArray(mail.choices) && mail.choices.length >= 2, `${mail.id} should keep a clear choice in Day 1 runtime`);
+  }
+
+  const sourceIds = sourceBackedItems.map(row => String(row.event?.source_mail_id || row.event?.id || '').toLowerCase());
+  assert(!sourceIds.some(id => /week2|second_week|mastery|advanced/.test(id)), 'Day 1 should not pull week2/mastery/advanced source mails');
+  const firstFollowupIndex = runtime.items.findIndex(row => row.event?.mail_type === 'followup');
+  const firstConflictIndex = runtime.items.findIndex(row => ['conflict', 'event'].includes(row.event?.mail_type));
+  assert(firstFollowupIndex === -1 || (firstConflictIndex !== -1 && firstConflictIndex < firstFollowupIndex), 'followup mails should have a logical conflict/event source earlier in Day 1');
+  const firstConsequenceIndex = runtime.items.findIndex(row => row.event?.mail_type === 'consequence');
+  assert(firstConsequenceIndex === -1 || runtime.items.slice(0, firstConsequenceIndex).some(row => Array.isArray(row.event?.choices) && row.event.choices.length >= 2), 'consequence mail should not arrive before relevant player choices exist');
+
   const map = await global.CivicationDebug.buildDebugMap('by_radgiver_plan');
   assert.strictEqual(map.roleModel.exists, true, 'debug roleModel should exist');
   assert.strictEqual(map.mailPlan.exists, true, 'debug mailPlan should exist');
