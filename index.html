@@ -182,6 +182,10 @@
                   type="button">Steder</button>
 
           <button class="nearby-tab"
+                  data-leftmode="favorites"
+                  type="button">Favoritter</button>
+
+          <button class="nearby-tab"
                   data-leftmode="people"
                   data-i18n="ui.tabs.people"
                   type="button">Folk</button>
@@ -209,8 +213,9 @@
       </div>
 
       <div class="nearby-row2">
-        <div id="leftPeopleList" class="nearby-strip" hidden></div>
         <div id="nearbyList" class="nearby-strip"></div>
+        <div id="leftFavoritesList" class="nearby-strip" hidden></div>
+        <div id="leftPeopleList" class="nearby-strip" hidden></div>
         <div id="leftNatureList" class="nearby-strip" hidden></div>
         <div id="leftMusicList" class="nearby-strip" hidden></div>
         <div id="leftRoutesList" class="nearby-strip" hidden></div>
@@ -247,7 +252,7 @@
 
     <!-- Tekst øverst -->
     <div class="pc-text">
-      <h2 id="pcTitle"></h2>
+      <div class="pc-title-row"><h2 id="pcTitle"></h2><button id="pcFavorite" class="pc-favorite-btn" type="button" aria-label="Legg til favoritt" title="Legg til favoritt">☆</button></div>
       <div id="pcMeta" class="pc-meta"></div>
       <p id="pcDesc" class="pc-desc"></p>
     </div>

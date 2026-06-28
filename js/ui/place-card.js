@@ -800,6 +800,7 @@ const frontImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById
 const quizCardImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcQuizCardImage"));
 const quizCardContentEl = document.getElementById("pcQuizCardContent");
 const titleEl    = document.getElementById("pcTitle");
+const favoriteBtn = document.getElementById("pcFavorite");
 const metaEl     = document.getElementById("pcMeta");
 const descEl     = document.getElementById("pcDesc");
 const lesesporEl = document.getElementById("pcLesespor");
@@ -1134,6 +1135,28 @@ if (!card) return;
   setPlaceCardImgSrcStable(miniImgEl, frontImgEl?.getAttribute("src") || String(place.image ?? ""));
   
   if (titleEl) titleEl.textContent = String(place.name || "");
+  if (favoriteBtn) {
+    const updatePlaceCardFavorite = () => {
+      const active = !!window.HGFavoritePlaces?.has?.(place.id);
+      favoriteBtn.classList.toggle("is-active", active);
+      favoriteBtn.textContent = active ? "★" : "☆";
+      const label = active ? "Fjern favoritt" : "Legg til favoritt";
+      favoriteBtn.setAttribute("aria-label", label);
+      favoriteBtn.title = label;
+    };
+    updatePlaceCardFavorite();
+    favoriteBtn.onclick = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.HGFavoritePlaces?.toggle?.(place.id);
+      updatePlaceCardFavorite();
+      if (typeof window.rerenderActiveLeftPanelMode === "function") {
+        window.rerenderActiveLeftPanelMode();
+      } else if (typeof window.renderLeftFavoritesList === "function") {
+        window.renderLeftFavoritesList();
+      }
+    };
+  }
   const categoryLabel = (window.CATEGORY_LIST || []).find(c => String(c?.id || "").trim() === String(place.category || "").trim())?.name || place.category || "";
   const sportProfile = /** @type {any} */ ((place?.category === "sport" && place?.sport_profile && typeof place.sport_profile === "object") ? place.sport_profile : null);
   if (metaEl) {
