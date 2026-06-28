@@ -84,19 +84,63 @@ async function run() {
     assert(familiesById.has(familyId), `mailPlan allowed_families should exist: ${familyId}`);
   }
 
+  const requiredMailFields = [
+    'id',
+    'mail_type',
+    'mail_family',
+    'role_scope',
+    'phase',
+    'priority',
+    'place_id',
+    'subject',
+    'summary',
+    'purpose',
+    'stakes',
+    'situation',
+    'task_domain',
+    'task_kind',
+    'competency',
+    'pressure',
+    'choice_axis',
+    'consequence_axis',
+    'narrative_arc',
+    'learning_focus',
+    'choices'
+  ];
+
   for (const type of ['micro', 'followup', 'knowledge', 'consequence']) {
     const catalog = catalogs.find(row => row.mail_type === type);
+    assert(catalog, `Arealplanlegger should have a ${type} family catalog`);
     const mails = (catalog.families || []).flatMap(family => family.mails || []);
     const minimums = { micro: 16, followup: 8, knowledge: 8, consequence: 8 };
     assert(mails.length >= minimums[type], `Arealplanlegger should include at least ${minimums[type]} ${type} mails`);
     for (const mail of mails) {
+      for (const field of requiredMailFields) {
+        assert(mail[field] !== undefined && mail[field] !== null, `${mail.id} should declare ${field}`);
+      }
+      assert.strictEqual(mail.role_scope, 'by_radgiver_plan', `${mail.id} should stay in by_radgiver_plan runtime scope`);
+      assert.strictEqual(mail.mail_type, type, `${mail.id} should have matching mail_type`);
       assert(mail.from || mail.sender || mail.person_id, `${mail.id} should have a concrete sender`);
       assert(mail.task_domain && mail.competency, `${mail.id} should have a concrete work task and competency`);
       assert(mail.pressure && mail.choice_axis, `${mail.id} should have a fagproblem and choice under pressure`);
       assert(mail.consequence_axis, `${mail.id} should declare consequence_axis`);
+      assert(Array.isArray(mail.situation) && mail.situation.length > 0, `${mail.id} should declare situation`);
       assert(Array.isArray(mail.learning_focus) && mail.learning_focus.length > 0, `${mail.id} should declare learning_focus`);
+      assert(Array.isArray(mail.choices) && mail.choices.length >= 2, `${mail.id} should include at least two choices`);
       assert(mail.next_bias || mail.triggers_on_choice, `${mail.id} should declare next_bias or triggers_on_choice`);
+      if (['followup', 'consequence'].includes(type)) {
+        assert(mail.next_bias, `${mail.id} should declare next_bias for branch steering`);
+        assert(mail.triggers_on_choice, `${mail.id} should declare triggers_on_choice for branch follow-up`);
+        assert(mail.branch_flags && (Array.isArray(mail.branch_flags) ? mail.branch_flags.length > 0 : Object.keys(mail.branch_flags).length > 0), `${mail.id} should declare branch_flags`);
+        assert(Array.isArray(mail.tags) && mail.tags.length > 0, `${mail.id} should declare tags`);
+      }
     }
+  }
+
+  const knowledgeCatalog = catalogs.find(row => row.mail_type === 'knowledge');
+  const knowledgeText = JSON.stringify(knowledgeCatalog).toLowerCase();
+  for (const term of ['reguleringsplan', 'arealformål', 'hensynssone', 'rekkefølgekrav', 'planbestemmelser', 'ros-analyse', 'medvirkning', 'støy', 'sol/skygge', 'overvann', 'grønnstruktur', 'parkering', 'kollektivdekning', 'skolevei']) {
+    assert(knowledgeText.includes(term), `knowledge mails should connect to ${term}`);
   }
 
   const peopleCatalog = catalogs.find(catalog => catalog.mail_type === 'people');
