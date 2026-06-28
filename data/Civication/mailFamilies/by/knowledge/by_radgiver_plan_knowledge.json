@@ -567,72 +567,77 @@
           ]
         },
         {
-          "id": "by_areal_knowledge_007",
+          "id": "by_areal_day1_evening_knowledge_001",
           "mail_type": "knowledge",
           "mail_family": "planfag_kunnskap",
           "role_scope": "by_radgiver_plan",
           "phase": "evening",
-          "priority": 62,
+          "priority": 92,
           "cooldown": 1,
           "repeatable": false,
-          "stage": "stable_warning",
+          "stage": "stable",
           "from": "nora_planjuss",
           "sender": "nora_planjuss",
           "person_id": "nora_planjuss",
           "place_id": "gis_plankart_arbeidsflate",
-          "subject": "Kartet lyver ikke, men det tier: sol/skygge og byrom i Lillebekk",
-          "summary": "En kort avklaring om sol/skygge og byrom viser at linjen på kartet flytter ansvar mellom bolig, grøntdrag, skolevei og politisk risiko.",
-          "purpose": "Trene arealplanleggeren i å behandle sol/skygge og byrom som del av hovedplottet Linjen på kartet.",
-          "stakes": "Hvis avklaringen glattes over, sparer saken tid nå, men mister sporbarhet når naboer, utbygger eller utvalg leser den senere.",
+          "subject": "Kveldsnotat: hva betyr hensynssone når plankartet tier?",
+          "summary": "Kvelden lærer ett begrep: hensynssone. Lillebekk-saken viser at en ryddig kartflate kan skjule grøntdrag, skolevei og støy som må sikres særskilt.",
+          "purpose": "Gi Day 1 en tydelig faglig landingsstripe der spilleren forstår hvorfor plankartet alene ikke forteller hele saken.",
+          "stakes": "Hvis hensynssonen bare nevnes løst, blir risikoen usynlig. Hvis den knyttes til bestemmelse og rekkefølge, får morgendagens konflikt et faglig spor.",
           "situation": [
-            "Lillebekk-planen ser ryddig ut i kartlaget, men sol/skygge og byrom peker på en skjult målkonflikt.",
-            "Aktørene ber om en formulering som kan brukes videre uten ny runde.",
-            "Du må velge om faglig risiko skal gjøres synlig nå eller pakkes inn som praktisk framdrift."
+            "Etter en dag med Lillebekk ser plankartet fortsatt pent ut, men grøntdrag, skolevei og støy har begynt å presse mot samme flate.",
+            "Nora sender en kort forklaring: hensynssone er ikke pynt i kartet, men en måte å vise at området krever særskilt vurdering eller vern.",
+            "Du må bestemme om kveldsnotatet skal lære begrepet presist, eller bare bruke det som et beroligende ord før saken går videre."
           ],
-          "task_domain": "sol/skygge og byrom",
+          "task_domain": "hensynssone",
           "task_kind": "knowledge",
           "competency": "begrepsforståelse",
-          "pressure": "tempo_vs_faglig_sporbarhet",
-          "choice_axis": "synlig_risiko_vs_rask_framdrift",
-          "consequence_axis": "sporbarhet_vs_klagerisiko",
+          "pressure": "kartlogikk_vs_levd_risiko",
+          "choice_axis": "presist_begrep_vs_beroligende_ord",
+          "consequence_axis": "sporbar_hensynssone_vs_skjult_klagerisiko",
           "narrative_arc": "Kartet lyver ikke, men det tier",
           "learning_focus": [
-            "sol/skygge og byrom",
-            "Linjen på kartet",
+            "hensynssone",
+            "plankart",
+            "grøntdrag",
+            "skolevei",
+            "støy",
             "Kartet lyver ikke, men det tier"
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Gjør konflikten eksplisitt i notatet og knytt den til plankart/bestemmelse",
-              "reply": "Jeg gjør konflikten eksplisitt i notatet og knytter den til plankart eller bestemmelse.",
+              "label": "Forklar hensynssonen presist og knytt den til plankart, bestemmelse og rekkefølge",
+              "reply": "Jeg forklarer hensynssonen presist og knytter den til plankart, bestemmelse og rekkefølge.",
               "effect": 1,
               "tags": [
                 "precision",
                 "traceability",
-                "sol/skygge og byrom"
+                "hensynssone",
+                "plankart"
               ],
-              "feedback": "Du gjør saken mer krevende nå, men bedre å etterprøve senere."
+              "feedback": "Du gjør kvelden faglig tydelig: Lillebekk er ikke løst, men saken har fått et språk for risikoen."
             },
             {
               "id": "B",
-              "label": "Løs saken raskt med et praktisk forbehold",
-              "reply": "Jeg løser saken raskt med et praktisk forbehold.",
+              "label": "Bruk hensynssone som et kort forbehold og hold notatet lettlest",
+              "reply": "Jeg bruker hensynssone som et kort forbehold og holder notatet lettlest.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk",
-                "sol/skygge og byrom"
+                "hensynssone"
               ],
-              "feedback": "Du hjelper framdriften, men risikoen kan komme tilbake som spørsmål eller klage."
+              "feedback": "Notatet blir lett å lese, men begrepet kan bli et skjulested for uavklart risiko."
             }
           ],
           "next_bias": {
             "tags": [
-              "sol/skygge og byrom",
-              "kartet_lyver_ikke,_men_det_tier"
+              "hensynssone",
+              "kartet_lyver_ikke_men_det_tier",
+              "day1_carryover"
             ],
-            "weight": 1
+            "weight": 2
           },
           "triggers_on_choice": {
             "A": [
@@ -644,17 +649,21 @@
           },
           "branch_flags": {
             "A": [
-              "knowledge_sol/skygge og byrom_sporbarhet"
+              "day1_hensynssone_sporbar",
+              "lillebekk_egentlig_sak_oppdaget"
             ],
             "B": [
-              "knowledge_sol/skygge og byrom_risiko_skjult"
+              "day1_hensynssone_glattet",
+              "lillebekk_risiko_skjult"
             ]
           },
           "tags": [
             "knowledge",
-            "sol/skygge og byrom",
+            "hensynssone",
+            "plankart",
             "by_radgiver_plan",
-            "lillebekk"
+            "lillebekk",
+            "day1"
           ]
         },
         {

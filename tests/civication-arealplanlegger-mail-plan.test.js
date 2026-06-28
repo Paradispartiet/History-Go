@@ -159,6 +159,40 @@ async function run() {
   const runtimeTypes = new Set(runtime.items.map(row => row.event?.mail_type).filter(Boolean));
   assert(runtimeTypes.size > 2, 'runtime should include several mail family types');
   assert(runtimeTypes.has('job') && [...runtimeTypes].some(type => type !== 'job'), 'runtime should include multiple mail_type values');
+  assert(runtimeTypes.has('job'), 'Day 1 should include at least one job-mail');
+  assert(runtimeTypes.has('people'), 'Day 1 should include at least one people-mail');
+  assert(
+    ['micro', 'followup', 'knowledge', 'consequence'].some(type => runtimeTypes.has(type)),
+    'Day 1 should include at least one micro/followup/knowledge/consequence mail'
+  );
+  assert(
+    ['conflict', 'story', 'event'].some(type => runtimeTypes.has(type)),
+    'Day 1 should include at least one conflict-, story- or event-relevant mail'
+  );
+  const dayOnePhases = [...new Set(runtime.items.map(row => row.phase))];
+  for (const phase of ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end']) {
+    assert(dayOnePhases.includes(phase), `Day 1 should cover phase ${phase}`);
+  }
+  const dayOneText = JSON.stringify(runtime.items.map(row => ({
+    id: row.event?.id,
+    subject: row.event?.subject,
+    summary: row.event?.summary,
+    situation: row.event?.situation,
+    narrative_arc: row.event?.narrative_arc,
+    learning_focus: row.event?.learning_focus
+  }))).toLowerCase();
+  assert(
+    ['plankart', 'målbildet', 'skolevei', 'grøntdrag', 'støy', 'medvirkning', 'rekkefølgekrav'].some(term => dayOneText.includes(term)),
+    'Day 1 should include at least one core Arealplanlegger topic'
+  );
+  assert(
+    runtime.items.some(row => row.phase === 'evening' && ['knowledge', 'consequence'].includes(row.event?.mail_type)),
+    'Day 1 evening should land in a knowledge or consequence mail'
+  );
+  assert(
+    runtime.items.some(row => row.slot === 'carryover' && row.phase === 'day_end'),
+    'Day 1 should include a day_end carryover slot'
+  );
 
   const map = await global.CivicationDebug.buildDebugMap('by_radgiver_plan');
   assert.strictEqual(map.roleModel.exists, true, 'debug roleModel should exist');
