@@ -79,6 +79,10 @@ The quiz layer is manifest-based and ID-based. It records quiz history/progress 
 
 Civication is the local life/career simulation layer. It covers roles, jobs, merits, capital/economy, identity, psyche, lifestyle/shop/profile context, calendar, tasks, mail/storylets, workday/day phases, and debug health. The workday has one authoritative day rhythm and phase ownership model.
 
+#### Civication daily phase bundles
+
+Civication now uses a phase-bundle day rhythm for the existing workday/day-phase flow. A phase bundle can deliver multiple required or optional mail/workday items in the same phase, and the UI surfaces those bundle items as cards with actions for opening, answering, skipping optional items, marking generated read-only items handled, or advancing only when the phase is ready. Required items can block phase advancement until they are opened and answered or otherwise handled. Read-only generated items can be marked handled, while choice items still require answers through the normal mail/action flow. This fix did not add a new engine, calendar, runtime, manifest path, or parallel day rhythm; it only makes the existing phase-bundle flow visible and actionable in the UI.
+
 ### Home / Nabolag
 
 Home/Nabolag is implemented gameplay inside Civication. District choice affects rent pressure, housing status, movement eligibility, weekly rent due/paid state, and support/eviction warnings. It reads existing PC/economic capital and stores home state in `civi_home_v1`.
