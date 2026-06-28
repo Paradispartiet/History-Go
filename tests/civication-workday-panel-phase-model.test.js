@@ -106,6 +106,19 @@ assert(html.includes('Hva gjør du når planen endres?'), 'choice bundle item re
 assert(!html.includes('data-civi-open-bundle-item="m2"'), 'normal mail bundle item does not render modal/open dependency');
 assert(html.includes('Fortsett bolken'), 'native section keeps continue bundle guidance');
 
+assert(!html.includes('data-civi-day-phase-open-item'), 'day phase HTML does not render legacy day-phase open item buttons');
+assert(!html.includes('>Svar<'), 'normal mail bundle item does not render legacy intermediate Svar button');
+
+const sharedHtml = global.CivicationUI.buildPhaseBundleItemsHtml([
+  { id: 'readonly1', subject: 'Orientering', status: 'delivered', mail_type: 'generated', body: 'Les orienteringen.' },
+  { id: 'optional1', subject: 'Valgfri sak', status: 'delivered', required: false, body: 'Kan hoppes over.' },
+  { id: 'task1', subject: 'Kontrolloppgave', status: 'delivered', mail_type: 'task_gate', body: 'Må gjøres.' }
+], { prefix: 'civi-workday' });
+assert(sharedHtml.includes('data-civi-bundle-handled="readonly1"'), 'shared bundle renderer uses inline handled action for read-only items');
+assert(sharedHtml.includes('data-civi-bundle-skip="optional1"'), 'shared bundle renderer uses inline skip action for optional items');
+assert(sharedHtml.includes('data-civi-bundle-task="task1"'), 'shared bundle renderer routes task gates to task action');
+assert(!sharedHtml.includes('data-civi-open-bundle-item'), 'shared bundle renderer does not render legacy open item attributes');
+
 // Tom bunke → ingen seksjon (ingen krasj).
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml({ hasBundle: false }), '', 'no section without a built bundle');
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml(null), '', 'no section for null model');

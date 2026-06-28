@@ -355,8 +355,19 @@
     refreshAfterBundleAction();
   }
 
+  function isDebugMode() {
+    return window.CIVICATION_TEST_MODE === true || window.TEST_MODE === true || window.CIVICATION_DEBUG === true || window.CiviTestMode === true;
+  }
+
+  function warnIfLegacyBundleOpenButtons(root) {
+    if (!isDebugMode() || !root?.querySelector) return;
+    if (root.querySelector("[data-civi-day-phase-open-item], [data-civi-open-bundle-item]")) {
+      console.warn("Legacy bundle open button still present");
+    }
+  }
+
   function bindPanelDelegation(panel) {
-    if (!panel || panel.__civiDayPhaseDelegated) return;
+    if (!panel || typeof panel.addEventListener !== "function" || panel.__civiDayPhaseDelegated) return;
     panel.__civiDayPhaseDelegated = true;
     panel.addEventListener("click", async function (event) {
       const button = event.target?.closest?.("button");
@@ -382,60 +393,35 @@
 
   function buildBundleItemsList(inspection) {
     const items = (Number(inspection?.deliveredItemsInPhase || 0) > 0 || Number(inspection?.openItemsInPhase || 0) > 0 || Array.isArray(inspection?.phaseBundle?.items))
-      ? (Array.isArray(inspection?.phaseBundle?.items) ? inspection.phaseBundle.items : []).filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
+      ? (Array.isArray(inspection?.phaseBundle?.items) ? inspection.phaseBundle.items : [])
       : [];
-    if (!items.length) return inspection.canAdvance ? '<div class="civi-day-phase-bundle-done">Bolken er ferdig</div>' : "";
-    return '<div class="civi-day-phase-bundle"><div class="civi-day-phase-bundle-title">Fortsett bolken</div>'
-      + items.map((it) => {
-        const id = escapeHtml(it.id || "");
-        const optional = it.optional === true || it.required === false;
-        const choices = Array.isArray(it.choices) ? it.choices : [];
-        const hasChoices = choices.length > 0 || it.hasChoices === true || Number(it.choiceCount || 0) > 0;
-        const text = getItemText(it);
-        const taskGate = isTaskGateItem(it);
-        const meta = escapeHtml(it.mail_type || "mail") + ' · ' + escapeHtml(it.slot || "slot") + ' · ' + escapeHtml(it.status || "status") + ' · ' + (optional ? "Valgfri" : "Påkrevd");
-        let actionHtml = "";
-        if (taskGate) {
-          actionHtml = '<p class="civi-day-phase-status">Oppgave som må gjøres før du kan gå videre</p>'
-            + '<button class="civi-btn secondary" type="button" data-civi-bundle-task="' + id + '">Gjør oppgave</button>';
-        } else if (hasChoices && choices.length) {
-          actionHtml = '<div class="civi-day-phase-choice-list" role="group" aria-label="Svaralternativer">'
-            + choices.map(function (choice) {
-              return '<button class="civi-btn secondary" type="button" data-civi-bundle-event="' + id + '" data-civi-bundle-choice="' + escapeHtml(choice.id || "") + '">' + escapeHtml(choice.label || choice.id || "Velg") + '</button>';
-            }).join(" ") + '</div>';
-        } else if (hasChoices) {
-          actionHtml = '<button class="civi-btn secondary" type="button" data-civi-bundle-event="' + id + '" data-civi-bundle-choice="A">Vis valg</button>';
-        } else {
-          actionHtml = '<p class="civi-day-phase-status muted">Dette er en beskjed eller automatisk hendelse. Bruk knappen når du er ferdig med å lese.</p>'
-            + '<button class="civi-btn secondary" type="button" data-civi-bundle-handled="' + id + '" title="Brukes når dette bare er en beskjed eller automatisk hendelse.">Ferdig med denne</button>';
-        }
-        const skip = optional ? ' <button class="civi-btn secondary" type="button" data-civi-bundle-skip="' + id + '">Hopp over</button>' : "";
-        return '<article class="civi-day-phase-bundle-card"><strong>' + escapeHtml(it.subject || it.slot || it.id || "Hendelse") + '</strong>'
-          + '<div class="civi-day-phase-status muted">' + meta + '</div>'
-          + (text ? '<p class="civi-day-phase-bundle-text">' + escapeHtml(text) + '</p>' : '')
-          + '<div class="civi-day-phase-bundle-actions">' + actionHtml + skip + '</div></article>';
-      }).join("") + '</div>';
+    const renderer = window.CivicationPhaseBundleView?.buildItemsHtml;
+    if (typeof renderer === "function") {
+      const html = renderer(items, {
+        prefix: "civi-day-phase",
+        wrapperClass: "civi-day-phase-bundle",
+        cardClass: "civi-day-phase-bundle-card",
+        subClass: "civi-day-phase-status muted",
+        choicesClass: "civi-day-phase-choice-list",
+        title: "Fortsett bolken",
+        showDoneWhenEmpty: inspection.canAdvance === true,
+        doneClass: "civi-day-phase-bundle-done",
+        doneText: "Bolken er ferdig"
+      });
+      return html || "";
+    }
+    return "";
   }
+
 
   function bindBundleItemButtons(_panel) {
     // Bundle actions use delegated clicks on the stable panel root so re-renders and mobile taps keep working.
   }
 
-  function bindAdvanceButton(panel) {
-    const button = panel.querySelector("[data-civi-day-phase-advance]");
-    if (!button) return;
-
-    button.onclick = async function () {
-      if (button.disabled) return;
-      const progression = window.CivicationDayProgression;
-      if (!progression?.advancePhaseIfReady) return;
-
-      await progression.advancePhaseIfReady();
-      render();
-      window.CivicationInboxTopActionUI?.renderSections?.();
-      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-    };
+  function bindAdvanceButton(_panel) {
+    // Phase advance uses delegated clicks on the stable panel root.
   }
+
 
   function render() {
     const progression = window.CivicationDayProgression;
@@ -478,6 +464,7 @@
 
     bindPanelDelegation(panel);
     bindBundleItemButtons(panel);
+    warnIfLegacyBundleOpenButtons(panel);
     return true;
   }
 

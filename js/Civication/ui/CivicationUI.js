@@ -1182,6 +1182,47 @@ function formatDayPhaseReason(reason) {
   return labels[key] || key.replace(/[_-]+/g, " ") || "ukjent";
 }
 
+function buildPhaseBundleItemsHtml(items, options = {}) {
+  const list = Array.isArray(items) ? items.filter((it) => !["answered", "resolved"].includes(String(it?.status || "").toLowerCase())) : [];
+  const prefix = String(options.prefix || "civi-workday");
+  const doneClass = String(options.doneClass || `${prefix}-bundle-done`);
+  const wrapperClass = String(options.wrapperClass || `${prefix}-bundle-list`);
+  const cardClass = String(options.cardClass || `${prefix}-bundle-card`);
+  const subClass = String(options.subClass || `${prefix}-sub`);
+  const choicesClass = String(options.choicesClass || `${prefix}-bundle-choices`);
+  const title = String(options.title || "");
+  const doneText = String(options.doneText || "Bolken er ferdig");
+  const emptyHtml = options.showDoneWhenEmpty ? `<div class="${escapeHtml(doneClass)}"><strong>${escapeHtml(doneText)}</strong></div>` : "";
+  if (!list.length) return emptyHtml;
+  const titleHtml = title ? `<div class="${escapeHtml(prefix)}-bundle-title">${escapeHtml(title)}</div>` : "";
+  return `${titleHtml}<div class="${escapeHtml(wrapperClass)}" style="display:grid;gap:8px;margin-top:8px;">${list.map((it) => {
+    const id = String(it?.id || "");
+    const safeId = escapeHtml(id);
+    const optional = it?.optional === true || it?.required === false;
+    const choices = Array.isArray(it?.choices) ? it.choices : [];
+    const hasChoices = choices.length > 0 || it?.hasChoices === true || Number(it?.choiceCount || 0) > 0;
+    const bodyText = getBundleItemText(it);
+    const taskGate = isBundleTaskGate(it);
+    let action = "";
+    if (taskGate) {
+      action = `<p class="${escapeHtml(subClass)}">Oppgave som må gjøres før du kan gå videre</p><button class="civi-btn secondary" type="button" data-civi-bundle-task="${safeId}">Gjør oppgave</button>`;
+    } else if (hasChoices && choices.length) {
+      action = `<div class="${escapeHtml(choicesClass)}" role="group" aria-label="Svaralternativer">${choices.map((choice) => `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${safeId}" data-civi-bundle-choice="${escapeHtml(choice.id || "")}">${escapeHtml(choice.label || choice.id || "Velg")}</button>`).join(" ")}</div>`;
+    } else if (hasChoices) {
+      action = `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${safeId}" data-civi-bundle-choice="A">Velg A</button>`;
+    } else {
+      action = `<p class="${escapeHtml(subClass)}">Dette er en beskjed eller automatisk hendelse. Bruk knappen når du er ferdig med å lese.</p><button class="civi-btn secondary" type="button" data-civi-bundle-handled="${safeId}" title="Brukes når dette bare er en beskjed eller automatisk hendelse.">Ferdig med denne</button>`;
+    }
+    const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-bundle-skip="${safeId}">Hopp over</button>` : "";
+    return `<article class="${escapeHtml(cardClass)}" style="padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;">
+      <strong>${escapeHtml(it?.subject || it?.slot || it?.id || "Hendelse")}</strong>
+      <div class="${escapeHtml(subClass)}">${escapeHtml(it?.mail_type || "mail")} · ${escapeHtml(it?.slot || "slot")} · ${escapeHtml(it?.status || "status")} · ${optional ? "Valgfri" : "Påkrevd"}</div>
+      ${bodyText ? `<p class="${escapeHtml(subClass)}">${escapeHtml(bodyText)}</p>` : ""}
+      <div class="${escapeHtml(prefix)}-bundle-actions" style="margin-top:6px;">${action} ${skip}</div>
+    </article>`;
+  }).join("")}</div>`;
+}
+
 function buildDayPhaseSectionHtml(dayPhase) {
   if (!dayPhase || !dayPhase.hasBundle) return "";
 
@@ -1200,45 +1241,24 @@ function buildDayPhaseSectionHtml(dayPhase) {
     ? dayPhase.bundleItems.filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
     : (current && Array.isArray(current.items) ? current.items.filter((it) => it.status !== "answered") : []);
 
-  const openList = openItems.length
-    ? `<div class="civi-workday-bundle-list" style="display:grid;gap:8px;margin-top:8px;">${openItems
-        .map((it) => {
-          const id = String(it.id || "");
-          const optional = it.optional === true || it.required === false;
-          const choices = Array.isArray(it.choices) ? it.choices : [];
-          const hasChoices = choices.length > 0 || it.hasChoices === true || Number(it.choiceCount || 0) > 0;
-          const bodyText = getBundleItemText(it);
-          const taskGate = isBundleTaskGate(it);
-          let action = "";
-          if (taskGate) {
-            action = `<p class="civi-workday-sub">Oppgave som må gjøres før du kan gå videre</p><button class="civi-btn secondary" type="button" data-civi-bundle-task="${escapeHtml(id)}">Gjør oppgave</button>`;
-          } else if (hasChoices && choices.length) {
-            action = `<div class="civi-workday-bundle-choices" role="group" aria-label="Svaralternativer">${choices.map((choice) => `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${escapeHtml(id)}" data-civi-bundle-choice="${escapeHtml(choice.id || "")}">${escapeHtml(choice.label || choice.id || "Velg")}</button>`).join(" ")}</div>`;
-          } else if (hasChoices) {
-            action = `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${escapeHtml(id)}" data-civi-bundle-choice="A">Vis valg</button>`;
-          } else {
-            action = `<p class="civi-workday-sub">Dette er en beskjed eller automatisk hendelse. Bruk knappen når du er ferdig med å lese.</p><button class="civi-btn secondary" type="button" data-civi-bundle-handled="${escapeHtml(id)}" title="Brukes når dette bare er en beskjed eller automatisk hendelse.">Ferdig med denne</button>`;
-          }
-          const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-bundle-skip="${escapeHtml(id)}">Hopp over</button>` : "";
-          return `<article class="civi-workday-bundle-card" style="padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;">
-            <strong>${escapeHtml(it.subject || it.slot || it.id || "Hendelse")}</strong>
-            <div class="civi-workday-sub">${escapeHtml(it.mail_type || "mail")} · ${escapeHtml(it.slot || "slot")} · ${escapeHtml(it.status || "status")} · ${optional ? "Valgfri" : "Påkrevd"}</div>
-            ${bodyText ? `<p class="civi-workday-sub">${escapeHtml(bodyText)}</p>` : ""}
-            <div style="margin-top:6px;">${action} ${skip}</div>
-          </article>`;
-        })
-        .join("")}</div>`
-    : `<div class="civi-workday-sub"><strong>Bolken er ferdig.</strong></div>`;
+  const openList = buildPhaseBundleItemsHtml(openItems, {
+    prefix: "civi-workday",
+    wrapperClass: "civi-workday-bundle-list",
+    cardClass: "civi-workday-bundle-card",
+    subClass: "civi-workday-sub",
+    choicesClass: "civi-workday-bundle-choices",
+    showDoneWhenEmpty: true
+  });
 
   const action = dayPhase.nextAction || {};
   const remainingText = Number(dayPhase.queuedItemsInPhase || 0) > 0 ? `<div class="civi-workday-sub"><strong>${dayPhase.phaseLabel}bolk</strong> · ${dayPhase.queuedItemsInPhase} hendelser gjenstår</div>` : "";
   const openBundleLabel = Number(dayPhase.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken";
   const actionHtml = action.kind === "open_bundle"
-    ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>${openBundleLabel}</button>`
+    ? `<button class="civi-btn" type="button" data-civi-day-phase-open-bundle>${openBundleLabel}</button>`
     : action.kind === "continue_bundle"
       ? `<span class="civi-workday-sub">Fortsett bolken: svar direkte i kortene under.</span>`
       : action.kind === "advance_phase"
-      ? `<button class="civi-btn" type="button" data-civi-advance-phase>Gå til neste fase</button>`
+      ? `<button class="civi-btn" type="button" data-civi-day-phase-advance>Gå til neste fase</button>`
       : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
   const suggestionsHtml = Array.isArray(dayPhase.eveningSuggestions) && dayPhase.eveningSuggestions.length
     ? `<div class="civi-workday-evening-suggestions"><strong>Kveldsforslag:</strong> ${dayPhase.eveningSuggestions.join(" · ")}</div>`
@@ -1447,6 +1467,17 @@ function renderWorkdayPanel() {
 `;
 
 // PR D/G: native fasevisning + dag-dekorasjoner øverst i panelet. Erstatter dayPatches sin
+function isCivicationDebugMode() {
+  return window.CIVICATION_TEST_MODE === true || window.TEST_MODE === true || window.CIVICATION_DEBUG === true || window.CiviTestMode === true;
+}
+
+function warnIfLegacyBundleOpenButtons(root) {
+  if (!isCivicationDebugMode() || !root?.querySelector) return;
+  if (root.querySelector("[data-civi-day-phase-open-item], [data-civi-open-bundle-item]")) {
+    console.warn("Legacy bundle open button still present");
+  }
+}
+
 // renderWorkdayPanel-monkey-patch fullstendig: fase-HUD (buildDayPhaseSectionHtml) + ukesrapport,
 // kontakter og kunnskaps-task, lest fra de eksisterende globale day*-helperne (defensivt — de
 // lastes som klassiske script og finnes på runtime). Samme rekkefølge som monkey-patchen ga:
@@ -1464,12 +1495,14 @@ if (prependHtml) {
   host.insertAdjacentHTML("afterbegin", prependHtml);
 }
 
+warnIfLegacyBundleOpenButtons(host);
+
 if (typeof host.addEventListener === "function" && !host.__civiWorkdayBundleDelegated) {
   host.__civiWorkdayBundleDelegated = true;
   host.addEventListener("click", async function (event) {
     const btn = event.target?.closest?.("button");
     if (!btn || !host.contains(btn) || btn.disabled) return;
-    if (btn.matches("[data-civi-open-phase-bundle]")) {
+    if (btn.matches("[data-civi-day-phase-open-bundle]")) {
       event.preventDefault();
       await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
       try { window.dispatchEvent(new Event("updateProfile")); } catch {}
@@ -1506,16 +1539,15 @@ if (typeof host.addEventListener === "function" && !host.__civiWorkdayBundleDele
       event.preventDefault();
       const mailId = btn.getAttribute("data-civi-bundle-task");
       if (mailId) openTaskModalByMailId(mailId);
+      return;
+    }
+    if (btn.matches("[data-civi-day-phase-advance]")) {
+      event.preventDefault();
+      await window.CivicationDayProgression?.advancePhaseIfReady?.();
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     }
   });
 }
-
-host.querySelectorAll("[data-civi-advance-phase]").forEach(function (btn) {
-  btn.addEventListener("click", async function () {
-    await window.CivicationDayProgression?.advancePhaseIfReady?.();
-    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-  });
-});
 
 host.querySelectorAll("[data-open-task]").forEach(function (btn) {
   btn.addEventListener("click", function () {
@@ -1840,6 +1872,8 @@ function isTaskGateMailEvent(ev) {
   return type === "task_gate" || source === "task_gate" || !!ev?.task_id || !!ev?.task_kind;
 }
 
+// Legacy inbox fallback only. Day phase bundles render daily/runtime items inline and
+// should not call this helper for normal bundle items; task gates use openTaskModalByMailId.
 function openDailyMailById(mailId) {
   const id = String(mailId || "").trim();
   if (!id) return false;
@@ -1857,6 +1891,7 @@ function openDailyMailById(mailId) {
   return true;
 }
 
+// Legacy inbox fallback only; not part of the normal day bundle path.
 function openFirstDailyMailFromInspection(inspection) {
   const items = Array.isArray(inspection?.phaseBundle?.items) ? inspection.phaseBundle.items : [];
   const first = items.find(function (it) {
@@ -2327,6 +2362,8 @@ window.HG_CiviProfileSnapshot = getCivicationProfileSnapshot;
 // EXPORT
 // ============================================================
 
+window.CivicationPhaseBundleView = { buildItemsHtml: buildPhaseBundleItemsHtml };
+
 window.CivicationUI = {
   init,
   render,
@@ -2335,6 +2372,7 @@ window.CivicationUI = {
   getActiveWorkdayInboxItem,
   getCurrentWorkdaySnapshot,
   buildDayPhaseSectionHtml,
+  buildPhaseBundleItemsHtml,
   buildDayPlanSectionHtml,
   renderCapital,
   renderPerception,
