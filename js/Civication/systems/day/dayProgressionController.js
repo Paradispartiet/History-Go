@@ -179,7 +179,9 @@
   }
 
   function summarizeRow(row) {
-    return { id: norm(row?.event?.id || row?.id), subject: norm(row?.event?.subject || row?.subject), slot: norm(row?.slot || row?.event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: getPhaseForRow(row), required: isRequiredRow(row) };
+    const event = row?.event || {};
+    const choices = Array.isArray(event?.choices) ? event.choices : [];
+    return { id: norm(event?.id || row?.id), subject: norm(event?.subject || row?.subject), mail_type: norm(event?.mail_type || event?.type || row?.mail_type), slot: norm(row?.slot || event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: getPhaseForRow(row), required: isRequiredRow(row), optional: row?.optional === true, hasChoices: choices.length > 0, choiceCount: choices.length };
   }
 
   function getPhaseCompletion(phase) {
@@ -246,6 +248,9 @@
       reason = "delivered_items_in_phase";
     }
 
+    const bundle = getCurrentPhaseBundle();
+    const nextActionableItem = deliveredRows[0] ? summarizeRow(deliveredRows[0]) : (nextQueuedRow ? summarizeRow(nextQueuedRow) : null);
+
     return {
       phase,
       phaseLabel: getPhaseLabel(phase),
@@ -257,7 +262,12 @@
       openItemSubjects: openRows.map((row) => norm(row?.event?.subject || row?.subject || row?.event?.id)).filter(Boolean),
       pendingItem: pendingRow ? { id: norm(pendingRow?.event?.id || pendingRow?.id), subject: norm(pendingRow?.event?.subject || pendingRow?.subject), status: norm(pendingRow?.status), phase: getPhaseForRow(pendingRow) } : null,
       nextQueuedItem: nextQueuedRow ? { id: norm(nextQueuedRow?.event?.id || nextQueuedRow?.id), subject: norm(nextQueuedRow?.event?.subject || nextQueuedRow?.subject), status: norm(nextQueuedRow?.status), phase: getPhaseForRow(nextQueuedRow) } : null,
-      phaseBundle: getCurrentPhaseBundle(),
+      phaseBundle: bundle,
+      requiredCount: bundle.requiredCount,
+      completedCount: bundle.completedCount,
+      isComplete: bundle.isComplete,
+      blockingReason: reason,
+      nextActionableItem,
       nextPhase,
       canAdvance,
       reason

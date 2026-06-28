@@ -98,6 +98,15 @@ function refreshCivicationAfterAnswer(previousEventId) {
   });
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // ============================================================
 // ACTION WIRING (KJØRES ÉN GANG)
 // ============================================================
@@ -1097,10 +1106,11 @@ function computeDayPhaseModel() {
     ? ["Hvil", "Les fagstoff", "Ring en venn", "Tren lett", "Planlegg morgendagen", "Legg deg tidlig", "Hobby", "Gaming / TV / lesing", "Ta en test"]
     : [];
   const blockingItems = Number(prog?.queuedItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0) + Number(prog?.openItemsInPhase || 0);
-  const nextAction = Number(prog?.queuedItemsInPhase || 0) > 0
+  const activePendingCount = Number(prog?.openItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0);
+  const nextAction = Number(prog?.queuedItemsInPhase || 0) > 0 && activePendingCount === 0
     ? { kind: "open_bundle", label: "Åpne hele bolken" }
-    : Number(prog?.openItemsInPhase || 0) > 0 || Number(prog?.deliveredItemsInPhase || 0) > 0
-      ? { kind: "answer_open", label: "Svar på åpen hendelse" }
+    : activePendingCount > 0
+      ? { kind: "continue_bundle", label: "Fortsett bolken" }
       : (prog?.canAdvance && prog?.nextPhase && blockingItems === 0)
         ? { kind: "advance_phase", label: "Gå til neste fase" }
         : { kind: "wait", label: "Ingen handling" };
@@ -1121,6 +1131,7 @@ function computeDayPhaseModel() {
     queuedItemsInPhase: Number(prog?.queuedItemsInPhase || 0),
     deliveredItemsInPhase: Number(prog?.deliveredItemsInPhase || 0),
     totalItemsInPhase: phaseTotal,
+    bundleItems: Array.isArray(prog?.phaseBundle?.items) ? prog.phaseBundle.items : (activePhase?.items || []),
     nextAction,
     eveningSuggestions,
     phases
@@ -1152,21 +1163,36 @@ function buildDayPhaseSectionHtml(dayPhase) {
     .join("");
 
   const current = (Array.isArray(dayPhase.phases) ? dayPhase.phases : []).find((p) => p.id === dayPhase.phase) || null;
-  const openItems = current && Array.isArray(current.items)
-    ? current.items.filter((it) => it.status !== "answered")
-    : [];
+  const openItems = Array.isArray(dayPhase.bundleItems)
+    ? dayPhase.bundleItems.filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
+    : (current && Array.isArray(current.items) ? current.items.filter((it) => it.status !== "answered") : []);
 
   const openList = openItems.length
-    ? `<ul class="civi-workday-phase-open" style="margin:6px 0 0;padding-left:18px;">${openItems
-        .map((it) => `<li>${it.status === "delivered" ? "🔵" : "⬜"} ${it.subject || it.slot || it.id}</li>`)
-        .join("")}</ul>`
-    : `<div class="civi-workday-sub">Ingen åpne leveranser i denne fasen.</div>`;
+    ? `<div class="civi-workday-bundle-list" style="display:grid;gap:8px;margin-top:8px;">${openItems
+        .map((it) => {
+          const id = String(it.id || "");
+          const optional = it.optional === true || it.required === false;
+          const hasChoices = it.hasChoices === true || Number(it.choiceCount || 0) > 0;
+          const action = hasChoices
+            ? `<button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Svar</button>`
+            : `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}">Marker håndtert</button>`;
+          const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}" data-civi-skip-optional="true">Hopp over</button>` : "";
+          return `<article class="civi-workday-bundle-card" style="padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;">
+            <strong>${escapeHtml(it.subject || it.slot || it.id || "Hendelse")}</strong>
+            <div class="civi-workday-sub">${escapeHtml(it.mail_type || "mail")} · ${escapeHtml(it.slot || "slot")} · ${escapeHtml(it.status || "status")} · ${optional ? "valgfri" : "påkrevd"}</div>
+            <div style="margin-top:6px;"><button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Åpne</button> ${action} ${skip}</div>
+          </article>`;
+        })
+        .join("")}</div>`
+    : `<div class="civi-workday-sub"><strong>Bolken er ferdig.</strong></div>`;
 
   const action = dayPhase.nextAction || {};
   const remainingText = Number(dayPhase.queuedItemsInPhase || 0) > 0 ? `<div class="civi-workday-sub"><strong>${dayPhase.phaseLabel}bolk</strong> · ${dayPhase.queuedItemsInPhase} hendelser gjenstår</div>` : "";
   const actionHtml = action.kind === "open_bundle"
     ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>Åpne hele bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-next-event>Åpne neste</button>`
-    : action.kind === "advance_phase"
+    : action.kind === "continue_bundle"
+      ? `<button class="civi-btn" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Fortsett bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Åpne neste i bolken</button>`
+      : action.kind === "advance_phase"
       ? `<button class="civi-btn" type="button" data-civi-advance-phase>Gå til neste fase</button>`
       : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
   const suggestionsHtml = Array.isArray(dayPhase.eveningSuggestions) && dayPhase.eveningSuggestions.length
@@ -1406,6 +1432,23 @@ host.querySelectorAll("[data-civi-open-next-event]").forEach(function (btn) {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
   });
 });
+host.querySelectorAll("[data-civi-open-bundle-item]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    const mailId = btn.getAttribute("data-civi-open-bundle-item");
+    if (!mailId) return;
+    window.CivicationMailEngine?.markRead?.(mailId);
+    openTaskModalByMailId(mailId);
+  });
+});
+host.querySelectorAll("[data-civi-mark-bundle-item-handled]").forEach(function (btn) {
+  btn.addEventListener("click", async function () {
+    const mailId = btn.getAttribute("data-civi-mark-bundle-item-handled");
+    if (!mailId) return;
+    await window.CivicationDailyMailBuilder?.markHandled?.(mailId, btn.getAttribute("data-civi-skip-optional") ? "skipped" : "handled");
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  });
+});
+
 host.querySelectorAll("[data-civi-advance-phase]").forEach(function (btn) {
   btn.addEventListener("click", async function () {
     await window.CivicationDayProgression?.advancePhaseIfReady?.();
@@ -2193,6 +2236,7 @@ window.CivicationUI = {
   renderCivicationSummary,
   getCivicationProfileSnapshot,
   buildCiviEventViewModel,
+  openTaskModalByMailId,
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml
 };
