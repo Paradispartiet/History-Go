@@ -267,3 +267,170 @@ function assertRuntimeCategoryStorage() {
     console.warn("[domain runtime] could not inspect merits_by_category", err);
   }
 }
+
+function assertCriticalIndexRuntime() {
+  const missing = [];
+
+  if (typeof window.maplibregl === "undefined") {
+    missing.push("maplibregl (MapLibre GL JS) – sjekk <script>/<link> for maplibre-gl i index.html");
+  }
+
+  if (typeof window.HGMap !== "object" || !window.HGMap) {
+    missing.push("HGMap (js/map.js) – kartmotoren er ikke lastet");
+  }
+
+  if (!window.MAP && !window.HGMap?.getMap?.()) {
+    missing.push("MAP – kartet ble ikke initialisert (window.HGMap.initMap krever maplibregl)");
+  }
+
+  if (typeof window.initLeftPanel !== "function") {
+    missing.push("initLeftPanel (js/ui/left-panel.js) – venstrepanelet er ikke lastet");
+  }
+
+  // Index-layoutkontrakt: app-shell-modellen som CSS (css/layout.css) og
+  // ViewportManager (js/core/viewportManager.js) forventer. Mangler ett av
+  // disse lagene, faller det skalerte design-canvaset eller full-bleed-lagene
+  // sammen – da skal appen feile synlig, ikke late som den er frisk.
+  if (!document.querySelector(".app-shell")) {
+    missing.push(".app-shell – det skalerte design-canvaset mangler (ViewportManager.init finner det ikke)");
+  }
+
+  if (!document.getElementById("mapLayer")) {
+    missing.push("#mapLayer – full-bleed kartlag mangler i DOM");
+  }
+
+  if (!document.getElementById("nearbyList")) {
+    missing.push("#nearbyList – Nearby-containeren mangler i DOM");
+  }
+
+  if (!document.getElementById("placeCard")) {
+    missing.push("#placeCard – PlaceCard-laget mangler i DOM");
+  }
+
+  if (!document.querySelector(".app-footer")) {
+    missing.push(".app-footer – footer-handlingslinjen mangler");
+  }
+
+  if (missing.length === 0) return null;
+
+  const error = new Error(
+    "Kritiske index-runtimedeler mangler:\n- " + missing.join("\n- ")
+  );
+  console.error("[index runtime sanity check]", error.message);
+  window.__HG_INDEX_RUNTIME_MISSING__ = missing;
+  return error;
+}
+
+function markAppReady() {
+  document.body?.classList.remove("hg-load-failed");
+  document.body?.classList.add("hg-loaded");
+  window.__HG_APP_READY__ = true;
+
+  try {
+    window.dispatchEvent(new CustomEvent("hg:appReady", {
+      detail: { ready: true, ts: Date.now() }
+    }));
+  } catch {}
+}
+
+function markAppFailed(error) {
+  console.error("[app startup failed]", error);
+
+  window.__HG_APP_READY__ = false;
+  window.__HG_APP_LOAD_ERROR__ = {
+    message: String(error?.message || error),
+    stack: error?.stack || null
+  };
+
+  document.body?.classList.add("hg-load-failed");
+}
+
+function gateToastsUntilAppReady() {
+  const originalShowToast = window.showToast;
+  const queue = [];
+  let released = false;
+
+  if (typeof originalShowToast !== "function") {
+    return () => {};
+  }
+
+  window.showToast = function gatedShowToast(message, ...args) {
+    if (released) {
+      return originalShowToast.call(this, message, ...args);
+    }
+
+    queue.push({ message, args });
+    return undefined;
+  };
+
+  return function releaseQueuedToasts() {
+    released = true;
+    window.showToast = originalShowToast;
+
+    while (queue.length) {
+      const item = queue.shift();
+      originalShowToast.call(window, item.message, ...item.args);
+    }
+  };
+}
+
+function runAfterReady(label, task) {
+  if (typeof task !== "function") return;
+
+  const runner = () => {
+    Promise.resolve()
+      .then(task)
+      .catch(err => console.warn(`[${label}]`, err));
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(runner, { timeout: 1200 });
+  } else {
+    setTimeout(runner, 0);
+  }
+}
+
+function wireBackgroundLeftPanelRerenders() {
+  if (window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_WIRED__) return;
+  window.__HG_BACKGROUND_LEFT_PANEL_RERENDERS_WIRED__ = true;
+
+  const rerender = () => {
+    try {
+      if (typeof window.rerenderActiveLeftPanelMode === "function") {
+        window.rerenderActiveLeftPanelMode();
+      } else {
+        window.renderNearbyPlaces?.();
+      }
+      window.renderCollection?.();
+      window.initLeftPanel?.();
+    } catch (err) {
+      console.warn("[wireBackgroundLeftPanelRerenders]", err);
+    }
+  };
+
+  window.addEventListener("hg:placesUpdated", rerender);
+  window.addEventListener("hg:visitedUpdated", rerender);
+  window.addEventListener("storage", (event) => {
+    if (event.key === "visited_places" || event.key === "visited") rerender();
+  });
+}
+
+function wireMapPlacePopupInMapMode() {
+  if (window.__HG_MAP_PLACE_POPUP_WIRED__) return;
+  window.__HG_MAP_PLACE_POPUP_WIRED__ = true;
+
+  window.addEventListener("hg:place-selected", async (event) => {
+    const selectedEvent = /** @type {CustomEvent<{ place?: unknown }>} */ (event);
+    const place = selectedEvent?.detail?.place;
+    if (!place) return;
+
+    const routerMode = String(window.HGAppRouter?.currentMode || "").toLowerCase();
+    const hash = String(window.location.hash || "").toLowerCase();
+    const isMapMode = routerMode === "map" || hash === "#/map" || hash === "#map" || hash === "";
+    if (!isMapMode) return;
+
+    if (typeof window.openPlaceCard === "function") {
+      await window.openPlaceCard(place);
+    }
+  });
+}
