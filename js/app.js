@@ -98,6 +98,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // som datakilde. Uten DataHub faller den tilbake til utdaterte PLACE_FILES_FALLBACK-
     // stier som ikke matcher dagens place-struktur, og window.PLACES ender som [].
     await safeRun("loadDataHub", () => loadScriptOnce("js/dataHub.js"));
+
+    // Europakaravanen-runtime: laster data/karavaner uten UI-sideeffekter og
+    // eksponerer window.HG_CARAVAN + debug-helper. Kjøres best effort slik at
+    // appen fortsatt starter hvis karavane-filene ikke finnes i en deploy.
+    await safeRun("loadCaravanRuntime", () => loadScriptOnce("js/caravan-loader.js"));
+    await safeRun("loadCaravanData", () => window.HGCaravanLoader?.load?.({ cache: "no-store" }));
+
     await safeRun("loadPlaceCardQuizcardsPatch", () => loadScriptOnce("js/ui/place-card-quizcards-patch.js"));
 
     // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
