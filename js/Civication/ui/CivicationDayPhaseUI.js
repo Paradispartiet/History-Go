@@ -311,8 +311,10 @@
     if (!button) return;
     button.onclick = async function () {
       if (button.disabled) return;
-      await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
+      const res = await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
       render();
+      const inspection = window.CivicationDayProgression?.inspect?.();
+      window.CivicationUI?.openFirstDailyMailFromInspection?.(inspection || { phaseBundle: { items: (res?.events || []).map(function (ev) { return { id: ev?.id, status: "delivered" }; }) } });
       window.CivicationInboxTopActionUI?.renderSections?.();
       try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     };
@@ -332,8 +334,8 @@
 
 
   function buildBundleItemsList(inspection) {
-    const items = Array.isArray(inspection?.phaseBundle?.items)
-      ? inspection.phaseBundle.items.filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
+    const items = (Number(inspection?.deliveredItemsInPhase || 0) > 0 || Number(inspection?.openItemsInPhase || 0) > 0 || Array.isArray(inspection?.phaseBundle?.items))
+      ? (Array.isArray(inspection?.phaseBundle?.items) ? inspection.phaseBundle.items : []).filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
       : [];
     if (!items.length) return inspection.canAdvance ? '<div class="civi-day-phase-bundle-done">Bolken er ferdig</div>' : "";
     return '<div class="civi-day-phase-bundle"><div class="civi-day-phase-bundle-title">Fortsett bolken</div>'
@@ -356,8 +358,7 @@
       button.onclick = function () {
         const mailId = button.getAttribute("data-civi-day-phase-open-item");
         if (!mailId) return;
-        window.CivicationMailEngine?.markRead?.(mailId);
-        window.CivicationUI?.openTaskModalByMailId?.(mailId);
+        window.CivicationUI?.openDailyMailById?.(mailId);
       };
     });
     panel.querySelectorAll("[data-civi-day-phase-mark-handled]").forEach(function (button) {

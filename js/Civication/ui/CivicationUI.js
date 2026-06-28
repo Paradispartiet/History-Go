@@ -1421,7 +1421,9 @@ if (prependHtml) {
 
 host.querySelectorAll("[data-civi-open-phase-bundle]").forEach(function (btn) {
   btn.addEventListener("click", async function () {
-    await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
+    const res = await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
+    const inspection = window.CivicationDayProgression?.inspect?.();
+    openFirstDailyMailFromInspection(inspection || { phaseBundle: { items: (res?.events || []).map(function (ev) { return { id: ev?.id, status: "delivered" }; }) } });
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
   });
 });
@@ -1436,8 +1438,7 @@ host.querySelectorAll("[data-civi-open-bundle-item]").forEach(function (btn) {
   btn.addEventListener("click", function () {
     const mailId = btn.getAttribute("data-civi-open-bundle-item");
     if (!mailId) return;
-    window.CivicationMailEngine?.markRead?.(mailId);
-    openTaskModalByMailId(mailId);
+    openDailyMailById(mailId);
   });
 });
 host.querySelectorAll("[data-civi-mark-bundle-item-handled]").forEach(function (btn) {
@@ -1761,6 +1762,49 @@ function isPrivatePhaseEvent(event) {
   });
 }
 
+let selectedDailyMailId = null;
+
+function findCiviInboxItemByMailId(mailId) {
+  const id = String(mailId || "").trim();
+  if (!id) return null;
+  const inbox = getInboxItemsForCivicationUi();
+  return (Array.isArray(inbox) ? inbox : []).find(function (item) {
+    const ev = item?.event || item || null;
+    return String(item?.id || "").trim() === id || String(ev?.id || "").trim() === id;
+  }) || null;
+}
+
+function isTaskGateMailEvent(ev) {
+  const type = String(ev?.mail_type || ev?.type || ev?.kind || "").toLowerCase();
+  const source = String(ev?.source_type || "").toLowerCase();
+  return type === "task_gate" || source === "task_gate" || !!ev?.task_id || !!ev?.task_kind;
+}
+
+function openDailyMailById(mailId) {
+  const id = String(mailId || "").trim();
+  if (!id) return false;
+  const item = findCiviInboxItemByMailId(id);
+  const ev = item?.event || item || null;
+  if (ev && (isTaskGateMailEvent(ev) || window.CivicationTaskEngine?.getTaskByMailId?.(id))) {
+    openTaskModalByMailId(id);
+    return true;
+  }
+  if (!ev) return false;
+  selectedDailyMailId = String(ev.id || id);
+  window.CivicationMailEngine?.markRead?.(id);
+  renderCivicationInbox();
+  try { document.getElementById("civiInbox")?.scrollIntoView?.({ block: "start", behavior: "smooth" }); } catch {}
+  return true;
+}
+
+function openFirstDailyMailFromInspection(inspection) {
+  const items = Array.isArray(inspection?.phaseBundle?.items) ? inspection.phaseBundle.items : [];
+  const first = items.find(function (it) {
+    return !["answered", "resolved"].includes(String(it?.status || "").toLowerCase());
+  });
+  return first?.id ? openDailyMailById(first.id) : false;
+}
+
 function getActiveWorkdayInboxItem() {
   const fromFlow = window["CivicationIncomingFlow"]?.getActiveWorkdayItem?.();
   if (fromFlow) return fromFlow;
@@ -2001,7 +2045,9 @@ function renderCivicationInbox() {
     const ev = item?.event || item || null;
     return window.CivicationEventChannels?.classifyEvent?.(ev) !== "system";
   });
-  const ev = findPendingFromItems(allInboxItems);
+  const selectedItem = selectedDailyMailId ? findCiviInboxItemByMailId(selectedDailyMailId) : null;
+  const selectedEvent = selectedItem?.event || selectedItem || null;
+  const ev = selectedEvent || findPendingFromItems(allInboxItems);
 
   const renderMessageList = function (items) {
     if (!Array.isArray(items) || !items.length) return "";
@@ -2237,6 +2283,8 @@ window.CivicationUI = {
   getCivicationProfileSnapshot,
   buildCiviEventViewModel,
   openTaskModalByMailId,
+  openDailyMailById,
+  openFirstDailyMailFromInspection,
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml
 };

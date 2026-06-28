@@ -133,6 +133,24 @@ assert(workdayHostHtml.includes('UKE_MARK'), 'native renderWorkdayPanel should i
 assert(workdayHostHtml.includes('KONTAKT_MARK'), 'native renderWorkdayPanel should include contacts');
 assert(workdayHostHtml.includes('KUNNSKAP_MARK'), 'native renderWorkdayPanel should include the knowledge task');
 assert(workdayHostHtml.includes('Dag 1 · Morgen'), 'native renderWorkdayPanel should include the phase HUD');
+
+// --- bundle item open-flow: vanlige mailer åpnes i mail-UI, ikke task-only modal ---
+const openedInboxHost = {
+  innerHTML: '',
+  querySelector() { return null; },
+  querySelectorAll() { return []; },
+  scrollIntoView() {}
+};
+global.CivicationMailEngine = {
+  getInbox: () => [{ status: 'pending', event: { id: 'm2', subject: 'Primæroppgave', phase_tag: 'morning', mail_type: 'generated', situation: ['Les denne saken først.'] } }],
+  markRead: (id) => { global.__lastMarkedRead = id; }
+};
+global.document.getElementById = (id) => (id === 'civiInbox' ? openedInboxHost : null);
+assert.strictEqual(global.CivicationUI.openDailyMailById('m2'), true, 'regular bundle mail opens through daily mail UI wrapper');
+assert.strictEqual(global.__lastMarkedRead, 'm2', 'opening a regular bundle mail marks it read');
+assert(openedInboxHost.innerHTML.includes('Primæroppgave'), 'opened regular bundle mail is rendered in inbox/mail UI');
+assert(!openedInboxHost.innerHTML.includes('Oppgavebeskrivelse'), 'regular bundle mail should not render as task modal');
+
 global.document.getElementById = () => null;
 
 // Modellen skal være trygg også uten DayProgression/DailyMailBuilder (defensive read).
