@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // og bruker state.js-globalene (personDialogs/peopleCollected/merits). Må være
     // lastet før quiz/app-runtime trenger window.saveVisitedFromQuiz.
     await safeRun("loadPersistence", () => loadScriptOnce("js/state/persistence.js"));
+    await safeRun("loadFavorites", () => loadScriptOnce("js/state/favorites.js"));
 
     await safeRun("loadLeftPanel", () => loadScriptOnce("js/ui/left-panel.js"));
 

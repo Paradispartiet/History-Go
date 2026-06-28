@@ -46,6 +46,62 @@ function placesByIdMap() {
   return new Map((window.PLACES || []).map(p => [String(p.id || "").trim(), p]));
 }
 
+
+function getPlaceDistanceMeters(place, pos) {
+  if (!place || !pos || typeof window.distMeters !== "function") return null;
+  const getTargets = (typeof window.getPlaceDistanceTargets === "function")
+    ? window.getPlaceDistanceTargets
+    : null;
+  const targets = getTargets ? getTargets(place) : [{ lat: place.lat, lon: place.lon }];
+  let best = Infinity;
+  for (const target of targets || []) {
+    const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
+    if (Number.isFinite(d) && d < best) best = d;
+  }
+  return Number.isFinite(best) ? Math.round(best) : null;
+}
+
+function routeToPlace(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return;
+  const next = `#/place/${encodeURIComponent(id)}`;
+  if (window.HGAppRouter?.navigate) {
+    window.HGAppRouter.navigate(next);
+  } else if (location.hash !== next) {
+    location.hash = next;
+  }
+}
+
+function updateFavoriteButtonState(btn, placeId) {
+  if (!btn) return;
+  const active = !!window.HGFavoritePlaces?.has?.(placeId);
+  btn.classList.toggle("is-active", active);
+  btn.textContent = active ? "★" : "☆";
+  const label = active ? "Fjern favoritt" : "Legg til favoritt";
+  btn.setAttribute("aria-label", label);
+  btn.title = label;
+}
+
+function createNearbyFavoriteButton(placeId) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "nearby-favorite-btn";
+  updateFavoriteButtonState(btn, placeId);
+  btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!window.HGFavoritePlaces) return;
+    window.HGFavoritePlaces.toggle(placeId);
+    updateFavoriteButtonState(btn, placeId);
+    if (typeof window.rerenderActiveLeftPanelMode === "function") {
+      window.rerenderActiveLeftPanelMode();
+    } else if (typeof window.renderLeftFavoritesList === "function") {
+      window.renderLeftFavoritesList();
+    }
+  });
+  return btn;
+}
+
 function categoryNameForBadgeFilter() {
   const id = getActiveLeftBadgeFilter();
   const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
@@ -92,10 +148,6 @@ function renderNearbyPlaces() {
   const filterMode = window.HG_NEARBY_FILTER || "unvisited";
   const freshPlaceId = String(window.HG_LAST_DISCOVERED_PLACE_ID || "").trim();
 
-  const getTargets = (typeof window.getPlaceDistanceTargets === "function")
-    ? window.getPlaceDistanceTargets
-    : null;
-
   const sortModeRaw = String(window.HG_NEARBY_SORT || "distance").trim().toLowerCase();
   const sortMode = (sortModeRaw === "oldest" || sortModeRaw === "newest") ? sortModeRaw : "distance";
   const resolveTime = (typeof window.HGTimeResolver?.resolvePlaceTime === "function")
@@ -119,17 +171,7 @@ function renderNearbyPlaces() {
     const hasTime = Number.isFinite(sortYear);
     return {
       ...p,
-      _d: (pos && typeof window.distMeters === "function")
-        ? (() => {
-            const targets = getTargets ? getTargets(p) : [{ lat: p.lat, lon: p.lon }];
-            let best = Infinity;
-            for (const target of targets) {
-              const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
-              if (Number.isFinite(d) && d < best) best = d;
-            }
-            return Number.isFinite(best) ? Math.round(best) : null;
-          })()
-        : null,
+      _d: getPlaceDistanceMeters(p, pos),
       _timeSortKey: hasTime ? sortYear : null,
       _timeLabel: hasTime ? String(sortYear) : "",
       _epokeLabel: String(resolved?.epokeLabel ?? p?.epokeLabel ?? "").trim(),
@@ -237,21 +279,80 @@ function renderNearbyPlaces() {
         </div>
     `;
 
-    item.addEventListener("click", () => {
-      const placeId = String(place.id || "").trim();
-      if (!placeId) return;
+    item.appendChild(createNearbyFavoriteButton(place.id));
 
-      const next = `#/place/${encodeURIComponent(placeId)}`;
-      if (window.HGAppRouter?.navigate) {
-        window.HGAppRouter.navigate(next);
-      } else if (location.hash !== next) {
-        location.hash = next;
-      }
+    item.addEventListener("click", () => {
+      routeToPlace(place.id);
     });
 
     listEl.appendChild(item);
   });
 }
+
+function renderLeftFavoritesList() {
+  const listEl = document.getElementById("leftFavoritesList");
+  if (!listEl) return;
+
+  const ids = window.HGFavoritePlaces?.getIds?.() || [];
+  const placesById = placesByIdMap();
+  const pos = window.getPos?.();
+  let items = ids
+    .map((id, index) => ({ place: placesById.get(String(id || "").trim()), index }))
+    .filter((item) => item.place && placeMatchesActiveBadge(item.place))
+    .map((item) => ({ ...item, distance: getPlaceDistanceMeters(item.place, pos) }));
+
+  items.sort((a, b) => {
+    const aHasDistance = Number.isFinite(a.distance);
+    const bHasDistance = Number.isFinite(b.distance);
+    if (aHasDistance && bHasDistance && a.distance !== b.distance) return a.distance - b.distance;
+    if (aHasDistance !== bHasDistance) return aHasDistance ? -1 : 1;
+    return a.index - b.index || String(a.place.name || "").localeCompare(String(b.place.name || ""), "nb");
+  });
+
+  listEl.innerHTML = "";
+
+  if (!ids.length) {
+    listEl.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">☆</div>
+        <div class="hg-empty-guide-title">Ingen favoritter ennå</div>
+        <div class="hg-empty-guide-text">Ingen favoritter ennå. Trykk på stjernen ved et sted for å lagre det her.</div>
+        <button class="hg-empty-guide-action" type="button" data-leftmode-target="nearby">Vis steder</button>
+      </div>
+    `;
+    listEl.querySelector("[data-leftmode-target='nearby']")?.addEventListener("click", () => window.setLeftPanelMode?.("nearby"));
+    return;
+  }
+
+  if (!items.length) {
+    renderBadgeFilterEmpty(listEl, "favoritter");
+    return;
+  }
+
+  items.forEach(({ place, distance }) => {
+    const img = place.image || place.cardImage || "";
+    const parts = [];
+    if (Number.isFinite(distance)) parts.push(`${distance} m`);
+
+    const item = document.createElement("div");
+    item.className = "nearby-item";
+    item.innerHTML = `
+      <div class="nearby-thumbWrap">
+        <img class="nearby-thumb" src="${escapeHTML(img)}" alt="${escapeHTML(place.name || "")}" loading="lazy" decoding="async">
+        <img class="nearby-badge" src="bilder/merker/${escapeHTML(place.category || "")}.PNG" alt="">
+      </div>
+      <div class="nearby-content">
+        <div class="nearby-title">${escapeHTML(place.name || place.id || "")}</div>
+        <div class="nearby-meta">${escapeHTML(parts.join(" · "))}</div>
+      </div>
+    `;
+    item.appendChild(createNearbyFavoriteButton(place.id));
+    item.addEventListener("click", () => routeToPlace(place.id));
+    listEl.appendChild(item);
+  });
+}
+
+window.renderLeftFavoritesList = renderLeftFavoritesList;
 
 function renderNearbyMusic() {
   const listEl = document.getElementById("leftMusicList");

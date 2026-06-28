@@ -717,3 +717,93 @@ body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
 
   text-shadow: 0 2px 8px rgba(0,0,0,.9);
 }
+
+/* Favorite place affordances in Utforsk/Nearby strips */
+#nearbyList.nearby-strip .nearby-favorite-btn,
+#leftFavoritesList.nearby-strip .nearby-favorite-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 999px;
+  background: rgba(0,0,0,.56);
+  color: rgba(255,255,255,.92);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+
+#nearbyList.nearby-strip .nearby-favorite-btn.is-active,
+#leftFavoritesList.nearby-strip .nearby-favorite-btn.is-active,
+.nearby-tab[data-leftmode="favorites"].is-active {
+  color: #ffd75a;
+}
+
+#leftFavoritesList.nearby-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 12px 2px 0;
+}
+
+#leftFavoritesList.nearby-strip[hidden] { display: none; }
+#leftFavoritesList.nearby-strip::-webkit-scrollbar { display: none; }
+
+#leftFavoritesList.nearby-strip .nearby-item {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 150px;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #000;
+  overflow: hidden;
+}
+
+#leftFavoritesList.nearby-strip .nearby-thumbWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+#leftFavoritesList.nearby-strip .nearby-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#leftFavoritesList.nearby-strip .nearby-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 8px 12px 10px;
+  pointer-events: none;
+}
+
+#leftFavoritesList.nearby-strip .nearby-title,
+#leftFavoritesList.nearby-strip .nearby-meta {
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 8px rgba(0,0,0,.9);
+}
+
+#leftFavoritesList.nearby-strip .nearby-title { font-size: 14px; font-weight: 800; }
+#leftFavoritesList.nearby-strip .nearby-meta { font-size: 11px; margin-top: 2px; }

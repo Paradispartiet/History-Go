@@ -49,6 +49,7 @@ function renderActiveLeftPanelModeNow() {
   const mode = hgActiveLeftPanelMode();
 
   if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
+  if (mode === "favorites" && typeof renderLeftFavoritesList === "function") renderLeftFavoritesList();
   if (mode === "people" && typeof renderNearbyPeople === "function") renderNearbyPeople();
   if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
   if (mode === "music" && typeof renderNearbyMusic === "function") renderNearbyMusic();
@@ -83,6 +84,7 @@ function rerenderActiveLeftPanelMode() {
 function setLeftPanelMode(mode) {
   const listIdsByMode = {
     nearby: "nearbyList",
+    favorites: "leftFavoritesList",
     people: "leftPeopleList",
     nature: "leftNatureList",
     music: "leftMusicList",
@@ -493,7 +495,8 @@ function initLeftPanel() {
 
   function updateBadgeFilterButton() {
     if (!badgeBtn) return;
-    if (hgActiveLeftPanelMode() === "nature") {
+    const activeMode = hgActiveLeftPanelMode();
+    if (activeMode === "nature") {
       badgeBtn.style.display = "none";
       return;
     }
@@ -521,11 +524,15 @@ function initLeftPanel() {
     if (!btn) return;
     const mode = hgActiveLeftPanelMode();
     if (mode === "nature") {
+      btn.style.display = "inline-flex";
       btn.textContent = NATURE_ICONS[window.HG_NATURE_FILTER] || "🌍";
       btn.title = `Natur-filter: ${window.HG_NATURE_FILTER}`;
-    } else {
+    } else if (mode === "nearby") {
+      btn.style.display = "inline-flex";
       btn.textContent = PLACES_ICONS[window.HG_NEARBY_FILTER] || "🎯";
       btn.title = `Filter: ${window.HG_NEARBY_FILTER}`;
+    } else {
+      btn.style.display = "none";
     }
 
     updateBadgeFilterButton();
@@ -556,7 +563,7 @@ function initLeftPanel() {
         try { localStorage.setItem("hg_nature_filter_v1", window.HG_NATURE_FILTER); } catch {}
         updateFilterButton();
         if (typeof renderNearbyNature === "function") renderNearbyNature();
-      } else {
+      } else if (mode === "nearby") {
         const i = PLACES_ORDER.indexOf(window.HG_NEARBY_FILTER);
         window.HG_NEARBY_FILTER = PLACES_ORDER[(i + 1) % PLACES_ORDER.length];
         try { localStorage.setItem("hg_nearby_filter_v1", window.HG_NEARBY_FILTER); } catch {}
@@ -627,6 +634,7 @@ window.setNearbyCollapsed = function (hidden) {
 // ============================================================
 
 window.initLeftPanel = initLeftPanel;
+window.setLeftPanelMode = setLeftPanelMode;
 
 // initPlaceCardCollapse defineres og eksponeres i js/ui/place-card.js.
 // Les ikke en bar top-level binding her – hvis place-card.js ikke er lastet
