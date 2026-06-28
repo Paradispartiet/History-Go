@@ -1364,7 +1364,9 @@
   }
 
   function rowSummary(row) {
-    return { id: norm(row?.event?.id || row?.id), subject: norm(row?.event?.subject || row?.subject), slot: norm(row?.slot || row?.event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: norm(row?.phase || row?.event?.phase_tag), required: row?.optional !== true };
+    const event = row?.event || {};
+    const choices = Array.isArray(event?.choices) ? event.choices : [];
+    return { id: norm(event?.id || row?.id), subject: norm(event?.subject || row?.subject), mail_type: norm(event?.mail_type || event?.type || row?.mail_type), slot: norm(row?.slot || event?.daily_mail_meta?.slot), status: norm(row?.status || "queued"), phase: norm(row?.phase || event?.phase_tag), required: row?.optional !== true, optional: row?.optional === true, hasChoices: choices.length > 0, choiceCount: choices.length };
   }
 
   function getPhaseBundle(phase) {
@@ -1497,6 +1499,14 @@
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
 
     return { enqueued: true, event, index: idx, runtime: nextRuntime };
+  }
+
+  async function markHandled(eventId, choiceId = "handled") {
+    const next = await markAnswered(eventId, choiceId);
+    try { window.CivicationMailEngine?.markResolved?.(eventId, eventId, choiceId); } catch {}
+    try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+    return next;
   }
 
   async function markAnswered(eventId, choiceId) {
@@ -1787,6 +1797,7 @@
     getPhaseCompletion: (phase) => { const b = getPhaseBundle(phase); return { requiredCount: b.requiredCount, completedCount: b.completedCount, isComplete: b.isComplete }; },
     getDaySummary: () => window.CivicationDayProgression?.getDayEndSummary?.() || null,
     markAnswered,
+    markHandled,
     isDailyEvent,
     hasBuiltDayForActiveRole,
     loadJson,

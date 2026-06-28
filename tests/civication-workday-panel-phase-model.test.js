@@ -61,7 +61,10 @@ global.CivicationDayProgression = {
     openItemSubjects: ['Primæroppgave'],
     nextPhase: 'lunch',
     canAdvance: false,
-    reason: 'open_items_in_phase'
+    reason: 'open_items_in_phase',
+    deliveredItemsInPhase: 1,
+    queuedItemsInPhase: 0,
+    phaseBundle: { items: runtimeItems.filter((row) => row.phase === 'morning').map((row) => ({ id: row.event.id, subject: row.event.subject, slot: row.slot, status: row.status, phase: row.phase, mail_type: row.event.mail_type || 'job', required: true, hasChoices: false })) }
   })
 };
 
@@ -77,6 +80,7 @@ assert.strictEqual(dp.dayIndex, 1, 'dayPhase dayIndex from DayProgression');
 assert.strictEqual(dp.openItemsInPhase, 1, 'dayPhase openItemsInPhase from DayProgression');
 assert.strictEqual(dp.canAdvance, false, 'cannot advance while morning item open');
 assert.strictEqual(dp.nextPhase, 'lunch', 'next phase surfaced');
+assert.strictEqual(dp.nextAction.kind, 'continue_bundle', 'delivered/open items expose continue_bundle nextAction');
 
 // Dagsbunke gruppert per fase.
 const byId = Object.fromEntries(dp.phases.map((p) => [p.id, p]));
@@ -96,6 +100,8 @@ assert(html.includes('Dag 1 · Morgen'), 'native section shows day + phase headi
 assert(html.includes('Morgen 1/2'), 'native section shows per-phase progress count');
 assert(html.includes('Åpne i fasen: 1'), 'native section shows open items in phase');
 assert(html.includes('Primæroppgave'), 'native section lists the open morning item subject');
+assert(html.includes('Fortsett bolken'), 'native section exposes continue bundle action');
+assert(html.includes('Marker håndtert'), 'read-only bundle item can be handled from the panel');
 
 // Tom bunke → ingen seksjon (ingen krasj).
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml({ hasBundle: false }), '', 'no section without a built bundle');

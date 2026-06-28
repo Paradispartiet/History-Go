@@ -330,6 +330,46 @@
     };
   }
 
+
+  function buildBundleItemsList(inspection) {
+    const items = Array.isArray(inspection?.phaseBundle?.items)
+      ? inspection.phaseBundle.items.filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
+      : [];
+    if (!items.length) return inspection.canAdvance ? '<div class="civi-day-phase-bundle-done">Bolken er ferdig</div>' : "";
+    return '<div class="civi-day-phase-bundle"><div class="civi-day-phase-bundle-title">Fortsett bolken</div>'
+      + items.map((it) => {
+        const id = escapeHtml(it.id || "");
+        const optional = it.optional === true || it.required === false;
+        const hasChoices = it.hasChoices === true || Number(it.choiceCount || 0) > 0;
+        const action = hasChoices
+          ? '<button class="civi-btn secondary" type="button" data-civi-day-phase-open-item="' + id + '">Svar</button>'
+          : '<button class="civi-btn secondary" type="button" data-civi-day-phase-mark-handled="' + id + '">Marker håndtert</button>';
+        const skip = optional ? '<button class="civi-btn secondary" type="button" data-civi-day-phase-mark-handled="' + id + '" data-civi-skip-optional="true">Hopp over</button>' : "";
+        return '<article class="civi-day-phase-bundle-card"><strong>' + escapeHtml(it.subject || it.slot || it.id || "Hendelse") + '</strong>'
+          + '<div class="civi-day-phase-status muted">' + escapeHtml(it.mail_type || "mail") + ' · ' + escapeHtml(it.slot || "slot") + ' · ' + escapeHtml(it.status || "status") + ' · ' + (optional ? "valgfri" : "påkrevd") + '</div>'
+          + '<div><button class="civi-btn secondary" type="button" data-civi-day-phase-open-item="' + id + '">Åpne</button> ' + action + ' ' + skip + '</div></article>';
+      }).join("") + '</div>';
+  }
+
+  function bindBundleItemButtons(panel) {
+    panel.querySelectorAll("[data-civi-day-phase-open-item]").forEach(function (button) {
+      button.onclick = function () {
+        const mailId = button.getAttribute("data-civi-day-phase-open-item");
+        if (!mailId) return;
+        window.CivicationMailEngine?.markRead?.(mailId);
+        window.CivicationUI?.openTaskModalByMailId?.(mailId);
+      };
+    });
+    panel.querySelectorAll("[data-civi-day-phase-mark-handled]").forEach(function (button) {
+      button.onclick = async function () {
+        const mailId = button.getAttribute("data-civi-day-phase-mark-handled");
+        if (!mailId) return;
+        await window.CivicationDailyMailBuilder?.markHandled?.(mailId, button.getAttribute("data-civi-skip-optional") ? "skipped" : "handled");
+        render();
+      };
+    });
+  }
+
   function bindAdvanceButton(panel) {
     const button = panel.querySelector("[data-civi-day-phase-advance]");
     if (!button) return;
@@ -379,6 +419,7 @@
       + "<p class=\"civi-day-phase-status muted\">" + escapeHtml(getLoopHint(inspection)) + "</p>"
       + dayCompleteSummary
       + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
+      + buildBundleItemsList(inspection)
       + "<div class=\"civi-day-phase-actions\">"
       + (canOpenBundle ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-bundle>Åpne hele bolken</button>" : "")
       + (canOpenNext ? "<button class=\"civi-btn secondary\" type=\"button\" data-civi-day-phase-open-next>Åpne neste</button>" : "")
@@ -387,6 +428,7 @@
 
     bindOpenBundleButton(panel);
     bindOpenNextButton(panel);
+    bindBundleItemButtons(panel);
     bindAdvanceButton(panel);
     return true;
   }
