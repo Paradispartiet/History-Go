@@ -121,6 +121,7 @@
       empty: "Ikke valgt nabolag.",
       action: "Åpne hjem",
       urgentAction: "Velg nabolag",
+      ignoreBodyActionsWhenSettled: true,
       forceUrgent: function () {
         const home = /** @type {any} */ (window.CivicationHome?.getState?.())?.home || null;
         return home?.status !== "settled";
@@ -538,6 +539,11 @@
       try {
         if (config.forceUrgent()) return true;
       } catch {}
+    }
+
+    if (config.ignoreBodyActionsWhenSettled === true) {
+      const home = /** @type {any} */ (window.CivicationHome?.getState?.())?.home || null;
+      if (home?.status === "settled") return false;
     }
 
     const body = getDirectBody(section);
