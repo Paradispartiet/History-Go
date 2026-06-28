@@ -75,6 +75,17 @@ HG Spotmeeting v1 is demo-playable as a privacy-safe API/runtime flow in TEST_MO
 
 Add a small TEST_MODE-only PlaceCard demo panel that lists returned candidates and lets the user send exactly one preset message via existing `HG_Spotmeeting.createSpotmeetingInvite()`, then updates the profile inbox. Keep it local-only, preset-only, and privacy-scanned; do not add backend calls or free text.
 
+## Follow-up: PlaceCard preset-send demo applied
+
+Status: implemented in a small TEST_MODE-only runtime layer.
+
+- Added `js/social/HGSpotmeetingPlaceCardDemo.js`.
+- The existing PlaceCard `Kunnskapsmøte` buttons now open a local demo candidate chooser in TEST_MODE.
+- `Foreslå quiz`, `Foreslå rute`, and `Foreslå observasjon` map to the existing preset IDs and call `HG_Spotmeeting.createSpotmeetingInvite()` for the selected demo candidate.
+- `Finn match` uses the existing compare-place-learning preset.
+- The flow remains local-only, preset-only, private, and backend-disabled.
+- No Civication files, data manifests, place/person/quiz data, backend calls, GPS/live-location style fields, follower/feed features, or free chat were added.
+
 ## Tests run
 
 - `node tests/hg-spotmeeting.test.js` — passed.
@@ -83,3 +94,4 @@ Add a small TEST_MODE-only PlaceCard demo panel that lists returned candidates a
 - `node tests/hg-social-demo-ux.test.js` — passed.
 - `node tests/hg-social-surface-contract.test.js` — passed.
 - `node tests/place-card-rounds-runtime-audit.test.js` — passed.
+- `node tests/hg-spotmeeting-placecard-demo.test.js` — added for the PlaceCard preset-send demo layer.
