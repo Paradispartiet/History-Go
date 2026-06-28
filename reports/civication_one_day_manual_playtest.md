@@ -84,3 +84,11 @@ Do a small UI-copy cleanup pass, not an engine rewrite:
 1. Rename debug-like text such as “Task gate/blokkering” to a player-facing phrase such as “Dette stopper neste fase”.
 2. Make the duplicate pending-item buttons less ambiguous by keeping one primary “Åpne” action for the pending item.
 3. Add a short inline explanation near “Marker håndtert” for generated/read-only items.
+
+## UI copy cleanup applied
+
+- Replaced the player-facing “Task gate/blokkering” wording in the workday phase panel with “Dette stopper neste fase”, and mapped known phase-stop reasons to plain Norwegian explanations.
+- Clarified read-only/generated item handling by keeping the button label “Ferdig med denne” and adding helper text that explains it is used when the card is only a message or automatic event.
+- Simplified bundle entry actions so the phase/workday panels no longer show two buttons for the same queued item. The primary bundle action is now “Åpne neste” when one queued item remains, and “Åpne bolken” when multiple queued items remain.
+- Kept “Fortsett bolken” as a section/context label for already opened cards rather than as a duplicate pending-item button.
+- Remaining warning: the workday panel and day-phase panel still show related bundle information in two places, but their primary queued-item action labels now match the player’s next action more clearly.

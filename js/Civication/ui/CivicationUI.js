@@ -1108,9 +1108,9 @@ function computeDayPhaseModel() {
   const blockingItems = Number(prog?.queuedItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0) + Number(prog?.openItemsInPhase || 0);
   const activePendingCount = Number(prog?.openItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0);
   const nextAction = Number(prog?.queuedItemsInPhase || 0) > 0 && activePendingCount === 0
-    ? { kind: "open_bundle", label: "Åpne hele bolken" }
+    ? { kind: "open_bundle", label: Number(prog?.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken" }
     : activePendingCount > 0
-      ? { kind: "continue_bundle", label: "Fortsett bolken" }
+      ? { kind: "continue_bundle", label: "Svar direkte i bolken" }
       : (prog?.canAdvance && prog?.nextPhase && blockingItems === 0)
         ? { kind: "advance_phase", label: "Gå til neste fase" }
         : { kind: "wait", label: "Ingen handling" };
@@ -1170,6 +1170,18 @@ function isBundleTaskGate(item) {
     .includes("task_gate");
 }
 
+function formatDayPhaseReason(reason) {
+  const key = String(reason || "").trim();
+  const labels = {
+    queued_items_in_phase: "du har hendelser igjen i denne bolken",
+    delivered_items_in_phase: "du har en hendelse som må åpnes eller besvares",
+    open_items_in_phase: "du har en åpen melding som må besvares",
+    at_last_phase: "dagen er fullført",
+    ready_to_advance: "ingenting"
+  };
+  return labels[key] || key.replace(/[_-]+/g, " ") || "ukjent";
+}
+
 function buildDayPhaseSectionHtml(dayPhase) {
   if (!dayPhase || !dayPhase.hasBundle) return "";
 
@@ -1205,7 +1217,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
           } else if (hasChoices) {
             action = `<button class="civi-btn secondary" type="button" data-civi-bundle-event="${escapeHtml(id)}" data-civi-bundle-choice="A">Vis valg</button>`;
           } else {
-            action = `<p class="civi-workday-sub">Dette er en beskjed / automatisk hendelse.</p><button class="civi-btn secondary" type="button" data-civi-bundle-handled="${escapeHtml(id)}" title="Marker håndtert">Ferdig med denne</button>`;
+            action = `<p class="civi-workday-sub">Dette er en beskjed eller automatisk hendelse. Bruk knappen når du er ferdig med å lese.</p><button class="civi-btn secondary" type="button" data-civi-bundle-handled="${escapeHtml(id)}" title="Brukes når dette bare er en beskjed eller automatisk hendelse.">Ferdig med denne</button>`;
           }
           const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-bundle-skip="${escapeHtml(id)}">Hopp over</button>` : "";
           return `<article class="civi-workday-bundle-card" style="padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;">
@@ -1220,8 +1232,9 @@ function buildDayPhaseSectionHtml(dayPhase) {
 
   const action = dayPhase.nextAction || {};
   const remainingText = Number(dayPhase.queuedItemsInPhase || 0) > 0 ? `<div class="civi-workday-sub"><strong>${dayPhase.phaseLabel}bolk</strong> · ${dayPhase.queuedItemsInPhase} hendelser gjenstår</div>` : "";
+  const openBundleLabel = Number(dayPhase.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken";
   const actionHtml = action.kind === "open_bundle"
-    ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>Åpne hele bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-next-event>Åpne neste</button>`
+    ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>${openBundleLabel}</button>`
     : action.kind === "continue_bundle"
       ? `<span class="civi-workday-sub">Fortsett bolken: svar direkte i kortene under.</span>`
       : action.kind === "advance_phase"
@@ -1236,7 +1249,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
       <div class="civi-workday-phase-head" style="font-weight:700;margin-bottom:8px;">Dag ${dayPhase.dayIndex} · ${dayPhase.phaseLabel || dayPhase.phase}</div>
       <div class="civi-workday-phase-chips" style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
       <div class="civi-workday-phase-open-head" style="margin-top:8px;font-weight:600;">Åpne i fasen: ${dayPhase.openItemsInPhase}</div>
-      <div class="civi-workday-sub">Fullført/totalt i fasen: ${dayPhase.completedItemsInPhase || 0}/${dayPhase.totalItemsInPhase || ((dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0))} · Pending: ${(dayPhase.pendingItem && (dayPhase.pendingItem.subject || dayPhase.pendingItem.id)) || "—"} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Task gate/blokkering: ${dayPhase.canAdvance ? "ingen" : (dayPhase.reason || "ukjent")}</div>
+      <div class="civi-workday-sub">Fullført/totalt i fasen: ${dayPhase.completedItemsInPhase || 0}/${dayPhase.totalItemsInPhase || ((dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0))} · Åpent nå: ${(dayPhase.pendingItem && (dayPhase.pendingItem.subject || dayPhase.pendingItem.id)) || "—"} · Neste i kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Dette stopper neste fase: ${dayPhase.canAdvance ? "ingenting" : formatDayPhaseReason(dayPhase.reason)}</div>
       ${remainingText}
       <div class="civi-workday-phase-action" style="margin-top:8px;">${actionHtml}</div>
       ${suggestionsHtml}
