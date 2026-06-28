@@ -5,6 +5,10 @@ Det er en operativ oversikt over filer, ansvar og eierskap.
 
 ---
 
+## Product state
+
+- [Current product state](./CURRENT_PRODUCT_STATE.md)
+
 ## OVERORDNET ARKITEKTUR
 
 History Go er delt i tydelige lag:
