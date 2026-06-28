@@ -621,3 +621,11 @@ Optional panel `window.HG_SocialMatchGraphPanel` renders local self profile, top
 - Progress events avoid exact timestamps, GPS/coordinate fields, live status, relation counts, and raw observation bodies.
 - `Min dag` surfaces the `Dagens framgang` section with completed objective count, recent safe progress labels, and source summaries.
 - The optional toast is non-modal, quiet, and only appears for objective completion or similar safe progress events.
+
+### HG Spotmeeting v1
+
+- `js/social/HGSpotmeeting.js` exposes `window.HG_Spotmeeting`.
+- Storage key: `hg_spotmeeting_v1`.
+- PlaceCard shows a `Kunnskapsmøte` section with context-bound actions for match, quiz, route, and observation.
+- Profile shows a read-only spotmeeting inbox summary when the social profile area exists.
+- Production returns `backend_not_enabled` for real discovery; `HG_TEST_MODE` may read seeded HG Social demo candidates only.

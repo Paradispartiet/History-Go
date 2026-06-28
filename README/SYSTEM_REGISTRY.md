@@ -765,3 +765,7 @@ Safety markers: safety-first, local-only, no GPS/live/followers, and no automati
 - Event: `hg:dailyProgressChanged`.
   - Payload contains only `{ eventCount, completedObjectiveCount, lastEventType }`.
   - Local-only, privacy-safe, no gameplay mutation, no backend.
+
+### `window.HG_Spotmeeting`
+
+`window.HG_Spotmeeting` is exposed by `js/social/HGSpotmeeting.js` for HG Spotmeeting v1. It owns local spotmeeting state in `hg_spotmeeting_v1` and provides config/state readers, context-based suggestions, preset-only invite creation, cancel/accept/decline/completion transitions, inbox/timeline readers, privacy scanning, and `health()` diagnostics. Production discovery is backend-not-enabled; TEST_MODE may use isolated HG Social demo candidates.

@@ -115,6 +115,30 @@ function normalizePlaceCardStringList(value) {
     .filter(Boolean);
 }
 
+function renderHGSpotmeetingPlaceCardSection(place) {
+  const id = escapePlaceCardHTML(place?.id || place?.name || 'sted');
+  const context = { contextType: 'place', contextId: String(place?.id || place?.name || 'sted'), title: String(place?.name || place?.title || 'Sted'), reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'placeCard' };
+  const testMode = (() => { try { return window.localStorage?.getItem('HG_TEST_MODE') === '1'; } catch { return false; } })();
+  const suggestions = window.HG_Spotmeeting?.getSpotmeetingSuggestions?.(context);
+  const demoCount = Array.isArray(suggestions?.suggestions) ? suggestions.suggestions.length : 0;
+  const status = testMode
+    ? `TEST_MODE: ${demoCount} demo-kandidater kan brukes.`
+    : 'Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE.';
+  return `
+    <section class="pc-spotmeeting" data-hg-spotmeeting-place="${id}">
+      <h3>Kunnskapsmøte</h3>
+      <p>Møt folk gjennom det dere har lært — ikke hvor dere er.</p>
+      <div class="pc-spotmeeting-actions">
+        <button type="button" data-hg-spotmeeting-action="match">Finn match</button>
+        <button type="button" data-hg-spotmeeting-action="quiz">Foreslå quiz</button>
+        <button type="button" data-hg-spotmeeting-action="route">Foreslå rute</button>
+        <button type="button" data-hg-spotmeeting-action="observation">Foreslå observasjon</button>
+      </div>
+      <small>${escapePlaceCardHTML(status)}</small>
+    </section>
+  `;
+}
+
 function formatMusicRelation(value) {
   const labels = {
     formed_in: "Dannet på stedet",
@@ -1378,6 +1402,18 @@ if (peopleEl) {
   });
 }
 
+if (peopleEl) {
+  peopleEl.insertAdjacentHTML("beforeend", renderHGSpotmeetingPlaceCardSection(place));
+  peopleEl.querySelectorAll("[data-hg-spotmeeting-action]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const action = btn.getAttribute("data-hg-spotmeeting-action");
+      const context = { contextType: action === "quiz" ? "quiz" : action === "route" ? "route" : action === "observation" ? "observation" : "place", contextId: String(place?.id || place?.name || "sted"), title: String(place?.name || place?.title || "Sted"), reason: "Manuelt kunnskapsmøte fra PlaceCard", sourceSurface: "placeCard" };
+      const result = window.HG_Spotmeeting?.getSpotmeetingSuggestions?.(context);
+      if (result?.warning === "backend_not_enabled") window.showToast?.("Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE.");
+      else window.showToast?.(`Kunnskapsmøte: ${(result?.suggestions || []).length} demo-matcher`);
+    });
+  });
+}
 window.HG_SocialDemoAdapter?.attachToPlaceCard?.(peopleEl || card, place);
 
 // people icon preview (første person)
@@ -2209,11 +2245,10 @@ if (btnExploreTogether) {
       if (!action) return;
       menu.remove();
       const placeId = String(place.id || "").trim();
-      if (action === "matches") return window.openSpotMatchList?.(placeId);
-      const matches = typeof window.getKnowledgeMatches === "function" ? window.getKnowledgeMatches().slice(0, 2).map((m) => m.targetUserId) : [];
-      if (action === "quiz") { window.startSharedQuiz?.(placeId, matches, "co-op"); window.showToast?.("Felles quiz opprettet"); return; }
-      if (action === "observation") { window.createSharedObservation?.({ spotId: placeId, users: matches, observations: ["invited"] }); window.showToast?.("Felles observasjon opprettet"); return; }
-      if (action === "route") { window.startSharedRoute?.({ spots: [placeId], participants: matches, routeType: matches.length > 1 ? "circle" : "pair" }); window.showToast?.("Delt rute opprettet"); }
+      const context = { contextType: action === "quiz" ? "quiz" : action === "route" ? "route" : action === "observation" ? "observation" : "place", contextId: placeId, title: String(place.name || placeId), reason: "Manuelt kunnskapsmøte fra PlaceCard", sourceSurface: "placeCard" };
+      const result = window.HG_Spotmeeting?.getSpotmeetingSuggestions?.(context);
+      if (action === "matches") return window.showToast?.(`Kunnskapsmøte: ${(result?.suggestions || []).length} demo-matcher`);
+      window.showToast?.(result?.warning === "backend_not_enabled" ? "Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE." : "Spotmeeting-forslag er klart i TEST_MODE");
     });
     footer.appendChild(menu);
     const footerRect = footer.getBoundingClientRect();
