@@ -44,33 +44,59 @@
       "step": 1,
       "type": "job",
       "phase": "intro",
-      "step_goal": "Arealplanlegger-bue: plankart og bestemmelser",
+      "step_goal": "Kartet lyver ikke, men det tier: åpne plankartet og se hva bestemmelsene ikke forklarer.",
       "allowed_families": [
         "plankart_og_bestemmelser"
       ],
       "fallback_types": [
         "job",
-        "job"
+        "knowledge"
       ]
     },
     {
       "step": 2,
-      "type": "job",
-      "phase": "early",
-      "step_goal": "Arealplanlegger-bue: arealbruk og prioritering",
+      "type": "knowledge",
+      "phase": "intro",
+      "step_goal": "Lær hvorfor hensynssoner, bestemmelser og plankart må virke sammen før saken kan forstås.",
       "allowed_families": [
-        "arealbruk_og_prioritering"
+        "planfag_kunnskap"
       ],
       "fallback_types": [
-        "job",
+        "knowledge",
         "job"
       ]
     },
     {
       "step": 3,
+      "type": "micro",
+      "phase": "early",
+      "step_goal": "Kort driftsavklaring: et lite spørsmål om norm eller kollektivdekning flytter hele risikobildet.",
+      "allowed_families": [
+        "driftsavklaringer_lillebekk"
+      ],
+      "fallback_types": [
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 4,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Alle gode formål får ikke plass: prioriter mellom bolig, grøntdrag, skolevei og drift.",
+      "allowed_families": [
+        "arealbruk_og_prioritering"
+      ],
+      "fallback_types": [
+        "job",
+        "conflict"
+      ]
+    },
+    {
+      "step": 5,
       "type": "people",
       "phase": "early",
-      "step_goal": "Arealplanlegger-bue: aktorer og press",
+      "step_goal": "Den irriterende nabomailen har ett sant punkt: skill lokal kunnskap fra støy.",
       "allowed_families": [
         "aktorer_og_press"
       ],
@@ -80,23 +106,36 @@
       ]
     },
     {
-      "step": 4,
+      "step": 6,
       "type": "conflict",
       "phase": "mid",
-      "step_goal": "Arealplanlegger-bue: grontdrag skolevei stoy",
+      "step_goal": "Støyskjermen løser én ting og ødelegger en annen: vis målkonflikten i grøntdrag, skolevei og støy.",
       "allowed_families": [
         "grontdrag_skolevei_stoy"
       ],
       "fallback_types": [
         "conflict",
-        "job"
+        "followup"
       ]
     },
     {
-      "step": 5,
+      "step": 7,
+      "type": "followup",
+      "phase": "mid",
+      "step_goal": "Følg opp dokumentasjonen når solstudie og bestemmelser ser ryddige ut, men skjuler faglig risiko.",
+      "allowed_families": [
+        "oppfolging_lillebekk"
+      ],
+      "fallback_types": [
+        "followup",
+        "knowledge"
+      ]
+    },
+    {
+      "step": 8,
       "type": "story",
       "phase": "mid",
-      "step_goal": "Arealplanlegger-bue: linjen pa kartet",
+      "step_goal": "Behold hovedplottet Linjen på kartet: én linje flytter ansvar, verdi og risiko.",
       "allowed_families": [
         "linjen_pa_kartet"
       ],
@@ -106,36 +145,50 @@
       ]
     },
     {
-      "step": 6,
+      "step": 9,
       "type": "event",
       "phase": "advanced",
-      "step_goal": "Arealplanlegger-bue: frist for utvalg",
+      "step_goal": "Utbyggeren spør ikke om lov, han spør om signal: fristen presser fram uklar eller presis administrativ retning.",
       "allowed_families": [
         "frist_for_utvalg"
       ],
       "fallback_types": [
         "event",
+        "followup",
         "job"
       ]
     },
     {
-      "step": 7,
+      "step": 10,
       "type": "job",
       "phase": "advanced",
-      "step_goal": "Arealplanlegger-bue: rekkefolgekrav og juss",
+      "step_goal": "Sikr rekkefølgekrav og planjuss slik at gode intensjoner blir forpliktelser.",
       "allowed_families": [
         "rekkefolgekrav_og_juss"
       ],
       "fallback_types": [
         "job",
-        "job"
+        "knowledge"
       ]
     },
     {
-      "step": 8,
+      "step": 11,
+      "type": "consequence",
+      "phase": "mastery",
+      "step_goal": "Konsekvens av tidligere valg: se om saken får sporbarhet, legitimitet eller klagerisiko.",
+      "allowed_families": [
+        "faglig_spor_videre"
+      ],
+      "fallback_types": [
+        "consequence",
+        "story"
+      ]
+    },
+    {
+      "step": 12,
       "type": "event",
       "phase": "mastery",
-      "step_goal": "Arealplanlegger-bue: faglig spor videre",
+      "step_goal": "Politisk lesbarhet uten å skjule faglig risiko: send saken videre med et tydelig faglig spor.",
       "allowed_families": [
         "faglig_spor_videre"
       ],

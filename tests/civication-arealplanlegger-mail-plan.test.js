@@ -63,7 +63,8 @@ async function run() {
   loadScript('js/Civication/systems/civicationMailPlanDebug.js');
 
   const plan = readJson('data/Civication/mailPlans/by/by_radgiver_plan_plan.json');
-  const familyPaths = ['job', 'people', 'story', 'conflict', 'event'].map(type => `data/Civication/mailFamilies/by/${type}/by_radgiver_plan_${type}.json`);
+  const expectedTypes = ['job', 'people', 'story', 'conflict', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
+  const familyPaths = expectedTypes.map(type => `data/Civication/mailFamilies/by/${type}/by_radgiver_plan_${type}.json`);
   const catalogs = familyPaths.map(readJson);
   const familiesById = new Map();
   const typesWithMail = new Set();
@@ -74,7 +75,7 @@ async function run() {
     }
   }
 
-  for (const type of ['job', 'people', 'story', 'conflict', 'event']) {
+  for (const type of expectedTypes) {
     assert(typesWithMail.has(type), `Arealplanlegger should have ${type} mail content`);
   }
 
@@ -83,10 +84,24 @@ async function run() {
     assert(familiesById.has(familyId), `mailPlan allowed_families should exist: ${familyId}`);
   }
 
+  for (const type of ['micro', 'followup', 'knowledge', 'consequence']) {
+    const catalog = catalogs.find(row => row.mail_type === type);
+    const mails = (catalog.families || []).flatMap(family => family.mails || []);
+    assert(mails.length > 0, `Arealplanlegger should include ${type} mails`);
+    for (const mail of mails) {
+      assert(mail.from || mail.sender || mail.person_id, `${mail.id} should have a concrete sender`);
+      assert(mail.task_domain && mail.competency, `${mail.id} should have a concrete work task and competency`);
+      assert(mail.pressure && mail.choice_axis, `${mail.id} should have a fagproblem and choice under pressure`);
+      assert(mail.consequence_axis, `${mail.id} should declare consequence_axis`);
+      assert(Array.isArray(mail.learning_focus) && mail.learning_focus.length > 0, `${mail.id} should declare learning_focus`);
+      assert(mail.next_bias || mail.triggers_on_choice, `${mail.id} should declare next_bias or triggers_on_choice`);
+    }
+  }
+
   const peopleCatalog = catalogs.find(catalog => catalog.mail_type === 'people');
   const peopleMails = (peopleCatalog.families || []).flatMap(family => family.mails || []);
   assert(peopleMails.length >= 8, 'Arealplanlegger should include a broad people cast');
-  for (const actor of ['ivar_utbygger', 'selma_skolevei', 'jonas_juridisk_plan', 'elin_utvalgssekretaer', 'noah_plankonsulent']) {
+  for (const actor of ['ivar_utbygger', 'hanne_beboer', 'nora_planjuss', 'maja_utvalgssekretaer', 'petter_plankonsulent']) {
     assert(peopleMails.some(mail => mail.person_id === actor || mail.sender === actor), `people mail should include ${actor}`);
   }
 
@@ -102,12 +117,14 @@ async function run() {
   assert.strictEqual(map.roleModel.exists, true, 'debug roleModel should exist');
   assert.strictEqual(map.mailPlan.exists, true, 'debug mailPlan should exist');
   assert(map.people.length > 0, 'debug should discover people');
-  for (const type of ['job', 'people', 'story', 'conflict', 'event']) {
+  for (const type of expectedTypes) {
     assert(map.mailFamilies[type]?.length > 0, `debug should list ${type} families`);
   }
   for (const gap of ['rollen mangler people-mails', 'rollen mangler story/conflict/event', 'rollen mangler lunsj-/kveldsegnet innhold']) {
     assert(!map.gaps.includes(gap), `debug gap should be closed: ${gap}`);
   }
+  const newContentGaps = map.gaps.filter(gap => /micro|followup|knowledge|consequence|allowed_families|family/.test(gap));
+  assert.deepStrictEqual(newContentGaps, [], `debug should not report new mail-pack gaps: ${newContentGaps.join(', ')}`);
 
   console.log('civication-arealplanlegger-mail-plan.test.js passed');
 }
