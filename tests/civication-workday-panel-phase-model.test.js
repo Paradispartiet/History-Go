@@ -27,7 +27,7 @@ load('js/Civication/ui/CivicationUI.js');
 // og ett dagslutt-item. Speiler DailyMailBuilder.inspect().runtime.items.
 const runtimeItems = [
   { phase: 'morning', slot: 'morning_brief', status: 'answered', event: { id: 'm1', subject: 'Morgenbrief', phase_tag: 'morning' } },
-  { phase: 'morning', slot: 'primary_work_mail', status: 'delivered', event: { id: 'm2', subject: 'Primæroppgave', phase_tag: 'morning' } },
+  { phase: 'morning', slot: 'primary_work_mail', status: 'delivered', event: { id: 'm2', subject: 'Primæroppgave', phase_tag: 'morning', body: 'Hva gjør du når planen endres?', choices: [{ id: 'A', label: 'Stå på faglig vurdering' }, { id: 'B', label: 'Be om mer medvirkning' }] } },
   { phase: 'lunch', slot: 'phase_lunch', status: 'queued', event: { id: 'l1', subject: 'Lunsj', phase_tag: 'lunch' } },
   { phase: 'lunch', slot: 'small_choice', status: 'queued', event: { id: 'l2', subject: 'Liten beslutning', phase_tag: 'lunch' } },
   { phase: 'day_end', slot: 'day_summary', status: 'queued', event: { id: 'd1', subject: 'Dagslutt', phase_tag: 'day_end' } }
@@ -64,7 +64,7 @@ global.CivicationDayProgression = {
     reason: 'open_items_in_phase',
     deliveredItemsInPhase: 1,
     queuedItemsInPhase: 0,
-    phaseBundle: { items: runtimeItems.filter((row) => row.phase === 'morning').map((row) => ({ id: row.event.id, subject: row.event.subject, slot: row.slot, status: row.status, phase: row.phase, mail_type: row.event.mail_type || 'job', required: true, hasChoices: false })) }
+    phaseBundle: { items: runtimeItems.filter((row) => row.phase === 'morning').map((row) => ({ id: row.event.id, subject: row.event.subject, slot: row.slot, status: row.status, phase: row.phase, mail_type: row.event.mail_type || 'job', required: true, hasChoices: Array.isArray(row.event.choices) && row.event.choices.length > 0, choiceCount: Array.isArray(row.event.choices) ? row.event.choices.length : 0, choices: row.event.choices || [], body: row.event.body || '' })) }
   })
 };
 
@@ -101,7 +101,10 @@ assert(html.includes('Morgen 1/2'), 'native section shows per-phase progress cou
 assert(html.includes('Åpne i fasen: 1'), 'native section shows open items in phase');
 assert(html.includes('Primæroppgave'), 'native section lists the open morning item subject');
 assert(html.includes('Fortsett bolken'), 'native section exposes continue bundle action');
-assert(html.includes('Marker håndtert'), 'read-only bundle item can be handled from the panel');
+assert(html.includes('Stå på faglig vurdering'), 'choice bundle item renders inline choices');
+assert(html.includes('Hva gjør du når planen endres?'), 'choice bundle item renders body text inline');
+assert(!html.includes('data-civi-open-bundle-item="m2"'), 'normal mail bundle item does not render modal/open dependency');
+assert(html.includes('Fortsett bolken'), 'native section keeps continue bundle guidance');
 
 // Tom bunke → ingen seksjon (ingen krasj).
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml({ hasBundle: false }), '', 'no section without a built bundle');
