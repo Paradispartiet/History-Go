@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadHGSocialDemoProfile", () => loadScriptOnce("js/social/HGSocialDemoProfile.js"));
     await safeRun("loadHGSocialDemoPanel", () => loadScriptOnce("js/social/HGSocialDemoPanel.js"));
     await safeRun("loadHGSocialMatchGraph", () => loadScriptOnce("js/social/HGSocialMatchGraph.js"));
+    await safeRun("loadHGSpotmeeting", () => loadScriptOnce("js/social/HGSpotmeeting.js"));
     await safeRun("loadHGSocialMatchGraphPanel", () => loadScriptOnce("js/social/HGSocialMatchGraphPanel.js"));
     await safeRun("loadHGPublicProfilePreviewPanel", () => loadScriptOnce("js/social/HGPublicProfilePreviewPanel.js"));
     await safeRun("loadHGTodayActionRouter", () => loadScriptOnce("js/today/HGTodayActionRouter.js"));

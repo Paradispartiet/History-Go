@@ -143,3 +143,9 @@ Recommended next steps, without adding them in this document:
 - [IMPLEMENTATION_STATUS.md](../docs/IMPLEMENTATION_STATUS.md)
 - [HG_SOCIAL_ARCHITECTURE.md](../docs/HG_SOCIAL_ARCHITECTURE.md)
 - [HG_SOCIAL_DEMO_MODE.md](../docs/HG_SOCIAL_DEMO_MODE.md)
+
+## HG Spotmeeting v1
+
+HG Spotmeeting is the productized knowledge-meeting flow for the former HG Social meet-invite demo layer. It is a voluntary, private-by-default request to meet around a History Go place, route, quiz, observation, circle, or topic. It uses preset Norwegian messages only and remains knowledge/activity based, not location based.
+
+Production discovery is not backend-enabled yet: real spotmeeting requires a future privacy-reviewed backend. In `HG_TEST_MODE`, seeded HG Social demo candidates can be used for local QA without adding demo users to `PEOPLE`.

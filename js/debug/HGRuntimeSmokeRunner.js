@@ -2,7 +2,7 @@
   "use strict";
 
   const root = /** @type {any} */ (typeof window !== "undefined" ? window : globalThis);
-  const FORBIDDEN_FIELDS = new Set(["lat", "lng", "latitude", "longitude", "gps", "location", "liveLocation", "presence", "isOnline", "lastSeen", "visitLog", "visitedAt", "timestampedVisits", "followers", "followerCount", "following", "feedTracking"]);
+  const FORBIDDEN_FIELDS = new Set(["lat", "lng", "latitude", "longitude", "gps", "location", "coords", "liveLocation", "presence", "isOnline", "lastSeen", "visitLog", "visitedAt", "timestampedVisits", "followers", "followerCount", "following", "feed", "chat", "freeText", "publicVisitHistory", "visitedPlaces", "feedTracking"]);
 
   function isEnabled() {
     try {
@@ -194,6 +194,22 @@
       checks.socialDemoVisible = check(!leaked.length && !!adapter && profiles.length >= 8 && list(demoMatches.value).length > 0, leaked.length ? "blocker" : "ok", "Social demo synlighet kontrollert.", { profiles: profiles.length, matches: list(demoMatches.value).length });
     }
 
+
+    if (!root.HG_Spotmeeting) {
+      blockers.push(blocker("spotmeeting_missing", "HG_Spotmeeting mangler.", {}, "spotmeeting"));
+      checks.spotmeeting = check(false, "blocker", "HG Spotmeeting mangler.");
+    } else {
+      const h = safeSync(() => root.HG_Spotmeeting.health());
+      if (h.value?.ok === false) pushReportIssues(h.value, blockers, warnings, "spotmeeting", { privacy: true });
+      const c = safeSync(() => root.HG_Spotmeeting.getSpotmeetingConfig());
+      const context = { contextType:"place", contextId:"factory_memory", title:"Factory", reason:"Smoke", sourceSurface:"smoke" };
+      const suggestions = safeSync(() => root.HG_Spotmeeting.getSpotmeetingSuggestions(context));
+      const bad = safeSync(() => root.HG_Spotmeeting.createSpotmeetingInvite("demo-industrial-historian", { ...context, latitude: 1 }, "quiz_together"));
+      if (bad.value?.ok !== false) blockers.push(blocker("spotmeeting_forbidden_allowed", "Spotmeeting tillot forbudt felt.", {}, "spotmeeting"));
+      const presetsOnly = list(c.value?.presetMessages).length === 5 && list(c.value?.presetMessages).every((p)=>p.presetMessageId && p.label && !p.freeText);
+      if (!presetsOnly) blockers.push(blocker("spotmeeting_presets_invalid", "Spotmeeting er ikke preset-only.", {}, "spotmeeting"));
+      checks.spotmeeting = check(!h.error && h.value?.ok !== false && presetsOnly && bad.value?.ok === false, h.value?.ok === false ? "blocker" : "ok", "HG Spotmeeting kontrollert.", { suggestions: count(suggestions.value?.suggestions), testMode: isEnabled() });
+    }
 
     if (!root.HG_SocialMatchGraph) {
       blockers.push(blocker("social_match_graph_missing", "HG_SocialMatchGraph mangler.", {}, "socialMatchGraph"));

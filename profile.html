@@ -129,6 +129,7 @@
     <div id="miniProfile" class="social-mini-profile-anchor">MiniProfile</div>
     <div id="social-privacy-settings" aria-live="polite"></div>
     <div id="meet-invite-inbox" aria-live="polite"></div>
+    <div id="spotmeeting-inbox" aria-live="polite"></div>
     <div id="confirmed-meets" aria-live="polite"></div>
     <div id="hg-social-smoke-panel"></div>
     <div id="social-progression" aria-live="polite"></div>
@@ -383,6 +384,7 @@
 <script src="dist/web/hgModeration.js"></script>
 <script src="js/hgSocialGuards.js"></script>
 <script src="js/knowledgeMatch.js"></script>
+<script src="js/social/HGSpotmeeting.js"></script>
 
 <!-- ===================================================== -->
 <!-- Civication system -->
@@ -431,6 +433,26 @@
 <!-- ===================================================== -->
 
 <script src="js/profile.js"></script>
+<script>
+(function(){
+  function renderSpotmeetingInbox(){
+    var el=document.getElementById("spotmeeting-inbox");
+    var api=window.HG_Spotmeeting;
+    if(!el||!api) return;
+    var inbox=api.getSpotmeetingInbox();
+    el.innerHTML='';
+    var section=document.createElement('section');
+    section.className='profile-section';
+    section.innerHTML='<h2>HG Spotmeeting</h2>' +
+      '<p>Frivillige kunnskapsmøter basert på læring, ruter, observasjoner og tema — ikke posisjon.</p>' +
+      '<ul><li>Ventende invitasjoner: '+inbox.pending.length+'</li><li>Aksepterte invitasjoner: '+inbox.accepted.length+'</li><li>Fullførte spotmeetings: '+inbox.completed.length+'</li><li>Blokkert/rapportert status: '+(inbox.blockedOrReported?'Aktiv':'Ingen')+'</li></ul>' +
+      '<h3>Personvern</h3><ul>'+inbox.privacyChecklist.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>' +
+      '<p><small>Viser ikke posisjon, online-status, sist sett, følgere eller offentlig aktivitetsfeed.</small></p>';
+    el.appendChild(section);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', renderSpotmeetingInbox); else renderSpotmeetingInbox();
+})();
+</script>
   
   <!-- Kart-modus -->
   <script>

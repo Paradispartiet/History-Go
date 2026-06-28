@@ -17,7 +17,13 @@
     "followers",
     "following",
     "publicActivityFeed",
-    "activityTimestamp"
+    "activityTimestamp",
+    "coords",
+    "liveLocation",
+    "feed",
+    "chat",
+    "freeText",
+    "publicVisitHistory"
   ]);
 
   const FORBIDDEN_LOOKUP = new Set(HG_SOCIAL_FORBIDDEN_FIELDS.map((key) => key.toLowerCase()));

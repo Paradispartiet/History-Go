@@ -51,3 +51,19 @@ Purpose: makes district/home choice affect rent pressure, housing status and pro
 Status: fixed
 
 Purpose: makes delivered phase bundles visible/actionable so players can complete required items and advance phases.
+
+## HG Spotmeeting v1
+
+Status: implemented as a frontend/local product flow.
+
+Files:
+- `js/social/HGSpotmeeting.js`
+- `js/ui/place-card.js`
+- `profile.html`
+- `tests/hg-spotmeeting.test.js`
+- `docs/HG_SPOTMEETING.md`
+
+Notes:
+- No backend calls were added.
+- No GPS, live location, nearby users, followers/feed, or free chat were added.
+- Production surfaces return a backend-not-enabled warning; TEST_MODE can use HG Social demo candidates.
