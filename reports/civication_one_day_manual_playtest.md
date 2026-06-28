@@ -84,3 +84,16 @@ Do a small UI-copy cleanup pass, not an engine rewrite:
 1. Rename debug-like text such as “Task gate/blokkering” to a player-facing phrase such as “Dette stopper neste fase”.
 2. Make the duplicate pending-item buttons less ambiguous by keeping one primary “Åpne” action for the pending item.
 3. Add a short inline explanation near “Marker håndtert” for generated/read-only items.
+
+## UI copy cleanup applied
+
+- Changed phase-bundle open-copy from “Åpne hele bolken” to “Åpne bolken”, while keeping “Åpne neste” for the single next queued item.
+- Removed the duplicate pending-item action where “Fortsett bolken” and “Åpne neste i bolken” opened the same item; the pending-item action is now the single primary button “Åpne neste”, with “Fortsett bolken” kept only as a section title where relevant.
+- Changed read-only/generated item handling from “Marker håndtert” to “Ferdig med denne”. Added helper text: “Brukes når dette bare er en beskjed eller automatisk hendelse.”
+- Choice items now use “Svar” as the primary item action instead of also showing a duplicate generic “Åpne” action for the same item.
+- Replaced the player-facing “Task gate/blokkering” status line with “Dette stopper neste fase” and mapped common phase reasons to plain player text.
+
+### Remaining warnings after copy cleanup
+
+- The workday panel and life/day-phase panel still both surface bundle controls, but the duplicated pending-item button pair has been removed from the workday panel.
+- This cleanup only changes labels, helper text, and presentation copy; engine, phase flow, scoring, mail data, and day-end summary behavior are unchanged.

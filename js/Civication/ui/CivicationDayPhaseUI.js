@@ -32,7 +32,7 @@
 
   function getLoopHint(inspection) {
     if (inspection?.reason === "queued_items_in_phase") {
-      return "Åpne hele bolken for å se flere hendelser samlet, eller åpne neste hendelse ved behov.";
+      return "Åpne bolken for å se flere hendelser samlet, eller åpne neste hendelse ved behov.";
     }
     if (inspection?.reason === "open_items_in_phase" || inspection?.reason === "delivered_items_in_phase") {
       return "Åpne meldinger med valg er aktiv handling nå. Når de er besvart, låses neste fase opp.";
@@ -342,12 +342,15 @@
         const optional = it.optional === true || it.required === false;
         const hasChoices = it.hasChoices === true || Number(it.choiceCount || 0) > 0;
         const action = hasChoices
-          ? '<button class="civi-btn secondary" type="button" data-civi-day-phase-open-item="' + id + '">Svar</button>'
-          : '<button class="civi-btn secondary" type="button" data-civi-day-phase-mark-handled="' + id + '">Marker håndtert</button>';
+          ? '<button class="civi-btn" type="button" data-civi-day-phase-open-item="' + id + '">Svar</button>'
+          : '<button class="civi-btn secondary" type="button" data-civi-day-phase-mark-handled="' + id + '">Ferdig med denne</button>';
+        const readOnlyHelp = hasChoices ? "" : '<div class="civi-day-phase-status muted">Brukes når dette bare er en beskjed eller automatisk hendelse.</div>';
         const skip = optional ? '<button class="civi-btn secondary" type="button" data-civi-day-phase-mark-handled="' + id + '" data-civi-skip-optional="true">Hopp over</button>' : "";
+        const open = hasChoices ? "" : '<button class="civi-btn secondary" type="button" data-civi-day-phase-open-item="' + id + '">Åpne</button> ';
         return '<article class="civi-day-phase-bundle-card"><strong>' + escapeHtml(it.subject || it.slot || it.id || "Hendelse") + '</strong>'
           + '<div class="civi-day-phase-status muted">' + escapeHtml(it.mail_type || "mail") + ' · ' + escapeHtml(it.slot || "slot") + ' · ' + escapeHtml(it.status || "status") + ' · ' + (optional ? "valgfri" : "påkrevd") + '</div>'
-          + '<div><button class="civi-btn secondary" type="button" data-civi-day-phase-open-item="' + id + '">Åpne</button> ' + action + ' ' + skip + '</div></article>';
+          + readOnlyHelp
+          + '<div>' + open + action + ' ' + skip + '</div></article>';
       }).join("") + '</div>';
   }
 
@@ -421,7 +424,7 @@
       + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
       + buildBundleItemsList(inspection)
       + "<div class=\"civi-day-phase-actions\">"
-      + (canOpenBundle ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-bundle>Åpne hele bolken</button>" : "")
+      + (canOpenBundle ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-bundle>Åpne bolken</button>" : "")
       + (canOpenNext ? "<button class=\"civi-btn secondary\" type=\"button\" data-civi-day-phase-open-next>Åpne neste</button>" : "")
       + (blockingItems === 0 ? ("<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">" + escapeHtml(buttonText) + "</button>") : "")
       + "</div>";

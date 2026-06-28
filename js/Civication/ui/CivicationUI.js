@@ -107,6 +107,20 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function formatDayPhaseReason(reason) {
+  const normalized = String(reason || "").trim();
+  if (normalized === "queued_items_in_phase") return "Du har fortsatt noe igjen i denne bolken";
+  if (normalized === "delivered_items_in_phase") return "Åpne og svar på hendelser i denne fasen";
+  if (normalized === "open_items_in_phase") return "Svar på åpne meldinger i denne fasen";
+  if (normalized === "at_last_phase") return "Dagen er fullført";
+  if (normalized === "ready_to_advance") return "Ingenting";
+  if (!normalized) return "Ukjent";
+  return normalized
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/^./, (letter) => letter.toUpperCase());
+}
+
 // ============================================================
 // ACTION WIRING (KJØRES ÉN GANG)
 // ============================================================
@@ -1108,9 +1122,9 @@ function computeDayPhaseModel() {
   const blockingItems = Number(prog?.queuedItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0) + Number(prog?.openItemsInPhase || 0);
   const activePendingCount = Number(prog?.openItemsInPhase || 0) + Number(prog?.deliveredItemsInPhase || 0);
   const nextAction = Number(prog?.queuedItemsInPhase || 0) > 0 && activePendingCount === 0
-    ? { kind: "open_bundle", label: "Åpne hele bolken" }
+    ? { kind: "open_bundle", label: "Åpne bolken" }
     : activePendingCount > 0
-      ? { kind: "continue_bundle", label: "Fortsett bolken" }
+      ? { kind: "continue_bundle", label: "Åpne neste" }
       : (prog?.canAdvance && prog?.nextPhase && blockingItems === 0)
         ? { kind: "advance_phase", label: "Gå til neste fase" }
         : { kind: "wait", label: "Ingen handling" };
@@ -1174,13 +1188,16 @@ function buildDayPhaseSectionHtml(dayPhase) {
           const optional = it.optional === true || it.required === false;
           const hasChoices = it.hasChoices === true || Number(it.choiceCount || 0) > 0;
           const action = hasChoices
-            ? `<button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Svar</button>`
-            : `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}">Marker håndtert</button>`;
+            ? `<button class="civi-btn" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Svar</button>`
+            : `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}">Ferdig med denne</button>`;
+          const readOnlyHelp = hasChoices ? "" : `<div class="civi-workday-sub">Brukes når dette bare er en beskjed eller automatisk hendelse.</div>`;
           const skip = optional ? `<button class="civi-btn secondary" type="button" data-civi-mark-bundle-item-handled="${escapeHtml(id)}" data-civi-skip-optional="true">Hopp over</button>` : "";
+          const open = hasChoices ? "" : `<button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Åpne</button> `;
           return `<article class="civi-workday-bundle-card" style="padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;">
             <strong>${escapeHtml(it.subject || it.slot || it.id || "Hendelse")}</strong>
             <div class="civi-workday-sub">${escapeHtml(it.mail_type || "mail")} · ${escapeHtml(it.slot || "slot")} · ${escapeHtml(it.status || "status")} · ${optional ? "valgfri" : "påkrevd"}</div>
-            <div style="margin-top:6px;"><button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml(id)}">Åpne</button> ${action} ${skip}</div>
+            ${readOnlyHelp}
+            <div style="margin-top:6px;">${open}${action} ${skip}</div>
           </article>`;
         })
         .join("")}</div>`
@@ -1189,9 +1206,9 @@ function buildDayPhaseSectionHtml(dayPhase) {
   const action = dayPhase.nextAction || {};
   const remainingText = Number(dayPhase.queuedItemsInPhase || 0) > 0 ? `<div class="civi-workday-sub"><strong>${dayPhase.phaseLabel}bolk</strong> · ${dayPhase.queuedItemsInPhase} hendelser gjenstår</div>` : "";
   const actionHtml = action.kind === "open_bundle"
-    ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>Åpne hele bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-next-event>Åpne neste</button>`
+    ? `<button class="civi-btn" type="button" data-civi-open-phase-bundle>Åpne bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-next-event>Åpne neste</button>`
     : action.kind === "continue_bundle"
-      ? `<button class="civi-btn" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Fortsett bolken</button> <button class="civi-btn secondary" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Åpne neste i bolken</button>`
+      ? `<button class="civi-btn" type="button" data-civi-open-bundle-item="${escapeHtml((dayPhase.pendingItem && (dayPhase.pendingItem.id || dayPhase.pendingItem.subject)) || "")}">Åpne neste</button>`
       : action.kind === "advance_phase"
       ? `<button class="civi-btn" type="button" data-civi-advance-phase>Gå til neste fase</button>`
       : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
@@ -1204,7 +1221,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
       <div class="civi-workday-phase-head" style="font-weight:700;margin-bottom:8px;">Dag ${dayPhase.dayIndex} · ${dayPhase.phaseLabel || dayPhase.phase}</div>
       <div class="civi-workday-phase-chips" style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
       <div class="civi-workday-phase-open-head" style="margin-top:8px;font-weight:600;">Åpne i fasen: ${dayPhase.openItemsInPhase}</div>
-      <div class="civi-workday-sub">Fullført/totalt i fasen: ${dayPhase.completedItemsInPhase || 0}/${dayPhase.totalItemsInPhase || ((dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0))} · Pending: ${(dayPhase.pendingItem && (dayPhase.pendingItem.subject || dayPhase.pendingItem.id)) || "—"} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Task gate/blokkering: ${dayPhase.canAdvance ? "ingen" : (dayPhase.reason || "ukjent")}</div>
+      <div class="civi-workday-sub">Fullført/totalt i fasen: ${dayPhase.completedItemsInPhase || 0}/${dayPhase.totalItemsInPhase || ((dayPhase.completedItemsInPhase || 0) + (dayPhase.openItemsInPhase || 0))} · Pending: ${(dayPhase.pendingItem && (dayPhase.pendingItem.subject || dayPhase.pendingItem.id)) || "—"} · Neste kø: ${(dayPhase.nextQueuedItem && (dayPhase.nextQueuedItem.subject || dayPhase.nextQueuedItem.id)) || "—"} · Dette stopper neste fase: ${dayPhase.canAdvance ? "ingenting" : formatDayPhaseReason(dayPhase.reason)}</div>
       ${remainingText}
       <div class="civi-workday-phase-action" style="margin-top:8px;">${actionHtml}</div>
       ${suggestionsHtml}

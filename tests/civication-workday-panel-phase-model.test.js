@@ -100,8 +100,8 @@ assert(html.includes('Dag 1 · Morgen'), 'native section shows day + phase headi
 assert(html.includes('Morgen 1/2'), 'native section shows per-phase progress count');
 assert(html.includes('Åpne i fasen: 1'), 'native section shows open items in phase');
 assert(html.includes('Primæroppgave'), 'native section lists the open morning item subject');
-assert(html.includes('Fortsett bolken'), 'native section exposes continue bundle action');
-assert(html.includes('Marker håndtert'), 'read-only bundle item can be handled from the panel');
+assert(html.includes('Åpne neste'), 'native section exposes clear next-item action');
+assert(html.includes('Ferdig med denne'), 'read-only bundle item can be handled from the panel');
 
 // Tom bunke → ingen seksjon (ingen krasj).
 assert.strictEqual(global.CivicationUI.buildDayPhaseSectionHtml({ hasBundle: false }), '', 'no section without a built bundle');
