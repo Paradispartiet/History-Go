@@ -87,7 +87,8 @@ async function run() {
   for (const type of ['micro', 'followup', 'knowledge', 'consequence']) {
     const catalog = catalogs.find(row => row.mail_type === type);
     const mails = (catalog.families || []).flatMap(family => family.mails || []);
-    assert(mails.length > 0, `Arealplanlegger should include ${type} mails`);
+    const minimums = { micro: 16, followup: 8, knowledge: 8, consequence: 8 };
+    assert(mails.length >= minimums[type], `Arealplanlegger should include at least ${minimums[type]} ${type} mails`);
     for (const mail of mails) {
       assert(mail.from || mail.sender || mail.person_id, `${mail.id} should have a concrete sender`);
       assert(mail.task_domain && mail.competency, `${mail.id} should have a concrete work task and competency`);
@@ -111,7 +112,9 @@ async function run() {
   assert(runtime && runtime.role_scope === 'by_radgiver_plan', 'DailyMailBuilder should build a by_radgiver_plan runtime');
   assert(runtime.items.length > 0, 'DailyMailBuilder should queue mail items');
   assert.deepStrictEqual([...new Set(runtime.items.map(row => row.phase))], ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'], 'runtime should cover the full day');
-  assert(new Set(runtime.items.map(row => row.event?.mail_type)).size > 2, 'runtime should include several mail family types');
+  const runtimeTypes = new Set(runtime.items.map(row => row.event?.mail_type).filter(Boolean));
+  assert(runtimeTypes.size > 2, 'runtime should include several mail family types');
+  assert(runtimeTypes.has('job') && [...runtimeTypes].some(type => type !== 'job'), 'runtime should include multiple mail_type values');
 
   const map = await global.CivicationDebug.buildDebugMap('by_radgiver_plan');
   assert.strictEqual(map.roleModel.exists, true, 'debug roleModel should exist');
