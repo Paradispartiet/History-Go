@@ -86,6 +86,9 @@
         warn("node id mangler", node);
         continue;
       }
+      if (typeof node?.lat !== "number" || !Number.isFinite(node.lat)) warn("node.lat mangler eller er ikke number", { node_id: id, lat: node?.lat });
+      if (typeof node?.lng !== "number" || !Number.isFinite(node.lng)) warn("node.lng mangler eller er ikke number", { node_id: id, lng: node?.lng });
+      if (!String(node?.geo_confidence || "").trim()) warn("node.geo_confidence mangler", { node_id: id });
       next.indexes.nodesById[id] = node;
     }
 
