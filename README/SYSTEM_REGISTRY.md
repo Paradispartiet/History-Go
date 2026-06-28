@@ -5,6 +5,10 @@ Det er bindende for videre utvikling.
 
 ---
 
+## Product state
+
+- [Current product state](./CURRENT_PRODUCT_STATE.md)
+
 ## TILLATTE GLOBALS
 
 Følgende globals er eksplisitt tillatt:
