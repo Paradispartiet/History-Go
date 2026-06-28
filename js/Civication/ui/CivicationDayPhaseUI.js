@@ -32,7 +32,7 @@
 
   function getLoopHint(inspection) {
     if (inspection?.reason === "queued_items_in_phase") {
-      return "Åpne hele bolken for å se flere hendelser samlet, eller åpne neste hendelse ved behov.";
+      return "Åpne bolken for å se hendelsene samlet. Hvis det bare er én hendelse igjen, åpner knappen den direkte.";
     }
     if (inspection?.reason === "open_items_in_phase" || inspection?.reason === "delivered_items_in_phase") {
       return "Åpne meldinger med valg er aktiv handling nå. Når de er besvart, låses neste fase opp.";
@@ -406,8 +406,8 @@
         } else if (hasChoices) {
           actionHtml = '<button class="civi-btn secondary" type="button" data-civi-bundle-event="' + id + '" data-civi-bundle-choice="A">Vis valg</button>';
         } else {
-          actionHtml = '<p class="civi-day-phase-status muted">Dette er en beskjed / automatisk hendelse.</p>'
-            + '<button class="civi-btn secondary" type="button" data-civi-bundle-handled="' + id + '">Ferdig med denne</button>';
+          actionHtml = '<p class="civi-day-phase-status muted">Dette er en beskjed eller automatisk hendelse. Bruk knappen når du er ferdig med å lese.</p>'
+            + '<button class="civi-btn secondary" type="button" data-civi-bundle-handled="' + id + '" title="Brukes når dette bare er en beskjed eller automatisk hendelse.">Ferdig med denne</button>';
         }
         const skip = optional ? ' <button class="civi-btn secondary" type="button" data-civi-bundle-skip="' + id + '">Hopp over</button>' : "";
         return '<article class="civi-day-phase-bundle-card"><strong>' + escapeHtml(it.subject || it.slot || it.id || "Hendelse") + '</strong>'
@@ -472,8 +472,7 @@
       + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
       + buildBundleItemsList(inspection)
       + "<div class=\"civi-day-phase-actions\">"
-      + (canOpenBundle ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-bundle>Åpne hele bolken</button>" : "")
-      + (canOpenNext ? "<button class=\"civi-btn secondary\" type=\"button\" data-civi-day-phase-open-next>Åpne neste</button>" : "")
+      + (canOpenBundle ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-bundle>" + escapeHtml(Number(inspection.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken") + "</button>" : "")
       + (blockingItems === 0 ? ("<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">" + escapeHtml(buttonText) + "</button>") : "")
       + "</div>";
 
