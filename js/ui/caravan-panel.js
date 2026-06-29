@@ -220,6 +220,10 @@
     return window.HG_CARAVAN_EVENT_LOG || null;
   }
 
+  function getConsequencesRuntime() {
+    return window.HG_CARAVAN_CONSEQUENCES || null;
+  }
+
   function routeEventLogLabel(routeId) {
     const title = cleanText((getRuntime()?.routes || []).find((route) => cleanText(route?.id) === cleanText(routeId))?.title || routeId).split(/[–:-]/)[0].trim() || cleanText(routeId);
     const summary = getEventLogRuntime()?.summary?.(routeId, activeTravelMode === "all" ? "all" : activeTravelMode);
@@ -556,6 +560,45 @@
     return cleanText(asArray(event?.choices).find((choice) => cleanText(choice?.id) === id)?.label || id);
   }
 
+  function formatEffects(effects) {
+    const entries = effects && typeof effects === "object" && !Array.isArray(effects) ? Object.entries(effects) : [];
+    if (!entries.length) return `<p class="hg-caravan-consequence-empty">Ingen ressurskonsekvens for denne reisebrillen.</p>`;
+    return `<ul class="hg-caravan-consequence-list">${entries.map(([key, delta]) => {
+      const n = Number(delta);
+      const prefix = n > 0 ? "+" : "";
+      return `<li>${esc(prefix)}${esc(n)} ${esc(RESOURCE_LABELS[key] || key)}</li>`;
+    }).join("")}</ul>`;
+  }
+
+  function effectsForChoice(choice, mode) {
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return null;
+    const effects = choice?.resource_effects_by_mode?.[selected];
+    return effects && typeof effects === "object" && !Array.isArray(effects) ? effects : null;
+  }
+
+  function allEffectsForChoice(choice) {
+    const byMode = choice?.resource_effects_by_mode;
+    if (!byMode || typeof byMode !== "object" || Array.isArray(byMode)) return "";
+    return Object.entries(byMode).map(([mode, effects]) => `<div class="hg-caravan-consequence-mode"><strong>Konsekvens for ${esc(readableMode(mode))}:</strong>${formatEffects(effects)}</div>`).join("");
+  }
+
+  function choiceConsequenceHtml(event, choice, stageId, selectedMode, logged) {
+    const choiceId = cleanText(choice?.id);
+    if (selectedMode === "all") {
+      const allEffects = allEffectsForChoice(choice);
+      return `<div class="hg-caravan-consequence">${allEffects || `<p class="hg-caravan-consequence-empty">Ingen ressurskonsekvens registrert.</p>`}<p class="hg-caravan-progress-hint">Velg en reisebrille for å bruke konsekvens</p></div>`;
+    }
+    const effects = effectsForChoice(choice, selectedMode);
+    const applied = getConsequencesRuntime()?.getApplied?.(event?.route_id, stageId, event?.id, selectedMode);
+    const loggedChoiceId = cleanText(logged?.choice_id);
+    const isLoggedChoice = loggedChoiceId === choiceId;
+    const disabled = !effects || !isLoggedChoice || Boolean(applied);
+    const appliedText = applied ? `<p class="hg-caravan-selected-choice">Konsekvens brukt: ${esc(choiceLabel(event, applied.choice_id))}</p>` : "";
+    const alreadyText = applied && cleanText(applied.choice_id) !== choiceId ? `<p class="hg-caravan-progress-hint">Gammel konsekvens er allerede brukt. Nullstill anvendt konsekvens før en ny brukes.</p>` : "";
+    return `<div class="hg-caravan-consequence"><strong>Konsekvens for ${esc(readableMode(selectedMode))}:</strong>${formatEffects(effects)}${appliedText}${alreadyText}<button type="button" class="hg-caravan-apply-consequence" data-caravan-apply-consequence="${attr(choiceId)}" data-caravan-event-id="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}" ${disabled ? "disabled" : ""}>${applied ? "Konsekvens brukt" : "Bruk konsekvens"}</button>${applied ? `<button type="button" class="hg-caravan-clear-consequence" data-caravan-clear-consequence="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}">Nullstill anvendt konsekvens</button>` : ""}</div>`;
+  }
+
   function renderStageEvents(stageId, mode = activeTravelMode) {
     const events = getEventsForStage(stageId, mode);
     const selectedMode = normalizeTravelMode(mode);
@@ -569,14 +612,15 @@
         <h4>${esc(event?.title || event?.id || "Karavanehendelse")}</h4>
         <p class="hg-caravan-event-meta">Hendelse: ${esc(eventLabel(event?.event_type))} · Alvorlighet: ${esc(severityLabel(event?.severity))} · Reisemåter: ${esc(formatList(event?.applies_to_modes))}</p>
         ${cleanText(event?.prompt) ? `<p>${esc(event.prompt)}</p>` : ""}
-        ${logged ? `<p class="hg-caravan-selected-choice">Valgt for ${esc(readableMode(selectedMode))}: ${esc(choiceLabel(event, logged.choice_id))}</p><p class="hg-caravan-resource-note">Dette valget påvirker ikke ressurser ennå.</p>` : ""}
+        ${logged ? `<p class="hg-caravan-selected-choice">Valgt for ${esc(readableMode(selectedMode))}: ${esc(choiceLabel(event, logged.choice_id))}</p><p class="hg-caravan-resource-note">Bruk konsekvens-knappen for å justere ressurser eksplisitt.</p>` : ""}
         ${cleanText(event?.historical_context) ? `<p><strong>Historisk kontekst:</strong> ${esc(event.historical_context)}</p>` : ""}
         ${cleanText(event?.observation_prompt) ? `<p><strong>Observasjon:</strong> ${esc(event.observation_prompt)}</p>` : ""}
         ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="${readOnly ? "Read-only valg" : "Lagre valg"}">${asArray(event.choices).map((choice) => {
           const choiceId = cleanText(choice?.id);
           const active = logged && cleanText(logged.choice_id) === choiceId;
           const body = `<strong>${esc(choice?.label || choiceId || "Valg")}</strong>${cleanText(choice?.note) ? ` – ${esc(choice.note)}` : ""}`;
-          return readOnly ? `<span class="hg-caravan-event-choice">${body}</span>` : `<button type="button" class="hg-caravan-event-choice ${active ? "is-active" : ""}" data-caravan-event-choice="${attr(choiceId)}" data-caravan-event-id="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}" aria-pressed="${active ? "true" : "false"}">${body}</button>`;
+          const consequence = choiceConsequenceHtml(event, choice, stageId, selectedMode, logged);
+          return readOnly ? `<div class="hg-caravan-event-choice-wrap"><span class="hg-caravan-event-choice">${body}</span>${consequence}</div>` : `<div class="hg-caravan-event-choice-wrap"><button type="button" class="hg-caravan-event-choice ${active ? "is-active" : ""}" data-caravan-event-choice="${attr(choiceId)}" data-caravan-event-id="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}" aria-pressed="${active ? "true" : "false"}">${body}</button>${consequence}</div>`;
         }).join("")}</div>` : ""}
         ${logged ? `<button type="button" class="hg-caravan-clear-choice" data-caravan-clear-event-choice="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}">Nullstill valg</button>` : ""}
       </article>`;
@@ -691,6 +735,12 @@
     });
     panel.querySelectorAll("[data-caravan-clear-event-choice]").forEach((btn) => {
       btn.addEventListener("click", () => clearEventChoice(btn.getAttribute("data-caravan-clear-event-choice") || "", btn.getAttribute("data-caravan-stage-id") || activeStageId, btn.getAttribute("data-caravan-route-id") || selectedRouteId));
+    });
+    panel.querySelectorAll("[data-caravan-apply-consequence]").forEach((btn) => {
+      btn.addEventListener("click", () => applyChoiceEffects(btn.getAttribute("data-caravan-event-id") || "", btn.getAttribute("data-caravan-apply-consequence") || "", btn.getAttribute("data-caravan-stage-id") || activeStageId, btn.getAttribute("data-caravan-route-id") || selectedRouteId));
+    });
+    panel.querySelectorAll("[data-caravan-clear-consequence]").forEach((btn) => {
+      btn.addEventListener("click", () => clearAppliedConsequence(btn.getAttribute("data-caravan-clear-consequence") || "", btn.getAttribute("data-caravan-stage-id") || activeStageId, btn.getAttribute("data-caravan-route-id") || selectedRouteId));
     });
   }
 
@@ -877,6 +927,37 @@
     return result;
   }
 
+  function applyChoiceEffects(eventId, choiceId, stageId = activeStageId, routeId = selectedRouteId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    const event = getEventById(eventId);
+    const result = getConsequencesRuntime()?.applyChoiceEffects?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, choiceId, mode) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
+  function getChoiceEffects(eventId, choiceId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    return getConsequencesRuntime()?.getChoiceEffects?.(eventId, choiceId, mode) || null;
+  }
+
+  function getAppliedConsequence(eventId, stageId = activeStageId, routeId = selectedRouteId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    const event = getEventById(eventId);
+    return getConsequencesRuntime()?.getApplied?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, mode) || null;
+  }
+
+  function clearAppliedConsequence(eventId, stageId = activeStageId, routeId = selectedRouteId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    const event = getEventById(eventId);
+    const result = getConsequencesRuntime()?.clearApplied?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, mode) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
   function getActiveStageProgress() {
     const stage = getStage(activeStageId);
     if (!stage || activeTravelMode === "all") return null;
@@ -912,7 +993,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
