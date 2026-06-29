@@ -161,6 +161,36 @@
     return "Ingen progresjon";
   }
 
+  function getEventLogRuntime() {
+    return window.HG_CARAVAN_EVENT_LOG || null;
+  }
+
+  function routeEventLogLabel(routeId) {
+    const title = cleanText((getRuntime()?.routes || []).find((route) => cleanText(route?.id) === cleanText(routeId))?.title || routeId).split(/[–:-]/)[0].trim() || cleanText(routeId);
+    const summary = getEventLogRuntime()?.summary?.(routeId, activeTravelMode === "all" ? "all" : activeTravelMode);
+    const count = Number(summary?.choices || 0);
+    return activeTravelMode === "all" ? `${title}: ${count} valg totalt` : `${title}: ${count} valg logget`;
+  }
+
+  function stageEventLogCount(stage, mode = activeTravelMode) {
+    const rid = cleanText(stage?.route_id);
+    const sid = cleanText(stage?.id);
+    if (!rid || !sid) return 0;
+    return getEventLogRuntime()?.getStageLog?.(rid, sid, mode === "all" ? "all" : mode)?.length || 0;
+  }
+
+  function stageEventLogLabel(stage, mode = activeTravelMode) {
+    const count = stageEventLogCount(stage, mode);
+    if (!count) return "";
+    return mode === "all" ? `${count} loggvalg` : `${count} valg`;
+  }
+
+  function getLoggedChoice(routeId, stageId, eventId, mode = activeTravelMode) {
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return null;
+    return getEventLogRuntime()?.getChoice?.(routeId, stageId, eventId, selected) || null;
+  }
+
   function routeProgressLabel(routeId) {
     const summary = getProgressRuntime()?.getRouteSummary?.(routeId, activeTravelMode);
     if (!summary) return "Ingen progresjon";
@@ -410,6 +440,7 @@
         ${cleanText(route?.subtitle) ? `<span class="hg-caravan-route-subtitle">${esc(route.subtitle)}</span>` : ""}
         <span class="hg-caravan-route-meta">ID: ${esc(id || "—")} · ${stages.length} stages · ${esc(modes.join(", ") || "—")}</span>
         <span class="hg-caravan-progress-summary">${esc(title)}: ${esc(routeProgressLabel(id))}</span>
+        <span class="hg-caravan-log-summary">${esc(routeEventLogLabel(id))}</span>
       </button>`;
   }
 
@@ -433,12 +464,14 @@
     const status = getStageProgressStatus(stage);
     const progressLabel = activeTravelMode === "all" ? getStageAllModeProgressLabel(stage) : (PROGRESS_LABELS[status] || "Ingen progresjon");
     const eventsLabel = eventCountLabel(stage);
+    const logLabel = stageEventLogLabel(stage);
     return `
       <button type="button" class="hg-caravan-stage ${id === activeStageId ? "is-active" : ""} ${supported ? "is-mode-supported" : "is-mode-dimmed"}" data-caravan-stage="${attr(id)}">
         <span class="hg-caravan-stage-title">${esc(stage?.order ?? "—")}. ${esc(from)} → ${esc(to)}</span>
         <span class="hg-caravan-stage-meta">${stage?.approximate_distance_km != null ? `${esc(stage.approximate_distance_km)} km` : "Distanse ukjent"} · ${esc(formatList(stage?.allowed_modes))}</span>
         <span class="hg-caravan-progress-pill">${esc(progressLabel)}</span>
         <span class="hg-caravan-event-pill">${esc(eventsLabel)}</span>
+        ${logLabel ? `<span class="hg-caravan-log-pill">${esc(logLabel)}</span>` : ""}
       </button>`;
   }
 
@@ -463,19 +496,36 @@
     return SEVERITY_LABELS[key] || key || "Ukjent";
   }
 
+  function choiceLabel(event, choiceId) {
+    const id = cleanText(choiceId);
+    return cleanText(asArray(event?.choices).find((choice) => cleanText(choice?.id) === id)?.label || id);
+  }
+
   function renderStageEvents(stageId, mode = activeTravelMode) {
     const events = getEventsForStage(stageId, mode);
-    const modeLabel = normalizeTravelMode(mode) === "all" ? "alle reisemåter" : readableMode(mode);
+    const selectedMode = normalizeTravelMode(mode);
+    const readOnly = selectedMode === "all";
+    const modeLabel = readOnly ? "alle reisemåter" : readableMode(mode);
     if (!events.length) return `<section class="hg-caravan-events"><h3>Karavanehendelser</h3><p class="hg-caravan-empty">Ingen hendelser for ${esc(modeLabel)}.</p></section>`;
-    return `<section class="hg-caravan-events"><h3>Karavanehendelser</h3><p class="hg-caravan-event-filter">Viser ${esc(events.length)} for ${esc(modeLabel)}</p>${events.map((event) => `
-      <article class="hg-caravan-event">
+    return `<section class="hg-caravan-events"><h3>Karavanehendelser</h3>${readOnly ? `<p class="hg-caravan-progress-hint">Velg Til fots, Hest eller Sykkel for å lagre valg</p>` : ""}<p class="hg-caravan-event-filter">Viser ${esc(events.length)} for ${esc(modeLabel)}</p>${events.map((event) => {
+      const logged = getLoggedChoice(event?.route_id, stageId, event?.id, selectedMode);
+      return `
+      <article class="hg-caravan-event" data-caravan-event-id="${attr(event?.id)}">
         <h4>${esc(event?.title || event?.id || "Karavanehendelse")}</h4>
-        <p class="hg-caravan-event-meta">${esc(eventLabel(event?.event_type))} · Alvorlighet: ${esc(severityLabel(event?.severity))} · Reisemåter: ${esc(formatList(event?.applies_to_modes))}</p>
+        <p class="hg-caravan-event-meta">Hendelse: ${esc(eventLabel(event?.event_type))} · Alvorlighet: ${esc(severityLabel(event?.severity))} · Reisemåter: ${esc(formatList(event?.applies_to_modes))}</p>
         ${cleanText(event?.prompt) ? `<p>${esc(event.prompt)}</p>` : ""}
+        ${logged ? `<p class="hg-caravan-selected-choice">Valgt for ${esc(readableMode(selectedMode))}: ${esc(choiceLabel(event, logged.choice_id))}</p>` : ""}
         ${cleanText(event?.historical_context) ? `<p><strong>Historisk kontekst:</strong> ${esc(event.historical_context)}</p>` : ""}
         ${cleanText(event?.observation_prompt) ? `<p><strong>Observasjon:</strong> ${esc(event.observation_prompt)}</p>` : ""}
-        ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="Read-only valg">${asArray(event.choices).map((choice) => `<span class="hg-caravan-event-choice"><strong>${esc(choice?.label || choice?.id || "Valg")}</strong>${cleanText(choice?.note) ? ` – ${esc(choice.note)}` : ""}</span>`).join("")}</div>` : ""}
-      </article>`).join("")}</section>`;
+        ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="${readOnly ? "Read-only valg" : "Lagre valg"}">${asArray(event.choices).map((choice) => {
+          const choiceId = cleanText(choice?.id);
+          const active = logged && cleanText(logged.choice_id) === choiceId;
+          const body = `<strong>${esc(choice?.label || choiceId || "Valg")}</strong>${cleanText(choice?.note) ? ` – ${esc(choice.note)}` : ""}`;
+          return readOnly ? `<span class="hg-caravan-event-choice">${body}</span>` : `<button type="button" class="hg-caravan-event-choice ${active ? "is-active" : ""}" data-caravan-event-choice="${attr(choiceId)}" data-caravan-event-id="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}" aria-pressed="${active ? "true" : "false"}">${body}</button>`;
+        }).join("")}</div>` : ""}
+        ${logged ? `<button type="button" class="hg-caravan-clear-choice" data-caravan-clear-event-choice="${attr(event?.id)}" data-caravan-stage-id="${attr(stageId)}" data-caravan-route-id="${attr(event?.route_id)}">Nullstill valg</button>` : ""}
+      </article>`;
+    }).join("")}</section>`;
   }
 
   function stagePreview(stage) {
@@ -520,7 +570,7 @@
     const route = routes.find((item) => cleanText(item?.id) === selectedRouteId) || null;
     const activeStage = getStage(activeStageId);
     const stagesHtml = route
-      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>`
+      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>${renderEventLogSection(route.id)}`
       : `<p class="hg-caravan-hint">Velg en route for å se stages i rekkefølge.</p>`;
 
     panel.innerHTML = shell(`
@@ -530,6 +580,23 @@
     `);
     wire(panel);
     return panel;
+  }
+
+  function getEventById(eventId) {
+    const id = cleanText(eventId);
+    return asArray(getRuntime()?.events).find((event) => cleanText(event?.id) === id) || null;
+  }
+
+  function renderEventLogSection(routeId) {
+    const entries = getEventLogRuntime()?.getRouteLog?.(routeId, activeTravelMode === "all" ? "all" : activeTravelMode) || [];
+    const recent = entries.slice().sort((a, b) => cleanText(b.createdAt).localeCompare(cleanText(a.createdAt))).slice(0, 5);
+    return `<section class="hg-caravan-log"><h3>Logg</h3>${recent.length ? recent.map((entry) => {
+      const route = asArray(getRuntime()?.routes).find((item) => cleanText(item?.id) === entry.route_id);
+      const stage = getStage(entry.stage_id);
+      const event = getEventById(entry.event_id);
+      const when = entry.createdAt ? new Date(entry.createdAt).toLocaleString("nb-NO", { dateStyle: "short", timeStyle: "short" }) : "—";
+      return `<article class="hg-caravan-log-entry"><strong>${esc(route?.title || entry.route_id)}</strong><span>${esc(nodeTitle(stage?.from_node))} → ${esc(nodeTitle(stage?.to_node))}</span><span>${esc(event?.title || entry.event_id)}</span><span>${esc(readableMode(entry.travel_mode))}: ${esc(choiceLabel(event, entry.choice_id))}</span><time>${esc(when)}</time></article>`;
+    }).join("") : `<p class="hg-caravan-empty">Ingen valg logget ennå.</p>`}</section>`;
   }
 
   function shell(body) {
@@ -556,6 +623,12 @@
     });
     panel.querySelectorAll("[data-caravan-progress-status]").forEach((btn) => {
       btn.addEventListener("click", () => setActiveStageProgress(btn.getAttribute("data-caravan-progress-status") || "none"));
+    });
+    panel.querySelectorAll("[data-caravan-event-choice]").forEach((btn) => {
+      btn.addEventListener("click", () => setEventChoice(btn.getAttribute("data-caravan-event-id") || "", btn.getAttribute("data-caravan-event-choice") || "", btn.getAttribute("data-caravan-stage-id") || activeStageId, btn.getAttribute("data-caravan-route-id") || selectedRouteId));
+    });
+    panel.querySelectorAll("[data-caravan-clear-event-choice]").forEach((btn) => {
+      btn.addEventListener("click", () => clearEventChoice(btn.getAttribute("data-caravan-clear-event-choice") || "", btn.getAttribute("data-caravan-stage-id") || activeStageId, btn.getAttribute("data-caravan-route-id") || selectedRouteId));
     });
   }
 
@@ -689,6 +762,35 @@
     return result;
   }
 
+  function setEventChoice(eventId, choiceId, stageId = activeStageId, routeId = selectedRouteId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    const event = getEventById(eventId);
+    const sid = cleanText(stageId || event?.stage_id);
+    const rid = cleanText(routeId || event?.route_id);
+    const cid = cleanText(choiceId);
+    if (!asArray(event?.choices).some((choice) => cleanText(choice?.id) === cid)) { console.warn(PREFIX, "ugyldig eventvalg", { eventId, choiceId }); return null; }
+    const result = getEventLogRuntime()?.setChoice?.(rid, sid, eventId, mode, cid) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
+  function getEventChoice(eventId, stageId = activeStageId, routeId = selectedRouteId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    const event = getEventById(eventId);
+    return getEventLogRuntime()?.getChoice?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, mode) || null;
+  }
+
+  function clearEventChoice(eventId, stageId = activeStageId, routeId = selectedRouteId) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all") return null;
+    const event = getEventById(eventId);
+    const result = getEventLogRuntime()?.clearChoice?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, mode) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
   function getActiveStageProgress() {
     const stage = getStage(activeStageId);
     if (!stage || activeTravelMode === "all") return null;
@@ -724,7 +826,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [] };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
