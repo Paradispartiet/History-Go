@@ -42,6 +42,21 @@ function normalizeNearbySort(mode) {
   return "distance";
 }
 
+function getNearbyControlsContainer(placeFilterBtn) {
+  return document.querySelector(".nearby-controls") || placeFilterBtn?.parentElement || null;
+}
+
+function updateNearbyControlVisibility() {
+  const mode = hgActiveLeftPanelMode();
+  const btn = document.getElementById("nearbyFilterBtn");
+  const badgeBtn = document.getElementById("nearbyBadgeFilterBtn");
+  const sortBtn = document.getElementById("nearbySortBtn");
+
+  if (btn) btn.style.display = (mode === "nearby" || mode === "nature") ? "inline-flex" : "none";
+  if (badgeBtn) badgeBtn.style.display = (mode === "nature") ? "none" : "inline-flex";
+  if (sortBtn) sortBtn.style.display = (mode === "nearby" || mode === "favorites") ? "inline-flex" : "none";
+}
+
 let _leftPanelRenderRaf = 0;
 let _leftPanelRenderTimer = 0;
 
@@ -126,6 +141,8 @@ function setLeftPanelMode(mode) {
   if (typeof window.updateNearbySortButton === "function") {
     window.updateNearbySortButton();
   }
+
+  updateNearbyControlVisibility();
 
   rerenderActiveLeftPanelMode();
 
@@ -342,32 +359,39 @@ function renderLeftBadges() {
 function ensureNearbyBadgeFilterButton(placeFilterBtn) {
   if (!placeFilterBtn) return null;
 
+  const controls = getNearbyControlsContainer(placeFilterBtn);
+  if (!controls) return null;
+
   let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbyBadgeFilterBtn"));
-  if (btn) return btn;
+  if (!btn) {
+    btn = document.createElement("button");
+    btn.id = "nearbyBadgeFilterBtn";
+    btn.className = "nearby-filter-icon nearby-badge-filter-icon";
+    btn.type = "button";
+    btn.setAttribute("aria-label", tUI("ui.badges.badgeFilter", "Badgefilter"));
+  }
 
-  btn = document.createElement("button");
-  btn.id = "nearbyBadgeFilterBtn";
-  btn.className = "nearby-filter-icon nearby-badge-filter-icon";
-  btn.type = "button";
-  btn.setAttribute("aria-label", tUI("ui.badges.badgeFilter", "Badgefilter"));
-
-  placeFilterBtn.insertAdjacentElement("afterend", btn);
+  const sortBtn = document.getElementById("nearbySortBtn");
+  controls.insertBefore(btn, sortBtn?.parentElement === controls ? sortBtn : null);
   return btn;
 }
 
 function ensureNearbySortButton(placeFilterBtn) {
   if (!placeFilterBtn) return null;
 
+  const controls = getNearbyControlsContainer(placeFilterBtn);
+  if (!controls) return null;
+
   let btn = /** @type {HTMLButtonElement|null} */ (document.getElementById("nearbySortBtn"));
-  if (btn) return btn;
+  if (!btn) {
+    btn = document.createElement("button");
+    btn.id = "nearbySortBtn";
+    btn.className = "nearby-filter-icon nearby-sort-icon";
+    btn.type = "button";
+    btn.setAttribute("aria-label", tUI("ui.sort.sortDistance", "Sortering: avstand"));
+  }
 
-  btn = document.createElement("button");
-  btn.id = "nearbySortBtn";
-  btn.className = "nearby-filter-icon nearby-sort-icon";
-  btn.type = "button";
-  btn.setAttribute("aria-label", tUI("ui.sort.sortDistance", "Sortering: avstand"));
-
-  placeFilterBtn.insertAdjacentElement("afterend", btn);
+  controls.appendChild(btn);
   return btn;
 }
 
@@ -477,8 +501,9 @@ function initLeftPanel() {
   // =====================================
 
   const btn = document.getElementById("nearbyFilterBtn");
-  const sortBtn = ensureNearbySortButton(btn);
   const badgeBtn = ensureNearbyBadgeFilterButton(btn);
+  const sortBtn = ensureNearbySortButton(btn);
+  updateNearbyControlVisibility();
 
   const PLACES_ICONS = { unvisited: "🎯", unlocked: "🔓", all: "🌍" };
   const PLACES_ORDER = ["unvisited", "all", "unlocked"];
@@ -497,11 +522,9 @@ function initLeftPanel() {
     if (!badgeBtn) return;
     const activeMode = hgActiveLeftPanelMode();
     if (activeMode === "nature") {
-      badgeBtn.style.display = "none";
+      updateNearbyControlVisibility();
       return;
     }
-
-    badgeBtn.style.display = "inline-flex";
 
     const filter = getActiveBadgeFilter();
     const cat = getCategoryById(filter);
@@ -510,6 +533,7 @@ function initLeftPanel() {
       badgeBtn.textContent = "🏅";
       badgeBtn.title = tUI("ui.badges.badgeFilterAll", "Badgefilter: alle");
       badgeBtn.setAttribute("aria-label", tUI("ui.badges.badgeFilterAll", "Badgefilter: alle"));
+      updateNearbyControlVisibility();
       return;
     }
 
@@ -517,6 +541,7 @@ function initLeftPanel() {
     const badgeFilterCategory = tfUI("ui.badges.badgeFilterCategory", "Badgefilter: {category}", { category: cat.name || cat.id });
     badgeBtn.title = badgeFilterCategory;
     badgeBtn.setAttribute("aria-label", badgeFilterCategory);
+    updateNearbyControlVisibility();
   }
   window.updateNearbyBadgeFilterButton = updateBadgeFilterButton;
 
@@ -536,15 +561,16 @@ function initLeftPanel() {
     }
 
     updateBadgeFilterButton();
+    updateNearbyControlVisibility();
   }
   window.updateNearbyFilterButton = updateFilterButton;
 
   function updateNearbySortButton() {
     if (!sortBtn) return;
     const mode = hgActiveLeftPanelMode();
-    const isPlacesMode = mode === "nearby";
-    sortBtn.style.display = isPlacesMode ? "inline-flex" : "none";
-    if (!isPlacesMode) return;
+    const isSortableMode = mode === "nearby" || mode === "favorites";
+    updateNearbyControlVisibility();
+    if (!isSortableMode) return;
 
     const activeSort = normalizeNearbySort(window.HG_NEARBY_SORT);
     sortBtn.textContent = SORT_ICONS[activeSort] || "📍";
@@ -589,7 +615,7 @@ function initLeftPanel() {
   if (sortBtn) {
     sortBtn.addEventListener("click", () => {
       const mode = hgActiveLeftPanelMode();
-      if (mode !== "nearby") return;
+      if (mode !== "nearby" && mode !== "favorites") return;
 
       const current = normalizeNearbySort(window.HG_NEARBY_SORT);
       const i = SORT_ORDER.indexOf(current);
@@ -604,6 +630,7 @@ function initLeftPanel() {
   updateFilterButton();
   updateBadgeFilterButton();
   updateNearbySortButton();
+  updateNearbyControlVisibility();
 }
 
 // ============================================================
