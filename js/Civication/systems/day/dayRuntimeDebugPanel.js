@@ -230,25 +230,25 @@
     const style = document.createElement("style");
     style.id = "civiRuntimeDebugStyles";
     style.textContent = `
-      #${PANEL_ID}{position:fixed;right:12px;bottom:76px;z-index:99999;width:min(420px,calc(100vw - 24px));font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f6f1e7;pointer-events:none}
+      #${PANEL_ID}{position:fixed;right:70px;bottom:calc(var(--footer-h, 64px) + 24px);z-index:9000;width:min(420px,calc(100vw - 82px));font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f6f1e7;pointer-events:none;display:flex;flex-direction:column;align-items:flex-end}
       #${PANEL_ID} *{box-sizing:border-box}
-      .civi-debug-toggle{pointer-events:auto;width:100%;border:1px solid rgba(255,255,255,.22);background:rgba(22,20,17,.92);color:#f6f1e7;border-radius:14px;padding:10px 12px;font-weight:800;text-align:left;box-shadow:0 8px 30px rgba(0,0,0,.28)}
-      .civi-debug-card{display:none;pointer-events:auto;margin-top:8px;max-height:62vh;overflow:auto;background:rgba(18,16,14,.96);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px;box-shadow:0 12px 38px rgba(0,0,0,.35)}
+      #${PANEL_ID} .civi-debug-toggle{pointer-events:auto;width:38px;height:38px;flex:0 0 auto;border:1px solid rgba(255,255,255,.18) !important;background:rgba(10,10,11,.88) !important;color:#d6aa3a !important;border-radius:999px;padding:0;font-weight:800;font-size:15px;line-height:1;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.4) !important}
+      .civi-debug-card{display:none;pointer-events:auto;margin-top:8px;max-height:62vh;width:100%;overflow:auto;background:rgba(10,10,11,.96);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:12px;box-shadow:0 12px 38px rgba(0,0,0,.45)}
       #${PANEL_ID}.is-open .civi-debug-card{display:block}
       .civi-debug-card h3{margin:0 0 8px;font-size:15px}
-      .civi-debug-card h4{margin:12px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#f0c56c}
+      .civi-debug-card h4{margin:12px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#d6aa3a}
       .civi-debug-kv{display:flex;gap:10px;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 0;font-size:12px}
       .civi-debug-kv span{color:rgba(246,241,231,.68)}
       .civi-debug-kv strong{font-weight:700;text-align:right;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
       .civi-debug-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px}
       .civi-debug-table th,.civi-debug-table td{border-bottom:1px solid rgba(255,255,255,.08);padding:5px 4px;text-align:left;vertical-align:top}
-      .civi-debug-table th{color:#f0c56c;font-weight:800}
+      .civi-debug-table th{color:#d6aa3a;font-weight:800}
       .civi-debug-list{display:grid;grid-template-columns:92px 1fr;gap:4px;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-      .civi-debug-list strong{color:#f0c56c}
+      .civi-debug-list strong{color:#d6aa3a}
       .civi-debug-list span{color:#f6f1e7}
       .civi-debug-muted{font-size:12px;color:rgba(246,241,231,.56);padding:4px 0}
       .civi-debug-actions{display:flex;gap:8px;margin-top:10px}
-      .civi-debug-actions button{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#f6f1e7;border-radius:10px;padding:7px 9px;font-size:12px;font-weight:700}
+      #${PANEL_ID} .civi-debug-actions button{border:1px solid rgba(255,255,255,.18) !important;background:rgba(255,255,255,.08) !important;color:#f6f1e7 !important;border-radius:10px;padding:7px 9px;font-size:12px;font-weight:700}
     `;
     document.head.appendChild(style);
   }
@@ -260,7 +260,7 @@
     const panel = document.createElement("div");
     panel.id = PANEL_ID;
     panel.innerHTML = `
-      <button class="civi-debug-toggle" type="button">⚙ Civication runtime debug</button>
+      <button class="civi-debug-toggle" type="button" title="Civication runtime debug" aria-label="Civication runtime debug">⚙</button>
       <div class="civi-debug-card">
         <h3>Runtime debug</h3>
         <div id="${BODY_ID}"></div>

@@ -13,7 +13,7 @@
   --civi-card-radius: 18px;
   --civi-soft-line: rgba(255,255,255,0.12);
   --civi-soft-line-2: rgba(255,255,255,0.18);
-  --civi-panel-bg: linear-gradient(180deg, rgba(34,44,56,0.93), rgba(22,30,40,0.95));
+  --civi-panel-bg: var(--card);
   --civi-panel-bg-soft: rgba(255,255,255,0.06);
   --civi-gold: #d6aa3a;
   --civi-green: #5fb879;
@@ -22,11 +22,7 @@
 }
 
 body.civi-app {
-  background:
-    radial-gradient(circle at 22% 0%, rgba(214,170,58,0.16), transparent 32%),
-    radial-gradient(circle at 85% 10%, rgba(127,167,214,0.13), transparent 34%),
-    radial-gradient(circle at 48% 100%, rgba(95,184,121,0.09), transparent 30%),
-    #111821;
+  background: var(--bg);
 }
 
 /* Svak vignette – kun litt dybde, skal ikke mørkne kart eller paneler. */
@@ -36,9 +32,7 @@ body.civi-app::before {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.10), transparent 26%, rgba(0,0,0,0.18)),
-    radial-gradient(circle at center, transparent 0, rgba(0,0,0,0.12) 84%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.10), transparent 26%, rgba(0,0,0,0.22));
 }
 
 body.civi-app .topbar,
@@ -262,17 +256,17 @@ body.civi-app .civi-panels h2 {
 }
 
 .civi-dashboard-metric.is-primary {
-  background: linear-gradient(135deg, rgba(214,170,58,0.22), rgba(214,170,58,0.06));
+  background: rgba(214,170,58,0.13);
   border-color: rgba(214,170,58,0.24);
 }
 
 .civi-dashboard-metric.is-status {
-  background: linear-gradient(135deg, rgba(127,167,214,0.18), rgba(127,167,214,0.045));
+  background: rgba(127,167,214,0.11);
   border-color: rgba(127,167,214,0.22);
 }
 
 .civi-dashboard-metric.is-inbox {
-  background: linear-gradient(135deg, rgba(95,184,121,0.18), rgba(95,184,121,0.045));
+  background: rgba(95,184,121,0.11);
   border-color: rgba(95,184,121,0.22);
 }
 
@@ -288,9 +282,9 @@ body.civi-app .civi-panels h2 {
 .civi-day-phase-panel {
   margin: -4px 0 2px;
   padding: 12px 14px;
-  border: 1px solid rgba(210,225,240,.14);
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 14px;
-  background: rgba(26,35,46,.78);
+  background: var(--card2);
   box-shadow: none;
 
   display: flex;
@@ -322,7 +316,7 @@ body.civi-app .civi-panels h2 {
   margin: 0;
   font-size: 17px;
   font-weight: 700;
-  color: #edf3ff;
+  color: var(--ink);
   line-height: 1.2;
 }
 
@@ -330,7 +324,7 @@ body.civi-app .civi-panels h2 {
 .civi-day-phase-status {
   margin: 0;
   font-size: 15px;
-  color: #dce8f5;
+  color: var(--ink2);
   opacity: .88;
 }
 
@@ -353,22 +347,22 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.14);
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 10px;
-  background: rgba(24,33,44,.6);
+  background: var(--card2);
 }
 
 .civi-day-complete-title {
   margin: 0;
   font-size: 15px;
   font-weight: 700;
-  color: #edf3ff;
+  color: var(--ink);
 }
 
 .civi-day-complete-text {
   margin: 2px 0 0;
   font-size: 15px;
-  color: #dce8f5;
+  color: var(--ink2);
   opacity: .9;
 }
 
@@ -390,22 +384,22 @@ body.civi-app .civi-panels h2 {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: .05em;
-  color: rgba(220,232,245,.72);
+  color: var(--ink3);
 }
 
 .civi-day-complete-grid dd {
   margin: 1px 0 0;
   font-size: 15px;
-  color: #edf3ff;
+  color: var(--ink);
 }
 
 .civi-outcome-banner {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.16);
+  border: 1px solid rgba(255,255,255,.16);
   border-radius: 10px;
-  background: rgba(24,33,44,.6);
+  background: var(--card2);
 }
 
 .civi-outcome-kicker {
@@ -441,12 +435,12 @@ body.civi-app .civi-panels h2 {
 .civi-outcome-indicator-label {
   font-size: 15px;
   font-weight: 700;
-  color: #edf3ff;
+  color: var(--ink);
 }
 
 .civi-outcome-indicator-text {
   font-size: 15px;
-  color: #dce8f5;
+  color: var(--ink2);
   opacity: .9;
 }
 
@@ -454,9 +448,9 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.16);
+  border: 1px solid rgba(255,255,255,.16);
   border-radius: 10px;
-  background: rgba(24,33,44,.5);
+  background: var(--card2);
 }
 
 .civi-learning-kicker {
@@ -485,12 +479,12 @@ body.civi-app .civi-panels h2 {
 .civi-learning-label {
   font-size: 15px;
   font-weight: 700;
-  color: #edf3ff;
+  color: var(--ink);
 }
 
 .civi-learning-detail {
   font-size: 15px;
-  color: #dce8f5;
+  color: var(--ink2);
   opacity: .9;
 }
 
@@ -498,9 +492,9 @@ body.civi-app .civi-panels h2 {
   width: 100%;
   margin: 2px 0 0;
   padding: 8px 10px;
-  border: 1px solid rgba(210,225,240,.16);
+  border: 1px solid rgba(255,255,255,.16);
   border-radius: 10px;
-  background: rgba(24,33,44,.6);
+  background: var(--card2);
 }
 
 .civi-reentry-lock-kicker {
@@ -530,12 +524,12 @@ body.civi-app .civi-panels h2 {
 .civi-reentry-lock-label {
   font-size: 15px;
   font-weight: 700;
-  color: #edf3ff;
+  color: var(--ink);
 }
 
 .civi-reentry-lock-detail {
   font-size: 15px;
-  color: #dce8f5;
+  color: var(--ink2);
   opacity: .9;
 }
 
@@ -580,28 +574,11 @@ body.civi-app .civi-panels h2 {
   border-color: var(--civi-soft-line-2);
 }
 
-#activeJobSection {
-  background:
-    linear-gradient(180deg, rgba(214,170,58,0.12), transparent 42%),
-    var(--civi-panel-bg);
-}
-
-#civiWorkdaySection {
-  background:
-    linear-gradient(180deg, rgba(95,184,121,0.10), transparent 42%),
-    var(--civi-panel-bg);
-}
-
-#civiInboxSection {
-  background:
-    linear-gradient(180deg, rgba(95,184,121,0.12), transparent 42%),
-    var(--civi-panel-bg);
-}
-
+#activeJobSection,
+#civiWorkdaySection,
+#civiInboxSection,
 #civiHomeStatus {
-  background:
-    linear-gradient(180deg, rgba(184,122,61,0.12), transparent 42%),
-    var(--civi-panel-bg);
+  background: var(--civi-panel-bg);
 }
 
 /* Gjør hovedkortene mer lesbare uten å endre JS-output. */
@@ -730,7 +707,7 @@ body.civi-app .civi-panels h2 {
 .civi-footer {
   height: 72px;
   padding: 10px max(12px, env(safe-area-inset-left)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-right));
-  background: rgba(17,24,33,0.78);
+  background: rgba(8,8,9,0.82);
 }
 
 .civi-btn {
