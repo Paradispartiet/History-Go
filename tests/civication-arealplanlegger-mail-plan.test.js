@@ -218,7 +218,7 @@ async function run() {
     'forenoon:primary_work_mail': 'by_areal_job_plankart_001',
     'workday:conflict_or_event': 'by_areal_event_utvalg_001',
     'workday:analysis_followup': 'by_areal_followup_008',
-    'lunch:informal_people_mail': 'by_areal_people_skolevei_005',
+    'lunch:informal_people_mail': 'by_areal_people_arkitekt_008',
     'afternoon:family_or_practical': 'by_areal_people_utbygger_001',
     'evening:consequence_mail': 'by_areal_consequence_008'
   };

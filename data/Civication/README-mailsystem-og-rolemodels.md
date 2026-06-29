@@ -1556,3 +1556,5 @@ Validator:
 ```
 
 Hvis dette ikke kan fylles ut, er rollen ikke klar for avanserte mailer.
+
+- Rollepakker skal ikke kopiere valgpar på tvers av ulike people-mails uten at begge mailene eksplisitt har `shared_choice_pair: true`.

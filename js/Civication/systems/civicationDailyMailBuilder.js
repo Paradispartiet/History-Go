@@ -387,11 +387,23 @@
     if (type === "followup") return ["followup", "people", "job"];
     if (type === "knowledge") return ["knowledge", "story", "job"];
     if (type === "consequence") return ["consequence", "followup", "people"];
-    if (type === "micro_choice") return ["micro", "people"];
+    if (type === "micro_choice") return ["micro"];
     if (type === "task_gate" || slotId === "task_gate") return ["task_gate", "job", "micro"];
     if (type === "day_end") return ["__generated_day_end"];
 
     return [type || "job"];
+  }
+
+  function isStrictSlot(slot) {
+    const type = slugify(slot?.type || slot?.slot || "");
+    const slotId = slugify(slot?.slot || "");
+    return type === "micro_choice"
+      || type === "task_gate"
+      || slotId === "preparation"
+      || slotId === "day_goal_choice"
+      || slotId === "small_choice"
+      || slotId === "afternoon_choice"
+      || slotId === "plan_tomorrow";
   }
 
   function phaseLabel(phase) {
@@ -638,7 +650,7 @@
       return wanted.has(norm(mail?.mail_type));
     });
 
-    if (!candidates.length) {
+    if (!candidates.length && !isStrictSlot(slot)) {
       candidates = slotPool.filter(mail => {
         const id = norm(mail?.id);
         if (!id || usedSourceIds.has(id)) return false;

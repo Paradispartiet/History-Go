@@ -84,7 +84,8 @@
             "B": [
               "frist_for_utvalg"
             ]
-          }
+          },
+          "shared_choice_pair": true
         },
         {
           "id": "by_areal_people_nabo_001",
@@ -123,25 +124,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Gjør konflikten tydelig og knytt den til plankart/bestemmelse",
-              "reply": "Jeg gjør konflikten tydelig og knytter den til plankart eller bestemmelse.",
+              "label": "Trekk ut skoleveien som gyldig medvirkningspoeng",
+              "reply": "Jeg trekker ut skoleveien som et konkret medvirkningspoeng og kobler den til plankartet.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "medvirkning",
+                "precision"
               ],
-              "feedback": "Du øker friksjonen nå, men gir saken et sterkere faglig spor."
+              "feedback": "Du viser at lang innbyggerpost kan romme viktig lokal kunnskap som saken må tåle."
             },
             {
               "id": "B",
-              "label": "Gi en rask avklaring med forbehold",
-              "reply": "Jeg gir en rask avklaring med tydelige forbehold.",
+              "label": "Parker mailen som for omfattende til denne runden",
+              "reply": "Jeg parkerer mailen som for omfattende og ber om en kortere oppsummering senere.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du hjelper framdriften, men noe av konflikten kan komme tilbake senere."
+              "feedback": "Du sparer tid nå, men kan miste et gyldig poeng om faktisk bruk av området."
             }
           ],
           "next_bias": {
@@ -232,7 +233,8 @@
             "B": [
               "frist_for_utvalg"
             ]
-          }
+          },
+          "shared_choice_pair": true
         },
         {
           "id": "by_areal_people_plansjef_004",
@@ -271,25 +273,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
-              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "label": "Komprimer saken uten å skjule grøntdrag og skoleveisrisiko",
+              "reply": "Jeg komprimerer saken til en kort møtetekst, men lar grøntdrag og skoleveisrisiko stå tydelig.",
               "effect": 1,
               "tags": [
                 "precision",
-                "trust"
+                "politisk_lesbarhet"
               ],
-              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+              "feedback": "Du gjør saken kortere uten å gjøre risikoen usynlig for ledelsen."
             },
             {
               "id": "B",
-              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
-              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "label": "Lag en kort møteversjon med tydelige forbehold",
+              "reply": "Jeg lager en kort møteversjon og merker de faglige forbeholdene som må avklares etterpå.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+              "feedback": "Du gir plansjefen noe brukbart raskt, men skyver deler av vurderingen videre."
             }
           ],
           "next_bias": {
@@ -347,25 +349,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
-              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "label": "Legg faktisk brukt skolevei inn i kartgrunnlag og notat",
+              "reply": "Jeg legger barnas faktiske skolevei inn i kartgrunnlaget, notatet og videre prosess.",
               "effect": 1,
               "tags": [
-                "precision",
-                "trust"
+                "trafikksikkerhet",
+                "precision"
               ],
-              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+              "feedback": "Du gjør brukskunnskapen etterprøvbar før den forsvinner i plankartets antakelser."
             },
             {
               "id": "B",
-              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
-              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "label": "Avklar skoleveien midlertidig uten å endre grunnlaget ennå",
+              "reply": "Jeg gir en praktisk midlertidig avklaring og venter med å oppdatere kartgrunnlaget.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+              "feedback": "Du demper trykket raskt, men lar et mulig avvik mellom kart og faktisk bruk bestå."
             }
           ],
           "next_bias": {
@@ -423,25 +425,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
-              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "label": "Skriv rekkefølgekravet slik at grøntdrag og skolevei kan håndheves",
+              "reply": "Jeg strammer bestemmelsen slik at grøntdrag og skolevei får et håndhevbart rekkefølgekrav.",
               "effect": 1,
               "tags": [
-                "precision",
-                "trust"
+                "juridisk_presisjon",
+                "integrity"
               ],
-              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+              "feedback": "Du gjør intensjonen om til en bestemmelse som kan følges opp i byggesaken."
             },
             {
               "id": "B",
-              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
-              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "label": "La intensjonen stå i teksten og holde framdriften oppe",
+              "reply": "Jeg lar intensjonen stå i teksten og holder framdriften uten å stramme kravet nå.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+              "feedback": "Du unngår omkamp nå, men bestemmelsen kan bli for svak når tiltaket skal gjennomføres."
             }
           ],
           "next_bias": {
@@ -499,25 +501,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
-              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "label": "Skill faglig risiko fra politisk prioritering i saken",
+              "reply": "Jeg skiller tydelig mellom faglig risiko og hva utvalget faktisk kan prioritere politisk.",
               "effect": 1,
               "tags": [
-                "precision",
-                "trust"
+                "demokratisk_lesbarhet",
+                "precision"
               ],
-              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+              "feedback": "Du gjør ansvaret lesbart uten å ta den politiske vurderingen ut av politikken."
             },
             {
               "id": "B",
-              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
-              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "label": "Forenkle saken selv om ansvarsdelingen blir uklar",
+              "reply": "Jeg forenkler saken kraftig, selv om skillet mellom fag og politisk prioritering blir mindre tydelig.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+              "feedback": "Du gjør teksten lettere å lese, men kan gjøre det uklart hvem som eier risikoen."
             }
           ],
           "next_bias": {
@@ -575,25 +577,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Gjør avklaringen eksplisitt i kart, notat og videre prosess",
-              "reply": "Jeg gjør avklaringen eksplisitt i kart, notat og videre prosess.",
+              "label": "Test høydeillustrasjonen mot grøntdrag skolevei støy og overvann",
+              "reply": "Jeg tester høydeillustrasjonen mot grøntdrag, skolevei, støy og overvann før vi bruker den.",
               "effect": 1,
               "tags": [
-                "precision",
-                "trust"
+                "romlig_forstaelse",
+                "precision"
               ],
-              "feedback": "Du bremser litt, men gjør saken lettere å etterprøve."
+              "feedback": "Du behandler illustrasjonen som faglig materiale, ikke bare som et pent bilde."
             },
             {
               "id": "B",
-              "label": "Gi en kort praktisk avklaring og ta forbehold senere",
-              "reply": "Jeg gir en kort praktisk avklaring og tar forbehold senere.",
+              "label": "Bruk illustrasjonen raskt som kommunikasjonsgrep",
+              "reply": "Jeg bruker illustrasjonen raskt som et kommunikasjonsgrep og tar fagtestene senere.",
               "effect": 0,
               "tags": [
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du får saken videre, men lar noe av risikoen ligge uklart."
+              "feedback": "Du får et tydelig bilde ut raskt, men kan låse forventninger før konsekvensene er sjekket."
             }
           ],
           "next_bias": {
