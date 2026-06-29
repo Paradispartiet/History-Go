@@ -1,5 +1,5 @@
 // js/ui/caravan-panel.js
-// Read-only UI for Europakaravanen. Draws visual corridors only; does not create routes or mutate gameplay state.
+// UI for Europakaravanen. Draws visual corridors and stores local-only stage progression.
 (function () {
   "use strict";
 
@@ -12,6 +12,11 @@
     til_fots: "Til fots",
     hest: "Hest",
     sykkel: "Sykkel"
+  };
+  const PROGRESS_LABELS = {
+    planned: "Planlagt",
+    started: "Påbegynt",
+    completed: "Fullført"
   };
 
   let selectedRouteId = "";
@@ -118,6 +123,35 @@
     return Array.from(seen).map(readableMode);
   }
 
+  function getProgressRuntime() {
+    return window.HG_CARAVAN_PROGRESS || null;
+  }
+
+  function getStageProgress(stage, mode = activeTravelMode) {
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return null;
+    return getProgressRuntime()?.getProgress?.(cleanText(stage?.route_id), cleanText(stage?.id), selected) || null;
+  }
+
+  function getStageProgressStatus(stage, mode = activeTravelMode) {
+    return cleanText(getStageProgress(stage, mode)?.status);
+  }
+
+  function getStageAllModeProgressLabel(stage) {
+    const statuses = ["til_fots", "hest", "sykkel"].map((mode) => getStageProgressStatus(stage, mode)).filter((status) => status && status !== "none");
+    const completed = statuses.filter((status) => status === "completed").length;
+    if (completed) return `${completed}/3 fullført`;
+    if (statuses.length) return `${statuses.length}/3 progresjon`;
+    return "Ingen progresjon";
+  }
+
+  function routeProgressLabel(routeId) {
+    const summary = getProgressRuntime()?.getRouteSummary?.(routeId, activeTravelMode);
+    if (!summary) return "Ingen progresjon";
+    if (normalizeTravelMode(activeTravelMode) === "all") return `${summary.progressionPoints || 0} progresjonspunkter`;
+    return `${summary.completed || 0}/${summary.total || 0} etapper fullført`;
+  }
+
   function getRuntime() {
     const runtime = window.HG_CARAVAN;
     if (!runtime || !Array.isArray(runtime.routes)) return null;
@@ -196,7 +230,8 @@
           order: Number(stage?.order ?? 0),
           class: CORRIDOR_LINE_LAYER_ID,
           active: stageId && stageId === activeStageId ? 1 : 0,
-          travel_mode_supported: stageSupportsMode(stage) ? 1 : 0
+          travel_mode_supported: stageSupportsMode(stage) ? 1 : 0,
+          progress_status: normalizeTravelMode(activeTravelMode) === "all" ? "none" : (getStageProgressStatus(stage) || "none")
         },
         geometry: { type: "LineString", coordinates: [[from.lng, from.lat], [to.lng, to.lat]] }
       });
@@ -217,9 +252,9 @@
         filter: ["==", ["geometry-type"], "LineString"],
         layout: { "line-cap": "round", "line-join": "round" },
         paint: {
-          "line-color": "#d9b36a",
+          "line-color": ["match", ["get", "progress_status"], "completed", "#f0d59b", "started", "#d9b36a", "planned", "#b9a77d", "#d9b36a"],
           "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.2, 8, 1.8, 12, 2.6],
-          "line-opacity": ["case", ["==", ["get", "travel_mode_supported"], 0], 0.07, ["==", ["get", "active"], 1], 0.34, 0.22],
+          "line-opacity": ["case", ["==", ["get", "travel_mode_supported"], 0], 0.07, ["==", ["get", "progress_status"], "completed"], 0.48, ["==", ["get", "progress_status"], "started"], 0.36, ["==", ["get", "progress_status"], "planned"], 0.28, ["==", ["get", "active"], 1], 0.34, 0.22],
           "line-dasharray": [1.1, 1.6],
           "line-blur": 0.7
         }
@@ -325,11 +360,13 @@
     const id = cleanText(route?.id);
     const stages = getStages(id);
     const modes = uniqueModesForRoute(id);
+    const title = cleanText(route?.title || id || "Route").split(/[–:-]/)[0].trim() || route?.title || id;
     return `
       <button type="button" class="hg-caravan-route ${id === selectedRouteId ? "is-active" : ""}" data-caravan-route="${attr(id)}">
         <span class="hg-caravan-route-title">${esc(route?.title || id || "Uten tittel")}</span>
         ${cleanText(route?.subtitle) ? `<span class="hg-caravan-route-subtitle">${esc(route.subtitle)}</span>` : ""}
         <span class="hg-caravan-route-meta">ID: ${esc(id || "—")} · ${stages.length} stages · ${esc(modes.join(", ") || "—")}</span>
+        <span class="hg-caravan-progress-summary">${esc(title)}: ${esc(routeProgressLabel(id))}</span>
       </button>`;
   }
 
@@ -350,11 +387,25 @@
     const from = nodeTitle(stage?.from_node);
     const to = nodeTitle(stage?.to_node);
     const supported = stageSupportsMode(stage);
+    const status = getStageProgressStatus(stage);
+    const progressLabel = activeTravelMode === "all" ? getStageAllModeProgressLabel(stage) : (PROGRESS_LABELS[status] || "Ingen progresjon");
     return `
       <button type="button" class="hg-caravan-stage ${id === activeStageId ? "is-active" : ""} ${supported ? "is-mode-supported" : "is-mode-dimmed"}" data-caravan-stage="${attr(id)}">
         <span class="hg-caravan-stage-title">${esc(stage?.order ?? "—")}. ${esc(from)} → ${esc(to)}</span>
         <span class="hg-caravan-stage-meta">${stage?.approximate_distance_km != null ? `${esc(stage.approximate_distance_km)} km` : "Distanse ukjent"} · ${esc(formatList(stage?.allowed_modes))}</span>
+        <span class="hg-caravan-progress-pill">${esc(progressLabel)}</span>
       </button>`;
+  }
+
+  function progressControls(stage) {
+    const disabled = activeTravelMode === "all";
+    const status = getStageProgressStatus(stage);
+    return `<div class="hg-caravan-progress-controls">
+      ${disabled ? `<p class="hg-caravan-progress-hint">Velg Til fots, Hest eller Sykkel for å lagre progresjon</p>` : `<p class="hg-caravan-progress-hint">Progresjon for ${esc(readableMode(activeTravelMode))}</p>`}
+      <div class="hg-caravan-progress-buttons" role="group" aria-label="Stage-progresjon">
+        ${[["planned", "Planlagt"], ["started", "Påbegynt"], ["completed", "Fullført"], ["none", "Nullstill"]].map(([value, label]) => `<button type="button" class="hg-caravan-progress-button ${status === value ? "is-active" : ""}" data-caravan-progress-status="${attr(value)}" ${disabled ? "disabled" : ""}>${esc(label)}</button>`).join("")}
+      </div>
+    </div>`;
   }
 
   function stagePreview(stage) {
@@ -365,6 +416,7 @@
       <section class="hg-caravan-stage-preview" aria-live="polite">
         <h3>Stage-preview</h3>
         <h4>${esc(from)} → ${esc(to)}</h4>
+        ${progressControls(stage)}
         <dl>
           ${field("Distanse", stage?.approximate_distance_km != null ? `${stage.approximate_distance_km} km` : "")}
           ${field("Distanse-sikkerhet", stage?.distance_confidence)}
@@ -430,6 +482,9 @@
     });
     panel.querySelectorAll("[data-caravan-stage]").forEach((btn) => {
       btn.addEventListener("click", () => previewStage(btn.getAttribute("data-caravan-stage") || ""));
+    });
+    panel.querySelectorAll("[data-caravan-progress-status]").forEach((btn) => {
+      btn.addEventListener("click", () => setActiveStageProgress(btn.getAttribute("data-caravan-progress-status") || "none"));
     });
   }
 
@@ -550,6 +605,29 @@
     return activeTravelMode;
   }
 
+  function setActiveStageProgress(status) {
+    const stage = getStage(activeStageId);
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (!stage || mode === "all") return null;
+    const runtime = getProgressRuntime();
+    if (!runtime) return null;
+    const result = status === "none" ? runtime.clearProgress(cleanText(stage.route_id), cleanText(stage.id), mode) : runtime.setProgress(cleanText(stage.route_id), cleanText(stage.id), mode, status);
+    render(selectedRouteId);
+    updateActiveNodeStyling();
+    drawCorridor(selectedRouteId);
+    return result;
+  }
+
+  function getActiveStageProgress() {
+    const stage = getStage(activeStageId);
+    if (!stage || activeTravelMode === "all") return null;
+    return getStageProgress(stage);
+  }
+
+  function clearActiveStageProgress() {
+    return setActiveStageProgress("none");
+  }
+
   function open(routeId) {
     const panel = render(routeId || selectedRouteId);
     panel.hidden = false;
@@ -575,7 +653,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice() };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });

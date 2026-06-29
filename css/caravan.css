@@ -128,3 +128,33 @@
 .hg-caravan-stage.is-mode-dimmed:hover,.hg-caravan-stage.is-mode-dimmed:focus-visible{
   opacity:.72;
 }
+.hg-caravan-progress-summary,.hg-caravan-progress-pill{
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  border-radius:999px;
+  padding:3px 8px;
+  background:rgba(255,255,255,.09);
+  color:rgba(255,238,204,.86);
+  font-size:12px;
+  font-weight:800;
+}
+.hg-caravan-progress-controls{ margin:0 0 12px; display:grid; gap:7px; }
+.hg-caravan-progress-hint{ margin:0; color:rgba(255,255,255,.72); font-size:13px; }
+.hg-caravan-progress-buttons{ display:flex; flex-wrap:wrap; gap:6px; }
+.hg-caravan-progress-button{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  padding:6px 9px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.82);
+  font-weight:800;
+  cursor:pointer;
+}
+.hg-caravan-progress-button:hover,.hg-caravan-progress-button:focus-visible,.hg-caravan-progress-button.is-active{
+  background:rgba(255,191,87,.24);
+  border-color:rgba(255,210,129,.58);
+  color:#fff;
+  outline:none;
+}
+.hg-caravan-progress-button:disabled{ opacity:.42; cursor:not-allowed; }
