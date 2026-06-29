@@ -1,0 +1,150 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "barnehageassistent_v1",
+  "category": "sosial_laering",
+  "role_scope": "barnehageassistent",
+  "description": "Den lange dagen på avdelingen: en konkret Day 1 for barnehageassistent/pedagogisk medarbeider.",
+  "arc": {
+    "from": "Du åpner avdelingen med stram bemanning og et barn som ikke slipper forelderen.",
+    "to": "Du avslutter dagen med spor av trygghet, observasjon og egen profesjonell grense.",
+    "core_questions": [
+      "Hva slags voksen er du når dagen blir for lang?",
+      "Hvordan gjør du omsorg til praksis under tidspress?"
+    ]
+  },
+  "outcome_rules": {
+    "mastery": {
+      "signals": [
+        "trygg overgang",
+        "presis observasjon",
+        "varm grensesetting"
+      ]
+    },
+    "stagnated": {
+      "signals": [
+        "barn overses",
+        "dokumentasjon blir synsing"
+      ]
+    },
+    "collapse": {
+      "signals": [
+        "slitasje styrer stemmen",
+        "barnets beste taper mot flyt"
+      ]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "story",
+      "phase": "morning",
+      "step_goal": "Morgenlevering og første overgang",
+      "allowed_families": [
+        "morgen_apning"
+      ],
+      "fallback_types": [
+        "story",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "forenoon",
+      "step_goal": "Barnet som ikke slipper forelderen",
+      "allowed_families": [
+        "personkart_avdeling"
+      ],
+      "fallback_types": [
+        "people",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 3,
+      "type": "job",
+      "phase": "workday",
+      "step_goal": "Frilek som ikke er fri for alle",
+      "allowed_families": [
+        "omsorgsoppgaver_avdeling"
+      ],
+      "fallback_types": [
+        "job",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 4,
+      "type": "conflict",
+      "phase": "lunch",
+      "step_goal": "Konflikt i garderoben / utelek",
+      "allowed_families": [
+        "konfliktakser_avdeling"
+      ],
+      "fallback_types": [
+        "conflict",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 5,
+      "type": "event",
+      "phase": "afternoon",
+      "step_goal": "Forelder spør hvorfor barnet ikke ble sett",
+      "allowed_families": [
+        "hendelser_lang_dag"
+      ],
+      "fallback_types": [
+        "event",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 6,
+      "type": "knowledge",
+      "phase": "dinner",
+      "step_goal": "Pedagogisk leder ber om observasjon, ikke synsing",
+      "allowed_families": [
+        "kunnskap_omsorg"
+      ],
+      "fallback_types": [
+        "knowledge",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 7,
+      "type": "followup",
+      "phase": "evening",
+      "step_goal": "Ettermiddag: lav bemanning og høy slitasje",
+      "allowed_families": [
+        "oppfolging_lang_dag"
+      ],
+      "fallback_types": [
+        "followup",
+        "micro",
+        "job"
+      ]
+    },
+    {
+      "step": 8,
+      "type": "consequence",
+      "phase": "day_end",
+      "step_goal": "Dagslutt: hva slags voksen var du i dag?",
+      "allowed_families": [
+        "konsekvens_lang_dag"
+      ],
+      "fallback_types": [
+        "consequence",
+        "micro",
+        "job"
+      ]
+    }
+  ]
+}
