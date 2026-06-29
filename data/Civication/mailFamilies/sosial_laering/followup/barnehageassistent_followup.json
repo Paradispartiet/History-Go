@@ -1,0 +1,613 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sosial_laering",
+  "role_scope": "barnehageassistent",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "oppfolging_lang_dag",
+      "purpose": "followup-mailer for Barnehageassistent Day 1.",
+      "learning_focus": [
+        "relasjonskompetanse",
+        "overgangsstøtte",
+        "konfliktdemping",
+        "observasjon",
+        "barns_medvirkning",
+        "språkstøtte",
+        "lekeforståelse",
+        "sikkerhet",
+        "foreldredialog",
+        "samarbeid_med_pedagogisk_leder",
+        "egenregulering",
+        "dagsrytme"
+      ],
+      "mails": [
+        {
+          "id": "sosial_laering_barnehageassistent_followup_001",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "intro",
+          "priority": 99,
+          "from": "ped_leder_anne",
+          "sender": "ped_leder_anne",
+          "person_id": "ped_leder_anne",
+          "place_id": "barnehage_avdeling",
+          "subject": "Morgenlevering: barnet slipper ikke hånden",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om relasjonskompetanse når omsorg vs tidsklemme presser praksisen.",
+          "purpose": "Trene relasjonskompetanse i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på barnehage_avdeling.",
+            "Anne Viken presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "relasjonskompetanse",
+          "pressure": "omsorg_vs_tidsklemme",
+          "choice_axis": "omsorg_vs_tidsklemme",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Barnet slipper ikke hånden",
+          "learning_focus": [
+            "relasjonskompetanse",
+            "tilknytning",
+            "omsorg_vs_tidsklemme"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "relasjonskompetanse"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_001"
+          ],
+          "tags": [
+            "barnehage",
+            "tilknytning",
+            "relasjonskompetanse"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_002",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "intro",
+          "priority": 98,
+          "from": "erfaren_assistent_kari",
+          "sender": "erfaren_assistent_kari",
+          "person_id": "erfaren_assistent_kari",
+          "place_id": "garderobe",
+          "subject": "Overgangen: den frie leken er ikke fri for alle",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om overgangsstøtte når trygghet vs flyt presser praksisen.",
+          "purpose": "Trene overgangsstøtte i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på garderobe.",
+            "Kari Lunde presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "overgangsstøtte",
+          "pressure": "trygghet_vs_flyt",
+          "choice_axis": "trygghet_vs_flyt",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Den frie leken er ikke fri for alle",
+          "learning_focus": [
+            "overgangsstøtte",
+            "overgangssituasjoner",
+            "trygghet_vs_flyt"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "overgangsstøtte"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_002"
+          ],
+          "tags": [
+            "barnehage",
+            "overgangssituasjoner",
+            "overgangsstøtte"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_003",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "intro",
+          "priority": 97,
+          "from": "ny_vikar_milo",
+          "sender": "ny_vikar_milo",
+          "person_id": "ny_vikar_milo",
+          "place_id": "utelekeplass",
+          "subject": "Frileken: lavstatusjobben med høyansvar",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om konfliktdemping når barns behov vs gruppens behov presser praksisen.",
+          "purpose": "Trene konfliktdemping i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på utelekeplass.",
+            "Milo Berg presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "konfliktdemping",
+          "pressure": "barns_behov_vs_gruppens_behov",
+          "choice_axis": "barns_behov_vs_gruppens_behov",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Lavstatusjobben med høyansvar",
+          "learning_focus": [
+            "konfliktdemping",
+            "lek",
+            "barns_behov_vs_gruppens_behov"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "konfliktdemping"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_003"
+          ],
+          "tags": [
+            "barnehage",
+            "lek",
+            "konfliktdemping"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_004",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "intro",
+          "priority": 96,
+          "from": "barn_noah_overgang",
+          "sender": "barn_noah_overgang",
+          "person_id": "barn_noah_overgang",
+          "place_id": "samlingsstund",
+          "subject": "Garderoben: forelderen som klager har delvis rett",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om observasjon når foreldrekrav vs faglig vurdering presser praksisen.",
+          "purpose": "Trene observasjon i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på samlingsstund.",
+            "Noah presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "observasjon",
+          "pressure": "foreldrekrav_vs_faglig_vurdering",
+          "choice_axis": "foreldrekrav_vs_faglig_vurdering",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Forelderen som klager har delvis rett",
+          "learning_focus": [
+            "observasjon",
+            "språkstøtte",
+            "foreldrekrav_vs_faglig_vurdering"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "observasjon"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_004"
+          ],
+          "tags": [
+            "barnehage",
+            "språkstøtte",
+            "observasjon"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_005",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "early",
+          "priority": 95,
+          "from": "barn_ema_oversett",
+          "sender": "barn_ema_oversett",
+          "person_id": "barn_ema_oversett",
+          "place_id": "hvilerom",
+          "subject": "Uteleken: pedagogisk leder trenger observasjon, ikke magefølelse",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om barns_medvirkning når lav status vs hoyt ansvar presser praksisen.",
+          "purpose": "Trene barns_medvirkning i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på hvilerom.",
+            "Ema presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "barns_medvirkning",
+          "pressure": "lav_status_vs_hoyt_ansvar",
+          "choice_axis": "lav_status_vs_hoyt_ansvar",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Pedagogisk leder trenger observasjon, ikke magefølelse",
+          "learning_focus": [
+            "barns_medvirkning",
+            "barns medvirkning",
+            "lav_status_vs_hoyt_ansvar"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "barns_medvirkning"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_005"
+          ],
+          "tags": [
+            "barnehage",
+            "barns medvirkning",
+            "barns_medvirkning"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_006",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "early",
+          "priority": 94,
+          "from": "forelder_linn_klager",
+          "sender": "forelder_linn_klager",
+          "person_id": "forelder_linn_klager",
+          "place_id": "foreldresamtale_rom",
+          "subject": "Måltidet: du blir sliten før barna er ferdige med dagen",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om språkstøtte når grenser vs varme presser praksisen.",
+          "purpose": "Trene språkstøtte i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på foreldresamtale_rom.",
+            "Linn Solberg presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "språkstøtte",
+          "pressure": "grenser_vs_varme",
+          "choice_axis": "grenser_vs_varme",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Du blir sliten før barna er ferdige med dagen",
+          "learning_focus": [
+            "språkstøtte",
+            "observasjon",
+            "grenser_vs_varme"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "språkstøtte"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_006"
+          ],
+          "tags": [
+            "barnehage",
+            "observasjon",
+            "språkstøtte"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_007",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "early",
+          "priority": 93,
+          "from": "forelder_samir_stotte",
+          "sender": "forelder_samir_stotte",
+          "person_id": "forelder_samir_stotte",
+          "place_id": "pedagogisk_leder_kontor",
+          "subject": "Hvilen: dagslutt: omsorg er ikke en følelse, det er praksis",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om lekeforståelse når dokumentasjon vs tilstedeværelse presser praksisen.",
+          "purpose": "Trene lekeforståelse i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på pedagogisk_leder_kontor.",
+            "Samir Haddad presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "lekeforståelse",
+          "pressure": "dokumentasjon_vs_tilstedeværelse",
+          "choice_axis": "dokumentasjon_vs_tilstedeværelse",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Dagslutt: omsorg er ikke en følelse, det er praksis",
+          "learning_focus": [
+            "lekeforståelse",
+            "grensesetting",
+            "dokumentasjon_vs_tilstedeværelse"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "lekeforståelse"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_007"
+          ],
+          "tags": [
+            "barnehage",
+            "grensesetting",
+            "lekeforståelse"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_followup_008",
+          "mail_type": "followup",
+          "mail_family": "oppfolging_lang_dag",
+          "role_scope": "barnehageassistent",
+          "phase": "early",
+          "priority": 92,
+          "from": "styrer_ragnhild",
+          "sender": "styrer_ragnhild",
+          "person_id": "styrer_ragnhild",
+          "place_id": "barnehage_avdeling",
+          "subject": "Foreldredøra: barnet slipper ikke hånden",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om sikkerhet når kollegial lojalitet vs barnets beste presser praksisen.",
+          "purpose": "Trene sikkerhet i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på barnehage_avdeling.",
+            "Ragnhild Moen presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "followup",
+          "competency": "sikkerhet",
+          "pressure": "kollegial_lojalitet_vs_barnets_beste",
+          "choice_axis": "kollegial_lojalitet_vs_barnets_beste",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Barnet slipper ikke hånden",
+          "learning_focus": [
+            "sikkerhet",
+            "konfliktdemping",
+            "kollegial_lojalitet_vs_barnets_beste"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nær barnet og dokumenter kort etterpå",
+              "reply": "Jeg går nær barnet og dokumenterer kort etterpå.",
+              "effect": 1,
+              "tags": [
+                "trygghet",
+                "sikkerhet"
+              ],
+              "feedback": "Du prioriterer trygghet og gjør praksisen sporbar."
+            },
+            {
+              "id": "B",
+              "label": "Hold flyten og ta notatet hvis du rekker det",
+              "reply": "Jeg holder flyten og tar notatet hvis jeg rekker det.",
+              "effect": 0,
+              "tags": [
+                "flyt",
+                "risiko"
+              ],
+              "feedback": "Dagen går videre, men barnets signal kan bli svakere i systemet."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "followup_008"
+          ],
+          "tags": [
+            "barnehage",
+            "konfliktdemping",
+            "sikkerhet"
+          ]
+        }
+      ]
+    }
+  ]
+}
