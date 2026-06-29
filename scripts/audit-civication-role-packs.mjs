@@ -56,8 +56,8 @@ function hasContent(rel) {
 }
 function statusFor(row) {
   const mailTypeCount = roleTypes.filter(t => row[`${t}Mails`]).length;
-  if (row.key === 'by/arealplanlegger') return 'complete_reference';
-  if (row.key === 'sosial_laering/barnehageassistent') return row.test ? 'complete_reference' : 'playable_v1';
+  if (row.key === 'by/arealplanlegger') return row.workGrammar ? 'complete_reference_v2' : 'complete_reference';
+  if (row.key === 'sosial_laering/barnehageassistent') return row.test ? (row.workGrammar ? 'complete_reference_v2' : 'complete_reference') : 'playable_v1';
   if (!row.roleModel && !row.mailPlan && mailTypeCount === 0) return 'missing';
   if (row.roleModel && !row.mailPlan && mailTypeCount === 0) return row.generated ? 'generated_stub' : 'role_model_only';
   if (row.roleModel && row.mailPlan && mailTypeCount === roleTypes.length && row.test) return 'playable_v1';
@@ -70,6 +70,7 @@ const manifest = readJson('data/Civication/roleModels/manifest.json');
 const testFiles = walk('tests').filter(f => /civication-.*\.test\.js$/.test(f));
 const mailPlanFiles = walk('data/Civication/mailPlans').filter(f => f.endsWith('.json'));
 const mailFamilyFiles = walk('data/Civication/mailFamilies').filter(f => f.endsWith('.json'));
+const workGrammarFiles = walk('data/Civication/workGrammars').filter(f => f.endsWith('.json'));
 
 const rows = new Map();
 for (const rel of manifest.files) {
@@ -88,6 +89,16 @@ for (const rel of manifest.files) {
   });
 }
 
+for (const rel of workGrammarFiles) {
+  const json = readJson(rel);
+  const category = json.category || rel.split('/').at(-2);
+  const scope = json.role_scope || baseName(rel);
+  let key = [...rows.values()].find(r => r.category === category && r.role_scope === scope)?.key;
+  if (!key) key = `${category}/${scope}`;
+  if (!rows.has(key)) rows.set(key, { key, category, slug: scope, role_scope: scope, role_id: json.role_id || '', title: json.title || scope, roleModel: false });
+  Object.assign(rows.get(key), { workGrammar: true, workGrammarPath: rel });
+}
+
 for (const rel of mailPlanFiles) {
   const json = readJson(rel);
   const category = json.category || rel.split('/').at(-2);
@@ -100,6 +111,7 @@ for (const rel of mailPlanFiles) {
 }
 
 for (const row of rows.values()) {
+  row.workGrammar ||= exists(`data/Civication/workGrammars/${row.category}/${row.role_scope}.json`);
   row.mailPlan ||= exists(`data/Civication/mailPlans/${row.category}/${row.role_scope}_plan.json`);
   for (const type of roleTypes) {
     const rel = `data/Civication/mailFamilies/${row.category}/${type}/${row.role_scope}_${type}.json`;
@@ -114,7 +126,7 @@ for (const row of rows.values()) {
 
 const sorted = [...rows.values()].sort((a,b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title, 'nb'));
 const statusCounts = sorted.reduce((acc, r) => (acc[r.status] = (acc[r.status] || 0) + 1, acc), {});
-const header = ['category','role_scope','role_id','title','roleModel finnes','mailPlan finnes',...roleTypes.map(t => `${t}-mails finnes`),'test finnes','status'];
+const header = ['category','role_scope','role_id','title','roleModel finnes','workGrammar finnes','mailPlan finnes',...roleTypes.map(t => `${t}-mails finnes`),'test finnes','status'];
 const lines = [];
 lines.push('# Civication Role Pack Index v1');
 lines.push('');
@@ -122,7 +134,8 @@ lines.push('Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporte
 lines.push('');
 lines.push('## Statusdefinisjoner');
 lines.push('');
-lines.push('- `complete_reference`: referansepakke etter rollepakke-standarden.');
+lines.push('- `complete_reference_v2`: referansepakke med roleModel, workGrammar/FWG, mailPlan, alle mailFamilies og test.');
+lines.push('- `complete_reference`: legacy referansepakke etter rollepakke-standarden, men uten FWG.');
 lines.push('- `playable_v1`: spillbar pakke med roleModel, mailPlan, mailFamilies og test, men ikke markert som referanse.');
 lines.push('- `partial_pack`: noe produksjonsdata finnes, men pakken er ikke komplett.');
 lines.push('- `role_model_only`: kun roleModel finnes.');
@@ -132,14 +145,14 @@ lines.push('- `missing`: ingen synlig pakke i auditgrunnlaget.');
 lines.push('');
 lines.push('## Sammendrag');
 lines.push('');
-for (const status of ['complete_reference','playable_v1','partial_pack','role_model_only','generated_stub','broken_mapping','missing']) lines.push(`- ${status}: ${statusCounts[status] || 0}`);
+for (const status of ['complete_reference_v2','complete_reference','playable_v1','partial_pack','role_model_only','generated_stub','broken_mapping','missing']) lines.push(`- ${status}: ${statusCounts[status] || 0}`);
 lines.push('');
 lines.push('## Rolleindeks');
 lines.push('');
 lines.push(`| ${header.join(' | ')} |`);
 lines.push(`| ${header.map(() => '---').join(' | ')} |`);
 for (const r of sorted) {
-  const cells = [r.category, r.role_scope, r.role_id, r.title, bool(r.roleModel), bool(r.mailPlan), ...roleTypes.map(t => bool(r[`${t}Mails`])), bool(r.test), r.status];
+  const cells = [r.category, r.role_scope, r.role_id, r.title, bool(r.roleModel), bool(r.workGrammar), bool(r.mailPlan), ...roleTypes.map(t => bool(r[`${t}Mails`])), bool(r.test), r.status];
   lines.push(`| ${cells.map(c => String(c).replaceAll('|', '\\|')).join(' | ')} |`);
 }
 lines.push('');

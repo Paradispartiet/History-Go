@@ -11,10 +11,12 @@ Denne standarden beskriver hva en komplett Civication-rollepakke skal inneholde 
 
 Denne standarden er for innhold, dokumentasjon, maler og QA. Den skal ikke kreve ny motor, UI-endringer eller runtime-endringer.
 
-En rollepakke skal passe inn i eksisterende kjede:
+En rollepakke skal passe inn i kjeden der FWG ligger som stillingens arbeidslogikk mellom badge/faggrunnlag og presentasjon/dramaturgi:
 
 ```text
-roleModel
+badge tier / fagfiler
+  -> workGrammar / FWG
+  -> roleModel
   -> mailPlan
   -> mailFamilies
   -> DailyMailBuilder / MailRuntime
@@ -25,7 +27,23 @@ roleModel
 
 En komplett rollepakke består av følgende deler.
 
-### 1. roleModel
+### 1. workGrammar / FWG
+
+**Fil:** `data/Civication/workGrammars/{category}/{role_scope}.json`
+
+WorkGrammar/FWG er stillingens arbeidslogikk. Den skal ikke erstatte roleModel, mailPlan eller mailFamilies, men gjøre koblingen mellom badge, fagfiler og mailproduksjon presis. En FWG-fil skal forklare:
+
+- badge-binding og progresjon
+- fag-binding, nødvendige begreper og metoder
+- jobbens identitet, hovedpress og arbeidsrytme
+- stereotypiske arbeidsoppgaver, problemer og konflikter
+- gode løsningsmønstre og vanlige feilmønstre
+- aktørtyper, steder og kunnskapsavhengigheter
+- mail generation contract, Day 1 contract og test contract
+
+Schemaet er `civication_work_grammar_v1`, dokumentert i `docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`. Nye komplette referanseroller skal være `complete_reference_v2` og krever FWG. Eldre komplette referanseroller uten FWG beholdes som legacy `complete_reference`. RoleModel alene er derfor ikke lenger nok for en ny komplett referansepakke.
+
+### 2. roleModel
 
 **Fil:** `data/Civication/roleModels/{category}/{role}.json`
 
@@ -40,7 +58,7 @@ RoleModel er rollebibelen. Den skal forklare stillingen før mailene skrives:
 - kompetanseakser og idealtypiske problemer
 - mail-integrasjon: hvilke mailtyper rollen trenger
 
-### 2. mailPlan
+### 3. mailPlan
 
 **Fil:** `data/Civication/mailPlans/{category}/{role_scope}_plan.json`
 
@@ -52,61 +70,61 @@ MailPlan er sesongplanen/plottet. Den skal beskrive progresjonen i saken, ikke s
 - progresjonen må gå fra introduksjon via arbeid/personer/konflikt til konsekvens eller politisk/faglig landing
 - `outcome_rules` bør beskrive hva som teller som mestring, stagnasjon eller kollaps når rollen bruker slike utfall
 
-### 3. job-mails
+### 4. job-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/job/{role_scope}_job.json`
 
 Job-mails er de stereotype arbeidsoppgavene. De skal lære spilleren hva rollen faktisk gjør: lese, vurdere, skrive, prioritere, kvalitetssikre eller sende videre. Hver mail må ha et konkret arbeidspress, et valg og en konsekvensakse.
 
-### 4. people-mails
+### 5. people-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/people/{role_scope}_people.json`
 
 People-mails gjør personkartet spillbart. De skal introdusere konkrete aktører med navn, rolle, agenda og press. En komplett pakke bør ha både støttespillere, motparter, interne fagfolk, ledelse og berørte borgere/kunder/brukere.
 
-### 5. conflict-mails
+### 6. conflict-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/conflict/{role_scope}_conflict.json`
 
 Conflict-mails viser målkonfliktene i rollen. De skal ikke bare være drama; de skal tvinge spilleren til å velge mellom reelle hensyn, for eksempel tempo mot kvalitet, økonomi mot legitimitet eller juridisk presisjon mot politisk signal.
 
-### 6. story-mails
+### 7. story-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/story/{role_scope}_story.json`
 
 Story-mails bærer hovedfortellingen. De skal forklare hvorfor denne jobben er en liten historie, og gi rollen en identitet som spilleren kan mestre eller miste.
 
-### 7. event-mails
+### 8. event-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/event/{role_scope}_event.json`
 
 Event-mails er frister, møter, avbrudd, kriser eller ytre hendelser som presser saken framover. De skal gi rytme i dagen og gjøre mailPlanens dramatikk spillbar.
 
-### 8. micro-mails
+### 9. micro-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/micro/{role_scope}_micro.json`
 
 Micro-mails er korte avklaringer som viser at små svar kan flytte store konsekvenser. De egner seg til normer, tall, begreper, praktiske avklaringer og små valg under tidspress.
 
-### 9. followup-mails
+### 10. followup-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/followup/{role_scope}_followup.json`
 
 Followup-mails reagerer på tidligere valg eller åpne spørsmål. De skal ha branch-flagg, `next_bias` eller annen styring som gjør at spilleren ser at valg får etterspill.
 
-### 10. knowledge-mails
+### 11. knowledge-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/knowledge/{role_scope}_knowledge.json`
 
 Knowledge-mails lærer fagbegreper gjennom saken. De skal ikke være leksikon alene; begrepene må knyttes til et konkret valg, en avveiing eller en risiko i rollen.
 
-### 11. consequence-mails
+### 12. consequence-mails
 
 **Fil:** `data/Civication/mailFamilies/{category}/consequence/{role_scope}_consequence.json`
 
 Consequence-mails viser hva tidligere valg gjorde med tillit, kvalitet, risiko, tempo, legitimitet eller karriere. De skal være tydelige på konsekvensakse og bør kunne brukes i dagsslutt eller senere dager.
 
-### 12. Day 1-test
+### 13. Day 1-test
 
 En komplett rolle må ha minst én test som bygger en spillbar dag med `DailyMailBuilder`.
 
@@ -122,7 +140,7 @@ Testen skal verifisere at:
 
 Arealplanlegger bruker `tests/civication-arealplanlegger-mail-plan.test.js` som referanse.
 
-### 13. QA-test
+### 14. QA-test
 
 QA skal fungere som en lesbar kvalitetskontroll i tillegg til teknisk test. Den bør sjekke:
 
@@ -135,7 +153,7 @@ QA skal fungere som en lesbar kvalitetskontroll i tillegg til teknisk test. Den 
 
 QA kan være en egen testfil, en utvidelse av Day 1-testen eller en dokumentert audit-liste når rollen fortsatt er under produksjon.
 
-### 14. History Go targets
+### 15. History Go targets
 
 RoleModel og mailinnhold skal peke mot History Go-mål der det er relevant:
 
@@ -145,7 +163,7 @@ RoleModel og mailinnhold skal peke mot History Go-mål der det er relevant:
 - mulige kart-, rute- eller stedskoblinger
 - progresjonsmål som gjør jobben relevant for History Go, ikke bare Civication
 
-### 15. personkart
+### 16. personkart
 
 Personkartet skal definere rollens cast:
 
@@ -156,7 +174,7 @@ Personkartet skal definere rollens cast:
 - juridisk/økonomisk/politisk kontrollpunkt der relevant
 - person-IDer som brukes konsekvent i roleModel og people-mails
 
-### 16. konfliktkart
+### 17. konfliktkart
 
 Konfliktkartet skal navngi hovedkonfliktene og knytte dem til mailtyper:
 
@@ -167,7 +185,7 @@ Konfliktkartet skal navngi hovedkonfliktene og knytte dem til mailtyper:
 - hvilke valgaks(er) konflikten bruker
 - hvilke konsekvenser den kan få
 
-### 17. kompetanseakser
+### 18. kompetanseakser
 
 Kompetanseakser beskriver hva spilleren øver på. De bør finnes i roleModel og komme igjen i mailene som `competency`, `learning_focus` eller tilsvarende felt.
 
@@ -180,7 +198,7 @@ Eksempler på akser:
 - risikovurdering
 - politisk/organisatorisk lesbarhet
 
-### 18. konsekvensmodell
+### 19. konsekvensmodell
 
 Konsekvensmodellen forklarer hva valg påvirker. Den bør koble mailenes `choice_axis`, `consequence_axis`, branch-flagg og planens `outcome_rules` sammen.
 
@@ -211,6 +229,8 @@ Nye roller bør bruke Arealplanlegger som kvalitetsnivå og strukturreferanse, m
 
 Bruk denne før en rolle regnes som komplett:
 
+- [ ] Har rollen FWG/workGrammar for runtime-scope?
+- [ ] Har rollen badge-binding og fag-binding?
 - [ ] Har rollen et hovedcase?
 - [ ] Har rollen et plot?
 - [ ] Har rollen konkrete personer?

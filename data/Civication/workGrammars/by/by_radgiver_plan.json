@@ -1,0 +1,226 @@
+{
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "role_id": "by_arealplanlegger",
+  "title": "Arealplanlegger",
+  "badge_binding": {
+    "badge_category": "by",
+    "badge_id": "by",
+    "badge_name": "By & arkitektur",
+    "tier_label": "Arealplanlegger",
+    "tier_threshold": 90,
+    "progression_from": ["Rådgiver plan", "Saksbehandler plan/bygg", "Rådgiver byutvikling"],
+    "progression_to": ["Byplanlegger", "Seniorrådgiver byutvikling", "Fagsjef plan/bygg"]
+  },
+  "fag_bindings": {
+    "primary_subjects": ["by", "samfunnsfag", "juss", "miljo"],
+    "category_files": [
+      "data/Civication/roleModels/by/arealplanlegger.json",
+      "data/Civication/mailPlans/by/by_radgiver_plan_plan.json",
+      "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
+      "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json"
+    ],
+    "required_concepts": [
+      "reguleringsplan",
+      "arealformål",
+      "hensynssone",
+      "rekkefølgekrav",
+      "planbestemmelser",
+      "medvirkning",
+      "støy",
+      "overvann",
+      "grønnstruktur",
+      "skolevei",
+      "politisk lesbarhet",
+      "juridisk presisjon"
+    ],
+    "methods": [
+      "plankartlesing",
+      "stedsanalyse",
+      "høringsoppsummering",
+      "risikovurdering",
+      "konsekvensavveiing",
+      "juridisk presisering",
+      "politisk saksframstilling"
+    ]
+  },
+  "work_identity": {
+    "one_sentence": "Arealplanleggeren gjør byens arealkonflikter lesbare før politikerne velger.",
+    "hidden_responsibility": "Å vise hva plankartet skjuler når kartet ser ryddig ut.",
+    "status_tension": "Har faglig ansvar for presisjon og avveiing, men lite politisk makt over endelig valg.",
+    "core_pressure": "politisk_tempo_vs_faglig_presisjon",
+    "work_rhythm": [
+      "lese plankart og bestemmelser",
+      "tolke sted, trafikk og grønnstruktur",
+      "avklare risiko med fagmiljø og jurist",
+      "svare utbygger, naboer og ledelse",
+      "skrive notat og saksframlegg",
+      "forberede politisk behandling"
+    ]
+  },
+  "task_grammar": [
+    {
+      "id": "read_plankart",
+      "label": "Les plankart",
+      "task_type": "analysis",
+      "typical_inputs": ["plankart", "planbestemmelser", "situasjonsplan"],
+      "good_work": ["identifiser arealformål", "finn konflikt mellom kart og faktisk bruk", "knytt funn til bestemmelse"],
+      "bad_work": ["les kartet som nøytralt", "overser uformell bruk", "skriver glatt sammendrag uten konflikt"],
+      "mail_types": ["job", "micro", "knowledge"]
+    },
+    {
+      "id": "summarize_hearing_input",
+      "label": "Oppsummer høringsinnspill",
+      "task_type": "medvirkning",
+      "typical_inputs": ["naboepost", "møtereferat", "trafikksikkerhetsinnspill"],
+      "good_work": ["skiller støy fra relevant lokalkunnskap", "oversetter erfaring til planfaglig tema", "viser hva innspillet endrer i saken"],
+      "bad_work": ["avviser lang eller sint tekst som irrelevant", "tar alle ønsker bokstavelig", "skjuler konflikt i generelle formuleringer"],
+      "mail_types": ["people", "job", "followup"]
+    },
+    {
+      "id": "tighten_legal_wording",
+      "label": "Stram inn bestemmelse",
+      "task_type": "legal_precision",
+      "typical_inputs": ["rekkefølgekrav", "hensynssone", "juridisk kommentar"],
+      "good_work": ["gjør krav etterprøvbart", "skiller faglig risiko fra politisk valg", "unngår uklare intensjoner"],
+      "bad_work": ["lar vilkår stå som ønsketekst", "skyver avklaring til byggesak", "lager tempo med klagerisiko"],
+      "mail_types": ["job", "conflict", "consequence"]
+    }
+  ],
+  "problem_grammar": [
+    {
+      "id": "kartet_mangler_faktisk_skolevei",
+      "title": "Kartet mangler faktisk skolevei",
+      "problem_type": "missing_local_knowledge",
+      "symptom": "Plankartet viser formell ganglinje, men barna bruker en snarvei langs grøntdraget.",
+      "underlying_issue": "Formell infrastruktur avviker fra faktisk hverdagsbruk.",
+      "typical_sources": ["beboer", "trafikksikkerhetskontakt", "befaring"],
+      "fag_concepts": ["medvirkning", "skolevei", "trafikksikkerhet"],
+      "possible_mail_types": ["people", "conflict", "followup", "knowledge"]
+    },
+    {
+      "id": "rekkefolgekrav_er_for_mykt",
+      "title": "Rekkefølgekrav er for mykt",
+      "problem_type": "legal_risk",
+      "symptom": "Utbygger kan starte boliger før støyskjerming, overvann eller trygg skolevei er reelt sikret.",
+      "underlying_issue": "Politisk framdrift er skrevet inn som faglig sikkerhet.",
+      "typical_sources": ["planjurist", "saksframlegg", "utbyggermøte"],
+      "fag_concepts": ["rekkefølgekrav", "planbestemmelser", "juridisk presisjon"],
+      "possible_mail_types": ["job", "conflict", "consequence"]
+    }
+  ],
+  "conflict_grammar": [
+    {
+      "id": "boligbehov_vs_grontstruktur",
+      "title": "Boligbehov vs grøntstruktur",
+      "axis": "fortetting_vs_fellesgode",
+      "side_a": { "label": "Flere boliger", "values": ["måloppnåelse", "kollektivgrunnlag", "politisk tempo"] },
+      "side_b": { "label": "Grøntdrag", "values": ["overvann", "opphold", "økologi", "hverdagskvalitet"] },
+      "bad_resolution": ["skriver kompromiss uten prioritering", "gjør grøntdrag til restareal", "skyver konflikten til senere"],
+      "good_resolution": ["viser arealknappheten tydelig", "knytter grøntdrag til funksjon", "gjør politisk valg eksplisitt"],
+      "mail_families": ["grontdrag_skolevei_stoy", "linjen_pa_kartet", "faglig_spor_videre"]
+    },
+    {
+      "id": "utbyggerpress_vs_juridisk_presisjon",
+      "title": "Utbyggerpress vs juridisk presisjon",
+      "axis": "tempo_vs_klagerisiko",
+      "side_a": { "label": "Rask avklaring", "values": ["framdrift", "investeringsvilje", "politisk levering"] },
+      "side_b": { "label": "Presis plan", "values": ["etterprøvbarhet", "rettssikkerhet", "faglig integritet"] },
+      "bad_resolution": ["lar utydelige bestemmelser passere", "aksepterer muntlige forsikringer", "forveksler politisk ønske med planfaglig vurdering"],
+      "good_resolution": ["skriver vilkår konkret", "synliggjør klagerisiko", "gir politikerne lesbare alternativer"],
+      "mail_families": ["utbyggerpress", "planjuridisk_presisjon", "konsekvens_av_kartlinje"]
+    }
+  ],
+  "solution_patterns": [
+    {
+      "id": "make_conflict_legible",
+      "title": "Gjør konflikten lesbar",
+      "works_for": ["boligbehov_vs_grontstruktur", "utbyggerpress_vs_juridisk_presisjon", "kart_vs_levd_nabolag"],
+      "steps": ["identifiser hva som faktisk kolliderer", "skill faglig risiko fra politisk valg", "knytt funn til kart eller bestemmelse", "gi politikerne reelle alternativer"],
+      "choice_tags": ["precision", "integrity", "political_readability"],
+      "effects": { "trust": 1, "legal_risk": -1, "tempo": -1, "visibility": 1 }
+    }
+  ],
+  "failure_patterns": [
+    {
+      "id": "smooth_over_conflict",
+      "title": "Glatter over konflikt",
+      "description": "Saken går raskere fordi teksten skjuler hva som egentlig må velges.",
+      "short_term_gain": ["tempo", "politisk ro"],
+      "long_term_risk": ["klage", "lavere tillit", "svakere faglig integritet"],
+      "followup_hooks": ["nabo_kommer_tilbake", "jurist_finner_svakhet", "utvalg_forstar_ikke_valget"]
+    }
+  ],
+  "actor_grammar": [
+    {
+      "actor_type": "leder",
+      "example_id": "elin_plansjef",
+      "function": "prioriterer framdrift og politisk lesbarhet",
+      "pressure": "tempo_vs_presisjon",
+      "can_send_mail_types": ["people", "event", "micro"],
+      "typical_requests": ["kortere vurdering", "rask avklaring", "forbered møte"]
+    },
+    {
+      "actor_type": "fagperson",
+      "example_id": "signe_byokolog",
+      "function": "ser langsiktig bykvalitet og faglig risiko",
+      "pressure": "kvalitet_vs_gjennomforing",
+      "can_send_mail_types": ["people", "conflict", "knowledge"]
+    },
+    {
+      "actor_type": "berort_borger",
+      "example_id": "hanne_beboer",
+      "function": "bringer lokal kunnskap inn i systemet",
+      "pressure": "medvirkning_vs_framdrift",
+      "can_send_mail_types": ["people", "conflict", "followup"]
+    },
+    {
+      "actor_type": "ekstern_motpart",
+      "example_id": "ivar_utbygger",
+      "function": "presser på for utnyttelse, tempo og forutsigbarhet",
+      "pressure": "utbyggerpress_vs_faglig_integritet",
+      "can_send_mail_types": ["people", "conflict", "event"]
+    }
+  ],
+  "place_grammar": [
+    { "place_type": "arbeidsflate", "place_id": "gis_plankart_arbeidsflate", "function": "der kart og bestemmelser tolkes", "mail_types": ["job", "micro", "knowledge"] },
+    { "place_type": "konfliktsted", "place_id": "skolevei_lillebekk", "function": "sted der formell plan møter faktisk bruk", "mail_types": ["people", "conflict", "followup"] },
+    { "place_type": "konfliktsted", "place_id": "grontdrag_lillebekk", "function": "sted der grønnstruktur, overvann, opphold og utbygging konkurrerer", "mail_types": ["conflict", "story", "consequence"] },
+    { "place_type": "beslutningsrom", "place_id": "politisk_utvalg_moterom", "function": "der faglig lesbarhet blir politisk valg", "mail_types": ["event", "consequence"] }
+  ],
+  "knowledge_dependencies": [
+    { "id": "plankart_bestemmelser", "requires": ["arealformål", "hensynssone", "planbestemmelser"], "supports_mail_types": ["job", "knowledge"] },
+    { "id": "medvirkning_som_kunnskap", "requires": ["høringsinnspill", "lokalkunnskap", "skolevei"], "supports_mail_types": ["people", "followup"] },
+    { "id": "juridisk_etterprovbarhet", "requires": ["rekkefølgekrav", "støy", "overvann"], "supports_mail_types": ["conflict", "consequence"] }
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "minimum_counts": { "job": 12, "people": 10, "conflict": 8, "story": 6, "event": 4, "micro": 16, "followup": 8, "knowledge": 8, "consequence": 8 },
+    "required_axes": ["task_domain", "competency", "pressure", "choice_axis", "consequence_axis", "narrative_arc", "learning_focus"]
+  },
+  "day_one_contract": {
+    "title": "Kartet ser ryddig ut",
+    "required_beats": {
+      "morning": "rollen og hovedsaken åpnes",
+      "forenoon": "første faglige hovedoppgave",
+      "workday": "første reelle konflikt",
+      "lunch": "person eller lokal kunnskap bryter inn",
+      "afternoon": "valg peker mot senere risiko",
+      "evening": "knowledge eller consequence",
+      "day_end": "carryover: du har oppdaget hva saken egentlig handler om"
+    },
+    "required_themes": ["plankart", "målbilde", "skolevei", "medvirkning"]
+  },
+  "test_contract": {
+    "reference_test": "tests/civication-arealplanlegger-mail-plan.test.js",
+    "audit_expectations": [
+      "roleModel finnes",
+      "workGrammar finnes",
+      "mailPlan finnes",
+      "alle mailFamilies finnes",
+      "Day 1 kan bygges uten runtime- eller UI-endring"
+    ]
+  }
+}
