@@ -199,3 +199,51 @@
   color:rgba(255,255,255,.86);
   font-size:12px;
 }
+.hg-caravan-log-summary,.hg-caravan-log-pill{
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  border-radius:999px;
+  padding:3px 8px;
+  border:1px solid rgba(166,255,214,.24);
+  background:rgba(94,214,157,.12);
+  color:#d9ffe9;
+  font-size:12px;
+  font-weight:800;
+}
+.hg-caravan-event-choice{ cursor:default; }
+button.hg-caravan-event-choice{ cursor:pointer; font:inherit; text-align:left; }
+.hg-caravan-event-choice.is-active,
+.hg-caravan-event-choice:hover,
+.hg-caravan-event-choice:focus-visible{
+  background:rgba(94,214,157,.24);
+  border-color:rgba(166,255,214,.62);
+  color:#fff;
+  outline:none;
+}
+.hg-caravan-selected-choice{ color:#d9ffe9 !important; font-weight:800; }
+.hg-caravan-clear-choice{
+  justify-self:start;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  padding:5px 8px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.84);
+  font-weight:800;
+  cursor:pointer;
+}
+.hg-caravan-log{ margin-top:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,.14); }
+.hg-caravan-log h3{ margin:0 0 10px; font-size:18px; }
+.hg-caravan-log-entry{
+  display:grid;
+  gap:3px;
+  margin:0 0 8px;
+  padding:10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.84);
+  font-size:12px;
+}
+.hg-caravan-log-entry strong{ color:#ffe0a6; font-size:13px; }
+.hg-caravan-log-entry time{ color:rgba(255,255,255,.62); }
