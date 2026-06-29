@@ -35,6 +35,20 @@
   };
   const SEVERITY_LABELS = { info: "Info", low: "Lav", medium: "Middels", high: "Høy" };
 
+  const RESOURCE_LABELS = {
+    energi: "Energi",
+    vann: "Vann",
+    hvile: "Hvile",
+    hestehelse: "Hestehelse",
+    sykkelstand: "Sykkelstand",
+    utstyr: "Utstyr"
+  };
+  const RESOURCE_KEYS_BY_MODE = {
+    til_fots: ["energi", "vann", "hvile", "utstyr"],
+    hest: ["energi", "vann", "hvile", "hestehelse", "utstyr"],
+    sykkel: ["energi", "vann", "hvile", "sykkelstand", "utstyr"]
+  };
+
   let selectedRouteId = "";
   let activeStageId = "";
   let activeTravelMode = "all";
@@ -159,6 +173,47 @@
     if (completed) return `${completed}/3 fullført`;
     if (statuses.length) return `${statuses.length}/3 progresjon`;
     return "Ingen progresjon";
+  }
+
+  function getResourcesRuntime() {
+    return window.HG_CARAVAN_RESOURCES || null;
+  }
+
+  function resourceKeysForMode(mode = activeTravelMode) {
+    return RESOURCE_KEYS_BY_MODE[normalizeTravelMode(mode)] || [];
+  }
+
+  function getRouteResources(routeId = selectedRouteId, mode = activeTravelMode) {
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return null;
+    const rid = cleanText(routeId);
+    if (!rid) return null;
+    return getResourcesRuntime()?.getResources?.(rid, selected) || null;
+  }
+
+  function renderResourceRows(resources, mode, interactive) {
+    const keys = resourceKeysForMode(mode);
+    return keys.map((key) => {
+      const value = Math.max(0, Math.min(100, Number(resources?.[key] ?? 100)));
+      return `<div class="hg-caravan-resource-row" data-caravan-resource-row="${attr(key)}">
+        <div class="hg-caravan-resource-main">
+          <span class="hg-caravan-resource-label">${esc(RESOURCE_LABELS[key] || key)}</span>
+          <span class="hg-caravan-resource-value">${esc(value)}</span>
+          <span class="hg-caravan-resource-bar" aria-hidden="true"><span style="width:${esc(value)}%"></span></span>
+        </div>
+        ${interactive ? `<div class="hg-caravan-resource-actions" aria-label="Juster ${esc(RESOURCE_LABELS[key] || key)}"><button type="button" data-caravan-resource-adjust="${attr(key)}" data-caravan-resource-delta="-10">-10</button><button type="button" data-caravan-resource-adjust="${attr(key)}" data-caravan-resource-delta="10">+10</button></div>` : ""}
+      </div>`;
+    }).join("");
+  }
+
+  function resourcesPanel(routeId = selectedRouteId, mode = activeTravelMode, options = {}) {
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return `<section class="hg-caravan-resources"><p class="hg-caravan-progress-hint">Velg Til fots, Hest eller Sykkel for å se reisestatus</p></section>`;
+    const resources = getRouteResources(routeId, selected) || {};
+    return `<section class="hg-caravan-resources" aria-label="Reisestatus">
+      <div class="hg-caravan-resources-head"><h3>${esc(options.title || `Reisestatus — ${readableMode(selected)}`)}</h3>${options.interactive === false ? "" : `<button type="button" class="hg-caravan-resource-reset" data-caravan-resource-reset>Nullstill reisestatus</button>`}</div>
+      ${renderResourceRows(resources, selected, options.interactive !== false)}
+    </section>`;
   }
 
   function getEventLogRuntime() {
@@ -514,7 +569,7 @@
         <h4>${esc(event?.title || event?.id || "Karavanehendelse")}</h4>
         <p class="hg-caravan-event-meta">Hendelse: ${esc(eventLabel(event?.event_type))} · Alvorlighet: ${esc(severityLabel(event?.severity))} · Reisemåter: ${esc(formatList(event?.applies_to_modes))}</p>
         ${cleanText(event?.prompt) ? `<p>${esc(event.prompt)}</p>` : ""}
-        ${logged ? `<p class="hg-caravan-selected-choice">Valgt for ${esc(readableMode(selectedMode))}: ${esc(choiceLabel(event, logged.choice_id))}</p>` : ""}
+        ${logged ? `<p class="hg-caravan-selected-choice">Valgt for ${esc(readableMode(selectedMode))}: ${esc(choiceLabel(event, logged.choice_id))}</p><p class="hg-caravan-resource-note">Dette valget påvirker ikke ressurser ennå.</p>` : ""}
         ${cleanText(event?.historical_context) ? `<p><strong>Historisk kontekst:</strong> ${esc(event.historical_context)}</p>` : ""}
         ${cleanText(event?.observation_prompt) ? `<p><strong>Observasjon:</strong> ${esc(event.observation_prompt)}</p>` : ""}
         ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="${readOnly ? "Read-only valg" : "Lagre valg"}">${asArray(event.choices).map((choice) => {
@@ -548,6 +603,7 @@
           ${field("Historieprompt", stage?.history_prompt)}
           ${field("Observasjonsprompt", stage?.observation_prompt)}
         </dl>
+        ${resourcesPanel(cleanText(stage?.route_id), activeTravelMode, { title: "Reisestatus for valgt brille", interactive: false })}
         ${renderStageEvents(cleanText(stage?.id), activeTravelMode)}
       </section>`;
   }
@@ -570,7 +626,7 @@
     const route = routes.find((item) => cleanText(item?.id) === selectedRouteId) || null;
     const activeStage = getStage(activeStageId);
     const stagesHtml = route
-      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>${renderEventLogSection(route.id)}`
+      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${resourcesPanel(route.id)}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>${renderEventLogSection(route.id)}`
       : `<p class="hg-caravan-hint">Velg en route for å se stages i rekkefølge.</p>`;
 
     panel.innerHTML = shell(`
@@ -623,6 +679,12 @@
     });
     panel.querySelectorAll("[data-caravan-progress-status]").forEach((btn) => {
       btn.addEventListener("click", () => setActiveStageProgress(btn.getAttribute("data-caravan-progress-status") || "none"));
+    });
+    panel.querySelectorAll("[data-caravan-resource-adjust]").forEach((btn) => {
+      btn.addEventListener("click", () => adjustActiveResource(btn.getAttribute("data-caravan-resource-adjust") || "", Number(btn.getAttribute("data-caravan-resource-delta") || 0)));
+    });
+    panel.querySelectorAll("[data-caravan-resource-reset]").forEach((btn) => {
+      btn.addEventListener("click", resetActiveResources);
     });
     panel.querySelectorAll("[data-caravan-event-choice]").forEach((btn) => {
       btn.addEventListener("click", () => setEventChoice(btn.getAttribute("data-caravan-event-id") || "", btn.getAttribute("data-caravan-event-choice") || "", btn.getAttribute("data-caravan-stage-id") || activeStageId, btn.getAttribute("data-caravan-route-id") || selectedRouteId));
@@ -749,6 +811,30 @@
     return activeTravelMode;
   }
 
+  function setActiveResource(resourceKey, value) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all" || !selectedRouteId) return null;
+    const result = getResourcesRuntime()?.setResource?.(selectedRouteId, mode, resourceKey, value) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
+  function adjustActiveResource(resourceKey, delta) {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all" || !selectedRouteId) return null;
+    const result = getResourcesRuntime()?.adjustResource?.(selectedRouteId, mode, resourceKey, delta) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
+  function resetActiveResources() {
+    const mode = normalizeTravelMode(activeTravelMode);
+    if (mode === "all" || !selectedRouteId) return null;
+    const result = getResourcesRuntime()?.resetResources?.(selectedRouteId, mode) || null;
+    render(selectedRouteId);
+    return result;
+  }
+
   function setActiveStageProgress(status) {
     const stage = getStage(activeStageId);
     const mode = normalizeTravelMode(activeTravelMode);
@@ -826,7 +912,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [] };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });

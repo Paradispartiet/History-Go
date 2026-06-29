@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadCaravanRuntime", () => loadScriptOnce("js/caravan-loader.js"));
     await safeRun("loadCaravanData", () => window.HGCaravanLoader?.load?.({ cache: "no-store" }));
     await safeRun("loadCaravanProgress", () => loadScriptOnce("js/caravan-progress.js"));
+    await safeRun("loadCaravanResources", () => loadScriptOnce("js/caravan-resources.js"));
     await safeRun("loadCaravanEventLog", () => loadScriptOnce("js/caravan-event-log.js"));
     await safeRun("loadCaravanPanel", () => loadScriptOnce("js/ui/caravan-panel.js"));
 
