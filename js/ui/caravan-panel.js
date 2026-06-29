@@ -224,6 +224,10 @@
     return window.HG_CARAVAN_CONSEQUENCES || null;
   }
 
+  function getDiaryRuntime() {
+    return window.HG_CARAVAN_DIARY || null;
+  }
+
   function routeEventLogLabel(routeId) {
     const title = cleanText((getRuntime()?.routes || []).find((route) => cleanText(route?.id) === cleanText(routeId))?.title || routeId).split(/[–:-]/)[0].trim() || cleanText(routeId);
     const summary = getEventLogRuntime()?.summary?.(routeId, activeTravelMode === "all" ? "all" : activeTravelMode);
@@ -570,6 +574,34 @@
     }).join("")}</ul>`;
   }
 
+  function renderDiaryEntries(entries, emptyText) {
+    const items = asArray(entries);
+    if (!items.length) return `<p class="hg-caravan-empty">${esc(emptyText || "Ingen dagboklinjer ennå.")}</p>`;
+    return `<div class="hg-caravan-diary-list">${items.map((entry) => {
+      const when = entry?.createdAt ? new Date(entry.createdAt).toLocaleString("nb-NO", { dateStyle: "short", timeStyle: "short" }) : "—";
+      return `<article class="hg-caravan-diary-entry" data-caravan-diary-type="${attr(entry?.type)}"><span>${esc(entry?.title || entry?.id || "Dagboklinje")}</span><time>${esc(when)}</time></article>`;
+    }).join("")}</div>`;
+  }
+
+  function renderRouteDiarySection(routeId) {
+    const diary = getDiaryRuntime();
+    if (!diary?.getRouteDiary) return `<section class="hg-caravan-diary"><h3>Dagbok</h3><p class="hg-caravan-empty">Dagbok er ikke lastet ennå.</p></section>`;
+    const mode = activeTravelMode === "all" ? "all" : activeTravelMode;
+    const entries = diary.getRouteDiary(routeId, mode);
+    const summary = diary.summary?.(routeId, mode);
+    const filter = mode === "all" ? "Viser samlet dagbok for alle reisebriller" : `Viser dagbok for ${readableMode(mode)}`;
+    return `<section class="hg-caravan-diary"><h3>Dagbok</h3><p class="hg-caravan-event-filter">${esc(filter)} · ${esc(summary?.progressCount || 0)} progresjon · ${esc(summary?.eventChoices || 0)} valg · ${esc(summary?.appliedConsequences || 0)} konsekvenser</p>${renderDiaryEntries(entries, "Ingen reisehistorikk ennå.")}</section>`;
+  }
+
+  function renderStageDiarySection(stage) {
+    if (!stage) return "";
+    const diary = getDiaryRuntime();
+    if (!diary?.getStageDiary) return `<section class="hg-caravan-diary hg-caravan-stage-diary"><h3>Dagbok for denne etappen</h3><p class="hg-caravan-empty">Dagbok er ikke lastet ennå.</p></section>`;
+    const mode = activeTravelMode === "all" ? "all" : activeTravelMode;
+    const entries = diary.getStageDiary(cleanText(stage?.route_id), cleanText(stage?.id), mode);
+    return `<section class="hg-caravan-diary hg-caravan-stage-diary"><h3>Dagbok for denne etappen</h3>${renderDiaryEntries(entries, "Ingen dagbok for denne etappen ennå.")}</section>`;
+  }
+
   function effectsForChoice(choice, mode) {
     const selected = normalizeTravelMode(mode);
     if (selected === "all") return null;
@@ -648,6 +680,7 @@
           ${field("Observasjonsprompt", stage?.observation_prompt)}
         </dl>
         ${resourcesPanel(cleanText(stage?.route_id), activeTravelMode, { title: "Reisestatus for valgt brille", interactive: false })}
+        ${renderStageDiarySection(stage)}
         ${renderStageEvents(cleanText(stage?.id), activeTravelMode)}
       </section>`;
   }
@@ -670,7 +703,7 @@
     const route = routes.find((item) => cleanText(item?.id) === selectedRouteId) || null;
     const activeStage = getStage(activeStageId);
     const stagesHtml = route
-      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${resourcesPanel(route.id)}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>${renderEventLogSection(route.id)}`
+      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${resourcesPanel(route.id)}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>${renderRouteDiarySection(route.id)}${renderEventLogSection(route.id)}`
       : `<p class="hg-caravan-hint">Velg en route for å se stages i rekkefølge.</p>`;
 
     panel.innerHTML = shell(`
@@ -968,6 +1001,24 @@
     return setActiveStageProgress("none");
   }
 
+  function openDiary(routeId = selectedRouteId) {
+    open(routeId);
+    document.querySelector(".hg-caravan-diary")?.scrollIntoView?.({ block: "start" });
+  }
+
+  function getDiary(routeId = selectedRouteId, mode = activeTravelMode) {
+    return getDiaryRuntime()?.getRouteDiary?.(routeId, mode) || [];
+  }
+
+  function getStageDiary(stageId = activeStageId, routeId = selectedRouteId, mode = activeTravelMode) {
+    const stage = stageId ? getStage(stageId) : getStage(activeStageId);
+    return getDiaryRuntime()?.getStageDiary?.(cleanText(routeId || stage?.route_id), cleanText(stageId || stage?.id), mode) || [];
+  }
+
+  function exportDiaryJson(routeId = selectedRouteId, mode = activeTravelMode) {
+    return getDiaryRuntime()?.exportJson?.(routeId, mode) || null;
+  }
+
   function open(routeId) {
     const panel = render(routeId || selectedRouteId);
     panel.hidden = false;
@@ -993,7 +1044,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
