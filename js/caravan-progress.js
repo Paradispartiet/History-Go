@@ -70,6 +70,7 @@
     state.progress[rid][sid] = state.progress[rid][sid] || {};
     state.progress[rid][sid][m] = { status: s, updatedAt: now() };
     writeState(state);
+    try { window.HG_CARAVAN_BADGES?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "automatisk evaluering feilet", { error: error?.message || error }); }
     window.dispatchEvent?.(new CustomEvent("hg:caravanProgressUpdated", { detail: { routeId: rid, stageId: sid, mode: m, status: s } }));
     return clone(state.progress[rid][sid][m]);
   }
@@ -83,6 +84,7 @@
     if (state.progress?.[rid]?.[sid] && !Object.keys(state.progress[rid][sid]).length) delete state.progress[rid][sid];
     if (state.progress?.[rid] && !Object.keys(state.progress[rid]).length) delete state.progress[rid];
     writeState(state);
+    try { window.HG_CARAVAN_BADGES?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "automatisk evaluering feilet", { error: error?.message || error }); }
     window.dispatchEvent?.(new CustomEvent("hg:caravanProgressUpdated", { detail: { routeId: rid, stageId: sid, mode: m, status: "none" } }));
     return null;
   }

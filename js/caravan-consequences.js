@@ -88,6 +88,7 @@
     const state = readState();
     (((state.applied[rid] ||= {})[sid] ||= {})[eid] ||= {})[selected] = { choice_id: cid, appliedAt: now(), effects: clone(effects) };
     writeState(state);
+    try { window.HG_CARAVAN_BADGES?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "automatisk evaluering feilet", { error: error?.message || error }); }
     try { window.dispatchEvent?.(new CustomEvent("hg:caravanConsequencesUpdated", { detail: { routeId: rid, stageId: sid, eventId: eid, mode: selected, choiceId: cid, effects: clone(effects) } })); } catch {}
     return getApplied(rid, sid, eid, selected);
   }

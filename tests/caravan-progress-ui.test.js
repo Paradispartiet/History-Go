@@ -12,15 +12,19 @@ window.HG_CARAVAN = {
   routes: [{ id: "route_italia", title: "Italia" }],
   stages: [{ id: "stage_1", route_id: "route_italia", order: 1, from_node: "oslo", to_node: "roma", allowed_modes: ["til_fots", "hest", "sykkel"], approximate_distance_km: 10 }],
   nodes: [{ id: "oslo", title: "Oslo", lat: 59.9, lng: 10.7 }, { id: "roma", title: "Roma", lat: 41.9, lng: 12.5 }],
+  badges: [{ id: "caravan_first_stage", title: "Første etappe", description: "Fullfør én etappe.", category: "progress", icon: "🏁", criteria_type: "completed_stage_count", criteria: { count: 1 }, visible: true, sort_order: 1 }, { id: "caravan_horse_started", title: "Hestekaravane startet", description: "Start med hest.", category: "mode", icon: "🐴", criteria_type: "started_stage_count", criteria: { mode: "hest", count: 1 }, visible: true, sort_order: 2 }, { id: "caravan_ferry_crossing", title: "Sjøpassasjen", description: "Logg ferry.", category: "event", icon: "⛴️", criteria_type: "event_type_choice_logged", criteria: { event_type: "ferry", count: 1 }, visible: true, sort_order: 3 }],
   events: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }],
-  indexes: { stagesByRoute: { route_italia: [{ id: "stage_1", route_id: "route_italia", order: 1, from_node: "oslo", to_node: "roma", allowed_modes: ["til_fots", "hest", "sykkel"], approximate_distance_km: 10 }] }, nodesById: {}, eventsByStage: { stage_1: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }] }, eventsByRoute: { route_italia: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }] } }
+  indexes: { stagesByRoute: { route_italia: [{ id: "stage_1", route_id: "route_italia", order: 1, from_node: "oslo", to_node: "roma", allowed_modes: ["til_fots", "hest", "sykkel"], approximate_distance_km: 10 }] }, nodesById: {}, eventsByStage: { stage_1: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }] }, badgesById: {}, badgesByCategory: {}, eventsById: {}, eventsByRoute: { route_italia: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }] } }
 };
 window.HG_CARAVAN.indexes.nodesById = Object.fromEntries(window.HG_CARAVAN.nodes.map((node) => [node.id, node]));
+window.HG_CARAVAN.indexes.eventsById = Object.fromEntries(window.HG_CARAVAN.events.map((event) => [event.id, event]));
+window.HG_CARAVAN.indexes.badgesById = Object.fromEntries(window.HG_CARAVAN.badges.map((badge) => [badge.id, badge]));
 window.eval(fs.readFileSync("js/caravan-progress.js", "utf8"));
 window.eval(fs.readFileSync("js/caravan-resources.js", "utf8"));
 window.eval(fs.readFileSync("js/caravan-event-log.js", "utf8"));
 window.eval(fs.readFileSync("js/caravan-consequences.js", "utf8"));
 window.eval(fs.readFileSync("js/caravan-diary.js", "utf8"));
+window.eval(fs.readFileSync("js/caravan-badges.js", "utf8"));
 window.eval(fs.readFileSync("js/ui/caravan-panel.js", "utf8"));
 
 window.HG_CARAVAN_UI_DEBUG.open("route_italia");
@@ -29,6 +33,8 @@ assert([...document.querySelectorAll("[data-caravan-progress-status]")].every((b
 assert(document.body.textContent.includes("Velg Til fots, Hest eller Sykkel for å lagre progresjon"), "all mode renders mode hint");
 assert(document.body.textContent.includes("Velg Til fots, Hest eller Sykkel for å lagre valg"), "all mode renders event choice hint");
 assert(document.body.textContent.includes("Velg Til fots, Hest eller Sykkel for å se reisestatus"), "all mode hides resource controls behind mode hint");
+assert(document.body.textContent.includes("Merker"), "badges section renders");
+assert(document.body.textContent.includes("0/3 låst opp"), "badges section starts locked");
 assert.strictEqual(document.querySelectorAll("[data-caravan-resource-adjust]").length, 0, "all mode has no resource buttons");
 assert.strictEqual(document.querySelectorAll("button[data-caravan-event-choice]").length, 0, "all mode keeps event choices read-only");
 window.HG_CARAVAN_UI_DEBUG.setTravelMode("hest");
@@ -78,6 +84,8 @@ assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getRouteEventLog("route_italia", "
 window.HG_CARAVAN_UI_DEBUG.clearEventChoice("event_1");
 assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getEventChoice("event_1"), null, "debug API clears event choice");
 window.HG_CARAVAN_UI_DEBUG.setStageProgress("stage_1", "completed");
+assert(window.HG_CARAVAN_UI_DEBUG.getUnlockedBadges().caravan_first_stage, "debug API exposes first stage badge unlock");
+assert(document.body.textContent.includes("Låst opp"), "badge unlocked state renders");
 assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getStageProgress("stage_1").status, "completed", "debug API reads completed status");
 assert(document.body.textContent.includes("Fullført"), "stage list or preview renders completed status");
 assert(document.body.textContent.includes("1/1 etapper fullført"), "route summary renders selected-mode completion");

@@ -59,6 +59,7 @@
   const CORRIDOR_ACTIVE_LAYER_ID = "hg-caravan-corridor-active-line";
   let visibleCorridorRouteId = "";
   let visibleCorridorSegmentIds = [];
+  let lastBadgeToast = null;
 
 
   function esc(value) {
@@ -226,6 +227,10 @@
 
   function getDiaryRuntime() {
     return window.HG_CARAVAN_DIARY || null;
+  }
+
+  function getBadgesRuntime() {
+    return window.HG_CARAVAN_BADGES || null;
   }
 
   function routeEventLogLabel(routeId) {
@@ -668,6 +673,7 @@
         <h3>Stage-preview</h3>
         <h4>${esc(from)} → ${esc(to)}</h4>
         ${progressControls(stage)}
+        ${stageBadgeContributionLine(stage)}
         <dl>
           ${field("Distanse", stage?.approximate_distance_km != null ? `${stage.approximate_distance_km} km` : "")}
           ${field("Distanse-sikkerhet", stage?.distance_confidence)}
@@ -709,6 +715,7 @@
     panel.innerHTML = shell(`
       <div class="hg-caravan-intro"><strong>Europakaravanen</strong><span>Fra Oslo til Roma, Lisboa og Constanța uten bil</span></div>
       <section class="hg-caravan-routes"><h3>Routes</h3>${routes.map(routeCard).join("") || `<p class="hg-caravan-empty">Ingen routes funnet.</p>`}</section>
+      ${renderBadgesSection()}
       ${stagesHtml}
     `);
     wire(panel);
@@ -718,6 +725,29 @@
   function getEventById(eventId) {
     const id = cleanText(eventId);
     return asArray(getRuntime()?.events).find((event) => cleanText(event?.id) === id) || null;
+  }
+
+
+  function renderBadgesSection() {
+    const api = getBadgesRuntime();
+    if (!api?.getAllBadges) return `<section class="hg-caravan-badges"><h3>Merker</h3><p class="hg-caravan-empty">Merker er ikke lastet ennå.</p></section>`;
+    try { api.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "evaluering ved render feilet", { error: error?.message || error }); }
+    const badges = api.getAllBadges();
+    const unlocked = api.getUnlocked?.() || {};
+    const summary = api.summary?.() || { total: badges.length, unlocked: Object.keys(unlocked).length };
+    return `<section class="hg-caravan-badges" aria-label="Karavane-merker"><div class="hg-caravan-badges-head"><h3>Merker</h3><span>${esc(summary.unlocked || 0)}/${esc(summary.total || badges.length)} låst opp</span></div>${lastBadgeToast ? `<p class="hg-caravan-badge-toast" role="status">Merke låst opp: ${esc(lastBadgeToast)}</p>` : ""}<div class="hg-caravan-badge-list">${badges.map((badge) => {
+      const isOpen = Boolean(unlocked[cleanText(badge?.id)]);
+      return `<article class="hg-caravan-badge ${isOpen ? "is-unlocked" : "is-locked"}" data-caravan-badge-id="${attr(badge?.id)}"><span class="hg-caravan-badge-icon" aria-hidden="true">${esc(badge?.icon || "◇")}</span><div><h4>${esc(badge?.title || badge?.id || "Merke")}</h4><p>${esc(badge?.description || "")}</p><strong>${isOpen ? "Låst opp" : "Låst"}</strong></div></article>`;
+    }).join("") || `<p class="hg-caravan-empty">Ingen merker definert.</p>`}</div></section>`;
+  }
+
+  function stageBadgeContributionLine(stage) {
+    const badges = getBadgesRuntime()?.getAllBadges?.() || [];
+    if (!stage || !badges.length) return "";
+    const titles = badges.filter((badge) => ["completed_stage_count", "started_stage_count", "route_started"].includes(cleanText(badge?.criteria_type)))
+      .filter((badge) => !badge.criteria?.route_id || cleanText(badge.criteria.route_id) === cleanText(stage?.route_id))
+      .slice(0, 4).map((badge) => cleanText(badge.title)).filter(Boolean);
+    return titles.length ? `<p class="hg-caravan-badge-contribution">Denne etappen kan bidra til: ${esc(titles.join(", "))}</p>` : "";
   }
 
   function renderEventLogSection(routeId) {
@@ -925,6 +955,7 @@
     const runtime = getProgressRuntime();
     if (!runtime) return null;
     const result = status === "none" ? runtime.clearProgress(cleanText(stage.route_id), cleanText(stage.id), mode) : runtime.setProgress(cleanText(stage.route_id), cleanText(stage.id), mode, status);
+    try { getBadgesRuntime()?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "evaluering etter progress feilet", { error: error?.message || error }); }
     render(selectedRouteId);
     updateActiveNodeStyling();
     drawCorridor(selectedRouteId);
@@ -940,6 +971,7 @@
     const cid = cleanText(choiceId);
     if (!asArray(event?.choices).some((choice) => cleanText(choice?.id) === cid)) { console.warn(PREFIX, "ugyldig eventvalg", { eventId, choiceId }); return null; }
     const result = getEventLogRuntime()?.setChoice?.(rid, sid, eventId, mode, cid) || null;
+    try { getBadgesRuntime()?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "evaluering etter eventvalg feilet", { error: error?.message || error }); }
     render(selectedRouteId);
     return result;
   }
@@ -965,6 +997,7 @@
     if (mode === "all") return null;
     const event = getEventById(eventId);
     const result = getConsequencesRuntime()?.applyChoiceEffects?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, choiceId, mode) || null;
+    try { getBadgesRuntime()?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "evaluering etter konsekvens feilet", { error: error?.message || error }); }
     render(selectedRouteId);
     return result;
   }
@@ -1040,11 +1073,17 @@
     panel.innerHTML = "";
   }
 
+  function evaluateBadges() { return getBadgesRuntime()?.evaluateAll?.() || []; }
+  function getUnlockedBadges() { return getBadgesRuntime()?.getUnlocked?.() || {}; }
+  function resetCaravanBadges() { const result = getBadgesRuntime()?.resetBadges?.() || null; render(selectedRouteId); return result; }
+
   function bindEntryButton() {
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence, evaluateBadges, getUnlockedBadges, resetCaravanBadges };
+
+  window.addEventListener?.("hg:caravanBadgeUnlocked", (event) => { lastBadgeToast = cleanText(event?.detail?.badge?.title || event?.detail?.badgeId); if (!document.getElementById(PANEL_ID)?.hidden) render(selectedRouteId); });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
