@@ -13,6 +13,7 @@
   };
 
   let selectedRouteId = "";
+  let activeStageId = "";
   let caravanMarkers = [];
 
 
@@ -48,9 +49,21 @@
     return items.length ? items.join(", ") : empty;
   }
 
-  function formatNodeList(value, empty = "—") {
+  function formatPlainList(value, empty = "—") {
     const items = asArray(value).map(cleanText).filter(Boolean);
     return items.length ? items.join(", ") : empty;
+  }
+
+  function formatNeedsByMode(value, empty = "—") {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return empty;
+    const rows = Object.entries(value)
+      .map(([mode, needs]) => `${readableMode(mode)}: ${formatPlainList(needs, "—")}`)
+      .filter(Boolean);
+    return rows.length ? rows.join(" | ") : empty;
+  }
+
+  function formatNodeList(value, empty = "—") {
+    return formatPlainList(value, empty);
   }
 
   function num(value) {
@@ -90,6 +103,21 @@
     return window.HGMap?.getMap?.() || window.map || null;
   }
 
+  function getStage(stageId) {
+    const id = cleanText(stageId);
+    if (!id) return null;
+    return asArray(getRuntime()?.stages).find((stage) => cleanText(stage?.id) === id) || null;
+  }
+
+  function getNodeById(nodeId, stageId = activeStageId) {
+    const id = cleanText(nodeId);
+    if (!id) return null;
+    const node = getRuntime()?.indexes?.nodesById?.[id] || asArray(getRuntime()?.nodes).find((item) => cleanText(item?.id) === id) || null;
+    if (!node) console.warn(PREFIX, "node mangler for stage-preview", { stage_id: stageId, node_id: id });
+    return node;
+  }
+
+
   function getNodesForRoute(routeId = selectedRouteId) {
     const runtime = getRuntime();
     if (!runtime) return [];
@@ -115,7 +143,7 @@
   function nodeTitle(nodeId) {
     const id = cleanText(nodeId);
     if (!id) return "—";
-    const node = getRuntime()?.indexes?.nodesById?.[id] || asArray(getRuntime()?.nodes).find((item) => cleanText(item?.id) === id);
+    const node = getNodeById(id, activeStageId);
     const title = cleanText(node?.title);
     if (title) return title;
     console.warn(PREFIX, "node mangler", id);
@@ -155,22 +183,36 @@
   }
 
   function stageCard(stage) {
+    const id = cleanText(stage?.id);
     const from = nodeTitle(stage?.from_node);
     const to = nodeTitle(stage?.to_node);
     return `
-      <article class="hg-caravan-stage">
-        <h4>${esc(stage?.order ?? "—")}. ${esc(from)} → ${esc(to)}</h4>
+      <button type="button" class="hg-caravan-stage ${id === activeStageId ? "is-active" : ""}" data-caravan-stage="${attr(id)}">
+        <span class="hg-caravan-stage-title">${esc(stage?.order ?? "—")}. ${esc(from)} → ${esc(to)}</span>
+        <span class="hg-caravan-stage-meta">${stage?.approximate_distance_km != null ? `${esc(stage.approximate_distance_km)} km` : "Distanse ukjent"} · ${esc(formatList(stage?.allowed_modes))}</span>
+      </button>`;
+  }
+
+  function stagePreview(stage) {
+    if (!stage) return "";
+    const from = nodeTitle(stage?.from_node);
+    const to = nodeTitle(stage?.to_node);
+    return `
+      <section class="hg-caravan-stage-preview" aria-live="polite">
+        <h3>Stage-preview</h3>
+        <h4>${esc(from)} → ${esc(to)}</h4>
         <dl>
           ${field("Distanse", stage?.approximate_distance_km != null ? `${stage.approximate_distance_km} km` : "")}
           ${field("Distanse-sikkerhet", stage?.distance_confidence)}
           ${field("Reisemåter", stage?.allowed_modes)}
-          ${field("Underlag", stage?.surface_types)}
-          ${field("Læringskroker", stage?.learning_hooks)}
-          ${field("Risiko", stage?.risk_tags)}
+          ${field("Underlag", formatPlainList(stage?.surface_types))}
+          ${field("Behov per reisemåte", formatNeedsByMode(stage?.needs_by_mode))}
+          ${field("Læringskroker", formatPlainList(stage?.learning_hooks))}
+          ${field("Risiko", formatPlainList(stage?.risk_tags))}
           ${field("Historieprompt", stage?.history_prompt)}
           ${field("Observasjonsprompt", stage?.observation_prompt)}
         </dl>
-      </article>`;
+      </section>`;
   }
 
   function render(selected = selectedRouteId) {
@@ -187,8 +229,9 @@
 
     const routes = asArray(runtime.routes);
     const route = routes.find((item) => cleanText(item?.id) === selectedRouteId) || null;
+    const activeStage = getStage(activeStageId);
     const stagesHtml = route
-      ? `<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>`
+      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>`
       : `<p class="hg-caravan-hint">Velg en route for å se stages i rekkefølge.</p>`;
 
     panel.innerHTML = shell(`
@@ -214,7 +257,10 @@
   function wire(panel) {
     panel.querySelector("[data-caravan-close]")?.addEventListener("click", close);
     panel.querySelectorAll("[data-caravan-route]").forEach((btn) => {
-      btn.addEventListener("click", () => render(btn.getAttribute("data-caravan-route") || ""));
+      btn.addEventListener("click", () => { clearStagePreview(false); render(btn.getAttribute("data-caravan-route") || ""); });
+    });
+    panel.querySelectorAll("[data-caravan-stage]").forEach((btn) => {
+      btn.addEventListener("click", () => previewStage(btn.getAttribute("data-caravan-stage") || ""));
     });
   }
 
@@ -260,10 +306,61 @@
 
       const marker = new Marker({ element: el, anchor: "center" }).setLngLat([lng, lat]).addTo(map);
       if (Popup) marker.setPopup(new Popup({ closeButton: true, closeOnClick: true, maxWidth: "280px" }).setHTML(popupHtml(node)));
+      marker.__hgCaravanNodeId = cleanText(node?.id);
       caravanMarkers.push(marker);
       visible.push(cleanText(node?.id));
     }
     return visible;
+  }
+
+
+  function updateActiveNodeStyling() {
+    const stage = getStage(activeStageId);
+    const activeIds = new Set([cleanText(stage?.from_node), cleanText(stage?.to_node)].filter(Boolean));
+    caravanMarkers.forEach((marker) => {
+      const el = marker?.getElement?.();
+      if (!el) return;
+      const nodeId = cleanText(el.dataset.caravanNodeId || marker.__hgCaravanNodeId);
+      el.classList.toggle("is-active-stage-node", activeIds.has(nodeId));
+      el.classList.toggle("is-dimmed-stage-node", Boolean(activeStageId) && !activeIds.has(nodeId));
+    });
+  }
+
+  function fitStageBounds(stage, fromNode, toNode) {
+    const map = getMap();
+    const fromLat = num(fromNode?.lat);
+    const fromLng = num(fromNode?.lng);
+    const toLat = num(toNode?.lat);
+    const toLng = num(toNode?.lng);
+    if (!map || fromLat == null || fromLng == null || toLat == null || toLng == null) {
+      console.warn(PREFIX, "kan ikke fitBounds for stage-preview: lat/lng mangler", { stage_id: cleanText(stage?.id), from_node: stage?.from_node, to_node: stage?.to_node });
+      return;
+    }
+    if (typeof map.fitBounds === "function") {
+      map.fitBounds([[fromLng, fromLat], [toLng, toLat]], { padding: 96, maxZoom: 8, duration: 700 });
+    }
+  }
+
+  function previewStage(stageId) {
+    const stage = getStage(stageId);
+    if (!stage) {
+      console.warn(PREFIX, "stage mangler for preview", cleanText(stageId));
+      return null;
+    }
+    activeStageId = cleanText(stage.id);
+    if (cleanText(stage.route_id) && cleanText(stage.route_id) !== selectedRouteId) selectedRouteId = cleanText(stage.route_id);
+    render(selectedRouteId);
+    const fromNode = getNodeById(stage.from_node, activeStageId);
+    const toNode = getNodeById(stage.to_node, activeStageId);
+    updateActiveNodeStyling();
+    fitStageBounds(stage, fromNode, toNode);
+    return stage;
+  }
+
+  function clearStagePreview(rerender = true) {
+    activeStageId = "";
+    updateActiveNodeStyling();
+    if (rerender) render(selectedRouteId);
   }
 
   function getVisibleNodeIds() {
@@ -276,6 +373,7 @@
     panel.setAttribute("aria-hidden", "false");
     document.body.classList.add("hg-caravan-open");
     showNodes(selectedRouteId);
+    updateActiveNodeStyling();
   }
 
   function close() {
@@ -283,14 +381,16 @@
     panel.hidden = true;
     panel.setAttribute("aria-hidden", "true");
     document.body.classList.remove("hg-caravan-open");
+    clearStagePreview(false);
     clearNodes();
+    panel.innerHTML = "";
   }
 
   function bindEntryButton() {
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
