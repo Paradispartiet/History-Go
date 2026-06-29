@@ -6,6 +6,9 @@
   const PREFIX = "[HG_CARAVAN_UI]";
   const PANEL_ID = "hgCaravanPanel";
   const BUTTON_ID = "btnKaravane";
+  const LAST_VIEW_KEY = "HG_CARAVAN_LAST_VIEW_V1";
+  const RESUME_PREFIX = "[HG_CARAVAN_RESUME]";
+  const HEADER_PREFIX = "[HG_CARAVAN_HEADER]";
   const TRAVEL_MODES = ["all", "til_fots", "hest", "sykkel"];
   const MODE_LABELS = {
     all: "Alle",
@@ -60,6 +63,7 @@
   let visibleCorridorRouteId = "";
   let visibleCorridorSegmentIds = [];
   let lastBadgeToast = null;
+  let resumeNotice = null;
 
 
   function esc(value) {
@@ -92,6 +96,134 @@
   function normalizeTravelMode(mode) {
     const key = cleanText(mode);
     return TRAVEL_MODES.includes(key) ? key : "all";
+  }
+
+
+  function nowIso() { return new Date().toISOString(); }
+
+  function routeById(routeId) {
+    const id = cleanText(routeId);
+    if (!id) return null;
+    return asArray(getRuntime()?.routes).find((route) => cleanText(route?.id) === id) || null;
+  }
+
+  function isKnownRoute(routeId) {
+    return Boolean(routeById(routeId));
+  }
+
+  function isKnownStageForRoute(stageId, routeId) {
+    const stage = getStage(stageId);
+    if (!stage) return false;
+    return !cleanText(routeId) || cleanText(stage.route_id) === cleanText(routeId);
+  }
+
+  function normalizeLastView(raw) {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+    const routeId = cleanText(raw.route_id || raw.routeId);
+    const stageId = cleanText(raw.stage_id || raw.stageId);
+    const travelMode = normalizeTravelMode(raw.travel_mode || raw.travelMode || "all");
+    if (!routeId && !stageId && travelMode === "all") return null;
+    return { version: 1, updatedAt: cleanText(raw.updatedAt) || nowIso(), route_id: routeId, travel_mode: travelMode, stage_id: stageId };
+  }
+
+  function getLastView() {
+    try {
+      const text = window.localStorage?.getItem(LAST_VIEW_KEY);
+      if (!text) return null;
+      return normalizeLastView(JSON.parse(text));
+    } catch (error) {
+      console.warn(RESUME_PREFIX, "korrupt last-view; ignorerer", { error: error?.message || error });
+      return null;
+    }
+  }
+
+  function setLastView(routeId = selectedRouteId, mode = activeTravelMode, stageId = activeStageId) {
+    const existing = getLastView() || {};
+    const rid = cleanText(routeId !== undefined ? routeId : existing.route_id);
+    const travelMode = normalizeTravelMode(mode !== undefined ? mode : (existing.travel_mode || "all"));
+    const sid = cleanText(stageId !== undefined ? stageId : existing.stage_id);
+    if (!rid && !sid && travelMode === "all") return null;
+    const next = { version: 1, updatedAt: nowIso(), route_id: rid, travel_mode: travelMode, stage_id: sid };
+    try { window.localStorage?.setItem(LAST_VIEW_KEY, JSON.stringify(next)); }
+    catch (error) { console.warn(RESUME_PREFIX, "kunne ikke lagre last-view", { error: error?.message || error }); }
+    return next;
+  }
+
+  function clearLastView() {
+    try { window.localStorage?.removeItem(LAST_VIEW_KEY); }
+    catch (error) { console.warn(RESUME_PREFIX, "kunne ikke slette last-view", { error: error?.message || error }); }
+  }
+
+  function newestByCreatedAt(entries) {
+    return asArray(entries).filter(Boolean).sort((a, b) => cleanText(b.createdAt || b.updatedAt).localeCompare(cleanText(a.createdAt || a.updatedAt)))[0] || null;
+  }
+
+  function getLatestDiaryTarget() {
+    const api = getDiaryRuntime();
+    if (!api?.getEntries) return null;
+    const entries = asArray(getRuntime()?.routes).flatMap((route) => api.getEntries(cleanText(route?.id), "all") || []);
+    const entry = newestByCreatedAt(entries);
+    return entry ? { route_id: cleanText(entry.route_id), travel_mode: normalizeTravelMode(entry.mode || entry.travel_mode || "all"), stage_id: cleanText(entry.stage_id), source: "diary" } : null;
+  }
+
+  function getLatestEventTarget() {
+    const entry = newestByCreatedAt(getEventLogRuntime()?.getAll?.()?.entries || []);
+    return entry ? { route_id: cleanText(entry.route_id), travel_mode: normalizeTravelMode(entry.travel_mode), stage_id: cleanText(entry.stage_id), source: "event_log" } : null;
+  }
+
+  function getLatestProgressTarget() {
+    const progress = getProgressRuntime()?.getAll?.()?.progress || {};
+    const entries = [];
+    for (const [route_id, byStage] of Object.entries(progress)) {
+      for (const [stage_id, byMode] of Object.entries(byStage || {})) {
+        for (const [travel_mode, item] of Object.entries(byMode || {})) {
+          if (item?.status && item.status !== "none") entries.push({ route_id, stage_id, travel_mode, updatedAt: item.updatedAt });
+        }
+      }
+    }
+    const entry = newestByCreatedAt(entries);
+    return entry ? { route_id: cleanText(entry.route_id), travel_mode: normalizeTravelMode(entry.travel_mode), stage_id: cleanText(entry.stage_id), source: "progress" } : null;
+  }
+
+  function validateResumeTarget(target) {
+    const normalized = normalizeLastView(target);
+    if (!normalized) return null;
+    if (!normalized.route_id && normalized.stage_id) {
+      const stage = getStage(normalized.stage_id);
+      if (stage) normalized.route_id = cleanText(stage.route_id);
+    }
+    if (!isKnownRoute(normalized.route_id)) {
+      if (normalized.route_id) console.warn(RESUME_PREFIX, "route finnes ikke lenger; bruker vanlig start", { route_id: normalized.route_id });
+      return null;
+    }
+    if (normalized.stage_id && !isKnownStageForRoute(normalized.stage_id, normalized.route_id)) {
+      console.warn(RESUME_PREFIX, "stage finnes ikke lenger; åpner route", { route_id: normalized.route_id, stage_id: normalized.stage_id });
+      normalized.stage_id = "";
+    }
+    return normalized;
+  }
+
+  function getResumeTarget() {
+    const candidates = [
+      { source: "last_view", value: getLastView() },
+      { source: "diary", value: getLatestDiaryTarget() },
+      { source: "event_log", value: getLatestEventTarget() },
+      { source: "progress", value: getLatestProgressTarget() }
+    ];
+    for (const candidate of candidates) {
+      const target = validateResumeTarget(candidate.value);
+      if (target) return { ...target, source: candidate.value?.source || candidate.source };
+    }
+    return null;
+  }
+
+  function resumeLine(target) {
+    if (!target?.route_id) return null;
+    const route = routeById(target.route_id);
+    const stage = target.stage_id ? getStage(target.stage_id) : null;
+    const routeTitle = cleanText(route?.title || target.route_id).split(/[–:-]/)[0].trim() || cleanText(route?.title || target.route_id);
+    const stageText = stage ? ` — ${nodeTitle(stage.from_node)} → ${nodeTitle(stage.to_node)}` : "";
+    return `Fortsetter reisen: ${routeTitle} — ${readableMode(target.travel_mode)}${stageText}`;
   }
 
   function warnMissingAllowedModes(stage) {
@@ -713,7 +845,7 @@
       : `<p class="hg-caravan-hint">Velg en route for å se stages i rekkefølge.</p>`;
 
     panel.innerHTML = shell(`
-      <div class="hg-caravan-intro"><strong>Europakaravanen</strong><span>Fra Oslo til Roma, Lisboa og Constanța uten bil</span></div>
+      <div class="hg-caravan-intro"><strong>Europakaravanen</strong><span>Fra Oslo til Roma, Lisboa og Constanța uten bil</span>${resumeNotice ? `<span>${esc(resumeNotice)}</span>` : ""}</div>
       <section class="hg-caravan-routes"><h3>Routes</h3>${routes.map(routeCard).join("") || `<p class="hg-caravan-empty">Ingen routes funnet.</p>`}</section>
       ${renderBadgesSection()}
       ${stagesHtml}
@@ -776,7 +908,7 @@
   function wire(panel) {
     panel.querySelector("[data-caravan-close]")?.addEventListener("click", close);
     panel.querySelectorAll("[data-caravan-route]").forEach((btn) => {
-      btn.addEventListener("click", () => { clearStagePreview(false); render(btn.getAttribute("data-caravan-route") || ""); });
+      btn.addEventListener("click", () => { clearStagePreview(false); const routeId = btn.getAttribute("data-caravan-route") || ""; render(routeId); setLastView(routeId, activeTravelMode, ""); });
     });
     panel.querySelectorAll("[data-caravan-travel-mode]").forEach((btn) => {
       btn.addEventListener("click", () => setTravelMode(btn.getAttribute("data-caravan-travel-mode") || "all"));
@@ -893,6 +1025,7 @@
     }
     activeStageId = cleanText(stage.id);
     if (cleanText(stage.route_id) && cleanText(stage.route_id) !== selectedRouteId) selectedRouteId = cleanText(stage.route_id);
+    setLastView(selectedRouteId, activeTravelMode, activeStageId);
     render(selectedRouteId);
     const fromNode = getNodeById(stage.from_node, activeStageId);
     const toNode = getNodeById(stage.to_node, activeStageId);
@@ -914,6 +1047,7 @@
 
   function setTravelMode(mode) {
     activeTravelMode = normalizeTravelMode(mode);
+    setLastView(selectedRouteId, activeTravelMode, activeStageId);
     render(selectedRouteId);
     updateActiveNodeStyling();
     drawCorridor(selectedRouteId);
@@ -1053,12 +1187,28 @@
   }
 
   function open(routeId) {
+    resumeNotice = null;
     const panel = render(routeId || selectedRouteId);
     panel.hidden = false;
     panel.setAttribute("aria-hidden", "false");
     document.body.classList.add("hg-caravan-open");
     showNodes(selectedRouteId);
     updateActiveNodeStyling();
+  }
+
+  function openResume() {
+    const target = getResumeTarget();
+    if (!target) { open(); return null; }
+    resumeNotice = resumeLine(target);
+    activeTravelMode = normalizeTravelMode(target.travel_mode);
+    activeStageId = "";
+    const panel = render(target.route_id);
+    panel.hidden = false;
+    panel.setAttribute("aria-hidden", "false");
+    document.body.classList.add("hg-caravan-open");
+    if (target.stage_id) previewStage(target.stage_id);
+    else { showNodes(selectedRouteId); updateActiveNodeStyling(); }
+    return target;
   }
 
   function close() {
@@ -1068,6 +1218,7 @@
     document.body.classList.remove("hg-caravan-open");
     clearStagePreview(false);
     activeTravelMode = "all";
+    resumeNotice = null;
     clearCorridor();
     clearNodes();
     panel.innerHTML = "";
@@ -1078,10 +1229,15 @@
   function resetCaravanBadges() { const result = getBadgesRuntime()?.resetBadges?.() || null; render(selectedRouteId); return result; }
 
   function bindEntryButton() {
-    document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
+    document.getElementById(BUTTON_ID)?.addEventListener("click", () => {
+      try { openResume(); }
+      catch (error) { console.warn(HEADER_PREFIX, "kunne ikke åpne Karavane-resume; åpner vanlig", { error: error?.message || error }); open(); }
+    });
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence, evaluateBadges, getUnlockedBadges, resetCaravanBadges };
+  window.HG_CARAVAN_UI_DEBUG = { open, openResume, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), openDiary, getDiary, getStageDiary, exportDiaryJson, showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress, setEventChoice, getEventChoice, clearEventChoice, getRouteEventLog: (routeId, mode) => getEventLogRuntime()?.getRouteLog?.(routeId || selectedRouteId, mode || activeTravelMode) || [], getResources: () => getRouteResources(), setResource: setActiveResource, adjustResource: adjustActiveResource, resetResources: resetActiveResources, getChoiceEffects, applyChoiceEffects, getAppliedConsequence, clearAppliedConsequence, evaluateBadges, getUnlockedBadges, resetCaravanBadges, getLastView, setLastView, clearLastView, getResumeTarget };
+
+  window.HG_CARAVAN_HEADER_DEBUG = { open: openResume, getLastView, setLastView, clearLastView, getResumeTarget };
 
   window.addEventListener?.("hg:caravanBadgeUnlocked", (event) => { lastBadgeToast = cleanText(event?.detail?.badge?.title || event?.detail?.badgeId); if (!document.getElementById(PANEL_ID)?.hidden) render(selectedRouteId); });
 
