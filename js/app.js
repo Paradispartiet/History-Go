@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // appen fortsatt starter hvis karavane-filene ikke finnes i en deploy.
     await safeRun("loadCaravanRuntime", () => loadScriptOnce("js/caravan-loader.js"));
     await safeRun("loadCaravanData", () => window.HGCaravanLoader?.load?.({ cache: "no-store" }));
+    await safeRun("loadCaravanProgress", () => loadScriptOnce("js/caravan-progress.js"));
     await safeRun("loadCaravanPanel", () => loadScriptOnce("js/ui/caravan-panel.js"));
 
     await safeRun("loadPlaceCardQuizcardsPatch", () => loadScriptOnce("js/ui/place-card-quizcards-patch.js"));
