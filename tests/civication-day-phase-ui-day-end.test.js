@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // tests/civication-day-phase-ui-day-end.test.js
 //
-// DOM-light tests for the day_end rollover. dayProgressionController.advancePhaseIfReady()
-// already allows rolling into a new day at day_end with no open items (canResetAtDayEnd),
-// even though inspect().canAdvance is false there (there is no "next phase" to advance
-// into). The UI button must stay enabled for that exact case, and the computed
-// getDayEndSummary() must actually be rendered instead of a bare "0 open actions" stub.
+// DOM-light tests for the day-phase panel at day_end. The day-phase panel is now a pure
+// status card: it never owns an active answer/advance surface. Answering and progression
+// happen only on the NextAction surface (the inbox top action). At day_end the panel must
+// still show where the player is (phase, open count) and route to NextAction via a single
+// "Gå til neste handling" button — it must NOT render a phase-advance button or an inline
+// day-end summary built from getDayEndSummary().
 
 const fs = require('fs');
 const path = require('path');
@@ -143,9 +144,8 @@ function renderAtDayEnd(inspectionOverrides, summary) {
 }
 
 function run() {
-  // 1. day_end with no open items: advance button must be present and ENABLED, even
-  // though canAdvance is false (mirrors controller's canResetAtDayEnd path), and the
-  // computed day-end summary (score, people met, tasks, carryover) must be rendered.
+  // A computed day-end summary is still provided in globals, to prove the panel does NOT
+  // pull it in: the panel is status-only and must not render an inline day-end summary.
   const summary = {
     title: 'Dagen er over',
     dayIndex: 4,
@@ -160,23 +160,27 @@ function run() {
     carryover: 'Ingen åpne required saker følger med til i morgen.'
   };
 
+  // 1. day_end with no open items: the panel is a status card. It shows where the player
+  // is and routes to NextAction with a single button — no advance/new-day button, and no
+  // inline day-end summary even though getDayEndSummary() is available.
   const html = renderAtDayEnd({}, summary);
-  assert.match(html, /data-civi-day-phase-advance(?!\s+disabled)[^>]*>/, 'advance button is not disabled at day_end with no open items');
-  assert(html.includes('Start ny dag'), 'button text invites starting a new day, not a dead-end label');
-  assert(html.includes('Score'), 'rendered summary includes the computed score');
-  assert(html.includes('71'), 'rendered summary includes the actual score value');
-  assert(html.includes('Møtt'), 'rendered summary includes people met');
-  assert(html.includes('Sa nei til presset frist'), 'rendered summary includes important choices');
-  assert(html.includes('Rolleutvikling'), 'rendered summary includes role development text');
-  assert(html.includes('Ingen åpne required saker'), 'rendered summary includes carryover text');
+  assert(html.includes('data-civi-day-phase-next-action'), 'panel renders the single NextAction routing button');
+  assert(html.includes('Gå til neste handling'), 'routing button uses the NextAction label');
+  assert(!html.includes('data-civi-day-phase-advance'), 'no phase-advance button on the status card');
+  assert(!html.includes('Start ny dag'), 'panel never owns a start-new-day action');
+  assert(!html.includes('civi-day-complete'), 'no inline day-end summary on the status card');
+  assert(!html.includes('Sa nei til presset frist'), 'panel does not pull in getDayEndSummary content');
+  assert(html.includes('Dagslutt / Natt'), 'panel still shows the current phase so the player sees where they are');
 
-  // 2. day_end with open items still pending: no advance button at all (blocked, same as
-  // any other phase with open items), and no day-complete summary yet.
+  // 2. day_end with open items still pending: still just a status card with the open count
+  // and the single routing button; no advance button and no summary appear.
   const blockedHtml = renderAtDayEnd({ openItemsInPhase: 2, openItemSubjects: ['Uleste meldinger'] }, summary);
-  assert(!blockedHtml.includes('data-civi-day-phase-advance'), 'advance button is withheld while day_end has open items');
+  assert(blockedHtml.includes('data-civi-day-phase-next-action'), 'routing button is present while items are open');
+  assert(!blockedHtml.includes('data-civi-day-phase-advance'), 'no advance button while day_end has open items');
   assert(!blockedHtml.includes('civi-day-complete'), 'no day-complete summary while items are still open');
+  assert(blockedHtml.includes('2 åpne saker'), 'panel reports the open-item count as status');
 
-  console.log('PASS: Civication day-phase UI day_end rollover tests completed.');
+  console.log('PASS: Civication day-phase UI day_end status-card tests completed.');
 }
 
 try {

@@ -12,112 +12,10 @@
       .replace(/'/g, "&#039;");
   }
 
-  function formatReason(reason) {
-    const normalized = String(reason || "").trim();
-    if (!normalized) return "Fasen er ikke klar ennå.";
-    return normalized
-      .replace(/[_-]+/g, " ")
-      .replace(/\s+/g, " ")
-      .replace(/^./, function (letter) { return letter.toUpperCase(); });
-  }
-
-  function getStatusText(inspection) {
-    if (inspection?.canAdvance === true && inspection?.nextPhase) return "Fasen er klar. Du kan gå videre til neste fase.";
-    if (inspection?.reason === "queued_items_in_phase") return "Det finnes flere hendelser i denne fasen. Åpne bolken eller gjenstående hendelser før du går videre.";
-    if (inspection?.reason === "delivered_items_in_phase") return "Åpne og svar på leverte hendelser i denne fasen før du går videre.";
-    if (inspection?.reason === "open_items_in_phase") return "Svar på åpne meldinger i denne fasen for å gå videre.";
-    if (inspection?.reason === "at_last_phase") return "Dagen er fullført.";
-    return formatReason(inspection?.reason);
-  }
-
-  function getLoopHint(inspection) {
-    if (inspection?.reason === "queued_items_in_phase") {
-      return "Åpne bolken for å se hendelsene samlet. Hvis det bare er én hendelse igjen, åpner knappen den direkte.";
-    }
-    if (inspection?.reason === "open_items_in_phase" || inspection?.reason === "delivered_items_in_phase") {
-      return "Åpne meldinger med valg er aktiv handling nå. Når de er besvart, låses neste fase opp.";
-    }
-    if (inspection?.canAdvance === true && inspection?.nextPhase) {
-      return "Denne fasen er avklart. Gå videre når du er klar.";
-    }
-    if (!inspection?.nextPhase) {
-      return Number(inspection?.openItemsInPhase || 0) === 0
-        ? "Dagen er klar til oppsummering. Trykk \"Start ny dag\" for å gå videre."
-        : "Ingen flere faser i dag. Nye hendelser kommer neste dag.";
-    }
-    return "Følg faseflyten: svar på meldinger → fullfør fase → gå videre.";
-  }
-
   function getNextPhaseLabel(nextPhase) {
     if (!nextPhase) return "Ingen";
     const fromCalendar = window.CivicationCalendar?.getPhaseLabel?.(nextPhase);
     return String(fromCalendar || nextPhase);
-  }
-
-  function buildOpenItemsList(subjects) {
-    const safeSubjects = (Array.isArray(subjects) ? subjects : []).slice(0, 3);
-    if (!safeSubjects.length) return "";
-
-    const itemsHtml = safeSubjects
-      .map(function (subject) {
-        return "<li>" + escapeHtml(subject) + "</li>";
-      })
-      .join("");
-
-    return "<ul class=\"civi-day-phase-list\">" + itemsHtml + "</ul>";
-  }
-
-  function shouldShowDayCompleteSummary(inspection) {
-    const hasNoNextPhase = !inspection?.nextPhase;
-    const hasNoOpenItems = Number(inspection?.openItemsInPhase || 0) === 0;
-    const isAtLastPhase = inspection?.reason === "at_last_phase";
-    return hasNoNextPhase && hasNoOpenItems && isAtLastPhase;
-  }
-
-  function getDayEndSummaryViewModel() {
-    const progression = window.CivicationDayProgression;
-    if (!progression?.getDayEndSummary) return null;
-    try { return progression.getDayEndSummary() || null; } catch { return null; }
-  }
-
-  function buildDayCompleteSummary(inspection) {
-    const summary = getDayEndSummaryViewModel();
-    if (!summary) {
-      return ""
-        + "<section class=\"civi-day-complete\" aria-label=\"Dagen er fullført\">"
-        + "<h4 class=\"civi-day-complete-title\">Dagen er fullført</h4>"
-        + "<p class=\"civi-day-complete-text\">Alle åpne handlinger for denne dagen er avklart. Nye hendelser kommer neste dag.</p>"
-        + "<dl class=\"civi-day-complete-grid\">"
-        + "<div><dt>Dag</dt><dd>" + escapeHtml(inspection.dayIndex || 1) + "</dd></div>"
-        + "<div><dt>Fase</dt><dd>" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</dd></div>"
-        + "<div><dt>Åpne handlinger</dt><dd>0</dd></div>"
-        + "<div><dt>Neste fase</dt><dd>Ingen</dd></div>"
-        + "</dl>"
-        + "</section>";
-    }
-
-    const choices = Array.isArray(summary.importantChoices) ? summary.importantChoices : [];
-    const choicesHtml = choices.length
-      ? "<p class=\"civi-day-complete-text\">Viktige valg i dag:</p><ul class=\"civi-day-phase-list\">"
-        + choices.map((choice) => "<li>" + escapeHtml(choice) + "</li>").join("")
-        + "</ul>"
-      : "";
-
-    return ""
-      + "<section class=\"civi-day-complete\" aria-label=\"Dagsoppsummering\">"
-      + "<h4 class=\"civi-day-complete-title\">" + escapeHtml(summary.title || "Dagen er over") + "</h4>"
-      + "<dl class=\"civi-day-complete-grid\">"
-      + "<div><dt>Dag</dt><dd>" + escapeHtml(summary.dayIndex || inspection.dayIndex || 1) + "</dd></div>"
-      + "<div><dt>Score</dt><dd>" + escapeHtml(summary.score ?? 0) + "</dd></div>"
-      + "<div><dt>Saker besvart</dt><dd>" + escapeHtml(summary.handledItems || 0) + "</dd></div>"
-      + "<div><dt>Møtt</dt><dd>" + escapeHtml(summary.peopleMet || 0) + "</dd></div>"
-      + "<div><dt>Oppgaver løst</dt><dd>" + escapeHtml(summary.tasksCompleted || 0) + "</dd></div>"
-      + "<div><dt>Fullførte bolker</dt><dd>" + escapeHtml(summary.completedPhases || 0) + " / " + escapeHtml(summary.totalPhases || 0) + "</dd></div>"
-      + "</dl>"
-      + choicesHtml
-      + (summary.roleDevelopment ? "<p class=\"civi-day-complete-text\">" + escapeHtml(summary.roleDevelopment) + "</p>" : "")
-      + (summary.carryover ? "<p class=\"civi-day-complete-text\">" + escapeHtml(summary.carryover) + "</p>" : "")
-      + "</section>";
   }
 
   function getOutcomeViewModel() {
@@ -340,122 +238,45 @@
     return panel;
   }
 
-  function getItemText(item) {
-    const fields = [item?.body, item?.text, item?.situation, item?.description, item?.snippet, item?.prompt, item?.summary];
-    for (const field of fields) {
-      if (Array.isArray(field)) {
-        const text = field.map(function (part) { return String(part || "").trim(); }).filter(Boolean).join(" ");
-        if (text) return text;
-      } else {
-        const text = String(field || "").trim();
-        if (text) return text;
-      }
+  // The day phase panel is a read-only status card. Answering happens only on the
+  // NextAction surface (the inbox top action), so this routes to the exact same entry
+  // the top action card uses instead of rendering any answer choices here.
+  function goToNextAction() {
+    const section = document.getElementById("civiInboxSection");
+    if (section && typeof window.CivicationMiniSectionsUI?.openPopup === "function") {
+      window.CivicationMiniSectionsUI.openPopup(section, { label: "Innkommende", accent: "📨" });
+      return true;
     }
-    return String(item?.subject || "").trim();
-  }
-
-  function isTaskGateItem(item) {
-    const haystack = [item?.mail_type, item?.type, item?.slot, item?.kind].map(function (value) { return String(value || "").toLowerCase(); }).join(" ");
-    return haystack.includes("task_gate") || haystack.includes("task gate");
-  }
-
-  function refreshAfterBundleAction() {
-    render();
-    window.CivicationInboxTopActionUI?.renderSections?.();
-    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-  }
-
-  async function openPhaseBundle() {
-    await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });
-    refreshAfterBundleAction();
-  }
-
-  async function openNextPhaseItem() {
-    await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false });
-    refreshAfterBundleAction();
-  }
-
-  async function answerBundleItem(eventId, choiceId) {
-    if (!eventId || !choiceId) return;
-    const builder = window.CivicationDailyMailBuilder;
-    if (typeof builder?.answerBundleItem === "function") await builder.answerBundleItem(eventId, choiceId);
-    else await builder?.markAnswered?.(eventId, choiceId);
-    refreshAfterBundleAction();
-  }
-
-  async function handleBundleItem(eventId, handledAs) {
-    if (!eventId) return;
-    await window.CivicationDailyMailBuilder?.markHandled?.(eventId, handledAs || "handled");
-    refreshAfterBundleAction();
-  }
-
-  function isDebugMode() {
-    return window.CIVICATION_TEST_MODE === true || window.TEST_MODE === true || window.CIVICATION_DEBUG === true || window.CiviTestMode === true;
-  }
-
-  function warnIfLegacyBundleOpenButtons(root) {
-    if (!isDebugMode() || !root?.querySelector) return;
-    if (root.querySelector("[data-civi-day-phase-open-item], [data-civi-open-bundle-item]")) {
-      console.warn("Legacy bundle open button still present");
+    const topButton = document.querySelector("#civiTopActionCard [data-civi-top-action]");
+    if (topButton && typeof topButton.click === "function") {
+      topButton.click();
+      return true;
     }
+    return false;
   }
 
   function bindPanelDelegation(panel) {
     if (!panel || typeof panel.addEventListener !== "function" || panel.__civiDayPhaseDelegated) return;
     panel.__civiDayPhaseDelegated = true;
-    panel.addEventListener("click", async function (event) {
+    panel.addEventListener("click", function (event) {
       const button = event.target?.closest?.("button");
       if (!button || !panel.contains(button) || button.disabled) return;
-      if (button.matches("[data-civi-day-phase-open-bundle]")) { event.preventDefault(); await openPhaseBundle(); return; }
-      if (button.matches("[data-civi-day-phase-open-next]")) { event.preventDefault(); await openNextPhaseItem(); return; }
-      if (button.matches("[data-civi-bundle-choice]")) { event.preventDefault(); await answerBundleItem(button.getAttribute("data-civi-bundle-event"), button.getAttribute("data-civi-bundle-choice")); return; }
-      if (button.matches("[data-civi-bundle-handled]")) { event.preventDefault(); await handleBundleItem(button.getAttribute("data-civi-bundle-handled"), "handled"); return; }
-      if (button.matches("[data-civi-bundle-skip]")) { event.preventDefault(); await handleBundleItem(button.getAttribute("data-civi-bundle-skip"), "skipped"); return; }
-      if (button.matches("[data-civi-bundle-task]")) {
+      if (button.matches("[data-civi-day-phase-next-action]")) {
         event.preventDefault();
-        const mailId = button.getAttribute("data-civi-bundle-task");
-        if (mailId) window.CivicationUI?.openTaskModalByMailId?.(mailId);
-        return;
-      }
-      if (button.matches("[data-civi-day-phase-advance]")) {
-        event.preventDefault();
-        await window.CivicationDayProgression?.advancePhaseIfReady?.();
-        refreshAfterBundleAction();
+        goToNextAction();
       }
     });
   }
 
-  function buildBundleItemsList(inspection) {
-    const items = (Number(inspection?.deliveredItemsInPhase || 0) > 0 || Number(inspection?.openItemsInPhase || 0) > 0 || Array.isArray(inspection?.phaseBundle?.items))
-      ? (Array.isArray(inspection?.phaseBundle?.items) ? inspection.phaseBundle.items : [])
-      : [];
-    const renderer = window.CivicationPhaseBundleView?.buildItemsHtml;
-    if (typeof renderer === "function") {
-      const html = renderer(items, {
-        prefix: "civi-day-phase",
-        wrapperClass: "civi-day-phase-bundle",
-        cardClass: "civi-day-phase-bundle-card",
-        subClass: "civi-day-phase-status muted",
-        choicesClass: "civi-day-phase-choice-list",
-        title: "Fortsett bolken",
-        showDoneWhenEmpty: inspection.canAdvance === true,
-        doneClass: "civi-day-phase-bundle-done",
-        doneText: "Bolken er ferdig"
-      });
-      return html || "";
-    }
-    return "";
+  function getNextItemTitle(inspection) {
+    const nextItem = inspection?.pendingItem || inspection?.nextQueuedItem || null;
+    return String(nextItem?.subject || "").trim();
   }
 
-
-  function bindBundleItemButtons(_panel) {
-    // Bundle actions use delegated clicks on the stable panel root so re-renders and mobile taps keep working.
+  function getOpenItemsText(openCount) {
+    if (openCount <= 0) return "Ingen åpne saker i denne fasen.";
+    return openCount + (openCount === 1 ? " åpen sak i denne fasen." : " åpne saker i denne fasen.");
   }
-
-  function bindAdvanceButton(_panel) {
-    // Phase advance uses delegated clicks on the stable panel root.
-  }
-
 
   function render() {
     const progression = window.CivicationDayProgression;
@@ -465,18 +286,9 @@
     const panel = ensurePanel();
     if (!panel) return false;
 
-    const nextPhase = inspection.nextPhase || null;
-    const nextPhaseLabel = getNextPhaseLabel(nextPhase);
-    const blockingItems = Number(inspection.queuedItemsInPhase || 0) + Number(inspection.deliveredItemsInPhase || 0) + Number(inspection.openItemsInPhase || 0);
-    const canOpenNext = Number(inspection.queuedItemsInPhase || 0) > 0;
-    const canOpenBundle = canOpenNext;
-    // Mirrors dayProgressionController's canResetAtDayEnd: at the last phase with no open
-    // items, advancePhaseIfReady() rolls into a new day even though canAdvance is false
-    // (there is no "next phase" to advance into). The button must stay clickable for that.
-    const canStartNewDay = !nextPhase && blockingItems === 0;
-    const canAdvance = (inspection.canAdvance === true && !!nextPhase && blockingItems === 0) || canStartNewDay;
-    const buttonText = nextPhase ? "Gå til neste fase" : (canStartNewDay ? "Start ny dag" : "Dagen er ferdig");
-    const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
+    const nextPhaseLabel = getNextPhaseLabel(inspection.nextPhase || null);
+    const openCount = Number(inspection.openItemsInPhase || 0);
+    const nextItemTitle = getNextItemTitle(inspection);
     const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
     const reentryLockBanner = buildReentryLockBanner(getReentryLockViewModel());
     const learningBanner = buildLearningBanner(getLearningViewModel());
@@ -490,19 +302,13 @@
       + reentryLockBanner
       + learningBanner
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
-      + "<p class=\"civi-day-phase-status\">" + escapeHtml(getStatusText(inspection)) + "</p>"
-      + "<p class=\"civi-day-phase-status muted\">" + escapeHtml(getLoopHint(inspection)) + "</p>"
-      + dayCompleteSummary
-      + (inspection.openItemsInPhase > 0 ? buildOpenItemsList(inspection.openItemSubjects) : "")
-      + buildBundleItemsList(inspection)
+      + "<p class=\"civi-day-phase-status\">" + escapeHtml(getOpenItemsText(openCount)) + "</p>"
+      + (nextItemTitle ? "<p class=\"civi-day-phase-status muted\">Neste sak: " + escapeHtml(nextItemTitle) + "</p>" : "")
       + "<div class=\"civi-day-phase-actions\">"
-      + (canOpenBundle ? "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-open-bundle>" + escapeHtml(Number(inspection.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken") + "</button>" : "")
-      + (blockingItems === 0 ? ("<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-advance " + (canAdvance ? "" : "disabled") + ">" + escapeHtml(buttonText) + "</button>") : "")
+      + "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-next-action>Gå til neste handling</button>"
       + "</div>";
 
     bindPanelDelegation(panel);
-    bindBundleItemButtons(panel);
-    warnIfLegacyBundleOpenButtons(panel);
     return true;
   }
 
