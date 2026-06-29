@@ -58,27 +58,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Forklar forskjellen mellom arealformål og bestemmelse presist, med eksempel fra Lillebekk",
-              "reply": "Jeg forklarer forskjellen mellom arealformål og bestemmelse presist, med et eksempel fra Lillebekk-saken.",
+              "label": "Forklar skillet arealformål/bestemmelse presist med eksempel",
+              "reply": "Jeg forklarer skillet mellom arealformål og bestemmelse presist, med et eksempel fra Lillebekk.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "presis_forklaring",
+                "faglig_grunnlag",
                 "reguleringsplan og arealformål"
               ],
-              "feedback": "Forklaringen tar litt lengre tid å skrive, men gir et grunnlag som tåler å bli sjekket opp mot loven."
+              "feedback": "Forklaringen tar tid, men gir et grunnlag som tåler å sjekkes mot loven."
             },
             {
               "id": "B",
-              "label": "Gi en kort, forenklet forklaring som er lett å forstå raskt",
-              "reply": "Jeg gir en kort, forenklet forklaring som er lett å forstå raskt.",
-              "effect": 0,
+              "label": "Gi et kort, forenklet bilde som treffer kjernen",
+              "reply": "Jeg gir et kort, forenklet bilde som treffer kjernen.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "tilgjengelig",
+                "kjernebudskap",
                 "reguleringsplan og arealformål"
               ],
-              "feedback": "Forklaringen er rask å lese, men kan gi et feil bilde av hva arealformålet egentlig styrer."
+              "feedback": "Forklaringen er rask å forstå og fortsatt riktig, men dekker ikke alt formålet styrer."
             }
           ],
           "next_bias": {
@@ -149,27 +149,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Forklar hvorfor hensynssonen begrenser hva utbygger kan gjøre i grøntdraget",
-              "reply": "Jeg forklarer hvorfor hensynssonen begrenser hva utbygger kan gjøre i grøntdraget, med henvisning til bestemmelsen.",
+              "label": "Forklar presist hva hensynssonen begrenser",
+              "reply": "Jeg forklarer presist hva hensynssonen begrenser, med henvisning til bestemmelsen.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "juridisk_klar",
+                "forventningsstyring",
                 "hensynssone og grønnstruktur"
               ],
-              "feedback": "Svaret er mindre populært hos utbygger, men det er juridisk korrekt."
+              "feedback": "Svaret gleder ikke utbygger, men setter tydelige rammer fra start."
             },
             {
               "id": "B",
-              "label": "Gi et generelt svar om at hensynssoner vanligvis ikke stopper byggeprosjekter",
-              "reply": "Jeg gir et generelt svar om at hensynssoner vanligvis ikke stopper byggeprosjekter.",
-              "effect": 0,
+              "label": "Vis hva som faktisk er mulig innenfor sonen",
+              "reply": "Jeg viser hva som faktisk er mulig å gjøre innenfor hensynssonen.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "loesningsorientert",
+                "dialog",
                 "hensynssone og grønnstruktur"
               ],
-              "feedback": "Svaret er enklere å gi, men kan gi utbygger falske forventninger om hva som faktisk er tillatt."
+              "feedback": "Du holder utbygger løsningsorientert, men må passe på at mulighetsrommet ikke leses som et ja."
             }
           ],
           "next_bias": {
@@ -240,27 +240,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Forklar at rekkefølgekrav er bindende vilkår, ikke bare anbefalinger",
-              "reply": "Jeg forklarer at rekkefølgekrav er bindende vilkår i planen, ikke bare anbefalinger.",
+              "label": "Forklar at rekkefølgekrav er bindende vilkår",
+              "reply": "Jeg forklarer at rekkefølgekrav er bindende vilkår, ikke anbefalinger.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "presis_juss",
+                "myndiggjoering",
                 "rekkefølgekrav og planbestemmelser"
               ],
-              "feedback": "Beboeren forstår at kravet faktisk kan stoppe innflytting, ikke bare er en god intensjon."
+              "feedback": "Beboeren forstår at kravet faktisk kan stoppe innflytting, men forklaringen er teknisk."
             },
             {
               "id": "B",
-              "label": "Si at rekkefølgekrav vanligvis løser seg i praksis underveis",
-              "reply": "Jeg sier at rekkefølgekrav vanligvis løser seg i praksis underveis i byggeprosessen.",
-              "effect": 0,
+              "label": "Forklar hva kravet praktisk betyr for hennes tidslinje",
+              "reply": "Jeg forklarer hva rekkefølgekravet praktisk betyr for hennes tidslinje.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "konkret",
+                "hverdagsnaer",
                 "rekkefølgekrav og planbestemmelser"
               ],
-              "feedback": "Svaret virker betryggende, men det stemmer ikke nødvendigvis med hvordan kravet faktisk virker juridisk."
+              "feedback": "Beboeren ser hva det betyr for henne, men de juridiske detaljene må hun få ved behov."
             }
           ],
           "next_bias": {
@@ -331,27 +331,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Vis hvordan ROS-analysen knytter overvannsrisiko til konkrete tiltak i planen",
-              "reply": "Jeg viser hvordan ROS-analysen knytter overvannsrisikoen til konkrete tiltak i planen.",
+              "label": "Vis hvordan ROS knytter overvannsrisiko til konkrete tiltak",
+              "reply": "Jeg viser hvordan ROS-analysen knytter overvannsrisikoen til konkrete tiltak.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "faglig_komplett",
+                "risikostyring",
                 "ROS-analyse og overvann"
               ],
-              "feedback": "Forklaringen blir teknisk, men viser at risikoen faktisk er håndtert, ikke bare nevnt."
+              "feedback": "Forklaringen blir teknisk, men viser at risikoen faktisk er håndtert."
             },
             {
               "id": "B",
-              "label": "Si at ROS-analysen dekker overvann uten å gå inn i detaljene",
-              "reply": "Jeg sier at ROS-analysen dekker overvann uten å gå inn i detaljene.",
-              "effect": 0,
+              "label": "Oppsummer at risikoen er håndtert med hovedtiltaket",
+              "reply": "Jeg oppsummerer at risikoen er håndtert med hovedtiltaket.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "tilgjengelig",
+                "beslutningsnaer",
                 "ROS-analyse og overvann"
               ],
-              "feedback": "Svaret er kort, men sier egentlig ikke om risikoen faktisk er løst."
+              "feedback": "Oppsummeringen er lett å forstå, men hovedtiltaket må stå seg når noen spør om detaljene."
             }
           ],
           "next_bias": {
@@ -422,27 +422,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Forklar hvordan medvirkningsinnspillene om skoleveien faktisk endret planen",
-              "reply": "Jeg forklarer hvordan medvirkningsinnspillene om skoleveien faktisk endret planen, punkt for punkt.",
+              "label": "Forklar punkt for punkt hvordan innspillene endret planen",
+              "reply": "Jeg forklarer punkt for punkt hvordan medvirkningsinnspillene endret planen.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "sporbar_medvirkning",
+                "grundig",
                 "medvirkning og skolevei"
               ],
-              "feedback": "Svaret tar lengre tid å skrive, men viser at medvirkningen hadde en reell effekt."
+              "feedback": "Svaret tar tid, men viser at medvirkningen hadde en reell effekt."
             },
             {
               "id": "B",
-              "label": "Si at innspillene er tatt til etterretning uten å si hva som endret seg",
-              "reply": "Jeg sier at innspillene om skoleveien er tatt til etterretning, uten å si konkret hva som endret seg.",
-              "effect": 0,
+              "label": "Oppsummer hovedendringen innspillene førte til",
+              "reply": "Jeg oppsummerer hovedendringen innspillene førte til.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "konsis",
+                "tydelig_resultat",
                 "medvirkning og skolevei"
               ],
-              "feedback": "Svaret er raskt å gi, men beboerne kan oppleve at medvirkningen ikke førte til noe."
+              "feedback": "Oppsummeringen er rask, men den enkelte må spørre om de vil se hele sporet."
             }
           ],
           "next_bias": {
@@ -513,27 +513,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Forklar hva støyskjermen faktisk dekker og hva den ikke løser",
-              "reply": "Jeg forklarer hva støyskjermen faktisk dekker, og hva den ikke løser av støyproblemet.",
+              "label": "Forklar hva skjermen dekker og hva den ikke løser",
+              "reply": "Jeg forklarer hva støyskjermen dekker, og hva den ikke løser.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "nyansert",
+                "fullt_bilde",
                 "støy og støyskjerm"
               ],
-              "feedback": "Svaret er mer nyansert, men gir utvalget et riktig bilde før vedtak."
+              "feedback": "Svaret blir nyansert, men gir utvalget et riktig bilde før vedtak."
             },
             {
               "id": "B",
-              "label": "Si at støyskjermen løser støyproblemet i planen",
-              "reply": "Jeg sier at støyskjermen løser støyproblemet i planen.",
-              "effect": 0,
+              "label": "Forklar nettoeffekten utvalget skal vedta",
+              "reply": "Jeg forklarer nettoeffekten av støyskjermen som utvalget skal vedta.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "beslutningsnaer",
+                "tydelig",
                 "støy og støyskjerm"
               ],
-              "feedback": "Svaret er enkelt og betryggende, men det er ikke helt presist."
+              "feedback": "Nettoeffekten er lett å vedta på, men forbeholdene må følge med så de ikke glemmes."
             }
           ],
           "next_bias": {
@@ -704,27 +704,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Knytt redusert parkeringskrav direkte til den faktiske kollektivdekningen i analysen",
-              "reply": "Jeg knytter det reduserte parkeringskravet direkte til den faktiske kollektivdekningen i analysen.",
+              "label": "Knytt redusert parkering til faktisk kollektivdekning i analysen",
+              "reply": "Jeg knytter det reduserte parkeringskravet til den faktiske kollektivdekningen i analysen.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "datadrevet",
+                "presis_begrunnelse",
                 "parkering og kollektivdekning"
               ],
-              "feedback": "Begrunnelsen blir mer presis, men krever at tallene fra analysen stemmer."
+              "feedback": "Begrunnelsen blir presis, men avhenger av at tallene i analysen holder."
             },
             {
               "id": "B",
-              "label": "Bruk en standard norm for parkering uten å vise til kollektivdekningen",
-              "reply": "Jeg bruker en standard norm for parkering uten å vise til kollektivdekningen spesifikt.",
-              "effect": 0,
+              "label": "Bruk den standardiserte normen med kort kollektivbegrunnelse",
+              "reply": "Jeg bruker den standardiserte parkeringsnormen med en kort kollektivbegrunnelse.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "robust_norm",
+                "enkel_begrunnelse",
                 "parkering og kollektivdekning"
               ],
-              "feedback": "Bestemmelsen er enklere å skrive, men kan bli vanskelig å forsvare hvis den blir utfordret."
+              "feedback": "Normen er enkel og robust, men den tilpassede begrunnelsen ville stått sterkere mot innsigelser."
             }
           ],
           "next_bias": {

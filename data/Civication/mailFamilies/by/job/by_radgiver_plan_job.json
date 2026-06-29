@@ -540,25 +540,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Skriv opp hovedkonflikten i kartet før møtet, selv om den ikke står i sammendraget",
-              "reply": "Jeg skriver opp hovedkonflikten i plankartet før internmøtet, selv om den ikke står i sammendraget.",
+              "label": "Skriv opp hovedkonflikten i kartet før møtet",
+              "reply": "Jeg skriver opp hovedkonflikten i plankartet før internmøtet.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "forberedt",
+                "faglig_oversikt"
               ],
-              "feedback": "Møtet blir tyngre å forberede, men ingen går inn i det blanke om hva kartet egentlig viser."
+              "feedback": "Møtet blir tyngre å forberede, men du går ikke inn i det blanke om hva kartet viser."
             },
             {
               "id": "B",
-              "label": "Følg sammendraget og ta eventuelle avvik i møtet hvis de kommer opp",
-              "reply": "Jeg følger sammendraget til møtet og tar eventuelle avvik der hvis de kommer opp.",
-              "effect": 0,
+              "label": "Gå inn med sammendraget og ta avvik live",
+              "reply": "Jeg går inn med sammendraget og tar eventuelle avvik live i møtet.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "effektiv_forberedelse",
+                "tillit_til_moetet"
               ],
-              "feedback": "Du er klar til møtet uten ekstra arbeid, men konflikten kan overraske deg hvis ingen andre har sett den heller."
+              "feedback": "Du sparer forberedelse og lar møtet jobbe, men konflikten kan overraske om ingen andre så den."
             }
           ],
           "next_bias": {
@@ -614,25 +614,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Sett en lavere maks-høyde der skyggestudien viser et problem",
-              "reply": "Jeg setter en lavere maks-høyde i de delene av planen der skyggestudien viser et problem.",
+              "label": "Sett lavere maks-høyde der skyggestudien viser et problem",
+              "reply": "Jeg setter lavere maks-høyde der skyggestudien viser et problem.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "bokvalitet",
+                "nabohensyn"
               ],
-              "feedback": "Utbygger får mindre å bygge med, men nabolaget mister ikke sollyset planen lovet å ta vare på."
+              "feedback": "Utbygger får mindre å bygge med, men nabolaget beholder sollyset planen lovet."
             },
             {
               "id": "B",
-              "label": "Behold høyden og vis til at detaljreguleringen kan justere senere",
-              "reply": "Jeg beholder høyden i planen og viser til at en senere detaljregulering kan justere den ved behov.",
-              "effect": 0,
+              "label": "Behold høyden og la detaljreguleringen justere senere",
+              "reply": "Jeg beholder høyden og lar en senere detaljregulering justere ved behov.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "boligkapasitet",
+                "fleksibilitet"
               ],
-              "feedback": "Planen er enklere å bli enige om nå, men skyggeproblemet kan bli noen andres sak å løse senere."
+              "feedback": "Planen gir flere boliger nå, men skyggespørsmålet skyves til detaljreguleringen."
             }
           ],
           "next_bias": {
@@ -699,25 +699,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Knytt rekkefølgekravet til et konkret, målbart vilkår i bestemmelsen",
+              "label": "Knytt rekkefølgekravet til et konkret, målbart vilkår",
               "reply": "Jeg knytter rekkefølgekravet til et konkret, målbart vilkår i bestemmelsen.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "haandhevbar",
+                "presis"
               ],
-              "feedback": "Bestemmelsen blir mer presis å følge opp, men krever at du definerer vilkåret nøyaktig nå."
+              "feedback": "Bestemmelsen blir presis å følge opp, men krever at du definerer vilkåret nøyaktig nå."
             },
             {
               "id": "B",
-              "label": "Bruk en generell formulering som gir albuerom i gjennomføringen",
-              "reply": "Jeg bruker en generell formulering som gir albuerom i gjennomføringen av rekkefølgekravet.",
-              "effect": 0,
+              "label": "Bruk en generell formulering med rom i gjennomføringen",
+              "reply": "Jeg bruker en generell formulering som gir rom i gjennomføringen.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "fleksibel_gjennomfoering",
+                "smidig"
               ],
-              "feedback": "Formuleringen er raskere å skrive, men kan bli vanskelig å håndheve hvis utbygger tolker den i sin favør."
+              "feedback": "Formuleringen gir rom i gjennomføringen, men kan bli vanskelig å håndheve hvis den tolkes ulikt."
             }
           ],
           "next_bias": {
@@ -773,25 +773,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Krev fordrøyning av overvann i bestemmelsene, selv om det krever ny tegning",
-              "reply": "Jeg krever fordrøyning av overvann i bestemmelsene, selv om det krever en ny tegning av området.",
+              "label": "Krev fordrøyning av overvann i bestemmelsene nå",
+              "reply": "Jeg krever fordrøyning av overvann i bestemmelsene nå, selv om planen må tegnes om.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "overvann_sikret",
+                "robusthet"
               ],
-              "feedback": "Planen må justeres, men overvannet får en løsning som tåler et kraftig regnskyll."
+              "feedback": "Planen må tegnes om, men overvannsløsningen står trygt i bestemmelsen uansett hvem som bygger."
             },
             {
               "id": "B",
-              "label": "Godta dagens overvannsløsning og sett et oppfølgingspunkt til driftsfasen",
-              "reply": "Jeg godtar dagens overvannsløsning og setter et oppfølgingspunkt til driftsfasen i stedet.",
-              "effect": 0,
+              "label": "La overvannet løses i driftsfasen med et oppfølgingspunkt",
+              "reply": "Jeg lar overvannet løses i driftsfasen og setter et tydelig oppfølgingspunkt.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "gjennomføring",
+                "driftstillit"
               ],
-              "feedback": "Planen går videre uten ny tegning, men overvannet kan bli et problem når regnet kommer."
+              "feedback": "Planen går videre nå og drift håndterer dette i praksis, men løsningen er ikke låst i planen."
             }
           ],
           "next_bias": {
