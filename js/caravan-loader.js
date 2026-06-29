@@ -13,6 +13,11 @@
   const ALLOWED_MODES = new Set(["til_fots", "hest", "sykkel"]);
   const ALLOWED_EVENT_TYPES = new Set(["weather", "rest", "water", "food", "stable", "ferry", "border", "terrain", "traffic", "shelter", "repair", "animal_care", "document_check"]);
   const ALLOWED_SEVERITIES = new Set(["info", "low", "medium", "high"]);
+  const RESOURCE_KEYS_BY_MODE = {
+    til_fots: new Set(["energi", "vann", "hvile", "utstyr"]),
+    hest: new Set(["energi", "vann", "hvile", "hestehelse", "utstyr"]),
+    sykkel: new Set(["energi", "vann", "hvile", "sykkelstand", "utstyr"])
+  };
 
   function emptyRuntime(warnings) {
     return {
@@ -70,6 +75,31 @@
   function pushIndex(index, key, value) {
     if (!key) return;
     (index[key] ||= []).push(value);
+  }
+
+  function validateChoiceEffects(eventId, choice) {
+    const choiceId = String(choice?.id || "").trim();
+    const byMode = choice?.resource_effects_by_mode;
+    if (byMode == null) return;
+    if (typeof byMode !== "object" || Array.isArray(byMode)) {
+      warn("choice.resource_effects_by_mode må være object", { event_id: eventId, choice_id: choiceId });
+      return;
+    }
+    for (const [mode, effects] of Object.entries(byMode)) {
+      if (!ALLOWED_MODES.has(mode)) {
+        warn("choice.resource_effects_by_mode inneholder ukjent mode", { event_id: eventId, choice_id: choiceId, mode });
+        continue;
+      }
+      if (!effects || typeof effects !== "object" || Array.isArray(effects)) {
+        warn("choice.resource_effects_by_mode[mode] må være object", { event_id: eventId, choice_id: choiceId, mode });
+        continue;
+      }
+      for (const [resourceKey, delta] of Object.entries(effects)) {
+        if (!RESOURCE_KEYS_BY_MODE[mode]?.has(resourceKey)) warn("choice.resource_effects_by_mode inneholder ugyldig ressursnøkkel", { event_id: eventId, choice_id: choiceId, mode, resourceKey });
+        if (typeof delta !== "number" || !Number.isFinite(delta)) warn("choice.resource_effects_by_mode delta må være number", { event_id: eventId, choice_id: choiceId, mode, resourceKey, delta });
+        else if (delta < -100 || delta > 100) warn("choice.resource_effects_by_mode delta bør være mellom -100 og 100", { event_id: eventId, choice_id: choiceId, mode, resourceKey, delta });
+      }
+    }
   }
 
   function validateAndIndex(routes, stages, nodes, events) {
@@ -139,6 +169,7 @@
         if (!ALLOWED_MODES.has(mode)) warn("event.applies_to_modes inneholder ukjent verdi", { event_id: id, mode });
         else pushIndex(next.indexes.eventsByMode, mode, event);
       }
+      for (const choice of Array.isArray(event?.choices) ? event.choices : []) validateChoiceEffects(id, choice);
       pushIndex(next.indexes.eventsByStage, stageId, event);
       pushIndex(next.indexes.eventsByRoute, routeId, event);
     }

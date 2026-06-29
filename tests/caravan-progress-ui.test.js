@@ -12,13 +12,14 @@ window.HG_CARAVAN = {
   routes: [{ id: "route_italia", title: "Italia" }],
   stages: [{ id: "stage_1", route_id: "route_italia", order: 1, from_node: "oslo", to_node: "roma", allowed_modes: ["til_fots", "hest", "sykkel"], approximate_distance_km: 10 }],
   nodes: [{ id: "oslo", title: "Oslo", lat: 59.9, lng: 10.7 }, { id: "roma", title: "Roma", lat: 41.9, lng: 12.5 }],
-  events: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent" }, { id: "ferry", label: "Ta ferge og planlegg dyretransport" }] }],
-  indexes: { stagesByRoute: { route_italia: [{ id: "stage_1", route_id: "route_italia", order: 1, from_node: "oslo", to_node: "roma", allowed_modes: ["til_fots", "hest", "sykkel"], approximate_distance_km: 10 }] }, nodesById: {}, eventsByStage: { stage_1: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent" }, { id: "ferry", label: "Ta ferge og planlegg dyretransport" }] }] }, eventsByRoute: { route_italia: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent" }, { id: "ferry", label: "Ta ferge og planlegg dyretransport" }] }] } }
+  events: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }],
+  indexes: { stagesByRoute: { route_italia: [{ id: "stage_1", route_id: "route_italia", order: 1, from_node: "oslo", to_node: "roma", allowed_modes: ["til_fots", "hest", "sykkel"], approximate_distance_km: 10 }] }, nodesById: {}, eventsByStage: { stage_1: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }] }, eventsByRoute: { route_italia: [{ id: "event_1", route_id: "route_italia", stage_id: "stage_1", title: "Trelleborg → Rostock", event_type: "ferry", severity: "medium", applies_to_modes: ["hest", "sykkel"], prompt: "Planlegg passasje.", choices: [{ id: "wait", label: "Vent", resource_effects_by_mode: { hest: { hvile: 10, hestehelse: 5, energi: -5 } } }, { id: "ferry", label: "Ta ferge og planlegg dyretransport", resource_effects_by_mode: { hest: { hvile: 5, hestehelse: 3 } } }] }] } }
 };
 window.HG_CARAVAN.indexes.nodesById = Object.fromEntries(window.HG_CARAVAN.nodes.map((node) => [node.id, node]));
 window.eval(fs.readFileSync("js/caravan-progress.js", "utf8"));
 window.eval(fs.readFileSync("js/caravan-resources.js", "utf8"));
 window.eval(fs.readFileSync("js/caravan-event-log.js", "utf8"));
+window.eval(fs.readFileSync("js/caravan-consequences.js", "utf8"));
 window.eval(fs.readFileSync("js/ui/caravan-panel.js", "utf8"));
 
 window.HG_CARAVAN_UI_DEBUG.open("route_italia");
@@ -54,7 +55,15 @@ window.HG_CARAVAN_UI_DEBUG.setTravelMode("hest");
 window.HG_CARAVAN_UI_DEBUG.setEventChoice("event_1", "wait");
 assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getEventChoice("event_1").choice_id, "wait", "debug API reads event choice");
 assert(document.querySelector(".hg-caravan-event-choice.is-active"), "selected choice is visually marked");
-assert(document.body.textContent.includes("Dette valget påvirker ikke ressurser ennå."), "logged choice shows read-only resource note");
+assert(document.body.textContent.includes("+10 Hvile"), "selected mode shows resource effects");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getChoiceEffects("event_1", "wait").hvile, 10, "debug API reads choice effects");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.applyChoiceEffects("event_1", "wait").effects.hvile, 10, "debug API applies effects");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getResources().hvile, 100, "resource effects clamp at 100");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getResources().energi, 95, "negative resource effect is applied");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.applyChoiceEffects("event_1", "wait"), null, "same event/mode cannot apply twice");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getAppliedConsequence("event_1").choice_id, "wait", "debug API reads applied consequence");
+window.HG_CARAVAN_UI_DEBUG.clearAppliedConsequence("event_1");
+assert.strictEqual(window.HG_CARAVAN_UI_DEBUG.getAppliedConsequence("event_1"), null, "debug API clears applied marker only");
 assert(document.body.textContent.includes("1 valg"), "stage list shows logged choice count");
 assert(document.body.textContent.includes("Italia: 1 valg logget"), "route list shows logged choice count");
 assert(document.body.textContent.includes("Logg"), "log section is visible");
