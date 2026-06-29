@@ -1,25 +1,794 @@
 {
   "stages": [
-    { "id": "italia-01", "route_id": "italia", "order": 1, "from_node": "oslo", "to_node": "copenhagen", "approximate_distance_km": 600, "distance_confidence": "rough", "allowed_modes": ["sykkel"], "surface_types": ["by", "ferge", "landevei"], "learning_hooks": ["kartlesing", "ferge som transportvalg"], "risk_tags": ["vær", "trafikk"], "history_prompt": "Hvordan endrer en sjøovergang rytmen i en karavane?", "observation_prompt": "Se etter knutepunkter der sjø og land møtes." },
-    { "id": "italia-02", "route_id": "italia", "order": 2, "from_node": "copenhagen", "to_node": "hamburg", "approximate_distance_km": 340, "distance_confidence": "rough", "allowed_modes": ["sykkel", "hest"], "surface_types": ["landevei", "by"], "learning_hooks": ["handelsbyer", "nord-sør-korridor"], "risk_tags": ["trafikk"], "history_prompt": "Hva gjør handelsbyer viktige på en langreise?", "observation_prompt": "Finn tegn til historiske transportårer." },
-    { "id": "italia-03", "route_id": "italia", "order": 3, "from_node": "hamburg", "to_node": "munich", "approximate_distance_km": 780, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["by", "landevei"], "learning_hooks": ["regioner", "etapper"], "risk_tags": ["avstand", "vær"], "history_prompt": "Hvorfor deles lange reiser i etapper?", "observation_prompt": "Legg merke til hvordan landskap og byer skifter." },
-    { "id": "italia-04", "route_id": "italia", "order": 4, "from_node": "munich", "to_node": "innsbruck", "approximate_distance_km": 165, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots", "hest"], "surface_types": ["fjellovergang", "by"], "learning_hooks": ["Alpene", "pass"], "risk_tags": ["høyde", "vær"], "history_prompt": "Hvordan påvirker fjellpass handel og reiser?", "observation_prompt": "Se etter naturlige barrierer i kartet." },
-    { "id": "italia-05", "route_id": "italia", "order": 5, "from_node": "innsbruck", "to_node": "verona", "approximate_distance_km": 275, "distance_confidence": "rough", "allowed_modes": ["sykkel", "hest"], "surface_types": ["fjellovergang", "landevei", "by"], "learning_hooks": ["grenseovergang", "kulturmøte"], "risk_tags": ["vær", "bratte partier"], "history_prompt": "Hva skjer når en karavane krysser språk- og maktgrenser?", "observation_prompt": "Sammenlign nord- og sørsiden av Alpene." },
-    { "id": "italia-06", "route_id": "italia", "order": 6, "from_node": "verona", "to_node": "rome", "approximate_distance_km": 500, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["by", "landevei"], "learning_hooks": ["romerveier", "maktsteder"], "risk_tags": ["varme", "avstand"], "history_prompt": "Hvorfor har Roma vært et mål for reisende gjennom århundrer?", "observation_prompt": "Se etter gamle og nye ferdselsårer." },
-
-    { "id": "portugal-01", "route_id": "portugal", "order": 1, "from_node": "oslo", "to_node": "copenhagen", "approximate_distance_km": 600, "distance_confidence": "rough", "allowed_modes": ["sykkel"], "surface_types": ["by", "ferge", "landevei"], "learning_hooks": ["ferge", "startknutepunkt"], "risk_tags": ["vær"], "history_prompt": "Hvordan planlegger man første store overgang?", "observation_prompt": "Finn havne- og byknutepunkter." },
-    { "id": "portugal-02", "route_id": "portugal", "order": 2, "from_node": "copenhagen", "to_node": "hamburg", "approximate_distance_km": 340, "distance_confidence": "rough", "allowed_modes": ["sykkel", "hest"], "surface_types": ["landevei", "by"], "learning_hooks": ["handelsruter"], "risk_tags": ["trafikk"], "history_prompt": "Hvorfor følger mange ruter samme korridor i nord?", "observation_prompt": "Se etter byer langs kystnære ruter." },
-    { "id": "portugal-03", "route_id": "portugal", "order": 3, "from_node": "hamburg", "to_node": "paris", "approximate_distance_km": 900, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["by", "landevei"], "learning_hooks": ["storby", "planlegging"], "risk_tags": ["avstand"], "history_prompt": "Hvordan fungerer storbyer som hvile- og byttepunkt?", "observation_prompt": "Sammenlign tettstedene langs korridoren." },
-    { "id": "portugal-04", "route_id": "portugal", "order": 4, "from_node": "paris", "to_node": "bordeaux", "approximate_distance_km": 585, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["landevei", "by"], "learning_hooks": ["elver", "regioner"], "risk_tags": ["vær", "avstand"], "history_prompt": "Hvordan hjelper elver reisende å orientere seg?", "observation_prompt": "Se etter elver som peker ruten videre." },
-    { "id": "portugal-05", "route_id": "portugal", "order": 5, "from_node": "bordeaux", "to_node": "irun_hendaye", "approximate_distance_km": 235, "distance_confidence": "rough", "allowed_modes": ["sykkel", "hest"], "surface_types": ["kyst", "grense"], "learning_hooks": ["grenseovergang", "Baskerland"], "risk_tags": ["vær", "trafikk"], "history_prompt": "Hvorfor blir grensebyer viktige stopp?", "observation_prompt": "Finn overgangen mellom Frankrike og Spania." },
-    { "id": "portugal-06", "route_id": "portugal", "order": 6, "from_node": "irun_hendaye", "to_node": "madrid", "approximate_distance_km": 470, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["innland", "by"], "learning_hooks": ["høyland", "hovedstad"], "risk_tags": ["varme", "avstand"], "history_prompt": "Hvordan påvirker høyland tempoet i en reise?", "observation_prompt": "Se hvordan ruten går fra kyst til innland." },
-    { "id": "portugal-07", "route_id": "portugal", "order": 7, "from_node": "madrid", "to_node": "lisbon", "approximate_distance_km": 625, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["innland", "by"], "learning_hooks": ["Iberia", "havneby"], "risk_tags": ["varme", "avstand"], "history_prompt": "Hva betyr Atlanterhavskysten for Lisboa?", "observation_prompt": "Se etter hvordan byen vender mot havet." },
-
-    { "id": "romania-01", "route_id": "romania", "order": 1, "from_node": "oslo", "to_node": "stockholm", "approximate_distance_km": 530, "distance_confidence": "rough", "allowed_modes": ["sykkel"], "surface_types": ["by", "landevei"], "learning_hooks": ["Skandinavia", "hovedsteder"], "risk_tags": ["vær"], "history_prompt": "Hva gjør nordiske hovedsteder til naturlige stopp?", "observation_prompt": "Se etter vann og skog i ruteområdet." },
-    { "id": "romania-02", "route_id": "romania", "order": 2, "from_node": "stockholm", "to_node": "gdansk", "approximate_distance_km": 820, "distance_confidence": "rough", "allowed_modes": ["sykkel"], "surface_types": ["ferge", "havn", "by"], "learning_hooks": ["Østersjøen", "havner"], "risk_tags": ["vær", "sjøovergang"], "history_prompt": "Hvordan binder Østersjøen byer sammen?", "observation_prompt": "Finn sjøovergangen som kobler nord og sør." },
-    { "id": "romania-03", "route_id": "romania", "order": 3, "from_node": "gdansk", "to_node": "krakow", "approximate_distance_km": 585, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["innland", "by"], "learning_hooks": ["Polen", "middelalderbyer"], "risk_tags": ["avstand"], "history_prompt": "Hvorfor er gamle handelsbyer gode læringsstopp?", "observation_prompt": "Se etter overgang fra kyst til innland." },
-    { "id": "romania-04", "route_id": "romania", "order": 4, "from_node": "krakow", "to_node": "budapest", "approximate_distance_km": 395, "distance_confidence": "rough", "allowed_modes": ["sykkel", "hest"], "surface_types": ["fjellovergang", "by"], "learning_hooks": ["Karpatene", "Donau"], "risk_tags": ["vær", "høyde"], "history_prompt": "Hvordan skaper fjell og elver rutevalg?", "observation_prompt": "Finn Karpatene og Donau på kartet." },
-    { "id": "romania-05", "route_id": "romania", "order": 5, "from_node": "budapest", "to_node": "bucharest", "approximate_distance_km": 825, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["elvedal", "innland", "by"], "learning_hooks": ["Donau", "sentral-Europa"], "risk_tags": ["avstand", "varme"], "history_prompt": "Hvorfor kan elvedaler være lange reisekorridorer?", "observation_prompt": "Se hvordan Donau peker østover." },
-    { "id": "romania-06", "route_id": "romania", "order": 6, "from_node": "bucharest", "to_node": "constanta", "approximate_distance_km": 225, "distance_confidence": "rough", "allowed_modes": ["sykkel", "til_fots"], "surface_types": ["innland", "havn", "by"], "learning_hooks": ["Svartehavet", "havneby"], "risk_tags": ["varme", "trafikk"], "history_prompt": "Hva betyr Svartehavet for Constanța?", "observation_prompt": "Finn overgangen fra innland til havn." }
+    {
+      "id": "italia-01",
+      "route_id": "italia",
+      "order": 1,
+      "from_node": "oslo",
+      "to_node": "copenhagen",
+      "approximate_distance_km": 600,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel"
+      ],
+      "surface_types": [
+        "by",
+        "ferge",
+        "landevei"
+      ],
+      "learning_hooks": [
+        "kartlesing",
+        "ferge som transportvalg"
+      ],
+      "risk_tags": [
+        "vær",
+        "trafikk"
+      ],
+      "history_prompt": "Hvordan endrer en sjøovergang rytmen i en karavane?",
+      "observation_prompt": "Se etter knutepunkter der sjø og land møtes.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "fergeavklaring",
+          "trafikksikker kryssing"
+        ]
+      }
+    },
+    {
+      "id": "italia-02",
+      "route_id": "italia",
+      "order": 2,
+      "from_node": "copenhagen",
+      "to_node": "hamburg",
+      "approximate_distance_km": 340,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "hest"
+      ],
+      "surface_types": [
+        "landevei",
+        "by"
+      ],
+      "learning_hooks": [
+        "handelsbyer",
+        "nord-sør-korridor"
+      ],
+      "risk_tags": [
+        "trafikk"
+      ],
+      "history_prompt": "Hva gjør handelsbyer viktige på en langreise?",
+      "observation_prompt": "Finn tegn til historiske transportårer.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "trafikksikker kryssing"
+        ],
+        "hest": [
+          "stall",
+          "vann",
+          "hvile",
+          "lovlig_ridevei",
+          "trafikksikker kryssing"
+        ]
+      }
+    },
+    {
+      "id": "italia-03",
+      "route_id": "italia",
+      "order": 3,
+      "from_node": "hamburg",
+      "to_node": "munich",
+      "approximate_distance_km": 780,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "by",
+        "landevei"
+      ],
+      "learning_hooks": [
+        "regioner",
+        "etapper"
+      ],
+      "risk_tags": [
+        "avstand",
+        "vær"
+      ],
+      "history_prompt": "Hvorfor deles lange reiser i etapper?",
+      "observation_prompt": "Legg merke til hvordan landskap og byer skifter.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti"
+        ]
+      }
+    },
+    {
+      "id": "italia-04",
+      "route_id": "italia",
+      "order": 4,
+      "from_node": "munich",
+      "to_node": "innsbruck",
+      "approximate_distance_km": 165,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots",
+        "hest"
+      ],
+      "surface_types": [
+        "fjellovergang",
+        "by"
+      ],
+      "learning_hooks": [
+        "Alpene",
+        "pass"
+      ],
+      "risk_tags": [
+        "høyde",
+        "vær"
+      ],
+      "history_prompt": "Hvordan påvirker fjellpass handel og reiser?",
+      "observation_prompt": "Se etter naturlige barrierer i kartet.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "værvindu"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti",
+          "værvindu"
+        ],
+        "hest": [
+          "stall",
+          "vann",
+          "hvile",
+          "lovlig_ridevei",
+          "værvindu"
+        ]
+      }
+    },
+    {
+      "id": "italia-05",
+      "route_id": "italia",
+      "order": 5,
+      "from_node": "innsbruck",
+      "to_node": "verona",
+      "approximate_distance_km": 275,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "hest"
+      ],
+      "surface_types": [
+        "fjellovergang",
+        "landevei",
+        "by"
+      ],
+      "learning_hooks": [
+        "grenseovergang",
+        "kulturmøte"
+      ],
+      "risk_tags": [
+        "vær",
+        "bratte partier"
+      ],
+      "history_prompt": "Hva skjer når en karavane krysser språk- og maktgrenser?",
+      "observation_prompt": "Sammenlign nord- og sørsiden av Alpene.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "værvindu"
+        ],
+        "hest": [
+          "stall",
+          "vann",
+          "hvile",
+          "lovlig_ridevei",
+          "værvindu"
+        ]
+      }
+    },
+    {
+      "id": "italia-06",
+      "route_id": "italia",
+      "order": 6,
+      "from_node": "verona",
+      "to_node": "rome",
+      "approximate_distance_km": 500,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "by",
+        "landevei"
+      ],
+      "learning_hooks": [
+        "romerveier",
+        "maktsteder"
+      ],
+      "risk_tags": [
+        "varme",
+        "avstand"
+      ],
+      "history_prompt": "Hvorfor har Roma vært et mål for reisende gjennom århundrer?",
+      "observation_prompt": "Se etter gamle og nye ferdselsårer.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "skygge"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti",
+          "skygge"
+        ]
+      }
+    },
+    {
+      "id": "portugal-01",
+      "route_id": "portugal",
+      "order": 1,
+      "from_node": "oslo",
+      "to_node": "copenhagen",
+      "approximate_distance_km": 600,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel"
+      ],
+      "surface_types": [
+        "by",
+        "ferge",
+        "landevei"
+      ],
+      "learning_hooks": [
+        "ferge",
+        "startknutepunkt"
+      ],
+      "risk_tags": [
+        "vær"
+      ],
+      "history_prompt": "Hvordan planlegger man første store overgang?",
+      "observation_prompt": "Finn havne- og byknutepunkter.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "fergeavklaring"
+        ]
+      }
+    },
+    {
+      "id": "portugal-02",
+      "route_id": "portugal",
+      "order": 2,
+      "from_node": "copenhagen",
+      "to_node": "hamburg",
+      "approximate_distance_km": 340,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "hest"
+      ],
+      "surface_types": [
+        "landevei",
+        "by"
+      ],
+      "learning_hooks": [
+        "handelsruter"
+      ],
+      "risk_tags": [
+        "trafikk"
+      ],
+      "history_prompt": "Hvorfor følger mange ruter samme korridor i nord?",
+      "observation_prompt": "Se etter byer langs kystnære ruter.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "trafikksikker kryssing"
+        ],
+        "hest": [
+          "stall",
+          "vann",
+          "hvile",
+          "lovlig_ridevei",
+          "trafikksikker kryssing"
+        ]
+      }
+    },
+    {
+      "id": "portugal-03",
+      "route_id": "portugal",
+      "order": 3,
+      "from_node": "hamburg",
+      "to_node": "paris",
+      "approximate_distance_km": 900,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "by",
+        "landevei"
+      ],
+      "learning_hooks": [
+        "storby",
+        "planlegging"
+      ],
+      "risk_tags": [
+        "avstand"
+      ],
+      "history_prompt": "Hvordan fungerer storbyer som hvile- og byttepunkt?",
+      "observation_prompt": "Sammenlign tettstedene langs korridoren.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti"
+        ]
+      }
+    },
+    {
+      "id": "portugal-04",
+      "route_id": "portugal",
+      "order": 4,
+      "from_node": "paris",
+      "to_node": "bordeaux",
+      "approximate_distance_km": 585,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "landevei",
+        "by"
+      ],
+      "learning_hooks": [
+        "elver",
+        "regioner"
+      ],
+      "risk_tags": [
+        "vær",
+        "avstand"
+      ],
+      "history_prompt": "Hvordan hjelper elver reisende å orientere seg?",
+      "observation_prompt": "Se etter elver som peker ruten videre.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti"
+        ]
+      }
+    },
+    {
+      "id": "portugal-05",
+      "route_id": "portugal",
+      "order": 5,
+      "from_node": "bordeaux",
+      "to_node": "irun_hendaye",
+      "approximate_distance_km": 235,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "hest"
+      ],
+      "surface_types": [
+        "kyst",
+        "grense"
+      ],
+      "learning_hooks": [
+        "grenseovergang",
+        "Baskerland"
+      ],
+      "risk_tags": [
+        "vær",
+        "trafikk"
+      ],
+      "history_prompt": "Hvorfor blir grensebyer viktige stopp?",
+      "observation_prompt": "Finn overgangen mellom Frankrike og Spania.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "værvindu",
+          "trafikksikker kryssing"
+        ],
+        "hest": [
+          "stall",
+          "vann",
+          "hvile",
+          "lovlig_ridevei",
+          "værvindu",
+          "trafikksikker kryssing"
+        ]
+      }
+    },
+    {
+      "id": "portugal-06",
+      "route_id": "portugal",
+      "order": 6,
+      "from_node": "irun_hendaye",
+      "to_node": "madrid",
+      "approximate_distance_km": 470,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "innland",
+        "by"
+      ],
+      "learning_hooks": [
+        "høyland",
+        "hovedstad"
+      ],
+      "risk_tags": [
+        "varme",
+        "avstand"
+      ],
+      "history_prompt": "Hvordan påvirker høyland tempoet i en reise?",
+      "observation_prompt": "Se hvordan ruten går fra kyst til innland.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "skygge"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti",
+          "skygge"
+        ]
+      }
+    },
+    {
+      "id": "portugal-07",
+      "route_id": "portugal",
+      "order": 7,
+      "from_node": "madrid",
+      "to_node": "lisbon",
+      "approximate_distance_km": 625,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "innland",
+        "by"
+      ],
+      "learning_hooks": [
+        "Iberia",
+        "havneby"
+      ],
+      "risk_tags": [
+        "varme",
+        "avstand"
+      ],
+      "history_prompt": "Hva betyr Atlanterhavskysten for Lisboa?",
+      "observation_prompt": "Se etter hvordan byen vender mot havet.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "skygge"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti",
+          "skygge"
+        ]
+      }
+    },
+    {
+      "id": "romania-01",
+      "route_id": "romania",
+      "order": 1,
+      "from_node": "oslo",
+      "to_node": "stockholm",
+      "approximate_distance_km": 530,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel"
+      ],
+      "surface_types": [
+        "by",
+        "landevei"
+      ],
+      "learning_hooks": [
+        "Skandinavia",
+        "hovedsteder"
+      ],
+      "risk_tags": [
+        "vær"
+      ],
+      "history_prompt": "Hva gjør nordiske hovedsteder til naturlige stopp?",
+      "observation_prompt": "Se etter vann og skog i ruteområdet.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei"
+        ]
+      }
+    },
+    {
+      "id": "romania-02",
+      "route_id": "romania",
+      "order": 2,
+      "from_node": "stockholm",
+      "to_node": "gdansk",
+      "approximate_distance_km": 820,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel"
+      ],
+      "surface_types": [
+        "ferge",
+        "havn",
+        "by"
+      ],
+      "learning_hooks": [
+        "Østersjøen",
+        "havner"
+      ],
+      "risk_tags": [
+        "vær",
+        "sjøovergang"
+      ],
+      "history_prompt": "Hvordan binder Østersjøen byer sammen?",
+      "observation_prompt": "Finn sjøovergangen som kobler nord og sør.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "fergeavklaring"
+        ]
+      }
+    },
+    {
+      "id": "romania-03",
+      "route_id": "romania",
+      "order": 3,
+      "from_node": "gdansk",
+      "to_node": "krakow",
+      "approximate_distance_km": 585,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "innland",
+        "by"
+      ],
+      "learning_hooks": [
+        "Polen",
+        "middelalderbyer"
+      ],
+      "risk_tags": [
+        "avstand"
+      ],
+      "history_prompt": "Hvorfor er gamle handelsbyer gode læringsstopp?",
+      "observation_prompt": "Se etter overgang fra kyst til innland.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti"
+        ]
+      }
+    },
+    {
+      "id": "romania-04",
+      "route_id": "romania",
+      "order": 4,
+      "from_node": "krakow",
+      "to_node": "budapest",
+      "approximate_distance_km": 395,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "hest"
+      ],
+      "surface_types": [
+        "fjellovergang",
+        "by"
+      ],
+      "learning_hooks": [
+        "Karpatene",
+        "Donau"
+      ],
+      "risk_tags": [
+        "vær",
+        "høyde"
+      ],
+      "history_prompt": "Hvordan skaper fjell og elver rutevalg?",
+      "observation_prompt": "Finn Karpatene og Donau på kartet.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "værvindu"
+        ],
+        "hest": [
+          "stall",
+          "vann",
+          "hvile",
+          "lovlig_ridevei",
+          "værvindu"
+        ]
+      }
+    },
+    {
+      "id": "romania-05",
+      "route_id": "romania",
+      "order": 5,
+      "from_node": "budapest",
+      "to_node": "bucharest",
+      "approximate_distance_km": 825,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "elvedal",
+        "innland",
+        "by"
+      ],
+      "learning_hooks": [
+        "Donau",
+        "sentral-Europa"
+      ],
+      "risk_tags": [
+        "avstand",
+        "varme"
+      ],
+      "history_prompt": "Hvorfor kan elvedaler være lange reisekorridorer?",
+      "observation_prompt": "Se hvordan Donau peker østover.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "skygge"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti",
+          "skygge"
+        ]
+      }
+    },
+    {
+      "id": "romania-06",
+      "route_id": "romania",
+      "order": 6,
+      "from_node": "bucharest",
+      "to_node": "constanta",
+      "approximate_distance_km": 225,
+      "distance_confidence": "rough",
+      "allowed_modes": [
+        "sykkel",
+        "til_fots"
+      ],
+      "surface_types": [
+        "innland",
+        "havn",
+        "by"
+      ],
+      "learning_hooks": [
+        "Svartehavet",
+        "havneby"
+      ],
+      "risk_tags": [
+        "varme",
+        "trafikk"
+      ],
+      "history_prompt": "Hva betyr Svartehavet for Constanța?",
+      "observation_prompt": "Finn overgangen fra innland til havn.",
+      "needs_by_mode": {
+        "sykkel": [
+          "sykkelparkering",
+          "vann",
+          "reparasjonspunkt",
+          "trygg sykkelvei",
+          "fergeavklaring",
+          "skygge",
+          "trafikksikker kryssing"
+        ],
+        "til_fots": [
+          "overnatting",
+          "vann",
+          "hvile",
+          "trygg sti",
+          "fergeavklaring",
+          "skygge",
+          "trafikksikker kryssing"
+        ]
+      }
+    }
   ]
 }
