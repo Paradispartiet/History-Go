@@ -212,6 +212,24 @@ async function run() {
     'Day 1 should be auditable as one coherent day in the expected phase order'
   );
 
+  const auditBySlot = new Map(dayOneAudit.map(row => [`${row.phase}:${row.slot}`, row]));
+  const expectedDayOneAnchors = {
+    'morning:morning_brief': 'by_areal_story_linje_001',
+    'forenoon:primary_work_mail': 'by_areal_job_plankart_001',
+    'workday:conflict_or_event': 'by_areal_event_utvalg_001',
+    'workday:analysis_followup': 'by_areal_followup_008',
+    'lunch:informal_people_mail': 'by_areal_people_skolevei_005',
+    'afternoon:family_or_practical': 'by_areal_people_utbygger_001',
+    'evening:consequence_mail': 'by_areal_consequence_008'
+  };
+  for (const [slotKey, expectedId] of Object.entries(expectedDayOneAnchors)) {
+    assert.strictEqual(
+      auditBySlot.get(slotKey)?.id,
+      expectedId,
+      `Day 1 anchor ${slotKey} should stay deterministic and dramaturgically placed`
+    );
+  }
+
   const phaseText = phase => JSON.stringify(runtime.items
     .filter(row => row.phase === phase)
     .map(row => row.event || {})).toLowerCase();
