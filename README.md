@@ -42,6 +42,10 @@ Der finner du følgende hoveddokumenter:
 
 ---
 
+### 🏛 Civication
+- [`CIVICATION_ROLE_PACK_STANDARD.md`](./docs/CIVICATION_ROLE_PACK_STANDARD.md)  
+  → Standard for komplette Civication-rollepakker, med Arealplanlegger / «Linjen på kartet» som første referanserolle
+
 ### 🧪 Utvikling
 - [`README_DEV.md`](./README/README_DEV.md)  
   → Utviklernotater, testmodus og tekniske føringer
