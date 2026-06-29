@@ -58,27 +58,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Ta innspillene fra medvirkningen inn i saksnotatet med konkret vurdering",
-              "reply": "Jeg tar innspillene fra medvirkningen inn i saksnotatet med en konkret vurdering av hver av dem.",
+              "label": "Ta innspillene inn i notatet med en konkret vurdering",
+              "reply": "Jeg tar innspillene inn i notatet med en konkret vurdering av hvert av dem.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "medvirkning_sporbar",
+                "grundighet",
                 "medvirkning"
               ],
-              "feedback": "Notatet blir lengre å skrive, men innspillene kan ikke sies å være oversett."
+              "feedback": "Notatet blir lengre, men ingen innspill kan sies å være oversett."
             },
             {
               "id": "B",
-              "label": "Send en kort, vennlig tilbakemelding og ta innspillene muntlig videre",
-              "reply": "Jeg sender en kort, vennlig tilbakemelding og tar innspillene muntlig videre i prosessen.",
-              "effect": 0,
+              "label": "Svar kort og varmt og ta innspillene muntlig videre",
+              "reply": "Jeg svarer kort og varmt og tar innspillene muntlig videre i prosessen.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "relasjon",
+                "responstid",
                 "medvirkning"
               ],
-              "feedback": "Du svarer raskt, men uten skriftlig spor kan innspillene bli vanskelige å spore i neste runde."
+              "feedback": "Du svarer raskt og holder relasjonen god, men uten skriftlig spor kan innspillet bli vanskelig å hente fram igjen."
             }
           ],
           "next_bias": {
@@ -149,27 +149,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Be om en fullstendig solstudie før høyden låses",
-              "reply": "Jeg ber om en fullstendig solstudie før høyden i planen låses.",
+              "label": "Be om full solstudie før høyden låses",
+              "reply": "Jeg ber om en full solstudie før høyden i planen låses.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "faglig_grunnlag",
+                "bokvalitet",
                 "sol/skygge"
               ],
-              "feedback": "Det tar noen dager ekstra, men høyden bygger på et reelt grunnlag."
+              "feedback": "Det tar noen dager, men høyden bygger på et reelt solgrunnlag."
             },
             {
               "id": "B",
-              "label": "Bruk det forenklede skyggeoverslaget som allerede ligger i saken",
-              "reply": "Jeg bruker det forenklede skyggeoverslaget som allerede ligger i saken.",
-              "effect": 0,
+              "label": "Bruk skyggeoverslaget som ligger i saken og lås høyden nå",
+              "reply": "Jeg bruker skyggeoverslaget som allerede ligger i saken og låser høyden nå.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "forutsigbarhet",
+                "gjennomføring",
                 "sol/skygge"
               ],
-              "feedback": "Saken går videre uten forsinkelse, men overslaget kan vise seg å være for optimistisk for nabolaget."
+              "feedback": "Utbygger kan planlegge videre nå, men overslaget kan vise seg å være for grovt for nabolaget."
             }
           ],
           "next_bias": {
@@ -240,27 +240,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Bestill en ny støymåling på stedet før saken går videre",
+              "label": "Bestill en ny støymåling på stedet",
               "reply": "Jeg bestiller en ny støymåling på stedet før saken går videre.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "faktisk_maaling",
+                "beboerhensyn",
                 "støy"
               ],
-              "feedback": "Saken stopper opp noen dager, men støytallene er da reelle, ikke bare beregnet."
+              "feedback": "Saken stopper noen dager, men støytallene er målt, ikke bare beregnet."
             },
             {
               "id": "B",
-              "label": "Stol på den opprinnelige beregningen og noter avviket som en kommentar",
-              "reply": "Jeg stoler på den opprinnelige beregningen og noterer avviket som en kommentar i saken.",
-              "effect": 0,
+              "label": "Bruk den eksisterende beregningen og noter forutsetningene",
+              "reply": "Jeg bruker den eksisterende beregningen og noterer forutsetningene tydelig.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "framdrift",
+                "standardmetode",
                 "støy"
               ],
-              "feedback": "Saken går videre som planlagt, men beboerens opplevde støyproblem er ikke faktisk undersøkt."
+              "feedback": "Saken holder framdriften med en standard beregning, men beboerens opplevde støy er ikke målt på stedet."
             }
           ],
           "next_bias": {
@@ -331,27 +331,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Krev fordrøyning av overvann i bestemmelsene, selv om det krever ny tegning",
-              "reply": "Jeg krever fordrøyning av overvann i bestemmelsene, selv om det krever en ny tegning av området.",
+              "label": "Krev fordrøyning av overvann i bestemmelsene nå",
+              "reply": "Jeg krever fordrøyning av overvann i bestemmelsene nå, selv om planen må tegnes om.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "overvann_sikret",
+                "robusthet",
                 "overvann"
               ],
-              "feedback": "Planen må justeres, men overvannet får en løsning som tåler et kraftig regnskyll."
+              "feedback": "Planen må tegnes om, men overvannsløsningen står trygt i bestemmelsen uansett hvem som bygger."
             },
             {
               "id": "B",
-              "label": "Godta dagens overvannsløsning og sett et oppfølgingspunkt til driftsfasen",
-              "reply": "Jeg godtar dagens overvannsløsning og setter et oppfølgingspunkt til driftsfasen i stedet.",
-              "effect": 0,
+              "label": "La overvannet løses i driftsfasen med et oppfølgingspunkt",
+              "reply": "Jeg lar overvannet løses i driftsfasen og setter et tydelig oppfølgingspunkt.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "gjennomføring",
+                "driftstillit",
                 "overvann"
               ],
-              "feedback": "Planen går videre uten ny tegning, men overvannet kan bli et problem når regnet kommer."
+              "feedback": "Planen går videre nå og drift håndterer dette i praksis, men løsningen er ikke låst i planen."
             }
           ],
           "next_bias": {
@@ -422,27 +422,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Krev at skoleveien er ferdig før innflytting, ikke bare før igangsetting",
-              "reply": "Jeg krever at skoleveien er ferdig bygget før innflytting, ikke bare før igangsettingstillatelsen.",
+              "label": "Krev skoleveien ferdig før innflytting",
+              "reply": "Jeg krever at skoleveien er ferdig bygget før innflytting.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "sikkerhet_foerst",
+                "streng_rekkefoelge",
                 "rekkefølgekrav"
               ],
-              "feedback": "Kravet blir strengere for utbygger, men ingen flytter inn før skoleveien faktisk er trygg."
+              "feedback": "Kravet blir strengt for utbygger, men ingen flytter inn før skoleveien er trygg."
             },
             {
               "id": "B",
-              "label": "Godta at skoleveien kan komme kort tid etter innflytting med en garantifrist",
-              "reply": "Jeg godtar at skoleveien kan komme kort tid etter innflytting, mot en garantifrist i bestemmelsen.",
-              "effect": 0,
+              "label": "Godta ferdig før ferdigattest, med en garantifrist",
+              "reply": "Jeg godtar at skoleveien er ferdig før ferdigattest, mot en garantifrist i bestemmelsen.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "gjennomfoerbarhet",
+                "sikret_med_frist",
                 "rekkefølgekrav"
               ],
-              "feedback": "Utbygger får mer fleksibilitet i byggefasen, men de første barna kan rekke å gå skoleveien før den er trygg."
+              "feedback": "Utbygger får en gjennomførbar rekkefølge og skoleveien er sikret med frist, men de første kan rekke å flytte inn rett før den står ferdig."
             }
           ],
           "next_bias": {
@@ -513,27 +513,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Be utbygger sende en formell forespørsel som kan besvares skriftlig",
-              "reply": "Jeg ber utbygger sende en formell forespørsel, slik at jeg kan svare skriftlig og spore svaret i saken.",
+              "label": "Be om en formell skriftlig forespørsel og svar skriftlig",
+              "reply": "Jeg ber utbygger om en formell skriftlig forespørsel og svarer skriftlig.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "skriftlig_spor",
+                "ryddig_prosess",
                 "utbyggerdialog"
               ],
-              "feedback": "Utbygger må vente på et formelt svar, men det svaret tåler å bli lest av andre senere."
+              "feedback": "Utbygger må vente på et formelt svar, men svaret tåler å bli lest av andre senere."
             },
             {
               "id": "B",
-              "label": "Gi utbygger et muntlig signal nå, og følg opp skriftlig senere",
-              "reply": "Jeg gir utbygger et muntlig signal nå, og følger opp skriftlig senere når jeg har tid.",
-              "effect": 0,
+              "label": "Gi et muntlig signal nå og følg opp skriftlig",
+              "reply": "Jeg gir utbygger et muntlig signal nå og følger opp skriftlig etterpå.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "forutsigbarhet",
+                "arbeidsrelasjon",
                 "utbyggerdialog"
               ],
-              "feedback": "Utbygger kan planlegge videre med en gang, men det muntlige signalet kan bli vanskelig å huske ordrett senere."
+              "feedback": "Utbygger kan planlegge videre med en gang og du bygger arbeidsrelasjon, men signalet må følges opp skriftlig for å stå seg."
             }
           ],
           "next_bias": {
@@ -604,27 +604,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Sett skoleveien som eget punkt i saksframlegget med konkret tiltak",
-              "reply": "Jeg setter skoleveien som eget punkt i saksframlegget, med et konkret tiltak utvalget kan vedta.",
+              "label": "Løft skoleveien som eget punkt utvalget kan vedta",
+              "reply": "Jeg løfter skoleveien som et eget punkt utvalget kan vedta.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "skolevei_synlig",
+                "politisk_forankring",
                 "skolevei"
               ],
-              "feedback": "Saken blir tyngre å lese, men skoleveien kan ikke forsvinne i den videre behandlingen."
+              "feedback": "Saken blir tyngre å lese, men skoleveien kan ikke falle ut av behandlingen."
             },
             {
               "id": "B",
-              "label": "Nevn skoleveien kort i sammendraget og la den følge med i detaljeringen",
-              "reply": "Jeg nevner skoleveien kort i sammendraget og lar den følge med i detaljeringen senere.",
-              "effect": 0,
+              "label": "La skoleveien følge med i detaljeringen",
+              "reply": "Jeg lar skoleveien følge med i detaljeringen så saken holder seg lett å vedta.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "lesbar_sak",
+                "framdrift",
                 "skolevei"
               ],
-              "feedback": "Saken går raskere gjennom utvalget, men skoleveien kan bli nedprioritert når detaljene skal avklares."
+              "feedback": "Saken er lettere å vedta og rekker fram, men skoleveien hviler på at detaljfasen prioriterer den."
             }
           ],
           "next_bias": {
@@ -695,27 +695,27 @@
           "choices": [
             {
               "id": "A",
-              "label": "Skriv risikoen i klartekst, men korter ned det tekniske rundt den",
-              "reply": "Jeg skriver risikoen i klartekst, men korter ned det tekniske rundt den, slik at utvalget forstår hva som står på spill.",
+              "label": "Skriv risikoen i klartekst og trim det tekniske",
+              "reply": "Jeg skriver risikoen i klartekst og trimmer det tekniske rundt den.",
               "effect": 1,
               "tags": [
-                "precision",
-                "traceability",
+                "politisk_klarhet",
+                "aapenhet",
                 "politisk_lesbarhet"
               ],
-              "feedback": "Teksten blir mer direkte og litt ubehagelig å lese, men ingen kan si de ikke ble advart."
+              "feedback": "Teksten blir direkte og litt ubehagelig, men utvalget vet hva som står på spill."
             },
             {
               "id": "B",
-              "label": "Pakk risikoen inn i et nøytralt fagspråk som ikke vekker debatt",
-              "reply": "Jeg pakker risikoen inn i et nøytralt fagspråk som ikke vekker debatt i utvalget.",
-              "effect": 0,
+              "label": "Hold et nøytralt fagspråk som lar saken behandles rolig",
+              "reply": "Jeg holder et nøytralt fagspråk som lar saken behandles rolig.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk",
+                "prosessro",
+                "faglig_noeytralitet",
                 "politisk_lesbarhet"
               ],
-              "feedback": "Saken glir lettere gjennom møtet, men den politiske forståelsen av risikoen blir svakere."
+              "feedback": "Saken behandles roligere, men den politiske forståelsen av risikoen blir svakere."
             }
           ],
           "next_bias": {

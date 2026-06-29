@@ -50,24 +50,24 @@
             {
               "id": "A",
               "label": "Skriv et kort, men fullstendig avsnitt om alle tre konfliktene",
-              "reply": "Jeg skriver et kort, men fullstendig avsnitt som tar opp grøntdrag, skolevei og juridisk risiko.",
+              "reply": "Jeg skriver et kort, men fullstendig avsnitt om grøntdrag, skolevei og juridisk risiko.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "fullstendig",
+                "helhetsbilde"
               ],
-              "feedback": "Avsnittet blir tettere å lese, men utvalget får hele bildet før fristen."
+              "feedback": "Avsnittet blir tett, men utvalget får hele bildet før fristen."
             },
             {
               "id": "B",
-              "label": "Prioriter den viktigste konflikten og utelat de to andre",
-              "reply": "Jeg prioriterer den viktigste konflikten i saksframlegget og utelater de to andre denne gangen.",
-              "effect": 0,
+              "label": "Prioriter hovedkonflikten så saken rekker fristen",
+              "reply": "Jeg prioriterer hovedkonflikten så saken rekker fristen til utvalget.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "frist",
+                "fokusert"
               ],
-              "feedback": "Du leverer i tide, men de utelatte punktene kan dukke opp som overraskelser i møtet."
+              "feedback": "Du rekker fristen med en tydelig sak, men de to andre punktene må følges opp i neste runde."
             }
           ],
           "next_bias": {
@@ -123,25 +123,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Behold de faglige forbeholdene, men forklar dem med enkle eksempler",
-              "reply": "Jeg behold de faglige forbeholdene i teksten, men forklarer dem med enkle eksempler.",
+              "label": "Behold forbeholdene, men forklar dem med enkle eksempler",
+              "reply": "Jeg beholder forbeholdene, men forklarer dem med enkle eksempler.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "faglig_riktig",
+                "forklart"
               ],
-              "feedback": "Teksten blir litt lengre, men beboerne får et riktig bilde av hva planen egentlig sier."
+              "feedback": "Teksten blir lengre, men beboerne får et riktig bilde av planen."
             },
             {
               "id": "B",
-              "label": "Stryk forbeholdene og gjør teksten kort og lettlest",
-              "reply": "Jeg stryker forbeholdene og gjør teksten kort og lettlest før møtet.",
-              "effect": 0,
+              "label": "Gjør teksten kort og lettlest til møtet",
+              "reply": "Jeg gjør teksten kort og lettlest til beboermøtet.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "tilgjengelig",
+                "medvirkningsvennlig"
               ],
-              "feedback": "Teksten blir lett å lese, men beboerne kan oppleve at planen sier noe annet i de formelle dokumentene."
+              "feedback": "Teksten blir lett å lese og invitere til, men forbeholdene må gjentas så de ikke forsvinner."
             }
           ],
           "next_bias": {
@@ -206,25 +206,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "La den presise formuleringen stå, selv om den synliggjør klagerisikoen",
-              "reply": "Jeg lar den presise formuleringen stå, selv om den synliggjør klagerisikoen i saken.",
+              "label": "La den presise formuleringen stå",
+              "reply": "Jeg lar den presise formuleringen stå, selv om den synliggjør klagerisikoen.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "aapenhet",
+                "synlig_risiko"
               ],
-              "feedback": "Risikoen blir synlig for alle som leser saken, men ingen kan si de ikke visste om den."
+              "feedback": "Risikoen blir synlig for alle som leser saken, men ingen kan si de ikke visste."
             },
             {
               "id": "B",
-              "label": "Tone ned formuleringen for å holde saksbehandlingen rolig",
-              "reply": "Jeg toner ned formuleringen for å holde saksbehandlingen rolig fram til vedtak.",
-              "effect": 0,
+              "label": "Tone ned formuleringen for å holde behandlingen rolig",
+              "reply": "Jeg toner ned formuleringen for å holde behandlingen rolig fram til vedtak.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "prosessro",
+                "forholdsmessighet"
               ],
-              "feedback": "Prosessen går lettere nå, men risikoen er fortsatt der når noen leser saken nøye."
+              "feedback": "Behandlingen holdes rolig, men risikoen ligger mindre synlig for den som leser fort."
             }
           ],
           "next_bias": {

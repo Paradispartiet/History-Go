@@ -49,25 +49,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Be utbygger sende en formell forespørsel som kan besvares skriftlig",
-              "reply": "Jeg ber utbygger sende en formell forespørsel, slik at jeg kan svare skriftlig og spore svaret i saken.",
+              "label": "Be om en formell skriftlig forespørsel og svar skriftlig",
+              "reply": "Jeg ber utbygger om en formell skriftlig forespørsel og svarer skriftlig.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "skriftlig_spor",
+                "ryddig_prosess"
               ],
-              "feedback": "Utbygger må vente på et formelt svar, men det svaret tåler å bli lest av andre senere."
+              "feedback": "Utbygger må vente på et formelt svar, men svaret tåler å bli lest av andre senere."
             },
             {
               "id": "B",
-              "label": "Gi utbygger et muntlig signal nå, og følg opp skriftlig senere",
-              "reply": "Jeg gir utbygger et muntlig signal nå, og følger opp skriftlig senere når jeg har tid.",
-              "effect": 0,
+              "label": "Gi et muntlig signal nå og følg opp skriftlig",
+              "reply": "Jeg gir utbygger et muntlig signal nå og følger opp skriftlig etterpå.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "forutsigbarhet",
+                "arbeidsrelasjon"
               ],
-              "feedback": "Utbygger kan planlegge videre med en gang, men det muntlige signalet kan bli vanskelig å huske ordrett senere."
+              "feedback": "Utbygger kan planlegge videre med en gang og du bygger arbeidsrelasjon, men signalet må følges opp skriftlig for å stå seg."
             }
           ],
           "next_bias": {
@@ -197,25 +197,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Skriv risikoen i klartekst, men korter ned det tekniske rundt den",
-              "reply": "Jeg skriver risikoen i klartekst, men korter ned det tekniske rundt den, slik at utvalget forstår hva som står på spill.",
+              "label": "Skriv risikoen i klartekst og trim det tekniske",
+              "reply": "Jeg skriver risikoen i klartekst og trimmer det tekniske rundt den.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "politisk_klarhet",
+                "aapenhet"
               ],
-              "feedback": "Teksten blir mer direkte og litt ubehagelig å lese, men ingen kan si de ikke ble advart."
+              "feedback": "Teksten blir direkte og litt ubehagelig, men utvalget vet hva som står på spill."
             },
             {
               "id": "B",
-              "label": "Pakk risikoen inn i et nøytralt fagspråk som ikke vekker debatt",
-              "reply": "Jeg pakker risikoen inn i et nøytralt fagspråk som ikke vekker debatt i utvalget.",
-              "effect": 0,
+              "label": "Hold et nøytralt fagspråk som lar saken behandles rolig",
+              "reply": "Jeg holder et nøytralt fagspråk som lar saken behandles rolig.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "prosessro",
+                "faglig_noeytralitet"
               ],
-              "feedback": "Saken glir lettere gjennom møtet, men den politiske forståelsen av risikoen blir svakere."
+              "feedback": "Saken behandles roligere, men den politiske forståelsen av risikoen blir svakere."
             }
           ],
           "next_bias": {

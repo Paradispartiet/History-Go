@@ -49,25 +49,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Skriv ned hvilken by-forståelse linjeflyttingen egentlig bygger på",
-              "reply": "Jeg skriver ned hvilken by-forståelse linjeflyttingen egentlig bygger på, selv om det ikke er et formelt krav.",
+              "label": "Skriv ned hvilken by-forståelse linjeflyttingen bygger på",
+              "reply": "Jeg skriver ned hvilken by-forståelse linjeflyttingen egentlig bygger på.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "rolleforstaaelse",
+                "bevisst_valg"
               ],
-              "feedback": "Du bruker tid på noe ingen ba om, men du vet nå hvorfor du tok valget."
+              "feedback": "Du bruker tid på noe ingen ba om, men du vet hvorfor du tok valget."
             },
             {
               "id": "B",
-              "label": "La linjen stå og gå videre uten å sette ord på hvorfor",
-              "reply": "Jeg lar linjen stå og går videre i saken uten å sette ord på hvorfor.",
-              "effect": 0,
+              "label": "La linjen stå og hold tempoet i saken",
+              "reply": "Jeg lar linjen stå og holder tempoet i saken.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "framdrift",
+                "erfaringsbasert"
               ],
-              "feedback": "Du sparer tid, men neste gang en linje skal flyttes, har du ingen begrunnelse å bygge på."
+              "feedback": "Du holder tempoet, men neste gang en linje skal flyttes, har du ikke begrunnelsen nedskrevet."
             }
           ],
           "next_bias": {
@@ -123,25 +123,25 @@
           "choices": [
             {
               "id": "A",
-              "label": "Skriv ned hva du faktisk ser annerledes i egen bydel nå",
-              "reply": "Jeg skriver ned hva jeg faktisk ser annerledes i egen bydel nå, etter dagens saker.",
+              "label": "Skriv ned hva du ser annerledes i egen bydel nå",
+              "reply": "Jeg skriver ned hva jeg ser annerledes i egen bydel nå, etter dagens saker.",
               "effect": 1,
               "tags": [
-                "precision",
-                "integrity"
+                "refleksjon",
+                "laering"
               ],
               "feedback": "Det tar litt av kvelden, men du tar med deg en klarere forståelse til neste arbeidsdag."
             },
             {
               "id": "B",
-              "label": "Legg jobben bort for kvelden og tenk ikke mer på plankart",
-              "reply": "Jeg legger jobben bort for kvelden og tenker ikke mer på plankart i dag.",
-              "effect": 0,
+              "label": "Legg jobben bort og skill arbeid fra fritid",
+              "reply": "Jeg legger jobben bort for kvelden og skiller arbeid fra fritid.",
+              "effect": 1,
               "tags": [
-                "tempo",
-                "risk"
+                "profesjonell_distanse",
+                "hvile"
               ],
-              "feedback": "Du får hvile kvelden, men innsikten fra dagen kan være glemt i morgen."
+              "feedback": "Du verner kvelden og den profesjonelle distansen, men innsikten fra dagen kan være borte i morgen."
             }
           ],
           "next_bias": {
