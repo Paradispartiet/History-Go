@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadCaravanEventLog", () => loadScriptOnce("js/caravan-event-log.js"));
     await safeRun("loadCaravanConsequences", () => loadScriptOnce("js/caravan-consequences.js"));
     await safeRun("loadCaravanDiary", () => loadScriptOnce("js/caravan-diary.js"));
+    await safeRun("loadCaravanBadges", () => loadScriptOnce("js/caravan-badges.js"));
     await safeRun("loadCaravanPanel", () => loadScriptOnce("js/ui/caravan-panel.js"));
 
     await safeRun("loadPlaceCardQuizcardsPatch", () => loadScriptOnce("js/ui/place-card-quizcards-patch.js"));

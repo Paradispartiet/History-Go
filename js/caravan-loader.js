@@ -8,11 +8,14 @@
     routes: "karavaner/karavanen_europa_routes.json",
     stages: "karavaner/karavanen_europa_stages.json",
     nodes: "karavaner/karavanen_europa_nodes.json",
-    events: "karavaner/karavanen_europa_events.json"
+    events: "karavaner/karavanen_europa_events.json",
+    badges: "karavaner/karavanen_europa_badges.json"
   };
   const ALLOWED_MODES = new Set(["til_fots", "hest", "sykkel"]);
   const ALLOWED_EVENT_TYPES = new Set(["weather", "rest", "water", "food", "stable", "ferry", "border", "terrain", "traffic", "shelter", "repair", "animal_care", "document_check"]);
   const ALLOWED_SEVERITIES = new Set(["info", "low", "medium", "high"]);
+  const ALLOWED_BADGE_CATEGORIES = new Set(["progress", "mode", "route", "event", "consequence", "diary"]);
+  const ALLOWED_BADGE_CRITERIA_TYPES = new Set(["completed_stage_count", "started_stage_count", "route_started", "event_choice_logged", "event_type_choice_logged", "consequence_applied_count", "diary_entry_count"]);
   const RESOURCE_KEYS_BY_MODE = {
     til_fots: new Set(["energi", "vann", "hvile", "utstyr"]),
     hest: new Set(["energi", "vann", "hvile", "hestehelse", "utstyr"]),
@@ -25,6 +28,7 @@
       stages: [],
       nodes: [],
       events: [],
+      badges: [],
       indexes: {
         routesById: Object.create(null),
         nodesById: Object.create(null),
@@ -33,7 +37,10 @@
         stagesByToNode: Object.create(null),
         eventsByStage: Object.create(null),
         eventsByRoute: Object.create(null),
-        eventsByMode: Object.create(null)
+        eventsByMode: Object.create(null),
+        eventsById: Object.create(null),
+        badgesById: Object.create(null),
+        badgesByCategory: Object.create(null)
       },
       warnings: Array.isArray(warnings) ? warnings : []
     };
@@ -102,12 +109,13 @@
     }
   }
 
-  function validateAndIndex(routes, stages, nodes, events) {
+  function validateAndIndex(routes, stages, nodes, events, badges) {
     const next = emptyRuntime(runtime.warnings);
     next.routes = routes;
     next.stages = stages;
     next.nodes = nodes;
     next.events = events;
+    next.badges = badges;
 
     for (const route of routes) {
       const id = String(route?.id || "").trim();
@@ -172,6 +180,21 @@
       for (const choice of Array.isArray(event?.choices) ? event.choices : []) validateChoiceEffects(id, choice);
       pushIndex(next.indexes.eventsByStage, stageId, event);
       pushIndex(next.indexes.eventsByRoute, routeId, event);
+      if (id) next.indexes.eventsById[id] = event;
+    }
+
+    for (const badge of badges) {
+      const id = String(badge?.id || "").trim();
+      const title = String(badge?.title || "").trim();
+      const category = String(badge?.category || "").trim();
+      const criteriaType = String(badge?.criteria_type || "").trim();
+      if (!id) { warn("badge.id mangler", badge); continue; }
+      if (!title) warn("badge.title mangler", { badge_id: id });
+      if (!ALLOWED_BADGE_CATEGORIES.has(category)) warn("badge.category er ikke tillatt", { badge_id: id, category });
+      if (!ALLOWED_BADGE_CRITERIA_TYPES.has(criteriaType)) warn("badge.criteria_type er ikke tillatt", { badge_id: id, criteria_type: criteriaType });
+      if (badge?.visible !== undefined && typeof badge.visible !== "boolean") warn("badge.visible må være boolean", { badge_id: id, visible: badge.visible });
+      next.indexes.badgesById[id] = badge;
+      pushIndex(next.indexes.badgesByCategory, category, badge);
     }
 
     return next;
@@ -182,24 +205,27 @@
     runtime.stages = next.stages;
     runtime.nodes = next.nodes;
     runtime.events = next.events;
+    runtime.badges = next.badges;
     runtime.indexes = next.indexes;
     runtime.warnings = next.warnings;
     return runtime;
   }
 
   async function load(opts = {}) {
-    const [routesData, stagesData, nodesData, eventsData] = await Promise.all([
+    const [routesData, stagesData, nodesData, eventsData, badgesData] = await Promise.all([
       fetchData(FILES.routes, opts),
       fetchData(FILES.stages, opts),
       fetchData(FILES.nodes, opts),
-      fetchData(FILES.events, opts)
+      fetchData(FILES.events, opts),
+      fetchData(FILES.badges, opts)
     ]);
 
     return replaceRuntime(validateAndIndex(
       asArray(routesData, "routes"),
       asArray(stagesData, "stages"),
       asArray(nodesData, "nodes"),
-      asArray(eventsData, "events")
+      asArray(eventsData, "events"),
+      asArray(badgesData, "badges")
     ));
   }
 
@@ -223,6 +249,7 @@
         stages: runtime.stages.length,
         nodes: runtime.nodes.length,
         events: runtime.events.length,
+        badges: runtime.badges.length,
         warnings: runtime.warnings.length
       };
     }

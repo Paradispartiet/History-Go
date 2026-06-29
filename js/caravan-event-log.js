@@ -91,6 +91,7 @@
     state.entries = state.entries.filter((item) => entryId(item.route_id, item.stage_id, item.event_id, item.travel_mode) !== key);
     state.entries.push(entry);
     writeState(state);
+    try { window.HG_CARAVAN_BADGES?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "automatisk evaluering feilet", { error: error?.message || error }); }
     window.dispatchEvent?.(new CustomEvent("hg:caravanEventChoiceUpdated", { detail: clone(entry) }));
     return clone(entry);
   }
@@ -101,6 +102,7 @@
     const state = readState();
     state.entries = state.entries.filter((entry) => !(entry.route_id === rid && entry.stage_id === sid && entry.event_id === eid && entry.travel_mode === m));
     writeState(state);
+    try { window.HG_CARAVAN_BADGES?.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "automatisk evaluering feilet", { error: error?.message || error }); }
     window.dispatchEvent?.(new CustomEvent("hg:caravanEventChoiceUpdated", { detail: { route_id: rid, stage_id: sid, event_id: eid, travel_mode: m, choice_id: null } }));
     return null;
   }
