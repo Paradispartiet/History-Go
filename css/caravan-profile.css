@@ -1,0 +1,28 @@
+.caravan-profile-section { overflow: hidden; }
+.caravan-profile-overview,
+.caravan-profile-card,
+.caravan-profile-resource {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,.055);
+  padding: 12px;
+}
+.caravan-profile-overview dl { display:grid; gap:8px; margin:0; }
+.caravan-profile-overview dt { color: rgba(255,255,255,.62); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+.caravan-profile-overview dd { margin:0; color: rgba(255,255,255,.9); }
+.caravan-profile-block { margin-top: 16px; }
+.caravan-profile-block h3,
+.caravan-profile-card h3,
+.caravan-profile-resource h4 { margin: 0 0 8px; }
+.caravan-profile-card { margin: 0 0 10px; }
+.caravan-profile-card p,
+.caravan-profile-muted { color: rgba(255,255,255,.68); margin: 0 0 8px; }
+.caravan-profile-card ul,
+.caravan-profile-badges { margin: 0; padding-left: 18px; }
+.caravan-profile-diary { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+.caravan-profile-diary li { display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.caravan-profile-diary time { flex:0 0 auto; color:rgba(255,255,255,.55); font-size:12px; }
+.caravan-profile-resource { margin: 0 0 8px; }
+.caravan-profile-resource div { display:flex; flex-wrap:wrap; gap:6px; }
+.caravan-profile-resource span { border-radius:999px; background:rgba(255,255,255,.08); padding:5px 8px; font-size:13px; }
+@media (max-width: 720px) { .caravan-profile-diary li { display:grid; } }
