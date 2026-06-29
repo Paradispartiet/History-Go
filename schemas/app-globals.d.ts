@@ -78,6 +78,9 @@ declare global {
     HG_TEST_MODE?: any;
     HGTestMode?: any;
     HG_TestMode?: any;
+    CIVICATION_TEST_MODE?: any;
+    CIVICATION_DEBUG?: any;
+    CiviTestMode?: any;
     HG_CURRENT_USER_ID?: string;
     openSpotMatchList?: (...args: any[]) => any;
     CivicationCareerOutcomeRuntime?: any;
@@ -100,6 +103,8 @@ declare global {
     CivicationLifeMailRuntime?: any;
     CivicationMap?: any;
     CivicationMiniSectionsUI?: any;
+    CivicationNextActionSelector?: any;
+    CivicationNextActionUI?: any;
     CivicationNpcCharacterThreads?: any;
     CivicationNpcReactions?: any;
     CivicationOnboardingUI?: any;

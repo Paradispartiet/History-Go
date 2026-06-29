@@ -1223,6 +1223,17 @@ function buildPhaseBundleItemsHtml(items, options = {}) {
   }).join("")}</div>`;
 }
 
+// WorkdayPanel viser bare en kompakt fase-HUD: fasechips, antall åpne og neste sak. Selve
+// svaralternativene eies av NextAction (CivicationNextActionUI) — derfor rendres ALDRI
+// bundlekort med data-civi-bundle-choice i normal runtime. Den fulle bunkelisten kan vises
+// bak en debug-flagg for feilsøking, men er skjult som standard.
+function isCiviPhaseDebugMode() {
+  return window.CIVICATION_TEST_MODE === true
+    || window.TEST_MODE === true
+    || window.CIVICATION_DEBUG === true
+    || window.CiviTestMode === true;
+}
+
 function buildDayPhaseSectionHtml(dayPhase) {
   if (!dayPhase || !dayPhase.hasBundle) return "";
 
@@ -1236,28 +1247,31 @@ function buildDayPhaseSectionHtml(dayPhase) {
     })
     .join("");
 
-  const current = (Array.isArray(dayPhase.phases) ? dayPhase.phases : []).find((p) => p.id === dayPhase.phase) || null;
-  const openItems = Array.isArray(dayPhase.bundleItems)
-    ? dayPhase.bundleItems.filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
-    : (current && Array.isArray(current.items) ? current.items.filter((it) => it.status !== "answered") : []);
-
-  const openList = buildPhaseBundleItemsHtml(openItems, {
-    prefix: "civi-workday",
-    wrapperClass: "civi-workday-bundle-list",
-    cardClass: "civi-workday-bundle-card",
-    subClass: "civi-workday-sub",
-    choicesClass: "civi-workday-bundle-choices",
-    showDoneWhenEmpty: true
-  });
+  // The bundle list (with answer choices) is debug-only. In normal runtime the phase HUD
+  // never contains data-civi-bundle-choice — answering happens only on the NextAction surface.
+  let openList = "";
+  if (isCiviPhaseDebugMode()) {
+    const current = (Array.isArray(dayPhase.phases) ? dayPhase.phases : []).find((p) => p.id === dayPhase.phase) || null;
+    const openItems = Array.isArray(dayPhase.bundleItems)
+      ? dayPhase.bundleItems.filter((it) => !["answered", "resolved"].includes(String(it.status || "").toLowerCase()))
+      : (current && Array.isArray(current.items) ? current.items.filter((it) => it.status !== "answered") : []);
+    openList = buildPhaseBundleItemsHtml(openItems, {
+      prefix: "civi-workday",
+      wrapperClass: "civi-workday-bundle-list",
+      cardClass: "civi-workday-bundle-card",
+      subClass: "civi-workday-sub",
+      choicesClass: "civi-workday-bundle-choices",
+      showDoneWhenEmpty: false
+    });
+  }
 
   const action = dayPhase.nextAction || {};
   const remainingText = Number(dayPhase.queuedItemsInPhase || 0) > 0 ? `<div class="civi-workday-sub"><strong>${dayPhase.phaseLabel}bolk</strong> · ${dayPhase.queuedItemsInPhase} hendelser gjenstår</div>` : "";
-  const openBundleLabel = Number(dayPhase.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken";
-  const actionHtml = action.kind === "open_bundle"
-    ? `<button class="civi-btn" type="button" data-civi-day-phase-open-bundle>${openBundleLabel}</button>`
-    : action.kind === "continue_bundle"
-      ? `<span class="civi-workday-sub">Fortsett bolken: svar direkte i kortene under.</span>`
-      : action.kind === "advance_phase"
+  // Both "open the bundle" and "continue the bundle" now route to the NextAction surface,
+  // so the workday panel never renders its own answer choices.
+  const actionHtml = (action.kind === "open_bundle" || action.kind === "continue_bundle")
+    ? `<button class="civi-btn" type="button" data-civi-day-phase-next-action>Gå til neste handling</button>`
+    : action.kind === "advance_phase"
       ? `<button class="civi-btn" type="button" data-civi-day-phase-advance>Gå til neste fase</button>`
       : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
   const suggestionsHtml = Array.isArray(dayPhase.eveningSuggestions) && dayPhase.eveningSuggestions.length
@@ -1502,6 +1516,13 @@ if (typeof host.addEventListener === "function" && !host.__civiWorkdayBundleDele
   host.addEventListener("click", async function (event) {
     const btn = event.target?.closest?.("button");
     if (!btn || !host.contains(btn) || btn.disabled) return;
+    if (btn.matches("[data-civi-day-phase-next-action]")) {
+      event.preventDefault();
+      if (typeof window.CivicationNextActionUI?.open === "function") {
+        window.CivicationNextActionUI.open();
+      }
+      return;
+    }
     if (btn.matches("[data-civi-day-phase-open-bundle]")) {
       event.preventDefault();
       await window.CivicationDailyMailBuilder?.enqueuePhaseBundle?.(window.HG_CiviEngine || null, { ignorePending: true, limit: 5 });

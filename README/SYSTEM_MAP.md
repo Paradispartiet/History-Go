@@ -323,9 +323,16 @@ History Go er delt i tydelige lag:
   - **Fasevisning (native):** `computeWorkdayModel()` inkluderer `dayPhase` (aktiv fase +
     dagsbunke per fase), lest read-only fra `CivicationDayProgression.inspect()` +
     `CivicationDailyMailBuilder.inspect()` — kaller ikke `onAppOpen`/`enqueue`.
-    `buildDayPhaseSectionHtml()` tegner fase-HUD-en nativt øverst i panelet. Panelet **leser**
-    fasen; det starter ingen arbeidsdag (faseavansering eies av
-    `CivicationDayPhaseUI`/`CivicationDayProgression`).
+    `buildDayPhaseSectionHtml()` tegner en **kompakt fase-HUD** nativt øverst i panelet
+    (fasechips, antall åpne, neste sak). Den rendrer **ikke** svaralternativer i normal runtime —
+    `data-civi-bundle-choice` finnes kun bak debug-flagg; «åpne/fortsett bolken» ruter i stedet til
+    NextAction (`CivicationNextActionUI.open()`). Panelet **leser** fasen; det starter ingen
+    arbeidsdag (faseavansering eies av `CivicationDayPhaseUI`/`CivicationDayProgression`).
+  - **NextAction (eneste aktive svarflate):** `CivicationNextActionSelector.getCurrent()` velger
+    nøyaktig én aktiv handling (primært `CivicationDayProgression.inspect()` → `pendingItem`/
+    `nextQueuedItem`, innboks-handling kun som fallback). `CivicationNextActionUI` er den eneste
+    flaten som rendrer svaralternativer. Dagens fase, innboksen og WorkdayPanel ruter dit i stedet
+    for å vise egne valg for samme mail.
   - **PR G:** `renderWorkdayPanel()` rendrer nå hele panelet nativt — fase-HUD **+** ukesrapport,
     kontakter og kunnskaps-task (via de globale `buildWeeklyReportHtml`/`buildContactsHtml`/
     `buildKnowledgeTaskHtml`). `dayPatches.patchUI`-monkey-patchen er **fjernet**; CivicationUI
@@ -340,6 +347,7 @@ History Go er delt i tydelige lag:
 - js/Civication/systems/civicationDailyMailBuilder.js
 - js/Civication/systems/day/dayCalendarBridge.js
 - js/Civication/systems/day/dayProgressionController.js (`CivicationDayProgression`)
+- js/Civication/systems/civicationNextActionSelector.js (`CivicationNextActionSelector`)
 - js/Civication/systems/day/dayHistoryGoContexts.js
 - js/Civication/systems/day/dayCarryover.js
 - js/Civication/systems/day/dayWeeklyReview.js
@@ -348,6 +356,7 @@ History Go er delt i tydelige lag:
 - js/Civication/systems/day/dayEvents.js
 - js/Civication/systems/day/dayPatches.js
 - js/Civication/ui/CivicationDayPhaseUI.js
+- js/Civication/ui/CivicationNextActionUI.js (`CivicationNextActionUI`)
 
 **Arbeidsdag / dagsfaser — eierskap (én dagrytme)**
 - `data/Civication/mailDayProgram.json` + `CivicationDailyMailBuilder` er den **autoritative

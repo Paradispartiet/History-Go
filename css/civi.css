@@ -661,6 +661,47 @@ body.civi-mapmode .civi-panels{
   gap:14px;
 }
 
+/* NextAction — den eneste aktive svarflaten (CivicationNextActionUI). */
+.civi-next-action-card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.civi-next-action-subject{
+  margin:0;
+  font-size:18px;
+}
+.civi-next-action-meta{
+  font-size:13px;
+}
+.civi-next-action-body p{
+  margin:0 0 6px;
+}
+.civi-next-action-sub{
+  margin:0;
+  font-size:13px;
+}
+.civi-next-action-choices{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:4px;
+}
+.civi-next-action-empty{
+  margin:0;
+}
+
+/* Innboks: aktiv fasehandling håndteres i NextAction, ikke inline. */
+.civi-inbox-card-next-action{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.civi-inbox-handled-note{
+  font-size:13px;
+}
+
 .civi-task-meta{
   display:grid;
   grid-template-columns:repeat(2,1fr);

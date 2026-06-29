@@ -176,6 +176,42 @@
       .filter(isActionableInboxItem);
   }
 
+  // Ids that are active answerable actions in the current day phase (or the single active
+  // inbox fallback). These are owned by the NextAction surface, so the inbox must NOT render
+  // their choices — it links to NextAction instead. Read from the same authoritative sources
+  // (CivicationDayProgression + CivicationNextActionSelector) so nothing diverges.
+  function getNextActionOwnedIds() {
+    const ids = new Set();
+
+    const current = window.CivicationNextActionSelector?.getCurrent?.();
+    if (current && current.id) ids.add(String(current.id).trim());
+
+    const inspection = window.CivicationDayProgression?.inspect?.();
+    const bundle = inspection?.phaseBundle || null;
+    if (bundle) {
+      [bundle.pendingItems, bundle.queuedItems].forEach(function (pool) {
+        if (!Array.isArray(pool)) return;
+        pool.forEach(function (row) {
+          const id = String(row?.id || "").trim();
+          const hasChoices = Array.isArray(row?.choices) ? row.choices.length > 0 : !!row?.hasChoices;
+          const taskGate = String(row?.mail_type || row?.type || row?.slot || "").toLowerCase().includes("task_gate");
+          if (id && (hasChoices || taskGate)) ids.add(id);
+        });
+      });
+    }
+
+    return ids;
+  }
+
+  function buildNextActionLinkHtml() {
+    return `
+      <div class="civi-inbox-card-actions civi-inbox-card-next-action">
+        <span class="civi-inbox-handled-note muted">Håndteres i Neste handling</span>
+        <button class="civi-btn secondary" type="button" data-civi-open-next-action="1">Gå til Neste handling</button>
+      </div>
+    `;
+  }
+
   function pendingMilestones() {
     const split = splitInbox();
     return (split.milestones || []).filter(isOpenItem);
@@ -217,6 +253,10 @@
     if (btn) btn.textContent = model.action;
 
     const handler = function () {
+      if (model.openNextAction && typeof window.CivicationNextActionUI?.open === "function") {
+        window.CivicationNextActionUI.open();
+        return;
+      }
       if (model.openInbox) openInboxPopup();
     };
 
@@ -245,16 +285,19 @@
       };
     }
 
-    const actionable = pendingActionItems();
-    if (actionable.length) {
-      const first = actionable[0];
+    // The authoritative "next action" comes from CivicationNextActionSelector, not from
+    // pendingActionItems() — so the top card, Dagens fase and NextAction never point at
+    // different mails. The button opens the NextAction surface (the single answer surface).
+    const current = window.CivicationNextActionSelector?.getCurrent?.();
+    if (current && current.id) {
+      const metaKind = String(current.mail_type || current.phaseLabel || "Melding").trim();
       return {
         mode: "urgent",
         title: "Neste handling: svar på melding",
-        summary: `${titleOf(first)} · ${kindOf(first)}`,
-        chip: `${actionable.length} krever svar`,
+        summary: metaKind ? `${current.subject} · ${metaKind}` : current.subject,
+        chip: "Krever svar",
         action: "Svar nå",
-        openInbox: true
+        openNextAction: true
       };
     }
 
@@ -308,13 +351,19 @@
     `;
   }
 
-  function renderChoiceButtons(item) {
+  function renderChoiceButtons(item, ownedIds) {
     const ev = eventOf(item);
     const choices = Array.isArray(ev?.choices) ? ev.choices : [];
     if (!isOpenItem(item)) return "";
 
     const mailId = mailIdOf(item);
     if (!mailId) return "";
+
+    // Active phase actions (and the single active inbox fallback) are owned by NextAction —
+    // the inbox links there instead of rendering its own answer choices.
+    if (ownedIds && ownedIds.has(mailId)) {
+      return buildNextActionLinkHtml();
+    }
 
     if (!choices.length) {
       return `
@@ -349,7 +398,7 @@
     `;
   }
 
-  function renderInboxCard(item, channelLabel) {
+  function renderInboxCard(item, channelLabel, ownedIds) {
     const lines = bodyLinesOf(item);
     const pending = isOpenItem(item);
     const statusLabel = pending ? "Åpen" : "Avklart";
@@ -371,7 +420,7 @@
         ${lines.length ? `<div class="civi-inbox-body">${lines.map(function (line) {
           return `<p>${escapeHtml(line)}</p>`;
         }).join("")}</div>` : ""}
-        ${renderChoiceButtons(item)}
+        ${renderChoiceButtons(item, ownedIds)}
       </article>
     `;
   }
@@ -381,7 +430,7 @@
     return item?.resolved === true || status === "resolved" || status === "answered" || status === "closed";
   }
 
-  function renderInboxSection(label, intro, items, emptyText) {
+  function renderInboxSection(label, intro, items, emptyText, ownedIds) {
     const visible = (Array.isArray(items) ? items : [])
       .filter(function (item) { return item && item.deleted !== true && item.archived !== true; });
 
@@ -401,7 +450,7 @@
         </div>
         <div class="civi-inbox-channel-list">
           ${openItems.length
-            ? openItems.map(function (item) { return renderInboxCard(item, label); }).join("")
+            ? openItems.map(function (item) { return renderInboxCard(item, label, ownedIds); }).join("")
             : `<div class="civi-inbox-empty muted">${escapeHtml(emptyText)}</div>`
           }
           ${resolvedItems.length
@@ -409,7 +458,7 @@
               <details class="civi-inbox-history">
                 <summary>Vis gamle meldinger (${resolvedItems.length})</summary>
                 <div class="civi-inbox-history-list">
-                  ${resolvedItems.map(function (item) { return renderInboxCard(item, label); }).join("")}
+                  ${resolvedItems.map(function (item) { return renderInboxCard(item, label, ownedIds); }).join("")}
                 </div>
               </details>
             `
@@ -462,6 +511,13 @@
         answerFromInbox(button);
       });
     });
+    host.querySelectorAll("[data-civi-open-next-action]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (typeof window.CivicationNextActionUI?.open === "function") {
+          window.CivicationNextActionUI.open();
+        }
+      });
+    });
   }
 
   function renderInboxSections() {
@@ -475,6 +531,8 @@
     const privateMessages = (split.private || []).concat(split.unknown || []);
     const systemMessages = split.system || [];
 
+    const ownedIds = getNextActionOwnedIds();
+
     const markup = `
       <div class="civi-inbox-sections" data-civi-inbox-sections="1">
         ${buildAnswerSummaryHtml()}
@@ -482,19 +540,22 @@
           "Jobbmail",
           "Arbeid, stilling, rolleprogresjon, arbeidsdag, konflikter, forfremmelse, stagnasjon og oppsigelse.",
           job,
-          "Ingen jobbmail akkurat nå."
+          "Ingen jobbmail akkurat nå.",
+          ownedIds
         )}
         ${renderInboxSection(
           "Personlige meldinger",
           "Kveld, fritid, private relasjoner og livshendelser utenfor jobblogikken.",
           privateMessages,
-          "Ingen personlige meldinger akkurat nå."
+          "Ingen personlige meldinger akkurat nå.",
+          ownedIds
         )}
         ${systemMessages.length ? renderInboxSection(
           "System",
           "Statusmeldinger og tekniske beskjeder.",
           systemMessages,
-          "Ingen systemmeldinger."
+          "Ingen systemmeldinger.",
+          ownedIds
         ) : ""}
       </div>
     `;

@@ -64,6 +64,8 @@ global.CivicationDayProgression = {
     reason: 'open_items_in_phase',
     deliveredItemsInPhase: 1,
     queuedItemsInPhase: 0,
+    pendingItem: { id: 'm2', subject: 'Primæroppgave', status: 'delivered', phase: 'morning' },
+    nextQueuedItem: null,
     phaseBundle: { items: runtimeItems.filter((row) => row.phase === 'morning').map((row) => ({ id: row.event.id, subject: row.event.subject, slot: row.slot, status: row.status, phase: row.phase, mail_type: row.event.mail_type || 'job', required: true, hasChoices: Array.isArray(row.event.choices) && row.event.choices.length > 0, choiceCount: Array.isArray(row.event.choices) ? row.event.choices.length : 0, choices: row.event.choices || [], body: row.event.body || '' })) }
   })
 };
@@ -95,19 +97,27 @@ assert.deepStrictEqual(dp.phases.map((p) => p.id), ['morning', 'forenoon', 'work
 assert.strictEqual(byId.afternoon.total, 0, 'empty phases still represented');
 
 // --- native HTML-seksjon (ren streng, ingen DOM) ---
+// NextAction-konsolidering: WorkdayPanel er en kompakt fase-HUD og rendrer ALDRI svaralternativer
+// i normal runtime. Svar skjer kun i NextAction; fasen ruter dit via knappen.
 const html = global.CivicationUI.buildDayPhaseSectionHtml(dp);
 assert(html.includes('Dag 1 · Morgen'), 'native section shows day + phase heading');
 assert(html.includes('Morgen 1/2'), 'native section shows per-phase progress count');
 assert(html.includes('Åpne i fasen: 1'), 'native section shows open items in phase');
-assert(html.includes('Primæroppgave'), 'native section lists the open morning item subject');
-assert(html.includes('Fortsett bolken'), 'native section exposes continue bundle action');
-assert(html.includes('Stå på faglig vurdering'), 'choice bundle item renders inline choices');
-assert(html.includes('Hva gjør du når planen endres?'), 'choice bundle item renders body text inline');
-assert(!html.includes('data-civi-open-bundle-item="m2"'), 'normal mail bundle item does not render modal/open dependency');
-assert(html.includes('Fortsett bolken'), 'native section keeps continue bundle guidance');
-
+assert(html.includes('Primæroppgave'), 'native section lists the open morning item subject in the HUD summary');
+assert(html.includes('data-civi-day-phase-next-action'), 'continue_bundle routes to the NextAction surface via the routing button');
+assert(!html.includes('data-civi-bundle-choice'), 'WorkdayPanel renders no answer choices in normal runtime');
+assert(!html.includes('Stå på faglig vurdering'), 'choice labels are owned by NextAction, not rendered inline');
+assert(!html.includes('Hva gjør du når planen endres?'), 'bundle body text is not rendered inline in the workday HUD');
+assert(!html.includes('Fortsett bolken'), 'no "answer in the bundle below" guidance — answering happens in NextAction');
 assert(!html.includes('data-civi-day-phase-open-item'), 'day phase HTML does not render legacy day-phase open item buttons');
 assert(!html.includes('>Svar<'), 'normal mail bundle item does not render legacy intermediate Svar button');
+
+// Debug-flagg avslører fortsatt den fulle bunken (med valg) for feilsøking.
+global.CIVICATION_DEBUG = true;
+const debugHtml = global.CivicationUI.buildDayPhaseSectionHtml(dp);
+assert(debugHtml.includes('data-civi-bundle-choice'), 'debug mode still exposes the full bundle with choices');
+assert(debugHtml.includes('Stå på faglig vurdering'), 'debug bundle renders inline choices for inspection');
+global.CIVICATION_DEBUG = false;
 
 const sharedHtml = global.CivicationUI.buildPhaseBundleItemsHtml([
   { id: 'readonly1', subject: 'Orientering', status: 'delivered', mail_type: 'generated', body: 'Les orienteringen.' },
