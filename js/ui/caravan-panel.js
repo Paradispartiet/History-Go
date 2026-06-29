@@ -1,5 +1,5 @@
 // js/ui/caravan-panel.js
-// Read-only UI for Europakaravanen. Does not draw routes or mutate gameplay state.
+// Read-only UI for Europakaravanen. Draws visual corridors only; does not create routes or mutate gameplay state.
 (function () {
   "use strict";
 
@@ -15,6 +15,11 @@
   let selectedRouteId = "";
   let activeStageId = "";
   let caravanMarkers = [];
+  const CORRIDOR_SOURCE_ID = "hg-caravan-corridor-source";
+  const CORRIDOR_LINE_LAYER_ID = "hg-caravan-corridor-line";
+  const CORRIDOR_ACTIVE_LAYER_ID = "hg-caravan-corridor-active-line";
+  let visibleCorridorRouteId = "";
+  let visibleCorridorSegmentIds = [];
 
 
   function esc(value) {
@@ -118,6 +123,125 @@
   }
 
 
+  function warnMissingSegment(message, detail) {
+    console.warn(PREFIX, message, detail);
+  }
+
+  function getCorridorNode(nodeId, stage) {
+    const id = cleanText(nodeId);
+    const stageId = cleanText(stage?.id);
+    if (!id) {
+      warnMissingSegment("hopper over korridorsegment: node-id mangler", { stage_id: stageId, route_id: cleanText(stage?.route_id) });
+      return null;
+    }
+    const node = getRuntime()?.indexes?.nodesById?.[id] || null;
+    if (!node) {
+      warnMissingSegment("hopper over korridorsegment: node mangler", { stage_id: stageId, route_id: cleanText(stage?.route_id), node_id: id });
+      return null;
+    }
+    const lat = num(node.lat);
+    const lng = num(node.lng);
+    if (lat == null || lng == null) {
+      warnMissingSegment("hopper over korridorsegment: lat/lng mangler", { stage_id: stageId, route_id: cleanText(stage?.route_id), node_id: id, lat: node?.lat, lng: node?.lng });
+      return null;
+    }
+    return { id, lat, lng };
+  }
+
+  function buildCorridorFeatures(routeId) {
+    const features = [];
+    for (const stage of getStages(routeId)) {
+      const from = getCorridorNode(stage?.from_node, stage);
+      const to = getCorridorNode(stage?.to_node, stage);
+      if (!from || !to) continue;
+      const stageId = cleanText(stage?.id);
+      features.push({
+        type: "Feature",
+        properties: {
+          id: stageId,
+          stage_id: stageId,
+          route_id: cleanText(stage?.route_id),
+          order: Number(stage?.order ?? 0),
+          class: CORRIDOR_LINE_LAYER_ID,
+          active: stageId && stageId === activeStageId ? 1 : 0
+        },
+        geometry: { type: "LineString", coordinates: [[from.lng, from.lat], [to.lng, to.lat]] }
+      });
+    }
+    return features;
+  }
+
+  function ensureCorridorLayers(map, data) {
+    if (!map || typeof map.addSource !== "function") return false;
+    if (!map.getSource(CORRIDOR_SOURCE_ID)) map.addSource(CORRIDOR_SOURCE_ID, { type: "geojson", data });
+    else map.getSource(CORRIDOR_SOURCE_ID).setData(data);
+
+    if (!map.getLayer(CORRIDOR_LINE_LAYER_ID)) {
+      map.addLayer({
+        id: CORRIDOR_LINE_LAYER_ID,
+        type: "line",
+        source: CORRIDOR_SOURCE_ID,
+        filter: ["==", ["geometry-type"], "LineString"],
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: {
+          "line-color": "#d9b36a",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.2, 8, 1.8, 12, 2.6],
+          "line-opacity": ["case", ["==", ["get", "active"], 1], 0.34, 0.22],
+          "line-dasharray": [1.1, 1.6],
+          "line-blur": 0.7
+        }
+      });
+    }
+
+    if (!map.getLayer(CORRIDOR_ACTIVE_LAYER_ID)) {
+      map.addLayer({
+        id: CORRIDOR_ACTIVE_LAYER_ID,
+        type: "line",
+        source: CORRIDOR_SOURCE_ID,
+        filter: ["all", ["==", ["geometry-type"], "LineString"], ["==", ["get", "active"], 1]],
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: {
+          "line-color": "#ffbf57",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 4, 2.0, 8, 3.0, 12, 4.2],
+          "line-opacity": 0.62,
+          "line-dasharray": [1.4, 1.1],
+          "line-blur": 0.35
+        }
+      });
+    }
+    return true;
+  }
+
+  function drawCorridor(routeId = selectedRouteId) {
+    const id = cleanText(routeId);
+    if (!id) return clearCorridor();
+    const map = getMap();
+    if (!map) return [];
+    const data = { type: "FeatureCollection", features: buildCorridorFeatures(id) };
+    try {
+      ensureCorridorLayers(map, data);
+      visibleCorridorRouteId = id;
+      visibleCorridorSegmentIds = data.features.map((feature) => cleanText(feature?.properties?.stage_id)).filter(Boolean);
+      return visibleCorridorSegmentIds.slice();
+    } catch (error) {
+      console.warn(PREFIX, "kunne ikke tegne korridor", { route_id: id, error: error?.message || error });
+      return [];
+    }
+  }
+
+  function clearCorridor() {
+    const map = getMap();
+    if (map) {
+      for (const layerId of [CORRIDOR_ACTIVE_LAYER_ID, CORRIDOR_LINE_LAYER_ID]) {
+        if (map.getLayer?.(layerId)) { try { map.removeLayer(layerId); } catch {} }
+      }
+      if (map.getSource?.(CORRIDOR_SOURCE_ID)) { try { map.removeSource(CORRIDOR_SOURCE_ID); } catch {} }
+    }
+    visibleCorridorRouteId = "";
+    visibleCorridorSegmentIds = [];
+    return [];
+  }
+
   function getNodesForRoute(routeId = selectedRouteId) {
     const runtime = getRuntime();
     if (!runtime) return [];
@@ -218,6 +342,8 @@
   function render(selected = selectedRouteId) {
     selectedRouteId = cleanText(selected);
     showNodes(selectedRouteId);
+    if (selectedRouteId) drawCorridor(selectedRouteId);
+    else clearCorridor();
     const panel = ensurePanel();
     const runtime = getRuntime();
 
@@ -353,6 +479,7 @@
     const fromNode = getNodeById(stage.from_node, activeStageId);
     const toNode = getNodeById(stage.to_node, activeStageId);
     updateActiveNodeStyling();
+    drawCorridor(selectedRouteId);
     fitStageBounds(stage, fromNode, toNode);
     return stage;
   }
@@ -382,6 +509,7 @@
     panel.setAttribute("aria-hidden", "true");
     document.body.classList.remove("hg-caravan-open");
     clearStagePreview(false);
+    clearCorridor();
     clearNodes();
     panel.innerHTML = "";
   }
@@ -390,7 +518,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice() };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
