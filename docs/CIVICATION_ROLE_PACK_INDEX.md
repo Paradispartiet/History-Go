@@ -16,10 +16,10 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 - complete_reference: 2
 - playable_v1: 0
-- partial_pack: 7
-- role_model_only: 236
+- partial_pack: 21
+- role_model_only: 223
 - generated_stub: 0
-- broken_mapping: 16
+- broken_mapping: 0
 - missing: 0
 
 ## Rolleindeks
@@ -27,25 +27,21 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | category | role_scope | role_id | title | roleModel finnes | mailPlan finnes | job-mails finnes | people-mails finnes | conflict-mails finnes | story-mails finnes | event-mails finnes | micro-mails finnes | followup-mails finnes | knowledge-mails finnes | consequence-mails finnes | test finnes | status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | by | by_radgiver_plan | by_arealplanlegger | Arealplanlegger | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference |
-| by | arkitekt | by_arkitekt | Arkitekt | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| by | by_arkitekt |  | by_arkitekt | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| by | by_assistent |  | by_assistent | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| by | by_prosjektleder |  | by_prosjektleder | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| by | by_saksbehandler |  | by_saksbehandler | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
+| by | by_arkitekt | by_arkitekt | Arkitekt | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | by | byarkitekt | by_byarkitekt | Byarkitekt | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | byplanlegger | by_byplanlegger | Byplanlegger | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | direktor_byutvikling | by_direktor_byutvikling | Direktør (byutvikling) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | fagsjef_plan_bygg | by_fagsjef_plan_bygg | Fagsjef (plan/bygg) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | forstekonsulent | by_forstekonsulent | Førstekonsulent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | praktikant_arkitektur_plan | by_praktikant_arkitektur_plan | Praktikant (arkitektur/plan) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| by | prosjektleder_byutvikling | by_prosjektleder_byutvikling | Prosjektleder (byutvikling) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| by | by_prosjektleder | by_prosjektleder_byutvikling | Prosjektleder (byutvikling) | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
 | by | prosjektmedarbeider | by_prosjektmedarbeider | Prosjektmedarbeider | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | radgiver_byutvikling | by_radgiver_byutvikling | Rådgiver (byutvikling) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| by | saksbehandler_plan_bygg | by_saksbehandler_plan_bygg | Saksbehandler (plan/bygg) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| by | by_saksbehandler | by_saksbehandler_plan_bygg | Saksbehandler (plan/bygg) | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
 | by | seksjonsleder | by_seksjonsleder | Seksjonsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | seniorarkitekt | by_seniorarkitekt | Seniorarkitekt | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | by | seniorradgiver_byutvikling | by_seniorradgiver_byutvikling | Seniorrådgiver (byutvikling) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| by | studentassistent | by_studentassistent | Studentassistent | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| by | by_assistent | by_studentassistent | Studentassistent | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
 | film_tv | connaisseur | film_tv_connaisseur | Connaisseur | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | film_tv | film_og_tv_stjerne | film_tv_film_og_tv_stjerne | Film- og TV-stjerne | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | film_tv | filmfantast | film_tv_filmfantast | Filmfantast | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
@@ -142,35 +138,29 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | musikk | stjerneartist | musikk_stjerneartist | Stjerneartist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | musikk | tekniker_lys_lyd | musikk_tekniker_lys_lyd | Tekniker (lys/lyd) | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | musikk | utovende_musiker | musikk_utovende_musiker | Utøvende musiker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| naeringsliv | administrasjonsmedarbeider |  | administrasjonsmedarbeider | nei | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | broken_mapping |
-| naeringsliv | arbeider |  | arbeider | nei | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | broken_mapping |
 | naeringsliv | avdelingsleder | naer_avdelingsleder | Avdelingsleder | ja | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | ja | partial_pack |
 | naeringsliv | bedriftseier | naeringsliv_bedriftseier | Bedriftseier | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | butikksjef_enhetsleder | naeringsliv_butikksjef_enhetsleder | Butikksjef / enhetsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | controller | naer_controller | Controller | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | daglig_leder | naeringsliv_daglig_leder | Daglig leder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | driftsleder | naeringsliv_driftsleder | Driftsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| naeringsliv | ekspeditor |  | ekspeditor | nei | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | broken_mapping |
-| naeringsliv | ekspeditor_butikkmedarbeider | naeringsliv_ekspeditor_butikkmedarbeider | Ekspeditør / butikkmedarbeider | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| naeringsliv | fagarbeider | naeringsliv_fagarbeider | Fagarbeider | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | partial_pack |
+| naeringsliv | ekspeditor | naeringsliv_ekspeditor_butikkmedarbeider | Ekspeditør / butikkmedarbeider | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | partial_pack |
+| naeringsliv | arbeider | naeringsliv_fagarbeider | Fagarbeider | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | finansanalytiker | naer_finansanalytiker | Finansanalytiker | ja | ja | ja | nei | ja | ja | ja | nei | nei | nei | nei | nei | partial_pack |
 | naeringsliv | finansdirektor | naer_finansdirektor | Finansdirektør | ja | ja | ja | nei | ja | ja | ja | nei | nei | nei | nei | nei | partial_pack |
-| naeringsliv | formann |  | formann | nei | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | broken_mapping |
-| naeringsliv | formann_arbeidsleder | naeringsliv_formann_arbeidsleder | Formann / arbeidsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| naeringsliv | formann | naeringsliv_formann_arbeidsleder | Formann / arbeidsleder | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | grunder | naeringsliv_grunder | Gründer | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | industribygger | naeringsliv_industribygger | Industribygger | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | industrieier | naeringsliv_industrieier | Industrieier | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | investor | naeringsliv_investor | Investor | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| naeringsliv | kapital_og_eierskap |  | kapital_og_eierskap | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| naeringsliv | kapitalforvalter | naeringsliv_kapitalforvalter | Kapitalforvalter | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| naeringsliv | mellomleder | naeringsliv_kapitalforvalter | Kapitalforvalter | ja | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | konserndirektor | naeringsliv_konserndirektor | Konserndirektør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | konsernsjef | naeringsliv_konsernsjef | Konsernsjef | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | lager_og_driftsmedarbeider | naer_lager_og_driftsmedarbeider | Lager- og driftsmedarbeider | ja | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
-| naeringsliv | mellomleder |  | mellomleder | nei | ja | ja | ja | ja | ja | ja | nei | nei | nei | nei | ja | broken_mapping |
 | naeringsliv | produksjonsleder | naeringsliv_produksjonsleder | Produksjonsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| naeringsliv | renholder |  | renholder | nei | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | broken_mapping |
+| naeringsliv | renholder | naer_renholder | Renholder | ja | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | skiftleder | naeringsliv_skiftleder | Skiftleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| naeringsliv | okonomi_og_administrasjonsmedarbeider | naeringsliv_okonomi_og_administrasjonsmedarbeider | Økonomi- og administrasjonsmedarbeider | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| naeringsliv | administrasjonsmedarbeider | naeringsliv_okonomi_og_administrasjonsmedarbeider | Økonomi- og administrasjonsmedarbeider | ja | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | okonomi_og_finanssjef | naer_okonomi_og_finanssjef | Økonomi- og finanssjef | ja | ja | ja | nei | ja | ja | ja | nei | nei | nei | nei | nei | partial_pack |
 | natur | artsobservator | natur_artsobservator | Artsobservatør | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | natur | biolog | natur_biolog | Biolog | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
@@ -231,25 +221,20 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | titter | psykologi_titter | Titter | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | psykologi | veileder | psykologi_veileder | Veileder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sosial_laering | barnehageassistent | sosial_laering_barnehageassistent | Barnehageassistent / pedagogisk medarbeider | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference |
-| sport | aktiv_utover | sport_aktiv_utover | Aktiv utøver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| sport | sport_utover | sport_aktiv_utover | Aktiv utøver | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
 | sport | eliteseriespiller | sport_eliteseriespiller | Eliteseriespiller | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | hovedtrener | sport_hovedtrener | Hovedtrener | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| sport | idrettslegende | sport_idrettslegende | Idrettslegende | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| sport | sport_legende | sport_idrettslegende | Idrettslegende | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | sport | idrettsstjerne | sport_idrettsstjerne | Idrettsstjerne | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| sport | kaptein | sport_kaptein | Kaptein | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
+| sport | sport_kaptein | sport_kaptein | Kaptein | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
 | sport | klubbspiller | sport_klubbspiller | Klubbspiller | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | konkurranseutover | sport_konkurranseutover | Konkurranseutøver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | landslagsutover | sport_landslagsutover | Landslagsutøver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | mosjonist | sport_mosjonist | Mosjonist | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | olympisk_mester | sport_olympisk_mester | Olympisk Mester | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | profesjonell_utover | sport_profesjonell_utover | Profesjonell utøver | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| sport | sport_kaptein |  | sport_kaptein | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| sport | sport_legende |  | sport_legende | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | ja | broken_mapping |
-| sport | sport_sportsledelse |  | sport_sportsledelse | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| sport | sport_trener |  | sport_trener | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| sport | sport_utover |  | sport_utover | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | broken_mapping |
-| sport | sportssjef | sport_sportssjef | Sportssjef | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| sport | trener | sport_trener | Trener | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| sport | sport_sportsledelse | sport_sportssjef | Sportssjef | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
+| sport | sport_trener | sport_trener | Trener | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | subkultur | crew | subkultur_crew | Crew | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | subkultur | dandy | subkultur_dandy | Dandy | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | subkultur | deltaker | subkultur_deltaker | Deltaker | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |

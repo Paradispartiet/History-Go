@@ -7,7 +7,28 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const roleTypes = ['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
 const aliases = new Map([
-  ['by/arealplanlegger', 'by_radgiver_plan']
+  // Resolver-owned runtime role scopes used by shared/legacy mail packs.
+  ['by/arealplanlegger', 'by_radgiver_plan'],
+  ['by/arkitekt', 'by_arkitekt'],
+  ['by/prosjektleder_byutvikling', 'by_prosjektleder'],
+  ['by/saksbehandler_plan_bygg', 'by_saksbehandler'],
+  ['by/studentassistent', 'by_assistent'],
+  ['naeringsliv/ekspeditor_butikkmedarbeider', 'ekspeditor'],
+  ['naeringsliv/fagarbeider', 'arbeider'],
+  ['naeringsliv/formann_arbeidsleder', 'formann'],
+  ['naeringsliv/kapitalforvalter', 'mellomleder'],
+  ['naeringsliv/okonomi_og_administrasjonsmedarbeider', 'administrasjonsmedarbeider'],
+  ['sport/aktiv_utover', 'sport_utover'],
+  ['sport/idrettslegende', 'sport_legende'],
+  ['sport/kaptein', 'sport_kaptein'],
+  ['sport/sportssjef', 'sport_sportsledelse'],
+  ['sport/trener', 'sport_trener']
+]);
+
+
+const mailPlanAliases = new Map([
+  // Legacy/group mail plan scope names that resolve to the same role identity.
+  ['naeringsliv/kapital_og_eierskap', 'mellomleder']
 ]);
 
 function readJson(rel) {
@@ -70,7 +91,8 @@ for (const rel of manifest.files) {
 for (const rel of mailPlanFiles) {
   const json = readJson(rel);
   const category = json.category || rel.split('/').at(-2);
-  const scope = json.role_scope || baseName(rel).replace(/_plan$/, '');
+  const planScope = json.role_scope || baseName(rel).replace(/_plan$/, '');
+  const scope = mailPlanAliases.get(`${category}/${planScope}`) || planScope;
   let key = [...rows.values()].find(r => r.category === category && r.role_scope === scope)?.key;
   if (!key) key = `${category}/${scope}`;
   if (!rows.has(key)) rows.set(key, { key, category, slug: scope, role_scope: scope, role_id: json.role_id || '', title: scope, roleModel: false });
