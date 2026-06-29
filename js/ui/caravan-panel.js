@@ -18,6 +18,22 @@
     started: "Påbegynt",
     completed: "Fullført"
   };
+  const EVENT_TYPE_LABELS = {
+    weather: "Vær",
+    rest: "Hvile",
+    water: "Vann",
+    food: "Mat",
+    stable: "Stall",
+    ferry: "Ferge",
+    border: "Grense",
+    terrain: "Terreng",
+    traffic: "Trafikk",
+    shelter: "Ly",
+    repair: "Reparasjon",
+    animal_care: "Dyreomsorg",
+    document_check: "Dokumentkontroll"
+  };
+  const SEVERITY_LABELS = { info: "Info", low: "Lav", medium: "Middels", high: "Høy" };
 
   let selectedRouteId = "";
   let activeStageId = "";
@@ -172,6 +188,33 @@
 
   function getMap() {
     return window.HGMap?.getMap?.() || window.map || null;
+  }
+
+  function getEventsForStage(stageId, mode = activeTravelMode) {
+    const runtime = getRuntime();
+    const id = cleanText(stageId);
+    if (!runtime || !id) return [];
+    const indexed = runtime.indexes?.eventsByStage?.[id];
+    const events = Array.isArray(indexed) ? indexed : asArray(runtime.events).filter((event) => cleanText(event?.stage_id) === id);
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return events.slice();
+    return events.filter((event) => asArray(event?.applies_to_modes).map(cleanText).includes(selected));
+  }
+
+  function getEventsForRoute(routeId, mode = activeTravelMode) {
+    const runtime = getRuntime();
+    const id = cleanText(routeId);
+    if (!runtime || !id) return [];
+    const indexed = runtime.indexes?.eventsByRoute?.[id];
+    const events = Array.isArray(indexed) ? indexed : asArray(runtime.events).filter((event) => cleanText(event?.route_id) === id);
+    const selected = normalizeTravelMode(mode);
+    if (selected === "all") return events.slice();
+    return events.filter((event) => asArray(event?.applies_to_modes).map(cleanText).includes(selected));
+  }
+
+  function eventCountLabel(stage, mode = activeTravelMode) {
+    const count = getEventsForStage(cleanText(stage?.id), mode).length;
+    return count ? `${count} ${count === 1 ? "hendelse" : "hendelser"}` : "Ingen hendelser";
   }
 
   function getStage(stageId) {
@@ -389,11 +432,13 @@
     const supported = stageSupportsMode(stage);
     const status = getStageProgressStatus(stage);
     const progressLabel = activeTravelMode === "all" ? getStageAllModeProgressLabel(stage) : (PROGRESS_LABELS[status] || "Ingen progresjon");
+    const eventsLabel = eventCountLabel(stage);
     return `
       <button type="button" class="hg-caravan-stage ${id === activeStageId ? "is-active" : ""} ${supported ? "is-mode-supported" : "is-mode-dimmed"}" data-caravan-stage="${attr(id)}">
         <span class="hg-caravan-stage-title">${esc(stage?.order ?? "—")}. ${esc(from)} → ${esc(to)}</span>
         <span class="hg-caravan-stage-meta">${stage?.approximate_distance_km != null ? `${esc(stage.approximate_distance_km)} km` : "Distanse ukjent"} · ${esc(formatList(stage?.allowed_modes))}</span>
         <span class="hg-caravan-progress-pill">${esc(progressLabel)}</span>
+        <span class="hg-caravan-event-pill">${esc(eventsLabel)}</span>
       </button>`;
   }
 
@@ -406,6 +451,31 @@
         ${[["planned", "Planlagt"], ["started", "Påbegynt"], ["completed", "Fullført"], ["none", "Nullstill"]].map(([value, label]) => `<button type="button" class="hg-caravan-progress-button ${status === value ? "is-active" : ""}" data-caravan-progress-status="${attr(value)}" ${disabled ? "disabled" : ""}>${esc(label)}</button>`).join("")}
       </div>
     </div>`;
+  }
+
+  function eventLabel(type) {
+    const key = cleanText(type);
+    return EVENT_TYPE_LABELS[key] || key || "Ukjent";
+  }
+
+  function severityLabel(severity) {
+    const key = cleanText(severity);
+    return SEVERITY_LABELS[key] || key || "Ukjent";
+  }
+
+  function renderStageEvents(stageId, mode = activeTravelMode) {
+    const events = getEventsForStage(stageId, mode);
+    const modeLabel = normalizeTravelMode(mode) === "all" ? "alle reisemåter" : readableMode(mode);
+    if (!events.length) return `<section class="hg-caravan-events"><h3>Karavanehendelser</h3><p class="hg-caravan-empty">Ingen hendelser for ${esc(modeLabel)}.</p></section>`;
+    return `<section class="hg-caravan-events"><h3>Karavanehendelser</h3><p class="hg-caravan-event-filter">Viser ${esc(events.length)} for ${esc(modeLabel)}</p>${events.map((event) => `
+      <article class="hg-caravan-event">
+        <h4>${esc(event?.title || event?.id || "Karavanehendelse")}</h4>
+        <p class="hg-caravan-event-meta">${esc(eventLabel(event?.event_type))} · Alvorlighet: ${esc(severityLabel(event?.severity))} · Reisemåter: ${esc(formatList(event?.applies_to_modes))}</p>
+        ${cleanText(event?.prompt) ? `<p>${esc(event.prompt)}</p>` : ""}
+        ${cleanText(event?.historical_context) ? `<p><strong>Historisk kontekst:</strong> ${esc(event.historical_context)}</p>` : ""}
+        ${cleanText(event?.observation_prompt) ? `<p><strong>Observasjon:</strong> ${esc(event.observation_prompt)}</p>` : ""}
+        ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="Read-only valg">${asArray(event.choices).map((choice) => `<span class="hg-caravan-event-choice"><strong>${esc(choice?.label || choice?.id || "Valg")}</strong>${cleanText(choice?.note) ? ` – ${esc(choice.note)}` : ""}</span>`).join("")}</div>` : ""}
+      </article>`).join("")}</section>`;
   }
 
   function stagePreview(stage) {
@@ -428,6 +498,7 @@
           ${field("Historieprompt", stage?.history_prompt)}
           ${field("Observasjonsprompt", stage?.observation_prompt)}
         </dl>
+        ${renderStageEvents(cleanText(stage?.id), activeTravelMode)}
       </section>`;
   }
 
@@ -653,7 +724,7 @@
     document.getElementById(BUTTON_ID)?.addEventListener("click", () => open());
   }
 
-  window.HG_CARAVAN_UI_DEBUG = { open, close, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress };
+  window.HG_CARAVAN_UI_DEBUG = { open, close, renderStageEvents, getEventsForStage, getEventsForRoute, renderRoute: (routeId) => open(routeId), showNodes, clearNodes, getVisibleNodeIds, previewStage, clearStagePreview, getActiveStageId: () => activeStageId, setTravelMode, getTravelMode, getVisibleStagesForMode, drawCorridor, clearCorridor, getVisibleCorridorRouteId: () => visibleCorridorRouteId, getVisibleCorridorSegmentIds: () => visibleCorridorSegmentIds.slice(), setStageProgress: (stageId, status) => { if (stageId) previewStage(stageId); return setActiveStageProgress(status); }, getStageProgress: (stageId) => { const stage = stageId ? getStage(stageId) : getStage(activeStageId); return stage && activeTravelMode !== "all" ? getStageProgress(stage) : null; }, clearStageProgress: (stageId) => { if (stageId) previewStage(stageId); return clearActiveStageProgress(); }, getActiveStageProgress };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bindEntryButton, { once: true });
