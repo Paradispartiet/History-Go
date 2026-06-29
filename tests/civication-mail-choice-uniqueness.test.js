@@ -46,7 +46,7 @@ const failures = [];
 
 for (const mail of mails) {
   const signature = choiceSignature(mail);
-  if (!signature || mail.mail_type !== 'people') continue;
+  if (!signature) continue;
 
   const key = [mail.role_scope || '', mail.mail_type || '', signature].join('\u0000');
   const previous = seen.get(key);
@@ -75,7 +75,7 @@ for (const mail of mails) {
 assert.strictEqual(
   failures.length,
   0,
-  `Duplicate Civication people-mail choice-label pairs found in the same role_scope + mail_type:\n\n${failures.join('\n\n')}`
+  `Duplicate Civication mail choice-label pairs found in the same role_scope + mail_type:\n\n${failures.join('\n\n')}`
 );
 
-console.log(`Checked ${mails.length} Civication mails for duplicate choice-label pairs.`);
+console.log(`Checked ${mails.length} Civication mails (all mail_types) for duplicate choice-label pairs.`);
