@@ -30,14 +30,20 @@ async function run(){
 
   const category='sosial_laering'; const role='barnehageassistent';
   const roleModel=readJson(`data/Civication/roleModels/${category}/${role}.json`);
+  assert.strictEqual(roleModel.category, category, 'roleModel finnes og har riktig category');
   assert.strictEqual(roleModel.role_scope, role, 'roleModel finnes og har riktig role_scope');
+  assert.strictEqual(roleModel.role_id, `${category}_${role}`, 'roleModel har stabil role_id');
+  assert.strictEqual(roleModel.role_key, role, 'roleModel har runtime role_key');
   for (const field of ['core_narrative','daily_work','responsibilities','work_environment','career_path','required_knowledge','challenges','dilemmas','related_people','related_places','mail_integration','competence_axes','ideal_type_problems']) {
     assert(roleModel[field] !== undefined, `roleModel should include ${field}`);
   }
   assert(JSON.stringify(roleModel).includes('Den lange dagen på avdelingen'), 'roleModel should include hovedcase');
 
   const plan=readJson(`data/Civication/mailPlans/${category}/${role}_plan.json`);
+  assert.strictEqual(plan.category, category, 'mailPlan finnes og har riktig category');
   assert.strictEqual(plan.role_scope, role, 'mailPlan finnes og har riktig role_scope');
+  assert.strictEqual(plan.role_id, `${category}_${role}`, 'mailPlan har stabil role_id');
+  assert.strictEqual(plan.role_key, role, 'mailPlan har runtime role_key');
   assert.strictEqual(plan.sequence.length, 8, 'mailPlan should have 8 steps');
 
   const expectedTypes=['job','people','conflict','story','event','micro','followup','knowledge','consequence'];
@@ -93,8 +99,21 @@ async function run(){
   assert(!sourceIds.some(id => /debug|gap|undefined|null/.test(id)), 'ingen debug gaps i source ids');
   const dayText=JSON.stringify(runtime.items.map(row => row.event || {})).toLowerCase();
   for (const term of ['overgang','frilek','forelder','observasjon','slitasje','dagslutt']) assert(dayText.includes(term), `Day 1 should include ${term}`);
+  assert(runtime.items.some(row => row.phase === 'morning' && /levering|overgang|slipper ikke/.test(JSON.stringify(row.event || {}).toLowerCase())), 'morgen åpner med levering/første overgang');
+  assert(runtime.items.some(row => row.phase === 'forenoon' && /slipper ikke|forelder|overgang/.test(JSON.stringify(row.event || {}).toLowerCase())), 'formiddag har barn som strever med å slippe forelder');
+  assert(runtime.items.some(row => row.phase === 'workday' && /frilek|observasjon|konflikt/.test(JSON.stringify(row.event || {}).toLowerCase())), 'arbeidsdag har frilek, observasjon eller konflikt');
+  assert(runtime.items.some(row => row.phase === 'lunch' && /kollega|forelder|barn|relasjon|måltid/.test(JSON.stringify(row.event || {}).toLowerCase())), 'lunsj har kollega/forelder/barn-relasjon');
+  assert(runtime.items.some(row => row.phase === 'afternoon' && /lav bemanning|bemanning|slitasje|sliten|vikar/.test(JSON.stringify(row.event || {}).toLowerCase())), 'ettermiddag viser lav bemanning eller slitasje');
+  assert(runtime.items.some(row => row.phase === 'evening' && ['knowledge','consequence','followup'].includes(row.event?.mail_type)), 'kveld lander i kunnskap, konsekvens eller logisk oppfølging');
+  assert(runtime.items.some(row => row.phase === 'day_end' && /hva slags voksen|dagslutt|læringspunkt|omsorg/.test(JSON.stringify(row.event || {}).toLowerCase())), 'dagslutt spør hva slags voksen du var i dag');
+  const firstFollowupIndex = runtime.items.findIndex(row => row.event?.mail_type === 'followup');
+  const firstConflictIndex = runtime.items.findIndex(row => ['conflict', 'event'].includes(row.event?.mail_type));
+  assert(firstFollowupIndex === -1 || (firstConflictIndex !== -1 && firstConflictIndex < firstFollowupIndex), 'followup mails should have a logical conflict/event source earlier in Day 1');
+  const firstConsequenceIndex = runtime.items.findIndex(row => row.event?.mail_type === 'consequence');
+  assert(firstConsequenceIndex === -1 || runtime.items.slice(0, firstConsequenceIndex).some(row => Array.isArray(row.event?.choices) && row.event.choices.length >= 2), 'consequence mail should not arrive before relevant player choices exist');
+  assert(!sourceIds.some(id => /week2|second_week|mastery|advanced/.test(id)), 'Day 1 should not pull week2/mastery/advanced source mails');
 
   console.log('Barnehageassistent Day 1 audit map:');
-  console.table(runtime.items.map((row,index)=>({index,phase:row.phase,slot:row.slot,type:row.event?.mail_type,id:row.event?.source_mail_id||row.event?.id,subject:row.event?.subject})));
+  console.table(runtime.items.map((row,index)=>({index,phase:row.phase,slot:row.slot,type:row.event?.mail_type,id:row.event?.source_mail_id||row.event?.id,subject:row.event?.subject,narrative_arc:row.event?.narrative_arc})));
 }
 run().catch(error => { console.error(error); process.exit(1); });
