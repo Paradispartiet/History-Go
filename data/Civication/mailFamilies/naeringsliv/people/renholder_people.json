@@ -87,7 +87,8 @@
                 "set_flags": [
                   "renholder_week1_private_boundary"
                 ]
-              }
+              },
+              "text": "Jeg sier at hun har rett, og lar kjøkkenet være hjem, ikke renholdssone."
             },
             {
               "id": "B",
@@ -106,7 +107,8 @@
                   "self_awareness": 1,
                   "stress": 0
                 }
-              }
+              },
+              "text": "Jeg sier at lysbryteren hadde alvorlig status, men at saken lukkes uten videre tiltak."
             },
             {
               "id": "C",
@@ -136,9 +138,13 @@
                 "set_flags": [
                   "renholder_week1_private_cleaning_leak"
                 ]
-              }
+              },
+              "text": "Jeg vasker noen småflater fordi det stresser meg å se dem."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -208,7 +214,8 @@
                 "set_flags": [
                   "renholder_week1_friend_mode"
                 ]
-              }
+              },
+              "text": "Jeg sier at han har rett, og at jeg kom rett fra jobbmodus."
             },
             {
               "id": "B",
@@ -227,7 +234,8 @@
                   "conflict": 1,
                   "self_awareness": 0
                 }
-              }
+              },
+              "text": "Jeg forklarer at berøringspunkter og håndhygiene faktisk betyr mer enn folk tror."
             },
             {
               "id": "C",
@@ -246,9 +254,13 @@
                   "self_awareness": 1,
                   "stress": 0
                 }
-              }
+              },
+              "text": "Jeg sier at han er godkjent for midlertidig servering uten ytterligere kontroll."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -307,7 +319,8 @@
                   "self_awareness": 2,
                   "control": -1
                 }
-              }
+              },
+              "text": "Jeg stopper, sier at hun har rett, og prøver å lande uten å vaske mer."
             },
             {
               "id": "B",
@@ -326,7 +339,8 @@
                   "self_awareness": 1,
                   "relationship_sara": 1
                 }
-              }
+              },
+              "text": "Jeg vasker ferdig benken og bestemmer meg for å la resten være."
             },
             {
               "id": "C",
@@ -356,9 +370,13 @@
                 "set_flags": [
                   "renholder_week1_private_cleaning_leak"
                 ]
-              }
+              },
+              "text": "Jeg vasker videre fordi det faktisk roer meg."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -429,7 +447,8 @@
                 "set_flags": [
                   "renholder_week1_body_rest"
                 ]
-              }
+              },
+              "text": "Jeg sier at kroppen er sliten, og tar kvelden rolig uten å gjøre mer praktisk arbeid."
             },
             {
               "id": "B",
@@ -448,7 +467,8 @@
                   "relationship_sara": 2,
                   "stress": -1
                 }
-              }
+              },
+              "text": "Jeg tøyer lett og forteller hvordan repetisjonene satte seg i kroppen."
             },
             {
               "id": "C",
@@ -479,9 +499,13 @@
                 "set_flags": [
                   "renholder_week1_private_cleaning_leak"
                 ]
-              }
+              },
+              "text": "Jeg rydder og vasker litt mer hjemme fordi kroppen allerede er i arbeid."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -553,7 +577,8 @@
                 "set_flags": [
                   "renholder_week1_private_boundary"
                 ]
-              }
+              },
+              "text": "Jeg bestemmer at helgen ikke skal være soner, flater, flekker, kontroll eller renholdsstandard."
             },
             {
               "id": "B",
@@ -572,7 +597,8 @@
                   "energy_weekend": 4,
                   "self_awareness": 2
                 }
-              }
+              },
+              "text": "Jeg lar kroppen hvile uten å vaske, rydde eller gjøre praktiske ting først."
             },
             {
               "id": "C",
@@ -603,7 +629,8 @@
                 "set_flags": [
                   "renholder_week1_private_cleaning_leak"
                 ]
-              }
+              },
+              "text": "Jeg rydder og vasker litt for å få ro, men prøver å stoppe før det blir skift nummer to."
             },
             {
               "id": "D",
@@ -634,9 +661,13 @@
                 "set_flags": [
                   "renholder_week1_private_cleaning_leak"
                 ]
-              }
+              },
+              "text": "Jeg bruker helgen på å få hjemmet ordentlig rent fordi det gir ro."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         }
       ],
       "threads": []
@@ -696,18 +727,30 @@
                 "dignity",
                 "safety"
               ],
-              "feedback": "Du gjør ikke situasjonen større enn nødvendig, men du lar heller ikke arbeidet ditt bli tråkket bort."
+              "feedback": "Du gjør ikke situasjonen større enn nødvendig, men du lar heller ikke arbeidet ditt bli tråkket bort.",
+              "text": "Jeg sier kort at gulvet må få tørke for sikkerhet og ber dem bruke andre inngang.",
+              "effects": 1
             },
             {
               "id": "B",
               "label": "La dem gå og vaske på nytt",
               "reply": "Jeg sier ingenting, vasker sporene etterpå og prøver å rekke resten.",
-              "effect": 0,
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 1
+                }
+              },
               "tags": [
                 "invisible_work",
                 "strain"
               ],
-              "feedback": "Du holder fred på overflaten, men kroppen og tiden betaler for at standarden ikke ble respektert."
+              "feedback": "Du holder fred på overflaten, men kroppen og tiden betaler for at standarden ikke ble respektert.",
+              "text": "Jeg sier ingenting, vasker sporene etterpå og prøver å rekke resten.",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 1
+                }
+              }
             },
             {
               "id": "C",
@@ -718,9 +761,14 @@
                 "collaboration",
                 "deviation"
               ],
-              "feedback": "Dere skiller mellom praktisk prioritering og skjult kvalitetsfall. Det gjør presset lettere å melde."
+              "feedback": "Dere skiller mellom praktisk prioritering og skjult kvalitetsfall. Det gjør presset lettere å melde.",
+              "text": "Jeg spør Mona hvilke snarveier som er farlige, og hvilke avvik vi bør melde som for lavt tidsbudsjett.",
+              "effects": 1
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         }
       ]
     },
@@ -795,7 +843,8 @@
                   "stress": -1,
                   "control": -1
                 }
-              }
+              },
+              "text": "Jeg sier at hun har rett, og lar koppen stå uten å gjøre den til et åpent avvik."
             },
             {
               "id": "B",
@@ -814,7 +863,8 @@
                   "self_awareness": 1,
                   "stress": 0
                 }
-              }
+              },
+              "text": "Jeg sier at koppen er observert, men ikke vurdert som kritisk berøringspunkt."
             },
             {
               "id": "C",
@@ -833,9 +883,13 @@
                   "relationship_sara": -1,
                   "stagnation_private": 1
                 }
-              }
+              },
+              "text": "Jeg tar koppen og noen andre småting fordi det er vanskelig å slappe av når alt står halvferdig."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -894,7 +948,8 @@
                   "stress": -1,
                   "control": -1
                 }
-              }
+              },
+              "text": "Jeg sier at jeg er i risikoblendet modus, og lar jakka være vanlig rot, ikke avvik."
             },
             {
               "id": "B",
@@ -913,7 +968,8 @@
                   "self_awareness": 1,
                   "stress": 0
                 }
-              }
+              },
+              "text": "Jeg sier at jakka er en lavrisiko tekstilbasert hindring og får observasjon, ikke tiltak."
             },
             {
               "id": "C",
@@ -932,9 +988,13 @@
                   "stress": 1,
                   "stagnation_private": 1
                 }
-              }
+              },
+              "text": "Jeg henger opp jakka fordi jeg ikke klarer å slutte å se den som dårlig flyt."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -993,7 +1053,8 @@
                   "stress": -2,
                   "dignity_private": 2
                 }
-              }
+              },
+              "text": "Jeg sier at glasset traff jobbslitenheten, men at jeg vet hun ikke mente det sånn."
             },
             {
               "id": "B",
@@ -1012,7 +1073,8 @@
                   "stagnation_private": 2,
                   "physical_load": 1
                 }
-              }
+              },
+              "text": "Jeg sier at det ikke betyr noe og tørker over benken igjen."
             },
             {
               "id": "C",
@@ -1031,9 +1093,13 @@
                   "stress": 2,
                   "dignity_private": 1
                 }
-              }
+              },
+              "text": "Jeg sier at hun kunne sett at jeg nettopp hadde tørket der."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -1093,7 +1159,8 @@
                   "control": -2,
                   "energy_weekend": 2
                 }
-              }
+              },
+              "text": "Jeg setter meg ned først, selv om rommet ikke er helt ryddig."
             },
             {
               "id": "B",
@@ -1112,7 +1179,8 @@
                   "self_awareness": 1,
                   "body_awareness": 1
                 }
-              }
+              },
+              "text": "Jeg rydder glassene og lar resten være."
             },
             {
               "id": "C",
@@ -1132,9 +1200,13 @@
                   "energy_weekend": -3,
                   "stagnation_private": 2
                 }
-              }
+              },
+              "text": "Jeg rydder og vasker til rommet føles godt nok til å sette meg."
             }
-          ]
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
         },
         {
           "mail_type": "people",
@@ -1206,7 +1278,8 @@
                 "set_flags": [
                   "renholder_week2_private_boundary"
                 ]
-              }
+              },
+              "text": "Jeg bestemmer at helgen ikke skal være romstandard, flekker, berøringspunkter, avvik eller kontroll."
             },
             {
               "id": "B",
@@ -1225,7 +1298,8 @@
                   "stress": -4,
                   "self_awareness": 3
                 }
-              }
+              },
+              "text": "Jeg lar kroppen hvile før jeg rydder, vasker eller fikser noe."
             },
             {
               "id": "C",
@@ -1244,7 +1318,8 @@
                   "stress": 0,
                   "energy_weekend": -1
                 }
-              }
+              },
+              "text": "Jeg rydder noen småting for å roe hodet, men stopper før jeg begynner å vaske hele rommet."
             },
             {
               "id": "D",
@@ -1264,11 +1339,1392 @@
                   "stress": 3,
                   "stagnation_private": 3
                 }
-              }
+              },
+              "text": "Jeg vasker og rydder til hjemmet føles rent nok til å hvile i."
+            }
+          ],
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "task_kind": "prioriteringsvalg"
+        }
+      ]
+    },
+    {
+      "id": "renholder_people_v1",
+      "purpose": "Renholder v1 people: hovedcase om usynlig hygiene, synlig press, kropp og verdighet.",
+      "mails": [
+        {
+          "id": "renholder_people_001",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "morning",
+          "priority": "high",
+          "from": "kari_driftsleder",
+          "sender": "kari_driftsleder",
+          "person_id": "kari_driftsleder",
+          "place_id": "inngangsparti",
+          "subject": "Kari ber om ny prioritering",
+          "summary": "Kari ber om ny prioritering: du må velge mellom synlig renhet vs faktisk hygiene i inngangsparti.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i inngangsparti før eller mens bygget er i bruk.",
+            "kari_driftsleder presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "hygieneprioritering",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "synlig_renhet_vs_faktisk_hygiene",
+          "consequence_axis": "hygiene",
+          "narrative_arc": "Rommet må være klart før noen vet at du var der",
+          "learning_focus": [
+            "hygieneprioritering",
+            "synlig_renhet_vs_faktisk_hygiene",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "inngangsparti",
+            "hygieneprioritering"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_1",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_002",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "forenoon",
+          "priority": "high",
+          "from": "amina_erfaren_renholder",
+          "sender": "amina_erfaren_renholder",
+          "person_id": "amina_erfaren_renholder",
+          "place_id": "toalett_sone",
+          "subject": "Amina viser deg berøringspunktene",
+          "summary": "Amina viser deg berøringspunktene: du må velge mellom tidspress vs kvalitet i toalett_sone.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i toalett_sone før eller mens bygget er i bruk.",
+            "amina_erfaren_renholder presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "smittevern",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "tidspress_vs_kvalitet",
+          "consequence_axis": "smittevern",
+          "narrative_arc": "Det synlige er ikke alltid det viktigste",
+          "learning_focus": [
+            "smittevern",
+            "tidspress_vs_kvalitet",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "toalett_sone",
+            "smittevern"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_2",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_003",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "workday",
+          "priority": "high",
+          "from": "leo_ny_vikar",
+          "sender": "leo_ny_vikar",
+          "person_id": "leo_ny_vikar",
+          "place_id": "møterom",
+          "subject": "Leo spør hva som kan hoppes over",
+          "summary": "Leo spør hva som kan hoppes over: du må velge mellom lav status vs hoyt ansvar i møterom.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i møterom før eller mens bygget er i bruk.",
+            "leo_ny_vikar presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "overflateforståelse",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "lav_status_vs_hoyt_ansvar",
+          "consequence_axis": "tillit",
+          "narrative_arc": "Kroppen betaler for tidspresset",
+          "learning_focus": [
+            "overflateforståelse",
+            "lav_status_vs_hoyt_ansvar",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "møterom",
+            "overflateforståelse"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_3",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_004",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "lunch",
+          "priority": "high",
+          "from": "sindre_kontoransatt",
+          "sender": "sindre_kontoransatt",
+          "person_id": "sindre_kontoransatt",
+          "place_id": "fellesareal",
+          "subject": "Sindre klager på lukt ved kopimaskinen",
+          "summary": "Sindre klager på lukt ved kopimaskinen: du må velge mellom kroppslig slitasje vs profesjonalitet i fellesareal.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i fellesareal før eller mens bygget er i bruk.",
+            "sindre_kontoransatt presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "kjemikaliesikkerhet",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "kroppslig_slitasje_vs_profesjonalitet",
+          "consequence_axis": "arbeidsmiljø",
+          "narrative_arc": "Klagen handler om lukt, men feilen ligger i ruten",
+          "learning_focus": [
+            "kjemikaliesikkerhet",
+            "kroppslig_slitasje_vs_profesjonalitet",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "fellesareal",
+            "kjemikaliesikkerhet"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_4",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_005",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "afternoon",
+          "priority": "high",
+          "from": "elin_leder",
+          "sender": "elin_leder",
+          "person_id": "elin_leder",
+          "place_id": "avfallsrom",
+          "subject": "Elin vil ha blankt inngangsparti",
+          "summary": "Elin vil ha blankt inngangsparti: du må velge mellom servicekrav vs arbeidsmiljo i avfallsrom.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i avfallsrom før eller mens bygget er i bruk.",
+            "elin_leder presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "ergonomi",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "servicekrav_vs_arbeidsmiljo",
+          "consequence_axis": "kroppslig_slitasje",
+          "narrative_arc": "Lavstatusarbeidet bærer institusjonen",
+          "learning_focus": [
+            "ergonomi",
+            "servicekrav_vs_arbeidsmiljo",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "avfallsrom",
+            "ergonomi"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_5",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_006",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "dinner",
+          "priority": "high",
+          "from": "mira_elev",
+          "sender": "mira_elev",
+          "person_id": "mira_elev",
+          "place_id": "renholdsrom",
+          "subject": "Mira skjuler sølet ved sofaen",
+          "summary": "Mira skjuler sølet ved sofaen: du må velge mellom akutt søl vs planlagt renhold i renholdsrom.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i renholdsrom før eller mens bygget er i bruk.",
+            "mira_elev presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "romflyt",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "akutt_søl_vs_planlagt_renhold",
+          "consequence_axis": "hygiene",
+          "narrative_arc": "Smittevern er usynlig helt til det svikter",
+          "learning_focus": [
+            "romflyt",
+            "akutt_søl_vs_planlagt_renhold",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "renholdsrom",
+            "romflyt"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_6",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_007",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "evening",
+          "priority": "high",
+          "from": "ole_verneombud",
+          "sender": "ole_verneombud",
+          "person_id": "ole_verneombud",
+          "place_id": "garderobe",
+          "subject": "Ole spør om tempoet er forsvarlig",
+          "summary": "Ole spør om tempoet er forsvarlig: du må velge mellom verdighet vs usynlighet i garderobe.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i garderobe før eller mens bygget er i bruk.",
+            "ole_verneombud presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "avvikshåndtering",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "verdighet_vs_usynlighet",
+          "consequence_axis": "smittevern",
+          "narrative_arc": "Dagslutt: det rene rommet har ingen signatur",
+          "learning_focus": [
+            "avvikshåndtering",
+            "verdighet_vs_usynlighet",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "garderobe",
+            "avvikshåndtering"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_7",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_008",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "day_end",
+          "priority": "high",
+          "from": "tove_kantine_drift",
+          "sender": "tove_kantine_drift",
+          "person_id": "tove_kantine_drift",
+          "place_id": "driftskontor",
+          "subject": "Tove melder søppel fra kantina",
+          "summary": "Tove melder søppel fra kantina: du må velge mellom kollegial lojalitet vs smittevern i driftskontor.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i driftskontor før eller mens bygget er i bruk.",
+            "tove_kantine_drift presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "servicekommunikasjon",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "kollegial_lojalitet_vs_smittevern",
+          "consequence_axis": "tillit",
+          "narrative_arc": "Rommet må være klart før noen vet at du var der",
+          "learning_focus": [
+            "servicekommunikasjon",
+            "kollegial_lojalitet_vs_smittevern",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "driftskontor",
+            "servicekommunikasjon"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_8",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_009",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "morning",
+          "priority": "normal",
+          "from": "jan_vaktmester",
+          "sender": "jan_vaktmester",
+          "person_id": "jan_vaktmester",
+          "place_id": "inngangsparti",
+          "subject": "Jan finner lekkasjen bak containeren",
+          "summary": "Jan finner lekkasjen bak containeren: du må velge mellom leders prioritet vs faglig prioritet i inngangsparti.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i inngangsparti før eller mens bygget er i bruk.",
+            "jan_vaktmester presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "tidsprioritering",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "leders_prioritet_vs_faglig_prioritet",
+          "consequence_axis": "arbeidsmiljø",
+          "narrative_arc": "Det synlige er ikke alltid det viktigste",
+          "learning_focus": [
+            "tidsprioritering",
+            "leders_prioritet_vs_faglig_prioritet",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "inngangsparti",
+            "tidsprioritering"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_9",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            }
+          ]
+        },
+        {
+          "id": "renholder_people_010",
+          "mail_type": "people",
+          "mail_family": "renholder_people_v1",
+          "role_scope": "renholder",
+          "role_id": "naer_renholder",
+          "role_key": "renholder",
+          "phase": "forenoon",
+          "priority": "normal",
+          "from": "grete_skadet_kollega",
+          "sender": "grete_skadet_kollega",
+          "person_id": "grete_skadet_kollega",
+          "place_id": "toalett_sone",
+          "subject": "Grete sier hun kommer i morgen likevel",
+          "summary": "Grete sier hun kommer i morgen likevel: du må velge mellom synlig renhet vs faktisk hygiene i toalett_sone.",
+          "purpose": "Gjør renholderrollen spillbar som people-mail med fysisk, hygienisk og sosialt ansvar.",
+          "stakes": "Feil prioritering kan gi smitte, utrygghet, klager, arbeidsmiljøproblem eller praktisk kollaps.",
+          "situation": [
+            "Du står i toalett_sone før eller mens bygget er i bruk.",
+            "grete_skadet_kollega presser saken fram.",
+            "Valget avgjør om usynlig hygiene eller synlig renhet får forrang."
+          ],
+          "task_domain": "renhold_hygiene_drift",
+          "task_kind": "prioriteringsvalg",
+          "competency": "observasjon",
+          "pressure": "tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart",
+          "choice_axis": "synlig_renhet_vs_faktisk_hygiene",
+          "consequence_axis": "kroppslig_slitasje",
+          "narrative_arc": "Kroppen betaler for tidspresset",
+          "learning_focus": [
+            "observasjon",
+            "synlig_renhet_vs_faktisk_hygiene",
+            "verdighet_i_usynlig_arbeid"
+          ],
+          "branch_flags": [
+            "renholder_people"
+          ],
+          "tags": [
+            "renholder",
+            "hygiene",
+            "toalett_sone",
+            "observasjon"
+          ],
+          "next_bias": [
+            "renholder_v1"
+          ],
+          "triggers_on_choice": "renholder_follow_people_10",
+          "choices": [
+            {
+              "id": "A",
+              "reply": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effects": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_A",
+              "label": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "text": "Prioriter faglig hygiene og meld kort hva som må vente",
+              "effect": {
+                "stats": {
+                  "hygiene_quality": 2,
+                  "trust": 1,
+                  "time_pressure": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "B",
+              "reply": "Prioriter det synlige slik at klagen roer seg",
+              "effects": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_B",
+              "label": "Prioriter det synlige slik at klagen roer seg",
+              "text": "Prioriter det synlige slik at klagen roer seg",
+              "effect": {
+                "stats": {
+                  "visibility": 2,
+                  "hygiene_quality": -1,
+                  "future_risk": 1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
+            },
+            {
+              "id": "C",
+              "reply": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effects": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "next_bias": [
+                "renholder_v1"
+              ],
+              "triggers_on_choice": "renholder_follow_C",
+              "label": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "text": "Stopp opp og avklar HMS eller avvik før du fortsetter",
+              "effect": {
+                "stats": {
+                  "hms_safety": 2,
+                  "traceability": 2,
+                  "time_flow": -1
+                }
+              },
+              "tags": [
+                "renholder",
+                "hygiene"
+              ],
+              "feedback": "Valget får synlige og usynlige konsekvenser for hygiene, flyt og kropp."
             }
           ]
         }
-      ]
+      ],
+      "threads": []
     }
   ]
 }

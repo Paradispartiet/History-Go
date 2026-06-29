@@ -14,7 +14,8 @@
   "title": "Renholder",
   "short_description": "Praktisk renholdsrolle som lærer spilleren å holde rom, soner og berøringspunkter hygienisk trygge under tidspress, lav status og fysisk belastning.",
   "core_narrative": [
-    "I Civication er Renholder en grunnleggende næringslivsrolle der spilleren lærer at renhold er faglig, kroppslig og samfunnsviktig drift som ofte først blir synlig når det svikter."
+    "Renholderen holder institusjonen i gang uten å bli sett. Arbeidet er fysisk, tidspresset og lavstatus, men feil renhold kan gi smitte, utrygghet, klager, arbeidsmiljøproblemer og praktisk kollaps.",
+    "Jobben handler ikke bare om å vaske, men om prioritering, hygiene, flyt, verdighet, usynlig ansvar og kroppslig slitasje."
   ],
   "core_practices": [
     "prioritere soner og berøringspunkter",
@@ -150,13 +151,18 @@
     "role_model_refs_supported": true
   },
   "competence_axes": [
-    "hygiene",
-    "renholdssoner",
-    "berøringspunkter",
-    "kjemikalier_og_utstyr",
-    "HMS",
-    "avvik",
-    "verdighet_i_usynlig_arbeid"
+    "hygieneprioritering",
+    "smittevern",
+    "overflateforståelse",
+    "kjemikaliesikkerhet",
+    "ergonomi",
+    "romflyt",
+    "avvikshåndtering",
+    "servicekommunikasjon",
+    "tidsprioritering",
+    "observasjon",
+    "arbeidsmiljø",
+    "egenregulering"
   ],
   "ideal_type_problems": [
     "overflatearbeideren som gjør rommet pent, men ikke hygienisk trygt",
@@ -170,5 +176,83 @@
   ],
   "notes": [
     "Ny grunnrollepakke uten Praksisfortellinger uke 1/uke 2."
+  ],
+  "role_key": "renholder",
+  "main_case": {
+    "title": "Rommet må være klart før noen vet at du var der",
+    "premise": "Du starter en dag i et bygg der møterom, toaletter, inngangsparti og fellesarealer må være klare før brukerne kommer. Samtidig mangler en kollega, en søppellekkasje oppstår, en leder vil ha synlige resultater, og et usynlig hygieneproblem er viktigere enn det folk legger merke til."
+  },
+  "person_map": [
+    {
+      "person_id": "kari_driftsleder",
+      "role": "driftsleder",
+      "place_id": "inngangsparti"
+    },
+    {
+      "person_id": "amina_erfaren_renholder",
+      "role": "erfaren renholder",
+      "place_id": "toalett_sone"
+    },
+    {
+      "person_id": "leo_ny_vikar",
+      "role": "ny vikar",
+      "place_id": "møterom"
+    },
+    {
+      "person_id": "sindre_kontoransatt",
+      "role": "kontoransatt som klager",
+      "place_id": "fellesareal"
+    },
+    {
+      "person_id": "elin_leder",
+      "role": "leder med representativt press",
+      "place_id": "avfallsrom"
+    },
+    {
+      "person_id": "mira_elev",
+      "role": "bruker/elev/beboer",
+      "place_id": "renholdsrom"
+    },
+    {
+      "person_id": "ole_verneombud",
+      "role": "verneombud",
+      "place_id": "garderobe"
+    },
+    {
+      "person_id": "tove_kantine_drift",
+      "role": "kantine/drift-kontakt",
+      "place_id": "driftskontor"
+    },
+    {
+      "person_id": "jan_vaktmester",
+      "role": "byggdrift/vaktmester",
+      "place_id": "inngangsparti"
+    },
+    {
+      "person_id": "grete_skadet_kollega",
+      "role": "kollega med slitasje/skade",
+      "place_id": "toalett_sone"
+    }
+  ],
+  "conflict_map": [
+    "synlig_renhet_vs_faktisk_hygiene",
+    "tidspress_vs_kvalitet",
+    "lav_status_vs_hoyt_ansvar",
+    "kroppslig_slitasje_vs_profesjonalitet",
+    "servicekrav_vs_arbeidsmiljo",
+    "akutt_søl_vs_planlagt_renhold",
+    "verdighet_vs_usynlighet",
+    "kollegial_lojalitet_vs_smittevern",
+    "leders_prioritet_vs_faglig_prioritet"
+  ],
+  "history_go_targets": [
+    "inngangsparti",
+    "toalett_sone",
+    "møterom",
+    "fellesareal",
+    "avfallsrom",
+    "renholdsrom",
+    "garderobe",
+    "driftskontor"
   ]
 }

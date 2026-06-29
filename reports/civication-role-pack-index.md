@@ -15,8 +15,8 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 ## Sammendrag
 
 - complete_reference: 2
-- playable_v1: 0
-- partial_pack: 21
+- playable_v1: 1
+- partial_pack: 20
 - role_model_only: 223
 - generated_stub: 0
 - broken_mapping: 0
@@ -158,7 +158,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | naeringsliv | konsernsjef | naeringsliv_konsernsjef | Konsernsjef | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | lager_og_driftsmedarbeider | naer_lager_og_driftsmedarbeider | Lager- og driftsmedarbeider | ja | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | produksjonsleder | naeringsliv_produksjonsleder | Produksjonsleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| naeringsliv | renholder | naer_renholder | Renholder | ja | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
+| naeringsliv | renholder | naer_renholder | Renholder | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | playable_v1 |
 | naeringsliv | skiftleder | naeringsliv_skiftleder | Skiftleder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | naeringsliv | administrasjonsmedarbeider | naeringsliv_okonomi_og_administrasjonsmedarbeider | Økonomi- og administrasjonsmedarbeider | ja | ja | ja | ja | nei | nei | nei | nei | nei | nei | nei | ja | partial_pack |
 | naeringsliv | okonomi_og_finanssjef | naer_okonomi_og_finanssjef | Økonomi- og finanssjef | ja | ja | ja | nei | ja | ja | ja | nei | nei | nei | nei | nei | partial_pack |
