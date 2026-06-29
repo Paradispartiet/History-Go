@@ -41,7 +41,9 @@
       return "Denne fasen er avklart. Gå videre når du er klar.";
     }
     if (!inspection?.nextPhase) {
-      return "Ingen flere faser i dag. Nye hendelser kommer neste dag.";
+      return Number(inspection?.openItemsInPhase || 0) === 0
+        ? "Dagen er klar til oppsummering. Trykk \"Start ny dag\" for å gå videre."
+        : "Ingen flere faser i dag. Nye hendelser kommer neste dag.";
     }
     return "Følg faseflyten: svar på meldinger → fullfør fase → gå videre.";
   }
@@ -72,17 +74,49 @@
     return hasNoNextPhase && hasNoOpenItems && isAtLastPhase;
   }
 
+  function getDayEndSummaryViewModel() {
+    const progression = window.CivicationDayProgression;
+    if (!progression?.getDayEndSummary) return null;
+    try { return progression.getDayEndSummary() || null; } catch { return null; }
+  }
+
   function buildDayCompleteSummary(inspection) {
+    const summary = getDayEndSummaryViewModel();
+    if (!summary) {
+      return ""
+        + "<section class=\"civi-day-complete\" aria-label=\"Dagen er fullført\">"
+        + "<h4 class=\"civi-day-complete-title\">Dagen er fullført</h4>"
+        + "<p class=\"civi-day-complete-text\">Alle åpne handlinger for denne dagen er avklart. Nye hendelser kommer neste dag.</p>"
+        + "<dl class=\"civi-day-complete-grid\">"
+        + "<div><dt>Dag</dt><dd>" + escapeHtml(inspection.dayIndex || 1) + "</dd></div>"
+        + "<div><dt>Fase</dt><dd>" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</dd></div>"
+        + "<div><dt>Åpne handlinger</dt><dd>0</dd></div>"
+        + "<div><dt>Neste fase</dt><dd>Ingen</dd></div>"
+        + "</dl>"
+        + "</section>";
+    }
+
+    const choices = Array.isArray(summary.importantChoices) ? summary.importantChoices : [];
+    const choicesHtml = choices.length
+      ? "<p class=\"civi-day-complete-text\">Viktige valg i dag:</p><ul class=\"civi-day-phase-list\">"
+        + choices.map((choice) => "<li>" + escapeHtml(choice) + "</li>").join("")
+        + "</ul>"
+      : "";
+
     return ""
-      + "<section class=\"civi-day-complete\" aria-label=\"Dagen er fullført\">"
-      + "<h4 class=\"civi-day-complete-title\">Dagen er fullført</h4>"
-      + "<p class=\"civi-day-complete-text\">Alle åpne handlinger for denne dagen er avklart. Nye hendelser kommer neste dag.</p>"
+      + "<section class=\"civi-day-complete\" aria-label=\"Dagsoppsummering\">"
+      + "<h4 class=\"civi-day-complete-title\">" + escapeHtml(summary.title || "Dagen er over") + "</h4>"
       + "<dl class=\"civi-day-complete-grid\">"
-      + "<div><dt>Dag</dt><dd>" + escapeHtml(inspection.dayIndex || 1) + "</dd></div>"
-      + "<div><dt>Fase</dt><dd>" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</dd></div>"
-      + "<div><dt>Åpne handlinger</dt><dd>0</dd></div>"
-      + "<div><dt>Neste fase</dt><dd>Ingen</dd></div>"
+      + "<div><dt>Dag</dt><dd>" + escapeHtml(summary.dayIndex || inspection.dayIndex || 1) + "</dd></div>"
+      + "<div><dt>Score</dt><dd>" + escapeHtml(summary.score ?? 0) + "</dd></div>"
+      + "<div><dt>Saker besvart</dt><dd>" + escapeHtml(summary.handledItems || 0) + "</dd></div>"
+      + "<div><dt>Møtt</dt><dd>" + escapeHtml(summary.peopleMet || 0) + "</dd></div>"
+      + "<div><dt>Oppgaver løst</dt><dd>" + escapeHtml(summary.tasksCompleted || 0) + "</dd></div>"
+      + "<div><dt>Fullførte bolker</dt><dd>" + escapeHtml(summary.completedPhases || 0) + " / " + escapeHtml(summary.totalPhases || 0) + "</dd></div>"
       + "</dl>"
+      + choicesHtml
+      + (summary.roleDevelopment ? "<p class=\"civi-day-complete-text\">" + escapeHtml(summary.roleDevelopment) + "</p>" : "")
+      + (summary.carryover ? "<p class=\"civi-day-complete-text\">" + escapeHtml(summary.carryover) + "</p>" : "")
       + "</section>";
   }
 
@@ -436,8 +470,12 @@
     const blockingItems = Number(inspection.queuedItemsInPhase || 0) + Number(inspection.deliveredItemsInPhase || 0) + Number(inspection.openItemsInPhase || 0);
     const canOpenNext = Number(inspection.queuedItemsInPhase || 0) > 0;
     const canOpenBundle = canOpenNext;
-    const canAdvance = inspection.canAdvance === true && !!nextPhase && blockingItems === 0;
-    const buttonText = nextPhase ? "Gå til neste fase" : "Dagen er ferdig";
+    // Mirrors dayProgressionController's canResetAtDayEnd: at the last phase with no open
+    // items, advancePhaseIfReady() rolls into a new day even though canAdvance is false
+    // (there is no "next phase" to advance into). The button must stay clickable for that.
+    const canStartNewDay = !nextPhase && blockingItems === 0;
+    const canAdvance = (inspection.canAdvance === true && !!nextPhase && blockingItems === 0) || canStartNewDay;
+    const buttonText = nextPhase ? "Gå til neste fase" : (canStartNewDay ? "Start ny dag" : "Dagen er ferdig");
     const dayCompleteSummary = shouldShowDayCompleteSummary(inspection) ? buildDayCompleteSummary(inspection) : "";
     const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
     const reentryLockBanner = buildReentryLockBanner(getReentryLockViewModel());
