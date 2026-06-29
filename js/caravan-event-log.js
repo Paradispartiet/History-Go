@@ -120,8 +120,10 @@
 
   function summary(routeId, mode) {
     const rid = clean(routeId); const m = clean(mode) || "all";
-    const entries = getRouteLog(rid, m);
-    return { route_id: rid, mode: validMode(m) ? m : "all", choices: entries.length, stagesWithChoices: new Set(entries.map((entry) => entry.stage_id)).size, eventsWithChoices: new Set(entries.map((entry) => entry.event_id)).size };
+    if (m !== "all" && !validMode(m)) warn("ugyldig summary mode", { routeId, mode });
+    const selected = validMode(m) ? m : "all";
+    const entries = getRouteLog(rid, selected);
+    return { route_id: rid, mode: selected, choices: entries.length, stagesWithChoices: new Set(entries.map((entry) => entry.stage_id)).size, eventsWithChoices: new Set(entries.map((entry) => entry.event_id)).size };
   }
 
   window.HG_CARAVAN_EVENT_LOG = { getAll, getChoice, setChoice, clearChoice, getStageLog, getRouteLog, summary };

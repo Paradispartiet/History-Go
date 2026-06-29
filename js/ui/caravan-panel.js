@@ -1098,7 +1098,7 @@
 
   function setEventChoice(eventId, choiceId, stageId = activeStageId, routeId = selectedRouteId) {
     const mode = normalizeTravelMode(activeTravelMode);
-    if (mode === "all") return null;
+    if (mode === "all") { console.warn(PREFIX, "kan ikke lagre eventvalg når reisebrille er Alle", { eventId, choiceId }); return null; }
     const event = getEventById(eventId);
     const sid = cleanText(stageId || event?.stage_id);
     const rid = cleanText(routeId || event?.route_id);
@@ -1112,14 +1112,14 @@
 
   function getEventChoice(eventId, stageId = activeStageId, routeId = selectedRouteId) {
     const mode = normalizeTravelMode(activeTravelMode);
-    if (mode === "all") return null;
+    if (mode === "all") { console.warn(PREFIX, "kan ikke lese eventvalg når reisebrille er Alle", { eventId }); return null; }
     const event = getEventById(eventId);
     return getEventLogRuntime()?.getChoice?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, mode) || null;
   }
 
   function clearEventChoice(eventId, stageId = activeStageId, routeId = selectedRouteId) {
     const mode = normalizeTravelMode(activeTravelMode);
-    if (mode === "all") return null;
+    if (mode === "all") { console.warn(PREFIX, "kan ikke nullstille eventvalg når reisebrille er Alle", { eventId }); return null; }
     const event = getEventById(eventId);
     const result = getEventLogRuntime()?.clearChoice?.(cleanText(routeId || event?.route_id), cleanText(stageId || event?.stage_id), eventId, mode) || null;
     render(selectedRouteId);
