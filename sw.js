@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-22-v1.2.954";
+const SW_VERSION = "hg-sw-2026-06-22-v1.2.955";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -166,6 +166,7 @@ const PRECACHE_URLS = [
   "js/Civication/ui/CivicationDashboardUI.js",
   "js/Civication/ui/CivicationMiniSectionsUI.js",
   "js/Civication/ui/CivicationInboxTopActionUI.js",
+  "js/Civication/ui/CivicationNextActionUI.js",
   "js/Civication/ui/CivicationDayPhaseUI.js",
   "js/Civication/ui/CivicationEmptyPanels.js",
 
@@ -179,6 +180,7 @@ const PRECACHE_URLS = [
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
   "js/Civication/systems/day/dayCalendarBridge.js",
   "js/Civication/systems/day/dayProgressionController.js",
+  "js/Civication/systems/civicationNextActionSelector.js",
   "js/Civication/systems/day/dayHistoryGoContexts.js",
   "js/Civication/systems/day/dayCarryover.js",
   "js/Civication/systems/day/dayWeeklyReview.js",

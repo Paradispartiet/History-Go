@@ -239,17 +239,21 @@
   }
 
   // The day phase panel is a read-only status card. Answering happens only on the
-  // NextAction surface (the inbox top action), so this routes to the exact same entry
-  // the top action card uses instead of rendering any answer choices here.
+  // NextAction surface, so this opens CivicationNextActionUI — the single authoritative
+  // answer surface — instead of rendering any answer choices here or opening the inbox
+  // archive. The inbox top action is kept only as a defensive fallback.
   function goToNextAction() {
-    const section = document.getElementById("civiInboxSection");
-    if (section && typeof window.CivicationMiniSectionsUI?.openPopup === "function") {
-      window.CivicationMiniSectionsUI.openPopup(section, { label: "Innkommende", accent: "📨" });
-      return true;
+    if (typeof window.CivicationNextActionUI?.open === "function") {
+      return window.CivicationNextActionUI.open();
     }
     const topButton = document.querySelector("#civiTopActionCard [data-civi-top-action]");
     if (topButton && typeof topButton.click === "function") {
       topButton.click();
+      return true;
+    }
+    const section = document.getElementById("civiInboxSection");
+    if (section && typeof window.CivicationMiniSectionsUI?.openPopup === "function") {
+      window.CivicationMiniSectionsUI.openPopup(section, { label: "Innkommende", accent: "📨" });
       return true;
     }
     return false;
@@ -268,7 +272,12 @@
     });
   }
 
+  // The next-item title must match exactly what NextAction shows. Prefer the shared
+  // selector so both surfaces read the same authoritative action; fall back to the raw
+  // inspection (pendingItem || nextQueuedItem) when the selector is unavailable.
   function getNextItemTitle(inspection) {
+    const fromSelector = window.CivicationNextActionSelector?.getCurrent?.();
+    if (fromSelector && fromSelector.subject) return String(fromSelector.subject).trim();
     const nextItem = inspection?.pendingItem || inspection?.nextQueuedItem || null;
     return String(nextItem?.subject || "").trim();
   }

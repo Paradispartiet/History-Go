@@ -95,6 +95,14 @@ Arbeidsdagen har **én** dagrytme og **ett** sett fase-skrivere. Ikke innfør pa
 - **UI leser, eier ikke:** `CivicationUI.renderWorkdayPanel`/`computeWorkdayModel.dayPhase` og
   `CivicationDayPhaseUI` **leser** fase/dagsbunke fra DayProgression/DailyMailBuilder. Faseavansering
   skjer kun via `CivicationDayProgression.advancePhaseIfReady` (knapp i `CivicationDayPhaseUI`).
+- **NextAction er eneste aktive svarflate.** `CivicationNextActionSelector.getCurrent()` velger
+  nøyaktig én aktiv handling — primært `CivicationDayProgression.inspect()` (`pendingItem`, ellers
+  `nextQueuedItem`), med ikke-fasebaserte innboks-handlinger kun som fallback. `CivicationNextActionUI`
+  er den **eneste** flaten som rendrer svaralternativer. `CivicationDayPhaseUI` (Dagens fase) er et
+  rent statuskort (fase, antall åpne, neste sak) og ruter til NextAction via «Gå til neste handling».
+  Innboksen er arkiv/detalj: for en aktiv fasehandling viser den «Håndteres i Neste handling» med
+  lenke dit, ikke egne svarvalg. `WorkdayPanel` viser kun en kompakt fase-HUD — `buildDayPhaseSectionHtml`
+  rendrer **aldri** `data-civi-bundle-choice` i normal runtime (full bunke kun bak debug-flagg).
 
 ---
 
