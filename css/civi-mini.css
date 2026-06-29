@@ -7,7 +7,7 @@
 ============================================================ */
 
 :root {
-  --civi-mini-bg: rgba(22,30,40,0.94);
+  --civi-mini-bg: var(--card2);
   --civi-mini-bg-2: rgba(255,255,255,0.07);
   --civi-mini-bg-3: rgba(255,255,255,0.10);
   --civi-mini-border: rgba(255,255,255,0.13);
@@ -59,7 +59,7 @@ body.civi-app.civi-mini-mode .civi-dashboard-copy {
   padding: 10px 12px;
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 16px;
-  background: #161e28;
+  background: var(--card2);
   box-shadow: 0 10px 24px rgba(0,0,0,0.28);
   color: rgba(255,255,255,0.96);
   opacity: 1;
@@ -127,7 +127,7 @@ body.civi-app.civi-mini-mode #civiTrackHUD {
   min-height: 220px;
   padding: 0;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(32,42,54,0.96), rgba(22,30,40,0.96));
+  background: var(--card);
   border: 1px solid var(--civi-mini-border);
   box-shadow: 0 10px 24px rgba(0,0,0,0.22);
   overflow: hidden;
@@ -229,7 +229,7 @@ body.civi-app.civi-mini-mode .needs-feedback .civi-mini-status {
 }
 
 body.civi-app.civi-mini-mode .needs-feedback .civi-mini-action {
-  background: linear-gradient(135deg, rgba(214,170,58,0.30), rgba(214,170,58,0.12)) !important;
+  background: rgba(214,170,58,0.22) !important;
   border-color: rgba(214,170,58,0.42) !important;
   color: rgba(255,236,180,0.98) !important;
 }
@@ -278,7 +278,7 @@ body.civi-popup-open {
 .civi-section-popup-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(8,12,18,0.5);
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(10px);
 }
 
@@ -293,9 +293,7 @@ body.civi-popup-open {
   display: flex;
   flex-direction: column;
   border-radius: 24px;
-  background:
-    radial-gradient(circle at 18% 0%, rgba(214,170,58,0.16), transparent 28%),
-    linear-gradient(180deg, rgba(36,46,58,0.985), rgba(20,28,38,0.99));
+  background: var(--card2);
   border: 1px solid rgba(255,255,255,0.15);
   box-shadow: 0 24px 70px rgba(0,0,0,0.45);
   overflow: hidden;
@@ -313,7 +311,7 @@ body.civi-popup-open {
 
 .civi-section-popup-kicker {
   margin-bottom: 5px;
-  color: rgba(214,170,58,0.95);
+  color: var(--civi-accent);
   font-size: 13px;
   font-weight: 850;
   letter-spacing: 0.10em;
@@ -322,7 +320,7 @@ body.civi-popup-open {
 
 #civiSectionPopupTitle {
   margin: 0;
-  color: rgba(255,255,255,0.94);
+  color: var(--ink);
   font-size: clamp(22px, 3vw, 34px);
   line-height: 1.02;
   letter-spacing: -0.04em;
@@ -382,7 +380,7 @@ body.civi-app .district-card button,
 body.civi-app .civi-modal-close,
 body.civi-app .civi-task-actions button,
 body.civi-app .civi-popup-close {
-  background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.07)) !important;
+  background: var(--btn-bg) !important;
   color: rgba(255,255,255,0.94) !important;
   border: 1px solid rgba(255,255,255,0.17) !important;
   box-shadow: none !important;
@@ -391,17 +389,20 @@ body.civi-app .civi-popup-close {
 body.civi-app .civi-btn.primary,
 body.civi-app #buyDistrictBtn,
 body.civi-app #changeDistrictBtn {
-  background: linear-gradient(135deg, rgba(214,170,58,0.24), rgba(214,170,58,0.09)) !important;
-  border-color: rgba(214,170,58,0.32) !important;
-  color: rgba(255,232,170,0.98) !important;
+  background: var(--civi-accent) !important;
+  border-color: var(--civi-accent) !important;
+  color: #000 !important;
 }
 
 body.civi-app button:hover,
 body.civi-app .civi-btn:hover,
-body.civi-app .civi-btn.primary:hover,
 body.civi-app .district-card button:hover {
-  background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.09)) !important;
+  background: var(--btn-bg-hover) !important;
   filter: none !important;
+}
+
+body.civi-app .civi-btn.primary:hover {
+  filter: brightness(1.08) !important;
 }
 
 body.civi-app input,
@@ -517,7 +518,7 @@ body.civi-app.civi-mini-mode .civi-top-action-card {
   border: 1px solid var(--civi-mini-border);
   border-radius: 18px;
   padding: 16px;
-  background: linear-gradient(180deg, rgba(30,40,52,0.96), rgba(22,30,40,0.96));
+  background: var(--card2);
 }
 body.civi-app.civi-mini-mode .civi-top-action-card.is-urgent { border-color: rgba(214,170,58,0.45); }
 body.civi-app.civi-mini-mode .civi-top-action-head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
@@ -555,7 +556,7 @@ body.civi-app.civi-mini-mode .civi-category-empty {
   border-radius: 16px;
   padding: 14px;
   color: var(--civi-mini-muted);
-  background: rgba(34,41,56,0.55);
+  background: var(--card2);
 }
 body.civi-app.civi-mini-mode .civi-category-empty.is-visible { display:block; }
 body.civi-app.civi-mini-mode .civi-category-empty h3 { margin:0 0 6px; color:var(--civi-mini-text); font-size:16px; }
