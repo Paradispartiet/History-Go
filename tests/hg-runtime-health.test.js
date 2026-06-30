@@ -17,8 +17,9 @@ function boot(overrides = {}) {
   global.window = global;
   global.localStorage = installStorage({ visited_places: JSON.stringify({ p1: true }) });
   global.document = {
-    getElementById: (id) => id === 'map' ? ({}) : null,
-    querySelector: () => null
+    getElementById: (id) => id === 'map' || id === 'spotmeeting-inbox' ? ({}) : null,
+    querySelector: (selector) => String(selector).includes('socialmeet') ? ({ textContent: 'Social Meet' }) : null,
+    addEventListener: () => {}
   };
   global.console = { log() {}, warn() {}, error() {}, table() {} };
   global.PLACES = [{ id: 'p1' }];
@@ -34,8 +35,11 @@ function boot(overrides = {}) {
   delete global.HG_CiviDebug;
   delete global.HG_SocialDebug;
   delete global.HG_RuntimeHealth;
+  global.renderSpotmeetingInbox = () => {};
   Object.assign(global, overrides);
   vm.runInThisContext(fs.readFileSync('js/social/HGPublicProfileReadModel.js', 'utf8'), { filename: 'HGPublicProfileReadModel.js' });
+  vm.runInThisContext(fs.readFileSync('js/social/HGSpotmeeting.js', 'utf8'), { filename: 'HGSpotmeeting.js' });
+  vm.runInThisContext(fs.readFileSync('js/social/HGSpotmeetingPlaceCardDemo.js', 'utf8'), { filename: 'HGSpotmeetingPlaceCardDemo.js' });
   vm.runInThisContext(fs.readFileSync('js/debug/HGRuntimeHealth.js', 'utf8'), { filename: 'HGRuntimeHealth.js' });
   return global.HG_RuntimeHealth;
 }

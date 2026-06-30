@@ -56,7 +56,8 @@ function installDocument() {
     readyState: 'complete',
     listeners: {},
     createElement(tagName) { return new Element(tagName, document); },
-    getElementById(id) { return document.byId[id] || null; },
+    getElementById(id) { return document.byId[id] || (id === 'spotmeeting-inbox' ? new Element('div', document) : null); },
+    querySelector(selector) { return String(selector).includes('socialmeet') ? new Element('button', document) : null; },
     addEventListener(type, fn) { document.listeners[type] = document.listeners[type] || []; (document.listeners[type]).push(fn); }
   };
   document.head = new Element('head', document);
@@ -73,7 +74,10 @@ function boot({ testMode = true } = {}) {
   global.clearTimeout = () => {};
   global.addEventListener = () => {};
   for (const key of ['HG_RuntimeSmokeRunner', 'HG_RuntimeHealth', 'HG_RuntimeHealthPanel', 'HG_CiviDebug', 'HG_SocialDebug', 'HGLearningLog', 'PLACES', 'PEOPLE', 'TAGS_REGISTRY', 'HG_CiviProfileSnapshot', 'openPlaceCard', 'HGMapView']) delete global[key];
+  global.renderSpotmeetingInbox = () => {};
   vm.runInThisContext(fs.readFileSync('js/social/HGPublicProfileReadModel.js', 'utf8'), { filename: 'HGPublicProfileReadModel.js' });
+  vm.runInThisContext(fs.readFileSync('js/social/HGSpotmeeting.js', 'utf8'), { filename: 'HGSpotmeeting.js' });
+  vm.runInThisContext(fs.readFileSync('js/social/HGSpotmeetingPlaceCardDemo.js', 'utf8'), { filename: 'HGSpotmeetingPlaceCardDemo.js' });
   vm.runInThisContext(fs.readFileSync('js/debug/HGRuntimeSmokeRunner.js', 'utf8'), { filename: 'HGRuntimeSmokeRunner.js' });
   return { runner: global.HG_RuntimeSmokeRunner, storage: global.localStorage, document: global.document };
 }

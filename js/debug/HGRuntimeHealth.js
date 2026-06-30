@@ -103,6 +103,7 @@
     const matchGraph = safeCall(() => root.HG_SocialMatchGraph?.buildMatchGraph?.({ limit: 10 }), null);
     const matchGraphHealth = safeCall(() => root.HG_SocialMatchGraph?.health?.(), null);
     const spotmeetingHealth = safeCall(() => root.HG_Spotmeeting?.health?.(), null);
+    const spotmeetingConfig = safeCall(() => root.HG_Spotmeeting?.getSpotmeetingConfig?.(), null);
     const dailyObjectives = safeCall(() => root.HG_DailyObjectives?.getSummary?.(), null);
     const dailyObjectivesHealth = safeCall(() => root.HG_DailyObjectives?.health?.(), null);
     const dailyProgress = safeCall(() => root.HG_DailyProgress?.getSummary?.(), null);
@@ -157,6 +158,13 @@
       matchGraph,
       matchGraphHealth,
       spotmeetingHealth,
+      spotmeetingConfig,
+      profileSocialMeet: {
+        hasSocialMeetTab: !!root.document?.querySelector?.('.profile-tab[data-tab="socialmeet"], [role="tab"][data-tab="socialmeet"]'),
+        hasSpotmeetingInbox: !!root.document?.getElementById?.("spotmeeting-inbox"),
+        hasSpotmeetingInboxRenderer: typeof root.renderSpotmeetingInbox === "function",
+        hasPlaceCardDemo: !!root.HG_SpotmeetingPlaceCardDemo
+      },
       dailyObjectives,
       dailyObjectivesHealth,
       dailyProgress,
@@ -256,6 +264,18 @@
     if (snap.dailyObjectivesHealth?.warnings) listFrom(snap.dailyObjectivesHealth.warnings).forEach((item)=>warnings.push({key:item?.key||'daily_objectives_warning',message:item?.message||String(item?.key||item||'Daily objectives warning'),details:item,subsystem:'dailyObjectives'}));
     const spotmeetingBlockers = listFrom(snap.spotmeetingHealth?.blockers).map((item)=>({key:item?.key||'spotmeeting_privacy',message:item?.message||'Spotmeeting privacy blocker',details:item,subsystem:'social'}));
     if (snap.spotmeetingHealth?.warnings) listFrom(snap.spotmeetingHealth.warnings).forEach((item)=>warnings.push({key:item?.key||'spotmeeting_warning',message:item?.message||String(item?.key||item||'Spotmeeting warning'),details:item,subsystem:'social'}));
+    const spotmeetingPrivacyReject = safeCall(() => root.HG_Spotmeeting?.canCreateSpotmeetingInvite?.("runtime-health-target", { contextType: "place", contextId: "runtime-health-place", title: "Runtime health", reason: "Runtime health", sourceSurface: "runtimeHealth", latitude: 1 }), null);
+    const spotmeetingPresetOnly = listFrom(snap.spotmeetingConfig?.presetMessages).length > 0 && listFrom(snap.spotmeetingConfig?.presetMessages).every((preset) => preset?.presetMessageId && preset?.label && !preset?.freeText);
+    const spotmeetingDemoLeaked = listFrom(root.PEOPLE).filter((person) => String(person?.id || person?.userId || "").startsWith("demo-"));
+    if (!root.HG_Spotmeeting) addBlocker(blockers, "spotmeeting_missing", "HG_Spotmeeting mangler.", {}, "social");
+    if (root.HG_Spotmeeting && snap.spotmeetingHealth?.ok !== true) addBlocker(blockers, "spotmeeting_health_failed", "HG_Spotmeeting.health() bestod ikke.", snap.spotmeetingHealth || {}, "social");
+    if (!root.HG_SpotmeetingPlaceCardDemo) addBlocker(blockers, "spotmeeting_placecard_demo_missing", "HG_SpotmeetingPlaceCardDemo mangler.", {}, "social");
+    if (!snap.profileSocialMeet.hasSocialMeetTab) addBlocker(blockers, "social_meet_tab_missing", "profile.html mangler Social Meet-tab mount i DOM.", snap.profileSocialMeet, "social");
+    if (!snap.profileSocialMeet.hasSpotmeetingInbox) addBlocker(blockers, "spotmeeting_inbox_missing", "profile.html mangler spotmeeting-inbox mount i DOM.", snap.profileSocialMeet, "social");
+    if (!snap.profileSocialMeet.hasSpotmeetingInboxRenderer) addBlocker(blockers, "spotmeeting_inbox_renderer_missing", "spotmeeting-inbox renderer mangler.", snap.profileSocialMeet, "social");
+    if (root.HG_Spotmeeting && !spotmeetingPresetOnly) addBlocker(blockers, "spotmeeting_presets_invalid", "Spotmeeting er ikke preset-only.", { presetMessages: snap.spotmeetingConfig?.presetMessages || [] }, "social");
+    if (root.HG_Spotmeeting && spotmeetingPrivacyReject?.ok !== false) addBlocker(blockers, "spotmeeting_forbidden_privacy_allowed", "Spotmeeting avviste ikke forbudt personvernfelt.", { result: spotmeetingPrivacyReject }, "social");
+    if (spotmeetingDemoLeaked.length) addBlocker(blockers, "demo_users_leaked_global_people", "Demo users leaked into global PEOPLE.", { count: spotmeetingDemoLeaked.length }, "social");
     const profileBlockers = listFrom(snap.publicProfileHealth?.blockers).map((item) => ({key:item?.key||'public_profile_privacy',message:item?.message||'Public profile privacy blocker',details:item,subsystem:'social'}));
     if (snap.publicProfileHealth?.warnings) listFrom(snap.publicProfileHealth.warnings).forEach((item)=>warnings.push({key:item?.key||'public_profile_warning',message:item?.message||'Public profile warning',details:item,subsystem:'social'}));
     blockers.push(...civBlockers, ...socialBlockers, ...signalBlockers, ...profileBlockers, ...matchGraphBlockers, ...spotmeetingBlockers, ...dailyObjectiveBlockers, ...dailyProgressBlockers);
@@ -268,6 +288,10 @@
       profile: makeCheck(!!root.HGLearningLog || snap.profile.completedQuizCount != null || snap.profile.visitedCount != null, warnings.some((w) => ["quiz_history_unavailable", "visited_history_unavailable"].includes(w.key)) ? "warning" : "ok", "Profil/learning-log er vurdert.", snap.profile),
       civication: makeCheck(civBlockers.length === 0, civBlockers.length ? "blocker" : civiWarnings.length ? "warning" : snap.civication ? "ok" : "not_loaded", snap.civication ? "Civication diagnostics er aggregert." : "Civication diagnostics er ikke lastet på denne siden.", snap.civication || {}),
       social: makeCheck(socialBlockers.length === 0 && signalBlockers.length === 0 && profileBlockers.length === 0 && matchGraphBlockers.length === 0 && spotmeetingBlockers.length === 0, socialBlockers.length || signalBlockers.length || profileBlockers.length || (matchGraphBlockers.length || spotmeetingBlockers.length) ? "blocker" : socialWarnings.length ? "warning" : (snap.social || snap.socialSignals) ? "ok" : "not_loaded", snap.social ? "HG Social diagnostics er aggregert." : "HG Social diagnostics er ikke lastet på denne siden.", { ...(snap.social || {}), details: { signals: snap.socialSignals, signalHealth: snap.socialSignalHealth, publicProfile: snap.publicProfile ? { ...snap.publicProfile, timestamp: null } : null, publicProfileHealth: snap.publicProfileHealth, matchGraph: snap.matchGraph ? { matchCount: snap.matchGraph.matches?.length || 0, candidateCount: snap.matchGraph.candidates?.length || 0, warnings: snap.matchGraph.warnings } : null, matchGraphHealth: snap.matchGraphHealth, spotmeetingHealth: snap.spotmeetingHealth } }),
+      socialMeet: makeCheck(!!root.HG_SpotmeetingPlaceCardDemo && snap.profileSocialMeet.hasSocialMeetTab, blockers.some((b) => ["spotmeeting_placecard_demo_missing", "social_meet_tab_missing"].includes(b.key)) ? "blocker" : "ok", "Social Meet mount er vurdert.", snap.profileSocialMeet),
+      spotmeeting: makeCheck(!!root.HG_Spotmeeting && snap.spotmeetingHealth?.ok === true, blockers.some((b) => ["spotmeeting_missing", "spotmeeting_health_failed", "spotmeeting_presets_invalid"].includes(b.key)) ? "blocker" : "ok", "HG Spotmeeting runtime er vurdert.", { health: snap.spotmeetingHealth, config: snap.spotmeetingConfig }),
+      spotmeetingInbox: makeCheck(snap.profileSocialMeet.hasSpotmeetingInbox && snap.profileSocialMeet.hasSpotmeetingInboxRenderer, blockers.some((b) => ["spotmeeting_inbox_missing", "spotmeeting_inbox_renderer_missing"].includes(b.key)) ? "blocker" : "ok", "Spotmeeting inbox mount og renderer er vurdert.", snap.profileSocialMeet),
+      privacy: makeCheck(spotmeetingPrivacyReject?.ok === false && !spotmeetingDemoLeaked.length, blockers.some((b) => ["spotmeeting_forbidden_privacy_allowed", "demo_users_leaked_global_people"].includes(b.key)) ? "blocker" : "ok", "Social Meet personvern er vurdert.", { forbiddenPrivacyRejected: spotmeetingPrivacyReject?.ok === false, noDemoUsersInPeople: !spotmeetingDemoLeaked.length }) ,
       dailyObjectives: makeCheck(dailyObjectiveBlockers.length === 0, dailyObjectiveBlockers.length ? "blocker" : snap.dailyObjectivesHealth?.warnings?.length ? "warning" : snap.dailyObjectives ? "ok" : "not_loaded", snap.dailyObjectives ? "Agenda er aggregert." : "Agenda er ikke lastet.", { summary: snap.dailyObjectives, health: snap.dailyObjectivesHealth }),
       dailyProgress: makeCheck(dailyProgressBlockers.length === 0, dailyProgressBlockers.length ? "blocker" : snap.dailyProgressHealth?.warnings?.length ? "warning" : snap.dailyProgress ? "ok" : "not_loaded", snap.dailyProgress ? "Dagens framgang er aggregert." : "Dagens framgang er ikke lastet.", { summary: snap.dailyProgress, health: snap.dailyProgressHealth })
     };

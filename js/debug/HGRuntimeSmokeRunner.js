@@ -211,6 +211,19 @@
       checks.spotmeeting = check(!h.error && h.value?.ok !== false && presetsOnly && bad.value?.ok === false, h.value?.ok === false ? "blocker" : "ok", "HG Spotmeeting kontrollert.", { suggestions: count(suggestions.value?.suggestions), testMode: isEnabled() });
     }
 
+    const hasSocialMeetTab = !!root.document?.querySelector?.('.profile-tab[data-tab="socialmeet"], [role="tab"][data-tab="socialmeet"]');
+    const hasSpotmeetingInbox = !!root.document?.getElementById?.("spotmeeting-inbox");
+    const hasSpotmeetingInboxRenderer = typeof root.renderSpotmeetingInbox === "function";
+    const hasPlaceCardDemo = !!root.HG_SpotmeetingPlaceCardDemo;
+    const hasNoDemoPeople = !list(root.PEOPLE).some((person) => String(person?.id || person?.userId || "").startsWith("demo-"));
+    if (!hasPlaceCardDemo) blockers.push(blocker("spotmeeting_placecard_demo_missing", "HG_SpotmeetingPlaceCardDemo mangler.", {}, "socialMeet"));
+    if (!hasSocialMeetTab) blockers.push(blocker("social_meet_tab_missing", "Social Meet tab mangler.", {}, "socialMeet"));
+    if (!hasSpotmeetingInbox) blockers.push(blocker("spotmeeting_inbox_missing", "spotmeeting-inbox mangler.", {}, "spotmeetingInbox"));
+    if (!hasSpotmeetingInboxRenderer) blockers.push(blocker("spotmeeting_inbox_renderer_missing", "spotmeeting-inbox renderer mangler.", {}, "spotmeetingInbox"));
+    if (!hasNoDemoPeople) blockers.push(blocker("demo_users_leaked_global_people", "Demo users leaked into global PEOPLE.", {}, "privacy"));
+    checks.socialMeet = check(hasPlaceCardDemo && hasSocialMeetTab, hasPlaceCardDemo && hasSocialMeetTab ? "ok" : "blocker", "Social Meet mount kontrollert.", { hasPlaceCardDemo, hasSocialMeetTab });
+    checks.spotmeetingInbox = check(hasSpotmeetingInbox && hasSpotmeetingInboxRenderer, hasSpotmeetingInbox && hasSpotmeetingInboxRenderer ? "ok" : "blocker", "Spotmeeting inbox kontrollert.", { hasSpotmeetingInbox, hasSpotmeetingInboxRenderer });
+
     if (!root.HG_SocialMatchGraph) {
       blockers.push(blocker("social_match_graph_missing", "HG_SocialMatchGraph mangler.", {}, "socialMatchGraph"));
       checks.socialMatchGraph = check(false, "blocker", "Social match graph mangler.");
