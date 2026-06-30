@@ -1,228 +1,264 @@
-README (UPDATED 2025-12-28)
-===========================
+# 🧭 History GO — hoved-README
 
-NOTE
-----
-Denne fila er oppdatert uten å slette noe av originalteksten.
-Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+History GO er et offline-first, stedbasert kunnskaps- og samlespill der byen fungerer som spillbrett.
 
-# 🧭 History GO
-Offline-first, stedbasert lærings- og kunnskapssystem: kart → quiz → knowledge/trivia → profil → emner/pensum → AHA-innsikt.
+Spilleren oppdager steder, sjekker inn, tar quiz/oppgaver, låser opp kunnskap, personer, funn, badges og ruter, og bygger sin egen samling gjennom profil og Wonderkammer.
 
-History GO er designet for byvandring, samling og læring: du oppdager steder på kartet, tar quiz, låser opp kunnskap og funfacts, samler personer, skriver notater og kan eksportere alt til AHA (innsiktsmotor).
+Dette dokumentet er hovedoversikten for **History GO-spillet**. Civication er eget prosjekt og skal ikke styre denne README-en.
 
 ---
 
-## Status / sider
-- **Hovedapp:** `index.html` (kart + utforsk + quiz + popups + ruter + progresjon)
-- **Profil:** `profile.html` (canonical full profilside)
+## 1. Produktkjerne
+
+History GO skal fullføres som ett stort spillunivers, ikke som løse moduler.
+
+Kjerneløype:
+
+```text
+Kart → Sted / PlaceCard → Innsjekk → Quiz / oppgave → Belønning → Profil / Wonderkammer → Neste sted / rute
+```
+
+Steder er navet. Profilen er spillerkortet. Wonderkammer er samlingen. Ruter er kampanjer. HG Social og Spotmeeting skal kobles til steder, ruter, funn og trygg offentlig møtebruk.
+
+---
+
+## 2. Status / sider
+
+- **Hovedapp:** `index.html` — kart, nearby, place card, quiz, popups, ruter, progresjon og miniProfile
+- **Profil:** `profile.html` — full profilside for samling, merker, historikk og profilpaneler
 - **Kunnskap:** `knowledge.html`
 - **Notater:** `notater.html`
-- **Emner/pensum:** `emner.html`
-- **AHA:** `AHA/index.html` (import + innsiktskammer + meta)
+- **Emner / pensum:** `emner.html`
+- **AHA:** `AHA/index.html` — import, innsiktskammer og meta
 
-### Index appstruktur
-- `index.html` er hoved-app-shell for kart, nearby, place card, quiz og miniProfile.
-- miniProfile gir rask profilstatus i index.
-- `profile.html` er full profil for samling, merker, profilkart, historikk og profilpaneler.
-- Index bruker split boot: `bootCritical()` for raskt kart/places og `bootBackground()` for people/relations/wonderkammer/nature/stories/events/brands.
-- Index-routeren eier `#/map`, `#/place/:id` og `#/quiz/:id`; `#/profile` er ikke en intern summary-view og navigerer til `profile.html`.
-- `profile.html` og `Civication.html` er fortsatt egne sider og skal ikke flyttes inn uten egen fase.
-- Se også: [`docs/APP_STRUCTURE_INDEX.md`](../docs/APP_STRUCTURE_INDEX.md)
+`index.html` er hoved-app-shell for kart, nearby, place card, quiz og miniProfile.
 
----
+Index bruker split boot:
 
-## Funksjoner (høy-nivå)
+- `bootCritical()` for raskt kart/places
+- `bootBackground()` for people/relations/wonderkammer/nature/stories/events/brands
 
-### 🗺️ Kart og utforsk
-- MapLibre-kart + markører + visited-state
-- Fokus/zoom til sted, og ruter via `routes.js`
+Index-routeren eier:
 
-### 🧪 Quiz
-- Manifest-basert quiz-lasting
-- Rewards/hooks på riktige svar:
-  - HGInsights (begreper)
-  - Knowledge (varig kunnskap)
-  - Trivia (mikrobelønning)
+- `#/map`
+- `#/place/:id`
+- `#/quiz/:id`
 
-### ✨ Knowledge
-- `knowledge_universe` i localStorage
-- Visning i:
-  - place/person popups (låst bak fullført quiz)
-  - `knowledge.html`
-  - profil (“Siste kunnskap”)
-
-### 🎈 Trivia
-- `trivia_universe` i localStorage
-- Visning i popups og profil (“Siste funfacts”)
-
-### 📝 Notater + 🗣️ Person-dialoger
-- Notater: `hg_user_notes_v1`
-- Dialoger: `hg_person_dialogs_v1`
-- `notater.html` rendrer notater
-
-### 📚 Emner/pensum
-- `emner.html` viser dekning basert på HGInsights + emner-loadere
-
-### 🔁 AHA-integrasjon
-- HG skriver eksportbuffer: `aha_import_payload_v1`
-- AHA importerer buffer via “Importer History Go” (knapp i AHA)
+`profile.html` er full profilside. `#/profile` skal ikke bli en intern summary-view uten egen fase.
 
 ---
 
-## Kjøring lokalt
-Bruk en lokal webserver (anbefalt):
-- VS Code Live Server
-- `python -m http.server`
+## 3. Hovedsystemer
 
-Åpne `index.html`. Service worker fungerer best når du ikke kjører `file://`.
+### Kart / steder
 
----
+Kartet er verdenen. Steder er spillobjektene.
 
-## Filstruktur (konseptuelt)
+Kartet skal vise steder, kategorier, status, ruter, nearby og relevante stedbaserte moduser.
 
-/
-  index.html
-  profile.html
-  knowledge.html
-  notater.html
-  emner.html
-  sw.js
-  manifest.json
+### PlaceCard
 
-  /js
-    app.js                  # orkestrator (init + progresjon + AHA-export)
-    dataHub.js              # data/caching/enrichment
-    map.js                  # HGMap (MapLibre)
-    quizzes.js              # QuizEngine (manifest + hooks)
-    routes.js               # ruter
-    popup-utils.js          # popups + gating + inline knowledge/trivia
-    knowledge.js            # knowledge universe + updateProfile + AHA sync
-    trivia.js               # trivia universe + updateProfile + AHA sync
-    hgInsights.js           # innsikt-events (core_concepts)
-    hgConceptIndex.js       # konseptindeks
-    knowledge_component.js  # UI-komponenter for knowledge
-    DomainRegistry.js       # domene-fasit + alias + fail-fast
-    domainHealthReport.js   # sanity check for domener (emner/quiz/merke + manifest)
-    quiz-audit.js           # quiz-target audit (PEOPLE/PLACES vs quiz)
+PlaceCard er stedets kontrollrom.
 
-  /data
-    places.json, people/manifest.json, badges.json, tags.json, routes.json
-    quiz/manifest.json + quizfiler
+Et komplett PlaceCard bør kunne vise:
 
-  /AHA
-    index.html
-    insightsChamber.js
-    metaInsightsEngine.js
-    ahaEmneMatcher.js
-    ahaFieldProfiles.js
-    ahaHistoryGoImport.js
+- kjerneinfo
+- bilde / cardImage
+- innsjekkstatus
+- quizstatus
+- badge / belønning
+- personer / relasjoner
+- relaterte steder
+- ruter
+- Wonderkammer-funn
+- favorittstatus
+- social / Spotmeeting der relevant
 
----
+### Quiz / badges
 
-## Domene-system (kritisk)
-### `DomainRegistry.js`
-- **Canonical domain IDs** (låst liste)
-- **Alias** må være eksplisitt
-- **Fail-fast** hvis ukjent domene dukker opp
-- Har helper for filkonvensjoner (`file(kind, domainId)`)  [oai_citation:6‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
+Quiz gir evidens, progresjon og belønning.
 
-### `domainHealthReport.js`
-- Sjekker at alle domener har forventede filer:
-  - `emner/emner_<id>.json`
-  - `data/quiz/quiz_<id>.json` (eller alias-fil)
-  - `merker/merke_<id>.html` (eller alias-fil)
-  - `data/quiz/manifest.json` (best effort)
-- Kjøres manuelt: `DomainHealthReport.run({ toast: true })`  [oai_citation:7‡domainHealthReport.js](sediment://file_00000000e7f471f4aedee10968b3595c)
+Rewards/hooks kan gi:
 
-**Hvorfor:** dette gjør teamarbeid trygt — feil i domene/filnavn blir oppdaget tidlig.
+- HGInsights
+- Knowledge
+- Trivia
+- badges
+- profiloppdatering
+- Wonderkammer-funn
 
----
+### Profil
 
-## Quiz-audit (dataintegritet)
-### `quiz-audit.js`
-- Laster `data/quiz/manifest.json`
-- Laster alle quizfiler, bygger “targets”
-- Verifiserer at `personId/placeId` peker på eksisterende PEOPLE/PLACES
-- Kjør: `QuizAudit.run()` (logger summary + missingTargets + bad)  [oai_citation:8‡quiz-audit.js](sediment://file_00000000fa54720aabdb60556e9c8681)
+Profilen er spillerkortet.
 
-**Hvorfor:** hindrer at quiz peker på id-er som ikke finnes i datasett.
+Den skal samle:
 
----
+- besøkte/fullførte steder
+- badges
+- kategoriprogresjon
+- opplåste personer
+- Wonderkammer-funn
+- favoritter
+- ruter
+- offentlig hjemsted
+- social/Spotmeeting-status der relevant
+- NextUp
 
-## AHA-system (oversikt)
-### `ahaFieldProfiles.js`
-- Definerer `window.HG_FIELD_PROFILES` som “linse” per tema/merke
-- Inneholder ingress, kjernebegreper og dimensjoner per fagfelt  [oai_citation:9‡ahaFieldProfiles.js](sediment://file_0000000086bc720a91836afbff47490e)
+### Wonderkammer
 
-### `ahaEmneMatcher.js`
-- `matchEmneForText(subjectId, text)`:
-  - laster emner for subject
-  - scorer på keywords + core_concepts
-  - returnerer beste match med score  [oai_citation:10‡ahaEmneMatcher.js](sediment://file_000000004a78720ab78a7929271e8b15)
+Wonderkammer er samlingen og arkivet.
 
-### `metaInsightsEngine.js`
-- Bygger meta-profil på tvers av tema:
-  - lifecycle (ny/voksende/moden/integrasjon)
-  - global semantic profile (modality/valence/phases)
-  - cross-topic patterns
-  - begrepsindeks + POS-filter + multiword extraction
-  - akademiske teoriklynger (Marx/Weber/Foucault/Bourdieu osv.)  [oai_citation:11‡metaInsightsEngine.js](sediment://file_00000000487871f48023ad7d767e6096)
+Det bør samle steder, personer, badges, funn, ruter, kuriositeter, kunstverk, litterære spor, naturfunn, sportshistorie, musikksteder, politiske hendelser, næringslivshistorie og byfenomener.
 
-**Hvorfor:** AHA gir “abstraksjon” og mønsterlesing over HG-hendelser.
+### Nearby / favoritter
+
+Nearby svarer på: Hva kan jeg gjøre nå?
+
+Nearby bør prioritere steder nær spilleren, steder i aktiv rute, ufullførte quizzer, steder som låser opp personer/funn, og favoritter i nærheten.
+
+### Ruter
+
+Ruter er kampanjer.
+
+En rute bør ha startsted, stopp, anbefalt rekkefølge, progresjon, belønning, sluttbadge, profilvisning og Wonderkammer-kobling.
+
+### People / relations
+
+People skal være unlock-system, ikke bare datalag.
+
+Spilleren bør møte personer gjennom steder, ruter, funn og kategorier.
+
+### HG Social
+
+HG Social skal handle om steder, funn, ruter, profiler, trygg deling og felles aktivitet.
+
+Se også `docs/HG_SOCIAL_README.md`.
+
+### Spotmeeting
+
+Spotmeeting skal være en trygg, stedbasert møtefunksjon knyttet til offentlige History GO-steder.
+
+Det skal ikke være en generell møteapp. Det skal handle om å møtes ved History GO-steder for ruter, funn, samtaler og aktiviteter.
 
 ---
 
-## Dataflyt (kort)
-1) Quiz riktig svar →
-- HGInsights logges
-- knowledge_universe + trivia_universe oppdateres
-- `updateProfile` dispatches
-- HG skriver/oppdaterer `aha_import_payload_v1`
+## 4. Ferdigstillelseskart
 
-2) AHA →
-- Importer History Go → leser `aha_import_payload_v1` → bygger/oppdaterer chamber/meta
+Det operative produktkartet ligger her:
 
----
+- [`docs/HISTORY_GO_PRODUCT_MAP.md`](../docs/HISTORY_GO_PRODUCT_MAP.md)
 
-## Team-regler (kort)
-1) Ikke endre localStorage-keys uten migrering.
-2) Ikke endre domene/alias uten å oppdatere DomainRegistry.
-3) Kjør DomainHealthReport og QuizAudit ved større data-endringer.
-4) Ikke fjern gating (knowledge/trivia vises kun etter fullført quiz) uten bevisst produktvalg.
+Der står:
 
----
+- hva som mangler
+- hva som bør fullføres først
+- hva som bør videreutvikles
+- hvilke systemer som må kobles
+- hvordan kategoriene bør spille ulikt
+- hvordan progresjon, PlaceCard, profil, Wonderkammer, ruter, social og Spotmeeting bør fullføres
 
-# Struktur i History GO
+Kort prioritet:
 
-Dette dokumentet beskriver **den faktiske strukturen** i History GO slik den er ment å fungere i spillet.
-
-Målet er å:
-- unngå at innhold oppleves trivielt eller fragmentert
-- gi brukeren oversikt før detaljer
-- bruke eksisterende data riktig, uten nye ontologier eller refaktor
-
----
-
-## Grunnidé
-
-History GO skal ikke gå direkte fra grove kategorier til detaljerte problemstillinger.
-
-Mennesker orienterer seg slik:
-
-> paraply → type → tema → detalj
-
-Systemet må gjenspeile dette.
+1. Felles progresjonssystem
+2. PlaceCard-standard
+3. Profil
+4. Wonderkammer
+5. Nearby / favoritter
+6. Ruter
+7. Innholdsstandard per kategori
+8. Innholdshull i svake kategorier
+9. HG Social
+10. Spotmeeting
+11. Backend / login / sync
 
 ---
 
-## Den endelige strukturen
+## 5. Fag / knowledge / progresjon
 
-Merke
-→ Gren / type
-→ Temaområde
-→ Emne (mikro)
-→ Quiz
-→ Instanser (steder / personer / hendelser)
+History GO bruker fagkart, emner, steder, quiz og evidens for å bygge kunnskap.
 
-Dette er **minimumsstrukturen** som gjør innhold forståelig og meningsfullt.
+Grunnstruktur:
+
+```text
+Merke → Gren / type → Temaområde → Emne → Quiz → Instanser / steder / personer / hendelser
+```
+
+Kunnskap bør ikke ligge tilfeldig i UI. Fagtekst og dybde skal ligge i fagkart/emner/steder/personer og vises gjennom knowledge/profil/PlaceCard/Wonderkammer.
+
+Se også:
+
+- [`README.pensum.md`](./README.pensum.md)
+- [`fagstrukturREADME.md`](./fagstrukturREADME.md)
+- [`emnepackREADME`](./emnepackREADME)
+- [`quizREADME.md`](./quizREADME.md)
+
+---
+
+## 6. Lokal kjøring
+
+Bruk lokal webserver, ikke `file://`:
+
+```bash
+python -m http.server
+```
+
+Åpne:
+
+- `index.html`
+- `profile.html`
+- `knowledge.html`
+- `notater.html`
+- `emner.html`
+
+Service worker fungerer best via lokal server.
+
+Se også:
+
+- [`README_DEV.md`](./README_DEV.md)
+
+---
+
+## 7. Data og build-output
+
+`data/places/places_index.json` er generert build-output.
+
+Regel:
+
+- Source-filene under `data/places/...` er sannhetskilden.
+- `data/places/manifest.json` styrer hvilke source-filer som inngår.
+- `places_index.json` skal regenereres, ikke håndredigeres.
+
+Ved endring av places-data:
+
+```bash
+node tools/build_places_index.mjs
+node tools/check_places_index_sync.mjs
+```
+
+---
+
+## 8. Daglige utviklerregler
+
+1. Ikke endre localStorage-keys uten migrering.
+2. Ikke endre domene/alias uten å oppdatere DomainRegistry.
+3. Kjør DomainHealthReport og QuizAudit ved større dataendringer.
+4. Ikke fjern gating for knowledge/trivia uten bevisst produktvalg.
+5. Ikke legg nye idébibler inn i rot-README.
+6. Ikke kopier gamle README-blokker videre; konsolider dem i riktig dokument.
+
+---
+
+## 9. Dokumentasjonskart
+
+- `README.md` i repo-rot: kort inngang
+- `README/README.md`: denne hovedoversikten
+- `docs/HISTORY_GO_PRODUCT_MAP.md`: produktkart og ferdigstillelseskart
+- `README/README_DEV.md`: daglig drift, lokal kjøring, validering og debugging
+- `README/README.pensum.md`: fagkart, emner, pensum og progresjon
+- `docs/HG_SOCIAL_README.md`: sosial kontrakt og social layer
+- `docs/DOMAIN_REGISTRY_README.md`: domene- og aliasstruktur
+- `docs/README_HistoryGo_Historiske_Ruter.md`: ruter der relevant
+
+README-regel:
+
+> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus.
