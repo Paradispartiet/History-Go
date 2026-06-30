@@ -14,9 +14,10 @@ Denne rot-README-en skal være **startside og veiviser**, ikke idéarkiv. Lange 
 | Systemkart og arkitektur | [`README/SYSTEM_MAP.md`](./README/SYSTEM_MAP.md) |
 | Systemkontrakter og regler | [`README/SYSTEM_REGISTRY.md`](./README/SYSTEM_REGISTRY.md) |
 | Pensum, emner og progresjon | [`README/README.pensum.md`](./README/README.pensum.md) |
+| Civication startside / spillbar hovedvei | [`data/Civication/README.md`](./data/Civication/README.md) |
 | Civication mailsystem og rollemodeller | [`data/Civication/README-mailsystem-og-rolemodels.md`](./data/Civication/README-mailsystem-og-rolemodels.md) |
 | Civication arbeidsdag / fase-audit | [`docs/CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md`](./docs/CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md) |
-| Hvorfor spillet føles rotete / spillbar hovedvei | [`docs/CIVICATION_PLAYABLE_FLOW_AUDIT.md`](./docs/CIVICATION_PLAYABLE_FLOW_AUDIT.md) |
+| Hvorfor Civication føles rotete / spillbar flow | [`docs/CIVICATION_PLAYABLE_FLOW_AUDIT.md`](./docs/CIVICATION_PLAYABLE_FLOW_AUDIT.md) |
 | AHA Music → History Go | [`docs/AHA_MUSIC_INTEGRATION.md`](./docs/AHA_MUSIC_INTEGRATION.md) |
 | Civication rollepakke-standard | [`docs/CIVICATION_ROLE_PACK_STANDARD.md`](./docs/CIVICATION_ROLE_PACK_STANDARD.md) |
 | Utviklernotater | [`README/README_DEV.md`](./README/README_DEV.md) |
