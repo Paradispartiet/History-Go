@@ -4,6 +4,8 @@ Oppdatert: 2026-06-30
 
 Dette dokumentet forklarer hvordan Civication-mailsystemet henger sammen med `badges.json`, `roleModels`, `mailPlans`, `mailFamilies`, runtime-lagene, state, UI, dagmotoren og History Go-koblingene.
 
+> Ser du etter motoroversikten og spillveien gjennom dagen (NextAction, Dagens fase, Innboks, WorkdayPanel, Dashboard, Psyke/Psykologrommet)? Se [`js/Civication/README.md`](../../js/Civication/README.md). Dette dokumentet er datakontrakten; det er motorboka.
+
 Målet er å gjøre videre arbeid presist:
 
 1. Forstå stillingen.
