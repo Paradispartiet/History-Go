@@ -41,7 +41,7 @@ global.document = {
   body: { appendChild() {} }
 };
 
-load("js/hgSocialPrivacy.js");
+load("dist/web/hgSocialPrivacy.js");
 load("js/knowledgeMatch.js");
 
 function check(name, fn) {
