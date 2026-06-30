@@ -13,7 +13,7 @@
 //  4. Dagens fase shows the same next-item title as the selector, renders NO answer choices,
 //     and its button routes to NextAction.
 //  5. Innboks shows "Håndteres i Neste handling" (a link to NextAction) instead of inline
-//     choices for the active phase action.
+//     choices for every open message, including inbox-fallback actions.
 
 const fs = require('fs');
 const path = require('path');
@@ -366,7 +366,9 @@ function testInboxLink() {
   const mailA = inboxItem('mail-A', 'Fasesak A', [{ id: 'A1', label: 'Ja' }, { id: 'A2', label: 'Nei' }]);
 
   global.CivicationDayProgression = { inspect: () => inspectionWithPending(rowA) };
-  global.CivicationMailEngine = { getInbox: () => [mailA] };
+  const mailC = inboxItem('mail-C', 'Ekstra innbokssak', [{ id: 'C1', label: 'Svar i arkiv' }]);
+
+  global.CivicationMailEngine = { getInbox: () => [mailA, mailC] };
 
   loadScript('js/Civication/systems/civicationEventChannels.js');
   loadScript('js/Civication/systems/civicationNextActionSelector.js');
@@ -380,8 +382,10 @@ function testInboxLink() {
   // The active mail must not expose its own inline answer choices in the inbox.
   assert(!html.includes('data-choice-id="A1"'), 'inbox does not render inline choice A1 for the active phase mail');
   assert(!html.includes('data-choice-id="A2"'), 'inbox does not render inline choice A2 for the active phase mail');
+  assert(!html.includes('data-choice-id="C1"'), 'inbox does not render inline choices for non-active open mail either');
+  assert(!html.includes('data-civi-inbox-answer'), 'inbox exposes no primary answer buttons at all');
 
-  console.log('  ✓ Innboks: active phase mail links to NextAction instead of rendering inline choices');
+  console.log('  ✓ Innboks: open mails link to NextAction instead of rendering inline choices');
 }
 
 function run() {
