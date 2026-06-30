@@ -16,13 +16,17 @@
     catch (e) { cache.set(p, null); return null; }
   }
 
+  /** @returns {Record<string, any>} */
   function state() { return window.CivicationState?.getState?.() || {}; }
+  /** @returns {Record<string, any> | null} */
   function active() { return window.CivicationState?.getActivePosition?.() || null; }
+  /** @returns {Record<string, any> | null} */
   function selected() { return window.CivicationTestMode?.inspect?.()?.selectedRole || null; }
   function resolveRoleScope(role) { return norm(window.CivicationCareerRoleResolver?.resolveCareerRoleScope?.(role)) || slugify(role?.role_scope || role?.role_key || role?.title); }
   function planPath(role) { return window.CivicationMailRuntime?.getPlanPath?.(role) || (role?.career_id && resolveRoleScope(role) ? `data/Civication/mailPlans/${role.career_id}/${resolveRoleScope(role)}_plan.json` : null); }
   function familyPaths(role) { return uniq([...(window.CivicationMailRuntime?.getFamilyPaths?.(role) || []), ...(window.CivicationDailyMailBuilder?.getFamilyPaths?.(role) || [])]); }
 
+  /** @returns {Promise<Record<string, any> | null>} */
   async function roleFromKey(roleKey) {
     if (!roleKey) return active() || selected();
     const wanted = slugify(roleKey);

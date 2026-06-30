@@ -1146,7 +1146,7 @@ function buildDayPlanSectionHtml(_plan) {
 /**
  * Pure HTML for the native day-phase section. Read-only: WorkdayPanel viser fase + dagsbunke,
  * men starter ingen arbeidsdag selv (advansering eies av CivicationDayPhaseUI/DayProgression).
- * @param {any} dayPhase
+ * @param {any} item
  * @returns {string}
  */
 function getBundleItemText(item) {
@@ -1511,11 +1511,13 @@ if (prependHtml) {
 
 warnIfLegacyBundleOpenButtons(host);
 
-if (typeof host.addEventListener === "function" && !host.__civiWorkdayBundleDelegated) {
-  host.__civiWorkdayBundleDelegated = true;
-  host.addEventListener("click", async function (event) {
-    const btn = event.target?.closest?.("button");
-    if (!btn || !host.contains(btn) || btn.disabled) return;
+const bundleHost = /** @type {HTMLElement & { __civiWorkdayBundleDelegated?: boolean }} */ (host);
+if (typeof bundleHost.addEventListener === "function" && !bundleHost.__civiWorkdayBundleDelegated) {
+  bundleHost.__civiWorkdayBundleDelegated = true;
+  bundleHost.addEventListener("click", async function (event) {
+    const target = /** @type {Element | null} */ (event.target instanceof Element ? event.target : null);
+    const btn = /** @type {HTMLButtonElement | null} */ (target?.closest?.("button") || null);
+    if (!btn || !bundleHost.contains(btn) || btn.disabled) return;
     if (btn.matches("[data-civi-day-phase-next-action]")) {
       event.preventDefault();
       if (typeof window.CivicationNextActionUI?.open === "function") {

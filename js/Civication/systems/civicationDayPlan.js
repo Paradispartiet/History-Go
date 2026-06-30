@@ -110,6 +110,7 @@
     const activity = data.activities.find((a) => a.id === activityId);
     if (!activity) return { ok: false, reason: "missing_activity" };
     const effects = activity.effects || {};
+    /** @type {Record<string, any>} */
     const state = window.CivicationState?.getState?.() || {};
     const stats = { ...(state.day_plan_stats || {}) };
     Object.entries(effects).forEach(([key, value]) => { stats[key] = Number(stats[key] || 0) + Number(value || 0); });
