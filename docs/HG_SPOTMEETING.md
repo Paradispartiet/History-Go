@@ -59,6 +59,15 @@ A future backend must implement the same privacy contract before real discovery 
 - retention/deletion policy;
 - no live location, nearby-user, follower/feed, or chat primitives.
 
+
+## Related server-side safety contracts
+
+Production Spotmeeting discovery remains disabled until the server-side identity, invite, and block/report/moderation contracts are implemented and verified:
+
+- `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md`
+- `docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md`
+- `docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md`
+
 ## Non-goals
 
 HG Spotmeeting does not implement dating, free chat, public feeds, follower graphs, live presence, GPS discovery, distance ranking, or backend calls in v1.
