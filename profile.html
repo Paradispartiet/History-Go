@@ -466,6 +466,57 @@
 <script src="js/profile.js"></script>
 <script>
 (function(){
+  function escapeSpotmeetingHTML(value){
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+  function formatSpotmeetingTime(value){
+    if(!value) return '';
+    var date = new Date(value);
+    if(Number.isNaN(date.getTime())) return String(value);
+    return date.toLocaleString('nb-NO', { dateStyle: 'short', timeStyle: 'short' });
+  }
+  function spotmeetingStatusLabel(status){
+    return ({pending:'Venter',accepted:'Godtatt',completed:'Gjennomført',declined:'Avslått',cancelled:'Avbrutt'})[status] || status || 'Ukjent';
+  }
+  function isCurrentSpotmeetingCreator(invite){
+    var current = String(window.HG_CURRENT_USER_ID || window.currentUserId || 'me');
+    return !invite.createdByUserId || String(invite.createdByUserId) === current;
+  }
+  function renderSpotmeetingCard(invite){
+    var context = invite.context || {};
+    var target = invite.targetDisplayName || invite.displayName || invite.targetUserDisplayName || invite.targetUserId || 'Ukjent deltaker';
+    var updated = invite.updatedAt ? '<p><small>Oppdatert: '+escapeSpotmeetingHTML(formatSpotmeetingTime(invite.updatedAt))+'</small></p>' : '';
+    var created = invite.createdAt ? '<p><small>Opprettet: '+escapeSpotmeetingHTML(formatSpotmeetingTime(invite.createdAt))+'</small></p>' : '';
+    var actions = [];
+    if(invite.status === 'pending'){
+      actions.push('<button type="button" data-spotmeeting-action="accept" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Godta</button>');
+      actions.push('<button type="button" data-spotmeeting-action="decline" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avslå</button>');
+      if(isCurrentSpotmeetingCreator(invite)) actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt</button>');
+    } else if(invite.status === 'accepted'){
+      actions.push('<button type="button" data-spotmeeting-action="complete" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Marker gjennomført</button>');
+      actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt</button>');
+    }
+    return '<article class="spotmeeting-invite-card" data-spotmeeting-card data-spotmeeting-status="'+escapeSpotmeetingHTML(invite.status)+'">' +
+      '<h4>'+escapeSpotmeetingHTML(context.title || 'Uten tittel')+'</h4>' +
+      '<dl>' +
+        '<dt>Kontekst</dt><dd>'+escapeSpotmeetingHTML(context.contextType || 'ukjent')+'</dd>' +
+        '<dt>Forhåndsmelding</dt><dd>'+escapeSpotmeetingHTML(invite.presetLabel || invite.presetMessageId || 'Ukjent')+'</dd>' +
+        '<dt>Deltaker</dt><dd>'+escapeSpotmeetingHTML(target)+'</dd>' +
+        '<dt>Status</dt><dd>'+escapeSpotmeetingHTML(spotmeetingStatusLabel(invite.status))+'</dd>' +
+      '</dl>' + created + updated +
+      (actions.length ? '<div class="spotmeeting-invite-actions">'+actions.join(' ')+'</div>' : '<p><small>Ingen handlinger tilgjengelig.</small></p>') +
+      '</article>';
+  }
+  function renderSpotmeetingGroup(title, items){
+    var cards = (items || []).map(renderSpotmeetingCard).join('');
+    return '<section class="spotmeeting-inbox-group" data-spotmeeting-group="'+escapeSpotmeetingHTML(title)+'"><h3>'+escapeSpotmeetingHTML(title)+' ('+(items || []).length+')</h3>' +
+      (cards || '<p>Ingen invitasjoner.</p>') + '</section>';
+  }
   function renderSpotmeetingInbox(){
     var el=document.getElementById("spotmeeting-inbox");
     var api=window.HG_Spotmeeting;
@@ -475,13 +526,29 @@
     var section=document.createElement('section');
     section.className='profile-section';
     section.innerHTML='<h2>HG Spotmeeting</h2>' +
-      '<p>Frivillige kunnskapsmøter basert på læring, ruter, observasjoner og tema — ikke posisjon.</p>' +
-      '<p><small>Personvern: Viser ikke posisjon, online-status, sist sett, følgere eller offentlig aktivitetsfeed.</small></p>' +
-      '<ul><li>Ventende invitasjoner: '+inbox.pending.length+'</li><li>Aksepterte invitasjoner: '+inbox.accepted.length+'</li><li>Fullførte spotmeetings: '+inbox.completed.length+'</li><li>Blokkert/rapportert status: '+(inbox.blockedOrReported?'Aktiv':'Ingen')+'</li></ul>' +
-      '<h3>Personvernkontroll</h3><ul>'+inbox.privacyChecklist.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>' +
-      '';
+      '<p>Frivillige kunnskapsmøter basert på læring, ruter, observasjoner og tema.</p>' +
+      '<p><small>Personvern: kun manuelle invitasjoner med forhåndsvalgt melding.</small></p>' +
+      renderSpotmeetingGroup('Pending', inbox.pending) +
+      renderSpotmeetingGroup('Accepted', inbox.accepted) +
+      renderSpotmeetingGroup('Completed', inbox.completed) +
+      renderSpotmeetingGroup('Declined / cancelled', inbox.declinedCancelled || [].concat(inbox.declined || [], inbox.cancelled || [])) +
+      '<h3>Personvernkontroll</h3><ul>'+inbox.privacyChecklist.map(function(x){return '<li>'+escapeSpotmeetingHTML(x)+'</li>';}).join('')+'</ul>';
     el.appendChild(section);
   }
+  document.addEventListener('click', function(event){
+    var button = event.target && event.target.closest && event.target.closest('[data-spotmeeting-action][data-spotmeeting-invite-id]');
+    if(!button || !document.getElementById('spotmeeting-inbox')?.contains(button)) return;
+    var api = window.HG_Spotmeeting;
+    if(!api) return;
+    var id = button.getAttribute('data-spotmeeting-invite-id');
+    var action = button.getAttribute('data-spotmeeting-action');
+    var methods = {accept:'acceptSpotmeetingInvite', decline:'declineSpotmeetingInvite', cancel:'cancelSpotmeetingInvite', complete:'confirmSpotmeetingCompleted'};
+    var method = methods[action];
+    if(method && api[method]){
+      api[method](id);
+      renderSpotmeetingInbox();
+    }
+  });
   window.renderSpotmeetingInbox = renderSpotmeetingInbox;
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', renderSpotmeetingInbox); else renderSpotmeetingInbox();
 })();
