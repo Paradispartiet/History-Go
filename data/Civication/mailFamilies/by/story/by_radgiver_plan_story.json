@@ -161,6 +161,315 @@
           }
         }
       ]
+    },
+    {
+      "id": "lillebekk_week2_fortellinger",
+      "purpose": "Rolleidentitet og indre narrativ senere i saken (uke 2+ av rollebuen).",
+      "learning_focus": [
+        "lillebekk_week2_fortellinger"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_story_week2_integritet_003",
+          "mail_type": "story",
+          "mail_family": "lillebekk_week2_fortellinger",
+          "practice_story_id": "utbygger_vil_ha_signal",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "radhuset_planavdeling",
+          "subject": "Du merker hvor lett det er å bli prosjektets forlenger",
+          "summary": "Etter uker tett på utbyggeren kjenner du at du begynner å argumentere for prosjektet før du har vurdert det.",
+          "purpose": "Etter uker tett på utbyggeren kjenner du at du begynner å argumentere for prosjektet før du har vurdert det.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Etter uker tett på utbyggeren kjenner du at du begynner å argumentere for prosjektet før du har vurdert det.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "rolleforstaelse",
+          "task_kind": "story",
+          "competency": "faglig_integritet",
+          "learning_focus": [
+            "rolleforstaelse",
+            "faglig_integritet"
+          ],
+          "pressure": "naerhet_vs_uavhengighet",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv ned hvor grensen for din rolle går",
+              "reply": "Jeg skriver ned hvor grensen for min rolle går, så jeg ser den selv.",
+              "effect": 1,
+              "tags": [
+                "rolleforstaaelse",
+                "bevisst_valg"
+              ],
+              "feedback": "Det tar tid å sette ord på det, men du vet igjen hvem du jobber for."
+            },
+            {
+              "id": "B",
+              "label": "La det ligge og stol på at du kjenner grensen",
+              "reply": "Jeg lar det ligge og stoler på at jeg kjenner grensen når det gjelder.",
+              "effect": 1,
+              "tags": [
+                "erfaringsbasert",
+                "framdrift"
+              ],
+              "feedback": "Du sparer tid, men grensen er lettest å se før den allerede er passert."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "naerhet_vs_uavhengighet",
+              "rolleforstaelse"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_story_week2_noytral_004",
+          "mail_type": "story",
+          "mail_family": "lillebekk_week2_fortellinger",
+          "practice_story_id": "linjen_pa_kartet",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_refleksjon",
+          "sender": "privat_refleksjon",
+          "person_id": "privat_refleksjon",
+          "place_id": "gis_plankart_arbeidsflate",
+          "subject": "Kveld: du innser at kartet aldri var nøytralt",
+          "summary": "På vei hjem ser du at hver linje du tegnet bar en verdi, selv da du trodde du bare fulgte regler.",
+          "purpose": "På vei hjem ser du at hver linje du tegnet bar en verdi, selv da du trodde du bare fulgte regler.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "På vei hjem ser du at hver linje du tegnet bar en verdi, selv da du trodde du bare fulgte regler.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "refleksjon",
+          "task_kind": "story",
+          "competency": "etisk_arealblikk",
+          "learning_focus": [
+            "refleksjon",
+            "etisk_arealblikk"
+          ],
+          "pressure": "kart_er_ikke_noytralt",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Noter hvilke verdier du faktisk la inn i planen",
+              "reply": "Jeg noterer hvilke verdier jeg faktisk la inn i planen i dag.",
+              "effect": 1,
+              "tags": [
+                "refleksjon",
+                "laering"
+              ],
+              "feedback": "Kvelden blir kortere, men du kan stå for valgene fordi du vet hva de bygger på."
+            },
+            {
+              "id": "B",
+              "label": "Legg det bort og hold arbeidet på kontoret",
+              "reply": "Jeg legger det bort og prøver å holde arbeidet på kontoret.",
+              "effect": 1,
+              "tags": [
+                "profesjonell_distanse",
+                "hvile"
+              ],
+              "feedback": "Du verner kvelden, men innsikten om at kartet velger, er borte i morgen."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "kart_er_ikke_noytralt",
+              "refleksjon"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_story_week2_ensomhet_005",
+          "mail_type": "story",
+          "mail_family": "lillebekk_week2_fortellinger",
+          "practice_story_id": "fagnotatet_kan_bli_for_glatt",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "privat_refleksjon",
+          "sender": "privat_refleksjon",
+          "person_id": "privat_refleksjon",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Du er den eneste som ser konflikten ingen vil høre om",
+          "summary": "Alle rundt deg vil ha saken ferdig, og du står alene med en målkonflikt ingen orker å åpne.",
+          "purpose": "Alle rundt deg vil ha saken ferdig, og du står alene med en målkonflikt ingen orker å åpne.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Alle rundt deg vil ha saken ferdig, og du står alene med en målkonflikt ingen orker å åpne.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "rolleforstaelse",
+          "task_kind": "story",
+          "competency": "faglig_mot",
+          "learning_focus": [
+            "rolleforstaelse",
+            "faglig_mot"
+          ],
+          "pressure": "prosessro_vs_faglig_ansvar",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv konflikten ned så den ikke kan overses",
+              "reply": "Jeg skriver konflikten ned tydelig så den ikke kan overses senere.",
+              "effect": 1,
+              "tags": [
+                "faglig_mot",
+                "sporbarhet"
+              ],
+              "feedback": "Du blir den brysomme i rommet, men konflikten finnes nå svart på hvitt."
+            },
+            {
+              "id": "B",
+              "label": "Bær den selv for å holde arbeidsroen",
+              "reply": "Jeg bærer konflikten selv en stund for å holde arbeidsroen.",
+              "effect": 1,
+              "tags": [
+                "prosessro",
+                "belastning"
+              ],
+              "feedback": "Det blir roligere rundt deg, men ansvaret du bærer alene, blir tyngre for hver dag."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "prosessro_vs_faglig_ansvar",
+              "rolleforstaelse"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_story_week2_mestring_006",
+          "mail_type": "story",
+          "mail_family": "lillebekk_week2_fortellinger",
+          "practice_story_id": "politikerne_vil_ha_enkel_sak",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "politisk_utvalg_moterom",
+          "subject": "En presis vurdering hindret et dårlig vedtak",
+          "summary": "Utvalget snudde fordi notatet ditt gjorde en skjult risiko synlig, og plansjefen sier det rett ut.",
+          "purpose": "Utvalget snudde fordi notatet ditt gjorde en skjult risiko synlig, og plansjefen sier det rett ut.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Utvalget snudde fordi notatet ditt gjorde en skjult risiko synlig, og plansjefen sier det rett ut.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "rolleforstaelse",
+          "task_kind": "story",
+          "competency": "politisk_lesbarhet",
+          "learning_focus": [
+            "rolleforstaelse",
+            "politisk_lesbarhet"
+          ],
+          "pressure": "anerkjennelse_vs_neste_sak",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta med deg hva som faktisk gjorde forskjellen",
+              "reply": "Jeg tar med meg hva som faktisk gjorde forskjellen til neste sak.",
+              "effect": 1,
+              "tags": [
+                "laering",
+                "politisk_lesbarhet"
+              ],
+              "feedback": "Du bruker et øyeblikk på det, men tar med deg en metode som virker igjen."
+            },
+            {
+              "id": "B",
+              "label": "Gå raskt videre til neste sak uten å dvele",
+              "reply": "Jeg går raskt videre til neste sak uten å dvele ved det.",
+              "effect": 1,
+              "tags": [
+                "framdrift",
+                "beskjedenhet"
+              ],
+              "feedback": "Bunken krymper, men du lar en seier som kunne læres av, gå forbi udokumentert."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "anerkjennelse_vs_neste_sak",
+              "rolleforstaelse"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

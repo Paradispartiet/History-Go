@@ -161,6 +161,465 @@
           }
         }
       ]
+    },
+    {
+      "id": "lillebekk_week2_konflikter",
+      "purpose": "Eskalerende arealkonflikter senere i Lillebekk-saken (uke 2+ av rollebuen).",
+      "learning_focus": [
+        "lillebekk_week2_konflikter"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_conflict_week2_signal_009",
+          "mail_type": "conflict",
+          "mail_family": "lillebekk_week2_konflikter",
+          "practice_story_id": "utbygger_vil_ha_signal",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ivar_utbygger",
+          "sender": "ivar_utbygger",
+          "person_id": "ivar_utbygger",
+          "place_id": "radhuset_planavdeling",
+          "subject": "Det uformelle signalet er blitt en forventning",
+          "summary": "Utbygger viser til et tidlig muntlig signal og behandler det som en avtale om høyde og parkering.",
+          "purpose": "Utbygger viser til et tidlig muntlig signal og behandler det som en avtale om høyde og parkering.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Utbygger viser til et tidlig muntlig signal og behandler det som en avtale om høyde og parkering.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "utbyggerdialog",
+          "task_kind": "conflict",
+          "competency": "offentlig_integritet",
+          "learning_focus": [
+            "utbyggerdialog",
+            "offentlig_integritet"
+          ],
+          "pressure": "utbyggerpress_vs_juridisk_presisjon",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv at signalet aldri var et vedtak, og still kravene på nytt",
+              "reply": "Jeg presiserer skriftlig at det tidlige signalet ikke var et vedtak, og setter kravene på nytt.",
+              "effect": 1,
+              "tags": [
+                "offentlig_integritet",
+                "skriftlig_spor"
+              ],
+              "feedback": "Utbygger blir misfornøyd, men prosessen står seg når noen leser den i ettertid."
+            },
+            {
+              "id": "B",
+              "label": "La forventningen styre for å unngå konflikt nå",
+              "reply": "Jeg lar forventningen styre for å holde framdrift og unngå konflikt akkurat nå.",
+              "effect": 1,
+              "tags": [
+                "framdrift",
+                "konfliktunngaaelse"
+              ],
+              "feedback": "Saken går raskere nå, men det uformelle signalet binder deg når motstanden kommer."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "utbyggerpress_vs_juridisk_presisjon",
+              "utbyggerdialog"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_conflict_week2_hjemmel_010",
+          "mail_type": "conflict",
+          "mail_family": "lillebekk_week2_konflikter",
+          "practice_story_id": "jurist_finner_svak_hjemmel",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "radhuset_planavdeling",
+          "subject": "Den svake bestemmelsen tåler ikke en klage",
+          "summary": "Planjuristen advarer om at et rekkefølgekrav er skrevet så mykt at en klage trolig vil vinne fram.",
+          "purpose": "Planjuristen advarer om at et rekkefølgekrav er skrevet så mykt at en klage trolig vil vinne fram.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Planjuristen advarer om at et rekkefølgekrav er skrevet så mykt at en klage trolig vil vinne fram.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "juridisk_presisering",
+          "task_kind": "conflict",
+          "competency": "juridisk_presisjon",
+          "learning_focus": [
+            "juridisk_presisering",
+            "juridisk_presisjon"
+          ],
+          "pressure": "tempo_vs_klagerisiko",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stram inn ordlyden selv om det forsinker saken",
+              "reply": "Jeg strammer inn ordlyden så kravet blir etterprøvbart, selv om det forsinker saken.",
+              "effect": 1,
+              "tags": [
+                "juridisk_presisjon",
+                "etterproevbart"
+              ],
+              "feedback": "Saken bremser litt, men bestemmelsen tåler å bli prøvd."
+            },
+            {
+              "id": "B",
+              "label": "Send saken som den er og håndter klagen hvis den kommer",
+              "reply": "Jeg sender saken som den er og tar klagen hvis den faktisk kommer.",
+              "effect": 1,
+              "tags": [
+                "framdrift",
+                "risikotaking"
+              ],
+              "feedback": "Du holder tempoet, men legger igjen en svakhet som kan velte vedtaket senere."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "tempo_vs_klagerisiko",
+              "juridisk_presisering"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_conflict_week2_grontkant_011",
+          "mail_type": "conflict",
+          "mail_family": "lillebekk_week2_konflikter",
+          "practice_story_id": "linjen_pa_kartet",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "grontdrag_lillebekk",
+          "subject": "Tre formål vil bruke den samme kanten",
+          "summary": "Boliginngang, grøntdrag og varelevering er alle planlagt langs den samme smale kanten av kvartalet.",
+          "purpose": "Boliginngang, grøntdrag og varelevering er alle planlagt langs den samme smale kanten av kvartalet.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Boliginngang, grøntdrag og varelevering er alle planlagt langs den samme smale kanten av kvartalet.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "arealprioritering",
+          "task_kind": "conflict",
+          "competency": "arealavveiing",
+          "learning_focus": [
+            "arealprioritering",
+            "arealavveiing"
+          ],
+          "pressure": "boligbehov_vs_grontstruktur",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioriter grøntdragets sammenheng og flytt vareleveringen",
+              "reply": "Jeg prioriterer en sammenhengende grøntstruktur og ber om at vareleveringen flyttes.",
+              "effect": 1,
+              "tags": [
+                "gronnstruktur",
+                "langsiktighet"
+              ],
+              "feedback": "Grøntdraget henger sammen, men driften og utbygger må finne en dyrere løsning."
+            },
+            {
+              "id": "B",
+              "label": "Gi boligene inngangssonen og løs grøntdraget med beplantning på tak",
+              "reply": "Jeg gir boligene inngangssonen og kompenserer grøntdraget med beplantning på tak.",
+              "effect": 1,
+              "tags": [
+                "boligbehov",
+                "kompenserende_tiltak"
+              ],
+              "feedback": "Boligene får gode innganger, men taket erstatter ikke jorddybde, flomvei og opphold på bakken."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "boligbehov_vs_grontstruktur",
+              "arealprioritering"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_conflict_week2_skolevei_012",
+          "mail_type": "conflict",
+          "mail_family": "lillebekk_week2_konflikter",
+          "practice_story_id": "skolevei_stoy_grontdrag_krasjer",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "tariq_trafikk_skolevei",
+          "sender": "tariq_trafikk_skolevei",
+          "person_id": "tariq_trafikk_skolevei",
+          "place_id": "skolevei_lillebekk",
+          "subject": "Skoleveien ble smalere da skjermen vokste",
+          "summary": "Den endelige støyskjermen ble høyere og lengre enn skissert, og krymper sikten der barna krysser.",
+          "purpose": "Den endelige støyskjermen ble høyere og lengre enn skissert, og krymper sikten der barna krysser.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Den endelige støyskjermen ble høyere og lengre enn skissert, og krymper sikten der barna krysser.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "stoy_og_skolevei",
+          "task_kind": "conflict",
+          "competency": "tverrfaglig_avveiing",
+          "learning_focus": [
+            "stoy_og_skolevei",
+            "tverrfaglig_avveiing"
+          ],
+          "pressure": "fasadekrav_vs_skoleveistrygghet",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Krev at skjermen kortes ned der barna krysser",
+              "reply": "Jeg krever at skjermen kortes ned i krysningspunktet så sikten holdes åpen.",
+              "effect": 1,
+              "tags": [
+                "skolevei_sikkerhet",
+                "helhetsloesning"
+              ],
+              "feedback": "Krysningen blir trygg, men fasadestøyen mot ett bygg dempes mindre."
+            },
+            {
+              "id": "B",
+              "label": "Behold full skjerm og sett opp belysning som kompensasjon",
+              "reply": "Jeg beholder full skjerm mot støyen og setter opp belysning som kompenserende tiltak.",
+              "effect": 1,
+              "tags": [
+                "stoeyskjerming",
+                "praktisk_tiltak"
+              ],
+              "feedback": "Støydempingen blir best mulig, men belysning fjerner ikke den smale, innelukkede følelsen."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "fasadekrav_vs_skoleveistrygghet",
+              "stoy_og_skolevei"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_conflict_week2_nabokunnskap_013",
+          "mail_type": "conflict",
+          "mail_family": "lillebekk_week2_konflikter",
+          "practice_story_id": "naboen_med_ett_godt_poeng",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "hanne_beboer",
+          "sender": "hanne_beboer",
+          "person_id": "hanne_beboer",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Naboene bruker gården kartet kaller restareal",
+          "summary": "Et indre gårdsrom kartet behandler som restareal er i praksis nabolagets eneste felles uteareal.",
+          "purpose": "Et indre gårdsrom kartet behandler som restareal er i praksis nabolagets eneste felles uteareal.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Et indre gårdsrom kartet behandler som restareal er i praksis nabolagets eneste felles uteareal.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "medvirkning",
+          "task_kind": "conflict",
+          "competency": "stedsanalyse",
+          "learning_focus": [
+            "medvirkning",
+            "stedsanalyse"
+          ],
+          "pressure": "fortetting_vs_fellesgode",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sikre gårdsrommet som felles uteareal i bestemmelsene",
+              "reply": "Jeg sikrer gårdsrommet som felles uteareal i bestemmelsene.",
+              "effect": 1,
+              "tags": [
+                "fellesgode",
+                "stedsbruk"
+              ],
+              "feedback": "Nabolaget beholder uterommet sitt, men utnyttelsen på tomten må ned."
+            },
+            {
+              "id": "B",
+              "label": "La utnyttelsen stå og vis til offentlig park i nærheten",
+              "reply": "Jeg lar utnyttelsen stå og viser til en offentlig park i nærheten.",
+              "effect": 1,
+              "tags": [
+                "fortetting",
+                "formell_dekning"
+              ],
+              "feedback": "Tallene går opp, men parken to kvartaler unna erstatter ikke det daglige uterommet i gården."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "fortetting_vs_fellesgode",
+              "medvirkning"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_conflict_week2_overvann_014",
+          "mail_type": "conflict",
+          "mail_family": "lillebekk_week2_konflikter",
+          "practice_story_id": "rekkefolgekrav_for_mykt",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "grontdrag_lillebekk",
+          "subject": "Den tekniske flomløsningen flytter vannet til naboen",
+          "summary": "Et lukket rørsystem løser overvann på tomten, men sender flomtoppen videre til nabokvartalet.",
+          "purpose": "Et lukket rørsystem løser overvann på tomten, men sender flomtoppen videre til nabokvartalet.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Et lukket rørsystem løser overvann på tomten, men sender flomtoppen videre til nabokvartalet.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "overvann",
+          "task_kind": "conflict",
+          "competency": "tverrfaglig_avveiing",
+          "learning_focus": [
+            "overvann",
+            "tverrfaglig_avveiing"
+          ],
+          "pressure": "teknisk_losning_vs_hverdagsrisiko",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Krev åpen overvannshåndtering i grøntdraget",
+              "reply": "Jeg krever åpen overvannshåndtering i grøntdraget så vannet tas på stedet.",
+              "effect": 1,
+              "tags": [
+                "overvann",
+                "blaagroenn_loesning"
+              ],
+              "feedback": "Flomtoppen håndteres lokalt, men det krever areal grøntdraget må få beholde."
+            },
+            {
+              "id": "B",
+              "label": "Godta rørløsningen og legg inn et overløp som sikkerhet",
+              "reply": "Jeg godtar rørløsningen og legger inn et overløp som sikkerhet.",
+              "effect": 1,
+              "tags": [
+                "teknisk_loesning",
+                "framdrift"
+              ],
+              "feedback": "Tomten blir tørr på papiret, men ansvaret for flomvannet skyves til naboen nedstrøms."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "teknisk_losning_vs_hverdagsrisiko",
+              "overvann"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

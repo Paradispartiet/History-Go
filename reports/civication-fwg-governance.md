@@ -7,13 +7,13 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 3
-- Totalt antall avvik: 71
+- Totalt antall avvik: 67
 
 ## Statusmatrise
 
 | rolle | category | minimum_counts | required_axes | place_grammar | actor_grammar | conflict_grammar | solution_patterns | failure_patterns |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| by_radgiver_plan | by | ⚠️ 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| by_radgiver_plan | by | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | renholder | naeringsliv | ✅ | ⚠️ 8 | ⚠️ 14 | ⚠️ 4 | ⚠️ 8 | ⚠️ 3 | ⚠️ 6 |
 | barnehageassistent | sosial_laering | ✅ | ⚠️ 6 | ⚠️ 3 | ⚠️ 10 | ⚠️ 1 | ⚠️ 1 | ⚠️ 3 |
 
@@ -23,11 +23,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 
 Kilde: `data/Civication/workGrammars/by/by_radgiver_plan.json`
 
-- **minimum_counts** (4):
-  - conflict: 2/8 mailer (mangler 6)
-  - event: 3/4 mailer (mangler 1)
-  - people: 8/10 mailer (mangler 2)
-  - story: 2/6 mailer (mangler 4)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### Renholder (`naeringsliv/renholder`)
 
