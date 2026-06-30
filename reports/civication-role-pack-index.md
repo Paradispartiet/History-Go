@@ -15,8 +15,8 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 
 ## Sammendrag
 
-- complete_reference_v2: 2
-- complete_reference: 1
+- complete_reference_v2: 3
+- complete_reference: 0
 - playable_v1: 0
 - partial_pack: 20
 - role_model_only: 223
@@ -222,7 +222,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | spesialistpsykolog | psykologi_spesialistpsykolog | Spesialistpsykolog | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | psykologi | titter | psykologi_titter | Titter | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | psykologi | veileder | psykologi_veileder | Veileder | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
-| sosial_laering | barnehageassistent | sosial_laering_barnehageassistent | Barnehageassistent / pedagogisk medarbeider | ja | nei | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference |
+| sosial_laering | barnehageassistent | sosial_laering_barnehageassistent | Barnehageassistent / pedagogisk medarbeider | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |
 | sport | sport_utover | sport_aktiv_utover | Aktiv utøver | ja | nei | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | partial_pack |
 | sport | eliteseriespiller | sport_eliteseriespiller | Eliteseriespiller | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |
 | sport | hovedtrener | sport_hovedtrener | Hovedtrener | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | role_model_only |

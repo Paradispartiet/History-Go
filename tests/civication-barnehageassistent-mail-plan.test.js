@@ -39,6 +39,29 @@ async function run(){
   }
   assert(JSON.stringify(roleModel).includes('Den lange dagen på avdelingen'), 'roleModel should include hovedcase');
 
+
+  const workGrammar=readJson(`data/Civication/workGrammars/${category}/${role}.json`);
+  assert.strictEqual(workGrammar.schema, 'civication_work_grammar_v1', 'workGrammar finnes og har riktig schema');
+  assert.strictEqual(workGrammar.category, category, 'workGrammar har canonical category');
+  assert.strictEqual(workGrammar.role_scope, role, 'workGrammar har canonical role_scope');
+  assert.strictEqual(workGrammar.role_id, `${category}_${role}`, 'workGrammar har canonical role_id');
+  assert(JSON.stringify(workGrammar).includes('Den lange dagen på avdelingen'), 'workGrammar should include hovedcase');
+  for (const field of ['badge_binding','fag_bindings','work_identity','task_grammar','problem_grammar','conflict_grammar','solution_patterns','failure_patterns','actor_grammar','place_grammar','knowledge_dependencies','mail_generation_contract','day_one_contract','test_contract']) {
+    assert(workGrammar[field] !== undefined, `workGrammar should include ${field}`);
+  }
+  assert(workGrammar.task_grammar.length >= 13, 'workGrammar should cover stereotypiske arbeidsoppgaver');
+  assert(workGrammar.problem_grammar.length >= 11, 'workGrammar should cover konkrete arbeidsproblemer');
+  assert(workGrammar.conflict_grammar.length >= 11, 'workGrammar should cover konfliktakser');
+  assert(workGrammar.solution_patterns.length >= 10, 'workGrammar should cover faglige løsningsmønstre');
+  assert(workGrammar.failure_patterns.length >= 9, 'workGrammar should cover typiske feil');
+  assert(workGrammar.actor_grammar.length >= 10, 'workGrammar should cover persontyper');
+  assert(workGrammar.place_grammar.length >= 10, 'workGrammar should cover barnehagerom');
+  assert.deepStrictEqual(workGrammar.mail_generation_contract.minimum_counts, {job:12,people:10,conflict:8,story:6,event:4,micro:16,followup:8,knowledge:8,consequence:8}, 'workGrammar should declare same mail minimums as the reference test');
+  const fwgText=JSON.stringify(workGrammar).toLowerCase();
+  for (const term of ['tilknytning','overgangssituasjon','trygg base','frilek','språkstøtte','barns medvirkning','observasjon','grensesetting','foreldresamarbeid','rammeplan','bemanning','emosjonelt arbeid','egenregulering','gruppeledelse']) {
+    assert(fwgText.includes(term), `workGrammar should connect to ${term}`);
+  }
+
   const plan=readJson(`data/Civication/mailPlans/${category}/${role}_plan.json`);
   assert.strictEqual(plan.category, category, 'mailPlan finnes og har riktig category');
   assert.strictEqual(plan.role_scope, role, 'mailPlan finnes og har riktig role_scope');
@@ -106,6 +129,12 @@ async function run(){
   assert(runtime.items.some(row => row.phase === 'afternoon' && /lav bemanning|bemanning|slitasje|sliten|vikar/.test(JSON.stringify(row.event || {}).toLowerCase())), 'ettermiddag viser lav bemanning eller slitasje');
   assert(runtime.items.some(row => row.phase === 'evening' && ['knowledge','consequence','followup'].includes(row.event?.mail_type)), 'kveld lander i kunnskap, konsekvens eller logisk oppfølging');
   assert(runtime.items.some(row => row.phase === 'day_end' && /hva slags voksen|dagslutt|læringspunkt|omsorg/.test(JSON.stringify(row.event || {}).toLowerCase())), 'dagslutt spør hva slags voksen du var i dag');
+
+  const index=fs.readFileSync(path.join(repoRoot, 'docs/CIVICATION_ROLE_PACK_INDEX.md'), 'utf8');
+  assert(index.includes('| sosial_laering | barnehageassistent | sosial_laering_barnehageassistent | Barnehageassistent / pedagogisk medarbeider | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | ja | complete_reference_v2 |'), 'Role Pack Index marks Barnehageassistent as complete_reference_v2');
+  assert(!/^\- broken_mapping: [1-9]/m.test(index), 'ingen broken_mapping gjenoppstår i Role Pack Index');
+  assert(!/broken_mapping[^\n]*barnehageassistent/i.test(index), 'ingen broken_mapping for barnehageassistent i Role Pack Index');
+
   const firstFollowupIndex = runtime.items.findIndex(row => row.event?.mail_type === 'followup');
   const firstConflictIndex = runtime.items.findIndex(row => ['conflict', 'event'].includes(row.event?.mail_type));
   assert(firstFollowupIndex === -1 || (firstConflictIndex !== -1 && firstConflictIndex < firstFollowupIndex), 'followup mails should have a logical conflict/event source earlier in Day 1');
