@@ -9,7 +9,7 @@ let state = {};
 global.CivicationState = { getState:()=>state, setState:(p)=>{ state = { ...state, ...p }; return state; } };
 vm.runInThisContext(fs.readFileSync(path.join(__dirname,'..','js/Civication/systems/civicationDayPlan.js'),'utf8'), { filename:'civicationDayPlan.js' });
 const dp = global.CivicationDayPlan;
-assert(dp.inspect().today.phases.length === 5, 'helper mirrors existing DailyMailBuilder/Calendar phase order');
+assert(dp.inspect().today.phases.length === 8, 'helper mirrors existing DailyMailBuilder/Calendar phase order (8 faser: morning→day_end)');
 assert.strictEqual(dp.inspect().today.activities.length, 0, 'helper does not seed its own parallel day plan');
 const a = dp.addActivity({ id:'train', title:'Tren lett', phase:'evening', repeat:['tuesday','thursday'], category:'trening', effects:{ energi:-1, psyke:1 }, isFixed:false });
 assert.strictEqual(a.phase, 'evening');
