@@ -2,6 +2,10 @@
 
 Oppdatert: 2026-06-29
 
+> Inngangsdokument: [`CIVICATION_ROLE_PACK.md`](CIVICATION_ROLE_PACK.md) rammer de
+> fem lagene inn som **én** rollepakke og eier dedup-kontrakten (hvem eier hvilken
+> sannhet). Les den først; dette dokumentet er den detaljerte innholdsstandarden.
+
 Denne standarden beskriver hva en komplett Civication-rollepakke skal inneholde når en jobb bygges som en liten historie. Standarden bruker Arealplanlegger-pakken som første ferdige referansemodell, men den kopierer ikke datapakken.
 
 > Referanserolle: **Arealplanlegger** / runtime-scope `by_radgiver_plan`.

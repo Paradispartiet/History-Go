@@ -63,6 +63,8 @@ async function run() {
   loadScript('js/Civication/systems/civicationMailPlanDebug.js');
 
   const plan = readJson('data/Civication/mailPlans/by/by_radgiver_plan_plan.json');
+  const workGrammar = readJson('data/Civication/workGrammars/by/by_radgiver_plan.json');
+  const minimumCounts = workGrammar.mail_generation_contract?.minimum_counts || {};
   const expectedTypes = ['job', 'people', 'story', 'conflict', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
   const familyPaths = expectedTypes.map(type => `data/Civication/mailFamilies/by/${type}/by_radgiver_plan_${type}.json`);
   const catalogs = familyPaths.map(readJson);
@@ -112,8 +114,9 @@ async function run() {
     const catalog = catalogs.find(row => row.mail_type === type);
     assert(catalog, `Arealplanlegger should have a ${type} family catalog`);
     const mails = (catalog.families || []).flatMap(family => family.mails || []);
-    const minimums = { micro: 16, followup: 8, knowledge: 8, consequence: 8 };
-    assert(mails.length >= minimums[type], `Arealplanlegger should include at least ${minimums[type]} ${type} mails`);
+    const minimum = minimumCounts[type];
+    assert(typeof minimum === 'number', `FWG mail_generation_contract.minimum_counts should declare ${type}`);
+    assert(mails.length >= minimum, `Arealplanlegger should include at least ${minimum} ${type} mails (from FWG minimum_counts)`);
     for (const mail of mails) {
       for (const field of requiredMailFields) {
         assert(mail[field] !== undefined && mail[field] !== null, `${mail.id} should declare ${field}`);
