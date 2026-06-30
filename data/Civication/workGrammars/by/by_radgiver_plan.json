@@ -130,7 +130,17 @@
       "side_b": { "label": "Presis plan", "values": ["etterprøvbarhet", "rettssikkerhet", "faglig integritet"] },
       "bad_resolution": ["lar utydelige bestemmelser passere", "aksepterer muntlige forsikringer", "forveksler politisk ønske med planfaglig vurdering"],
       "good_resolution": ["skriver vilkår konkret", "synliggjør klagerisiko", "gir politikerne lesbare alternativer"],
-      "mail_families": ["utbyggerpress", "planjuridisk_presisjon", "konsekvens_av_kartlinje"]
+      "mail_families": ["aktorer_og_press", "faglig_spor_videre", "oppfolging_lillebekk"]
+    },
+    {
+      "id": "teknisk_losning_vs_hverdagsrisiko",
+      "title": "Teknisk løsning vs hverdagsrisiko",
+      "axis": "fasadekrav_vs_skoleveistrygghet",
+      "side_a": { "label": "Teknisk krav oppfylt", "values": ["støydemping", "fasadeverdi", "formell måloppnåelse"] },
+      "side_b": { "label": "Trygg hverdag", "values": ["skolevei", "sikt", "opphold", "barns faktiske bruk"] },
+      "bad_resolution": ["lar teknisk krav vinne uten å se hverdagsbruk", "skyver trygghet til avbøtende tiltak senere"],
+      "good_resolution": ["krever samlet vurdering av støy, sikt og skolevei", "veier formell måloppnåelse mot faktisk bruk"],
+      "mail_families": ["grontdrag_skolevei_stoy", "oppfolging_lillebekk"]
     }
   ],
   "solution_patterns": [
@@ -139,7 +149,7 @@
       "title": "Gjør konflikten lesbar",
       "works_for": ["boligbehov_vs_grontstruktur", "utbyggerpress_vs_juridisk_presisjon", "kart_vs_levd_nabolag"],
       "steps": ["identifiser hva som faktisk kolliderer", "skill faglig risiko fra politisk valg", "knytt funn til kart eller bestemmelse", "gi politikerne reelle alternativer"],
-      "choice_tags": ["precision", "integrity", "political_readability"],
+      "choice_tags": ["precision", "integrity", "politisk_lesbarhet"],
       "effects": { "trust": 1, "legal_risk": -1, "tempo": -1, "visibility": 1 }
     }
   ],
@@ -163,7 +173,7 @@
       "example_id": "elin_plansjef",
       "function": "prioriterer framdrift og politisk lesbarhet",
       "pressure": "tempo_vs_presisjon",
-      "can_send_mail_types": ["people", "event", "micro"],
+      "can_send_mail_types": ["people", "event", "micro", "job", "story", "knowledge", "followup", "consequence"],
       "typical_requests": ["kortere vurdering", "rask avklaring", "forbered møte"]
     },
     {
@@ -171,28 +181,31 @@
       "example_id": "signe_byokolog",
       "function": "ser langsiktig bykvalitet og faglig risiko",
       "pressure": "kvalitet_vs_gjennomforing",
-      "can_send_mail_types": ["people", "conflict", "knowledge"]
+      "can_send_mail_types": ["people", "conflict", "knowledge", "micro", "followup", "consequence"]
     },
     {
       "actor_type": "berort_borger",
       "example_id": "hanne_beboer",
       "function": "bringer lokal kunnskap inn i systemet",
       "pressure": "medvirkning_vs_framdrift",
-      "can_send_mail_types": ["people", "conflict", "followup"]
+      "can_send_mail_types": ["people", "conflict", "followup", "knowledge", "micro", "consequence"]
     },
     {
       "actor_type": "ekstern_motpart",
       "example_id": "ivar_utbygger",
       "function": "presser på for utnyttelse, tempo og forutsigbarhet",
       "pressure": "utbyggerpress_vs_faglig_integritet",
-      "can_send_mail_types": ["people", "conflict", "event"]
+      "can_send_mail_types": ["people", "conflict", "event", "followup", "knowledge", "micro", "consequence"]
     }
   ],
   "place_grammar": [
     { "place_type": "arbeidsflate", "place_id": "gis_plankart_arbeidsflate", "function": "der kart og bestemmelser tolkes", "mail_types": ["job", "micro", "knowledge"] },
     { "place_type": "konfliktsted", "place_id": "skolevei_lillebekk", "function": "sted der formell plan møter faktisk bruk", "mail_types": ["people", "conflict", "followup"] },
     { "place_type": "konfliktsted", "place_id": "grontdrag_lillebekk", "function": "sted der grønnstruktur, overvann, opphold og utbygging konkurrerer", "mail_types": ["conflict", "story", "consequence"] },
-    { "place_type": "beslutningsrom", "place_id": "politisk_utvalg_moterom", "function": "der faglig lesbarhet blir politisk valg", "mail_types": ["event", "consequence"] }
+    { "place_type": "beslutningsrom", "place_id": "politisk_utvalg_moterom", "function": "der faglig lesbarhet blir politisk valg", "mail_types": ["event", "consequence"] },
+    { "place_type": "planomrade", "place_id": "oslo_planomrade_indre_by", "function": "selve planområdet saken gjelder, der fortetting, aktører og press møtes", "mail_types": ["job", "people", "story"] },
+    { "place_type": "forvaltning", "place_id": "radhuset_planavdeling", "function": "planavdelingen der saken saksbehandles og ledelsen styrer framdrift", "mail_types": ["job", "event", "followup"] },
+    { "place_type": "analysepunkt", "place_id": "kollektivknutepunkt_bryn", "function": "kollektiv- og mobilitetsgrunnlaget som rettferdiggjør fortettingen", "mail_types": ["micro", "knowledge"] }
   ],
   "knowledge_dependencies": [
     { "id": "plankart_bestemmelser", "requires": ["arealformål", "hensynssone", "planbestemmelser"], "supports_mail_types": ["job", "knowledge"] },
