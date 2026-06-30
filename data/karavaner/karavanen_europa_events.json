@@ -4,7 +4,7 @@
       "id": "event-oslo-halden-weather",
       "route_id": "italia",
       "stage_id": "italia-01",
-      "title": "Oslo → Halden: værvindu før kystkorridoren",
+      "title": "Oslo → Copenhagen: værvindu før sjøovergangen",
       "event_type": "weather",
       "applies_to_modes": [
         "sykkel"
@@ -12,13 +12,14 @@
       "severity": "low",
       "tags": [
         "Oslo",
-        "Halden",
+        "Copenhagen",
         "vær",
-        "start"
+        "start",
+        "ferge"
       ],
-      "prompt": "Sjekk vind og regn før karavanen forlater Oslo-området.",
+      "prompt": "Sjekk vind og regn før karavanen forlater Oslo og krysser mot Copenhagen.",
       "historical_context": "Kystnære reiser i Skandinavia ble ofte styrt av vær, dagslys og tilgang på trygge stoppesteder.",
-      "observation_prompt": "Se etter hvordan fjord, by og landevei påvirker første etappe.",
+      "observation_prompt": "Se etter hvordan fjord, sjøovergang og byknutepunkter påvirker første etappe.",
       "choices": [
         {
           "id": "wait",
@@ -48,20 +49,22 @@
       "id": "event-halden-svinesund-border",
       "route_id": "portugal",
       "stage_id": "portugal-01",
-      "title": "Halden → Svinesund: grense og dokumenter",
+      "title": "Oslo → Copenhagen: grense og dokumenter før sjøovergangen",
       "event_type": "border",
       "applies_to_modes": [
         "sykkel"
       ],
       "severity": "info",
       "tags": [
-        "Halden",
-        "Svinesund",
-        "grense"
+        "Oslo",
+        "Copenhagen",
+        "grense",
+        "dokumenter",
+        "ferge"
       ],
-      "prompt": "Forbered en rolig passering ved grenseområdet.",
+      "prompt": "Forbered dokumenter og rolig overgang fra Oslo mot Copenhagen.",
       "historical_context": "Grensepasseringer har lenge vært steder for kontroll, handel og møte mellom myndigheter og reisende.",
-      "observation_prompt": "Finn tegn på bro, tollsted eller annen infrastruktur for kryssing.",
+      "observation_prompt": "Finn tegn på havn, bro, tollsted eller annen infrastruktur for kryssing.",
       "choices": [
         {
           "id": "prepare_documents",
@@ -79,19 +82,19 @@
       "id": "event-trelleborg-rostock-ferry",
       "route_id": "romania",
       "stage_id": "romania-02",
-      "title": "Trelleborg → Rostock: ferge over Østersjøen",
+      "title": "Stockholm → Gdańsk: ferge over Østersjøen",
       "event_type": "ferry",
       "applies_to_modes": [
         "sykkel"
       ],
       "severity": "medium",
       "tags": [
-        "Trelleborg",
-        "Rostock",
+        "Stockholm",
+        "Gdańsk",
         "ferge",
         "Østersjøen"
       ],
-      "prompt": "Planlegg venting, ombordstigning og sikring av utstyr på ferge.",
+      "prompt": "Planlegg venting, ombordstigning og sikring av utstyr på sjøovergangen mot Gdańsk.",
       "historical_context": "Østersjøferger viderefører en lang tradisjon der havner binder sammen nordlige handels- og reiseruter.",
       "observation_prompt": "Se etter hvorfor havner kan korte ned en ellers lang landreise.",
       "choices": [
@@ -204,7 +207,7 @@
       "id": "event-lausanne-aosta-terrain",
       "route_id": "italia",
       "stage_id": "italia-04",
-      "title": "Lausanne → Aosta: bratt alpeterreng",
+      "title": "München → Innsbruck: bratt alpeterreng",
       "event_type": "terrain",
       "applies_to_modes": [
         "til_fots",
@@ -213,12 +216,12 @@
       ],
       "severity": "high",
       "tags": [
-        "Lausanne",
-        "Aosta",
+        "München",
+        "Innsbruck",
         "Alpene",
         "terreng"
       ],
-      "prompt": "Vurder tempo, høyde og trygge pass før karavanen går videre.",
+      "prompt": "Vurder tempo, høyde og trygge pass før karavanen går videre mot Innsbruck.",
       "historical_context": "Alpepass var avgjørende, men krevende forbindelser mellom nord og sør i Europa.",
       "observation_prompt": "Finn naturlige barrierer og smale dalfører som styrer rutevalget.",
       "choices": [
@@ -270,21 +273,22 @@
       "id": "event-lausanne-aosta-weather-animal",
       "route_id": "italia",
       "stage_id": "italia-05",
-      "title": "Lausanne → Aosta: værskifte og dyreomsorg",
+      "title": "Innsbruck → Verona: værskifte og dyreomsorg",
       "event_type": "animal_care",
       "applies_to_modes": [
         "hest"
       ],
       "severity": "medium",
       "tags": [
-        "Lausanne",
-        "Aosta",
+        "Innsbruck",
+        "Verona",
         "vær",
-        "hest"
+        "hest",
+        "Alpene"
       ],
-      "prompt": "Sjekk hover, dekken og hvile før fjellovergangen.",
+      "prompt": "Sjekk hover, dekken og hvile før overgangen fra Innsbruck mot Verona.",
       "historical_context": "Dyr gjorde fjellreiser mulig, men krevde vann, fôr, hvile og beskyttelse mot raskt værskifte.",
-      "observation_prompt": "Se etter hvor dalbunner kan gi ly og beite før høyere partier.",
+      "observation_prompt": "Se etter hvor dalbunner kan gi ly og beite før og etter høyere partier.",
       "choices": [
         {
           "id": "stable_rest",
@@ -309,7 +313,7 @@
       "id": "event-bordeaux-bayonne-water",
       "route_id": "portugal",
       "stage_id": "portugal-05",
-      "title": "Bordeaux → Bayonne: vann og kystvær",
+      "title": "Bordeaux → Irun/Hendaye: vann og kystvær",
       "event_type": "water",
       "applies_to_modes": [
         "sykkel",
@@ -318,11 +322,11 @@
       "severity": "medium",
       "tags": [
         "Bordeaux",
-        "Bayonne",
+        "Irun/Hendaye",
         "vann",
         "kyst"
       ],
-      "prompt": "Fyll vann før lange kyst- og skogspartier.",
+      "prompt": "Fyll vann før kyst- og grensepartiene mot Irun/Hendaye.",
       "historical_context": "Vannpunkter, vertshus og elveløp gjorde det mulig å planlegge sikre dagsetapper.",
       "observation_prompt": "Finn elver og våtmarker som både hjelper og begrenser ferdsel.",
       "choices": [
@@ -352,7 +356,7 @@
       "id": "event-santiago-porto-shelter",
       "route_id": "portugal",
       "stage_id": "portugal-07",
-      "title": "Santiago → Porto: ly for regn ved Atlanteren",
+      "title": "Madrid → Lisboa: ly for regn og lange innlandsetapper",
       "event_type": "shelter",
       "applies_to_modes": [
         "til_fots",
@@ -360,14 +364,14 @@
       ],
       "severity": "low",
       "tags": [
-        "Santiago",
-        "Porto",
+        "Madrid",
+        "Lisboa",
         "ly",
-        "Atlanteren"
+        "Iberia"
       ],
-      "prompt": "Finn ly før en våt kystdag og tørk utstyr ved stopp.",
+      "prompt": "Finn ly før en lang dag og tørk utstyr ved stopp på veien mot Lisboa.",
       "historical_context": "Pilegrims- og handelsruter langs Atlanteren var avhengige av herberger, broer og havnebyer.",
-      "observation_prompt": "Se etter hvordan kystklima og bynett former rytmen i reisen.",
+      "observation_prompt": "Se etter hvordan høyland, elver og bynett former rytmen i reisen.",
       "choices": [
         {
           "id": "seek_shelter",
@@ -396,7 +400,7 @@
       "id": "event-wien-bratislava-rest",
       "route_id": "romania",
       "stage_id": "romania-04",
-      "title": "Wien → Bratislava: hvile ved Donau",
+      "title": "Kraków → Budapest: hvile ved fjell- og elvekorridorer",
       "event_type": "rest",
       "applies_to_modes": [
         "sykkel",
@@ -404,14 +408,15 @@
       ],
       "severity": "info",
       "tags": [
-        "Wien",
-        "Bratislava",
+        "Kraków",
+        "Budapest",
         "Donau",
+        "Karpatene",
         "hvile"
       ],
-      "prompt": "Bruk elvekorridoren som naturlig hvile- og orienteringspunkt.",
+      "prompt": "Bruk fjell- og elvekorridorer som naturlige hvile- og orienteringspunkt.",
       "historical_context": "Donau bandt sammen byer, markeder og militære ruter gjennom Sentral-Europa.",
-      "observation_prompt": "Se hvordan elva gjør avstand lettere å lese på kartet.",
+      "observation_prompt": "Se hvordan fjellpass og elver gjør avstand lettere å lese på kartet.",
       "choices": [
         {
           "id": "rest",
@@ -440,7 +445,7 @@
       "id": "event-budapest-timisoara-stable",
       "route_id": "romania",
       "stage_id": "romania-05",
-      "title": "Budapest → Timișoara: stall og lang sletteetappe",
+      "title": "Budapest → București: stall og lang innlandsetappe",
       "event_type": "stable",
       "applies_to_modes": [
         "hest"
@@ -448,11 +453,11 @@
       "severity": "medium",
       "tags": [
         "Budapest",
-        "Timișoara",
+        "București",
         "stall",
-        "slette"
+        "innland"
       ],
-      "prompt": "Finn trygg stall før karavanen fortsetter over åpne landskap.",
+      "prompt": "Finn trygg stall før karavanen fortsetter over lange innlandsstrekninger.",
       "historical_context": "På lange innlandsetapper var dyrehold, hvile og lokale vertssteder like viktig som selve veien.",
       "observation_prompt": "Se etter store åpne områder der avstander mellom stopp kan bli lange.",
       "choices": [
@@ -479,21 +484,21 @@
       "id": "event-brasov-bucuresti-repair",
       "route_id": "romania",
       "stage_id": "romania-05",
-      "title": "Brașov → București: reparasjon etter fjellvei",
+      "title": "Budapest → București: reparasjon etter krevende innlandsvei",
       "event_type": "repair",
       "applies_to_modes": [
         "sykkel"
       ],
       "severity": "low",
       "tags": [
-        "Brașov",
+        "Budapest",
         "București",
         "reparasjon",
-        "Karpatene"
+        "Donau"
       ],
-      "prompt": "Sjekk bremser, hjul og bagasjefester etter krevende underlag.",
+      "prompt": "Sjekk bremser, hjul og bagasjefester etter krevende underlag på vei mot București.",
       "historical_context": "Overgangen fra fjell til hovedstad samlet lokale veier, handel og behov for vedlikehold.",
-      "observation_prompt": "Se etter hvordan fjellkanten møter sletter og bynære veier.",
+      "observation_prompt": "Se etter hvordan elvedaler, sletter og bynære veier møtes.",
       "choices": [
         {
           "id": "repair_check",
