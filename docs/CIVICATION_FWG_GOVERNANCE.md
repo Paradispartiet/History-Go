@@ -7,13 +7,13 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 3
-- Totalt antall avvik: 84
+- Totalt antall avvik: 71
 
 ## Statusmatrise
 
 | rolle | category | minimum_counts | required_axes | place_grammar | actor_grammar | conflict_grammar | solution_patterns | failure_patterns |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| by_radgiver_plan | by | ⚠️ 4 | ⚠️ 1 | ⚠️ 3 | ⚠️ 4 | ⚠️ 4 | ⚠️ 1 | ✅ |
+| by_radgiver_plan | by | ⚠️ 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | renholder | naeringsliv | ✅ | ⚠️ 8 | ⚠️ 14 | ⚠️ 4 | ⚠️ 8 | ⚠️ 3 | ⚠️ 6 |
 | barnehageassistent | sosial_laering | ✅ | ⚠️ 6 | ⚠️ 3 | ⚠️ 10 | ⚠️ 1 | ⚠️ 1 | ⚠️ 3 |
 
@@ -28,24 +28,6 @@ Kilde: `data/Civication/workGrammars/by/by_radgiver_plan.json`
   - event: 3/4 mailer (mangler 1)
   - people: 8/10 mailer (mangler 2)
   - story: 2/6 mailer (mangler 4)
-- **required_axes** (1):
-  - learning_focus: mangler i 4 av 67 mail(er)
-- **place_grammar** (3):
-  - udeklarert sted i mail: kollektivknutepunkt_bryn (ikke i place_grammar)
-  - udeklarert sted i mail: oslo_planomrade_indre_by (ikke i place_grammar)
-  - udeklarert sted i mail: radhuset_planavdeling (ikke i place_grammar)
-- **actor_grammar** (4):
-  - aktør elin_plansjef sender mailtyper utenfor can_send_mail_types: consequence, followup, job, knowledge, story (tillatt: people, event, micro)
-  - aktør signe_byokolog sender mailtyper utenfor can_send_mail_types: consequence, followup, micro (tillatt: people, conflict, knowledge)
-  - aktør hanne_beboer sender mailtyper utenfor can_send_mail_types: consequence, knowledge, micro (tillatt: people, conflict, followup)
-  - aktør ivar_utbygger sender mailtyper utenfor can_send_mail_types: consequence, followup, knowledge, micro (tillatt: people, conflict, event)
-- **conflict_grammar** (4):
-  - konfliktfamilie mangler: utbyggerpress (nevnt i utbyggerpress_vs_juridisk_presisjon)
-  - konfliktfamilie mangler: planjuridisk_presisjon (nevnt i utbyggerpress_vs_juridisk_presisjon)
-  - konfliktfamilie mangler: konsekvens_av_kartlinje (nevnt i utbyggerpress_vs_juridisk_presisjon)
-  - konflikt-mail by_areal_conflict_stoy_001 har pressure 'teknisk_losning_vs_hverdagsrisiko' uten forankring i conflict_grammar
-- **solution_patterns** (1):
-  - ubrukt løsningsmønster-tag: political_readability (ingen valg bruker den)
 
 ### Renholder (`naeringsliv/renholder`)
 
