@@ -133,6 +133,7 @@
       <button class="profile-tab" role="tab" aria-selected="false" data-tab="merker">Merker</button>
       <button class="profile-tab" role="tab" aria-selected="false" data-tab="kunnskap">Kunnskap</button>
       <button class="profile-tab" role="tab" aria-selected="false" data-tab="civication">Spill</button>
+      <button class="profile-tab" role="tab" aria-selected="false" data-tab="socialmeet">Social Meet</button>
       <button class="profile-tab" role="tab" aria-selected="false" data-tab="profilvalg">Profilvalg</button>
     </nav>
 
@@ -311,6 +312,25 @@
         </div>
       </div>
 
+      <div class="profile-tab-panel" data-panel="socialmeet">
+        <section class="profile-section knowledge-match-section profile-social-stack" id="profileSocialLayer" aria-label="Social Meet">
+          <div class="section-head">
+            <h2>Social Meet</h2>
+            <span class="section-meta">Kunnskapsmøter, læringssirkler og sosial læringshistorikk.</span>
+          </div>
+          <p class="muted">Personvern styres i ⚙️ Innstillinger.</p>
+          <div id="miniProfile" class="social-mini-profile-anchor">MiniProfile</div>
+          <div id="meet-invite-inbox" aria-live="polite"></div>
+          <div id="spotmeeting-inbox" aria-live="polite"></div>
+          <div id="confirmed-meets" aria-live="polite"></div>
+          <div id="social-progression" aria-live="polite"></div>
+          <div id="learning-circles" aria-live="polite"></div>
+          <div id="circle-activity" aria-live="polite"></div>
+          <div id="social-history" aria-live="polite"></div>
+          <div id="hg-social-smoke-panel"></div>
+        </section>
+      </div>
+
       <div class="profile-tab-panel" data-panel="profilvalg">
         <div class="profile-grid-2">
           <section class="profile-section" id="notesSection">
@@ -330,18 +350,9 @@
   </div>
 </main>
 <div id="profileSettingsSocialMount" hidden>
-  <section class="profile-section knowledge-match-section profile-social-stack" id="profileSocialLayer" aria-label="Sosialt og personvern">
-    <div class="section-head"><h2>Sosialt og personvern</h2><span class="section-meta">Personvern, invitasjoner og kunnskapsbaserte sosiale signaler.</span></div>
-    <div id="miniProfile" class="social-mini-profile-anchor">MiniProfile</div>
+  <section class="profile-section knowledge-match-section profile-privacy-stack" id="profilePrivacyLayer" aria-label="Personverninnstillinger">
+    <div class="section-head"><h2>Personvern</h2><span class="section-meta">Kunnskapsgraf og synlighet for Social Meet.</span></div>
     <div id="social-privacy-settings" aria-live="polite"></div>
-    <div id="meet-invite-inbox" aria-live="polite"></div>
-    <div id="spotmeeting-inbox" aria-live="polite"></div>
-    <div id="confirmed-meets" aria-live="polite"></div>
-    <div id="hg-social-smoke-panel"></div>
-    <div id="social-progression" aria-live="polite"></div>
-    <div id="learning-circles" aria-live="polite"></div>
-    <div id="circle-activity" aria-live="polite"></div>
-    <div id="social-history" aria-live="polite"></div>
   </section>
 </div>
 
