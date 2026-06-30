@@ -176,6 +176,10 @@ declare global {
     HG_Lifestyle?: CiviMethodBag;
     HG_IdentityCore?: CiviMethodBag;
     CivicationCalendar?: any;
+    CivicationDayPlan?: any;
+    CivicationDebug?: any;
+    CivicationIncomingFlow?: any;
+    CivicationPhaseBundleView?: any;
 
     getPrimaryLifestyle?: CiviFn;
     getPCWallet?: CiviFn;

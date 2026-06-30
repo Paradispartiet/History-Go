@@ -246,7 +246,7 @@
     if (typeof window.CivicationNextActionUI?.open === "function") {
       return window.CivicationNextActionUI.open();
     }
-    const topButton = document.querySelector("#civiTopActionCard [data-civi-top-action]");
+    const topButton = /** @type {HTMLElement | null} */ (document.querySelector("#civiTopActionCard [data-civi-top-action]"));
     if (topButton && typeof topButton.click === "function") {
       topButton.click();
       return true;
