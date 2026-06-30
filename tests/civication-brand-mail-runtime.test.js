@@ -43,6 +43,16 @@ function reset(activePosition) {
   global.CivicationState.setInbox([]);
 }
 
+// Ekspeditør-planen (ekspeditor_naeringsliv_v1) leder uke 1–2 med praksisfortellinger-familier
+// (sequence-steg 0–19) og gater merkevarefamiliene (kasse_og_pris) til steg 20. Merkevaremailen
+// dukker derfor først opp som kandidat når planen har nådd brand-steget — vi setter step_index dit
+// for å teste merkevare-isolasjonen (norli vs narvesen) der den faktisk er aktiv.
+const PLAN_ID = 'ekspeditor_naeringsliv_v1';
+const BRAND_STEP_INDEX = 20;
+function advanceToBrandStep() {
+  global.CivicationState.setState({ mail_runtime_v1: { role_plan_id: PLAN_ID, step_index: BRAND_STEP_INDEX } });
+}
+
 async function run() {
   const base = { career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', role_key: 'ekspeditor', role_id: 'naer_ekspeditor' };
 
@@ -50,25 +60,29 @@ async function run() {
   let inspect = global.CivicationMailRuntime.inspect();
   assert(!inspect.family_paths.some((p) => p.includes('/brand/')), 'generic should not include /brand/ path');
   let cands = await global.CivicationMailRuntime.debugCandidates();
-  assert(cands.some((m) => String(m.id || '').startsWith('ekspeditor_')), 'generic candidates should load');
+  // Job-mail-ids har ingen enhetlig rolleprefiks (f.eks. job_ekspeditor_week1_*), så sjekk at
+  // ekspeditør-kandidatene lastet (id refererer rollen), ikke en skjør eksakt-prefiks-match.
+  assert(cands.length > 0 && cands.some((m) => String(m.id || '').includes('ekspeditor')), 'generic ekspeditor candidates should load');
   assert(!cands.some((m) => m && (m.brand_id === 'norli' || m.brand_id === 'narvesen')), 'generic must not leak brand mails');
 
   reset({ ...base, brand_id: 'norli' });
   inspect = global.CivicationMailRuntime.inspect();
   assert(inspect.family_paths.includes('data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json'));
+  advanceToBrandStep();
   cands = await global.CivicationMailRuntime.debugCandidates();
   const norli = cands.filter((m) => m && m.brand_id === 'norli');
-  assert(norli.length > 0, 'norli brand mails should be included');
-  assert(norli.some((m) => m.mail_family === 'kasse_og_pris'), 'norli must match first plan family');
+  assert(norli.length > 0, 'norli brand mails should be included at the brand plan step');
+  assert(norli.some((m) => m.mail_family === 'kasse_og_pris'), 'norli must match the brand plan family (kasse_og_pris)');
   assert(norli.every((m) => m.brand_name === 'Norli' && m.brand_role === 'bokhandler'));
   assert(!cands.some((m) => m && m.brand_id === 'narvesen'), 'norli should not leak narvesen');
 
   reset({ ...base, brand_id: 'narvesen' });
   inspect = global.CivicationMailRuntime.inspect();
   assert(inspect.family_paths.includes('data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json'));
+  advanceToBrandStep();
   cands = await global.CivicationMailRuntime.debugCandidates();
   const narvesen = cands.filter((m) => m && m.brand_id === 'narvesen');
-  assert(narvesen.length > 0, 'narvesen brand mails should be included');
+  assert(narvesen.length > 0, 'narvesen brand mails should be included at the brand plan step');
   assert(narvesen.every((m) => m.brand_name === 'Narvesen' && m.brand_role === 'kioskmedarbeider'));
   assert(!cands.some((m) => m && m.brand_id === 'norli'), 'narvesen should not leak norli');
 
