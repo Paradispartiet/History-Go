@@ -371,6 +371,12 @@ Before production Spotmeeting discovery is enabled, automated checks should veri
 - export/delete workflows include Social Meet identity/profile state without exposing private moderation notes to public APIs;
 - existing Social Meet smoke coverage continues to confirm no forbidden UI for live location, nearby users, followers/feed, free chat, or last-seen behavior.
 
+
+## Related contracts
+
+- `docs/HG_SOCIAL_MEET_INVITE_BACKEND_CONTRACT.md` defines durable preset invite persistence.
+- `docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md` defines the required block, report, moderation, appeal, audit, retention, deletion, export, and abuse-prevention safety layer before production discovery.
+
 ## 13. Next backend prerequisite
 
 The next backend prerequisite is to implement authenticated current-user identity plus opt-in public profile publication, including visibility states, consent records, block/report enforcement, export/delete support, and static API validation for the forbidden fields listed above. Production Spotmeeting discovery must remain off until that prerequisite is complete.

@@ -79,3 +79,7 @@ The next backend prerequisite is implementing and verifying durable authenticate
 
 - Attempted `git pull origin main`, but the current repository has no configured `origin` remote in this environment.
 - Reviewed the existing Social Meet identity contract, invite backend contract/status, Spotmeeting product status, Spotmeeting documentation, Spotmeeting runtime module, moderation/privacy bundles, and profile Social Meet UI references before adding the new documentation.
+
+## Follow-up documentation links
+
+Added cross-references from the Social Meet identity contract, invite backend contract, and Spotmeeting product documentation to the block/report/moderation contract so the production discovery gate points at all required server-side safety contracts.

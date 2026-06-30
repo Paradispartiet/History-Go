@@ -390,6 +390,12 @@ Before production Spotmeeting discovery is enabled, automated tests should verif
 - audit logs include safety events but no GPS, live-location, nearby, last-seen, public visit history, followers/feed, or free-chat content;
 - API responses never include account IDs, auth subjects, email, phone, IP address, device IDs, or moderation notes.
 
+
+## Related contracts
+
+- `docs/HG_SOCIAL_MEET_IDENTITY_CONTRACT.md` defines authenticated identity and opt-in public profiles.
+- `docs/HG_SOCIAL_MEET_BLOCK_REPORT_MODERATION_CONTRACT.md` defines the server-side block/report/moderation enforcement contract that must gate suggestions, invite creation, invite delivery, inbox rendering, accepting, and completing.
+
 ## 18. Production prerequisite
 
 The next backend prerequisite is durable authenticated Social Meet identity plus opt-in public profile publication. Invite persistence must not be enabled for real discovery until that identity layer, profile visibility, block/report enforcement, preset validation, retention/export/delete policy, and moderation hooks are implemented server-side and verified by tests.
