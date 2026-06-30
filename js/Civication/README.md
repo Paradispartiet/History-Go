@@ -160,3 +160,11 @@ CivicationMailRuntime.inspect()
 CivicationNextActionSelector.getCurrent()
 CivicationPsyche.getSnapshot()
 ```
+## Civication v0.1 spillflyt: én aktiv handlingsflate
+
+NextAction er eneste aktive handlingsflate for dagsflyten. `CivicationNextActionSelector` velger én aktiv handling fra dagfasen først, deretter eventuell fase-advance, og bare som fallback en åpen innboksmail. `CivicationNextActionUI` er derfor eneste primære UI som rendrer svarvalg med `data-civi-next-action-answer`.
+
+Dagens fase er passiv fasefortelling/status: den viser hvor spilleren er, hvor mange saker som er åpne, og hvilken sak som kommer neste, men den rendrer ikke svarvalg. Innboksen er arkiv, bakgrunn, historikk og detaljer; åpne saker rutes til NextAction i stedet for å få egne svarknapper. WorkdayPanel forklarer rollepakken, arbeidsdagen og faseprogresjon, men konkurrerer ikke med NextAction.
+
+FWG-data styrer rollelogikk, arbeidsgrammatikk og mailfamilier. Mailer er scener i en arbeidsdag, ikke bare notifikasjoner. For Civication v0.1 er `by/by_radgiver_plan` (Arealplanlegger) og `naeringsliv/renholder` (Renholder) de to viktigste spillbare referanserollene: de skal kunne sammenlignes i samme day/phase/runtime-kontrakt, men bruke tydelig ulike konflikter, aktører, rom og valg. Barnehageassistent har fortsatt governance-avvik og bør løftes senere, ikke blandes inn i denne oppryddingen.
+

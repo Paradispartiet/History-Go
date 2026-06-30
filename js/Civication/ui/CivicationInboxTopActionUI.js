@@ -353,50 +353,13 @@
   }
 
   function renderChoiceButtons(item, ownedIds) {
-    const ev = eventOf(item);
-    const choices = Array.isArray(ev?.choices) ? ev.choices : [];
-    if (!isOpenItem(item)) return "";
-
     const mailId = mailIdOf(item);
-    if (!mailId) return "";
+    if (!isOpenItem(item) || !mailId) return "";
 
-    // Active phase actions (and the single active inbox fallback) are owned by NextAction —
-    // the inbox links there instead of rendering its own answer choices.
-    if (ownedIds && ownedIds.has(mailId)) {
-      return buildNextActionLinkHtml();
-    }
-
-    if (!choices.length) {
-      return `
-        <div class="civi-inbox-card-actions">
-          <button
-            class="civi-btn civi-inbox-answer-btn"
-            type="button"
-            data-civi-inbox-answer="1"
-            data-mail-id="${escapeHtml(mailId)}"
-            data-choice-id=""
-          >OK</button>
-        </div>
-      `;
-    }
-
-    return `
-      <div class="civi-inbox-card-actions">
-        ${choices.map(function (choice) {
-          const choiceId = String(choice?.id || "").trim();
-          if (!choiceId) return "";
-          return `
-            <button
-              class="civi-btn civi-inbox-answer-btn"
-              type="button"
-              data-civi-inbox-answer="1"
-              data-mail-id="${escapeHtml(mailId)}"
-              data-choice-id="${escapeHtml(choiceId)}"
-            >${escapeHtml(choice?.label || choiceId)}</button>
-          `;
-        }).join("")}
-      </div>
-    `;
+    // Civication v0.1 locks all active answers to NextAction. The inbox is an
+    // archive/detail surface, so even non-phase fallback mails route to NextAction
+    // instead of rendering data-civi-inbox-answer buttons here.
+    return buildNextActionLinkHtml();
   }
 
   function renderInboxCard(item, channelLabel, ownedIds) {

@@ -2221,8 +2221,8 @@ function renderCivicationInbox() {
       <div class="civi-event-title">${model.title}</div>
       ${metaHtml ? `<div class="civi-event-meta">${metaHtml}</div>` : ""}
       <div class="civi-event-body">${model.bodyText}</div>
-      ${choices.length ? `<div class="civi-event-next">Hva gjør du?</div>` : ""}
-      <div id="civiInboxChoices" class="civi-event-choices"></div>
+      ${choices.length ? `<div class="civi-event-next">Svar håndteres i Neste handling.</div>` : ""}
+      <div id="civiInboxChoices" class="civi-event-choices"><button class="civi-btn" type="button" data-civi-day-phase-next-action>Gå til neste handling</button></div>
       <div id="civiInboxFeedback" class="civi-event-feedback" style="display:none;"></div>
       <button class="civi-btn primary" id="civiInboxOK" style="display:none;margin-top:10px;">OK</button>
     </div>
@@ -2232,46 +2232,22 @@ function renderCivicationInbox() {
   const fb = /** @type {HTMLElement|null} */ (host.querySelector("#civiInboxFeedback"));
   const ok = /** @type {HTMLButtonElement|null} */ (host.querySelector("#civiInboxOK"));
 
-  function showOk(txt) {
-    if (fb) {
-      fb.innerHTML = `<div>${txt || "—"}</div>`;
-      const consequence = buildBrandConsequenceText(arguments[1]);
-      if (consequence) { fb.innerHTML += `<div class="civi-choice-consequence">${consequence}</div>`; }
-      fb.style.display = "";
+  if (!choices.length) {
+    if (fb) { fb.textContent = ev.feedback || "—"; fb.style.display = ""; }
+    if (ok) {
+      ok.style.display = "";
+      ok.onclick = () => {
+        window.CivicationNextActionUI?.open?.();
+      };
     }
-    if (ok) { ok.style.display = ""; ok.onclick = () => refreshCivicationAfterAnswer(ev.id); }
+    return;
   }
 
-  if (!choices.length) {
-  if (fb) { fb.textContent = ev.feedback || "—"; fb.style.display = ""; }
-  if (ok) {
-    ok.style.display = "";
-    ok.onclick = () => {
-      window.HG_CiviEngine?.answer?.(ev.id, null);
-      refreshCivicationAfterAnswer(ev.id);
-    };
+  const nextActionButton = choiceBox?.querySelector?.("[data-civi-day-phase-next-action]");
+  if (nextActionButton) {
+    nextActionButton.addEventListener("click", () => window.CivicationNextActionUI?.open?.());
   }
   return;
-}
-
-  choices.forEach(c => {
-    const id = String(c?.id || "").trim();
-    if (!id) return;
-
-    const b = document.createElement("button");
-    b.className = "civi-btn";
-    b.textContent = String(c.label || id);
-
-    b.onclick = () => {
-      const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
-      if (!res?.ok) return;
-
-      if (choiceBox) choiceBox.innerHTML = "";
-      showOk(res.feedback || "—", res);
-    };
-
-    choiceBox?.appendChild(b);
-  });
 }
 
 
