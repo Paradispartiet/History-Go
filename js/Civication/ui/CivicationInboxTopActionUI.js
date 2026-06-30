@@ -291,12 +291,13 @@
     const current = window.CivicationNextActionSelector?.getCurrent?.();
     if (current && current.id) {
       const metaKind = String(current.mail_type || current.phaseLabel || "Melding").trim();
+      const isAdvance = current.canAdvancePhase === true || current.source === "day_phase_advance";
       return {
         mode: "urgent",
-        title: "Neste handling: svar på melding",
+        title: isAdvance ? "Neste handling: gå videre" : "Neste handling: svar på melding",
         summary: metaKind ? `${current.subject} · ${metaKind}` : current.subject,
-        chip: "Krever svar",
-        action: "Svar nå",
+        chip: isAdvance ? "Fase klar" : "Krever svar",
+        action: isAdvance ? "Gå videre" : "Svar nå",
         openNextAction: true
       };
     }

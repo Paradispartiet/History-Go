@@ -159,16 +159,25 @@ function testSelector() {
   assert.strictEqual(current.choices.length, 2, 'selector carries the answer choices for A');
   assert.notStrictEqual(current.id, 'mail-B', 'selector must never surface the unrelated inbox mail B as active');
 
-  // No phase action → fall back to the open inbox mail.
+  // No mail left and the phase is ready → NextAction owns the advance action before inbox fallback.
   global.CivicationDayProgression = {
     inspect: () => ({ phase: 'morning', phaseLabel: 'Morgen', dayIndex: 1, openItemsInPhase: 0, pendingItem: null, nextQueuedItem: null, nextActionableItem: null, phaseBundle: { items: [], pendingItems: [], queuedItems: [] }, nextPhase: 'lunch', canAdvance: true, reason: 'ready_to_advance' })
+  };
+  const advance = global.CivicationNextActionSelector.getCurrent();
+  assert(advance, 'selector returns an advance action when the day phase is ready');
+  assert.strictEqual(advance.source, 'day_phase_advance', 'advance is still sourced from the day phase before inbox fallback');
+  assert.strictEqual(advance.canAdvancePhase, true, 'advance action is marked as a phase advance');
+
+  // No phase mail and no advance state → fall back to the open inbox mail.
+  global.CivicationDayProgression = {
+    inspect: () => ({ phase: 'morning', phaseLabel: 'Morgen', dayIndex: 1, openItemsInPhase: 0, pendingItem: null, nextQueuedItem: null, nextActionableItem: null, phaseBundle: { items: [], pendingItems: [], queuedItems: [] }, nextPhase: 'lunch', canAdvance: false, reason: 'waiting' })
   };
   const fallback = global.CivicationNextActionSelector.getCurrent();
   assert(fallback, 'selector falls back to an actionable inbox mail when no phase action exists');
   assert.strictEqual(fallback.id, 'mail-B', 'fallback returns the open inbox mail');
   assert.strictEqual(fallback.source, 'inbox', 'fallback action is sourced from the inbox');
 
-  console.log('  ✓ selector: phase action A wins over inbox B; falls back to inbox only when no phase action');
+  console.log('  ✓ selector: phase action A wins over inbox B; advance wins before inbox fallback');
 }
 
 // ==================================================================
