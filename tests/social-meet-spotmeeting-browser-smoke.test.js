@@ -87,6 +87,20 @@ assert.strictEqual(pendingInvite.context.contextType, 'quiz', 'pending invite st
 assert.strictEqual(pendingInvite.presetLabel, 'Vil du ta denne quizen sammen?', 'pending invite stores preset label');
 assertNoForbiddenUi(placeCard.querySelector('.pc-spotmeeting'), 'PlaceCard Spotmeeting block');
 
+const emptyProfileWindow = makeDom(`<!doctype html><body><section id="profileSocialLayer"><div id="spotmeeting-inbox" aria-live="polite"></div></section></body>`, 'http://localhost/profile.html');
+emptyProfileWindow.localStorage.setItem('HG_TEST_MODE', '1');
+runScript(emptyProfileWindow, 'js/social/HGSpotmeeting.js');
+const renderInline = profileSource.match(/<script>\s*\(function\(\)\{([\s\S]*?window\.renderSpotmeetingInbox = renderSpotmeetingInbox;)[\s\S]*?\}\)\(\);\s*<\/script>/);
+assert(renderInline, 'profile.html exposes renderSpotmeetingInbox');
+vm.runInContext(`(function(){${renderInline[1]}; renderSpotmeetingInbox();}())`, emptyProfileWindow.__ctx, { filename: 'profile.html#renderSpotmeetingInbox-empty' });
+const emptyInbox = emptyProfileWindow.document.getElementById('spotmeeting-inbox');
+assert(emptyInbox.querySelector('[data-spotmeeting-empty]'), 'empty spotmeeting inbox renders a dedicated empty state');
+assert(emptyInbox.textContent.includes('Ingen kunnskapsmøter ennå.'), 'empty state explains there are no knowledge meetings yet');
+assert(emptyInbox.textContent.includes('Send et forslag fra et stedskort.'), 'empty state tells players where to start');
+assert(emptyInbox.textContent.includes('Kunnskapsmøter bruker bare forhåndsvalg, ikke fritekst.'), 'empty inbox renders preset-only helper text');
+assert(emptyInbox.textContent.includes('Du deler ikke posisjon eller live-status.'), 'empty inbox renders no live-status helper text');
+assertNoForbiddenUi(emptyInbox, 'empty spotmeeting inbox');
+
 const storedSpotmeeting = appWindow.localStorage.getItem('hg_spotmeeting_v1');
 const profileWindow = makeDom(`<!doctype html><body>
   <nav class="profile-tabs" role="tablist" aria-label="Profilfaner">
@@ -106,13 +120,16 @@ profileWindow.renderSocialMeetSections = () => { socialMeetRenderCount += 1; };
 runScript(profileWindow, 'js/profile.js');
 profileWindow.initProfileTabs?.();
 
-const renderInline = profileSource.match(/<script>\s*\(function\(\)\{([\s\S]*?window\.renderSpotmeetingInbox = renderSpotmeetingInbox;)[\s\S]*?\}\)\(\);\s*<\/script>/);
-assert(renderInline, 'profile.html exposes renderSpotmeetingInbox');
 vm.runInContext(`(function(){${renderInline[1]}; renderSpotmeetingInbox();}())`, profileWindow.__ctx, { filename: 'profile.html#renderSpotmeetingInbox' });
 click(profileWindow, '.profile-tab[data-tab="socialmeet"]', 'Social Meet profile tab');
 assert(socialMeetRenderCount > 0, 'opening Social Meet tab refreshes all Social Meet sections');
 
 const profileInbox = profileWindow.document.getElementById('spotmeeting-inbox');
+for (const groupLabel of ['Venter på svar', 'Avtalt', 'Gjennomført', 'Avslått eller avbrutt']) {
+  assert(profileInbox.textContent.includes(groupLabel), `spotmeeting inbox renders group label: ${groupLabel}`);
+}
+assert(profileInbox.textContent.includes('Kunnskapsmøter bruker bare forhåndsvalg, ikke fritekst.'), 'spotmeeting inbox renders preset-only helper text');
+assert(profileInbox.textContent.includes('Du deler ikke posisjon eller live-status.'), 'spotmeeting inbox renders privacy helper text');
 const pendingCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="pending"]');
 assert(pendingCard, 'profile.html renders a pending invite card');
 assert(pendingCard.textContent.includes('Factory Memory'), 'pending card shows context title');
@@ -121,6 +138,9 @@ assert(pendingCard.textContent.includes('Vil du ta denne quizen sammen?'), 'pend
 assert(pendingCard.querySelector('[data-spotmeeting-action="accept"]'), 'pending card renders accept action');
 assert(pendingCard.querySelector('[data-spotmeeting-action="decline"]'), 'pending card renders decline action');
 assert(pendingCard.querySelector('[data-spotmeeting-action="cancel"]'), 'pending card renders creator cancel action');
+assert.strictEqual(textOf(pendingCard.querySelector('[data-spotmeeting-action="accept"]')), 'Godta', 'accept action uses player-facing label');
+assert.strictEqual(textOf(pendingCard.querySelector('[data-spotmeeting-action="decline"]')), 'Avslå', 'decline action uses player-facing label');
+assert.strictEqual(textOf(pendingCard.querySelector('[data-spotmeeting-action="cancel"]')), 'Avbryt forslag', 'cancel action uses player-facing label');
 assert(!pendingCard.querySelector('[data-spotmeeting-action="complete"]'), 'pending card does not render complete action');
 click(profileWindow, '[data-spotmeeting-action="accept"]', 'Godta pending spotmeeting');
 const acceptedCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="accepted"]');
@@ -128,7 +148,9 @@ assert(acceptedCard, 'clicking accept moves the invite to accepted cards');
 assert(acceptedCard.querySelector('[data-spotmeeting-action="complete"]'), 'accepted card renders complete action');
 assert(acceptedCard.querySelector('[data-spotmeeting-action="cancel"]'), 'accepted card renders cancel action');
 assert(!acceptedCard.querySelector('[data-spotmeeting-action="accept"]'), 'accepted card does not render accept action');
-click(profileWindow, '[data-spotmeeting-action="complete"]', 'Marker gjennomført');
+assert.strictEqual(textOf(acceptedCard.querySelector('[data-spotmeeting-action="complete"]')), 'Marker som gjennomført', 'complete action uses player-facing label');
+assert.strictEqual(textOf(acceptedCard.querySelector('[data-spotmeeting-action="cancel"]')), 'Avbryt forslag', 'accepted cancel action uses player-facing label');
+click(profileWindow, '[data-spotmeeting-action="complete"]', 'Marker som gjennomført');
 const completedCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="completed"]');
 assert(completedCard, 'clicking complete moves the invite to completed cards');
 assert(!completedCard.querySelector('[data-spotmeeting-action]'), 'completed card is read-only');
