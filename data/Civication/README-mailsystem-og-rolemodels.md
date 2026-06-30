@@ -1,6 +1,6 @@
 # Civication mailsystem og roleModels
 
-Oppdatert: 2026-06-28
+Oppdatert: 2026-06-30
 
 Dette dokumentet forklarer hvordan Civication-mailsystemet henger sammen med `badges.json`, `roleModels`, `mailPlans`, `mailFamilies`, runtime-lagene, state, UI, dagmotoren og History Go-koblingene.
 
@@ -14,6 +14,10 @@ Målet er å gjøre videre arbeid presist:
 6. La runtime, dagmotor, innboks, svar, psyke og konsekvenser spille sammen.
 
 ## Kort prinsipp
+
+**Civication simulerer ikke CV-titler. Civication simulerer arbeidshverdager.**
+
+**Hver rolle skal være en liten fortelling om hva arbeidet krever i praksis.**
 
 Civication-mailer skal ikke bare være tilfeldige hendelser med valg. De skal være rollebaserte simuleringer.
 
@@ -939,6 +943,14 @@ Et faglig problem ligger under.
 Valget har en kostnad.
 Konsekvensen kan komme senere.
 ```
+
+Scenene trenger ikke oppfinnes fra bunnen for hver mail. FWG-laget `practice_stories` (se `docs/CIVICATION_WORK_GRAMMAR_STANDARD.md` → *FWG as Story Simulation*) inneholder ferdige, spillbare arbeidsscener med personer, sted, fagbegreper, konfliktakser og mulige followups. Nye `complete_reference_v2`-mails bør koble seg til en slik scene med et valgfritt felt:
+
+```text
+practice_story_id: barnet_slipper_ikke_handen
+```
+
+Dette er ikke påkrevd for legacy-mails, men gjør at thread-mailer, followups og konsekvenser kan spores tilbake til samme arbeidsscene — og at MailThreads-arbeidet senere kan skrive trådmailer som faktisk henger sammen.
 
 ## 13. Arealplanlegger: anbefalt plan
 

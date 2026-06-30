@@ -33,6 +33,244 @@
     "core_pressure": "hygiene_og_verdighet_vs_tidsbudsjett_og_servicepress",
     "work_rhythm": ["lese rom, soner og brukertrykk", "prioritere berøringspunkter og smitterisiko", "velge utstyr, kjemi og metode", "arbeide ergonomisk under knapp tid", "håndtere avbrudd fra brukere og ledelse", "melde avvik og etterlate rommet trygt"]
   },
+  "story_world": {
+    "simulation_promise": "Du får oppleve hvordan renhold egentlig handler om å bryte smittekjeder, hindre fall og beskytte verdighet – et arbeid som helst skal være usynlig, men som beskytter alle som bruker rommet.",
+    "everyday_world": "Du leser rom, soner og brukertrykk, prioriterer berøringspunkter framfor synlig skitt, velger riktig kjemi og dosering, holder kontakttid, arbeider ergonomisk under knapp tid, håndterer avbrudd fra brukere og ledere, og etterlater rommet trygt – ofte uten at noen ser hva du faktisk gjorde.",
+    "hidden_complexity": "Utenfra ser renhold ut som å tørke flater rene. Innenfra er det risikovurdering av smitte, fall og hygiene, kjemikunnskap, ergonomi og servicekommunikasjon under et minuttbudsjett som sjelden matcher en forsvarlig standard.",
+    "recurring_situations": [
+      "et rom som ser rent ut, men ikke er hygienisk trygt",
+      "minutter på romlista som ikke matcher forsvarlig metode",
+      "tidspress på toalett der smitterisiko er høyere enn synlig skitt",
+      "et HMS-avvik som må meldes selv om det bremser tempoet",
+      "en leder som ber om et ekstra rom eller mindre avvik",
+      "en bruker som bare ser overflaten og ikke arbeidet bak",
+      "kroppen som tar systempresset gjennom feil løft og vridninger"
+    ],
+    "small_story_seeds": [
+      "et hoppet over berøringspunkt blir et smittespor uka etter",
+      "et meldt avvik fører til at romlista faktisk endres",
+      "en bruker som ser arbeidet en gang, behandler renholderen annerledes etterpå",
+      "et vått gulv noen gikk på blir et nesten-fall i avviksloggen",
+      "en mikropause innført i tide hindrer en belastningsskade"
+    ],
+    "relationship_web": [
+      { "who": "driftsleder_mona", "relation": "din leder", "wants": "rom levert i tide og få avvikssaker", "creates": "press om tempo over standard", "tension": "smittevern_vs_minuttbudsjett" },
+      { "who": "amina_erfaren_renholder", "relation": "erfaren kollega og fagstemme", "wants": "at faget og kroppen respekteres", "creates": "støtte og metode, men også et speil for snarveier", "tension": "faglighet_vs_lav_status" },
+      { "who": "kontorbruker_jon", "relation": "bruker av rommet", "wants": "et tilgjengelig og tilsynelatende rent rom uten å se arbeidet", "creates": "servicepress og fristelse til å bli usynlig", "tension": "brukerkomfort_vs_arbeidsverdighet" },
+      { "who": "verneombud_sara", "relation": "HMS-kontrollpunkt", "wants": "trygg kropp, riktig kjemi og meldte avvik", "creates": "press om å gjøre belastning og risiko synlig", "tension": "tempo_vs_hms" }
+    ],
+    "knowledge_in_practice": [
+      { "concept": "berøringspunkt", "practical_scene": "et rom skinner visuelt mens dørhåndtak og brytere er hoppet over", "what_player_must_notice": "hvor smitterisikoen faktisk sitter, ikke hvor skitten synes", "bad_misread": "visuell renhet er det samme som hygienisk kvalitet", "good_use": "starte med berøringspunkter og holde kontakttid før finish" },
+      { "concept": "romstandard", "practical_scene": "romlista gir tolv minutter til et rom som krever tjue", "what_player_must_notice": "hva minimum trygg standard faktisk krever", "bad_misread": "skrive rommet ferdig uten å være ferdig", "good_use": "prioritere risiko og melde tidsavvik tydelig" },
+      { "concept": "ergonomi", "practical_scene": "tempoet holdes ved at du bøyer, løfter og vrir feil", "what_player_must_notice": "egen kropp som buffer for for lite tid og utstyr", "bad_misread": "normalisere smerte som en del av jobben", "good_use": "justere utstyr, ta mikropauser og melde belastning før skade" },
+      { "concept": "avvik", "practical_scene": "et vått gulv eller en manglende kjemi utgjør en risiko", "what_player_must_notice": "forskjellen på personkritikk og systemavvik", "bad_misread": "stillhet for å unngå bråk", "good_use": "melde avviket konkret slik at årsaken kan rettes" },
+      { "concept": "verdighetsarbeid", "practical_scene": "en bruker omtaler arbeidet ditt som en forstyrrelse", "what_player_must_notice": "egen og brukerens verdighet i situasjonen", "bad_misread": "unnskylde eget nødvendig arbeid", "good_use": "sette en høflig grense og forklare hvorfor flaten må være trygg" }
+    ],
+    "emotional_costs": [
+      "usynlighet: arbeidet merkes bare når det mangler",
+      "kroppslig slitasje som bygger seg opp i rygg, skuldre og hender",
+      "skam over lav status til tross for høyt ansvar",
+      "stolthet som sjelden blir anerkjent utenfra",
+      "stress når minuttbudsjettet gjør forsvarlig standard umulig"
+    ],
+    "status_illusions": [
+      "Utenfra: ufaglært tørking av flater. Innenfra: smittevern, fallforebygging og kjemikunnskap satt i system.",
+      "Utenfra: et rent rom. Innenfra: et rom der berøringspunkter, kontakttid og dosering avgjorde tryggheten.",
+      "Utenfra: lav status. Innenfra: ansvar for andres helse og en hel arbeidsdags hygiene."
+    ],
+    "player_learning_arc": [
+      "Først tror spilleren at renhold er å gjøre rom synlig rene.",
+      "Så oppdager spilleren at synlig rent og hygienisk trygt ikke er det samme.",
+      "Så lærer spilleren å prioritere risiko, holde kontakttid og melde avvik selv under tidspress.",
+      "Til slutt forstår spilleren at det usynlige arbeidet beskytter folk, og at kropp og verdighet er en del av faget."
+    ]
+  },
+  "practice_stories": [
+    {
+      "id": "usynlig_arbeid_beskytter_folk",
+      "title": "Det usynlige arbeidet som faktisk beskytter folk",
+      "story_type": "identity",
+      "premise": "Ingen merker rommet du gjorde trygt, men en hoppet over flate ville fått konsekvenser for mange.",
+      "people": ["amina_erfaren_renholder"],
+      "place_id": "toalett_og_beroringssoner",
+      "work_knowledge": ["berøringspunkt", "smittekjede", "usynlig arbeid"],
+      "conflict_axes": ["smittevern_vs_minuttbudsjett", "brukerkomfort_vs_arbeidsverdighet"],
+      "mail_types": ["story", "knowledge", "job", "consequence"],
+      "thread_potential": true,
+      "possible_choices": [
+        "holde metoden selv når ingen ser den",
+        "pusse bare det synlige siden ingen sjekker",
+        "be om anerkjennelse for det kritiske arbeidet"
+      ],
+      "possible_followups": [
+        "et smittespor uteblir fordi du gjorde jobben",
+        "et hoppet over berøringspunkt gir konsekvens senere",
+        "en kollega bekrefter verdien av det usynlige arbeidet"
+      ],
+      "learning_point": "Renhold måles best i det som ikke skjer; det usynlige arbeidet beskytter folk som aldri ser det."
+    },
+    {
+      "id": "synlig_rent_vs_hygienisk_rent",
+      "title": "Synlig rent vs hygienisk rent",
+      "story_type": "knowledge",
+      "premise": "Rommet skinner, men berøringspunkter, kontakttid og soner er hoppet over.",
+      "people": ["amina_erfaren_renholder", "kontorbruker_jon"],
+      "place_id": "kontor_moterom_og_korridor",
+      "work_knowledge": ["berøringspunkt", "kontakttid", "smittekjede"],
+      "conflict_axes": ["smittevern_vs_minuttbudsjett"],
+      "mail_types": ["job", "knowledge", "consequence", "micro"],
+      "thread_potential": true,
+      "possible_choices": [
+        "prioritere risikoflater og holde kontakttid",
+        "prioritere synlig glans for å imponere",
+        "ta berøringspunktene bare hvis tiden strekker til"
+      ],
+      "possible_followups": [
+        "rommet er faktisk trygt, ikke bare pent",
+        "en visuelt fin overflate skjuler smitterisiko",
+        "leder spør hvorfor et rom så rent fikk avvik"
+      ],
+      "learning_point": "Visuell renhet er ikke hygienisk kvalitet; det farligste er ofte det som ikke synes."
+    },
+    {
+      "id": "tidspress_pa_toalett",
+      "title": "Tidspress på toalett",
+      "story_type": "everyday",
+      "premise": "Romlista gir for få minutter til en toalettsone der smitterisikoen er høyest.",
+      "people": ["driftsleder_mona"],
+      "place_id": "toalett_og_beroringssoner",
+      "work_knowledge": ["romstandard", "kontakttid", "dosering"],
+      "conflict_axes": ["smittevern_vs_minuttbudsjett"],
+      "mail_types": ["job", "conflict", "followup", "micro"],
+      "thread_potential": true,
+      "possible_choices": [
+        "velge minimum trygg standard og melde tidsavvik",
+        "later som alt er ferdig",
+        "kutte kontakttiden for å rekke neste rom"
+      ],
+      "possible_followups": [
+        "romlista justeres når avviket meldes",
+        "en kuttet kontakttid gir et smittespor",
+        "leder ber deg holde tempo uansett"
+      ],
+      "learning_point": "Når tid og standard ikke matcher, er det forsvarlig å prioritere risiko og melde fra – ikke å skjule mangelen."
+    },
+    {
+      "id": "hms_avvik",
+      "title": "HMS-avviket som må meldes",
+      "story_type": "conflict",
+      "premise": "Du oppdager et vått gulv uten skilt og feil kjemi på et følsomt materiale, men å melde det bremser hele runden.",
+      "people": ["verneombud_sara", "driftsleder_mona"],
+      "place_id": "renholdsrom_vogn_og_kjemi",
+      "work_knowledge": ["avvik", "HMS", "dosering"],
+      "conflict_axes": ["tempo_vs_hms", "smittevern_vs_minuttbudsjett"],
+      "mail_types": ["event", "conflict", "followup", "knowledge"],
+      "thread_potential": true,
+      "possible_choices": [
+        "melde avviket konkret med årsak",
+        "fikse det stille uten å melde",
+        "ignorere det for å holde tempo"
+      ],
+      "possible_followups": [
+        "avviket fører til at rutinen rettes",
+        "et umeldt avvik gjentar seg og rammer noen",
+        "verneombudet følger opp belastning og kjemi"
+      ],
+      "learning_point": "Et meldt avvik retter en systemfeil; et fortiet avvik flytter risikoen videre til neste person."
+    },
+    {
+      "id": "leder_vil_ha_tempo",
+      "title": "Lederen som vil ha tempo",
+      "story_type": "conflict",
+      "premise": "Driftslederen ber deg ta et ekstra rom og «ikke lage sak av småting», selv om det går ut over standarden.",
+      "people": ["driftsleder_mona", "amina_erfaren_renholder"],
+      "place_id": "kontor_moterom_og_korridor",
+      "work_knowledge": ["romstandard", "avvik", "berøringspunkt"],
+      "conflict_axes": ["smittevern_vs_minuttbudsjett", "tempo_vs_hms"],
+      "mail_types": ["people", "conflict", "consequence", "followup"],
+      "thread_potential": true,
+      "possible_choices": [
+        "forklare hva trygg standard krever og foreslå prioritering",
+        "ta det ekstra rommet og kutte i metoden",
+        "si ja uten å si hva som da faller bort"
+      ],
+      "possible_followups": [
+        "leder forstår prioriteringen når den gjøres konkret",
+        "kuttet standard gir et avvik leder må svare for",
+        "kroppen tar støyten for det ekstra rommet"
+      ],
+      "learning_point": "Å sette navn på standarden gjør tempopresset til en synlig prioritering i stedet for en skjult snarvei."
+    },
+    {
+      "id": "bruker_ser_bare_overflaten",
+      "title": "Brukeren som bare ser overflaten",
+      "story_type": "relationship",
+      "premise": "En bruker behandler arbeidet ditt som en forstyrrelse og vil inn på et nettopp vasket, vått gulv.",
+      "people": ["kontorbruker_jon"],
+      "place_id": "kontor_moterom_og_korridor",
+      "work_knowledge": ["verdighetsarbeid", "HMS", "usynlig arbeid"],
+      "conflict_axes": ["brukerkomfort_vs_arbeidsverdighet"],
+      "mail_types": ["people", "conflict", "story", "followup"],
+      "thread_potential": false,
+      "possible_choices": [
+        "sette en høflig grense og forklare risikoen",
+        "gjøre deg usynlig og la brukeren gå inn",
+        "ta personlig skyld for forstyrrelsen"
+      ],
+      "possible_followups": [
+        "brukeren respekterer arbeidet etter forklaringen",
+        "et fall på vått gulv havner i avviksloggen",
+        "du kjenner på at arbeidet ble usynliggjort"
+      ],
+      "learning_point": "Service betyr ikke å bli usynlig; en trygg arbeidsflate er en del av verdigheten i arbeidet."
+    },
+    {
+      "id": "slitasje_i_kroppen",
+      "title": "Slitasjen i kroppen",
+      "story_type": "consequence",
+      "premise": "For å levere romlista bruker du kroppen som buffer, og belastningen i rygg, skuldre og hender bygger seg opp.",
+      "people": ["verneombud_sara", "amina_erfaren_renholder"],
+      "place_id": "rygg_skuldre_hender",
+      "work_knowledge": ["ergonomi", "HMS", "avvik"],
+      "conflict_axes": ["tempo_vs_hms"],
+      "mail_types": ["consequence", "people", "followup", "job"],
+      "thread_potential": true,
+      "possible_choices": [
+        "justere utstyr, ta mikropauser og melde belastning",
+        "bære for tungt for å spare sekunder",
+        "normalisere smerten og fortsette"
+      ],
+      "possible_followups": [
+        "en mikropause i tide hindrer en skade",
+        "belastningsskade gir fravær og lavere mestring",
+        "verneombudet tar opp arbeidsmengden"
+      ],
+      "learning_point": "Kroppen er arbeidsverktøyet; å beskytte den er fag, ikke latskap."
+    },
+    {
+      "id": "faglig_stolthet_i_lavstatus",
+      "title": "Faglig stolthet i lavstatusarbeid",
+      "story_type": "identity",
+      "premise": "Noen omtaler jobben din som noe hvem som helst kan gjøre, samme dag som metoden din hindret et smittespor.",
+      "people": ["amina_erfaren_renholder", "kontorbruker_jon"],
+      "place_id": "renholdsrom_vogn_og_kjemi",
+      "work_knowledge": ["usynlig arbeid", "verdighetsarbeid", "smittekjede"],
+      "conflict_axes": ["brukerkomfort_vs_arbeidsverdighet"],
+      "mail_types": ["story", "knowledge", "people", "consequence"],
+      "thread_potential": false,
+      "possible_choices": [
+        "eie faget og sette ord på hva arbeidet faktisk krever",
+        "godta beskrivelsen i stillhet",
+        "gjøre minst mulig fordi ingen ser det likevel"
+      ],
+      "possible_followups": [
+        "en kollega eller bruker ser faget bak arbeidet",
+        "lav anerkjennelse tærer over tid",
+        "du finner stolthet i den udramatiske tryggheten du skaper"
+      ],
+      "learning_point": "Lav status betyr ikke lav kompetanse; faglig stolthet ligger i risikoen du forhindrer."
+    }
+  ],
   "task_grammar": [
     {"id": "prioritize_touch_points", "label": "Prioriter berøringspunkter", "task_type": "hygiene_priority", "typical_inputs": ["dørhåndtak", "brytere", "rekkverk", "toalettsoner"], "good_work": ["starter med smitterisiko", "skiller synlig skitt fra kritiske kontaktflater", "holder metode selv når rommet ser rent ut"], "bad_work": ["pusser bare det synlige", "hopper over kontakttid", "lar brukerpress styre hygienerekkefølgen"], "mail_types": ["job", "knowledge", "micro"]},
     {"id": "handle_time_boxed_room", "label": "Rydd et rom med for lite tid", "task_type": "tempo_quality", "typical_inputs": ["romliste", "minuttbudsjett", "akutt bruk"], "good_work": ["velger minimum trygg standard", "varsler når standard ikke kan holdes", "prioriterer risiko før finish"], "bad_work": ["later som alt er ferdig", "ofrer HMS for tempo", "skjuler tidsmangel i stillhet"], "mail_types": ["job", "conflict", "consequence"]},
