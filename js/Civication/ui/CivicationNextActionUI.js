@@ -113,8 +113,39 @@
       .slice(0, 6);
   }
 
+  function isQueuedAction(action) {
+    return action?.isQueued === true || String(action?.status || "").trim().toLowerCase() === "queued";
+  }
+
+  function isAnswerableAction(action) {
+    if (!action) return false;
+    if (action.canAdvancePhase) return false;
+    if (action.isAnswerable === true) return true;
+    const status = String(action.status || "").trim().toLowerCase();
+    return status === "delivered" || status === "pending" || status === "open";
+  }
+
+  function dispatchNextActionUpdates() {
+    ["civi:inboxChanged", "civi:dayPhaseChanged", "updateProfile"].forEach(function (eventName) {
+      try { window.dispatchEvent(new Event(eventName)); } catch (_e) {}
+    });
+  }
+
+  function notifyFailure(message, detail) {
+    if (window.DEBUG) console.warn("[CivicationNextActionUI] " + message, detail || "");
+    try { window.showToast?.(message); } catch (_e) {}
+  }
+
   function buildChoicesHtml(action) {
     const mailId = String(action.id || "");
+    if (isQueuedAction(action)) {
+      return ""
+        + "<p class=\"civi-next-action-sub muted\">Saken er klar, men må åpnes i innboksen før den kan besvares.</p>"
+        + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Åpne handling\">"
+        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-open-queued=\"1\" data-mail-id=\"" + escapeHtml(mailId) + "\">Åpne saken</button>"
+        + "</div>";
+    }
+
     if (action.isTaskGate) {
       return ""
         + "<p class=\"civi-next-action-sub muted\">Oppgave som må gjøres før du kan gå videre.</p>"
@@ -128,6 +159,14 @@
         + "<p class=\"civi-next-action-sub muted\">Fasen er ferdig ryddet.</p>"
         + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Fasehandling\">"
         + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-advance=\"1\">Gå til neste fase</button>"
+        + "</div>";
+    }
+
+    if (!isAnswerableAction(action)) {
+      return ""
+        + "<p class=\"civi-next-action-sub muted\">Denne handlingen kan ikke besvares ennå.</p>"
+        + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Åpne handling\">"
+        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-open-queued=\"1\" data-mail-id=\"" + escapeHtml(mailId) + "\">Åpne neste handling</button>"
         + "</div>";
     }
 
@@ -202,22 +241,49 @@
     return true;
   }
 
+  function deliverQueuedAction() {
+    const result = window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: true });
+    return Promise.resolve(result)
+      .then(function (delivery) {
+        dispatchNextActionUpdates();
+        render();
+        return delivery;
+      })
+      .catch(function (error) {
+        notifyFailure("Kunne ikke åpne saken", error);
+        render();
+        return { enqueued: false, reason: "exception", error };
+      });
+  }
+
   function answer(mailId, choiceId) {
-    if (!mailId) return;
+    if (!mailId) return Promise.resolve({ ok: false, reason: "missing_mail_id" });
+    const action = getCurrentAction();
     const result = window.CivicationMailEngine?.answerMail
       ? window.CivicationMailEngine.answerMail(mailId, choiceId)
       : window.HG_CiviEngine?.answer?.(mailId, choiceId);
 
-    Promise.resolve(result)
-      .then(function () {
-        try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
+    return Promise.resolve(result)
+      .then(function (answerResult) {
+        if (answerResult?.ok === false) {
+          notifyFailure("Kunne ikke svare på mail", answerResult);
+          if (answerResult.reason === "not_found" && action?.source === "day_phase") {
+            return deliverQueuedAction();
+          }
+          render();
+          return answerResult;
+        }
+        dispatchNextActionUpdates();
         // Re-render so the next phase action (if any) appears; close when nothing remains.
         const next = getCurrentAction();
         if (next) render();
         else close();
+        return answerResult;
       })
       .catch(function (error) {
-        if (window.DEBUG) console.warn("[CivicationNextActionUI] Kunne ikke svare på mail", error);
+        notifyFailure("Kunne ikke svare på mail", error);
+        render();
+        return { ok: false, reason: "exception", error };
       });
   }
 
@@ -261,6 +327,14 @@
       if (taskBtn && modal.contains(taskBtn) && !taskBtn.disabled) {
         event.preventDefault();
         openTaskGate(String(taskBtn.getAttribute("data-civi-next-action-task") || "").trim());
+        return;
+      }
+
+      const openQueuedBtn = target.closest("[data-civi-next-action-open-queued]");
+      if (openQueuedBtn && modal.contains(openQueuedBtn) && !openQueuedBtn.disabled) {
+        event.preventDefault();
+        openQueuedBtn.disabled = true;
+        deliverQueuedAction();
         return;
       }
 

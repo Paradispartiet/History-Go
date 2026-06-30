@@ -217,6 +217,53 @@ function testNextActionUi() {
   console.log('  ✓ NextAction UI renders subject, meta, body and choice buttons');
 }
 
+
+// ==================================================================
+// 3b. Queued daily items must be opened before answer choices render
+// ==================================================================
+function testQueuedNextActionUi() {
+  installBaseGlobals();
+  const body = new FakeEl('body');
+  global.document = {
+    body,
+    getElementById(id) { return findById(body, id); },
+    createElement(tag) { return new FakeEl(tag); },
+    addEventListener() {},
+    readyState: 'complete'
+  };
+
+  const queued = makeRow('mail-Q', 'Køet fasesak', [{ id: 'B', label: 'Svar B' }], { status: 'queued' });
+  global.CivicationDayProgression = {
+    inspect: () => ({
+      phase: 'morning', phaseLabel: 'Morgen', dayIndex: 1,
+      openItemsInPhase: 0, queuedItemsInPhase: 1, deliveredItemsInPhase: 0, completedItemsInPhase: 0,
+      pendingItem: null,
+      nextQueuedItem: { id: queued.id, subject: queued.subject, status: queued.status, phase: queued.phase },
+      nextActionableItem: queued,
+      phaseBundle: { items: [queued], pendingItems: [], queuedItems: [queued] },
+      nextPhase: 'lunch', canAdvance: false, reason: 'queued_items_in_phase'
+    })
+  };
+
+  loadScript('js/Civication/systems/civicationNextActionSelector.js');
+  const current = global.CivicationNextActionSelector.getCurrent();
+  assert.strictEqual(current.id, 'mail-Q', 'selector returns the queued daily item');
+  assert.strictEqual(current.isQueued, true, 'selector marks queued daily items as queued');
+  assert.strictEqual(current.isAnswerable, false, 'selector marks queued daily items as not answerable');
+
+  loadScript('js/Civication/ui/CivicationNextActionUI.js');
+  assert.strictEqual(global.CivicationNextActionUI.open(), true, 'NextAction opens for a queued item');
+
+  const html = findById(body, 'civiNextActionModalBody').innerHTML;
+  assert(html.includes('Køet fasesak'), 'NextAction renders the queued subject');
+  assert(html.includes('Åpne saken'), 'queued daily items render an open-case button');
+  assert(html.includes('data-civi-next-action-open-queued'), 'queued daily items render the queue delivery action');
+  assert(!html.includes('data-civi-next-action-answer'), 'queued daily items do not render answer buttons yet');
+  assert(!html.includes('data-choice-id="B"'), 'queued daily items do not expose choice ids before delivery');
+
+  console.log('  ✓ NextAction UI opens queued daily items before rendering choices');
+}
+
 // ==================================================================
 // 4. Dagens fase: same title, no choices, routes to NextAction
 // ==================================================================
@@ -340,6 +387,7 @@ function testInboxLink() {
 function run() {
   testSelector();
   testNextActionUi();
+  testQueuedNextActionUi();
   testDayPhasePanel();
   testInboxLink();
   console.log('PASS: Civication NextAction consolidation tests completed.');

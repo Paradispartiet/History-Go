@@ -38,6 +38,15 @@
       .includes("task_gate");
   }
 
+  function actionabilityForStatus(status, fallbackStatus) {
+    const normalized = norm(status || fallbackStatus || "").toLowerCase();
+    return {
+      status: normalized,
+      isQueued: normalized === "queued",
+      isAnswerable: normalized === "delivered" || normalized === "pending" || normalized === "open"
+    };
+  }
+
   function getInspection() {
     const prog = window.CivicationDayProgression;
     if (!prog || typeof prog.inspect !== "function") return null;
@@ -53,6 +62,10 @@
   function buildPhaseAction(item, inspection) {
     const id = norm(item?.id);
     if (!id) return null;
+    const fallbackStatus = norm(item?.id) && norm(item?.id) === norm(inspection?.nextQueuedItem?.id)
+      ? "queued"
+      : (norm(item?.id) && norm(item?.id) === norm(inspection?.pendingItem?.id) ? "pending" : "delivered");
+    const actionability = actionabilityForStatus(item?.status, fallbackStatus);
     return {
       source: "day_phase",
       id,
@@ -64,7 +77,9 @@
       phaseLabel: norm(inspection?.phaseLabel),
       mail_type: norm(item.mail_type || item.type),
       slot: norm(item.slot),
-      status: norm(item.status),
+      status: actionability.status,
+      isQueued: actionability.isQueued,
+      isAnswerable: actionability.isAnswerable,
       choices: normalizeChoices(item.choices),
       isTaskGate: isTaskGate(item),
       taskId: norm(item.task_id)
@@ -110,6 +125,8 @@
       mail_type: "phase_advance",
       slot: norm(inspection.nextPhase),
       status: "ready",
+      isQueued: false,
+      isAnswerable: false,
       choices: [],
       isTaskGate: false,
       taskId: "",
@@ -171,6 +188,7 @@
     if (!hit) return null;
 
     const ev = eventOf(hit) || {};
+    const actionability = actionabilityForStatus(hit.status || "open");
     return {
       source: "inbox",
       id: norm(hit.id || ev.id),
@@ -182,7 +200,9 @@
       phaseLabel: "",
       mail_type: norm(ev.mail_type || ev.type || ev.kind),
       slot: norm(ev.slot),
-      status: norm(hit.status || "open"),
+      status: actionability.status,
+      isQueued: actionability.isQueued,
+      isAnswerable: actionability.isAnswerable,
       choices: normalizeChoices(ev.choices),
       isTaskGate: isTaskGate(ev),
       taskId: norm(ev.task_id)
