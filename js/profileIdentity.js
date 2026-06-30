@@ -152,6 +152,13 @@
       .hg-auth-status{margin-top:10px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font-size:.92rem;line-height:1.35}
       .hg-auth-status.is-ok{background:rgba(130,255,170,.12);color:#d7ffe0}.hg-auth-status.is-error{background:rgba(255,100,100,.13);color:#ffd6d6}
       #loginAhaBtn[data-signed-in="true"]{border-color:rgba(130,255,170,.55);color:#d7ffe0}
+
+      .hg-profile-settings{width:min(1120px,100%);max-height:min(88vh,920px);overflow:auto;border:1px solid rgba(255,255,255,.16);border-radius:30px;background:rgba(15,18,28,.97);box-shadow:0 30px 90px rgba(0,0,0,.5);color:#fff;padding:22px;font-family:inherit}
+      .hg-profile-settings-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.hg-profile-settings-head h2{margin:0 0 6px;font-size:1.55rem}.hg-profile-settings-head p{margin:0;color:rgba(255,255,255,.72)}
+      .hg-profile-settings-close{border:0;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-size:1.2rem;width:42px;height:42px;cursor:pointer}.hg-profile-settings-grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:16px;align-items:start}
+      .hg-profile-settings-card{border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.06);padding:16px}.hg-profile-settings-card h3{margin:0 0 10px}.hg-profile-settings-card .profile-action-row{margin-top:10px}
+      .hg-profile-settings-social{display:grid;gap:14px}.hg-profile-settings-social #profileSocialLayer{display:grid;gap:14px;margin:0}.hg-profile-settings-social .profile-detail-box{display:block}.hg-profile-settings-social details>summary{display:none}
+      @media (max-width:820px){.hg-profile-settings-grid{grid-template-columns:1fr}.hg-profile-settings{max-height:92vh;padding:16px}}
     `;
     document.head.appendChild(style);
   }
@@ -231,6 +238,94 @@
     });
   }
 
+
+  function renderSettingsSocialSections() {
+    window.renderPrivacySettings?.();
+    window.renderMeetInviteInbox?.();
+    window.renderConfirmedMeets?.();
+    window.renderSpotmeetingInbox?.();
+    window.renderSocialTimeline?.();
+    window.renderSocialProgression?.();
+    window.renderLearningCircles?.();
+    window.renderCircleActivity?.();
+  }
+
+  function closeProfileSettings() {
+    const backdrop = document.getElementById("hgProfileSettingsBackdrop");
+    const socialLayer = document.getElementById("profileSocialLayer");
+    const home = document.getElementById("profileSettingsSocialMount");
+    if (socialLayer && home) home.appendChild(socialLayer);
+    backdrop?.remove();
+  }
+
+  function openProfileSettings() {
+    injectStyles();
+    closeEditor();
+    closeProfileSettings();
+    const profile = getProfile();
+    let selectedColor = profile.color;
+    const backdrop = document.createElement("div");
+    backdrop.id = "hgProfileSettingsBackdrop";
+    backdrop.className = "hg-profile-editor-backdrop";
+    backdrop.innerHTML = `
+      <div class="hg-profile-settings" role="dialog" aria-modal="true" aria-labelledby="hgProfileSettingsTitle">
+        <div class="hg-profile-settings-head">
+          <div><h2 id="hgProfileSettingsTitle">Innstillinger</h2><p>Profil, personvern, Social Meet, språk og lokale data samlet på ett sted.</p></div>
+          <button class="hg-profile-settings-close" type="button" id="hgProfileSettingsClose" aria-label="Lukk innstillinger">×</button>
+        </div>
+        <div class="hg-profile-settings-grid">
+          <div class="hg-profile-settings-card" id="hgProfileSettingsProfile">
+            <h3>Profil</h3>
+            <p>Navnet hentes fra AHA. Her endrer du lokale History Go-valg.</p>
+            <div class="hg-profile-field"><label for="hgSettingsNicknameInput">Kallenavn i History Go</label><input id="hgSettingsNicknameInput" type="text" maxlength="40" placeholder="Valgfritt kallenavn"></div>
+            <div class="hg-profile-field"><label for="hgSettingsPlaceInput">Sted / hjemsted</label><input id="hgSettingsPlaceInput" type="text" maxlength="60" placeholder="Valgfritt sted"></div>
+            <div class="hg-profile-field"><label>Profilfarge</label><div class="hg-profile-colors" id="hgSettingsColorOptions"></div></div>
+            <div class="hg-profile-actions"><button class="hg-profile-save" type="button" id="hgSettingsSaveProfile">Lagre profil</button></div>
+            <hr style="border-color:rgba(255,255,255,.12);border-width:1px 0 0;margin:18px 0">
+            <h3>Språk</h3><div id="hgSettingsLanguageMount"></div>
+            <h3>Notater / eksport / nullstill fremgang</h3><div class="profile-action-row"><a href="notater.html" class="btn">Åpne notatboken</a><button id="hgSettingsExportProfile" class="btn" type="button">Del profilkort</button><button id="hgSettingsResetProfile" class="btn danger" type="button">Nullstill fremgang</button></div>
+          </div>
+          <div class="hg-profile-settings-social" id="hgProfileSettingsSocial"><div class="hg-profile-settings-card"><h3>Social Meet</h3><p>Personvern, Møteinnboks, Spotmeeting, Læringssirkler og sosial historikk vises her.</p></div></div>
+        </div>
+      </div>`;
+    document.body.appendChild(backdrop);
+
+    const nicknameInput = /** @type {HTMLInputElement} */ (document.getElementById("hgSettingsNicknameInput"));
+    const placeInput = /** @type {HTMLInputElement} */ (document.getElementById("hgSettingsPlaceInput"));
+    nicknameInput.value = profile.nickname || "";
+    placeInput.value = profile.place || "";
+    const colors = document.getElementById("hgSettingsColorOptions");
+    colors.innerHTML = COLOR_OPTIONS.map((color) => `<button type="button" class="hg-profile-color${color === selectedColor ? " is-active" : ""}" data-color="${color}" style="background:${color}" aria-label="Velg ${color}"></button>`).join("");
+    colors.querySelectorAll(".hg-profile-color").forEach((/** @type {HTMLElement} */ btn) => btn.addEventListener("click", () => { selectedColor = btn.dataset.color; colors.querySelectorAll(".hg-profile-color").forEach((b) => b.classList.toggle("is-active", b === btn)); }));
+
+    const languageSelect = /** @type {HTMLSelectElement|null} */ (document.getElementById("languageSelect"));
+    if (languageSelect) {
+      const clone = /** @type {HTMLSelectElement} */ (languageSelect.cloneNode(true));
+      clone.id = "hgSettingsLanguageSelect";
+      clone.value = languageSelect.value;
+      clone.addEventListener("change", () => {
+        languageSelect.value = clone.value;
+        languageSelect.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      document.getElementById("hgSettingsLanguageMount")?.appendChild(clone);
+    }
+    const socialLayer = document.getElementById("profileSocialLayer");
+    if (socialLayer) document.getElementById("hgProfileSettingsSocial")?.appendChild(socialLayer);
+
+    document.getElementById("hgProfileSettingsClose")?.addEventListener("click", closeProfileSettings);
+    backdrop.addEventListener("click", (event) => { if (event.target === backdrop) closeProfileSettings(); });
+    document.getElementById("hgSettingsSaveProfile")?.addEventListener("click", () => { const saved = persistProfile({ nickname: nicknameInput.value, place: placeInput.value, color: selectedColor }); applyProfileToDom(saved); window.dispatchEvent(new CustomEvent("hg:user-profile-updated", { detail: saved })); window.dispatchEvent(new Event("updateProfile")); if (typeof window.syncHistoryGoToAHA === "function") window.syncHistoryGoToAHA(); window.showToast?.("Profilvalg oppdatert"); });
+    document.getElementById("hgSettingsExportProfile")?.addEventListener("click", () => window.print?.());
+    document.getElementById("hgSettingsResetProfile")?.addEventListener("click", () => {
+      if (!window.confirm?.("Nullstille lokal History Go-fremgang?")) return;
+      ["visitedPlaces", "completedQuizzes", "hg_learning_log_v1", "hg_social_timeline_v1"].forEach((key) => localStorage.removeItem(key));
+      window.showToast?.("Lokal fremgang er nullstilt");
+      window.location.reload();
+    });
+    nicknameInput.focus();
+    renderSettingsSocialSections();
+  }
+
   async function refreshAhaProfileCache() {
     const loader = window.HistoryGoAHAAuth?.loadAhaProfile;
     if (typeof loader !== "function") return null;
@@ -297,7 +392,7 @@
     btn.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      openEditor();
+      openProfileSettings();
     });
   }
 
@@ -352,6 +447,8 @@
     saveProfile: persistProfile,
     applyProfileToDom,
     openEditor,
+    openProfileSettings,
+    closeProfileSettings,
     openLoginPopup,
     refreshAhaProfileCache,
     refreshLoginButton,
