@@ -305,7 +305,7 @@
     const completed = statuses.filter((status) => status === "completed").length;
     if (completed) return `${completed}/3 fullført`;
     if (statuses.length) return `${statuses.length}/3 progresjon`;
-    return "Ingen progresjon";
+    return "Ikke startet";
   }
 
   function getResourcesRuntime() {
@@ -341,7 +341,7 @@
 
   function resourcesPanel(routeId = selectedRouteId, mode = activeTravelMode, options = {}) {
     const selected = normalizeTravelMode(mode);
-    if (selected === "all") return `<section class="hg-caravan-resources"><p class="hg-caravan-progress-hint">Velg Til fots, Hest eller Sykkel for å se reisestatus</p></section>`;
+    if (selected === "all") return `<section class="hg-caravan-resources"><p class="hg-caravan-progress-hint">Velg Til fots, Hest eller Sykkel for å se reisestatus.</p></section>`;
     const resources = getRouteResources(routeId, selected) || {};
     return `<section class="hg-caravan-resources" aria-label="Reisestatus">
       <div class="hg-caravan-resources-head"><h3>${esc(options.title || `Reisestatus — ${readableMode(selected)}`)}</h3>${options.interactive === false ? "" : `<button type="button" class="hg-caravan-resource-reset" data-caravan-resource-reset>Nullstill reisestatus</button>`}</div>
@@ -393,7 +393,7 @@
 
   function routeProgressLabel(routeId) {
     const summary = getProgressRuntime()?.getRouteSummary?.(routeId, activeTravelMode);
-    if (!summary) return "Ingen progresjon";
+    if (!summary) return "Ikke startet";
     if (normalizeTravelMode(activeTravelMode) === "all") return `${summary.progressionPoints || 0} progresjonspunkter`;
     return `${summary.completed || 0}/${summary.total || 0} etapper fullført`;
   }
@@ -638,7 +638,7 @@
       <button type="button" class="hg-caravan-route ${id === selectedRouteId ? "is-active" : ""}" data-caravan-route="${attr(id)}">
         <span class="hg-caravan-route-title">${esc(route?.title || id || "Uten tittel")}</span>
         ${cleanText(route?.subtitle) ? `<span class="hg-caravan-route-subtitle">${esc(route.subtitle)}</span>` : ""}
-        <span class="hg-caravan-route-meta">ID: ${esc(id || "—")} · ${stages.length} stages · ${esc(modes.join(", ") || "—")}</span>
+        <span class="hg-caravan-route-meta">${stages.length} etapper · ${esc(modes.join(", ") || "—")}</span>
         <span class="hg-caravan-progress-summary">${esc(title)}: ${esc(routeProgressLabel(id))}</span>
         <span class="hg-caravan-log-summary">${esc(routeEventLogLabel(id))}</span>
       </button>`;
@@ -651,9 +651,12 @@
   }
 
   function travelModeControl() {
-    return `<div class="hg-caravan-travel-mode" role="group" aria-label="Reisebrille">${TRAVEL_MODES.map((mode) => `
+    const hint = activeTravelMode === "all"
+      ? "Velg en reisebrille for å lagre progresjon, valg og ressurser."
+      : `Reisen vises for ${readableMode(activeTravelMode)}.`;
+    return `<section class="hg-caravan-travel-mode-section" aria-label="Reisebrille"><h3>Reisebrille</h3><div class="hg-caravan-travel-mode" role="group" aria-label="Reisebrille">${TRAVEL_MODES.map((mode) => `
       <button type="button" class="hg-caravan-travel-mode-option ${mode === activeTravelMode ? "is-active" : ""}" data-caravan-travel-mode="${attr(mode)}" aria-pressed="${mode === activeTravelMode ? "true" : "false"}">${esc(readableMode(mode))}</button>`).join("")}
-    </div>`;
+    </div><p class="hg-caravan-progress-hint">${esc(hint)}</p></section>`;
   }
 
   function stageCard(stage) {
@@ -662,7 +665,7 @@
     const to = nodeTitle(stage?.to_node);
     const supported = stageSupportsMode(stage);
     const status = getStageProgressStatus(stage);
-    const progressLabel = activeTravelMode === "all" ? getStageAllModeProgressLabel(stage) : (PROGRESS_LABELS[status] || "Ingen progresjon");
+    const progressLabel = activeTravelMode === "all" ? getStageAllModeProgressLabel(stage) : (PROGRESS_LABELS[status] || "Ikke startet");
     const eventsLabel = eventCountLabel(stage);
     const logLabel = stageEventLogLabel(stage);
     return `
@@ -671,6 +674,7 @@
         <span class="hg-caravan-stage-meta">${stage?.approximate_distance_km != null ? `${esc(stage.approximate_distance_km)} km` : "Distanse ukjent"} · ${esc(formatList(stage?.allowed_modes))}</span>
         <span class="hg-caravan-progress-pill">${esc(progressLabel)}</span>
         <span class="hg-caravan-event-pill">${esc(eventsLabel)}</span>
+        ${!supported && activeTravelMode !== "all" ? `<span class="hg-caravan-mode-warning">Ikke registrert for ${esc(readableMode(activeTravelMode))}</span>` : ""}
         ${logLabel ? `<span class="hg-caravan-log-pill">${esc(logLabel)}</span>` : ""}
       </button>`;
   }
@@ -680,7 +684,7 @@
     const status = getStageProgressStatus(stage);
     return `<div class="hg-caravan-progress-controls">
       ${disabled ? `<p class="hg-caravan-progress-hint">Velg Til fots, Hest eller Sykkel for å lagre progresjon</p>` : `<p class="hg-caravan-progress-hint">Progresjon for ${esc(readableMode(activeTravelMode))}</p>`}
-      <div class="hg-caravan-progress-buttons" role="group" aria-label="Stage-progresjon">
+      <div class="hg-caravan-progress-buttons" role="group" aria-label="Etappeprogresjon">
         ${[["planned", "Planlagt"], ["started", "Påbegynt"], ["completed", "Fullført"], ["none", "Nullstill"]].map(([value, label]) => `<button type="button" class="hg-caravan-progress-button ${status === value ? "is-active" : ""}" data-caravan-progress-status="${attr(value)}" ${disabled ? "disabled" : ""}>${esc(label)}</button>`).join("")}
       </div>
     </div>`;
@@ -722,12 +726,13 @@
 
   function renderRouteDiarySection(routeId) {
     const diary = getDiaryRuntime();
-    if (!diary?.getRouteDiary) return `<section class="hg-caravan-diary"><h3>Dagbok</h3><p class="hg-caravan-empty">Dagbok er ikke lastet ennå.</p></section>`;
+    if (!diary?.getRouteDiary) return `<details class="hg-caravan-diary"><summary>Dagbok: ikke lastet</summary><p class="hg-caravan-empty">Dagbok er ikke lastet ennå.</p></details>`;
     const mode = activeTravelMode === "all" ? "all" : activeTravelMode;
     const entries = diary.getRouteDiary(routeId, mode);
     const summary = diary.summary?.(routeId, mode);
     const filter = mode === "all" ? "Viser samlet dagbok for alle reisebriller" : `Viser dagbok for ${readableMode(mode)}`;
-    return `<section class="hg-caravan-diary"><h3>Dagbok</h3><p class="hg-caravan-event-filter">${esc(filter)} · ${esc(summary?.progressCount || 0)} progresjon · ${esc(summary?.eventChoices || 0)} valg · ${esc(summary?.appliedConsequences || 0)} konsekvenser</p>${renderDiaryEntries(entries, "Ingen reisehistorikk ennå.")}</section>`;
+    const count = asArray(entries).length;
+    return `<details class="hg-caravan-diary"><summary>Dagbok: ${esc(count)} linjer</summary><p class="hg-caravan-event-filter">${esc(filter)} · ${esc(summary?.progressCount || 0)} progresjon · ${esc(summary?.eventChoices || 0)} valg · ${esc(summary?.appliedConsequences || 0)} konsekvenser</p>${renderDiaryEntries(entries, "Ingen reisehistorikk ennå.")}</details>`;
   }
 
   function renderStageDiarySection(stage) {
@@ -779,12 +784,12 @@
       return `
       <article class="hg-caravan-event" data-caravan-event-id="${attr(event?.id)}">
         <h4>${esc(event?.title || event?.id || "Karavanehendelse")}</h4>
-        <p class="hg-caravan-event-meta">Hendelse: ${esc(eventLabel(event?.event_type))} · Alvorlighet: ${esc(severityLabel(event?.severity))} · Reisemåter: ${esc(formatList(event?.applies_to_modes))}</p>
+        <p class="hg-caravan-event-meta">Hendelse: ${esc(eventLabel(event?.event_type))} · Risiko: ${esc(severityLabel(event?.severity))} · Kan gjøres: ${esc(formatList(event?.applies_to_modes))}</p>
         ${cleanText(event?.prompt) ? `<p>${esc(event.prompt)}</p>` : ""}
         ${logged ? `<p class="hg-caravan-selected-choice">Valgt for ${esc(readableMode(selectedMode))}: ${esc(choiceLabel(event, logged.choice_id))}</p><p class="hg-caravan-resource-note">Bruk konsekvens-knappen for å justere ressurser eksplisitt.</p>` : ""}
         ${cleanText(event?.historical_context) ? `<p><strong>Historisk kontekst:</strong> ${esc(event.historical_context)}</p>` : ""}
-        ${cleanText(event?.observation_prompt) ? `<p><strong>Observasjon:</strong> ${esc(event.observation_prompt)}</p>` : ""}
-        ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="${readOnly ? "Read-only valg" : "Lagre valg"}">${asArray(event.choices).map((choice) => {
+        ${cleanText(event?.observation_prompt) ? `<p><strong>Se etter:</strong> ${esc(event.observation_prompt)}</p>` : ""}
+        ${asArray(event?.choices).length ? `<div class="hg-caravan-event-choices" aria-label="${readOnly ? "Se valg" : "Lagre valg"}">${asArray(event.choices).map((choice) => {
           const choiceId = cleanText(choice?.id);
           const active = logged && cleanText(logged.choice_id) === choiceId;
           const body = `<strong>${esc(choice?.label || choiceId || "Valg")}</strong>${cleanText(choice?.note) ? ` – ${esc(choice.note)}` : ""}`;
@@ -802,23 +807,22 @@
     const to = nodeTitle(stage?.to_node);
     return `
       <section class="hg-caravan-stage-preview" aria-live="polite">
-        <h3>Stage-preview</h3>
+        <h3>Valgt etappe</h3>
         <h4>${esc(from)} → ${esc(to)}</h4>
         ${progressControls(stage)}
         ${stageBadgeContributionLine(stage)}
         <dl>
           ${field("Distanse", stage?.approximate_distance_km != null ? `${stage.approximate_distance_km} km` : "")}
-          ${field("Distanse-sikkerhet", stage?.distance_confidence)}
-          ${field("Reisemåter", stage?.allowed_modes)}
-          ${field("Underlag", formatPlainList(stage?.surface_types))}
+          ${field("Distanse er grovt anslått", stage?.distance_confidence)}
+          ${field("Kan gjøres", stage?.allowed_modes)}
+          ${field("Terreng/underlag", formatPlainList(stage?.surface_types))}
           ${field(activeTravelMode === "all" ? "Behov per reisemåte" : `Behov – ${readableMode(activeTravelMode)}`, formatNeedsByMode(stage?.needs_by_mode))}
-          ${field("Læringskroker", formatPlainList(stage?.learning_hooks))}
+          ${field("Du lærer om", formatPlainList(stage?.learning_hooks))}
           ${field("Risiko", formatPlainList(stage?.risk_tags))}
-          ${field("Historieprompt", stage?.history_prompt)}
-          ${field("Observasjonsprompt", stage?.observation_prompt)}
+          ${field("Historisk spørsmål", stage?.history_prompt)}
+          ${field("Se etter", stage?.observation_prompt)}
         </dl>
-        ${resourcesPanel(cleanText(stage?.route_id), activeTravelMode, { title: "Reisestatus for valgt brille", interactive: false })}
-        ${renderStageDiarySection(stage)}
+        ${activeTravelMode === "all" ? "" : resourcesPanel(cleanText(stage?.route_id), activeTravelMode, { title: "Reisestatus for denne reisen", interactive: false })}
         ${renderStageEvents(cleanText(stage?.id), activeTravelMode)}
       </section>`;
   }
@@ -841,13 +845,12 @@
     const route = routes.find((item) => cleanText(item?.id) === selectedRouteId) || null;
     const activeStage = getStage(activeStageId);
     const stagesHtml = route
-      ? `${stagePreview(activeStage)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – stages</h3>${travelModeControl()}${resourcesPanel(route.id)}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen stages funnet.</p>`}</section>${renderRouteDiarySection(route.id)}${renderEventLogSection(route.id)}`
-      : `<p class="hg-caravan-hint">Velg en route for å se stages i rekkefølge.</p>`;
+      ? `${travelModeControl()}${resourcesPanel(route.id)}<section class="hg-caravan-stages" aria-live="polite"><h3>${esc(route.title || route.id)} – Etapper</h3>${stagePreview(activeStage)}${getStages(route.id).map(stageCard).join("") || `<p class="hg-caravan-empty">Ingen etapper funnet.</p>`}</section><div class="hg-caravan-secondary">${renderRouteDiarySection(route.id)}${renderEventLogSection(route.id)}${renderBadgesSection()}</div>`
+      : `<p class="hg-caravan-hint">Velg en rute for å se etappene i rekkefølge.</p><div class="hg-caravan-secondary">${renderBadgesSection()}</div>`;
 
     panel.innerHTML = shell(`
       <div class="hg-caravan-intro"><strong>Europakaravanen</strong><span>Fra Oslo til Roma, Lisboa og Constanța uten bil</span>${resumeNotice ? `<span>${esc(resumeNotice)}</span>` : ""}</div>
-      <section class="hg-caravan-routes"><h3>Routes</h3>${routes.map(routeCard).join("") || `<p class="hg-caravan-empty">Ingen routes funnet.</p>`}</section>
-      ${renderBadgesSection()}
+      <section class="hg-caravan-routes"><h3>Ruter</h3>${routes.map(routeCard).join("") || `<p class="hg-caravan-empty">Ingen ruter funnet.</p>`}</section>
       ${stagesHtml}
     `);
     wire(panel);
@@ -862,15 +865,15 @@
 
   function renderBadgesSection() {
     const api = getBadgesRuntime();
-    if (!api?.getAllBadges) return `<section class="hg-caravan-badges"><h3>Merker</h3><p class="hg-caravan-empty">Merker er ikke lastet ennå.</p></section>`;
+    if (!api?.getAllBadges) return `<details class="hg-caravan-badges"><summary>Merker: ikke lastet</summary><p class="hg-caravan-empty">Merker er ikke lastet ennå.</p></details>`;
     try { api.evaluateAll?.(); } catch (error) { console.warn("[HG_CARAVAN_BADGES]", "evaluering ved render feilet", { error: error?.message || error }); }
     const badges = api.getAllBadges();
     const unlocked = api.getUnlocked?.() || {};
     const summary = api.summary?.() || { total: badges.length, unlocked: Object.keys(unlocked).length };
-    return `<section class="hg-caravan-badges" aria-label="Karavane-merker"><div class="hg-caravan-badges-head"><h3>Merker</h3><span>${esc(summary.unlocked || 0)}/${esc(summary.total || badges.length)} låst opp</span></div>${lastBadgeToast ? `<p class="hg-caravan-badge-toast" role="status">Merke låst opp: ${esc(lastBadgeToast)}</p>` : ""}<div class="hg-caravan-badge-list">${badges.map((badge) => {
+    return `<details class="hg-caravan-badges" aria-label="Karavane-merker"><summary>Merker: ${esc(summary.unlocked || 0)}/${esc(summary.total || badges.length)} låst opp</summary>${lastBadgeToast ? `<p class="hg-caravan-badge-toast" role="status">Merke låst opp: ${esc(lastBadgeToast)}</p>` : ""}<div class="hg-caravan-badge-list">${badges.map((badge) => {
       const isOpen = Boolean(unlocked[cleanText(badge?.id)]);
       return `<article class="hg-caravan-badge ${isOpen ? "is-unlocked" : "is-locked"}" data-caravan-badge-id="${attr(badge?.id)}"><span class="hg-caravan-badge-icon" aria-hidden="true">${esc(badge?.icon || "◇")}</span><div><h4>${esc(badge?.title || badge?.id || "Merke")}</h4><p>${esc(badge?.description || "")}</p><strong>${isOpen ? "Låst opp" : "Låst"}</strong></div></article>`;
-    }).join("") || `<p class="hg-caravan-empty">Ingen merker definert.</p>`}</div></section>`;
+    }).join("") || `<p class="hg-caravan-empty">Ingen merker definert.</p>`}</div></details>`;
   }
 
   function stageBadgeContributionLine(stage) {
@@ -884,21 +887,21 @@
 
   function renderEventLogSection(routeId) {
     const entries = getEventLogRuntime()?.getRouteLog?.(routeId, activeTravelMode === "all" ? "all" : activeTravelMode) || [];
-    const recent = entries.slice().sort((a, b) => cleanText(b.createdAt).localeCompare(cleanText(a.createdAt))).slice(0, 5);
-    return `<section class="hg-caravan-log"><h3>Logg</h3>${recent.length ? recent.map((entry) => {
+    const recent = entries.slice().sort((a, b) => cleanText(b.createdAt).localeCompare(cleanText(a.createdAt))).slice(0, 3);
+    return `<details class="hg-caravan-log"><summary>Logg: siste ${esc(recent.length)} valg</summary>${recent.length ? recent.map((entry) => {
       const route = asArray(getRuntime()?.routes).find((item) => cleanText(item?.id) === entry.route_id);
       const stage = getStage(entry.stage_id);
       const event = getEventById(entry.event_id);
       const when = entry.createdAt ? new Date(entry.createdAt).toLocaleString("nb-NO", { dateStyle: "short", timeStyle: "short" }) : "—";
       return `<article class="hg-caravan-log-entry"><strong>${esc(route?.title || entry.route_id)}</strong><span>${esc(nodeTitle(stage?.from_node))} → ${esc(nodeTitle(stage?.to_node))}</span><span>${esc(event?.title || entry.event_id)}</span><span>${esc(readableMode(entry.travel_mode))}: ${esc(choiceLabel(event, entry.choice_id))}</span><time>${esc(when)}</time></article>`;
-    }).join("") : `<p class="hg-caravan-empty">Ingen valg logget ennå.</p>`}</section>`;
+    }).join("") : `<p class="hg-caravan-empty">Ingen valg logget ennå.</p>`}</details>`;
   }
 
   function shell(body) {
     return `
       <div class="hg-caravan-panel-card">
         <header class="hg-caravan-head">
-          <div><p class="hg-caravan-kicker">Read-only data</p><h2>Karavane</h2></div>
+          <div><p class="hg-caravan-kicker">Reise</p><h2>Karavane</h2></div>
           <button type="button" class="hg-caravan-close" data-caravan-close aria-label="Lukk Karavane">×</button>
         </header>
         ${body}
@@ -948,7 +951,7 @@
           ${field("Node-type", node?.node_type)}
           ${field("Karavane-rolle", node?.caravan_role)}
           ${field("Reisebrille", readableMode(activeTravelMode))}
-          ${field("Læringskroker", formatNodeList(node?.learning_hooks))}
+          ${field("Du lærer om", formatNodeList(node?.learning_hooks))}
           ${field("Tags", formatNodeList(node?.tags))}
         </dl>
       </article>`;
