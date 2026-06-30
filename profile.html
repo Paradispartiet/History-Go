@@ -481,7 +481,7 @@
     return date.toLocaleString('nb-NO', { dateStyle: 'short', timeStyle: 'short' });
   }
   function spotmeetingStatusLabel(status){
-    return ({pending:'Venter',accepted:'Godtatt',completed:'Gjennomført',declined:'Avslått',cancelled:'Avbrutt'})[status] || status || 'Ukjent';
+    return ({pending:'Venter på svar',accepted:'Avtalt',completed:'Gjennomført',declined:'Avslått eller avbrutt',cancelled:'Avslått eller avbrutt'})[status] || status || 'Ukjent';
   }
   function isCurrentSpotmeetingCreator(invite){
     var current = String(window.HG_CURRENT_USER_ID || window.currentUserId || 'me');
@@ -490,48 +490,52 @@
   function renderSpotmeetingCard(invite){
     var context = invite.context || {};
     var target = invite.targetDisplayName || invite.displayName || invite.targetUserDisplayName || invite.targetUserId || 'Ukjent deltaker';
-    var updated = invite.updatedAt ? '<p><small>Oppdatert: '+escapeSpotmeetingHTML(formatSpotmeetingTime(invite.updatedAt))+'</small></p>' : '';
-    var created = invite.createdAt ? '<p><small>Opprettet: '+escapeSpotmeetingHTML(formatSpotmeetingTime(invite.createdAt))+'</small></p>' : '';
+    var time = invite.updatedAt || invite.createdAt;
+    var meta = [context.contextType || 'kunnskapsmøte', target, time ? formatSpotmeetingTime(time) : ''].filter(Boolean).join(' · ');
     var actions = [];
     if(invite.status === 'pending'){
       actions.push('<button type="button" data-spotmeeting-action="accept" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Godta</button>');
       actions.push('<button type="button" data-spotmeeting-action="decline" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avslå</button>');
-      if(isCurrentSpotmeetingCreator(invite)) actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt</button>');
+      if(isCurrentSpotmeetingCreator(invite)) actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt forslag</button>');
     } else if(invite.status === 'accepted'){
-      actions.push('<button type="button" data-spotmeeting-action="complete" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Marker gjennomført</button>');
-      actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt</button>');
+      actions.push('<button type="button" data-spotmeeting-action="complete" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Marker som gjennomført</button>');
+      actions.push('<button type="button" data-spotmeeting-action="cancel" data-spotmeeting-invite-id="'+escapeSpotmeetingHTML(invite.inviteId)+'">Avbryt forslag</button>');
     }
     return '<article class="spotmeeting-invite-card" data-spotmeeting-card data-spotmeeting-status="'+escapeSpotmeetingHTML(invite.status)+'">' +
-      '<h4>'+escapeSpotmeetingHTML(context.title || 'Uten tittel')+'</h4>' +
-      '<dl>' +
-        '<dt>Kontekst</dt><dd>'+escapeSpotmeetingHTML(context.contextType || 'ukjent')+'</dd>' +
-        '<dt>Forhåndsmelding</dt><dd>'+escapeSpotmeetingHTML(invite.presetLabel || invite.presetMessageId || 'Ukjent')+'</dd>' +
-        '<dt>Deltaker</dt><dd>'+escapeSpotmeetingHTML(target)+'</dd>' +
-        '<dt>Status</dt><dd>'+escapeSpotmeetingHTML(spotmeetingStatusLabel(invite.status))+'</dd>' +
-      '</dl>' + created + updated +
-      (actions.length ? '<div class="spotmeeting-invite-actions">'+actions.join(' ')+'</div>' : '<p><small>Ingen handlinger tilgjengelig.</small></p>') +
+      '<div class="spotmeeting-card-main">' +
+        '<h4 class="spotmeeting-card-title">'+escapeSpotmeetingHTML(context.title || 'Uten tittel')+'</h4>' +
+        '<p class="spotmeeting-card-meta">'+escapeSpotmeetingHTML(meta)+'</p>' +
+        '<p class="spotmeeting-card-preset">'+escapeSpotmeetingHTML(invite.presetLabel || invite.presetMessageId || 'Ukjent forhåndsvalg')+'</p>' +
+      '</div>' +
+      (actions.length ? '<div class="spotmeeting-invite-actions">'+actions.join(' ')+'</div>' : '<p class="spotmeeting-card-readonly"><small>'+escapeSpotmeetingHTML(spotmeetingStatusLabel(invite.status))+'</small></p>') +
       '</article>';
   }
   function renderSpotmeetingGroup(title, items){
     var cards = (items || []).map(renderSpotmeetingCard).join('');
     return '<section class="spotmeeting-inbox-group" data-spotmeeting-group="'+escapeSpotmeetingHTML(title)+'"><h3>'+escapeSpotmeetingHTML(title)+' ('+(items || []).length+')</h3>' +
-      (cards || '<p>Ingen invitasjoner.</p>') + '</section>';
+      (cards || '<p class="spotmeeting-group-empty">Ingen forslag her.</p>') + '</section>';
+  }
+  function spotmeetingInboxIsEmpty(inbox){
+    return !(inbox.pending || []).length && !(inbox.accepted || []).length && !(inbox.completed || []).length && !(inbox.declinedCancelled || []).length && !(inbox.declined || []).length && !(inbox.cancelled || []).length;
   }
   function renderSpotmeetingInbox(){
     var el=document.getElementById("spotmeeting-inbox");
     var api=window.HG_Spotmeeting;
     if(!el||!api) return;
     var inbox=api.getSpotmeetingInbox();
+    var declinedCancelled = inbox.declinedCancelled || [].concat(inbox.declined || [], inbox.cancelled || []);
     el.innerHTML='';
     var section=document.createElement('section');
-    section.className='profile-section';
+    section.className='profile-section spotmeeting-inbox-section';
     section.innerHTML='<h2>HG Spotmeeting</h2>' +
       '<p>Frivillige kunnskapsmøter basert på læring, ruter, observasjoner og tema.</p>' +
-      '<p><small>Personvern: kun manuelle invitasjoner med forhåndsvalgt melding.</small></p>' +
-      renderSpotmeetingGroup('Pending', inbox.pending) +
-      renderSpotmeetingGroup('Accepted', inbox.accepted) +
-      renderSpotmeetingGroup('Completed', inbox.completed) +
-      renderSpotmeetingGroup('Declined / cancelled', inbox.declinedCancelled || [].concat(inbox.declined || [], inbox.cancelled || [])) +
+      '<p class="spotmeeting-helper">Kunnskapsmøter bruker bare forhåndsvalg, ikke fritekst.</p>' +
+      '<p class="spotmeeting-helper">Du deler ikke posisjon eller live-status.</p>' +
+      (spotmeetingInboxIsEmpty(inbox) ? '<div class="spotmeeting-empty" data-spotmeeting-empty><strong>Ingen kunnskapsmøter ennå.</strong><span>Send et forslag fra et stedskort.</span></div>' : '') +
+      renderSpotmeetingGroup('Venter på svar', inbox.pending) +
+      renderSpotmeetingGroup('Avtalt', inbox.accepted) +
+      renderSpotmeetingGroup('Gjennomført', inbox.completed) +
+      renderSpotmeetingGroup('Avslått eller avbrutt', declinedCancelled) +
       '<h3>Personvernkontroll</h3><ul>'+inbox.privacyChecklist.map(function(x){return '<li>'+escapeSpotmeetingHTML(x)+'</li>';}).join('')+'</ul>';
     el.appendChild(section);
   }

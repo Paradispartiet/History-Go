@@ -1596,3 +1596,63 @@ body.hg-app .hg-popup.match-profile-popup .hg-popup-inner,
   height:22px;
   accent-color:var(--gold);
 }
+
+/* Spotmeeting inbox cards: compact Social Meet-only layout. */
+.spotmeeting-inbox-section .spotmeeting-helper,
+.spotmeeting-inbox-section .spotmeeting-group-empty,
+.spotmeeting-inbox-section .spotmeeting-card-meta,
+.spotmeeting-inbox-section .spotmeeting-card-readonly {
+  color: var(--muted, #667085);
+  font-size: 0.92rem;
+  margin: 0.25rem 0;
+}
+
+.spotmeeting-inbox-section .spotmeeting-empty {
+  border: 1px dashed rgba(102, 112, 133, 0.45);
+  border-radius: 14px;
+  display: grid;
+  gap: 0.2rem;
+  margin: 0.75rem 0;
+  padding: 0.8rem 0.95rem;
+}
+
+.spotmeeting-inbox-section .spotmeeting-inbox-group {
+  margin-top: 1rem;
+}
+
+.spotmeeting-inbox-section .spotmeeting-invite-card {
+  border: 1px solid rgba(102, 112, 133, 0.22);
+  border-radius: 14px;
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem 0.85rem;
+}
+
+.spotmeeting-inbox-section .spotmeeting-card-title,
+.spotmeeting-inbox-section .spotmeeting-card-preset,
+.spotmeeting-inbox-section .spotmeeting-card-meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spotmeeting-inbox-section .spotmeeting-card-title {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.spotmeeting-inbox-section .spotmeeting-card-preset {
+  margin: 0.25rem 0 0;
+}
+
+.spotmeeting-inbox-section .spotmeeting-invite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.spotmeeting-inbox-section .spotmeeting-invite-actions button {
+  flex: 0 1 auto;
+  min-height: 2.2rem;
+}
