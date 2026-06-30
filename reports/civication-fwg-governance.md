@@ -7,14 +7,14 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 3
-- Totalt antall avvik: 67
+- Totalt antall avvik: 24
 
 ## Statusmatrise
 
 | rolle | category | minimum_counts | required_axes | place_grammar | actor_grammar | conflict_grammar | solution_patterns | failure_patterns |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | by_radgiver_plan | by | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| renholder | naeringsliv | ✅ | ⚠️ 8 | ⚠️ 14 | ⚠️ 4 | ⚠️ 8 | ⚠️ 3 | ⚠️ 6 |
+| renholder | naeringsliv | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | barnehageassistent | sosial_laering | ✅ | ⚠️ 6 | ⚠️ 3 | ⚠️ 10 | ⚠️ 1 | ⚠️ 1 | ⚠️ 3 |
 
 ## Detaljer
@@ -29,55 +29,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/naeringsliv/renholder.json`
 
-- **required_axes** (8):
-  - akse 'avvik' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'ergonomi' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'hygiene' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'servicepress' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'smittevern' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'tidspress' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'usynlig_arbeid' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'verdighet' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-- **place_grammar** (14):
-  - ubrukt sted i grammatikken: kontor_moterom_og_korridor (ingen mail forankret her)
-  - ubrukt sted i grammatikken: renholdsrom_vogn_og_kjemi (ingen mail forankret her)
-  - ubrukt sted i grammatikken: rygg_skuldre_hender (ingen mail forankret her)
-  - ubrukt sted i grammatikken: toalett_og_beroringssoner (ingen mail forankret her)
-  - udeklarert sted i mail: avfallsrom (ikke i place_grammar)
-  - udeklarert sted i mail: driftskontor (ikke i place_grammar)
-  - udeklarert sted i mail: fellesareal (ikke i place_grammar)
-  - udeklarert sted i mail: garderobe (ikke i place_grammar)
-  - udeklarert sted i mail: hjemme (ikke i place_grammar)
-  - udeklarert sted i mail: inngangsparti (ikke i place_grammar)
-  - udeklarert sted i mail: lilleborg_fabrikker (ikke i place_grammar)
-  - udeklarert sted i mail: møterom (ikke i place_grammar)
-  - udeklarert sted i mail: renholdsrom (ikke i place_grammar)
-  - udeklarert sted i mail: toalett_sone (ikke i place_grammar)
-- **actor_grammar** (4):
-  - ubrukt aktør-eksempel: driftsleder_mona (leder) dukker ikke opp som avsender
-  - aktør amina_erfaren_renholder sender mailtyper utenfor can_send_mail_types: conflict, consequence, event, job, micro, story (tillatt: knowledge, people, followup)
-  - ubrukt aktør-eksempel: kontorbruker_jon (bruker) dukker ikke opp som avsender
-  - ubrukt aktør-eksempel: verneombud_sara (hms_kontrollpunkt) dukker ikke opp som avsender
-- **conflict_grammar** (8):
-  - konflikt-mail renholder_conflict_001 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_002 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_003 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_004 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_005 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_006 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_007 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-  - konflikt-mail renholder_conflict_008 har pressure 'tidspress, lav status, fysisk belastning og forventning om at rommet bare skal være klart' uten forankring i conflict_grammar
-- **solution_patterns** (3):
-  - ubrukt løsningsmønster-tag: integrity (ingen valg bruker den)
-  - ubrukt løsningsmønster-tag: precision (ingen valg bruker den)
-  - ubrukt løsningsmønster-tag: service (ingen valg bruker den)
-- **failure_patterns** (6):
-  - ubrukt feilmønster-hook: touch_point_complaint (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
-  - ubrukt feilmønster-hook: infection_trace (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
-  - ubrukt feilmønster-hook: leader_asks_why_no_deviation (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
-  - ubrukt feilmønster-hook: hms_followup (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
-  - ubrukt feilmønster-hook: colleague_warns (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
-  - ubrukt feilmønster-hook: shift_after_pain (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### Barnehageassistent (`sosial_laering/barnehageassistent`)
 

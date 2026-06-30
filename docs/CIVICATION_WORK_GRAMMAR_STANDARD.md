@@ -138,6 +138,14 @@ Definerer faglige avhengigheter som mailene må respektere, for eksempel hvilke 
 
 Definerer hvilke mailtyper rollen må ha, minimumsteller for komplett pakke, og hvilke akser mailene skal bruke. Dette er auditgrunnlag, ikke runtime-kontrakt.
 
+`required_axes` er **strukturelle mail-felt** som hver mail skal deklarere — samme semantikk som Arealplanlegger-referansen og FWG-governance-auditen, som sjekker at hvert felt finnes på mailene:
+
+```json
+"required_axes": ["task_domain", "competency", "pressure", "choice_axis", "consequence_axis", "narrative_arc", "learning_focus"]
+```
+
+De **tematiske aksene** rollen handler om (f.eks. `hygiene`, `tidspress`, `verdighet`) er ikke mail-kolonner og hører ikke hjemme i `required_axes`. Legg dem eventuelt i et informativt `thematic_axes`-felt, og la dem ellers leve i `conflict_grammar` (akser), `choice_axis` på mailene og `fag_bindings`.
+
 ### `day_one_contract`
 
 Definerer deterministiske forventninger til første spilldag: beats, tema og carryover.

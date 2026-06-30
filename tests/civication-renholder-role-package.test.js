@@ -53,8 +53,14 @@ assert.equal(workGrammar.title, 'Renholder');
 for (const mailType of ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence']) {
   assert.ok(workGrammar.mail_generation_contract.required_mail_types.includes(mailType), `workGrammar missing required mail type ${mailType}`);
 }
+// required_axes er strukturelle mail-felt (samme semantikk som Arealplanlegger-referansen
+// og FWG-governance-auditen): hvert felt skal finnes på mailene.
+for (const field of ['task_domain', 'competency', 'pressure', 'choice_axis', 'consequence_axis', 'narrative_arc', 'learning_focus']) {
+  assert.ok(workGrammar.mail_generation_contract.required_axes.includes(field), `workGrammar missing required axis field ${field}`);
+}
+// De tematiske aksene rollen dekker ligger nå i thematic_axes (informativt, ikke en mail-kolonne).
 for (const axis of ['hygiene', 'tidspress', 'smittevern', 'ergonomi', 'servicepress', 'verdighet', 'usynlig_arbeid', 'avvik']) {
-  assert.ok(workGrammar.mail_generation_contract.required_axes.includes(axis), `workGrammar missing required axis ${axis}`);
+  assert.ok(workGrammar.mail_generation_contract.thematic_axes.includes(axis), `workGrammar missing thematic axis ${axis}`);
 }
 
 assert.ok(profiles.profiles.naer_renholder, 'jobLearningProfiles missing naer_renholder');
