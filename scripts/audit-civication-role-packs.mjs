@@ -60,7 +60,9 @@ function statusFor(row) {
   if (row.key === 'sosial_laering/barnehageassistent') return row.test ? (row.workGrammar ? 'complete_reference_v2' : 'complete_reference') : 'playable_v1';
   if (!row.roleModel && !row.mailPlan && mailTypeCount === 0) return 'missing';
   if (row.roleModel && !row.mailPlan && mailTypeCount === 0) return row.generated ? 'generated_stub' : 'role_model_only';
-  if (row.roleModel && row.mailPlan && mailTypeCount === roleTypes.length && row.test) return 'playable_v1';
+  if (row.roleModel && row.mailPlan && mailTypeCount === roleTypes.length && row.test) {
+    return row.workGrammar ? 'complete_reference_v2' : 'playable_v1';
+  }
   if (row.mailPlan && !row.roleModel) return 'broken_mapping';
   if (row.mailPlan || mailTypeCount > 0) return 'partial_pack';
   return 'missing';

@@ -9,6 +9,7 @@ const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, re
 const files = {
   role: 'data/Civication/roles/naer_renholder.json',
   roleModel: 'data/Civication/roleModels/naeringsliv/renholder.json',
+  workGrammar: 'data/Civication/workGrammars/naeringsliv/renholder.json',
   plan: 'data/Civication/mailPlans/naeringsliv/renholder_plan.json',
   job: 'data/Civication/mailFamilies/naeringsliv/job/renholder_job.json',
   people: 'data/Civication/mailFamilies/naeringsliv/people/renholder_people.json'
@@ -18,6 +19,7 @@ for (const file of Object.values(files)) assert.ok(fs.existsSync(path.join(root,
 
 const role = readJson(files.role);
 const roleModel = readJson(files.roleModel);
+const workGrammar = readJson(files.workGrammar);
 const plan = readJson(files.plan);
 const job = readJson(files.job);
 const people = readJson(files.people);
@@ -42,6 +44,18 @@ assert.equal(roleModel.category, 'naeringsliv');
 assert.ok(roleModel.short_description);
 assert.deepEqual(roleModel.recommended_mail_families, ['soner_hygiene_og_prioritering', 'utstyr_kjemi_og_hms', 'renhold_status_og_belastning']);
 assert.deepEqual(roleModel.mail_integration.recommended_mail_families, ['soner_hygiene_og_prioritering', 'utstyr_kjemi_og_hms', 'renhold_status_og_belastning']);
+
+assert.equal(workGrammar.schema, 'civication_work_grammar_v1');
+assert.equal(workGrammar.category, 'naeringsliv');
+assert.equal(workGrammar.role_scope, 'renholder');
+assert.equal(workGrammar.role_id, 'naer_renholder');
+assert.equal(workGrammar.title, 'Renholder');
+for (const mailType of ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence']) {
+  assert.ok(workGrammar.mail_generation_contract.required_mail_types.includes(mailType), `workGrammar missing required mail type ${mailType}`);
+}
+for (const axis of ['hygiene', 'tidspress', 'smittevern', 'ergonomi', 'servicepress', 'verdighet', 'usynlig_arbeid', 'avvik']) {
+  assert.ok(workGrammar.mail_generation_contract.required_axes.includes(axis), `workGrammar missing required axis ${axis}`);
+}
 
 assert.ok(profiles.profiles.naer_renholder, 'jobLearningProfiles missing naer_renholder');
 for (const topic of ['hygiene', 'renholdssoner', 'smittevern', 'berøringspunkter', 'HMS', 'kjemikalier og utstyr', 'prioritering under tidspress', 'usynlig arbeid og verdighet']) {
