@@ -374,6 +374,12 @@ History Go er delt i tydelige lag:
 - **Fase-innhold:** `dayEvents`-generatorene (`makeLunchEvent`/`makeEveningEvent`/
   `makeDayEndEvent`, inkl. controller-Dag-1) er slot-generatorer som `DailyMailBuilder` kaller
   **lazy ved levering** for `phase`-/`day_end`-slots; output pakkes inn som daily-event.
+- **Dagslutt → ny dag:** dagen hviler ved `day_end` (ruller **ikke** automatisk, så
+  dagsoppsummeringen rekker å vises). NextAction eier det ene eksplisitte «Start ny dag»-valget:
+  `CivicationNextActionSelector` surfacer en `canStartNewDay`-handling når day_end er ferdig
+  besvart, og `CivicationNextActionUI`s advance-knapp kaller `advancePhaseIfReady`. Rullnings
+  tvinger en fersk `buildQueue` (`forceNew`) fordi `mail_day_runtime_v1` er datokeyet (`todayKey`)
+  — uten det ville den nye in-game-dagen gjenbruke gårsdagens ferdigbesvarte bunke og bli tom.
 - **Dagslutt/uke:** ved rullnings fra `day_end` ferdigstiller
   `DayProgression.advancePhaseIfReady` ukesoppsummeringen (`saveDailySummaryToWeek` +
   `finalizeWeekIfNeeded`, begge idempotente) før `resetForNewDay`. Det ukentlige

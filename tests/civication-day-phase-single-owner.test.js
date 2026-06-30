@@ -48,8 +48,11 @@ function pendingEvent() {
 // faseskift som skjer under et svar. setPhase brukes både av dayPatches (det vi vil fjerne for
 // daily-events) og av DailyMailBuilder.enqueueNext (legitimt: fase følger item.phase).
 function makeCalendar() {
-  const DAY_PHASES = ['morning', 'lunch', 'afternoon', 'evening', 'day_end'];
-  const LABELS = { morning: 'Morgen', lunch: 'Lunsj', afternoon: 'Ettermiddag', evening: 'Kveld', day_end: 'Dagslutt' };
+  // Faserekkefølgen må speile dayCalendarBridge (mailDayProgram): 8 faser, ikke 5. Med en utdatert
+  // 5-fase-liste tvinges ukjente faser (forenoon/workday/dinner) til 'morning' av setPhase-mocken,
+  // og morgen→neste-fase-overgangen ser falskt "fast" ut.
+  const DAY_PHASES = ['morning', 'forenoon', 'workday', 'lunch', 'afternoon', 'dinner', 'evening', 'day_end'];
+  const LABELS = { morning: 'Morgen', forenoon: 'Formiddag', workday: 'Arbeidsøkt', lunch: 'Lunsj', afternoon: 'Ettermiddag', dinner: 'Middag', evening: 'Kveld', day_end: 'Dagslutt' };
   const setPhaseCalls = [];
   let phase = 'morning';
   let dayIndex = 1;
@@ -190,7 +193,8 @@ async function run() {
   assert.strictEqual(pendingEvent().phase_tag, 'morning', 'first delivered item should be a morning item');
 
   let morningAnswersWithRemaining = 0;
-  let reachedLunch = false;
+  let reachedNextPhase = false;
+  const phaseAfterMorning = 'forenoon';
 
   for (let guard = 0; guard < 50; guard += 1) {
     const pending = pendingEvent();
@@ -236,11 +240,11 @@ async function run() {
 
       morningAnswersWithRemaining += 1;
     } else {
-      // Morgen er tom: nå skal fasen følge neste item (lunsj). Dette er DailyMailBuilders ansvar.
-      assert.strictEqual(global.CivicationCalendar.getPhase(), 'lunch', 'phase advances to lunch only once all morning items are answered');
+      // Morgen er tom: nå skal fasen følge neste item (formiddag). Dette er DailyMailBuilders ansvar.
+      assert.strictEqual(global.CivicationCalendar.getPhase(), phaseAfterMorning, `phase advances to ${phaseAfterMorning} only once all morning items are answered`);
       const next = pendingEvent();
-      assert(next && next.phase_tag === 'lunch', 'first lunch item should be delivered after morning is empty');
-      reachedLunch = true;
+      assert(next && next.phase_tag === phaseAfterMorning, `first ${phaseAfterMorning} item should be delivered after morning is empty`);
+      reachedNextPhase = true;
       break;
     }
   }
@@ -249,7 +253,7 @@ async function run() {
     morningAnswersWithRemaining >= 1,
     'test must answer at least one morning item while other morning items remained (the no-ping-pong window)'
   );
-  assert(reachedLunch, 'flow should progress to lunch once the morning phase is empty');
+  assert(reachedNextPhase, `flow should progress to ${phaseAfterMorning} once the morning phase is empty`);
 
   console.log('civication-day-phase-single-owner.test.js passed');
 }

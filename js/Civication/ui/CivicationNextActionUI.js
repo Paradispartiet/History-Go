@@ -155,10 +155,11 @@
     }
 
     if (action.canAdvancePhase) {
+      const startNewDay = action.canStartNewDay === true;
       return ""
-        + "<p class=\"civi-next-action-sub muted\">Fasen er ferdig ryddet.</p>"
+        + "<p class=\"civi-next-action-sub muted\">" + (startNewDay ? "Dagen er ferdig. Du kan starte en ny dag." : "Fasen er ferdig ryddet.") + "</p>"
         + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Fasehandling\">"
-        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-advance=\"1\">Gå til neste fase</button>"
+        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-advance=\"1\">" + (startNewDay ? "Start ny dag" : "Gå til neste fase") + "</button>"
         + "</div>";
     }
 

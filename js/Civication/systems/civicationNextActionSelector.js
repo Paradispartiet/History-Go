@@ -110,8 +110,43 @@
     return norm(fromCalendar || nextPhase);
   }
 
+  function buildStartNewDayAction(inspection) {
+    // Day_end: dagen er ferdig besvart, men ruller IKKE automatisk videre (spilleren skal rekke
+    // å se dagsoppsummeringen). NextAction eier det ene eksplisitte «Start ny dag»-valget. Det
+    // gjenbruker advance-knappen/-handleren; advancePhaseIfReady ruller dagen (canResetAtDayEnd).
+    const atDayEndComplete = norm(inspection?.reason) === "at_last_phase"
+      && norm(inspection?.phase) === "day_end"
+      && Number(inspection?.openItemsInPhase || 0) === 0;
+    if (!atDayEndComplete) return null;
+    return {
+      source: "day_phase_advance",
+      id: "start_new_day:" + norm(inspection.phase),
+      subject: "Start ny dag",
+      body: "Du har svart på alt i dag. Start en ny dag når du er klar.",
+      situation: [],
+      summary: "Dagslutt",
+      phase: norm(inspection.phase),
+      phaseLabel: norm(inspection.phaseLabel),
+      mail_type: "phase_advance",
+      slot: "",
+      status: "ready",
+      isQueued: false,
+      isAnswerable: false,
+      choices: [],
+      isTaskGate: false,
+      taskId: "",
+      canAdvancePhase: true,
+      canStartNewDay: true,
+      nextPhase: "",
+      nextPhaseLabel: ""
+    };
+  }
+
   function buildAdvancePhaseAction(inspection) {
-    if (!inspection || !inspection.canAdvance || !inspection.nextPhase) return null;
+    if (!inspection) return null;
+    const startNewDay = buildStartNewDayAction(inspection);
+    if (startNewDay) return startNewDay;
+    if (!inspection.canAdvance || !inspection.nextPhase) return null;
     const nextPhaseLabel = getNextPhaseLabel(inspection.nextPhase);
     return {
       source: "day_phase_advance",
