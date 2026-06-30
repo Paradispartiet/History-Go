@@ -88,7 +88,9 @@ function run() {
   assert.ok(html.includes('1 åpne'), 'open count should include status=open item');
   assert.ok(html.includes('is-pending'), 'open item should render with is-pending class');
   assert.ok(html.includes('Åpen'), 'open item should render open status label');
-  assert.ok(html.includes('data-civi-inbox-answer="1"'), 'open item with choices should render response button');
+  assert.ok(html.includes('Håndteres i Neste handling'), 'open item with choices should route to NextAction');
+  assert.ok(html.includes('data-civi-open-next-action'), 'open item should render NextAction handover button');
+  assert.ok(!html.includes('data-civi-inbox-answer'), 'inbox should not render primary answer buttons');
 
   console.log('PASS: Civication inbox open status rendering test completed.');
 }
