@@ -187,8 +187,10 @@ check("ekte placeId bevares + place-metadata hentes fra source-data (coffee)", (
   assert.strictEqual(sp.label, "Java Kaffebar");
   assert.strictEqual(sp.placeLabel, "St. Hanshaugen park");
   assert.strictEqual(sp.placeFound, true);
-  assert.strictEqual(sp.lat, 59.9234);
-  assert.strictEqual(sp.lon, 10.7463);
+  // Koordinatene leses fra kildedata (places_by/St. Hanshaugen park); de er forfinet i
+  // kildedataen, så testen følger sannhetskilden (ikke en gammel hardkodet verdi).
+  assert.strictEqual(sp.lat, 59.9273);
+  assert.strictEqual(sp.lon, 10.7414);
   assert.strictEqual(sp.category, "by");
   assert.strictEqual(sp.type, "cafe");
   assert.strictEqual(sp.socialPlaceType, "coffee");
