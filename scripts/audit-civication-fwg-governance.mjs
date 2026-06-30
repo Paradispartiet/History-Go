@@ -186,20 +186,46 @@ function checkSolutionPatterns(fwg, role) {
 function checkFailurePatterns(fwg, role) {
   const patterns = fwg.failure_patterns || [];
   if (!patterns.length) return { dimension: 'failure_patterns', status: 'n/a', findings: [] };
-  const hooks = uniqueSorted(patterns.flatMap(p => p.followup_hooks || []));
+  // Samme hook kan gjentas på tvers av flere failure_patterns. Dedup på
+  // innhold (streng eller objekt) så rapporten ikke teller den samme manglende
+  // bindingen flere ganger.
+  const seen = new Set();
+  const hooks = patterns.flatMap(p => p.followup_hooks || []).filter(h => {
+    const key = typeof h === 'string' ? `s:${h}` : `o:${JSON.stringify(h)}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
   if (!hooks.length) return { dimension: 'failure_patterns', status: 'n/a', findings: [] };
-  // En hook regnes som brukt hvis den dukker opp som family-id, mail-id eller
-  // som mål i triggers_on_choice.
+  // En binding regnes som forankret hvis id-en dukker opp som family-id,
+  // mail-id eller som mål i triggers_on_choice. En hook kan være en bar streng
+  // (legacy: hele strengen må forankres) eller et objekt som binder et narrativt
+  // navn til faktiske followup/consequence-mailer via fires_mail/fires_family/trigger.
   const triggerTargets = new Set(role.allMails.flatMap(m => {
     const t = m.triggers_on_choice;
     if (!t || typeof t !== 'object') return [];
     return Object.values(t).flat();
   }));
   const mailIds = new Set(role.allMails.map(m => m.id));
+  const resolves = id => role.familyIds.has(id) || mailIds.has(id) || triggerTargets.has(id);
   const findings = [];
   for (const hook of hooks) {
-    const used = role.familyIds.has(hook) || mailIds.has(hook) || triggerTargets.has(hook);
-    if (!used) findings.push(`ubrukt feilmønster-hook: ${hook} (ingen family/mail/trigger peker hit)`);
+    if (typeof hook === 'string') {
+      if (!resolves(hook)) findings.push(`ubrukt feilmønster-hook: ${hook} (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)`);
+      continue;
+    }
+    if (hook && typeof hook === 'object') {
+      const name = hook.hook || hook.id || '(uten navn)';
+      const bindings = [hook.fires_mail, hook.fires_family, hook.trigger].filter(Boolean);
+      if (!bindings.length) {
+        findings.push(`feilmønster-hook ${name} mangler binding (fires_mail/fires_family/trigger)`);
+        continue;
+      }
+      const dangling = bindings.filter(b => !resolves(b));
+      if (dangling.length) findings.push(`feilmønster-hook ${name} peker på ukjent mål: ${uniqueSorted(dangling).join(', ')}`);
+      continue;
+    }
+    findings.push(`ugyldig feilmønster-hook: ${JSON.stringify(hook)}`);
   }
   return { dimension: 'failure_patterns', status: findings.length ? 'avvik' : 'ok', findings };
 }
