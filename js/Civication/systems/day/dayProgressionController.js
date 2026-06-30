@@ -326,7 +326,10 @@
 
     try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch {}
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
-    try { await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false }); } catch {}
+    // Dagsrullnings (day_end → ny dag) gjenbruker IKKE gårsdagens (ferdigbesvarte) bunke:
+    // runtime er datokeyet (todayKey), så en ny in-game-dag i samme kalenderdøgn må tvinge en
+    // ny buildQueue. Uten forceNew finner enqueueNext ingen ubesvarte items → tom/fast ny dag.
+    try { await window.CivicationDailyMailBuilder?.enqueueNext?.(window.HG_CiviEngine || null, { ignorePending: false, forceNew: fromPhase === "day_end" }); } catch {}
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
 
     return { advanced: true, fromPhase, toPhase };
