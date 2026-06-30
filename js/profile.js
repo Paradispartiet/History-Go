@@ -1535,6 +1535,7 @@ function initProfileTabs() {
     panels.forEach((panel) => {
       panel.classList.toggle('is-active', panel.dataset.panel === name);
     });
+    if (name === 'socialmeet') window.renderSocialMeetSections?.();
   };
 
   tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.tab)));

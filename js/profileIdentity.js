@@ -157,7 +157,7 @@
       .hg-profile-settings-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.hg-profile-settings-head h2{margin:0 0 6px;font-size:1.55rem}.hg-profile-settings-head p{margin:0;color:rgba(255,255,255,.72)}
       .hg-profile-settings-close{border:0;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-size:1.2rem;width:42px;height:42px;cursor:pointer}.hg-profile-settings-grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:16px;align-items:start}
       .hg-profile-settings-card{border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.06);padding:16px}.hg-profile-settings-card h3{margin:0 0 10px}.hg-profile-settings-card .profile-action-row{margin-top:10px}
-      .hg-profile-settings-social{display:grid;gap:14px}.hg-profile-settings-social #profileSocialLayer{display:grid;gap:14px;margin:0}.hg-profile-settings-social .profile-detail-box{display:block}.hg-profile-settings-social details>summary{display:none}
+      .hg-profile-settings-social{display:grid;gap:14px}.hg-profile-settings-social #profilePrivacyLayer{display:grid;gap:14px;margin:0}.hg-profile-settings-social .profile-detail-box{display:block}.hg-profile-settings-social details>summary{display:none}
       @media (max-width:820px){.hg-profile-settings-grid{grid-template-columns:1fr}.hg-profile-settings{max-height:92vh;padding:16px}}
     `;
     document.head.appendChild(style);
@@ -241,6 +241,9 @@
 
   function renderSettingsSocialSections() {
     window.renderPrivacySettings?.();
+  }
+
+  function renderSocialMeetSections() {
     window.renderMeetInviteInbox?.();
     window.renderConfirmedMeets?.();
     window.renderSpotmeetingInbox?.();
@@ -251,11 +254,10 @@
   }
 
   function closeProfileSettings() {
-    const backdrop = document.getElementById("hgProfileSettingsBackdrop");
-    const socialLayer = document.getElementById("profileSocialLayer");
+    const privacyLayer = document.getElementById("profilePrivacyLayer");
     const home = document.getElementById("profileSettingsSocialMount");
-    if (socialLayer && home) home.appendChild(socialLayer);
-    backdrop?.remove();
+    if (privacyLayer && home) home.appendChild(privacyLayer);
+    document.getElementById("hgProfileSettingsBackdrop")?.remove();
   }
 
   function openProfileSettings() {
@@ -270,7 +272,7 @@
     backdrop.innerHTML = `
       <div class="hg-profile-settings" role="dialog" aria-modal="true" aria-labelledby="hgProfileSettingsTitle">
         <div class="hg-profile-settings-head">
-          <div><h2 id="hgProfileSettingsTitle">Innstillinger</h2><p>Profil, personvern, Social Meet, språk og lokale data samlet på ett sted.</p></div>
+          <div><h2 id="hgProfileSettingsTitle">Innstillinger</h2><p>Profil, språk, personvern og lokale data samlet på ett sted.</p></div>
           <button class="hg-profile-settings-close" type="button" id="hgProfileSettingsClose" aria-label="Lukk innstillinger">×</button>
         </div>
         <div class="hg-profile-settings-grid">
@@ -285,7 +287,7 @@
             <h3>Språk</h3><div id="hgSettingsLanguageMount"></div>
             <h3>Notater / eksport / nullstill fremgang</h3><div class="profile-action-row"><a href="notater.html" class="btn">Åpne notatboken</a><button id="hgSettingsExportProfile" class="btn" type="button">Del profilkort</button><button id="hgSettingsResetProfile" class="btn danger" type="button">Nullstill fremgang</button></div>
           </div>
-          <div class="hg-profile-settings-social" id="hgProfileSettingsSocial"><div class="hg-profile-settings-card"><h3>Social Meet</h3><p>Personvern, Møteinnboks, Spotmeeting, Læringssirkler og sosial historikk vises her.</p></div></div>
+          <div class="hg-profile-settings-social" id="hgProfileSettingsSocial"><div class="hg-profile-settings-card"><h3>Personvern</h3><p>Styr offentlig profil, kunnskapsmatcher, møteinvitasjoner, sirkler og sosial tillit.</p></div></div>
         </div>
       </div>`;
     document.body.appendChild(backdrop);
@@ -309,8 +311,8 @@
       });
       document.getElementById("hgSettingsLanguageMount")?.appendChild(clone);
     }
-    const socialLayer = document.getElementById("profileSocialLayer");
-    if (socialLayer) document.getElementById("hgProfileSettingsSocial")?.appendChild(socialLayer);
+    const privacyLayer = document.getElementById("profilePrivacyLayer");
+    if (privacyLayer) document.getElementById("hgProfileSettingsSocial")?.appendChild(privacyLayer);
 
     document.getElementById("hgProfileSettingsClose")?.addEventListener("click", closeProfileSettings);
     backdrop.addEventListener("click", (event) => { if (event.target === backdrop) closeProfileSettings(); });
@@ -325,6 +327,8 @@
     nicknameInput.focus();
     renderSettingsSocialSections();
   }
+
+  window.renderSocialMeetSections = renderSocialMeetSections;
 
   async function refreshAhaProfileCache() {
     const loader = window.HistoryGoAHAAuth?.loadAhaProfile;
