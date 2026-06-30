@@ -101,6 +101,8 @@ const profileWindow = makeDom(`<!doctype html><body>
 profileWindow.localStorage.setItem('HG_TEST_MODE', '1');
 profileWindow.localStorage.setItem('hg_spotmeeting_v1', storedSpotmeeting);
 runScript(profileWindow, 'js/social/HGSpotmeeting.js');
+let socialMeetRenderCount = 0;
+profileWindow.renderSocialMeetSections = () => { socialMeetRenderCount += 1; };
 runScript(profileWindow, 'js/profile.js');
 profileWindow.initProfileTabs?.();
 
@@ -108,6 +110,7 @@ const renderInline = profileSource.match(/<script>\s*\(function\(\)\{([\s\S]*?wi
 assert(renderInline, 'profile.html exposes renderSpotmeetingInbox');
 vm.runInContext(`(function(){${renderInline[1]}; renderSpotmeetingInbox();}())`, profileWindow.__ctx, { filename: 'profile.html#renderSpotmeetingInbox' });
 click(profileWindow, '.profile-tab[data-tab="socialmeet"]', 'Social Meet profile tab');
+assert(socialMeetRenderCount > 0, 'opening Social Meet tab refreshes all Social Meet sections');
 
 const profileInbox = profileWindow.document.getElementById('spotmeeting-inbox');
 const pendingCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="pending"]');
