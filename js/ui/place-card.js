@@ -343,19 +343,19 @@ const PLACE_ROUND_REGISTRY = [
 
 const CATEGORY_ROUND_PROFILES = Object.freeze({
   by: ["people", "nature", "badges", "works", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  historie: ["people", "works", "badges", "routes", "civication", "brands", "tasks", "fortellinger", "leksikon"],
-  historisk: ["people", "works", "badges", "routes", "civication", "brands", "tasks", "fortellinger", "leksikon"],
+  historie: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  historisk: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
   natur: ["tasks", "nature", "badges", "training", "civication", "brands", "routes", "fortellinger", "leksikon"],
   sport: ["people", "training", "badges", "works", "civication", "brands", "routes", "fortellinger", "leksikon"],
   lekeplass: ["play", "nature", "badges", "tasks", "civication", "brands", "routes", "fortellinger", "leksikon"],
   trening: ["people", "nature", "badges", "training", "civication", "brands", "routes", "tasks", "leksikon"],
-  politikk: ["people", "works", "badges", "routes", "civication", "brands", "tasks", "fortellinger", "leksikon"],
-  kunst: ["people", "works", "badges", "tasks", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  litteratur: ["people", "works", "badges", "tasks", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  musikk: ["people", "works", "badges", "tasks", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  subkultur: ["people", "works", "badges", "tasks", "civication", "brands", "routes", "fortellinger", "leksikon"],
-  naeringsliv: ["people", "works", "badges", "routes", "civication", "brands", "tasks", "fortellinger", "leksikon"],
-  transport: ["people", "works", "badges", "routes", "civication", "brands", "tasks", "fortellinger", "leksikon"]
+  politikk: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  kunst: ["people", "works", "badges", "nature", "civication", "brands", "routes", "fortellinger", "leksikon"],
+  litteratur: ["people", "works", "badges", "nature", "civication", "brands", "routes", "fortellinger", "leksikon"],
+  musikk: ["people", "works", "badges", "nature", "civication", "brands", "routes", "fortellinger", "leksikon"],
+  subkultur: ["people", "works", "badges", "play", "civication", "brands", "routes", "fortellinger", "leksikon"],
+  naeringsliv: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"],
+  transport: ["people", "works", "badges", "routes", "civication", "brands", "nature", "fortellinger", "leksikon"]
 });
 
 const DEFAULT_PLACE_ROUNDS = CATEGORY_ROUND_PROFILES.by.slice();
