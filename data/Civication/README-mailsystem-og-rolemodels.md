@@ -971,6 +971,8 @@ data/Civication/mailFamilies/by/event/by_radgiver_plan_event.json
 tests/civication-arealplanlegger-mail-plan.test.js
 ```
 
+Arealplanlegger er nå komplett etter FWG-standarden: `mail_generation_contract.minimum_counts` er oppfylt for alle mailtyper, og FWG-governance-auditen (`node scripts/audit-civication-fwg-governance.mjs`) viser null avvik. Senere-arc-innholdet (eskalering, klage, omkamp, konsekvens) ligger i egne uke-2-familier — `lillebekk_week2_konflikter` (conflict), `lillebekk_week2_frister` (event), `lillebekk_week2_aktorer` (people) og `lillebekk_week2_fortellinger` (story). Disse er merket som uke-2 (`_week2_` i id/family) slik at dag-1-rytmen holdes deterministisk, og hver mail peker på en `practice_story` via `practice_story_id`.
+
 ### 13.2 Viktig teknisk avklaring
 
 Det finnes en navneforskyvning:

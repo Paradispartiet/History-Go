@@ -615,6 +615,165 @@
           "messageChannel": "private"
         }
       ]
+    },
+    {
+      "id": "lillebekk_week2_aktorer",
+      "purpose": "Aktørene presser videre når saken modnes (uke 2+ av rollebuen).",
+      "learning_focus": [
+        "lillebekk_week2_aktorer"
+      ],
+      "mails": [
+        {
+          "id": "by_areal_people_week2_byokolog_009",
+          "mail_type": "people",
+          "mail_family": "lillebekk_week2_aktorer",
+          "practice_story_id": "linjen_pa_kartet",
+          "role_scope": "by_radgiver_plan",
+          "phase": "forenoon",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "grontdrag_lillebekk",
+          "subject": "Byøkologen vil ha grøntdraget inn som hensynssone",
+          "summary": "Byøkologen ber deg sikre grøntdraget med en hensynssone i stedet for løse intensjoner i planbeskrivelsen.",
+          "purpose": "Byøkologen ber deg sikre grøntdraget med en hensynssone i stedet for løse intensjoner i planbeskrivelsen.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Byøkologen ber deg sikre grøntdraget med en hensynssone i stedet for løse intensjoner i planbeskrivelsen.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "fagdialog",
+          "task_kind": "people",
+          "competency": "tverrfaglig_koordinering",
+          "learning_focus": [
+            "fagdialog",
+            "tverrfaglig_koordinering"
+          ],
+          "pressure": "kvalitet_vs_gjennomforing",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Støtt hensynssone og ta diskusjonen om utnyttelse",
+              "reply": "Jeg støtter en hensynssone og tar diskusjonen om utnyttelse åpent.",
+              "effect": 1,
+              "tags": [
+                "hensynssone",
+                "faglig_forankring"
+              ],
+              "feedback": "Grøntdraget får et juridisk vern, men utnyttelsen må forhandles på nytt."
+            },
+            {
+              "id": "B",
+              "label": "Hold grøntdraget som grønnstruktur uten hensynssone",
+              "reply": "Jeg holder grøntdraget som grønnstruktur uten hensynssone for å beholde fleksibiliteten.",
+              "effect": 1,
+              "tags": [
+                "fleksibilitet",
+                "framdrift"
+              ],
+              "feedback": "Saken holder tempo, men uten hensynssone hviler grøntdraget på god vilje i neste fase."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "kvalitet_vs_gjennomforing",
+              "fagdialog"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        },
+        {
+          "id": "by_areal_people_week2_plankonsulent_010",
+          "mail_type": "people",
+          "mail_family": "lillebekk_week2_aktorer",
+          "practice_story_id": "kartet_ser_ryddig_men_tier",
+          "role_scope": "by_radgiver_plan",
+          "phase": "lunch",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "petter_plankonsulent",
+          "sender": "petter_plankonsulent",
+          "person_id": "petter_plankonsulent",
+          "place_id": "gis_plankart_arbeidsflate",
+          "subject": "Plankonsulenten vil selge kartet som ferdig",
+          "summary": "Utbyggers plankonsulent presenterer et rent plankart og vil at de uavklarte temaene ikke skal forstyrre bildet.",
+          "purpose": "Utbyggers plankonsulent presenterer et rent plankart og vil at de uavklarte temaene ikke skal forstyrre bildet.",
+          "stakes": "Valget påvirker faglig presisjon, tillit og risiko i Lillebekk-saken.",
+          "situation": [
+            "Utbyggers plankonsulent presenterer et rent plankart og vil at de uavklarte temaene ikke skal forstyrre bildet.",
+            "Planforslaget gjelder Lillebekk kvartal, der fortetting, grøntdrag, skolevei, støy og overvann overlapper.",
+            "Du må svare slik at både kart, bestemmelser og den videre prosessen tåler å bli lest av andre."
+          ],
+          "task_domain": "fagdialog",
+          "task_kind": "people",
+          "competency": "faglig_integritet",
+          "learning_focus": [
+            "fagdialog",
+            "faglig_integritet"
+          ],
+          "pressure": "profesjonelt_press_vs_aapenhet",
+          "choice_axis": "faglig_presisjon_vs_tempo",
+          "consequence_axis": "tillit_vs_juridisk_risiko",
+          "narrative_arc": "Et område skal utvikles, men ingen er enige om hva byen egentlig trenger.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om at de uavklarte temaene merkes tydelig i kartet",
+              "reply": "Jeg ber om at de uavklarte temaene merkes tydelig i kartet før det går videre.",
+              "effect": 1,
+              "tags": [
+                "aapenhet",
+                "sporbarhet"
+              ],
+              "feedback": "Kartet ser mindre ferdig ut, men ingen kan si at uenigheten var skjult."
+            },
+            {
+              "id": "B",
+              "label": "Godta det rene kartet og noter forbeholdene i notatet",
+              "reply": "Jeg godtar det rene kartet og legger forbeholdene i fagnotatet i stedet.",
+              "effect": 1,
+              "tags": [
+                "presentasjon",
+                "kompromiss"
+              ],
+              "feedback": "Kartet blir lett å lese, men forbeholdene drukner lett når bare kartet vises fram."
+            }
+          ],
+          "next_bias": {
+            "tags": [
+              "profesjonelt_press_vs_aapenhet",
+              "fagdialog"
+            ],
+            "weight": 1
+          },
+          "triggers_on_choice": {
+            "A": [
+              "faglig_spor_videre"
+            ],
+            "B": [
+              "frist_for_utvalg"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

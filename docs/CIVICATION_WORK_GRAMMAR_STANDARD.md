@@ -339,3 +339,18 @@ data/Civication/workGrammars/by/by_radgiver_plan.json
 ```
 
 Den dekker plankart, bestemmelser, stedsanalyse, medvirkning, skolevei, grøntdrag, støy, overvann, rekkefølgekrav, politisk lesbarhet, utbyggerpress og juridisk presisjon.
+
+### Status: ferdig referanse
+
+Arealplanlegger er nå den første rollen der FWG faktisk styrer hele mailpakken. `node scripts/audit-civication-fwg-governance.mjs` rapporterer **null avvik** for `by/by_radgiver_plan` på alle deklarerte dimensjoner (`minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`, `conflict_grammar`, `solution_patterns`, `failure_patterns`).
+
+Konkret betyr det at `mail_generation_contract.minimum_counts` er oppfylt for alle mailtyper. Innholdet utover dag 1 ligger i egne uke-2-familier som bærer den senere delen av rollebuen (eskalering, klage, omkamp, konsekvens):
+
+```text
+conflict: lillebekk_week2_konflikter
+event:    lillebekk_week2_frister
+people:   lillebekk_week2_aktorer
+story:    lillebekk_week2_fortellinger
+```
+
+Disse mailene er bevisst merket som uke-2-innhold (id/family inneholder `_week2_`), slik at `CivicationDailyMailBuilder` holder dem utenfor den deterministiske dag-1-rytmen til rolleplanen når dem. Hver mail er forankret i en `practice_story` via `practice_story_id`, slik at framtidig MailThreads-arbeid kan skrive trådmailer som henger sammen med en kjent arbeidsscene.
