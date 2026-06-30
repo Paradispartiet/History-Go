@@ -34,7 +34,7 @@ function makeDom(html, url) {
 
 function assertNoForbiddenUi(scope, label) {
   const html = scope.innerHTML.toLowerCase();
-  const forbidden = ['live location', 'live-posisjon', 'free chat', 'fritekst-chat'];
+  const forbidden = ['live location', 'live-posisjon', 'free chat', 'fritekst-chat', 'nearby users', 'last seen', 'followers', 'feed'];
   for (const term of forbidden) {
     assert(!html.includes(term), `${label} must not expose forbidden UI/copy: ${term}`);
   }
@@ -81,6 +81,10 @@ click(appWindow, '[data-hg-spotmeeting-send]', 'Send forslag');
 
 const afterPending = appWindow.HG_Spotmeeting.getSpotmeetingInbox().pending.length;
 assert.strictEqual(afterPending, beforePending + 1, 'creating a preset invite increments pending inbox count in storage');
+const pendingInvite = appWindow.HG_Spotmeeting.getSpotmeetingInbox().pending[0];
+assert.strictEqual(pendingInvite.context.title, 'Factory Memory', 'pending invite stores context title');
+assert.strictEqual(pendingInvite.context.contextType, 'quiz', 'pending invite stores context type');
+assert.strictEqual(pendingInvite.presetLabel, 'Vil du ta denne quizen sammen?', 'pending invite stores preset label');
 assertNoForbiddenUi(placeCard.querySelector('.pc-spotmeeting'), 'PlaceCard Spotmeeting block');
 
 const storedSpotmeeting = appWindow.localStorage.getItem('hg_spotmeeting_v1');
@@ -100,13 +104,31 @@ runScript(profileWindow, 'js/social/HGSpotmeeting.js');
 runScript(profileWindow, 'js/profile.js');
 profileWindow.initProfileTabs?.();
 
-const renderInline = profileSource.match(/function renderSpotmeetingInbox\(\)[\s\S]*?window\.renderSpotmeetingInbox = renderSpotmeetingInbox;/);
+const renderInline = profileSource.match(/<script>\s*\(function\(\)\{([\s\S]*?window\.renderSpotmeetingInbox = renderSpotmeetingInbox;)[\s\S]*?\}\)\(\);\s*<\/script>/);
 assert(renderInline, 'profile.html exposes renderSpotmeetingInbox');
-vm.runInContext(`(function(){${renderInline[0]}; renderSpotmeetingInbox();}())`, profileWindow.__ctx, { filename: 'profile.html#renderSpotmeetingInbox' });
+vm.runInContext(`(function(){${renderInline[1]}; renderSpotmeetingInbox();}())`, profileWindow.__ctx, { filename: 'profile.html#renderSpotmeetingInbox' });
 click(profileWindow, '.profile-tab[data-tab="socialmeet"]', 'Social Meet profile tab');
 
 const profileInbox = profileWindow.document.getElementById('spotmeeting-inbox');
-assert(profileInbox.textContent.includes(`Ventende invitasjoner: ${afterPending}`), 'profile.html spotmeeting-inbox reflects pending invite count');
+const pendingCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="pending"]');
+assert(pendingCard, 'profile.html renders a pending invite card');
+assert(pendingCard.textContent.includes('Factory Memory'), 'pending card shows context title');
+assert(pendingCard.textContent.includes('quiz'), 'pending card shows context type');
+assert(pendingCard.textContent.includes('Vil du ta denne quizen sammen?'), 'pending card shows preset label');
+assert(pendingCard.querySelector('[data-spotmeeting-action="accept"]'), 'pending card renders accept action');
+assert(pendingCard.querySelector('[data-spotmeeting-action="decline"]'), 'pending card renders decline action');
+assert(pendingCard.querySelector('[data-spotmeeting-action="cancel"]'), 'pending card renders creator cancel action');
+assert(!pendingCard.querySelector('[data-spotmeeting-action="complete"]'), 'pending card does not render complete action');
+click(profileWindow, '[data-spotmeeting-action="accept"]', 'Godta pending spotmeeting');
+const acceptedCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="accepted"]');
+assert(acceptedCard, 'clicking accept moves the invite to accepted cards');
+assert(acceptedCard.querySelector('[data-spotmeeting-action="complete"]'), 'accepted card renders complete action');
+assert(acceptedCard.querySelector('[data-spotmeeting-action="cancel"]'), 'accepted card renders cancel action');
+assert(!acceptedCard.querySelector('[data-spotmeeting-action="accept"]'), 'accepted card does not render accept action');
+click(profileWindow, '[data-spotmeeting-action="complete"]', 'Marker gjennomført');
+const completedCard = profileInbox.querySelector('[data-spotmeeting-card][data-spotmeeting-status="completed"]');
+assert(completedCard, 'clicking complete moves the invite to completed cards');
+assert(!completedCard.querySelector('[data-spotmeeting-action]'), 'completed card is read-only');
 assert(profileWindow.document.querySelector('.profile-tab-panel[data-panel="socialmeet"]').classList.contains('is-active'), 'Social Meet tab opens its panel');
 assertNoForbiddenUi(profileInbox, 'rendered spotmeeting inbox');
 
