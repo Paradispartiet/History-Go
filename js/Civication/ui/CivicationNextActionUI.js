@@ -123,6 +123,14 @@
         + "</div>";
     }
 
+    if (action.canAdvancePhase) {
+      return ""
+        + "<p class=\"civi-next-action-sub muted\">Fasen er ferdig ryddet.</p>"
+        + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Fasehandling\">"
+        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-advance=\"1\">Gå til neste fase</button>"
+        + "</div>";
+    }
+
     const choices = Array.isArray(action.choices) ? action.choices : [];
     if (!choices.length) {
       // Read-only message / automatic event: a single acknowledge button.
@@ -219,6 +227,22 @@
     }
   }
 
+  function advancePhase() {
+    const result = window.CivicationDayProgression?.advancePhaseIfReady?.();
+    Promise.resolve(result)
+      .then(function () {
+        try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch (_e) {}
+        try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch (_e) {}
+        try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
+        const next = getCurrentAction();
+        if (next) render();
+        else close();
+      })
+      .catch(function (error) {
+        if (window.DEBUG) console.warn("[CivicationNextActionUI] Kunne ikke gå til neste fase", error);
+      });
+  }
+
   function bindDelegation(modal) {
     if (!modal || typeof modal.addEventListener !== "function" || modal.__civiNextActionDelegated) return;
     modal.__civiNextActionDelegated = true;
@@ -237,6 +261,14 @@
       if (taskBtn && modal.contains(taskBtn) && !taskBtn.disabled) {
         event.preventDefault();
         openTaskGate(String(taskBtn.getAttribute("data-civi-next-action-task") || "").trim());
+        return;
+      }
+
+      const advanceBtn = target.closest("[data-civi-next-action-advance]");
+      if (advanceBtn && modal.contains(advanceBtn) && !advanceBtn.disabled) {
+        event.preventDefault();
+        advanceBtn.disabled = true;
+        advancePhase();
         return;
       }
 

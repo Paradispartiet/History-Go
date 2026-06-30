@@ -89,6 +89,36 @@
     return null;
   }
 
+  function getNextPhaseLabel(nextPhase) {
+    if (!nextPhase) return "";
+    const fromCalendar = window.CivicationCalendar?.getPhaseLabel?.(nextPhase);
+    return norm(fromCalendar || nextPhase);
+  }
+
+  function buildAdvancePhaseAction(inspection) {
+    if (!inspection || !inspection.canAdvance || !inspection.nextPhase) return null;
+    const nextPhaseLabel = getNextPhaseLabel(inspection.nextPhase);
+    return {
+      source: "day_phase_advance",
+      id: "advance_phase:" + norm(inspection.phase) + ":" + norm(inspection.nextPhase),
+      subject: nextPhaseLabel ? "Gå til neste fase: " + nextPhaseLabel : "Gå til neste fase",
+      body: "Alle saker i nåværende fase er håndtert. Du kan gå videre til neste fase.",
+      situation: [],
+      summary: "Faseklarering",
+      phase: norm(inspection.phase),
+      phaseLabel: norm(inspection.phaseLabel),
+      mail_type: "phase_advance",
+      slot: norm(inspection.nextPhase),
+      status: "ready",
+      choices: [],
+      isTaskGate: false,
+      taskId: "",
+      canAdvancePhase: true,
+      nextPhase: norm(inspection.nextPhase),
+      nextPhaseLabel
+    };
+  }
+
   function getPhaseAction(inspection) {
     if (!inspection) return null;
     // Primary: the delivered/pending item; secondary: the next queued item. This mirrors
@@ -101,7 +131,9 @@
     // Defensive: nextActionableItem may still resolve when pending/next refs are missing.
     const actionable = inspection.nextActionableItem;
     if (actionable && norm(actionable.id)) return buildPhaseAction(actionable, inspection);
-    return null;
+    // When the phase has no mail to answer but is ready to advance, NextAction still owns
+    // the single active action instead of letting inbox fallbacks steal focus.
+    return buildAdvancePhaseAction(inspection);
   }
 
   function getInbox() {
