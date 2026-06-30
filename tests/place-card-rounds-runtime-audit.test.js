@@ -12,6 +12,9 @@ const POOL = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'ro
 const BY = ['people', 'nature', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
 const SPORT = ['people', 'training', 'badges', 'works', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
 const LEKEPLASS = ['play', 'nature', 'badges', 'tasks', 'civication', 'brands', 'routes', 'fortellinger', 'leksikon'];
+const TASKS_ALLOWED_PROFILES = ['natur', 'lekeplass', 'trening'];
+const TASKS_FORBIDDEN_PROFILES = ['historie', 'historisk', 'politikk', 'kunst', 'litteratur', 'musikk', 'subkultur', 'naeringsliv', 'transport'];
+const GET_ROUNDS_NINE_SAMPLE_CATEGORIES = ['by', 'natur', 'lekeplass', 'trening', 'politikk', 'transport'];
 
 function extractRoundsRuntime(src) {
   const start = src.indexOf('const PLACE_ROUND_REGISTRY = [');
@@ -54,9 +57,27 @@ assert.deepStrictEqual(idsFor({ id: 'playground_profile', category: 'lekeplass' 
 for (const [category, profile] of Object.entries(harness.sandbox.window.HGPlaceRounds.profiles)) {
   assert.strictEqual(profile.length, 9, `${category} skal ha nøyaktig 9 profilslots`);
   assert.strictEqual(new Set(profile).size, 9, `${category} skal ikke ha duplikater`);
+  for (const id of profile) {
+    assert(registryIds.includes(id), `${category} bruker ukjent runding ${id}`);
+  }
   assert.deepStrictEqual(idsFor({ id: `${category}_profile`, category }), Array.from(profile), `${category} skal returnere profilens 9 rundinger`);
 }
-assert.strictEqual(idsFor({ id: 'natur_profile', category: 'natur' }).length, 9, 'natur skal alltid gi 9 rundinger');
+
+for (const category of TASKS_ALLOWED_PROFILES) {
+  assert(harness.sandbox.window.HGPlaceRounds.profiles[category].includes('tasks'), `${category} skal beholde tasks`);
+}
+for (const category of TASKS_FORBIDDEN_PROFILES) {
+  assert(!harness.sandbox.window.HGPlaceRounds.profiles[category].includes('tasks'), `${category} skal ikke bruke tasks`);
+}
+const profilesWithTasks = Object.entries(harness.sandbox.window.HGPlaceRounds.profiles)
+  .filter(([, profile]) => profile.includes('tasks'))
+  .map(([category]) => category)
+  .sort();
+assert.deepStrictEqual(profilesWithTasks, TASKS_ALLOWED_PROFILES.slice().sort(), 'tasks skal bare finnes i konkrete handlingsprofiler');
+
+for (const category of GET_ROUNDS_NINE_SAMPLE_CATEGORIES) {
+  assert.strictEqual(idsFor({ id: `${category}_profile`, category }).length, 9, `${category} skal alltid gi 9 rundinger`);
+}
 
 const overridden = idsFor({ id: 'manual_override', category: 'by', rounds: ['training'] });
 assert.strictEqual(overridden.length, 9, 'override-output skal fortsatt ha 9 rundinger');

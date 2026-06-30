@@ -1,39 +1,104 @@
 # PlaceCard-rundinger (`rounds`)
 
-PlaceCard-rundingene er nå et **fast 3x3-grid** med 9 faste innganger. Gridet
-skal være visuelt stabilt fra sted til sted, og `rounds` / `rundinger` skal ikke
-lenger brukes til å flytte rundinger visuelt.
+PlaceCard-rundingene bygger på en fast rundingspool og kategori-profiler. Hver
+kategori-profil viser nøyaktig 9 rundinger i et stabilt 3x3-grid, mens
+`place.category` velger hvilken profil stedet får. `place.rounds` / `rundinger`
+kan fortsatt brukes som manuell override i enkelttilfeller, men nye data trenger
+normalt ikke å sette feltet.
 
-Fast plassering:
+## Rundingspool
 
-```text
-Row 1: people | works        | badges
-Row 2: tasks  | civication   | brands
-Row 3: routes | fortellinger | leksikon
-```
-
-Det betyr blant annet at `people` alltid ligger øverst til venstre, `badges`
-alltid øverst til høyre, `fortellinger` alltid nederst i midten og `leksikon`
-alltid nederst til høyre.
-
-## Canonical ids
-
-Canonical PlaceCard-rundinger er nøyaktig disse 9 id-ene, i fast grid-rekkefølge:
+Canonical PlaceCard-rundinger i poolen er:
 
 - `people`
-- `works`
+- `nature`
 - `badges`
-- `tasks`
+- `works`
 - `civication`
 - `brands`
 - `routes`
 - `fortellinger`
 - `leksikon`
+- `play`
+- `training`
+- `tasks`
 
-Nye data trenger normalt ikke å sette `rounds`. Hvis `rounds` eller `rundinger`
-finnes i eldre data, kan feltet beholdes som legacy/kuratorisk metadata, men det
-styrer ikke lenger hvilke rundinger som vises eller hvilken visuell rekkefølge de
-har i PlaceCard.
+Alle kategori-profiler skal ha nøyaktig 9 rundinger, ingen duplikater og bare
+id-er som finnes i denne poolen.
+
+## Kategori-profiler
+
+```text
+by:
+people | nature | badges
+works | civication | brands
+routes | fortellinger | leksikon
+
+historie:
+people | works | badges
+routes | civication | brands
+nature | fortellinger | leksikon
+
+historisk:
+people | works | badges
+routes | civication | brands
+nature | fortellinger | leksikon
+
+natur:
+tasks | nature | badges
+training | civication | brands
+routes | fortellinger | leksikon
+
+sport:
+people | training | badges
+works | civication | brands
+routes | fortellinger | leksikon
+
+lekeplass:
+play | nature | badges
+tasks | civication | brands
+routes | fortellinger | leksikon
+
+trening:
+people | nature | badges
+training | civication | brands
+routes | tasks | leksikon
+
+politikk:
+people | works | badges
+routes | civication | brands
+nature | fortellinger | leksikon
+
+kunst:
+people | works | badges
+nature | civication | brands
+routes | fortellinger | leksikon
+
+litteratur:
+people | works | badges
+nature | civication | brands
+routes | fortellinger | leksikon
+
+musikk:
+people | works | badges
+nature | civication | brands
+routes | fortellinger | leksikon
+
+subkultur:
+people | works | badges
+play | civication | brands
+routes | fortellinger | leksikon
+
+naeringsliv:
+people | works | badges
+routes | civication | brands
+nature | fortellinger | leksikon
+
+transport:
+people | works | badges
+routes | civication | brands
+nature | fortellinger | leksikon
+```
 
 ## Legacy aliases
 
@@ -42,9 +107,9 @@ knekker:
 
 - `lexicon` -> `leksikon`
 - `stories` / `story` -> `fortellinger`
-- `wonderkammer` / `nature` -> `leksikon`
+- `wonderkammer` -> `leksikon`
 - `football` / `music` -> `works`
-- `observations` -> `tasks` (legacy / ikke anbefalt i nye data)
+- `observations` er legacy og skal ikke brukes som ny canonical runding.
 
 Nye data skal bruke canonical id-er hvis metadatafeltet fortsatt trengs.
 
@@ -55,10 +120,8 @@ ikke lenger en egen hovedrunding, men skal fortsatt eksistere som innholdstype o
 ligge under Leksikon-flowen / Leksikon-huben sammen med for eksempel begreper,
 språk, forklaringer, objekter, detaljer og lesespor.
 
-Naturinnhold skal heller ikke ha en egen fast PlaceCard-runding. Natur kan ligge
-under `leksikon` når det gjelder arter, naturbegreper og økologi, under `tasks`
-når det gjelder natur-oppgaver, eller under `fortellinger` når det gjelder
-stedets naturhistorie.
+Quiz og kunnskapsspørsmål uten en konkret fysisk stedshandling bør heller ligge
+under `leksikon`, `fortellinger` eller `badges` enn å gi stedet `tasks`.
 
 ## Observasjoner
 
@@ -74,6 +137,13 @@ Personer knyttet til stedet: forfattere, kunstnere, politikere, idrettsfolk,
 vitenskapsfolk, arkitekter, musikere, lokale aktører, historiske skikkelser og
 personer som har bodd, virket, opptrådt, bygget, skrevet, forsket, kjempet eller
 blitt minnet der.
+
+### nature
+
+Fysisk miljø og naturspor ved stedet. `nature` betyr ikke bare villmark; den kan
+også dekke bynatur, landskap, grøntstruktur, vann, trær, vær, topografi,
+materialitet og stedets fysiske omgivelser. Derfor kan `nature` brukes som en
+stabil innholdsrunding i flere kultur-, institusjons- og transportprofiler.
 
 ### works
 
@@ -91,9 +161,32 @@ samlings-/progresjonsverdi eller inngå i et faglig/kuratorisk badge-system.
 
 ### tasks
 
-Oppgaver: quiz, minioppdrag, observasjonsoppgaver, kreative oppgaver, fysiske
-oppgaver, barne-/lekeoppgaver og “gjør noe her”. Ikke bruk `tasks` som løfte om
-ny oppgavemotor; rundingen kan ha tomtilstand til data finnes.
+`tasks` er en handlingsrunding, ikke en hypotetisk oppgaveplass. Bruk den bare
+når rundingen kan bety noe brukeren faktisk kan gjøre på stedet: finne noe, leke
+noe, trene noe, observere noe, utføre en fysisk aktivitet eller løse en konkret
+stedshandling.
+
+`tasks` skal bare brukes i kategori-profiler der oppgaven er konkret:
+
+- `natur` — observasjons-/finn-/se-etter-oppgaver, artsjakt, spor, stier og
+  friluftshandlinger.
+- `lekeplass` — leke-, finne-, bevegelses- og barneoppgaver.
+- `trening` — økter, runder, intervaller, styrkeoppgaver og fysisk aktivitet.
+
+Kultur-, institusjons-, transport- og politikksteder skal ikke få `tasks` bare
+fordi de kan ha quiz eller oppgaver senere. Uten en konkret fysisk oppgave bør
+quiz/kunnskapsspørsmål heller kurateres under `leksikon`, `fortellinger` eller
+`badges`.
+
+### play
+
+`play` skal ikke brukes bredt. Bruk den for `lekeplass`, og eventuelt i
+`subkultur` der lek, skate, eksperimentering eller uformell bruk av byrom gir
+mening.
+
+### training
+
+Trening, fysisk øving, runder, aktivitetsopplegg og idrettsnære handlinger.
 
 ### civication
 
@@ -139,7 +232,6 @@ huben gjør det.
   leksikon, fortellinger eller annet relevant innhold.
 - Nærhet/koblinger håndteres av NextUp/Fortsett reisen, ikke av en egen
   PlaceCard-runding.
-- Kategorinavn som `nature`, `football`, `music`, `art`, `literature`,
-  `science`, `politics`, `sport`, `media`, `architecture`, `history`, `market`,
-  `transport`, `memorial` og `subculture` skal ikke brukes som canonical
-  PlaceCard-rundinger.
+- Kategorinavn som `football`, `music`, `art`, `literature`, `science`,
+  `politics`, `history`, `market`, `transport`, `memorial` og `subculture` skal
+  ikke brukes som canonical PlaceCard-rundinger.
