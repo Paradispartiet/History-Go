@@ -150,7 +150,11 @@
       "description": "Saken går raskere fordi teksten skjuler hva som egentlig må velges.",
       "short_term_gain": ["tempo", "politisk ro"],
       "long_term_risk": ["klage", "lavere tillit", "svakere faglig integritet"],
-      "followup_hooks": ["nabo_kommer_tilbake", "jurist_finner_svakhet", "utvalg_forstar_ikke_valget"]
+      "followup_hooks": [
+        { "hook": "nabo_kommer_tilbake", "fires_mail": "by_areal_followup_001", "trigger": "frist_for_utvalg" },
+        { "hook": "jurist_finner_svakhet", "fires_mail": "by_areal_consequence_008", "trigger": "frist_for_utvalg" },
+        { "hook": "utvalg_forstar_ikke_valget", "fires_mail": "by_areal_consequence_007", "trigger": "frist_for_utvalg" }
+      ]
     }
   ],
   "actor_grammar": [

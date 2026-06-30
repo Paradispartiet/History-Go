@@ -7,13 +7,13 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 3
-- Totalt antall avvik: 87
+- Totalt antall avvik: 84
 
 ## Statusmatrise
 
 | rolle | category | minimum_counts | required_axes | place_grammar | actor_grammar | conflict_grammar | solution_patterns | failure_patterns |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| by_radgiver_plan | by | ⚠️ 4 | ⚠️ 1 | ⚠️ 3 | ⚠️ 4 | ⚠️ 4 | ⚠️ 1 | ⚠️ 3 |
+| by_radgiver_plan | by | ⚠️ 4 | ⚠️ 1 | ⚠️ 3 | ⚠️ 4 | ⚠️ 4 | ⚠️ 1 | ✅ |
 | renholder | naeringsliv | ✅ | ⚠️ 8 | ⚠️ 14 | ⚠️ 4 | ⚠️ 8 | ⚠️ 3 | ⚠️ 6 |
 | barnehageassistent | sosial_laering | ✅ | ⚠️ 6 | ⚠️ 3 | ⚠️ 10 | ⚠️ 1 | ⚠️ 1 | ⚠️ 3 |
 
@@ -46,10 +46,6 @@ Kilde: `data/Civication/workGrammars/by/by_radgiver_plan.json`
   - konflikt-mail by_areal_conflict_stoy_001 har pressure 'teknisk_losning_vs_hverdagsrisiko' uten forankring i conflict_grammar
 - **solution_patterns** (1):
   - ubrukt løsningsmønster-tag: political_readability (ingen valg bruker den)
-- **failure_patterns** (3):
-  - ubrukt feilmønster-hook: jurist_finner_svakhet (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: nabo_kommer_tilbake (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: utvalg_forstar_ikke_valget (ingen family/mail/trigger peker hit)
 
 ### Renholder (`naeringsliv/renholder`)
 
@@ -98,12 +94,12 @@ Kilde: `data/Civication/workGrammars/naeringsliv/renholder.json`
   - ubrukt løsningsmønster-tag: precision (ingen valg bruker den)
   - ubrukt løsningsmønster-tag: service (ingen valg bruker den)
 - **failure_patterns** (6):
-  - ubrukt feilmønster-hook: colleague_warns (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: hms_followup (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: infection_trace (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: leader_asks_why_no_deviation (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: shift_after_pain (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: touch_point_complaint (ingen family/mail/trigger peker hit)
+  - ubrukt feilmønster-hook: touch_point_complaint (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: infection_trace (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: leader_asks_why_no_deviation (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: hms_followup (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: colleague_warns (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: shift_after_pain (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
 
 ### Barnehageassistent (`sosial_laering/barnehageassistent`)
 
@@ -136,7 +132,7 @@ Kilde: `data/Civication/workGrammars/sosial_laering/barnehageassistent.json`
 - **solution_patterns** (1):
   - ubrukt løsningsmønster-tag: faglighet (ingen valg bruker den)
 - **failure_patterns** (3):
-  - ubrukt feilmønster-hook: barnet_trekker_seg_mer_unna (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: forelder_kommer_tilbake (ingen family/mail/trigger peker hit)
-  - ubrukt feilmønster-hook: pedagogisk_leder_spor_etter_observasjon (ingen family/mail/trigger peker hit)
+  - ubrukt feilmønster-hook: pedagogisk_leder_spor_etter_observasjon (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: forelder_kommer_tilbake (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
+  - ubrukt feilmønster-hook: barnet_trekker_seg_mer_unna (ingen family/mail/trigger peker hit — bind den til en faktisk followup/consequence-mail)
 
