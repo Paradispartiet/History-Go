@@ -216,9 +216,11 @@ function renderProfileCard() {
   const musicSummary = getMusicUnlockSummary();
 
   const musicEl = document.getElementById("statMusicFinds");
-  if (musicEl) musicEl.textContent = String(musicSummary.total);
   const musicLabel = document.getElementById("statMusicFindsLabel");
-  if (musicLabel) musicLabel.textContent = _t("ui.profile.musicFinds", "Musikkfunn");
+  if (musicEl && musicLabel) {
+    musicEl.textContent = String(musicSummary.total);
+    musicLabel.textContent = _t("ui.profile.musicFinds", "Musikkfunn");
+  }
 
   const visitedLabel = document.getElementById("statVisitedLabel");
   if (visitedLabel) visitedLabel.textContent = visitedLabelText;

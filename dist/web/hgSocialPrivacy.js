@@ -170,8 +170,8 @@
       const root = document.getElementById("social-privacy-settings");
       if (!root) return;
       const settings = getPrivacySettings();
-      const controls = [["publicProfile", "Public Profile"], ["visibleInMatchLists", "Visible in Match Lists"], ["allowMeetInvites", "Allow Meet Invites"], ["allowCircleInvites", "Allow Circle Invites"], ["showSocialReputation", "Show Social Reputation"]];
-      root.innerHTML = `<section class="meet-invite-inbox-panel social-privacy-panel"><div class="section-head"><h2>Privacy Settings</h2><span class="section-meta">Knowledge graph, never location graph.</span></div>${controls.map(([key, label]) => `<label class="social-privacy-toggle"><span>${escapeHtml(label)}</span><input type="checkbox" data-social-privacy="${key}" ${settings[key] ? "checked" : ""}></label>`).join("")}</section>`;
+      const controls = [["publicProfile", "Offentlig profil"], ["visibleInMatchLists", "Synlig i kunnskapsmatcher"], ["allowMeetInvites", "Tillat m\xF8teinvitasjoner"], ["allowCircleInvites", "Tillat sirkelinvitasjoner"], ["showSocialReputation", "Vis sosial tillit"]];
+      root.innerHTML = `<section class="meet-invite-inbox-panel social-privacy-panel"><div class="section-head"><h2>Personvern</h2><span class="section-meta">Kunnskapsgraf, aldri lokasjonsgraf.</span></div>${controls.map(([key, label]) => `<label class="social-privacy-toggle"><span>${escapeHtml(label)}</span><input type="checkbox" data-social-privacy="${key}" ${settings[key] ? "checked" : ""}></label>`).join("")}</section>`;
       root.querySelectorAll("[data-social-privacy]").forEach((el) => el.addEventListener("change", () => savePrivacySettings(currentUserId(), { [el.dataset.socialPrivacy]: el.checked })));
     }
     Object.assign(window, { HG_SOCIAL_INDEX: getSocialIndex(), HG_SOCIAL_INDEX_KEYS: KEYS, HG_SOCIAL_PRIVACY_DEFAULTS: DEFAULT_PRIVACY, getPrivacySettings, savePrivacySettings, canSeeProfile, canSeeMatch, canSendInvite, canViewCircle, canViewSocialHistory, blockUser, unblockUser, getBlockedUsers, isBlocked, reportUser, getReports, resolveReport, refreshSocialIndex, renderPrivacySettings });
