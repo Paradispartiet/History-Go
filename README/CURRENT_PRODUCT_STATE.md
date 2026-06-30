@@ -138,6 +138,7 @@ Recommended next steps, without adding them in this document:
 
 ## Source docs
 
+- [HG_SOCIAL_README.md](../docs/HG_SOCIAL_README.md)
 - [SYSTEM_MAP.md](./SYSTEM_MAP.md)
 - [SYSTEM_REGISTRY.md](./SYSTEM_REGISTRY.md)
 - [IMPLEMENTATION_STATUS.md](../docs/IMPLEMENTATION_STATUS.md)
