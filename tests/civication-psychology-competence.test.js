@@ -58,4 +58,14 @@ const positive = CivicationPsyche.applyPsycheResilienceModifier(10, state, { met
 assert.strictEqual(positive.applied, false);
 assert.strictEqual(positive.adjustedDelta, 10);
 
+// getPsychologyResilience is the psyke-kort view-model: competence -> reduction%.
+const resilience = CivicationPsyche.getPsychologyResilience(state);
+assert.strictEqual(resilience.competence, 80, 'resilience reflects current competence');
+assert.strictEqual(resilience.reductionPct, 36, 'competence 80 dampens negative psyche hits by 36%');
+
+state.player.competence.psychology = 0;
+assert.strictEqual(CivicationPsyche.getPsychologyResilience(state).reductionPct, 0, 'no competence means no dampening');
+state.player.competence.psychology = 100;
+assert.strictEqual(CivicationPsyche.getPsychologyResilience(state).reductionPct, 45, 'competence caps dampening at 45%');
+
 console.log('civication psychology competence tests passed');

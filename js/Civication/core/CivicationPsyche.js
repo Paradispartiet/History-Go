@@ -207,6 +207,20 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
     };
   }
 
+  // View-model for the psyke-kort: how much the current psychology competence
+  // dampens negative psyche hits. Single-sources the reduction from
+  // applyPsycheResilienceModifier so the UI never hardcodes the formula.
+  function getPsychologyResilience(state = null) {
+    const competence = getPsychologyCompetence(state);
+    const probe = applyPsycheResilienceModifier(-100, state, { metric: "resilience_probe", source: "summary" });
+    const reduction = Number(probe?.reduction || 0);
+    return {
+      competence,
+      reduction,
+      reductionPct: Math.round(reduction * 100)
+    };
+  }
+
   function recordResilienceMeta(meta) {
     if (!meta?.applied) return;
     try {
@@ -800,7 +814,8 @@ function getLifestyleTrustModifier() {
       trust: activeTrust,
       trustSummary,
       burnoutActive: isBurnoutActive(),
-      psychologyCompetence: getPsychologyCompetence()
+      psychologyCompetence: getPsychologyCompetence(),
+      psychologyResilience: getPsychologyResilience()
     };
   }
 
@@ -821,6 +836,7 @@ function getLifestyleTrustModifier() {
     getCompletedPsychologyActivities,
     addPsychologyCompetence,
     applyPsycheResilienceModifier,
+    getPsychologyResilience,
 
     // global psyche
     getIntegrity,

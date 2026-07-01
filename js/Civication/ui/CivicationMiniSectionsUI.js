@@ -207,12 +207,18 @@
         return "Psykeverdier ikke beregnet ennå.";
       },
       details: function () {
+        const resilience = window.CivicationPsyche?.getPsychologyResilience?.() || null;
+        const competence = Number(resilience?.competence ?? window.CivicationPsyche?.getPsychologyCompetence?.() ?? 0);
+        const reductionPct = Number(resilience?.reductionPct || 0);
         return [
           validText("psyIntegrity") ? `Integritet: ${textOf("psyIntegrity")}` : null,
           validText("psyVisibility") ? `Synlighet: ${textOf("psyVisibility")}` : null,
           validText("psyEconomic") ? `Handlingsrom: ${textOf("psyEconomic")}` : null,
           textOf("psyBurnout") ? `Burnout/stress: ${textOf("psyBurnout")}` : null,
-          `Psykologisk kompetanse: ${Number(window.CivicationPsyche?.getPsychologyCompetence?.() || 0)}`
+          `Psykologisk kompetanse: ${competence}`,
+          reductionPct > 0
+            ? `Resiliens: demper negative psyke-treff med ${reductionPct}%`
+            : "Resiliens: øv i Psykologrommet for å dempe negative psyke-treff"
         ];
       }
     },
