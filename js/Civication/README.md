@@ -92,8 +92,12 @@ Koblingen til Psykologrommet (`js/psychologyRoom.js`, en innsiktsnode med id `ps
    `applyPsycheResilienceModifier(value, state, …)` — brukt i `systems/day/dayConsequences.js`
    (dagskonsekvenser) og i `civicationCareerOutcomeRuntime.js` (autonomi).
 
-Status: koblingen, kompetanse/resiliens og anti-farming finnes (v1). Rommet er ennå ikke et
-fullt polert, interaktivt rom — det er neste utviklingssteg for Psykologrommet.
+Status: Psykologrommet (`js/psychologyRoom.js`) er interaktivt — tester/screening, øvelser,
+7-dagersløp, refleksjonsjournal og **CBT-verktøy** (fylles ut som arbeidsark) gir alle
+innsiktspoeng og (anti-farmet) psykologisk kompetanse via `completeSession →
+addPsychologyCompetence`. Verktøyene kan også fullføres programmatisk med
+`PsychologyRoom.completeTool(toolId, { steps, reflections })`. Videre polering (flere
+verktøytyper og tydeligere psyke-effekter i selve psyke-kortet) gjenstår.
 
 ## Hvordan et svar flyter
 

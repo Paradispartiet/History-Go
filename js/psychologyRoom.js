@@ -564,9 +564,55 @@
     bindBack();
   }
 
+  function getToolCompletions(toolId) {
+    const sessions = readJson(STORAGE_KEYS.sessions, []);
+    return (Array.isArray(sessions) ? sessions : []).filter((entry) => entry && entry.type === "tool" && String(entry.source_id || "") === String(toolId || ""));
+  }
+
+  // Builds the stored worksheet text from the player's step and reflection answers.
+  // Shared by the interactive form and the programmatic completeTool API.
+  function buildToolReflection(tool, stepValues, reflectionValues) {
+    const steps = Array.isArray(tool?.steps) ? tool.steps : [];
+    const questions = Array.isArray(tool?.reflection_questions) ? tool.reflection_questions : [];
+    const stepAnswers = steps
+      .map((step, index) => {
+        const value = String((Array.isArray(stepValues) ? stepValues[index] : "") || "").trim();
+        return value ? `${step.text || step} → ${value}` : "";
+      })
+      .filter(Boolean);
+    const reflectionAnswers = questions
+      .map((question, index) => {
+        const value = String((Array.isArray(reflectionValues) ? reflectionValues[index] : "") || "").trim();
+        return value ? `${question} ${value}` : "";
+      })
+      .filter(Boolean);
+    return [...stepAnswers, ...reflectionAnswers].join("\n").trim();
+  }
+
+  // Applies the concrete player effect for finishing a CBT tool: logs the session,
+  // adds insight points and (anti-farmed) psychology competence via completeSession.
+  function runToolCompletion(tool, combinedReflection, context) {
+    const path = context?.type === "path" ? findById(dataCache?.paths || [], context.pathId) : null;
+    completeSession("tool", tool.id, tool.title, Number(tool.reward?.insight_points || 0), combinedReflection, null, { returnPathId: path?.id || null });
+  }
+
+  // Programmatic completion (used by tests / future automation). Returns a result
+  // object instead of rendering; the concrete psyche effect still runs.
+  function completeTool(toolId, answers = {}) {
+    const tool = findById(dataCache?.tools || [], toolId);
+    if (!tool) return { completed: false, reason: "unknown_tool" };
+    const combined = buildToolReflection(tool, answers.steps, answers.reflections);
+    if (!combined) return { completed: false, reason: "empty" };
+    runToolCompletion(tool, combined, answers.pathId ? { type: "path", pathId: answers.pathId } : null);
+    return { completed: true, tool_id: tool.id, insight_points: Number(tool.reward?.insight_points || 0) };
+  }
+
   function renderToolsList() {
     const tools = dataCache?.tools || [];
-    setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>CBT-verktøy</h3><p class="psychology-room-muted">Kognitive og atferdsbaserte verktøy for strukturert selvhjelp. I denne versjonen kan verktøyene leses; interaktiv utfylling kommer senere.</p></section><section class="psychology-room-list">${tools.map((tool) => `<button class="psychology-room-list-item psychology-room-card" type="button" data-tool-id="${escapeHtml(tool.id)}"><strong>${escapeHtml(tool.title)}</strong><span>${escapeHtml(tool.short || "")}</span>${renderTags([label(tool.type), `${Number(tool.duration_minutes || 0)} min`])}</button>`).join("") || `<p class="psychology-room-muted">Ingen verktøy funnet.</p>`}</section>`));
+    setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>CBT-verktøy</h3><p class="psychology-room-muted">Kognitive og atferdsbaserte verktøy for strukturert selvhjelp. Fyll ut verktøyet steg for steg og få innsikt og psykologisk kompetanse.</p></section><section class="psychology-room-list">${tools.map((tool) => {
+      const done = getToolCompletions(tool.id).length;
+      return `<button class="psychology-room-list-item psychology-room-card" type="button" data-tool-id="${escapeHtml(tool.id)}"><strong>${escapeHtml(tool.title)}</strong><span>${escapeHtml(tool.short || "")}</span>${renderTags([label(tool.type), `${Number(tool.duration_minutes || 0)} min`, ...(done ? [`Utfylt ${done}×`] : [])])}</button>`;
+    }).join("") || `<p class="psychology-room-muted">Ingen verktøy funnet.</p>`}</section>`));
     bindBack();
     document.querySelectorAll("[data-tool-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
@@ -578,10 +624,27 @@
 
   function renderToolDetail(tool, context = null) {
     const reward = tool.reward || {};
+    const points = Number(reward.insight_points || 0);
     const path = context?.type === "path" ? findById(dataCache?.paths || [], context.pathId) : null;
     const back = path ? pathBackButton(path.id) : backButton("tools");
-    setContent(shell(`${back}<article class="psychology-room-detail"><div class="psychology-room-kicker">${escapeHtml(label(tool.type || "verktøy"))}</div><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.short || "")}</p>${renderTags([`${Number(tool.duration_minutes || 0)} min`])}${renderLinkedList("Når brukes det", tool.when_to_use, [])}<section class="psychology-room-section"><h4>Steg</h4><ol class="psychology-room-steps">${(tool.steps || []).map((step) => `<li>${escapeHtml(step.text || step)}</li>`).join("")}</ol></section>${renderLinkedList("Refleksjonsspørsmål", tool.reflection_questions, [])}${renderLinkedList("Relaterte fenomener", tool.related_phenomena, dataCache?.phenomena || [])}${renderLinkedList("Relaterte øvelser", tool.related_exercises, dataCache?.exercises || [])}${reward.insight_points ? `<p class="psychology-room-muted">Senere kan dette gi ${escapeHtml(reward.insight_points)} innsiktspoeng når interaktiv utfylling er på plass.</p>` : ""}${dataCache?.toolsSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.toolsSafetyNote)}</p>` : ""}</article>`));
+    const steps = Array.isArray(tool.steps) ? tool.steps : [];
+    const questions = Array.isArray(tool.reflection_questions) ? tool.reflection_questions : [];
+    const priorCompletions = getToolCompletions(tool.id).length;
+
+    setContent(shell(`${back}<form id="psychologyRoomToolForm" class="psychology-room-form"><div class="psychology-room-kicker">${escapeHtml(label(tool.type || "verktøy"))}</div><h3>${escapeHtml(tool.title)}</h3><p>${escapeHtml(tool.short || "")}</p>${renderTags([`${Number(tool.duration_minutes || 0)} min`, ...(priorCompletions ? [`Utfylt ${priorCompletions}×`] : [])])}${renderLinkedList("Når brukes det", tool.when_to_use, [])}<section class="psychology-room-section"><h4>Fyll ut verktøyet</h4>${steps.map((step, index) => `<label class="psychology-room-textarea-label"><span class="psychology-room-step-number">${index + 1}.</span> ${escapeHtml(step.text || step)}<textarea name="step_${index}" rows="2" placeholder="Ditt svar"></textarea></label>`).join("")}</section>${questions.length ? `<section class="psychology-room-section"><h4>Refleksjonsspørsmål</h4>${questions.map((question, index) => `<label class="psychology-room-textarea-label">${escapeHtml(question)}<textarea name="reflection_${index}" rows="2"></textarea></label>`).join("")}</section>` : ""}${renderLinkedList("Relaterte fenomener", tool.related_phenomena, dataCache?.phenomena || [])}${renderLinkedList("Relaterte øvelser", tool.related_exercises, dataCache?.exercises || [])}<button class="psychology-room-primary" type="submit">Fullfør verktøy${points ? ` (+${escapeHtml(points)} innsikt)` : ""}</button>${dataCache?.toolsSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.toolsSafetyNote)}</p>` : ""}</form>`));
     bindBack();
+    document.getElementById("psychologyRoomToolForm")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const elements = /** @type {any} */ (event.currentTarget).elements;
+      const stepValues = steps.map((step, index) => String(elements[`step_${index}`]?.value || ""));
+      const reflectionValues = questions.map((question, index) => String(elements[`reflection_${index}`]?.value || ""));
+      const combined = buildToolReflection(tool, stepValues, reflectionValues);
+      if (!combined) {
+        window.showToast?.("Fyll ut minst ett felt før du fullfører verktøyet");
+        return;
+      }
+      runToolCompletion(tool, combined, context);
+    });
   }
 
   function renderPathsList() {
@@ -752,6 +815,8 @@
     close,
     getProfile,
     getPathProgress,
+    getToolCompletions,
+    completeTool,
     storageKeys: STORAGE_KEYS
   };
 })();
