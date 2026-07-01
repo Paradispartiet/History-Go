@@ -831,6 +831,8 @@ const lesesporEl = document.getElementById("pcLesespor");
 
 const peopleIcon          = document.getElementById("pcPeopleIcon");
 const fortellingerIcon    = document.getElementById("pcFortellingerIcon");
+// Legacy DOM hooks only: Wonderkammer is no longer a canonical PlaceCard round,
+// but older templates/debug harnesses may still expose these nodes defensively.
 const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const badgesIcon          = document.getElementById("pcBadgesIcon");
 const natureIcon          = document.getElementById("pcNatureIcon");
@@ -838,6 +840,7 @@ const playIcon            = document.getElementById("pcPlayIcon");
 const trainingIcon        = document.getElementById("pcTrainingIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
 const tasksIcon           = document.getElementById("pcTasksIcon");
+// Legacy DOM hook only: observations are not a canonical round in the registry.
 const observationsIcon    = document.getElementById("pcObservationsIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const brandsIcon          = document.getElementById("pcBrandsIcon");
@@ -854,6 +857,7 @@ const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
 const peopleEl          = document.getElementById("pcPeopleList");
 const fortellingerEl    = document.getElementById("pcFortellingerList");
+// Legacy list hook only; Wonderkammer content is surfaced through Leksikon.
 const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const badgesEl          = document.getElementById("pcBadgesList");
 const natureEl          = document.getElementById("pcNatureList");
@@ -861,6 +865,7 @@ const playEl            = document.getElementById("pcPlayList");
 const trainingEl        = document.getElementById("pcTrainingList");
 const routesEl          = document.getElementById("pcRoutesList");
 const tasksEl           = document.getElementById("pcTasksList");
+// Legacy list hook only; observations are not a canonical round in the registry.
 const observationsEl    = document.getElementById("pcObservationsList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
 const brandsEl          = document.getElementById("pcBrandsList");
@@ -2060,13 +2065,15 @@ if (eventsBox) {
 // --- LEKSIKON LIST + LEKSIKON ICON ---
 if (leksikonEl) {
   const leksikonPath = `/leksikon/${String(place.category || "by").trim()}/${String(place.id || "").trim()}.html`;
-
-  leksikonEl.innerHTML = `
-    <a class="pc-leksikon-entry" href="${leksikonPath}" target="_blank" rel="noopener">
-      <span class="pc-leksikon-entry-title">${tt("ui.place.openLexicon", "Åpne leksikon")}</span>
-      <span class="pc-leksikon-entry-meta">${place.name}</span>
-    </a>
-  `;
+  const placeId = String(place.id || "").trim();
+  leksikonEl.innerHTML = typeof window.HGLeksikon?.renderPlaceList === "function"
+    ? window.HGLeksikon.renderPlaceList(placeId, 0)
+    : `
+      <a class="pc-leksikon-entry" href="${leksikonPath}" target="_blank" rel="noopener">
+        <span class="pc-leksikon-entry-title">${tt("ui.place.openLexicon", "Åpne leksikon")}</span>
+        <span class="pc-leksikon-entry-meta">${place.name}</span>
+      </a>
+    `;
 
   setRoundLabel(leksikonIcon, "📚", 1);
 }
