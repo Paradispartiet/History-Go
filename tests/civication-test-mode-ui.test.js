@@ -30,7 +30,7 @@ function makeFetch(rootDir) {
     if (!fullPath.startsWith(rootDir)) return { ok: false, status: 400, async json() { return null; } };
     try {
       const body = await fs.promises.readFile(fullPath, 'utf8');
-      return { ok: true, status: 200, async json() { return JSON.parse(body); } };
+      return { ok: true, status: 200, async json() { return JSON.parse(body); }, async text() { return body; } };
     } catch {
       return { ok: false, status: 404, async json() { return null; } };
     }
@@ -124,7 +124,17 @@ async function run() {
   assert(Array.isArray(roles), 'listRoles skal returnere en Array');
   assert(roles.length > 50, `rolleliste skal bygges fra data (fikk ${roles.length})`);
 
-  // Controller finnes i rollelisten.
+  // Referanseroller og Controller finnes i den datadrevne rollelisten.
+  const referenceTitles = ['Arealplanlegger', 'Renholder', 'Barnehageassistent'];
+  for (const title of referenceTitles) {
+    assert(roles.some(r => String(r.title).includes(title) && r.isReferenceRole), `${title} skal finnes og markeres som referanserolle`);
+  }
+  const refVisible = TM.setFilter('reference');
+  assert(referenceTitles.every(title => refVisible.some(r => String(r.title).includes(title))), 'Referanseroller-filteret skal vise alle tre v0.1-referanseroller');
+  assert(refVisible.every(r => r.isReferenceRole), 'Referanseroller-filteret skal bare vise markerte referanseroller');
+  TM.setFilter('all');
+  assert.strictEqual(TM.inspect().brokenMapping, 0, 'broken_mapping skal forbli 0');
+
   const controller = roles.find(r => r.role_key === 'controller' && r.career_id === 'naeringsliv');
   assert(controller, 'Controller skal finnes i rollelisten');
   assert.strictEqual(controller.role_id, 'naer_controller', 'Controller skal ha riktig role_id');
@@ -134,6 +144,7 @@ async function run() {
   assert.strictEqual(before.enabled, true, 'inspect skal rapportere enabled=true');
   assert.strictEqual(before.roleCount, roles.length, 'inspect skal telle lastede roller');
   assert.deepStrictEqual(before.byPhase, {}, 'inspect byPhase skal være tomt før dagstart');
+  assert.strictEqual(global.DemoMode, undefined, 'ingen egen DemoMode-global skal introduseres');
 
   // Start Dag uten aktiv rolle skal gi tydelig status og ikke kalle dagmotoren.
   let startTodayCalls = 0;
@@ -145,6 +156,12 @@ async function run() {
   assert.strictEqual(noRoleDay.ok, false, 'startDay uten aktiv rolle skal feile kontrollert');
   assert.strictEqual(noRoleDay.reason, 'no_active_role', 'startDay uten aktiv rolle skal be om rolle først');
   assert.strictEqual(startTodayCalls, 0, 'startDay uten aktiv rolle skal ikke starte dagmotoren');
+
+  // Alle tre referanseroller kan startes via eksisterende RoleStarter.
+  for (const key of ['by_radgiver_plan', 'renholder', 'barnehageassistent']) {
+    const refStarted = TM.startRole(key);
+    assert(refStarted, `${key} skal kunne startes via RoleStarter`);
+  }
 
   // Start rolle via eksisterende RoleStarter.
   const started = TM.startRole('controller');
@@ -195,6 +212,13 @@ async function run() {
   assert.deepStrictEqual(afterDay.byPhase, { morning: 1, lunch: 1 }, 'inspect skal vise byPhase etter dagstart');
   assert.deepStrictEqual(afterDay.byStatus, { queued: 1, pending: 1 }, 'inspect skal vise byStatus etter dagstart');
   assert.strictEqual(afterDay.pending.subject, 'Lunsjrapport', 'inspect skal vise pending subject etter dagstart');
+
+  // Åpne Neste handling skal delegere til eksisterende NextActionUI uten å introdusere ny svarflate.
+  let nextActionOpened = 0;
+  global.CivicationNextActionUI = { open() { nextActionOpened += 1; } };
+  assert.strictEqual(TM.openNextAction(), true, 'openNextAction skal returnere true når eksisterende NextActionUI finnes');
+  assert.strictEqual(nextActionOpened, 1, 'openNextAction skal bruke eksisterende CivicationNextActionUI.open');
+  assert.strictEqual(global.DemoMode, undefined, 'ingen DemoMode-global etter NextAction-åpning');
 
   // Panel skal åpnes via permanent API.
   TM.openPanel();

@@ -24,6 +24,7 @@
   const STATUS_ID = "civicationTestStatus";
   const WEEK_NAME = "civicationTestWeek";
   const MANIFEST_PATH = "data/Civication/roleModels/manifest.json";
+  const ROLE_PACK_INDEX_PATH = "docs/CIVICATION_ROLE_PACK_INDEX.md";
 
   // Startpunkt -> step_index i mail_plan_progress. DailyMailBuilder tolker
   // step_index >= 10 som uke 2 og holder uke 1 ren for tidlige steg.
@@ -43,7 +44,10 @@
     startpoint: "week1",
     panelOpen: false,
     query: "",
-    category: ""
+    category: "",
+    filter: "all",
+    packIndex: new Map(),
+    packIndexLoaded: false
   };
 
   function norm(value) { return String(value || "").trim(); }
@@ -85,6 +89,73 @@
     };
   }
 
+  const REFERENCE_ROLE_IDS = new Set(["by_arealplanlegger", "naer_renholder", "sosial_laering_barnehageassistent"]);
+  const REFERENCE_ROLE_TITLES = ["Arealplanlegger", "Renholder", "Barnehageassistent"];
+  const STATUS_ORDER = ["complete_reference_v2", "partial_pack", "role_model_only"];
+  const MAIL_FAMILIES = ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"];
+
+  function yesNo(value) { return /^ja$/i.test(norm(value)); }
+
+  function isReferenceRole(role) {
+    if (!role) return false;
+    if (REFERENCE_ROLE_IDS.has(norm(role.role_id))) return true;
+    return REFERENCE_ROLE_TITLES.some(title => norm(role.title).toLowerCase().includes(title.toLowerCase()));
+  }
+
+  function parseRolePackIndex(markdown) {
+    const map = new Map();
+    String(markdown || "").split(/\r?\n/).forEach(line => {
+      if (!/^\|\s*[^|]+\s*\|/.test(line) || /---/.test(line) || /category\s*\|\s*role_scope/.test(line)) return;
+      const cols = line.split("|").slice(1, -1).map(part => norm(part));
+      if (cols.length < 18) return;
+      const [category, role_scope, role_id, title, roleModel, workGrammar, mailPlan, job, people, conflict, story, event, micro, followup, knowledge, consequence, test, status] = cols;
+      const entry = {
+        category, role_scope, role_id, title, status,
+        roleModel: yesNo(roleModel),
+        workGrammar: yesNo(workGrammar),
+        mailPlan: yesNo(mailPlan),
+        mailFamilies: { job: yesNo(job), people: yesNo(people), conflict: yesNo(conflict), story: yesNo(story), event: yesNo(event), micro: yesNo(micro), followup: yesNo(followup), knowledge: yesNo(knowledge), consequence: yesNo(consequence) },
+        test: yesNo(test)
+      };
+      [role_id, role_scope, `${category}:${role_scope}`, `${category}:${role_id}`].filter(Boolean).forEach(key => map.set(slugify(key), entry));
+    });
+    return map;
+  }
+
+  async function loadRolePackIndex() {
+    if (state.packIndexLoaded) return state.packIndex;
+    try {
+      const res = await fetch(ROLE_PACK_INDEX_PATH, { cache: "no-store" });
+      const text = res && res.ok ? await res.text() : "";
+      state.packIndex = parseRolePackIndex(text);
+    } catch (e) { state.packIndex = new Map(); }
+    state.packIndexLoaded = true;
+    return state.packIndex;
+  }
+
+  function packInfoFor(role) {
+    return state.packIndex.get(slugify(role.role_id))
+      || state.packIndex.get(slugify(role.role_scope))
+      || state.packIndex.get(slugify(`${role.category}:${role.role_scope}`))
+      || state.packIndex.get(slugify(`${role.category}:${role.role_id}`))
+      || null;
+  }
+
+  function enrichRole(role) {
+    const pack = packInfoFor(role) || {};
+    const families = pack.mailFamilies || {};
+    const covered = MAIL_FAMILIES.filter(name => families[name]);
+    return {
+      ...role,
+      status: pack.status || "role_model_only",
+      workGrammar: pack.workGrammar === true,
+      mailPlan: pack.mailPlan === true,
+      mailFamilies: families,
+      mailFamiliesCoverage: `${covered.length}/${MAIL_FAMILIES.length}${covered.length ? ` (${covered.join(", ")})` : ""}`,
+      isReferenceRole: isReferenceRole(role) || pack.status === "complete_reference_v2"
+    };
+  }
+
   function toRole(path, model) {
     const fallback = fallbackRoleFromPath(path);
     const category = norm(model?.category || model?.source?.badge_id || fallback.category);
@@ -122,9 +193,10 @@
       state.rolesError = "Fant ingen roller";
       return [];
     }
+    await loadRolePackIndex();
     const models = await Promise.all(paths.map(async path => ({ path, model: await loadJson(path) })));
     return models
-      .map(({ path, model }) => toRole(path, model))
+      .map(({ path, model }) => enrichRole(toRole(path, model)))
       .filter(role => role.title && role.role_key)
       .sort((a, b) => (a.category + a.title).localeCompare(b.category + b.title, "no"));
   }
@@ -264,6 +336,17 @@
     return result || null;
   }
 
+  function openNextAction() {
+    const api = window.CivicationNextActionUI;
+    if (api?.open) {
+      api.open();
+      renderStatus("Åpnet eksisterende Neste handling-flate.");
+      return true;
+    }
+    renderStatus("Neste handling-UI mangler");
+    return false;
+  }
+
   function resetDay() {
     if (window.CivicationDailyMailBuilder?.resetToday) window.CivicationDailyMailBuilder.resetToday();
     else window.CivicationState?.setState?.({ mail_day_runtime_v1: null, narrative_day_state_v1: null });
@@ -271,6 +354,12 @@
     try { window.dispatchEvent(new Event("updateInbox")); } catch (e) { /* ignore */ }
     renderStatus("Testdag nullstilt.");
     return true;
+  }
+
+  function setFilter(filter) {
+    state.filter = norm(filter || "all");
+    renderRoles();
+    return visibleRoles();
   }
 
   function inspect() {
@@ -287,11 +376,14 @@
       roleLoaded: state.rolesLoaded,
       rolesError: state.rolesError || null,
       startpoint: state.startpoint,
+      filter: state.filter,
       runtimeExists: !!runtime,
       itemCount: dmb ? Number(dmb.item_count || 0) : 0,
       byPhase: dmb?.by_phase || {},
       byStatus: dmb?.by_status || {},
-      pending: dmb?.pending || null
+      pending: dmb?.pending || null,
+      visibleRoles: visibleRoles(),
+      brokenMapping: [...state.packIndex.values()].filter(entry => entry.status === "broken_mapping").length
     };
   }
 
@@ -327,8 +419,13 @@
   function visibleRoles() {
     const query = slugify(state.query);
     const category = norm(state.category);
+    const filter = norm(state.filter || "all");
     return state.roles.filter(role => {
       if (category && norm(role.category) !== category) return false;
+      if (filter === "reference" && !role.isReferenceRole) return false;
+      if (filter === "complete" && role.status !== "complete_reference_v2") return false;
+      if (filter === "partial" && role.status !== "partial_pack") return false;
+      if (filter === "role_model_only" && role.status !== "role_model_only") return false;
       if (!query) return true;
       const hay = slugify(`${role.title} ${role.category} ${role.role_key} ${role.role_scope} ${role.role_id}`);
       return hay.includes(query);
@@ -352,13 +449,22 @@
       list.innerHTML = `<p class="civi-test-empty">${state.roles.length ? "Ingen roller matcher." : "Fant ingen roller"}</p>`;
       return;
     }
-    list.innerHTML = roles.map(role => {
-      const selected = slugify(role.role_key) === slugify(state.selectedKey);
-      return `<button type="button" class="civi-test-role${selected ? " is-selected" : ""}" data-role-key="${esc(role.role_key)}">
-        <span class="civi-test-role-title">${esc(role.title)}</span>
-        <span class="civi-test-role-meta">${esc(role.category)} · ${esc(role.role_scope || role.role_key)}${role.role_id ? ` · ${esc(role.role_id)}` : ""}</span>
-      </button>`;
-    }).join("");
+    const grouped = STATUS_ORDER.map(status => [status, roles.filter(role => role.status === status)]).filter(([, items]) => items.length);
+    const other = roles.filter(role => !STATUS_ORDER.includes(role.status));
+    if (other.length) grouped.push(["other", other]);
+    list.innerHTML = grouped.map(([status, items]) => `
+      <section class="civi-test-role-group" data-status="${esc(status)}">
+        <h3>${esc(status)} <span>${esc(items.length)}</span></h3>
+        ${items.map(role => {
+          const selected = slugify(role.role_key) === slugify(state.selectedKey);
+          return `<button type="button" class="civi-test-role${selected ? " is-selected" : ""}${role.isReferenceRole ? " is-reference" : ""}" data-role-key="${esc(role.role_key)}">
+            <span class="civi-test-role-title">${role.isReferenceRole ? "★ " : ""}${esc(role.title)}</span>
+            <span class="civi-test-role-meta">${esc(role.category)} · ${esc(role.role_scope || role.role_key)} · ${esc(role.role_id || "—")}</span>
+            <span class="civi-test-role-meta">status: ${esc(role.status)} · workGrammar: ${role.workGrammar ? "finnes" : "mangler"} · mailPlan: ${role.mailPlan ? "finnes" : "mangler"}</span>
+            <span class="civi-test-role-meta">mailFamilies: ${esc(role.mailFamiliesCoverage)}</span>
+          </button>`;
+        }).join("")}
+      </section>`).join("");
   }
 
   function renderCategories() {
@@ -385,6 +491,13 @@
         <input type="search" id="${SEARCH_ID}" class="civi-test-search" placeholder="Søk rolle …" autocomplete="off">
         <select id="${FILTER_ID}" class="civi-test-filter"><option value="">Alle kategorier</option></select>
       </div>
+      <div class="civi-test-filter-buttons" role="group" aria-label="Rollefilter">
+        <button type="button" data-civi-test-filter="reference">Referanseroller</button>
+        <button type="button" data-civi-test-filter="all">Alle roller</button>
+        <button type="button" data-civi-test-filter="complete">Complete</button>
+        <button type="button" data-civi-test-filter="partial">Partial</button>
+        <button type="button" data-civi-test-filter="role_model_only">Role model only</button>
+      </div>
       <div id="${ROLES_ID}" class="civi-test-roles"><p class="civi-test-empty">Laster roller …</p></div>
       <div class="civi-test-startpoint">
         <div class="civi-test-startpoint-label">Progresjonsuke / startpunkt</div>
@@ -392,8 +505,9 @@
       </div>
       <div class="civi-test-actions">
         <button type="button" id="civiTestStartRole">Start rolle</button>
-        <button type="button" id="civiTestStartDay">Start Dag</button>
-        <button type="button" id="civiTestResetDay">Nullstill testdag</button>
+        <button type="button" id="civiTestStartDay">Start dag</button>
+        <button type="button" id="civiTestOpenNextAction">Åpne Neste handling</button>
+        <button type="button" id="civiTestResetDay">Nullstill Civication test-state</button>
       </div>
       <div id="${STATUS_ID}" class="civi-test-status"></div>`;
   }
@@ -420,7 +534,11 @@
       document.getElementById("civicationTestClose")?.addEventListener("click", closePanel);
       document.getElementById("civiTestStartRole")?.addEventListener("click", () => startRole(state.selectedKey));
       document.getElementById("civiTestStartDay")?.addEventListener("click", async () => { await startDay(); });
+      document.getElementById("civiTestOpenNextAction")?.addEventListener("click", openNextAction);
       document.getElementById("civiTestResetDay")?.addEventListener("click", resetDay);
+      panel.querySelectorAll?.("[data-civi-test-filter]").forEach((/** @type {any} */ button) => {
+        button.addEventListener("click", () => { state.filter = button.dataset?.civiTestFilter || "all"; renderRoles(); });
+      });
 
       const search = /** @type {any} */ (document.getElementById(SEARCH_ID));
       search?.addEventListener("input", () => { state.query = search.value || ""; renderRoles(); });
@@ -545,6 +663,8 @@
     startRole,
     startDay,
     resetDay,
+    openNextAction,
+    setFilter,
     inspect,
     openPanel,
     closePanel,
