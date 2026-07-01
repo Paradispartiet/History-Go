@@ -70,6 +70,18 @@
     row.dataset.favorite = summary.favorite ? "1" : "0";
   }
 
+  function loadNearbyStatusSurface() {
+    if (global.__HG_NEARBY_STATUS_SURFACE_SCRIPT_REQUESTED__) return;
+    if (global.HGNearbyStatusSurface) return;
+    if (document.querySelector('script[src="js/ui/nearby-status-surface.js"]')) return;
+
+    global.__HG_NEARBY_STATUS_SURFACE_SCRIPT_REQUESTED__ = true;
+    const script = document.createElement("script");
+    script.src = "js/ui/nearby-status-surface.js";
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
   function install() {
     if (global[BOUND_FLAG]) return true;
     if (typeof global.openPlaceCard !== "function") return false;
@@ -85,6 +97,7 @@
 
     global[BOUND_FLAG] = true;
     global.HGPlaceCardStatusSurface = { render: renderStatus };
+    loadNearbyStatusSurface();
     return true;
   }
 
