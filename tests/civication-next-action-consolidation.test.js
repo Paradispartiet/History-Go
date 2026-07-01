@@ -4,7 +4,8 @@
 // Locks the NextAction consolidation: active Civication mail answering lives on exactly one
 // authoritative surface (CivicationNextActionUI), fed by exactly one selector
 // (CivicationNextActionSelector). Dagens fase, Innboks and WorkdayPanel must all point at the
-// same active mail and must NOT render their own answer choices for it.
+// same active mail. The active open inbox mail must expose its answer choices either
+// directly in the inbox card or immediately after opening NextAction.
 //
 //  1. Selector: when the current phase has pendingItem A while the inbox also holds an open
 //     mail B, getCurrent() must return A (the phase action wins) — never B.
@@ -12,8 +13,8 @@
 //  3. NextAction UI renders the answer choices (subject, meta, body, choice buttons).
 //  4. Dagens fase shows the same next-item title as the selector, renders NO answer choices,
 //     and its button routes to NextAction.
-//  5. Innboks shows "Håndteres i Neste handling" (a link to NextAction) instead of inline
-//     choices for every open message, including inbox-fallback actions.
+//  5. Innboks renders choices for the active open handlingsmail, without leaking choices
+//     to unrelated open messages.
 
 const fs = require('fs');
 const path = require('path');
@@ -163,6 +164,7 @@ function testSelector() {
   global.CivicationDayProgression = {
     inspect: () => ({ phase: 'morning', phaseLabel: 'Morgen', dayIndex: 1, openItemsInPhase: 0, pendingItem: null, nextQueuedItem: null, nextActionableItem: null, phaseBundle: { items: [], pendingItems: [], queuedItems: [] }, nextPhase: 'lunch', canAdvance: true, reason: 'ready_to_advance' })
   };
+  global.CivicationMailEngine = { getInbox: () => [] };
   const advance = global.CivicationNextActionSelector.getCurrent();
   assert(advance, 'selector returns an advance action when the day phase is ready');
   assert.strictEqual(advance.source, 'day_phase_advance', 'advance is still sourced from the day phase before inbox fallback');
@@ -172,6 +174,7 @@ function testSelector() {
   global.CivicationDayProgression = {
     inspect: () => ({ phase: 'morning', phaseLabel: 'Morgen', dayIndex: 1, openItemsInPhase: 0, pendingItem: null, nextQueuedItem: null, nextActionableItem: null, phaseBundle: { items: [], pendingItems: [], queuedItems: [] }, nextPhase: 'lunch', canAdvance: false, reason: 'waiting' })
   };
+  global.CivicationMailEngine = { getInbox: () => [mailB] };
   const fallback = global.CivicationNextActionSelector.getCurrent();
   assert(fallback, 'selector falls back to an actionable inbox mail when no phase action exists');
   assert.strictEqual(fallback.id, 'mail-B', 'fallback returns the open inbox mail');
@@ -244,6 +247,7 @@ function testQueuedNextActionUi() {
       nextPhase: 'lunch', canAdvance: false, reason: 'queued_items_in_phase'
     })
   };
+  global.CivicationMailEngine = { getInbox: () => [] };
 
   loadScript('js/Civication/systems/civicationNextActionSelector.js');
   const current = global.CivicationNextActionSelector.getCurrent();
@@ -336,7 +340,7 @@ function simulateNextActionButton(_html, panels) {
 }
 
 // ==================================================================
-// 5. Innboks: active phase action shows a NextAction link, not inline choices
+// 5. Innboks: active open action has a visible answer surface
 // ==================================================================
 function testInboxLink() {
   installBaseGlobals();
@@ -377,15 +381,63 @@ function testInboxLink() {
   global.CivicationInboxTopActionUI.renderSections();
   const html = host.innerHTML;
 
-  assert(html.includes('Håndteres i Neste handling'), 'active phase mail shows the NextAction handover note');
-  assert(html.includes('data-civi-open-next-action'), 'inbox provides a link/button to open NextAction');
-  // The active mail must not expose its own inline answer choices in the inbox.
-  assert(!html.includes('data-choice-id="A1"'), 'inbox does not render inline choice A1 for the active phase mail');
-  assert(!html.includes('data-choice-id="A2"'), 'inbox does not render inline choice A2 for the active phase mail');
+  assert(html.includes('data-civi-inbox-answer'), 'active open mail exposes an answer surface in the inbox');
+  assert(html.includes('data-choice-id="A1"'), 'inbox renders inline choice A1 for the active phase mail');
+  assert(html.includes('data-choice-id="A2"'), 'inbox renders inline choice A2 for the active phase mail');
+  assert(html.includes('>Ja<'), 'inbox renders the first active choice label');
+  assert(html.includes('>Nei<'), 'inbox renders the second active choice label');
   assert(!html.includes('data-choice-id="C1"'), 'inbox does not render inline choices for non-active open mail either');
-  assert(!html.includes('data-civi-inbox-answer'), 'inbox exposes no primary answer buttons at all');
 
-  console.log('  ✓ Innboks: open mails link to NextAction instead of rendering inline choices');
+  console.log('  ✓ Innboks: active open mail renders choices without leaking to other threads');
+}
+
+function testArbeidsledigNavMailChoicesVisible() {
+  installBaseGlobals();
+  const host = new FakeEl('div');
+  host.id = 'civiInbox';
+  host.querySelectorAll = () => [];
+
+  global.document = {
+    readyState: 'complete',
+    addEventListener() {},
+    createElement(tag) { return new FakeEl(tag); },
+    querySelector() { return null; },
+    getElementById(id) { return id === 'civiInbox' ? host : null; }
+  };
+
+  const catalog = JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json'), 'utf8'));
+  const navMail = catalog.families.flatMap((family) => family.mails).find((mail) => mail.id === 'arbeidsledig_nav_001');
+  assert(navMail, 'arbeidsledig_nav_001 exists in arbeidsledig life mail data');
+  const row = makeRow(navMail.id, navMail.subject, navMail.choices, {
+    mail_type: 'life',
+    body: navMail.situation.join('\n')
+  });
+  const mail = inboxItem(navMail.id, navMail.subject, navMail.choices);
+  mail.event = Object.assign({}, navMail, {
+    body: navMail.situation.join('\n'),
+    source_type: 'life',
+    mail_class: 'private_message'
+  });
+
+  global.CivicationDayProgression = { inspect: () => inspectionWithPending(row) };
+  global.CivicationMailEngine = { getInbox: () => [mail] };
+
+  loadScript('js/Civication/systems/civicationEventChannels.js');
+  loadScript('js/Civication/systems/civicationNextActionSelector.js');
+  loadScript('js/Civication/ui/CivicationInboxTopActionUI.js');
+
+  const current = global.CivicationNextActionSelector.getCurrent();
+  assert.strictEqual(current.id, 'arbeidsledig_nav_001', 'NextAction targets the NAV mail');
+  assert.strictEqual(current.choices.length, 2, 'NextAction keeps the NAV mail choices');
+
+  global.CivicationInboxTopActionUI.renderSections();
+  const html = host.innerHTML;
+  assert(html.includes('Vi mangler fortsatt dokumentasjon'), 'NAV mail subject is visible');
+  assert(html.includes('Last opp alt nå, også det som er litt ubehagelig å sende'), 'choice A is visible');
+  assert(html.includes('Utsett til du orker å samle alt riktig'), 'choice B is visible');
+  assert(html.includes('data-civi-inbox-answer'), 'NAV mail can be answered directly with zero extra clicks');
+
+  console.log('  ✓ arbeidsledig_nav_001 shows its real choices on the active inbox card');
 }
 
 function run() {
@@ -394,6 +446,7 @@ function run() {
   testQueuedNextActionUi();
   testDayPhasePanel();
   testInboxLink();
+  testArbeidsledigNavMailChoicesVisible();
   console.log('PASS: Civication NextAction consolidation tests completed.');
 }
 

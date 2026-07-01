@@ -177,9 +177,8 @@
   }
 
   // Ids that are active answerable actions in the current day phase (or the single active
-  // inbox fallback). These are owned by the NextAction surface, so the inbox must NOT render
-  // their choices — it links to NextAction instead. Read from the same authoritative sources
-  // (CivicationDayProgression + CivicationNextActionSelector) so nothing diverges.
+  // inbox fallback). The active id may render a direct answer surface here; all other
+  // ids stay passive so archived/open threads never borrow choices from another mail.
   function getNextActionOwnedIds() {
     const ids = new Set();
 
@@ -208,6 +207,31 @@
       <div class="civi-inbox-card-actions civi-inbox-card-next-action">
         <span class="civi-inbox-handled-note muted">Håndteres i Neste handling</span>
         <button class="civi-btn secondary" type="button" data-civi-open-next-action="1">Gå til Neste handling</button>
+      </div>
+    `;
+  }
+
+  function isCurrentNextActionItem(item) {
+    const mailId = mailIdOf(item);
+    if (!mailId) return false;
+    const current = window.CivicationNextActionSelector?.getCurrent?.();
+    return !!current && String(current.id || "").trim() === mailId;
+  }
+
+  function renderDirectChoicesHtml(item) {
+    const mailId = mailIdOf(item);
+    const ev = eventOf(item);
+    const choices = Array.isArray(ev?.choices) ? ev.choices : [];
+    const buttons = choices.map(function (choice) {
+      const choiceId = String(choice?.id || "").trim();
+      if (!choiceId) return "";
+      return `<button class="civi-btn" type="button" data-civi-inbox-answer="1" data-mail-id="${escapeHtml(mailId)}" data-choice-id="${escapeHtml(choiceId)}">${escapeHtml(choice?.label || choice?.text || choiceId)}</button>`;
+    }).join("");
+
+    if (!buttons) return "";
+    return `
+      <div class="civi-inbox-card-actions civi-inbox-card-choices" role="group" aria-label="Svaralternativer">
+        ${buttons}
       </div>
     `;
   }
@@ -356,10 +380,13 @@
     const mailId = mailIdOf(item);
     if (!isOpenItem(item) || !mailId) return "";
 
-    // Civication v0.1 locks all active answers to NextAction. The inbox is an
-    // archive/detail surface, so even non-phase fallback mails route to NextAction
-    // instead of rendering data-civi-inbox-answer buttons here.
-    return buildNextActionLinkHtml();
+    if (hasChoices(item) && isCurrentNextActionItem(item)) {
+      return renderDirectChoicesHtml(item);
+    }
+
+    if (ownedIds?.has?.(mailId)) return buildNextActionLinkHtml();
+
+    return "";
   }
 
   function renderInboxCard(item, channelLabel, ownedIds) {
