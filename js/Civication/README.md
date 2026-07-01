@@ -90,14 +90,18 @@ Koblingen til Psykologrommet (`js/psychologyRoom.js`, en innsiktsnode med id `ps
    én gang; delta halveres og klemmes til 1–8, kompetanse 0–100.
 3. Kompetansen demper negative psyke-deltaer via
    `applyPsycheResilienceModifier(value, state, …)` — brukt i `systems/day/dayConsequences.js`
-   (dagskonsekvenser) og i `civicationCareerOutcomeRuntime.js` (autonomi).
+   (dagskonsekvenser) og i `civicationCareerOutcomeRuntime.js` (autonomi). Effekten er
+   kvantifisert av `getPsychologyResilience()` (`{ competence, reduction, reductionPct }`), og
+   psyke-kortet (`CivicationMiniSectionsUI`) viser den som «Resiliens: demper negative
+   psyke-treff med X%» — så spilleren ser hva kompetansen faktisk gjør.
 
 Status: Psykologrommet (`js/psychologyRoom.js`) er interaktivt — tester/screening, øvelser,
 7-dagersløp, refleksjonsjournal og **CBT-verktøy** (fylles ut som arbeidsark) gir alle
 innsiktspoeng og (anti-farmet) psykologisk kompetanse via `completeSession →
 addPsychologyCompetence`. Verktøyene kan også fullføres programmatisk med
-`PsychologyRoom.completeTool(toolId, { steps, reflections })`. Videre polering (flere
-verktøytyper og tydeligere psyke-effekter i selve psyke-kortet) gjenstår.
+`PsychologyRoom.completeTool(toolId, { steps, reflections })`. Psyke-kortet viser nå
+resiliens-effekten direkte. Videre polering (flere verktøytyper, psyke-effekter på flere
+kort/flater) gjenstår.
 
 ## Hvordan et svar flyter
 
