@@ -2,15 +2,27 @@
 
 Dette dokumentet definerer hva “fullført” betyr i History GO.
 
-Formålet er å gi alle systemer samme språk for ferdigtilstand, progresjon og belønning.
+Det skal ikke erstatte eksisterende kontrakter. Det samler ferdigtilstander på tvers av de kontraktene som allerede finnes.
 
-Gjelder History GO-spillet. Civication er eget prosjekt og inngår ikke her.
+Leses sammen med:
+
+- `docs/HISTORY_GO_PRODUCT_MAP.md`
+- `docs/APP_STRUCTURE_INDEX.md`
+- `docs/DATA_PRODUCTION_CONTRACT.md`
+- `data/places/README_place_rounds.md`
+- `data/wonderkammer/README.md`
+- `docs/HG_SOCIAL_README.md`
+- `README/quizREADME.md`
+- `README/README.pensum.md`
+- `README/fagstrukturREADME.md`
+
+Gjelder History GO-spillet. Civication er eget prosjekt og inngår ikke i denne ferdigmodellen, selv om eksisterende data/UI-kontrakter fortsatt kan ha historiske eller tekniske koblingspunkter.
 
 ---
 
 ## 1. Grunnprinsipp
 
-History GO skal ikke bare registrere at en bruker har åpnet noe. Spillet må vite hva brukeren faktisk har gjort.
+History GO skal vite hva spilleren faktisk har gjort, ikke bare hva som finnes i data.
 
 Derfor skilles det mellom:
 
@@ -19,253 +31,341 @@ Derfor skilles det mellom:
 - besøkt
 - sjekket inn
 - forsøkt
+- observert
 - fullført
 - mestret
 - samlet
-- delt
+- delt / invitert, der privacy-reglene tillater det
 
-En modul er ikke ferdig før dens handlinger gir synlig status i minst ett av disse systemene:
+En ferdigtilstand må gi synlig eller beregnbar status i relevante flater:
 
-- PlaceCard
-- profil
-- Wonderkammer
-- Nearby
+- PlaceCard / popup
+- profil / miniProfile
+- Wonderkammer / leksikon-hub
+- Nearby / NextUp
 - ruter
-- social / Spotmeeting der relevant
+- Social Meet / Spotmeeting der relevant og trygt
 
 ---
 
-## 2. Fullført sted
+## 2. Eksisterende kontrakter som styrer ferdigmodellen
 
-Et sted er **fullført** når spilleren har gjort en reell spillhandling ved stedet og fått en belønning/status.
+### Appstruktur
+
+`index.html` er hoved-app-shell og eier kart, nearby/left panel, PlaceCard/bottom sheet, quiz modal flow, miniProfile og index-routeren. `profile.html` er full profilside og skal ikke flyttes inn i index uten egen fase.
+
+### Data
+
+`DATA_PRODUCTION_CONTRACT` gjelder:
+
+- én place ID, ett canonical place object
+- `category` er primært badge/domain
+- `underbadge_ids` er underbadgefeltet
+- `rounds` er UI, ikke kategori- eller progresjonslogikk
+- places og people må komme fra manifest-loadede source-filer
+- quiz og people-referanser må validere mot eksisterende data
+- progresjonsendrende kode må dispatch’e `updateProfile`
+
+### PlaceCard-rundinger
+
+`rounds` er et UI-grid. Det er ikke ferdigmodell, ikke badge-system og ikke kategori-logikk.
+
+Viktig: `wonderkammer` er ikke canonical PlaceCard-runding. Wonderkammer-innhold skal nå ligge under `leksikon`-flowen / leksikon-huben, selv om Wonderkammer fortsatt er en innholdstype og samlingsmodell.
+
+### Quiz / learning
+
+Quiz-systemet har allerede viktige lagringskilder:
+
+- `quiz_history`
+- `knowledge_universe`
+- `trivia_universe`
+- `hg_learning_log_v1`
+
+Learning log er append-only. Observations ligger i learning log, ikke i `knowledge_universe`.
+
+### Social / Spotmeeting
+
+Social Meet er brukerrettet sosial fane/opplevelse. HG Social er teknisk/arkitektonisk navn. Spotmeeting er én konkret møteforespørsel rundt et History GO-objekt eller tema.
+
+Spotmeeting er ikke egen sosial app, ikke dating, ikke GPS-discovery, ikke feed og ikke fri chat.
+
+---
+
+## 3. Fullført sted
+
+Et sted er fullført når spilleren har gjort en reell History GO-handling ved eller rundt stedet, og resultatet er lagret/vises konsekvent.
 
 Minimum:
 
-1. Stedet er åpnet i PlaceCard.
-2. Spilleren har sjekket inn, eller gjennomført gyldig alternativ handling dersom fysisk innsjekk ikke brukes.
-3. Spilleren har fullført stedets quiz eller oppgave.
-4. Progresjon er lagret.
-5. Profilen viser stedet som fullført.
-6. PlaceCard viser fullført status.
+1. Stedet finnes som canonical place object i manifest-loadet source-fil.
+2. Stedet har gyldig `id`, `name`, `category`, `lat` og `lon`.
+3. PlaceCard/popup kan åpnes.
+4. Spilleren har gjort en gyldig handling: innsjekk, quiz, observasjon, rute-stopp eller annen definert stedshandling.
+5. Progresjon er lagret i eksisterende History GO-lagring/read-model.
+6. `updateProfile` dispatches der profilen må oppdateres.
+7. PlaceCard/profil/Nearby/rute kan lese statusen.
 
-Anbefalt full fullføring:
+Fullere fullføring kan i tillegg gi:
 
+- stedsmerke
 - quiz fullført
-- stedsmerke opptjent
-- relevant person/funn låst opp hvis data finnes
-- ruteprogresjon oppdatert hvis stedet er del av rute
-- Wonderkammer oppdatert hvis stedet gir funn
+- person låst opp
+- Wonderkammer-funn under leksikon/samling
+- ruteprogresjon
+- kategori-progresjon
 
 ---
 
-## 3. Stedstatus
+## 4. Stedstatus
 
-Steder bør kunne ha disse statusene:
+Anbefalt statusmodell for read-model/profil/PlaceCard:
 
 | Status | Betydning |
 |---|---|
-| `unknown` | stedet finnes i data, men brukeren har ikke sett det |
-| `discovered` | stedet er vist i kart/Nearby eller åpnet indirekte |
-| `opened` | PlaceCard er åpnet |
-| `visited` | brukeren har vært ved stedet eller registrert besøk |
-| `checked_in` | innsjekk er fullført |
-| `quiz_attempted` | quiz er startet eller forsøkt |
+| `unknown` | stedet finnes i data, men er ikke eksponert for spilleren |
+| `discovered` | stedet er vist gjennom kart, Nearby, rute eller søk |
+| `opened` | PlaceCard/popup er åpnet |
+| `visited` | brukeren har registrert besøk eller relevant stedskontakt |
+| `checked_in` | innsjekk er fullført der innsjekk brukes |
+| `quiz_attempted` | quiz er startet/forsøkt |
 | `quiz_completed` | quiz er bestått/fullført |
+| `observed` | observasjon/minioppdrag er lagret i learning log |
 | `completed` | stedet er fullført etter History GO-reglene |
 | `mastered` | høyeste nivå på stedet er oppnådd |
 
-`completed` skal være spillbar ferdigtilstand. `mastered` er ekstra dybde.
+`completed` er spillbar ferdigtilstand. `mastered` er ekstra dybde.
 
 ---
 
-## 4. Bronse / sølv / gull
+## 5. Bronse / sølv / gull
 
-Bronse, sølv og gull bør brukes konsekvent.
+Bronse, sølv og gull bør tolkes konsekvent, men må ikke bryte eksisterende badge-data.
+
+Anbefalt produktmodell:
 
 | Nivå | Betydning |
 |---|---|
-| Bronse | besøkt eller sjekket inn |
-| Sølv | quiz/oppgave fullført |
-| Gull | quiz/oppgave + ekstra kobling fullført, for eksempel person, funn, ruteoppgave eller observasjon |
+| Bronse | besøkt, åpnet eller sjekket inn |
+| Sølv | quiz/oppgave/observasjon fullført |
+| Gull | sølv + ekstra kobling, for eksempel person, rute-stopp, Wonderkammer-funn eller perfekt quiz |
 
-Hvis et sted ikke har ekstra kobling ennå, kan gull være låst til “kommer senere” eller beregnes som perfekt quizscore.
+Dette er produktlogikk. Implementasjon må respektere eksisterende badgefiler og `underbadge_ids`.
 
 ---
 
-## 5. Fullført quiz
+## 6. Fullført quiz
 
 En quiz er fullført når:
 
-1. Quiz er startet fra gyldig kontekst, normalt PlaceCard eller rute.
-2. Alle nødvendige spørsmål er besvart.
-3. Resultatet er beregnet.
-4. Progresjon er lagret.
-5. Relevante rewards/hooks er kjørt.
-6. Profil, PlaceCard og eventuelt Wonderkammer/rute er oppdatert.
+1. Quiz startes fra gyldig kontekst, normalt PlaceCard, person, rute eller relevant quiz-entry.
+2. Quizdata kommer fra manifest/aktiv quizload, ikke ad-hoc path.
+3. Alle nødvendige spørsmål er besvart.
+4. Resultat beregnes.
+5. `quiz_history` og relevante quiz/progresjonslag oppdateres.
+6. Knowledge/trivia/learning log hooks kjøres der de finnes.
+7. `updateProfile` dispatches.
+8. Reward-popupen får være first-class og overskrives ikke umiddelbart av ny popup.
 
 Quiz bør skille mellom:
 
 - forsøkt
-- bestått
+- fullført
 - perfekt
 - repetert
 
 ---
 
-## 6. Fullført badge / merke
+## 7. Fullført observation / minioppdrag
+
+Observations og minioppdrag skal behandles som situerte learning-log-events.
+
+Fullført observation betyr:
+
+1. Brukeren starter observasjon fra gyldig target: place, person eller generic.
+2. `lensId` matcher en faktisk `lens_id` i observations-data.
+3. Brukeren velger chips og eventuelt note.
+4. Event skrives append-only til `hg_learning_log_v1`.
+5. Eventen kan vises i place/person-popup.
+6. Eventen kan telle i kurs/progresjon dersom kursmotoren bruker den.
+
+Observations skal ikke skrives inn i `knowledge_universe`.
+
+---
+
+## 8. Fullført badge / merke
 
 Et badge er fullført når:
 
 1. Regelen for badget er oppfylt.
-2. Badget er skrevet til progresjonsmodellen.
-3. Badget vises i profil.
-4. Badget kan spores tilbake til hva spilleren gjorde.
+2. Badget kan spores til source: sted, quiz, rute, person, kategori eller Wonderkammer-funn.
+3. Badget lagres i eksisterende badge/progresjonsmodell.
+4. Badget vises i profil eller relevant samlingsflate.
+5. Badget følger kategori/underbadge-kontrakten.
 
-Badge må aldri bare være dekor. Det må svare på: hvorfor fikk spilleren dette?
+Badge må svare på: hvorfor fikk spilleren dette?
 
 ---
 
-## 7. Fullført person
+## 9. Fullført person
 
-En person er fullført på flere nivåer.
+En person bør ha flere nivåer:
 
 | Nivå | Betydning |
 |---|---|
 | Oppdaget | personen er vist via sted/rute/søk |
 | Låst opp | spilleren har gjort handlingen som låser opp personen |
-| Samlet | personen er lagt til i profil/Wonderkammer |
-| Ferdig utforsket | nøkkelsteder, relasjoner eller quiz er fullført |
+| Samlet | personen vises i profil/Wonderkammer/samling |
+| Ferdig utforsket | nøkkelsteder, relasjoner, quiz eller rute er fullført |
 
-Minimum for opplåst person:
+Minimum:
 
-1. Personen har gyldig `personId`.
-2. Personen er koblet til minst ett sted eller én rute.
-3. Spilleren fullfører handlingen som låser personen opp.
-4. Profil og Wonderkammer oppdateres.
+1. Personen finnes i manifest-loadet people-fil.
+2. Personen har stabil `personId`/`id`.
+3. `placeId` eller `places[]` peker til eksisterende places.
+4. Spilleren gjør en handling som låser personen opp.
+5. Profil/samling kan vise personen.
+
+Personer skal ikke dupliseres på tvers av people-filer.
 
 ---
 
-## 8. Fullført Wonderkammer-funn
+## 10. Fullført Wonderkammer-funn
+
+Wonderkammer er History GOs stedlige forundringskammer.
 
 Et Wonderkammer-funn er fullført når:
 
-1. Funnobjektet har id, tittel, type og kildekontekst.
-2. Spilleren har gjort handlingen som låser det opp.
-3. Funnobjektet er lagret i samlingen.
-4. Funnobjektet vises i Wonderkammer.
-5. Funnobjektet peker tilbake til sted/person/rute/kategori.
+1. Funnobjektet har stabil id, tittel/type og konkret stedlig forankring.
+2. Funnobjektet svarer på: hva er tingen, hvor finnes den, hva er forunderlig, hva kan brukeren gjøre, hva samles den som?
+3. `treasureScope` brukes på nye entries der relevant.
+4. Funnobjektet er fortrinnsvis `actual_site_treasure`, ikke generisk `category_object`.
+5. Spilleren gjør handlingen som låser det opp eller samler det.
+6. Funnobjektet vises i Wonderkammer/leksikon-hub/samling.
 
-Funn uten opplåsingslogikk er bare innhold. Funn med opplåsingslogikk er spillobjekter.
+Wonderkammer-funn uten konkret ting eller handling er innhold, men ikke ferdig spillobjekt.
 
 ---
 
-## 9. Fullført rute
+## 11. Fullført rute
 
 En rute er fullført når:
 
 1. Ruten er startet.
-2. Alle obligatoriske stopp er fullført.
-3. Eventuelle ruteoppgaver/sluttspørsmål er fullført.
-4. Ruteprogresjon er lagret.
-5. Rutemerke/sluttbadge er gitt.
-6. Profil viser ruten som fullført.
-7. Wonderkammer viser ruten eller rutefunnet der relevant.
+2. Ruten har tydelig type: vanlig geografisk rute eller historisk rute.
+3. Alle obligatoriske stopp/kapitler er fullført.
+4. Eventuelle quizzer, valg, objekter eller sluttoppgaver er fullført.
+5. Ruteprogresjon oppdateres.
+6. Profil viser status.
+7. Ruten kan gi badge, Wonderkammer-funn eller annen samlingsstatus.
 
-Ruter bør ha delstatus:
+For historiske ruter skal online og fysisk progresjon skilles:
+
+- online = du reiser historien
+- fysisk = du samler sporene etter den
+
+Mulige rute-statuser:
 
 - ikke startet
-- startet
-- delvis fullført
-- klar for sluttoppgave
-- fullført
-- mestret
+- påbegynt online
+- fullført online
+- delvis samlet fysisk
+- fullført fysisk
+- komplett historisk rute
 
 ---
 
-## 10. Fullført kategori
+## 12. Fullført kategori
 
-En kategori er fullført på nivåer, ikke som én binær status.
+En kategori er fullført i nivåer, ikke bare ja/nei.
 
 Eksempel:
 
 | Nivå | Krav |
 |---|---|
 | Startet | minst ett sted åpnet |
-| Bronse | minst tre steder fullført |
-| Sølv | minst én rute eller fem steder fullført |
+| Bronse | flere steder eller quizzer fullført |
+| Sølv | rute, emnedekning eller flere steder fullført |
 | Gull | flere ruter/steder/personer/funn fullført |
-| Mestergrad | større kategori-prøve eller definert hovedmål fullført |
+| Mestergrad | større kategori-prøve, diplom eller definert hovedmål fullført |
 
-Kategori-progresjon må vises i profil.
+Kategori-progresjon må respektere fag-/pensumarkitekturen:
+
+- emner er mikro-kunnskap
+- quiz tester emner
+- knowledge er erfaring
+- pensum/courses tolker erfaring til progresjon
+- status kan være beregnet, ikke nødvendigvis lagret
 
 ---
 
-## 11. Fullført Nearby-handling
+## 13. Fullført Nearby-handling
 
-Nearby er fullført som handling når brukeren går fra anbefaling til faktisk spillhandling.
+Nearby er fullført som handling når:
 
-Eksempel:
-
-1. Nearby anbefaler sted.
-2. Brukeren åpner stedet.
-3. Brukeren gjør innsjekk/quiz/oppgave.
-4. Nearby oppdaterer anbefalingene.
+1. Nearby anbefaler et sted eller en rute.
+2. Brukeren åpner anbefalingen.
+3. Brukeren gjør en faktisk spillhandling: PlaceCard, quiz, observasjon, innsjekk eller rute-stopp.
+4. Nearby oppdaterer anbefalingsgrunnlaget.
 
 Nearby skal ikke bare vise avstand. Det skal skape neste handling.
 
 ---
 
-## 12. Fullført favoritt
+## 14. Fullført favoritt
 
 Favoritt er fullført når:
 
-1. Sted/person/rute markeres som favoritt.
+1. Sted, person eller rute markeres som favoritt.
 2. Favoritten lagres.
-3. Favoritten vises i profil eller samling.
-4. Nearby kan bruke favoritter i anbefaling.
-
-Favoritt må kunne fjernes igjen.
+3. Favoritten vises i profil/Nearby/samling der relevant.
+4. Favoritten kan fjernes igjen.
 
 ---
 
-## 13. Fullført social-handling
+## 15. Fullført Social Meet-handling
 
-En social-handling er fullført når:
+En Social Meet-handling er fullført når:
 
-1. Den er knyttet til et History GO-objekt: sted, rute, funn, profil eller Spotmeeting.
-2. Privacy-regler er sjekket.
-3. Handlingen lagres lokalt eller sendes til backend.
-4. Brukeren ser tydelig resultat.
-5. Eventuell mottaker/visning følger blokkerings- og synlighetsregler.
+1. Den er manuelt initiert.
+2. Den er knyttet til et History GO-objekt eller læringskontekst: sted, quiz, rute, observation, topic eller circle.
+3. Privacy-regler og forbidden-field-regler er sjekket.
+4. Handlingen bruker ikke live-posisjon, nearby people, feed, fri chat eller follower-logikk.
+5. Handlingen lagres lokalt/demo eller sendes til backend når backend finnes.
+6. Brukeren får tydelig resultat.
 
-Eksempler:
-
-- dele funn
-- følge venn
-- se venns offentlige ruteprogresjon
-- kommentere på sted/rute dersom aktivert
-- invitere til felles rute
+Social Meet er kunnskapsbasert sosialitet, ikke sosialt medium.
 
 ---
 
-## 14. Fullført Spotmeeting
+## 16. Fullført Spotmeeting
+
+Spotmeeting er en konkret møteforespørsel inne i Social Meet.
 
 Et Spotmeeting er fullført når:
 
-1. Det er knyttet til et offentlig History GO-sted.
-2. Tidspunkt er valgt.
-3. Deltakere/invitasjon er definert.
-4. Privacy/safety-regler er sjekket.
-5. Møtet er lagret.
-6. Deltakerstatus kan oppdateres.
-7. Møtet kan kanselleres eller endres.
-8. Det vises i relevant profil/social/stedskontekst.
+1. Brukeren starter flowen manuelt.
+2. `contextType` er tillatt: `place`, `quiz`, `route`, `observation`, `topic` eller `circle`.
+3. Context har `contextType`, `contextId`, `title`, `reason` og `sourceSurface`.
+4. Meldingen er preset-only.
+5. Invitasjon er privat som standard.
+6. Mottaker kan godta eller avslå.
+7. Avsender kan avbryte.
+8. Akseptert møte kan markeres gjennomført.
+9. Blokkering/rapportering stopper videre synlighet.
 
-Spotmeeting skal aldri bruke privat adresse som sted.
+Gyldige lifecycle-statuser:
+
+- `pending`
+- `accepted`
+- `completed`
+- `declined`
+- `cancelled`
+
+Spotmeeting skal ikke bruke GPS/live/nearby-signaler.
 
 ---
 
-## 15. Fullført offentlig hjemsted
+## 17. Fullført offentlig hjemsted
 
 Offentlig hjemsted er fullført når:
 
@@ -278,27 +378,30 @@ Offentlig hjemsted er fullført når:
 
 ---
 
-## 16. Definisjon av spillbar modul
+## 18. Definisjon av spillbar modul
 
 En modul er spillbar når den har:
 
 1. tydelig inngang
 2. tydelig handling
-3. tydelig lagring
+3. tydelig lagring eller beregning
 4. tydelig belønning/status
-5. tydelig visning i profil/Wonderkammer/PlaceCard der relevant
+5. tydelig visning i profil/Wonderkammer/PlaceCard/Nearby/ruter der relevant
 6. tydelig neste steg
+7. tydelige grenser mot debug/demo/testmodus
 
 Hvis en modul mangler flere av disse, er den bygget, men ikke ferdig spillbar.
 
 ---
 
-## 17. Arbeidsregel
+## 19. Arbeidsregel
 
-Alle nye systemer bør svare på:
+Alle nye eller videreførte systemer bør svare på:
 
 - Hva gjør spilleren?
-- Hva lagres?
+- Hvilken eksisterende kontrakt gjelder?
+- Hva lagres, og hvor?
+- Hva er beregnet, ikke lagret?
 - Hva låses opp?
 - Hvor vises resultatet?
 - Hva er neste steg?
