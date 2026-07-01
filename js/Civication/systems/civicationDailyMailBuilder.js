@@ -106,17 +106,34 @@
     return Array.isArray(eventObj?.choices) && eventObj.choices.length > 0;
   }
 
-  function isBlockingPendingInboxItem(item) {
+  function isActionablePendingInboxItem(item) {
     if (!item || item.deleted === true || item.archived === true || item.resolved === true) return false;
-    const eventObj = eventOfInboxItem(item);
-    if (!eventObj) return false;
+    const eventObj = eventOfInboxItem(item) || {};
     const status = norm(item.status || eventObj.status || "pending").toLowerCase();
     if (status !== "pending" && status !== "open") return false;
-    return hasAnswerChoices(eventObj);
+
+    const choices = Array.isArray(eventObj.choices) ? eventObj.choices : [];
+    if (choices.length > 0) return true;
+
+    const kindText = [
+      eventObj.mail_type,
+      eventObj.type,
+      eventObj.kind,
+      eventObj.slot,
+      eventObj.task_id,
+      eventObj.source_type
+    ].map(String).join(" ").toLowerCase();
+
+    if (kindText.includes("task_gate")) return true;
+    if (eventObj.requiresAction === true) return true;
+    if ((eventObj.required === true || eventObj.isRequired === true) && choices.length > 0) return true;
+    if ((kindText.includes("daily") || kindText.includes("planned")) && choices.length > 0) return true;
+
+    return false;
   }
 
   function hasPending(engine) {
-    return getInbox(engine).some(isBlockingPendingInboxItem);
+    return getInbox(engine).some(isActionablePendingInboxItem);
   }
 
   function resolveRoleScope(active) {
@@ -1831,6 +1848,7 @@
     answerBundleItem: markAnswered,
     markHandled,
     isDailyEvent,
+    isActionablePendingInboxItem,
     hasBlockingPendingAction: hasPending,
     hasBuiltDayForActiveRole,
     loadJson,
