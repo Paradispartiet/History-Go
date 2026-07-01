@@ -162,6 +162,10 @@ Den operative gaprapporten ligger her:
 
 - [`docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`](../docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md) — kjent gap mellom bygget system og spillbar ferdig app
 
+Korrigering for progresjonsarbeid:
+
+- [`docs/PROFILE_PROGRESS_REUSE_AUDIT.md`](../docs/PROFILE_PROGRESS_REUSE_AUDIT.md) — profile leser allerede mye progresjon; neste arbeid bør gjenbruke profile-lesing, ikke lage ny parallell progresjonssannhet
+
 Ferdigmodellen er delt i tre dokumenter:
 
 - [`docs/COMPLETION_DEFINITIONS.md`](../docs/COMPLETION_DEFINITIONS.md) — hva “fullført” betyr
@@ -172,8 +176,8 @@ Disse dokumentene skal leses sammen med eksisterende kontrakter. De skal ikke er
 
 Kort prioritet:
 
-1. Felles progresjons-read-model
-2. PlaceCard-standard
+1. Gjenbruk profile sin eksisterende progresjonslesing
+2. PlaceCard-standard/status
 3. Profil
 4. Wonderkammer/leksikon-hub
 5. Nearby / favoritter
@@ -259,6 +263,7 @@ node tools/check_places_index_sync.mjs
 5. Ikke legg nye idébibler inn i rot-README.
 6. Ikke kopier gamle README-blokker videre; konsolider dem i riktig dokument.
 7. Ikke legg nye progresjonssannheter ved siden av `quiz_history`, `knowledge_universe`, `trivia_universe`, `hg_learning_log_v1`, courses/pensum og eksisterende profile/update-hooks uten migreringsplan.
+8. Ikke dupliser profile sin progresjonslesing i PlaceCard/Nearby/ruter; trekk heller ut små read-only helpers hvis gjenbruk trengs.
 
 ---
 
@@ -268,6 +273,7 @@ node tools/check_places_index_sync.mjs
 - `README/README.md`: denne hovedoversikten
 - `docs/HISTORY_GO_PRODUCT_MAP.md`: produktkart og ferdigstillelseskart
 - `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`: spillbarhets-gaprapport
+- `docs/PROFILE_PROGRESS_REUSE_AUDIT.md`: audit av hva profile allerede leser og hvordan det bør gjenbrukes
 - `docs/COMPLETION_DEFINITIONS.md`: definisjon av fullført
 - `docs/PROGRESSION_MODEL.md`: progresjons-read-model
 - `docs/PLACE_STANDARD.md`: stedstandard
@@ -282,4 +288,4 @@ node tools/check_places_index_sync.mjs
 
 README-regel:
 
-> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Gaprapporten eier kjent spillbarhetsgap. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
+> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Gaprapporten eier kjent spillbarhetsgap. Profile-progress-auditen korrigerer progresjonsretningen: gjenbruk eksisterende profile-lesing før nye modeller lages. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
