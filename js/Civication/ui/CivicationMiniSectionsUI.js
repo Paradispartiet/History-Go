@@ -210,6 +210,7 @@
         const resilience = window.CivicationPsyche?.getPsychologyResilience?.() || null;
         const competence = Number(resilience?.competence ?? window.CivicationPsyche?.getPsychologyCompetence?.() ?? 0);
         const reductionPct = Number(resilience?.reductionPct || 0);
+        const lastEvent = window.CivicationPsyche?.getLastResilienceEvent?.() || null;
         return [
           validText("psyIntegrity") ? `Integritet: ${textOf("psyIntegrity")}` : null,
           validText("psyVisibility") ? `Synlighet: ${textOf("psyVisibility")}` : null,
@@ -218,7 +219,8 @@
           `Psykologisk kompetanse: ${competence}`,
           reductionPct > 0
             ? `Resiliens: demper negative psyke-treff med ${reductionPct}%`
-            : "Resiliens: øv i Psykologrommet for å dempe negative psyke-treff"
+            : "Resiliens: øv i Psykologrommet for å dempe negative psyke-treff",
+          lastEvent ? `Sist dempet: ${lastEvent.metricLabel} ${lastEvent.originalDelta} → ${lastEvent.adjustedDelta}` : null
         ];
       }
     },

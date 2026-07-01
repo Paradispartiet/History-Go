@@ -94,6 +94,10 @@ Koblingen til Psykologrommet (`js/psychologyRoom.js`, en innsiktsnode med id `ps
    kvantifisert av `getPsychologyResilience()` (`{ competence, reduction, reductionPct }`), og
    psyke-kortet (`CivicationMiniSectionsUI`) viser den som «Resiliens: demper negative
    psyke-treff med X%» — så spilleren ser hva kompetansen faktisk gjør.
+4. Når kompetansen faktisk demper et treff (via `update*` → `recordResilienceMeta`), lagres det
+   som `player.lastPsycheResilience`, en kvantifisert toast vises («… dempet integritet-treffet:
+   −10 → −6.4»), og psyke-kortet viser siste hendelse via
+   `getLastResilienceEvent()` («Sist dempet: integritet −10 → −6.4»).
 
 Status: Psykologrommet (`js/psychologyRoom.js`) er interaktivt — tester/screening, øvelser,
 7-dagersløp, refleksjonsjournal og **CBT-verktøy** (fylles ut som arbeidsark) gir alle

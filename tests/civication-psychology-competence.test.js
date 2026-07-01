@@ -53,6 +53,7 @@ assert.strictEqual(negative.applied, true);
 assert.ok(negative.adjustedDelta > -10, 'negative delta should be dampened');
 assert.ok(negative.adjustedDelta < 0, 'negative delta should not be fully prevented');
 assert.strictEqual(negative.message, 'Psykologisk kompetanse dempet belastningen.');
+assert.strictEqual(negative.summary, 'Psykologisk kompetanse dempet integritet-treffet: -10 → -6.4.', 'summary quantifies the dampening');
 
 const positive = CivicationPsyche.applyPsycheResilienceModifier(10, state, { metric: 'integrity' });
 assert.strictEqual(positive.applied, false);
@@ -67,5 +68,17 @@ state.player.competence.psychology = 0;
 assert.strictEqual(CivicationPsyche.getPsychologyResilience(state).reductionPct, 0, 'no competence means no dampening');
 state.player.competence.psychology = 100;
 assert.strictEqual(CivicationPsyche.getPsychologyResilience(state).reductionPct, 45, 'competence caps dampening at 45%');
+
+// getLastResilienceEvent surfaces the most recent dampening (recorded by update*).
+assert.strictEqual(CivicationPsyche.getLastResilienceEvent(), null, 'no dampening recorded before an update');
+state.player.competence.psychology = 80;
+CivicationPsyche.updateIntegrity(-10);
+const lastEvent = CivicationPsyche.getLastResilienceEvent();
+assert.ok(lastEvent, 'a dampening event should be recorded after updateIntegrity');
+assert.strictEqual(lastEvent.metric, 'integrity');
+assert.strictEqual(lastEvent.metricLabel, 'integritet');
+assert.strictEqual(lastEvent.originalDelta, -10);
+assert.strictEqual(lastEvent.adjustedDelta, -6.4);
+assert.strictEqual(lastEvent.reductionPct, 36);
 
 console.log('civication psychology competence tests passed');
