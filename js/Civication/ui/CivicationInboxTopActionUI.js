@@ -338,11 +338,12 @@
     const messages = visibleMessages();
     if (messages.length) {
       const first = messages[0];
+      const actionable = isActionableInboxItem(first);
       return {
         mode: "info",
-        title: "Ny melding",
+        title: actionable ? "Ny melding" : "Statusmelding i innboksen",
         summary: `${titleOf(first)} · ${kindOf(first)}`,
-        chip: "Melding",
+        chip: actionable ? "Melding" : "Status",
         action: "Åpne innkommende",
         openInbox: true
       };

@@ -20,6 +20,95 @@
   let modalEl = null;
   let bodyEl = null;
 
+
+  function norm(value) {
+    return String(value ?? "").trim();
+  }
+
+  function getActiveRole() {
+    try { return window.CivicationState?.getActivePosition?.() || null; } catch (_e) { return null; }
+  }
+
+  function slugify(value) {
+    return norm(value)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+  }
+
+  function resolveRoleScope(active) {
+    const resolver = window.CivicationCareerRoleResolver?.resolveCareerRoleScope;
+    if (typeof resolver === "function") {
+      const resolved = norm(resolver(active));
+      if (resolved && resolved !== "unknown") return resolved;
+    }
+    return slugify(active?.role_key || active?.title || "");
+  }
+
+  function getInboxSummary() {
+    let inbox = [];
+    try { inbox = window.CivicationMailEngine?.getInbox?.() || window.CivicationState?.getInbox?.() || []; } catch (_e) { inbox = []; }
+    return (Array.isArray(inbox) ? inbox : []).map(function (item) {
+      const ev = item?.event || item || {};
+      return {
+        id: norm(item?.id || ev?.id || ev?.mail_key),
+        subject: norm(ev?.subject || ev?.title || ev?.kind),
+        status: norm(item?.status || ev?.status),
+        choiceCount: Array.isArray(ev?.choices) ? ev.choices.length : 0,
+        source_type: norm(ev?.source_type),
+        mail_type: norm(ev?.mail_type || ev?.type || ev?.kind),
+        phase: norm(ev?.phase || ev?.phase_tag)
+      };
+    });
+  }
+
+  function getDayEndSummary() {
+    try { return window.CivicationDayProgression?.getDayEndSummary?.() || null; } catch (_e) { return null; }
+  }
+
+  function runtimeNeedsRebuild(builderInspection, active) {
+    const runtime = builderInspection?.runtime || null;
+    const roleScope = resolveRoleScope(active);
+    if (!runtime) return { needsRebuild: true, forceNew: false, reason: "missing_runtime" };
+    if (norm(runtime.role_scope) !== roleScope) return { needsRebuild: true, forceNew: true, reason: "wrong_role_scope" };
+    if (!Array.isArray(runtime.items) || runtime.items.length === 0) return { needsRebuild: true, forceNew: true, reason: "empty_runtime_items" };
+
+    const statuses = runtime.items.map(function (row) { return norm(row?.status).toLowerCase(); });
+    const allAnswered = statuses.length > 0 && statuses.every(function (status) { return status === "answered" || status === "resolved" || status === "closed"; });
+    const hasDayEndSummary = runtime.items.some(function (row) {
+      const ev = row?.event || {};
+      const phase = norm(row?.phase || ev?.phase_tag || ev?.daily_mail_meta?.phase).toLowerCase();
+      const type = norm(ev?.mail_type || ev?.type || row?.mail_type).toLowerCase();
+      const status = norm(row?.status).toLowerCase();
+      return (phase === "day_end" || type === "day_end") && (status === "delivered" || status === "pending" || status === "open" || status === "answered") && (getDayEndSummary() || norm(ev?.summary || ev?.subject));
+    });
+    if (allAnswered && !hasDayEndSummary) return { needsRebuild: true, forceNew: true, reason: "day_complete_without_day_end_summary" };
+    return { needsRebuild: false, forceNew: false, reason: "runtime_ok" };
+  }
+
+  let lastNoActionDebug = null;
+
+  function collectRecoveryDebug(reason, extra) {
+    const active = getActiveRole();
+    const detail = {
+      reason: reason || "no_current_action",
+      activeRole: active,
+      resolvedRoleScope: active ? resolveRoleScope(active) : "",
+      currentPhase: norm(window.CivicationCalendar?.getPhase?.()),
+      dayProgression: null,
+      dailyMailBuilder: null,
+      inboxSummary: getInboxSummary(),
+      extra: extra || null
+    };
+    try { detail.dayProgression = window.CivicationDayProgression?.inspect?.() || null; } catch (e) { detail.dayProgression = { error: String(e?.message || e) }; }
+    try { detail.dailyMailBuilder = window.CivicationDailyMailBuilder?.inspect?.() || null; } catch (e) { detail.dailyMailBuilder = { error: String(e?.message || e) }; }
+    lastNoActionDebug = detail;
+    if (window.DEBUG) console.warn("[CivicationNextActionUI] recovery failed", detail);
+    return detail;
+  }
+
   function escapeHtml(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -228,10 +317,28 @@
   function renderInto(body) {
     const action = getCurrentAction();
     if (!action) {
+      const active = getActiveRole();
+      if (active && lastNoActionDebug) {
+        const roleScope = lastNoActionDebug.resolvedRoleScope || resolveRoleScope(active);
+        body.innerHTML = "<div class=\"civi-next-action-empty civi-next-action-debug-error\">"
+          + "<p><strong>Ingen daily mail kunne bygges for active role.</strong></p>"
+          + "<p class=\"muted\">Recovery forsøkte å bygge eller avansere arbeidsdagen, men fant fortsatt ingen reell handling.</p>"
+          + "<dl class=\"civi-debug-list\">"
+          + "<dt>Rolle</dt><dd>" + escapeHtml(active.title || active.role_key || "Aktiv rolle") + "</dd>"
+          + "<dt>role_scope</dt><dd>" + escapeHtml(roleScope) + "</dd>"
+          + "<dt>Fase</dt><dd>" + escapeHtml(lastNoActionDebug.currentPhase || "ukjent") + "</dd>"
+          + "<dt>Årsak</dt><dd>" + escapeHtml(lastNoActionDebug.reason || "no_current_action") + "</dd>"
+          + "</dl>"
+          + "</div>"
+          + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
+        return action;
+      }
       body.innerHTML = "<p class=\"civi-next-action-empty muted\">Ingen handling krever svar nå. Innboksen er ajour.</p>"
         + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
       return action;
     }
+
+    lastNoActionDebug = null;
 
     const lines = bodyLines(action);
     body.innerHTML = ""
@@ -261,9 +368,17 @@
   function open() {
     const modal = ensureModal();
     if (!modal) return false;
-    render();
+    const immediate = getCurrentAction();
+    if (immediate) render();
+    else if (bodyEl) bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>";
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+    prepareNextActionSurface()
+      .then(function () { render(); })
+      .catch(function (error) {
+        collectRecoveryDebug("prepare_exception", { error: String(error?.message || error) });
+        render();
+      });
     return true;
   }
 
@@ -289,6 +404,77 @@
       });
   }
 
+
+  async function prepareNextActionSurface() {
+    lastNoActionDebug = null;
+
+    const existing = getCurrentAction();
+    const active = getActiveRole();
+    if (existing && !active) return { ok: true, action: existing, stage: "current" };
+    if (!active) return { ok: true, action: null, stage: "no_active_role" };
+
+    let initialInspection = null;
+    try { initialInspection = window.CivicationDailyMailBuilder?.inspect?.() || null; } catch (_e) { initialInspection = null; }
+    const initialRebuild = runtimeNeedsRebuild(initialInspection, active);
+    if (existing && !initialRebuild.needsRebuild) return { ok: true, action: existing, stage: "current" };
+
+    const advanceResult = existing && initialRebuild.needsRebuild
+      ? { advanced: false, action: null, reason: initialRebuild.reason }
+      : await advanceUntilNextRealAction();
+    let current = existing && initialRebuild.needsRebuild ? null : (advanceResult?.action || getCurrentAction());
+    if (current) return { ok: true, action: current, stage: "advanced", advance: advanceResult };
+
+    const builder = window.CivicationDailyMailBuilder || null;
+    if (!builder || typeof builder.startToday !== "function") {
+      const debug = collectRecoveryDebug("missing_daily_mail_builder", { advance: advanceResult });
+      return { ok: false, action: null, reason: debug.reason, debug };
+    }
+
+    let inspection = null;
+    try { inspection = typeof builder.inspect === "function" ? builder.inspect() : null; } catch (_e) { inspection = null; }
+    const rebuild = runtimeNeedsRebuild(inspection, active);
+
+    let startResult = null;
+    try {
+      startResult = await builder.startToday({
+        active,
+        engine: window.HG_CiviEngine || null,
+        forceNew: rebuild.forceNew === true,
+        ignorePending: false
+      });
+    } catch (error) {
+      const debug = collectRecoveryDebug("start_today_exception", { error: String(error?.message || error), rebuild, advance: advanceResult });
+      return { ok: false, action: null, reason: debug.reason, debug };
+    }
+
+    dispatchNextActionUpdates();
+    current = getCurrentAction();
+    if (current) return { ok: true, action: current, stage: "start_today", start: startResult, rebuild };
+
+    if (rebuild.needsRebuild && rebuild.forceNew !== true) {
+      try {
+        startResult = await builder.startToday({
+          active,
+          engine: window.HG_CiviEngine || null,
+          forceNew: true,
+          ignorePending: false
+        });
+        dispatchNextActionUpdates();
+        current = getCurrentAction();
+        if (current) return { ok: true, action: current, stage: "force_rebuild", start: startResult, rebuild };
+      } catch (error) {
+        const debug = collectRecoveryDebug("force_start_today_exception", { error: String(error?.message || error), rebuild, advance: advanceResult });
+        return { ok: false, action: null, reason: debug.reason, debug };
+      }
+    }
+
+    const debug = collectRecoveryDebug("no_current_action_after_recovery", {
+      advance: advanceResult,
+      rebuild,
+      startToday: startResult
+    });
+    return { ok: false, action: null, reason: debug.reason, debug };
+  }
 
   async function advanceUntilNextRealAction() {
     const maxLoops = 12;
@@ -354,13 +540,18 @@
   }
 
   function advancePhase() {
-    const result = window.CivicationDayProgression?.advancePhaseIfReady?.();
-    Promise.resolve(result)
-      .then(function () {
-        try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch (_e) {}
-        try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch (_e) {}
-        try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
-        const next = getCurrentAction();
+    const current = getCurrentAction();
+    const runner = current?.canStartNewDay === true
+      ? Promise.resolve(window.CivicationDayProgression?.advancePhaseIfReady?.()).then(function (result) {
+        dispatchNextActionUpdates();
+        return { advanced: result?.advanced !== false, action: getCurrentAction(), reason: result?.reason };
+      })
+      : advanceUntilNextRealAction();
+
+    runner
+      .then(function (progressResult) {
+        dispatchNextActionUpdates();
+        const next = progressResult?.action || getCurrentAction();
         if (next) render();
         else close();
       })
@@ -432,6 +623,7 @@
     render,
     refresh,
     getCurrent: getCurrentAction,
-    advanceUntilNextRealAction
+    advanceUntilNextRealAction,
+    prepareNextActionSurface
   };
 })();
