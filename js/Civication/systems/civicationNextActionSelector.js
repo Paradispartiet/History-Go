@@ -173,19 +173,30 @@
 
   function getPhaseAction(inspection) {
     if (!inspection) return null;
-    // Primary: the delivered/pending item; secondary: the next queued item. This mirrors
-    // exactly what CivicationDayPhaseUi renders as "Neste sak", so the surfaces never diverge.
-    const ref = inspection.pendingItem || inspection.nextQueuedItem || null;
-    if (ref && norm(ref.id)) {
-      const full = findFullRow(inspection, ref.id);
-      return buildPhaseAction(full || ref, inspection);
+    // Primary: the delivered/pending item. If there is no phase-pending row but the
+    // inbox already contains an open answerable mail, keep focus on that visible mail
+    // before opening another queued row. This prevents "Neste handling" from jumping
+    // ahead while the player is looking at an unanswered mail with real choices.
+    const pendingRef = inspection.pendingItem || null;
+    if (pendingRef && norm(pendingRef.id)) {
+      const full = findFullRow(inspection, pendingRef.id);
+      return buildPhaseAction(full || pendingRef, inspection);
+    }
+    const advanceAction = buildAdvancePhaseAction(inspection);
+    if (advanceAction) return advanceAction;
+
+    const openInboxAction = getInboxAction();
+    if (openInboxAction) return openInboxAction;
+
+    const queuedRef = inspection.nextQueuedItem || null;
+    if (queuedRef && norm(queuedRef.id)) {
+      const full = findFullRow(inspection, queuedRef.id);
+      return buildPhaseAction(full || queuedRef, inspection);
     }
     // Defensive: nextActionableItem may still resolve when pending/next refs are missing.
     const actionable = inspection.nextActionableItem;
     if (actionable && norm(actionable.id)) return buildPhaseAction(actionable, inspection);
-    // When the phase has no mail to answer but is ready to advance, NextAction still owns
-    // the single active action instead of letting inbox fallbacks steal focus.
-    return buildAdvancePhaseAction(inspection);
+    return null;
   }
 
   function getInbox() {

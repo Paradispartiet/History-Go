@@ -74,8 +74,24 @@ function run() {
   global.CivicationMailEngine = {
     getInbox() { return inbox; }
   };
+  global.CivicationDayProgression = {
+    inspect() {
+      return {
+        phase: 'morning',
+        phaseLabel: 'Morgen',
+        pendingItem: null,
+        nextQueuedItem: null,
+        nextActionableItem: null,
+        phaseBundle: { items: [], pendingItems: [], queuedItems: [] },
+        nextPhase: 'lunch',
+        canAdvance: false,
+        reason: 'waiting'
+      };
+    }
+  };
 
   loadScript('js/Civication/systems/civicationEventChannels.js');
+  loadScript('js/Civication/systems/civicationNextActionSelector.js');
   loadScript('js/Civication/ui/CivicationInboxTopActionUI.js');
 
   const actionable = global.CivicationInboxTopActionUI.getActionable();
@@ -88,9 +104,9 @@ function run() {
   assert.ok(html.includes('1 åpne'), 'open count should include status=open item');
   assert.ok(html.includes('is-pending'), 'open item should render with is-pending class');
   assert.ok(html.includes('Åpen'), 'open item should render open status label');
-  assert.ok(html.includes('Håndteres i Neste handling'), 'open item with choices should route to NextAction');
-  assert.ok(html.includes('data-civi-open-next-action'), 'open item should render NextAction handover button');
-  assert.ok(!html.includes('data-civi-inbox-answer'), 'inbox should not render primary answer buttons');
+  assert.ok(html.includes('data-civi-inbox-answer'), 'active open item with choices should render answer buttons');
+  assert.ok(html.includes('data-choice-id="accept"'), 'active open item should render its own choice id');
+  assert.ok(html.includes('Aksepter'), 'active open item should render its own choice label');
 
   console.log('PASS: Civication inbox open status rendering test completed.');
 }

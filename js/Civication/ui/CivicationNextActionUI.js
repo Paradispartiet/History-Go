@@ -165,14 +165,22 @@
 
     if (!isAnswerableAction(action)) {
       return ""
-        + "<p class=\"civi-next-action-sub muted\">Denne handlingen kan ikke besvares ennå.</p>"
-        + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Åpne handling\">"
-        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-open-queued=\"1\" data-mail-id=\"" + escapeHtml(mailId) + "\">Åpne neste handling</button>"
+        + "<p class=\"civi-next-action-sub muted\">Dette er en beskjed eller statusmelding.</p>"
+        + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Lukk melding\">"
+        + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">OK</button>"
         + "</div>";
     }
 
-    const choices = Array.isArray(action.choices) ? action.choices : [];
+    const choices = resolveActionChoices(action);
     if (!choices.length) {
+      if (isAnswerableAction(action)) {
+        notifyFailure("Handlingsmail mangler svaralternativer", action);
+        return ""
+          + "<p class=\"civi-next-action-sub muted\">Denne åpne saken mangler svaralternativer i aktiv runtime. Prøv å åpne innboksen på nytt.</p>"
+          + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Svaralternativer\">"
+          + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button>"
+          + "</div>";
+      }
       // Read-only message / automatic event: a single acknowledge button.
       return ""
         + "<p class=\"civi-next-action-sub muted\">Dette er en beskjed eller automatisk hendelse.</p>"
@@ -191,6 +199,30 @@
           + escapeHtml(choice?.label || choiceId) + "</button>";
       }).join("")
       + "</div>";
+  }
+
+  function resolveActionChoices(action) {
+    if (Array.isArray(action?.choices) && action.choices.length) return action.choices;
+    const mailId = String(action?.id || "").trim();
+    if (!mailId) return [];
+
+    const inbox = window.CivicationMailEngine?.getInbox?.() || window.CivicationState?.getInbox?.() || [];
+    const inboxItem = Array.isArray(inbox)
+      ? inbox.find(function (item) {
+        const ev = item?.event || item || {};
+        return String(item?.id || ev?.id || ev?.mail_key || "").trim() === mailId;
+      })
+      : null;
+    const inboxChoices = inboxItem?.event?.choices || inboxItem?.choices;
+    if (Array.isArray(inboxChoices) && inboxChoices.length) {
+      return inboxChoices.map(function (choice) {
+        return {
+          id: String(choice?.id || "").trim(),
+          label: String(choice?.label || choice?.text || choice?.id || "").trim()
+        };
+      }).filter(function (choice) { return choice.id; });
+    }
+    return [];
   }
 
   function renderInto(body) {
