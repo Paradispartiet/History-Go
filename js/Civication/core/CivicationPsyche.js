@@ -185,16 +185,33 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
     return { awarded: next > current, key, delta: next - current, competence: next, reason: next > current ? "awarded" : "capped" };
   }
 
+  const RESILIENCE_METRIC_LABELS = {
+    integrity: "integritet",
+    visibility: "synlighet",
+    economicRoom: "handlingsrom",
+    trust: "tillit",
+    autonomy: "autonomi"
+  };
+
+  function resilienceMetricLabel(metric) {
+    return RESILIENCE_METRIC_LABELS[String(metric || "")] || "psyke";
+  }
+
+  function roundOne(value) {
+    return Math.round(Number(value || 0) * 10) / 10;
+  }
+
   function applyPsycheResilienceModifier(delta, state = null, context = {}) {
     const originalDelta = Number(delta || 0);
     const competence = getPsychologyCompetence(state);
     if (!Number.isFinite(originalDelta) || originalDelta >= 0) {
-      return { originalDelta, adjustedDelta: originalDelta, reduction: 0, competence, applied: false, context };
+      return { originalDelta, adjustedDelta: originalDelta, reduction: 0, competence, applied: false, message: "", summary: "", context };
     }
 
     const reduction = clamp((competence / 100) * 0.45, 0, 0.45);
     const adjustedDelta = originalDelta * (1 - reduction);
     const prevented = adjustedDelta - originalDelta;
+    const metricLabel = resilienceMetricLabel(context?.metric);
     return {
       originalDelta,
       adjustedDelta,
@@ -203,7 +220,28 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
       competence,
       applied: reduction > 0 && prevented > 0,
       message: reduction > 0 ? "Psykologisk kompetanse dempet belastningen." : "",
+      summary: reduction > 0 ? `Psykologisk kompetanse dempet ${metricLabel}-treffet: ${roundOne(originalDelta)} → ${roundOne(adjustedDelta)}.` : "",
       context
+    };
+  }
+
+  // Reads the most recent dampening event recorded by recordResilienceMeta and
+  // returns a psyke-kort view-model, or null when competence has not protected
+  // the player yet.
+  function getLastResilienceEvent(state = null) {
+    const source = state || loadCivicationPlayerState();
+    const last = source?.player?.lastPsycheResilience;
+    if (!last || !last.applied) return null;
+    const metric = String(last.context?.metric || "");
+    return {
+      metric,
+      metricLabel: resilienceMetricLabel(metric),
+      originalDelta: roundOne(last.originalDelta),
+      adjustedDelta: roundOne(last.adjustedDelta),
+      prevented: roundOne(last.prevented),
+      reductionPct: Math.round(Number(last.reduction || 0) * 100),
+      at: last.at || null,
+      summary: last.summary || last.message || ""
     };
   }
 
@@ -231,7 +269,7 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
           lastPsycheResilience: { ...meta, at: new Date().toISOString() }
         }
       });
-      window.showToast?.(meta.message);
+      window.showToast?.(meta.summary || meta.message);
     } catch {}
   }
 
@@ -837,6 +875,7 @@ function getLifestyleTrustModifier() {
     addPsychologyCompetence,
     applyPsycheResilienceModifier,
     getPsychologyResilience,
+    getLastResilienceEvent,
 
     // global psyche
     getIntegrity,
