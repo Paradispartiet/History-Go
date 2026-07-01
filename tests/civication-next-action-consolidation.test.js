@@ -160,15 +160,14 @@ function testSelector() {
   assert.strictEqual(current.choices.length, 2, 'selector carries the answer choices for A');
   assert.notStrictEqual(current.id, 'mail-B', 'selector must never surface the unrelated inbox mail B as active');
 
-  // No mail left and the phase is ready → NextAction owns the advance action before inbox fallback.
+  // No mail left and a normal phase is ready → selector does NOT expose a phase-advance
+  // action. The UI/engine auto-advances internally instead of showing “Gå til neste fase”.
   global.CivicationDayProgression = {
     inspect: () => ({ phase: 'morning', phaseLabel: 'Morgen', dayIndex: 1, openItemsInPhase: 0, pendingItem: null, nextQueuedItem: null, nextActionableItem: null, phaseBundle: { items: [], pendingItems: [], queuedItems: [] }, nextPhase: 'lunch', canAdvance: true, reason: 'ready_to_advance' })
   };
   global.CivicationMailEngine = { getInbox: () => [] };
   const advance = global.CivicationNextActionSelector.getCurrent();
-  assert(advance, 'selector returns an advance action when the day phase is ready');
-  assert.strictEqual(advance.source, 'day_phase_advance', 'advance is still sourced from the day phase before inbox fallback');
-  assert.strictEqual(advance.canAdvancePhase, true, 'advance action is marked as a phase advance');
+  assert.strictEqual(advance, null, 'selector hides ordinary phase advance actions');
 
   // No phase mail and no advance state → fall back to the open inbox mail.
   global.CivicationDayProgression = {
@@ -180,7 +179,7 @@ function testSelector() {
   assert.strictEqual(fallback.id, 'mail-B', 'fallback returns the open inbox mail');
   assert.strictEqual(fallback.source, 'inbox', 'fallback action is sourced from the inbox');
 
-  console.log('  ✓ selector: phase action A wins over inbox B; advance wins before inbox fallback');
+  console.log('  ✓ selector: phase action A wins, ordinary advance is hidden, and inbox fallback works');
 }
 
 // ==================================================================

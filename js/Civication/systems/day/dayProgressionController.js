@@ -69,6 +69,29 @@
     return Array.isArray(runtime?.items) ? runtime.items : [];
   }
 
+  function getInboxItems() {
+    const fromEngine = window.CivicationMailEngine?.getInbox?.();
+    if (Array.isArray(fromEngine)) return fromEngine;
+    const fromState = window.CivicationState?.getInbox?.();
+    return Array.isArray(fromState) ? fromState : [];
+  }
+
+  function inboxEventOf(item) {
+    return item?.event || item || null;
+  }
+
+  function isOpenActionableInboxItem(item) {
+    if (!item || item.deleted === true || item.archived === true || item.resolved === true) return false;
+    const ev = inboxEventOf(item);
+    const status = norm(item.status || ev?.status || "pending").toLowerCase();
+    if (status !== "pending" && status !== "open") return false;
+    return Array.isArray(ev?.choices) && ev.choices.length > 0;
+  }
+
+  function getOpenInboxActionItems() {
+    return getInboxItems().filter(isOpenActionableInboxItem);
+  }
+
   function getCurrentPhase() {
     return norm(getCalendar()?.getPhase?.() || "morning") || "morning";
   }
@@ -229,6 +252,7 @@
     const deliveredRows = items.filter((row) => belongsToPhase(row, phase) && ["delivered", "pending", "open"].includes(norm(row?.status).toLowerCase()));
     const nextQueuedRow = queuedRows[0] || null;
     const pendingRow = deliveredRows[0] || null;
+    const openInboxRows = getOpenInboxActionItems();
     const nextPhase = getNextPhase(phase);
 
     let reason = "ready_to_advance";
@@ -240,6 +264,9 @@
     } else if (openRows.length > 0) {
       canAdvance = false;
       reason = "open_items_in_phase";
+    } else if (openInboxRows.length > 0) {
+      canAdvance = false;
+      reason = "open_inbox_items";
     } else if (queuedRows.length > 0) {
       canAdvance = false;
       reason = "queued_items_in_phase";
@@ -255,11 +282,12 @@
       phase,
       phaseLabel: getPhaseLabel(phase),
       dayIndex: getDayIndex(),
-      openItemsInPhase: openRows.length,
+      openItemsInPhase: openRows.length + openInboxRows.length,
+      openInboxItems: openInboxRows.length,
       queuedItemsInPhase: queuedRows.length,
       deliveredItemsInPhase: deliveredRows.length,
       completedItemsInPhase: items.filter((row) => belongsToPhase(row, phase) && norm(row?.status).toLowerCase() === "answered").length,
-      openItemSubjects: openRows.map((row) => norm(row?.event?.subject || row?.subject || row?.event?.id)).filter(Boolean),
+      openItemSubjects: openRows.map((row) => norm(row?.event?.subject || row?.subject || row?.event?.id)).filter(Boolean).concat(openInboxRows.map((item) => norm(inboxEventOf(item)?.subject || item?.subject || item?.id)).filter(Boolean)),
       pendingItem: pendingRow ? { id: norm(pendingRow?.event?.id || pendingRow?.id), subject: norm(pendingRow?.event?.subject || pendingRow?.subject), status: norm(pendingRow?.status), phase: getPhaseForRow(pendingRow) } : null,
       nextQueuedItem: nextQueuedRow ? { id: norm(nextQueuedRow?.event?.id || nextQueuedRow?.id), subject: norm(nextQueuedRow?.event?.subject || nextQueuedRow?.subject), status: norm(nextQueuedRow?.status), phase: getPhaseForRow(nextQueuedRow) } : null,
       phaseBundle: bundle,
