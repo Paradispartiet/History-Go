@@ -19,13 +19,24 @@
     if (summary?.status === "completed") return "Fullført";
     if (summary?.quizCompleted) return "Quiz fullført";
     if (summary?.visited) return "Besøkt";
-    return "Ikke startet";
+    return "Ikke fullført";
+  }
+
+  function isVisibleAction(id) {
+    const el = document.getElementById(id);
+    if (!el || el.hidden || el.disabled) return false;
+    const style = global.getComputedStyle ? global.getComputedStyle(el) : null;
+    if (style && (style.display === "none" || style.visibility === "hidden")) return false;
+    return true;
   }
 
   function nextActionLabel(summary) {
     if (summary?.nextAction === "completed") return "Ferdig her";
-    if (summary?.nextAction === "quiz") return "Neste: ta quiz";
-    return "Neste: start stedet";
+    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Neste: Ta quiz";
+    if (isVisibleAction("pcUnlock")) return "Neste: Lås opp";
+    if (isVisibleAction("pcObserve")) return "Neste: Observer";
+    if (isVisibleAction("pcRoute")) return "Neste: Følg rute";
+    return "Neste: Utforsk videre";
   }
 
   function renderStatus(place) {
