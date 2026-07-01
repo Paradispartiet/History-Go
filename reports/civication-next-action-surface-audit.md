@@ -48,3 +48,28 @@ Samme mail kan fremdeles vises i innboks som arkiv/detalj mens den er aktiv i Ne
 - `naeringsliv/renholder` (Renholder): renhold/HMS/hygiene-mailfamilier med rom, soner, driftsleder, brukere, verneombud, kollegaer, tempo og verdighet.
 
 Barnehageassistent holdes utenfor denne oppryddingen fordi rollen fortsatt har governance-avvik.
+
+## QA etter NextAction-lock (2026-07-01)
+
+Omfang: Arealplanlegger (`by/by_radgiver_plan`) og Renholder (`naeringsliv/renholder`) er kontrollert som referanseroller for v0.1 etter PR #1575.
+
+### Resultat
+
+- NextAction er fortsatt eneste aktive svarflate: `CivicationNextActionUI` rendrer `data-civi-next-action-answer`, mens Dagens fase og Innboks peker dit.
+- Dagens fase fungerer som status/progresjon: den viser fase, neste sak og knappen «Gå til neste handling», uten egne svarvalg.
+- Innboks fungerer som arkiv/detalj/handover: åpne saker merkes «Håndteres i Neste handling» og bruker `data-civi-open-next-action`, ikke `data-civi-inbox-answer`.
+- WorkdayPanel normal runtime viser ikke konkurrerende bundlevalg; `data-civi-bundle-choice` er fortsatt debug/test-only.
+- Arealplanlegger og Renholder har konkrete `mailFamilies`-valg som vinner over generiske fallback-valg. Referanserollekontrakten fant 80 Arealplanlegger-mailer og 103 Renholder-mailer uten fallback-lekkasje i konkrete valg.
+- Arealplanlegger Day 1-planen bygger en hel dag med 40 forventede mail-/fasepunkter, inkludert planfaglige jobbmailer, followup/consequence senere i dagen og day_end-punkter.
+- Renholder-rollepakken validerer fortsatt renhold/HMS/hygiene-spesifikk mailplan.
+
+### QA-konklusjon
+
+Godkjent for v0.1 playflow: Begge referanseroller kan spilles gjennom minst én dag uten doble svarflater. Det ble ikke funnet behov for ny motor, nye rollepakker eller FWG-dataendringer.
+
+### Kjørte kontroller
+
+- `npm run test:civication -- --runInBand` — passerer.
+- `node tests/civication-inbox-top-action-open-status.test.js` — passerer.
+- `node tests/civication-arealplanlegger-mail-plan.test.js` — passerer.
+- `node tests/civication-renholder-mail-plan.test.js` — passerer.
