@@ -15,10 +15,10 @@ History GO skal fullføres som ett stort spillunivers, ikke som løse moduler.
 Kjerneløype:
 
 ```text
-Kart → Sted / PlaceCard → Innsjekk → Quiz / oppgave → Belønning → Profil / Wonderkammer → Neste sted / rute
+Kart → Sted / PlaceCard → Innsjekk/quiz/observasjon → Belønning/status → Profil/Wonderkammer → Neste sted/rute
 ```
 
-Steder er navet. Profilen er spillerkortet. Wonderkammer er samlingen. Ruter er kampanjer. HG Social og Spotmeeting skal kobles til steder, ruter, funn og trygg offentlig møtebruk.
+Steder er navet. Profilen er spillerkortet. Wonderkammer er samlingen. Ruter er kampanjer. Social Meet og Spotmeeting skal kobles til steder, ruter, funn og trygg offentlig møtebruk.
 
 ---
 
@@ -31,12 +31,12 @@ Steder er navet. Profilen er spillerkortet. Wonderkammer er samlingen. Ruter er 
 - **Emner / pensum:** `emner.html`
 - **AHA:** `AHA/index.html` — import, innsiktskammer og meta
 
-`index.html` er hoved-app-shell for kart, nearby, place card, quiz og miniProfile.
+`index.html` er hoved-app-shell for kart, nearby, PlaceCard, quiz og miniProfile.
 
 Index bruker split boot:
 
 - `bootCritical()` for raskt kart/places
-- `bootBackground()` for people/relations/wonderkammer/nature/stories/events/brands
+- `bootBackground()` for people/relations/Wonderkammer/nature/stories/events/brands
 
 Index-routeren eier:
 
@@ -64,15 +64,18 @@ Et komplett PlaceCard bør kunne vise:
 
 - kjerneinfo
 - bilde / cardImage
-- innsjekkstatus
-- quizstatus
-- badge / belønning
+- status, medalje eller badge
+- primær handling
+- quiz / observation / relevant handling
 - personer / relasjoner
-- relaterte steder
 - ruter
-- Wonderkammer-funn
+- fortellinger
+- leksikon
+- Wonderkammer-innhold gjennom leksikon/hub der relevant
 - favorittstatus
-- social / Spotmeeting der relevant
+- Social Meet / Spotmeeting der trygt og manuelt initiert
+
+`rounds` er UI, ikke kategori- eller progresjonslogikk. Se `data/places/README_place_rounds.md`.
 
 ### Quiz / badges
 
@@ -83,9 +86,10 @@ Rewards/hooks kan gi:
 - HGInsights
 - Knowledge
 - Trivia
-- badges
+- learning log-events
+- badges/merits
 - profiloppdatering
-- Wonderkammer-funn
+- Wonderkammer/leksikon-funn der relevant
 
 ### Profil
 
@@ -95,20 +99,22 @@ Den skal samle:
 
 - besøkte/fullførte steder
 - badges
-- kategoriprogresjon
+- kategori- og kursprogresjon
 - opplåste personer
 - Wonderkammer-funn
 - favoritter
 - ruter
 - offentlig hjemsted
-- social/Spotmeeting-status der relevant
+- Social Meet / Spotmeeting-status der relevant
 - NextUp
 
 ### Wonderkammer
 
 Wonderkammer er samlingen og arkivet.
 
-Det bør samle steder, personer, badges, funn, ruter, kuriositeter, kunstverk, litterære spor, naturfunn, sportshistorie, musikksteder, politiske hendelser, næringslivshistorie og byfenomener.
+Det bør samle konkrete stedsskatter, personer, badges, funn, ruter, kuriositeter, kunstverk, litterære spor, naturfunn, sportshistorie, musikksteder, politiske hendelser, næringslivshistorie og byfenomener.
+
+I PlaceCard ligger Wonderkammer-innhold under `leksikon`-flowen / leksikon-huben, ikke som egen canonical runding.
 
 ### Nearby / favoritter
 
@@ -122,52 +128,55 @@ Ruter er kampanjer.
 
 En rute bør ha startsted, stopp, anbefalt rekkefølge, progresjon, belønning, sluttbadge, profilvisning og Wonderkammer-kobling.
 
+Historiske ruter kan i tillegg skille mellom online historisk reise og fysisk rutesamling.
+
 ### People / relations
 
 People skal være unlock-system, ikke bare datalag.
 
 Spilleren bør møte personer gjennom steder, ruter, funn og kategorier.
 
-### HG Social
+### HG Social / Social Meet
 
-HG Social skal handle om steder, funn, ruter, profiler, trygg deling og felles aktivitet.
+HG Social er teknisk/arkitektonisk navn. Social Meet er brukerrettet produktnavn for sosial fane/opplevelse.
+
+Dette laget skal handle om kunnskapsbasert sosialitet rundt steder, funn, ruter, profiler, trygg deling og felles aktivitet.
 
 Se også `docs/HG_SOCIAL_README.md`.
 
 ### Spotmeeting
 
-Spotmeeting skal være en trygg, stedbasert møtefunksjon knyttet til offentlige History GO-steder.
+Spotmeeting er en konkret møteforespørsel inne i Social Meet.
 
-Det skal ikke være en generell møteapp. Det skal handle om å møtes ved History GO-steder for ruter, funn, samtaler og aktiviteter.
+Det skal ikke være en generell møteapp. Det skal handle om preset-baserte, private, manuelt initierte møteforespørsler rundt History GO-objekter eller temaer.
 
 ---
 
-## 4. Ferdigstillelseskart
+## 4. Ferdigstillelseskart og ferdigdefinisjoner
 
 Det operative produktkartet ligger her:
 
 - [`docs/HISTORY_GO_PRODUCT_MAP.md`](../docs/HISTORY_GO_PRODUCT_MAP.md)
 
-Der står:
+Ferdigmodellen er delt i tre dokumenter:
 
-- hva som mangler
-- hva som bør fullføres først
-- hva som bør videreutvikles
-- hvilke systemer som må kobles
-- hvordan kategoriene bør spille ulikt
-- hvordan progresjon, PlaceCard, profil, Wonderkammer, ruter, social og Spotmeeting bør fullføres
+- [`docs/COMPLETION_DEFINITIONS.md`](../docs/COMPLETION_DEFINITIONS.md) — hva “fullført” betyr
+- [`docs/PROGRESSION_MODEL.md`](../docs/PROGRESSION_MODEL.md) — felles read-model over eksisterende progresjon
+- [`docs/PLACE_STANDARD.md`](../docs/PLACE_STANDARD.md) — hva et komplett/spillbart sted bør ha
+
+Disse dokumentene skal leses sammen med eksisterende kontrakter. De skal ikke erstatte `DATA_PRODUCTION_CONTRACT`, `README_place_rounds`, quiz-README, fag/pensum eller HG Social-dokumentene.
 
 Kort prioritet:
 
-1. Felles progresjonssystem
+1. Felles progresjons-read-model
 2. PlaceCard-standard
 3. Profil
-4. Wonderkammer
+4. Wonderkammer/leksikon-hub
 5. Nearby / favoritter
 6. Ruter
 7. Innholdsstandard per kategori
 8. Innholdshull i svake kategorier
-9. HG Social
+9. Social Meet / HG Social
 10. Spotmeeting
 11. Backend / login / sync
 
@@ -180,7 +189,7 @@ History GO bruker fagkart, emner, steder, quiz og evidens for å bygge kunnskap.
 Grunnstruktur:
 
 ```text
-Merke → Gren / type → Temaområde → Emne → Quiz → Instanser / steder / personer / hendelser
+Merke → Fagkart/fagplan → Emner → Quiz/steder/observasjon → Learning log → Courses/pensum → UI
 ```
 
 Kunnskap bør ikke ligge tilfeldig i UI. Fagtekst og dybde skal ligge i fagkart/emner/steder/personer og vises gjennom knowledge/profil/PlaceCard/Wonderkammer.
@@ -245,6 +254,7 @@ node tools/check_places_index_sync.mjs
 4. Ikke fjern gating for knowledge/trivia uten bevisst produktvalg.
 5. Ikke legg nye idébibler inn i rot-README.
 6. Ikke kopier gamle README-blokker videre; konsolider dem i riktig dokument.
+7. Ikke legg nye progresjonssannheter ved siden av `quiz_history`, `knowledge_universe`, `trivia_universe`, `hg_learning_log_v1`, courses/pensum og eksisterende profile/update-hooks uten migreringsplan.
 
 ---
 
@@ -253,12 +263,18 @@ node tools/check_places_index_sync.mjs
 - `README.md` i repo-rot: kort inngang
 - `README/README.md`: denne hovedoversikten
 - `docs/HISTORY_GO_PRODUCT_MAP.md`: produktkart og ferdigstillelseskart
+- `docs/COMPLETION_DEFINITIONS.md`: definisjon av fullført
+- `docs/PROGRESSION_MODEL.md`: progresjons-read-model
+- `docs/PLACE_STANDARD.md`: stedstandard
 - `README/README_DEV.md`: daglig drift, lokal kjøring, validering og debugging
 - `README/README.pensum.md`: fagkart, emner, pensum og progresjon
-- `docs/HG_SOCIAL_README.md`: sosial kontrakt og social layer
+- `README/quizREADME.md`: quiz, learning log, observations og rewards
+- `data/places/README_place_rounds.md`: PlaceCard-rundinger
+- `data/wonderkammer/README.md`: Wonderkammer-datastandard
+- `docs/HG_SOCIAL_README.md`: Social Meet / HG Social / Spotmeeting
 - `docs/DOMAIN_REGISTRY_README.md`: domene- og aliasstruktur
-- `docs/README_HistoryGo_Historiske_Ruter.md`: ruter der relevant
+- `docs/README_HistoryGo_Historiske_Ruter.md`: historiske ruter
 
 README-regel:
 
-> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus.
+> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
