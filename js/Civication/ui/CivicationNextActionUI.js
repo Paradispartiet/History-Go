@@ -155,11 +155,11 @@
     }
 
     if (action.canAdvancePhase) {
-      const startNewDay = action.canStartNewDay === true;
+      if (action.canStartNewDay !== true) return "";
       return ""
-        + "<p class=\"civi-next-action-sub muted\">" + (startNewDay ? "Dagen er ferdig. Du kan starte en ny dag." : "Fasen er ferdig ryddet.") + "</p>"
+        + "<p class=\"civi-next-action-sub muted\">Dagen er ferdig. Du kan starte en ny dag.</p>"
         + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Fasehandling\">"
-        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-advance=\"1\">" + (startNewDay ? "Start ny dag" : "Gå til neste fase") + "</button>"
+        + "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-advance=\"1\">Start ny dag</button>"
         + "</div>";
     }
 
@@ -289,6 +289,32 @@
       });
   }
 
+
+  async function advanceUntilNextRealAction() {
+    const maxLoops = 12;
+    for (let i = 0; i < maxLoops; i += 1) {
+      const current = getCurrentAction();
+      if (current) return { advanced: i > 0, action: current };
+
+      const inspection = window.CivicationDayProgression?.inspect?.();
+      if (!inspection) return { advanced: i > 0, action: null, reason: "no_progression" };
+      if (String(inspection.phase || "").trim() === "day_end" || String(inspection.reason || "").trim() === "at_last_phase") {
+        return { advanced: i > 0, action: getCurrentAction(), reason: "day_end" };
+      }
+      if (!inspection.canAdvance) {
+        return { advanced: i > 0, action: null, reason: inspection.reason || "not_ready" };
+      }
+
+      const result = await Promise.resolve(window.CivicationDayProgression?.advancePhaseIfReady?.());
+      dispatchNextActionUpdates();
+      if (!result || result.advanced === false) {
+        return { advanced: i > 0, action: getCurrentAction(), reason: result?.reason || "advance_failed" };
+      }
+    }
+    if (window.DEBUG) console.warn("[CivicationNextActionUI] advanceUntilNextRealAction stopped by loop guard; day program may be empty or broken.");
+    return { advanced: true, action: getCurrentAction(), reason: "loop_guard" };
+  }
+
   function answer(mailId, choiceId) {
     if (!mailId) return Promise.resolve({ ok: false, reason: "missing_mail_id" });
     const action = getCurrentAction();
@@ -307,11 +333,12 @@
           return answerResult;
         }
         dispatchNextActionUpdates();
-        // Re-render so the next phase action (if any) appears; close when nothing remains.
-        const next = getCurrentAction();
-        if (next) render();
-        else close();
-        return answerResult;
+        return advanceUntilNextRealAction().then(function (progressResult) {
+          const next = progressResult?.action || getCurrentAction();
+          if (next) render();
+          else close();
+          return answerResult;
+        });
       })
       .catch(function (error) {
         notifyFailure("Kunne ikke svare på mail", error);
@@ -404,6 +431,7 @@
     close,
     render,
     refresh,
-    getCurrent: getCurrentAction
+    getCurrent: getCurrentAction,
+    advanceUntilNextRealAction
   };
 })();

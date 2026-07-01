@@ -143,32 +143,12 @@
   }
 
   function buildAdvancePhaseAction(inspection) {
+    // Ordinary phase changes are engine-only: NextAction must not present
+    // “Gå til neste fase” as a player action. The only explicit advance action
+    // that remains visible is day_end → start new day, so players can read the
+    // day summary before rolling the calendar.
     if (!inspection) return null;
-    const startNewDay = buildStartNewDayAction(inspection);
-    if (startNewDay) return startNewDay;
-    if (!inspection.canAdvance || !inspection.nextPhase) return null;
-    const nextPhaseLabel = getNextPhaseLabel(inspection.nextPhase);
-    return {
-      source: "day_phase_advance",
-      id: "advance_phase:" + norm(inspection.phase) + ":" + norm(inspection.nextPhase),
-      subject: nextPhaseLabel ? "Gå til neste fase: " + nextPhaseLabel : "Gå til neste fase",
-      body: "Alle saker i nåværende fase er håndtert. Du kan gå videre til neste fase.",
-      situation: [],
-      summary: "Faseklarering",
-      phase: norm(inspection.phase),
-      phaseLabel: norm(inspection.phaseLabel),
-      mail_type: "phase_advance",
-      slot: norm(inspection.nextPhase),
-      status: "ready",
-      isQueued: false,
-      isAnswerable: false,
-      choices: [],
-      isTaskGate: false,
-      taskId: "",
-      canAdvancePhase: true,
-      nextPhase: norm(inspection.nextPhase),
-      nextPhaseLabel
-    };
+    return buildStartNewDayAction(inspection);
   }
 
   function getPhaseAction(inspection) {
@@ -182,8 +162,8 @@
       const full = findFullRow(inspection, pendingRef.id);
       return buildPhaseAction(full || pendingRef, inspection);
     }
-    const advanceAction = buildAdvancePhaseAction(inspection);
-    if (advanceAction) return advanceAction;
+    const startNewDayAction = buildAdvancePhaseAction(inspection);
+    if (startNewDayAction) return startNewDayAction;
 
     const openInboxAction = getInboxAction();
     if (openInboxAction) return openInboxAction;
@@ -196,6 +176,7 @@
     // Defensive: nextActionableItem may still resolve when pending/next refs are missing.
     const actionable = inspection.nextActionableItem;
     if (actionable && norm(actionable.id)) return buildPhaseAction(actionable, inspection);
+
     return null;
   }
 
@@ -257,7 +238,8 @@
 
   /**
    * Returns exactly one active action, or null when nothing needs answering.
-   * Day-phase actions always win over inbox fallbacks.
+   * Pending phase actions win first, then open inbox mails, then queued phase rows.
+   * Ordinary phase-advance actions are intentionally not returned.
    */
   function getCurrent() {
     const inspection = getInspection();

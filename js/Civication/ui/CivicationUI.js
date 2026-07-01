@@ -1111,9 +1111,7 @@ function computeDayPhaseModel() {
     ? { kind: "open_bundle", label: Number(prog?.queuedItemsInPhase || 0) === 1 ? "Åpne neste" : "Åpne bolken" }
     : activePendingCount > 0
       ? { kind: "continue_bundle", label: "Svar direkte i bolken" }
-      : (prog?.canAdvance && prog?.nextPhase && blockingItems === 0)
-        ? { kind: "advance_phase", label: "Gå til neste fase" }
-        : { kind: "wait", label: "Ingen handling" };
+      : { kind: "wait", label: "Ingen handling" };
 
   return {
     hasBundle: items.length > 0,
@@ -1271,9 +1269,7 @@ function buildDayPhaseSectionHtml(dayPhase) {
   // so the workday panel never renders its own answer choices.
   const actionHtml = (action.kind === "open_bundle" || action.kind === "continue_bundle")
     ? `<button class="civi-btn" type="button" data-civi-day-phase-next-action>Gå til neste handling</button>`
-    : action.kind === "advance_phase"
-      ? `<button class="civi-btn" type="button" data-civi-day-phase-advance>Gå til neste fase</button>`
-      : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
+    : `<span class="civi-workday-sub">${action.label || "Ingen handling"}</span>`;
   const suggestionsHtml = Array.isArray(dayPhase.eveningSuggestions) && dayPhase.eveningSuggestions.length
     ? `<div class="civi-workday-evening-suggestions"><strong>Kveldsforslag:</strong> ${dayPhase.eveningSuggestions.join(" · ")}</div>`
     : "";
