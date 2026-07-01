@@ -209,8 +209,13 @@
     const inbox = getInbox();
     const hit = (Array.isArray(inbox) ? inbox : []).find(function (item) {
       if (!isOpenInboxItem(item)) return false;
-      const ev = eventOf(item);
-      return Array.isArray(ev?.choices) && ev.choices.length > 0;
+      const ev = eventOf(item) || {};
+      const choices = Array.isArray(ev?.choices) ? ev.choices : [];
+      if (choices.length > 0) return true;
+      const kindText = [ev.mail_type, ev.type, ev.kind, ev.slot, ev.task_id, ev.source_type]
+        .map(function (value) { return String(value || "").toLowerCase(); })
+        .join(" ");
+      return kindText.includes("task_gate") || ev.requiresAction === true;
     });
     if (!hit) return null;
 

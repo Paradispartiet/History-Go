@@ -12,6 +12,59 @@
       try { window.dispatchEvent(new Event(eventName)); } catch {}
     });
   }
+
+  function eventOfInboxItem(item) {
+    return item?.event || item || null;
+  }
+
+  function getCurrentInbox() {
+    const fromEngine = window.HG_CiviEngine?.getInbox?.();
+    if (Array.isArray(fromEngine)) return fromEngine;
+    const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
+    if (Array.isArray(fromMailEngine)) return fromMailEngine;
+    const fromState = window.CivicationState?.getInbox?.();
+    return Array.isArray(fromState) ? fromState : [];
+  }
+
+  function setCurrentInbox(next) {
+    if (window.HG_CiviEngine?.setInbox) window.HG_CiviEngine.setInbox(next);
+    else if (window.CivicationState?.setInbox) window.CivicationState.setInbox(next);
+  }
+
+  function isStaleNonActionableStatusMail(item) {
+    if (!item || item.deleted === true || item.archived === true || item.resolved === true) return false;
+    const ev = eventOfInboxItem(item) || {};
+    const status = String(item.status || ev.status || "pending").trim().toLowerCase();
+    if (status !== "pending" && status !== "open") return false;
+    const choices = Array.isArray(ev.choices) ? ev.choices : [];
+    if (choices.length > 0) return false;
+    const text = [ev.subject, ev.title, ev.source, ev.source_type, ev.mail_type, ev.type, ev.kind]
+      .map(String).join(" ").toLowerCase();
+    return text.includes("din sak er registrert")
+      || text.includes("nav_auto")
+      || (text.includes("nav") && (text.includes("fallback") || text.includes("status")));
+  }
+
+  function resolveStaleStatusInboxForJobStart() {
+    const inbox = getCurrentInbox();
+    if (!Array.isArray(inbox) || !inbox.length) return 0;
+    let count = 0;
+    const next = inbox.map(function (item) {
+      if (!isStaleNonActionableStatusMail(item)) return item;
+      count += 1;
+      return {
+        ...item,
+        status: "resolved",
+        resolved: true,
+        archived: true,
+        resolved_at: new Date().toISOString(),
+        archived_at: new Date().toISOString(),
+        resolution_reason: "job_start_non_actionable_status"
+      };
+    });
+    if (count) setCurrentInbox(next);
+    return count;
+  }
   const DEFAULT_OBLIGATION_IDS = [
     "weekly_login",
     "event_response",
@@ -788,6 +841,26 @@
       ensureCuratedFirstJobSequence(offer);
     } catch (e) {
       console.warn("Curated first job sequence failed", e);
+    }
+
+    try {
+      resolveStaleStatusInboxForJobStart();
+    } catch (e) {
+      console.warn("Stale status inbox cleanup failed", e);
+    }
+
+    try {
+      const starter = window.CivicationDailyMailBuilder?.startToday?.({
+        active: active,
+        engine: window.HG_CiviEngine || null,
+        forceNew: true,
+        ignorePending: false
+      });
+      if (starter && typeof starter.catch === "function") {
+        starter.catch(function (e) { console.warn("Daily mail start after job accept failed", e); });
+      }
+    } catch (e) {
+      console.warn("Daily mail start after job accept failed", e);
     }
 
     if (typeof window.showToast === "function") {

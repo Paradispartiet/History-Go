@@ -84,7 +84,16 @@
       return Array.isArray(ev?.choices) && ev.choices.length > 0;
     },
     isActionableInboxItem: function (item) {
-      return this.isOpenInboxItem(item) && this.hasChoices(item);
+      if (!this.isOpenInboxItem(item)) return false;
+      const ev = item?.event || item || {};
+      const choices = Array.isArray(ev?.choices) ? ev.choices : [];
+      if (choices.length > 0) return true;
+      const kindText = [ev.mail_type, ev.type, ev.kind, ev.slot, ev.task_id, ev.source_type]
+        .map(String).join(" ").toLowerCase();
+      if (kindText.includes("task_gate")) return true;
+      if (ev.requiresAction === true) return true;
+      if ((ev.required === true || ev.isRequired === true) && choices.length > 0) return true;
+      return false;
     }
   });
 
