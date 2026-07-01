@@ -205,10 +205,14 @@
       const context = { contextType:"place", contextId:"factory_memory", title:"Factory", reason:"Smoke", sourceSurface:"smoke" };
       const suggestions = safeSync(() => root.HG_Spotmeeting.getSpotmeetingSuggestions(context));
       const bad = safeSync(() => root.HG_Spotmeeting.createSpotmeetingInvite("demo-industrial-historian", { ...context, latitude: 1 }, "quiz_together"));
+      const readiness = { backendReady: c.value?.backendReady === true, identityReady: c.value?.identityReady === true, invitePersistenceReady: c.value?.invitePersistenceReady === true, moderationReady: c.value?.moderationReady === true, productionDiscoveryEnabled: c.value?.productionDiscoveryEnabled === true };
+      const discoveryGateSafe = readiness.productionDiscoveryEnabled === (readiness.backendReady && readiness.identityReady && readiness.invitePersistenceReady && readiness.moderationReady);
+      if (!discoveryGateSafe) blockers.push(blocker("spotmeeting_production_discovery_gate_invalid", "Spotmeeting discovery gate does not require all readiness flags.", readiness, "spotmeeting"));
+      if (!isEnabled() && !readiness.productionDiscoveryEnabled && suggestions.value?.ok !== false) blockers.push(blocker("spotmeeting_disabled_discovery_allowed", "Spotmeeting returned enabled discovery while productionDiscoveryEnabled is false.", { readiness, suggestions: suggestions.value }, "spotmeeting"));
       if (bad.value?.ok !== false) blockers.push(blocker("spotmeeting_forbidden_allowed", "Spotmeeting tillot forbudt felt.", {}, "spotmeeting"));
       const presetsOnly = list(c.value?.presetMessages).length === 5 && list(c.value?.presetMessages).every((p)=>p.presetMessageId && p.label && !p.freeText);
       if (!presetsOnly) blockers.push(blocker("spotmeeting_presets_invalid", "Spotmeeting er ikke preset-only.", {}, "spotmeeting"));
-      checks.spotmeeting = check(!h.error && h.value?.ok !== false && presetsOnly && bad.value?.ok === false, h.value?.ok === false ? "blocker" : "ok", "HG Spotmeeting kontrollert.", { suggestions: count(suggestions.value?.suggestions), testMode: isEnabled() });
+      checks.spotmeeting = check(!h.error && h.value?.ok !== false && presetsOnly && bad.value?.ok === false && discoveryGateSafe, h.value?.ok === false || !discoveryGateSafe ? "blocker" : "ok", "HG Spotmeeting kontrollert.", { suggestions: count(suggestions.value?.suggestions), testMode: isEnabled(), readiness });
     }
 
     const hasSocialMeetTab = !!root.document?.querySelector?.('.profile-tab[data-tab="socialmeet"], [role="tab"][data-tab="socialmeet"]');
