@@ -152,11 +152,15 @@ Det skal ikke være en generell møteapp. Det skal handle om preset-baserte, pri
 
 ---
 
-## 4. Ferdigstillelseskart og ferdigdefinisjoner
+## 4. Ferdigstillelseskart, gaprapport og ferdigdefinisjoner
 
 Det operative produktkartet ligger her:
 
 - [`docs/HISTORY_GO_PRODUCT_MAP.md`](../docs/HISTORY_GO_PRODUCT_MAP.md)
+
+Den operative gaprapporten ligger her:
+
+- [`docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`](../docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md) — kjent gap mellom bygget system og spillbar ferdig app
 
 Ferdigmodellen er delt i tre dokumenter:
 
@@ -263,6 +267,7 @@ node tools/check_places_index_sync.mjs
 - `README.md` i repo-rot: kort inngang
 - `README/README.md`: denne hovedoversikten
 - `docs/HISTORY_GO_PRODUCT_MAP.md`: produktkart og ferdigstillelseskart
+- `docs/HISTORY_GO_PLAYABLE_GAP_AUDIT.md`: spillbarhets-gaprapport
 - `docs/COMPLETION_DEFINITIONS.md`: definisjon av fullført
 - `docs/PROGRESSION_MODEL.md`: progresjons-read-model
 - `docs/PLACE_STANDARD.md`: stedstandard
@@ -277,4 +282,4 @@ node tools/check_places_index_sync.mjs
 
 README-regel:
 
-> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
+> Én sannhet per dokument. Rot-README er inngang. Hoved-README er oversikt. Produktkartet eier ferdigstillelsesstatus. Gaprapporten eier kjent spillbarhetsgap. Fag-, data-, quiz-, social- og place-rounds-kontrakter skal ikke overstyres av nye planleggingsdokumenter.
