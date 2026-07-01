@@ -72,6 +72,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadLayerManager", () => loadScriptOnce("js/core/layerManager.js"));
     await safeRun("loadBottomSheetController", () => loadScriptOnce("js/core/bottomSheetController.js"));
     await safeRun("loadPopupUtils", () => loadScriptOnce("js/ui/popup-utils.js"));
+    // Leksikon-hubben rendrer Wonderkammer-rader med data-wonderkammer-entry;
+    // entry-handleren må derfor være lastet før brukeren kan klikke dem.
+    await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js"));
 
     // Leksikon-runtime: leksikon_loader.js definerer window.HGLeksikon og patcher

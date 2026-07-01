@@ -10,6 +10,8 @@
   let initPromise = null;
   let sprakManifestPromise = null;
   let currentLeksikonContext = null;
+  let wonderkammerReadySeen = !!window.WK_BY_PLACE;
+  let wonderkammerInitialWaitDone = !!window.WK_BY_PLACE;
   const sprakByPlace = Object.create(null);
 
   function esc(value) {
@@ -321,6 +323,22 @@
       .filter((entry) => entry.id);
   }
 
+  function waitForWonderkammerReady(timeoutMs = 350) {
+    if (window.WK_BY_PLACE || wonderkammerReadySeen || wonderkammerInitialWaitDone) return Promise.resolve();
+    return new Promise((resolve) => {
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        wonderkammerInitialWaitDone = true;
+        window.removeEventListener?.("hg:wonderkammer-ready", finish);
+        resolve();
+      };
+      window.addEventListener?.("hg:wonderkammer-ready", finish, { once: true });
+      setTimeout(finish, timeoutMs);
+    });
+  }
+
   function renderWonderkammerSection(entries, place) {
     const rows = Array.isArray(entries) ? entries : [];
     const groups = rows.reduce((acc, entry) => {
@@ -550,6 +568,7 @@
     const groups = groupLeksikonEntries(mainArticle, resolvedPlace, sprakArticle, articles, id);
     const stories = await getStoriesForPlace(id);
     const lesesporItems = getLesesporItemsForPlace(await ensureLesesporItems(), id);
+    await waitForWonderkammerReady();
     const wonderkammerEntries = getWonderkammerEntriesForPlace(id);
     const total = articles.length
       + stories.length
@@ -921,6 +940,7 @@
     if (typeof popupFn === "function") {
       const place = await resolvePlaceForArticle(article) || resolvePlaceById(requestedPlaceId);
       const effectivePlaceId = norm(place?.id || article?.place_id || requestedPlaceId);
+      await waitForWonderkammerReady();
 
       // History Go read-signal: å åpne leksikon for stedet teller som read_leksikon.
       // Civication-broen matcher hg_reads_v1.leksikon på emne/kategori/target.
@@ -1106,8 +1126,48 @@
     } else if (typeof openWonderkammerEntry === "function") {
       openWonderkammerEntry(id);
     } else {
-      window.showToast?.("Wonderkammer-handler ikke lastet");
+      window.showToast?.(`Wonderkammer-handler ikke lastet for ${id}`);
     }
+  });
+
+  async function refreshPlace(placeId) {
+    const id = norm(placeId || currentLeksikonContext?.placeId);
+    if (!id) return;
+    if (currentLeksikonContext?.placeId === id) {
+      await openPlace(
+        id,
+        currentLeksikonContext.index,
+        currentLeksikonContext.detailType === "hub" ? "" : currentLeksikonContext.detailType,
+        currentLeksikonContext.itemIndex,
+        currentLeksikonContext.sectionType,
+        currentLeksikonContext.itemSource
+      );
+    }
+    try {
+      const listEl = document.getElementById("pcLeksikonList");
+      const iconEl = document.getElementById("pcLeksikonIcon");
+      const place = resolvePlaceById(id);
+      const articles = window.LEKSIKON_BY_PLACE?.[id] || [];
+      const content = await getLeksikonContentForPlace(id, place, articles);
+      if (listEl) listEl.innerHTML = renderPlaceList(id, content.total);
+      if (iconEl) {
+        iconEl.dataset.leksikonPlace = id;
+        iconEl.dataset.leksikonIndex = "0";
+        iconEl.innerHTML = `
+          <div class="pc-round-label">
+            <span class="pc-round-emoji">📚</span>
+            <span class="pc-round-count">${content.total}</span>
+          </div>
+        `;
+      }
+    } catch (err) {
+      console.warn("[HGLeksikon refreshPlace]", err);
+    }
+  }
+
+  window.addEventListener?.("hg:wonderkammer-ready", () => {
+    wonderkammerReadySeen = true;
+    void refreshPlace(currentLeksikonContext?.placeId || document.getElementById("placeCard")?.dataset?.currentPlaceId);
   });
 
 
@@ -1165,6 +1225,7 @@
     renderPlaceList,
     renderArticle,
     patchPlaceCard,
+    refreshPlace,
     leksikonReadRecordsForPlace
   };
 
