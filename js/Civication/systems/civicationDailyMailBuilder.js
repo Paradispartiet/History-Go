@@ -98,8 +98,25 @@
     return Array.isArray(fromState) ? fromState : [];
   }
 
+  function eventOfInboxItem(item) {
+    return item?.event || item || null;
+  }
+
+  function hasAnswerChoices(eventObj) {
+    return Array.isArray(eventObj?.choices) && eventObj.choices.length > 0;
+  }
+
+  function isBlockingPendingInboxItem(item) {
+    if (!item || item.deleted === true || item.archived === true || item.resolved === true) return false;
+    const eventObj = eventOfInboxItem(item);
+    if (!eventObj) return false;
+    const status = norm(item.status || eventObj.status || "pending").toLowerCase();
+    if (status !== "pending" && status !== "open") return false;
+    return hasAnswerChoices(eventObj);
+  }
+
   function hasPending(engine) {
-    return getInbox(engine).some(item => item && item.status === "pending" && item.event);
+    return getInbox(engine).some(isBlockingPendingInboxItem);
   }
 
   function resolveRoleScope(active) {
@@ -1814,6 +1831,7 @@
     answerBundleItem: markAnswered,
     markHandled,
     isDailyEvent,
+    hasBlockingPendingAction: hasPending,
     hasBuiltDayForActiveRole,
     loadJson,
     getFamilyPaths
