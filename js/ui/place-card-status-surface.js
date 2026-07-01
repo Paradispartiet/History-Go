@@ -30,13 +30,13 @@
     return true;
   }
 
-  function nextActionLabel(summary) {
+  function remainingActionLabel(summary) {
     if (summary?.nextAction === "completed") return "Ferdig her";
-    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Neste: Ta quiz";
-    if (isVisibleAction("pcUnlock")) return "Neste: Lås opp";
-    if (isVisibleAction("pcObserve")) return "Neste: Observer";
-    if (isVisibleAction("pcRoute")) return "Neste: Følg rute";
-    return "Neste: Utforsk videre";
+    if (!summary?.quizCompleted && isVisibleAction("pcQuiz")) return "Gjenstår: Ta quiz";
+    if (isVisibleAction("pcUnlock")) return "Gjenstår: Lås opp";
+    if (isVisibleAction("pcObserve")) return "Gjenstår: Observer";
+    if (isVisibleAction("pcRoute")) return "Gjenstår: Følg rute";
+    return "Gjenstår: Utforsk videre";
   }
 
   function renderStatus(place) {
@@ -53,7 +53,7 @@
 
     const parts = [statusLabel(summary)];
     if (summary.favorite) parts.push("Favoritt");
-    parts.push(nextActionLabel(summary));
+    parts.push(remainingActionLabel(summary));
 
     let row = metaEl.querySelector(`[${ROW_ATTR}]`);
     if (!row) {
