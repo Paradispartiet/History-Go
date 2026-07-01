@@ -2999,6 +2999,17 @@
       "alle mailFamilies finnes",
       "Day 1 kan bygges uten runtime- eller UI-endring",
       "ingen broken_mapping for barnehageassistent"
+    ],
+    "required_commands": [
+      "node scripts/audit-civication-role-packs.mjs",
+      "node scripts/audit-civication-fwg-governance.mjs",
+      "npm run test:civication -- --runInBand"
+    ],
+    "must_preserve": [
+      "Arealplanlegger remains complete_reference_v2",
+      "Renholder remains complete_reference_v2",
+      "broken_mapping remains 0",
+      "NextAction QA/playflow remains untouched"
     ]
   }
 }
