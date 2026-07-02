@@ -43,6 +43,12 @@ jobs:
       - name: Audit Civication city map entries
         run: npm run audit:civication-city-map-entries
 
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Civication boot smoke test
+        run: npm run civication:boot-smoke
+
       - name: Generate typecheck baseline report
         run: npm run typecheck:report
 

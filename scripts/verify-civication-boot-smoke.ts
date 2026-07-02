@@ -6,7 +6,7 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
 (async()=>{
  const server=spawn('python3',['-m','http.server','4173'],{stdio:'ignore'});
  await new Promise(r=>setTimeout(r,800));
- const browser=await playwright.webkit.launch({headless:true});
+ const browser=await playwright.chromium.launch({headless:true});
  const page=await browser.newPage();
  const pageErrors: string[]=[]; const reqFails: string[]=[];
  page.on('pageerror',(e: unknown)=>pageErrors.push(String(e)));
