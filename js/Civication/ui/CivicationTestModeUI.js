@@ -449,7 +449,8 @@
       list.innerHTML = `<p class="civi-test-empty">${state.roles.length ? "Ingen roller matcher." : "Fant ingen roller"}</p>`;
       return;
     }
-    const grouped = STATUS_ORDER.map(status => [status, roles.filter(role => role.status === status)]).filter(([, items]) => items.length);
+    /** @type {[string, any[]][]} */
+    const grouped = STATUS_ORDER.map(status => /** @type {[string, any[]]} */ ([status, roles.filter(role => role.status === status)])).filter(([, items]) => items.length);
     const other = roles.filter(role => !STATUS_ORDER.includes(role.status));
     if (other.length) grouped.push(["other", other]);
     list.innerHTML = grouped.map(([status, items]) => `

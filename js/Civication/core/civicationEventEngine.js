@@ -107,6 +107,9 @@ class CivicationEventEngine {
 
     this.packsCache = new Map();
 
+    /** @type {boolean|undefined} */
+    this.__civiSuppressImmediateFollowup = undefined;
+
     this.packMap = opts.packMap || {
       naering: "jobbmails/naeringsliv/naeringslivCivic.json",
       naeringsliv: "jobbmails/naeringsliv/naeringslivCivic.json",
@@ -2072,7 +2075,7 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
       if (!suppressImmediateFollowup) {
         try {
           const followupResult = await this.enqueueImmediateFollowupEvent();
-          legacyImmediateFollowupEnqueued = followupResult !== false;
+          legacyImmediateFollowupEnqueued = followupResult?.enqueued !== false;
         } catch (e) {
           legacyImmediateFollowupEnqueued = false;
           console.warn("Immediate follow-up mail failed", e);

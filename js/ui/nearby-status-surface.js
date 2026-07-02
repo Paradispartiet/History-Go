@@ -126,7 +126,7 @@
   }
 
   function wrapRender(name, after) {
-    const original = global[name];
+    const original = /** @type {any} */ (global)[name];
     if (typeof original !== "function" || original.__hgNearbyStatusWrapped) return false;
 
     const wrapped = function wrappedNearbyStatusSurface() {
@@ -137,7 +137,7 @@
       return result;
     };
     wrapped.__hgNearbyStatusWrapped = true;
-    global[name] = wrapped;
+    /** @type {any} */ (global)[name] = wrapped;
     return true;
   }
 

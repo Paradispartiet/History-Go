@@ -1679,7 +1679,7 @@
     };
 
     proto.answer = async function dailyMailAnswer(eventId, choiceId) {
-      const pending = this.getPendingEvent ? this.getPendingEvent() : null;
+      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
       const eventObj = pending?.event || null;
       const daily = isDailyEvent(eventObj);
 
@@ -1688,12 +1688,12 @@
       if (daily) await markAnswered(eventObj?.id || eventId, choiceId);
 
       let result;
-      const previousSuppress = this.__civiSuppressImmediateFollowup;
-      if (daily) this.__civiSuppressImmediateFollowup = true;
+      const previousSuppress = /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup;
+      if (daily) /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup = true;
       try {
         result = await previousAnswer.call(this, eventId, choiceId);
       } finally {
-        if (daily) this.__civiSuppressImmediateFollowup = previousSuppress === true;
+        if (daily) /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup = previousSuppress === true;
       }
 
       if (daily && result?.ok !== false) {
