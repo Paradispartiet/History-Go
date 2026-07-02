@@ -275,16 +275,52 @@
   // The next-item title must match exactly what NextAction shows. Prefer the shared
   // selector so both surfaces read the same authoritative action; fall back to the raw
   // inspection (pendingItem || nextQueuedItem) when the selector is unavailable.
-  function getNextItemTitle(inspection) {
-    const fromSelector = window.CivicationNextActionSelector?.getCurrent?.();
-    if (fromSelector && fromSelector.subject) return String(fromSelector.subject).trim();
-    const nextItem = inspection?.pendingItem || inspection?.nextQueuedItem || null;
-    return String(nextItem?.subject || "").trim();
+  function getCurrentPhaseMail(inspection) {
+    const current = window.CivicationNextActionSelector?.getCurrent?.();
+    const fallback = inspection?.pendingItem || inspection?.nextQueuedItem || null;
+    const item = current && current.id ? current : fallback;
+    if (!item) return null;
+
+    const title = String(item.subject || item.title || item.id || "").trim();
+    if (!title) return null;
+
+    return {
+      id: String(item.id || "").trim(),
+      title,
+      meta: String(item.mail_type || item.kind || item.phaseLabel || item.phase || "Innkommende").trim(),
+      isQueued: item.isQueued === true,
+      isAdvance: item.canAdvancePhase === true || item.source === "day_phase_advance",
+      isAnswerable: item.isAnswerable === true
+    };
   }
 
   function getOpenItemsText(openCount) {
     if (openCount <= 0) return "Ingen åpne saker i denne fasen.";
     return openCount + (openCount === 1 ? " åpen sak i denne fasen." : " åpne saker i denne fasen.");
+  }
+
+  function renderPhaseMailPreview(inspection, openCount) {
+    const mail = getCurrentPhaseMail(inspection);
+    if (!mail) {
+      return ""
+        + "<section class=\"civi-day-phase-mail is-empty\" aria-label=\"Fasemail\">"
+        + "<div class=\"civi-day-phase-mail-kicker\">Åpen sak i denne fasen</div>"
+        + "<p class=\"civi-day-phase-mail-empty\">Ingen åpne saker i denne fasen.</p>"
+        + "</section>";
+    }
+
+    const status = mail.isAdvance
+      ? "Fasen er klar for videreføring."
+      : (mail.isQueued ? "Klar til å åpnes i dagens fase." : "Håndteres i Neste handling.");
+
+    return ""
+      + "<section class=\"civi-day-phase-mail\" aria-label=\"Fasemail\" data-civi-phase-mail-id=\"" + escapeHtml(mail.id) + "\">"
+      + "<div class=\"civi-day-phase-mail-kicker\">Åpen sak i denne fasen</div>"
+      + "<h4 class=\"civi-day-phase-mail-title\">" + escapeHtml(mail.title) + "</h4>"
+      + (mail.meta ? "<p class=\"civi-day-phase-mail-meta muted\">" + escapeHtml(mail.meta) + "</p>" : "")
+      + "<p class=\"civi-day-phase-mail-status\">" + escapeHtml(status) + "</p>"
+      + (openCount > 1 ? "<p class=\"civi-day-phase-mail-count muted\">" + escapeHtml(getOpenItemsText(openCount)) + "</p>" : "")
+      + "</section>";
   }
 
   function render() {
@@ -297,7 +333,7 @@
 
     const nextPhaseLabel = getNextPhaseLabel(inspection.nextPhase || null);
     const openCount = Number(inspection.openItemsInPhase || 0);
-    const nextItemTitle = getNextItemTitle(inspection);
+    const phaseMailHtml = renderPhaseMailPreview(inspection, openCount);
     const outcomeBanner = buildOutcomeBanner(getOutcomeViewModel());
     const reentryLockBanner = buildReentryLockBanner(getReentryLockViewModel());
     const learningBanner = buildLearningBanner(getLearningViewModel());
@@ -312,7 +348,7 @@
       + learningBanner
       + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
       + "<p class=\"civi-day-phase-status\">" + escapeHtml(getOpenItemsText(openCount)) + "</p>"
-      + (nextItemTitle ? "<p class=\"civi-day-phase-status muted\">Neste sak: " + escapeHtml(nextItemTitle) + "</p>" : "")
+      + phaseMailHtml
       + "<div class=\"civi-day-phase-actions\">"
       + "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-next-action>Gå til neste handling</button>"
       + "</div>";

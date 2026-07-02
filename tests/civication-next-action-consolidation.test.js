@@ -303,7 +303,9 @@ function testDayPhasePanel() {
 
   const selectorTitle = global.CivicationNextActionSelector.getCurrent().subject;
   assert.strictEqual(selectorTitle, 'Fasesak A', 'selector title is the active mail subject');
-  assert(html.includes('Neste sak: Fasesak A'), 'Dagens fase shows the same next-item title as the selector');
+  assert(html.includes('Åpen sak i denne fasen'), 'Dagens fase labels the active phase mail');
+  assert(html.includes('Fasesak A'), 'Dagens fase shows the same next-item title as the selector inside the phase mail preview');
+  assert(html.includes('Håndteres i Neste handling'), 'Dagens fase hands the active mail over to NextAction');
   assert(html.includes('data-civi-day-phase-next-action'), 'Dagens fase routes via the NextAction button');
   assert(html.includes('Gå til neste handling'), 'routing button keeps the NextAction label');
 
@@ -439,11 +441,19 @@ function testArbeidsledigNavMailChoicesVisible() {
   console.log('  ✓ arbeidsledig_nav_001 shows its real choices on the active inbox card');
 }
 
+function testTopMailViewerRemovedFromHomeControls() {
+  const source = fs.readFileSync(path.join(repoRoot, 'js/Civication/ui/CivicationMiniSectionsUI.js'), 'utf8');
+  assert(!source.includes('<article id="civiTopActionCard"'), 'home controls no longer create the competing top mail viewer');
+  assert(source.includes('civi-category-nav'), 'life-area category navigation remains available outside the removed mail viewer');
+  console.log('  ✓ topp-mailviser: civiTopActionCard is no longer rendered as a home-controls main section');
+}
+
 function run() {
   testSelector();
   testNextActionUi();
   testQueuedNextActionUi();
   testDayPhasePanel();
+  testTopMailViewerRemovedFromHomeControls();
   testInboxLink();
   testArbeidsledigNavMailChoicesVisible();
   console.log('PASS: Civication NextAction consolidation tests completed.');
