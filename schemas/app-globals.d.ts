@@ -27,7 +27,6 @@ declare global {
     CIVI_OSLO_SKELETON?: any;
     CiviMailPlanBridge?: any;
     CiviMailPlanDebug?: any;
-    CiviRoleThreadResolver?: any;
     CivicationActivePositionRecovery?: any;
     CivicationActiveRoleStateSync?: any;
     CivicationAllianceMailScoring?: any;
@@ -94,7 +93,6 @@ declare global {
     CivicationDebateEngine?: any;
     CivicationDebateUI?: any;
     CivicationEmptyPanels?: any;
-    CivicationFactionChoiceSystem?: any;
     CivicationFactionConflictSystem?: any;
     CivicationFactionMailScoring?: any;
     CivicationFactionVoice?: any;
@@ -114,7 +112,6 @@ declare global {
     CivicationPeopleUI?: any;
     CivicationRoleStarter?: any;
     CivicationRuntimeDebugPanel?: any;
-    CivicationRuntimeSanityGuard?: any;
     CivicationStorageTrace?: any;
     CivicationStore?: any;
     CivicationStoreUI?: any;

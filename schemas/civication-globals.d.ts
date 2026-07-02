@@ -149,7 +149,6 @@ declare global {
     CAPITAL_ENGINE?: CiviMethodBag;
 
     CivicationUI?: CiviUiLike;
-    CivicationSectionsUI?: CiviMethodBag;
 
     // Civication map-motorer og kalibrering. Verifiserte runtime-globaler satt i
     // js/Civication/ui/*. Map-/kalibrerings-API-ene returnerer blandede

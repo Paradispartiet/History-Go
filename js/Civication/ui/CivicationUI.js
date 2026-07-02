@@ -275,6 +275,35 @@ function buildOfferEligibilityHtml(offer) {
   return "<div class=\"civi-offer-eligibility\" aria-label=\"Hvorfor finnes dette jobbtilbudet\">" + rows.join("") + "</div>";
 }
 
+/**
+ * View-modell for pakkedybden bak et jobbtilbud (full/delvis/generisk rollepakke).
+ * Data eies av CivicationRolePackDepth (systems) — UI leser bare synkront og viser
+ * ingenting hvis indeksen ikke er lastet eller rollen er ukjent.
+ * @param {any} offer
+ * @returns {{ status: string, level: string, label: string, description: string } | null}
+ */
+function getOfferPackDepthViewModel(offer) {
+  if (!offer) return null;
+  const vm = window.CivicationRolePackDepth?.getPackDepthSync?.(offer) || null;
+  if (!vm || !vm.label) return null;
+  return vm;
+}
+
+/**
+ * Én kort linje på tilbudskortet som signaliserer forventet innholdsdybde.
+ * Returnerer "" når det ikke er noe trygt å vise (aldri "undefined"-støy).
+ * @param {any} offer
+ * @returns {string}
+ */
+function buildOfferPackDepthHtml(offer) {
+  const vm = getOfferPackDepthViewModel(offer);
+  if (!vm) return "";
+  return "<div class=\"civi-offer-pack-depth\" data-pack-depth=\"" + escapeOfferHtml(vm.level) + "\">"
+    + "<span class=\"civi-offer-eligibility-label\">" + escapeOfferHtml(vm.label) + "</span>"
+    + "<span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(vm.description) + "</span>"
+    + "</div>";
+}
+
 // ============================================================
 // PROFILE CIVICATION SHOP
 // ============================================================
@@ -646,6 +675,7 @@ async function renderCivication() {
             <div>Terskel: ${offer.threshold}</div>
             <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
             ${buildOfferEligibilityHtml(offer)}
+            ${buildOfferPackDepthHtml(offer)}
 
             <div style="display:flex;gap:10px;margin-top:10px;">
               <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
@@ -2420,7 +2450,9 @@ window.CivicationUI = {
   openDailyMailById,
   openFirstDailyMailFromInspection,
   getOfferEligibilityViewModel,
-  buildOfferEligibilityHtml
+  buildOfferEligibilityHtml,
+  getOfferPackDepthViewModel,
+  buildOfferPackDepthHtml
 };
 
 // PR G: CivicationUI eier nå window.renderWorkdayPanel (innstegspunktet de øvrige day*UI-modulene
