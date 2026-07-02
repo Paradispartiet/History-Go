@@ -170,7 +170,7 @@ assert.strictEqual(renderAndReadFocus(), "Mål: Akershus festning", "travel dest
 
 let inbox = [{ status: "pending", event: { id: "event-1", subject: "Svar på nabomelding", status: "pending" } }];
 global.CivicationMailEngine = { getInbox() { return inbox; } };
-assert.strictEqual(renderAndReadFocus(), "Svar på nabomelding", "pending inbox focus keeps priority over travel destination");
+assert.strictEqual(renderAndReadFocus(), "Åpen sak i dagens fase", "pending inbox focus is summarized instead of duplicating the mail title");
 
 inbox = [];
 destination = { placeId: "mangler_navn" };

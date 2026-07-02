@@ -198,10 +198,9 @@
     if (!event) return NO_FOCUS_LABEL;
 
     const channel = window.CivicationEventChannels?.classifyEvent?.(event) || "";
-    const subject = String(event.subject || event.title || event.kind || "Åpen hendelse");
-    if (channel === "milestone") return `Ny milepæl: ${subject}`;
+    if (channel === "milestone") return "Ny milepæl i dagens fase";
 
-    return subject;
+    return "Åpen sak i dagens fase";
   }
 
 
