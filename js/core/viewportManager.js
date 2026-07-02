@@ -8,7 +8,10 @@
   // Faste innholdshøyder på de full-bleed lagene (header/footer ligger
   // utenfor det skalerte design-canvaset og måles i ekte viewport-piksler).
   // Footerens safe-area legges til separat i CSS via --hg-bottom-nav-height.
+  // Mobil bruker en høyere to-rads header (se "HEADER – MOBILKOMPRESJON" i
+  // css/miniProfile.css); alle lag under leser --hg-visual-header-height.
   const HEADER_HEIGHT = 74;
+  const PHONE_HEADER_HEIGHT = 104;
   const FOOTER_HEIGHT = 80;
   const NEARBY_HEIGHT_TABLET = 260;
   const NEARBY_HEIGHT_PHONE = 228;
@@ -83,6 +86,7 @@
     if (!shell) return;
 
     const { mode, designWidth, designHeight } = layout;
+    const headerHeight = mode === "phone" ? PHONE_HEADER_HEIGHT : HEADER_HEIGHT;
     const nearbyHeight = mode === "phone" ? NEARBY_HEIGHT_PHONE : NEARBY_HEIGHT_TABLET;
     const scaledW = designWidth * scale;
     const scaledH = designHeight * scale;
@@ -137,7 +141,7 @@
 
     // Design-offset: fordi de interne canvas-elementene er skalert, må
     // de få header/nearby/footer-klaring uttrykt i design-piksler (ekte px / scale).
-    const designHeaderOffset = HEADER_HEIGHT / scale;
+    const designHeaderOffset = headerHeight / scale;
     const designNearbyOffset = nearbyHeight / scale;
     const designFooterOffset = FOOTER_HEIGHT / scale;
 
@@ -150,7 +154,7 @@
       root.style.setProperty("--hg-design-header-offset", `${designHeaderOffset}px`);
       root.style.setProperty("--hg-design-nearby-offset", `${designNearbyOffset}px`);
       root.style.setProperty("--hg-design-footer-offset", `${designFooterOffset}px`);
-      root.style.setProperty("--hg-visual-header-height", `${HEADER_HEIGHT}px`);
+      root.style.setProperty("--hg-visual-header-height", `${headerHeight}px`);
       root.style.setProperty("--hg-visual-nearby-height", `${nearbyHeight}px`);
       root.style.setProperty("--hg-visual-footer-height", `${FOOTER_HEIGHT}px`);
     }
@@ -168,7 +172,7 @@
       // nye felter
       vw,
       vh,
-      headerHeight: HEADER_HEIGHT,
+      headerHeight,
       nearbyHeight,
       footerHeight: FOOTER_HEIGHT,
       designHeaderOffset,

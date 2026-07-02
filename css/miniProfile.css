@@ -331,12 +331,37 @@ body.hg-app .site-header .top-actions #miniProfile #miniLastQuiz{
 
 /* =====================================================
    HEADER – MOBILKOMPRESJON
-   Hindrer at høyre ikoner faller ut etter høyrestilling.
+   To-rads header på mobil: ViewportManager setter
+   --hg-visual-header-height til mobilverdien (104px), og
+   top-actions får lov å brekke til to høyrestilte rader.
+   Ingen kontroller skal klippes ut av skjermen.
    ===================================================== */
 
 body.hg-app.hg-phone .site-header .top-actions{
-  gap: 5px;
+  gap: 6px 4px;
   max-width: calc(100% - 10px);
+
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-end;
+
+  /* Klaring for logoen (absolutt posisjonert til venstre) slik at
+     raden som brekker ikke legger seg under den. */
+  padding-left: 52px;
+}
+
+/* Mindre logo på mobil så den ikke spiser en tredjedel av raden. */
+body.hg-app.hg-phone .hg-brand{
+  width: 48px;
+  height: 48px;
+  top: 10px;
+  left: 6px;
+}
+
+/* Tekstknapp («Min dag») skal ikke presses inn i 30px ikonbredde. */
+body.hg-app.hg-phone .site-header .top-actions #btnMinDag{
+  width: auto;
+  padding: 0 6px;
 }
 
 body.hg-app.hg-phone .site-header .top-actions #miniProfile{
@@ -356,11 +381,30 @@ body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniStats{
   font-size: 10px;
 }
 
+/* Søkefeltet er radens fleksible ledd: lav flex-basis så raden aldri
+   brekker pga. søket, vokser opp til 64px når det er plass. */
 body.hg-app.hg-phone #globalSearch{
-  flex: 0 0 90px;
-  max-width: 90px;
+  flex: 1 1 24px;
+  min-width: 0;
+  max-width: 64px;
   height: 30px;
   padding: 0 8px;
+}
+
+/* Språkvelgeren trenger bare flagget + pil på mobil. */
+body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
+  width: 56px;
+  flex: 0 0 56px;
+}
+
+/* Ekstra smale telefoner: miniprofilen må ned i bredde for at
+   øverste rad (språk + profil + Civication) skal holde én rad. */
+@media (max-width: 350px){
+  body.hg-app.hg-phone .site-header .top-actions #miniProfile{
+    width: 132px;
+    max-width: 132px;
+    flex: 0 0 132px;
+  }
 }
 
 body.hg-app.hg-phone .site-header .top-actions .iconbtn{

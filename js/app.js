@@ -47,6 +47,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadCategories", () => loadScriptOnce("js/core/categories.js"));
     await safeRun("loadGeo", () => loadScriptOnce("js/core/geo.js"));
     await safeRun("loadPos", () => loadScriptOnce("js/core/pos.js"));
+
+    // ViewportManager MÅ lastes før boot-fast/bootCritical: bootCritical kaller
+    // window.ViewportManager?.init?.() med optional chaining, så uten denne
+    // lastingen hoppes kallet stille over. Da skaleres aldri .app-shell, og
+    // hg-phone/hg-tablet settes aldri på <body> – mobilkompresjonen av header
+    // og footer (css/miniProfile.css, css/footer.css, css/layout.css) slår
+    // ikke inn, og innholdet skyves ut av skjermen på mobil.
+    await safeRun("loadViewportManager", () => loadScriptOnce("js/core/viewportManager.js"));
     await safeRun("loadDom", () => loadScriptOnce("js/ui/dom.js"));
     await safeRun("loadToast", () => loadScriptOnce("js/ui/toast.js"));
     await safeRun("loadOnboardingWelcome", () => loadScriptOnce("js/ui/onboarding-welcome.js"));
@@ -303,6 +311,10 @@ function assertCriticalIndexRuntime() {
   // sammen – da skal appen feile synlig, ikke late som den er frisk.
   if (!document.querySelector(".app-shell")) {
     missing.push(".app-shell – det skalerte design-canvaset mangler (ViewportManager.init finner det ikke)");
+  }
+
+  if (typeof window.ViewportManager?.init !== "function") {
+    missing.push("ViewportManager (js/core/viewportManager.js) – viewport-/skaleringsmotoren er ikke lastet, hg-phone/hg-tablet og app-shell-skalering uteblir");
   }
 
   if (!document.getElementById("mapLayer")) {

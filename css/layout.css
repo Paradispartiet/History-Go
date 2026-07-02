@@ -78,7 +78,9 @@ body.hg-app .site-header{
   left: 0;
   right: 0;
   width: 100vw;
-  height: 74px;
+  /* ViewportManager eier den autoritative headerhøyden (74px tablet/desktop,
+     høyere to-rads header på mobil). Fallback = tablet-verdien før init. */
+  height: var(--hg-visual-header-height, 74px);
   box-sizing: border-box;
 
   z-index: var(--hg-z-header);
