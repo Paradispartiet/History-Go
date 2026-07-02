@@ -34,6 +34,15 @@ jobs:
       - name: Run Civication outcome tests
         run: npm run test:civication
 
+      - name: Run Civication map tests
+        run: npm run test:civication-map
+
+      - name: Audit Civication History Go place mapping
+        run: npm run audit:civication-place-mapping
+
+      - name: Audit Civication city map entries
+        run: npm run audit:civication-city-map-entries
+
       - name: Generate typecheck baseline report
         run: npm run typecheck:report
 
