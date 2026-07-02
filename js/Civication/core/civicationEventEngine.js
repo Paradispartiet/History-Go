@@ -81,6 +81,18 @@ function isDailyWorkdayEvent(ev) {
     !!ev?.daily_mail_meta;
 }
 
+// Mailer som eies av en aktiv rolleplan (planlagt mail eller konsekvens-tråd).
+// Reaktive mailer (advarsel/generisk followup) skal ikke fortrenge planens
+// deterministiske rekkefølge — enqueueEvent prepender, så en advarsel her ville
+// lagt seg foran neste planlagte sak.
+function isPlanManagedEvent(ev) {
+  const sourceType = String(ev?.source_type || "");
+  return sourceType === "planned" ||
+    sourceType === "thread" ||
+    ev?._is_thread === true ||
+    !!ev?.mail_plan_meta;
+}
+
 // ============================================================
 // CivicationEventEngine
 // ============================================================
@@ -2018,7 +2030,8 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
 
     else if (stability === "WARNING" &&
              this.getState().warning_used !== true &&
-             window.CivicationState.getActivePosition()) {
+             window.CivicationState.getActivePosition() &&
+             !isPlanManagedEvent(ev)) {
 
       const currentState = this.getState();
       /** @type {CiviEventEngineRecord|null} */

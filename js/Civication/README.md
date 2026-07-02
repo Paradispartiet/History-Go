@@ -161,7 +161,9 @@ node tests/civication-arealplanlegger-mail-plan.test.js    # deterministisk dag 
 node tests/civication-mail-choice-uniqueness.test.js       # ingen dupliserte valgpar
 node tests/civication-psychology-competence.test.js        # psyke-kompetanse + anti-farming
 node scripts/audit-civication-fwg-governance.mjs           # FWG styrer mailFamilies (report-only)
-npm run test:civication                                    # hele Civication-suiten
+node tests/run-civication-tests.mjs                        # ALLE tests/civication-*.test.js (glob)
+node tests/run-civication-tests.mjs phase-bundle           # filtrer på delstreng
+npm run test:civication                                    # glob-runneren + jobb-audits (CI)
 ```
 
 I konsoll (per `README/README_DEV.md`):
@@ -178,5 +180,7 @@ NextAction er eneste aktive handlingsflate for dagsflyten. `CivicationNextAction
 
 Dagens fase er passiv fasefortelling/status: den viser hvor spilleren er, hvor mange saker som er åpne, og hvilken sak som kommer neste, men den rendrer ikke svarvalg. Innboksen er arkiv, bakgrunn, historikk og detaljer; åpne saker rutes til NextAction i stedet for å få egne svarknapper. WorkdayPanel forklarer rollepakken, arbeidsdagen og faseprogresjon, men konkurrerer ikke med NextAction.
 
-FWG-data styrer rollelogikk, arbeidsgrammatikk og mailfamilier. Mailer er scener i en arbeidsdag, ikke bare notifikasjoner. For Civication v0.1 er `by/by_radgiver_plan` (Arealplanlegger) og `naeringsliv/renholder` (Renholder) de to viktigste spillbare referanserollene: de skal kunne sammenlignes i samme day/phase/runtime-kontrakt, men bruke tydelig ulike konflikter, aktører, rom og valg. Barnehageassistent har fortsatt governance-avvik og bør løftes senere, ikke blandes inn i denne oppryddingen.
+FWG-data styrer rollelogikk, arbeidsgrammatikk og mailfamilier. Mailer er scener i en arbeidsdag, ikke bare notifikasjoner. For Civication v0.1 er `by/by_radgiver_plan` (Arealplanlegger) og `naeringsliv/renholder` (Renholder) de to viktigste spillbare referanserollene: de skal kunne sammenlignes i samme day/phase/runtime-kontrakt, men bruke tydelig ulike konflikter, aktører, rom og valg. Barnehageassistent (`sosial_laering/barnehageassistent`) er nå også uten avvik i FWG-governance-auditen (`npm run audit:civication:fwg-governance`), men er ikke prioritert som referanserolle i v0.1.
+
+Reaktive mailer fra motoren (strike-advarsler, generiske followups) fortrenger aldri en aktiv rolleplan: `answer()` hopper over den direkte advarsels-enqueuen for planlagte mailer og tråder (`isPlanManagedEvent`), slik at den deterministiske dags-/ukesrekkefølgen holder for alle spillestiler. Advarselstilstanden (`stability`/`strikes`) settes fortsatt i state og plukkes opp av de vanlige flytene.
 

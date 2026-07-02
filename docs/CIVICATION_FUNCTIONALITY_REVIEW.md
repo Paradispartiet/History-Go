@@ -1,5 +1,15 @@
 # Civication – funksjonsgjennomgang (2026-07-02)
 
+> **Status etter oppfølging (samme dag):** P1-punktene er fikset —
+> advarselsmailer fortrenger ikke lenger planlagt dagsflyt (`isPlanManagedEvent`-guard i
+> `civicationEventEngine.answer()`), `answerBundleItem` løser nå innbokskopien, og
+> `dayProgressionController` blokkerer ikke på innbokskopier hvis runtime-raden er besvart.
+> `test:civication` kjører nå **alle** `tests/civication-*.test.js` via
+> `tests/run-civication-tests.mjs` (glob-runner, 132/132 grønne) + jobb-audits.
+> Dokumentdriften (README/CLAUDE.md/pchyche→psyche) er rettet. Gjenstår: død kode
+> (P2, seks filer — krever eierbeslutning), lastrekkefølge debatt-UI/motor, og
+> innholdsgjelden i rollepakker/bykart.
+
 Gjennomgang av hva som må gjøres for at Civication skal fungere godt og henge logisk sammen.
 Basert på kjøring av **alle** 132 Civication-testfiler enkeltvis, alle `audit:civication*`-skript,
 headless boot av `Civication.html` (JSDOM), typecheck, smoke:web, og kildelesing mot
