@@ -1683,7 +1683,14 @@
       // Without this, onAppOpen would see the same daily item as still active and re-enqueue it.
       if (daily) await markAnswered(eventObj?.id || eventId, choiceId);
 
-      const result = await previousAnswer.call(this, eventId, choiceId);
+      let result;
+      const previousSuppress = this.__civiSuppressImmediateFollowup;
+      if (daily) this.__civiSuppressImmediateFollowup = true;
+      try {
+        result = await previousAnswer.call(this, eventId, choiceId);
+      } finally {
+        if (daily) this.__civiSuppressImmediateFollowup = previousSuppress === true;
+      }
 
       if (daily && result?.ok !== false) {
         try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch (error) { if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] refresh feilet", error); }
