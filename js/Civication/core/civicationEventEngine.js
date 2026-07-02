@@ -1624,9 +1624,9 @@ getTaskResultModifier(ev) {
   
   /** @param {string} eventId
    * @param {string} choiceId
-   * @returns {CiviEventEngineRecord}
+   * @returns {Promise<CiviEventEngineRecord>} Resolves after any legacy immediate follow-up enqueue attempt has completed.
    */
-  answer(eventId, choiceId) {
+  async answer(eventId, choiceId) {
     /** @type {CiviEventEngineInboxItem[]} */
     const inbox = this.getInbox();
 
