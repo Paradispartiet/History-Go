@@ -545,6 +545,10 @@
 
     return Promise.resolve(result)
       .then(function (answerResult) {
+        if (answerDebugContext) {
+          answerDebugContext.legacyFollowupSuppressed = answerResult?.legacyImmediateFollowupSuppressed === true;
+          answerDebugContext.legacyFollowupEnqueued = answerResult?.legacyImmediateFollowupEnqueued === true;
+        }
         if (answerResult?.ok === false) {
           notifyFailure("Kunne ikke svare på mail", answerResult);
           if (answerResult.reason === "not_found" && action?.source === "day_phase") {
