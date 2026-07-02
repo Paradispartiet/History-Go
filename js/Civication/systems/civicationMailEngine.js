@@ -337,11 +337,11 @@
       store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, deleted: true } : m);
       saveStore(store);
     },
-    answerMail(mailId, choiceId) {
+    async answerMail(mailId, choiceId) {
       const mail = this.getMail(mailId);
       const eventId = mail?.event?.id || mailId;
       const result = /** @type {{ ok?: unknown }} */ (window.HG_CiviEngine?.answer
-        ? window.HG_CiviEngine.answer(eventId, choiceId)
+        ? await window.HG_CiviEngine.answer(eventId, choiceId)
         : { ok: false, reason: "no_event_engine" });
 
       if (result?.ok !== false) {
