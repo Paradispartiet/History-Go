@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-06-11T04:27:23.377Z",
+  "generatedAt": "2026-07-02T08:46:23.707Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-06-11T04:27:23.377Z",
-    "peopleFilesRead": 27,
-    "totalPeople": 431,
-    "uniquePeopleIds": 431,
-    "duplicatePeopleIds": 0,
+    "generatedAt": "2026-07-02T08:46:23.707Z",
+    "peopleFilesRead": 28,
+    "totalPeople": 483,
+    "uniquePeopleIds": 476,
+    "duplicatePeopleIds": 7,
     "invalidPlaceRefs": 0,
     "peopleWithoutValidPrimaryAnchor": 0,
     "peopleWithEmptyPlacesArray": 0,
     "flatPeopleFiles": 0,
-    "geographicPeopleFiles": 27,
+    "geographicPeopleFiles": 28,
     "categoriesRepresented": 15
   },
   "peopleFiles": [
@@ -103,6 +103,27 @@
         "source_place_id=0/10",
         "placesArray=10/10",
         "categories=film_tv"
+      ]
+    },
+    {
+      "path": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+      "listedInManifest": true,
+      "categoryGuess": "historie",
+      "geographicStructure": true,
+      "peopleCount": 47,
+      "duplicateIdsWithinFile": [],
+      "missingIdCount": 0,
+      "missingNameCount": 0,
+      "missingCategoryCount": 0,
+      "missingPrimaryAnchorCount": 0,
+      "invalidPlaceRefCount": 0,
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=47/47",
+        "source_place_id=0/47",
+        "placesArray=47/47",
+        "categories=historie"
       ]
     },
     {
@@ -299,7 +320,7 @@
       "listedInManifest": true,
       "categoryGuess": "naeringsliv",
       "geographicStructure": true,
-      "peopleCount": 28,
+      "peopleCount": 33,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
@@ -309,9 +330,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=28/28",
-        "source_place_id=0/28",
-        "placesArray=28/28",
+        "placeId=33/33",
+        "source_place_id=0/33",
+        "placesArray=33/33",
         "categories=naeringsliv"
       ]
     },
@@ -634,12 +655,14 @@
     },
     {
       "category": "historie",
-      "totalPeople": 65,
+      "totalPeople": 112,
       "files": [
+        "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
         "data/people/historie/oslo/people_historie_oslo.json"
       ],
       "flatFiles": [],
       "geographicFiles": [
+        "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
         "data/people/historie/oslo/people_historie_oslo.json"
       ],
       "suggestedNextAction": "leave_as_is",
@@ -707,7 +730,7 @@
     },
     {
       "category": "naeringsliv",
-      "totalPeople": 50,
+      "totalPeople": 55,
       "files": [
         "data/people/naeringsliv/europe/portugal/lisbon/people_naeringsliv_lisbon.json",
         "data/people/naeringsliv/oslo/people_naeringsliv_oslo.json"
@@ -817,6 +840,7 @@
       "data/people/filantroper/oslo/people_filantroper_oslo.json",
       "data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json",
       "data/people/film_tv/oslo/people_film_tv_oslo.json",
+      "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
       "data/people/historie/oslo/people_historie_oslo.json",
       "data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json",
       "data/people/kunst/oslo/people_kunst_oslo.json",
@@ -901,6 +925,18 @@
         "source_place_id=0/10",
         "placesArray=10/10",
         "categories=film_tv"
+      ],
+      "deviations": []
+    },
+    {
+      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+      "schemaKind": "standard_placeId_schema",
+      "schemaNotes": [
+        "schemaKind=standard_placeId_schema",
+        "placeId=47/47",
+        "source_place_id=0/47",
+        "placesArray=47/47",
+        "categories=historie"
       ],
       "deviations": []
     },
@@ -1017,9 +1053,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=28/28",
-        "source_place_id=0/28",
-        "placesArray=28/28",
+        "placeId=33/33",
+        "source_place_id=0/33",
+        "placesArray=33/33",
         "categories=naeringsliv"
       ],
       "deviations": []
@@ -1185,7 +1221,99 @@
     }
   ],
   "categorySchemaMismatches": [],
-  "duplicatePeopleIds": [],
+  "duplicatePeopleIds": [
+    {
+      "id": "eufemia_av_rugen",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Eufemia av Rügen"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Eufemia av Rügen"
+        }
+      ]
+    },
+    {
+      "id": "harald_hardrade",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Harald Hardråde"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Harald Hardråde"
+        }
+      ]
+    },
+    {
+      "id": "haakon_haakonsson",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Håkon Håkonsson"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Håkon Håkonsson"
+        }
+      ]
+    },
+    {
+      "id": "haakon_v_magnusson",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Håkon V Magnusson"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Håkon V Magnusson"
+        }
+      ]
+    },
+    {
+      "id": "magnus_den_gode",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Magnus den gode"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Magnus den gode"
+        }
+      ]
+    },
+    {
+      "id": "magnus_lagabote",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Magnus Lagabøte"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Magnus Lagabøte"
+        }
+      ]
+    },
+    {
+      "id": "sigurd_jorsalfare",
+      "entries": [
+        {
+          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+          "personName": "Sigurd Jorsalfare"
+        },
+        {
+          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
+          "personName": "Sigurd Jorsalfare"
+        }
+      ]
+    }
+  ],
   "imageAudit": {
     "checked": true,
     "missingImages": [
@@ -1678,6 +1806,664 @@
         "personName": "Kjersti Holmen",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/kjersti_holmen.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "halvdan_svarte",
+        "personName": "Halvdan Svarte",
+        "field": "image",
+        "imagePath": "bilder/kort/people/halvdan_svarte.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "halvdan_svarte",
+        "personName": "Halvdan Svarte",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/halvdan_svarte.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_grjotgardsson",
+        "personName": "Håkon Grjotgardsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_grjotgardsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_grjotgardsson",
+        "personName": "Håkon Grjotgardsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_grjotgardsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "sigurd_ladejarl",
+        "personName": "Sigurd Ladejarl",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sigurd_ladejarl.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "sigurd_ladejarl",
+        "personName": "Sigurd Ladejarl",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sigurd_ladejarl.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_den_gode",
+        "personName": "Håkon den gode",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_den_gode.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_den_gode",
+        "personName": "Håkon den gode",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_den_gode.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "eirik_blodoks",
+        "personName": "Eirik Blodøks",
+        "field": "image",
+        "imagePath": "bilder/kort/people/eirik_blodoks.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "eirik_blodoks",
+        "personName": "Eirik Blodøks",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/eirik_blodoks.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "gunnhild_kongemor",
+        "personName": "Gunnhild kongemor",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gunnhild_kongemor.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "gunnhild_kongemor",
+        "personName": "Gunnhild kongemor",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gunnhild_kongemor.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_jarl",
+        "personName": "Håkon jarl",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_jarl.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_jarl",
+        "personName": "Håkon jarl",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_jarl.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "olav_tryggvason",
+        "personName": "Olav Tryggvason",
+        "field": "image",
+        "imagePath": "bilder/kort/people/olav_tryggvason.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "olav_tryggvason",
+        "personName": "Olav Tryggvason",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/olav_tryggvason.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "astrid_eiriksdatter",
+        "personName": "Astrid Eiriksdatter",
+        "field": "image",
+        "imagePath": "bilder/kort/people/astrid_eiriksdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "astrid_eiriksdatter",
+        "personName": "Astrid Eiriksdatter",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/astrid_eiriksdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "erling_skjalgsson",
+        "personName": "Erling Skjalgsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/erling_skjalgsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "erling_skjalgsson",
+        "personName": "Erling Skjalgsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/erling_skjalgsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "aasta_gudbrandsdatter",
+        "personName": "Åsta Gudbrandsdatter",
+        "field": "image",
+        "imagePath": "bilder/kort/people/aasta_gudbrandsdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "aasta_gudbrandsdatter",
+        "personName": "Åsta Gudbrandsdatter",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/aasta_gudbrandsdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "tore_hund",
+        "personName": "Tore Hund",
+        "field": "image",
+        "imagePath": "bilder/kort/people/tore_hund.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "tore_hund",
+        "personName": "Tore Hund",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/tore_hund.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "kalv_arnesson",
+        "personName": "Kalv Arnesson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/kalv_arnesson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "kalv_arnesson",
+        "personName": "Kalv Arnesson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/kalv_arnesson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "einar_tambarskjelve",
+        "personName": "Einar Tambarskjelve",
+        "field": "image",
+        "imagePath": "bilder/kort/people/einar_tambarskjelve.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "einar_tambarskjelve",
+        "personName": "Einar Tambarskjelve",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/einar_tambarskjelve.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_den_gode",
+        "personName": "Magnus den gode",
+        "field": "image",
+        "imagePath": "bilder/kort/people/magnus_den_gode.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_den_gode",
+        "personName": "Magnus den gode",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/magnus_den_gode.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "harald_hardrade",
+        "personName": "Harald Hardråde",
+        "field": "image",
+        "imagePath": "bilder/kort/people/harald_hardrade.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "harald_hardrade",
+        "personName": "Harald Hardråde",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/harald_hardrade.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "tora_torbergsdatter",
+        "personName": "Tora Torbergsdatter",
+        "field": "image",
+        "imagePath": "bilder/kort/people/tora_torbergsdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "tora_torbergsdatter",
+        "personName": "Tora Torbergsdatter",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/tora_torbergsdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "olav_kyrre",
+        "personName": "Olav Kyrre",
+        "field": "image",
+        "imagePath": "bilder/kort/people/olav_kyrre.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "olav_kyrre",
+        "personName": "Olav Kyrre",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/olav_kyrre.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_berrfott",
+        "personName": "Magnus Berrføtt",
+        "field": "image",
+        "imagePath": "bilder/kort/people/magnus_berrfott.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_berrfott",
+        "personName": "Magnus Berrføtt",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/magnus_berrfott.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "oystein_magnusson",
+        "personName": "Øystein Magnusson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oystein_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "oystein_magnusson",
+        "personName": "Øystein Magnusson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oystein_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "sigurd_jorsalfare",
+        "personName": "Sigurd Jorsalfare",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sigurd_jorsalfare.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "sigurd_jorsalfare",
+        "personName": "Sigurd Jorsalfare",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sigurd_jorsalfare.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "malmfrid_mstislavsdatter",
+        "personName": "Malmfrid Mstislavsdatter",
+        "field": "image",
+        "imagePath": "bilder/kort/people/malmfrid_mstislavsdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "malmfrid_mstislavsdatter",
+        "personName": "Malmfrid Mstislavsdatter",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/malmfrid_mstislavsdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "harald_gille",
+        "personName": "Harald Gille",
+        "field": "image",
+        "imagePath": "bilder/kort/people/harald_gille.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "harald_gille",
+        "personName": "Harald Gille",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/harald_gille.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "sigurd_slembe",
+        "personName": "Sigurd Slembe",
+        "field": "image",
+        "imagePath": "bilder/kort/people/sigurd_slembe.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "sigurd_slembe",
+        "personName": "Sigurd Slembe",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/sigurd_slembe.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "inge_krokrygg",
+        "personName": "Inge Krokrygg",
+        "field": "image",
+        "imagePath": "bilder/kort/people/inge_krokrygg.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "inge_krokrygg",
+        "personName": "Inge Krokrygg",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/inge_krokrygg.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_herdebrei",
+        "personName": "Håkon Herdebrei",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_herdebrei.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_herdebrei",
+        "personName": "Håkon Herdebrei",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_herdebrei.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "gregorius_dagsson",
+        "personName": "Gregorius Dagsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/gregorius_dagsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "gregorius_dagsson",
+        "personName": "Gregorius Dagsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/gregorius_dagsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "erling_skakke",
+        "personName": "Erling Skakke",
+        "field": "image",
+        "imagePath": "bilder/kort/people/erling_skakke.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "erling_skakke",
+        "personName": "Erling Skakke",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/erling_skakke.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_erlingsson",
+        "personName": "Magnus Erlingsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/magnus_erlingsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_erlingsson",
+        "personName": "Magnus Erlingsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/magnus_erlingsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "oystein_moyla",
+        "personName": "Øystein Møyla",
+        "field": "image",
+        "imagePath": "bilder/kort/people/oystein_moyla.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "oystein_moyla",
+        "personName": "Øystein Møyla",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/oystein_moyla.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "nikolas_arnesson",
+        "personName": "Nikolas Arnesson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/nikolas_arnesson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "nikolas_arnesson",
+        "personName": "Nikolas Arnesson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/nikolas_arnesson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "inga_fra_varteig",
+        "personName": "Inga fra Varteig",
+        "field": "image",
+        "imagePath": "bilder/kort/people/inga_fra_varteig.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "inga_fra_varteig",
+        "personName": "Inga fra Varteig",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/inga_fra_varteig.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "skule_bardsson",
+        "personName": "Skule Bårdsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/skule_bardsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "skule_bardsson",
+        "personName": "Skule Bårdsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/skule_bardsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_haakonsson",
+        "personName": "Håkon Håkonsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_haakonsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_haakonsson",
+        "personName": "Håkon Håkonsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_haakonsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "margrete_skulesdatter",
+        "personName": "Margrete Skulesdatter",
+        "field": "image",
+        "imagePath": "bilder/kort/people/margrete_skulesdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "margrete_skulesdatter",
+        "personName": "Margrete Skulesdatter",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/margrete_skulesdatter.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_lagabote",
+        "personName": "Magnus Lagabøte",
+        "field": "image",
+        "imagePath": "bilder/kort/people/magnus_lagabote.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_lagabote",
+        "personName": "Magnus Lagabøte",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/magnus_lagabote.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "jon_raude",
+        "personName": "Jon Raude",
+        "field": "image",
+        "imagePath": "bilder/kort/people/jon_raude.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "jon_raude",
+        "personName": "Jon Raude",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/jon_raude.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "eirik_magnusson",
+        "personName": "Eirik Magnusson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/eirik_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "eirik_magnusson",
+        "personName": "Eirik Magnusson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/eirik_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_v_magnusson",
+        "personName": "Håkon V Magnusson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_v_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_v_magnusson",
+        "personName": "Håkon V Magnusson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_v_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "eufemia_av_rugen",
+        "personName": "Eufemia av Rügen",
+        "field": "image",
+        "imagePath": "bilder/kort/people/eufemia_av_rugen.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "eufemia_av_rugen",
+        "personName": "Eufemia av Rügen",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/eufemia_av_rugen.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "audun_hugleiksson",
+        "personName": "Audun Hugleiksson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/audun_hugleiksson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "audun_hugleiksson",
+        "personName": "Audun Hugleiksson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/audun_hugleiksson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_eriksson",
+        "personName": "Magnus Eriksson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/magnus_eriksson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "magnus_eriksson",
+        "personName": "Magnus Eriksson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/magnus_eriksson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_vi_magnusson",
+        "personName": "Håkon VI Magnusson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/haakon_vi_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "haakon_vi_magnusson",
+        "personName": "Håkon VI Magnusson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/haakon_vi_magnusson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "margrete_1",
+        "personName": "Margrete 1.",
+        "field": "image",
+        "imagePath": "bilder/kort/people/margrete_1.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "margrete_1",
+        "personName": "Margrete 1.",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/margrete_1.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "erik_av_pommern",
+        "personName": "Erik av Pommern",
+        "field": "image",
+        "imagePath": "bilder/kort/people/erik_av_pommern.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "erik_av_pommern",
+        "personName": "Erik av Pommern",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/erik_av_pommern.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "aslak_bolt",
+        "personName": "Aslak Bolt",
+        "field": "image",
+        "imagePath": "bilder/kort/people/aslak_bolt.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "aslak_bolt",
+        "personName": "Aslak Bolt",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/aslak_bolt.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "olav_nilsson",
+        "personName": "Olav Nilsson",
+        "field": "image",
+        "imagePath": "bilder/kort/people/olav_nilsson.PNG"
+      },
+      {
+        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
+        "personId": "olav_nilsson",
+        "personName": "Olav Nilsson",
+        "field": "cardImage",
+        "imagePath": "bilder/kort/people/olav_nilsson.PNG"
       },
       {
         "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",

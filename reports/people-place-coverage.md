@@ -1,112 +1,115 @@
 # People-place coverage audit
 
-Generert: 2026-06-05T06:51:51.257Z
+Generert: 2026-07-02T08:46:24.115Z
 
 ## Sammendrag
 
-- People totalt: **424**
-- Places totalt: **483**
-- Places med people: **160**
-- Places uten people: **323**
-- People-place-lenker: **609**
-- People koblet til flere gyldige steder: **153**
+- People totalt: **483**
+- Places totalt: **869**
+- Places med people: **209**
+- Places uten people: **660**
+- People-place-lenker: **733**
+- People koblet til flere gyldige steder: **190**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **424**
-- People uten image: **114**
-- People uten cardImage: **114**
+- Duplikate place-referanser inne på people: **483**
+- People uten image: **126**
+- People uten cardImage: **126**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 86 | 27 | 59 | 107 | 81 |
+| by | 92 | 28 | 64 | 108 | 82 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 56 | 14 | 42 | 86 | 56 |
+| historie | 421 | 57 | 364 | 198 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
 | litteratur | 31 | 21 | 10 | 51 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
 | musikk | 13 | 9 | 4 | 27 | 18 |
-| naeringsliv | 55 | 22 | 33 | 44 | 43 |
+| naeringsliv | 55 | 27 | 28 | 55 | 53 |
 | natur | 63 | 5 | 58 | 13 | 13 |
 | politikk | 15 | 7 | 8 | 73 | 60 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
-| sport | 49 | 10 | 39 | 34 | 30 |
+| sport | 64 | 10 | 54 | 34 | 30 |
 | subkultur | 30 | 5 | 25 | 9 | 8 |
 | vitenskap | 29 | 11 | 18 | 53 | 43 |
 
 ## People tags
 
-- historie: 67
+- historie: 114
+- norge_for_1500: 47
 - litteratur: 46
 - politikk: 44
+- naeringsliv: 40
 - vitenskap: 34
 - sport: 31
-- naeringsliv: 30
-- musikk: 29
-- subkultur: 29
+- musikk: 30
+- subkultur: 30
 - media: 27
 - kunst: 25
 - film: 23
 - film_tv: 23
-- natur: 20
+- natur: 22
 - regissor: 20
-- by: 18
+- arkitektur: 19
+- by: 19
 - populaerkultur: 18
 - tv: 18
 - filantrop: 17
 - filmhistorie: 15
 - scene: 15
-- arkitektur: 14
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
+- borgerkrigstiden: 11
 - cinematek: 11
 - humor: 11
 - krig: 11
+- modernisme: 11
 - sanger: 11
 - avis: 10
 - fado: 10
 - presse: 10
 - redaksjon: 10
-- modernisme: 9
 - norsk_film: 9
 - programleder: 9
+- høymiddelalder: 8
 - kringkasting: 8
 - musikkhistorie: 8
 - radio: 8
+- tidlig_kongedømme: 8
+- vikingtid: 8
 - arbeiderbevegelse: 7
+- kristning: 7
+- maleri: 7
+- byutvikling: 6
 - fotball: 6
+- kanon: 6
 - konsert: 6
-- mesen: 6
-- satire: 6
-- stiftelse: 6
-- stifter: 6
-- underholdning: 6
-- arthouse: 5
-- botanikk: 5
-- entreprenor: 5
-- fadokultur: 5
 
 ## Steder med flest people
 
 - stortinget (Stortinget) – 29
+- middelalder_oslo (Middelalderparken) – 28
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
-- middelalder_oslo (Middelalderparken) – 21
+- akerhus_slott (Akerhus Slott) – 22
 - universitetsplassen (Universitetsplassen) – 19
-- akerhus_slott (Akerhus Slott) – 17
-- oslo_domkirke (Oslo domkirke) – 17
 - youngstorget (Youngstorget) – 17
+- oslo_domkirke (Oslo domkirke) – 15
+- var_frelsers_gravlund (Vår Frelsers gravlund) – 15
 - gamle_deichman (Gamle Deichman) – 13
 - karl_johan (Karl Johans gate) – 13
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
+- nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
 - oslo_radhus (Oslo rådhus) – 13
 - lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 12
 - torggata (Torggata) – 12
 - nrk_huset_marienlyst (NRK-huset på Marienlyst) – 11
 - cinemateket_oslo (Cinemateket i Oslo) – 10
+- kristkirken_bergenhus (Kristkirken på Bergenhus) – 10
 - lisbon_museu_do_fado (Museu do Fado) – 10
 - bislett_stadion (Bislett Stadion) – 9
 - eidsvolls_plass (Eidsvolls plass) – 8
@@ -114,9 +117,6 @@ Generert: 2026-06-05T06:51:51.257Z
 - ullevaal_stadion (Ullevaal Stadion) – 8
 - nasjonalmuseet (Nasjonalmuseet) – 7
 - naturhistorisk_museum (Naturhistorisk museum) – 7
-- frogner_stadion (Frogner stadion) – 6
-- lisbon_cinema_ideal (Cinema Ideal) – 6
-- nobelinstituttet (Nobelinstituttet) – 6
 
 ## Ugyldige place-referanser
 
@@ -141,10 +141,58 @@ Generert: 2026-06-05T06:51:51.257Z
 - christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen
 - thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen
 - geir_grung (Geir Grung) -> tjuvholmen
-- kong_sverre (Kong Sverre Sigurdsson) -> oslo_domkirke
+- fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park
+- halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
+- haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
+- sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
+- haakon_den_gode (Håkon den gode) -> avaldsnes_kongsgard
+- eirik_blodoks (Eirik Blodøks) -> york_jorvik
+- gunnhild_kongemor (Gunnhild kongemor) -> jelling_kongsgard
+- haakon_jarl (Håkon jarl) -> lade_gard
+- olav_tryggvason (Olav Tryggvason) -> moster_gamle_kyrkje
+- astrid_eiriksdatter (Astrid Eiriksdatter) -> sola_erling_skjalgsson
+- erling_skjalgsson (Erling Skjalgsson) -> sola_erling_skjalgsson
+- aasta_gudbrandsdatter (Åsta Gudbrandsdatter) -> stein_ringerike_halvdanshaugen
+- tore_hund (Tore Hund) -> stiklestad
+- kalv_arnesson (Kalv Arnesson) -> stiklestad
+- einar_tambarskjelve (Einar Tambarskjelve) -> nidaros_erkebispegarden
+- magnus_den_gode (Magnus den gode) -> nidaros_erkebispegarden
+- harald_hardrade (Harald Hardråde) -> middelalder_oslo
+- tora_torbergsdatter (Tora Torbergsdatter) -> giske_kyrkje
+- olav_kyrre (Olav Kyrre) -> kristkirken_bergenhus
+- magnus_berrfott (Magnus Berrføtt) -> downpatrick_magnus_berrfott
+- oystein_magnusson (Øystein Magnusson) -> kristkirken_bergenhus
+- sigurd_jorsalfare (Sigurd Jorsalfare) -> middelalder_oslo
+- malmfrid_mstislavsdatter (Malmfrid Mstislavsdatter) -> middelalder_oslo
+- harald_gille (Harald Gille) -> kristkirken_bergenhus
+- sigurd_slembe (Sigurd Slembe) -> holmengra_hvaler
+- inge_krokrygg (Inge Krokrygg) -> middelalder_oslo
+- haakon_herdebrei (Håkon Herdebrei) -> sekken_slagsted
+- gregorius_dagsson (Gregorius Dagsson) -> bratsberg_gard
+- erling_skakke (Erling Skakke) -> kalvskinnet_slagsted
+- magnus_erlingsson (Magnus Erlingsson) -> fimreite_slagsted
+- oystein_moyla (Øystein Møyla) -> re_slagsted_ramnes
+- nikolas_arnesson (Nikolas Arnesson) -> middelalder_oslo
+- inga_fra_varteig (Inga fra Varteig) -> varteig_kirke
+- skule_bardsson (Skule Bårdsson) -> reinskloster
+- haakon_haakonsson (Håkon Håkonsson) -> bergenhus_haakonshallen
+- margrete_skulesdatter (Margrete Skulesdatter) -> reinskloster
+- magnus_lagabote (Magnus Lagabøte) -> bergenhus_haakonshallen
+- jon_raude (Jon Raude) -> nidarosdomen
+- eirik_magnusson (Eirik Magnusson) -> bergenhus_haakonshallen
+- haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott
+- eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott
+- audun_hugleiksson (Audun Hugleiksson) -> audunborg_hegrenes
+- magnus_eriksson (Magnus Eriksson) -> middelalder_oslo
+- haakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott
+- margrete_1 (Margrete 1.) -> akerhus_slott
+- erik_av_pommern (Erik av Pommern) -> akerhus_slott
+- aslak_bolt (Aslak Bolt) -> nidarosdomen
+- olav_nilsson (Olav Nilsson) -> munkeliv_kloster
+- kong_sverre (Kong Sverre Sigurdsson) -> nidarosdomen
 - haakon_vii_krigstid (Haakon VII (krigstiden)) -> oslo_radhus
-- olav_den_hellige (Olav den hellige) -> oslo_domkirke
-- harald_harfagre (Harald Hårfagre) -> akerhus_slott
+- olav_den_hellige (Olav den hellige) -> stiklestad
+- harald_harfagre (Harald Hårfagre) -> hafrsfjord
 - max_manus (Max Manus) -> oslo_radhus
 - christian_frederik (Christian Frederik) -> stortinget
 - roald_amundsen (Roald Amundsen) -> nobelinstituttet
@@ -176,55 +224,7 @@ Generert: 2026-06-05T06:51:51.257Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- viggo_hansteen (Viggo Hansteen) -> var_frelsers_gravlund
-- rolf_wickstrom (Rolf Wickstrøm) -> var_frelsers_gravlund
-- trygve_bratteli (Trygve Bratteli) -> grini_fangeleir
-- arnulf_overland (Arnulf Øverland) -> grini_fangeleir
-- sam_eyde (Sam Eyde) -> villa_grande
-- maria_quisling (Maria Quisling) -> villa_grande
-- jens_bjelke (Jens Bjelke) -> toyen_torg
-- henrik_bjelke (Henrik Bjelke) -> toyen_torg
-- kristine_bonnevie (Kristine Bonnevie) -> toyen_torg
-- anna_sethne (Anna Sethne) -> sagene_skole
-- alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken
-- wilhelm_von_hanno (Wilhelm von Hanno) -> gronland_kirke
-- haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman
-- petter_moen (Petter Moen) -> mollergata_19
-- biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke
-- eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott
-- hakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott
-- margrete_valdemarsdatter (Margrete Valdemarsdatter) -> akerhus_slott
-- sigurd_jorsalfare (Sigurd Jorsalfare) -> middelalder_oslo
-- kong_olav_kyrre (Olav Kyrre) -> middelalder_oslo
-- peder_clausson_friis (Peder Claussøn Friis) -> oslo_domkirke
-- astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo
-- magnus_den_gode (Magnus den gode) -> middelalder_oslo
-- magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo
-- gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott
-- sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke
-- alv_erlingsson (Alv Erlingsson) -> akerhus_slott
-- ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott
-- haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke
-- skule_baardsson (Skule Bårdsson) -> middelalder_oslo
-- munch (Edvard Munch) -> munch_museet
-- harriet_backer (Harriet Backer) -> nasjonalmuseet
-- gustav_vigeland (Gustav Vigeland) -> vigelandsparken
-- bjarne_melgaard (Bjarne Melgaard) -> tjuvholmen
-- steinar_jakobsen (Steinar Jakobsen) -> astrup_fearnley
-- cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken
-- sonja (Dronning Sonja) -> slottet
-- nikolai_astrup (Nikolai Astrup) -> nasjonalmuseet
-- theodor_kittelsen (Theodor Kittelsen) -> nasjonalmuseet
-- anna_eva_bergman (Anna-Eva Bergman) -> nasjonalmuseet
-- rolf_nesch (Rolf Nesch) -> nasjonalmuseet
-- per_kleiva (Per Kleiva) -> nasjonalmuseet
-- calouste_gulbenkian (Calouste Gulbenkian) -> lisbon_fundacao_calouste_gulbenkian
-- joana_vasconcelos (Joana Vasconcelos) -> lisbon_maat
-- maria_helena_vieira_da_silva (Maria Helena Vieira da Silva) -> lisbon_museu_arpad_szenes_vieira_da_silva
-- arpad_szenes (Árpád Szenes) -> lisbon_museu_arpad_szenes_vieira_da_silva
-- rafael_bordalo_pinheiro (Rafael Bordalo Pinheiro) -> lisbon_museu_bordalo_pinheiro
-- amadeo_de_souza_cardoso (Amadeo de Souza-Cardoso) -> lisbon_fundacao_calouste_gulbenkian
-- ... 324 flere
+- ... 383 flere
 
 ## Anbefalt første people-batch
 
