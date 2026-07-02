@@ -2087,24 +2087,51 @@ function renderCivicationInbox() {
 
     const choices = Array.isArray(ev.choices) ? ev.choices : [];
 
+    function showProfileAnswerError(message) {
+      fb.textContent = message || "Kunne ikke svare på meldingen.";
+      fb.style.display = "";
+      btnA.disabled = false;
+      btnB.disabled = false;
+      btnC.disabled = false;
+    }
+
+    function showProfileAnswerSuccess(res) {
+      fb.innerHTML = `<div>${escapeHtml(res?.feedback || "—")}</div>`;
+      const consequence = buildBrandConsequenceText(res);
+      if (consequence) { fb.innerHTML += `<div class="civi-choice-consequence">${escapeHtml(consequence)}</div>`; }
+      fb.style.display = "";
+
+      btnA.style.display = "none";
+      btnB.style.display = "none";
+      btnC.style.display = "none";
+      btnA.disabled = false;
+      btnB.disabled = false;
+      btnC.disabled = false;
+
+      btnOK.style.display = "";
+      btnOK.onclick = () => refreshCivicationAfterAnswer(ev.id);
+    }
+
     function bindChoice(btn, id, label) {
       btn.textContent = label;
       btn.style.display = "";
-      btn.onclick = () => {
-        const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (window.HG_CiviEngine?.answer?.(ev.id, id));
-        if (!res?.ok) return;
-
-        fb.innerHTML = `<div>${res.feedback || "—"}</div>`;
-        const consequence = buildBrandConsequenceText(res);
-        if (consequence) { fb.innerHTML += `<div class="civi-choice-consequence">${consequence}</div>`; }
-        fb.style.display = "";
-
-        btnA.style.display = "none";
-        btnB.style.display = "none";
-        btnC.style.display = "none";
-
-        btnOK.style.display = "";
-        btnOK.onclick = () => refreshCivicationAfterAnswer(ev.id);
+      btn.disabled = false;
+      btn.onclick = async () => {
+        btnA.disabled = true;
+        btnB.disabled = true;
+        btnC.disabled = true;
+        fb.style.display = "none";
+        try {
+          const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (await Promise.resolve(window.HG_CiviEngine?.answer?.(ev.id, id)));
+          if (!res?.ok) {
+            showProfileAnswerError(res?.reason ? `Kunne ikke svare på meldingen (${res.reason}).` : "Kunne ikke svare på meldingen.");
+            return;
+          }
+          showProfileAnswerSuccess(res);
+        } catch (error) {
+          if (window.DEBUG) console.warn("[CivicationUI] Kunne ikke svare på profile inbox-mail", error);
+          showProfileAnswerError("Kunne ikke svare på meldingen.");
+        }
       };
     }
 
@@ -2113,9 +2140,23 @@ function renderCivicationInbox() {
      fb.style.display = "";
 
      btnOK.style.display = "";
-     btnOK.onclick = () => {
-      window.HG_CiviEngine?.answer?.(ev.id, null);
-      refreshCivicationAfterAnswer(ev.id);
+     btnOK.onclick = async () => {
+      btnOK.disabled = true;
+      try {
+        const res = /** @type {CiviUiOfferActionResult|null|undefined} */ (await Promise.resolve(window.HG_CiviEngine?.answer?.(ev.id, null)));
+        if (res?.ok === false) {
+          btnOK.disabled = false;
+          fb.textContent = res?.reason ? `Kunne ikke lukke meldingen (${res.reason}).` : "Kunne ikke lukke meldingen.";
+          fb.style.display = "";
+          return;
+        }
+        refreshCivicationAfterAnswer(ev.id);
+      } catch (error) {
+        if (window.DEBUG) console.warn("[CivicationUI] Kunne ikke lukke profile inbox-mail", error);
+        btnOK.disabled = false;
+        fb.textContent = "Kunne ikke lukke meldingen.";
+        fb.style.display = "";
+      }
      };
 
      return;
