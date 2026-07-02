@@ -1,8 +1,8 @@
 // ============================================================
 // CIVICATION MINI SECTIONS UI
 // Civication Home:
-// - Forsiden viser livsområder, rik status og viktigste handling.
-// - Mail/Inbox vises ikke som eget kort; det brukes som global "Krever svar".
+// - Forsiden viser livsområder og rik status.
+// - Mail/Inbox vises ikke som et konkurrerende toppkort; Dagens fase eier fase-mail.
 // - Fullt innhold og alle valg åpnes i mørk popup.
 // - Ingen state-mutasjon: kun DOM-struktur og presentasjon.
 // ============================================================
@@ -667,14 +667,6 @@
       controls.id = "civiLifeHomeControls";
       controls.className = "civi-home-controls";
       controls.innerHTML = `
-        <article id="civiTopActionCard" class="civi-top-action-card is-calm">
-          <div class="civi-top-action-head">
-            <p class="civi-top-action-title">Neste handling</p>
-            <span class="civi-top-action-chip">Rolig</span>
-          </div>
-          <p class="civi-top-action-summary">Ingen handling krever svar nå.</p>
-          <button type="button" class="civi-top-action-button" data-civi-top-action>Se dashboard</button>
-        </article>
         <nav class="civi-category-nav" aria-label="Civication livsområder"></nav>
       `;
     }
