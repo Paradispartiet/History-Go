@@ -898,6 +898,152 @@
             "bemanning",
             "dagsrytme"
           ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_job_013",
+          "mail_type": "job",
+          "mail_family": "omsorgsoppgaver_avdeling",
+          "role_scope": "barnehageassistent",
+          "phase": "mid",
+          "priority": 87,
+          "from": "erfaren_assistent_kari",
+          "sender": "erfaren_assistent_kari",
+          "person_id": "erfaren_assistent_kari",
+          "place_id": "måltidsbord",
+          "subject": "Måltidet: språkstøtten forsvinner i tempoet",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om språkstøtte når omsorg vs tidsklemme presser praksisen.",
+          "purpose": "Trene språkstøtte i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på måltidsbord.",
+            "Kari Lunde presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "job",
+          "competency": "språkstøtte",
+          "pressure": "omsorg_vs_tidsklemme",
+          "choice_axis": "omsorg_vs_tidsklemme",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Språkstøtten forsvinner i tempoet",
+          "learning_focus": [
+            "språkstøtte",
+            "gruppeledelse",
+            "omsorg_vs_tidsklemme"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Senk tempoet og navngi det som skjer rundt bordet",
+              "reply": "Jeg senker tempoet ved bordet og setter ord på det som skjer rundt oss, selv om måltidet tar lengre tid.",
+              "effect": 1,
+              "tags": [
+                "språkstøtte",
+                "omsorg"
+              ],
+              "feedback": "Barnet får ord på noe det strevde med å si, men opprydding og neste økt blir presset i tid."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter at måltidet blir ferdig fortest mulig",
+              "reply": "Jeg prioriterer å bli ferdig med måltidet fortest mulig, og lar språkstøtten vente til en roligere stund.",
+              "effect": 1,
+              "tags": [
+                "tidsklemme",
+                "dagsrytme"
+              ],
+              "feedback": "Dagsrytmen holder seg, men språkstøtten ryker denne gangen fordi tempoet fikk styre."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "job_013"
+          ],
+          "tags": [
+            "barnehage",
+            "måltid",
+            "språkstøtte"
+          ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_job_014",
+          "mail_type": "job",
+          "mail_family": "omsorgsoppgaver_avdeling",
+          "role_scope": "barnehageassistent",
+          "phase": "mid",
+          "priority": 86,
+          "from": "styrer_ragnhild",
+          "sender": "styrer_ragnhild",
+          "person_id": "styrer_ragnhild",
+          "place_id": "stellerom",
+          "subject": "Stellerommet: grensen mellom omsorg og eksponering",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om grensesetting når grenser vs varme presser praksisen.",
+          "purpose": "Trene grensesetting i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på stellerom.",
+            "Ragnhild Moen presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "job",
+          "competency": "grensesetting",
+          "pressure": "grenser_vs_varme",
+          "choice_axis": "grenser_vs_varme",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Grensen mellom omsorg og eksponering",
+          "learning_focus": [
+            "grensesetting",
+            "sikkerhet",
+            "grenser_vs_varme"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lukk døren og hold stellesituasjonen diskret, selv om det tar litt lengre tid",
+              "reply": "Jeg lukker døren til stellerommet og holder situasjonen diskret for barnet, selv om det tar litt lengre tid å få hjelp ved behov.",
+              "effect": 1,
+              "tags": [
+                "grense",
+                "sikkerhet"
+              ],
+              "feedback": "Barnet får en verdig og diskret stellesituasjon, men du står alene om vurderingen til noen kommer forbi."
+            },
+            {
+              "id": "B",
+              "label": "La døren stå på gløtt for å holde oversikt over resten av avdelingen",
+              "reply": "Jeg lar døren stå på gløtt slik at jeg fortsatt har oversikt over resten av avdelingen mens jeg steller.",
+              "effect": 1,
+              "tags": [
+                "oversikt",
+                "bemanning"
+              ],
+              "feedback": "Du holder oversikten over gruppa, men stellesituasjonen blir mindre skjermet enn den burde."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "job_014"
+          ],
+          "tags": [
+            "barnehage",
+            "stell",
+            "grensesetting"
+          ]
         }
       ]
     }

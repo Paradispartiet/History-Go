@@ -752,6 +752,79 @@
             "rammeplan",
             "samarbeid_med_pedagogisk_leder"
           ]
+        },
+        {
+          "id": "sosial_laering_barnehageassistent_people_011",
+          "mail_type": "people",
+          "mail_family": "personkart_avdeling",
+          "role_scope": "barnehageassistent",
+          "phase": "mid",
+          "priority": 89,
+          "from": "forelder_samir_stotte",
+          "sender": "forelder_samir_stotte",
+          "person_id": "forelder_samir_stotte",
+          "place_id": "hentebenken",
+          "subject": "Hentebenken: overleveringen blir for kort til å bety noe",
+          "summary": "Den lange dagen på avdelingen gir et konkret valg om foreldredialog når omsorg vs tidsklemme presser praksisen. Personen har funksjon: forelder som trenger støtte.",
+          "purpose": "Trene foreldredialog i omsorgsarbeid uten ny motor eller UI.",
+          "stakes": "Valget påvirker trygghet, tillit, dagsrytme, barnets beste og din egen slitasje.",
+          "situation": [
+            "Bemanningen er stram på hentebenken.",
+            "Samir Haddad presser fram et valg som ikke kan vente.",
+            "Du må skille varm praksis fra rask flyt."
+          ],
+          "task_domain": "barnehage_avdeling",
+          "task_kind": "people",
+          "competency": "foreldredialog",
+          "pressure": "omsorg_vs_tidsklemme",
+          "choice_axis": "omsorg_vs_tidsklemme",
+          "consequence_axis": "trygghet_tillit_slitasje",
+          "narrative_arc": "Overleveringen blir for kort til å bety noe",
+          "learning_focus": [
+            "foreldredialog",
+            "observasjon",
+            "omsorg_vs_tidsklemme"
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta deg tid til én konkret detalj fra barnets dag før neste familie venter",
+              "reply": "Jeg tar meg tid til å dele én konkret detalj fra barnets dag på hentebenken, selv om neste familie venter.",
+              "effect": 1,
+              "tags": [
+                "foreldredialog",
+                "omsorg"
+              ],
+              "feedback": "Samir får noe konkret å bygge trygghet på, men neste overlevering blir presset i tid."
+            },
+            {
+              "id": "B",
+              "label": "Hold overleveringen kort og vis heller til dagsrapporten",
+              "reply": "Jeg holder overleveringen kort på hentebenken og viser til dagsrapporten for detaljene i dag.",
+              "effect": 1,
+              "tags": [
+                "tidsklemme",
+                "dagsrytme"
+              ],
+              "feedback": "Køen ved hentebenken flyter greit, men Samir går fra benken uten den muntlige tryggheten han var ute etter."
+            }
+          ],
+          "next_bias": [
+            "trygghet",
+            "observasjon"
+          ],
+          "triggers_on_choice": [
+            "A",
+            "B"
+          ],
+          "branch_flags": [
+            "people_011"
+          ],
+          "tags": [
+            "barnehage",
+            "henting",
+            "foreldredialog"
+          ]
         }
       ]
     }
