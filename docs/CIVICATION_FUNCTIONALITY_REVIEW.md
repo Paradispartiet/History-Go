@@ -15,8 +15,16 @@
 > lastes nå før debatt-UI-et. `smoke:web` har fått `Civication.html` som boot-vakt.
 > Jobbtilbud viser nå pakkedybde (full/delvis/generisk) via generert
 > `data/Civication/rolePackIndex.json` + `CivicationRolePackDepth` +
-> `buildOfferPackDepthHtml` (133/133 testfiler grønne). Gjenstår: innholdsgjelden
-> (flere komplette rollepakker, bykart 318/869).
+> `buildOfferPackDepthHtml` (133/133 testfiler grønne).
+>
+> **Oppfølging 3 (samme dag):** Bykartets 77 steder uten eksplisitt asset-type har
+> fått `visual.designCode` fra det delte designCode-registeret (waterfront/park/
+> playground/civic/…), og kart-auditen teller nå `visual.designCode` som eksplisitt
+> kilde (samme prioritet som runtime): `missing_asset_type: 0`. Places-indeksen er
+> regenerert og `tools:check` er grønn. Gjenstår: flere komplette rollepakker
+> (3 av 246; neste kandidater er `by_arkitekt` og `by_prosjektleder`, som allerede
+> har mailPlan + job-mails) — dette er kreativ innholdsproduksjon som bør styres
+> av innholdseier.
 
 Gjennomgang av hva som må gjøres for at Civication skal fungere godt og henge logisk sammen.
 Basert på kjøring av **alle** 132 Civication-testfiler enkeltvis, alle `audit:civication*`-skript,

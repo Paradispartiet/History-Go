@@ -53,7 +53,11 @@ function hasManualCiviXY(p) {
 }
 
 // Forenklet asset-type-resolusjon (eksplisitt kilde finnes / finnes ikke).
+// Speiler runtime-prioriteten i CivicationThreeMap.resolvePlaceMiniatureType:
+// det delte designCode-registeret (visual.designCode) sjekkes FØRST, deretter
+// civiMap.assetType / mapAssetType, og quiz_profile som siste eksplisitte kilde.
 function explicitAssetType(p) {
+  if (p.visual && p.visual.designCode) return `designCode:${p.visual.designCode}`;
   const cm = p.civiMap;
   if (cm && cm.assetType) return cm.assetType;
   if (p.mapAssetType) return p.mapAssetType;
@@ -116,6 +120,7 @@ function main() {
         civiMap: raw.civiMap || null,
         city: raw.city,
         mapAssetType: raw.mapAssetType,
+        visual: raw.visual || null,
         quiz_profile: raw.quiz_profile
       };
 
