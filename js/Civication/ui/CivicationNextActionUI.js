@@ -19,6 +19,9 @@
   // string innerHTML — keeps the surface testable with lightweight DOM mocks.
   let modalEl = null;
   let bodyEl = null;
+  let answerInFlight = false;
+  let pendingRefresh = false;
+  let answerDebugContext = null;
 
 
   function norm(value) {
@@ -216,7 +219,16 @@
 
   function dispatchNextActionUpdates() {
     ["civi:inboxChanged", "civi:dayPhaseChanged", "updateProfile"].forEach(function (eventName) {
+      if (answerDebugContext) answerDebugContext.dispatchCount += 1;
       try { window.dispatchEvent(new Event(eventName)); } catch (_e) {}
+    });
+  }
+
+  function disableAnswerButtons() {
+    if (!modalEl || typeof modalEl.querySelectorAll !== "function") return;
+    modalEl.querySelectorAll("[data-civi-next-action-answer]").forEach(function (button) {
+      button.disabled = true;
+      button.setAttribute("aria-disabled", "true");
     });
   }
 
@@ -356,12 +368,17 @@
   function render() {
     const modal = ensureModal();
     if (!modal || !bodyEl) return false;
+    if (answerDebugContext) answerDebugContext.renderCount += 1;
     renderInto(bodyEl);
     return true;
   }
 
   function refresh() {
     if (!modalEl || !modalEl.classList || !modalEl.classList.contains("is-open")) return false;
+    if (answerInFlight) {
+      pendingRefresh = true;
+      return false;
+    }
     return render();
   }
 
@@ -503,7 +520,25 @@
 
   function answer(mailId, choiceId) {
     if (!mailId) return Promise.resolve({ ok: false, reason: "missing_mail_id" });
+    if (answerInFlight) return Promise.resolve({ ok: false, reason: "answer_in_flight" });
+
+    answerInFlight = true;
+    pendingRefresh = false;
+    disableAnswerButtons();
+
     const action = getCurrentAction();
+    answerDebugContext = {
+      mailId,
+      choiceId,
+      actionSource: action?.source || "",
+      eventSourceType: action?.source_type || "",
+      eventMailClass: action?.mail_class || action?.event?.mail_class || "",
+      hasDailyMailMeta: !!(action?.daily_mail_meta || action?.event?.daily_mail_meta),
+      answerInFlight: true,
+      dispatchCount: 0,
+      renderCount: 0
+    };
+
     const result = window.CivicationMailEngine?.answerMail
       ? window.CivicationMailEngine.answerMail(mailId, choiceId)
       : window.HG_CiviEngine?.answer?.(mailId, choiceId);
@@ -530,6 +565,20 @@
         notifyFailure("Kunne ikke svare på mail", error);
         render();
         return { ok: false, reason: "exception", error };
+      })
+      .finally(function () {
+        const debug = answerDebugContext;
+        answerInFlight = false;
+        answerDebugContext = null;
+        if (pendingRefresh) {
+          pendingRefresh = false;
+          render();
+        }
+        if (window.DEBUG) {
+          debug.finalRenderCount = debug.renderCount;
+          debug.finalDispatchCount = debug.dispatchCount;
+          console.debug("[CivicationNextActionUI] answer complete", debug);
+        }
       });
   }
 
@@ -600,7 +649,8 @@
       const answerBtn = target.closest("[data-civi-next-action-answer]");
       if (answerBtn && modal.contains(answerBtn) && !answerBtn.disabled) {
         event.preventDefault();
-        answerBtn.disabled = true;
+        if (answerInFlight) return;
+        disableAnswerButtons();
         const mailId = String(answerBtn.getAttribute("data-mail-id") || "").trim();
         const rawChoice = answerBtn.getAttribute("data-choice-id");
         const choiceId = rawChoice == null ? null : String(rawChoice).trim();
@@ -624,6 +674,7 @@
     refresh,
     getCurrent: getCurrentAction,
     advanceUntilNextRealAction,
-    prepareNextActionSurface
+    prepareNextActionSurface,
+    isAnswerInFlight: function () { return answerInFlight; }
   };
 })();

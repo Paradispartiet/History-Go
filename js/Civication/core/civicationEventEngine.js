@@ -75,6 +75,11 @@ function weeksPassedBetweenWeekKeys(sinceW, nowW) {
   return Math.max(0, b - a);
 }
 
+function isDailyWorkdayEvent(ev) {
+  return ev?.mail_class === "daily_workday" ||
+    String(ev?.source_type || "").startsWith("daily_") ||
+    !!ev?.daily_mail_meta;
+}
 
 // ============================================================
 // CivicationEventEngine
@@ -2050,9 +2055,22 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
     }
 
     else if (window.CivicationState.getActivePosition()) {
-      this.enqueueImmediateFollowupEvent().catch(function (e) {
-        console.warn("Immediate follow-up mail failed", e);
-      });
+      const suppressImmediateFollowup = this.__civiSuppressImmediateFollowup === true || isDailyWorkdayEvent(ev);
+      if (window.DEBUG) {
+        console.debug("[CivicationEventEngine] answer followup decision", {
+          mailId: ev.id || eventId,
+          choiceId: choiceId || null,
+          source_type: ev.source_type || "",
+          mail_class: ev.mail_class || "",
+          hasDailyMailMeta: !!ev.daily_mail_meta,
+          suppressImmediateFollowup
+        });
+      }
+      if (!suppressImmediateFollowup) {
+        this.enqueueImmediateFollowupEvent().catch(function (e) {
+          console.warn("Immediate follow-up mail failed", e);
+        });
+      }
     }
 
     return {
