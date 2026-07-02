@@ -20,7 +20,7 @@
     return clean(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
   }
   function safeApi(name, method) {
-    const fn = window[name]?.[method];
+    const fn = /** @type {any} */ (window[name])?.[method];
     if (typeof fn === "function") return fn.bind(window[name]);
     warn(`${name}.${method} mangler`);
     return null;

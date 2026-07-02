@@ -138,7 +138,7 @@
   }
 
   function setLastView(routeId = selectedRouteId, mode = activeTravelMode, stageId = activeStageId) {
-    const existing = getLastView() || {};
+    const existing = /** @type {{ route_id?: unknown, travel_mode?: unknown, stage_id?: unknown }} */ (getLastView() || {});
     const rid = cleanText(routeId !== undefined ? routeId : existing.route_id);
     const travelMode = normalizeTravelMode(mode !== undefined ? mode : (existing.travel_mode || "all"));
     const sid = cleanText(stageId !== undefined ? stageId : existing.stage_id);

@@ -207,10 +207,10 @@
         return "Psykeverdier ikke beregnet ennå.";
       },
       details: function () {
-        const resilience = window.CivicationPsyche?.getPsychologyResilience?.() || null;
+        const resilience = /** @type {{ competence?: unknown, reductionPct?: unknown }|null} */ (window.CivicationPsyche?.getPsychologyResilience?.() || null);
         const competence = Number(resilience?.competence ?? window.CivicationPsyche?.getPsychologyCompetence?.() ?? 0);
         const reductionPct = Number(resilience?.reductionPct || 0);
-        const lastEvent = window.CivicationPsyche?.getLastResilienceEvent?.() || null;
+        const lastEvent = /** @type {{ metricLabel?: unknown, originalDelta?: unknown, adjustedDelta?: unknown }|null} */ (window.CivicationPsyche?.getLastResilienceEvent?.() || null);
         return [
           validText("psyIntegrity") ? `Integritet: ${textOf("psyIntegrity")}` : null,
           validText("psyVisibility") ? `Synlighet: ${textOf("psyVisibility")}` : null,

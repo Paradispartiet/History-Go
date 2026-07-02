@@ -329,7 +329,7 @@
   function renderInto(body) {
     const action = getCurrentAction();
     if (!action) {
-      const active = getActiveRole();
+      const active = /** @type {{ title?: string, role_key?: string }|null} */ (getActiveRole());
       if (active && lastNoActionDebug) {
         const roleScope = lastNoActionDebug.resolvedRoleScope || resolveRoleScope(active);
         body.innerHTML = "<div class=\"civi-next-action-empty civi-next-action-debug-error\">"
