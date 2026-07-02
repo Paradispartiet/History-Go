@@ -1909,6 +1909,8 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
     }
 
     let warning_used = state.warning_used === true;
+    let legacyImmediateFollowupSuppressed = false;
+    let legacyImmediateFollowupEnqueued = false;
 
     inbox[idx] = Object.assign({}, item, {
       status: "resolved",
@@ -2066,7 +2068,9 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
           suppressImmediateFollowup
         });
       }
+      legacyImmediateFollowupSuppressed = suppressImmediateFollowup;
       if (!suppressImmediateFollowup) {
+        legacyImmediateFollowupEnqueued = true;
         this.enqueueImmediateFollowupEvent().catch(function (e) {
           console.warn("Immediate follow-up mail failed", e);
         });
@@ -2078,7 +2082,9 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
   effect: effect,
   stability: stability,
   feedback: feedback,
-  taskResultState: taskMod.state
+  taskResultState: taskMod.state,
+  legacyImmediateFollowupSuppressed: legacyImmediateFollowupSuppressed,
+  legacyImmediateFollowupEnqueued: legacyImmediateFollowupEnqueued
 };
   }
 
