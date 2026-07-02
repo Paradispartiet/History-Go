@@ -80,16 +80,25 @@
     return item?.event || item || null;
   }
 
-  function isOpenActionableInboxItem(item) {
+  function isOpenActionableInboxItem(item, answeredRuntimeIds) {
     if (!item || item.deleted === true || item.archived === true || item.resolved === true) return false;
     const ev = inboxEventOf(item);
     const status = norm(item.status || ev?.status || "pending").toLowerCase();
     if (status !== "pending" && status !== "open") return false;
+    // Dagsruntimen eier sannheten for dagens saker: er runtime-raden besvart,
+    // skal en hengende innbokskopi ikke blokkere faseavansering.
+    if (answeredRuntimeIds && answeredRuntimeIds.has(norm(ev?.id))) return false;
     return Array.isArray(ev?.choices) && ev.choices.length > 0;
   }
 
   function getOpenInboxActionItems() {
-    return getInboxItems().filter(isOpenActionableInboxItem);
+    const answeredRuntimeIds = new Set(
+      getRuntimeItems()
+        .filter((row) => norm(row?.status).toLowerCase() === "answered")
+        .map((row) => norm(row?.event?.id))
+        .filter(Boolean)
+    );
+    return getInboxItems().filter((item) => isOpenActionableInboxItem(item, answeredRuntimeIds));
   }
 
   function getCurrentPhase() {

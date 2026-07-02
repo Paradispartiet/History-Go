@@ -1648,6 +1648,9 @@
       updated_at: new Date().toISOString()
     };
     setRuntime(next);
+    // Innbokskopien må også løses, ellers blir saken stående som åpen innboks-sak
+    // og blokkerer faseavansering (dayProgressionController teller åpne innbokssaker).
+    try { window.CivicationMailEngine?.markResolved?.(id, id, norm(choiceId)); } catch {}
     return next;
   }
 
