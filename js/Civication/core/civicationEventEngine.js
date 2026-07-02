@@ -2074,8 +2074,8 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
       legacyImmediateFollowupSuppressed = suppressImmediateFollowup;
       if (!suppressImmediateFollowup) {
         try {
-          const followupResult = await this.enqueueImmediateFollowupEvent();
-          legacyImmediateFollowupEnqueued = followupResult?.enqueued !== false;
+          const followupResult = /** @type {any} */ (await this.enqueueImmediateFollowupEvent());
+          legacyImmediateFollowupEnqueued = followupResult === true || followupResult?.enqueued === true;
         } catch (e) {
           legacyImmediateFollowupEnqueued = false;
           console.warn("Immediate follow-up mail failed", e);

@@ -484,6 +484,18 @@
 
     Promise.resolve(result)
       .then(function (answerResult) {
+        if (answerResult?.ok === false) {
+          lastAnswerSummary = {
+            choiceLabel: "",
+            feedback: answerResult?.reason ? "Kunne ikke svare på mail (" + answerResult.reason + ")." : "Kunne ikke svare på mail.",
+            effect: "",
+            stability: "",
+            subject: ""
+          };
+          button.disabled = false;
+          scheduleRefresh();
+          return answerResult;
+        }
         const inboxItem = getInbox().find(function (item) { return mailIdOf(item) === mailId; });
         const eventObj = eventOf(inboxItem) || {};
         const selectedChoice = Array.isArray(eventObj?.choices)
@@ -502,6 +514,8 @@
       })
       .catch(function (error) {
         button.disabled = false;
+        lastAnswerSummary = { choiceLabel: "", feedback: "Kunne ikke svare på mail.", effect: "", stability: "", subject: "" };
+        scheduleRefresh();
         if (window.DEBUG) console.warn("[CivicationInboxTopActionUI] Kunne ikke svare på mail", error);
       });
   }
