@@ -1,16 +1,16 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-06-15T14:00:39.468Z
+Generert: 2026-07-02T22:50:27.664Z
 
 ## Aktiv hovedstatistikk
-- Aktive place-filer lest: **47**
-- Aktive steder lest: **548**
-- ok: **307**
+- Aktive place-filer lest: **86**
+- Aktive steder lest: **869**
+- ok: **308**
 - needs_review: **77**
-- conflict: **6**
+- conflict: **2**
 - invalid: **0**
 - duplicate: **0**
-- outside_expected_area: **158**
+- outside_expected_area: **482**
 
 ## Aktive filer (fra manifest)
 - data/places/by/europe/portugal/lisbon/places_lisbon_by.json
@@ -22,9 +22,48 @@ Generert: 2026-06-15T14:00:39.468Z
 - data/places/historie/akershus/places_historie_akershus_batch3.json
 - data/places/historie/akershus/places_historie_akershus_batch4.json
 - data/places/historie/akershus/places_historie_akershus_batch5.json
+- data/places/historie/buskerud/places_historie_buskerud_batch1.json
+- data/places/historie/buskerud/places_historie_buskerud_batch2.json
+- data/places/historie/buskerud/places_historie_buskerud_batch3.json
+- data/places/historie/buskerud/places_historie_buskerud_batch4.json
+- data/places/historie/buskerud/places_historie_buskerud_batch5.json
+- data/places/historie/buskerud/places_historie_buskerud_batch6.json
 - data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json
+- data/places/historie/innlandet/places_historie_innlandet_batch1.json
+- data/places/historie/innlandet/places_historie_innlandet_batch10.json
+- data/places/historie/innlandet/places_historie_innlandet_batch11.json
+- data/places/historie/innlandet/places_historie_innlandet_batch12.json
+- data/places/historie/innlandet/places_historie_innlandet_batch13.json
+- data/places/historie/innlandet/places_historie_innlandet_batch14.json
+- data/places/historie/innlandet/places_historie_innlandet_batch15.json
+- data/places/historie/innlandet/places_historie_innlandet_batch16.json
+- data/places/historie/innlandet/places_historie_innlandet_batch17.json
+- data/places/historie/innlandet/places_historie_innlandet_batch18.json
+- data/places/historie/innlandet/places_historie_innlandet_batch2.json
+- data/places/historie/innlandet/places_historie_innlandet_batch3.json
+- data/places/historie/innlandet/places_historie_innlandet_batch4.json
+- data/places/historie/innlandet/places_historie_innlandet_batch5.json
+- data/places/historie/innlandet/places_historie_innlandet_batch6.json
+- data/places/historie/innlandet/places_historie_innlandet_batch7.json
+- data/places/historie/innlandet/places_historie_innlandet_batch8.json
+- data/places/historie/innlandet/places_historie_innlandet_batch9.json
+- data/places/historie/norge/places_historie_norge_for_1500_batch1.json
+- data/places/historie/norge/places_historie_norge_for_1500_batch2.json
+- data/places/historie/norge/places_historie_norge_for_1500_batch3.json
+- data/places/historie/norge/places_historie_norge_for_1500_batch4.json
 - data/places/historie/oslo/places_historie.json
 - data/places/historie/oslo/places_historie_added_batch_01.json
+- data/places/historie/ostfold/places_historie_ostfold_batch1.json
+- data/places/historie/ostfold/places_historie_ostfold_batch2.json
+- data/places/historie/ostfold/places_historie_ostfold_batch3.json
+- data/places/historie/ostfold/places_historie_ostfold_batch4.json
+- data/places/historie/ostfold/places_historie_ostfold_batch5.json
+- data/places/historie/ostfold/places_historie_ostfold_batch6.json
+- data/places/historie/vestfold/places_historie_vestfold_batch1.json
+- data/places/historie/vestfold/places_historie_vestfold_batch2.json
+- data/places/historie/vestfold/places_historie_vestfold_batch3.json
+- data/places/historie/vestfold/places_historie_vestfold_batch4.json
+- data/places/historie/vestfold/places_historie_vestfold_batch5.json
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json
 - data/places/kunst/oslo/places_kunst.json
 - data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json
@@ -62,10 +101,6 @@ Generert: 2026-06-15T14:00:39.468Z
 - data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json
 
 ## Aktive steder som må rettes
-- data/places/historie/oslo/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/historie/oslo/places_historie.json | oscarsborg_festning | Oscarsborg festning | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvollsbygningen | Eidsvollsbygningen | conflict | outside_oslo_possible_intended, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/historie/akershus/places_historie_akershus_batch1.json | oscarsborg_festning | Oscarsborg festning | conflict | low_precision_coord, outside_oslo_possible_intended, duplicate_id, duplicate_id_different_coord, same_name_different_coord
 - data/places/musikk/oslo/places_musikk.json | blaa | Blå | conflict | same_name_different_coord
 - data/places/subkultur/oslo/places_subkultur.json | bla | Blå | conflict | low_precision_coord, same_name_different_coord
 
@@ -77,17 +112,15 @@ Generert: 2026-06-15T14:00:39.468Z
 | data/places/by/oslo/places_by.json | trikk_17_18 | Trikkelinje 17/18 | by | 59.92 | 10.76 | 300 | needs_review | needs_multiple_anchors |
 | data/places/historie/oslo/places_historie.json | middelalder_oslo | Middelalderparken | historie | 59.9048 | 10.7605 | 180 | needs_review | area_or_park_needs_manual_review |
 | data/places/historie/oslo/places_historie.json | gamle_trikkestallen | Gamle trikkestallen på Sagene | historie | 59.9396 | 10.7543 | 160 | needs_review | needs_multiple_anchors |
-| data/places/historie/oslo/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.3304 | 11.2617 | 250 | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/historie/oslo/places_historie.json | oscarsborg_festning | Oscarsborg festning | historie | 59.6759 | 10.6068 | 300 | conflict | outside_oslo_possible_intended, outside_expected_area, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
 | data/places/historie/oslo/places_historie.json | trefoldighetskirken | Trefoldighetskirken | historie | 59.9183 | 10.746 | 110 | needs_review | low_precision_coord |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | raknehaugen | Raknehaugen | historie | 60.1469 | 11.1366 | 260 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | nes_kirkeruiner | Nes kirkeruiner | historie | 60.14899 | 11.45676 | 220 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | blaker_skanse | Blaker skanse | historie | 60.00361 | 11.30611 | 240 | outside_expected_area | outside_oslo_possible_intended |
-| data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.33056 | 11.26139 | 260 | conflict | outside_oslo_possible_intended, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.33056 | 11.26139 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | eidsvoll_verk_andelva | Eidsvoll Verk / Andelva | historie | 60.3297 | 11.2575 | 300 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors, area_or_park_needs_manual_review |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | fetsund_lenser | Fetsund lenser | historie | 59.9256 | 11.1598 | 300 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | tertitten_urskog_holandsbanen | Tertitten / Urskog-Hølandsbanen | historie | 59.98628 | 11.24367 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
-| data/places/historie/akershus/places_historie_akershus_batch1.json | oscarsborg_festning | Oscarsborg festning | historie | 59.676 | 10.606 | 360 | conflict | low_precision_coord, outside_oslo_possible_intended, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/historie/akershus/places_historie_akershus_batch1.json | oscarsborg_festning | Oscarsborg festning | historie | 59.676 | 10.606 | 360 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch1.json | trandumskogen | Trandumskogen | historie | 60.2189 | 11.1177 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
 | data/places/historie/akershus/places_historie_akershus_batch2.json | enebakk_kirke | Enebakk kirke | historie | 59.76234 | 11.14683 | 220 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch2.json | asker_kirke_kirkested | Asker kirke / gamle kirkested | historie | 59.84333 | 10.43664 | 220 | outside_expected_area | outside_oslo_possible_intended |
@@ -114,6 +147,328 @@ Generert: 2026-06-15T14:00:39.468Z
 | data/places/historie/akershus/places_historie_akershus_batch5.json | drobak_kirke | Drøbak kirke | historie | 59.66389 | 10.62949 | 220 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/akershus/places_historie_akershus_batch5.json | aurskog_holand_bygdetun | Aurskog-Høland bygdetun | historie | 59.7194 | 11.4598 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
 | data/places/historie/akershus/places_historie_akershus_batch5.json | nannestad_bygdemuseum | Nannestad bygdemuseum | historie | 60.217 | 11.012 | 260 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | fredriksten_festning | Fredriksten festning | historie | 59.11944 | 11.40167 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | fredrikstad_festning_gamlebyen | Fredrikstad festning / Gamlebyen | historie | 59.20444 | 10.95583 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | borgarsyssel_museum_olavsbyen | Borgarsyssel Museum / Olavsbyen Sarpsborg | historie | 59.2831 | 11.1119 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | solbergfeltet_helleristninger | Solbergfeltet helleristninger | historie | 59.2417 | 11.2209 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | hunnfeltet_gravfelt | Hunnfeltet gravfelt | historie | 59.2182 | 11.0368 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | tune_skipet_funnsted | Tune-skipets funnsted | historie | 59.2713 | 10.9867 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | moss_jernverk_konventionsgarden | Moss Jernverk / Konventionsgården | historie | 59.4361 | 10.6667 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | hafslund_hovedgard | Hafslund hovedgård | historie | 59.2709 | 11.1267 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch1.json | rod_herregard | Rød Herregård | historie | 59.1261 | 11.3769 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | gjellestadskipet_jellhaugen | Gjellestadskipet / Jellhaugen | historie | 59.1517 | 11.2962 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | hoytorp_fort | Høytorp fort | historie | 59.5536 | 11.3317 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | orje_sluser_haldenkanalen | Ørje sluser / Haldenkanalen | historie | 59.4807 | 11.6607 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | basmo_festning | Basmo festning | historie | 59.6635 | 11.6738 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | eidsberg_kirke | Eidsberg kirke | historie | 59.5489 | 11.3547 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | rygge_kirke | Rygge kirke | historie | 59.3811 | 10.7211 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | hvaler_kirke | Hvaler kirke | historie | 59.0375 | 11.0319 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch2.json | askim_gummivarefabrikk | Askim Gummivarefabrikk / Viking | historie | 59.5835 | 11.1627 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | borregaard_sarpsborg_industri | Borregaard Sarpsborg | historie | 59.2846 | 11.1139 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | sarpsfossen | Sarpsfossen | historie | 59.2836 | 11.1123 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | spydeberg_prestegard_1814 | Spydeberg prestegård / 1814-møtet | historie | 59.6177 | 11.0868 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | skjeberg_kirke | Skjeberg kirke | historie | 59.2309 | 11.1901 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | tistedalen_saugbrugsforeningen | Tistedalen / Saugbrugsforeningen | historie | 59.1242 | 11.4492 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | indreroed_gard_fredrikstad | Indre Rød gård | historie | 59.2142 | 10.9132 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | varne_kloster | Værne kloster | historie | 59.3609 | 10.7269 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch3.json | onsøy_kirke | Onsøy kirke | historie | 59.2194 | 10.8159 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | isegran_fort_verft | Isegran fort og maritime senter | historie | 59.20296 | 10.94468 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | akeroya_fort | Akerøya fort | historie | 59.0495 | 10.9136 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | trogstad_fort | Trøgstad fort | historie | 59.6426 | 11.3334 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | rodenes_kirke | Rødenes kirke | historie | 59.58807 | 11.59473 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | fredrikshalds_teater | Fredrikshalds Teater | historie | 59.1244 | 11.3867 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | rakkestad_prestegard_1814 | Rakkestad prestegård | historie | 59.4258 | 11.3452 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | aremark_kirke_kirkested | Aremark kirke / kirkested | historie | 59.2212 | 11.6959 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch4.json | kornsjo_grensestasjon | Kornsjø stasjon / grensestasjon | historie | 59.0974 | 11.6682 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | brekke_sluser_haldenkanalen | Brekke sluser / Haldenkanalen | historie | 59.1501 | 11.4643 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | stromsfoss_sluser | Strømsfoss sluser | historie | 59.2977 | 11.6626 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | moss_mollebyen_industri | Møllebyen / Moss by- og industrimuseum | historie | 59.4377 | 10.6665 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | tomb_herregard | Tomb herregård | historie | 59.3243 | 10.8052 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | tune_kirke_kirkested | Tune kirke / kirkested | historie | 59.2867 | 11.0305 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | idd_kirke | Idd kirke | historie | 59.0855 | 11.4381 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | hobol_kirke | Hobøl kirke | historie | 59.6232 | 10.9474 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch5.json | rakkestad_kirke | Rakkestad kirke | historie | 59.4254 | 11.3452 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | folkenborg_museum | Folkenborg Museum | historie | 59.5519 | 11.3515 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | elingaard_herregard | Elingaard herregård | historie | 59.2136 | 10.7566 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | nes_lensemuseum | Nes lensemuseum | historie | 59.4707 | 11.1754 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | homlungen_fyr | Homlungen fyr | historie | 59.0331 | 11.0457 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | spydeberg_kirke | Spydeberg kirke | historie | 59.6171 | 11.0872 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | trogstad_kirke | Trøgstad kirke | historie | 59.6445 | 11.3171 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | skiptvet_kirke | Skiptvet kirke | historie | 59.4764 | 11.1709 | 240 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/ostfold/places_historie_ostfold_batch6.json | momarken_markedsplass | Momarken markedsplass | historie | 59.5584 | 11.3229 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | veien_kulturminnepark | Veien Kulturminnepark | historie | 60.1842 | 10.2504 | 420 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | norderhov_prestegard_1716 | Norderhov gamle prestegård | historie | 60.1359 | 10.2551 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | kongsberg_solvverk | Kongsberg Sølvverk | historie | 59.6817 | 9.6267 | 520 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | blaafarvevaerket_modum | Blaafarveværket | historie | 59.9314 | 9.9202 | 520 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | nore_stavkirke | Nore stavkirke | historie | 60.1663 | 8.8082 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | uvdal_stavkirke | Uvdal stavkirke | historie | 60.2677 | 8.5986 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | rollag_stavkirke | Rollag stavkirke | historie | 60.0255 | 9.2768 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | flesberg_stavkirke | Flesberg stavkirke | historie | 59.8604 | 9.4358 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch1.json | fossesholm_herregard | Fossesholm Herregård | historie | 59.7346 | 9.8672 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | torpo_stavkirke | Torpo stavkirke | historie | 60.6667 | 8.7167 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | hol_gamle_kyrkje | Hol gamle kyrkje | historie | 60.6158 | 8.2969 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | hallingdal_museum_nesbyen | Hallingdal Museum Nesbyen | historie | 60.5652 | 9.1013 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | kroderbanen_kroderen_stasjon | Krøderbanen / Krøderen stasjon | historie | 60.1359 | 9.7829 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | nostetangen_glassverk | Nøstetangen glassverk | historie | 59.7702 | 9.9081 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | drammen_museum_marienlyst | Drammen Museum / Marienlyst | historie | 59.7389 | 10.2044 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | haug_kirke_eiker | Haug kirke / Eiker kirkested | historie | 59.7709 | 9.9045 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch2.json | lier_bygdetun | Lier Bygdetun | historie | 59.7862 | 10.2453 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | boensnes_kirke | Bønsnes kirke | historie | 60.0854 | 10.1678 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | stein_gard_halvdanshaugen | Stein gård / Halvdanshaugen | historie | 60.0786 | 10.2355 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | kongsberg_kirke | Kongsberg kirke | historie | 59.6689 | 9.6504 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | labro_museum | Labro-museene | historie | 59.6094 | 9.6484 | 340 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | portaasen_wildenvey | Portåsen / Herman Wildenveys barndomshjem | historie | 59.7625 | 9.8489 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | lausen_kapell_ruin | Laugen kapellruin | historie | 60.0695 | 9.6231 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | eggedal_molle | Eggedal Mølle | historie | 60.2311 | 9.3504 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch3.json | drammen_tollbod_havn | Drammen tollbod / havneområdet | historie | 59.7434 | 10.2066 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | kjerraten_i_asa | Kjerraten i Åsa | historie | 60.1315 | 10.3158 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | hassel_jernverk | Hassel jernverk | historie | 59.9123 | 9.9091 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | bergseminaret_kongsberg | Bergseminaret på Kongsberg | historie | 59.6672 | 9.6488 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | laagdalsmuseet | Lågdalsmuseet | historie | 59.6678 | 9.6569 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | fiskum_gamle_kirke | Fiskum gamle kirke | historie | 59.7069 | 9.805 | 260 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | hvalsmoen_leir | Hvalsmoen leir | historie | 60.207 | 10.277 | 420 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | dagali_museum | Dagali Museum | historie | 60.415 | 8.448 | 300 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch4.json | gamle_nesbyen | Gamle Nesbyen | historie | 60.5685 | 9.1015 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | lauvlia_kittelsen | Lauvlia / Theodor Kittelsens kunstnerhjem | historie | 60.0349 | 9.6448 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | hagan_skredsvig | Hagan / Christian Skredsvigs kunstnerhjem | historie | 60.2269 | 9.3317 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | gulskogen_gard | Gulskogen gård | historie | 59.7336 | 10.1577 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | aal_bygdamuseum | Ål Bygdamuseum | historie | 60.6359 | 8.5627 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | gol_bygdemuseum | Gol Bygdemuseum | historie | 60.7012 | 8.9653 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | hemsedal_bygdatun | Hemsedal Bygdatun / Øvre Løkji | historie | 60.8578 | 8.6409 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | krokkleiva_kongeveien | Krokkleiva / Den bergenske kongevei | historie | 60.0609 | 10.3092 | 420 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors |
+| data/places/historie/buskerud/places_historie_buskerud_batch5.json | bragernes_kirke | Bragernes kirke | historie | 59.7463 | 10.2051 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | riddergarden_honefoss | Riddergården Hønefoss | historie | 60.1687 | 10.2551 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | modum_bad_st_olafs_kilde | Modum Bad / St. Olafs kilde | historie | 59.9304 | 9.9712 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | nore_i_kraftverk | Nore I kraftverk | historie | 60.2674 | 8.9466 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | sundvollen_hotell_skysskifte | Sundvollen Hotell / skysskifte | historie | 60.0612 | 10.3082 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | union_papirfabrikk_drammen | Union papirfabrikk / Grønland Drammen | historie | 59.7416 | 10.2003 | 340 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | solberg_spinderi | Solberg Spinderi | historie | 59.7562 | 9.9992 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | lier_sykehus_historisk_omrade | Lier sykehus / historisk område | historie | 59.7867 | 10.2871 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/buskerud/places_historie_buskerud_batch6.json | vikersund_stasjon_randsfjordbanen | Vikersund stasjon / Randsfjordbanen | historie | 59.9655 | 9.9986 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | domkirkeodden_hamar | Domkirkeodden / Hamardomen | historie | 60.7953 | 11.0301 | 420 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | maihaugen_lillehammer | Maihaugen | historie | 61.1124 | 10.4864 | 520 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | ringebu_stavkirke | Ringebu stavkirke | historie | 61.5293 | 10.1417 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | lom_stavkirke | Lom stavkirke | historie | 61.8372 | 8.5686 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | kongsvinger_festning | Kongsvinger festning | historie | 60.1934 | 12.0039 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | aulestad_bjornson | Aulestad / Bjørnstjerne Bjørnsons hjem | historie | 61.2638 | 10.1185 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | klevfos_cellulose | Klevfos Cellulose- & Papirfabrikk | historie | 60.8194 | 11.3676 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch1.json | atlungstad_brenneri | Atlungstad Brenneri | historie | 60.7429 | 11.1524 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | norsk_jernbanemuseum_hamar | Norsk jernbanemuseum Hamar | historie | 60.8079 | 11.0395 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | skibladner_gjovik | DS Skibladner / Gjøvik brygge | historie | 60.7962 | 10.6943 | 340 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | gjovik_gard | Gjøvik gård | historie | 60.7939 | 10.6908 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | norsk_skogmuseum_elverum | Norsk Skogmuseum | historie | 60.8837 | 11.5627 | 420 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | glomdalsmuseet_elverum | Glomdalsmuseet | historie | 60.8848 | 11.5558 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | bjerkebaek_undset | Bjerkebæk / Sigrid Undsets hjem | historie | 61.1147 | 10.4785 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | hegge_stavkirke | Hegge stavkirke | historie | 61.1235 | 9.0774 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch2.json | reinli_stavkirke | Reinli stavkirke | historie | 60.8377 | 9.4888 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | hundorp_dale_gudbrand | Hundorp / Dale-Gudbrands gard | historie | 61.5486 | 9.9427 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | folldal_gruver | Folldal gruver | historie | 62.1321 | 9.9973 | 480 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | norsk_utvandrermuseum_ottestad | Norsk utvandrermuseum Ottestad | historie | 60.7731 | 11.1197 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | raufoss_industripark_ammunisjon | Raufoss industripark / ammunisjonsfabrikken | historie | 60.7299 | 10.6164 | 420 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | lesja_bygdemuseum | Lesja bygdemuseum | historie | 62.1171 | 8.8618 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | kvikne_kobberverk | Kvikne kobberverk | historie | 62.5756 | 10.2155 | 380 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | bagnsbergatn_krigsminne | Bagnsbergatn / krigsminne | historie | 60.8227 | 9.5492 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch3.json | tolga_os_museum | Tolga-Os museum / Dølmotunet | historie | 62.4083 | 10.9986 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | granavollen_sosterkirkene | Granavollen / Søsterkirkene | historie | 60.3659 | 10.5579 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | hadeland_folkemuseum | Hadeland Folkemuseum | historie | 60.3639 | 10.5599 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | norsk_vegmuseum_oyer | Norsk vegmuseum | historie | 61.2234 | 10.4368 | 420 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | nybergsund_kongens_nei | Nybergsund / Kongens nei | historie | 61.2601 | 12.3266 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | elverum_folkehogskole_1940 | Elverum folkehøgskole / Elverumsfullmakten | historie | 60.8828 | 11.5599 | 300 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | stange_kirke | Stange kirke | historie | 60.7175 | 11.1947 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | balke_kirke_toten | Balke kirke | historie | 60.6622 | 10.8281 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch4.json | kvinnemuseet_kongsvinger | Kvinnemuseet Kongsvinger | historie | 60.1916 | 12.0061 | 280 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | lomen_stavkirke | Lomen stavkirke | historie | 61.1242 | 8.8924 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | oye_stavkirke | Øye stavkirke | historie | 61.1713 | 8.3996 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | hedalen_stavkirke | Hedalen stavkirke | historie | 60.6484 | 9.7327 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | vaga_kyrkje | Vågå kyrkje | historie | 61.8751 | 9.0966 | 280 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | garmo_stavkirke_maihaugen | Garmo stavkirke / Maihaugen | historie | 61.1133 | 10.4853 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | sygard_grytting_pilegrimsgard | Sygard Grytting / pilegrimsgård | historie | 61.5557 | 9.9614 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | matrand_slagsted_1814 | Matrand / slagsted 1814 | historie | 60.0342 | 12.1298 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch5.json | magnor_glassverk | Magnor Glassverk | historie | 59.9506 | 12.2024 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | finnetunet_skogfinsk_museum | Finnetunet / skogfinsk museum | historie | 60.4186 | 12.4019 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | sor_fron_kirke_gudbrandsdalsdomen | Sør-Fron kirke / Gudbrandsdalsdomen | historie | 61.5567 | 9.9407 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | lesja_kirke | Lesja kirke | historie | 62.1176 | 8.8613 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | valdres_folkemuseum_fagernes | Valdres Folkemuseum | historie | 60.9869 | 9.2356 | 420 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | odalstunet_sor_odal | Odalstunet | historie | 60.2521 | 11.6846 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | tynset_bygdemuseum | Tynset bygdemuseum | historie | 62.2764 | 10.7821 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | eidskog_museum_almenninga | Eidskog museum / Almenninga | historie | 60.0347 | 12.1291 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch6.json | hamar_stasjon_jernbanebyen | Hamar stasjon / jernbanebyen | historie | 60.7949 | 11.0678 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | ringsaker_kirke | Ringsaker kirke | historie | 60.8839 | 10.9486 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | proysenstua_rudshogda | Prøysenstua / Rudshøgda | historie | 60.9127 | 10.7259 | 280 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | dovre_kirke | Dovre kirke | historie | 61.9858 | 9.2509 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | sel_kirke_otta | Sel kirke / Otta-landskapet | historie | 61.7719 | 9.5366 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | femundshytten_smeltverk | Femundshytten / smeltehyttehistorie | historie | 62.2235 | 11.9254 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | rendalen_bygdemuseum | Rendalen bygdemuseum | historie | 61.7585 | 11.1905 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | skjaak_bygdamuseum | Skjåk bygdamuseum | historie | 61.8837 | 8.2668 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch7.json | stenberg_toten_museum | Stenberg / Toten museum | historie | 60.6818 | 10.6289 | 340 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | jorstadmoen_leir | Jørstadmoen leir | historie | 61.1603 | 10.4335 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | nordberg_fort | Nordberg fort | historie | 61.8959 | 8.2276 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | gausdal_bygdetun | Gausdal bygdetun | historie | 61.2344 | 10.2255 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | trysil_bygdetun | Trysil bygdetun | historie | 61.3092 | 12.2566 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | solor_museum_flisa | Solør museum / Flisa | historie | 60.6098 | 12.0118 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | grue_kirke_brannminne | Grue kirke / brannminne | historie | 60.4511 | 12.0639 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch8.json | lom_bygdamuseum_presthaugen | Lom bygdamuseum / Presthaugen | historie | 61.8376 | 8.5714 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | blokkodden_villmarksmuseum | Blokkodden Villmarksmuseum | historie | 61.9694 | 11.9558 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | husantunet_alvdal_bygdemuseum | Husantunet / Alvdal bygdemuseum | historie | 62.1086 | 10.6311 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | koppangtunet_stor_elvdal | Koppangtunet / Stor-Elvdal museum | historie | 61.5708 | 11.0552 | 320 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | tylldalen_bygdetun | Tylldalen bygdetun | historie | 62.1826 | 10.7551 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | faaberg_kirke | Fåberg kirke | historie | 61.1688 | 10.3789 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | vang_kirke_hamar | Vang kirke Hamar | historie | 60.8257 | 11.1325 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | mesna_kraft_og_industri | Mesna kraft- og industrilandskap | historie | 61.1132 | 10.4662 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch9.json | lillehammer_bryggeri_historisk_miljo | Lillehammer bryggeri / historisk industrimiljø | historie | 61.1158 | 10.4659 | 280 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | kistefos_tresliperi_jevnaker | Kistefos tresliperi / industrimuseum | historie | 60.2246 | 10.3716 | 380 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | kapp_melkefabrikk | Kapp melkefabrikk | historie | 60.7173 | 10.8621 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | loiten_braenderi | Løiten Brænderi | historie | 60.8083 | 11.3632 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | land_museum_dokka | Land Museum Dokka | historie | 60.8359 | 10.0713 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | vang_stavkirke_tomta_valdres | Vang stavkirke / opprinnelig kirkested | historie | 61.1256 | 8.5719 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | nord_odal_bygdetun_sand | Nord-Odal bygdetun / Sand | historie | 60.3894 | 11.5375 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch10.json | valer_kirke_brannminne | Våler kirke / brannminne | historie | 60.6781 | 11.8337 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | tingelstad_gamle_kirke | Tingelstad gamle kirke | historie | 60.3799 | 10.5821 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | fluberg_kirke | Fluberg kirke | historie | 60.7712 | 10.2384 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | biri_kirke | Biri kirke | historie | 60.9555 | 10.6233 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | mustad_hunnselva_gjovik | Mustad / Hunnselva industrimiljø | historie | 60.7894 | 10.6798 | 360 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | brumunddal_molle_industri | Brumunddal mølle / industrimiljø | historie | 60.8825 | 10.9394 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | bagn_bygdesamling | Bagn Bygdesamling | historie | 60.8229 | 9.5528 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | etnedal_bygdetun_bruflat | Etnedal bygdetun / Bruflat | historie | 60.8887 | 9.6424 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch11.json | brandval_kirke | Brandval kirke | historie | 60.3157 | 12.0144 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | hjerkinn_fjellstue | Hjerkinn fjellstue | historie | 62.2217 | 9.5554 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | budsjord_pilegrimsgard | Budsjord pilegrimsgård | historie | 62.0539 | 9.1208 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | jutulheimen_vagaa_bygdamuseum | Jutulheimen / Vågå bygdamuseum | historie | 61.8758 | 9.0957 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | follebu_kirke | Follebu kirke | historie | 61.2169 | 10.2922 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | heidal_kirke | Heidal kirke | historie | 61.7482 | 9.2701 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | hoff_kirke_toten | Hoff kirke Østre Toten | historie | 60.6733 | 10.8187 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | gjovik_glassverk_historisk_miljo | Gjøvik glassverk / historisk miljø | historie | 60.7937 | 10.6916 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch12.json | eina_stasjon_totenbanen | Eina stasjon / Totenbanen | historie | 60.6286 | 10.5988 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | espedalen_nikkelverk | Espedalen nikkelverk | historie | 61.4248 | 9.6036 | 420 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | aurdal_kirke | Aurdal kirke | historie | 60.9236 | 9.4118 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | nes_kirke_ringsaker | Nes kirke Ringsaker | historie | 60.7648 | 10.9427 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | lillehammer_kirke | Lillehammer kirke | historie | 61.1154 | 10.4662 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | fagernes_stasjon_valdresbanen | Fagernes stasjon / Valdresbanen | historie | 60.9856 | 9.2339 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | ullinsvin_vagaa_prestegard | Ullinsvin / Vågå prestegard | historie | 61.8755 | 9.0951 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | lillehammer_stasjon | Lillehammer stasjon | historie | 61.1152 | 10.4637 | 280 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch13.json | bjorge_gard_ringebu | Bjørge gård Ringebu | historie | 61.5195 | 10.1653 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | rena_leir | Rena leir | historie | 61.1324 | 11.3767 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | dombas_stasjon_jernbaneknutepunkt | Dombås stasjon / jernbaneknutepunkt | historie | 62.0697 | 9.1239 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | sanderud_sykehus_historisk_omrade | Sanderud sykehus / historisk område | historie | 60.7798 | 11.1805 | 360 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | biri_glassverk_historisk_sted | Biri glassverk / historisk sted | historie | 60.9588 | 10.6061 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | otta_stasjon_gudbrandsdalen | Otta stasjon / Gudbrandsdalen | historie | 61.7712 | 9.5352 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | kongsvinger_stasjon_grensebanen | Kongsvinger stasjon / grensebanen | historie | 60.1907 | 12.0007 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | romedal_kirke | Romedal kirke | historie | 60.7493 | 11.2508 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch14.json | snertingdal_kirke | Snertingdal kirke | historie | 60.8769 | 10.4596 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | elverum_stasjon_jernbanemiljo | Elverum stasjon / jernbanemiljø | historie | 60.8818 | 11.5621 | 300 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | tynset_stasjon_rorosbanen | Tynset stasjon / Rørosbanen | historie | 62.2757 | 10.7828 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | kvam_krigsminne_1940 | Kvam / krigsminne 1940 | historie | 61.6655 | 9.6904 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | asnes_kirke | Åsnes kirke | historie | 60.6134 | 12.0112 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | hof_kirke_asnes | Hof kirke Åsnes | historie | 60.5402 | 12.0804 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | tolga_kirke | Tolga kirke | historie | 62.4091 | 10.9996 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | os_kirke_osterdalen | Os kirke Østerdalen | historie | 62.4962 | 11.2238 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch15.json | valer_kirke_solor | Våler kirke Solør | historie | 60.6781 | 11.8337 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | moelv_stasjon_mjoslinjen | Moelv stasjon / Mjøslinjen | historie | 60.9337 | 10.7005 | 300 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | stange_stasjon_dovrebanen | Stange stasjon / Dovrebanen | historie | 60.7181 | 11.1941 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | gran_stasjon_gjovikbanen | Gran stasjon / Gjøvikbanen | historie | 60.3665 | 10.5608 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | lena_stasjon_totenbanen | Lena stasjon / Totenbanen | historie | 60.6744 | 10.8138 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | reinsvoll_stasjon_totenbanen | Reinsvoll stasjon / Totenbanen | historie | 60.6798 | 10.6225 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | dokka_stasjon_valdresbanen | Dokka stasjon / Valdresbanen | historie | 60.8352 | 10.0719 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | skarnes_stasjon_kongsvingerbanen | Skarnes stasjon / Kongsvingerbanen | historie | 60.2536 | 11.6819 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch16.json | braskereidfoss_kraftverk | Braskereidfoss kraftverk | historie | 60.7219 | 11.8042 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | slidredomen_vestre_slidre | Slidredomen / Vestre Slidre kirke | historie | 61.0887 | 8.9815 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | bruflat_kirke_etnedal | Bruflat kirke | historie | 60.8878 | 9.6428 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | skreia_stasjon_totenbanen | Skreia stasjon / Totenbanen | historie | 60.6504 | 10.9357 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | flisa_stasjon_solorbanen | Flisa stasjon / Solørbanen | historie | 60.6095 | 12.0116 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | vinger_kirke_kongsvinger | Vinger kirke | historie | 60.1905 | 12.0042 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | grue_finnskog_kirke | Grue Finnskog kirke | historie | 60.4362 | 12.4486 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | furnes_kirke_ringsaker | Furnes kirke | historie | 60.8379 | 11.0201 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch17.json | alvdal_kirke | Alvdal kirke | historie | 62.1081 | 10.6302 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | bjorgan_prestegard_kvikne | Bjørgan prestegård Kvikne | historie | 62.5728 | 10.2179 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | kvikne_kirke | Kvikne kirke | historie | 62.5764 | 10.2184 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | oyer_kirke | Øyer kirke | historie | 61.2651 | 10.4131 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | tretten_kirke | Tretten kirke | historie | 61.3158 | 10.3012 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | ringebu_prestegard | Ringebu prestegard | historie | 61.5292 | 10.1501 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | dombas_krigsminne_1940 | Dombås / krigsminne 1940 | historie | 62.0694 | 9.1242 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | einunna_kraftverk_folldal | Einunna kraftverk / Folldal | historie | 62.1341 | 10.0045 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/innlandet/places_historie_innlandet_batch18.json | os_stasjon_rorosbanen | Os stasjon / Rørosbanen | historie | 62.4957 | 11.2235 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | kaupang_bikjholberget | Kaupang / Bikjholberget | historie | 59.0474 | 10.0335 | 520 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | oseberghaugen_tonsberg | Oseberghaugen | historie | 59.2943 | 10.4099 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | borrerhaugene_midgard | Borreparken / Borre-haugene | historie | 59.3805 | 10.4686 | 620 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | slottsfjellet_tonsberg | Slottsfjellet / Tunsberghus | historie | 59.2711 | 10.4075 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | mikaelskirken_slottsfjellet | Mikaelskirken på Slottsfjellet | historie | 59.2715 | 10.4082 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | hvalfangstmuseet_sandefjord | Hvalfangstmuseet Sandefjord | historie | 59.1307 | 10.2246 | 320 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | eidsfoss_jernverk | Eidsfoss jernverk | historie | 59.5951 | 10.0463 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch1.json | karljohansvern_horten | Karljohansvern Horten | historie | 59.4179 | 10.4891 | 520 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | gokstadhaugen_sandefjord | Gokstadhaugen | historie | 59.2097 | 10.2449 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | molen_brunlanes_gravroysfelt | Mølen gravrøyser | historie | 58.9696 | 9.8277 | 520 | outside_expected_area | suspicious_radius_high, outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | istrehagan_steinsetting | Istrehågan steinsetting | historie | 59.0799 | 10.1514 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | fredriksvern_verft_stavern | Fredriksvern verft / Stavern | historie | 58.9968 | 10.0374 | 460 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | herregarden_larvik | Herregården i Larvik | historie | 59.0528 | 10.0289 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | tjolling_kirke_larvik | Tjølling kirke | historie | 59.0538 | 10.1344 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | sem_kirke_tonsberg | Sem kirke Tønsberg | historie | 59.2826 | 10.3337 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch2.json | hedrum_kirke_larvik | Hedrum kirke | historie | 59.1037 | 10.0798 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | jarlsberg_hovedgard | Jarlsberg hovedgård | historie | 59.2859 | 10.3617 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | hoyjord_stavkirke | Høyjord stavkirke | historie | 59.3047 | 10.1128 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | borre_kirke_horten | Borre kirke | historie | 59.3824 | 10.4642 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | botne_kirke_holmestrand | Botne kirke | historie | 59.4928 | 10.3228 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | ramnes_kirke_tonsberg | Ramnes kirke | historie | 59.3525 | 10.2384 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | vale_kirke_tonsberg | Våle kirke | historie | 59.4138 | 10.2791 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | sandar_kirke_sandefjord | Sandar kirke | historie | 59.1302 | 10.2223 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch3.json | larvik_kirke | Larvik kirke | historie | 59.0536 | 10.0354 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | notteroy_kirke_faerder | Nøtterøy kirke | historie | 59.2278 | 10.4074 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | tjome_kirke_faerder | Tjøme kirke | historie | 59.1104 | 10.3947 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | faerder_fyr | Færder fyr | historie | 59.0264 | 10.5247 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | andebu_kirke_sandefjord | Andebu kirke | historie | 59.3041 | 10.1759 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | kodal_kirke_sandefjord | Kodal kirke | historie | 59.2203 | 10.1295 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | stokke_kirke_sandefjord | Stokke kirke | historie | 59.2233 | 10.3006 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | holmestrand_kirke | Holmestrand kirke | historie | 59.4889 | 10.3157 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch4.json | sande_kirke_vestfold | Sande kirke Vestfold | historie | 59.5906 | 10.2077 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | marinemuseet_horten | Marinemuseet Horten | historie | 59.4177 | 10.4849 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | norske_love_horten | Norske Løve Horten | historie | 59.4163 | 10.4926 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | citadellet_stavern | Citadellet Stavern | historie | 58.9958 | 10.0406 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | minnehallen_stavern | Minnehallen Stavern | historie | 58.9976 | 10.0449 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | fritzoe_verk_larvik | Fritzøe Verk Larvik | historie | 59.0559 | 10.0214 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | sandefjord_kurbad | Sandefjord Kurbad | historie | 59.1291 | 10.2241 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | tonsberg_domkirke | Tønsberg domkirke | historie | 59.2686 | 10.4079 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/vestfold/places_historie_vestfold_batch5.json | vallo_saltverk | Vallø saltverk | historie | 59.2683 | 10.4932 | 360 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | hafrsfjord | Hafrsfjord | historie | 58.9414 | 5.6713 | 450 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | avaldsnes_kongsgard | Avaldsnes kongsgård | historie | 59.35458 | 5.29262 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | stiklestad | Stiklestad | historie | 63.7956 | 11.559 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | nidarosdomen | Nidarosdomen | historie | 63.4269 | 10.3969 | 80 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | lade_gard | Lade gård / Lade | historie | 63.44696 | 10.44089 | 170 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | bergenhus_haakonshallen | Bergenhus / Håkonshallen | historie | 60.3997 | 5.3175 | 100 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | tonsberg_slottsfjell | Slottsfjellet i Tønsberg | historie | 59.27196 | 10.40392 | 160 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | moster_gamle_kyrkje | Moster gamle kyrkje | historie | 59.70133 | 5.38115 | 120 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | sola_erling_skjalgsson | Sola / Erling Skjalgssons maktlandskap | historie | 58.89099 | 5.61132 | 200 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch1.json | reinskloster | Rein kloster | historie | 63.5648 | 9.92188 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | stein_ringerike_halvdanshaugen | Stein på Ringerike / Halvdanshaugen | historie | 60.10125 | 10.29613 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | fitjar_hakonarparken | Håkonarparken på Fitjar | historie | 59.91731 | 5.31801 | 160 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | gulatinget_flolid | Gulatinget på Flolid | historie | 60.96923 | 5.12364 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | hjorungavag | Hjørungavåg | historie | 62.3426 | 6.0725 | 420 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | rimol_melhus | Rimol i Melhus | historie | 63.2869 | 10.2707 | 200 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | bjarkoy_tore_hund | Tore Hunds naust og monument på Bjarkøy | historie | 68.99776 | 16.53797 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | egge_gard_steinkjer | Egge gård og Egge museum | historie | 64.021678 | 11.463289 | 260 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | giske_kyrkje | Giske kyrkje og Giskeætta | historie | 62.49864 | 6.05026 | 170 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | munkeliv_kloster | Munkeliv kloster på Nordnes | historie | 60.39502 | 5.31554 | 100 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | nordnes_bergen | Nordnes i Bergen | historie | 60.39925 | 5.30654 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | audunborg_hegrenes | Audunborg på Hegrenes | historie | 61.5008 | 6.2582 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | varteig_kirke | Varteig kirke og Inga fra Varteig-landskapet | historie | 59.35034 | 11.18966 | 220 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | elgeseter_kloster | Elgeseter kloster i Klostergata | historie | 63.42111 | 10.39401 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch2.json | talgje_kyrkje | Talgje kyrkje og Talgje-godset | historie | 59.10627 | 5.84153 | 170 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | nidaros_erkebispegarden | Erkebispegården i Nidaros | historie | 63.42683 | 10.39596 | 110 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | kristkirken_bergenhus | Kristkirken på Bergenhus | historie | 60.40042 | 5.31827 | 90 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | hakonshella_bauta | Håkonshella og Håkon den gode-bautaen | historie | 60.34567 | 5.18007 | 230 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | frostatinget_logtun | Frostatinget på Logtun | historie | 63.5675 | 10.7027 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | kalvskinnet_slagsted | Kalvskinnet slagsted | historie | 63.4292 | 10.3873 | 260 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | fimreite_slagsted | Fimreite slagsted | historie | 61.1546 | 6.9884 | 520 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | sekken_slagsted | Sekken slagsted og minnestein | historie | 62.647 | 7.3678 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | re_slagsted_ramnes | Re slagsted ved Ramnes | historie | 59.3501 | 10.2369 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | bratsberg_gard | Bratsberg gård | historie | 59.1742 | 9.6602 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | vagar_lofoten_storvagan | Vågar i Storvågan/Kabelvåg | historie | 68.2145 | 14.4759 | 260 | outside_expected_area | outside_oslo_possible_intended, needs_multiple_anchors |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | bohus_festning_bagaholmen | Bohus festning på Bagaholmen | historie | 57.8628 | 11.9987 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch3.json | kalmar_slott | Kalmar slott | historie | 56.6616 | 16.3568 | 180 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch4.json | york_jorvik | Jórvík / York | historie | 53.95761 | -1.07999 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch4.json | downpatrick_magnus_berrfott | Downpatrick og Magnus Berrføtt | historie | 54.3278 | -5.7159 | 400 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch4.json | holmengra_hvaler | Holmengrå ved Hvaler | historie | 59.027 | 11.045 | 650 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch4.json | stamford_bridge_battlefield | Stamford Bridge battlefield | historie | 53.989 | -0.903 | 650 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch4.json | jelling_kongsgard | Jelling kongsgård og monumentområde | historie | 55.756 | 9.419 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/norge/places_historie_norge_for_1500_batch4.json | orkney_birsay | Brough of Birsay / Orknøyene | historie | 59.136 | -3.322 | 420 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/kunst/oslo/places_kunst.json | ekebergparken | Ekebergparken skulpturpark | kunst | 59.8997 | 10.7753 | 200 | needs_review | area_or_park_needs_manual_review |
 | data/places/litteratur/oslo/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.92096 | 10.72936 | 30 | needs_review | suspicious_radius_low |
 | data/places/litteratur/oslo/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 | needs_review | low_precision_coord |
@@ -334,13 +689,17 @@ Generert: 2026-06-15T14:00:39.468Z
 - data/natur/nature_routes_place_map.json
 - data/natur/places_akerselva_profiles_register_ids.json
 - data/overlays/by/places_overlay_by.json
+- data/people/historie/norge/staging/people_place_patch_norge_for_1500_after_places_batch1.json
+- data/people/historie/norge/staging/people_place_patch_norge_for_1500_after_places_batch2.json
+- data/people/historie/norge/staging/people_place_patch_norge_for_1500_after_places_batch3.json
+- data/people/historie/norge/staging/people_place_patch_norge_for_1500_after_places_batch4.json
+- data/places/historie/missing_places_norge_for_1500_batch1.json
 - data/places/historie/oslo/places_historie_merge_candidates_01.json
 - data/places/historie/oslo/places_historie_next_batch_middelalder_01.json
 - data/places/historie/oslo/places_historie_next_batch_middelalder_02.json
 - data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json
 - data/places/historie/oslo/places_historie_next_batch_straff_sosial_01.json
 - data/places/historie/oslo/places_historie_next_batch_tidlig_moderne_01.json
-- data/places/kunst/oslo/places_kunst_UPGRADED.json
 - data/places/natur/oslo/wonderkammerwk_places_alna.json
 - data/places/place_image_candidates.json
 - data/places/place_image_seeds.json
