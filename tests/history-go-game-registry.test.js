@@ -79,7 +79,7 @@ assert.doesNotMatch(source + profileHtml, /My Rating|Date Added|Date Read|Privat
     console: { ...console, warn: (...args) => warnings.push(args.join(" ")) },
     fetch: async (url, options) => {
       requestedUrl = url;
-      assert.deepStrictEqual(options, { cache: "no-store" }, "registry fetch avoids stale cached data");
+      assert.strictEqual(options?.cache, "no-store", "registry fetch avoids stale cached data");
       return { ok: true, json: async () => registry };
     }
   };

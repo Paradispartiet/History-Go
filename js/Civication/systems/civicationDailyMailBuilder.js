@@ -456,7 +456,7 @@
     })[id] || id || "Arbeidsdag";
   }
 
-  function makeGeneratedEvent(active, phase, slot, index) {
+  function makeGeneratedEvent(active, phase, slot, index, runtimeInstanceKey = "") {
     const phaseId = norm(phase?.id || "morning");
     const roleTitle = norm(active?.title || "rollen");
     const slotId = slugify(slot?.slot || slot?.type || `slot_${index}`);
@@ -489,7 +489,7 @@
         ];
 
     return {
-      id: `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${todayKey()}_${index}`,
+      id: `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${todayKey()}_${index}${runtimeInstanceKey}`,
       source: "Civication",
       source_type: "daily_generated",
       mail_type: isDayEnd ? "day_end" : "phase",
@@ -545,7 +545,7 @@
     };
   }
 
-  function toDailyExtraMail(active, sourceMail, phase, slot, index) {
+  function toDailyExtraMail(active, sourceMail, phase, slot, index, runtimeInstanceKey = "") {
     const phaseId = norm(phase?.id || sourceMail?.phase || "morning");
     const slotId = slugify(slot?.slot || slot?.type || `slot_${index}`);
     const sourceId = norm(sourceMail?.id);
@@ -553,7 +553,7 @@
 
     return {
       ...sourceMail,
-      id: `${sourceId}__daily_${date}_${phaseId}_${slotId}_${index}`,
+      id: `${sourceId}__daily_${date}_${phaseId}_${slotId}_${index}${runtimeInstanceKey}`,
       source_mail_id: sourceId,
       source_type: "daily_extra",
       mail_class: "daily_workday",
@@ -638,14 +638,14 @@
 
   // Pakker et dayEvents-generert event inn i daily-konvolutten slik at PR A/PR B fortsatt
   // kjenner det igjen som et daily-event (mail_class/daily_mail_meta), uten å endre teksten.
-  function toDailyGeneratedPhaseMail(active, generated, phase, slot, index) {
+  function toDailyGeneratedPhaseMail(active, generated, phase, slot, index, runtimeInstanceKey = "") {
     const base = generated && typeof generated === "object" ? generated : {};
     const phaseId = norm(phase?.id || base.phase_tag || "morning");
     const slotId = slugify(slot?.slot || slot?.type || `slot_${index}`);
     const date = todayKey();
     return {
       ...base,
-      id: norm(base.id) || `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${date}_${index}`,
+      id: norm(base.id) ? `${norm(base.id)}${runtimeInstanceKey}` : `${slugify(active?.role_key || active?.title || "rolle")}_${phaseId}_${slotId}_${date}_${index}${runtimeInstanceKey}`,
       source: norm(base.source) || "Civication",
       source_type: "daily_generated",
       mail_class: "daily_workday",
@@ -1118,6 +1118,9 @@
   async function buildQueue(active, options = {}) {
     const state = getState();
     const date = norm(options.date || todayKey());
+    const runtimeInstanceKey = options.forceNew === true
+      ? `__run_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
+      : "";
     const roleScope = resolveRoleScope(active);
     const program = await loadJson(DAY_PROGRAM_PATH) || defaultProgram();
     const plan = await loadJson(getPlanPath(active));
@@ -1189,7 +1192,7 @@
               status: "queued",
               phase: norm(phase?.id || "morning"),
               slot: norm(slot?.slot || slot?.type),
-              event: toDailyExtraMail(active, picked, phase, slot, ordinal)
+              event: toDailyExtraMail(active, picked, phase, slot, ordinal, runtimeInstanceKey)
             });
             continue;
           }
@@ -1202,7 +1205,7 @@
             // PR C: fase-/dagslutt-slot regenereres fra dayEvents ved levering. makeGeneratedEvent
             // beholdes som placeholder/fallback dersom dayEvents ikke er tilgjengelig.
             ...(generatorKind ? { phase_generator: generatorKind } : {}),
-            event: makeGeneratedEvent(active, phase, slot, ordinal)
+            event: makeGeneratedEvent(active, phase, slot, ordinal, runtimeInstanceKey)
           });
         }
       }
@@ -1221,6 +1224,7 @@
       delivered_ids: [],
       answered_ids: [],
       current_index: 0,
+      runtime_instance_key: runtimeInstanceKey,
       items
     };
   }
@@ -1257,7 +1261,7 @@
 
     if (reusable) return existing;
 
-    const next = await buildQueue(active, { date });
+    const next = await buildQueue(active, { date, forceNew: options.forceNew === true });
     setState({ [DAY_RUNTIME_KEY]: next });
     return next;
   }
@@ -1505,7 +1509,7 @@
       try {
         const generated = await generatePhaseEvent(item.phase_generator, active);
         if (generated && typeof generated === "object") {
-          event = toDailyGeneratedPhaseMail(active, generated, { id: item.phase }, { slot: item.slot }, idx);
+          event = toDailyGeneratedPhaseMail(active, generated, { id: item.phase }, { slot: item.slot }, idx, norm(runtimeWithBlock?.runtime_instance_key));
         }
       } catch (error) {
         if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] fase-generator feilet", item.phase_generator, error);

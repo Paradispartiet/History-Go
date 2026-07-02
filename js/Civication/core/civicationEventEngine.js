@@ -2070,10 +2070,13 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
       }
       legacyImmediateFollowupSuppressed = suppressImmediateFollowup;
       if (!suppressImmediateFollowup) {
-        legacyImmediateFollowupEnqueued = true;
-        this.enqueueImmediateFollowupEvent().catch(function (e) {
+        try {
+          const followupResult = await this.enqueueImmediateFollowupEvent();
+          legacyImmediateFollowupEnqueued = followupResult !== false;
+        } catch (e) {
+          legacyImmediateFollowupEnqueued = false;
           console.warn("Immediate follow-up mail failed", e);
-        });
+        }
       }
     }
 
