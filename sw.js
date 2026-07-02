@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-22-v1.2.980";
+const SW_VERSION = "hg-sw-2026-06-22-v1.2.981";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -152,7 +152,6 @@ const PRECACHE_URLS = [
   "js/Civication/civiLifestyle.js",
   "js/Civication/civicationCommercial.js",
   "js/Civication/roleStoryletBridge.js",
-  "js/Civication/roleThreadResolver.js",
   "js/Civication/mailPlanBridge.js",
   "js/Civication/CivicationBoot.js",
 

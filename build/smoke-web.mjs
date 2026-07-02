@@ -38,7 +38,18 @@ const TARGETS = [
   // Laster knowledge-motoren via root-shim (../knowledge.js -> document.write dist/web/knowledge.js)
   { page: "knowledge/knowledge_historie.html", globals: ["Emner", "HGInsights", "getKnowledgeUniverse", "renderKnowledgeSection"] },
   // Laster i tillegg js/emneDekning.ts (dist/web/emneDekning.js) -> window.computeEmneDekning
-  { page: "knowledge/knowledge_natur.html", globals: ["Emner", "HGInsights", "renderKnowledgeSection", "computeEmneDekning"] }
+  { page: "knowledge/knowledge_natur.html", globals: ["Emner", "HGInsights", "renderKnowledgeSection", "computeEmneDekning"] },
+  // Civication er IKKE del av TS-migreringen (klassiske scripts), men siden har 100+
+  // script-tags og ingen annen automatisk boot-test — dette er en ren boot-vakt:
+  // laster siden og verifiserer at kjernemotorene/flatene publiserer globalene sine.
+  {
+    page: "Civication.html",
+    globals: [
+      "CivicationState", "CivicationCalendar", "CivicationEventEngine", "CivicationMailEngine",
+      "CivicationMailRuntime", "CivicationDailyMailBuilder", "CivicationNextActionSelector",
+      "CivicationNextActionUI", "CivicationDayProgression", "CivicationPsyche", "CivicationEventChannels"
+    ]
+  }
 ];
 
 const onlyArg = process.argv.slice(2).filter((a) => !a.startsWith("-"));

@@ -5,10 +5,18 @@
 > `civicationEventEngine.answer()`), `answerBundleItem` løser nå innbokskopien, og
 > `dayProgressionController` blokkerer ikke på innbokskopier hvis runtime-raden er besvart.
 > `test:civication` kjører nå **alle** `tests/civication-*.test.js` via
-> `tests/run-civication-tests.mjs` (glob-runner, 132/132 grønne) + jobb-audits.
-> Dokumentdriften (README/CLAUDE.md/pchyche→psyche) er rettet. Gjenstår: død kode
-> (P2, seks filer — krever eierbeslutning), lastrekkefølge debatt-UI/motor, og
-> innholdsgjelden i rollepakker/bykart.
+> `tests/run-civication-tests.mjs` (glob-runner) + jobb-audits.
+> Dokumentdriften (README/CLAUDE.md/pchyche→psyche) er rettet.
+>
+> **Oppfølging 2 (samme dag):** De fem døde modulene uten referanser er slettet
+> (roleThreadResolver, civicationRuntimeSanityGuard, dayFactionChoiceSystem,
+> dayFactionNpcReactions, CivicationSectionsUI — inkl. sw.js-/schema-opprydding;
+> `map/loadCivicationCityMapEntries.js` beholdt fordi den har test). Debattmotoren
+> lastes nå før debatt-UI-et. `smoke:web` har fått `Civication.html` som boot-vakt.
+> Jobbtilbud viser nå pakkedybde (full/delvis/generisk) via generert
+> `data/Civication/rolePackIndex.json` + `CivicationRolePackDepth` +
+> `buildOfferPackDepthHtml` (133/133 testfiler grønne). Gjenstår: innholdsgjelden
+> (flere komplette rollepakker, bykart 318/869).
 
 Gjennomgang av hva som må gjøres for at Civication skal fungere godt og henge logisk sammen.
 Basert på kjøring av **alle** 132 Civication-testfiler enkeltvis, alle `audit:civication*`-skript,

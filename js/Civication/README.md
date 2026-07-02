@@ -149,7 +149,13 @@ data/badges.json
   → data/Civication/mailFamilies/{kategori}/{type}/{role_scope}_{type}.json  (scener)
   → data/Civication/lifeMails/                                   (livshendelser)
   → data/Civication/mailDayProgram.json                          (dagsrytme)
+  → data/Civication/rolePackIndex.json                           (generert pakkedybde-indeks)
 ```
+
+`rolePackIndex.json` genereres av `npm run audit:civication:role-packs` og leses i runtime av
+`systems/civicationRolePackDepth.js` (`window.CivicationRolePackDepth`): jobbtilbudskortet
+viser om rollen bak tilbudet har full, delvis eller generisk rollepakke, målt mot pakken
+runtime-resolveren faktisk vil spille. Regenerer indeksen når rollepakker endres.
 
 Referanserolle (komplett FWG-styrt): **Arealplanlegger** (`by/by_radgiver_plan`).
 
