@@ -30,7 +30,7 @@
 
 
 /* ===================================================== */
-/* PlaceCard: ekte bottom sheet                           */
+/* PlaceCard: fast panel mellom header og footer          */
 /* ===================================================== */
 
 
@@ -49,32 +49,20 @@
   left: 0;
   right: 0;
 
-  /* Bottom-sheet: stopper over den faste footeren. Posisjon/lag styres
-     autoritativt i css/layout.css (body.hg-app #placeCard) – verdiene her
-     holdes i synk for robust fallback uten app-spesifisiteten. */
+  /* Fast panel: fyller nøyaktig sonen mellom header og den faste footeren.
+     Posisjon/lag styres autoritativt i css/layout.css
+     (body.hg-app #placeCard) – verdiene her holdes i synk for robust
+     fallback uten app-spesifisiteten. */
+  top: var(--hg-visual-header-height, 74px);
   bottom: var(
     --hg-bottom-nav-height,
     calc(80px + env(safe-area-inset-bottom, 0px))
   );
-  top: auto;
 
-  /* height:auto lar kortet vokse med innholdet; max-height er
-     sikkerhetsgrensen slik at toppen aldri går over header eller footer.
-     Bruker visual-heights fordi #placeCard ligger UTENFOR app-shell
-     (forankret mot ekte viewport), på linje med #nearbyListContainer. */
+  /* top + bottom definerer høyden. Selve kortet klipper innholdet, mens
+     .pc-body scroller internt. */
   height: auto;
-  max-height: calc(
-    100vh
-    - var(--hg-visual-header-height, 74px)
-    - var(--hg-bottom-nav-height, calc(80px + env(safe-area-inset-bottom, 0px)))
-    - 16px
-  );
-  max-height: calc(
-    100dvh
-    - var(--hg-visual-header-height, 74px)
-    - var(--hg-bottom-nav-height, calc(80px + env(safe-area-inset-bottom, 0px)))
-    - 16px
-  );
+  max-height: none;
 
   /* Lagrekkefølge eies av css/layout.css: footer > #placeCard. */
   z-index: var(--hg-z-placecard, 100);
@@ -770,7 +758,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 
 /* pc-body er PlaceCard sin vertikale scroll-container.
-   Kortet (#placeCard) er begrenset av max-height og klipper med
+   Kortet (#placeCard) er fast spent mellom header og footer og klipper med
    overflow:hidden; .pc-body fyller resten av kortet (flex:1) og scroller
    internt når innholdet er høyere enn tilgjengelig plass. Innholdet
    forblir dermed innenfor flaten over footer-laget.

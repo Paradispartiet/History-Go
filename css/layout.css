@@ -302,22 +302,13 @@ body.hg-app #placeCard{
   position: fixed;
   left: 12px;
   right: 12px;
-  /* PlaceCard stopper fysisk over den faste footeren. Footeren har samtidig
-     høyere z-index, slik at kontrollaget forblir øverst og klikkbart. */
-  top: auto;
+  /* PlaceCard fyller nøyaktig viewport-sonen mellom den faste headeren og
+     den faste footeren. Footeren har samtidig høyere z-index, slik at
+     kontrollaget forblir øverst og klikkbart. */
+  top: var(--hg-visual-header-height, 74px);
   bottom: var(--hg-bottom-nav-height);
   height: auto;
-  /* Visual-heights fordi #placeCard er forankret mot ekte viewport
-     (utenfor app-shell), på linje med #nearbyListContainer. Maksgrensen
-     reserverer både toppklaringen og hele footerflaten. */
-  max-height: calc(100vh
-    - var(--hg-visual-header-height, 74px)
-    - var(--hg-bottom-nav-height)
-    - 16px);
-  max-height: calc(100dvh
-    - var(--hg-visual-header-height, 74px)
-    - var(--hg-bottom-nav-height)
-    - 16px);
+  max-height: none;
   z-index: var(--hg-z-placecard);
 }
 
