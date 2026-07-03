@@ -219,6 +219,75 @@ body.hg-app.hg-phone #nearbyListContainer{
   z-index: 0;
 }
 
+#placesLoadingIndicator{
+  position: fixed;
+  left: calc(14px + env(safe-area-inset-left));
+  top: calc(var(--hg-visual-header-height, 74px) + 12px);
+  z-index: calc(var(--hg-z-nearby) - 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: min(260px, calc(100vw - 28px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  box-sizing: border-box;
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  background: rgba(6,10,18,.82);
+  color: rgba(255,255,255,.92);
+  box-shadow: 0 10px 26px rgba(0,0,0,.26);
+  font: 600 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: .01em;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+#placesLoadingIndicator[hidden]{
+  display: none;
+}
+
+#placesLoadingIndicator.is-error{
+  background: rgba(34,14,14,.84);
+  border-color: rgba(255,120,120,.22);
+}
+
+.places-loading-spinner{
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  border: 2px solid rgba(255,255,255,.28);
+  border-top-color: rgba(255,255,255,.94);
+  border-radius: 999px;
+  animation: hg-places-loading-spin .8s linear infinite;
+}
+
+#placesLoadingIndicator.is-error .places-loading-spinner{
+  border: 0;
+  width: auto;
+  height: auto;
+  animation: none;
+}
+
+#placesLoadingIndicator.is-error .places-loading-spinner::before{
+  content: "⚠️";
+}
+
+@keyframes hg-places-loading-spin{
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .places-loading-spinner{
+    animation: none;
+  }
+}
+
+body.hg-app.hg-phone #placesLoadingIndicator{
+  top: calc(var(--hg-visual-header-height, 74px) + 8px);
+  left: calc(10px + env(safe-area-inset-left));
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
 
 
 
