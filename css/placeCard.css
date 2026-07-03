@@ -270,18 +270,18 @@
   gap: 10px;
 }
 
-/* Høyre kolonne: rundinger + På stedet */
+/* Media-kolonne: frontImage etterfølges av rundinger og På stedet */
 .pc-side-stack{
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 2;
 
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   justify-self: start;
-  align-self: stretch;
-  justify-content: space-between;
+  align-self: start;
+  justify-content: flex-start;
   width: var(--place-card-media-width);
   min-width: var(--place-card-media-width);
   max-width: var(--place-card-media-width);
@@ -291,7 +291,7 @@
 
 /* Ikon-kvadratet (rundingene) */
 .pc-icons-quad{
-  order: 2;
+  order: 1;
   display: grid;
   grid-template-columns: repeat(3, var(--place-card-orb-size));
   grid-auto-rows: var(--place-card-orb-size);
@@ -308,7 +308,7 @@
 }
 
 .pc-events-quad{
-  order: 1;
+  order: 2;
   width: var(--place-card-media-width);
   min-width: var(--place-card-media-width);
   max-width: var(--place-card-media-width);
