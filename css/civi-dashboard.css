@@ -283,16 +283,16 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-phase-panel {
   margin: -4px 0 2px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 14px;
   background: var(--card2);
   box-shadow: none;
 
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 7px 12px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
 }
 
 .civi-day-phase-panel::before {
@@ -301,8 +301,9 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-phase-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 8px;
+  gap: 4px 10px;
   min-width: 0;
 }
 
@@ -316,8 +317,8 @@ body.civi-app .civi-panels h2 {
 
 .civi-day-phase-title {
   margin: 0;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   color: var(--ink);
   line-height: 1.2;
 }
@@ -325,7 +326,7 @@ body.civi-app .civi-panels h2 {
 .civi-day-phase-meta,
 .civi-day-phase-status {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--ink2);
   opacity: .88;
 }
@@ -339,8 +340,57 @@ body.civi-app .civi-panels h2 {
   opacity: .85;
 }
 
+/* Åpen sak: et lite strukturert kort med gull venstrekant,
+   ikke løse tekstlinjer som flyter i panelet. */
+.civi-day-phase-mail {
+  display: grid;
+  gap: 4px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(214,170,58,0.22);
+  border-left: 3px solid var(--civi-gold);
+}
+
+.civi-day-phase-mail-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: rgba(255,230,160,0.9);
+}
+
+.civi-day-phase-mail-meta {
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--ink3);
+  font-size: 11px;
+  letter-spacing: .05em;
+}
+
+.civi-day-phase-mail-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.civi-day-phase-mail-status,
+.civi-day-phase-mail-count {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink2);
+}
+
 .civi-day-phase-actions {
-  margin: 0 0 0 auto;
+  margin: 0;
   display: flex;
   justify-content: flex-end;
 }
