@@ -89,8 +89,10 @@ body.civi-app .civi-track-hud {
   margin: 0;
   border-radius: var(--civi-card-radius);
   background: var(--civi-panel-bg);
-  border: 1px solid var(--civi-soft-line);
-  box-shadow: 0 14px 34px rgba(0,0,0,0.24);
+  border: 1px solid color-mix(in srgb, var(--sec-accent, #ffffff) 20%, rgba(255,255,255,0.09));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.045),
+    0 14px 34px rgba(0,0,0,0.24);
   overflow: hidden;
 }
 
@@ -844,6 +846,6 @@ body.civi-app .civi-panels h2 {
   body.civi-app .civi-panels > section:hover,
   body.civi-app .civi-track-hud:hover {
     transform: translateY(-1px);
-    border-color: rgba(255,255,255,0.18);
+    border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 42%, rgba(255,255,255,0.10));
   }
 }
