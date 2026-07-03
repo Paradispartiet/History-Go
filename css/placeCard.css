@@ -35,8 +35,10 @@
 
 
 #placeCard{
-  --pc-round-size: 132px;
-  --pc-round-gap: 8px;
+  --place-card-media-width: 320px;
+  --place-card-orb-size: 92px;
+  --pc-round-size: var(--place-card-orb-size);
+  --pc-round-gap: 22px;
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
   --pc-popout-top: 96px;
@@ -127,7 +129,7 @@
 /* Grid */
 #placeCard .pc-grid{
   display: grid;
-  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-columns: var(--place-card-media-width) minmax(0, 1fr);
   grid-template-rows: auto auto;
 
   column-gap: 16px;
@@ -141,6 +143,9 @@
   grid-column:1;
   grid-row:1;
 
+  width: var(--place-card-media-width);
+  max-width: var(--place-card-media-width);
+  justify-self: start;
   aspect-ratio: 3 / 4;
   /* Hindrer at kortet vokser forbi skjermen på lave/landskaps-viewporter,
      slik at vi slipper intern scroll. */
@@ -272,34 +277,41 @@
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 
-  justify-self: stretch;
+  justify-self: start;
   align-self: stretch;
   justify-content: space-between;
-  width: 100%;
-  min-width: 0;
+  width: var(--place-card-media-width);
+  min-width: var(--place-card-media-width);
+  max-width: var(--place-card-media-width);
   height: 100%;
   min-height: 0;
 }
 
 /* Ikon-kvadratet (rundingene) */
 .pc-icons-quad{
+  order: 2;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, var(--place-card-orb-size));
+  grid-auto-rows: var(--place-card-orb-size);
 
   gap: var(--pc-round-gap);
 
-  width: 100%;
-  min-width: 0;
+  width: var(--place-card-media-width);
+  min-width: var(--place-card-media-width);
+  max-width: var(--place-card-media-width);
+  justify-content: center;
+  align-content: start;
   transform: none;
   margin-top: 0;
 }
 
 .pc-events-quad{
-  width: 100%;
-  min-width: 0;
+  order: 1;
+  width: var(--place-card-media-width);
+  min-width: var(--place-card-media-width);
+  max-width: var(--place-card-media-width);
   min-height: 44px;
   max-height: 56px;
   padding: 8px 14px;
@@ -367,9 +379,13 @@
 
 /* Rundinger – jevne, runde "tokens" */
 .pc-round{
-  width: 100%;
-  min-width: 0;
-  height: auto;
+  width: var(--place-card-orb-size);
+  height: var(--place-card-orb-size);
+  min-width: var(--place-card-orb-size);
+  min-height: var(--place-card-orb-size);
+  max-width: var(--place-card-orb-size);
+  max-height: var(--place-card-orb-size);
+  flex: 0 0 var(--place-card-orb-size);
 
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -531,14 +547,16 @@
 }
 
 body.hg-app.hg-phone #placeCard{
-  --pc-round-size: 79px;
-  --pc-round-gap: 5px;
+  --place-card-media-width: 150px;
+  --place-card-orb-size: 44px;
+  --pc-round-size: var(--place-card-orb-size);
+  --pc-round-gap: 9px;
   --pc-text-inset: 8px;
   --pc-text-h: 184px;
 }
 
 body.hg-app.hg-phone #placeCard .pc-grid{
-  grid-template-columns: 150px minmax(0, 1fr);
+  grid-template-columns: var(--place-card-media-width) minmax(0, 1fr);
   column-gap: 10px;
   row-gap: 12px;
   padding: 18px 8px 10px;
@@ -551,7 +569,7 @@ body.hg-app.hg-phone .pc-frontcard{
 body.hg-app.hg-phone .pc-side-stack,
 body.hg-app.hg-phone .pc-icons-quad{
   transform: none;
-  width: 100%;
+  width: var(--place-card-media-width);
 }
 
 body.hg-app.hg-phone .pc-events-quad{
@@ -561,11 +579,11 @@ body.hg-app.hg-phone .pc-events-quad{
 }
 
 body.hg-app.hg-phone #placeCard .pc-round-emoji{
-  font-size: 30px;
+  font-size: 24px;
 }
 
 body.hg-app.hg-phone #placeCard .pc-round-count{
-  font-size: 14px;
+  font-size: 12px;
 }
 
 body.hg-app.hg-phone #placeCard #pcTitle{
@@ -893,7 +911,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 #placeCard .pc-round-emoji{
-  font-size: 38px;
+  font-size: 32px;
   line-height: 1;
 }
 
