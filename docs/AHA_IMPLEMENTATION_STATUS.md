@@ -36,6 +36,18 @@
 - The module runtime files remain lazy-mount-ready and are not added to the Home initial load. Unavailable primary actions are visibly disabled rather than creating new module behavior.
 - This is a UI/structure change only. Sync behavior, database/write flow, adapter behavior, audit writing, state-machine rules, payload contracts, retry logic, and AHA Sync Hub core are unchanged. Auto-sync is still not implemented.
 
+
+## Frozen AHA V1 layers
+
+- AHA Sync Overview V1 is frozen as a local-only, read-only, no-sync overview of coverage, patterns, and counts without raw user data.
+- AHA Conversation Insight Snapshot V1 is frozen as a local-only, read-only, no-sync understanding surface with structured signals and next-understanding steps without raw user data.
+
+## Next AHA track
+
+- AHA Quality Status Surface V1: contract defined, runtime not started.
+- The next track is quality-status: a local, read-only explanation of how safe AHA understanding is based on existing quality gates.
+- This documentation-only PR introduces no runtime change, no UI change, no sync, no EchoNet activation, and no approval action.
+
 ## Not implemented
 
 - Auto-sync/activation and auto-retry are intentionally not implemented. There is no page-load, history-open, details-open, target-select, modal-open, failed-result, scheduled, or background retry trigger.
