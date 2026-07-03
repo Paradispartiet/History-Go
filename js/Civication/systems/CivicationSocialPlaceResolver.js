@@ -867,7 +867,8 @@
       const files = ensureArray(manifest && manifest.files);
       const loaded = await Promise.all(files.map(async (rel) => {
         try {
-          const json = await fetchJson("data/places/" + rel);
+          // Manifest-stiene starter allerede med "places/..." — prefiks kun "data/".
+          const json = await fetchJson("data/" + rel);
           return ensureArray(Array.isArray(json) ? json : (json && json.places));
         } catch (_e) {
           return [];

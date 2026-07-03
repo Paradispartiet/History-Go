@@ -145,11 +145,32 @@
     return slugify(active?.role_key || active?.title || "");
   }
 
+  // Dedupe samtidige kall mot samme fil: cache lagrer verdier, inflight lagrer
+  // pågående promises, slik at N samtidige kall gir ÉN fetch (ikke N).
+  const jsonInflight = new Map();
+
   async function loadJson(path) {
     const p = norm(path);
     if (!p) return null;
     if (jsonCache.has(p)) return jsonCache.get(p);
+    if (jsonInflight.has(p)) return jsonInflight.get(p);
+    const promise = loadJsonUncached(p);
+    jsonInflight.set(p, promise);
+    try {
+      return await promise;
+    } finally {
+      jsonInflight.delete(p);
+    }
+  }
 
+  async function loadJsonUncached(p) {
+    // Delt lager først: én fetch per fil på tvers av alle Civication-motorer.
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const shared = await sharedStore.fetchJson(p);
+      jsonCache.set(p, shared);
+      return shared;
+    }
     try {
       const res = await fetch(p, { cache: "no-store" });
       if (!res.ok) {
@@ -849,14 +870,11 @@
 
   async function loadNarrativeStreams() {
     const manifest = await loadJson(NARRATIVE_MANIFEST_PATH);
-    const streams = [];
     const entries = Array.isArray(manifest?.streams) ? manifest.streams : [];
-    for (const entry of entries) {
-      const path = norm(entry?.path);
-      if (!path) continue;
-      const stream = await loadJson(path);
-      if (stream?.schema === "civication_narrative_stream_v1") streams.push(stream);
-    }
+    const loaded = await Promise.all(
+      entries.map((entry) => (norm(entry?.path) ? loadJson(norm(entry.path)) : null))
+    );
+    const streams = loaded.filter((stream) => stream?.schema === "civication_narrative_stream_v1");
     return { manifest, streams };
   }
 
@@ -1839,9 +1857,24 @@
     return patchEventEngine();
   }
 
+  // Forhåndslast dagsprogram, rolleplan og narrativ-strømmer, slik at
+  // svar/fase-avansering aldri venter på nettverket.
+  async function prewarm(activeOverride) {
+    const active = activeOverride || getActive();
+    const familyPaths = active ? getFamilyPaths(active) : [];
+    await Promise.all([
+      loadJson(DAY_PROGRAM_PATH),
+      loadNarrativeStreams(),
+      active ? loadJson(getPlanPath(active)) : Promise.resolve(null),
+      ...familyPaths.map((path) => loadJson(path))
+    ]);
+    return { warmed: true };
+  }
+
   window.CivicationDailyMailBuilder = {
     DAY_RUNTIME_KEY,
     boot,
+    prewarm,
     inspect,
     inspectNarratives,
     resetNarrativeStateForTest,

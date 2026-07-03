@@ -5,10 +5,30 @@
   let peopleMapCache = null;
   const rolePeopleCache = new Map();
   const categoryPeopleCache = new Map();
+  // Dedupe samtidige lastinger: uten dette utløste ett svar 8 parallelle
+  // fetches av samme person-fil (cachene lagret bare ferdige resultater).
+  let peopleMapPromise = null;
+  const rolePeopleInflight = new Map();
+  const categoryPeopleInflight = new Map();
 
   async function loadPeopleMap() {
     if (Array.isArray(peopleMapCache)) return peopleMapCache;
+    if (peopleMapPromise) return peopleMapPromise;
+    peopleMapPromise = loadPeopleMapUncached();
+    try {
+      return await peopleMapPromise;
+    } finally {
+      peopleMapPromise = null;
+    }
+  }
 
+  async function loadPeopleMapUncached() {
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const json = await sharedStore.fetchJson("data/Civication/people_access_map.json");
+      peopleMapCache = Array.isArray(json?.people) ? json.people : [];
+      return peopleMapCache;
+    }
     try {
       const res = await fetch("data/Civication/people_access_map.json", { cache: "no-store" });
       if (!res.ok) {
@@ -31,8 +51,28 @@
     if (categoryPeopleCache.has(careerId)) {
       return categoryPeopleCache.get(careerId) || [];
     }
+    if (categoryPeopleInflight.has(careerId)) {
+      return categoryPeopleInflight.get(careerId);
+    }
+    const promise = loadCategoryPeopleUncached(careerId);
+    categoryPeopleInflight.set(careerId, promise);
+    try {
+      return await promise;
+    } finally {
+      categoryPeopleInflight.delete(careerId);
+    }
+  }
 
+  async function loadCategoryPeopleUncached(careerId) {
     const path = `data/people/people_${careerId}.json`;
+
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const json = await sharedStore.fetchJson(path);
+      const people = Array.isArray(json) ? json : Array.isArray(json?.people) ? json.people : [];
+      categoryPeopleCache.set(careerId, people);
+      return people;
+    }
 
     try {
       const res = await fetch(path, { cache: "no-store" });
@@ -59,8 +99,28 @@
     if (rolePeopleCache.has(cacheKey)) {
       return rolePeopleCache.get(cacheKey) || [];
     }
+    if (rolePeopleInflight.has(cacheKey)) {
+      return rolePeopleInflight.get(cacheKey);
+    }
+    const promise = loadRolePeopleBaseUncached(careerId, roleScope, cacheKey);
+    rolePeopleInflight.set(cacheKey, promise);
+    try {
+      return await promise;
+    } finally {
+      rolePeopleInflight.delete(cacheKey);
+    }
+  }
 
+  async function loadRolePeopleBaseUncached(careerId, roleScope, cacheKey) {
     const path = `data/Civication/people/${careerId}/${roleScope}_people_base.json`;
+
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const json = await sharedStore.fetchJson(path);
+      const people = Array.isArray(json?.people) ? json.people : [];
+      rolePeopleCache.set(cacheKey, people);
+      return people;
+    }
 
     try {
       const res = await fetch(path, { cache: "no-store" });

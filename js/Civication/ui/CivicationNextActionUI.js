@@ -385,6 +385,9 @@
   function open() {
     const modal = ensureModal();
     if (!modal) return false;
+    // Varm alle svaralternativenes datagrunnlag i bakgrunnen mens spilleren
+    // leser — svaret skal aldri vente på nettverket.
+    try { window.CivicationAnswerPrewarm?.prewarm?.(); } catch {}
     const immediate = getCurrentAction();
     if (immediate) render();
     else if (bodyEl) bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>";

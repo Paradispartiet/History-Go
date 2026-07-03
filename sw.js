@@ -3,7 +3,7 @@
    Oppdatert: 2026-06-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-06-22-v1.2.985";
+const SW_VERSION = "hg-sw-2026-06-22-v1.2.986";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -174,6 +174,8 @@ const PRECACHE_URLS = [
   "js/Civication/utils/conflictLoader.js",
   "js/Civication/systems/civicationMailPlanDebug.js",
   "js/Civication/systems/civicationNPCs.js",
+  "js/Civication/core/civicationJsonStore.js",
+  "js/Civication/systems/civicationAnswerPrewarm.js",
   "js/Civication/systems/civicationMailRuntime.js",
   "js/Civication/systems/civicationLifeMailRuntime.js",
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
