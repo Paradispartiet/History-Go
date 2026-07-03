@@ -168,13 +168,14 @@ a:hover{
   display:block;
 }
 
-/* Standardkartet ligger bak Civication-panelene. Tones bare lett ned
-   slik at byen fortsatt leses som by; kartmodus er ufiltrert. */
+/* Standardkartet ligger bak Civication-panelene. Tones ned slik at
+   panelene eier oppmerksomheten (kartetiketter skal ikke skinne gjennom
+   mellom boksene); kartmodus er ufiltrert. */
 body.civi-app:not(.civi-mapmode) #civiMapWorld > svg,
 body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-map-base-canvas,
 body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-map-places-canvas,
 body.civi-app:not(.civi-mapmode) #civiMapWorld .civi-three-canvas{
-  filter:brightness(0.74) saturate(0.92) contrast(1.02);
+  filter:brightness(0.58) saturate(0.82) contrast(1.02);
 }
 
 /* ------------------------------------------------------------

@@ -1031,6 +1031,9 @@
       section.classList.toggle("needs-feedback", urgent);
       section.classList.toggle("is-info", !urgent && hasText);
       section.classList.toggle("is-empty", !urgent && !hasText);
+      // Hviletilstand: kortet viser bare plassholdertekst («Ingen aktiv
+      // rolle ennå.») og skal ikke se like «aktivt» ut som ekte innhold.
+      section.classList.toggle("is-idle", !urgent && summary === (config.empty || "—"));
 
       if (summaryEl) summaryEl.textContent = summary;
 
