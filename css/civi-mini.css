@@ -50,13 +50,14 @@ body.civi-app.civi-mini-mode .civi-dashboard-copy {
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
   min-height: 0;
   min-width: 0;
   width: 100%;
   flex: 1 1 auto;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 16px;
   background: var(--card2);
@@ -73,26 +74,40 @@ body.civi-app.civi-mini-mode .civi-dashboard-kicker {
 }
 
 body.civi-app.civi-mini-mode #civiDashRole {
+  width: 100%;
+  max-width: 100%;
   font-size: 17px;
-  line-height: 1.1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-body.civi-app.civi-mini-mode #civiDashSummary {
-  margin-top: 0;
-  color: rgba(255,255,255,0.88);
-  font-size: 14px;
   line-height: 1.15;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Sammendraget skal kunne leses — to linjer, ikke «Ta quiz og …». */
+body.civi-app.civi-mini-mode #civiDashSummary {
+  margin-top: 0;
+  width: 100%;
+  max-width: 100%;
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 body.civi-app.civi-mini-mode .civi-dashboard-focus {
   margin-top: 0;
-  padding: 3px 7px;
+  max-width: 100%;
+  padding: 3px 9px;
+}
+
+body.civi-app.civi-mini-mode #civiDashFocus {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body.civi-app.civi-mini-mode .civi-dashboard-metrics {

@@ -4,6 +4,16 @@
     return document.createElementNS("http://www.w3.org/2000/svg", tag);
   }
 
+  /** @type {Record<string, string>} */
+  const AXIS_LABELS = {
+    economic: "økonomi",
+    cultural: "kultur",
+    social: "sosial",
+    symbolic: "symbolsk",
+    subculture: "subkultur",
+    political: "politikk"
+  };
+
   function renderIdentityCompass(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -65,7 +75,7 @@
       label.setAttribute("fill", "rgba(255,255,255,0.6)");
       label.setAttribute("font-size", "10");
       label.setAttribute("text-anchor", "middle");
-      label.textContent = type;
+      label.textContent = AXIS_LABELS[type] || type;
       svg.appendChild(label);
     });
 
