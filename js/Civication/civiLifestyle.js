@@ -50,12 +50,23 @@
   }
 
   let _lifeData = null;
+  let _lifeDataFailed = false;
 
   async function ensureLifeData(url = "data/lifestyles.json") {
     if (_lifeData) return _lifeData;
+    // Negativ cache: uten denne ble en manglende fil re-fetchet på hvert svar.
+    if (_lifeDataFailed) throw new Error("Could not load lifestyles.json");
+
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const json = await sharedStore.fetchJson(url);
+      if (!json) { _lifeDataFailed = true; throw new Error("Could not load lifestyles.json"); }
+      _lifeData = json;
+      return _lifeData;
+    }
 
     const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error("Could not load lifestyles.json");
+    if (!res.ok) { _lifeDataFailed = true; throw new Error("Could not load lifestyles.json"); }
 
     const json = await res.json();
     _lifeData = json;

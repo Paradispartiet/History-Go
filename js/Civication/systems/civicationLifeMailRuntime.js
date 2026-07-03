@@ -43,11 +43,32 @@
     return norm(window.CivicationCalendar?.getPhase?.() || "morning") || "morning";
   }
 
+  // Dedupe samtidige kall mot samme fil: cache lagrer verdier, inflight lagrer
+  // pågående promises, slik at N samtidige kall gir ÉN fetch (ikke N).
+  const jsonInflight = new Map();
+
   async function loadJson(path) {
     const p = norm(path);
     if (!p) return null;
     if (jsonCache.has(p)) return jsonCache.get(p);
+    if (jsonInflight.has(p)) return jsonInflight.get(p);
+    const promise = loadJsonUncached(p);
+    jsonInflight.set(p, promise);
+    try {
+      return await promise;
+    } finally {
+      jsonInflight.delete(p);
+    }
+  }
 
+  async function loadJsonUncached(p) {
+    // Delt lager først: én fetch per fil på tvers av alle Civication-motorer.
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const shared = await sharedStore.fetchJson(p);
+      jsonCache.set(p, shared);
+      return shared;
+    }
     try {
       const res = await fetch(p, { cache: "no-store" });
       if (!res.ok) {

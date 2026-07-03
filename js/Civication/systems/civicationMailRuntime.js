@@ -147,11 +147,32 @@
     return PHASE_ORDER.includes(phase) ? phase : "intro";
   }
 
+  // Dedupe samtidige kall mot samme fil: cache lagrer verdier, inflight lagrer
+  // pågående promises, slik at N samtidige kall gir ÉN fetch (ikke N).
+  const jsonInflight = new Map();
+
   async function loadJson(path) {
     const p = norm(path);
     if (!p) return null;
     if (jsonCache.has(p)) return jsonCache.get(p);
+    if (jsonInflight.has(p)) return jsonInflight.get(p);
+    const promise = loadJsonUncached(p);
+    jsonInflight.set(p, promise);
+    try {
+      return await promise;
+    } finally {
+      jsonInflight.delete(p);
+    }
+  }
 
+  async function loadJsonUncached(p) {
+    // Delt lager først: én fetch per fil på tvers av alle Civication-motorer.
+    const sharedStore = window.CivicationJsonStore;
+    if (sharedStore?.fetchJson) {
+      const shared = await sharedStore.fetchJson(p);
+      jsonCache.set(p, shared);
+      return shared;
+    }
     try {
       const res = await fetch(p, { cache: "no-store" });
       if (!res.ok) {
@@ -294,15 +315,11 @@
   }
 
   async function loadCatalogs(active) {
+    // Parallellt: sekvensiell lasting av 10+ familiefiler var hovedkilden til
+    // ventetid etter svar på trege nett (én RTT per fil).
     const paths = getFamilyPaths(active);
-    const catalogs = [];
-
-    for (const path of paths) {
-      const json = await loadJson(path);
-      if (json) catalogs.push(json);
-    }
-
-    return catalogs;
+    const results = await Promise.all(paths.map((path) => loadJson(path)));
+    return results.filter(Boolean);
   }
 
   function getCurrentStep(plan, runtime) {
@@ -757,9 +774,19 @@
     patchEventEngine();
   }
 
+  // Forhåndslast alt svarstien trenger (plan + alle mailfamilier) mens
+  // spilleren leser meldingen — svaret skal aldri vente på nettverket.
+  async function prewarm(activeOverride) {
+    const active = activeOverride || getActive();
+    if (!active) return { warmed: false, reason: "no_active" };
+    await Promise.all([loadJson(getPlanPath(active)), loadCatalogs(active)]);
+    return { warmed: true };
+  }
+
   window.CivicationMailRuntime = {
     RUNTIME_KEY,
     boot,
+    prewarm,
     inspect,
     debugCandidates,
     loadJson,

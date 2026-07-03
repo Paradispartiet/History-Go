@@ -54,7 +54,12 @@ async function init() {
   renderCivicationSummary();
   renderCivicationShop();
 
-  window.addEventListener("updateProfile", () => {
+  // Koalescer render-sveipet: ett svar dispatcher updateProfile 10+ ganger
+  // (motor, psyke, kalender, followups), og å kjøre hele panelsveipet per
+  // dispatch frøs UI-et. Én rAF-planlagt kjøring per burst holder.
+  let civiRenderSweepQueued = false;
+  function runCiviRenderSweep() {
+    civiRenderSweepQueued = false;
     renderCivication();
     renderCivicationInbox();
     renderWorkdayPanel();
@@ -65,6 +70,15 @@ async function init() {
     renderTrackHUD();
     renderCivicationSummary();
     renderCivicationShop();
+  }
+  window.addEventListener("updateProfile", () => {
+    if (civiRenderSweepQueued) return;
+    civiRenderSweepQueued = true;
+    if (typeof window.requestAnimationFrame === "function") {
+      window.requestAnimationFrame(runCiviRenderSweep);
+    } else {
+      setTimeout(runCiviRenderSweep, 16);
+    }
   });
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
