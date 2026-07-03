@@ -137,9 +137,30 @@
     return out.places.length || out.people.length ? out : null;
   }
 
+  function updatePlacesLoadingIndicator(state, detail = {}) {
+    const el = document.getElementById("placesLoadingIndicator");
+    if (!el) return;
+
+    const text = el.querySelector(".places-loading-text");
+    const hasSelectedPlace = Boolean(String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim());
+    const loading = state === "loading" && !window.HG_PLACES_READY && !hasSelectedPlace;
+    const failed = state === "error" && !hasSelectedPlace;
+
+    el.classList.toggle("is-error", failed);
+    if (text) {
+      text.textContent = failed
+        ? (detail.message || "Kunne ikke laste steder")
+        : "Laster steder …";
+    }
+
+    el.hidden = !(loading || failed);
+  }
+
   function setPlacesReadyState(ready, detail = {}) {
     window.HG_PLACES_READY = !!ready;
+    const failed = detail?.status === "error" || (detail?.phase === "critical" && ready === false && detail?.done === true);
     window.dispatchEvent(new CustomEvent(ready ? "hg:places-ready" : "hg:places-loading", { detail }));
+    updatePlacesLoadingIndicator(ready ? "ready" : (failed ? "error" : "loading"), detail);
   }
 
   async function loadPlacesCritical() {
@@ -328,9 +349,13 @@
     setPlacesReadyState(false, { phase: "critical" });
     const places = await loadPlacesCritical();
     applyPlacesToMap(Array.isArray(places) ? places : []);
-    setPlacesReadyState(Array.isArray(window.PLACES) && window.PLACES.length > 0, {
+    const placesReady = Array.isArray(window.PLACES) && window.PLACES.length > 0;
+    setPlacesReadyState(placesReady, {
       phase: "critical",
-      count: window.PLACES?.length || 0
+      count: window.PLACES?.length || 0,
+      done: true,
+      status: placesReady ? "ready" : "error",
+      message: placesReady ? undefined : "Kunne ikke laste steder"
     });
 
     criticalDone = true;
