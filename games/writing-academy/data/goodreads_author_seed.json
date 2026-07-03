@@ -1,17 +1,187 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "gameId": "hgWritingAcademy",
-  "curationNote": "Kuratert author seed basert på første batch. Dette er ikke en full Goodreads-import. Rating er kun brukt som filter og er ikke lagret som metadata.",
-  "excludedGoodreadsFields": ["Date Added", "Date Read", "Private Notes", "My Rating"],
-  "authors": [
-    { "authorId": "dag_solstad", "name": "Dag Solstad", "selectedBooks": ["Gymnaslærer Pedersens beretning om den store politiske vekkelse som har hjemsøkt vårt land", "Genanse og verdighet", "Roman 1987"], "themeTags": ["politisk roman", "institusjoner", "ironi", "klasse", "norsk etterkrigstid"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "paul_auster", "name": "Paul Auster", "selectedBooks": ["The New York Trilogy", "Moon Palace", "The Book of Illusions"], "themeTags": ["identitet", "tilfeldighet", "byrom", "metafiksjon", "detektivform"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "cormac_mccarthy", "name": "Cormac McCarthy", "selectedBooks": ["Blood Meridian", "The Road", "No Country for Old Men"], "themeTags": ["landskap", "vold", "myte", "knapp dialog", "moral"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "jm_coetzee", "name": "J.M. Coetzee", "selectedBooks": ["Disgrace", "Waiting for the Barbarians", "Elizabeth Costello"], "themeTags": ["makt", "kolonialisme", "etikk", "fortellerposisjon", "institusjoner"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "jon_fosse", "name": "Jon Fosse", "selectedBooks": ["Septologien", "Morgon og kveld", "Nokon kjem til å komme"], "themeTags": ["rytme", "gjentakelse", "stillhet", "tro", "vestland"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "karl_ove_knausgaard", "name": "Karl Ove Knausgård", "selectedBooks": ["Min kamp", "Om våren", "Morgenstjernen"], "themeTags": ["autofiksjon", "minne", "hverdag", "familie", "essayistisk observasjon"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "michel_houellebecq", "name": "Michel Houellebecq", "selectedBooks": ["Atomised", "Platform", "Submission"], "themeTags": ["samtidskritikk", "ensomhet", "marked", "politikk", "provokasjon"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "tomas_espedal", "name": "Tomas Espedal", "selectedBooks": ["Gå", "Imot kunsten", "Biografi"], "themeTags": ["vandring", "essay", "autofiksjon", "kunstnerliv", "sted"], "placeLinkStatus": "pending_historygo_place_links" },
-    { "authorId": "vivian_gornick", "name": "Vivian Gornick", "selectedBooks": ["The Situation and the Story", "Fierce Attachments", "The Odd Woman and the City"], "themeTags": ["essay", "memoar", "fortellerstemme", "byvandring", "feministisk kritikk"], "placeLinkStatus": "pending_historygo_place_links" }
+  "curationNote": "Personlig Goodreads-supplement for Skrivekunstakademiet. Goodreads-rating er bare brukt som importfilter (minimum 4) og lagres ikke.",
+  "rightsRule": "Bruk forfatternavn, titler, historiske fakta, steder, tema, formgrep og public domain-materiale. Ikke importer eller gjengi opphavsrettsbeskyttet boktekst.",
+  "importRules": {
+    "minimumGoodreadsRatingUsedOnlyAsFilter": 4,
+    "neverPersistGoodreadsPrivateFields": true,
+    "excludeChildrenAndYA": true,
+    "childAndYaRouteTo": "hgChildrenLiteratureGame"
+  },
+  "personalGoodreadsCanon": [
+    {
+      "authorId": "dag_solstad",
+      "name": "Dag Solstad",
+      "selectedBooks": [
+        "Gymnaslærer Pedersens beretning om den store politiske vekkelse som har hjemsøkt vårt land",
+        "Genanse og verdighet",
+        "Roman 1987"
+      ],
+      "themeTags": [
+        "politisk roman",
+        "institusjoner",
+        "ironi",
+        "klasse",
+        "norsk etterkrigstid"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "paul_auster",
+      "name": "Paul Auster",
+      "selectedBooks": [
+        "The New York Trilogy",
+        "Moon Palace",
+        "The Book of Illusions"
+      ],
+      "themeTags": [
+        "identitet",
+        "tilfeldighet",
+        "byrom",
+        "metafiksjon",
+        "detektivform"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "cormac_mccarthy",
+      "name": "Cormac McCarthy",
+      "selectedBooks": [
+        "Blood Meridian",
+        "The Road",
+        "No Country for Old Men"
+      ],
+      "themeTags": [
+        "landskap",
+        "vold",
+        "myte",
+        "knapp dialog",
+        "moral"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "jm_coetzee",
+      "name": "J.M. Coetzee",
+      "selectedBooks": [
+        "Disgrace",
+        "Waiting for the Barbarians",
+        "Elizabeth Costello"
+      ],
+      "themeTags": [
+        "makt",
+        "kolonialisme",
+        "etikk",
+        "fortellerposisjon",
+        "institusjoner"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "jon_fosse",
+      "name": "Jon Fosse",
+      "selectedBooks": [
+        "Septologien",
+        "Morgon og kveld",
+        "Nokon kjem til å komme"
+      ],
+      "themeTags": [
+        "rytme",
+        "gjentakelse",
+        "stillhet",
+        "tro",
+        "vestland"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "karl_ove_knausgaard",
+      "name": "Karl Ove Knausgård",
+      "selectedBooks": [
+        "Min kamp",
+        "Om våren",
+        "Morgenstjernen"
+      ],
+      "themeTags": [
+        "autofiksjon",
+        "minne",
+        "hverdag",
+        "familie",
+        "essayistisk observasjon"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "michel_houellebecq",
+      "name": "Michel Houellebecq",
+      "selectedBooks": [
+        "Atomised",
+        "Platform",
+        "Submission"
+      ],
+      "themeTags": [
+        "samtidskritikk",
+        "ensomhet",
+        "marked",
+        "politikk",
+        "provokasjon"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "tomas_espedal",
+      "name": "Tomas Espedal",
+      "selectedBooks": [
+        "Gå",
+        "Imot kunsten",
+        "Biografi"
+      ],
+      "themeTags": [
+        "vandring",
+        "essay",
+        "autofiksjon",
+        "kunstnerliv",
+        "sted"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    },
+    {
+      "authorId": "vivian_gornick",
+      "name": "Vivian Gornick",
+      "selectedBooks": [
+        "The Situation and the Story",
+        "Fierce Attachments",
+        "The Odd Woman and the City"
+      ],
+      "themeTags": [
+        "essay",
+        "memoar",
+        "fortellerstemme",
+        "byvandring",
+        "feministisk kritikk"
+      ],
+      "matchStatus": "match_by_normalized_name_or_pending"
+    }
+  ],
+  "excludedForWritingAcademy": [
+    {
+      "title": "Eksempel på barnebok/YA fra Goodreads-import",
+      "authorName": "Ikke importert til Skrivekunstakademiet",
+      "reason": "children_or_young_adult_literature",
+      "routeTo": "hgChildrenLiteratureGame",
+      "retainedFields": [
+        "title",
+        "authorName",
+        "reason",
+        "routeTo"
+      ]
+    }
+  ],
+  "goodreadsPrivateFieldsExcluded": [
+    "goodreads_rating",
+    "goodreads_date_added",
+    "goodreads_date_read",
+    "goodreads_private_notes"
   ]
 }
