@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-07-02T08:46:23.503Z
+Generated: 2026-07-03T10:57:51.641Z
 
 ## Sammendrag
 - People-filer lest: **28**
-- People lest: **483**
+- People lest: **488**
 - People med ugyldige refs: **0**
 - Ugyldige refs: **0**
 - Unike ugyldige placeId-er: **0**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **483**
+- Duplikate interne place-referanser: **488**
 
 ## Ugyldige refs gruppert per fil/person
 
@@ -36,6 +36,11 @@ Generated: 2026-07-02T08:46:23.503Z
 - data/people/by/oslo/people_by_oslo.json :: thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen x2
 - data/people/by/oslo/people_by_oslo.json :: geir_grung (Geir Grung) -> tjuvholmen x2
 - data/people/by/oslo/people_by_oslo.json :: fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park x2
+- data/people/by/oslo/people_by_oslo.json :: kjetil_traedal_thorsen (Kjetil Trædal Thorsen) -> bjorvika x2
+- data/people/by/oslo/people_by_oslo.json :: ellen_de_vibe (Ellen de Vibe) -> bjorvika x2
+- data/people/by/oslo/people_by_oslo.json :: jan_gehl (Jan Gehl) -> bjorvika x2
+- data/people/by/oslo/people_by_oslo.json :: albert_nordengen (Albert Nordengen) -> radhusplassen x2
+- data/people/by/oslo/people_by_oslo.json :: kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2
