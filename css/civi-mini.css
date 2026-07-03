@@ -688,6 +688,37 @@ body.civi-app.civi-mini-mode .civi-mini-action:hover {
   border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 42%, rgba(255,255,255,0.08)) !important;
 }
 
+/* Hviletilstand: kort med bare plassholdertekst dempes og får stiplet
+   ramme, så øyet går til kortene med ekte innhold. */
+body.civi-app.civi-mini-mode .civi-panels > section.is-idle:not(#civiDashboardSection):not(#civiLifeHomeControls):not(#civiDayPhasePanel),
+body.civi-app.civi-mini-mode #civiTrackHUD.is-idle {
+  border-style: dashed;
+  box-shadow: none;
+}
+
+body.civi-app.civi-mini-mode section.is-idle .civi-mini-summary,
+body.civi-app.civi-mini-mode #civiTrackHUD.is-idle .civi-mini-summary {
+  opacity: 0.78;
+}
+
+body.civi-app.civi-mini-mode .civi-panels > section.is-idle::before {
+  opacity: 0.4;
+}
+
+/* Chips: ett felles formspråk (radius, padding, vekt) på tvers av
+   statuschips, inbox-chips, top-action-chip og retningstagger. */
+body.civi-app .civi-top-action-chip,
+body.civi-app .civi-inbox-channel-chip,
+body.civi-app .civi-inbox-status,
+body.civi-app .civi-track-tags span,
+body.civi-app.civi-mini-mode .civi-mini-status {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 /* Footer: marker aktiv destinasjon. Kart-knappen lyser mens kartmodus er på.
    !important trengs kun mot den generelle knappe-regelen over. */
 body.civi-app .civi-footer .civi-btn.is-active:not(.primary),
