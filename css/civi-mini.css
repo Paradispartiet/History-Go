@@ -128,8 +128,10 @@ body.civi-app.civi-mini-mode #civiTrackHUD {
   padding: 0;
   border-radius: 18px;
   background: var(--card);
-  border: 1px solid var(--civi-mini-border);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+  border: 1px solid color-mix(in srgb, var(--sec-accent, #ffffff) 20%, rgba(255,255,255,0.09));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.045),
+    0 10px 24px rgba(0,0,0,0.22);
   overflow: hidden;
 }
 
@@ -151,10 +153,17 @@ body.civi-app.civi-mini-mode .civi-mini-title-row {
 }
 
 body.civi-app.civi-mini-mode .civi-mini-accent {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 15px;
-  width: 22px;
-  text-align: center;
-  opacity: 0.95;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--sec-accent, #ffffff) 13%, rgba(255,255,255,0.03));
+  border: 1px solid color-mix(in srgb, var(--sec-accent, #ffffff) 30%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
 }
 
 body.civi-app.civi-mini-mode .is-info .civi-mini-status {
@@ -206,9 +215,9 @@ body.civi-app.civi-mini-mode .civi-mini-status {
   max-width: 100%;
   padding: 4px 8px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.065);
-  border: 1px solid rgba(255,255,255,0.11);
-  color: rgba(255,255,255,0.74);
+  background: color-mix(in srgb, var(--sec-accent, #ffffff) 9%, rgba(255,255,255,0.03));
+  border: 1px solid color-mix(in srgb, var(--sec-accent, #ffffff) 22%, rgba(255,255,255,0.06));
+  color: rgba(255,255,255,0.78);
   font-size: 14px;
   font-weight: 700;
 }
@@ -294,9 +303,25 @@ body.civi-popup-open {
   flex-direction: column;
   border-radius: 24px;
   background: var(--card2);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid color-mix(in srgb, var(--sec-accent, var(--civi-accent)) 24%, rgba(255,255,255,0.10));
   box-shadow: 0 24px 70px rgba(0,0,0,0.45);
   overflow: hidden;
+}
+
+/* Tynn fargemarg øverst i popupen — matcher seksjonen som ble åpnet. */
+.civi-section-popup-panel::before {
+  content: "";
+  flex: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--sec-accent, var(--civi-accent)) 18%,
+    var(--sec-accent, var(--civi-accent)) 82%,
+    transparent
+  );
+  opacity: 0.85;
+  pointer-events: none;
 }
 
 .civi-section-popup-head {
@@ -311,7 +336,7 @@ body.civi-popup-open {
 
 .civi-section-popup-kicker {
   margin-bottom: 5px;
-  color: var(--civi-accent);
+  color: color-mix(in srgb, var(--sec-accent, var(--civi-accent)) 72%, #ffffff);
   font-size: 13px;
   font-weight: 850;
   letter-spacing: 0.10em;
@@ -435,7 +460,7 @@ body.civi-app .civi-workday-empty,
 body.civi-app .civi-task-box,
 body.civi-app .district-card {
   background: rgba(255,255,255,0.07) !important;
-  border-color: rgba(255,255,255,0.12) !important;
+  border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 18%, rgba(255,255,255,0.08)) !important;
   color: rgba(255,255,255,0.92) !important;
 }
 
@@ -624,4 +649,18 @@ body.civi-app.civi-mini-mode .civi-inbox-answer-meta span{
   body.civi-app.civi-mini-mode #civiDashboardSection {
     grid-column: 1 / -1;
   }
+}
+
+/* ------------------------------------------------------------
+   Boks-detaljer: seksjonens farge som en anelse i knapp og kant.
+   !important trengs kun for å matche den generelle knappe-regelen over.
+------------------------------------------------------------ */
+
+body.civi-app.civi-mini-mode .civi-mini-action {
+  border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 26%, rgba(255,255,255,0.08)) !important;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-action:hover {
+  background: color-mix(in srgb, var(--sec-accent, #ffffff) 12%, rgba(255,255,255,0.04)) !important;
+  border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 42%, rgba(255,255,255,0.08)) !important;
 }

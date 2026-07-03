@@ -855,6 +855,15 @@
     const title = modal.querySelector("#civiSectionPopupTitle");
     const host = modal.querySelector("#civiSectionPopupBody");
 
+    // Popupen ligger utenfor seksjonen i DOM-en; kopier seksjonens
+    // aksentfarge slik at fargemargen og kickeren matcher boksen som ble åpnet.
+    const panel = modal.querySelector(".civi-section-popup-panel");
+    if (panel) {
+      const accent = getComputedStyle(section).getPropertyValue("--sec-accent").trim();
+      if (accent) panel.style.setProperty("--sec-accent", accent);
+      else panel.style.removeProperty("--sec-accent");
+    }
+
     activeModalSection = section;
     activeModalBody = body;
 

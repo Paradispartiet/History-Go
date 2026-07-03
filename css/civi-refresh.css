@@ -5,23 +5,50 @@
 ============================================================ */
 
 :root{
-  /* Ett samlet aksentfarge for alle seksjoner — ingen regnbue.
-     Definert i civi.css (--civi-accent); aliasene under er bevart
-     for bakoverkompatibilitet med selektorene under. */
-  --civi-accent-onb:    var(--civi-accent);
-  --civi-accent-cap:    var(--civi-accent);
-  --civi-accent-id:     var(--civi-accent);
-  --civi-accent-psy:    var(--civi-accent);
-  --civi-accent-home:   var(--civi-accent);
-  --civi-accent-public: var(--civi-accent);
-  --civi-accent-job:    var(--civi-accent);
-  --civi-accent-day:    var(--civi-accent);
-  --civi-accent-debate: var(--civi-accent);
-  --civi-accent-people: var(--civi-accent);
-  --civi-accent-store:  var(--civi-accent);
-  --civi-accent-track:  var(--civi-accent);
-  --civi-accent-inbox:  var(--civi-accent);
+  /* Dempet kategoripalett — én farge per livsområde, ikke regnbue per boks.
+     Fargene brukes kun som tynne kantmarger, hårlinjer og små detaljer;
+     flatene forblir sorte. Gull (--civi-accent) er fortsatt primærfargen. */
+  --civi-hue-karriere: #d6aa3a;   /* gull   — jobb, arbeidsdag, retning */
+  --civi-hue-personlig: #5fb879;  /* grønn  — hjem, psyke, identitet, mennesker */
+  --civi-hue-system: #7fa7d6;     /* blå    — innkommende/system */
+  --civi-hue-kultur: #b482ce;     /* lilla  — kapital, offentlig, debatt */
+  --civi-hue-kommers: #d9914f;    /* oransje — butikker og pakker */
+
+  /* Aliasene under er bevart for bakoverkompatibilitet. */
+  --civi-accent-onb:    var(--civi-hue-karriere);
+  --civi-accent-cap:    var(--civi-hue-kultur);
+  --civi-accent-id:     var(--civi-hue-personlig);
+  --civi-accent-psy:    var(--civi-hue-personlig);
+  --civi-accent-home:   var(--civi-hue-personlig);
+  --civi-accent-public: var(--civi-hue-kultur);
+  --civi-accent-job:    var(--civi-hue-karriere);
+  --civi-accent-day:    var(--civi-hue-karriere);
+  --civi-accent-debate: var(--civi-hue-kultur);
+  --civi-accent-people: var(--civi-hue-personlig);
+  --civi-accent-store:  var(--civi-hue-kommers);
+  --civi-accent-track:  var(--civi-hue-karriere);
+  --civi-accent-inbox:  var(--civi-hue-system);
 }
+
+/* Hver seksjon får sin kategori-farge via --sec-accent.
+   Alt annet (kant, marg, hårlinje, prikk, chips) leser denne variabelen. */
+#activeJobSection,
+#civiWorkdaySection,
+#civiOnboardingSection,
+#civiTrackHUD          { --sec-accent: var(--civi-hue-karriere); }
+
+#civiHomeStatus,
+#civiPsyche,
+#civiIdentitySection,
+#civiPeopleSection     { --sec-accent: var(--civi-hue-personlig); }
+
+#civiInboxSection      { --sec-accent: var(--civi-hue-system); }
+
+.civi-capital,
+#civiPublicFeedSection,
+#civiDebateSection     { --sec-accent: var(--civi-hue-kultur); }
+
+#civiStoreSection      { --sec-accent: var(--civi-hue-kommers); }
 
 /* ------------------------------------------------------------
    GRUPPE-SKILLER (visuelle hint mellom logiske seksjoner)
@@ -50,8 +77,48 @@
   padding: 20px 20px 18px;
   border-radius: 14px;
   background: var(--card);
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--sec-accent) 20%, rgba(255,255,255,0.09));
   box-shadow: 0 8px 20px rgba(0,0,0,0.36);
+}
+
+/* Tynn fargemarg langs venstre kant — toner ut mot topp og bunn. */
+.civi-panels > section::before,
+.civi-panels > .civi-track-hud::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--sec-accent) 22%,
+    var(--sec-accent) 78%,
+    transparent
+  );
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Hårfin lysstripe øverst — gir boksene en slipt overkant. */
+.civi-panels > section::after,
+.civi-panels > .civi-track-hud::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--sec-accent) 55%, rgba(255,255,255,0.35)),
+    transparent
+  );
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 /* ------------------------------------------------------------
@@ -76,7 +143,8 @@
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: var(--civi-accent);
+  background: var(--sec-accent, var(--civi-accent));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sec-accent, var(--civi-accent)) 22%, transparent);
 }
 
 /* ------------------------------------------------------------
