@@ -1,179 +1,132 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "gameId": "hgWritingAcademy",
-  "curationNote": "Personlig Goodreads-supplement for Skrivekunstakademiet. Goodreads-rating er bare brukt som importfilter (minimum 4) og lagres ikke.",
-  "rightsRule": "Bruk forfatternavn, titler, historiske fakta, steder, tema, formgrep og public domain-materiale. Ikke importer eller gjengi opphavsrettsbeskyttet boktekst.",
+  "curationNote": "Goodreads CSV-import for Skrivekunstakademiet. Bruker Goodreads stjerner bare som filter (minimum 4) og private Goodreads-felt lagres aldri.",
   "importRules": {
-    "minimumGoodreadsRatingUsedOnlyAsFilter": 4,
-    "neverPersistGoodreadsPrivateFields": true,
+    "exclusiveShelfMustEqual": "read",
+    "minimumGoodreadsStarsUsedOnlyAsFilter": 4,
+    "neverPersistGoodreadsPrivateFields": [
+      "goodreads_rating",
+      "goodreads_date_added",
+      "goodreads_date_read",
+      "goodreads_private_notes",
+      "goodreads_review",
+      "goodreads_spoiler",
+      "goodreads_read_count",
+      "goodreads_owned_copies",
+      "isbn",
+      "isbn13"
+    ],
     "excludeChildrenAndYA": true,
-    "childAndYaRouteTo": "hgChildrenLiteratureGame"
+    "childAndYaRouteTo": "hgChildrenLiteratureGame",
+    "uncertainChildrenYaCandidates": "route_to_pendingChildrenLiteratureCandidates"
   },
   "personalGoodreadsCanon": [
     {
       "authorId": "dag_solstad",
       "name": "Dag Solstad",
       "selectedBooks": [
-        "Gymnaslærer Pedersens beretning om den store politiske vekkelse som har hjemsøkt vårt land",
-        "Genanse og verdighet",
-        "Roman 1987"
+        "Genanse og verdighet"
       ],
-      "themeTags": [
-        "politisk roman",
-        "institusjoner",
-        "ironi",
-        "klasse",
-        "norsk etterkrigstid"
+      "workCandidates": [
+        {
+          "title": "Genanse og verdighet",
+          "authorName": "Dag Solstad",
+          "yearPublished": 1994,
+          "originalPublicationYear": 1994,
+          "category": "adult_literature",
+          "matchStatus": "match_by_normalized_name_or_pending",
+          "publisher": "Oktober"
+        }
       ],
-      "matchStatus": "match_by_normalized_name_or_pending"
-    },
-    {
-      "authorId": "paul_auster",
-      "name": "Paul Auster",
-      "selectedBooks": [
-        "The New York Trilogy",
-        "Moon Palace",
-        "The Book of Illusions"
-      ],
-      "themeTags": [
-        "identitet",
-        "tilfeldighet",
-        "byrom",
-        "metafiksjon",
-        "detektivform"
-      ],
-      "matchStatus": "match_by_normalized_name_or_pending"
-    },
-    {
-      "authorId": "cormac_mccarthy",
-      "name": "Cormac McCarthy",
-      "selectedBooks": [
-        "Blood Meridian",
-        "The Road",
-        "No Country for Old Men"
-      ],
-      "themeTags": [
-        "landskap",
-        "vold",
-        "myte",
-        "knapp dialog",
-        "moral"
-      ],
-      "matchStatus": "match_by_normalized_name_or_pending"
-    },
-    {
-      "authorId": "jm_coetzee",
-      "name": "J.M. Coetzee",
-      "selectedBooks": [
-        "Disgrace",
-        "Waiting for the Barbarians",
-        "Elizabeth Costello"
-      ],
-      "themeTags": [
-        "makt",
-        "kolonialisme",
-        "etikk",
-        "fortellerposisjon",
-        "institusjoner"
-      ],
-      "matchStatus": "match_by_normalized_name_or_pending"
+      "themeTags": [],
+      "matchStatus": "match_by_normalized_name_or_pending",
+      "authorMatch": {
+        "personId": "dag_solstad",
+        "matchStrategy": "normalized_name"
+      }
     },
     {
       "authorId": "jon_fosse",
       "name": "Jon Fosse",
       "selectedBooks": [
-        "Septologien",
-        "Morgon og kveld",
-        "Nokon kjem til å komme"
+        "Septologien"
       ],
-      "themeTags": [
-        "rytme",
-        "gjentakelse",
-        "stillhet",
-        "tro",
-        "vestland"
+      "workCandidates": [
+        {
+          "title": "Septologien",
+          "authorName": "Jon Fosse",
+          "yearPublished": 2021,
+          "originalPublicationYear": 2019,
+          "category": "adult_literature",
+          "matchStatus": "match_by_normalized_name_or_pending",
+          "publisher": "Samlaget"
+        }
       ],
-      "matchStatus": "match_by_normalized_name_or_pending"
+      "themeTags": [],
+      "matchStatus": "match_by_normalized_name_or_pending",
+      "authorMatch": {
+        "personId": "jon_fosse",
+        "matchStrategy": "normalized_name"
+      }
     },
     {
-      "authorId": "karl_ove_knausgaard",
-      "name": "Karl Ove Knausgård",
+      "authorId": "w_g_sebald",
+      "name": "W. G. Sebald",
       "selectedBooks": [
-        "Min kamp",
-        "Om våren",
-        "Morgenstjernen"
+        "Austerlitz"
       ],
-      "themeTags": [
-        "autofiksjon",
-        "minne",
-        "hverdag",
-        "familie",
-        "essayistisk observasjon"
+      "workCandidates": [
+        {
+          "title": "Austerlitz",
+          "authorName": "W. G. Sebald",
+          "yearPublished": 2001,
+          "originalPublicationYear": 2001,
+          "category": "adult_literature",
+          "matchStatus": "pending_person_candidate",
+          "publisher": "Hanser"
+        }
       ],
-      "matchStatus": "match_by_normalized_name_or_pending"
-    },
-    {
-      "authorId": "michel_houellebecq",
-      "name": "Michel Houellebecq",
-      "selectedBooks": [
-        "Atomised",
-        "Platform",
-        "Submission"
-      ],
-      "themeTags": [
-        "samtidskritikk",
-        "ensomhet",
-        "marked",
-        "politikk",
-        "provokasjon"
-      ],
-      "matchStatus": "match_by_normalized_name_or_pending"
-    },
-    {
-      "authorId": "tomas_espedal",
-      "name": "Tomas Espedal",
-      "selectedBooks": [
-        "Gå",
-        "Imot kunsten",
-        "Biografi"
-      ],
-      "themeTags": [
-        "vandring",
-        "essay",
-        "autofiksjon",
-        "kunstnerliv",
-        "sted"
-      ],
-      "matchStatus": "match_by_normalized_name_or_pending"
-    },
-    {
-      "authorId": "vivian_gornick",
-      "name": "Vivian Gornick",
-      "selectedBooks": [
-        "The Situation and the Story",
-        "Fierce Attachments",
-        "The Odd Woman and the City"
-      ],
-      "themeTags": [
-        "essay",
-        "memoar",
-        "fortellerstemme",
-        "byvandring",
-        "feministisk kritikk"
-      ],
-      "matchStatus": "match_by_normalized_name_or_pending"
+      "themeTags": [],
+      "matchStatus": "pending_person_candidate"
     }
   ],
   "excludedForWritingAcademy": [
     {
-      "title": "Eksempel på barnebok/YA fra Goodreads-import",
-      "authorName": "Ikke importert til Skrivekunstakademiet",
-      "reason": "children_or_young_adult_literature",
+      "title": "The Hobbit",
+      "authorName": "J. R. R. Tolkien",
+      "yearPublished": 1937,
+      "originalPublicationYear": 1937,
+      "reason": "children_or_young_adult_candidate",
+      "confidence": "high",
       "routeTo": "hgChildrenLiteratureGame",
+      "publisher": "Allen & Unwin",
       "retainedFields": [
         "title",
         "authorName",
+        "yearPublished",
+        "originalPublicationYear",
         "reason",
+        "confidence",
+        "routeTo"
+      ]
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "authorName": "J. K. Rowling",
+      "yearPublished": 1997,
+      "originalPublicationYear": 1997,
+      "reason": "children_or_young_adult_candidate",
+      "confidence": "medium",
+      "routeTo": "hgChildrenLiteratureGame",
+      "publisher": "Bloomsbury",
+      "retainedFields": [
+        "title",
+        "authorName",
+        "yearPublished",
+        "originalPublicationYear",
+        "reason",
+        "confidence",
         "routeTo"
       ]
     }
@@ -182,16 +135,53 @@
     "goodreads_rating",
     "goodreads_date_added",
     "goodreads_date_read",
-    "goodreads_private_notes"
+    "goodreads_private_notes",
+    "goodreads_review",
+    "goodreads_spoiler",
+    "goodreads_read_count",
+    "goodreads_owned_copies",
+    "isbn",
+    "isbn13"
   ],
   "childrenLiteratureCanon": [],
   "pendingChildrenLiteratureCandidates": [
     {
-      "title": "Eksempel på barnebok/YA fra Goodreads-import",
-      "authorName": "Ikke importert til Skrivekunstakademiet",
-      "reason": "children_or_young_adult_literature",
+      "title": "The Hobbit",
+      "authorName": "J. R. R. Tolkien",
+      "yearPublished": 1937,
+      "originalPublicationYear": 1937,
+      "reason": "children_or_young_adult_candidate",
+      "confidence": "high",
       "routeTo": "hgChildrenLiteratureGame",
-      "targetCollection": "pendingChildrenLiteratureCandidates"
+      "publisher": "Allen & Unwin",
+      "retainedFields": [
+        "title",
+        "authorName",
+        "yearPublished",
+        "originalPublicationYear",
+        "reason",
+        "confidence",
+        "routeTo"
+      ]
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "authorName": "J. K. Rowling",
+      "yearPublished": 1997,
+      "originalPublicationYear": 1997,
+      "reason": "children_or_young_adult_candidate",
+      "confidence": "medium",
+      "routeTo": "hgChildrenLiteratureGame",
+      "publisher": "Bloomsbury",
+      "retainedFields": [
+        "title",
+        "authorName",
+        "yearPublished",
+        "originalPublicationYear",
+        "reason",
+        "confidence",
+        "routeTo"
+      ]
     }
   ]
 }

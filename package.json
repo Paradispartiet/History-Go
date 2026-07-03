@@ -75,7 +75,9 @@
     "audit:civication:role-packs": "node scripts/audit-civication-role-packs.mjs",
     "audit:civication:fwg-governance": "node scripts/audit-civication-fwg-governance.mjs",
     "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js",
-    "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs"
+    "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
+    "goodreads:literature:dry-run": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --dry-run",
+    "goodreads:literature:write": "node scripts/import-goodreads-literature-canon.mjs --input goodreads_library_export.csv --write"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
