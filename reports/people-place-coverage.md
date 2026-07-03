@@ -1,27 +1,27 @@
 # People-place coverage audit
 
-Generert: 2026-07-02T08:46:24.115Z
+Generert: 2026-07-03T10:57:51.986Z
 
 ## Sammendrag
 
-- People totalt: **483**
+- People totalt: **488**
 - Places totalt: **869**
 - Places med people: **209**
 - Places uten people: **660**
-- People-place-lenker: **733**
-- People koblet til flere gyldige steder: **190**
+- People-place-lenker: **739**
+- People koblet til flere gyldige steder: **191**
 - People uten gyldig sted: **0**
 - Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **483**
-- People uten image: **126**
-- People uten cardImage: **126**
+- Duplikate place-referanser inne på people: **488**
+- People uten image: **131**
+- People uten cardImage: **131**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 92 | 28 | 64 | 108 | 82 |
+| by | 92 | 28 | 64 | 113 | 87 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
 | historie | 421 | 57 | 364 | 198 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
@@ -30,7 +30,7 @@ Generert: 2026-07-02T08:46:24.115Z
 | musikk | 13 | 9 | 4 | 27 | 18 |
 | naeringsliv | 55 | 27 | 28 | 55 | 53 |
 | natur | 63 | 5 | 58 | 13 | 13 |
-| politikk | 15 | 7 | 8 | 73 | 60 |
+| politikk | 15 | 7 | 8 | 74 | 61 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 10 | 54 | 34 | 30 |
@@ -50,12 +50,12 @@ Generert: 2026-07-02T08:46:24.115Z
 - subkultur: 30
 - media: 27
 - kunst: 25
+- by: 24
 - film: 23
 - film_tv: 23
 - natur: 22
+- arkitektur: 21
 - regissor: 20
-- arkitektur: 19
-- by: 19
 - populaerkultur: 18
 - tv: 18
 - filantrop: 17
@@ -64,11 +64,11 @@ Generert: 2026-07-02T08:46:24.115Z
 - filmkanon: 14
 - journalistikk: 14
 - middelalder: 14
+- modernisme: 12
 - borgerkrigstiden: 11
 - cinematek: 11
 - humor: 11
 - krig: 11
-- modernisme: 11
 - sanger: 11
 - avis: 10
 - fado: 10
@@ -100,11 +100,11 @@ Generert: 2026-07-02T08:46:24.115Z
 - youngstorget (Youngstorget) – 17
 - oslo_domkirke (Oslo domkirke) – 15
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 15
+- oslo_radhus (Oslo rådhus) – 14
 - gamle_deichman (Gamle Deichman) – 13
 - karl_johan (Karl Johans gate) – 13
 - lisbon_cinemateca_portuguesa (Cinemateca Portuguesa) – 13
 - nidaros_erkebispegarden (Erkebispegården i Nidaros) – 13
-- oslo_radhus (Oslo rådhus) – 13
 - lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 12
 - torggata (Torggata) – 12
 - nrk_huset_marienlyst (NRK-huset på Marienlyst) – 11
@@ -142,6 +142,11 @@ Generert: 2026-07-02T08:46:24.115Z
 - thomas_thiis_evensen (Thomas Thiis-Evensen) -> universitetsplassen
 - geir_grung (Geir Grung) -> tjuvholmen
 - fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park
+- kjetil_traedal_thorsen (Kjetil Trædal Thorsen) -> bjorvika
+- ellen_de_vibe (Ellen de Vibe) -> bjorvika
+- jan_gehl (Jan Gehl) -> bjorvika
+- albert_nordengen (Albert Nordengen) -> radhusplassen
+- kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade
 - halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
 - haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
 - sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
@@ -219,12 +224,7 @@ Generert: 2026-07-02T08:46:24.115Z
 - christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen
 - wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen
 - carsten_anker (Carsten Anker) -> eidsvollsbygningen
-- peder_anker (Peder Anker) -> bogstad_gard
-- birger_eriksen (Birger Eriksen) -> oscarsborg_festning
-- marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
-- martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
-- cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- ... 383 flere
+- ... 388 flere
 
 ## Anbefalt første people-batch
 
