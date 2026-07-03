@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0.0",
+  "gameId": "hgWritingAcademy",
+  "displayName": "Skrivekunstakademiet",
+  "independenceRule": "Skrivekunstakademiet er et uavhengig History Go-spill. Civication kan lenke til spillet, men skal ikke eie motor, progresjon eller datakilde.",
+  "ownershipRule": "Canonical History Go eier people/places/works/relations. games/writing-academy lagrer bare referanser, regler, matcher-resultater og private-safe Goodreads-supplement.",
+  "rightsRule": "Spillet kan bruke forfatternavn, titler, historiske fakta, steder, tema, formgrep og public domain-materiale. Spillet skal ikke importere eller gjengi opphavsrettsbeskyttet boktekst.",
+  "sourceRefs": {
+    "historyGoLiteraturePeople": "data/people/litteratur/oslo/people_litteratur_oslo.json",
+    "historyGoLiteraturePlaces": "data/places/litteratur/oslo/places_litteratur.json",
+    "historyGoLiteratureQuizDir": "data/quiz/litteratur/",
+    "historyGoStoriesDir": "data/stories/",
+    "personalGoodreadsSeed": "games/writing-academy/data/goodreads_author_seed.json"
+  },
+  "collections": {
+    "historyGoLiteraturePeople": {
+      "sourceRef": "historyGoLiteraturePeople",
+      "include": "all canonical people from litteraturmerket",
+      "idField": "id",
+      "referenceOnly": true,
+      "authorCardProjection": [
+        "personId",
+        "name",
+        "stemme",
+        "form",
+        "tematikk",
+        "historisk kontekst",
+        "stedstilknytning",
+        "mulige oppgaver"
+      ],
+      "noCanonicalDuplication": true
+    },
+    "historyGoLiteraturePlaces": {
+      "sourceRef": "historyGoLiteraturePlaces",
+      "include": "all canonical places from litteraturmerket",
+      "idField": "id",
+      "referenceOnly": true,
+      "assignmentTypes": [
+        "scene",
+        "dialog",
+        "essay",
+        "stedsskildring",
+        "fortellerstemme",
+        "litterær analyse"
+      ],
+      "priority": [
+        "places with matching data/stories files",
+        "places with matching data/quiz/litteratur files",
+        "remaining literature places"
+      ]
+    },
+    "personalGoodreadsCanon": {
+      "sourceRef": "personalGoodreadsSeed",
+      "include": "Goodreads books imported with My Rating >= 4 only as a filter",
+      "privateFieldPolicy": "do not persist My Rating, Date Added, Date Read or Private Notes",
+      "excludeChildrenAndYA": true,
+      "childAndYaRouteTo": "hgChildrenLiteratureGame"
+    }
+  },
+  "matcher": {
+    "strategy": "normalized_name",
+    "normalization": [
+      "NFKD unicode normalize",
+      "strip diacritics",
+      "lowercase",
+      "collapse non-alphanumeric separators"
+    ],
+    "onMatch": "use existing History Go personId",
+    "onNoMatch": "append to pending_person_candidates",
+    "reviewRule": "do not create canonical people automatically without review"
+  },
+  "placeUnlockRules": {
+    "allHistoryGoLiteraturePlacesAreMissionPlaces": true,
+    "unlockedAssignmentTypes": [
+      "scene",
+      "dialog",
+      "essay",
+      "stedsskildring",
+      "fortellerstemme",
+      "litterær analyse"
+    ],
+    "prioritizeExistingStoriesAndQuiz": true
+  },
+  "pending_person_candidates": []
+}
