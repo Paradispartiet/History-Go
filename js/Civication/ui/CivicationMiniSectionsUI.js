@@ -906,6 +906,18 @@
     activeModalBody = body;
 
     if (title) title.textContent = `${config.accent || ""} ${config.label || "Seksjon"}`.trim();
+
+    // Kickeren viser livsområdet (Personlig, Karriere, …) i stedet for
+    // statisk «Civication» — fargen på popupen matcher allerede området.
+    const kicker = modal.querySelector(".civi-section-popup-kicker");
+    if (kicker) {
+      const categories = /** @type {Record<string, { label?: string }>} */ (CATEGORY_CONFIG);
+      const categoryLabel = config.category && config.category !== "system"
+        ? categories[config.category]?.label || ""
+        : (config.category === "system" ? "System" : "");
+      kicker.textContent = categoryLabel || "Civication";
+    }
+
     if (host) host.appendChild(body);
 
     body.classList.add("is-in-popup");
@@ -1059,10 +1071,54 @@
     applyCategoryFilter();
   }
 
+  let footerNavBound = false;
+
+  /* Footer-knappene med data-scroll hadde ingen handler — de gjorde
+     ingenting. Nå: bytt til seksjonens livsområde hvis den er skjult av
+     kategorifilteret, scroll dit, og marker aktiv knapp. */
+  function bindFooterNav() {
+    if (footerNavBound) return;
+    const footer = document.querySelector(".civi-footer");
+    if (!footer) return;
+    footerNavBound = true;
+
+    footer.addEventListener("click", function (event) {
+      const target = /** @type {Element} */ (event.target);
+      const btn = target?.closest?.("button[data-scroll]");
+      if (!btn || !footer.contains(btn)) return;
+
+      const selector = btn.getAttribute("data-scroll") || "";
+      const section = selector ? document.querySelector(selector) : null;
+      if (!section) return;
+
+      // Forlat kartmodus hvis vi står i den — ellers er panelene usynlige.
+      document.body.classList.remove("civi-mapmode");
+
+      const category = section instanceof HTMLElement ? (section.dataset.civiLifeCategory || "") : "";
+      const categories = /** @type {Record<string, { label?: string }>} */ (CATEGORY_CONFIG);
+      if (category && category !== "system" && categories[category] && category !== selectedCategory) {
+        setSelectedCategory(category);
+        refreshCategoryNav();
+        applyCategoryFilter();
+        refreshSummaries();
+      }
+
+      section.scrollIntoView({ block: "start", behavior: "smooth" });
+
+      footer.querySelectorAll(".civi-btn").forEach(function (el) {
+        const isActive = el === btn;
+        el.classList.toggle("is-active", isActive);
+        if (isActive) el.setAttribute("aria-current", "true");
+        else el.removeAttribute("aria-current");
+      });
+    });
+  }
+
   function bootMiniSections() {
     document.body.classList.add("civi-mini-mode");
     ensureModal();
     ensureHomeControls();
+    bindFooterNav();
 
     if (!selectedCategory) setSelectedCategory(getSelectedCategory());
 

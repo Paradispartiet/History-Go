@@ -583,11 +583,19 @@ body.civi-app.civi-mini-mode .civi-category-tab {
   font-size: 15px;
   font-weight: 700;
 }
+/* Aktiv tab toner i livsområdets farge — samme palett som boksene. */
 body.civi-app.civi-mini-mode .civi-category-tab.is-active {
-  color: rgba(255,255,255,0.95);
-  border-color: rgba(127,167,214,0.5);
-  background: rgba(127,167,214,0.18);
+  --tab-accent: var(--civi-accent);
+  color: color-mix(in srgb, var(--tab-accent) 30%, #ffffff);
+  border-color: color-mix(in srgb, var(--tab-accent) 52%, transparent);
+  background: color-mix(in srgb, var(--tab-accent) 17%, transparent);
 }
+
+body.civi-app.civi-mini-mode .civi-category-tab.is-active[data-category="personlig"] { --tab-accent: var(--civi-hue-personlig); }
+body.civi-app.civi-mini-mode .civi-category-tab.is-active[data-category="karriere"]  { --tab-accent: var(--civi-hue-karriere); }
+body.civi-app.civi-mini-mode .civi-category-tab.is-active[data-category="fritid"]    { --tab-accent: var(--civi-hue-fritid); }
+body.civi-app.civi-mini-mode .civi-category-tab.is-active[data-category="kommers"]   { --tab-accent: var(--civi-hue-kommers); }
+body.civi-app.civi-mini-mode .civi-category-tab.is-active[data-category="kultur"]    { --tab-accent: var(--civi-hue-kultur); }
 body.civi-app.civi-mini-mode .civi-hidden-by-category { display:none !important; }
 
 body.civi-app.civi-mini-mode .civi-category-empty {
@@ -678,4 +686,13 @@ body.civi-app.civi-mini-mode .civi-mini-action {
 body.civi-app.civi-mini-mode .civi-mini-action:hover {
   background: color-mix(in srgb, var(--sec-accent, #ffffff) 12%, rgba(255,255,255,0.04)) !important;
   border-color: color-mix(in srgb, var(--sec-accent, #ffffff) 42%, rgba(255,255,255,0.08)) !important;
+}
+
+/* Footer: marker aktiv destinasjon. Kart-knappen lyser mens kartmodus er på.
+   !important trengs kun mot den generelle knappe-regelen over. */
+body.civi-app .civi-footer .civi-btn.is-active:not(.primary),
+body.civi-app.civi-mapmode #btnCiviMap {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.42) !important;
+  color: #ffffff !important;
 }

@@ -13,6 +13,7 @@
   --civi-hue-system: #7fa7d6;     /* blå    — innkommende/system */
   --civi-hue-kultur: #b482ce;     /* lilla  — kapital, offentlig, debatt */
   --civi-hue-kommers: #d9914f;    /* oransje — butikker og pakker */
+  --civi-hue-fritid: #6fc7c0;     /* turkis — fritid (sport, natur, aktiviteter) */
 
   /* Aliasene under er bevart for bakoverkompatibilitet. */
   --civi-accent-onb:    var(--civi-hue-karriere);
@@ -44,7 +45,9 @@
 
 #civiInboxSection      { --sec-accent: var(--civi-hue-system); }
 
-.civi-capital,
+/* .civi-capital er en klasse (ingen id) og trenger høyere spesifisitet
+   enn .civi-panels > section-regelen under, ellers vinner gull-defaulten. */
+.civi-panels > section.civi-capital,
 #civiPublicFeedSection,
 #civiDebateSection     { --sec-accent: var(--civi-hue-kultur); }
 
