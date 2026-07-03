@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "gameId": "hgChildrenLiteratureGame",
+  "importRules": {
+    "exclusiveShelfMustEqual": "read",
+    "minimumGoodreadsStarsUsedOnlyAsFilter": 4,
+    "neverPersistGoodreadsPrivateFields": [
+      "goodreads_rating",
+      "goodreads_date_added",
+      "goodreads_date_read",
+      "goodreads_private_notes",
+      "goodreads_review",
+      "goodreads_spoiler",
+      "goodreads_read_count",
+      "goodreads_owned_copies",
+      "isbn",
+      "isbn13"
+    ],
+    "excludeChildrenAndYA": true,
+    "childAndYaRouteTo": "hgChildrenLiteratureGame",
+    "uncertainChildrenYaCandidates": "route_to_pendingChildrenLiteratureCandidates"
+  },
+  "childrenLiteratureCanon": [],
+  "pendingChildrenLiteratureCandidates": [
+    {
+      "title": "The Hobbit",
+      "authorName": "J. R. R. Tolkien",
+      "yearPublished": 1937,
+      "originalPublicationYear": 1937,
+      "reason": "children_or_young_adult_candidate",
+      "confidence": "high",
+      "routeTo": "hgChildrenLiteratureGame",
+      "publisher": "Allen & Unwin",
+      "retainedFields": [
+        "title",
+        "authorName",
+        "yearPublished",
+        "originalPublicationYear",
+        "reason",
+        "confidence",
+        "routeTo"
+      ]
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "authorName": "J. K. Rowling",
+      "yearPublished": 1997,
+      "originalPublicationYear": 1997,
+      "reason": "children_or_young_adult_candidate",
+      "confidence": "medium",
+      "routeTo": "hgChildrenLiteratureGame",
+      "publisher": "Bloomsbury",
+      "retainedFields": [
+        "title",
+        "authorName",
+        "yearPublished",
+        "originalPublicationYear",
+        "reason",
+        "confidence",
+        "routeTo"
+      ]
+    }
+  ]
+}
