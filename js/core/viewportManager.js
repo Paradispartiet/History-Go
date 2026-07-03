@@ -13,10 +13,18 @@
   // "HEADER – KOMPAKT/MOBIL" i css/miniProfile.css. Breakpointet der speiler
   // COMPACT_HEADER_MAX_VW. Alle lag under leser --hg-visual-header-height.
   const HEADER_HEIGHT = 74;
-  const PHONE_HEADER_HEIGHT = 104;
-  const COMPACT_HEADER_HEIGHT = 112;
+  const PHONE_HEADER_HEIGHT = 96;
+  const COMPACT_HEADER_HEIGHT = 104;
   const COMPACT_HEADER_MAX_VW = 860;
   const FOOTER_HEIGHT = 80;
+
+  // Myk UI-skalering av header-/footerinnholdet: litt mindre på små
+  // skjermer, litt større på store. CSS zoomer innholdet med
+  // --hg-ui-scale (css/layout.css); høydene her skaleres med samme
+  // faktor slik at --hg-visual-*-height forblir autoritative.
+  const UI_SCALE_REF_VW = 1150;
+  const UI_SCALE_MIN = 0.85;
+  const UI_SCALE_MAX = 1.15;
   const NEARBY_HEIGHT_TABLET = 260;
   const NEARBY_HEIGHT_PHONE = 228;
 
@@ -90,9 +98,12 @@
     if (!shell) return;
 
     const { mode, designWidth, designHeight } = layout;
-    const headerHeight = mode === "phone"
+    const uiScale = Math.min(UI_SCALE_MAX, Math.max(UI_SCALE_MIN, vw / UI_SCALE_REF_VW));
+    const baseHeaderHeight = mode === "phone"
       ? PHONE_HEADER_HEIGHT
       : (vw <= COMPACT_HEADER_MAX_VW ? COMPACT_HEADER_HEIGHT : HEADER_HEIGHT);
+    const headerHeight = Math.round(baseHeaderHeight * uiScale);
+    const footerHeight = Math.round(FOOTER_HEIGHT * uiScale);
     const nearbyHeight = mode === "phone" ? NEARBY_HEIGHT_PHONE : NEARBY_HEIGHT_TABLET;
     const scaledW = designWidth * scale;
     const scaledH = designHeight * scale;
@@ -149,7 +160,7 @@
     // de få header/nearby/footer-klaring uttrykt i design-piksler (ekte px / scale).
     const designHeaderOffset = headerHeight / scale;
     const designNearbyOffset = nearbyHeight / scale;
-    const designFooterOffset = FOOTER_HEIGHT / scale;
+    const designFooterOffset = footerHeight / scale;
 
     const root = document.documentElement;
     if (root) {
@@ -160,9 +171,10 @@
       root.style.setProperty("--hg-design-header-offset", `${designHeaderOffset}px`);
       root.style.setProperty("--hg-design-nearby-offset", `${designNearbyOffset}px`);
       root.style.setProperty("--hg-design-footer-offset", `${designFooterOffset}px`);
+      root.style.setProperty("--hg-ui-scale", String(uiScale));
       root.style.setProperty("--hg-visual-header-height", `${headerHeight}px`);
       root.style.setProperty("--hg-visual-nearby-height", `${nearbyHeight}px`);
-      root.style.setProperty("--hg-visual-footer-height", `${FOOTER_HEIGHT}px`);
+      root.style.setProperty("--hg-visual-footer-height", `${footerHeight}px`);
     }
 
     window.HGViewport = {
@@ -178,9 +190,10 @@
       // nye felter
       vw,
       vh,
+      uiScale,
       headerHeight,
       nearbyHeight,
-      footerHeight: FOOTER_HEIGHT,
+      footerHeight,
       designHeaderOffset,
       designNearbyOffset,
       designFooterOffset

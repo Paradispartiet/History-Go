@@ -69,6 +69,20 @@ body.hg-app .app-shell > *{
 }
 
 /* ============================================================
+   UI-SKALERING AV HEADER/FOOTER-INNHOLD
+   ViewportManager setter --hg-ui-scale fra viewportbredden
+   (litt mindre på små skjermer, litt større på store) og skalerer
+   --hg-visual-*-height med samme faktor. Innholdet zoomes her –
+   selve boksene (høyde/safe-area) skaleres IKKE av zoom, så
+   geometrivariablene forblir autoritative.
+   ============================================================ */
+
+body.hg-app .site-header > *,
+body.hg-app .app-footer > *{
+  zoom: var(--hg-ui-scale, 1);
+}
+
+/* ============================================================
    HEADER
    ============================================================ */
 
