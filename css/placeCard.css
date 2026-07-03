@@ -35,10 +35,12 @@
 
 
 #placeCard{
-  --place-card-media-width: 320px;
-  --place-card-orb-size: 92px;
+  --place-card-media-width: clamp(140px, 34vw, 320px);
+  --place-card-rounds-width: var(--place-card-media-width);
+  --place-card-media-gap: clamp(8px, 2vw, 16px);
+  --place-card-orb-size: calc(var(--place-card-rounds-width) * 0.28);
   --pc-round-size: var(--place-card-orb-size);
-  --pc-round-gap: 22px;
+  --pc-round-gap: calc(var(--place-card-rounds-width) * 0.07);
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
   --pc-popout-top: 96px;
@@ -129,12 +131,14 @@
 /* Grid */
 #placeCard .pc-grid{
   display: grid;
-  grid-template-columns: var(--place-card-media-width) minmax(0, 1fr);
+  grid-template-columns: var(--place-card-media-width) var(--place-card-rounds-width);
   grid-template-rows: auto auto;
 
-  column-gap: 16px;
-  row-gap: 18px;
+  column-gap: var(--place-card-media-gap);
+  row-gap: var(--place-card-media-gap);
 
+  width: max-content;
+  max-width: 100%;
   padding: 22px 12px 12px;
   box-sizing: border-box;
 }
@@ -270,37 +274,35 @@
   gap: 10px;
 }
 
-/* Media-kolonne: frontImage etterfølges av rundinger og På stedet */
+/* Media-kolonne: rundingområdet ved siden av frontImage */
 .pc-side-stack{
-  grid-column: 1;
-  grid-row: 2;
+  grid-column: 2;
+  grid-row: 1;
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
 
   justify-self: start;
   align-self: start;
   justify-content: flex-start;
-  width: var(--place-card-media-width);
-  min-width: var(--place-card-media-width);
-  max-width: var(--place-card-media-width);
+  width: var(--place-card-rounds-width);
+  min-width: var(--place-card-rounds-width);
+  max-width: var(--place-card-rounds-width);
   height: 100%;
   min-height: 0;
 }
 
 /* Ikon-kvadratet (rundingene) */
 .pc-icons-quad{
-  order: 1;
   display: grid;
   grid-template-columns: repeat(3, var(--place-card-orb-size));
   grid-auto-rows: var(--place-card-orb-size);
 
   gap: var(--pc-round-gap);
 
-  width: var(--place-card-media-width);
-  min-width: var(--place-card-media-width);
-  max-width: var(--place-card-media-width);
+  width: var(--place-card-rounds-width);
+  min-width: var(--place-card-rounds-width);
+  max-width: var(--place-card-rounds-width);
   justify-content: center;
   align-content: start;
   transform: none;
@@ -308,10 +310,11 @@
 }
 
 .pc-events-quad{
-  order: 2;
-  width: var(--place-card-media-width);
-  min-width: var(--place-card-media-width);
-  max-width: var(--place-card-media-width);
+  grid-column: 1 / 3;
+  grid-row: 2;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 44px;
   max-height: 56px;
   padding: 8px 14px;
@@ -547,18 +550,20 @@
 }
 
 body.hg-app.hg-phone #placeCard{
-  --place-card-media-width: 150px;
-  --place-card-orb-size: 44px;
+  --place-card-media-width: clamp(120px, 38vw, 150px);
+  --place-card-rounds-width: var(--place-card-media-width);
+  --place-card-media-gap: clamp(8px, 2.5vw, 10px);
+  --place-card-orb-size: calc(var(--place-card-rounds-width) * 0.28);
   --pc-round-size: var(--place-card-orb-size);
-  --pc-round-gap: 9px;
+  --pc-round-gap: calc(var(--place-card-rounds-width) * 0.07);
   --pc-text-inset: 8px;
   --pc-text-h: 184px;
 }
 
 body.hg-app.hg-phone #placeCard .pc-grid{
-  grid-template-columns: var(--place-card-media-width) minmax(0, 1fr);
-  column-gap: 10px;
-  row-gap: 12px;
+  grid-template-columns: var(--place-card-media-width) var(--place-card-rounds-width);
+  column-gap: var(--place-card-media-gap);
+  row-gap: var(--place-card-media-gap);
   padding: 18px 8px 10px;
 }
 
@@ -569,7 +574,7 @@ body.hg-app.hg-phone .pc-frontcard{
 body.hg-app.hg-phone .pc-side-stack,
 body.hg-app.hg-phone .pc-icons-quad{
   transform: none;
-  width: var(--place-card-media-width);
+  width: var(--place-card-rounds-width);
 }
 
 body.hg-app.hg-phone .pc-events-quad{
