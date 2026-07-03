@@ -1669,8 +1669,44 @@ function getTaskWindowLabel(task, ev) {
  * @param {string} mailId
  * @returns {void}
  */
+// Ingen side har #civiTaskModal i statisk HTML — bygg den ved behov, ellers
+// er alle "Gjør oppgave"-knapper utenfor NextAction stille døde.
+/** @returns {HTMLElement | null} */
+function ensureTaskModalElement() {
+  const existing = document.getElementById("civiTaskModal");
+  if (existing) return existing;
+  if (!document.body) return null;
+
+  const modal = document.createElement("div");
+  modal.id = "civiTaskModal";
+  modal.className = "civi-modal";
+  modal.setAttribute("aria-hidden", "true");
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "civi-modal-backdrop";
+  backdrop.addEventListener("click", closeTaskModal);
+
+  const card = document.createElement("div");
+  card.className = "civi-modal-card";
+  card.setAttribute("role", "dialog");
+  card.setAttribute("aria-modal", "true");
+  card.innerHTML = ""
+    + "<div class=\"civi-modal-head\">"
+    + "<div><div class=\"civi-modal-kicker\">Oppgave</div>"
+    + "<h2 class=\"civi-modal-title\" id=\"civiTaskModalTitle\">Oppgave</h2></div>"
+    + "<button class=\"civi-modal-close\" type=\"button\" id=\"civiTaskModalClose\" aria-label=\"Lukk\">×</button>"
+    + "</div>"
+    + "<div class=\"civi-modal-body\" id=\"civiTaskModalBody\"></div>";
+  card.querySelector("#civiTaskModalClose")?.addEventListener("click", closeTaskModal);
+
+  modal.appendChild(backdrop);
+  modal.appendChild(card);
+  document.body.appendChild(modal);
+  return modal;
+}
+
 function openTaskModalByMailId(mailId) {
-  const modal = document.getElementById("civiTaskModal");
+  const modal = ensureTaskModalElement();
   const body = document.getElementById("civiTaskModalBody");
   const title = document.getElementById("civiTaskModalTitle");
   if (!modal || !body || !title) return;
