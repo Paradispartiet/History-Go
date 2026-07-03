@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { execFileSync } from 'child_process';
 
 const root = process.cwd();
 const manifestPath = path.join(root, 'data/places/manifest.json');
@@ -15,6 +16,7 @@ const DUPLICATE_COORD_DECIMALS = 4; // ~11 m rutenett for nesten-identiske punkt
 const ANCHOR_FAR_MIN_DISTANCE_M = 1500; // anchor regnes som "langt unna" forbi dette
 const FILE_CLUSTER_MIN_PLACES = 5; // minste antall punkter før fil-klynge brukes
 const FILE_CLUSTER_OUTLIER_M = 50000; // avstand fra fil-median som regnes som avvik
+const PROTECTED_COORD_MOVE_REGRESSION_M = 150; // verified/semantic_anchor-flytt over dette må begrunnes eksplisitt
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const isNum = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -56,6 +58,33 @@ function haversineM(lat1, lon1, lat2, lon2) {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function hasExplicitRegressionJustification(place) {
+  const fields = [
+    place?.coordRegressionJustification,
+    place?.coordinateRegressionJustification,
+    place?.coordChangeReason,
+    place?.coordNote,
+  ];
+  return fields.some((value) => {
+    if (typeof value !== 'string') return false;
+    return /(tidligere|forrige|flytt|flyttet|feil|korriger|begrunn|regresjon|regression)/i.test(value);
+  });
+}
+
+function readHeadPlacesById(file) {
+  try {
+    const raw = execFileSync('git', ['show', `HEAD:${file}`], {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    const places = toPlaces(JSON.parse(raw));
+    return new Map(places.filter((p) => p?.id).map((p) => [p.id, p]));
+  } catch {
+    return new Map();
+  }
 }
 
 const hardErrors = [];
@@ -101,6 +130,7 @@ for (const absFile of activeManifestFiles) {
   }
 
   activeFiles.push(file);
+  const headPlacesById = readHeadPlacesById(file);
   for (const p of toPlaces(payload)) {
     placesValidated += 1;
     const id = p?.id;
@@ -173,6 +203,42 @@ for (const absFile of activeManifestFiles) {
     }
     if (hasLowCoordPrecision(lat) || hasLowCoordPrecision(lon)) {
       warnings.push(`${file}#${id ?? '(mangler-id)'}: lav koordinatpresisjon (<4 desimaler)`);
+    }
+
+    const previous = id ? headPlacesById.get(id) : null;
+    const previousStatus = typeof previous?.coordStatus === 'string' ? previous.coordStatus : null;
+    const previousProtected =
+      previousStatus === 'verified' || previousStatus === 'semantic_anchor';
+    if (
+      previousProtected &&
+      isNum(previous?.lat) &&
+      isNum(previous?.lon) &&
+      hasValidPoint
+    ) {
+      const moveM = haversineM(previous.lat, previous.lon, lat, lon);
+      const hasSource = coordSource.length > 0;
+      if (
+        moveM > PROTECTED_COORD_MOVE_REGRESSION_M &&
+        (!hasSource || !hasCoordNote || !hasExplicitRegressionJustification(p))
+      ) {
+        const roundedMove = Math.round(moveM);
+        warnings.push(
+          `${file}#${id ?? '(mangler-id)'}: coordinate_regression_risk (${roundedMove} m fra tidligere ${previousStatus})`
+        );
+        addCandidate(
+          {
+            id,
+            name,
+            category,
+            file,
+            lat,
+            lon,
+            r,
+          },
+          'coordinate_regression_risk',
+          `Flyttet ~${roundedMove} m fra tidligere ${previousStatus}. Manuell enkeltpatch må ha ny coordSource, ny coordNote og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil.`
+        );
+      }
     }
 
     allPlaces.push({
@@ -383,6 +449,8 @@ md += `Nivåene betyr:\n`;
 md += `- **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.\n`;
 md += `- **Varsler**: sannsynlige posisjonsrisikoer basert på enkle heuristikker.\n`;
 md += `- **Coordinate review candidates**: steder der repo-data alene ikke gir grunn til å stole på punktet. Signalene beviser ikke at posisjonen er feil – de peker ut kandidater for manuell kartkontroll.\n\n`;
+md += `## Beskyttede koordinater\n`;
+md += `Koordinater med \`coordStatus=verified\` eller \`coordStatus=semantic_anchor\` skal ikke overskrives av en manuell enkeltpatch uten ny \`coordSource\`, ny \`coordNote\` og eksplisitt begrunnelse for hvorfor tidligere koordinat var feil. Hvis et slikt sted flyttes mer enn ${PROTECTED_COORD_MOVE_REGRESSION_M} meter fra versjonen i \`HEAD\`, flagges endringen som \`coordinate_regression_risk\`.\n\n`;
 md += `## Aktive filer validert\n`;
 md += `${activeFiles.map((f) => `- ${f}`).join('\n') || '- Ingen'}\n\n`;
 md += `## Harde feil\n`;
