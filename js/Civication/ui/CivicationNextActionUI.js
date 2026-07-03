@@ -237,6 +237,53 @@
     try { window.showToast?.(message); } catch (_e) {}
   }
 
+  // Hvilken task-gate som viser oppgavearket sitt inline (én om gangen).
+  let expandedTaskGateId = "";
+
+  function findInboxEventById(mailId) {
+    const inbox = window.CivicationMailEngine?.getInbox?.() || window.CivicationState?.getInbox?.() || [];
+    const item = Array.isArray(inbox)
+      ? inbox.find(function (row) {
+        const ev = row?.event || row || {};
+        return String(row?.id || ev?.id || "").trim() === mailId || String(ev?.id || "").trim() === mailId;
+      })
+      : null;
+    return item?.event || item || null;
+  }
+
+  function buildTaskGateSheetHtml(action, mailId) {
+    const ev = findInboxEventById(mailId) || {};
+    const task = window.CivicationTaskEngine?.getTaskByMailId?.(mailId) || null;
+    const payload = ev.task_payload || {};
+    const expected = String(task?.task_payload?.expected_output || payload.expected_output || "").trim();
+    const minutes = Number(task?.durationMinutes || ev.work_minutes || ev.duration_minutes || 0);
+    const domain = String(ev.task_domain || task?.kind || "").trim();
+
+    const facts = []
+      .concat(expected ? ["<div class=\"civi-task-box\"><div class=\"civi-task-kicker\">Forventet leveranse</div><div>" + escapeHtml(expected) + "</div></div>"] : [])
+      .concat(minutes ? ["<div class=\"civi-task-box\"><div class=\"civi-task-kicker\">Arbeidstid</div><div>" + escapeHtml(String(minutes)) + " min</div></div>"] : [])
+      .concat(domain ? ["<div class=\"civi-task-box\"><div class=\"civi-task-kicker\">Arbeidstype</div><div>" + escapeHtml(domain) + "</div></div>"] : [])
+      .join("");
+
+    const choices = resolveActionChoices(action);
+    const deliveryButtons = choices.length
+      ? choices.map(function (choice) {
+        const choiceId = String(choice?.id || "").trim();
+        if (!choiceId) return "";
+        return "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-answer=\"1\" data-mail-id=\""
+          + escapeHtml(mailId) + "\" data-choice-id=\"" + escapeHtml(choiceId) + "\">"
+          + escapeHtml(choice?.label || choiceId) + "</button>";
+      }).join("")
+      : "<button class=\"civi-btn\" type=\"button\" data-civi-next-action-answer=\"1\" data-mail-id=\"" + escapeHtml(mailId) + "\" data-choice-id=\"\">Lever oppgaven</button>";
+
+    return ""
+      + "<div class=\"civi-next-action-task-sheet\">"
+      + facts
+      + "<p class=\"civi-next-action-sub muted\">Velg hvordan du leverer. Leveransen fullfører oppgaven og åpner resten av dagen.</p>"
+      + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Lever oppgaven\">" + deliveryButtons + "</div>"
+      + "</div>";
+  }
+
   function buildChoicesHtml(action) {
     const mailId = String(action.id || "");
     if (isQueuedAction(action)) {
@@ -248,6 +295,11 @@
     }
 
     if (action.isTaskGate) {
+      if (expandedTaskGateId === mailId) {
+        return ""
+          + "<p class=\"civi-next-action-sub muted\">Oppgave som må gjøres før du kan gå videre.</p>"
+          + buildTaskGateSheetHtml(action, mailId);
+      }
       return ""
         + "<p class=\"civi-next-action-sub muted\">Oppgave som må gjøres før du kan gå videre.</p>"
         + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Oppgave\">"
@@ -351,6 +403,10 @@
     }
 
     lastNoActionDebug = null;
+
+    if (expandedTaskGateId && String(action.id || "") !== expandedTaskGateId) {
+      expandedTaskGateId = "";
+    }
 
     const lines = bodyLines(action);
     body.innerHTML = ""
@@ -633,7 +689,10 @@
       const taskBtn = target.closest("[data-civi-next-action-task]");
       if (taskBtn && modal.contains(taskBtn) && !taskBtn.disabled) {
         event.preventDefault();
-        openTaskGate(String(taskBtn.getAttribute("data-civi-next-action-task") || "").trim());
+        // Oppgavearket vises inline i NextAction (eneste svarflate) — den
+        // gamle stien åpnet en modal som ikke fantes, så knappen var død.
+        expandedTaskGateId = String(taskBtn.getAttribute("data-civi-next-action-task") || "").trim();
+        render();
         return;
       }
 
