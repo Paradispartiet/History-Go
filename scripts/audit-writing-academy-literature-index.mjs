@@ -14,6 +14,7 @@ const normalizeName = (value) => String(value || '')
 
 const registry = readJson('data/historygo/shared/game_registry.json');
 assert(registry.games?.some((game) => game.gameId === 'hgWritingAcademy'), 'hgWritingAcademy missing from game_registry');
+const registryGameIds = new Set(registry.games.map((game) => game.gameId));
 
 const index = readJson('games/writing-academy/data/literature_source_index.json');
 assert(index.gameId === 'hgWritingAcademy', 'literature_source_index must belong to hgWritingAcademy');
@@ -31,6 +32,9 @@ assert(people.length > 0, 'literature people must be indexable');
 assert(places.length > 0, 'literature places must be indexable');
 assert(index.collections.historyGoLiteraturePeople.referenceOnly === true, 'people cards must be reference-only');
 assert(index.collections.historyGoLiteraturePlaces.assignmentTypes.includes('litterær analyse'), 'places must unlock literary analysis');
+const childAndYaRouteTo = index.collections.personalGoodreadsCanon.childAndYaRouteTo;
+assert(childAndYaRouteTo === 'hgChildrenLiteratureGame', 'Writing Academy must route children/YA Goodreads imports to hgChildrenLiteratureGame');
+assert(registryGameIds.has(childAndYaRouteTo), `Writing Academy child/YA route target ${childAndYaRouteTo} missing from game_registry`);
 
 const seedText = fs.readFileSync(path.join(root, index.sourceRefs.personalGoodreadsSeed), 'utf8');
 for (const forbidden of ['My Rating', 'Date Added', 'Date Read', 'Private Notes']) {
@@ -39,13 +43,17 @@ for (const forbidden of ['My Rating', 'Date Added', 'Date Read', 'Private Notes'
 const seed = JSON.parse(seedText);
 const canon = asArray(seed.personalGoodreadsCanon, 'personalGoodreadsCanon');
 const excluded = asArray(seed.excludedForWritingAcademy, 'excludedForWritingAcademy');
+const childrenCanon = asArray(seed.childrenLiteratureCanon, 'childrenLiteratureCanon');
+const pendingChildren = asArray(seed.pendingChildrenLiteratureCandidates, 'pendingChildrenLiteratureCandidates');
 for (const item of canon) {
   const serialized = JSON.stringify(item).toLowerCase();
   assert(!serialized.includes('young adult') && !serialized.includes('barnebok') && !serialized.includes('children_or_young_adult'), 'children/YA item found in personalGoodreadsCanon');
 }
-for (const item of excluded) {
-  assert(item.routeTo === 'hgChildrenLiteratureGame', 'excluded children/YA items must route to hgChildrenLiteratureGame');
+for (const item of [...excluded, ...childrenCanon, ...pendingChildren]) {
+  assert(item.routeTo === 'hgChildrenLiteratureGame', 'children/YA items must route to hgChildrenLiteratureGame');
 }
+assert(childrenCanon.length + pendingChildren.length >= excluded.length, 'children/YA Goodreads exclusions must be represented in childrenLiteratureCanon or pendingChildrenLiteratureCandidates');
+assert(excluded.every((item) => childrenCanon.some((child) => child.title === item.title) || pendingChildren.some((child) => child.title === item.title)), 'each excluded children/YA item must appear in childrenLiteratureCanon or pendingChildrenLiteratureCandidates');
 
 const peopleByName = new Map(people.map((person) => [normalizeName(person.name), person.id]));
 const matches = [];
@@ -70,6 +78,8 @@ console.log(JSON.stringify({
   placesIndexed: places.length,
   goodreadsCanon: canon.length,
   excludedForWritingAcademy: excluded.length,
+  childrenLiteratureCanon: childrenCanon.length,
+  pendingChildrenLiteratureCandidates: pendingChildren.length,
   matchedAuthors: matches.length,
   pendingPersonCandidates: pending.length,
   prioritizedPlaces: prioritizedPlaces.length,
