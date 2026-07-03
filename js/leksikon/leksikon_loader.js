@@ -452,7 +452,8 @@
       entry?.popupDesc,
       entry?.summary?.one_liner,
       ...(Array.isArray(entry?.tags) ? entry.tags : []),
-      ...(Array.isArray(entry?.summary?.themes) ? entry.summary.themes : [])
+      ...(Array.isArray(entry?.summary?.themes) ? entry.summary.themes : []),
+      ...(Array.isArray(entry?.classification?.tags) ? entry.classification.tags : [])
     ];
     return fields.map((v) => norm(v).toLowerCase()).filter(Boolean).join(" ");
   }
@@ -472,6 +473,12 @@
   function classifyLeksikonEntry(entry) {
     const signals = getTextSignals(entry);
     const kind = norm(entry?.kind || entry?.type || entry?.category).toLowerCase();
+
+    const isHistoricalNews = ["historical_news", "gamle_nyheter", "gamle nyheter", "avisnotis", "newspaper", "parkstrid", "moralpanikk", "old_news"].some((k) => signals.includes(k) || kind.includes(k));
+    if (isHistoricalNews) return "historical_news";
+
+    const isNewsNote = ["news_note", "nyere_notis", "nyere notis", "nearby_crime_history", "incident", "brann", "politi", "drap"].some((k) => signals.includes(k) || kind.includes(k));
+    if (isNewsNote) return "news_notes";
 
     const isEvent = ["arrangement", "event", "competition", "sports_event", "stevne", "rekord", "record", "resultat", "result", "statistikk", "stats", "idrettshistorie"].some((k) => signals.includes(k) || kind.includes(k));
     if (isEvent) return "events";
@@ -520,6 +527,8 @@
       place: mainArticle ? [mainArticle] : [],
       objects: [...sections.objects],
       events: [],
+      historical_news: [],
+      news_notes: [],
       history: [],
       sprak: [],
       links: sections.sourceLinks
@@ -527,14 +536,14 @@
 
     for (const entry of entries) {
       const bucket = classifyLeksikonEntry(entry);
-      groups[bucket].push(entry);
+      (groups[bucket] || groups.history).push(entry);
     }
 
     for (const entry of sections.sprakEntries) {
       if (isLanguageEntry(entry)) groups.sprak.push(entry);
       else {
-        const eventLike = classifyLeksikonEntry(entry) === "events";
-        groups[eventLike ? "events" : "history"].push(entry);
+        const bucket = classifyLeksikonEntry(entry);
+        groups[bucket] ? groups[bucket].push(entry) : groups.history.push(entry);
       }
     }
 
@@ -614,6 +623,8 @@
             ${content.lesesporItems.length ? renderHubCard("Lesespor", "Kuraterte eksterne tekster knyttet til dette stedet.", content.lesesporItems.length, "lesespor", true) : ""}
             ${content.wonderkammerEntries.length ? renderHubCard("Wonderkammer", "Kammeroppføringer og objekter knyttet til stedet.", content.wonderkammerEntries.length, "wonderkammer", true) : ""}
             ${groups.events.length ? renderHubCard("Arrangementer / idrettshistorie", "Stevner, rekorder, resultater og idrettshistoriske hendelser.", groups.events.length, "section", true, 'data-leksikon-section="events"') : ""}
+            ${groups.historical_news.length ? renderHubCard("Gamle nyheter", "Avisnotiser, parkstrider, moralpanikk og gamle hendelser fra arkivet.", groups.historical_news.length, "section", true, 'data-leksikon-section="historical_news"') : ""}
+            ${groups.news_notes.length ? renderHubCard("Nyere notiser", "Nyere lokalsaker, hendelser og korte notisspor knyttet til stedet.", groups.news_notes.length, "section", true, 'data-leksikon-section="news_notes"') : ""}
             ${groups.history.length ? renderHubCard("Historie / bruksspor", "Tidligere bruk, kulturhistorie og flerbruksspor.", groups.history.length, "section", true, 'data-leksikon-section="history"') : ""}
             ${groups.objects.length ? renderHubCard("Objekter / anlegg", "Fysiske spor, installasjoner og anleggsobjekter.", groups.objects.length, "section", true, 'data-leksikon-section="objects"') : ""}
             ${groups.sprak.length ? renderHubCard("Språkleksikon", "Ord, fagtermer og uttrykk knyttet til stedet.", groups.sprak.length, "section", true, 'data-leksikon-section="sprak"') : ""}
@@ -642,6 +653,8 @@
   function renderSectionList(mainArticle, sectionType, groups, place = null) {
     const map = {
       events: { title: "Arrangementer / idrettshistorie", items: groups.events },
+      historical_news: { title: "Gamle nyheter", items: groups.historical_news },
+      news_notes: { title: "Nyere notiser", items: groups.news_notes },
       history: { title: "Historie / bruksspor", items: groups.history },
       objects: { title: "Objekter / anlegg", items: groups.objects },
       sprak: { title: "Språkleksikon", items: groups.sprak }
