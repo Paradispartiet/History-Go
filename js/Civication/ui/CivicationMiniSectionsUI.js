@@ -237,10 +237,9 @@
         return firstText("identityDominant") || "Identitet og hvordan du blir oppfattet.";
       },
       details: function () {
-        const compass = firstText("identityCompass");
         const perception = firstText("identityPerception");
         return [
-          compass ? `Kompass: ${compass}` : null,
+          identityCompassLine(),
           perception ? `Persepsjon: ${perception}` : null,
           document.getElementById("identityPerceptionBtn") ? "Kan vise hvordan andre oppfatter deg" : null
         ];
@@ -326,7 +325,12 @@
       empty: "Ingen åpne butikker eller pakker.",
       action: "Åpne butikk",
       summary: function () {
-        return firstText("civiStorePanel") || "Ingen åpne butikker eller pakker.";
+        const host = document.getElementById("civiStorePanel");
+        const count = host ? host.children.length : 0;
+        if (!count) return "Ingen åpne butikker eller pakker.";
+        return count === 1
+          ? "1 butikk eller pakke tilgjengelig i livsverdenen din."
+          : `${count} butikker og pakker tilgjengelig i livsverdenen din.`;
       },
       details: function () {
         const host = document.getElementById("civiStorePanel");
@@ -452,12 +456,46 @@
   function firstText(id) {
     const el = document.getElementById(id);
     if (!el) return "";
-    return String(el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 140);
+    const text = String(el.textContent || "").replace(/\s+/g, " ").trim();
+    if (text.length <= 140) return text;
+    // Klipp på ordgrense i stedet for midt i et ord.
+    const cut = text.slice(0, 140);
+    const lastSpace = cut.lastIndexOf(" ");
+    return `${cut.slice(0, lastSpace > 80 ? lastSpace : 140).replace(/[,.:;·—-]+$/, "")} …`;
   }
 
   function validText(id) {
     const value = textOf(id);
     return !!value && value !== "—" && value !== "–" && value !== "-";
+  }
+
+  /** @type {Record<string, string>} */
+  const IDENTITY_FOCUS_LABELS = {
+    economic: "økonomi",
+    cultural: "kultur",
+    social: "sosial",
+    symbolic: "symbolsk",
+    subculture: "subkultur",
+    political: "politikk"
+  };
+
+  /* Les kompasset fra identitetsdataene i stedet for å dumpe SVG-ens
+     textContent (som blir "economicculturalsocial…" uten mellomrom). */
+  function identityCompassLine() {
+    const identity = /** @type {{ focus?: Record<string, unknown> }|null|undefined} */ (window.HG_IdentityCore?.getIdentity?.());
+    const focus = identity && typeof identity === "object" ? identity.focus : null;
+    if (!focus || typeof focus !== "object") return null;
+
+    const ranked = Object.entries(focus)
+      .map(function ([key, value]) {
+        return { label: IDENTITY_FOCUS_LABELS[key] || key, num: Number(value) };
+      })
+      .filter(function (entry) { return Number.isFinite(entry.num) && entry.num > 0; })
+      .sort(function (a, b) { return b.num - a.num; });
+
+    if (!ranked.length) return null;
+    const top = ranked.slice(0, 2).map(function (entry) { return entry.label; });
+    return `Kompass: sterkest i ${top.join(" og ")}`;
   }
 
   function capitalPairs() {
@@ -857,7 +895,7 @@
 
     // Popupen ligger utenfor seksjonen i DOM-en; kopier seksjonens
     // aksentfarge slik at fargemargen og kickeren matcher boksen som ble åpnet.
-    const panel = modal.querySelector(".civi-section-popup-panel");
+    const panel = /** @type {HTMLElement|null} */ (modal.querySelector(".civi-section-popup-panel"));
     if (panel) {
       const accent = getComputedStyle(section).getPropertyValue("--sec-accent").trim();
       if (accent) panel.style.setProperty("--sec-accent", accent);
