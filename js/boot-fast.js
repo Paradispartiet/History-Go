@@ -137,6 +137,11 @@
     return out.places.length || out.people.length ? out : null;
   }
 
+  function setPlacesReadyState(ready, detail = {}) {
+    window.HG_PLACES_READY = !!ready;
+    window.dispatchEvent(new CustomEvent(ready ? "hg:places-ready" : "hg:places-loading", { detail }));
+  }
+
   async function loadPlacesCritical() {
     if (window.DataHub?.loadPlacesBase) {
       const loaded = await runSafeAsync("DataHub.loadPlacesBase", () =>
@@ -320,8 +325,13 @@
 
     initMapOnce();
 
+    setPlacesReadyState(false, { phase: "critical" });
     const places = await loadPlacesCritical();
     applyPlacesToMap(Array.isArray(places) ? places : []);
+    setPlacesReadyState(Array.isArray(window.PLACES) && window.PLACES.length > 0, {
+      phase: "critical",
+      count: window.PLACES?.length || 0
+    });
 
     criticalDone = true;
     emit("hg:criticalReady", { places: window.PLACES?.length || 0 });

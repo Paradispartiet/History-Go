@@ -115,6 +115,47 @@ function normalizePlaceCardStringList(value) {
     .filter(Boolean);
 }
 
+
+function isPlaceCardPlaceComplete(place) {
+  if (!place || typeof place !== "object") return false;
+  const id = String(place.id || "").trim();
+  if (!id || place.hidden === true || place.stub === true) return false;
+
+  const title = String(place.name || place.title || "").trim();
+  const description = String(place.desc || place.popupDesc || place.shortDesc || "").trim();
+  const hasMedia = Boolean(String(place.frontImage || place.cardImage || place.image || place.quizCardImage || "").trim());
+  const hasStructuredContent = [
+    place.people,
+    place.badges,
+    place.relations,
+    place.nature,
+    place.emne_ids,
+    place.rounds,
+    place.rundinger
+  ].some(value => Array.isArray(value) && value.length > 0);
+
+  return Boolean(title && (description || hasMedia || hasStructuredContent));
+}
+
+function isPlacesDataReady() {
+  if (window.HG_PLACES_READY === false) return false;
+  return window.HG_PLACES_READY === true || (Array.isArray(window.PLACES) && window.PLACES.length > 0);
+}
+
+function hidePlaceCardUntilReady() {
+  const card = document.getElementById("placeCard");
+  if (!card) return;
+  card.setAttribute("aria-hidden", "true");
+  card.classList.remove("is-open", "is-collapsed");
+  card.classList.add("is-hidden");
+  card.dataset.currentPlaceId = "";
+  if (window.bottomSheetController?.hide) {
+    window.bottomSheetController.hide();
+  } else if (window.bottomSheetController?.setState) {
+    window.bottomSheetController.setState("hidden");
+  }
+}
+
 function renderHGSpotmeetingPlaceCardSection(place) {
   const id = escapePlaceCardHTML(place?.id || place?.name || 'sted');
   const context = { contextType: 'place', contextId: String(place?.id || place?.name || 'sted'), title: String(place?.name || place?.title || 'Sted'), reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'placeCard' };
@@ -782,24 +823,42 @@ async function setPlaceCardQuizBack(card, quizImgEl, quizContentEl, place) {
 
 /**
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
- * @returns {Promise<void>}
+ * @returns {Promise<boolean>}
  */
 window.openPlaceCard = async function (place) {
   console.trace("[placeCard] openPlaceCard", { placeId: place?.id, placeName: place?.name });
-  if (!place) return;
+  if (!place || !isPlacesDataReady()) {
+    hidePlaceCardUntilReady();
+    return false;
+  }
+
   const placeId = String(place.id || "").trim();
-  if (placeId && window.DataHub?.loadFullPlace) {
+  if (!placeId) {
+    hidePlaceCardUntilReady();
+    return false;
+  }
+
+  if (window.DataHub?.loadFullPlace) {
     try {
       const fullPlace = await window.DataHub.loadFullPlace(placeId, { cache: "default" });
-      if (fullPlace && typeof fullPlace === "object") {
-        place = /** @type {PlaceCardPlace} */ ({ ...place, ...fullPlace });
-        const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
-        const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
-        if (idx >= 0) placesArr[idx] = place;
+      if (!fullPlace || typeof fullPlace !== "object") {
+        hidePlaceCardUntilReady();
+        return false;
       }
+      place = /** @type {PlaceCardPlace} */ ({ ...place, ...fullPlace });
+      const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
+      const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
+      if (idx >= 0) placesArr[idx] = place;
     } catch (e) {
       console.warn("[openPlaceCard.loadFullPlace]", e);
+      hidePlaceCardUntilReady();
+      return false;
     }
+  }
+
+  if (!isPlaceCardPlaceComplete(place)) {
+    hidePlaceCardUntilReady();
+    return false;
   }
   if (!Array.isArray(window.LESESPOR) && window.DataHub?.loadLesespor) {
     try {
@@ -2464,6 +2523,7 @@ requestAnimationFrame(() => {
 
 card.setAttribute("aria-hidden", "false");
 expandPlaceCard();
+return true;
 };
 
 // ============================================================

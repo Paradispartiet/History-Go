@@ -93,9 +93,7 @@
       if (!place) return false;
 
       focusPlaceOnMap(place);
-      window.openPlaceCard?.(place);
-      window.bottomSheetController?.open?.();
-      window.setPlaceCardCollapsed?.(false);
+      void window.openPlaceCard?.(place);
       return true;
     },
 
@@ -108,7 +106,7 @@
       const place = findPlace(id);
       if (place) {
         focusPlaceOnMap(place);
-        window.openPlaceCard?.(place);
+        void window.openPlaceCard?.(place);
       }
 
       document.body?.classList.add("hg-view-quiz");
