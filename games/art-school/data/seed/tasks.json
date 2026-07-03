@@ -1,0 +1,41 @@
+[
+  {
+    "id": "task-observe-munch-lines",
+    "title": "Se linjene først",
+    "type": "observation",
+    "placeIds": ["place-munch"],
+    "artistIds": ["artist-edvard-munch"],
+    "artworkIds": ["artwork-munch-skrik-study"],
+    "prompt": "Hva ser du først, og hvilke linjer leder blikket ditt dit?",
+    "steps": ["Se på verket i 30 sekunder.", "Noter tre linjer eller former.", "Skriv én setning om stemningen."],
+    "rewards": { "blikk": 2, "teknikk": 1, "kunsthistorie": 0 },
+    "portfolioOutputType": "note",
+    "unlocksTaskIds": ["task-analyse-backer-light"]
+  },
+  {
+    "id": "task-sketch-vigeland-form",
+    "title": "Skisser en skulptursilhuett",
+    "type": "sketch",
+    "placeIds": ["place-vigelandsparken"],
+    "artistIds": ["artist-gustav-vigeland"],
+    "artworkIds": ["artwork-vigeland-monolith-study"],
+    "prompt": "Lag en rask skissebeskrivelse av hovedformen før du tenker på detaljer.",
+    "steps": ["Finn hovedsilhuetten.", "Beskriv tre store former.", "Noter hva som får figuren til å virke tung, lett eller i bevegelse."],
+    "rewards": { "blikk": 1, "teknikk": 2, "kunsthistorie": 1 },
+    "portfolioOutputType": "sketch-note",
+    "unlocksTaskIds": []
+  },
+  {
+    "id": "task-analyse-backer-light",
+    "title": "Analyser lyset i rommet",
+    "type": "analysis",
+    "placeIds": ["place-nasjonalmuseet"],
+    "artistIds": ["artist-harriet-backer"],
+    "artworkIds": ["artwork-backer-blue-interior-study"],
+    "prompt": "Hvordan bruker kunstneren lys og farger til å skape rom og stemning?",
+    "steps": ["Finn den tydeligste lyskilden.", "Beskriv én farge som endrer stemningen.", "Forklar hvordan rommet leder blikket."],
+    "rewards": { "blikk": 2, "teknikk": 1, "kunsthistorie": 1 },
+    "portfolioOutputType": "analysis-note",
+    "unlocksTaskIds": ["task-sketch-vigeland-form"]
+  }
+]
