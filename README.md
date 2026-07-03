@@ -16,6 +16,10 @@ Dette repoet gjelder **History GO-spillet**. Civication behandles som eget prosj
 - [`README/README.pensum.md`](./README/README.pensum.md) — fagkart, emner, pensum og progresjonslogikk
 - [`docs/HG_SOCIAL_README.md`](./docs/HG_SOCIAL_README.md) — HG Social-kontrakt og sosialt lag
 
+## Current status
+
+- Production Cases manual playtest notes: [`docs/PRODUCTION_CASES_MANUAL_PLAYTEST.md`](./docs/PRODUCTION_CASES_MANUAL_PLAYTEST.md)
+
 ---
 
 ## Produktkjerne
