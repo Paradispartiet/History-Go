@@ -8,10 +8,14 @@
   // Faste innholdshøyder på de full-bleed lagene (header/footer ligger
   // utenfor det skalerte design-canvaset og måles i ekte viewport-piksler).
   // Footerens safe-area legges til separat i CSS via --hg-bottom-nav-height.
-  // Mobil bruker en høyere to-rads header (se "HEADER – MOBILKOMPRESJON" i
-  // css/miniProfile.css); alle lag under leser --hg-visual-header-height.
+  // Smale viewports (mobil OG smale nettbrett/vinduer, f.eks. iPad-portrett)
+  // bruker en høyere kompakt header som kan brekke til to rader – se
+  // "HEADER – KOMPAKT/MOBIL" i css/miniProfile.css. Breakpointet der speiler
+  // COMPACT_HEADER_MAX_VW. Alle lag under leser --hg-visual-header-height.
   const HEADER_HEIGHT = 74;
   const PHONE_HEADER_HEIGHT = 104;
+  const COMPACT_HEADER_HEIGHT = 112;
+  const COMPACT_HEADER_MAX_VW = 860;
   const FOOTER_HEIGHT = 80;
   const NEARBY_HEIGHT_TABLET = 260;
   const NEARBY_HEIGHT_PHONE = 228;
@@ -86,7 +90,9 @@
     if (!shell) return;
 
     const { mode, designWidth, designHeight } = layout;
-    const headerHeight = mode === "phone" ? PHONE_HEADER_HEIGHT : HEADER_HEIGHT;
+    const headerHeight = mode === "phone"
+      ? PHONE_HEADER_HEIGHT
+      : (vw <= COMPACT_HEADER_MAX_VW ? COMPACT_HEADER_HEIGHT : HEADER_HEIGHT);
     const nearbyHeight = mode === "phone" ? NEARBY_HEIGHT_PHONE : NEARBY_HEIGHT_TABLET;
     const scaledW = designWidth * scale;
     const scaledH = designHeight * scale;

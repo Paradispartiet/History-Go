@@ -330,38 +330,50 @@ body.hg-app .site-header .top-actions #miniProfile #miniLastQuiz{
 }
 
 /* =====================================================
-   HEADER – MOBILKOMPRESJON
-   To-rads header på mobil: ViewportManager setter
-   --hg-visual-header-height til mobilverdien (104px), og
-   top-actions får lov å brekke til to høyrestilte rader.
+   HEADER – KOMPAKT/MOBIL
+   Smale viewports (mobil OG smale nettbrett/vinduer, f.eks.
+   iPad-portrett): top-actions får brekke til to høyrestilte
+   rader, og ViewportManager hever --hg-visual-header-height
+   (104px mobil / 112px smalt nettbrett). Breakpointet speiler
+   COMPACT_HEADER_MAX_VW i js/core/viewportManager.js.
    Ingen kontroller skal klippes ut av skjermen.
    ===================================================== */
 
-body.hg-app.hg-phone .site-header .top-actions{
-  gap: 6px 4px;
-  max-width: calc(100% - 10px);
+@media (max-width: 860px){
+  body.hg-app .site-header .top-actions{
+    gap: 6px 4px;
+    max-width: calc(100% - 10px);
 
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-end;
 
-  /* Klaring for logoen (absolutt posisjonert til venstre) slik at
-     raden som brekker ikke legger seg under den. */
-  padding-left: 52px;
-}
+    /* Klaring for logoen (absolutt posisjonert til venstre) slik at
+       raden som brekker ikke legger seg under den. */
+    padding-left: 52px;
+  }
 
-/* Mindre logo på mobil så den ikke spiser en tredjedel av raden. */
-body.hg-app.hg-phone .hg-brand{
-  width: 48px;
-  height: 48px;
-  top: 10px;
-  left: 6px;
-}
+  /* Mindre logo så den ikke spiser en tredjedel av raden. */
+  body.hg-app .hg-brand{
+    width: 48px;
+    height: 48px;
+    top: 10px;
+    left: 6px;
+  }
 
-/* Tekstknapp («Min dag») skal ikke presses inn i 30px ikonbredde. */
-body.hg-app.hg-phone .site-header .top-actions #btnMinDag{
-  width: auto;
-  padding: 0 6px;
+  /* Tekstknapp («Min dag») skal ikke presses inn i ikonbredde. */
+  body.hg-app .site-header .top-actions #btnMinDag{
+    width: auto;
+    padding: 0 6px;
+  }
+
+  /* Søkefeltet er radens fleksible ledd: lav flex-basis så raden
+     ikke brekker pga. søket, vokser når det er plass. */
+  body.hg-app #globalSearch{
+    flex: 1 1 24px;
+    min-width: 0;
+    max-width: 160px;
+  }
 }
 
 body.hg-app.hg-phone .site-header .top-actions #miniProfile{
@@ -381,8 +393,7 @@ body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniStats{
   font-size: 10px;
 }
 
-/* Søkefeltet er radens fleksible ledd: lav flex-basis så raden aldri
-   brekker pga. søket, vokser opp til 64px når det er plass. */
+/* Mobil: søket holdes ekstra smalt (maks 64px). */
 body.hg-app.hg-phone #globalSearch{
   flex: 1 1 24px;
   min-width: 0;
