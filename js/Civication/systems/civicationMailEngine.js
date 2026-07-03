@@ -107,8 +107,22 @@
     return localStorage.getItem(LS_MAIL);
   }
 
+  // Parse-cache nøklet på den rå strengen: getInbox/getMail/hasReceived/canDeliver
+  // leser mail-storet tusenvis av ganger under ett svar. Enhver skriver som endrer
+  // strengen buster cachen automatisk.
+  let _mailCacheRaw = null;
+  let _mailCacheParsed = null;
+  function parseMailStore() {
+    const raw = getRawMailStore();
+    if (raw === _mailCacheRaw) return _mailCacheParsed;
+    const parsed = safeParse(raw, null);
+    _mailCacheRaw = raw;
+    _mailCacheParsed = parsed;
+    return parsed;
+  }
+
   function getStore() {
-    const parsed = safeParse(getRawMailStore(), null);
+    const parsed = parseMailStore();
     if (parsed && Array.isArray(parsed.items)) return normalizeStoreShape(parsed);
     return normalizeStoreShape({ version: 1, items: [] });
   }
@@ -116,7 +130,11 @@
   function saveStore(store, options) {
     const opts = options && typeof options === "object" ? options : {};
     ensureMeta(store);
-    localStorage.setItem(LS_MAIL, JSON.stringify(store));
+    const serialized = JSON.stringify(store);
+    localStorage.setItem(LS_MAIL, serialized);
+    // Prim cachen med det vi skrev, så neste lesning slipper re-parse.
+    _mailCacheRaw = serialized;
+    _mailCacheParsed = store;
     const legacy = (store.items || [])
       .filter((m) => !m.deleted && !m.archived)
       .map((m) => ({
@@ -134,8 +152,7 @@
   }
 
   function migrateOldInboxIfNeeded() {
-    const rawMailStore = getRawMailStore();
-    const parsedMailStore = safeParse(rawMailStore, null);
+    const parsedMailStore = parseMailStore();
 
     // If the new mail store already exists, even with an empty items array,
     // this is not a migration case. Returning here prevents read-only calls

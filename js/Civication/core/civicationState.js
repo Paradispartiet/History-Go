@@ -137,16 +137,35 @@ function setPulse(p) {
     return out;
   }
 
+  // Parse-cache nøklet på den rå localStorage-strengen. getState() kalles
+  // tusenvis av ganger under ett svar (DayProgression/Builder.inspect leser
+  // hele dagsruntimen som ligger inne i dette blobbet), og hver JSON.parse av
+  // ~18KB summerte seg til >100MB parsing pr. svar. Enhver skriver som endrer
+  // strengen (setState eller ekstern) buster cachen automatisk, så semantikken
+  // er uendret. deepMerge kjøres fortsatt pr. kall og gir et ferskt topp-objekt.
+  let _stateCacheRaw = null;
+  /** @type {Record<string, unknown> | null} */
+  let _stateCacheParsed = null;
+
   function getState() {
     const raw = localStorage.getItem(LS_STATE);
+    if (raw === _stateCacheRaw && _stateCacheParsed !== null) {
+      return deepMerge(DEFAULTS, _stateCacheParsed);
+    }
     const parsed = raw ? safeParse(raw, {}) : {};
+    _stateCacheRaw = raw;
+    _stateCacheParsed = parsed;
     return deepMerge(DEFAULTS, parsed);
   }
 
   function setState(patch) {
     const current = getState();
     const next = deepMerge(current, patch || {});
-    localStorage.setItem(LS_STATE, JSON.stringify(next));
+    const serialized = JSON.stringify(next);
+    localStorage.setItem(LS_STATE, serialized);
+    // Prim cachen med det vi nettopp skrev, så neste getState slipper re-parse.
+    _stateCacheRaw = serialized;
+    _stateCacheParsed = next;
     return next;
   }
 

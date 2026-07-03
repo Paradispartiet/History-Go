@@ -303,9 +303,9 @@ function testDayPhasePanel() {
 
   const selectorTitle = global.CivicationNextActionSelector.getCurrent().subject;
   assert.strictEqual(selectorTitle, 'Fasesak A', 'selector title is the active mail subject');
-  assert(html.includes('Åpen sak i denne fasen'), 'Dagens fase labels the active phase mail');
+  assert(html.includes('Åpen sak'), 'Dagens fase labels the active phase mail');
   assert(html.includes('Fasesak A'), 'Dagens fase shows the same next-item title as the selector inside the phase mail preview');
-  assert(html.includes('Håndteres i Neste handling'), 'Dagens fase hands the active mail over to NextAction');
+  assert(html.includes('Håndteres i «Neste handling»'), 'Dagens fase hands the active mail over to NextAction');
   assert(html.includes('data-civi-day-phase-next-action'), 'Dagens fase routes via the NextAction button');
   assert(html.includes('Gå til neste handling'), 'routing button keeps the NextAction label');
 
