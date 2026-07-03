@@ -299,25 +299,45 @@
     return openCount + (openCount === 1 ? " åpen sak i denne fasen." : " åpne saker i denne fasen.");
   }
 
+  /* Interne kanal-/typekoder skal ikke vises rått («life») i panelet.
+     Ukjente koder vises som de er — ingen gjetting. */
+  /** @type {Record<string, string>} */
+  const MAIL_META_LABELS = {
+    life: "Personlig melding",
+    private: "Personlig melding",
+    private_message: "Personlig melding",
+    personal: "Personlig melding",
+    job: "Jobbmail",
+    job_outcome: "Karriereutfall",
+    phase_advance: "Faseovergang",
+    task_gate: "Oppgave",
+    workday: "Arbeidsdag"
+  };
+
+  function formatMailMeta(value) {
+    const key = String(value || "").toLowerCase().trim();
+    if (!key) return "";
+    return MAIL_META_LABELS[key] || String(value).trim();
+  }
+
   function renderPhaseMailPreview(inspection, openCount) {
     const mail = getCurrentPhaseMail(inspection);
-    if (!mail) {
-      return ""
-        + "<section class=\"civi-day-phase-mail is-empty\" aria-label=\"Fasemail\">"
-        + "<div class=\"civi-day-phase-mail-kicker\">Åpen sak i denne fasen</div>"
-        + "<p class=\"civi-day-phase-mail-empty\">Ingen åpne saker i denne fasen.</p>"
-        + "</section>";
-    }
+    // Ingen åpen sak: head-raden sier allerede «Ingen åpne saker i denne
+    // fasen» — et ekstra tomt kort er bare støy.
+    if (!mail) return "";
 
     const status = mail.isAdvance
       ? "Fasen er klar for videreføring."
-      : (mail.isQueued ? "Klar til å åpnes i dagens fase." : "Håndteres i Neste handling.");
+      : (mail.isQueued ? "Klar til å åpnes i dagens fase." : "Håndteres i «Neste handling».");
+
+    const metaLabel = formatMailMeta(mail.meta);
 
     return ""
       + "<section class=\"civi-day-phase-mail\" aria-label=\"Fasemail\" data-civi-phase-mail-id=\"" + escapeHtml(mail.id) + "\">"
-      + "<div class=\"civi-day-phase-mail-kicker\">Åpen sak i denne fasen</div>"
+      + "<div class=\"civi-day-phase-mail-kicker\">Åpen sak"
+      + (metaLabel ? "<span class=\"civi-day-phase-mail-meta\">" + escapeHtml(metaLabel) + "</span>" : "")
+      + "</div>"
       + "<h4 class=\"civi-day-phase-mail-title\">" + escapeHtml(mail.title) + "</h4>"
-      + (mail.meta ? "<p class=\"civi-day-phase-mail-meta muted\">" + escapeHtml(mail.meta) + "</p>" : "")
       + "<p class=\"civi-day-phase-mail-status\">" + escapeHtml(status) + "</p>"
       + (openCount > 1 ? "<p class=\"civi-day-phase-mail-count muted\">" + escapeHtml(getOpenItemsText(openCount)) + "</p>" : "")
       + "</section>";
@@ -342,15 +362,16 @@
       + "<div class=\"civi-day-phase-head\">"
       + "<div class=\"civi-day-phase-kicker\">Dagens fase</div>"
       + "<h3 class=\"civi-day-phase-title\">" + escapeHtml(inspection.phaseLabel || inspection.phase || "Ukjent") + "</h3>"
+      + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1)
+      + " · Neste fase: " + escapeHtml(nextPhaseLabel)
+      + " · " + escapeHtml(getOpenItemsText(openCount)) + "</div>"
       + "</div>"
       + outcomeBanner
       + reentryLockBanner
       + learningBanner
-      + "<div class=\"civi-day-phase-meta\">Dag " + escapeHtml(inspection.dayIndex || 1) + " · Neste fase: " + escapeHtml(nextPhaseLabel) + "</div>"
-      + "<p class=\"civi-day-phase-status\">" + escapeHtml(getOpenItemsText(openCount)) + "</p>"
       + phaseMailHtml
       + "<div class=\"civi-day-phase-actions\">"
-      + "<button class=\"civi-btn\" type=\"button\" data-civi-day-phase-next-action>Gå til neste handling</button>"
+      + "<button class=\"civi-btn primary\" type=\"button\" data-civi-day-phase-next-action>Gå til neste handling</button>"
       + "</div>";
 
     bindPanelDelegation(panel);
