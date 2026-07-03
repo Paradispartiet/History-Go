@@ -9,6 +9,11 @@ Det er bindende for videre utvikling.
 
 - [Current product state](./CURRENT_PRODUCT_STATE.md)
 
+## Dataproduksjonskontrakt
+
+- Praktisk dataproduksjon for places, people, badges, `underbadge_ids`, `rounds`, manifest-bruk og duplikatregler styres av [DATA_PRODUCTION_CONTRACT](../docs/DATA_PRODUCTION_CONTRACT.md). Ikke lim kontrakten inn her; bruk den som aktiv arbeidskontrakt ved dataendringer.
+
+
 ## TILLATTE GLOBALS
 
 Følgende globals er eksplisitt tillatt:
