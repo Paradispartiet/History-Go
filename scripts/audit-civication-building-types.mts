@@ -1,10 +1,8 @@
 // scripts/audit-civication-building-types.mjs
 // Read-only audit av buildingTypeId-referanser brukt av Civication History Go mappingene.
 //
-// Validerer at alle buildingTypeId brukt i:
-//   data/Civication/map/historyGoPlaceMapping.by.json
-//   data/Civication/map/historyGoPlaceMapping.historie.json
-// finnes som definisjon i:
+// Validerer at alle buildingTypeId brukt i per-place mappingfilene
+// (MAPPING_FILES nedenfor) finnes som definisjon i:
 //   data/Civication/map/buildingTypes.json
 //
 // Scriptet endrer ingen datafiler.
@@ -24,6 +22,9 @@ const ROOT = process.cwd();
 const MAPPING_FILES = [
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie_added_batch_01.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.kunst.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.musikk.json"),
 ];
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 
@@ -165,8 +166,10 @@ function printReport(report) {
   const line = (text = "") => console.log(text);
 
   line("=== Civication building types audit ===");
-  line(`Mapping:       data/Civication/map/historyGoPlaceMapping.by.json`);
-  line(`               data/Civication/map/historyGoPlaceMapping.historie.json`);
+  for (let i = 0; i < MAPPING_FILES.length; i += 1) {
+    const rel = path.relative(ROOT, MAPPING_FILES[i]);
+    line(i === 0 ? `Mapping:       ${rel}` : `               ${rel}`);
+  }
   line(`BuildingTypes: data/Civication/map/buildingTypes.json`);
   line("");
   line("Sammendrag:");

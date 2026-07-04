@@ -1,12 +1,9 @@
 // scripts/audit-civication-historygo-place-mapping.mjs
 // Read-only audit av Civication-mappingene for History Go-steder.
 //
-// Validerer at per-place mappingfilene:
-//   data/Civication/map/historyGoPlaceMapping.by.json
-//   data/Civication/map/historyGoPlaceMapping.historie.json
-// stemmer mot kildefilene sine:
-//   data/places/by/oslo/places_by.json
-//   data/places/historie/oslo/places_historie.json
+// Validerer at per-place mappingfilene (data/Civication/map/
+// historyGoPlaceMapping.<kategori>.json, se TARGETS nedenfor) stemmer mot
+// kildefilene sine under data/places/.
 //
 // Scriptet endrer ingen datafiler og genererer ingen ny mappingdata.
 //
@@ -45,6 +42,30 @@ const TARGETS = [
     placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie.json"),
     expectedSourceFile: "places/historie/oslo/places_historie.json",
     expectedCategory: "historie",
+  },
+  {
+    label: "historie added batch 01 (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie_added_batch_01.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie_added_batch_01.json",
+    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie_added_batch_01.json"),
+    expectedSourceFile: "places/historie/oslo/places_historie_added_batch_01.json",
+    expectedCategory: "historie",
+  },
+  {
+    label: "kunst (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.kunst.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.kunst.json",
+    placesFile: path.join(ROOT, "data", "places", "kunst", "oslo", "places_kunst.json"),
+    expectedSourceFile: "places/kunst/oslo/places_kunst.json",
+    expectedCategory: "kunst",
+  },
+  {
+    label: "musikk (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.musikk.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.musikk.json",
+    placesFile: path.join(ROOT, "data", "places", "musikk", "oslo", "places_musikk.json"),
+    expectedSourceFile: "places/musikk/oslo/places_musikk.json",
+    expectedCategory: "musikk",
   },
 ];
 
