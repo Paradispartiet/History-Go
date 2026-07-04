@@ -1,0 +1,483 @@
+{
+  "schema": "civication.historyGoPlaceMapping.sport_oslo.v1",
+  "version": 1,
+  "sourceFile": "places/sport/europa/norway/oslo_sport.json",
+  "note": "Samlet verifisert per-place mapping for History Go sport-steder (Oslo) til Civication-kartet. Arenaer og grounds er groundhopperRelevant: true.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_bislett_stadion": {
+      "id": "map_bislett_stadion",
+      "historyGoPlaceId": "bislett_stadion",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_bislett_stadion",
+      "name": "Bislett Stadion",
+      "category": "sport",
+      "lat": 59.924722,
+      "lon": 10.733333,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_ferdighetsutvikling"
+      ],
+      "buildingTypeId": "building_athletics_stadium",
+      "mapRole": "athletics_record_stadium",
+      "visibleAs": "stadium",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "city_symbol",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "matchday",
+        "training",
+        "event_setup"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_ullevaal_stadion": {
+      "id": "map_ullevaal_stadion",
+      "historyGoPlaceId": "ullevaal_stadion",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_ullevaal_stadion",
+      "name": "Ullevaal Stadion",
+      "category": "sport",
+      "lat": 59.949136,
+      "lon": 10.734349,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_klubbidentitet"
+      ],
+      "buildingTypeId": "building_national_football_stadium",
+      "mapRole": "national_football_arena",
+      "visibleAs": "stadium",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "national_representation",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "event_day",
+        "event_setup",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_intility_arena": {
+      "id": "map_intility_arena",
+      "historyGoPlaceId": "intility_arena",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_intility_arena",
+      "name": "Intility Arena",
+      "category": "sport",
+      "lat": 59.91778,
+      "lon": 10.80694,
+      "emne_ids": [
+        "em_sport_klubbidentitet",
+        "em_sport_arenaendring_byutvikling"
+      ],
+      "buildingTypeId": "building_modern_club_stadium",
+      "mapRole": "valerenga_club_ground",
+      "visibleAs": "stadium",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "event_evening",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_jordal_amfi": {
+      "id": "map_jordal_amfi",
+      "historyGoPlaceId": "jordal_amfi",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_jordal_amfi",
+      "name": "Jordal Amfi",
+      "category": "sport",
+      "lat": 59.911228,
+      "lon": 10.783942,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_idrettsarena_sted"
+      ],
+      "buildingTypeId": "building_ice_hockey_arena",
+      "mapRole": "jordal_hockey_arena",
+      "visibleAs": "ice_arena",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "event_evening",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_holmenkollen_nasjonalanlegg": {
+      "id": "map_holmenkollen_nasjonalanlegg",
+      "historyGoPlaceId": "holmenkollen_nasjonalanlegg",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_holmenkollen_nasjonalanlegg",
+      "name": "Holmenkollen nasjonalanlegg",
+      "category": "sport",
+      "lat": 59.964444,
+      "lon": 10.670833,
+      "emne_ids": [
+        "em_sport_ferdighetsutvikling",
+        "em_sport_chants_ritualer"
+      ],
+      "buildingTypeId": "building_winter_sports_national_arena",
+      "mapRole": "winter_sport_national_arena",
+      "visibleAs": "ski_arena",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "national_representation",
+        "tourism",
+        "viewpoint"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "training",
+        "tourist_flow",
+        "viewpoint_pause"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_frogner_stadion": {
+      "id": "map_frogner_stadion",
+      "historyGoPlaceId": "frogner_stadion",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_frogner_stadion",
+      "name": "Frogner stadion",
+      "category": "sport",
+      "lat": 59.926947,
+      "lon": 10.709567,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_breddeidrett"
+      ],
+      "buildingTypeId": "building_multisport_stadium",
+      "mapRole": "frogner_ice_and_bandy_stadium",
+      "visibleAs": "stadium",
+      "socialFunctions": [
+        "sport",
+        "local_identity",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "winter_skating",
+        "training",
+        "matchday",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_valle_hovin_stadion": {
+      "id": "map_valle_hovin_stadion",
+      "historyGoPlaceId": "valle_hovin_stadion",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_valle_hovin_stadion",
+      "name": "Valle Hovin stadion",
+      "category": "sport",
+      "lat": 59.91849,
+      "lon": 10.80432,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_idrettsarena_sted"
+      ],
+      "buildingTypeId": "building_speed_skating_rink",
+      "mapRole": "valle_hovin_ice_oval",
+      "visibleAs": "ice_oval",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity"
+      ],
+      "phaseTypes": [
+        "winter_skating",
+        "training",
+        "event_day"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_daelenenga_idrettspark": {
+      "id": "map_daelenenga_idrettspark",
+      "historyGoPlaceId": "daelenenga_idrettspark",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_daelenenga_idrettspark",
+      "name": "Dælenenga idrettspark",
+      "category": "sport",
+      "lat": 59.9264,
+      "lon": 10.76449,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_breddeidrett"
+      ],
+      "buildingTypeId": "building_district_sports_park",
+      "mapRole": "daelenenga_worker_sport_park",
+      "visibleAs": "sports_park",
+      "socialFunctions": [
+        "sport",
+        "worker_history",
+        "local_identity",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "training",
+        "matchday",
+        "after_school_flow",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_gressbanen": {
+      "id": "map_gressbanen",
+      "historyGoPlaceId": "gressbanen",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_gressbanen",
+      "name": "Gressbanen",
+      "category": "sport",
+      "lat": 59.951211,
+      "lon": 10.675275,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_klubbidentitet"
+      ],
+      "buildingTypeId": "building_small_urban_stadium",
+      "mapRole": "gressbanen_early_football_ground",
+      "visibleAs": "stadium",
+      "socialFunctions": [
+        "sport",
+        "historical_layer",
+        "local_identity"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_ekebergsletta": {
+      "id": "map_ekebergsletta",
+      "historyGoPlaceId": "ekebergsletta",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_ekebergsletta",
+      "name": "Ekebergsletta",
+      "category": "sport",
+      "lat": 59.89417,
+      "lon": 10.77861,
+      "emne_ids": [
+        "em_sport_breddeidrett",
+        "em_sport_inkludering_idrett"
+      ],
+      "buildingTypeId": "building_sports_field_commons",
+      "mapRole": "ekeberg_tournament_fields",
+      "visibleAs": "sports_fields",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "children_play",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "training",
+        "family_afternoon",
+        "matchday"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_kfum_arena": {
+      "id": "map_kfum_arena",
+      "historyGoPlaceId": "kfum_arena",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_kfum_arena",
+      "name": "KFUM Arena",
+      "category": "sport",
+      "lat": 59.89087,
+      "lon": 10.78112,
+      "emne_ids": [
+        "em_sport_klubbidentitet",
+        "em_sport_arenaendring_byutvikling"
+      ],
+      "buildingTypeId": "building_small_urban_stadium",
+      "mapRole": "kfum_small_top_flight_ground",
+      "visibleAs": "stadium",
+      "socialFunctions": [
+        "sport",
+        "local_identity",
+        "event"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_nordre_aasen_idrettspark": {
+      "id": "map_nordre_aasen_idrettspark",
+      "historyGoPlaceId": "nordre_aasen_idrettspark",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_nordre_aasen_idrettspark",
+      "name": "Nordre Åsen idrettspark",
+      "category": "sport",
+      "lat": 59.942778,
+      "lon": 10.785,
+      "emne_ids": [
+        "em_sport_klubbidentitet",
+        "em_sport_breddeidrett"
+      ],
+      "buildingTypeId": "building_district_sports_park",
+      "mapRole": "nordre_aasen_club_ground",
+      "visibleAs": "sports_park",
+      "socialFunctions": [
+        "sport",
+        "local_identity",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "training",
+        "matchday",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_vallhall_arena": {
+      "id": "map_vallhall_arena",
+      "historyGoPlaceId": "vallhall_arena",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_vallhall_arena",
+      "name": "Vallhall Arena",
+      "category": "sport",
+      "lat": 59.92048,
+      "lon": 10.80603,
+      "emne_ids": [
+        "em_sport_arena_samling",
+        "em_sport_ferdighetsutvikling"
+      ],
+      "buildingTypeId": "building_indoor_multiuse_arena",
+      "mapRole": "vallhall_indoor_arena",
+      "visibleAs": "indoor_arena",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "training"
+      ],
+      "phaseTypes": [
+        "training",
+        "event_day",
+        "matchday",
+        "event_setup"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_manglerudhallen": {
+      "id": "map_manglerudhallen",
+      "historyGoPlaceId": "manglerudhallen",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_manglerudhallen",
+      "name": "Manglerudhallen",
+      "category": "sport",
+      "lat": 59.89552,
+      "lon": 10.82587,
+      "emne_ids": [
+        "em_sport_klubbidentitet",
+        "em_sport_breddeidrett"
+      ],
+      "buildingTypeId": "building_ice_hockey_arena",
+      "mapRole": "manglerud_hockey_hall",
+      "visibleAs": "ice_arena",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "event_evening",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    },
+    "map_furuset_forum": {
+      "id": "map_furuset_forum",
+      "historyGoPlaceId": "furuset_forum",
+      "historyGoSourceFile": "places/sport/europa/norway/oslo_sport.json",
+      "civicationPlaceId": "civi_sport_furuset_forum",
+      "name": "Furuset Forum",
+      "category": "sport",
+      "lat": 59.94026,
+      "lon": 10.89637,
+      "emne_ids": [
+        "em_sport_klubbidentitet",
+        "em_sport_breddeidrett"
+      ],
+      "buildingTypeId": "building_ice_hockey_arena",
+      "mapRole": "furuset_hockey_forum",
+      "visibleAs": "ice_arena",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "matchday",
+        "training",
+        "event_evening",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false
+    }
+  }
+}

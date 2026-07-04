@@ -1,0 +1,180 @@
+{
+  "schema": "civication.historyGoPlaceMapping.natur_ostensjovannet.v1",
+  "version": 1,
+  "sourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+  "note": "Samlet verifisert per-place mapping for History Go Østensjøvannet-steder til Civication-kartet.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_ostensjovannet_nord": {
+      "id": "map_ostensjovannet_nord",
+      "historyGoPlaceId": "ostensjovannet_nord",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+      "civicationPlaceId": "civi_natur_ostensjovannet_nord",
+      "name": "Østensjøvannet nord",
+      "category": "natur",
+      "lat": 59.8913,
+      "lon": 10.8255,
+      "emne_ids": [
+        "em_natur_vatmark_vannspeil_habitat",
+        "em_natur_arter_habitat_mangfold"
+      ],
+      "buildingTypeId": "building_wetland_bird_area",
+      "mapRole": "ostensjovannet_north_shore",
+      "visibleAs": "wetland",
+      "socialFunctions": [
+        "green_city_system",
+        "walking",
+        "landscape_adaptation",
+        "quiet_meeting_place"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "morning_walk",
+        "route_observation",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ostensjovannet_fugletarn": {
+      "id": "map_ostensjovannet_fugletarn",
+      "historyGoPlaceId": "ostensjovannet_fugletarn",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+      "civicationPlaceId": "civi_natur_ostensjovannet_fugletarn",
+      "name": "Østensjøvannet fugletårn",
+      "category": "natur",
+      "lat": 59.8878,
+      "lon": 10.8301,
+      "emne_ids": [
+        "em_natur_miljodata_overvaking",
+        "em_natur_arter_habitat_mangfold"
+      ],
+      "buildingTypeId": "building_bird_tower",
+      "mapRole": "ostensjovannet_bird_tower",
+      "visibleAs": "bird_tower",
+      "socialFunctions": [
+        "green_city_system",
+        "quiet_meeting_place",
+        "viewpoint"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "morning_walk",
+        "route_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ostensjovannet_sivbelte": {
+      "id": "map_ostensjovannet_sivbelte",
+      "historyGoPlaceId": "ostensjovannet_sivbelte",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+      "civicationPlaceId": "civi_natur_ostensjovannet_sivbelte",
+      "name": "Østensjøvannet sivbelte",
+      "category": "natur",
+      "lat": 59.8859,
+      "lon": 10.8247,
+      "emne_ids": [
+        "em_natur_vatmark_vannspeil_habitat",
+        "em_natur_okosystem_nettverk"
+      ],
+      "buildingTypeId": "building_wetland_bird_area",
+      "mapRole": "ostensjovannet_reed_belt",
+      "visibleAs": "wetland",
+      "socialFunctions": [
+        "green_city_system",
+        "walking",
+        "landscape_adaptation",
+        "quiet_meeting_place"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "morning_walk",
+        "route_observation",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ostensjovannet_sor": {
+      "id": "map_ostensjovannet_sor",
+      "historyGoPlaceId": "ostensjovannet_sor",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+      "civicationPlaceId": "civi_natur_ostensjovannet_sor",
+      "name": "Østensjøvannet sør",
+      "category": "natur",
+      "lat": 59.8834,
+      "lon": 10.8272,
+      "emne_ids": [
+        "em_natur_vern_forvaltning_politikk",
+        "em_natur_naturopplevelse_folkehelse"
+      ],
+      "buildingTypeId": "building_wetland_bird_area",
+      "mapRole": "ostensjovannet_south_shore",
+      "visibleAs": "wetland",
+      "socialFunctions": [
+        "green_city_system",
+        "walking",
+        "landscape_adaptation",
+        "quiet_meeting_place"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "morning_walk",
+        "route_observation",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bogerudmyra": {
+      "id": "map_bogerudmyra",
+      "historyGoPlaceId": "bogerudmyra",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ostensjovannet.json",
+      "civicationPlaceId": "civi_natur_bogerudmyra",
+      "name": "Bøler/Bogerudmyra",
+      "category": "natur",
+      "lat": 59.8927,
+      "lon": 10.8438,
+      "emne_ids": [
+        "em_natur_okosystemtjenester",
+        "em_natur_vatmark_vannspeil_habitat"
+      ],
+      "buildingTypeId": "building_wetland_bird_area",
+      "mapRole": "bogerudmyra_bog",
+      "visibleAs": "wetland",
+      "socialFunctions": [
+        "green_city_system",
+        "walking",
+        "landscape_adaptation",
+        "quiet_meeting_place"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "morning_walk",
+        "route_observation",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

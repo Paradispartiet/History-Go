@@ -1,0 +1,334 @@
+{
+  "schema": "civication.historyGoPlaceMapping.motorsport_ostlandet.v1",
+  "version": 1,
+  "sourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+  "note": "Samlet verifisert per-place mapping for History Go motorsport-steder (Østlandet) til Civication-kartet. Kilden mangler emne_ids; alle poster er merket needsEnrichment. Banene er groundhopperRelevant: true.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_rudskogen_motorsenter": {
+      "id": "map_rudskogen_motorsenter",
+      "historyGoPlaceId": "rudskogen_motorsenter",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_rudskogen_motorsenter",
+      "name": "Rudskogen Motorsenter",
+      "category": "sport",
+      "lat": 59.3759,
+      "lon": 11.2552,
+      "emne_ids": [],
+      "buildingTypeId": "building_racing_circuit",
+      "mapRole": "rudskogen_national_circuit",
+      "visibleAs": "race_circuit",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "training",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "training",
+        "event_setup",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_valerbanen": {
+      "id": "map_valerbanen",
+      "historyGoPlaceId": "valerbanen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_valerbanen",
+      "name": "Vålerbanen",
+      "category": "sport",
+      "lat": 60.7094,
+      "lon": 11.9052,
+      "emne_ids": [],
+      "buildingTypeId": "building_racing_circuit",
+      "mapRole": "valerbanen_regional_circuit",
+      "visibleAs": "race_circuit",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "training",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "training",
+        "event_setup",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_gardermoen_raceway": {
+      "id": "map_gardermoen_raceway",
+      "historyGoPlaceId": "gardermoen_raceway",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_gardermoen_raceway",
+      "name": "Gardermoen Raceway",
+      "category": "sport",
+      "lat": 60.1795,
+      "lon": 11.1378,
+      "emne_ids": [],
+      "buildingTypeId": "building_dragstrip",
+      "mapRole": "gardermoen_dragstrip",
+      "visibleAs": "dragstrip",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "event_setup",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_gardermoen_motorpark": {
+      "id": "map_gardermoen_motorpark",
+      "historyGoPlaceId": "gardermoen_motorpark",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_gardermoen_motorpark",
+      "name": "Gardermoen Motorpark",
+      "category": "sport",
+      "lat": 60.1832,
+      "lon": 11.1399,
+      "emne_ids": [],
+      "buildingTypeId": "building_motorsport_park",
+      "mapRole": "gardermoen_motor_park",
+      "visibleAs": "motorsport_park",
+      "socialFunctions": [
+        "sport",
+        "training",
+        "event"
+      ],
+      "phaseTypes": [
+        "training",
+        "event_day",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_grenland_motorsportsenter": {
+      "id": "map_grenland_motorsportsenter",
+      "historyGoPlaceId": "grenland_motorsportsenter",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_grenland_motorsportsenter",
+      "name": "Grenland Motorsportsenter",
+      "category": "sport",
+      "lat": 59.1319,
+      "lon": 9.6416,
+      "emne_ids": [],
+      "buildingTypeId": "building_racing_circuit",
+      "mapRole": "grenland_multi_discipline_center",
+      "visibleAs": "race_circuit",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "training",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "training",
+        "event_setup",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_varna_kartring": {
+      "id": "map_varna_kartring",
+      "historyGoPlaceId": "varna_kartring",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_varna_kartring",
+      "name": "Varna Kartring",
+      "category": "sport",
+      "lat": 59.4241,
+      "lon": 10.7693,
+      "emne_ids": [],
+      "buildingTypeId": "building_karting_track",
+      "mapRole": "varna_karting_ring",
+      "visibleAs": "karting_track",
+      "socialFunctions": [
+        "sport",
+        "training",
+        "family_life"
+      ],
+      "phaseTypes": [
+        "training",
+        "family_afternoon",
+        "event_day"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_naf_gokartsenter_andebu": {
+      "id": "map_naf_gokartsenter_andebu",
+      "historyGoPlaceId": "naf_gokartsenter_andebu",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_naf_gokartsenter_andebu",
+      "name": "NAF Gokartsenter Andebu (Håsken)",
+      "category": "sport",
+      "lat": 59.3407,
+      "lon": 10.1873,
+      "emne_ids": [],
+      "buildingTypeId": "building_karting_track",
+      "mapRole": "andebu_gokart_center",
+      "visibleAs": "karting_track",
+      "socialFunctions": [
+        "sport",
+        "training",
+        "family_life"
+      ],
+      "phaseTypes": [
+        "training",
+        "family_afternoon",
+        "event_day"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_kongsberg_motorsenter": {
+      "id": "map_kongsberg_motorsenter",
+      "historyGoPlaceId": "kongsberg_motorsenter",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_kongsberg_motorsenter",
+      "name": "Kongsberg Motorsenter",
+      "category": "sport",
+      "lat": 59.7117,
+      "lon": 9.6101,
+      "emne_ids": [],
+      "buildingTypeId": "building_racing_circuit",
+      "mapRole": "kongsberg_motor_center",
+      "visibleAs": "race_circuit",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "training",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "training",
+        "event_setup",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_finnskogbanen": {
+      "id": "map_finnskogbanen",
+      "historyGoPlaceId": "finnskogbanen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_finnskogbanen",
+      "name": "Finnskogbanen",
+      "category": "sport",
+      "lat": 60.4513,
+      "lon": 12.1864,
+      "emne_ids": [],
+      "buildingTypeId": "building_folkrace_track",
+      "mapRole": "finnskog_folkrace_track",
+      "visibleAs": "folkrace_track",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "event_setup",
+        "training"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_momarken_bilbane": {
+      "id": "map_momarken_bilbane",
+      "historyGoPlaceId": "momarken_bilbane",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_momarken_bilbane",
+      "name": "Momarken Bilbane",
+      "category": "sport",
+      "lat": 59.5538,
+      "lon": 11.3272,
+      "emne_ids": [],
+      "buildingTypeId": "building_folkrace_track",
+      "mapRole": "momarken_folkrace_track",
+      "visibleAs": "folkrace_track",
+      "socialFunctions": [
+        "sport",
+        "event",
+        "local_identity",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "event_setup",
+        "training"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_lyngasbanen": {
+      "id": "map_lyngasbanen",
+      "historyGoPlaceId": "lyngasbanen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
+      "civicationPlaceId": "civi_sport_lyngasbanen",
+      "name": "Lyngåsbanen (historisk)",
+      "category": "sport",
+      "lat": 59.7869,
+      "lon": 10.3186,
+      "emne_ids": [],
+      "buildingTypeId": "building_historic_racing_site",
+      "mapRole": "lyngas_historic_racing_site",
+      "visibleAs": "historic_track",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "sport"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "traffic_memory"
+      ],
+      "groundhopperRelevant": true,
+      "needsVerification": false,
+      "needsEnrichment": true
+    }
+  }
+}

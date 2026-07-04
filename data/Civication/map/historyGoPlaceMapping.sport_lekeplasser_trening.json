@@ -1,0 +1,490 @@
+{
+  "schema": "civication.historyGoPlaceMapping.sport_lekeplasser_trening.v1",
+  "version": 1,
+  "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+  "note": "Samlet verifisert per-place mapping for History Go lekeplasser og treningssteder (Oslo) til Civication-kartet. Lekeplassene deler byggtype; mapRole skiller dem.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_lekeplass_sofienbergparken": {
+      "id": "map_lekeplass_sofienbergparken",
+      "historyGoPlaceId": "lekeplass_sofienbergparken",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_sofienbergparken",
+      "name": "Sofienbergparken lekeplass",
+      "category": "sport",
+      "lat": 59.9229,
+      "lon": 10.763,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "sofienbergparken_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_st_hanshaugen": {
+      "id": "map_lekeplass_st_hanshaugen",
+      "historyGoPlaceId": "lekeplass_st_hanshaugen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_st_hanshaugen",
+      "name": "St. Hanshaugen lekeplass",
+      "category": "sport",
+      "lat": 59.9234,
+      "lon": 10.7463,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "st_hanshaugen_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_birkelunden": {
+      "id": "map_lekeplass_birkelunden",
+      "historyGoPlaceId": "lekeplass_birkelunden",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_birkelunden",
+      "name": "Birkelunden lekeplass",
+      "category": "sport",
+      "lat": 59.9256,
+      "lon": 10.7574,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "birkelunden_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_olaf_ryes_plass": {
+      "id": "map_lekeplass_olaf_ryes_plass",
+      "historyGoPlaceId": "lekeplass_olaf_ryes_plass",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_olaf_ryes_plass",
+      "name": "Olaf Ryes plass lekeplass",
+      "category": "sport",
+      "lat": 59.9238,
+      "lon": 10.7589,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "olaf_ryes_plass_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_botsparken": {
+      "id": "map_lekeplass_botsparken",
+      "historyGoPlaceId": "lekeplass_botsparken",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_botsparken",
+      "name": "Botsparken lekeplass",
+      "category": "sport",
+      "lat": 59.9053,
+      "lon": 10.769,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "botsparken_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_stensparken": {
+      "id": "map_lekeplass_stensparken",
+      "historyGoPlaceId": "lekeplass_stensparken",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_stensparken",
+      "name": "Stensparken lekeplass",
+      "category": "sport",
+      "lat": 59.9268,
+      "lon": 10.7406,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "stensparken_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_kirsebarlunden": {
+      "id": "map_lekeplass_kirsebarlunden",
+      "historyGoPlaceId": "lekeplass_kirsebarlunden",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_kirsebarlunden",
+      "name": "Kirsebærlunden lekeplass",
+      "category": "sport",
+      "lat": 59.916,
+      "lon": 10.7756,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "kirsebarlunden_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_snippen": {
+      "id": "map_lekeplass_snippen",
+      "historyGoPlaceId": "lekeplass_snippen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_snippen",
+      "name": "Snippen lekepark",
+      "category": "sport",
+      "lat": 59.9167,
+      "lon": 10.7699,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "snippen_play_park",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_frognerborgen": {
+      "id": "map_lekeplass_frognerborgen",
+      "historyGoPlaceId": "lekeplass_frognerborgen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_frognerborgen",
+      "name": "Frognerborgen",
+      "category": "sport",
+      "lat": 59.927,
+      "lon": 10.7003,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "frognerborgen_castle_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lekeplass_kampen_park": {
+      "id": "map_lekeplass_kampen_park",
+      "historyGoPlaceId": "lekeplass_kampen_park",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_lekeplass_kampen_park",
+      "name": "Kampen park lekeplass",
+      "category": "sport",
+      "lat": 59.9148,
+      "lon": 10.779,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_playground",
+      "mapRole": "kampen_park_playground",
+      "visibleAs": "playground",
+      "socialFunctions": [
+        "children_play",
+        "family_life",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "after_school_flow",
+        "morning_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_aktivitet_rudolf_nilsens_plass": {
+      "id": "map_aktivitet_rudolf_nilsens_plass",
+      "historyGoPlaceId": "aktivitet_rudolf_nilsens_plass",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_aktivitet_rudolf_nilsens_plass",
+      "name": "Rudolf Nilsens plass aktivitetspark",
+      "category": "sport",
+      "lat": 59.916297,
+      "lon": 10.765853,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_outdoor_training_park",
+      "mapRole": "rudolf_nilsens_plass_activity_park",
+      "visibleAs": "training_park",
+      "socialFunctions": [
+        "training",
+        "sport",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "outdoor_training",
+        "morning_run",
+        "after_work",
+        "training"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_treningssted_torshovdalen": {
+      "id": "map_treningssted_torshovdalen",
+      "historyGoPlaceId": "treningssted_torshovdalen",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_treningssted_torshovdalen",
+      "name": "Torshovdalen trenings- og aktivitetspark",
+      "category": "sport",
+      "lat": 59.9368,
+      "lon": 10.777,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_outdoor_training_park",
+      "mapRole": "torshovdalen_training_park",
+      "visibleAs": "training_park",
+      "socialFunctions": [
+        "training",
+        "sport",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "outdoor_training",
+        "morning_run",
+        "after_work",
+        "training"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_treningssted_kampen_park": {
+      "id": "map_treningssted_kampen_park",
+      "historyGoPlaceId": "treningssted_kampen_park",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_treningssted_kampen_park",
+      "name": "Kampen park treningssted",
+      "category": "sport",
+      "lat": 59.9148,
+      "lon": 10.779,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_outdoor_training_park",
+      "mapRole": "kampen_park_training_spot",
+      "visibleAs": "training_park",
+      "socialFunctions": [
+        "training",
+        "sport",
+        "meeting_point",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "outdoor_training",
+        "morning_run",
+        "after_work",
+        "training"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_treningssted_sognsvann": {
+      "id": "map_treningssted_sognsvann",
+      "historyGoPlaceId": "treningssted_sognsvann",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_treningssted_sognsvann",
+      "name": "Sognsvann treningsrunde",
+      "category": "sport",
+      "lat": 59.9717,
+      "lon": 10.7331,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_forest_training_loop",
+      "mapRole": "sognsvann_training_loop",
+      "visibleAs": "training_loop",
+      "socialFunctions": [
+        "training",
+        "running",
+        "recreation",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "morning_run",
+        "outdoor_training",
+        "after_work",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_treningssted_skur13": {
+      "id": "map_treningssted_skur13",
+      "historyGoPlaceId": "treningssted_skur13",
+      "historyGoSourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
+      "civicationPlaceId": "civi_sport_treningssted_skur13",
+      "name": "Skur 13 skate- og balansetrening",
+      "category": "sport",
+      "lat": 59.9066,
+      "lon": 10.7315,
+      "emne_ids": [
+        "em_sport_idrettsgeografi",
+        "em_sport_kropp_konkurranse"
+      ],
+      "buildingTypeId": "building_harbor_skate_hall",
+      "mapRole": "skur13_skate_training",
+      "visibleAs": "skate_hall",
+      "socialFunctions": [
+        "skating",
+        "training",
+        "local_scene"
+      ],
+      "phaseTypes": [
+        "training",
+        "outdoor_training",
+        "after_school_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

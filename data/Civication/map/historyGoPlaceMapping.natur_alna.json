@@ -1,0 +1,229 @@
+{
+  "schema": "civication.historyGoPlaceMapping.natur_alna.v1",
+  "version": 1,
+  "sourceFile": "places/natur/oslo/places_oslo_alna.json",
+  "note": "Samlet verifisert per-place mapping for History Go Alna-steder til Civication-kartet. Kilden blander natur/historie/by; category kopieres uendret. Flere steder mangler emne_ids og er merket needsEnrichment.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_alnaelva": {
+      "id": "map_alnaelva",
+      "historyGoPlaceId": "alnaelva",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_alnaelva",
+      "name": "Alnaelva",
+      "category": "natur",
+      "lat": 59.9325,
+      "lon": 10.833,
+      "emne_ids": [
+        "em_by_klima_blagronn_klimatilpasning",
+        "em_by_industri_havn_logistikk",
+        "em_natur_urban_okologi_byrom"
+      ],
+      "buildingTypeId": "building_river_landmark",
+      "mapRole": "alna_river_system",
+      "visibleAs": "river",
+      "socialFunctions": [
+        "green_city_system",
+        "river_context",
+        "walking",
+        "landscape_adaptation"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "neighborhood_green_route",
+        "quiet_observation",
+        "green_commute_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_alnaelvstien": {
+      "id": "map_alnaelvstien",
+      "historyGoPlaceId": "alnaelvstien",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_alnaelvstien",
+      "name": "Alnaelvstien",
+      "category": "natur",
+      "lat": 59.931,
+      "lon": 10.83,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "alna_river_trail",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_loelva_historisk": {
+      "id": "map_loelva_historisk",
+      "historyGoPlaceId": "loelva_historisk",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_loelva_historisk",
+      "name": "Loelva (historisk vassdrag)",
+      "category": "natur",
+      "lat": 59.928,
+      "lon": 10.82,
+      "emne_ids": [],
+      "buildingTypeId": "building_buried_river_memory",
+      "mapRole": "culverted_river_memory",
+      "visibleAs": "hidden_river",
+      "socialFunctions": [
+        "historical_layer",
+        "infrastructure_memory",
+        "river_context"
+      ],
+      "phaseTypes": [
+        "hidden_system_reflection",
+        "historical_reflection",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_trosterud_friomrade": {
+      "id": "map_trosterud_friomrade",
+      "historyGoPlaceId": "trosterud_friomrade",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_trosterud_friomrade",
+      "name": "Trosterud friområde",
+      "category": "natur",
+      "lat": 59.9305,
+      "lon": 10.846,
+      "emne_ids": [],
+      "buildingTypeId": "building_forest_belt",
+      "mapRole": "trosterud_green_commons",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "green_city_system",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "morning_walk",
+        "quiet_observation",
+        "green_commute_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_furuset_haugerud_skogbelte": {
+      "id": "map_furuset_haugerud_skogbelte",
+      "historyGoPlaceId": "furuset_haugerud_skogbelte",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_furuset_haugerud_skogbelte",
+      "name": "Furuset–Haugerud skogbelte",
+      "category": "natur",
+      "lat": 59.9345,
+      "lon": 10.852,
+      "emne_ids": [],
+      "buildingTypeId": "building_forest_belt",
+      "mapRole": "furuset_haugerud_forest_belt",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "green_city_system",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "morning_walk",
+        "quiet_observation",
+        "green_commute_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_hellerud_gard": {
+      "id": "map_hellerud_gard",
+      "historyGoPlaceId": "hellerud_gard",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_hellerud_gard",
+      "name": "Hellerud gård",
+      "category": "historie",
+      "lat": 59.9295,
+      "lon": 10.8485,
+      "emne_ids": [],
+      "buildingTypeId": "building_historic_farm_fragment",
+      "mapRole": "eastern_farm_history_site",
+      "visibleAs": "historic_farm",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "neighborhood_identity"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "neighborhood_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_alnabru_jernbane_og_logistikk": {
+      "id": "map_alnabru_jernbane_og_logistikk",
+      "historyGoPlaceId": "alnabru_jernbane_og_logistikk",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_alna.json",
+      "civicationPlaceId": "civi_natur_alnabru_jernbane_og_logistikk",
+      "name": "Alnabru – jernbane og logistikk",
+      "category": "by",
+      "lat": 59.936,
+      "lon": 10.814,
+      "emne_ids": [],
+      "buildingTypeId": "building_freight_rail_terminal",
+      "mapRole": "national_freight_hub",
+      "visibleAs": "freight_terminal",
+      "socialFunctions": [
+        "work",
+        "infrastructure_learning",
+        "transport_history",
+        "everyday_pressure"
+      ],
+      "phaseTypes": [
+        "business_day",
+        "technical_observation",
+        "traffic_memory",
+        "hidden_system_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    }
+  }
+}
