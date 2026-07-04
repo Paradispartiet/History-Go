@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-03T10:57:51.756Z",
+  "generatedAt": "2026-07-04T09:02:34.032Z",
   "input": {
     "peopleManifest": "data/people/manifest.json",
     "placesManifest": "data/places/manifest.json",
     "placesIndex": "data/places/places_index.json"
   },
   "summary": {
-    "generatedAt": "2026-07-03T10:57:51.756Z",
+    "generatedAt": "2026-07-04T09:02:34.032Z",
     "peopleFilesRead": 28,
-    "totalPeople": 488,
-    "uniquePeopleIds": 481,
-    "duplicatePeopleIds": 7,
-    "invalidPlaceRefs": 0,
+    "totalPeople": 484,
+    "uniquePeopleIds": 484,
+    "duplicatePeopleIds": 0,
+    "invalidPlaceRefs": 1,
     "peopleWithoutValidPrimaryAnchor": 0,
     "peopleWithEmptyPlacesArray": 0,
     "flatPeopleFiles": 0,
@@ -24,19 +24,19 @@
       "listedInManifest": true,
       "categoryGuess": "by",
       "geographicStructure": true,
-      "peopleCount": 23,
+      "peopleCount": 25,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
       "missingCategoryCount": 0,
       "missingPrimaryAnchorCount": 0,
-      "invalidPlaceRefCount": 0,
+      "invalidPlaceRefCount": 1,
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=23/23",
-        "source_place_id=0/23",
-        "placesArray=23/23",
+        "placeId=25/25",
+        "source_place_id=0/25",
+        "placesArray=25/25",
         "categories=by"
       ]
     },
@@ -110,7 +110,7 @@
       "listedInManifest": true,
       "categoryGuess": "historie",
       "geographicStructure": true,
-      "peopleCount": 47,
+      "peopleCount": 40,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
@@ -120,9 +120,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=47/47",
-        "source_place_id=0/47",
-        "placesArray=47/47",
+        "placeId=40/40",
+        "source_place_id=0/40",
+        "placesArray=40/40",
         "categories=historie"
       ]
     },
@@ -173,7 +173,7 @@
       "listedInManifest": true,
       "categoryGuess": "kunst",
       "geographicStructure": true,
-      "peopleCount": 12,
+      "peopleCount": 13,
       "duplicateIdsWithinFile": [],
       "missingIdCount": 0,
       "missingNameCount": 0,
@@ -183,9 +183,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=12/12",
-        "source_place_id=0/12",
-        "placesArray=12/12",
+        "placeId=13/13",
+        "source_place_id=0/13",
+        "placesArray=13/13",
         "categories=kunst"
       ]
     },
@@ -614,7 +614,7 @@
   "categories": [
     {
       "category": "by",
-      "totalPeople": 23,
+      "totalPeople": 25,
       "files": [
         "data/people/by/oslo/people_by_oslo.json"
       ],
@@ -655,7 +655,7 @@
     },
     {
       "category": "historie",
-      "totalPeople": 112,
+      "totalPeople": 105,
       "files": [
         "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
         "data/people/historie/oslo/people_historie_oslo.json"
@@ -670,7 +670,7 @@
     },
     {
       "category": "kunst",
-      "totalPeople": 18,
+      "totalPeople": 19,
       "files": [
         "data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json",
         "data/people/kunst/oslo/people_kunst_oslo.json"
@@ -872,8 +872,30 @@
     "flatFilesHoldForSchemaReview": []
   },
   "placeRefAudit": {
-    "invalidPlaceRefs": [],
-    "missingPlaceBlockers": []
+    "invalidPlaceRefs": [
+      {
+        "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+        "personId": "hagbarth_schytte_berg",
+        "personName": "Hagbarth Schytte-Berg",
+        "field": "places[1]",
+        "invalidPlaceId": "fagerborg_kirke",
+        "suggestedAction": "create_place_later"
+      }
+    ],
+    "missingPlaceBlockers": [
+      {
+        "placeId": "fagerborg_kirke",
+        "occurrences": 1,
+        "people": [
+          {
+            "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+            "personId": "hagbarth_schytte_berg",
+            "personName": "Hagbarth Schytte-Berg",
+            "field": "places[1]"
+          }
+        ]
+      }
+    ]
   },
   "peopleWithoutStrongAnchor": [],
   "weakPlaces": [],
@@ -883,9 +905,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=23/23",
-        "source_place_id=0/23",
-        "placesArray=23/23",
+        "placeId=25/25",
+        "source_place_id=0/25",
+        "placesArray=25/25",
         "categories=by"
       ],
       "deviations": []
@@ -933,9 +955,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=47/47",
-        "source_place_id=0/47",
-        "placesArray=47/47",
+        "placeId=40/40",
+        "source_place_id=0/40",
+        "placesArray=40/40",
         "categories=historie"
       ],
       "deviations": []
@@ -969,9 +991,9 @@
       "schemaKind": "standard_placeId_schema",
       "schemaNotes": [
         "schemaKind=standard_placeId_schema",
-        "placeId=12/12",
-        "source_place_id=0/12",
-        "placesArray=12/12",
+        "placeId=13/13",
+        "source_place_id=0/13",
+        "placesArray=13/13",
         "categories=kunst"
       ],
       "deviations": []
@@ -1221,99 +1243,7 @@
     }
   ],
   "categorySchemaMismatches": [],
-  "duplicatePeopleIds": [
-    {
-      "id": "eufemia_av_rugen",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Eufemia av Rügen"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Eufemia av Rügen"
-        }
-      ]
-    },
-    {
-      "id": "harald_hardrade",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Harald Hardråde"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Harald Hardråde"
-        }
-      ]
-    },
-    {
-      "id": "haakon_haakonsson",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Håkon Håkonsson"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Håkon Håkonsson"
-        }
-      ]
-    },
-    {
-      "id": "haakon_v_magnusson",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Håkon V Magnusson"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Håkon V Magnusson"
-        }
-      ]
-    },
-    {
-      "id": "magnus_den_gode",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Magnus den gode"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Magnus den gode"
-        }
-      ]
-    },
-    {
-      "id": "magnus_lagabote",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Magnus Lagabøte"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Magnus Lagabøte"
-        }
-      ]
-    },
-    {
-      "id": "sigurd_jorsalfare",
-      "entries": [
-        {
-          "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-          "personName": "Sigurd Jorsalfare"
-        },
-        {
-          "sourceFile": "data/people/historie/oslo/people_historie_oslo.json",
-          "personName": "Sigurd Jorsalfare"
-        }
-      ]
-    }
-  ],
+  "duplicatePeopleIds": [],
   "imageAudit": {
     "checked": true,
     "missingImages": [
@@ -1473,20 +1403,6 @@
       },
       {
         "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-        "personId": "harald_aars",
-        "personName": "Harald Aars",
-        "field": "image",
-        "imagePath": "bilder/kort/people/harald_aars.PNG"
-      },
-      {
-        "sourceFile": "data/people/by/oslo/people_by_oslo.json",
-        "personId": "harald_aars",
-        "personName": "Harald Aars",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/harald_aars.PNG"
-      },
-      {
-        "sourceFile": "data/people/by/oslo/people_by_oslo.json",
         "personId": "kirsten_sand",
         "personName": "Kirsten Sand",
         "field": "image",
@@ -2005,34 +1921,6 @@
       },
       {
         "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "magnus_den_gode",
-        "personName": "Magnus den gode",
-        "field": "image",
-        "imagePath": "bilder/kort/people/magnus_den_gode.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "magnus_den_gode",
-        "personName": "Magnus den gode",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/magnus_den_gode.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "harald_hardrade",
-        "personName": "Harald Hardråde",
-        "field": "image",
-        "imagePath": "bilder/kort/people/harald_hardrade.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "harald_hardrade",
-        "personName": "Harald Hardråde",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/harald_hardrade.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
         "personId": "tora_torbergsdatter",
         "personName": "Tora Torbergsdatter",
         "field": "image",
@@ -2086,20 +1974,6 @@
         "personName": "Øystein Magnusson",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/oystein_magnusson.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "sigurd_jorsalfare",
-        "personName": "Sigurd Jorsalfare",
-        "field": "image",
-        "imagePath": "bilder/kort/people/sigurd_jorsalfare.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "sigurd_jorsalfare",
-        "personName": "Sigurd Jorsalfare",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sigurd_jorsalfare.PNG"
       },
       {
         "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
@@ -2271,20 +2145,6 @@
       },
       {
         "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "haakon_haakonsson",
-        "personName": "Håkon Håkonsson",
-        "field": "image",
-        "imagePath": "bilder/kort/people/haakon_haakonsson.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "haakon_haakonsson",
-        "personName": "Håkon Håkonsson",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/haakon_haakonsson.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
         "personId": "margrete_skulesdatter",
         "personName": "Margrete Skulesdatter",
         "field": "image",
@@ -2296,20 +2156,6 @@
         "personName": "Margrete Skulesdatter",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/margrete_skulesdatter.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "magnus_lagabote",
-        "personName": "Magnus Lagabøte",
-        "field": "image",
-        "imagePath": "bilder/kort/people/magnus_lagabote.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "magnus_lagabote",
-        "personName": "Magnus Lagabøte",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/magnus_lagabote.PNG"
       },
       {
         "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
@@ -2338,34 +2184,6 @@
         "personName": "Eirik Magnusson",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/eirik_magnusson.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "haakon_v_magnusson",
-        "personName": "Håkon V Magnusson",
-        "field": "image",
-        "imagePath": "bilder/kort/people/haakon_v_magnusson.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "haakon_v_magnusson",
-        "personName": "Håkon V Magnusson",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/haakon_v_magnusson.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "eufemia_av_rugen",
-        "personName": "Eufemia av Rügen",
-        "field": "image",
-        "imagePath": "bilder/kort/people/eufemia_av_rugen.PNG"
-      },
-      {
-        "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-        "personId": "eufemia_av_rugen",
-        "personName": "Eufemia av Rügen",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/eufemia_av_rugen.PNG"
       },
       {
         "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
@@ -3745,13 +3563,6 @@
         "personName": "Arne Garborg",
         "field": "cardImage",
         "imagePath": "bilder/kort/people/garborg.PNG"
-      },
-      {
-        "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
-        "personId": "sigrid_undset",
-        "personName": "Sigrid Undset",
-        "field": "cardImage",
-        "imagePath": "bilder/kort/people/sigrid_undset.PNG"
       },
       {
         "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
@@ -5892,11 +5703,13 @@
     }
   ],
   "recommendedNextPr": {
-    "type": "content_expansion",
+    "type": "schema_cleanup",
     "category": null,
-    "reason": "Ingen invalid refs, duplikater eller store flate split-kandidater ble funnet.",
-    "safeBatchSize": 10,
-    "blockers": []
+    "reason": "Audit fant ugyldige place-referanser; cleanup bør tas før nye batches.",
+    "safeBatchSize": 1,
+    "blockers": [
+      "fagerborg_kirke"
+    ]
   },
   "guardrails": {
     "peopleEntriesAdded": 0,
