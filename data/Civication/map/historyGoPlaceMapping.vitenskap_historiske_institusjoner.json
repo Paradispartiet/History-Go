@@ -1,0 +1,92 @@
+{
+  "schema": "civication.historyGoPlaceMapping.vitenskap_historiske_institusjoner.v1",
+  "version": 1,
+  "sourceFile": "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+  "note": "Samlet verifisert per-place mapping for History Go vitenskap-steder (historiske institusjoner, Oslo) til Civication-kartet. Alle steder i kilden har emne_ids.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_nobelinstituttet": {
+      "id": "map_nobelinstituttet",
+      "historyGoPlaceId": "nobelinstituttet",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+      "civicationPlaceId": "civi_vitenskap_nobelinstituttet",
+      "name": "Nobelinstituttet",
+      "category": "vitenskap",
+      "lat": 59.9198,
+      "lon": 10.7489,
+      "emne_ids": [
+        "em_vit_samfunnsrolle",
+        "em_vit_byen_som_kunnskapskart",
+        "em_vit_hist_teknologi"
+      ],
+      "buildingTypeId": "building_peace_prize_institute",
+      "mapRole": "peace_prize_institution",
+      "visibleAs": "institute",
+      "socialFunctions": [
+        "institution",
+        "national_representation",
+        "knowledge",
+        "ceremony",
+        "symbolic_power"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "institutional_flow",
+        "quiet_observation",
+        "tourist_photo"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_observatoriet": {
+      "id": "map_observatoriet",
+      "historyGoPlaceId": "observatoriet",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+      "civicationPlaceId": "civi_vitenskap_observatoriet",
+      "name": "Observatoriet",
+      "category": "vitenskap",
+      "lat": 59.9176,
+      "lon": 10.7332,
+      "emne_ids": [
+        "em_vit_hist_teknologi",
+        "em_vit_sannhet_maling_modeller",
+        "em_vit_byen_som_kunnskapskart"
+      ],
+      "buildingTypeId": "building_historic_observatory",
+      "mapRole": "astronomy_origin_observatory",
+      "visibleAs": "observatory",
+      "socialFunctions": [
+        "knowledge",
+        "historical_layer",
+        "education",
+        "institution"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "cultural_visit",
+        "quiet_observation",
+        "study_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}
