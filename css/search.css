@@ -224,3 +224,19 @@
 .search-item[data-type="badge"]::before{
   background-image: url("assets/icons/badge.png");
 }
+
+/* Header menu search placement */
+.header-menu-search #globalSearch{
+  width: 100%;
+  max-width: none;
+  flex: 0 0 auto;
+}
+
+.header-menu-search #searchResults{
+  position: static;
+  inset: auto;
+  max-width: none;
+  max-height: min(48vh, 420px);
+  margin: 10px 0 0;
+  padding: 12px;
+}

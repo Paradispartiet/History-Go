@@ -675,3 +675,100 @@ body.hg-app #btnExitMap:hover{
   70%  { transform: scale(2.2); opacity: .10; }
   100% { transform: scale(2.4); opacity: 0; }
 }
+
+/* ===================================================== */
+/* HEADER MENU – secondary topbar tools                  */
+/* ===================================================== */
+.header-menu{
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.header-menu-button{
+  min-width: 38px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.header-menu-panel{
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(360px, calc(100vw - 24px));
+  max-height: calc(100vh - var(--hg-visual-header-height, 74px) - 24px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(20,26,36,.98), rgba(8,12,18,.98));
+  box-shadow: 0 22px 60px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04) inset;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  z-index: 100000;
+}
+
+.header-menu-actions{
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.header-menu-action{
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 9px 10px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 13px;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-menu-action:hover,
+.header-menu-action:focus-visible{
+  background: rgba(255,255,255,.11);
+  outline: none;
+}
+
+.header-menu-action-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+}
+
+.header-menu-action-icon svg{
+  width: 22px;
+  height: 22px;
+}
+
+.header-menu-action-label{
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 750;
+}
+
+.header-menu-toggle{
+  cursor: default;
+}
+
+.header-menu-toggle .toggle{
+  justify-self: end;
+}
+
+body.hg-app .site-header .top-actions{
+  overflow: visible;
+}
