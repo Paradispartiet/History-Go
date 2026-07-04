@@ -153,21 +153,14 @@ function initMiniProfile() {
     posEl = document.createElement("div");
     posEl.id = "miniPositionLine";
     posEl.className = "mini-position-line";
-    // minimal styling (kan flyttes til CSS senere)
-    posEl.style.fontSize = "12px";
-    posEl.style.opacity = "0.92";
-    posEl.style.marginTop = "2px";
-    posEl.style.whiteSpace = "nowrap";
-    posEl.style.overflow = "hidden";
-    posEl.style.textOverflow = "ellipsis";
-
     // sett inn rett etter stats-linja
     st.insertAdjacentElement("afterend", posEl);
   }
 
   if (pos && pos.title) {
-    const careerName = pos.career_name || pos.career_id || tUI("ui.miniprofile.careerFallback", "Karriere");
-    posEl.textContent = tfUI("ui.miniprofile.careerLine", "💼 {position} · {career}", { position: pos.title, career: careerName });
+    // MiniProfile i topbaren skal kun vise stillingstittel. Karriere/kategori
+    // beholdes i lagret posisjonsdata og på andre flater, men rendres ikke her.
+    posEl.textContent = tfUI("ui.miniprofile.positionLine", "💼 {position}", { position: pos.title });
     posEl.style.display = "";
   } else {
     posEl.style.display = "none";

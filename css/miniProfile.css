@@ -231,14 +231,14 @@ body.hg-app .site-header .top-actions #miniProfile{
     "stats";
   align-items: center;
   column-gap: 0;
-  row-gap: 3px;
+  row-gap: 2px;
 
-  width: 230px;
-  max-width: 230px;
-  height: 58px;
-  flex: 0 0 230px;
+  width: 180px;
+  max-width: 180px;
+  height: 56px;
+  flex: 0 0 180px;
 
-  padding: 7px 10px 8px;
+  padding: 6px 9px 7px;
   border-radius: 16px;
 
   background: rgba(255,255,255,0.07);
@@ -262,7 +262,7 @@ body.hg-app .site-header .top-actions #miniProfile #miniName{
   margin: 0;
   min-width: 0;
 
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.05;
   font-weight: 850;
 
@@ -322,9 +322,9 @@ body.hg-app .site-header .top-actions #miniProfile #miniStats{
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
 
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.05;
   white-space: nowrap;
   overflow: hidden;
@@ -335,6 +335,19 @@ body.hg-app .site-header .top-actions #miniProfile #linkQuiz{
   display: inline-flex !important;
   color: #f6c800;
   font-weight: 750;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.hg-app .site-header .top-actions #miniProfile .mini-position-line{
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+  font-size: 11px;
+  line-height: 1.05;
+  opacity: .92;
+  margin-top: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -398,20 +411,25 @@ body.hg-app .site-header .top-actions #miniProfile #miniLastQuiz{
 }
 
 body.hg-app.hg-phone .site-header .top-actions #miniProfile{
-  width: 170px;
-  max-width: 170px;
-  flex: 0 0 170px;
-  height: 52px;
-  padding: 6px 8px 7px;
+  width: 142px;
+  max-width: 142px;
+  flex: 0 0 142px;
+  height: 50px;
+  padding: 5px 7px 6px;
 }
 
 body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniName{
-  font-size: 13px;
+  font-size: 12px;
 }
 
 body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniStats{
-  gap: 6px;
+  gap: 5px;
   font-size: 10px;
+}
+
+body.hg-app.hg-phone .site-header .top-actions #miniProfile .mini-position-line{
+  font-size: 10px;
+  margin-top: 1px;
 }
 
 /* Mobil: søket holdes ekstra smalt (maks 64px). */
@@ -433,9 +451,9 @@ body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
    øverste rad (språk + profil + Civication) skal holde én rad. */
 @media (max-width: 350px){
   body.hg-app.hg-phone .site-header .top-actions #miniProfile{
-    width: 132px;
-    max-width: 132px;
-    flex: 0 0 132px;
+    width: 118px;
+    max-width: 118px;
+    flex: 0 0 118px;
   }
 }
 
