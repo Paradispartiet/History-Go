@@ -73,6 +73,32 @@
   background: #147efb;
 }
 
+.app-actions #pcQuiz{
+  min-width: 88px;
+  height: 50px;
+  padding: 0 16px;
+  border-color: rgba(150,211,214,.32);
+  background: #2f6f73;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.22);
+}
+
+.app-actions #pcQuiz:hover,
+.app-actions #pcQuiz:focus-visible{
+  background: #3a8589;
+  border-color: rgba(186,234,236,.55);
+}
+
+.app-actions #pcQuiz:focus-visible{
+  outline: 2px solid #d7f5f6;
+  outline-offset: 3px;
+}
+
+.app-actions #pcQuiz:active{
+  background: #285f63;
+}
+
 /* Ikonknapper */
 #pcRoute::before           { content:"🗺️"; font-size:22px; }
 #pcExploreTogether::before { content:"👥"; font-size:22px; }
@@ -171,6 +197,13 @@ body.hg-app.hg-phone .app-actions button{
   padding: 0 13px;
   font-size: 14px;
   flex: 0 0 auto;
+}
+
+body.hg-app.hg-phone .app-actions #pcQuiz{
+  min-width: 82px;
+  height: 46px;
+  padding: 0 14px;
+  font-size: 13px;
 }
 
 body.hg-app.hg-phone #pcRoute,
