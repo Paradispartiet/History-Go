@@ -119,6 +119,51 @@ const TARGETS = [
     expectedSourceFile: "places/naeringsliv/oslo/places_naeringsliv.json",
     expectedCategory: "naeringsliv",
   },
+  {
+    label: "subkultur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.subkultur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.subkultur.json",
+    placesFile: path.join(ROOT, "data", "places", "subkultur", "oslo", "places_subkultur.json"),
+    placesFileRel: "data/places/subkultur/oslo/places_subkultur.json",
+    expectedSourceFile: "places/subkultur/oslo/places_subkultur.json",
+    expectedCategory: "subkultur",
+  },
+  {
+    label: "popkultur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.popkultur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.popkultur.json",
+    placesFile: path.join(ROOT, "data", "places", "popkultur", "oslo", "places_oslo_populaerkultur.json"),
+    placesFileRel: "data/places/popkultur/oslo/places_oslo_populaerkultur.json",
+    expectedSourceFile: "places/popkultur/oslo/places_oslo_populaerkultur.json",
+    expectedCategory: ["populaerkultur", "film_tv"],
+  },
+  {
+    label: "media (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.media.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.media.json",
+    placesFile: path.join(ROOT, "data", "places", "media", "oslo", "places_oslo_media.json"),
+    placesFileRel: "data/places/media/oslo/places_oslo_media.json",
+    expectedSourceFile: "places/media/oslo/places_oslo_media.json",
+    expectedCategory: "media",
+  },
+  {
+    label: "film (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.film.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.film.json",
+    placesFile: path.join(ROOT, "data", "places", "film", "oslo", "places_oslo_film.json"),
+    placesFileRel: "data/places/film/oslo/places_oslo_film.json",
+    expectedSourceFile: "places/film/oslo/places_oslo_film.json",
+    expectedCategory: "populaerkultur",
+  },
+  {
+    label: "psykologi (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.psykologi.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.psykologi.json",
+    placesFile: path.join(ROOT, "data", "places", "psykologi", "oslo", "places_psykologi.json"),
+    placesFileRel: "data/places/psykologi/oslo/places_psykologi.json",
+    expectedSourceFile: "places/psykologi/oslo/places_psykologi.json",
+    expectedCategory: "psykologi",
+  },
 ];
 
 async function readJSON(file): Promise<Record<string, unknown> | unknown[]> {
@@ -290,8 +335,11 @@ async function auditTarget(target, definedBuildingTypeIds) {
     if (!requireString(m.name)) {
       fatal.push(`${label}: mangler gyldig name (string)`);
     }
-    if (m.category !== target.expectedCategory) {
-      fatal.push(`${label}: category må være "${target.expectedCategory}", fikk ${JSON.stringify(m.category)}`);
+    const allowedCategories = Array.isArray(target.expectedCategory)
+      ? target.expectedCategory
+      : [target.expectedCategory];
+    if (!allowedCategories.includes(m.category)) {
+      fatal.push(`${label}: category må være ${allowedCategories.map((c) => `"${c}"`).join(" eller ")}, fikk ${JSON.stringify(m.category)}`);
     }
     if (typeof m.lat !== "number") {
       fatal.push(`${label}: lat må være number, fikk ${JSON.stringify(m.lat)}`);

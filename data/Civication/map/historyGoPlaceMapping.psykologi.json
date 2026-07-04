@@ -1,0 +1,59 @@
+{
+  "schema": "civication.historyGoPlaceMapping.psykologi.v1",
+  "version": 1,
+  "sourceFile": "places/psykologi/oslo/places_psykologi.json",
+  "note": "Samlet verifisert per-place mapping for History Go psykologi-steder (Oslo) til Civication-kartet.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_psykologisk_institutt_uio": {
+      "id": "map_psykologisk_institutt_uio",
+      "historyGoPlaceId": "psykologisk_institutt_uio",
+      "historyGoSourceFile": "places/psykologi/oslo/places_psykologi.json",
+      "civicationPlaceId": "civi_psykologi_psykologisk_institutt_uio",
+      "name": "Psykologisk institutt, UiO",
+      "category": "psykologi",
+      "lat": 59.9419,
+      "lon": 10.7229,
+      "emne_ids": [
+        "em_psy_identitet_selv",
+        "em_psy_folelser_affekt",
+        "em_psy_atferd_laring"
+      ],
+      "buildingTypeId": "building_psychology_institute",
+      "mapRole": "psychology_research_institute",
+      "visibleAs": "institute",
+      "socialFunctions": [
+        "knowledge",
+        "education",
+        "student_life",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "student_flow",
+        "quiet_reflection",
+        "institutional_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

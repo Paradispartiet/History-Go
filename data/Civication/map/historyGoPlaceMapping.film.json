@@ -1,0 +1,187 @@
+{
+  "schema": "civication.historyGoPlaceMapping.film.v1",
+  "version": 1,
+  "sourceFile": "places/film/oslo/places_oslo_film.json",
+  "note": "Samlet verifisert per-place mapping for History Go film-steder (Oslo) til Civication-kartet. Kilden bruker kategorien populaerkultur; category kopieres uendret. Kinoene deler byggtype; mapRole skiller dem.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_saga_kino": {
+      "id": "map_saga_kino",
+      "historyGoPlaceId": "saga_kino",
+      "historyGoSourceFile": "places/film/oslo/places_oslo_film.json",
+      "civicationPlaceId": "civi_film_saga_kino",
+      "name": "Saga kino",
+      "category": "populaerkultur",
+      "lat": 59.9146,
+      "lon": 10.7351,
+      "emne_ids": [
+        "em_pop_kino_populaer_offentlighet",
+        "em_pop_publikum_rytme_vaner",
+        "em_pop_film_tv_format"
+      ],
+      "buildingTypeId": "building_city_cinema",
+      "mapRole": "downtown_multiplex_cinema",
+      "visibleAs": "cinema",
+      "socialFunctions": [
+        "culture",
+        "everyday_life",
+        "meeting_point",
+        "nightlife"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "evening_city_flow",
+        "after_work",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_klingenberg_kino": {
+      "id": "map_klingenberg_kino",
+      "historyGoPlaceId": "klingenberg_kino",
+      "historyGoSourceFile": "places/film/oslo/places_oslo_film.json",
+      "civicationPlaceId": "civi_film_klingenberg_kino",
+      "name": "Klingenberg kino",
+      "category": "populaerkultur",
+      "lat": 59.9137,
+      "lon": 10.7317,
+      "emne_ids": [
+        "em_pop_kino_populaer_offentlighet",
+        "em_pop_publikum_rytme_vaner",
+        "em_pop_film_tv_format"
+      ],
+      "buildingTypeId": "building_city_cinema",
+      "mapRole": "historic_premiere_cinema",
+      "visibleAs": "cinema",
+      "socialFunctions": [
+        "culture",
+        "historical_layer",
+        "everyday_life",
+        "nightlife"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "historical_reflection",
+        "evening_city_flow",
+        "after_work"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gimle_kino": {
+      "id": "map_gimle_kino",
+      "historyGoPlaceId": "gimle_kino",
+      "historyGoSourceFile": "places/film/oslo/places_oslo_film.json",
+      "civicationPlaceId": "civi_film_gimle_kino",
+      "name": "Gimle kino",
+      "category": "populaerkultur",
+      "lat": 59.9233,
+      "lon": 10.7217,
+      "emne_ids": [
+        "em_pop_kino_populaer_offentlighet",
+        "em_pop_publikum_rytme_vaner",
+        "em_pop_film_tv_format"
+      ],
+      "buildingTypeId": "building_city_cinema",
+      "mapRole": "westside_district_cinema",
+      "visibleAs": "cinema",
+      "socialFunctions": [
+        "culture",
+        "everyday_life",
+        "local_identity",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "evening_local_flow",
+        "after_work",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vika_kino": {
+      "id": "map_vika_kino",
+      "historyGoPlaceId": "vika_kino",
+      "historyGoSourceFile": "places/film/oslo/places_oslo_film.json",
+      "civicationPlaceId": "civi_film_vika_kino",
+      "name": "Vika kino",
+      "category": "populaerkultur",
+      "lat": 59.9126,
+      "lon": 10.7309,
+      "emne_ids": [
+        "em_pop_kino_populaer_offentlighet",
+        "em_pop_publikum_rytme_vaner",
+        "em_pop_film_tv_format"
+      ],
+      "buildingTypeId": "building_city_cinema",
+      "mapRole": "vika_cinema_arena",
+      "visibleAs": "cinema",
+      "socialFunctions": [
+        "culture",
+        "everyday_life",
+        "meeting_point",
+        "shopping"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "after_work",
+        "midday_commerce",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_hartvig_nissens_skole_skam": {
+      "id": "map_hartvig_nissens_skole_skam",
+      "historyGoPlaceId": "hartvig_nissens_skole_skam",
+      "historyGoSourceFile": "places/film/oslo/places_oslo_film.json",
+      "civicationPlaceId": "civi_film_hartvig_nissens_skole_skam",
+      "name": "Hartvig Nissens skole (SKAM)",
+      "category": "populaerkultur",
+      "lat": 59.9254,
+      "lon": 10.7313,
+      "emne_ids": [
+        "em_pop_serier_foljetong_ritual",
+        "em_pop_sted_kulisse_lokasjon",
+        "em_pop_film_tv_format"
+      ],
+      "buildingTypeId": "building_tv_series_school_location",
+      "mapRole": "tv_series_pilgrimage_school",
+      "visibleAs": "series_location",
+      "socialFunctions": [
+        "education",
+        "photo_point",
+        "tourism",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "school_commute",
+        "tourist_photo",
+        "after_school_flow",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}
