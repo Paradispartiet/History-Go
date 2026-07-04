@@ -238,15 +238,12 @@
         phase: "afternoon",
         phase_label: "Ettermiddag",
         expected_output: "Beslutningsgrunnlag med anbefaling og risiko"
-      },
-      {
-        id: "analysis_delivery",
-        label: "Ettermiddagsanalyse",
-        afterAnsweredCount: 16,
-        phase: "evening",
-        phase_label: "Kveld",
-        expected_output: "Kort analyse av konsekvenser og carryover"
       }
+      // Ingen arbeidsgiver-/leveransegate om kvelden: kvelden er fritid (hvile,
+      // læring, sosialt) per dagsprogrammet. Den tidligere `analysis_delivery`-
+      // gaten (phase "evening") brøt denne regelen og — når den ikke ble
+      // fullført — blokkerte levering av kveldens fritidssak, slik at dagen ikke
+      // kunne avsluttes. Arbeidsleveranser hører til morgen/ettermiddag.
     ];
   }
 
