@@ -1,0 +1,517 @@
+{
+  "schema": "civication.historyGoPlaceMapping.vitenskap.v1",
+  "version": 1,
+  "sourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+  "note": "Samlet verifisert per-place mapping for History Go vitenskap-steder (Oslo m/Tvergastein) til Civication-kartet. Alle steder i kilden har emne_ids.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_universitetets_gamle_hovedbygning": {
+      "id": "map_universitetets_gamle_hovedbygning",
+      "historyGoPlaceId": "universitetets_gamle_hovedbygning",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_universitetets_gamle_hovedbygning",
+      "name": "Universitetets gamle hovedbygning",
+      "category": "vitenskap",
+      "lat": 59.9118,
+      "lon": 10.7411,
+      "emne_ids": [
+        "em_vit_byens_vitenskapssteder",
+        "em_vit_kunnskapsgeografi"
+      ],
+      "buildingTypeId": "building_classical_university_hall",
+      "mapRole": "national_university_origin_hall",
+      "visibleAs": "university_landmark",
+      "socialFunctions": [
+        "education",
+        "knowledge",
+        "national_representation",
+        "ceremony",
+        "student_life"
+      ],
+      "phaseTypes": [
+        "student_flow",
+        "academic_ceremony",
+        "institutional_flow",
+        "tourist_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_universitetets_gamle_kjemi": {
+      "id": "map_universitetets_gamle_kjemi",
+      "historyGoPlaceId": "universitetets_gamle_kjemi",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_universitetets_gamle_kjemi",
+      "name": "Universitetets gamle kjemibygning",
+      "category": "vitenskap",
+      "lat": 59.91456,
+      "lon": 10.73872,
+      "emne_ids": [
+        "em_vit_kjemi_laboratorium",
+        "em_vit_eksperiment_maling"
+      ],
+      "buildingTypeId": "building_historic_laboratory",
+      "mapRole": "chemistry_history_laboratory",
+      "visibleAs": "historic_laboratory",
+      "socialFunctions": [
+        "knowledge",
+        "historical_layer",
+        "education"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "study_day",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tvergastein": {
+      "id": "map_tvergastein",
+      "historyGoPlaceId": "tvergastein",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_tvergastein",
+      "name": "Tvergastein",
+      "category": "vitenskap",
+      "lat": 60.5322,
+      "lon": 8.1824,
+      "emne_ids": [
+        "em_vit_feltarbeid_observasjon",
+        "em_vit_miljo_okologi_system"
+      ],
+      "buildingTypeId": "building_mountain_philosophy_cabin",
+      "mapRole": "deep_ecology_thinking_place",
+      "visibleAs": "mountain_cabin",
+      "socialFunctions": [
+        "knowledge",
+        "public_reflection",
+        "resilience"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "study_day",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamlebyen_skole": {
+      "id": "map_gamlebyen_skole",
+      "historyGoPlaceId": "gamlebyen_skole",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_gamlebyen_skole",
+      "name": "Gamlebyen skole",
+      "category": "vitenskap",
+      "lat": 59.9036,
+      "lon": 10.7671,
+      "emne_ids": [
+        "em_vit_kunnskap_formidling_utdanning",
+        "em_vit_byens_vitenskapssteder"
+      ],
+      "buildingTypeId": "building_historic_public_school",
+      "mapRole": "old_town_school_history",
+      "visibleAs": "historic_school",
+      "socialFunctions": [
+        "education",
+        "historical_layer",
+        "neighborhood_identity"
+      ],
+      "phaseTypes": [
+        "school_commute",
+        "after_school_flow",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_abelhaugen": {
+      "id": "map_abelhaugen",
+      "historyGoPlaceId": "abelhaugen",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_abelhaugen",
+      "name": "Abelhaugen",
+      "category": "vitenskap",
+      "lat": 59.9185,
+      "lon": 10.7294,
+      "emne_ids": [
+        "em_vit_matematikk_modellering",
+        "em_vit_vitenskapshistorie_personer"
+      ],
+      "buildingTypeId": "building_science_monument",
+      "mapRole": "mathematics_memory_monument",
+      "visibleAs": "monument",
+      "socialFunctions": [
+        "knowledge",
+        "public_marking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "symbol_reflection",
+        "morning_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_universitetet_i_oslo_blindern": {
+      "id": "map_universitetet_i_oslo_blindern",
+      "historyGoPlaceId": "universitetet_i_oslo_blindern",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_universitetet_i_oslo_blindern",
+      "name": "Universitetet i Oslo, Blindern",
+      "category": "vitenskap",
+      "lat": 59.9393,
+      "lon": 10.723,
+      "emne_ids": [
+        "em_vit_byens_vitenskapssteder",
+        "em_vit_kunnskapsgeografi"
+      ],
+      "buildingTypeId": "building_university_campus",
+      "mapRole": "main_research_campus",
+      "visibleAs": "campus",
+      "socialFunctions": [
+        "education",
+        "knowledge",
+        "student_life",
+        "study",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "student_flow",
+        "study_day",
+        "midday_public_life",
+        "quiet_reading"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_naturhistorisk_museum": {
+      "id": "map_naturhistorisk_museum",
+      "historyGoPlaceId": "naturhistorisk_museum",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_naturhistorisk_museum",
+      "name": "Naturhistorisk museum",
+      "category": "vitenskap",
+      "lat": 59.9171,
+      "lon": 10.7738,
+      "emne_ids": [
+        "em_vit_miljo_okologi_system",
+        "em_vit_kunnskap_formidling_utdanning"
+      ],
+      "buildingTypeId": "building_natural_history_museum",
+      "mapRole": "natural_science_collections_museum",
+      "visibleAs": "museum",
+      "socialFunctions": [
+        "knowledge",
+        "education",
+        "family_life",
+        "tourism",
+        "culture"
+      ],
+      "phaseTypes": [
+        "cultural_visit",
+        "family_afternoon",
+        "gallery_visit",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_botanisk_hage": {
+      "id": "map_botanisk_hage",
+      "historyGoPlaceId": "botanisk_hage",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_botanisk_hage",
+      "name": "Botanisk hage",
+      "category": "vitenskap",
+      "lat": 59.9179,
+      "lon": 10.7752,
+      "emne_ids": [
+        "em_vit_miljo_okologi_system",
+        "em_vit_feltarbeid_observasjon"
+      ],
+      "buildingTypeId": "building_botanical_garden",
+      "mapRole": "scientific_garden",
+      "visibleAs": "botanical_garden",
+      "socialFunctions": [
+        "knowledge",
+        "recreation",
+        "green_pause",
+        "family_life",
+        "education"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "summer_pause",
+        "family_afternoon",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_teknisk_museum": {
+      "id": "map_teknisk_museum",
+      "historyGoPlaceId": "teknisk_museum",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_teknisk_museum",
+      "name": "Norsk Teknisk Museum",
+      "category": "vitenskap",
+      "lat": 59.9463,
+      "lon": 10.7755,
+      "emne_ids": [
+        "em_vit_hist_teknologi",
+        "em_vit_kunnskap_formidling_utdanning"
+      ],
+      "buildingTypeId": "building_technology_museum",
+      "mapRole": "technology_history_museum",
+      "visibleAs": "museum",
+      "socialFunctions": [
+        "knowledge",
+        "education",
+        "family_life",
+        "culture",
+        "industrial_memory"
+      ],
+      "phaseTypes": [
+        "family_afternoon",
+        "cultural_visit",
+        "gallery_visit",
+        "industrial_memory_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_forskningsparken": {
+      "id": "map_forskningsparken",
+      "historyGoPlaceId": "forskningsparken",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_forskningsparken",
+      "name": "Forskningsparken",
+      "category": "vitenskap",
+      "lat": 59.9426,
+      "lon": 10.7192,
+      "emne_ids": [
+        "em_vit_teknologi_innovasjon",
+        "em_vit_kunnskapsgeografi"
+      ],
+      "buildingTypeId": "building_innovation_cluster",
+      "mapRole": "research_commercialization_hub",
+      "visibleAs": "innovation_cluster",
+      "socialFunctions": [
+        "knowledge",
+        "work",
+        "business",
+        "office_life"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "morning_office_flow",
+        "lunch_business_district",
+        "evening_empty_office_row"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_rikshospitalet": {
+      "id": "map_rikshospitalet",
+      "historyGoPlaceId": "rikshospitalet",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_rikshospitalet",
+      "name": "Rikshospitalet",
+      "category": "vitenskap",
+      "lat": 59.948,
+      "lon": 10.7082,
+      "emne_ids": [
+        "em_vit_medisin_helse",
+        "em_vit_kunnskap_formidling_utdanning"
+      ],
+      "buildingTypeId": "building_university_hospital",
+      "mapRole": "clinical_research_hospital",
+      "visibleAs": "hospital",
+      "socialFunctions": [
+        "institution",
+        "knowledge",
+        "work",
+        "everyday_pressure"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "business_day",
+        "quiet_night_road",
+        "institutional_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_radiumhospitalet": {
+      "id": "map_radiumhospitalet",
+      "historyGoPlaceId": "radiumhospitalet",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_radiumhospitalet",
+      "name": "Radiumhospitalet",
+      "category": "vitenskap",
+      "lat": 59.919,
+      "lon": 10.6677,
+      "emne_ids": [
+        "em_vit_medisin_helse",
+        "em_vit_sannhet_maling_modeller"
+      ],
+      "buildingTypeId": "building_specialist_hospital",
+      "mapRole": "oncology_research_hospital",
+      "visibleAs": "hospital",
+      "socialFunctions": [
+        "institution",
+        "knowledge",
+        "work"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "business_day",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_meteorologisk_institutt": {
+      "id": "map_meteorologisk_institutt",
+      "historyGoPlaceId": "meteorologisk_institutt",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_meteorologisk_institutt",
+      "name": "Meteorologisk institutt",
+      "category": "vitenskap",
+      "lat": 59.9429,
+      "lon": 10.7188,
+      "emne_ids": [
+        "em_vit_feltarbeid_observasjon",
+        "em_vit_sannhet_maling_modeller"
+      ],
+      "buildingTypeId": "building_weather_institute",
+      "mapRole": "national_weather_service",
+      "visibleAs": "institute",
+      "socialFunctions": [
+        "knowledge",
+        "institution",
+        "work"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "institutional_flow",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_met_pilestredet": {
+      "id": "map_oslo_met_pilestredet",
+      "historyGoPlaceId": "oslo_met_pilestredet",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_oslo_met_pilestredet",
+      "name": "OsloMet, Pilestredet",
+      "category": "vitenskap",
+      "lat": 59.9219,
+      "lon": 10.7346,
+      "emne_ids": [
+        "em_vit_kunnskap_formidling_utdanning",
+        "em_vit_samfunnsrolle"
+      ],
+      "buildingTypeId": "building_city_college_campus",
+      "mapRole": "profession_education_campus",
+      "visibleAs": "campus",
+      "socialFunctions": [
+        "education",
+        "student_life",
+        "knowledge",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "student_flow",
+        "study_day",
+        "midday_public_life",
+        "after_work"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_arkitektur_og_designhogskolen": {
+      "id": "map_arkitektur_og_designhogskolen",
+      "historyGoPlaceId": "arkitektur_og_designhogskolen",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_arkitektur_og_designhogskolen",
+      "name": "Arkitektur- og designhøgskolen i Oslo",
+      "category": "vitenskap",
+      "lat": 59.9232,
+      "lon": 10.7589,
+      "emne_ids": [
+        "em_vit_teknologi_innovasjon",
+        "em_vit_kunnskap_formidling_utdanning"
+      ],
+      "buildingTypeId": "building_design_school_riverside",
+      "mapRole": "architecture_design_school",
+      "visibleAs": "campus",
+      "socialFunctions": [
+        "education",
+        "culture",
+        "knowledge",
+        "river_context",
+        "student_life"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "student_flow",
+        "evening_river_walk",
+        "quiet_reading"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bi_nydalen": {
+      "id": "map_bi_nydalen",
+      "historyGoPlaceId": "bi_nydalen",
+      "historyGoSourceFile": "places/vitenskap/oslo/places_vitenskap.json",
+      "civicationPlaceId": "civi_vitenskap_bi_nydalen",
+      "name": "BI i Nydalen",
+      "category": "vitenskap",
+      "lat": 59.9498,
+      "lon": 10.7686,
+      "emne_ids": [
+        "em_vit_kunnskapsgeografi",
+        "em_vit_samfunnsrolle"
+      ],
+      "buildingTypeId": "building_business_school_campus",
+      "mapRole": "business_education_campus",
+      "visibleAs": "campus",
+      "socialFunctions": [
+        "education",
+        "business",
+        "student_life",
+        "knowledge"
+      ],
+      "phaseTypes": [
+        "student_flow",
+        "study_day",
+        "office_day",
+        "after_work"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

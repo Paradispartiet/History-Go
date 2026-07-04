@@ -1,0 +1,283 @@
+{
+  "schema": "civication.historyGoPlaceMapping.politikk.v1",
+  "version": 1,
+  "sourceFile": "places/politikk/oslo/places_politikk.json",
+  "note": "Samlet verifisert per-place mapping for History Go politikk-steder (Oslo) til Civication-kartet. Alle steder i kilden har emne_ids.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_stortinget": {
+      "id": "map_stortinget",
+      "historyGoPlaceId": "stortinget",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_stortinget",
+      "name": "Stortinget",
+      "category": "politikk",
+      "lat": 59.91325,
+      "lon": 10.7389,
+      "emne_ids": [
+        "em_pol_demokrati_representasjon",
+        "em_pol_parlamentarisme_maktbalanse",
+        "em_pol_mediert_offentlighet"
+      ],
+      "buildingTypeId": "building_parliament_building",
+      "mapRole": "national_parliament",
+      "visibleAs": "parliament",
+      "socialFunctions": [
+        "national_representation",
+        "symbolic_power",
+        "institution",
+        "civic_identity",
+        "protest"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "political_marking",
+        "ceremonial_day",
+        "tourist_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_youngstorget": {
+      "id": "map_youngstorget",
+      "historyGoPlaceId": "youngstorget",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_youngstorget",
+      "name": "Youngstorget",
+      "category": "politikk",
+      "lat": 59.91498,
+      "lon": 10.74916,
+      "emne_ids": [
+        "em_pol_arbeidsliv_kollektiv_kamp",
+        "em_pol_demonstrasjoner_protest",
+        "em_pol_mediert_offentlighet"
+      ],
+      "buildingTypeId": "building_labour_movement_square",
+      "mapRole": "labour_mobilization_square",
+      "visibleAs": "civic_square",
+      "socialFunctions": [
+        "protest",
+        "crowd_gathering",
+        "worker_history",
+        "public_marking",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "political_marking",
+        "market_day",
+        "event_day",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_radhus": {
+      "id": "map_oslo_radhus",
+      "historyGoPlaceId": "oslo_radhus",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_oslo_radhus",
+      "name": "Oslo rådhus",
+      "category": "politikk",
+      "lat": 59.9129,
+      "lon": 10.7336,
+      "emne_ids": [
+        "em_pol_lokaldemokrati",
+        "em_pol_byrakrati_forvaltning",
+        "em_pol_mediert_offentlighet",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_publikum_klasse_og_kapital"
+      ],
+      "buildingTypeId": "building_city_hall_ceremonial",
+      "mapRole": "municipal_power_ceremony_house",
+      "visibleAs": "city_hall",
+      "socialFunctions": [
+        "institution",
+        "ceremony",
+        "civic_identity",
+        "city_symbol",
+        "tourism"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "institutional_flow",
+        "tourist_flow",
+        "harbor_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_eidsvolls_plass": {
+      "id": "map_eidsvolls_plass",
+      "historyGoPlaceId": "eidsvolls_plass",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_eidsvolls_plass",
+      "name": "Eidsvolls plass",
+      "category": "politikk",
+      "lat": 59.9157,
+      "lon": 10.7388,
+      "emne_ids": [
+        "em_pol_demokrati_representasjon",
+        "em_pol_offentlighet_debatt",
+        "em_pol_mediert_offentlighet"
+      ],
+      "buildingTypeId": "building_protest_park_square",
+      "mapRole": "parliament_front_protest_space",
+      "visibleAs": "civic_square",
+      "socialFunctions": [
+        "protest",
+        "public_marking",
+        "meeting_point",
+        "public_life"
+      ],
+      "phaseTypes": [
+        "political_marking",
+        "midday_public_life",
+        "event_day",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tinghuset": {
+      "id": "map_tinghuset",
+      "historyGoPlaceId": "tinghuset",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_tinghuset",
+      "name": "Oslo tinghus",
+      "category": "politikk",
+      "lat": 59.91653,
+      "lon": 10.74136,
+      "emne_ids": [
+        "em_pol_domstoler_rettspraksis",
+        "em_pol_rettsstat_rettssikkerhet"
+      ],
+      "buildingTypeId": "building_district_courthouse",
+      "mapRole": "city_court_house",
+      "visibleAs": "courthouse",
+      "socialFunctions": [
+        "institution",
+        "institutional_identity",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "institutional_reflection",
+        "business_day",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_regjeringskvartalet": {
+      "id": "map_regjeringskvartalet",
+      "historyGoPlaceId": "regjeringskvartalet",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_regjeringskvartalet",
+      "name": "Regjeringskvartalet",
+      "category": "politikk",
+      "lat": 59.9156,
+      "lon": 10.7451,
+      "emne_ids": [
+        "em_pol_byrakrati_forvaltning",
+        "em_pol_politi_sikkerhet_makt",
+        "em_pol_mediert_offentlighet"
+      ],
+      "buildingTypeId": "building_government_quarter",
+      "mapRole": "executive_power_quarter",
+      "visibleAs": "government_quarter",
+      "socialFunctions": [
+        "institution",
+        "symbolic_power",
+        "national_representation",
+        "local_memory",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "construction_transformation",
+        "historical_reflection",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_hoyesteretts_hus": {
+      "id": "map_hoyesteretts_hus",
+      "historyGoPlaceId": "hoyesteretts_hus",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_hoyesteretts_hus",
+      "name": "Høyesteretts hus",
+      "category": "politikk",
+      "lat": 59.914444,
+      "lon": 10.744444,
+      "emne_ids": [
+        "em_by_styring_forvaltning_planmakt",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_supreme_court_house",
+      "mapRole": "supreme_court_seat",
+      "visibleAs": "courthouse",
+      "socialFunctions": [
+        "institution",
+        "symbolic_power",
+        "institutional_identity"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "quiet_observation",
+        "institutional_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_politihuset_gronland": {
+      "id": "map_politihuset_gronland",
+      "historyGoPlaceId": "politihuset_gronland",
+      "historyGoSourceFile": "places/politikk/oslo/places_politikk.json",
+      "civicationPlaceId": "civi_politikk_politihuset_gronland",
+      "name": "Politihuset på Grønland",
+      "category": "politikk",
+      "lat": 59.910833,
+      "lon": 10.770278,
+      "emne_ids": [
+        "em_by_styring_forvaltning_planmakt",
+        "em_by_overvakning_kontroll_toleranse"
+      ],
+      "buildingTypeId": "building_police_headquarters",
+      "mapRole": "police_authority_hub",
+      "visibleAs": "police_headquarters",
+      "socialFunctions": [
+        "institution",
+        "everyday_pressure",
+        "institutional_identity"
+      ],
+      "phaseTypes": [
+        "institutional_flow",
+        "business_day",
+        "quiet_night_road",
+        "institutional_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

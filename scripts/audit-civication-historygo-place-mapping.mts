@@ -75,6 +75,38 @@ const TARGETS = [
     expectedSourceFile: "places/litteratur/oslo/places_litteratur.json",
     expectedCategory: "litteratur",
   },
+  {
+    label: "politikk (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.politikk.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.politikk.json",
+    placesFile: path.join(ROOT, "data", "places", "politikk", "oslo", "places_politikk.json"),
+    expectedSourceFile: "places/politikk/oslo/places_politikk.json",
+    expectedCategory: "politikk",
+  },
+  {
+    label: "vitenskap (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.vitenskap.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.vitenskap.json",
+    placesFile: path.join(ROOT, "data", "places", "vitenskap", "oslo", "places_vitenskap.json"),
+    expectedSourceFile: "places/vitenskap/oslo/places_vitenskap.json",
+    expectedCategory: "vitenskap",
+  },
+  {
+    label: "vitenskap historiske institusjoner (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.vitenskap_historiske_institusjoner.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.vitenskap_historiske_institusjoner.json",
+    placesFile: path.join(ROOT, "data", "places", "vitenskap", "oslo", "places_vitenskap_historiske_institusjoner.json"),
+    expectedSourceFile: "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
+    expectedCategory: "vitenskap",
+  },
+  {
+    label: "naeringsliv (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.naeringsliv.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+    placesFile: path.join(ROOT, "data", "places", "naeringsliv", "oslo", "places_naeringsliv.json"),
+    expectedSourceFile: "places/naeringsliv/oslo/places_naeringsliv.json",
+    expectedCategory: "naeringsliv",
+  },
 ];
 
 // Obligatoriske felt per mapping (jf. oppgavens punkt 4).

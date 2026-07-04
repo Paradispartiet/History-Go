@@ -1,0 +1,1063 @@
+{
+  "schema": "civication.historyGoPlaceMapping.naeringsliv.v1",
+  "version": 1,
+  "sourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+  "note": "Samlet verifisert per-place mapping for History Go naeringsliv-steder (Oslo) til Civication-kartet. Alle steder i kilden har emne_ids. Steder av samme type (bryggerier, kaier, tekstilfabrikker, industriområder) deler byggtype der miniatyren reelt er lik.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_oslo_gassverk": {
+      "id": "map_oslo_gassverk",
+      "historyGoPlaceId": "oslo_gassverk",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_oslo_gassverk",
+      "name": "Oslo Gassverk",
+      "category": "naeringsliv",
+      "lat": 59.9255,
+      "lon": 10.7472,
+      "emne_ids": [
+        "em_naering_industri_og_mekanisering",
+        "em_naering_teknologi_infrastruktur"
+      ],
+      "buildingTypeId": "building_historic_gasworks",
+      "mapRole": "city_gas_infrastructure_memory",
+      "visibleAs": "industrial_heritage_site",
+      "socialFunctions": [
+        "industrial_memory",
+        "infrastructure_memory",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "hidden_system_reflection",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_havnelageret": {
+      "id": "map_havnelageret",
+      "historyGoPlaceId": "havnelageret",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_havnelageret",
+      "name": "Oslo Havnelager",
+      "category": "naeringsliv",
+      "lat": 59.9092,
+      "lon": 10.7429,
+      "emne_ids": [
+        "em_naering_logistikk_verdikjeder",
+        "em_naer_geografi_infrastruktur"
+      ],
+      "buildingTypeId": "building_harbor_warehouse",
+      "mapRole": "harbor_logistics_warehouse_memory",
+      "visibleAs": "warehouse_landmark",
+      "socialFunctions": [
+        "warehouse_memory",
+        "industrial_memory",
+        "office_life",
+        "waterfront_life"
+      ],
+      "phaseTypes": [
+        "harbor_walk",
+        "reuse_reflection",
+        "office_day",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tollbukaia": {
+      "id": "map_tollbukaia",
+      "historyGoPlaceId": "tollbukaia",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_tollbukaia",
+      "name": "Tollbukaia",
+      "category": "naeringsliv",
+      "lat": 59.9078,
+      "lon": 10.7421,
+      "emne_ids": [
+        "em_naering_havn_transport",
+        "em_naering_logistikk_verdikjeder"
+      ],
+      "buildingTypeId": "building_historic_harbor_quay",
+      "mapRole": "customs_quay_memory",
+      "visibleAs": "harbor_quay",
+      "socialFunctions": [
+        "transport_history",
+        "industrial_memory",
+        "waterfront_life",
+        "walking"
+      ],
+      "phaseTypes": [
+        "harbor_walk",
+        "historical_reflection",
+        "quiet_morning",
+        "lunch_waterfront"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_posthus": {
+      "id": "map_oslo_posthus",
+      "historyGoPlaceId": "oslo_posthus",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_oslo_posthus",
+      "name": "Oslo Posthus",
+      "category": "naeringsliv",
+      "lat": 59.9118,
+      "lon": 10.7515,
+      "emne_ids": [
+        "em_naer_geografi_infrastruktur",
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_by_infrastruktur_mobilitet"
+      ],
+      "buildingTypeId": "building_central_post_office",
+      "mapRole": "national_mail_hub_memory",
+      "visibleAs": "institutional_building",
+      "socialFunctions": [
+        "infrastructure_memory",
+        "institution",
+        "work",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "business_day",
+        "institutional_flow",
+        "historical_reflection",
+        "morning_office_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_telegrafbygningen": {
+      "id": "map_telegrafbygningen",
+      "historyGoPlaceId": "telegrafbygningen",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_telegrafbygningen",
+      "name": "Telegrafbygningen",
+      "category": "naeringsliv",
+      "lat": 59.9105,
+      "lon": 10.7405,
+      "emne_ids": [
+        "em_naering_teknologi_infrastruktur",
+        "em_naering_innovasjon_teknologisk_skift"
+      ],
+      "buildingTypeId": "building_telegraph_building",
+      "mapRole": "telecom_origin_building",
+      "visibleAs": "institutional_building",
+      "socialFunctions": [
+        "infrastructure_memory",
+        "historical_layer",
+        "institution"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "business_day",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vinmonopolet_lager": {
+      "id": "map_vinmonopolet_lager",
+      "historyGoPlaceId": "vinmonopolet_lager",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_vinmonopolet_lager",
+      "name": "Vinmonopolets hovedlager",
+      "category": "naeringsliv",
+      "lat": 59.9247,
+      "lon": 10.7524,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_state_monopoly_warehouse",
+      "mapRole": "state_monopoly_logistics_memory",
+      "visibleAs": "warehouse_landmark",
+      "socialFunctions": [
+        "warehouse_memory",
+        "industrial_memory",
+        "institution",
+        "reuse"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "reuse_reflection",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nrk_marienlyst": {
+      "id": "map_nrk_marienlyst",
+      "historyGoPlaceId": "nrk_marienlyst",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_nrk_marienlyst",
+      "name": "NRK Marienlyst",
+      "category": "naeringsliv",
+      "lat": 59.9323,
+      "lon": 10.7182,
+      "emne_ids": [
+        "em_naer_geografi_infrastruktur",
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_by_infrastruktur_mobilitet"
+      ],
+      "buildingTypeId": "building_broadcasting_house",
+      "mapRole": "national_broadcasting_campus",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "institution",
+        "culture",
+        "city_symbol"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "morning_office_flow",
+        "event_day",
+        "evening_empty_office_row"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_jernbaneverkstedet_lodalen": {
+      "id": "map_jernbaneverkstedet_lodalen",
+      "historyGoPlaceId": "jernbaneverkstedet_lodalen",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_jernbaneverkstedet_lodalen",
+      "name": "Lodalen jernbaneverksted",
+      "category": "naeringsliv",
+      "lat": 59.9037,
+      "lon": 10.7785,
+      "emne_ids": [
+        "em_naer_geografi_infrastruktur",
+        "em_naering_industri_og_mekanisering"
+      ],
+      "buildingTypeId": "building_railway_workshop_yard",
+      "mapRole": "railway_maintenance_yard_memory",
+      "visibleAs": "industrial_yard",
+      "socialFunctions": [
+        "industrial_memory",
+        "transport_history",
+        "worker_history",
+        "work"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "traffic_memory",
+        "technical_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_grunnlovsbygget_bankplassen": {
+      "id": "map_grunnlovsbygget_bankplassen",
+      "historyGoPlaceId": "grunnlovsbygget_bankplassen",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_grunnlovsbygget_bankplassen",
+      "name": "Den gamle Norges Bank",
+      "category": "naeringsliv",
+      "lat": 59.91086,
+      "lon": 10.74178,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_historic_central_bank",
+      "mapRole": "central_bank_origin_building",
+      "visibleAs": "bank_landmark",
+      "socialFunctions": [
+        "historical_layer",
+        "institution",
+        "business",
+        "reuse"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "reuse_reflection",
+        "business_day",
+        "cultural_visit"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_akershus_kaier": {
+      "id": "map_akershus_kaier",
+      "historyGoPlaceId": "akershus_kaier",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_akershus_kaier",
+      "name": "Akershuskaiene",
+      "category": "naeringsliv",
+      "lat": 59.9059,
+      "lon": 10.7423,
+      "emne_ids": [
+        "em_naer_geografi_infrastruktur",
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_by_industri_havn_logistikk"
+      ],
+      "buildingTypeId": "building_historic_harbor_quay",
+      "mapRole": "fortress_harbor_quays",
+      "visibleAs": "harbor_quay",
+      "socialFunctions": [
+        "transport_history",
+        "waterfront_life",
+        "industrial_memory",
+        "walking"
+      ],
+      "phaseTypes": [
+        "harbor_walk",
+        "historical_reflection",
+        "summer_waterfront",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_fornebu_teknologipark": {
+      "id": "map_fornebu_teknologipark",
+      "historyGoPlaceId": "fornebu_teknologipark",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_fornebu_teknologipark",
+      "name": "Fornebu Teknologipark",
+      "category": "naeringsliv",
+      "lat": 59.8939,
+      "lon": 10.6262,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_urban_metabolisme_vann_energi_avfall_mat"
+      ],
+      "buildingTypeId": "building_technology_business_park",
+      "mapRole": "airport_to_technology_transformation",
+      "visibleAs": "business_park",
+      "socialFunctions": [
+        "work",
+        "business",
+        "office_life",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "morning_office_flow",
+        "lunch_business_district",
+        "transformation_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ulven_handelspark": {
+      "id": "map_ulven_handelspark",
+      "historyGoPlaceId": "ulven_handelspark",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_ulven_handelspark",
+      "name": "Ulven handelspark",
+      "category": "naeringsliv",
+      "lat": 59.9229,
+      "lon": 10.8215,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_retail_park",
+      "mapRole": "big_box_retail_node",
+      "visibleAs": "retail_park",
+      "socialFunctions": [
+        "shopping",
+        "commerce",
+        "everyday_life",
+        "work"
+      ],
+      "phaseTypes": [
+        "local_shopping",
+        "midday_commerce",
+        "business_day",
+        "traffic_delay"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_akershus_energi": {
+      "id": "map_akershus_energi",
+      "historyGoPlaceId": "akershus_energi",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_akershus_energi",
+      "name": "Akershus Energi Varme",
+      "category": "naeringsliv",
+      "lat": 59.947,
+      "lon": 10.8355,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_urban_metabolisme_vann_energi_avfall_mat"
+      ],
+      "buildingTypeId": "building_district_heating_plant",
+      "mapRole": "district_heating_node",
+      "visibleAs": "energy_plant",
+      "socialFunctions": [
+        "infrastructure_learning",
+        "work",
+        "institution"
+      ],
+      "phaseTypes": [
+        "technical_observation",
+        "hidden_system_reflection",
+        "business_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_sagene_kvernhus": {
+      "id": "map_sagene_kvernhus",
+      "historyGoPlaceId": "sagene_kvernhus",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_sagene_kvernhus",
+      "name": "Sagene mølle og kvernhus",
+      "category": "naeringsliv",
+      "lat": 59.9368,
+      "lon": 10.7569,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_river_mill_site",
+      "mapRole": "river_mill_origin_site",
+      "visibleAs": "mill_site",
+      "socialFunctions": [
+        "industrial_memory",
+        "river_context",
+        "historical_layer",
+        "worker_history"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "evening_river_walk",
+        "historical_reflection",
+        "morning_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ovre_foss": {
+      "id": "map_ovre_foss",
+      "historyGoPlaceId": "ovre_foss",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_ovre_foss",
+      "name": "Øvre Foss – Hjula Veveri",
+      "category": "naeringsliv",
+      "lat": 59.9276,
+      "lon": 10.755,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_riverside_textile_mill",
+      "mapRole": "textile_industry_memory_mill",
+      "visibleAs": "industrial_heritage_hall",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "river_context",
+        "reuse"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "evening_river_walk",
+        "reuse_reflection",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_mek": {
+      "id": "map_oslo_mek",
+      "historyGoPlaceId": "oslo_mek",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_oslo_mek",
+      "name": "Oslo Mekaniske Verksted",
+      "category": "naeringsliv",
+      "lat": 59.9055,
+      "lon": 10.7469,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_historic_shipyard_workshop",
+      "mapRole": "shipyard_memory_venue",
+      "visibleAs": "industrial_heritage_hall",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "reuse",
+        "waterfront_life",
+        "culture"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "reuse_reflection",
+        "event_evening",
+        "harbor_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_schous_bryggeri": {
+      "id": "map_schous_bryggeri",
+      "historyGoPlaceId": "schous_bryggeri",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_schous_bryggeri",
+      "name": "Schous bryggeri",
+      "category": "naeringsliv",
+      "lat": 59.9206,
+      "lon": 10.7609,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_historic_brewery",
+      "mapRole": "brewery_memory_quarter",
+      "visibleAs": "brewery_quarter",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "reuse",
+        "culture",
+        "local_scene"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "reuse_reflection",
+        "event_evening",
+        "evening_local_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ringnes_bryggeri": {
+      "id": "map_ringnes_bryggeri",
+      "historyGoPlaceId": "ringnes_bryggeri",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_ringnes_bryggeri",
+      "name": "Ringnes bryggeri",
+      "category": "naeringsliv",
+      "lat": 59.9305,
+      "lon": 10.7599,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_historic_brewery",
+      "mapRole": "brewery_industry_anchor",
+      "visibleAs": "brewery_quarter",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "local_identity",
+        "commerce"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "historical_reflection",
+        "evening_local_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_st_halvard_bryggeri": {
+      "id": "map_st_halvard_bryggeri",
+      "historyGoPlaceId": "st_halvard_bryggeri",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_st_halvard_bryggeri",
+      "name": "St. Halvard bryggeri",
+      "category": "naeringsliv",
+      "lat": 59.9109,
+      "lon": 10.7833,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_historic_brewery",
+      "mapRole": "eastside_brewery_memory",
+      "visibleAs": "brewery_quarter",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "historical_reflection",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_kornmagasin": {
+      "id": "map_oslo_kornmagasin",
+      "historyGoPlaceId": "oslo_kornmagasin",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_oslo_kornmagasin",
+      "name": "Christiania kornmagasin",
+      "category": "naeringsliv",
+      "lat": 59.9119,
+      "lon": 10.7428,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_grain_storehouse",
+      "mapRole": "grain_supply_memory",
+      "visibleAs": "storehouse",
+      "socialFunctions": [
+        "warehouse_memory",
+        "historical_layer",
+        "industrial_memory"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "harbor_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_akershus_slott_bakeriet": {
+      "id": "map_akershus_slott_bakeriet",
+      "historyGoPlaceId": "akershus_slott_bakeriet",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_akershus_slott_bakeriet",
+      "name": "Bakeriet ved Akershus",
+      "category": "naeringsliv",
+      "lat": 59.9069,
+      "lon": 10.7389,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_historic_bakery",
+      "mapRole": "fortress_supply_bakery_memory",
+      "visibleAs": "historic_workshop",
+      "socialFunctions": [
+        "historical_layer",
+        "local_commerce",
+        "industrial_memory"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "tourist_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_jernbanetorget_trafikknutepunkt": {
+      "id": "map_jernbanetorget_trafikknutepunkt",
+      "historyGoPlaceId": "jernbanetorget_trafikknutepunkt",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_jernbanetorget_trafikknutepunkt",
+      "name": "Jernbanetorget – handelsknutepunktet",
+      "category": "naeringsliv",
+      "lat": 59.911,
+      "lon": 10.7508,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_station_trade_hub",
+      "mapRole": "station_commerce_interchange",
+      "visibleAs": "trade_hub",
+      "socialFunctions": [
+        "commerce",
+        "commuting",
+        "crossing",
+        "everyday_pressure"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "rush_hour_exchange",
+        "midday_commerce",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_kraftselskap": {
+      "id": "map_oslo_kraftselskap",
+      "historyGoPlaceId": "oslo_kraftselskap",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_oslo_kraftselskap",
+      "name": "Oslo Lysverker",
+      "category": "naeringsliv",
+      "lat": 59.919,
+      "lon": 10.7479,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_urban_metabolisme_vann_energi_avfall_mat"
+      ],
+      "buildingTypeId": "building_energy_utility_headquarters",
+      "mapRole": "city_power_utility_memory",
+      "visibleAs": "institutional_building",
+      "socialFunctions": [
+        "infrastructure_learning",
+        "institution",
+        "work",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "business_day",
+        "historical_reflection",
+        "hidden_system_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_grensen_kjopesenter": {
+      "id": "map_grensen_kjopesenter",
+      "historyGoPlaceId": "grensen_kjopesenter",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_grensen_kjopesenter",
+      "name": "Grensen – handelens sentrum",
+      "category": "naeringsliv",
+      "lat": 59.9138,
+      "lon": 10.7441,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_commercial_street_axis",
+      "mapRole": "downtown_trade_axis",
+      "visibleAs": "commercial_street",
+      "socialFunctions": [
+        "shopping",
+        "commerce",
+        "everyday_life",
+        "street_life"
+      ],
+      "phaseTypes": [
+        "midday_commerce",
+        "local_shopping",
+        "evening_city_flow",
+        "rush_hour"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vippetangen_fisketorg": {
+      "id": "map_vippetangen_fisketorg",
+      "historyGoPlaceId": "vippetangen_fisketorg",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_vippetangen_fisketorg",
+      "name": "Vippetangen fisketorg",
+      "category": "naeringsliv",
+      "lat": 59.9012,
+      "lon": 10.7429,
+      "emne_ids": [
+        "em_naer_geografi_infrastruktur",
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_by_industri_havn_logistikk"
+      ],
+      "buildingTypeId": "building_fish_market_quay",
+      "mapRole": "fish_trade_quay",
+      "visibleAs": "market_quay",
+      "socialFunctions": [
+        "commerce",
+        "waterfront_life",
+        "local_commerce",
+        "fjord_access"
+      ],
+      "phaseTypes": [
+        "market_day",
+        "harbor_walk",
+        "lunch_waterfront",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_frysja_industriomrade": {
+      "id": "map_frysja_industriomrade",
+      "historyGoPlaceId": "frysja_industriomrade",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_frysja_industriomrade",
+      "name": "Frysja industriområde",
+      "category": "naeringsliv",
+      "lat": 59.9608,
+      "lon": 10.7726,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_industrial_district_area",
+      "mapRole": "upstream_industry_district",
+      "visibleAs": "industrial_district",
+      "socialFunctions": [
+        "industrial_memory",
+        "work",
+        "reuse",
+        "river_context"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "reuse_reflection",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_norges_varemesse": {
+      "id": "map_norges_varemesse",
+      "historyGoPlaceId": "norges_varemesse",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_norges_varemesse",
+      "name": "Norges Varemesse",
+      "category": "naeringsliv",
+      "lat": 59.953,
+      "lon": 10.7525,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_by_kommersielle_gater"
+      ],
+      "buildingTypeId": "building_trade_fair_halls",
+      "mapRole": "trade_fair_event_node",
+      "visibleAs": "exhibition_halls",
+      "socialFunctions": [
+        "commerce",
+        "business",
+        "event",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_day",
+        "event_setup",
+        "business_day",
+        "traffic_delay"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bryn_industriomrade": {
+      "id": "map_bryn_industriomrade",
+      "historyGoPlaceId": "bryn_industriomrade",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_bryn_industriomrade",
+      "name": "Bryn industriområde",
+      "category": "naeringsliv",
+      "lat": 59.9129,
+      "lon": 10.8251,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_industrial_district_area",
+      "mapRole": "eastern_industry_transformation_district",
+      "visibleAs": "industrial_district",
+      "socialFunctions": [
+        "industrial_memory",
+        "work",
+        "urban_transformation",
+        "business"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "transformation_reflection",
+        "business_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gronlikaia": {
+      "id": "map_gronlikaia",
+      "historyGoPlaceId": "gronlikaia",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_gronlikaia",
+      "name": "Grønlikaia",
+      "category": "naeringsliv",
+      "lat": 59.9001,
+      "lon": 10.7579,
+      "emne_ids": [
+        "em_naer_geografi_infrastruktur",
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_by_industri_havn_logistikk"
+      ],
+      "buildingTypeId": "building_historic_harbor_quay",
+      "mapRole": "container_harbor_transformation_quay",
+      "visibleAs": "harbor_quay",
+      "socialFunctions": [
+        "transport_history",
+        "industrial_memory",
+        "urban_transformation",
+        "waterfront_life"
+      ],
+      "phaseTypes": [
+        "harbor_walk",
+        "transformation_reflection",
+        "construction_transformation",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_myrens_verksted": {
+      "id": "map_myrens_verksted",
+      "historyGoPlaceId": "myrens_verksted",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_myrens_verksted",
+      "name": "Myrens Verksted",
+      "category": "naeringsliv",
+      "lat": 59.9309,
+      "lon": 10.7597,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_riverside_machine_works",
+      "mapRole": "machine_industry_memory_works",
+      "visibleAs": "industrial_heritage_hall",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "river_context",
+        "office_life"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "office_day",
+        "evening_river_walk",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_christiania_seildugsfabrik": {
+      "id": "map_christiania_seildugsfabrik",
+      "historyGoPlaceId": "christiania_seildugsfabrik",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_christiania_seildugsfabrik",
+      "name": "Christiania Seildugsfabrik",
+      "category": "naeringsliv",
+      "lat": 59.9297,
+      "lon": 10.7576,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_riverside_textile_mill",
+      "mapRole": "sailcloth_factory_memory",
+      "visibleAs": "industrial_heritage_hall",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "river_context",
+        "education"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "student_flow",
+        "evening_river_walk",
+        "reuse_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_lilleborg_fabrikker": {
+      "id": "map_lilleborg_fabrikker",
+      "historyGoPlaceId": "lilleborg_fabrikker",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_lilleborg_fabrikker",
+      "name": "Lilleborg Fabrikker",
+      "category": "naeringsliv",
+      "lat": 59.9284,
+      "lon": 10.7682,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_riverside_factory_conversion",
+      "mapRole": "consumer_goods_factory_memory",
+      "visibleAs": "industrial_heritage_hall",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "housing",
+        "river_context"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "reuse_reflection",
+        "evening_river_walk",
+        "quiet_residential_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_akerselva_industri": {
+      "id": "map_akerselva_industri",
+      "historyGoPlaceId": "akerselva_industri",
+      "historyGoSourceFile": "places/naeringsliv/oslo/places_naeringsliv.json",
+      "civicationPlaceId": "civi_naeringsliv_akerselva_industri",
+      "name": "Akerselva industriområde",
+      "category": "naeringsliv",
+      "lat": 59.9286,
+      "lon": 10.758,
+      "emne_ids": [
+        "em_naer_felt_arbeid_verdiskaping",
+        "em_naer_geografi_infrastruktur",
+        "em_his_industriby_1900"
+      ],
+      "buildingTypeId": "building_river_industrial_memory_axis",
+      "mapRole": "river_industry_axis",
+      "visibleAs": "industrial_river_axis",
+      "socialFunctions": [
+        "industrial_memory",
+        "worker_history",
+        "river_context",
+        "walking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "evening_river_walk",
+        "route_walk",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}
