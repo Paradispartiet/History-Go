@@ -99,6 +99,14 @@ const TARGETS = [
     expectedSourceFile: "places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json",
     expectedCategory: "vitenskap",
   },
+  {
+    label: "naeringsliv (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.naeringsliv.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.naeringsliv.json",
+    placesFile: path.join(ROOT, "data", "places", "naeringsliv", "oslo", "places_naeringsliv.json"),
+    expectedSourceFile: "places/naeringsliv/oslo/places_naeringsliv.json",
+    expectedCategory: "naeringsliv",
+  },
 ];
 
 // Obligatoriske felt per mapping (jf. oppgavens punkt 4).
