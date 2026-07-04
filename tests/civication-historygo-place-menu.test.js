@@ -67,6 +67,21 @@ check("Three-kartet slår opp place og delegerer til felles meny", () => {
   assert.ok(openPlace[0].indexOf("menu.openPlaceMenu") < openPlace[0].indexOf("window.location.href"), "fallback må komme etter menydelegasjon");
 });
 
+check("menyen viser curert Civication-kartidentitet fra read-modellen", () => {
+  // Rolleseksjonen finnes i menymarkupen og fylles fra window.CivicationCityMap.
+  assert.match(layer, /data-place-section="role"/);
+  assert.match(layer, /function buildCivicationRoleHtml\(place\)/);
+  assert.match(layer, /window\.CivicationCityMap[\s\S]*?\.get\(/);
+  assert.match(layer, /data-civi-groundhopper="true"/);
+  // Read-modellen lastes (memoisert) ved menyåpning og degraderer stille.
+  assert.match(layer, /function ensureCityMapLoaded\(\)/);
+  assert.match(layer, /applyRoleSection\(place\)/);
+  // Kartidentiteten skal ikke skrive progresjon/localStorage.
+  const roleBuilder = layer.match(/function buildCivicationRoleHtml\(place\) \{[\s\S]*?\n  \}/);
+  assert.ok(roleBuilder, "fant ikke buildCivicationRoleHtml");
+  assert.doesNotMatch(roleBuilder[0], /localStorage|visited_places|merits_by_category|quiz_progress/);
+});
+
 check("menyen bruker body-overlay med avtalt stacking og safe areas", () => {
   assert.match(layer, /document\.body\.appendChild\(root\)/);
   assert.match(css, /\.civi-hg-place-menu\s*\{[\s\S]*?position:\s*fixed;[\s\S]*?z-index:\s*10020;/);

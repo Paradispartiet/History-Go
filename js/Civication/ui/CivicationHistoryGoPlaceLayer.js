@@ -317,6 +317,61 @@
     return normalized.id ? normalized : null;
   }
 
+  // --- Civication kartidentitet (read-model) -------------------------------
+  // Kobler stedmenyen til det curerte bykart-grunnlaget (window.CivicationCityMap).
+  // Degraderer stille: er ikke read-modellen lastet/tilgjengelig, eller er stedet
+  // ikke kartlagt, vises ingen rolleseksjon (get() gir null før load() fullfører).
+  function humanizeToken(value) {
+    return String(value == null ? "" : value).replace(/_/g, " ").trim();
+  }
+
+  function ensureCityMapLoaded() {
+    const api = window.CivicationCityMap;
+    if (!api || typeof api.load !== "function") return Promise.resolve(null);
+    try {
+      return Promise.resolve(api.load()).catch(() => null);
+    } catch (error) {
+      return Promise.resolve(null);
+    }
+  }
+
+  function civicationCityMapEntry(place) {
+    const api = window.CivicationCityMap;
+    if (!api || typeof api.get !== "function") return null;
+    const id = place && place.id != null ? String(place.id) : "";
+    return id ? api.get(id) : null;
+  }
+
+  function buildCivicationRoleHtml(place) {
+    const entry = civicationCityMapEntry(place);
+    if (!entry) return "";
+    const parts = [];
+    const header = [];
+    if (entry.mapRole) {
+      header.push('<span class="civi-hg-place-menu-role-name">' +
+        escapeHtml(humanizeToken(entry.mapRole)) + "</span>");
+    }
+    if (entry.groundhopperRelevant) {
+      header.push('<span class="civi-hg-place-menu-badge" data-civi-groundhopper="true">Groundhopper</span>');
+    }
+    if (header.length) {
+      parts.push('<p class="civi-hg-place-menu-role-header">' + header.join(" ") + "</p>");
+    }
+    const fns = Array.isArray(entry.socialFunctions) ? entry.socialFunctions.slice(0, 4) : [];
+    if (fns.length) {
+      parts.push('<ul class="civi-hg-place-menu-role-tags">' +
+        fns.map((fn) => "<li>" + escapeHtml(humanizeToken(fn)) + "</li>").join("") + "</ul>");
+    }
+    return parts.join("");
+  }
+
+  function applyRoleSection(place) {
+    if (!_placeMenu || !_placeMenu.role) return;
+    const html = buildCivicationRoleHtml(place);
+    _placeMenu.role.innerHTML = html;
+    _placeMenu.role.hidden = !html;
+  }
+
   function placeTypeLabel(place) {
     const candidates = [
       place && place.category,
@@ -422,6 +477,7 @@
       '<section class="civi-hg-place-menu-card" role="dialog" aria-modal="true" aria-labelledby="civiHgPlaceMenuTitle">' +
         '<p class="civi-hg-place-menu-kicker"></p>' +
         '<h2 class="civi-hg-place-menu-title" id="civiHgPlaceMenuTitle"></h2>' +
+        '<div class="civi-hg-place-menu-role" data-place-section="role" hidden></div>' +
         '<div class="civi-hg-place-menu-actions">' +
           '<button type="button" data-place-action="visit">Besøk i History Go</button>' +
           '<button type="button" data-place-action="travel">Dra dit</button>' +
@@ -440,6 +496,7 @@
       title: root.querySelector(".civi-hg-place-menu-title"),
       kicker: root.querySelector(".civi-hg-place-menu-kicker"),
       feedback: root.querySelector(".civi-hg-place-menu-feedback"),
+      role: root.querySelector('[data-place-section="role"]'),
       people: root.querySelector('[data-place-section="people"]'),
       activities: root.querySelector('[data-place-section="activities"]'),
       firstAction: root.querySelector('[data-place-action="visit"]')
@@ -478,6 +535,7 @@
     const menu = ensurePlaceMenu();
     menu.title.textContent = place.name || place.id;
     menu.kicker.textContent = placeTypeLabel(place);
+    applyRoleSection(place);
     menu.feedback.hidden = true;
     menu.feedback.textContent = "";
     menu.people.hidden = true;
@@ -495,6 +553,15 @@
     _activeMenuPlace = place;
     _peopleRequestToken += 1;
     renderPlaceMenu(place);
+    // Read-modellen kan være ulastet ved første åpning; last den (memoisert) og
+    // fyll inn rolleseksjonen når den er klar – kun hvis menyen fortsatt viser
+    // samme sted.
+    ensureCityMapLoaded().then(() => {
+      if (_activeMenuPlace && String(_activeMenuPlace.id) === String(place.id) &&
+          _placeMenu && !_placeMenu.root.hidden) {
+        applyRoleSection(place);
+      }
+    });
   }
 
   function buildMiniature(place, cx, cy, scale) {
