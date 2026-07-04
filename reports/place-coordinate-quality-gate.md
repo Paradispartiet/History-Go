@@ -1,13 +1,13 @@
 # Place coordinate quality gate
 
-Generert: 2026-07-04T09:03:26.267Z
+Generert: 2026-07-04T17:38:21.806Z
 
 ## Oppsummering
-- Aktive filer validert: **91**
-- Antall steder validert: **911**
+- Aktive filer validert: **92**
+- Antall steder validert: **919**
 - Harde feil: **0**
-- Varsler: **232**
-- Coordinate review candidates: **502** signaler fordelt på **384** steder
+- Varsler: **233**
+- Coordinate review candidates: **503** signaler fordelt på **385** steder
 
 Nivåene betyr:
 - **Harde feil**: formelle koordinatfeil (ugyldig/manglende lat/lon/r, ødelagte anchors, manglende filer). Disse stopper gaten.
@@ -67,6 +67,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/telemark/places_historie_telemark_batch1.json
 - data/places/historie/telemark/places_historie_telemark_batch2.json
 - data/places/historie/telemark/places_historie_telemark_batch3.json
+- data/places/historie/telemark/places_historie_telemark_batch4.json
 - data/places/historie/norge/places_historie_norge_for_1500_batch1.json
 - data/places/historie/norge/places_historie_norge_for_1500_batch2.json
 - data/places/historie/norge/places_historie_norge_for_1500_batch3.json
@@ -123,7 +124,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/by/oslo/places_by.json#jernbanetorget: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#gronlandsleiret: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
-- data/places/by/oslo/places_by.json#stensparken: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#birkelunden: lav koordinatpresisjon (<4 desimaler)
 - data/places/by/oslo/places_by.json#barcode: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/oslo/places_historie.json#damstredet_telthusbakken: coordStatus=verified uten coordPrecisionM
@@ -212,6 +212,8 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/historie/telemark/places_historie_telemark_batch1.json#brekkeparken_skien: stort område uten coordNote/coordStatus
 - data/places/historie/telemark/places_historie_telemark_batch3.json#morgedal_norsk_skieventyr: stort område uten coordNote/coordStatus
 - data/places/historie/telemark/places_historie_telemark_batch3.json#dalen_hotel_tokke: stort område uten coordNote/coordStatus
+- data/places/historie/telemark/places_historie_telemark_batch4.json#lunde_sluse_telemarkskanalen: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/telemark/places_historie_telemark_batch4.json#kjeldal_sluse_telemarkskanalen: stort område uten coordNote/coordStatus
 - data/places/historie/norge/places_historie_norge_for_1500_batch1.json#stiklestad: lineært sted uten anchors
 - data/places/historie/norge/places_historie_norge_for_1500_batch1.json#stiklestad: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/norge/places_historie_norge_for_1500_batch3.json#sekken_slagsted: lav koordinatpresisjon (<4 desimaler)
@@ -349,7 +351,7 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 
 ## Coordinate review candidates
 
-Totalt 502 signaler fordelt på 384 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
+Totalt 503 signaler fordelt på 385 steder. Et sted kan ha flere signaler. Kandidatene under er gruppert etter grunn.
 
 ### Antall per grunn
 
@@ -359,7 +361,7 @@ Totalt 502 signaler fordelt på 384 steder. Et sted kan ha flere signaler. Kandi
 | lineært sted uten anchors | 46 |
 | stasjon/park/gate/torg/elv uten coordinate metadata | 80 |
 | coordStatus=verified uten coordPrecisionM | 2 |
-| park/stort område uten anchors eller coordNote | 77 |
+| park/stort område uten anchors eller coordNote | 78 |
 | svært stor r (>=500 m) uten coordNote | 26 |
 | identisk/nesten identisk lat/lon som annet sted uten forklaring | 16 |
 | ligger svært langt fra de andre stedene i samme fil | 159 |
@@ -375,7 +377,6 @@ Totalt 502 signaler fordelt på 384 steder. Et sted kan ha flere signaler. Kandi
 | kampen_kirke | Kampen kirke | by | data/places/by/oslo/places_by.json | 59.912 | 10.782 | 160 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | jernbanetorget | Jernbanetorget | by | data/places/by/oslo/places_by.json | 59.911 | 10.75 | 180 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | gronlandsleiret | Grønlandsleiret | by | data/places/by/oslo/places_by.json | 59.9116 | 10.767 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
-| stensparken | Stensparken | by | data/places/by/oslo/places_by.json | 59.9272 | 10.733 | 200 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | birkelunden | Birkelunden | by | data/places/by/oslo/places_by.json | 59.927 | 10.7601 | 190 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | barcode | Barcode | by | data/places/by/oslo/places_by.json | 59.908 | 10.7602 | 210 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | trefoldighetskirken | Trefoldighetskirken | historie | data/places/historie/oslo/places_historie.json | 59.9183 | 10.746 | 110 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -385,6 +386,7 @@ Totalt 502 signaler fordelt på 384 steder. Et sted kan ha flere signaler. Kandi
 | hvalsmoen_leir | Hvalsmoen leir | historie | data/places/historie/buskerud/places_historie_buskerud_batch4.json | 60.207 | 10.277 | 420 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | dagali_museum | Dagali Museum | historie | data/places/historie/buskerud/places_historie_buskerud_batch4.json | 60.415 | 8.448 | 300 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | heddal_stavkirke | Heddal stavkirke | historie | data/places/historie/telemark/places_historie_telemark_batch1.json | 59.5794 | 9.176 | 360 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
+| lunde_sluse_telemarkskanalen | Lunde sluse / Telemarkskanalen | historie | data/places/historie/telemark/places_historie_telemark_batch4.json | 59.297 | 9.1011 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | stiklestad | Stiklestad | historie | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | 63.7956 | 11.559 | 220 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | sekken_slagsted | Sekken slagsted og minnestein | historie | data/places/historie/norge/places_historie_norge_for_1500_batch3.json | 62.647 | 7.3678 | 320 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
 | holmengra_hvaler | Holmengrå ved Hvaler | historie | data/places/historie/norge/places_historie_norge_for_1500_batch4.json | 59.027 | 11.045 | 650 | Slå opp stedet manuelt på kart og oppgi lat/lon med minst 4 desimaler. |
@@ -608,7 +610,7 @@ Totalt 502 signaler fordelt på 384 steder. Et sted kan ha flere signaler. Kandi
 | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | data/places/historie/oslo/places_historie.json | 59.9236 | 10.7474 | 190 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Legg til coordPrecisionM etter manuell kartkontroll, eller nedgrader coordStatus. |
 
-### park/stort område uten anchors eller coordNote (77)
+### park/stort område uten anchors eller coordNote (78)
 
 | id | name | category | fil | lat | lon | r | Foreslått manuell handling |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -678,6 +680,7 @@ Totalt 502 signaler fordelt på 384 steder. Et sted kan ha flere signaler. Kandi
 | brekkeparken_skien | Brekkeparken Skien | historie | data/places/historie/telemark/places_historie_telemark_batch1.json | 59.2072 | 9.6005 | 360 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | morgedal_norsk_skieventyr | Morgedal / Norsk Skieventyr | historie | data/places/historie/telemark/places_historie_telemark_batch3.json | 59.4776 | 8.4267 | 420 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | dalen_hotel_tokke | Dalen Hotel | historie | data/places/historie/telemark/places_historie_telemark_batch3.json | 59.4446 | 8.0081 | 340 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
+| kjeldal_sluse_telemarkskanalen | Kjeldal sluse / Telemarkskanalen | historie | data/places/historie/telemark/places_historie_telemark_batch4.json | 59.2961 | 9.1414 | 320 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.8939 | 10.6262 | 400 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | frysja_industriomrade | Frysja industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9608 | 10.7726 | 260 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
 | bryn_industriomrade | Bryn industriområde | naeringsliv | data/places/naeringsliv/oslo/places_naeringsliv.json | 59.9129 | 10.8251 | 250 | Sjekk om punktet ligger sentralt i området; legg til anchors eller coordNote. |
