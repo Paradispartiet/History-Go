@@ -1,0 +1,255 @@
+{
+  "schema": "civication.historyGoPlaceMapping.natur_alnaelva_rute.v1",
+  "version": 1,
+  "sourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+  "note": "Samlet verifisert per-place mapping for History Go Alnaelva-ruta til Civication-kartet. Kilden mangler emne_ids; alle poster er merket needsEnrichment.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_alnsjoen_alna_kilde": {
+      "id": "map_alnsjoen_alna_kilde",
+      "historyGoPlaceId": "alnsjoen_alna_kilde",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_alnsjoen_alna_kilde",
+      "name": "Alnsjøen (Alna-kilde)",
+      "category": "natur",
+      "lat": 59.96527,
+      "lon": 10.84704,
+      "emne_ids": [],
+      "buildingTypeId": "building_lake_nature",
+      "mapRole": "alna_source_lake",
+      "visibleAs": "lake",
+      "socialFunctions": [
+        "recreation",
+        "bathing",
+        "walking",
+        "green_city_system"
+      ],
+      "phaseTypes": [
+        "morning_run",
+        "summer_bathing",
+        "route_walk",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_alnaparken": {
+      "id": "map_alnaparken",
+      "historyGoPlaceId": "alnaparken",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_alnaparken",
+      "name": "Alnaparken",
+      "category": "natur",
+      "lat": 59.94261,
+      "lon": 10.87749,
+      "emne_ids": [],
+      "buildingTypeId": "building_riverside_park",
+      "mapRole": "alna_park",
+      "visibleAs": "riverside_park",
+      "socialFunctions": [
+        "park_life",
+        "green_pause",
+        "river_context",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "summer_pause",
+        "picnic",
+        "evening_river_walk",
+        "neighborhood_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_groruddammen": {
+      "id": "map_groruddammen",
+      "historyGoPlaceId": "groruddammen",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_groruddammen",
+      "name": "Groruddammen",
+      "category": "natur",
+      "lat": 59.95812,
+      "lon": 10.87623,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_pond",
+      "mapRole": "grorud_dam",
+      "visibleAs": "river_pond",
+      "socialFunctions": [
+        "river_context",
+        "green_pause",
+        "rest"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "evening_river_walk",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_alna_smalvoll": {
+      "id": "map_alna_smalvoll",
+      "historyGoPlaceId": "alna_smalvoll",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_alna_smalvoll",
+      "name": "Alna ved Smalvoll",
+      "category": "natur",
+      "lat": 59.92452,
+      "lon": 10.84269,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "alna_smalvoll_stretch",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_alna_bryn": {
+      "id": "map_alna_bryn",
+      "historyGoPlaceId": "alna_bryn",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_alna_bryn",
+      "name": "Alna ved Bryn",
+      "category": "natur",
+      "lat": 59.90931,
+      "lon": 10.81195,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "alna_bryn_stretch",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_svartdalen": {
+      "id": "map_svartdalen",
+      "historyGoPlaceId": "svartdalen",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_svartdalen",
+      "name": "Svartdalen",
+      "category": "natur",
+      "lat": 59.90417,
+      "lon": 10.79289,
+      "emne_ids": [],
+      "buildingTypeId": "building_forest_belt",
+      "mapRole": "svartdalen_gorge",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "green_city_system",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "morning_walk",
+        "quiet_observation",
+        "green_commute_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_kvaernerbyen_alna": {
+      "id": "map_kvaernerbyen_alna",
+      "historyGoPlaceId": "kvaernerbyen_alna",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_kvaernerbyen_alna",
+      "name": "Kværnerbyen ved Alna",
+      "category": "natur",
+      "lat": 59.90355,
+      "lon": 10.78787,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "kvaernerbyen_river_reach",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_alna_utlop_bjorvika": {
+      "id": "map_alna_utlop_bjorvika",
+      "historyGoPlaceId": "alna_utlop_bjorvika",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_alnaelva_rute.json",
+      "civicationPlaceId": "civi_natur_alna_utlop_bjorvika",
+      "name": "Alna utløp i Bjørvika",
+      "category": "natur",
+      "lat": 59.9041,
+      "lon": 10.7638,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_mouth_outlet",
+      "mapRole": "alna_fjord_outlet",
+      "visibleAs": "river_mouth",
+      "socialFunctions": [
+        "river_context",
+        "fjord_access",
+        "walking"
+      ],
+      "phaseTypes": [
+        "harbor_walk",
+        "route_walk",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    }
+  }
+}

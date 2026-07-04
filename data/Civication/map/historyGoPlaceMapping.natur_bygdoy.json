@@ -1,0 +1,197 @@
+{
+  "schema": "civication.historyGoPlaceMapping.natur_bygdoy.v1",
+  "version": 1,
+  "sourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+  "note": "Samlet verifisert per-place mapping for History Go Bygdøy-natursteder til Civication-kartet. Kilden mangler emne_ids; alle poster er merket needsEnrichment.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_bygdoy_kongeskogen": {
+      "id": "map_bygdoy_kongeskogen",
+      "historyGoPlaceId": "bygdoy_kongeskogen",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "civicationPlaceId": "civi_natur_bygdoy_kongeskogen",
+      "name": "Bygdøy Kongeskogen",
+      "category": "natur",
+      "lat": 59.9121,
+      "lon": 10.6758,
+      "emne_ids": [],
+      "buildingTypeId": "building_royal_forest_grove",
+      "mapRole": "royal_forest",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "historical_layer",
+        "green_city_system"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "route_walk",
+        "quiet_reflection",
+        "picnic"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_bygdoy_dronningberget": {
+      "id": "map_bygdoy_dronningberget",
+      "historyGoPlaceId": "bygdoy_dronningberget",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "civicationPlaceId": "civi_natur_bygdoy_dronningberget",
+      "name": "Bygdøy Dronningberget",
+      "category": "natur",
+      "lat": 59.9088,
+      "lon": 10.6921,
+      "emne_ids": [],
+      "buildingTypeId": "building_royal_forest_grove",
+      "mapRole": "queens_hill_grove",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "historical_layer",
+        "viewpoint"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "viewpoint_pause",
+        "quiet_reflection",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_bygdoy_huk": {
+      "id": "map_bygdoy_huk",
+      "historyGoPlaceId": "bygdoy_huk",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "civicationPlaceId": "civi_natur_bygdoy_huk",
+      "name": "Bygdøy Huk",
+      "category": "natur",
+      "lat": 59.8994,
+      "lon": 10.6661,
+      "emne_ids": [],
+      "buildingTypeId": "building_peninsula_beach",
+      "mapRole": "huk_city_beach",
+      "visibleAs": "beach",
+      "socialFunctions": [
+        "bathing",
+        "recreation",
+        "summer_public_life",
+        "social_visibility"
+      ],
+      "phaseTypes": [
+        "summer_bathing",
+        "sunset_fjord_view",
+        "summer_pause",
+        "picnic"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_bygdoy_paradisbukta": {
+      "id": "map_bygdoy_paradisbukta",
+      "historyGoPlaceId": "bygdoy_paradisbukta",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "civicationPlaceId": "civi_natur_bygdoy_paradisbukta",
+      "name": "Bygdøy Paradisbukta",
+      "category": "natur",
+      "lat": 59.8975,
+      "lon": 10.6738,
+      "emne_ids": [],
+      "buildingTypeId": "building_peninsula_beach",
+      "mapRole": "paradisbukta_quiet_beach",
+      "visibleAs": "beach",
+      "socialFunctions": [
+        "bathing",
+        "recreation",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "summer_bathing",
+        "quiet_morning",
+        "picnic"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_bygdoy_bygdoynes": {
+      "id": "map_bygdoy_bygdoynes",
+      "historyGoPlaceId": "bygdoy_bygdoynes",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "civicationPlaceId": "civi_natur_bygdoy_bygdoynes",
+      "name": "Bygdøy Bygdøynes",
+      "category": "natur",
+      "lat": 59.9072,
+      "lon": 10.6992,
+      "emne_ids": [],
+      "buildingTypeId": "building_headland_point",
+      "mapRole": "bygdoynes_museum_headland",
+      "visibleAs": "headland",
+      "socialFunctions": [
+        "viewpoint",
+        "walking",
+        "fjord_access",
+        "culture"
+      ],
+      "phaseTypes": [
+        "viewpoint_pause",
+        "harbor_walk",
+        "tourist_flow",
+        "sunset_fjord_view"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_bygdoy_roykenvika": {
+      "id": "map_bygdoy_roykenvika",
+      "historyGoPlaceId": "bygdoy_roykenvika",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_bygdoy.json",
+      "civicationPlaceId": "civi_natur_bygdoy_roykenvika",
+      "name": "Bygdøy Røykensvika",
+      "category": "natur",
+      "lat": 59.9028,
+      "lon": 10.6861,
+      "emne_ids": [],
+      "buildingTypeId": "building_peninsula_beach",
+      "mapRole": "roykenvika_bay",
+      "visibleAs": "beach",
+      "socialFunctions": [
+        "bathing",
+        "recreation",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "summer_bathing",
+        "quiet_morning",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    }
+  }
+}

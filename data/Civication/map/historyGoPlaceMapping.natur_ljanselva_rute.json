@@ -1,0 +1,226 @@
+{
+  "schema": "civication.historyGoPlaceMapping.natur_ljanselva_rute.v1",
+  "version": 1,
+  "sourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+  "note": "Samlet verifisert per-place mapping for History Go Ljanselva-ruta til Civication-kartet. Kilden mangler emne_ids; alle poster er merket needsEnrichment.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_noklevann_ljanselva_start": {
+      "id": "map_noklevann_ljanselva_start",
+      "historyGoPlaceId": "noklevann_ljanselva_start",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_noklevann_ljanselva_start",
+      "name": "Nøklevann (Ljanselva start)",
+      "category": "natur",
+      "lat": 59.8836,
+      "lon": 10.878,
+      "emne_ids": [],
+      "buildingTypeId": "building_lake_nature",
+      "mapRole": "ljanselva_source_lake",
+      "visibleAs": "lake",
+      "socialFunctions": [
+        "recreation",
+        "bathing",
+        "walking",
+        "green_city_system"
+      ],
+      "phaseTypes": [
+        "morning_run",
+        "summer_bathing",
+        "route_walk",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_skraperudtjern": {
+      "id": "map_skraperudtjern",
+      "historyGoPlaceId": "skraperudtjern",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_skraperudtjern",
+      "name": "Skraperudtjern",
+      "category": "natur",
+      "lat": 59.8728,
+      "lon": 10.8643,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_pond",
+      "mapRole": "skraperud_tarn",
+      "visibleAs": "river_pond",
+      "socialFunctions": [
+        "river_context",
+        "green_pause",
+        "rest"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "evening_river_walk",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_ljanselva_skullerud": {
+      "id": "map_ljanselva_skullerud",
+      "historyGoPlaceId": "ljanselva_skullerud",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_ljanselva_skullerud",
+      "name": "Ljanselva ved Skullerud",
+      "category": "natur",
+      "lat": 59.8642,
+      "lon": 10.8423,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "ljanselva_skullerud_stretch",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_ljanselva_hauketo": {
+      "id": "map_ljanselva_hauketo",
+      "historyGoPlaceId": "ljanselva_hauketo",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_ljanselva_hauketo",
+      "name": "Ljanselva ved Hauketo",
+      "category": "natur",
+      "lat": 59.8485,
+      "lon": 10.816,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "ljanselva_hauketo_stretch",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_ljanselva_ljan": {
+      "id": "map_ljanselva_ljan",
+      "historyGoPlaceId": "ljanselva_ljan",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_ljanselva_ljan",
+      "name": "Ljanselva ved Ljan",
+      "category": "natur",
+      "lat": 59.8359,
+      "lon": 10.8099,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "ljanselva_ljan_stretch",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_ljanselva_fiskevollen": {
+      "id": "map_ljanselva_fiskevollen",
+      "historyGoPlaceId": "ljanselva_fiskevollen",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_ljanselva_fiskevollen",
+      "name": "Ljanselva ved Fiskevollen",
+      "category": "natur",
+      "lat": 59.8319,
+      "lon": 10.8048,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_stretch_path",
+      "mapRole": "ljanselva_fiskevollen_stretch",
+      "visibleAs": "river_path",
+      "socialFunctions": [
+        "everyday_green_route",
+        "walking",
+        "river_context",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "evening_river_walk",
+        "morning_run",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    },
+    "map_ljanselva_bunnefjorden": {
+      "id": "map_ljanselva_bunnefjorden",
+      "historyGoPlaceId": "ljanselva_bunnefjorden",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_ljanselva_rute.json",
+      "civicationPlaceId": "civi_natur_ljanselva_bunnefjorden",
+      "name": "Ljanselva ut i Bunnefjorden",
+      "category": "natur",
+      "lat": 59.8288,
+      "lon": 10.8034,
+      "emne_ids": [],
+      "buildingTypeId": "building_river_mouth_outlet",
+      "mapRole": "ljanselva_fjord_outlet",
+      "visibleAs": "river_mouth",
+      "socialFunctions": [
+        "river_context",
+        "fjord_access",
+        "walking"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "quiet_observation",
+        "sunset_fjord_view"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false,
+      "needsEnrichment": true
+    }
+  }
+}

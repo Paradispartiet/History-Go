@@ -1,0 +1,310 @@
+{
+  "schema": "civication.historyGoPlaceMapping.natur_hovedsteder.v1",
+  "version": 1,
+  "sourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+  "note": "Samlet verifisert per-place mapping for History Go natur-hovedsteder til Civication-kartet.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_ostensjovannet": {
+      "id": "map_ostensjovannet",
+      "historyGoPlaceId": "ostensjovannet",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_ostensjovannet",
+      "name": "Østensjøvannet",
+      "category": "natur",
+      "lat": 59.88833,
+      "lon": 10.82694,
+      "emne_ids": [
+        "em_natur_arter_habitat_mangfold",
+        "em_natur_vern_forvaltning_politikk"
+      ],
+      "buildingTypeId": "building_wetland_bird_area",
+      "mapRole": "ostensjovannet_bird_lake",
+      "visibleAs": "wetland",
+      "socialFunctions": [
+        "green_city_system",
+        "walking",
+        "landscape_adaptation",
+        "quiet_meeting_place"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "morning_walk",
+        "route_observation",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_hovedoya": {
+      "id": "map_hovedoya",
+      "historyGoPlaceId": "hovedoya",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_hovedoya",
+      "name": "Hovedøya",
+      "category": "natur",
+      "lat": 59.89512,
+      "lon": 10.7379,
+      "emne_ids": [
+        "em_natur_kyst_okosystemer",
+        "em_natur_arter_habitat_mangfold"
+      ],
+      "buildingTypeId": "building_island_nature_reserve",
+      "mapRole": "hovedoya_island_reserve",
+      "visibleAs": "island_reserve",
+      "socialFunctions": [
+        "recreation",
+        "bathing",
+        "historical_layer",
+        "fjord_access"
+      ],
+      "phaseTypes": [
+        "summer_bathing",
+        "route_walk",
+        "historical_reflection",
+        "picnic"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gressholmen": {
+      "id": "map_gressholmen",
+      "historyGoPlaceId": "gressholmen",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_gressholmen",
+      "name": "Gressholmen",
+      "category": "natur",
+      "lat": 59.8844,
+      "lon": 10.7226,
+      "emne_ids": [
+        "em_natur_kyst_okosystemer",
+        "em_natur_arter_habitat_mangfold",
+        "em_his_historiske_lag_i_byrom"
+      ],
+      "buildingTypeId": "building_island_nature_reserve",
+      "mapRole": "gressholmen_island_reserve",
+      "visibleAs": "island_reserve",
+      "socialFunctions": [
+        "recreation",
+        "bathing",
+        "green_city_system",
+        "fjord_access"
+      ],
+      "phaseTypes": [
+        "summer_bathing",
+        "quiet_observation",
+        "route_walk",
+        "picnic"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bygdoy_natur": {
+      "id": "map_bygdoy_natur",
+      "historyGoPlaceId": "bygdoy_natur",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_bygdoy_natur",
+      "name": "Bygdøy natur- og kulturmiljø",
+      "category": "natur",
+      "lat": 59.9048,
+      "lon": 10.6849,
+      "emne_ids": [
+        "em_natur_kyst_fjord_og_strand",
+        "em_natur_gronnstruktur_korridorer",
+        "em_natur_urban_okologi_byrom",
+        "em_natur_sosial_naturforvaltning"
+      ],
+      "buildingTypeId": "building_royal_forest_grove",
+      "mapRole": "bygdoy_nature_culture_landscape",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "historical_layer",
+        "green_city_system"
+      ],
+      "phaseTypes": [
+        "morning_walk",
+        "route_walk",
+        "picnic",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ljanselva": {
+      "id": "map_ljanselva",
+      "historyGoPlaceId": "ljanselva",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_ljanselva",
+      "name": "Ljanselva",
+      "category": "natur",
+      "lat": 59.8551,
+      "lon": 10.7941,
+      "emne_ids": [
+        "em_natur_elver_bekker_vassdrag",
+        "em_natur_bekkeapning_overvann"
+      ],
+      "buildingTypeId": "building_river_landmark",
+      "mapRole": "ljanselva_river_system",
+      "visibleAs": "river",
+      "socialFunctions": [
+        "green_city_system",
+        "river_context",
+        "walking"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "neighborhood_green_route",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_maerradalen": {
+      "id": "map_maerradalen",
+      "historyGoPlaceId": "maerradalen",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_maerradalen",
+      "name": "Mærradalen",
+      "category": "natur",
+      "lat": 59.9368,
+      "lon": 10.6612,
+      "emne_ids": [
+        "em_natur_gronnstruktur_korridorer",
+        "em_by_klima_blagronn_klimatilpasning",
+        "em_by_stillhet_vs_aktivitet_i_grontrom"
+      ],
+      "buildingTypeId": "building_forest_belt",
+      "mapRole": "maerradalen_valley",
+      "visibleAs": "forest_area",
+      "socialFunctions": [
+        "recreation",
+        "walking",
+        "green_city_system",
+        "neighborhood_life"
+      ],
+      "phaseTypes": [
+        "neighborhood_green_route",
+        "morning_walk",
+        "quiet_observation",
+        "green_commute_route"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_maridalsvannet": {
+      "id": "map_maridalsvannet",
+      "historyGoPlaceId": "maridalsvannet",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_maridalsvannet",
+      "name": "Maridalsvannet",
+      "category": "natur",
+      "lat": 59.9843,
+      "lon": 10.7789,
+      "emne_ids": [
+        "em_natur_vannkvalitet_forurensning",
+        "em_natur_elver_bekker_vassdrag"
+      ],
+      "buildingTypeId": "building_lake_nature",
+      "mapRole": "maridalsvannet_drinking_water_lake",
+      "visibleAs": "lake",
+      "socialFunctions": [
+        "recreation",
+        "bathing",
+        "walking",
+        "green_city_system"
+      ],
+      "phaseTypes": [
+        "morning_run",
+        "summer_bathing",
+        "route_walk",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_noklevann": {
+      "id": "map_noklevann",
+      "historyGoPlaceId": "noklevann",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_noklevann",
+      "name": "Nøklevann",
+      "category": "natur",
+      "lat": 59.8834,
+      "lon": 10.8782,
+      "emne_ids": [
+        "em_natur_friluftsliv_helse",
+        "em_natur_arter_habitat_mangfold"
+      ],
+      "buildingTypeId": "building_lake_nature",
+      "mapRole": "noklevann_forest_lake",
+      "visibleAs": "lake",
+      "socialFunctions": [
+        "recreation",
+        "bathing",
+        "walking",
+        "green_city_system"
+      ],
+      "phaseTypes": [
+        "morning_run",
+        "summer_bathing",
+        "route_walk",
+        "quiet_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_alnaelva_hovedsteder": {
+      "id": "map_alnaelva_hovedsteder",
+      "historyGoPlaceId": "alnaelva_hovedsteder",
+      "historyGoSourceFile": "places/natur/oslo/places_oslo_natur_hovedsteder.json",
+      "civicationPlaceId": "civi_natur_alnaelva_hovedsteder",
+      "name": "Alnaelva",
+      "category": "natur",
+      "lat": 59.9325,
+      "lon": 10.833,
+      "emne_ids": [
+        "em_natur_elver_bekker_vassdrag",
+        "em_natur_vannkvalitet_forurensning",
+        "em_natur_bekkeapning_overvann",
+        "em_natur_forstyrrelse_regenerasjon"
+      ],
+      "buildingTypeId": "building_river_landmark",
+      "mapRole": "alna_river_headline_entry",
+      "visibleAs": "river",
+      "socialFunctions": [
+        "green_city_system",
+        "river_context",
+        "walking",
+        "landscape_adaptation"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "neighborhood_green_route",
+        "green_commute_route",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

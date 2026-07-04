@@ -35,6 +35,17 @@ const MAPPING_FILES = [
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.media.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.film.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.psykologi.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_alna.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_akerselvarute.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_alnaelva_rute.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_bygdoy.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_hovedsteder.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_ljanselva_rute.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_ostensjovannet.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.natur_salamanderdammer.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.sport_oslo.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.sport_lekeplasser_trening.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.motorsport_ostlandet.json"),
 ];
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 
