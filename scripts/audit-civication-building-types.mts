@@ -1,8 +1,9 @@
 // scripts/audit-civication-building-types.mjs
-// Read-only audit av buildingTypeId-referanser brukt av Civication History Go mapping.
+// Read-only audit av buildingTypeId-referanser brukt av Civication History Go mappingene.
 //
 // Validerer at alle buildingTypeId brukt i:
 //   data/Civication/map/historyGoPlaceMapping.by.json
+//   data/Civication/map/historyGoPlaceMapping.historie.json
 // finnes som definisjon i:
 //   data/Civication/map/buildingTypes.json
 //
@@ -19,7 +20,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = process.cwd();
 
-const MAPPING_FILE = path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json");
+// Alle per-place mappingfiler; brukte buildingTypeId samles på tvers av disse.
+const MAPPING_FILES = [
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie.json"),
+];
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 
 async function readJSON(file): Promise<Record<string, unknown> | unknown[]> {
@@ -72,13 +77,13 @@ function extractBuildingTypeIds(buildingTypesData: unknown) {
 }
 
 async function main() {
-  let mappingData;
+  let mappingDataList;
   let buildingTypesData;
 
   try {
-    [mappingData, buildingTypesData] = await Promise.all([
-      readJSON(MAPPING_FILE),
+    [buildingTypesData, ...mappingDataList] = await Promise.all([
       readJSON(BUILDING_TYPES_FILE),
+      ...MAPPING_FILES.map((file) => readJSON(file)),
     ]);
   } catch (err) {
     console.error(`FEIL: ${err.message}`);
@@ -87,10 +92,20 @@ async function main() {
 
   const fatal = [];
 
-  const mappingObject = asObject(mappingData);
-  const mappings = asObject(mappingObject?.mappings);
-  if (!mappings || typeof mappings !== "object" || Array.isArray(mappings)) {
-    fatal.push("Mappingfilen mangler et gyldig mappings-objekt");
+  // Slå sammen mappings fra alle filene; nøkler prefikses med filnavn i
+  // rapporten slik at feil kan spores tilbake til riktig fil.
+  const mappingEntries: [string, JsonObject][] = [];
+  for (let i = 0; i < mappingDataList.length; i += 1) {
+    const fileLabel = path.basename(MAPPING_FILES[i]);
+    const mappingObject = asObject(mappingDataList[i]);
+    const mappings = asObject(mappingObject?.mappings);
+    if (!mappings || typeof mappings !== "object" || Array.isArray(mappings)) {
+      fatal.push(`${fileLabel}: mangler et gyldig mappings-objekt`);
+      continue;
+    }
+    for (const [key, value] of Object.entries(mappings) as [string, JsonObject][]) {
+      mappingEntries.push([`${fileLabel}#${key}`, value]);
+    }
   }
 
   const definedBuildingTypeIds = extractBuildingTypeIds(buildingTypesData);
@@ -98,9 +113,6 @@ async function main() {
   const missingBuildingTypeIdField = [];
   const nonStringBuildingTypeId = [];
   const missingDefinitions = [];
-  const mappingEntries = mappings && typeof mappings === "object" && !Array.isArray(mappings)
-    ? Object.entries(mappings) as [string, JsonObject][]
-    : [];
 
   for (const [mappingKey, mapping] of mappingEntries) {
     if (!Object.hasOwn(mapping ?? {}, "buildingTypeId")) {
@@ -154,6 +166,7 @@ function printReport(report) {
 
   line("=== Civication building types audit ===");
   line(`Mapping:       data/Civication/map/historyGoPlaceMapping.by.json`);
+  line(`               data/Civication/map/historyGoPlaceMapping.historie.json`);
   line(`BuildingTypes: data/Civication/map/buildingTypes.json`);
   line("");
   line("Sammendrag:");

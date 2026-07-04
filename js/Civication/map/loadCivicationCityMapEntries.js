@@ -2,7 +2,7 @@
 //
 // Browser-kompatibel loader-modul for Civication city map entries.
 //
-// Henter og transformerer History Go by-mappingen til rene Civication city map
+// Henter og transformerer History Go-mappingene til rene Civication city map
 // entries. Dette er loader-GRUNNLAG: modulen kobles IKKE inn i kartet/UI ennå,
 // auto-kjører ikke, og skriver hverken filer eller DOM. Den eksponerer kun rene
 // funksjoner via window, slik resten av Civication-runtime kan bruke dem senere.
@@ -12,6 +12,16 @@
 //   data/Civication/map/historyGoPlaceMapping.by.json
 //   data/Civication/map/buildingTypes.json
 //     -> in-memory cityMapEntries
+//
+// Uten options laster loaderen by-mappingen (default). Andre kategorier lastes
+// ved å oppgi mappingPath/placesPath + expectedSourceFile/expectedCategory,
+// f.eks. historie:
+//   loadCivicationCityMapEntries({
+//     mappingPath: "data/Civication/map/historyGoPlaceMapping.historie.json",
+//     placesPath: "data/places/historie/oslo/places_historie.json",
+//     expectedSourceFile: "places/historie/oslo/places_historie.json",
+//     expectedCategory: "historie"
+//   })
 //
 // Speiler valideringen i scripts/audit-civication-city-map-entries.mjs.
 
@@ -24,7 +34,7 @@
  * @property {string} id
  * @property {string} historyGoPlaceId
  * @property {string} name
- * @property {"by"} category
+ * @property {string} category
  * @property {number} lat
  * @property {number} lon
  * @property {string} buildingTypeId
@@ -59,9 +69,8 @@
   var DEFAULT_PLACES_PATH = "data/places/by/oslo/places_by.json";
   var DEFAULT_BUILDING_TYPES_PATH = "data/Civication/map/buildingTypes.json";
 
-  var EXPECTED_SOURCE_FILE = "places/by/oslo/places_by.json";
-  var MAPPING_FILE_REL = "data/Civication/map/historyGoPlaceMapping.by.json";
-  var PLACES_FILE_REL = "data/places/by/oslo/places_by.json";
+  var DEFAULT_EXPECTED_SOURCE_FILE = "places/by/oslo/places_by.json";
+  var DEFAULT_EXPECTED_CATEGORY = "by";
 
   function snippet(text) {
     if (typeof text !== "string") {
@@ -195,18 +204,28 @@
   }
 
   /**
-   * Transformer History Go by-mappingen til Civication city map entries.
+   * Transformer en History Go-mapping til Civication city map entries.
    * Speiler valideringen i scripts/audit-civication-city-map-entries.mjs.
    * Ved alvorlig feil kastes Error – ingen delvise entries returneres.
    *
-   * @param {{ mappingData: unknown, placesData: unknown, buildingTypesData: unknown }} input
+   * Uten expected*-felt valideres mot by-mappingen (default).
+   *
+   * @param {{ mappingData: unknown, placesData: unknown, buildingTypesData: unknown,
+   *           expectedSourceFile?: string, expectedCategory?: string,
+   *           mappingFileRel?: string, placesFileRel?: string }} input
    * @returns {CiviCityMapResult}
    */
   function transformCivicationCityMapEntries(input) {
-    var safeInput = /** @type {{ mappingData: any, placesData: any, buildingTypesData: any }} */ (input || {});
+    var safeInput = /** @type {{ mappingData: any, placesData: any, buildingTypesData: any,
+      expectedSourceFile?: string, expectedCategory?: string,
+      mappingFileRel?: string, placesFileRel?: string }} */ (input || {});
     var mappingData = safeInput.mappingData;
     var placesData = safeInput.placesData;
     var buildingTypesData = safeInput.buildingTypesData;
+    var expectedSourceFile = safeInput.expectedSourceFile || DEFAULT_EXPECTED_SOURCE_FILE;
+    var expectedCategory = safeInput.expectedCategory || DEFAULT_EXPECTED_CATEGORY;
+    var mappingFileRel = safeInput.mappingFileRel || DEFAULT_MAPPING_PATH;
+    var placesFileRel = safeInput.placesFileRel || DEFAULT_PLACES_PATH;
 
     var fatal = [];
 
@@ -214,10 +233,10 @@
     if (mappingData == null || typeof mappingData !== "object") {
       throw new Error("transformCivicationCityMapEntries: mappingData mangler eller er ikke et objekt");
     }
-    if (mappingData.sourceFile !== EXPECTED_SOURCE_FILE) {
+    if (mappingData.sourceFile !== expectedSourceFile) {
       fatal.push(
         'Mappingfilen har feil sourceFile: forventet "' +
-          EXPECTED_SOURCE_FILE +
+          expectedSourceFile +
           '", fikk ' +
           JSON.stringify(mappingData.sourceFile)
       );
@@ -231,7 +250,7 @@
     }
 
     if (!Array.isArray(placesData)) {
-      fatal.push(PLACES_FILE_REL + " er ikke en liste over steder");
+      fatal.push(placesFileRel + " er ikke en liste over steder");
     }
 
     // Hvis grunnstrukturen er ødelagt kan vi ikke trygt fortsette.
@@ -277,8 +296,8 @@
       if (!requireString(m.name)) {
         fatal.push(label + ": mangler gyldig name (string)");
       }
-      if (m.category !== "by") {
-        fatal.push(label + ': category må være "by", fikk ' + JSON.stringify(m.category));
+      if (m.category !== expectedCategory) {
+        fatal.push(label + ': category må være "' + expectedCategory + '", fikk ' + JSON.stringify(m.category));
       }
       if (typeof m.lat !== "number") {
         fatal.push(label + ": lat må være number, fikk " + JSON.stringify(m.lat));
@@ -352,7 +371,7 @@
         mappedHistoryGoPlaceIds.add(m.historyGoPlaceId);
         var place = placesById.get(m.historyGoPlaceId);
         if (!place) {
-          fatal.push(label + ': historyGoPlaceId "' + m.historyGoPlaceId + '" finnes ikke i ' + PLACES_FILE_REL);
+          fatal.push(label + ': historyGoPlaceId "' + m.historyGoPlaceId + '" finnes ikke i ' + placesFileRel);
         } else {
           if (m.name !== place.name) {
             fatal.push(label + ': name "' + m.name + '" matcher ikke kilde "' + place.name + '"');
@@ -386,7 +405,7 @@
         id: m.civicationPlaceId,
         historyGoPlaceId: m.historyGoPlaceId,
         name: m.name,
-        category: /** @type {"by"} */ ("by"),
+        category: m.category,
         lat: m.lat,
         lon: m.lon,
         buildingTypeId: m.buildingTypeId,
@@ -396,8 +415,8 @@
         phaseTypes: Array.isArray(m.phaseTypes) ? m.phaseTypes.slice() : m.phaseTypes,
         groundhopperRelevant: m.groundhopperRelevant,
         source: {
-          mappingFile: MAPPING_FILE_REL,
-          historyGoSourceFile: PLACES_FILE_REL
+          mappingFile: mappingFileRel,
+          historyGoSourceFile: placesFileRel
         }
       });
     }
@@ -466,8 +485,11 @@
 
   /**
    * Hent alle tre JSON-filer og transformer til city map entries.
+   * Uten options lastes by-mappingen; andre kategorier oppgir egne stier og
+   * expectedSourceFile/expectedCategory (se filhodet for historie-eksempel).
    *
-   * @param {{ mappingPath?: string, placesPath?: string, buildingTypesPath?: string }} [options]
+   * @param {{ mappingPath?: string, placesPath?: string, buildingTypesPath?: string,
+   *           expectedSourceFile?: string, expectedCategory?: string }} [options]
    * @returns {Promise<CiviCityMapResult>}
    */
   function loadCivicationCityMapEntries(options) {
@@ -484,7 +506,11 @@
       return transformCivicationCityMapEntries({
         mappingData: results[0],
         placesData: results[1],
-        buildingTypesData: results[2]
+        buildingTypesData: results[2],
+        expectedSourceFile: opts.expectedSourceFile,
+        expectedCategory: opts.expectedCategory,
+        mappingFileRel: mappingPath,
+        placesFileRel: placesPath
       });
     });
   }
