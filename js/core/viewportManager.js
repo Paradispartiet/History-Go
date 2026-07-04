@@ -9,12 +9,12 @@
   // utenfor det skalerte design-canvaset og måles i ekte viewport-piksler).
   // Footerens safe-area legges til separat i CSS via --hg-bottom-nav-height.
   // Smale viewports (mobil OG smale nettbrett/vinduer, f.eks. iPad-portrett)
-  // bruker en høyere kompakt header som kan brekke til to rader – se
+  // bruker samme kompakte én-rads header – se
   // "HEADER – KOMPAKT/MOBIL" i css/miniProfile.css. Breakpointet der speiler
   // COMPACT_HEADER_MAX_VW. Alle lag under leser --hg-visual-header-height.
-  const HEADER_HEIGHT = 74;
-  const PHONE_HEADER_HEIGHT = 104;
-  const COMPACT_HEADER_HEIGHT = 112;
+  const HEADER_HEIGHT = 56;
+  const PHONE_HEADER_HEIGHT = 56;
+  const COMPACT_HEADER_HEIGHT = 56;
   const COMPACT_HEADER_MAX_VW = 860;
   const FOOTER_HEIGHT = 72;
   const NEARBY_HEIGHT_TABLET = 260;

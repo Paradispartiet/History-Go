@@ -483,3 +483,150 @@ body.hg-app.hg-phone .site-header .top-actions .toggle{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+/* Header cleanup: keep the app header as one compact, non-wrapping topbar. */
+body.hg-app header.site-header{
+  height: var(--hg-visual-header-height, 56px);
+  min-height: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  gap: 6px;
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+body.hg-app .hg-brand{
+  width: 54px;
+  height: 54px;
+  top: 1px;
+  left: calc(6px + env(safe-area-inset-left));
+}
+
+body.hg-app .site-header .top-actions,
+body.hg-app.hg-phone .site-header .top-actions{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding-left: 58px;
+  gap: 5px;
+  flex-wrap: nowrap;
+  align-content: center;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+body.hg-app .site-header .top-actions .top-lang-select,
+body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
+  width: 46px !important;
+  max-width: 46px !important;
+  height: 32px;
+  flex: 0 0 46px;
+  padding: 2px 4px !important;
+  font-size: 1rem !important;
+  line-height: 1;
+}
+
+body.hg-app .site-header .top-actions #miniProfile,
+body.hg-app.hg-phone .site-header .top-actions #miniProfile{
+  width: clamp(92px, 24vw, 150px);
+  max-width: clamp(92px, 24vw, 150px);
+  flex: 1 1 150px;
+  min-width: 72px;
+  height: 40px;
+  max-height: 40px;
+  padding: 4px 7px;
+  border-radius: 12px;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  row-gap: 0;
+}
+
+body.hg-app .site-header .top-actions #miniProfile #miniName,
+body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniName{
+  font-size: 12px;
+  line-height: 1.05;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.hg-app .site-header .top-actions #miniProfile .mp-extra,
+body.hg-app .site-header .top-actions #miniProfile #miniStats,
+body.hg-app .site-header .top-actions #miniProfile .mini-position-line{
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body.hg-app .site-header .top-actions #miniProfile #miniStats,
+body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniStats{
+  font-size: 10px;
+  line-height: 1;
+  gap: 4px;
+}
+
+body.hg-app .site-header .top-actions #miniProfile .mini-position-line,
+body.hg-app.hg-phone .site-header .top-actions #miniProfile .mini-position-line{
+  font-size: 10px;
+  line-height: 1;
+  margin-top: 0;
+}
+
+body.hg-app .site-header .top-actions .iconbtn,
+body.hg-app.hg-phone .site-header .top-actions .iconbtn,
+body.hg-app .header-menu-button{
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+body.hg-app #geoStatus,
+body.hg-app.hg-phone #geoStatus{
+  width: 22px;
+  min-width: 18px;
+  flex: 0 0 22px;
+  font-size: 15px;
+}
+
+body.hg-app .header-menu-panel{
+  top: calc(100% + 8px);
+  max-height: calc(100vh - var(--hg-visual-header-height, 56px) - 16px);
+}
+
+@media (max-width: 380px){
+  body.hg-app .site-header .top-actions,
+  body.hg-app.hg-phone .site-header .top-actions{
+    gap: 3px;
+    padding-left: 48px;
+  }
+
+  body.hg-app .hg-brand{
+    width: 46px;
+    height: 46px;
+    top: 5px;
+  }
+
+  body.hg-app .site-header .top-actions #miniProfile,
+  body.hg-app.hg-phone .site-header .top-actions #miniProfile{
+    width: 82px;
+    max-width: 82px;
+    flex-basis: 82px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  body.hg-app .site-header .top-actions .top-lang-select,
+  body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
+    width: 40px !important;
+    max-width: 40px !important;
+    flex-basis: 40px;
+  }
+}
