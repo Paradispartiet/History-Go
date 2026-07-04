@@ -1,16 +1,16 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-07-04T09:03:20.745Z
+Generert: 2026-07-04T17:38:16.429Z
 
 ## Aktiv hovedstatistikk
-- Aktive place-filer lest: **91**
-- Aktive steder lest: **911**
+- Aktive place-filer lest: **92**
+- Aktive steder lest: **919**
 - ok: **310**
 - needs_review: **77**
 - conflict: **2**
 - invalid: **0**
 - duplicate: **0**
-- outside_expected_area: **522**
+- outside_expected_area: **530**
 
 ## Aktive filer (fra manifest)
 - data/places/by/europe/portugal/lisbon/places_lisbon_by.json
@@ -62,6 +62,7 @@ Generert: 2026-07-04T09:03:20.745Z
 - data/places/historie/telemark/places_historie_telemark_batch1.json
 - data/places/historie/telemark/places_historie_telemark_batch2.json
 - data/places/historie/telemark/places_historie_telemark_batch3.json
+- data/places/historie/telemark/places_historie_telemark_batch4.json
 - data/places/historie/vestfold/places_historie_vestfold_batch1.json
 - data/places/historie/vestfold/places_historie_vestfold_batch2.json
 - data/places/historie/vestfold/places_historie_vestfold_batch3.json
@@ -472,6 +473,14 @@ Generert: 2026-07-04T09:03:20.745Z
 | data/places/historie/telemark/places_historie_telemark_batch3.json | eidanger_kirke_porsgrunn | Eidanger kirke | historie | 59.1234 | 9.7004 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
 | data/places/historie/telemark/places_historie_telemark_batch3.json | bamble_kirke | Bamble kirke | historie | 59.0157 | 9.5619 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
 | data/places/historie/telemark/places_historie_telemark_batch3.json | kragero_kirke_byhistorie | Kragerø kirke / byhistorisk kirkested | historie | 58.8691 | 9.4146 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | svelgfoss_kraftverk_notodden | Svelgfoss kraftverk | historie | 59.5602 | 9.1878 | 380 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | holla_kirkeruin_ulefoss | Holla kirkeruin Ulefoss | historie | 59.2851 | 9.2708 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | romnes_kirke_nome | Romnes kirke | historie | 59.2637 | 9.2596 | 280 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | brevik_byhistorie_tollbod | Brevik byhistorisk miljø / Tollboden | historie | 59.0556 | 9.6998 | 340 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | langesund_kirke_byhistorie | Langesund kirke / kystbyhistorie | historie | 59.0007 | 9.7478 | 300 | outside_expected_area | outside_oslo_possible_intended, area_or_park_needs_manual_review |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | lunde_sluse_telemarkskanalen | Lunde sluse / Telemarkskanalen | historie | 59.297 | 9.1011 | 320 | outside_expected_area | low_precision_coord, outside_oslo_possible_intended |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | kjeldal_sluse_telemarkskanalen | Kjeldal sluse / Telemarkskanalen | historie | 59.2961 | 9.1414 | 320 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/historie/telemark/places_historie_telemark_batch4.json | hogga_sluse_telemarkskanalen | Hogga sluse / Telemarkskanalen | historie | 59.2749 | 9.2144 | 320 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | hafrsfjord | Hafrsfjord | historie | 58.9414 | 5.6713 | 450 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | avaldsnes_kongsgard | Avaldsnes kongsgård | historie | 59.35458 | 5.29262 | 180 | outside_expected_area | outside_oslo_possible_intended |
 | data/places/historie/norge/places_historie_norge_for_1500_batch1.json | stiklestad | Stiklestad | historie | 63.7956 | 11.559 | 220 | outside_expected_area | outside_oslo_possible_intended |
