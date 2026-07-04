@@ -1,19 +1,19 @@
 # Civication – History Go map audit
 
-Generert: 2026-07-02T22:49:54.645Z
+Generert: 2026-07-04T17:31:59.468Z
 
 ## Sammendrag
 
-- Filer i manifest: **86**
-- Steder totalt: **869**
-- Oslo-steder plassert på kartet: **318**
+- Filer i manifest: **92**
+- Steder totalt: **919**
+- Oslo-steder plassert på kartet: **320**
 
 | Kategori | Antall |
 | --- | ---: |
 | missing_lat_lon | 0 |
-| non_oslo_skipped | 551 |
+| non_oslo_skipped | 599 |
 | missing_asset_type | 0 |
-| projected_from_lat_lon | 318 |
+| projected_from_lat_lon | 320 |
 | uses_manual_civiMap | 0 |
 | duplicate_ids | 0 |
 
@@ -21,7 +21,7 @@ Generert: 2026-07-02T22:49:54.645Z
 
 _Ingen._
 
-## Ikke-Oslo, hoppet over (551)
+## Ikke-Oslo, hoppet over (599)
 
 - `raknehaugen` – places/historie/akershus/places_historie_akershus_batch1.json
 - `nes_kirkeruiner` – places/historie/akershus/places_historie_akershus_batch1.json
@@ -48,13 +48,13 @@ _Ingen._
 - `hadeland_glassverk` – places/historie/akershus/places_historie_akershus_batch4.json
 - `kistefos_traesliperi` – places/historie/akershus/places_historie_akershus_batch4.json
 - `lunner_kirke` – places/historie/akershus/places_historie_akershus_batch4.json
-- … og 526 til (se JSON).
+- … og 574 til (se JSON).
 
 ## Mangler eksplisitt assetType (bruker heuristikk) (0)
 
 _Ingen._
 
-## Projisert fra lat/lon (trenger evt. manuell civiMap.x/y) (318)
+## Projisert fra lat/lon (trenger evt. manuell civiMap.x/y) (320)
 
 - `torggata` – lat 59.915, lon 10.7526
 - `bispelokket` – lat 59.9078, lon 10.7538
@@ -81,7 +81,7 @@ _Ingen._
 - `markveien` – lat 59.9234, lon 10.7573
 - `gronlandsleiret` – lat 59.9116, lon 10.767
 - `storgata` – lat 59.9154, lon 10.7539
-- … og 293 til (se JSON).
+- … og 295 til (se JSON).
 
 ## Bruker manuell civiMap.x/y (0)
 

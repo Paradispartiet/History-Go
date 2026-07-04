@@ -94,6 +94,78 @@ check("rene transform-funksjoner virker uten fetch/DOM", () => {
   assert.strictEqual(byId.get("p1").name, "A");
 });
 
+check("transform støtter andre kategorier via expectedSourceFile/expectedCategory", () => {
+  const sandboxWindow = {};
+  const context = { window: sandboxWindow };
+  vm.createContext(context);
+  vm.runInContext(source, context, { filename: "loadCivicationCityMapEntries.js" });
+  const api = sandboxWindow.CivicationCityMapEntriesLoader;
+
+  const historiePlace = {
+    id: "sagene_skole",
+    name: "Sagene skole",
+    category: "historie",
+    lat: 59.9368,
+    lon: 10.7556,
+    emne_ids: ["em_his_skole_folkedannelse"]
+  };
+  const historieMapping = {
+    schema: "civication.historyGoPlaceMapping.historie.v1",
+    version: 1,
+    sourceFile: "places/historie/oslo/places_historie.json",
+    mappings: {
+      map_sagene_skole: {
+        id: "map_sagene_skole",
+        historyGoPlaceId: "sagene_skole",
+        historyGoSourceFile: "places/historie/oslo/places_historie.json",
+        civicationPlaceId: "civi_historie_sagene_skole",
+        name: "Sagene skole",
+        category: "historie",
+        lat: 59.9368,
+        lon: 10.7556,
+        emne_ids: ["em_his_skole_folkedannelse"],
+        buildingTypeId: "building_historic_public_school",
+        mapRole: "worker_district_school_history",
+        visibleAs: "historic_school",
+        socialFunctions: ["education"],
+        phaseTypes: ["school_commute"],
+        groundhopperRelevant: false,
+        needsVerification: false
+      }
+    }
+  };
+  const buildingTypes = { buildingTypes: { building_historic_public_school: { id: "building_historic_public_school" } } };
+
+  // Med riktige expected*-verdier transformeres historie-mappingen.
+  const result = api.transformCivicationCityMapEntries({
+    mappingData: historieMapping,
+    placesData: [historiePlace],
+    buildingTypesData: buildingTypes,
+    expectedSourceFile: "places/historie/oslo/places_historie.json",
+    expectedCategory: "historie",
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie.json",
+    placesFileRel: "data/places/historie/oslo/places_historie.json"
+  });
+  assert.strictEqual(result.entries.length, 1, "historie-mappingen skal gi 1 entry");
+  assert.strictEqual(result.entries[0].category, "historie", "entry skal beholde kategorien");
+  assert.strictEqual(
+    result.entries[0].source.mappingFile,
+    "data/Civication/map/historyGoPlaceMapping.historie.json",
+    "source.mappingFile skal peke på historie-mappingfilen"
+  );
+
+  // Uten expected*-verdier skal by-defaulten fortsatt avvise historie-data.
+  assert.throws(
+    () => api.transformCivicationCityMapEntries({
+      mappingData: historieMapping,
+      placesData: [historiePlace],
+      buildingTypesData: buildingTypes
+    }),
+    /sourceFile/,
+    "by-default skal avvise historie-mapping uten expected*-overstyring"
+  );
+});
+
 if (failures > 0) {
   console.error("\n" + failures + " sjekk(er) feilet.");
   process.exit(1);

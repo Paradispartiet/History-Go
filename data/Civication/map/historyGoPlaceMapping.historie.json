@@ -1,0 +1,588 @@
+{
+  "schema": "civication.historyGoPlaceMapping.historie.v1",
+  "version": 1,
+  "sourceFile": "places/historie/oslo/places_historie.json",
+  "note": "Samlet verifisert per-place mapping for History Go historie-steder (Oslo) til Civication-kartet. Alle steder i kilden har emne_ids, så ingen poster trenger needsEnrichment.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_middelalder_oslo": {
+      "id": "map_middelalder_oslo",
+      "historyGoPlaceId": "middelalder_oslo",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_middelalder_oslo",
+      "name": "Middelalderparken",
+      "category": "historie",
+      "lat": 59.9048,
+      "lon": 10.7605,
+      "emne_ids": [
+        "em_his_tid_periodisering_epoker",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_middelalder_oslo"
+      ],
+      "buildingTypeId": "building_medieval_ruin_park",
+      "mapRole": "medieval_city_origin_park",
+      "visibleAs": "ruin_park",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "walking",
+        "recreation",
+        "park_life"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_morning",
+        "midday_public_life",
+        "summer_pause",
+        "event_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_domkirke": {
+      "id": "map_oslo_domkirke",
+      "historyGoPlaceId": "oslo_domkirke",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_oslo_domkirke",
+      "name": "Oslo domkirke",
+      "category": "historie",
+      "lat": 59.9129,
+      "lon": 10.7461,
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_middelalder_oslo"
+      ],
+      "buildingTypeId": "building_city_cathedral",
+      "mapRole": "city_main_church",
+      "visibleAs": "church_landmark",
+      "socialFunctions": [
+        "religion",
+        "ceremony",
+        "city_symbol",
+        "tourism",
+        "public_rest"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "quiet_reflection",
+        "tourist_flow",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_damstredet_telthusbakken": {
+      "id": "map_damstredet_telthusbakken",
+      "historyGoPlaceId": "damstredet_telthusbakken",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_damstredet_telthusbakken",
+      "name": "Damstredet og Telthusbakken",
+      "category": "historie",
+      "lat": 59.9236,
+      "lon": 10.7474,
+      "emne_ids": [
+        "em_his_modernisering_1800",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_spor_materialitet"
+      ],
+      "buildingTypeId": "building_preserved_wooden_lane",
+      "mapRole": "preserved_wooden_housing_lane",
+      "visibleAs": "historic_lane",
+      "socialFunctions": [
+        "historical_layer",
+        "photo_point",
+        "walking",
+        "local_identity",
+        "material_experience"
+      ],
+      "phaseTypes": [
+        "tourist_photo",
+        "morning_walk",
+        "historical_reflection",
+        "quiet_residential_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamle_trikkestallen": {
+      "id": "map_gamle_trikkestallen",
+      "historyGoPlaceId": "gamle_trikkestallen",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_gamle_trikkestallen",
+      "name": "Gamle trikkestallen på Sagene",
+      "category": "historie",
+      "lat": 59.9396,
+      "lon": 10.7543,
+      "emne_ids": [
+        "em_his_industriby_1900",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_modernisering_1800"
+      ],
+      "buildingTypeId": "building_historic_tram_depot",
+      "mapRole": "tram_history_depot",
+      "visibleAs": "industrial_heritage_hall",
+      "socialFunctions": [
+        "industrial_memory",
+        "transport_history",
+        "local_memory",
+        "culture"
+      ],
+      "phaseTypes": [
+        "industrial_memory_reflection",
+        "traffic_memory",
+        "neighborhood_walk",
+        "cultural_visit"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_slottet": {
+      "id": "map_slottet",
+      "historyGoPlaceId": "slottet",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_slottet",
+      "name": "Det kongelige slott",
+      "category": "historie",
+      "lat": 59.9169,
+      "lon": 10.7276,
+      "emne_ids": [
+        "em_his_stat_institusjoner",
+        "em_his_nasjonal_identitet_fortellinger",
+        "em_his_modernisering_1800"
+      ],
+      "buildingTypeId": "building_royal_palace",
+      "mapRole": "royal_residence_axis_endpoint",
+      "visibleAs": "palace_landmark",
+      "socialFunctions": [
+        "national_representation",
+        "ceremony",
+        "tourism",
+        "symbolic_power",
+        "city_symbol"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "tourist_flow",
+        "symbolic_city_axis",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_sofienberg_kirke": {
+      "id": "map_sofienberg_kirke",
+      "historyGoPlaceId": "sofienberg_kirke",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_sofienberg_kirke",
+      "name": "Sofienberg kirke",
+      "category": "historie",
+      "lat": 59.9225,
+      "lon": 10.7604,
+      "emne_ids": [
+        "em_his_modernisering_1800",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_kulturminner_bevaring"
+      ],
+      "buildingTypeId": "building_1800s_brick_city_church",
+      "mapRole": "eastside_expansion_church",
+      "visibleAs": "church_landmark",
+      "socialFunctions": [
+        "religion",
+        "historical_layer",
+        "neighborhood_identity",
+        "green_pause"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "quiet_reflection",
+        "evening_local_park",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamlebyen_gravlund": {
+      "id": "map_gamlebyen_gravlund",
+      "historyGoPlaceId": "gamlebyen_gravlund",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_gamlebyen_gravlund",
+      "name": "Gamlebyen gravlund",
+      "category": "historie",
+      "lat": 59.9027,
+      "lon": 10.7735,
+      "emne_ids": [
+        "em_his_minnesteder_historiebruk",
+        "em_his_spor_materialitet",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_sosialhistorie_hverdagsliv"
+      ],
+      "buildingTypeId": "building_historic_city_cemetery",
+      "mapRole": "old_town_burial_memory",
+      "visibleAs": "historic_cemetery",
+      "socialFunctions": [
+        "local_memory",
+        "historical_layer",
+        "public_reflection",
+        "rest"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "historical_reflection",
+        "morning_walk",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_akerhus_slott": {
+      "id": "map_akerhus_slott",
+      "historyGoPlaceId": "akerhus_slott",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_akerhus_slott",
+      "name": "Akerhus Slott",
+      "category": "historie",
+      "lat": 59.906611,
+      "lon": 10.73625,
+      "emne_ids": [
+        "em_his_okkupasjon_motstand",
+        "em_his_stat_institusjoner",
+        "em_his_minnesteder_historiebruk"
+      ],
+      "buildingTypeId": "building_medieval_fortress",
+      "mapRole": "state_fortress_memory_complex",
+      "visibleAs": "fortress_landmark",
+      "socialFunctions": [
+        "national_representation",
+        "historical_layer",
+        "tourism",
+        "ceremony",
+        "viewpoint"
+      ],
+      "phaseTypes": [
+        "tourist_flow",
+        "historical_reflection",
+        "harbor_walk",
+        "ceremonial_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamle_aker_kirke": {
+      "id": "map_gamle_aker_kirke",
+      "historyGoPlaceId": "gamle_aker_kirke",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_gamle_aker_kirke",
+      "name": "Gamle Aker kirke",
+      "category": "historie",
+      "lat": 59.9237,
+      "lon": 10.7469,
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet",
+        "em_his_kulturminner_bevaring"
+      ],
+      "buildingTypeId": "building_medieval_stone_church",
+      "mapRole": "oldest_standing_building_church",
+      "visibleAs": "medieval_church",
+      "socialFunctions": [
+        "religion",
+        "historical_layer",
+        "material_experience",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "historical_reflection",
+        "ceremonial_day",
+        "morning_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_var_frelsers_gravlund": {
+      "id": "map_var_frelsers_gravlund",
+      "historyGoPlaceId": "var_frelsers_gravlund",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_var_frelsers_gravlund",
+      "name": "Vår Frelsers gravlund",
+      "category": "historie",
+      "lat": 59.9215,
+      "lon": 10.7435,
+      "emne_ids": [
+        "em_his_minnesteder_historiebruk",
+        "em_his_spor_materialitet",
+        "em_his_kulturminner_bevaring",
+        "em_his_nasjonal_identitet_fortellinger"
+      ],
+      "buildingTypeId": "building_national_memorial_cemetery",
+      "mapRole": "national_memory_field",
+      "visibleAs": "memorial_cemetery",
+      "socialFunctions": [
+        "national_representation",
+        "local_memory",
+        "historical_layer",
+        "public_reflection",
+        "walking"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "historical_reflection",
+        "late_afternoon_walk",
+        "tourist_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_hovedoya_kloster": {
+      "id": "map_hovedoya_kloster",
+      "historyGoPlaceId": "hovedoya_kloster",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_hovedoya_kloster",
+      "name": "Hovedøya kloster",
+      "category": "historie",
+      "lat": 59.8953,
+      "lon": 10.7336,
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_middelalder_oslo",
+        "em_his_spor_materialitet",
+        "em_his_ruiner_rester_ombruk"
+      ],
+      "buildingTypeId": "building_island_monastery_ruin",
+      "mapRole": "island_monastery_ruin_site",
+      "visibleAs": "ruin_site",
+      "socialFunctions": [
+        "historical_layer",
+        "recreation",
+        "bathing",
+        "material_experience"
+      ],
+      "phaseTypes": [
+        "summer_pause",
+        "historical_reflection",
+        "route_walk",
+        "summer_bathing"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_grini_fangeleir": {
+      "id": "map_grini_fangeleir",
+      "historyGoPlaceId": "grini_fangeleir",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_grini_fangeleir",
+      "name": "Grini fangeleir",
+      "category": "historie",
+      "lat": 59.9565,
+      "lon": 10.5909,
+      "emne_ids": [
+        "em_his_fangenskap_kontroll",
+        "em_his_okkupasjon_motstand",
+        "em_his_minnesteder_historiebruk",
+        "em_his_rett_politi_fengsel"
+      ],
+      "buildingTypeId": "building_war_memorial_camp",
+      "mapRole": "occupation_prison_camp_memorial",
+      "visibleAs": "memorial_site",
+      "socialFunctions": [
+        "local_memory",
+        "historical_layer",
+        "public_reflection",
+        "education"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_reflection",
+        "cultural_visit",
+        "public_marking"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_villa_grande": {
+      "id": "map_villa_grande",
+      "historyGoPlaceId": "villa_grande",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_villa_grande",
+      "name": "Villa Grande",
+      "category": "historie",
+      "lat": 59.9062,
+      "lon": 10.6637,
+      "emne_ids": [
+        "em_his_okkupasjon_motstand",
+        "em_his_minnesteder_historiebruk",
+        "em_his_minoritetshistorie",
+        "em_his_riving_ombruk_bevaring"
+      ],
+      "buildingTypeId": "building_occupation_memorial_villa",
+      "mapRole": "occupation_residence_memorial_center",
+      "visibleAs": "memorial_institution",
+      "socialFunctions": [
+        "local_memory",
+        "historical_layer",
+        "education",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "cultural_visit",
+        "historical_reflection",
+        "quiet_reflection",
+        "gallery_visit"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bogstad_gard": {
+      "id": "map_bogstad_gard",
+      "historyGoPlaceId": "bogstad_gard",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_bogstad_gard",
+      "name": "Bogstad gård",
+      "category": "historie",
+      "lat": 59.9637,
+      "lon": 10.6414,
+      "emne_ids": [
+        "em_his_1814_grunnlov_statsdannelse",
+        "em_his_stat_institusjoner",
+        "em_his_nasjonal_identitet_fortellinger",
+        "em_his_modernisering_1800"
+      ],
+      "buildingTypeId": "building_manor_estate",
+      "mapRole": "estate_1814_history_manor",
+      "visibleAs": "manor_estate",
+      "socialFunctions": [
+        "historical_layer",
+        "national_representation",
+        "recreation",
+        "tourism"
+      ],
+      "phaseTypes": [
+        "cultural_visit",
+        "historical_reflection",
+        "late_afternoon_walk",
+        "family_afternoon"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_mollergata_19": {
+      "id": "map_mollergata_19",
+      "historyGoPlaceId": "mollergata_19",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_mollergata_19",
+      "name": "Møllergata 19",
+      "category": "historie",
+      "lat": 59.9164,
+      "lon": 10.7468,
+      "emne_ids": [
+        "em_his_rett_politi_fengsel",
+        "em_his_fangenskap_kontroll",
+        "em_his_okkupasjon_motstand",
+        "em_his_rettsoppgjor_etterkrig"
+      ],
+      "buildingTypeId": "building_historic_police_prison",
+      "mapRole": "police_prison_occupation_site",
+      "visibleAs": "institutional_memory_building",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "public_reflection",
+        "institution"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "institutional_reflection",
+        "public_marking"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_sagene_skole": {
+      "id": "map_sagene_skole",
+      "historyGoPlaceId": "sagene_skole",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_sagene_skole",
+      "name": "Sagene skole",
+      "category": "historie",
+      "lat": 59.9368,
+      "lon": 10.7556,
+      "emne_ids": [
+        "em_his_skole_folkedannelse",
+        "em_his_velferd_hverdagsliv",
+        "em_his_sosialhistorie_hverdagsliv"
+      ],
+      "buildingTypeId": "building_historic_public_school",
+      "mapRole": "worker_district_school_history",
+      "visibleAs": "historic_school",
+      "socialFunctions": [
+        "education",
+        "worker_history",
+        "neighborhood_identity",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "school_commute",
+        "after_school_flow",
+        "historical_reflection",
+        "neighborhood_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_trefoldighetskirken": {
+      "id": "map_trefoldighetskirken",
+      "historyGoPlaceId": "trefoldighetskirken",
+      "historyGoSourceFile": "places/historie/oslo/places_historie.json",
+      "civicationPlaceId": "civi_historie_trefoldighetskirken",
+      "name": "Trefoldighetskirken",
+      "category": "historie",
+      "lat": 59.9183,
+      "lon": 10.746,
+      "emne_ids": [
+        "em_his_modernisering_1800",
+        "em_his_kulturminner_bevaring",
+        "em_his_historiske_lag_i_byrom"
+      ],
+      "buildingTypeId": "building_neogothic_city_church",
+      "mapRole": "neogothic_city_church",
+      "visibleAs": "church_landmark",
+      "socialFunctions": [
+        "religion",
+        "historical_layer",
+        "architecture_observation",
+        "ceremony"
+      ],
+      "phaseTypes": [
+        "ceremonial_day",
+        "quiet_reflection",
+        "historical_reflection",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

@@ -16,7 +16,8 @@
     "socialFunctions": "Hvilke sosiale/spillmessige funksjoner stedet kan ha.",
     "phaseTypes": "Hvilke stedsfaser som typisk passer.",
     "groundhopperRelevant": "Om stedet normalt bør regnes som Groundhopper-relevant.",
-    "needsPerPlaceMapping": "Om hver enkelt placeId senere bør få egen mapping."
+    "needsPerPlaceMapping": "Om hver enkelt placeId senere bør få egen mapping.",
+    "perPlaceMappingFile": "Per-place mappingfil når needsPerPlaceMapping er false."
   },
   "sourceFileMappings": {
     "mapping_by_oslo": {
@@ -39,7 +40,8 @@
         "evening_city_flow"
       ],
       "groundhopperRelevant": false,
-      "needsPerPlaceMapping": true
+      "needsPerPlaceMapping": false,
+      "perPlaceMappingFile": "data/Civication/map/historyGoPlaceMapping.by.json"
     },
     "mapping_historie_oslo": {
       "id": "mapping_historie_oslo",
@@ -61,7 +63,8 @@
         "historical_reflection"
       ],
       "groundhopperRelevant": false,
-      "needsPerPlaceMapping": true
+      "needsPerPlaceMapping": false,
+      "perPlaceMappingFile": "data/Civication/map/historyGoPlaceMapping.historie.json"
     },
     "mapping_historie_added_batch_01": {
       "id": "mapping_historie_added_batch_01",
@@ -83,11 +86,12 @@
         "historical_reflection"
       ],
       "groundhopperRelevant": false,
-      "needsPerPlaceMapping": true
+      "needsPerPlaceMapping": false,
+      "perPlaceMappingFile": "data/Civication/map/historyGoPlaceMapping.historie_added_batch_01.json"
     },
     "mapping_sport_oslo": {
       "id": "mapping_sport_oslo",
-      "sourceFile": "places/sport/oslo/places_sport.json",
+      "sourceFile": "places/sport/europa/norway/oslo_sport.json",
       "historyGoCategory": "sport",
       "civicationLayer": "sport",
       "defaultBuildingTypeId": "building_sport_ground",
@@ -111,7 +115,7 @@
     },
     "mapping_sport_lekeplasser_trening": {
       "id": "mapping_sport_lekeplasser_trening",
-      "sourceFile": "places/sport/oslo/places_oslo_lekeplasser_trening.json",
+      "sourceFile": "places/sport/europa/norway/places_oslo_lekeplasser_trening.json",
       "historyGoCategory": "sport",
       "civicationLayer": "training_and_play",
       "defaultBuildingTypeId": "building_playground_training_area",
@@ -134,7 +138,7 @@
     },
     "mapping_motorsport_ostlandet": {
       "id": "mapping_motorsport_ostlandet",
-      "sourceFile": "places/sport/ostlandet/places_motorsport_ostlandet.json",
+      "sourceFile": "places/sport/europa/norway/places_motorsport_ostlandet.json",
       "historyGoCategory": "sport",
       "civicationLayer": "sport",
       "defaultBuildingTypeId": "building_motorsport_facility",
@@ -176,7 +180,8 @@
         "public_art_encounter"
       ],
       "groundhopperRelevant": false,
-      "needsPerPlaceMapping": true
+      "needsPerPlaceMapping": false,
+      "perPlaceMappingFile": "data/Civication/map/historyGoPlaceMapping.kunst.json"
     },
     "mapping_litteratur_oslo": {
       "id": "mapping_litteratur_oslo",
@@ -198,7 +203,8 @@
         "literary_reflection"
       ],
       "groundhopperRelevant": false,
-      "needsPerPlaceMapping": true
+      "needsPerPlaceMapping": false,
+      "perPlaceMappingFile": "data/Civication/map/historyGoPlaceMapping.litteratur.json"
     },
     "mapping_musikk_oslo": {
       "id": "mapping_musikk_oslo",
@@ -221,7 +227,8 @@
         "empty_venue"
       ],
       "groundhopperRelevant": false,
-      "needsPerPlaceMapping": true
+      "needsPerPlaceMapping": false,
+      "perPlaceMappingFile": "data/Civication/map/historyGoPlaceMapping.musikk.json"
     },
     "mapping_media_oslo": {
       "id": "mapping_media_oslo",

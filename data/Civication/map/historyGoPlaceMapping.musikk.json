@@ -1,0 +1,214 @@
+{
+  "schema": "civication.historyGoPlaceMapping.musikk.v1",
+  "version": 1,
+  "sourceFile": "places/musikk/oslo/places_musikk.json",
+  "note": "Samlet verifisert per-place mapping for History Go musikk-steder (Oslo) til Civication-kartet. Alle steder i kilden har emne_ids.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_salt": {
+      "id": "map_salt",
+      "historyGoPlaceId": "salt",
+      "historyGoSourceFile": "places/musikk/oslo/places_musikk.json",
+      "civicationPlaceId": "civi_musikk_salt",
+      "name": "SALT",
+      "category": "musikk",
+      "lat": 59.9078,
+      "lon": 10.7525,
+      "emne_ids": [
+        "em_musikk_festival_sceneinfrastruktur",
+        "em_musikk_identitet_subkultur_tilhorighet"
+      ],
+      "buildingTypeId": "building_temporary_fjord_culture_arena",
+      "mapRole": "temporary_fjord_stage",
+      "visibleAs": "culture_arena",
+      "socialFunctions": [
+        "culture",
+        "festival",
+        "waterfront_life",
+        "nightlife",
+        "social_mix"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "summer_waterfront",
+        "festival",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_det_norske_teatret": {
+      "id": "map_det_norske_teatret",
+      "historyGoPlaceId": "det_norske_teatret",
+      "historyGoSourceFile": "places/musikk/oslo/places_musikk.json",
+      "civicationPlaceId": "civi_musikk_det_norske_teatret",
+      "name": "Det Norske Teatret",
+      "category": "musikk",
+      "lat": 59.91376,
+      "lon": 10.74092,
+      "emne_ids": [
+        "em_musikk_musikk_som_sosial_energi"
+      ],
+      "buildingTypeId": "building_main_stage_theatre",
+      "mapRole": "nynorsk_stage_institution",
+      "visibleAs": "theatre",
+      "socialFunctions": [
+        "culture",
+        "event",
+        "ceremony",
+        "city_center_scene"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "cultural_visit",
+        "evening_city_flow",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_blaa": {
+      "id": "map_blaa",
+      "historyGoPlaceId": "blaa",
+      "historyGoSourceFile": "places/musikk/oslo/places_musikk.json",
+      "civicationPlaceId": "civi_musikk_blaa",
+      "name": "Blå",
+      "category": "musikk",
+      "lat": 59.9223,
+      "lon": 10.7527,
+      "emne_ids": [
+        "em_musikk_jazz_improvisasjon",
+        "em_musikk_scene_klubb_livekultur"
+      ],
+      "buildingTypeId": "building_riverside_club_stage",
+      "mapRole": "river_culture_club",
+      "visibleAs": "club_stage",
+      "socialFunctions": [
+        "nightlife",
+        "culture",
+        "local_scene",
+        "social_mix",
+        "river_context"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "nightlife_pressure",
+        "evening_river_walk",
+        "market_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_rockefeller": {
+      "id": "map_rockefeller",
+      "historyGoPlaceId": "rockefeller",
+      "historyGoSourceFile": "places/musikk/oslo/places_musikk.json",
+      "civicationPlaceId": "civi_musikk_rockefeller",
+      "name": "Rockefeller Music Hall",
+      "category": "musikk",
+      "lat": 59.91615,
+      "lon": 10.75008,
+      "emne_ids": [
+        "em_musikk_scene_klubb_livekultur",
+        "em_musikk_konsertokonomi_arrangorledd"
+      ],
+      "buildingTypeId": "building_central_concert_hall",
+      "mapRole": "central_pop_concert_institution",
+      "visibleAs": "concert_venue",
+      "socialFunctions": [
+        "culture",
+        "nightlife",
+        "event",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "nightlife_pressure",
+        "event_setup",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_john_dee": {
+      "id": "map_john_dee",
+      "historyGoPlaceId": "john_dee",
+      "historyGoSourceFile": "places/musikk/oslo/places_musikk.json",
+      "civicationPlaceId": "civi_musikk_john_dee",
+      "name": "John Dee",
+      "category": "musikk",
+      "lat": 59.91609,
+      "lon": 10.75021,
+      "emne_ids": [
+        "em_musikk_rock_metal_alternativ",
+        "em_musikk_scene_klubb_livekultur"
+      ],
+      "buildingTypeId": "building_basement_club_stage",
+      "mapRole": "intimate_rock_stage",
+      "visibleAs": "club_stage",
+      "socialFunctions": [
+        "nightlife",
+        "culture",
+        "local_scene",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "nightlife_pressure",
+        "quiet_night_road",
+        "event_setup"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_sentrum_scene": {
+      "id": "map_sentrum_scene",
+      "historyGoPlaceId": "sentrum_scene",
+      "historyGoSourceFile": "places/musikk/oslo/places_musikk.json",
+      "civicationPlaceId": "civi_musikk_sentrum_scene",
+      "name": "Sentrum Scene",
+      "category": "musikk",
+      "lat": 59.91498,
+      "lon": 10.75053,
+      "emne_ids": [
+        "em_musikk_pop_mainstream",
+        "em_musikk_scene_klubb_livekultur"
+      ],
+      "buildingTypeId": "building_grand_event_stage",
+      "mapRole": "central_event_stage",
+      "visibleAs": "concert_venue",
+      "socialFunctions": [
+        "culture",
+        "event",
+        "nightlife",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "event_setup",
+        "nightlife_pressure",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

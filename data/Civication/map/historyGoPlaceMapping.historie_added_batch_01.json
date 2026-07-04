@@ -1,0 +1,254 @@
+{
+  "schema": "civication.historyGoPlaceMapping.historie_added_batch_01.v1",
+  "version": 1,
+  "sourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+  "note": "Samlet verifisert per-place mapping for History Go historie-steder (Oslo, added batch 01) til Civication-kartet. Alle steder i kilden har emne_ids.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_nonneseter_kloster": {
+      "id": "map_nonneseter_kloster",
+      "historyGoPlaceId": "nonneseter_kloster",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_nonneseter_kloster",
+      "name": "Nonneseter kloster",
+      "category": "historie",
+      "lat": 59.908905,
+      "lon": 10.768087,
+      "emne_ids": [
+        "em_his_middelalder_oslo",
+        "em_his_kirke_kloster_middelalder",
+        "em_his_tilhorighet_ekskludering",
+        "em_his_spor_materialitet"
+      ],
+      "buildingTypeId": "building_urban_monastery_trace",
+      "mapRole": "medieval_nunnery_trace",
+      "visibleAs": "memory_marker",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_ladegard": {
+      "id": "map_oslo_ladegard",
+      "historyGoPlaceId": "oslo_ladegard",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_oslo_ladegard",
+      "name": "Oslo ladegård",
+      "category": "historie",
+      "lat": 59.9061,
+      "lon": 10.7676,
+      "emne_ids": [
+        "em_his_middelalder_oslo",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_kulturminner_bevaring",
+        "em_his_samtid_ettertid_fortelling"
+      ],
+      "buildingTypeId": "building_baroque_manor_house",
+      "mapRole": "medieval_city_visitor_manor",
+      "visibleAs": "historic_manor",
+      "socialFunctions": [
+        "historical_layer",
+        "culture",
+        "education",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "cultural_visit",
+        "historical_reflection",
+        "quiet_morning",
+        "gallery_visit"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamle_radhus": {
+      "id": "map_gamle_radhus",
+      "historyGoPlaceId": "gamle_radhus",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_gamle_radhus",
+      "name": "Gamle rådhus",
+      "category": "historie",
+      "lat": 59.909846,
+      "lon": 10.740149,
+      "emne_ids": [
+        "em_his_stat_institusjoner",
+        "em_his_historiske_lag_i_byrom",
+        "em_his_modernisering_1800",
+        "em_his_arkiv_og_dokumentasjon"
+      ],
+      "buildingTypeId": "building_early_modern_townhall",
+      "mapRole": "early_modern_city_government_house",
+      "visibleAs": "historic_townhall",
+      "socialFunctions": [
+        "historical_layer",
+        "institution",
+        "restaurant_life",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "evening_restaurant_flow",
+        "cultural_visit",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_galgeberg": {
+      "id": "map_galgeberg",
+      "historyGoPlaceId": "galgeberg",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_galgeberg",
+      "name": "Galgeberg",
+      "category": "historie",
+      "lat": 59.90734,
+      "lon": 10.779786,
+      "emne_ids": [
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_stat_institusjoner",
+        "em_his_spor_materialitet",
+        "em_his_historiske_lag_i_byrom"
+      ],
+      "buildingTypeId": "building_execution_site_memory",
+      "mapRole": "punishment_history_place_name",
+      "visibleAs": "memory_marker",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_observation",
+        "route_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_hospital": {
+      "id": "map_oslo_hospital",
+      "historyGoPlaceId": "oslo_hospital",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_oslo_hospital",
+      "name": "Oslo hospital",
+      "category": "historie",
+      "lat": 59.903189,
+      "lon": 10.767664,
+      "emne_ids": [
+        "em_his_kirke_kloster_middelalder",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_stat_institusjoner",
+        "em_his_historiske_lag_i_byrom"
+      ],
+      "buildingTypeId": "building_historic_hospital_complex",
+      "mapRole": "care_institution_history_site",
+      "visibleAs": "historic_institution",
+      "socialFunctions": [
+        "historical_layer",
+        "institution",
+        "local_memory",
+        "public_reflection"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "quiet_morning",
+        "institutional_reflection",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_botsfengselet": {
+      "id": "map_botsfengselet",
+      "historyGoPlaceId": "botsfengselet",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_botsfengselet",
+      "name": "Botsfengselet",
+      "category": "historie",
+      "lat": 59.909876,
+      "lon": 10.770404,
+      "emne_ids": [
+        "em_his_stat_institusjoner",
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_tilhorighet_ekskludering",
+        "em_his_spor_materialitet"
+      ],
+      "buildingTypeId": "building_panopticon_prison",
+      "mapRole": "prison_history_complex",
+      "visibleAs": "historic_prison",
+      "socialFunctions": [
+        "historical_layer",
+        "institution",
+        "public_reflection",
+        "local_memory"
+      ],
+      "phaseTypes": [
+        "institutional_reflection",
+        "historical_reflection",
+        "quiet_observation",
+        "public_marking"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_prinds_christian_augusts_minde": {
+      "id": "map_prinds_christian_augusts_minde",
+      "historyGoPlaceId": "prinds_christian_augusts_minde",
+      "historyGoSourceFile": "places/historie/oslo/places_historie_added_batch_01.json",
+      "civicationPlaceId": "civi_historie_prinds_christian_augusts_minde",
+      "name": "Prinds Christian Augusts Minde",
+      "category": "historie",
+      "lat": 59.915289,
+      "lon": 10.75595,
+      "emne_ids": [
+        "em_his_sosialhistorie_hverdagsliv",
+        "em_his_tilhorighet_ekskludering",
+        "em_his_stat_institusjoner",
+        "em_his_historiske_lag_i_byrom"
+      ],
+      "buildingTypeId": "building_poorhouse_workhouse",
+      "mapRole": "poor_relief_history_complex",
+      "visibleAs": "historic_institution",
+      "socialFunctions": [
+        "historical_layer",
+        "local_memory",
+        "public_reflection",
+        "institution"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "institutional_reflection",
+        "quiet_observation",
+        "neighborhood_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

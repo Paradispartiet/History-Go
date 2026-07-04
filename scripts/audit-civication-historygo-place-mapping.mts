@@ -1,10 +1,9 @@
 // scripts/audit-civication-historygo-place-mapping.mjs
-// Read-only audit av Civication-mappingen for History Go by-steder.
+// Read-only audit av Civication-mappingene for History Go-steder.
 //
-// Validerer at:
-//   data/Civication/map/historyGoPlaceMapping.by.json
-// stemmer mot kildefilen:
-//   data/places/by/oslo/places_by.json
+// Validerer at per-place mappingfilene (data/Civication/map/
+// historyGoPlaceMapping.<kategori>.json, se TARGETS nedenfor) stemmer mot
+// kildefilene sine under data/places/.
 //
 // Scriptet endrer ingen datafiler og genererer ingen ny mappingdata.
 //
@@ -24,11 +23,59 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = process.cwd();
 
-const MAPPING_FILE = path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json");
-const PLACES_FILE = path.join(ROOT, "data", "places", "by", "oslo", "places_by.json");
-
-const EXPECTED_SOURCE_FILE = "places/by/oslo/places_by.json";
-const EXPECTED_CATEGORY = "by";
+// Per-place mappingfiler som skal auditeres. Nye kategorier legges til her
+// etter hvert som kartet bygges ut (jf. needsPerPlaceMapping i
+// data/Civication/map/historyGoPlaceMapping.json).
+const TARGETS = [
+  {
+    label: "by (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.by.json",
+    placesFile: path.join(ROOT, "data", "places", "by", "oslo", "places_by.json"),
+    expectedSourceFile: "places/by/oslo/places_by.json",
+    expectedCategory: "by",
+  },
+  {
+    label: "historie (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie.json",
+    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie.json"),
+    expectedSourceFile: "places/historie/oslo/places_historie.json",
+    expectedCategory: "historie",
+  },
+  {
+    label: "historie added batch 01 (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie_added_batch_01.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie_added_batch_01.json",
+    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie_added_batch_01.json"),
+    expectedSourceFile: "places/historie/oslo/places_historie_added_batch_01.json",
+    expectedCategory: "historie",
+  },
+  {
+    label: "kunst (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.kunst.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.kunst.json",
+    placesFile: path.join(ROOT, "data", "places", "kunst", "oslo", "places_kunst.json"),
+    expectedSourceFile: "places/kunst/oslo/places_kunst.json",
+    expectedCategory: "kunst",
+  },
+  {
+    label: "musikk (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.musikk.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.musikk.json",
+    placesFile: path.join(ROOT, "data", "places", "musikk", "oslo", "places_musikk.json"),
+    expectedSourceFile: "places/musikk/oslo/places_musikk.json",
+    expectedCategory: "musikk",
+  },
+  {
+    label: "litteratur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.litteratur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.litteratur.json",
+    placesFile: path.join(ROOT, "data", "places", "litteratur", "oslo", "places_litteratur.json"),
+    expectedSourceFile: "places/litteratur/oslo/places_litteratur.json",
+    expectedCategory: "litteratur",
+  },
+];
 
 // Obligatoriske felt per mapping (jf. oppgavens punkt 4).
 const REQUIRED_FIELDS = [
@@ -87,18 +134,18 @@ function placesFromData(data) {
   return [];
 }
 
-async function main() {
+async function auditTarget(target) {
   // --- Last og parse begge filer (JSON-parsefeil => exit 1). ---
   let mappingData;
   let placesData;
   try {
     [mappingData, placesData] = await Promise.all([
-      readJSON(MAPPING_FILE),
-      readJSON(PLACES_FILE),
+      readJSON(target.mappingFile),
+      readJSON(target.placesFile),
     ]);
   } catch (err) {
     console.error(`FEIL: ${err.message}`);
-    process.exit(1);
+    return 1;
   }
 
   const fatal = []; // alvorlige feil => exit 1
@@ -110,9 +157,9 @@ async function main() {
     }
   }
 
-  if (mappingData.sourceFile !== EXPECTED_SOURCE_FILE) {
+  if (mappingData.sourceFile !== target.expectedSourceFile) {
     fatal.push(
-      `sourceFile er "${mappingData.sourceFile}", forventet "${EXPECTED_SOURCE_FILE}"`
+      `sourceFile er "${mappingData.sourceFile}", forventet "${target.expectedSourceFile}"`
     );
   }
 
@@ -126,7 +173,7 @@ async function main() {
 
   // Hvis grunnstrukturen mangler, er det ingen vits i å fortsette.
   if (fatal.length > 0) {
-    printReport({
+    printReport(target, {
       placesCount: placesFromData(placesData).length,
       mappingCount: mappingsIsObject ? Object.keys(mappingData.mappings).length : 0,
       needsEnrichmentCount: 0,
@@ -138,7 +185,7 @@ async function main() {
       missingFields: [],
       fatal,
     });
-    process.exit(1);
+    return 1;
   }
 
   // --- Bygg oppslag fra kildefilen. ---
@@ -176,15 +223,15 @@ async function main() {
     if (placeId != null) mappedPlaceIds.add(String(placeId));
 
     // historyGoSourceFile må peke på kilden.
-    if (m?.historyGoSourceFile !== EXPECTED_SOURCE_FILE) {
+    if (m?.historyGoSourceFile !== target.expectedSourceFile) {
       fatal.push(
-        `${key}: historyGoSourceFile er "${m?.historyGoSourceFile}", forventet "${EXPECTED_SOURCE_FILE}"`
+        `${key}: historyGoSourceFile er "${m?.historyGoSourceFile}", forventet "${target.expectedSourceFile}"`
       );
     }
 
-    // category må være "by".
-    if (m?.category !== EXPECTED_CATEGORY) {
-      fatal.push(`${key}: category er "${m?.category}", forventet "${EXPECTED_CATEGORY}"`);
+    // category må matche målet.
+    if (m?.category !== target.expectedCategory) {
+      fatal.push(`${key}: category er "${m?.category}", forventet "${target.expectedCategory}"`);
     }
 
     // historyGoPlaceId må finnes i kilden.
@@ -272,7 +319,7 @@ async function main() {
     }
   }
 
-  printReport({
+  printReport(target, {
     placesCount: places.length,
     mappingCount: mappingKeys.length,
     needsEnrichmentCount,
@@ -285,19 +332,29 @@ async function main() {
     fatal,
   });
 
-  process.exit(fatal.length > 0 ? 1 : 0);
+  return fatal.length > 0 ? 1 : 0;
 }
 
-function printReport(r) {
+async function main() {
+  let exitCode = 0;
+  for (const target of TARGETS) {
+    const code = await auditTarget(target);
+    if (code !== 0) exitCode = 1;
+    console.log("");
+  }
+  process.exit(exitCode);
+}
+
+function printReport(target, r) {
   const line = (s = "") => console.log(s);
 
-  line("=== Civication History Go place-mapping audit ===");
-  line(`Kilde:   data/places/by/oslo/places_by.json`);
-  line(`Mapping: data/Civication/map/historyGoPlaceMapping.by.json`);
+  line(`=== Civication History Go place-mapping audit [${target.label}] ===`);
+  line(`Kilde:   ${target.expectedSourceFile}`);
+  line(`Mapping: ${target.mappingFileRel}`);
   line("");
   line("Sammendrag:");
-  line(`  Steder i places_by.json:                 ${r.placesCount}`);
-  line(`  Mappinger i historyGoPlaceMapping.by:    ${r.mappingCount}`);
+  line(`  Steder i kildefilen:                     ${r.placesCount}`);
+  line(`  Mappinger i mappingfilen:                ${r.mappingCount}`);
   line(`  Mappinger med needsEnrichment: true:     ${r.needsEnrichmentCount}`);
   line(`  Steder uten mapping (unmappedPlaces):    ${r.unmappedPlaces.length}`);
   line("");
@@ -342,9 +399,9 @@ function printReport(r) {
   line("");
 
   if (r.fatal.length > 0) {
-    line(`RESULTAT: ${r.fatal.length} alvorlig(e) feil – exit 1`);
+    line(`RESULTAT [${target.label}]: ${r.fatal.length} alvorlig(e) feil – exit 1`);
   } else {
-    line("RESULTAT: ingen alvorlige feil – exit 0");
+    line(`RESULTAT [${target.label}]: ingen alvorlige feil – exit 0`);
   }
 }
 

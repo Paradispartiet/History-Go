@@ -1,13 +1,12 @@
 // scripts/audit-civication-city-map-entries.mjs
-// Read-only audit/generator for Civication city map entries fra History Go by-mapping.
+// Read-only audit/generator for Civication city map entries fra History Go-mappingene.
 //
-// Validerer at History Go -> Civication city map mappingen kan transformeres til rene
+// Validerer at History Go -> Civication city map mappingene kan transformeres til rene
 // Civication map entries uten UI-endringer, og lager en in-memory transformasjon.
 //
-// Leser:
-//   data/Civication/map/historyGoPlaceMapping.by.json
-//   data/places/by/oslo/places_by.json
-//   data/Civication/map/buildingTypes.json
+// Leser per-place mappingfilene (data/Civication/map/
+// historyGoPlaceMapping.<kategori>.json, se TARGETS nedenfor), kildefilene
+// deres under data/places/, og data/Civication/map/buildingTypes.json.
 //
 // Scriptet:
 //   - skriver ingen filer
@@ -25,13 +24,66 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = process.cwd();
 
-const MAPPING_FILE = path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json");
-const PLACES_FILE = path.join(ROOT, "data", "places", "by", "oslo", "places_by.json");
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 
-const EXPECTED_SOURCE_FILE = "places/by/oslo/places_by.json";
-const MAPPING_FILE_REL = "data/Civication/map/historyGoPlaceMapping.by.json";
-const PLACES_FILE_REL = "data/places/by/oslo/places_by.json";
+// Per-place mappingfiler som transformeres til city map entries. Nye kategorier
+// legges til her etter hvert som kartet bygges ut.
+const TARGETS = [
+  {
+    label: "by (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.by.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.by.json",
+    placesFile: path.join(ROOT, "data", "places", "by", "oslo", "places_by.json"),
+    placesFileRel: "data/places/by/oslo/places_by.json",
+    expectedSourceFile: "places/by/oslo/places_by.json",
+    expectedCategory: "by",
+  },
+  {
+    label: "historie (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie.json",
+    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie.json"),
+    placesFileRel: "data/places/historie/oslo/places_historie.json",
+    expectedSourceFile: "places/historie/oslo/places_historie.json",
+    expectedCategory: "historie",
+  },
+  {
+    label: "historie added batch 01 (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie_added_batch_01.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.historie_added_batch_01.json",
+    placesFile: path.join(ROOT, "data", "places", "historie", "oslo", "places_historie_added_batch_01.json"),
+    placesFileRel: "data/places/historie/oslo/places_historie_added_batch_01.json",
+    expectedSourceFile: "places/historie/oslo/places_historie_added_batch_01.json",
+    expectedCategory: "historie",
+  },
+  {
+    label: "kunst (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.kunst.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.kunst.json",
+    placesFile: path.join(ROOT, "data", "places", "kunst", "oslo", "places_kunst.json"),
+    placesFileRel: "data/places/kunst/oslo/places_kunst.json",
+    expectedSourceFile: "places/kunst/oslo/places_kunst.json",
+    expectedCategory: "kunst",
+  },
+  {
+    label: "musikk (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.musikk.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.musikk.json",
+    placesFile: path.join(ROOT, "data", "places", "musikk", "oslo", "places_musikk.json"),
+    placesFileRel: "data/places/musikk/oslo/places_musikk.json",
+    expectedSourceFile: "places/musikk/oslo/places_musikk.json",
+    expectedCategory: "musikk",
+  },
+  {
+    label: "litteratur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.litteratur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.litteratur.json",
+    placesFile: path.join(ROOT, "data", "places", "litteratur", "oslo", "places_litteratur.json"),
+    placesFileRel: "data/places/litteratur/oslo/places_litteratur.json",
+    expectedSourceFile: "places/litteratur/oslo/places_litteratur.json",
+    expectedCategory: "litteratur",
+  },
+];
 
 async function readJSON(file): Promise<Record<string, unknown> | unknown[]> {
   let raw;
@@ -117,20 +169,27 @@ function isValidLon(value) {
   return typeof value === "number" && Number.isFinite(value) && value >= -180 && value <= 180;
 }
 
-async function main() {
+function requireString(value: unknown): value is string {
+  return typeof value === "string" && value.length > 0;
+}
+
+// civicationPlaceId og mapping.id må være unike på tvers av alle mappingfilene,
+// siden alle entries til slutt havner på det samme kartet.
+const globalSeenCivicationPlaceIds = new Map();
+const globalSeenMappingIds = new Map();
+
+async function auditTarget(target, definedBuildingTypeIds) {
   let mappingData;
   let placesData;
-  let buildingTypesData;
 
   try {
-    [mappingData, placesData, buildingTypesData] = await Promise.all([
-      readJSON(MAPPING_FILE),
-      readJSON(PLACES_FILE),
-      readJSON(BUILDING_TYPES_FILE),
+    [mappingData, placesData] = await Promise.all([
+      readJSON(target.mappingFile),
+      readJSON(target.placesFile),
     ]);
   } catch (err) {
     console.error(`FEIL: ${err.message}`);
-    process.exit(1);
+    return 1;
   }
 
   const fatal = [];
@@ -142,9 +201,9 @@ async function main() {
   if (typeof mappingData?.version === "undefined") {
     fatal.push("Mappingfilen mangler version");
   }
-  if (mappingData?.sourceFile !== EXPECTED_SOURCE_FILE) {
+  if (mappingData?.sourceFile !== target.expectedSourceFile) {
     fatal.push(
-      `Mappingfilen har feil sourceFile: forventet "${EXPECTED_SOURCE_FILE}", fikk ${JSON.stringify(mappingData?.sourceFile)}`
+      `Mappingfilen har feil sourceFile: forventet "${target.expectedSourceFile}", fikk ${JSON.stringify(mappingData?.sourceFile)}`
     );
   }
 
@@ -158,27 +217,19 @@ async function main() {
   const placesById: Map<string, JsonObject> = indexPlacesById(placesData);
   const placesCount = Array.isArray(placesData) ? placesData.length : 0;
   if (!Array.isArray(placesData)) {
-    fatal.push(`${PLACES_FILE_REL} er ikke en liste over steder`);
+    fatal.push(`${target.placesFileRel} er ikke en liste over steder`);
   }
-
-  const definedBuildingTypeIds = extractBuildingTypeIds(buildingTypesData);
 
   const mappingEntries = mappingsIsObject ? Object.entries(mappings as JsonObject) as [string, JsonObject][] : [];
 
-  // Tellere for unikhet.
-  const seenMappingIds = new Map();
+  // Tellere for unikhet (per fil, i tillegg til de globale settene).
   const seenHistoryGoPlaceIds = new Map();
-  const seenCivicationPlaceIds = new Map();
 
   const usedBuildingTypeIds = new Set();
   const mappedHistoryGoPlaceIds = new Set();
   const needsEnrichmentList = [];
 
   const cityMapEntries = [];
-
-  function requireString(value: unknown): value is string {
-    return typeof value === "string" && value.length > 0;
-  }
 
   // 2-6. Per-mapping validering.
   for (const [mappingKey, mapping] of mappingEntries) {
@@ -192,9 +243,9 @@ async function main() {
     if (!requireString(m.historyGoPlaceId)) {
       fatal.push(`${label}: mangler gyldig historyGoPlaceId (string)`);
     }
-    if (m.historyGoSourceFile !== EXPECTED_SOURCE_FILE) {
+    if (m.historyGoSourceFile !== target.expectedSourceFile) {
       fatal.push(
-        `${label}: historyGoSourceFile må være "${EXPECTED_SOURCE_FILE}", fikk ${JSON.stringify(m.historyGoSourceFile)}`
+        `${label}: historyGoSourceFile må være "${target.expectedSourceFile}", fikk ${JSON.stringify(m.historyGoSourceFile)}`
       );
     }
     if (!requireString(m.civicationPlaceId)) {
@@ -203,8 +254,8 @@ async function main() {
     if (!requireString(m.name)) {
       fatal.push(`${label}: mangler gyldig name (string)`);
     }
-    if (m.category !== "by") {
-      fatal.push(`${label}: category må være "by", fikk ${JSON.stringify(m.category)}`);
+    if (m.category !== target.expectedCategory) {
+      fatal.push(`${label}: category må være "${target.expectedCategory}", fikk ${JSON.stringify(m.category)}`);
     }
     if (typeof m.lat !== "number") {
       fatal.push(`${label}: lat må være number, fikk ${JSON.stringify(m.lat)}`);
@@ -238,12 +289,12 @@ async function main() {
       fatal.push(`${label}: needsVerification må være boolean`);
     }
 
-    // 3. Unikhet.
+    // 3. Unikhet (globalt på tvers av mappingfiler).
     if (requireString(m.id)) {
-      if (seenMappingIds.has(m.id)) {
-        fatal.push(`${label}: mapping.id "${m.id}" er ikke unik (også brukt i ${seenMappingIds.get(m.id)})`);
+      if (globalSeenMappingIds.has(m.id)) {
+        fatal.push(`${label}: mapping.id "${m.id}" er ikke unik (også brukt i ${globalSeenMappingIds.get(m.id)})`);
       } else {
-        seenMappingIds.set(m.id, label);
+        globalSeenMappingIds.set(m.id, `${target.label}/${label}`);
       }
     }
     if (requireString(m.historyGoPlaceId)) {
@@ -256,12 +307,12 @@ async function main() {
       }
     }
     if (requireString(m.civicationPlaceId)) {
-      if (seenCivicationPlaceIds.has(m.civicationPlaceId)) {
+      if (globalSeenCivicationPlaceIds.has(m.civicationPlaceId)) {
         fatal.push(
-          `${label}: civicationPlaceId "${m.civicationPlaceId}" er ikke unik (også brukt i ${seenCivicationPlaceIds.get(m.civicationPlaceId)})`
+          `${label}: civicationPlaceId "${m.civicationPlaceId}" er ikke unik (også brukt i ${globalSeenCivicationPlaceIds.get(m.civicationPlaceId)})`
         );
       } else {
-        seenCivicationPlaceIds.set(m.civicationPlaceId, label);
+        globalSeenCivicationPlaceIds.set(m.civicationPlaceId, `${target.label}/${label}`);
       }
     }
 
@@ -273,12 +324,12 @@ async function main() {
       fatal.push(`${label}: lon ${m.lon} er utenfor gyldig område (-180..180)`);
     }
 
-    // 4. Kildekobling mot places_by.json.
+    // 4. Kildekobling mot kildefilen.
     if (requireString(m.historyGoPlaceId)) {
       mappedHistoryGoPlaceIds.add(m.historyGoPlaceId);
       const place = placesById.get(m.historyGoPlaceId);
       if (!place) {
-        fatal.push(`${label}: historyGoPlaceId "${m.historyGoPlaceId}" finnes ikke i ${PLACES_FILE_REL}`);
+        fatal.push(`${label}: historyGoPlaceId "${m.historyGoPlaceId}" finnes ikke i ${target.placesFileRel}`);
       } else {
         if (m.name !== place.name) {
           fatal.push(
@@ -337,7 +388,7 @@ async function main() {
       id: m.civicationPlaceId,
       historyGoPlaceId: m.historyGoPlaceId,
       name: m.name,
-      category: "by",
+      category: m.category,
       lat: m.lat,
       lon: m.lon,
       buildingTypeId: m.buildingTypeId,
@@ -347,8 +398,8 @@ async function main() {
       phaseTypes: m.phaseTypes,
       groundhopperRelevant: m.groundhopperRelevant,
       source: {
-        mappingFile: MAPPING_FILE_REL,
-        historyGoSourceFile: PLACES_FILE_REL,
+        mappingFile: target.mappingFileRel,
+        historyGoSourceFile: target.placesFileRel,
       },
     });
   }
@@ -394,11 +445,10 @@ async function main() {
     }
   }
 
-  printReport({
+  printReport(target, {
     placesCount,
     mappingsCount: mappingEntries.length,
     cityMapEntriesCount: cityMapEntries.length,
-    uniqueCivicationPlaceIds: seenCivicationPlaceIds.size,
     uniqueHistoryGoPlaceIds: seenHistoryGoPlaceIds.size,
     uniqueBuildingTypeIds: usedBuildingTypeIds.size,
     unmappedPlaces,
@@ -406,30 +456,48 @@ async function main() {
     fatal,
   });
 
-  process.exit(fatal.length > 0 ? 1 : 0);
+  return fatal.length > 0 ? 1 : 0;
 }
 
-function printReport(report) {
+async function main() {
+  let buildingTypesData;
+  try {
+    buildingTypesData = await readJSON(BUILDING_TYPES_FILE);
+  } catch (err) {
+    console.error(`FEIL: ${err.message}`);
+    process.exit(1);
+  }
+  const definedBuildingTypeIds = extractBuildingTypeIds(buildingTypesData);
+
+  let exitCode = 0;
+  for (const target of TARGETS) {
+    const code = await auditTarget(target, definedBuildingTypeIds);
+    if (code !== 0) exitCode = 1;
+    console.log("");
+  }
+  process.exit(exitCode);
+}
+
+function printReport(target, report) {
   const line = (text = "") => console.log(text);
 
-  line("=== Civication city map entries audit ===");
-  line(`Mapping:       ${MAPPING_FILE_REL}`);
-  line(`Source places: ${PLACES_FILE_REL}`);
+  line(`=== Civication city map entries audit [${target.label}] ===`);
+  line(`Mapping:       ${target.mappingFileRel}`);
+  line(`Source places: ${target.placesFileRel}`);
   line(`BuildingTypes: data/Civication/map/buildingTypes.json`);
   line("");
   line("Sammendrag:");
-  line(`  Places i places_by.json:                ${report.placesCount}`);
-  line(`  Mappings i historyGoPlaceMapping.by:    ${report.mappingsCount}`);
+  line(`  Places i kildefilen:                    ${report.placesCount}`);
+  line(`  Mappings i mappingfilen:                ${report.mappingsCount}`);
   line(`  cityMapEntries generert (i minnet):     ${report.cityMapEntriesCount}`);
-  line(`  Unike civicationPlaceId:                ${report.uniqueCivicationPlaceIds}`);
   line(`  Unike historyGoPlaceId:                 ${report.uniqueHistoryGoPlaceIds}`);
   line(`  Unike buildingTypeId brukt:             ${report.uniqueBuildingTypeIds}`);
-  line(`  Unmapped places fra places_by.json:     ${report.unmappedPlaces.length}`);
+  line(`  Unmapped places fra kildefilen:         ${report.unmappedPlaces.length}`);
   line(`  Mappings med needsEnrichment: true:     ${report.needsEnrichmentList.length}`);
   line("");
 
   printSection(
-    "Unmapped places (finnes i places_by.json, men ikke i mappingen)",
+    "Unmapped places (finnes i kildefilen, men ikke i mappingen)",
     report.unmappedPlaces,
     (id) => id
   );
@@ -444,10 +512,10 @@ function printReport(report) {
 
   line("");
   if (report.fatal.length > 0) {
-    line(`RESULTAT: ${report.fatal.length} alvorlig(e) feil – exit 1`);
+    line(`RESULTAT [${target.label}]: ${report.fatal.length} alvorlig(e) feil – exit 1`);
     line("In-memory cityMapEntries kan IKKE genereres trygt. Ingen datafiler ble endret.");
   } else {
-    line("RESULTAT: ingen alvorlige feil – exit 0");
+    line(`RESULTAT [${target.label}]: ingen alvorlige feil – exit 0`);
     line(`In-memory cityMapEntries kan genereres trygt (${report.cityMapEntriesCount} entries).`);
     line(`Unmapped places: ${report.unmappedPlaces.length} (forventet, mappingen bygges gradvis).`);
     line(`needsEnrichment: ${report.needsEnrichmentList.length}.`);

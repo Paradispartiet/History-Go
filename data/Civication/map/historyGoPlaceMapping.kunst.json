@@ -1,0 +1,164 @@
+{
+  "schema": "civication.historyGoPlaceMapping.kunst.v1",
+  "version": 1,
+  "sourceFile": "places/kunst/oslo/places_kunst.json",
+  "note": "Samlet verifisert per-place mapping for History Go kunst-steder (Oslo) til Civication-kartet. Alle steder i kilden har emne_ids.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_nasjonalmuseet": {
+      "id": "map_nasjonalmuseet",
+      "historyGoPlaceId": "nasjonalmuseet",
+      "historyGoSourceFile": "places/kunst/oslo/places_kunst.json",
+      "civicationPlaceId": "civi_kunst_nasjonalmuseet",
+      "name": "Nasjonalmuseet",
+      "category": "kunst",
+      "lat": 59.9146,
+      "lon": 10.7229,
+      "emne_ids": [
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_sjanger_stil_og_posisjonering"
+      ],
+      "buildingTypeId": "building_national_art_museum",
+      "mapRole": "national_art_canon_institution",
+      "visibleAs": "art_museum",
+      "socialFunctions": [
+        "culture",
+        "art_observation",
+        "tourism",
+        "education",
+        "city_symbol"
+      ],
+      "phaseTypes": [
+        "gallery_visit",
+        "cultural_visit",
+        "tourist_flow",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_munch_museet": {
+      "id": "map_munch_museet",
+      "historyGoPlaceId": "munch_museet",
+      "historyGoSourceFile": "places/kunst/oslo/places_kunst.json",
+      "civicationPlaceId": "civi_kunst_munch_museet",
+      "name": "MUNCH",
+      "category": "kunst",
+      "lat": 59.9057,
+      "lon": 10.7606,
+      "emne_ids": [
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_publikum_klasse_og_kapital",
+        "em_kunst_teknologi_og_materialitet",
+        "em_kunst_digital_offentlighet_og_resepsjon"
+      ],
+      "buildingTypeId": "building_highrise_art_museum",
+      "mapRole": "monographic_waterfront_art_tower",
+      "visibleAs": "art_museum",
+      "socialFunctions": [
+        "culture",
+        "art_observation",
+        "tourism",
+        "skyline_identity",
+        "fjord_city_context"
+      ],
+      "phaseTypes": [
+        "gallery_visit",
+        "tourist_flow",
+        "evening_city_flow",
+        "sunset_fjord_view"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_astrup_fearnley": {
+      "id": "map_astrup_fearnley",
+      "historyGoPlaceId": "astrup_fearnley",
+      "historyGoSourceFile": "places/kunst/oslo/places_kunst.json",
+      "civicationPlaceId": "civi_kunst_astrup_fearnley",
+      "name": "Astrup Fearnley Museet",
+      "category": "kunst",
+      "lat": 59.9071,
+      "lon": 10.7201,
+      "emne_ids": [
+        "em_kunst_okonomi_og_finansiering",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_digital_offentlighet_og_resepsjon"
+      ],
+      "buildingTypeId": "building_private_waterfront_art_museum",
+      "mapRole": "private_contemporary_art_venue",
+      "visibleAs": "art_museum",
+      "socialFunctions": [
+        "culture",
+        "art_observation",
+        "exclusive_public_space",
+        "waterfront_life",
+        "tourism"
+      ],
+      "phaseTypes": [
+        "gallery_visit",
+        "lunch_waterfront",
+        "tourist_flow",
+        "summer_waterfront"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ekebergparken": {
+      "id": "map_ekebergparken",
+      "historyGoPlaceId": "ekebergparken",
+      "historyGoSourceFile": "places/kunst/oslo/places_kunst.json",
+      "civicationPlaceId": "civi_kunst_ekebergparken",
+      "name": "Ekebergparken skulpturpark",
+      "category": "kunst",
+      "lat": 59.8997,
+      "lon": 10.7753,
+      "emne_ids": [
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_hverdagsestetikk",
+        "em_kunst_okonomi_og_finansiering",
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "buildingTypeId": "building_sculpture_forest_park",
+      "mapRole": "landscape_public_art_park",
+      "visibleAs": "sculpture_park",
+      "socialFunctions": [
+        "art_observation",
+        "recreation",
+        "walking",
+        "viewpoint",
+        "culture"
+      ],
+      "phaseTypes": [
+        "sculpture_axis_observation",
+        "morning_walk",
+        "tourist_flow",
+        "viewpoint_pause"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}
