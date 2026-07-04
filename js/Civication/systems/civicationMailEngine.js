@@ -361,7 +361,7 @@
         ? await window.HG_CiviEngine.answer(eventId, choiceId)
         : { ok: false, reason: "no_event_engine" });
 
-      if (result?.ok !== false) {
+      if (result?.ok !== false && result?.dailyRuntimeAnswered !== true) {
         markResolved(mailId, eventId, choiceId);
       }
 
