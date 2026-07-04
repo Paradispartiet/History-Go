@@ -120,60 +120,74 @@
       </div>
     </a>
 
-    <!-- Civication inngang -->
-    <a href="/History-Go/Civication.html"
-       class="iconbtn civication-nav-link"
-       aria-label="Civication"
-       title="Civication">
-       <span aria-hidden="true">🏛</span>
-       <span id="civicationUnreadBadge" class="nav-unread-badge" hidden aria-hidden="true"></span>
-    </a>
-
-    <button id="btnMinDag" class="iconbtn" type="button" aria-label="Min dag" title="Min dag" onclick="window.HG_TodayHubPanel?.render?.() || console.warn('[Min dag] HG_TodayHubPanel mangler')">
-      <span class="hg-header-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" focusable="false">
-          <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.8v2.4M16.5 3.8v2.4M5.4 8.3h13.2M6.6 5.4h10.8a2.2 2.2 0 0 1 2.2 2.2v9.8a2.2 2.2 0 0 1-2.2 2.2H6.6a2.2 2.2 0 0 1-2.2-2.2V7.6a2.2 2.2 0 0 1 2.2-2.2Z"/>
-          <path fill="currentColor" d="M8 12.3a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm4 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm4 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm-8 4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm4 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Z"/>
-        </svg>
-      </span>
-    </button>
-
-    <button id="btnLesespor"
-            class="iconbtn"
-            type="button"
-            aria-label="Lesespor"
-            title="Lesespor"
-            data-hg-i18n-aria-label="ui.nav.readingTracks"
-            data-hg-i18n-title="ui.nav.readingTracks">
-      📚
-    </button>
-
-    <button id="btnKaravane"
-            class="iconbtn"
-            type="button"
-            aria-label="Karavane"
-            title="Karavane">
-      <span aria-hidden="true">🧭</span>
-    </button>
-   
-    <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus" data-hg-i18n-aria-label="ui.attr.mapMode" data-hg-i18n-title="ui.attr.mapMode">
-      <span aria-hidden="true">⌖</span>
-    </button>
-
-    <input id="globalSearch" type="search" placeholder="Søk…" data-hg-i18n-placeholder="ui.attr.search" autocomplete="off">
-
     <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus" data-hg-i18n-title="ui.attr.positionStatus">📍</span>
 
     <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all" data-hg-i18n-aria-label="ui.attr.unlockAll" data-hg-i18n-title="ui.attr.unlockAll">🔓</button>
-       
-    <label class="toggle">
-      <input id="openToggle" type="checkbox" />
-      <span></span>
-    </label>
+
+    <div class="header-menu" id="headerMenu">
+      <button id="headerMenuButton"
+              class="iconbtn header-menu-button"
+              type="button"
+              aria-label="Åpne meny"
+              aria-controls="headerMenuPanel"
+              aria-expanded="false">☰</button>
+
+      <div id="headerMenuPanel" class="header-menu-panel" role="menu" aria-label="Headerverktøy" hidden>
+        <div class="header-menu-search">
+          <input id="globalSearch" type="search" placeholder="Søk…" data-hg-i18n-placeholder="ui.attr.search" autocomplete="off">
+          <div id="searchResults"></div>
+        </div>
+
+        <div class="header-menu-actions" aria-label="Sekundære headerverktøy">
+          <!-- Civication inngang -->
+          <a href="/History-Go/Civication.html"
+             class="header-menu-action civication-nav-link"
+             role="menuitem"
+             aria-label="Steder"
+             title="Steder">
+             <span class="header-menu-action-icon" aria-hidden="true">🏛️</span>
+             <span class="header-menu-action-label">Steder</span>
+             <span id="civicationUnreadBadge" class="nav-unread-badge" hidden aria-hidden="true"></span>
+          </a>
+
+          <button id="btnMinDag" class="header-menu-action" type="button" role="menuitem" aria-label="Min dag" title="Min dag" onclick="window.HG_TodayHubPanel?.render?.() || console.warn('[Min dag] HG_TodayHubPanel mangler')">
+            <span class="header-menu-action-icon hg-header-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.8v2.4M16.5 3.8v2.4M5.4 8.3h13.2M6.6 5.4h10.8a2.2 2.2 0 0 1 2.2 2.2v9.8a2.2 2.2 0 0 1-2.2 2.2H6.6a2.2 2.2 0 0 1-2.2-2.2V7.6a2.2 2.2 0 0 1 2.2-2.2Z"/>
+                <path fill="currentColor" d="M8 12.3a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm4 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm4 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm-8 4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Zm4 0a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3Z"/>
+              </svg>
+            </span>
+            <span class="header-menu-action-label">Kalender / Min dag</span>
+          </button>
+
+          <button id="btnLesespor" class="header-menu-action" type="button" role="menuitem" aria-label="Lesespor" title="Lesespor" data-hg-i18n-aria-label="ui.nav.readingTracks" data-hg-i18n-title="ui.nav.readingTracks">
+            <span class="header-menu-action-icon" aria-hidden="true">📚</span>
+            <span class="header-menu-action-label">Leksikon</span>
+          </button>
+
+          <button id="btnKaravane" class="header-menu-action" type="button" role="menuitem" aria-label="Karavane" title="Karavane">
+            <span class="header-menu-action-icon" aria-hidden="true">🧭</span>
+            <span class="header-menu-action-label">Ruter / Utforsk</span>
+          </button>
+
+          <button id="btnSeeMap" class="header-menu-action" type="button" role="menuitem" aria-label="Kartmodus" title="Kartmodus" data-hg-i18n-aria-label="ui.attr.mapMode" data-hg-i18n-title="ui.attr.mapMode">
+            <span class="header-menu-action-icon" aria-hidden="true">⌖</span>
+            <span class="header-menu-action-label">Kartmodus</span>
+          </button>
+
+          <label class="header-menu-action header-menu-toggle" role="menuitem">
+            <span class="header-menu-action-icon" aria-hidden="true">◐</span>
+            <span class="header-menu-action-label">Vis åpne steder</span>
+            <span class="toggle">
+              <input id="openToggle" type="checkbox" />
+              <span></span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
 
   </div>
-
-  <div id="searchResults"></div>
 
 </header>
 
@@ -370,6 +384,7 @@
   <script src="js/knowledgeMatch.js"></script>
   <script src="js/progress/profileProgressReader.js"></script>
   <script src="js/ui/place-card-status-surface.js"></script>
+  <script src="js/ui/header-menu.js"></script>
   <script>
     window.addEventListener("hg:appReady", () => {
       if (document.querySelector('script[src="js/ui/badges.js"]')) return;
