@@ -295,6 +295,22 @@ body.hg-app .site-header .top-actions #miniProfile #linkBadges::before{
   content: none;
 }
 
+
+body.hg-app .site-header .top-actions #btnMinDag .hg-header-icon{
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+body.hg-app .site-header .top-actions #btnMinDag .hg-header-icon svg{
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
 body.hg-app .site-header .top-actions #miniProfile .mp-extra{
   grid-area: stats;
   display: block;
@@ -361,10 +377,15 @@ body.hg-app .site-header .top-actions #miniProfile #miniLastQuiz{
     left: 6px;
   }
 
-  /* Tekstknapp («Min dag») skal ikke presses inn i ikonbredde. */
   body.hg-app .site-header .top-actions #btnMinDag{
-    width: auto;
-    padding: 0 6px;
+    width: 40px;
+    padding: 0;
+  }
+
+  body.hg-app .site-header .top-actions #btnMinDag .hg-header-icon,
+  body.hg-app .site-header .top-actions #btnMinDag .hg-header-icon svg{
+    width: 20px;
+    height: 20px;
   }
 
   /* Søkefeltet er radens fleksible ledd: lav flex-basis så raden
