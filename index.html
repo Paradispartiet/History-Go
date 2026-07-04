@@ -162,6 +162,16 @@
             <span class="header-menu-action-label">Kalender / Min dag</span>
           </button>
 
+          <button id="btnOpenPsychologyRoom"
+                  class="header-menu-action"
+                  type="button"
+                  role="menuitem"
+                  aria-label="Psykologirommet"
+                  title="Psykologirommet">
+            <span class="header-menu-action-icon" aria-hidden="true">🧠</span>
+            <span class="header-menu-action-label">Psykologirommet</span>
+          </button>
+
           <button id="btnLesespor" class="header-menu-action" type="button" role="menuitem" aria-label="Lesespor" title="Lesespor" data-hg-i18n-aria-label="ui.nav.readingTracks" data-hg-i18n-title="ui.nav.readingTracks">
             <span class="header-menu-action-icon" aria-hidden="true">📚</span>
             <span class="header-menu-action-label">Leksikon</span>
@@ -381,6 +391,7 @@
   <script src="js/progress/profileProgressReader.js"></script>
   <script src="js/ui/place-card-status-surface.js"></script>
   <script src="js/ui/header-menu.js"></script>
+  <script src="js/ui/psychology-room-entry.js"></script>
   <script>
     window.addEventListener("hg:appReady", () => {
       if (document.querySelector('script[src="js/ui/badges.js"]')) return;
