@@ -22,6 +22,29 @@
   let answerInFlight = false;
   let pendingRefresh = false;
   let answerDebugContext = null;
+  let queuedUpdateFrame = 0;
+
+  function perfMark(name) {
+    try { if (window.DEBUG && window.performance?.mark) window.performance.mark(name); } catch (_e) {}
+  }
+
+  function perfMeasureAnswer() {
+    if (!window.DEBUG) return;
+    try {
+      const marks = [
+        "civi-answer-click",
+        "civi-answer-after-answerMail",
+        "civi-answer-after-markAnswered",
+        "civi-answer-after-advanceUntilNextRealAction",
+        "civi-answer-after-render"
+      ];
+      console.debug("[CivicationNextActionUI] answer perf", marks.map(function (name) {
+        const entries = window.performance?.getEntriesByName?.(name) || [];
+        const last = entries[entries.length - 1];
+        return { name, startTime: last ? Math.round(last.startTime) : null };
+      }));
+    } catch (_e) {}
+  }
 
 
   function norm(value) {
@@ -218,10 +241,20 @@
   }
 
   function dispatchNextActionUpdates() {
-    ["civi:inboxChanged", "civi:dayPhaseChanged", "updateProfile"].forEach(function (eventName) {
-      if (answerDebugContext) answerDebugContext.dispatchCount += 1;
-      try { window.dispatchEvent(new Event(eventName)); } catch (_e) {}
-    });
+    if (queuedUpdateFrame) return;
+    const flush = function () {
+      queuedUpdateFrame = 0;
+      ["civi:inboxChanged", "civi:dayPhaseChanged", "updateProfile"].forEach(function (eventName) {
+        if (answerDebugContext) answerDebugContext.dispatchCount += 1;
+        try { window.dispatchEvent(new Event(eventName)); } catch (_e) {}
+      });
+    };
+    if (typeof window.requestAnimationFrame === "function") {
+      queuedUpdateFrame = window.requestAnimationFrame(flush);
+    } else {
+      queuedUpdateFrame = 1;
+      setTimeout(flush, 0);
+    }
   }
 
   function disableAnswerButtons() {
@@ -581,6 +614,7 @@
     if (!mailId) return Promise.resolve({ ok: false, reason: "missing_mail_id" });
     if (answerInFlight) return Promise.resolve({ ok: false, reason: "answer_in_flight" });
 
+    perfMark("civi-answer-click");
     answerInFlight = true;
     pendingRefresh = false;
     disableAnswerButtons();
@@ -604,6 +638,8 @@
 
     return Promise.resolve(result)
       .then(function (answerResult) {
+        perfMark("civi-answer-after-answerMail");
+        if (answerResult?.dailyRuntimeAnswered === true) perfMark("civi-answer-after-markAnswered");
         if (answerDebugContext) {
           answerDebugContext.legacyFollowupSuppressed = answerResult?.legacyImmediateFollowupSuppressed === true;
           answerDebugContext.legacyFollowupEnqueued = answerResult?.legacyImmediateFollowupEnqueued === true;
@@ -619,8 +655,10 @@
         dispatchNextActionUpdates();
         return advanceUntilNextRealAction().then(function (progressResult) {
           const next = progressResult?.action || getCurrentAction();
+          perfMark("civi-answer-after-advanceUntilNextRealAction");
           if (next) render();
           else close();
+          perfMark("civi-answer-after-render");
           return answerResult;
         });
       })
@@ -641,6 +679,7 @@
           debug.finalRenderCount = debug.renderCount;
           debug.finalDispatchCount = debug.dispatchCount;
           console.debug("[CivicationNextActionUI] answer complete", debug);
+          perfMeasureAnswer();
         }
       });
   }

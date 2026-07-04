@@ -1579,7 +1579,7 @@
     return next;
   }
 
-  async function markAnswered(eventId, choiceId) {
+  async function markAnswered(eventId, choiceId, opts = {}) {
     const id = norm(eventId);
     if (!id) return null;
     const runtime = getRuntime();
@@ -1668,7 +1668,9 @@
     setRuntime(next);
     // Innbokskopien må også løses, ellers blir saken stående som åpen innboks-sak
     // og blokkerer faseavansering (dayProgressionController teller åpne innbokssaker).
-    try { window.CivicationMailEngine?.markResolved?.(id, id, norm(choiceId)); } catch {}
+    if (opts?.resolveMail !== false) {
+      try { window.CivicationMailEngine?.markResolved?.(id, id, norm(choiceId)); } catch {}
+    }
     return next;
   }
 
@@ -1704,9 +1706,11 @@
       const eventObj = pending?.event || null;
       const daily = isDailyEvent(eventObj);
 
-      // Mark before previousAnswer, because dayPatches calls onAppOpen inside its answer wrapper.
-      // Without this, onAppOpen would see the same daily item as still active and re-enqueue it.
-      if (daily) await markAnswered(eventObj?.id || eventId, choiceId);
+      // Mark the daily runtime before the legacy wrappers run so dayPatches/onAppOpen can
+      // advance to the next runtime item, but keep the inbox item pending until EventEngine
+      // has consumed it. Resolving the mail here caused the legacy answer chain to return
+      // not_found and forced NextActionUI into its slow deliverQueuedAction fallback.
+      if (daily) await markAnswered(eventObj?.id || eventId, choiceId, { resolveMail: false });
 
       let result;
       const previousSuppress = /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup;
@@ -1718,7 +1722,8 @@
       }
 
       if (daily && result?.ok !== false) {
-        try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch (error) { if (window.DEBUG) console.warn("[CivicationDailyMailBuilder] refresh feilet", error); }
+        try { window.CivicationMailEngine?.markResolved?.(eventObj?.id || eventId, eventObj?.id || eventId, norm(choiceId)); } catch {}
+        result = { ...(result || {}), dailyRuntimeAnswered: true };
       }
 
       if (daily && result?.ok === false) {
