@@ -1,17 +1,17 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-07-03T10:57:51.756Z
+Generert: 2026-07-04T09:02:34.032Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-07-03T10:57:51.756Z |
+| generatedAt | 2026-07-04T09:02:34.032Z |
 | peopleFilesRead | 28 |
-| totalPeople | 488 |
-| uniquePeopleIds | 481 |
-| duplicatePeopleIds | 7 |
-| invalidPlaceRefs | 0 |
+| totalPeople | 484 |
+| uniquePeopleIds | 484 |
+| duplicatePeopleIds | 0 |
+| invalidPlaceRefs | 1 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
@@ -22,14 +22,14 @@ Generert: 2026-07-03T10:57:51.756Z
 
 | Fil | Kategori | Geo | People | Dups i fil | Mangler id | Mangler navn | Mangler category | Mangler hovedanker | Invalid refs | Schema |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| data/people/by/oslo/people_by_oslo.json | by | ja | 23 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 1 | standard_placeId_schema |
 | data/people/filantroper/oslo/people_filantroper_oslo.json | filantroper | ja | 17 | 0 | 0 | 0 | 0 | 0 | 0 | collectionGroup_filantroper_schema |
 | data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json | film_tv | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/film_tv/oslo/people_film_tv_oslo.json | film_tv | ja | 10 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | historie | ja | 47 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | historie | ja | 40 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/historie/oslo/people_historie_oslo.json | historie | ja | 65 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json | kunst | ja | 6 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
-| data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 12 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/kunst/oslo/people_kunst_oslo.json | kunst | ja | 13 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json | litteratur | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | litteratur | ja | 34 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/media/europe/portugal/lisbon/people_media_lisbon.json | media | ja | 7 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -55,11 +55,11 @@ Generert: 2026-07-03T10:57:51.756Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 23 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 25 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 23 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 112 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 18 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 105 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 19 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 39 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | media | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | musikk | 26 | 0 | 2 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -85,7 +85,11 @@ Generert: 2026-07-03T10:57:51.756Z
 
 ## Place-ref audit
 
-Invalid refs: 0
+Invalid refs: 1
+
+| Fil | Person | Felt | Invalid placeId | Foreslått handling |
+|---|---|---|---|---|
+| data/people/by/oslo/people_by_oslo.json | hagbarth_schytte_berg / Hagbarth Schytte-Berg | places[1] | fagerborg_kirke | create_place_later |
 
 ## People uten sterkt anker
 
@@ -98,14 +102,14 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Schema-status
 
-- data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=23/23; source_place_id=0/23; placesArray=23/23; categories=by
+- data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=25/25; source_place_id=0/25; placesArray=25/25; categories=by
 - data/people/filantroper/oslo/people_filantroper_oslo.json: collectionGroup_filantroper_schema; schemaKind=collectionGroup_filantroper_schema; placeId=17/17; source_place_id=0/17; placesArray=17/17; collectionGroup=17/17; categories=by,kunst,litteratur,politikk,vitenskap; ok: filantroper vurderes etter collectionGroup, ikke category
 - data/people/film_tv/europe/portugal/lisbon/people_film_tv_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=13/13; source_place_id=0/13; placesArray=13/13; categories=film_tv
 - data/people/film_tv/oslo/people_film_tv_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=10/10; source_place_id=0/10; placesArray=10/10; categories=film_tv
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=47/47; source_place_id=0/47; placesArray=47/47; categories=historie
+- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=40/40; source_place_id=0/40; placesArray=40/40; categories=historie
 - data/people/historie/oslo/people_historie_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=65/65; source_place_id=0/65; placesArray=65/65; categories=historie
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=kunst
-- data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=12/12; source_place_id=0/12; placesArray=12/12; categories=kunst
+- data/people/kunst/oslo/people_kunst_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=13/13; source_place_id=0/13; placesArray=13/13; categories=kunst
 - data/people/litteratur/europe/portugal/lisbon/people_litteratur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=litteratur
 - data/people/litteratur/oslo/people_litteratur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=34/34; source_place_id=0/34; placesArray=34/34; categories=litteratur
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=7/7; source_place_id=0/7; placesArray=7/7; categories=media
@@ -133,17 +137,11 @@ Entries med svak/manglende places[] etter auditreglene: 0
 
 ## Duplicate IDs
 
-- eufemia_av_rugen: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
-- harald_hardrade: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
-- haakon_haakonsson: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
-- haakon_v_magnusson: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
-- magnus_den_gode: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
-- magnus_lagabote: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
-- sigurd_jorsalfare: data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json, data/people/historie/oslo/people_historie_oslo.json
+- Ingen duplicate IDs på tvers av manifest-listede people-filer.
 
 ## Image/cardImage audit
 
-Mangler filer for image/cardImage/media: 646
+Mangler filer for image/cardImage/media: 629
 
 | Fil | Person | Felt | Bane |
 |---|---|---|---|
@@ -169,8 +167,6 @@ Mangler filer for image/cardImage/media: 646
 | data/people/by/oslo/people_by_oslo.json | sverre_fehn / Sverre Fehn | cardImage | bilder/kort/people/sverre_fehn.PNG |
 | data/people/by/oslo/people_by_oslo.json | ove_bang / Ove Bang | image | bilder/kort/people/ove_bang.PNG |
 | data/people/by/oslo/people_by_oslo.json | ove_bang / Ove Bang | cardImage | bilder/kort/people/ove_bang.PNG |
-| data/people/by/oslo/people_by_oslo.json | harald_aars / Harald Aars | image | bilder/kort/people/harald_aars.PNG |
-| data/people/by/oslo/people_by_oslo.json | harald_aars / Harald Aars | cardImage | bilder/kort/people/harald_aars.PNG |
 | data/people/by/oslo/people_by_oslo.json | kirsten_sand / Kirsten Sand | image | bilder/kort/people/kirsten_sand.PNG |
 | data/people/by/oslo/people_by_oslo.json | kirsten_sand / Kirsten Sand | cardImage | bilder/kort/people/kirsten_sand.PNG |
 | data/people/by/oslo/people_by_oslo.json | sverre_pedersen / Sverre Pedersen | image | bilder/kort/people/sverre_pedersen.PNG |
@@ -245,10 +241,6 @@ Mangler filer for image/cardImage/media: 646
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | kalv_arnesson / Kalv Arnesson | cardImage | bilder/kort/people/kalv_arnesson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | einar_tambarskjelve / Einar Tambarskjelve | image | bilder/kort/people/einar_tambarskjelve.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | einar_tambarskjelve / Einar Tambarskjelve | cardImage | bilder/kort/people/einar_tambarskjelve.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | magnus_den_gode / Magnus den gode | image | bilder/kort/people/magnus_den_gode.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | magnus_den_gode / Magnus den gode | cardImage | bilder/kort/people/magnus_den_gode.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | harald_hardrade / Harald Hardråde | image | bilder/kort/people/harald_hardrade.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | harald_hardrade / Harald Hardråde | cardImage | bilder/kort/people/harald_hardrade.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | tora_torbergsdatter / Tora Torbergsdatter | image | bilder/kort/people/tora_torbergsdatter.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | tora_torbergsdatter / Tora Torbergsdatter | cardImage | bilder/kort/people/tora_torbergsdatter.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | olav_kyrre / Olav Kyrre | image | bilder/kort/people/olav_kyrre.PNG |
@@ -257,8 +249,6 @@ Mangler filer for image/cardImage/media: 646
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | magnus_berrfott / Magnus Berrføtt | cardImage | bilder/kort/people/magnus_berrfott.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | oystein_magnusson / Øystein Magnusson | image | bilder/kort/people/oystein_magnusson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | oystein_magnusson / Øystein Magnusson | cardImage | bilder/kort/people/oystein_magnusson.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | sigurd_jorsalfare / Sigurd Jorsalfare | image | bilder/kort/people/sigurd_jorsalfare.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | sigurd_jorsalfare / Sigurd Jorsalfare | cardImage | bilder/kort/people/sigurd_jorsalfare.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | malmfrid_mstislavsdatter / Malmfrid Mstislavsdatter | image | bilder/kort/people/malmfrid_mstislavsdatter.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | malmfrid_mstislavsdatter / Malmfrid Mstislavsdatter | cardImage | bilder/kort/people/malmfrid_mstislavsdatter.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | harald_gille / Harald Gille | image | bilder/kort/people/harald_gille.PNG |
@@ -283,20 +273,12 @@ Mangler filer for image/cardImage/media: 646
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | inga_fra_varteig / Inga fra Varteig | cardImage | bilder/kort/people/inga_fra_varteig.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | skule_bardsson / Skule Bårdsson | image | bilder/kort/people/skule_bardsson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | skule_bardsson / Skule Bårdsson | cardImage | bilder/kort/people/skule_bardsson.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | haakon_haakonsson / Håkon Håkonsson | image | bilder/kort/people/haakon_haakonsson.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | haakon_haakonsson / Håkon Håkonsson | cardImage | bilder/kort/people/haakon_haakonsson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | margrete_skulesdatter / Margrete Skulesdatter | image | bilder/kort/people/margrete_skulesdatter.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | margrete_skulesdatter / Margrete Skulesdatter | cardImage | bilder/kort/people/margrete_skulesdatter.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | magnus_lagabote / Magnus Lagabøte | image | bilder/kort/people/magnus_lagabote.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | magnus_lagabote / Magnus Lagabøte | cardImage | bilder/kort/people/magnus_lagabote.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | jon_raude / Jon Raude | image | bilder/kort/people/jon_raude.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | jon_raude / Jon Raude | cardImage | bilder/kort/people/jon_raude.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | eirik_magnusson / Eirik Magnusson | image | bilder/kort/people/eirik_magnusson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | eirik_magnusson / Eirik Magnusson | cardImage | bilder/kort/people/eirik_magnusson.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | haakon_v_magnusson / Håkon V Magnusson | image | bilder/kort/people/haakon_v_magnusson.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | haakon_v_magnusson / Håkon V Magnusson | cardImage | bilder/kort/people/haakon_v_magnusson.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | eufemia_av_rugen / Eufemia av Rügen | image | bilder/kort/people/eufemia_av_rugen.PNG |
-| data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | eufemia_av_rugen / Eufemia av Rügen | cardImage | bilder/kort/people/eufemia_av_rugen.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | audun_hugleiksson / Audun Hugleiksson | image | bilder/kort/people/audun_hugleiksson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | audun_hugleiksson / Audun Hugleiksson | cardImage | bilder/kort/people/audun_hugleiksson.PNG |
 | data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json | magnus_eriksson / Magnus Eriksson | image | bilder/kort/people/magnus_eriksson.PNG |
@@ -494,7 +476,6 @@ Mangler filer for image/cardImage/media: 646
 | data/people/litteratur/oslo/people_litteratur_oslo.json | hamsun / Knut Hamsun | cardImage | bilder/kort/people/hamsun.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | garborg / Arne Garborg | image | bilder/people/garborg.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | garborg / Arne Garborg | cardImage | bilder/kort/people/garborg.PNG |
-| data/people/litteratur/oslo/people_litteratur_oslo.json | sigrid_undset / Sigrid Undset | cardImage | bilder/kort/people/sigrid_undset.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | andre_bjerke / André Bjerke | cardImage | bilder/kort/people/andre_bjerke.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | jon_fosse / Jon Fosse | cardImage | bilder/kort/people/jon_fosse.PNG |
 | data/people/litteratur/oslo/people_litteratur_oslo.json | alf_proysen / Alf Prøysen | image | bilder/kort/people/alf_proysen.PNG |
@@ -809,17 +790,19 @@ Mangler filer for image/cardImage/media: 646
 
 ## Manglende steder som blockers
 
-- Ingen invalid place IDs ble funnet i manifest-listede people-filer.
+- fagerborg_kirke: 1 forekomster
 
 ## Anbefalt neste PR
 
 ```json
 {
-  "type": "content_expansion",
+  "type": "schema_cleanup",
   "category": null,
-  "reason": "Ingen invalid refs, duplikater eller store flate split-kandidater ble funnet.",
-  "safeBatchSize": 10,
-  "blockers": []
+  "reason": "Audit fant ugyldige place-referanser; cleanup bør tas før nye batches.",
+  "safeBatchSize": 1,
+  "blockers": [
+    "fagerborg_kirke"
+  ]
 }
 ```
 

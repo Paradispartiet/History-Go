@@ -1,36 +1,36 @@
 # People-place coverage audit
 
-Generert: 2026-07-03T10:57:51.986Z
+Generert: 2026-07-04T09:02:34.279Z
 
 ## Sammendrag
 
-- People totalt: **488**
-- Places totalt: **869**
-- Places med people: **209**
-- Places uten people: **660**
-- People-place-lenker: **739**
-- People koblet til flere gyldige steder: **191**
+- People totalt: **484**
+- Places totalt: **911**
+- Places med people: **210**
+- Places uten people: **701**
+- People-place-lenker: **736**
+- People koblet til flere gyldige steder: **184**
 - People uten gyldig sted: **0**
-- Ugyldige place-referanser: **0**
-- Duplikate place-referanser inne på people: **488**
-- People uten image: **131**
-- People uten cardImage: **131**
+- Ugyldige place-referanser: **1**
+- Duplikate place-referanser inne på people: **484**
+- People uten image: **135**
+- People uten cardImage: **136**
 - People uten popupDesc: **26**
 
 ## Dekning per place-kategori
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 92 | 28 | 64 | 113 | 87 |
+| by | 92 | 29 | 63 | 117 | 90 |
 | film_tv | 8 | 8 | 0 | 45 | 23 |
-| historie | 421 | 57 | 364 | 198 | 104 |
+| historie | 461 | 57 | 404 | 192 | 104 |
 | kunst | 18 | 9 | 9 | 21 | 19 |
-| litteratur | 31 | 21 | 10 | 51 | 45 |
+| litteratur | 31 | 21 | 10 | 50 | 45 |
 | media | 11 | 8 | 3 | 38 | 37 |
 | musikk | 13 | 9 | 4 | 27 | 18 |
 | naeringsliv | 55 | 27 | 28 | 55 | 53 |
 | natur | 63 | 5 | 58 | 13 | 13 |
-| politikk | 15 | 7 | 8 | 74 | 61 |
+| politikk | 17 | 7 | 10 | 74 | 61 |
 | populaerkultur | 18 | 4 | 14 | 8 | 8 |
 | psykologi | 1 | 0 | 1 | 0 | 0 |
 | sport | 64 | 10 | 54 | 34 | 30 |
@@ -39,22 +39,22 @@ Generert: 2026-07-03T10:57:51.986Z
 
 ## People tags
 
-- historie: 114
-- norge_for_1500: 47
+- historie: 112
 - litteratur: 46
 - politikk: 44
 - naeringsliv: 40
+- norge_for_1500: 40
 - vitenskap: 34
 - sport: 31
 - musikk: 30
 - subkultur: 30
 - media: 27
-- kunst: 25
-- by: 24
+- by: 26
+- kunst: 26
 - film: 23
 - film_tv: 23
+- arkitektur: 22
 - natur: 22
-- arkitektur: 21
 - regissor: 20
 - populaerkultur: 18
 - tv: 18
@@ -76,26 +76,26 @@ Generert: 2026-07-03T10:57:51.986Z
 - redaksjon: 10
 - norsk_film: 9
 - programleder: 9
-- høymiddelalder: 8
 - kringkasting: 8
 - musikkhistorie: 8
 - radio: 8
-- tidlig_kongedømme: 8
 - vikingtid: 8
 - arbeiderbevegelse: 7
+- byutvikling: 7
 - kristning: 7
 - maleri: 7
-- byutvikling: 6
 - fotball: 6
 - kanon: 6
 - konsert: 6
+- mesen: 6
+- nasjonalmuseet: 6
 
 ## Steder med flest people
 
 - stortinget (Stortinget) – 29
-- middelalder_oslo (Middelalderparken) – 28
+- middelalder_oslo (Middelalderparken) – 24
 - universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) – 23
-- akerhus_slott (Akerhus Slott) – 22
+- akerhus_slott (Akerhus Slott) – 20
 - universitetsplassen (Universitetsplassen) – 19
 - youngstorget (Youngstorget) – 17
 - oslo_domkirke (Oslo domkirke) – 15
@@ -120,7 +120,7 @@ Generert: 2026-07-03T10:57:51.986Z
 
 ## Ugyldige place-referanser
 
-- Ingen ugyldige place-referanser funnet.
+- hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> fagerborg_kirke
 
 ## Duplikate place-referanser inne på people
 
@@ -135,7 +135,7 @@ Generert: 2026-07-03T10:57:51.986Z
 - erling_viksjo (Erling Viksjø) -> regjeringskvartalet
 - sverre_fehn (Sverre Fehn) -> bankplassen
 - ove_bang (Ove Bang) -> ullevål_hageby
-- harald_aars (Harald Aars) -> sagene_kvernhus
+- harald_aars (Harald Aars) -> stensparken
 - kirsten_sand (Kirsten Sand) -> universitetsplassen
 - sverre_pedersen (Sverre Pedersen) -> oslo_radhus
 - christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen
@@ -147,6 +147,8 @@ Generert: 2026-07-03T10:57:51.986Z
 - jan_gehl (Jan Gehl) -> bjorvika
 - albert_nordengen (Albert Nordengen) -> radhusplassen
 - kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade
+- hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken
+- halvor_c_reiersen (Halvor C. Reiersen) -> stensparken
 - halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen
 - haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard
 - sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard
@@ -161,13 +163,10 @@ Generert: 2026-07-03T10:57:51.986Z
 - tore_hund (Tore Hund) -> stiklestad
 - kalv_arnesson (Kalv Arnesson) -> stiklestad
 - einar_tambarskjelve (Einar Tambarskjelve) -> nidaros_erkebispegarden
-- magnus_den_gode (Magnus den gode) -> nidaros_erkebispegarden
-- harald_hardrade (Harald Hardråde) -> middelalder_oslo
 - tora_torbergsdatter (Tora Torbergsdatter) -> giske_kyrkje
 - olav_kyrre (Olav Kyrre) -> kristkirken_bergenhus
 - magnus_berrfott (Magnus Berrføtt) -> downpatrick_magnus_berrfott
 - oystein_magnusson (Øystein Magnusson) -> kristkirken_bergenhus
-- sigurd_jorsalfare (Sigurd Jorsalfare) -> middelalder_oslo
 - malmfrid_mstislavsdatter (Malmfrid Mstislavsdatter) -> middelalder_oslo
 - harald_gille (Harald Gille) -> kristkirken_bergenhus
 - sigurd_slembe (Sigurd Slembe) -> holmengra_hvaler
@@ -180,13 +179,9 @@ Generert: 2026-07-03T10:57:51.986Z
 - nikolas_arnesson (Nikolas Arnesson) -> middelalder_oslo
 - inga_fra_varteig (Inga fra Varteig) -> varteig_kirke
 - skule_bardsson (Skule Bårdsson) -> reinskloster
-- haakon_haakonsson (Håkon Håkonsson) -> bergenhus_haakonshallen
 - margrete_skulesdatter (Margrete Skulesdatter) -> reinskloster
-- magnus_lagabote (Magnus Lagabøte) -> bergenhus_haakonshallen
 - jon_raude (Jon Raude) -> nidarosdomen
 - eirik_magnusson (Eirik Magnusson) -> bergenhus_haakonshallen
-- haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott
-- eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott
 - audun_hugleiksson (Audun Hugleiksson) -> audunborg_hegrenes
 - magnus_eriksson (Magnus Eriksson) -> middelalder_oslo
 - haakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott
@@ -224,7 +219,12 @@ Generert: 2026-07-03T10:57:51.986Z
 - christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen
 - wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen
 - carsten_anker (Carsten Anker) -> eidsvollsbygningen
-- ... 388 flere
+- peder_anker (Peder Anker) -> bogstad_gard
+- birger_eriksen (Birger Eriksen) -> oscarsborg_festning
+- marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
+- martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
+- cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
+- ... 384 flere
 
 ## Anbefalt første people-batch
 

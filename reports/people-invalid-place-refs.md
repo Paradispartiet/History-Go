@@ -1,19 +1,28 @@
 # People invalid place refs audit
 
-Generated: 2026-07-03T10:57:51.641Z
+Generated: 2026-07-04T09:02:33.908Z
 
 ## Sammendrag
 - People-filer lest: **28**
-- People lest: **488**
-- People med ugyldige refs: **0**
-- Ugyldige refs: **0**
-- Unike ugyldige placeId-er: **0**
+- People lest: **484**
+- People med ugyldige refs: **1**
+- Ugyldige refs: **1**
+- Unike ugyldige placeId-er: **1**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **488**
+- Duplikate interne place-referanser: **484**
 
 ## Ugyldige refs gruppert per fil/person
+### data/people/by/oslo/people_by_oslo.json
+- **hagbarth_schytte_berg** (Hagbarth Schytte-Berg)
+  - fagerborg_kirke @ `places[1]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
+- **fagerborg_kirke** (needs_manual_review, 1 treff)
+  - alvdal_kirke (confidence: low)
+  - asnes_kirke (confidence: low)
+  - aurdal_kirke (confidence: low)
+  - bamble_kirke (confidence: low)
+  - biri_kirke (confidence: low)
 
 ## People uten gyldig sted
 
@@ -29,7 +38,7 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/by/oslo/people_by_oslo.json :: erling_viksjo (Erling Viksjø) -> regjeringskvartalet x2
 - data/people/by/oslo/people_by_oslo.json :: sverre_fehn (Sverre Fehn) -> bankplassen x2
 - data/people/by/oslo/people_by_oslo.json :: ove_bang (Ove Bang) -> ullevål_hageby x2
-- data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> sagene_kvernhus x2
+- data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> stensparken x2
 - data/people/by/oslo/people_by_oslo.json :: kirsten_sand (Kirsten Sand) -> universitetsplassen x2
 - data/people/by/oslo/people_by_oslo.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
 - data/people/by/oslo/people_by_oslo.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> universitetsplassen x2
@@ -41,6 +50,8 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/by/oslo/people_by_oslo.json :: jan_gehl (Jan Gehl) -> bjorvika x2
 - data/people/by/oslo/people_by_oslo.json :: albert_nordengen (Albert Nordengen) -> radhusplassen x2
 - data/people/by/oslo/people_by_oslo.json :: kristin_jarmund (Kristin Jarmund) -> vulkan_industriomrade x2
+- data/people/by/oslo/people_by_oslo.json :: hagbarth_schytte_berg (Hagbarth Schytte-Berg) -> stensparken x2
+- data/people/by/oslo/people_by_oslo.json :: halvor_c_reiersen (Halvor C. Reiersen) -> stensparken x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: halvdan_svarte (Halvdan Svarte) -> stein_ringerike_halvdanshaugen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_grjotgardsson (Håkon Grjotgardsson) -> lade_gard x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_ladejarl (Sigurd Ladejarl) -> lade_gard x2
@@ -55,13 +66,10 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: tore_hund (Tore Hund) -> stiklestad x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: kalv_arnesson (Kalv Arnesson) -> stiklestad x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: einar_tambarskjelve (Einar Tambarskjelve) -> nidaros_erkebispegarden x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: magnus_den_gode (Magnus den gode) -> nidaros_erkebispegarden x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: harald_hardrade (Harald Hardråde) -> middelalder_oslo x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: tora_torbergsdatter (Tora Torbergsdatter) -> giske_kyrkje x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: olav_kyrre (Olav Kyrre) -> kristkirken_bergenhus x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: magnus_berrfott (Magnus Berrføtt) -> downpatrick_magnus_berrfott x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: oystein_magnusson (Øystein Magnusson) -> kristkirken_bergenhus x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_jorsalfare (Sigurd Jorsalfare) -> middelalder_oslo x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: malmfrid_mstislavsdatter (Malmfrid Mstislavsdatter) -> middelalder_oslo x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: harald_gille (Harald Gille) -> kristkirken_bergenhus x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: sigurd_slembe (Sigurd Slembe) -> holmengra_hvaler x2
@@ -74,13 +82,9 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: nikolas_arnesson (Nikolas Arnesson) -> middelalder_oslo x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: inga_fra_varteig (Inga fra Varteig) -> varteig_kirke x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: skule_bardsson (Skule Bårdsson) -> reinskloster x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_haakonsson (Håkon Håkonsson) -> bergenhus_haakonshallen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: margrete_skulesdatter (Margrete Skulesdatter) -> reinskloster x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: magnus_lagabote (Magnus Lagabøte) -> bergenhus_haakonshallen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: jon_raude (Jon Raude) -> nidarosdomen x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: eirik_magnusson (Eirik Magnusson) -> bergenhus_haakonshallen x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott x2
-- data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: audun_hugleiksson (Audun Hugleiksson) -> audunborg_hegrenes x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: magnus_eriksson (Magnus Eriksson) -> middelalder_oslo x2
 - data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json :: haakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott x2
@@ -165,6 +169,7 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/kunst/oslo/people_kunst_oslo.json :: anna_eva_bergman (Anna-Eva Bergman) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: rolf_nesch (Rolf Nesch) -> nasjonalmuseet x2
 - data/people/kunst/oslo/people_kunst_oslo.json :: per_kleiva (Per Kleiva) -> nasjonalmuseet x2
+- data/people/kunst/oslo/people_kunst_oslo.json :: kjersti_wexelsen_goksoyr (Kjersti Wexelsen Goksøyr) -> stensparken x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: calouste_gulbenkian (Calouste Gulbenkian) -> lisbon_fundacao_calouste_gulbenkian x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: joana_vasconcelos (Joana Vasconcelos) -> lisbon_maat x2
 - data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json :: maria_helena_vieira_da_silva (Maria Helena Vieira da Silva) -> lisbon_museu_arpad_szenes_vieira_da_silva x2
@@ -195,7 +200,7 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: obstfelder (Sigbjørn Obstfelder) -> gamle_deichman x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: hamsun (Knut Hamsun) -> gamle_deichman x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: garborg (Arne Garborg) -> gamle_deichman x2
-- data/people/litteratur/oslo/people_litteratur_oslo.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: sigrid_undset (Sigrid Undset) -> stensparken x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: andre_bjerke (André Bjerke) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: jon_fosse (Jon Fosse) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
@@ -508,3 +513,4 @@ Generated: 2026-07-03T10:57:51.641Z
 - data/people/popkultur/europe/portugal/lisbon/people_popkultur_lisbon.json :: nuno_markl (Nuno Markl) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch
+- fagerborg_kirke (needs_manual_review, 1 treff)

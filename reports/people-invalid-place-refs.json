@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T10:57:51.641Z",
+  "generatedAt": "2026-07-04T09:02:33.908Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -7,15 +7,69 @@
   },
   "summary": {
     "peopleFilesRead": 28,
-    "peopleRead": 488,
-    "peopleWithInvalidRefs": 0,
-    "invalidRefs": 0,
-    "uniqueInvalidPlaceIds": 0,
+    "peopleRead": 484,
+    "peopleWithInvalidRefs": 1,
+    "invalidRefs": 1,
+    "uniqueInvalidPlaceIds": 1,
     "peopleWithoutValidPlace": 0,
-    "duplicateInternalPlaceRefs": 488
+    "duplicateInternalPlaceRefs": 484
   },
-  "invalidRefsGrouped": [],
-  "uniqueInvalidPlaceIds": [],
+  "invalidRefsGrouped": [
+    {
+      "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+      "people": [
+        {
+          "personId": "hagbarth_schytte_berg",
+          "personName": "Hagbarth Schytte-Berg",
+          "invalidPlaceIds": [
+            "fagerborg_kirke"
+          ],
+          "invalidRefs": [
+            {
+              "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+              "personId": "hagbarth_schytte_berg",
+              "personName": "Hagbarth Schytte-Berg",
+              "field": "places[1]",
+              "invalidPlaceId": "fagerborg_kirke"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "uniqueInvalidPlaceIds": [
+    {
+      "invalidPlaceId": "fagerborg_kirke",
+      "occurrences": 1,
+      "peopleCount": 1,
+      "sourceFiles": [
+        "data/people/by/oslo/people_by_oslo.json"
+      ],
+      "classification": "needs_manual_review",
+      "suggestions": [
+        {
+          "placeId": "alvdal_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "asnes_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "aurdal_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "bamble_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "biri_kirke",
+          "confidence": "low"
+        }
+      ]
+    }
+  ],
   "peopleWithoutValidPlace": [],
   "duplicateInternalPlaceRefs": [
     {
@@ -143,7 +197,7 @@
       "sourceFile": "data/people/by/oslo/people_by_oslo.json",
       "personId": "harald_aars",
       "personName": "Harald Aars",
-      "placeId": "sagene_kvernhus",
+      "placeId": "stensparken",
       "count": 2,
       "fields": [
         "placeId",
@@ -265,6 +319,28 @@
       "personId": "kristin_jarmund",
       "personName": "Kristin Jarmund",
       "placeId": "vulkan_industriomrade",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+      "personId": "hagbarth_schytte_berg",
+      "personName": "Hagbarth Schytte-Berg",
+      "placeId": "stensparken",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/by/oslo/people_by_oslo.json",
+      "personId": "halvor_c_reiersen",
+      "personName": "Halvor C. Reiersen",
+      "placeId": "stensparken",
       "count": 2,
       "fields": [
         "placeId",
@@ -427,28 +503,6 @@
     },
     {
       "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "magnus_den_gode",
-      "personName": "Magnus den gode",
-      "placeId": "nidaros_erkebispegarden",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "harald_hardrade",
-      "personName": "Harald Hardråde",
-      "placeId": "middelalder_oslo",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
       "personId": "tora_torbergsdatter",
       "personName": "Tora Torbergsdatter",
       "placeId": "giske_kyrkje",
@@ -485,17 +539,6 @@
       "personId": "oystein_magnusson",
       "personName": "Øystein Magnusson",
       "placeId": "kristkirken_bergenhus",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "sigurd_jorsalfare",
-      "personName": "Sigurd Jorsalfare",
-      "placeId": "middelalder_oslo",
       "count": 2,
       "fields": [
         "placeId",
@@ -636,31 +679,9 @@
     },
     {
       "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "haakon_haakonsson",
-      "personName": "Håkon Håkonsson",
-      "placeId": "bergenhus_haakonshallen",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
       "personId": "margrete_skulesdatter",
       "personName": "Margrete Skulesdatter",
       "placeId": "reinskloster",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "magnus_lagabote",
-      "personName": "Magnus Lagabøte",
-      "placeId": "bergenhus_haakonshallen",
       "count": 2,
       "fields": [
         "placeId",
@@ -683,28 +704,6 @@
       "personId": "eirik_magnusson",
       "personName": "Eirik Magnusson",
       "placeId": "bergenhus_haakonshallen",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "haakon_v_magnusson",
-      "personName": "Håkon V Magnusson",
-      "placeId": "akerhus_slott",
-      "count": 2,
-      "fields": [
-        "placeId",
-        "places[0]"
-      ]
-    },
-    {
-      "sourceFile": "data/people/historie/norge/people_historie_norge_for_1500_to_add_47.json",
-      "personId": "eufemia_av_rugen",
-      "personName": "Eufemia av Rügen",
-      "placeId": "akerhus_slott",
       "count": 2,
       "fields": [
         "placeId",
@@ -1636,6 +1635,17 @@
       ]
     },
     {
+      "sourceFile": "data/people/kunst/oslo/people_kunst_oslo.json",
+      "personId": "kjersti_wexelsen_goksoyr",
+      "personName": "Kjersti Wexelsen Goksøyr",
+      "placeId": "stensparken",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
       "sourceFile": "data/people/kunst/europe/portugal/lisbon/people_kunst_lisbon.json",
       "personId": "calouste_gulbenkian",
       "personName": "Calouste Gulbenkian",
@@ -1969,7 +1979,7 @@
       "sourceFile": "data/people/litteratur/oslo/people_litteratur_oslo.json",
       "personId": "sigrid_undset",
       "personName": "Sigrid Undset",
-      "placeId": "nasjonalbiblioteket",
+      "placeId": "stensparken",
       "count": 2,
       "fields": [
         "placeId",
@@ -5387,5 +5397,33 @@
       ]
     }
   ],
-  "recommendedNextBatch": []
+  "recommendedNextBatch": [
+    {
+      "invalidPlaceId": "fagerborg_kirke",
+      "classification": "needs_manual_review",
+      "occurrences": 1,
+      "suggestions": [
+        {
+          "placeId": "alvdal_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "asnes_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "aurdal_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "bamble_kirke",
+          "confidence": "low"
+        },
+        {
+          "placeId": "biri_kirke",
+          "confidence": "low"
+        }
+      ]
+    }
+  ]
 }
