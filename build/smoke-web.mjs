@@ -47,7 +47,8 @@ const TARGETS = [
     globals: [
       "CivicationState", "CivicationCalendar", "CivicationEventEngine", "CivicationMailEngine",
       "CivicationMailRuntime", "CivicationDailyMailBuilder", "CivicationNextActionSelector",
-      "CivicationNextActionUI", "CivicationDayProgression", "CivicationPsyche", "CivicationEventChannels"
+      "CivicationNextActionUI", "CivicationDayProgression", "CivicationPsyche", "CivicationEventChannels",
+      "CivicationCityMap"
     ]
   }
 ];
