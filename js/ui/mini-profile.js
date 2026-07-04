@@ -357,17 +357,36 @@ function showQuizHistory() {
   });
 }
 
-// Idempotent: binder klikk på #linkPlaces/#linkBadges/#linkQuiz høyst én gang per
+function routeMiniProfileToProfilePage(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  window.location.href = "profile.html";
+}
+
+function wireMiniProfileNavigation() {
+  const miniProfile = document.getElementById("miniProfile");
+  if (!miniProfile || miniProfile.dataset.hgMiniProfileRouteBound === "1") return;
+
+  miniProfile.dataset.hgMiniProfileRouteBound = "1";
+  miniProfile.setAttribute("href", "profile.html");
+
+  // Bind in capture phase so legacy child handlers for stats/badges/quizzes cannot
+  // open inline map/profile/quiz panels before the profile-page navigation runs.
+  miniProfile.addEventListener("click", routeMiniProfileToProfilePage, true);
+}
+
+// Idempotent: binder klikk på #miniProfile og gamle underlenker høyst én gang per
 // element. Markeres med dataset.hgMiniProfileBound slik at gjentatte kall (fra
 // updateProfile/hg:appReady/aha:auth-ready) ikke dobbeltbinder samme listener.
 function wireMiniProfileLinks() {
+  wireMiniProfileNavigation();
+
   const linkPlaces = document.getElementById("linkPlaces");
   if (linkPlaces && linkPlaces.dataset.hgMiniProfileBound !== "1") {
     linkPlaces.dataset.hgMiniProfileBound = "1";
     linkPlaces.addEventListener("click", (e) => {
       e.preventDefault(); e.stopPropagation();
-      enterMapMode();
-      showToast(tUI("ui.miniprofile.showingPlacesOnMap", "Viser steder på kartet"));
+      window.location.href = "profile.html";
     });
   }
 
@@ -376,7 +395,7 @@ function wireMiniProfileLinks() {
     linkBadges.dataset.hgMiniProfileBound = "1";
     linkBadges.addEventListener("click", (e) => {
       e.preventDefault(); e.stopPropagation();
-      window.location.href = "profile.html#userBadgesGrid";
+      window.location.href = "profile.html";
     });
   }
 
@@ -385,7 +404,7 @@ function wireMiniProfileLinks() {
     linkQuiz.dataset.hgMiniProfileBound = "1";
     linkQuiz.addEventListener("click", (e) => {
       e.preventDefault(); e.stopPropagation();
-      showQuizHistory();
+      window.location.href = "profile.html";
     });
   }
 }
