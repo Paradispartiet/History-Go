@@ -357,7 +357,7 @@
     async answerMail(mailId, choiceId) {
       const mail = this.getMail(mailId);
       const eventId = mail?.event?.id || mailId;
-      const result = /** @type {{ ok?: unknown }} */ (window.HG_CiviEngine?.answer
+      const result = /** @type {{ ok?: unknown, dailyRuntimeAnswered?: unknown }} */ (window.HG_CiviEngine?.answer
         ? await window.HG_CiviEngine.answer(eventId, choiceId)
         : { ok: false, reason: "no_event_engine" });
 
