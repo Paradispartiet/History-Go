@@ -107,6 +107,46 @@ const TARGETS = [
     expectedSourceFile: "places/naeringsliv/oslo/places_naeringsliv.json",
     expectedCategory: "naeringsliv",
   },
+  {
+    label: "subkultur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.subkultur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.subkultur.json",
+    placesFile: path.join(ROOT, "data", "places", "subkultur", "oslo", "places_subkultur.json"),
+    expectedSourceFile: "places/subkultur/oslo/places_subkultur.json",
+    expectedCategory: "subkultur",
+  },
+  {
+    label: "popkultur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.popkultur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.popkultur.json",
+    placesFile: path.join(ROOT, "data", "places", "popkultur", "oslo", "places_oslo_populaerkultur.json"),
+    expectedSourceFile: "places/popkultur/oslo/places_oslo_populaerkultur.json",
+    expectedCategory: ["populaerkultur", "film_tv"],
+  },
+  {
+    label: "media (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.media.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.media.json",
+    placesFile: path.join(ROOT, "data", "places", "media", "oslo", "places_oslo_media.json"),
+    expectedSourceFile: "places/media/oslo/places_oslo_media.json",
+    expectedCategory: "media",
+  },
+  {
+    label: "film (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.film.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.film.json",
+    placesFile: path.join(ROOT, "data", "places", "film", "oslo", "places_oslo_film.json"),
+    expectedSourceFile: "places/film/oslo/places_oslo_film.json",
+    expectedCategory: "populaerkultur",
+  },
+  {
+    label: "psykologi (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.psykologi.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.psykologi.json",
+    placesFile: path.join(ROOT, "data", "places", "psykologi", "oslo", "places_psykologi.json"),
+    expectedSourceFile: "places/psykologi/oslo/places_psykologi.json",
+    expectedCategory: "psykologi",
+  },
 ];
 
 // Obligatoriske felt per mapping (jf. oppgavens punkt 4).
@@ -261,9 +301,13 @@ async function auditTarget(target) {
       );
     }
 
-    // category må matche målet.
-    if (m?.category !== target.expectedCategory) {
-      fatal.push(`${key}: category er "${m?.category}", forventet "${target.expectedCategory}"`);
+    // category må matche målet (streng eller liste, f.eks. popkultur-kilden
+    // som blander "populaerkultur" og "film_tv").
+    const allowedCategories = Array.isArray(target.expectedCategory)
+      ? target.expectedCategory
+      : [target.expectedCategory];
+    if (!allowedCategories.includes(m?.category)) {
+      fatal.push(`${key}: category er "${m?.category}", forventet ${allowedCategories.map((c) => `"${c}"`).join(" eller ")}`);
     }
 
     // historyGoPlaceId må finnes i kilden.

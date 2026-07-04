@@ -1,0 +1,224 @@
+{
+  "schema": "civication.historyGoPlaceMapping.media.v1",
+  "version": 1,
+  "sourceFile": "places/media/oslo/places_oslo_media.json",
+  "note": "Samlet verifisert per-place mapping for History Go media-steder (Oslo) til Civication-kartet. Avishusene deler byggtype; mapRole skiller redaksjonene.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_good_game_redaksjon": {
+      "id": "map_good_game_redaksjon",
+      "historyGoPlaceId": "good_game_redaksjon",
+      "historyGoSourceFile": "places/media/oslo/places_oslo_media.json",
+      "civicationPlaceId": "civi_media_good_game_redaksjon",
+      "name": "Good Game-redaksjonen (NRK)",
+      "category": "media",
+      "lat": 59.9323,
+      "lon": 10.7182,
+      "emne_ids": [
+        "em_media_redaksjon_desk",
+        "em_media_nyhetsproduksjon",
+        "em_media_journalist_kilde",
+        "em_media_digital_offentlighet"
+      ],
+      "buildingTypeId": "building_broadcasting_house",
+      "mapRole": "gaming_editorial_studio",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "culture",
+        "institution"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "event_day",
+        "morning_office_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vg_huset": {
+      "id": "map_vg_huset",
+      "historyGoPlaceId": "vg_huset",
+      "historyGoSourceFile": "places/media/oslo/places_oslo_media.json",
+      "civicationPlaceId": "civi_media_vg_huset",
+      "name": "VG-huset",
+      "category": "media",
+      "lat": 59.9146,
+      "lon": 10.7426,
+      "emne_ids": [
+        "em_media_avishus_offentlighetsrom",
+        "em_media_redaksjon_desk",
+        "em_media_forside_prioritering",
+        "em_media_dagsorden",
+        "em_media_oppmerksomhetsokonomi"
+      ],
+      "buildingTypeId": "building_newspaper_headquarters",
+      "mapRole": "tabloid_headquarters",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "institution",
+        "street_level_debate",
+        "city_center_scene"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "morning_office_flow",
+        "business_day",
+        "evening_empty_office_row"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nrk_huset_marienlyst": {
+      "id": "map_nrk_huset_marienlyst",
+      "historyGoPlaceId": "nrk_huset_marienlyst",
+      "historyGoSourceFile": "places/media/oslo/places_oslo_media.json",
+      "civicationPlaceId": "civi_media_nrk_huset_marienlyst",
+      "name": "NRK-huset på Marienlyst",
+      "category": "media",
+      "lat": 59.9323,
+      "lon": 10.7182,
+      "emne_ids": [
+        "em_media_redaksjon_desk",
+        "em_media_nyhetsproduksjon",
+        "em_media_journalist_kilde",
+        "em_media_av_og_tv_produksjon"
+      ],
+      "buildingTypeId": "building_broadcasting_house",
+      "mapRole": "public_broadcaster_house",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "institution",
+        "culture",
+        "city_symbol"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "morning_office_flow",
+        "event_day",
+        "evening_empty_office_row"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_aftenposten_akersgata": {
+      "id": "map_aftenposten_akersgata",
+      "historyGoPlaceId": "aftenposten_akersgata",
+      "historyGoSourceFile": "places/media/oslo/places_oslo_media.json",
+      "civicationPlaceId": "civi_media_aftenposten_akersgata",
+      "name": "Aftenposten i Akersgata",
+      "category": "media",
+      "lat": 59.9145,
+      "lon": 10.7417,
+      "emne_ids": [
+        "em_media_avishus_offentlighetsrom",
+        "em_media_redaksjon_desk",
+        "em_media_nyhetsproduksjon",
+        "em_media_dagsorden"
+      ],
+      "buildingTypeId": "building_newspaper_headquarters",
+      "mapRole": "legacy_press_house",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "institution",
+        "historical_layer",
+        "street_level_debate"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "business_day",
+        "historical_reflection",
+        "morning_office_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_dagbladet_akersgata": {
+      "id": "map_dagbladet_akersgata",
+      "historyGoPlaceId": "dagbladet_akersgata",
+      "historyGoSourceFile": "places/media/oslo/places_oslo_media.json",
+      "civicationPlaceId": "civi_media_dagbladet_akersgata",
+      "name": "Dagbladet i Akersgata",
+      "category": "media",
+      "lat": 59.9143,
+      "lon": 10.7414,
+      "emne_ids": [
+        "em_media_avishus_offentlighetsrom",
+        "em_media_redaksjon_desk",
+        "em_media_kritikk_kommentar",
+        "em_media_dagsorden"
+      ],
+      "buildingTypeId": "building_newspaper_headquarters",
+      "mapRole": "tabloid_press_history_house",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "institution",
+        "historical_layer",
+        "street_level_debate"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "business_day",
+        "historical_reflection",
+        "morning_office_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_klassekampen_redaksjon": {
+      "id": "map_klassekampen_redaksjon",
+      "historyGoPlaceId": "klassekampen_redaksjon",
+      "historyGoSourceFile": "places/media/oslo/places_oslo_media.json",
+      "civicationPlaceId": "civi_media_klassekampen_redaksjon",
+      "name": "Klassekampen-redaksjonen (Hausmanns gate)",
+      "category": "media",
+      "lat": 59.917,
+      "lon": 10.756,
+      "emne_ids": [
+        "em_media_avishus_offentlighetsrom",
+        "em_media_redaksjon_desk",
+        "em_media_kritikk_kommentar",
+        "em_media_digital_offentlighet"
+      ],
+      "buildingTypeId": "building_newspaper_headquarters",
+      "mapRole": "leftist_daily_newsroom",
+      "visibleAs": "media_house",
+      "socialFunctions": [
+        "work",
+        "institution",
+        "street_level_debate",
+        "local_scene"
+      ],
+      "phaseTypes": [
+        "office_day",
+        "business_day",
+        "morning_office_flow",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

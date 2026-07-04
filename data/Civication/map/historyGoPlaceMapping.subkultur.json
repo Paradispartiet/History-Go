@@ -1,0 +1,684 @@
+{
+  "schema": "civication.historyGoPlaceMapping.subkultur.v1",
+  "version": 1,
+  "sourceFile": "places/subkultur/oslo/places_subkultur.json",
+  "note": "Samlet verifisert per-place mapping for History Go subkultur-steder (Oslo) til Civication-kartet. Gatekunst-veggsonene deler byggtype; mapRole skiller stedene.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_sofienbergparken_subkultur": {
+      "id": "map_sofienbergparken_subkultur",
+      "historyGoPlaceId": "sofienbergparken_subkultur",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_sofienbergparken_subkultur",
+      "name": "Sofienbergparken",
+      "category": "subkultur",
+      "lat": 59.9228,
+      "lon": 10.7622,
+      "emne_ids": [
+        "em_sub_tilhorighet_miljo",
+        "em_sub_ungdomskultur_identitet"
+      ],
+      "buildingTypeId": "building_dense_neighborhood_park",
+      "mapRole": "informal_subculture_park",
+      "visibleAs": "park",
+      "socialFunctions": [
+        "local_scene",
+        "meeting_point",
+        "park_life",
+        "social_mix"
+      ],
+      "phaseTypes": [
+        "summer_pause",
+        "evening_local_park",
+        "micro_social_observation",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_hausmania": {
+      "id": "map_hausmania",
+      "historyGoPlaceId": "hausmania",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_hausmania",
+      "name": "Hausmania",
+      "category": "subkultur",
+      "lat": 59.919075,
+      "lon": 10.752097,
+      "emne_ids": [
+        "em_sub_autonomi_motstand",
+        "em_sub_diy_praksis"
+      ],
+      "buildingTypeId": "building_selforganized_culture_house",
+      "mapRole": "selforganized_culture_hub",
+      "visibleAs": "culture_house",
+      "socialFunctions": [
+        "local_scene",
+        "culture",
+        "low_cost_presence",
+        "art_observation",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "micro_social_observation",
+        "evening_local_flow",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_skur13": {
+      "id": "map_skur13",
+      "historyGoPlaceId": "skur13",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_skur13",
+      "name": "Skur 13",
+      "category": "subkultur",
+      "lat": 59.9066,
+      "lon": 10.7315,
+      "emne_ids": [
+        "em_sub_skate_byrom",
+        "em_sub_deltakelse_laring"
+      ],
+      "buildingTypeId": "building_harbor_skate_hall",
+      "mapRole": "harbor_shed_skate_hall",
+      "visibleAs": "skate_hall",
+      "socialFunctions": [
+        "skating",
+        "local_scene",
+        "sport",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "outdoor_training",
+        "after_school_flow",
+        "event_evening",
+        "training"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_torggata_blad": {
+      "id": "map_torggata_blad",
+      "historyGoPlaceId": "torggata_blad",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_torggata_blad",
+      "name": "Torggata Blad",
+      "category": "subkultur",
+      "lat": 59.91504,
+      "lon": 10.75326,
+      "emne_ids": [
+        "em_sub_fanziner_plakater",
+        "em_sub_dokumentasjon_arkiv"
+      ],
+      "buildingTypeId": "building_independent_bookshop",
+      "mapRole": "zine_comics_shop",
+      "visibleAs": "bookshop",
+      "socialFunctions": [
+        "reading",
+        "local_commerce",
+        "local_scene",
+        "culture"
+      ],
+      "phaseTypes": [
+        "local_shopping",
+        "quiet_reading",
+        "midday_commerce",
+        "micro_social_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_stovnertarnet": {
+      "id": "map_stovnertarnet",
+      "historyGoPlaceId": "stovnertarnet",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_stovnertarnet",
+      "name": "Stovnertårnet",
+      "category": "subkultur",
+      "lat": 59.9705,
+      "lon": 10.9238,
+      "emne_ids": [
+        "em_sub_byutvikling_regulering",
+        "em_sub_autentisitet_tap"
+      ],
+      "buildingTypeId": "building_landscape_tower_walkway",
+      "mapRole": "outer_city_landmark_walkway",
+      "visibleAs": "tower_walkway",
+      "socialFunctions": [
+        "viewpoint",
+        "neighborhood_identity",
+        "walking",
+        "photo_point"
+      ],
+      "phaseTypes": [
+        "viewpoint_pause",
+        "morning_walk",
+        "sunset_fjord_view",
+        "neighborhood_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bla": {
+      "id": "map_bla",
+      "historyGoPlaceId": "bla",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_bla",
+      "name": "Blå",
+      "category": "subkultur",
+      "lat": 59.9186,
+      "lon": 10.757,
+      "emne_ids": [
+        "em_sub_klubbkultur_natt",
+        "em_sub_arrangorer_dugnad"
+      ],
+      "buildingTypeId": "building_riverside_club_stage",
+      "mapRole": "river_underground_club",
+      "visibleAs": "club_stage",
+      "socialFunctions": [
+        "nightlife",
+        "local_scene",
+        "culture",
+        "river_context"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "nightlife_pressure",
+        "evening_river_walk",
+        "market_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vulkan_murvegger": {
+      "id": "map_vulkan_murvegger",
+      "historyGoPlaceId": "vulkan_murvegger",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_vulkan_murvegger",
+      "name": "Vulkan murvegger og passasjer",
+      "category": "subkultur",
+      "lat": 59.9224,
+      "lon": 10.7537,
+      "emne_ids": [
+        "em_sub_graffiti_gatekunst",
+        "em_sub_estetikk_affekt"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "vulkan_wall_passages",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_hausmannsgate_aksen": {
+      "id": "map_hausmannsgate_aksen",
+      "historyGoPlaceId": "hausmannsgate_aksen",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_hausmannsgate_aksen",
+      "name": "Hausmannsgate-aksen",
+      "category": "subkultur",
+      "lat": 59.9189,
+      "lon": 10.7513,
+      "emne_ids": [
+        "em_sub_autonomi_motstand",
+        "em_sub_byutvikling_regulering"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "hausmannsgate_street_axis_walls",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_kolstadgata_toyen_vegger": {
+      "id": "map_kolstadgata_toyen_vegger",
+      "historyGoPlaceId": "kolstadgata_toyen_vegger",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_kolstadgata_toyen_vegger",
+      "name": "Kolstadgata veggmiljø",
+      "category": "subkultur",
+      "lat": 59.9142,
+      "lon": 10.7782,
+      "emne_ids": [
+        "em_sub_graffiti_gatekunst",
+        "em_sub_dokumentasjon_arkiv"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "toyen_wall_environment",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gronland_underganger": {
+      "id": "map_gronland_underganger",
+      "historyGoPlaceId": "gronland_underganger",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_gronland_underganger",
+      "name": "Grønland underganger",
+      "category": "subkultur",
+      "lat": 59.9128,
+      "lon": 10.7604,
+      "emne_ids": [
+        "em_sub_graffiti_gatekunst",
+        "em_sub_estetikk_affekt"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "gronland_underpass_walls",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nybrua_pilarrom": {
+      "id": "map_nybrua_pilarrom",
+      "historyGoPlaceId": "nybrua_pilarrom",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_nybrua_pilarrom",
+      "name": "Nybrua pilarrom",
+      "category": "subkultur",
+      "lat": 59.9149,
+      "lon": 10.7582,
+      "emne_ids": [
+        "em_sub_graffiti_gatekunst",
+        "em_sub_estetikk_affekt"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "nybrua_pillar_room",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_schweigaards_gate_lodalen": {
+      "id": "map_schweigaards_gate_lodalen",
+      "historyGoPlaceId": "schweigaards_gate_lodalen",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_schweigaards_gate_lodalen",
+      "name": "Schweigaards gate–Lodalen veggakse",
+      "category": "subkultur",
+      "lat": 59.9077,
+      "lon": 10.7725,
+      "emne_ids": [
+        "em_sub_byutvikling_regulering",
+        "em_sub_graffiti_gatekunst"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "schweigaards_lodalen_wall_axis",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_kuba_akselpassasjer": {
+      "id": "map_kuba_akselpassasjer",
+      "historyGoPlaceId": "kuba_akselpassasjer",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_kuba_akselpassasjer",
+      "name": "Kuba-passasjene ved Akerselva",
+      "category": "subkultur",
+      "lat": 59.9236,
+      "lon": 10.7558,
+      "emne_ids": [
+        "em_sub_diy_praksis",
+        "em_sub_dokumentasjon_arkiv"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "kuba_river_passages",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_grunerlokka_bakgardsvegger": {
+      "id": "map_grunerlokka_bakgardsvegger",
+      "historyGoPlaceId": "grunerlokka_bakgardsvegger",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_grunerlokka_bakgardsvegger",
+      "name": "Grünerløkka bakgårdsvegger",
+      "category": "subkultur",
+      "lat": 59.9221,
+      "lon": 10.7609,
+      "emne_ids": [
+        "em_sub_graffiti_gatekunst",
+        "em_sub_gentrifisering_tap"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "grunerlokka_backyard_walls",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_blitzhuset": {
+      "id": "map_blitzhuset",
+      "historyGoPlaceId": "blitzhuset",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_blitzhuset",
+      "name": "Blitzhuset",
+      "category": "subkultur",
+      "lat": 59.918756,
+      "lon": 10.737258,
+      "emne_ids": [
+        "em_sub_autonomi_motstand",
+        "em_sub_diy_praksis",
+        "em_sub_undergrunn_miljo"
+      ],
+      "buildingTypeId": "building_squatted_activist_house",
+      "mapRole": "counterculture_activist_house",
+      "visibleAs": "activist_house",
+      "socialFunctions": [
+        "local_scene",
+        "protest",
+        "culture",
+        "low_cost_presence"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "political_marking",
+        "micro_social_observation",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_kafe_haerverk": {
+      "id": "map_kafe_haerverk",
+      "historyGoPlaceId": "kafe_haerverk",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_kafe_haerverk",
+      "name": "Kafé Hærverk",
+      "category": "subkultur",
+      "lat": 59.919075,
+      "lon": 10.752097,
+      "emne_ids": [
+        "em_sub_scene_fellesskap",
+        "em_sub_undergrunn_miljo",
+        "em_sub_arrangorer_dugnad"
+      ],
+      "buildingTypeId": "building_basement_club_stage",
+      "mapRole": "diy_concert_cafe",
+      "visibleAs": "club_stage",
+      "socialFunctions": [
+        "nightlife",
+        "local_scene",
+        "culture"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "nightlife_pressure",
+        "quiet_night_road"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_brenneriveien_ingens_gate": {
+      "id": "map_brenneriveien_ingens_gate",
+      "historyGoPlaceId": "brenneriveien_ingens_gate",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_brenneriveien_ingens_gate",
+      "name": "Brenneriveien / Ingens gate",
+      "category": "subkultur",
+      "lat": 59.9186,
+      "lon": 10.757,
+      "emne_ids": [
+        "em_sub_graffiti_gatekunst",
+        "em_sub_scene_fellesskap",
+        "em_sub_sted_scene"
+      ],
+      "buildingTypeId": "building_street_art_wall_zone",
+      "mapRole": "brenneriveien_graffiti_axis",
+      "visibleAs": "street_art_zone",
+      "socialFunctions": [
+        "art_observation",
+        "street_life",
+        "local_scene",
+        "urban_transformation"
+      ],
+      "phaseTypes": [
+        "micro_social_observation",
+        "route_walk",
+        "quiet_observation",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamlebyen_sport_og_fritid": {
+      "id": "map_gamlebyen_sport_og_fritid",
+      "historyGoPlaceId": "gamlebyen_sport_og_fritid",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_gamlebyen_sport_og_fritid",
+      "name": "Gamlebyen Sport og Fritid",
+      "category": "subkultur",
+      "lat": 59.90519,
+      "lon": 10.76896,
+      "emne_ids": [
+        "em_sub_skate_byrom",
+        "em_sub_deltakelse_laring",
+        "em_sub_arrangorer_dugnad"
+      ],
+      "buildingTypeId": "building_diy_skatepark",
+      "mapRole": "diy_neighborhood_skatepark",
+      "visibleAs": "skatepark",
+      "socialFunctions": [
+        "skating",
+        "local_scene",
+        "children_play",
+        "meeting_point"
+      ],
+      "phaseTypes": [
+        "outdoor_training",
+        "after_school_flow",
+        "family_afternoon",
+        "training"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_skatehall": {
+      "id": "map_oslo_skatehall",
+      "historyGoPlaceId": "oslo_skatehall",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_oslo_skatehall",
+      "name": "Oslo Skatehall",
+      "category": "subkultur",
+      "lat": 59.94187,
+      "lon": 10.75292,
+      "emne_ids": [
+        "em_sub_skate_byrom",
+        "em_sub_deltakelse_laring",
+        "em_sub_ungdomskultur_identitet"
+      ],
+      "buildingTypeId": "building_modern_skate_arena",
+      "mapRole": "purpose_built_skate_arena",
+      "visibleAs": "skate_hall",
+      "socialFunctions": [
+        "skating",
+        "sport",
+        "local_scene",
+        "training"
+      ],
+      "phaseTypes": [
+        "training",
+        "after_school_flow",
+        "event_day",
+        "outdoor_training"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_xray_ungdomskulturhus": {
+      "id": "map_xray_ungdomskulturhus",
+      "historyGoPlaceId": "xray_ungdomskulturhus",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_xray_ungdomskulturhus",
+      "name": "X-Ray Ungdomskulturhus",
+      "category": "subkultur",
+      "lat": 59.920678,
+      "lon": 10.751967,
+      "emne_ids": [
+        "em_sub_ungdomskultur_identitet",
+        "em_sub_deltakelse_laring",
+        "em_sub_scene_fellesskap"
+      ],
+      "buildingTypeId": "building_youth_culture_house",
+      "mapRole": "youth_hiphop_culture_house",
+      "visibleAs": "youth_house",
+      "socialFunctions": [
+        "local_scene",
+        "culture",
+        "meeting_point",
+        "low_cost_presence"
+      ],
+      "phaseTypes": [
+        "after_school_flow",
+        "event_evening",
+        "micro_social_observation",
+        "study_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_vaterland_bar_scene": {
+      "id": "map_vaterland_bar_scene",
+      "historyGoPlaceId": "vaterland_bar_scene",
+      "historyGoSourceFile": "places/subkultur/oslo/places_subkultur.json",
+      "civicationPlaceId": "civi_subkultur_vaterland_bar_scene",
+      "name": "Vaterland Bar & Scene",
+      "category": "subkultur",
+      "lat": 59.913912,
+      "lon": 10.756093,
+      "emne_ids": [
+        "em_sub_scene_fellesskap",
+        "em_sub_undergrunn_miljo",
+        "em_sub_klubbkultur_natt"
+      ],
+      "buildingTypeId": "building_basement_club_stage",
+      "mapRole": "rock_punk_bar_stage",
+      "visibleAs": "club_stage",
+      "socialFunctions": [
+        "nightlife",
+        "local_scene",
+        "culture",
+        "crowd_gathering"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "nightlife_pressure",
+        "quiet_night_road",
+        "event_setup"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}

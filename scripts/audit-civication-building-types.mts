@@ -30,6 +30,11 @@ const MAPPING_FILES = [
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.vitenskap.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.vitenskap_historiske_institusjoner.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.naeringsliv.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.subkultur.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.popkultur.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.media.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.film.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.psykologi.json"),
 ];
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 
