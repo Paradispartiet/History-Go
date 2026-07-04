@@ -67,6 +67,14 @@ const TARGETS = [
     expectedSourceFile: "places/musikk/oslo/places_musikk.json",
     expectedCategory: "musikk",
   },
+  {
+    label: "litteratur (Oslo)",
+    mappingFile: path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.litteratur.json"),
+    mappingFileRel: "data/Civication/map/historyGoPlaceMapping.litteratur.json",
+    placesFile: path.join(ROOT, "data", "places", "litteratur", "oslo", "places_litteratur.json"),
+    expectedSourceFile: "places/litteratur/oslo/places_litteratur.json",
+    expectedCategory: "litteratur",
+  },
 ];
 
 // Obligatoriske felt per mapping (jf. oppgavens punkt 4).

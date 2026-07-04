@@ -25,6 +25,7 @@ const MAPPING_FILES = [
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.historie_added_batch_01.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.kunst.json"),
   path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.musikk.json"),
+  path.join(ROOT, "data", "Civication", "map", "historyGoPlaceMapping.litteratur.json"),
 ];
 const BUILDING_TYPES_FILE = path.join(ROOT, "data", "Civication", "map", "buildingTypes.json");
 

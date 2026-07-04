@@ -1,0 +1,641 @@
+{
+  "schema": "civication.historyGoPlaceMapping.litteratur.v1",
+  "version": 1,
+  "sourceFile": "places/litteratur/oslo/places_litteratur.json",
+  "note": "Samlet verifisert per-place mapping for History Go litteratur-steder (Oslo m/omegn) til Civication-kartet. Alle steder i kilden har emne_ids. Forfatterstatuer og bokhandler deler byggtype der miniatyren reelt er lik.",
+  "field_docs": {
+    "id": "Unik mapping-ID.",
+    "historyGoPlaceId": "Eksisterende place.id fra History Go.",
+    "historyGoSourceFile": "Kildeplassering fra data/places/manifest.json.",
+    "civicationPlaceId": "Ny Civication-ID for kartlaget.",
+    "name": "Stedsnavn fra History Go.",
+    "category": "History Go-kategori.",
+    "lat": "Breddegrad fra History Go.",
+    "lon": "Lengdegrad fra History Go.",
+    "emne_ids": "Emner fra History Go-stedet. Tom liste betyr at posten ikke hadde emne_ids i kilden.",
+    "buildingTypeId": "Foreslått Civication-miniatyr/byggtype.",
+    "mapRole": "Hva stedet gjør i Civication-kartet.",
+    "visibleAs": "Hvordan stedet bør vises visuelt.",
+    "socialFunctions": "Sosiale/spillmessige funksjoner stedet kan ha.",
+    "phaseTypes": "Typiske stedsfaser som kan brukes av Civication.",
+    "groundhopperRelevant": "Om stedet normalt skal regnes som Groundhopper-relevant.",
+    "needsVerification": "false når placeId og kjernefelt er kontrollert mot sourceFile.",
+    "needsEnrichment": "true når kilden mangler emne_ids og stedet senere bør få emnekobling."
+  },
+  "mappings": {
+    "map_ibsen_quotes": {
+      "id": "map_ibsen_quotes",
+      "historyGoPlaceId": "ibsen_quotes",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_ibsen_quotes",
+      "name": "Ibsen sitater",
+      "category": "litteratur",
+      "lat": 59.9139,
+      "lon": 10.7383,
+      "emne_ids": [
+        "em_lit_drama_scene_og_teatertekst",
+        "em_lit_forfatterskap_verk_og_liv"
+      ],
+      "buildingTypeId": "building_author_quote_trail",
+      "mapRole": "author_quote_pavement_trail",
+      "visibleAs": "quote_trail",
+      "socialFunctions": [
+        "literary_memory",
+        "walking",
+        "historical_layer",
+        "photo_point"
+      ],
+      "phaseTypes": [
+        "route_walk",
+        "quiet_observation",
+        "tourist_photo",
+        "midday_public_life"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nasjonalbiblioteket": {
+      "id": "map_nasjonalbiblioteket",
+      "historyGoPlaceId": "nasjonalbiblioteket",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_nasjonalbiblioteket",
+      "name": "Nasjonalbiblioteket",
+      "category": "litteratur",
+      "lat": 59.9138,
+      "lon": 10.7168,
+      "emne_ids": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_kanon_kritikk_og_offentlighet"
+      ],
+      "buildingTypeId": "building_national_library",
+      "mapRole": "national_text_archive",
+      "visibleAs": "library_landmark",
+      "socialFunctions": [
+        "knowledge",
+        "reading",
+        "study",
+        "culture",
+        "institution"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "quiet_reading",
+        "cultural_visit",
+        "institutional_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_camilla_collett_statue": {
+      "id": "map_camilla_collett_statue",
+      "historyGoPlaceId": "camilla_collett_statue",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_camilla_collett_statue",
+      "name": "Camilla Collett-statuen",
+      "category": "litteratur",
+      "lat": 59.9159,
+      "lon": 10.7316,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_author_statue_memorial",
+      "mapRole": "author_memory_statue",
+      "visibleAs": "statue",
+      "socialFunctions": [
+        "literary_memory",
+        "public_marking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "symbol_reflection",
+        "tourist_photo"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_henrik_wergeland_statue": {
+      "id": "map_henrik_wergeland_statue",
+      "historyGoPlaceId": "henrik_wergeland_statue",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_henrik_wergeland_statue",
+      "name": "Henrik Wergeland-statuen",
+      "category": "litteratur",
+      "lat": 59.9156,
+      "lon": 10.7349,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_author_statue_memorial",
+      "mapRole": "author_memory_statue",
+      "visibleAs": "statue",
+      "socialFunctions": [
+        "literary_memory",
+        "public_marking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "symbol_reflection",
+        "tourist_photo"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_grotta": {
+      "id": "map_grotta",
+      "historyGoPlaceId": "grotta",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_grotta",
+      "name": "Grotten",
+      "category": "litteratur",
+      "lat": 59.9169,
+      "lon": 10.7296,
+      "emne_ids": [
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_author_residence_grotto",
+      "mapRole": "state_honorary_artist_residence",
+      "visibleAs": "honorary_residence",
+      "socialFunctions": [
+        "literary_memory",
+        "historical_layer",
+        "symbolic_power"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "historical_reflection",
+        "morning_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_nationaltheatret": {
+      "id": "map_nationaltheatret",
+      "historyGoPlaceId": "nationaltheatret",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_nationaltheatret",
+      "name": "Nationaltheatret",
+      "category": "litteratur",
+      "lat": 59.9146,
+      "lon": 10.7312,
+      "emne_ids": [
+        "em_lit_drama_scene_og_teatertekst",
+        "em_lit_adapsjon_tolkning_iscenesettelse"
+      ],
+      "buildingTypeId": "building_national_theatre_stage",
+      "mapRole": "national_drama_stage",
+      "visibleAs": "theatre",
+      "socialFunctions": [
+        "culture",
+        "event",
+        "ceremony",
+        "literary_memory",
+        "city_symbol"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "cultural_visit",
+        "evening_city_flow",
+        "ceremonial_day"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_litteraturhuset": {
+      "id": "map_litteraturhuset",
+      "historyGoPlaceId": "litteraturhuset",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_litteraturhuset",
+      "name": "Litteraturhuset",
+      "category": "litteratur",
+      "lat": 59.92096,
+      "lon": 10.72936,
+      "emne_ids": [
+        "em_lit_lesning_formidling_offentlighet",
+        "em_lit_kanon_kritikk_og_offentlighet"
+      ],
+      "buildingTypeId": "building_literature_house",
+      "mapRole": "public_literary_debate_house",
+      "visibleAs": "culture_house",
+      "socialFunctions": [
+        "culture",
+        "reading",
+        "street_level_debate",
+        "meeting_point",
+        "education"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "study_day",
+        "cultural_visit",
+        "after_work"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_tronsmo_bokhandel": {
+      "id": "map_tronsmo_bokhandel",
+      "historyGoPlaceId": "tronsmo_bokhandel",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_tronsmo_bokhandel",
+      "name": "Tronsmo Bokhandel",
+      "category": "litteratur",
+      "lat": 59.9191,
+      "lon": 10.7447,
+      "emne_ids": [
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_lesning_formidling_offentlighet"
+      ],
+      "buildingTypeId": "building_independent_bookshop",
+      "mapRole": "independent_book_culture_shop",
+      "visibleAs": "bookshop",
+      "socialFunctions": [
+        "reading",
+        "local_commerce",
+        "culture",
+        "local_scene"
+      ],
+      "phaseTypes": [
+        "local_shopping",
+        "quiet_reading",
+        "midday_commerce",
+        "cultural_visit"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_eldorado_bokhandel": {
+      "id": "map_eldorado_bokhandel",
+      "historyGoPlaceId": "eldorado_bokhandel",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_eldorado_bokhandel",
+      "name": "Eldorado Bokhandel",
+      "category": "litteratur",
+      "lat": 59.91418,
+      "lon": 10.74967,
+      "emne_ids": [
+        "em_by_kommersielle_gater",
+        "em_by_historiske_lag_i_hverdagsrom"
+      ],
+      "buildingTypeId": "building_independent_bookshop",
+      "mapRole": "cinema_hall_bookshop",
+      "visibleAs": "bookshop",
+      "socialFunctions": [
+        "reading",
+        "local_commerce",
+        "culture",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "local_shopping",
+        "quiet_reading",
+        "midday_commerce",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_gamle_deichman": {
+      "id": "map_gamle_deichman",
+      "historyGoPlaceId": "gamle_deichman",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_gamle_deichman",
+      "name": "Gamle Deichman",
+      "category": "litteratur",
+      "lat": 59.91472,
+      "lon": 10.73831,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_historiske_lag_i_hverdagsrom"
+      ],
+      "buildingTypeId": "building_historic_library_building",
+      "mapRole": "former_main_library_landmark",
+      "visibleAs": "historic_library",
+      "socialFunctions": [
+        "historical_layer",
+        "knowledge",
+        "reuse",
+        "institutional_identity"
+      ],
+      "phaseTypes": [
+        "historical_reflection",
+        "reuse_reflection",
+        "quiet_observation",
+        "institutional_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_deichman_grunerlokka": {
+      "id": "map_deichman_grunerlokka",
+      "historyGoPlaceId": "deichman_grunerlokka",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_deichman_grunerlokka",
+      "name": "Deichman Grünerløkka",
+      "category": "litteratur",
+      "lat": 59.9235,
+      "lon": 10.7596,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_sosiale_knutepunkt"
+      ],
+      "buildingTypeId": "building_neighborhood_library",
+      "mapRole": "neighborhood_reading_house",
+      "visibleAs": "library",
+      "socialFunctions": [
+        "reading",
+        "knowledge",
+        "meeting_point",
+        "neighborhood_life",
+        "family_life"
+      ],
+      "phaseTypes": [
+        "study_day",
+        "after_school_flow",
+        "quiet_reading",
+        "neighborhood_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_kulturkirken_jakob_litteratur": {
+      "id": "map_kulturkirken_jakob_litteratur",
+      "historyGoPlaceId": "kulturkirken_jakob_litteratur",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_kulturkirken_jakob_litteratur",
+      "name": "Kulturkirken Jakob",
+      "category": "litteratur",
+      "lat": 59.9194,
+      "lon": 10.7553,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_midlertidige_installasjoner"
+      ],
+      "buildingTypeId": "building_culture_church_venue",
+      "mapRole": "church_turned_culture_stage",
+      "visibleAs": "culture_church",
+      "socialFunctions": [
+        "culture",
+        "event",
+        "reuse",
+        "religion"
+      ],
+      "phaseTypes": [
+        "event_evening",
+        "cultural_visit",
+        "reuse_reflection",
+        "quiet_morning"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_norli_universitetsgata": {
+      "id": "map_norli_universitetsgata",
+      "historyGoPlaceId": "norli_universitetsgata",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_norli_universitetsgata",
+      "name": "Norli Universitetsgata",
+      "category": "litteratur",
+      "lat": 59.9181,
+      "lon": 10.7385,
+      "emne_ids": [
+        "em_by_kommersielle_gater",
+        "em_by_offentlige_rom_motesteder"
+      ],
+      "buildingTypeId": "building_flagship_bookstore",
+      "mapRole": "flagship_bookstore",
+      "visibleAs": "bookshop",
+      "socialFunctions": [
+        "reading",
+        "shopping",
+        "commerce",
+        "culture"
+      ],
+      "phaseTypes": [
+        "local_shopping",
+        "midday_commerce",
+        "after_work",
+        "quiet_reading"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_sigrid_undset_statue": {
+      "id": "map_sigrid_undset_statue",
+      "historyGoPlaceId": "sigrid_undset_statue",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_sigrid_undset_statue",
+      "name": "Sigrid Undset-statuen",
+      "category": "litteratur",
+      "lat": 59.9242,
+      "lon": 10.7297,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_author_statue_memorial",
+      "mapRole": "author_memory_statue",
+      "visibleAs": "statue",
+      "socialFunctions": [
+        "literary_memory",
+        "public_marking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "symbol_reflection",
+        "tourist_photo"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_ruth_maier_minne": {
+      "id": "map_ruth_maier_minne",
+      "historyGoPlaceId": "ruth_maier_minne",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_ruth_maier_minne",
+      "name": "Ruth Maier-minnesmerke",
+      "category": "litteratur",
+      "lat": 59.9183,
+      "lon": 10.7427,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_street_memorial_marker",
+      "mapRole": "persecution_memory_marker",
+      "visibleAs": "memorial_marker",
+      "socialFunctions": [
+        "local_memory",
+        "public_reflection",
+        "historical_layer",
+        "public_marking"
+      ],
+      "phaseTypes": [
+        "quiet_reflection",
+        "historical_reflection",
+        "public_marking",
+        "quiet_observation"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_alf_proysen_statue_nittedal": {
+      "id": "map_alf_proysen_statue_nittedal",
+      "historyGoPlaceId": "alf_proysen_statue_nittedal",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_alf_proysen_statue_nittedal",
+      "name": "Alf Prøysen-statuen – Nittedal kulturhus",
+      "category": "litteratur",
+      "lat": 60.062,
+      "lon": 10.875,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_sosiale_knutepunkt"
+      ],
+      "buildingTypeId": "building_author_statue_memorial",
+      "mapRole": "author_memory_statue",
+      "visibleAs": "statue",
+      "socialFunctions": [
+        "literary_memory",
+        "public_marking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "symbol_reflection",
+        "tourist_photo"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_proysenhuset_rudshogda": {
+      "id": "map_proysenhuset_rudshogda",
+      "historyGoPlaceId": "proysenhuset_rudshogda",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_proysenhuset_rudshogda",
+      "name": "Prøysenhuset – Rudshøgda",
+      "category": "litteratur",
+      "lat": 60.8827,
+      "lon": 10.9502,
+      "emne_ids": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_sosiale_knutepunkt"
+      ],
+      "buildingTypeId": "building_author_museum_house",
+      "mapRole": "author_life_museum",
+      "visibleAs": "author_museum",
+      "socialFunctions": [
+        "literary_memory",
+        "culture",
+        "education",
+        "family_life",
+        "tourism"
+      ],
+      "phaseTypes": [
+        "cultural_visit",
+        "family_afternoon",
+        "gallery_visit",
+        "historical_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_inger_hagerups_plass": {
+      "id": "map_inger_hagerups_plass",
+      "historyGoPlaceId": "inger_hagerups_plass",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_inger_hagerups_plass",
+      "name": "Inger Hagerups plass",
+      "category": "litteratur",
+      "lat": 59.9427,
+      "lon": 10.8553,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_torg_plasser_som_scene"
+      ],
+      "buildingTypeId": "building_author_named_square",
+      "mapRole": "author_named_neighborhood_square",
+      "visibleAs": "neighborhood_square",
+      "socialFunctions": [
+        "literary_memory",
+        "neighborhood_identity",
+        "meeting_point",
+        "public_marking"
+      ],
+      "phaseTypes": [
+        "neighborhood_pause",
+        "quiet_observation",
+        "afternoon_local_square",
+        "symbol_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oscar_braaten_statuen": {
+      "id": "map_oscar_braaten_statuen",
+      "historyGoPlaceId": "oscar_braaten_statuen",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_oscar_braaten_statuen",
+      "name": "Oscar Braaten-statuen",
+      "category": "litteratur",
+      "lat": 59.938,
+      "lon": 10.76,
+      "emne_ids": [
+        "em_by_navneskilt_plaketter_minner",
+        "em_by_symbolsk_makt_og_representasjon"
+      ],
+      "buildingTypeId": "building_author_statue_memorial",
+      "mapRole": "author_memory_statue",
+      "visibleAs": "statue",
+      "socialFunctions": [
+        "literary_memory",
+        "public_marking",
+        "historical_layer"
+      ],
+      "phaseTypes": [
+        "quiet_observation",
+        "symbol_reflection",
+        "tourist_photo"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_alexander_kiellands_plass": {
+      "id": "map_alexander_kiellands_plass",
+      "historyGoPlaceId": "alexander_kiellands_plass",
+      "historyGoSourceFile": "places/litteratur/oslo/places_litteratur.json",
+      "civicationPlaceId": "civi_litteratur_alexander_kiellands_plass",
+      "name": "Alexander Kiellands plass",
+      "category": "litteratur",
+      "lat": 59.9245,
+      "lon": 10.766,
+      "emne_ids": [
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_torg_plasser_som_scene"
+      ],
+      "buildingTypeId": "building_author_named_square",
+      "mapRole": "author_named_park_square",
+      "visibleAs": "neighborhood_square",
+      "socialFunctions": [
+        "literary_memory",
+        "park_life",
+        "meeting_point",
+        "neighborhood_life",
+        "everyday_life"
+      ],
+      "phaseTypes": [
+        "evening_local_park",
+        "neighborhood_pause",
+        "summer_pause",
+        "morning_walk"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    }
+  }
+}
