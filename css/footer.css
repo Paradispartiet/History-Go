@@ -9,12 +9,12 @@
   border-top: 1px solid rgba(255,255,255,.06);
 
   /* litt mer “app”-følelse + safe-area */
-  padding: 8px 12px 8px;
+  padding: 7px 12px calc(7px + env(safe-area-inset-bottom, 0px));
 
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* MINI placecard – ligger på SAMME linje som knappene */
@@ -50,7 +50,7 @@
 /* Standard knappehøyder i footer */
 .app-actions button,
 .app-actions .pc-action{
-  height: 56px;
+  height: 52px;
   border-radius: 999px;
   font-size: 15px;
   font-weight: 800;
@@ -74,29 +74,29 @@
 }
 
 .app-actions #pcQuiz{
-  min-width: 88px;
-  height: 50px;
-  padding: 0 16px;
-  border-color: rgba(150,211,214,.32);
-  background: #2f6f73;
-  color: #fff;
+  min-width: 86px;
+  height: 48px;
+  padding: 0 15px;
+  border-color: rgba(139, 92, 28, .38);
+  background: #f7e2a3;
+  color: #2f2415;
   font-size: 14px;
-  box-shadow: 0 8px 18px rgba(0,0,0,.22);
+  box-shadow: 0 8px 18px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.45);
 }
 
 .app-actions #pcQuiz:hover,
 .app-actions #pcQuiz:focus-visible{
-  background: #3a8589;
-  border-color: rgba(186,234,236,.55);
+  background: #efcf78;
+  border-color: rgba(139, 92, 28, .55);
 }
 
 .app-actions #pcQuiz:focus-visible{
-  outline: 2px solid #d7f5f6;
+  outline: 2px solid #fff1b8;
   outline-offset: 3px;
 }
 
 .app-actions #pcQuiz:active{
-  background: #285f63;
+  background: #e2bb5f;
 }
 
 /* Ikonknapper */
@@ -109,9 +109,9 @@
 #pcExploreTogether,
 #pcObserve,
 #pcNote{
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
   padding: 0;
   font-size: 0;
   border-radius: 50%;
@@ -177,7 +177,7 @@
 
 body.hg-app.hg-phone .app-footer{
   gap: 6px;
-  padding: 6px 8px;
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
 }
 
 body.hg-app.hg-phone .app-actions{
@@ -193,7 +193,7 @@ body.hg-app.hg-phone .app-actions::-webkit-scrollbar{
 }
 
 body.hg-app.hg-phone .app-actions button{
-  height: 50px;
+  height: 48px;
   padding: 0 13px;
   font-size: 14px;
   flex: 0 0 auto;
@@ -201,7 +201,7 @@ body.hg-app.hg-phone .app-actions button{
 
 body.hg-app.hg-phone .app-actions #pcQuiz{
   min-width: 82px;
-  height: 46px;
+  height: 44px;
   padding: 0 14px;
   font-size: 13px;
 }

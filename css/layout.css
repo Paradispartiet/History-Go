@@ -42,7 +42,7 @@ body.hg-app.map-scroll-locked{
 
   /* Footerens synlige kontrollrad + iOS home-indicator-område. Dette er den
      autoritative geometrien for både footer-boksen og lagene over den. */
-  --hg-bottom-nav-content-height: var(--hg-visual-footer-height, 80px);
+  --hg-bottom-nav-content-height: var(--hg-visual-footer-height, 72px);
   --hg-safe-area-bottom: env(safe-area-inset-bottom, 0px);
   --hg-bottom-nav-height: calc(
     var(--hg-bottom-nav-content-height) + var(--hg-safe-area-bottom)
@@ -101,7 +101,7 @@ body.hg-app .app-main{
   top: 74px;
   left: 0;
   right: 0;
-  bottom: 80px; /* footer height */
+  bottom: 72px; /* footer height */
 
   overflow: hidden;
 }
@@ -132,10 +132,10 @@ body.hg-app .app-footer{
   align-items: center;
   gap: 12px;
 
-  padding-top: 10px;
+  padding-top: 8px;
   padding-left: calc(10px + env(safe-area-inset-left));
   padding-right: calc(10px + env(safe-area-inset-right));
-  padding-bottom: calc(10px + var(--hg-safe-area-bottom));
+  padding-bottom: calc(8px + var(--hg-safe-area-bottom));
 }
 
 /* ============================================================
@@ -159,12 +159,12 @@ body.hg-app .app-footer{
   max-height: calc(
     100vh -
     var(--hg-visual-header-height, 74px) - 56px -
-    var(--hg-visual-footer-height, 80px) - 12px
+    var(--hg-visual-footer-height, 72px) - 12px
   );
   max-height: calc(
     100dvh -
     var(--hg-visual-header-height, 74px) - 56px -
-    var(--hg-visual-footer-height, 80px) - 12px
+    var(--hg-visual-footer-height, 72px) - 12px
   );
   box-sizing: border-box;
 
@@ -190,7 +190,7 @@ body.hg-app.hg-phone #nearbyListContainer{
   top: calc(var(--hg-visual-header-height, 74px) + 56px);
   left: 0;
   right: 0;
-  bottom: var(--hg-visual-footer-height, 80px);
+  bottom: var(--hg-visual-footer-height, 72px);
   transform: none;
   width: 100vw;
   max-height: none;
