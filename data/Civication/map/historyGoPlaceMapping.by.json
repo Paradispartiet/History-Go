@@ -2,7 +2,7 @@
   "schema": "civication.historyGoPlaceMapping.by.v1",
   "version": 1,
   "sourceFile": "places/by/oslo/places_by.json",
-  "note": "Samlet verifisert per-place mapping for History Go by-steder til Civication-kartet. Kombinerer batch01-batch04. Noen enkle områdeposter fra batch04 mangler emne_ids i kilden og er derfor merket med needsEnrichment: true.",
+  "note": "Samlet verifisert per-place mapping for History Go by-steder til Civication-kartet. Kombinerer batch01-batch05. Noen enkle områdeposter fra batch04 mangler emne_ids i kilden og er derfor merket med needsEnrichment: true.",
   "field_docs": {
     "id": "Unik mapping-ID.",
     "historyGoPlaceId": "Eksisterende place.id fra History Go.",
@@ -1815,6 +1815,168 @@
       "groundhopperRelevant": false,
       "needsVerification": false,
       "needsEnrichment": true
+    },
+    "map_jernbanetorget": {
+      "id": "map_jernbanetorget",
+      "historyGoPlaceId": "jernbanetorget",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_jernbanetorget",
+      "name": "Jernbanetorget",
+      "category": "by",
+      "lat": 59.911,
+      "lon": 10.75,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_flaskehalser_kryss_friksjon"
+      ],
+      "buildingTypeId": "building_station_forecourt_square",
+      "mapRole": "central_station_forecourt",
+      "visibleAs": "transport_square",
+      "socialFunctions": [
+        "commuting",
+        "crossing",
+        "waiting",
+        "arrival",
+        "meeting_point",
+        "mobility_pressure"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "rush_hour_exchange",
+        "tram_bus_exchange",
+        "midday_crossing",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_oslo_bussterminal": {
+      "id": "map_oslo_bussterminal",
+      "historyGoPlaceId": "oslo_bussterminal",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_oslo_bussterminal",
+      "name": "Oslo bussterminal",
+      "category": "by",
+      "lat": 59.9112,
+      "lon": 10.7585,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_flaskehalser_kryss_friksjon"
+      ],
+      "buildingTypeId": "building_regional_bus_terminal",
+      "mapRole": "regional_bus_gateway",
+      "visibleAs": "bus_terminal",
+      "socialFunctions": [
+        "waiting",
+        "arrival",
+        "regional_connection",
+        "commuting"
+      ],
+      "phaseTypes": [
+        "arrival_waiting",
+        "station_waiting",
+        "morning_commute",
+        "late_arrival"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_helsfyr": {
+      "id": "map_helsfyr",
+      "historyGoPlaceId": "helsfyr",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_helsfyr",
+      "name": "Helsfyr",
+      "category": "by",
+      "lat": 59.9128,
+      "lon": 10.8008,
+      "emne_ids": [
+        "em_by_infrastruktur_mobilitet",
+        "em_by_gangstrommer_snarveier"
+      ],
+      "buildingTypeId": "building_eastside_commuter_office_node",
+      "mapRole": "eastern_commuter_office_node",
+      "visibleAs": "transport_office_hub",
+      "socialFunctions": [
+        "commuting",
+        "office_life",
+        "waiting",
+        "mobility_pressure",
+        "traffic_edge"
+      ],
+      "phaseTypes": [
+        "morning_commute",
+        "office_day",
+        "rush_hour_pressure",
+        "evening_return"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_bogstadveien": {
+      "id": "map_bogstadveien",
+      "historyGoPlaceId": "bogstadveien",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_bogstadveien",
+      "name": "Bogstadveien",
+      "category": "by",
+      "lat": 59.9276,
+      "lon": 10.7178,
+      "emne_ids": [
+        "em_by_kommersielle_gater",
+        "em_by_uteservering_kommersielt_byliv"
+      ],
+      "buildingTypeId": "building_premium_shopping_street",
+      "mapRole": "westside_premium_shopping_street",
+      "visibleAs": "commercial_street",
+      "socialFunctions": [
+        "shopping",
+        "commerce",
+        "class_signal",
+        "outdoor_serving",
+        "street_life"
+      ],
+      "phaseTypes": [
+        "midday_commerce",
+        "local_shopping",
+        "evening_outdoor_serving",
+        "evening_city_flow"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
+    },
+    "map_markveien": {
+      "id": "map_markveien",
+      "historyGoPlaceId": "markveien",
+      "historyGoSourceFile": "places/by/oslo/places_by.json",
+      "civicationPlaceId": "civi_by_markveien",
+      "name": "Markveien",
+      "category": "by",
+      "lat": 59.9234,
+      "lon": 10.7573,
+      "emne_ids": [
+        "em_by_kommersielle_gater",
+        "em_by_uteservering_kommersielt_byliv",
+        "em_by_gentrifisering_eiendom"
+      ],
+      "buildingTypeId": "building_smallscale_gentrified_street",
+      "mapRole": "smallscale_gentrification_street",
+      "visibleAs": "commercial_street",
+      "socialFunctions": [
+        "commerce",
+        "cafe_area",
+        "gentrification_observation",
+        "small_scale_street_life",
+        "local_identity"
+      ],
+      "phaseTypes": [
+        "midday_public_life",
+        "local_shopping",
+        "evening_local_street",
+        "gentrification_reflection"
+      ],
+      "groundhopperRelevant": false,
+      "needsVerification": false
     }
   }
 }
