@@ -23,12 +23,18 @@
 
   if (window.CivicationThreeMap) return;
 
-  // Three.js lastes lokalt (vendret, committet) for pålitelighet offline / bak
-  // proxy; CDN beholdes kun som fallback hvis den lokale filen skulle mangle.
+  // Three.js + addons lastes lokalt (vendret, committet) via import map ("three"
+  // / "three/addons/"), så hoved-instansen og postprosesserings-addonene deler
+  // ÉN modul-instans. Absolutt lokal URL og CDN beholdes som fallback for
+  // hoved-three hvis import map / vendret fil skulle mangle (da kjører kartet
+  // uten post-prosessering).
   const THREE_LOCAL_URL = (typeof document !== "undefined" && document.baseURI)
     ? new URL("js/vendor/three/three.module.js", document.baseURI).href
     : "js/vendor/three/three.module.js";
   const THREE_CDN_URL = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+  // Postprosesserings-addons (lastes via import map i init; null hvis utilgjengelig).
+  let ADDONS = null;
 
   // ---------------------------------------------------------------------------
   // Konfig
@@ -143,10 +149,10 @@
   // render target, deretter en fullskjerms shader til skjermen. Bak et
   // kvalitetsnivå (_postEnabled) – ved lavt nivå/feil rendres scenen direkte.
   let _postEnabled = false;
-  let _postTarget = null;
-  let _postScene = null;
-  let _postCamera = null;
-  let _postQuad = null;
+  let _composer = null;
+  let _ssaoPass = null;
+  let _smaaPass = null;
+  let _tiltPass = null;
 
   let _places = null;
   let _loadStarted = false;
@@ -2740,21 +2746,42 @@
     return true;
   }
 
+  async function loadPostAddons() {
+    try {
+      const base = "three/addons/postprocessing/";
+      const [ec, rp, sp, ssao, smaa, op] = await Promise.all([
+        import(/* @vite-ignore */ base + "EffectComposer.js"),
+        import(/* @vite-ignore */ base + "RenderPass.js"),
+        import(/* @vite-ignore */ base + "ShaderPass.js"),
+        import(/* @vite-ignore */ base + "SSAOPass.js"),
+        import(/* @vite-ignore */ base + "SMAAPass.js"),
+        import(/* @vite-ignore */ base + "OutputPass.js")
+      ]);
+      return {
+        EffectComposer: ec.EffectComposer, RenderPass: rp.RenderPass, ShaderPass: sp.ShaderPass,
+        SSAOPass: ssao.SSAOPass, SMAAPass: smaa.SMAAPass, OutputPass: op.OutputPass
+      };
+    } catch (e) {
+      console.warn("[CivicationThreeMap] post-addons utilgjengelig – kjører uten post:", (e && e.message) || e);
+      return null;
+    }
+  }
+
   const POST_VERT = [
     "varying vec2 vUv;",
     "void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }"
   ].join("\n");
 
-  // Tilt-shift: skarpt bånd rundt uFocusCenter, økende blur mot topp/bunn –
-  // signatur-«miniatyrmodell»-looken. Pluss vignett og en varm grade/kontrast.
-  // Encoder sRGB manuelt (scenen rendres tone-mappet til et lineært target).
+  // Tilt-shift-pass (kjører SIST, etter OutputPass, altså på ferdig sRGB): skarpt
+  // bånd rundt uFocusCenter, økende blur mot topp/bunn – signatur-«miniatyrmodell»-
+  // looken. Pluss vignett og en varm grade/kontrast. Ingen sRGB-encode her
+  // (inputen er allerede sRGB fra OutputPass).
   const POST_FRAG = [
     "precision highp float;",
     "uniform sampler2D tDiffuse;",
     "uniform vec2 uResolution;",
     "uniform float uMaxBlur, uFocusCenter, uFocusHeight, uFalloff, uVignette, uGrade;",
     "varying vec2 vUv;",
-    "vec3 lin2srgb(vec3 c){ return pow(clamp(c, 0.0, 1.0), vec3(1.0/2.2)); }",
     "void main(){",
     "  float d = abs(vUv.y - uFocusCenter);",
     "  float blur = smoothstep(uFocusHeight, uFocusHeight + uFalloff, d) * uMaxBlur;",
@@ -2776,7 +2803,7 @@
     "  vec3 col = acc * vig;",
     "  col = mix(col, col * vec3(1.03, 1.0, 0.96), uGrade);", // varm tone
     "  col = (col - 0.5) * 1.04 + 0.5;",                       // lett kontrast
-    "  gl_FragColor = vec4(lin2srgb(col), 1.0);",
+    "  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);",
     "}"
   ].join("\n");
 
@@ -2784,27 +2811,44 @@
     const v = new THREE.Vector2();
     if (renderer && typeof renderer.getDrawingBufferSize === "function") renderer.getDrawingBufferSize(v);
     if (!(v.x > 0 && v.y > 0)) v.set(Math.max(1, W), Math.max(1, H));
+    v.set(Math.max(1, Math.round(v.x)), Math.max(1, Math.round(v.y)));
     return v;
   }
 
+  // EffectComposer-kjede: RenderPass → SSAO (kontaktskygger) → SMAA (kanter) →
+  // OutputPass (tonemap+sRGB) → tilt-shift/vignett (til skjerm). Selvstendig
+  // vendret three + addons (import map), ingen CDN.
   function buildPostPipeline() {
     _postEnabled = false;
-    if (!renderer || !THREE) return;
+    _composer = _ssaoPass = _smaaPass = _tiltPass = null;
+    if (!renderer || !THREE || !ADDONS) return;
     if (!decidePostEnabled()) return;
     try {
       const sz = drawingBufferSize();
-      _postTarget = new THREE.WebGLRenderTarget(Math.round(sz.x), Math.round(sz.y), {
-        minFilter: THREE.LinearFilter,
-        magFilter: THREE.LinearFilter,
-        depthBuffer: true,
-        stencilBuffer: false
+      const w = sz.x, h = sz.y;
+      const rt = new THREE.WebGLRenderTarget(w, h, {
+        type: THREE.HalfFloatType, minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter
       });
-      _postScene = new THREE.Scene();
-      _postCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-      const mat = new THREE.ShaderMaterial({
+      _composer = new ADDONS.EffectComposer(renderer, rt);
+      _composer.setPixelRatio(1);          // vi mater allerede inn drawingBuffer-størrelse
+      _composer.setSize(w, h);
+      _composer.addPass(new ADDONS.RenderPass(scene, camera));
+
+      _ssaoPass = new ADDONS.SSAOPass(scene, camera, w, h);
+      _ssaoPass.kernelRadius = 8;
+      _ssaoPass.minDistance = 0.0015;
+      _ssaoPass.maxDistance = 0.06;
+      _composer.addPass(_ssaoPass);
+
+      _smaaPass = new ADDONS.SMAAPass(w, h);
+      _composer.addPass(_smaaPass);
+
+      _composer.addPass(new ADDONS.OutputPass());
+
+      _tiltPass = new ADDONS.ShaderPass({
         uniforms: {
-          tDiffuse: { value: _postTarget.texture },
-          uResolution: { value: new THREE.Vector2(sz.x, sz.y) },
+          tDiffuse: { value: null },
+          uResolution: { value: new THREE.Vector2(w, h) },
           uMaxBlur: { value: 3.4 },
           uFocusCenter: { value: 0.46 },
           uFocusHeight: { value: 0.13 },
@@ -2813,37 +2857,31 @@
           uGrade: { value: 0.6 }
         },
         vertexShader: POST_VERT,
-        fragmentShader: POST_FRAG,
-        depthTest: false,
-        depthWrite: false,
-        toneMapped: false
+        fragmentShader: POST_FRAG
       });
-      _postQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat);
-      _postQuad.frustumCulled = false;
-      _postScene.add(_postQuad);
+      _composer.addPass(_tiltPass);        // sist → renderToScreen
+
       _postEnabled = true;
     } catch (e) {
       console.warn("[CivicationThreeMap] post-pipeline av (feil ved oppsett):", (e && e.message) || e);
       _postEnabled = false;
+      _composer = _ssaoPass = _smaaPass = _tiltPass = null;
     }
   }
 
   function resizePost() {
-    if (!_postEnabled || !_postTarget || !_postQuad) return;
+    if (!_postEnabled || !_composer) return;
     const sz = drawingBufferSize();
-    _postTarget.setSize(Math.round(sz.x), Math.round(sz.y));
-    _postQuad.material.uniforms.uResolution.value.set(sz.x, sz.y);
+    _composer.setSize(sz.x, sz.y);         // oppdaterer alle passenes targets
+    if (_tiltPass) _tiltPass.uniforms.uResolution.value.set(sz.x, sz.y);
   }
 
   function loop() {
     rafId = requestAnimationFrame(loop);
     if (!active || !dirty) return;
     dirty = false;
-    if (_postEnabled && _postTarget && _postQuad) {
-      renderer.setRenderTarget(_postTarget);
-      renderer.render(scene, camera);
-      renderer.setRenderTarget(null);
-      renderer.render(_postScene, _postCamera);
+    if (_postEnabled && _composer) {
+      _composer.render();
     } else {
       renderer.render(scene, camera);
     }
@@ -3018,17 +3056,27 @@
       return;
     }
 
+    // Hoved-three via import map ("three"), med lokal absolutt URL og CDN som
+    // fallback. Addonene (under) MÅ dele instans, så de bruker samme "three"-map.
     try {
-      THREE = await import(/* @vite-ignore */ THREE_LOCAL_URL);
-    } catch (eLocal) {
-      console.warn("[CivicationThreeMap] lokal three.js feilet, prøver CDN:", (eLocal && eLocal.message) || eLocal);
+      THREE = await import(/* @vite-ignore */ "three");
+    } catch (eMap) {
       try {
-        THREE = await import(/* @vite-ignore */ THREE_CDN_URL);
-      } catch (e) {
-        console.warn("[CivicationThreeMap] Klarte ikke laste three.js – beholder Canvas-kartet:", (e && e.message) || e);
-        return;
+        THREE = await import(/* @vite-ignore */ THREE_LOCAL_URL);
+      } catch (eLocal) {
+        console.warn("[CivicationThreeMap] lokal three.js feilet, prøver CDN:", (eLocal && eLocal.message) || eLocal);
+        try {
+          THREE = await import(/* @vite-ignore */ THREE_CDN_URL);
+        } catch (e) {
+          console.warn("[CivicationThreeMap] Klarte ikke laste three.js – beholder Canvas-kartet:", (e && e.message) || e);
+          return;
+        }
       }
     }
+
+    // Postprosesserings-addons (deler three-instans via import map). Feiler stille
+    // til null → kartet kjører uten post-prosessering (fail-safe).
+    ADDONS = await loadPostAddons();
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.domElement.className = "civi-three-canvas";
