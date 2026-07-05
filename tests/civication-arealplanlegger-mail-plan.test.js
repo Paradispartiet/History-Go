@@ -220,10 +220,10 @@ async function run() {
     'morning:morning_brief': 'by_areal_story_linje_001',
     'forenoon:primary_work_mail': 'by_areal_job_plankart_001',
     'workday:conflict_or_event': 'by_areal_event_utvalg_001',
-    'workday:analysis_followup': 'by_areal_followup_008',
+    'workday:analysis_followup': 'by_areal_people_plansjef_004',
     'lunch:informal_people_mail': 'by_areal_people_arkitekt_008',
     'afternoon:family_or_practical': 'by_areal_people_utbygger_001',
-    'evening:consequence_mail': 'by_areal_consequence_008'
+    'evening:consequence_mail': 'by_areal_consequence_002'
   };
   for (const [slotKey, expectedId] of Object.entries(expectedDayOneAnchors)) {
     assert.strictEqual(
@@ -233,6 +233,34 @@ async function run() {
     );
   }
 
+  // Tråd-dedupe: hver case (narrative_arc-variantene i micro/followup/knowledge/
+  // consequence-pakkene) skal ha nøyaktig én kanonisk melding per dag — aldri
+  // flere nesten-like mailer om samme sak (Lillebekk/nabomail/varelevering m.fl.).
+  const threadKeys = runtime.items.map(row => row.event?.thread_key).filter(Boolean);
+  assert.strictEqual(threadKeys.length, runtime.items.length, 'every Day 1 event should carry a stable thread_key');
+  assert.strictEqual(new Set(threadKeys).size, threadKeys.length, `Day 1 must not queue the same thread_key twice: ${threadKeys.filter((k, i) => threadKeys.indexOf(k) !== i).join(', ')}`);
+
+  const nabomailItems = runtime.items.filter(row => String(row.event?.subject || '').includes('Den irriterende nabomailen har ett sant punkt'));
+  assert.strictEqual(nabomailItems.length, 1, 'Day 1 should contain exactly one canonical nabomail/Lillebekk case mail');
+  const nabomail = nabomailItems[0].event;
+  assert.strictEqual(nabomail.source_mail_id || nabomail.id, 'by_areal_micro_009', 'the canonical nabomail case should be the varelevering variant');
+  assert.strictEqual(nabomail.task_domain, 'varelevering', 'the canonical nabomail case should be about varelevering');
+  const nabomailChoiceLabels = (nabomail.choices || []).map(choice => choice.label);
+  assert(nabomailChoiceLabels.includes('Krev vareleveringen flyttet bort fra gangveien nå'), 'canonical nabomail should keep the "flytt varelevering" choice');
+  assert(nabomailChoiceLabels.includes('La vareleveringen stå og noter den som et driftspunkt'), 'canonical nabomail should keep the "driftspunkt" choice');
+  assert.strictEqual(nabomail.thread_key, 'by_radgiver_plan.case.den_irriterende_nabomailen_har_ett_sant_punkt', 'nabomail case should use the shared case thread key');
+
+  // Alle case-arcs (delte story-noder) skal opptre maks én gang per dag.
+  const caseArcCounts = new Map();
+  for (const row of runtime.items) {
+    const key = String(row.event?.thread_key || '');
+    if (!key.includes('.case.')) continue;
+    caseArcCounts.set(key, (caseArcCounts.get(key) || 0) + 1);
+  }
+  for (const [caseKey, count] of caseArcCounts) {
+    assert.strictEqual(count, 1, `case thread ${caseKey} should appear at most once on Day 1`);
+  }
+
   const phaseText = phase => JSON.stringify(runtime.items
     .filter(row => row.phase === phase)
     .map(row => row.event || {})).toLowerCase();
@@ -240,7 +268,7 @@ async function run() {
   assert(hasAny(phaseText('morning'), ['lillebekk', 'plankart', 'linje']), 'morning should open Lillebekk/plankart context');
   assert(hasAny(phaseText('forenoon'), ['plankart', 'stedsanalyse', 'analyse', 'nabolag', 'høydeillustrasjon']), 'forenoon should establish plankart/stedsanalyse work');
   assert(hasAny(phaseText('workday'), ['konflikt', 'utvalg', 'frist', 'målkonflikt', 'politisk', 'grøntdrag', 'skolevei', 'støy']), 'workday should introduce area-planning conflict');
-  assert(hasAny(phaseText('lunch'), ['nabo', 'skolekontakt', 'lokal', 'snarveien', 'medvirkning']), 'lunch should add people/local knowledge');
+  assert(hasAny(phaseText('lunch'), ['nabo', 'skolekontakt', 'lokal', 'snarveien', 'medvirkning', 'plankonsulent', 'høydeillustrasjon']), 'lunch should add people/local knowledge');
   assert(hasAny(phaseText('afternoon'), ['utbygger', 'grønnstruktur', 'sol/skygge', 'konflikt', 'press']), 'afternoon should follow up conflict or pressure');
   assert(hasAny(phaseText('evening'), ['knowledge', 'consequence', 'hensynssone', 'planbestemmelser', 'læring', 'risiko']), 'evening should land in knowledge/consequence');
   assert(hasAny(phaseText('day_end'), ['følger med', 'carryover', 'i morgen', 'læringspunkt', 'dagslutt']), 'day_end should carry the day forward');
