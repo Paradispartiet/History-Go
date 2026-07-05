@@ -275,7 +275,8 @@
     const sheet = ensureSheet();
     render(context, action);
     sheet.hidden = false;
-    sheet.querySelector('[data-hg-spotmeeting-close]')?.focus?.();
+    const closeButton = sheet.querySelector('[data-hg-spotmeeting-close]');
+    if (closeButton instanceof HTMLElement) closeButton.focus();
     return { ok: true, context, action };
   }
 
