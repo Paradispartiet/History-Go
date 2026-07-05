@@ -41,6 +41,8 @@
     topic: 'Foreslå å møtes rundt et felles tema.'
   });
 
+  const ON_SITE_ACTIONS = Object.freeze(['match', 'quiz', 'observation', 'route']);
+
   let currentState = null;
 
   function isTestMode(){
@@ -84,6 +86,13 @@
       #${SHEET_ID} button:disabled{ opacity:.55; cursor:default; }
       .pc-people-spotmeeting-cta{ width:100%; min-height:36px; border-radius:999px; border:1px solid rgba(247,226,163,.42); background:rgba(247,226,163,.12); color:#f7e2a3; font-weight:800; cursor:pointer; }
       .pc-people-spotmeeting-note{ margin:0; color:rgba(255,255,255,.66); font-size:12px; line-height:1.35; }
+      .pc-events-spotmeeting{ display:grid; gap:7px; padding:7px 8px 8px; border-radius:14px; border:1px solid rgba(247,226,163,.22); background:rgba(247,226,163,.08); }
+      .pc-events-spotmeeting-head{ display:grid; gap:1px; }
+      .pc-events-spotmeeting-title{ color:#f7e2a3; font-weight:900; font-size:13px; line-height:1.1; }
+      .pc-events-spotmeeting-sub{ color:rgba(255,255,255,.66); font-size:11px; line-height:1.15; }
+      .pc-events-spotmeeting-actions{ display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+      .pc-events-spotmeeting-action{ min-height:30px; padding:0 7px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.24); color:#fff; font-size:11px; font-weight:800; line-height:1.1; cursor:pointer; }
+      .pc-events-spotmeeting-action[data-hg-spotmeeting-action="match"]{ grid-column:1 / -1; background:rgba(247,226,163,.16); color:#f7e2a3; border-color:rgba(247,226,163,.32); }
     `;
     root.document.head?.appendChild(style);
   }
@@ -102,6 +111,13 @@
       id: currentPlaceId || 'sted',
       name: currentPlaceId || 'Sted'
     };
+  }
+
+  function getActivePlaceIdFromOnSiteBox(box){
+    const card = root.document?.getElementById?.('placeCard');
+    const currentPlaceId = String(card?.dataset?.currentPlaceId || '').trim();
+    const inlinePlaceId = String(box?.querySelector?.('[data-knowledge-spot-match]')?.getAttribute?.('data-knowledge-spot-match') || '').trim();
+    return currentPlaceId || inlinePlaceId || 'sted';
   }
 
   function buildContext(placeOrOptions, options = {}){
@@ -177,6 +193,28 @@
         <span><strong>${escapeHTML(ACTION_LABELS[action] || action)}</strong><span>${escapeHTML(ACTION_HELPERS[action] || '')}</span></span>
         <span aria-hidden="true">›</span>
       </button>
+    `;
+  }
+
+  function onSiteActionButton(action){
+    return `
+      <button class="pc-events-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}">
+        ${escapeHTML(ACTION_LABELS[action] || action)}
+      </button>
+    `;
+  }
+
+  function renderOnSitePanel(placeId){
+    return `
+      <section class="pc-events-spotmeeting" data-hg-spotmeeting-onsite="1" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}">
+        <div class="pc-events-spotmeeting-head">
+          <span class="pc-events-spotmeeting-title">Kunnskapsmøte</span>
+          <span class="pc-events-spotmeeting-sub">Basert på tema · ikke posisjon</span>
+        </div>
+        <div class="pc-events-spotmeeting-actions" aria-label="Kunnskapsmøte på stedet">
+          ${ON_SITE_ACTIONS.map(onSiteActionButton).join('')}
+        </div>
+      </section>
     `;
   }
 
@@ -330,6 +368,23 @@
     `;
   }
 
+  function enhanceOnSiteBox(box){
+    if (!box?.querySelector || box.querySelector('[data-hg-spotmeeting-onsite="1"]')) return;
+    const head = box.querySelector('.pc-events-head');
+    const placeId = getActivePlaceIdFromOnSiteBox(box);
+    Array.from(box.children || []).forEach(child => {
+      if (child !== head) child.remove();
+    });
+    box.insertAdjacentHTML('beforeend', renderOnSitePanel(placeId));
+  }
+
+  function enhanceOnSiteBoxes(scope = root.document){
+    const boxes = [];
+    if (scope?.id === 'pcEventsBox') boxes.push(scope);
+    if (scope?.querySelectorAll) boxes.push(...scope.querySelectorAll('#pcEventsBox'));
+    boxes.forEach(enhanceOnSiteBox);
+  }
+
   function canonicalizePlaceCardSections(scope = root.document){
     if (!scope?.querySelectorAll) return;
     scope.querySelectorAll('.pc-spotmeeting').forEach(section => {
@@ -341,6 +396,8 @@
       wrapper.innerHTML = renderPeopleCta(placeId);
       section.replaceWith(wrapper);
     });
+
+    enhanceOnSiteBoxes(scope);
 
     const footerButton = root.document?.getElementById?.('pcExploreTogether');
     footerButton?.remove?.();
@@ -387,11 +444,14 @@
         render(currentState.context, action);
         return;
       }
+      const inOnSite = Boolean(target.closest?.('[data-hg-spotmeeting-onsite="1"]'));
       const place = getCurrentPlace(target);
       open(buildPlaceContext(place, {
         preferredAction: action,
-        sourceSurface: 'placeCardPeople',
-        reason: 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
+        sourceSurface: inOnSite ? 'placeCardOnSite' : 'placeCardPeople',
+        reason: inOnSite
+          ? 'Kunnskapsmøte rundt dette stedet'
+          : 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
       }));
       return;
     }
@@ -443,6 +503,7 @@
       ok: true,
       ui: 'canonical',
       sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)),
+      onSitePanels: root.document?.querySelectorAll?.('[data-hg-spotmeeting-onsite="1"]')?.length || 0,
       testMode: isTestMode(),
       hasRuntime: Boolean(root.HG_Spotmeeting)
     };
