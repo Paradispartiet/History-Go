@@ -7,9 +7,13 @@
 // kvartalsbygd byteppe og håndlagde Oslo-landemerker.
 //
 // Robusthet:
-// - Three.js lastes via dynamisk import() fra CDN (pinnet versjon).
+// - Three.js lastes via dynamisk import() – LOKALT fra js/vendor/three (vendret,
+//   committet, pinnet til three@0.160.0), med CDN kun som fallback. Dermed virker
+//   3D-kartet også offline / bak proxy der CDN er blokkert.
 // - Tar bare over når WebGL + biblioteket lastes OK. Ved enhver feil/offline
 //   forblir det 2D Canvas-kartet aktivt som fallback (ingen blank skjerm).
+// - Flatene bruker MeshStandardMaterial (PBR) med en prosedyral gradient-env
+//   (scene.environment) for mykt, materialrikt anslag i den varme diorama-tonen.
 // - Gjenbruker samme datakilde (DataHub), Oslo-filter og kalibrerte projeksjon
 //   som Canvas-motoren, slik at places havner på samme stiliserte Oslo.
 //
@@ -19,7 +23,12 @@
 
   if (window.CivicationThreeMap) return;
 
-  const THREE_URL = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+  // Three.js lastes lokalt (vendret, committet) for pålitelighet offline / bak
+  // proxy; CDN beholdes kun som fallback hvis den lokale filen skulle mangle.
+  const THREE_LOCAL_URL = (typeof document !== "undefined" && document.baseURI)
+    ? new URL("js/vendor/three/three.module.js", document.baseURI).href
+    : "js/vendor/three/three.module.js";
+  const THREE_CDN_URL = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 
   // ---------------------------------------------------------------------------
   // Konfig
@@ -328,9 +337,19 @@
   // ---------------------------------------------------------------------------
   // Geometri-hjelpere
   // ---------------------------------------------------------------------------
+  // Standard PBR-standardverdier for diorama-flatene: matt (høy ruhet), ikke-
+  // metallisk. Sammen med scene.environment (myk gradient-IBL) gir dette
+  // material-dybde og mykt anslag uten å bryte den varme, dempede paletten.
+  const PBR_ROUGHNESS = 0.82;
+  const PBR_METALNESS = 0.0;
   function toMat(c, opts) {
     if (c && c.isMaterial) return c;
-    return new THREE.MeshLambertMaterial(Object.assign({ color: new THREE.Color(c) }, opts || {}));
+    const params = Object.assign(
+      { roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS },
+      opts || {},
+      { color: new THREE.Color(c) }
+    );
+    return new THREE.MeshStandardMaterial(params);
   }
 
   // Ekstruder et normalisert polygon (liste av [nx,ny]) til en blokk/plate.
@@ -699,8 +718,37 @@
   // ---------------------------------------------------------------------------
   // Del 6 – Lys / atmosfære
   // ---------------------------------------------------------------------------
+  // Myk gradient-IBL (himmel → horisont → varm bakke), generert i minnet via en
+  // liten CanvasTexture + PMREM. Gir MeshStandard-flatene et retningsbestemt,
+  // mykt anslag (image-based lighting) uten å laste ned noen asset.
+  function buildEnvironment() {
+    if (!renderer || typeof THREE.PMREMGenerator !== "function") return;
+    const size = 128;
+    const cvs = document.createElement("canvas");
+    cvs.width = 8;
+    cvs.height = size;
+    const ctx = cvs.getContext("2d");
+    if (!ctx) return;
+    const grad = ctx.createLinearGradient(0, 0, 0, size);
+    grad.addColorStop(0.0, "#e6eef5");   // himmel (topp)
+    grad.addColorStop(0.45, "#c2ccd4");
+    grad.addColorStop(0.55, "#9aa0a2");  // horisont
+    grad.addColorStop(1.0, "#4a443c");   // bakke (bunn, varm)
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 8, size);
+    const tex = new THREE.CanvasTexture(cvs);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    if ("colorSpace" in tex) tex.colorSpace = THREE.SRGBColorSpace;
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromEquirectangular(tex).texture;
+    tex.dispose();
+    pmrem.dispose();
+  }
+
   function buildLights() {
-    scene.add(new THREE.HemisphereLight(0xd6e6f2, 0x3a4233, 0.78));
+    // Env-mappet gir nå mykt omgivelseslys, så himmelslyset er dempet litt for
+    // å beholde den varme, dempede tonen (unngå utvasking med PBR-flatene).
+    scene.add(new THREE.HemisphereLight(0xd6e6f2, 0x3a4233, 0.52));
     const sun = new THREE.DirectionalLight(0xfff1da, 1.18);
     sun.position.set(-15, 24, 13); // konsekvent mykt lys oppe-til-venstre
     sun.castShadow = true;
@@ -833,7 +881,7 @@
 
     // Vegger/kropp – ett InstancedMesh.
     const geo = new THREE.BoxGeometry(1, 1, 1);
-    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshLambertMaterial({ color: 0xffffff }), blocks.length);
+    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), blocks.length);
     mesh.castShadow = true; mesh.receiveShadow = true;
     const m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
@@ -847,7 +895,7 @@
         { depth: 1, bevelEnabled: false }
       );
       rgeo.translate(0, 0, -0.5);
-      roofMesh = new THREE.InstancedMesh(rgeo, new THREE.MeshLambertMaterial({ color: 0xffffff }), roofList.length);
+      roofMesh = new THREE.InstancedMesh(rgeo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), roofList.length);
       roofMesh.castShadow = true; roofMesh.receiveShadow = true;
     }
 
@@ -912,7 +960,7 @@
     if (!pts.length) return;
 
     const geo = new THREE.ConeGeometry(0.17, 1, 7);
-    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshLambertMaterial({ color: 0xffffff }), pts.length);
+    const mesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: PBR_ROUGHNESS, metalness: PBR_METALNESS }), pts.length);
     mesh.castShadow = false; mesh.receiveShadow = true; // trær kaster ikke skygge (ytelse)
     const m = new THREE.Matrix4(), q = new THREE.Quaternion();
     const pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
@@ -2846,10 +2894,15 @@
     }
 
     try {
-      THREE = await import(/* @vite-ignore */ THREE_URL);
-    } catch (e) {
-      console.warn("[CivicationThreeMap] Klarte ikke laste three.js – beholder Canvas-kartet:", (e && e.message) || e);
-      return;
+      THREE = await import(/* @vite-ignore */ THREE_LOCAL_URL);
+    } catch (eLocal) {
+      console.warn("[CivicationThreeMap] lokal three.js feilet, prøver CDN:", (eLocal && eLocal.message) || eLocal);
+      try {
+        THREE = await import(/* @vite-ignore */ THREE_CDN_URL);
+      } catch (e) {
+        console.warn("[CivicationThreeMap] Klarte ikke laste three.js – beholder Canvas-kartet:", (e && e.message) || e);
+        return;
+      }
     }
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -2869,6 +2922,7 @@
     // Delt, usynlig (men raycastbar) material for landmark-hit targets.
     INVISIBLE_HIT_MAT = new THREE.MeshBasicMaterial({ visible: false });
 
+    buildEnvironment();
     buildLights();
     buildBoard();
     buildLandscape();
