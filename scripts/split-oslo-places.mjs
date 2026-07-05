@@ -1,7 +1,8 @@
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 
+// Trigger split workflow after workflow file creation.
 const root = process.cwd();
 const srcPath = join(root, 'data/places/by/oslo/places_by.json');
 const outDir = join(root, 'data/places/by/oslo');
