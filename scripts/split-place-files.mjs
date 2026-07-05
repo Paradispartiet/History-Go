@@ -1,3 +1,6 @@
+// Generic splitter for all files in data/places/manifest.json.
+// Run with: node scripts/split-place-files.mjs
+// Output rule: Oslo by keeps places/, all other aggregate files get a folder named after the source stem.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';
 import { createHash } from 'node:crypto';
