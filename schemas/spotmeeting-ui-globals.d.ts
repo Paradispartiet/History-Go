@@ -14,6 +14,7 @@ declare global {
       renderCandidates?: (context?: any, action?: string) => void;
       sendInvite?: (button?: any) => any;
       canonicalizePlaceCardSections?: (scope?: any) => void;
+      bind?: () => void;
       health?: () => any;
       [key: string]: any;
     };

@@ -157,26 +157,21 @@ function hidePlaceCardUntilReady() {
 }
 
 function renderHGSpotmeetingPlaceCardSection(place) {
+  // People-rundingen får kun én liten sekundær CTA. Selve valgene
+  // (kunnskapsmatcher/quiz/observasjon/rute) eies av HG_SpotmeetingUI-sheetet.
   const id = escapePlaceCardHTML(place?.id || place?.name || 'sted');
-  const context = { contextType: 'place', contextId: String(place?.id || place?.name || 'sted'), title: String(place?.name || place?.title || 'Sted'), reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'placeCard' };
-  const testMode = (() => { try { return window.localStorage?.getItem('HG_TEST_MODE') === '1'; } catch { return false; } })();
-  const suggestions = window.HG_Spotmeeting?.getSpotmeetingSuggestions?.(context);
-  const demoCount = Array.isArray(suggestions?.suggestions) ? suggestions.suggestions.length : 0;
-  const status = testMode
-    ? `TEST_MODE: ${demoCount} demo-kandidater kan brukes.`
-    : 'Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE.';
   return `
-    <section class="pc-spotmeeting" data-hg-spotmeeting-place="${id}">
-      <h3>Kunnskapsmøte</h3>
-      <p>Møt folk gjennom det dere har lært — ikke hvor dere er.</p>
-      <div class="pc-spotmeeting-actions">
-        <button type="button" data-hg-spotmeeting-action="match">Finn match</button>
-        <button type="button" data-hg-spotmeeting-action="quiz">Foreslå quiz</button>
-        <button type="button" data-hg-spotmeeting-action="route">Foreslå rute</button>
-        <button type="button" data-hg-spotmeeting-action="observation">Foreslå observasjon</button>
-      </div>
-      <small>${escapePlaceCardHTML(status)}</small>
-    </section>
+    <div class="pc-people-spotmeeting-cta-wrap" data-hg-spotmeeting-canonicalized="1">
+      <button class="pc-people-spotmeeting-cta"
+              type="button"
+              data-hg-spotmeeting-open="people"
+              data-hg-spotmeeting-place="${id}">
+        Foreslå kunnskapsmøte
+      </button>
+      <p class="pc-people-spotmeeting-note">
+        Basert på personer og relasjoner her.
+      </p>
+    </div>
   `;
 }
 
@@ -938,7 +933,6 @@ const btnInfo   = document.getElementById("pcInfo");
 const btnQuiz   = document.getElementById("pcQuiz");
 const btnUnlock = /** @type {HTMLButtonElement|null} */ (document.getElementById("pcUnlock"));
 const btnRoute  = document.getElementById("pcRoute");
-const btnExploreTogether = document.getElementById("pcExploreTogether");
 const btnNote   = document.getElementById("pcNote");
 const btnObs    = document.getElementById("pcObserve");
 const btnClose  = document.getElementById("pcClose");
@@ -1188,7 +1182,6 @@ if (isNarrow) {
   setPcIcon(btnInfo,  "ℹ️", tt("ui.place.moreInfo", "Mer info"));
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
-  setPcIcon(btnExploreTogether, "🤝", "Utforsk sammen");
   setPcIcon(btnObs,   "👁️", tt("ui.place.observe", "Observer"));
   setPcIcon(btnNote,  "📝", tt("ui.place.note", "Notat"));
   setPcIcon(btnClose, "✕",  tt("ui.quiz.close", "Lukk"));
@@ -1197,7 +1190,6 @@ if (isNarrow) {
   setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   // btnUnlock settes lenger nede av unlock-UI – la den være
   setPcText(btnRoute, tt("ui.place.route", "Rute"));
-  setPcText(btnExploreTogether, "Utforsk sammen");
   setPcText(btnObs,   tt("ui.place.observe", "Observer"));
   setPcText(btnNote,  tt("ui.place.note", "Notat"));
   setPcText(btnClose, tt("ui.quiz.close", "Lukk"));
@@ -1490,16 +1482,9 @@ if (peopleEl) {
 }
 
 if (peopleEl) {
+  // Klikk på CTA-en håndteres av HG_SpotmeetingUI sin delegerte click-handler
+  // (data-hg-spotmeeting-open) og åpner canonical Kunnskapsmøte-sheet.
   peopleEl.insertAdjacentHTML("beforeend", renderHGSpotmeetingPlaceCardSection(place));
-  peopleEl.querySelectorAll("[data-hg-spotmeeting-action]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const action = btn.getAttribute("data-hg-spotmeeting-action");
-      const context = { contextType: action === "quiz" ? "quiz" : action === "route" ? "route" : action === "observation" ? "observation" : "place", contextId: String(place?.id || place?.name || "sted"), title: String(place?.name || place?.title || "Sted"), reason: "Manuelt kunnskapsmøte fra PlaceCard", sourceSurface: "placeCard" };
-      const result = window.HG_Spotmeeting?.getSpotmeetingSuggestions?.(context);
-      if (result?.warning === "backend_not_enabled") window.showToast?.("Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE.");
-      else window.showToast?.(`Kunnskapsmøte: ${(result?.suggestions || []).length} demo-matcher`);
-    });
-  });
 }
 window.HG_SocialDemoAdapter?.attachToPlaceCard?.(peopleEl || card, place);
 
@@ -2113,6 +2098,17 @@ if (eventsBox) {
     event?.preventDefault?.();
     event?.stopPropagation?.();
     const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
+    if (typeof window.HG_SpotmeetingUI?.open === "function") {
+      window.HG_SpotmeetingUI.open({
+        contextType: "place",
+        contextId: currentPlaceId,
+        title: place.name || place.title || currentPlaceId,
+        reason: "Kunnskapsmøte rundt dette stedet",
+        sourceSurface: "placeCardOnSite",
+        preferredAction: "match"
+      });
+      return;
+    }
     if (typeof window.openSpotMatchList === "function") {
       window.openSpotMatchList(currentPlaceId);
       return;
@@ -2305,45 +2301,6 @@ if (btnRoute) {
 
     document.addEventListener("click", closeOnOutsideClick);
     window.addEventListener("resize", closeOnResize);
-  };
-}
-
-// --- Utforsk sammen ---
-if (btnExploreTogether) {
-  btnExploreTogether.onclick = (e) => {
-    e?.preventDefault?.();
-    e?.stopPropagation?.();
-    document.getElementById("pcExploreTogetherMenu")?.remove();
-    const footer = btnExploreTogether.closest(".app-footer") || document.body;
-    const menu = document.createElement("div");
-    menu.id = "pcExploreTogetherMenu";
-    menu.className = "pc-route-menu pc-social-menu";
-    menu.setAttribute("role", "menu");
-    menu.setAttribute("aria-label", "Utforsk sammen");
-    menu.innerHTML = `
-      <div class="pc-social-menu-title">Utforsk sammen</div>
-      <button type="button" role="menuitem" data-social-action="matches">Se kunnskapsmatcher</button>
-      <button type="button" role="menuitem" data-social-action="quiz">Inviter til quiz</button>
-      <button type="button" role="menuitem" data-social-action="observation">Inviter til observasjon</button>
-      <button type="button" role="menuitem" data-social-action="route">Inviter til rute</button>
-    `;
-    menu.addEventListener("click", (menuEvent) => {
-      const target = menuEvent.target instanceof Element ? menuEvent.target : null;
-      const actionButton = target?.closest("[data-social-action]");
-      const action = actionButton instanceof HTMLElement ? actionButton.dataset.socialAction : "";
-      if (!action) return;
-      menu.remove();
-      const placeId = String(place.id || "").trim();
-      const context = { contextType: action === "quiz" ? "quiz" : action === "route" ? "route" : action === "observation" ? "observation" : "place", contextId: placeId, title: String(place.name || placeId), reason: "Manuelt kunnskapsmøte fra PlaceCard", sourceSurface: "placeCard" };
-      const result = window.HG_Spotmeeting?.getSpotmeetingSuggestions?.(context);
-      if (action === "matches") return window.showToast?.(`Kunnskapsmøte: ${(result?.suggestions || []).length} demo-matcher`);
-      window.showToast?.(result?.warning === "backend_not_enabled" ? "Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE." : "Spotmeeting-forslag er klart i TEST_MODE");
-    });
-    footer.appendChild(menu);
-    const footerRect = footer.getBoundingClientRect();
-    const btnRect = btnExploreTogether.getBoundingClientRect();
-    menu.style.left = `${btnRect.left - footerRect.left + (btnRect.width / 2)}px`;
-    setTimeout(() => document.addEventListener("click", function close(ev) { const target = ev.target instanceof Node ? ev.target : null; if (target && !menu.contains(target) && !btnExploreTogether.contains(target)) { menu.remove(); document.removeEventListener("click", close); } }), 0);
   };
 }
 

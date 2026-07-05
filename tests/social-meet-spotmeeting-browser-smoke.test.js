@@ -33,7 +33,8 @@ function makeDom(html, url) {
 }
 
 function assertNoForbiddenUi(scope, label) {
-  const html = scope.innerHTML.toLowerCase();
+  // Godkjent personvern-kopi nevner live-posisjon kun i negasjon ("ikke live-posisjon").
+  const html = scope.innerHTML.toLowerCase().replace(/ikke live-posisjon/g, '');
   const forbidden = ['live location', 'live-posisjon', 'free chat', 'fritekst-chat', 'nearby users', 'last seen', 'followers', 'feed'];
   for (const term of forbidden) {
     assert(!html.includes(term), `${label} must not expose forbidden UI/copy: ${term}`);
@@ -56,6 +57,26 @@ assert(!settingsMount.querySelector('#meet-invite-inbox, #spotmeeting-inbox, #co
 assertNoForbiddenUi(profileStatic.document.querySelector('.profile-tab-panel[data-panel="socialmeet"]'), 'profile Social Meet panel');
 assertNoForbiddenUi(settingsMount, 'profile settings mount');
 
+// Statisk struktur: footer er rene hurtighandlinger uten Spotmeeting-inngang.
+const indexSource = read('index.html');
+const footerCssSource = read('css/footer.css');
+assert(!indexSource.includes('pcExploreTogether'), 'index.html does not ship a footer Utforsk sammen entry');
+assert(!footerCssSource.includes('pcExploreTogether'), 'css/footer.css does not style pcExploreTogether');
+for (const id of ['pcInfo', 'pcQuiz', 'pcRoute', 'pcObserve', 'pcNote']) {
+  assert(indexSource.includes(`id="${id}"`), `footer keeps quick action: ${id}`);
+}
+
+// Canonical modul-eierskap: app laster UI-modulen etter motoren og før wrapperen.
+const appSource = read('js/app.js');
+assert(appSource.includes('js/social/HGSpotmeetingUI.js'), 'app loads the canonical Spotmeeting UI module');
+assert(appSource.indexOf('js/social/HGSpotmeeting.js') < appSource.indexOf('js/social/HGSpotmeetingUI.js'), 'canonical UI loads after HGSpotmeeting engine');
+assert(appSource.indexOf('js/social/HGSpotmeetingUI.js') < appSource.indexOf('js/social/HGSpotmeetingPlaceCardDemo.js'), 'canonical UI loads before the compat wrapper');
+
+const demoWrapperSource = read('js/social/HGSpotmeetingPlaceCardDemo.js');
+assert(demoWrapperSource.includes('HG_SpotmeetingUI'), 'PlaceCard demo layer delegates to the canonical UI');
+assert(!demoWrapperSource.includes('hgSpotmeetingSheet'), 'PlaceCard demo layer no longer owns the sheet');
+assert(!demoWrapperSource.includes('createSpotmeetingInvite'), 'PlaceCard demo layer no longer calls the invite API directly');
+
 const appWindow = makeDom(`<!doctype html><body>
   <main>
     <div id="placeCard" data-current-place-id="factory_memory">
@@ -68,11 +89,14 @@ appWindow.localStorage.setItem('HG_TEST_MODE', '1');
 runScript(appWindow, 'js/social/HGSocialDemo.js');
 runScript(appWindow, 'js/social/HGSocialDemoAdapter.js');
 runScript(appWindow, 'js/social/HGSpotmeeting.js');
+runScript(appWindow, 'js/social/HGSpotmeetingUI.js');
 runScript(appWindow, 'js/ui/place-card.js');
 runScript(appWindow, 'js/social/HGSpotmeetingPlaceCardDemo.js');
 
 assert(appWindow.HG_SpotmeetingUI, 'canonical HG_SpotmeetingUI is exposed');
 assert.strictEqual(typeof appWindow.HG_SpotmeetingUI.open, 'function', 'HG_SpotmeetingUI.open exists');
+assert.strictEqual(typeof appWindow.HG_SpotmeetingUI.bind, 'function', 'HG_SpotmeetingUI.bind exists');
+assert.strictEqual(typeof appWindow.HG_SpotmeetingPlaceCardDemo?.sendInvite, 'function', 'compat wrapper keeps sendInvite delegation');
 assert.strictEqual(typeof appWindow.openSpotMatchList, 'function', 'legacy openSpotMatchList routes into canonical UI');
 assert(!appWindow.document.getElementById('pcExploreTogether'), 'footer no longer exposes a standalone Explore together entry after canonical binding');
 
@@ -92,10 +116,13 @@ let sheet = appWindow.document.getElementById('hgSpotmeetingSheet');
 assert(sheet && !sheet.hidden, 'People CTA opens the canonical Spotmeeting sheet');
 assert(sheet.textContent.includes('Kunnskapsmøte'), 'canonical sheet has product title');
 assert(sheet.textContent.includes('Factory Memory'), 'canonical sheet shows context title');
-assert(sheet.textContent.includes('Basert på kunnskap'), 'canonical sheet explains knowledge-based matching');
+assert(sheet.textContent.includes('Basert på tema og kunnskap, ikke live-posisjon. Kun forhåndsvalg.'), 'canonical sheet renders the privacy helper text');
+for (const actionLabel of ['Se kunnskapsmatcher', 'Inviter til quiz', 'Inviter til observasjon', 'Inviter til rute']) {
+  assert(sheet.textContent.includes(actionLabel), `canonical sheet offers choice: ${actionLabel}`);
+}
 assertNoForbiddenUi(sheet, 'canonical Spotmeeting sheet');
 
-click(appWindow, '[data-hg-spotmeeting-action="quiz"]', 'Canonical sheet → Ta quiz sammen');
+click(appWindow, '[data-hg-spotmeeting-action="quiz"]', 'Canonical sheet → Inviter til quiz');
 const beforePending = appWindow.HG_Spotmeeting.getSpotmeetingInbox().pending.length;
 const candidateButton = appWindow.document.querySelector('[data-hg-spotmeeting-send]');
 assert(candidateButton, 'TEST_MODE renders demo candidates with Send forslag buttons');
@@ -127,6 +154,7 @@ assertNoForbiddenUi(sheet, 'På stedet canonical Spotmeeting sheet');
 
 const prodWindow = makeDom(`<!doctype html><body><div id="placeCard" data-current-place-id="factory_memory"></div></body>`, 'http://localhost/index.html');
 runScript(prodWindow, 'js/social/HGSpotmeeting.js');
+runScript(prodWindow, 'js/social/HGSpotmeetingUI.js');
 runScript(prodWindow, 'js/social/HGSpotmeetingPlaceCardDemo.js');
 prodWindow.PLACES = [{ id: 'factory_memory', name: 'Factory Memory' }];
 prodWindow.HG_SpotmeetingUI.open({ contextType: 'place', contextId: 'factory_memory', title: 'Factory Memory', reason: 'Kunnskapsmøte rundt dette stedet', sourceSurface: 'placeCardOnSite' });
