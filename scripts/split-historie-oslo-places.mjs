@@ -1,3 +1,4 @@
+// Split Historie Oslo aggregate place files into one JSON file per place.
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import { createHash } from 'node:crypto';
