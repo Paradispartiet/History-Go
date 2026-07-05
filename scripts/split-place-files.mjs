@@ -25,7 +25,6 @@ function safeFileNameFromId(id) {
 }
 
 function outputConfig(relativeSourcePath, sourceStem) {
-  // Preserve the first/manual Oslo by layout already introduced in PR #1679.
   if (relativeSourcePath === 'places/by/oslo/places_by.json') {
     return {
       itemDirName: 'places',
@@ -35,7 +34,6 @@ function outputConfig(relativeSourcePath, sourceStem) {
     };
   }
 
-  // Generic layout avoids collisions in folders with multiple aggregate files.
   return {
     itemDirName: sourceStem,
     manifestName: `${sourceStem}_manifest.json`,
@@ -215,8 +213,8 @@ const summary = {
   generated_at: new Date().toISOString(),
   source_manifest: 'places/manifest.json',
   source_file_count: manifest.files.length,
-  split_file_count: results.filter((r) => r.status === 'split').length,
-  skipped_file_count: results.filter((r) => r.status !== 'split').length,
+  split_file_count: results.filter((row) => row.status === 'split').length,
+  skipped_file_count: results.filter((row) => row.status !== 'split').length,
   total_place_count: results.reduce((sum, row) => sum + row.count, 0),
   results,
 };
