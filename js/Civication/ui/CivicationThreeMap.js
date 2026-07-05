@@ -138,6 +138,16 @@
   let dirty = true;
   let rafId = 0;
 
+  // Post-prosessering (tilt-shift dybdeskarphet + vignett + varm grade). Egen
+  // minimal komposisjon med core-THREE (ingen addon/CDN): scene rendres til et
+  // render target, deretter en fullskjerms shader til skjermen. Bak et
+  // kvalitetsnivå (_postEnabled) – ved lavt nivå/feil rendres scenen direkte.
+  let _postEnabled = false;
+  let _postTarget = null;
+  let _postScene = null;
+  let _postCamera = null;
+  let _postQuad = null;
+
   let _places = null;
   let _loadStarted = false;
   let _lastLod = null;
@@ -2714,14 +2724,129 @@
     H = Math.max(1, Math.round(rect.height) || window.innerHeight || 640);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, MAX_DPR));
     renderer.setSize(W, H, false);
+    resizePost();
     updateCamera();
+  }
+
+  // Kvalitetsnivå: eksplisitt window.CIVICATION_MAP_QUALITY ("high"/"low"/"off")
+  // vinner; ellers på som standard, men av på små/lavytelses-enheter.
+  function decidePostEnabled() {
+    const q = String((typeof window !== "undefined" && window.CIVICATION_MAP_QUALITY) || "").toLowerCase();
+    if (q === "high") return true;
+    if (q === "low" || q === "off" || q === "none") return false;
+    const cores = (typeof navigator !== "undefined" && navigator.hardwareConcurrency) || 8;
+    const minSide = Math.min(W || 0, H || 0);
+    if (cores <= 4 && minSide < 520) return false; // konservativt for svake mobiler
+    return true;
+  }
+
+  const POST_VERT = [
+    "varying vec2 vUv;",
+    "void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }"
+  ].join("\n");
+
+  // Tilt-shift: skarpt bånd rundt uFocusCenter, økende blur mot topp/bunn –
+  // signatur-«miniatyrmodell»-looken. Pluss vignett og en varm grade/kontrast.
+  // Encoder sRGB manuelt (scenen rendres tone-mappet til et lineært target).
+  const POST_FRAG = [
+    "precision highp float;",
+    "uniform sampler2D tDiffuse;",
+    "uniform vec2 uResolution;",
+    "uniform float uMaxBlur, uFocusCenter, uFocusHeight, uFalloff, uVignette, uGrade;",
+    "varying vec2 vUv;",
+    "vec3 lin2srgb(vec3 c){ return pow(clamp(c, 0.0, 1.0), vec3(1.0/2.2)); }",
+    "void main(){",
+    "  float d = abs(vUv.y - uFocusCenter);",
+    "  float blur = smoothstep(uFocusHeight, uFocusHeight + uFalloff, d) * uMaxBlur;",
+    "  vec2 px = 1.0 / uResolution;",
+    "  vec3 acc = texture2D(tDiffuse, vUv).rgb;",
+    "  float wsum = 1.0;",
+    "  if (blur > 0.001) {",
+    "    for (int i = 0; i < 12; i++) {",
+    "      float a = float(i) * 0.5235987756;",           // 30° steg
+    "      float r = (mod(float(i), 2.0) < 0.5) ? 1.0 : 0.55;", // to radier -> disk-aktig
+    "      vec2 o = vec2(cos(a), sin(a)) * blur * r;",
+    "      acc += texture2D(tDiffuse, vUv + o * px).rgb;",
+    "      wsum += 1.0;",
+    "    }",
+    "    acc /= wsum;",
+    "  }",
+    "  vec2 q = vUv - 0.5;",
+    "  float vig = 1.0 - uVignette * dot(q, q) * 1.6;",
+    "  vec3 col = acc * vig;",
+    "  col = mix(col, col * vec3(1.03, 1.0, 0.96), uGrade);", // varm tone
+    "  col = (col - 0.5) * 1.04 + 0.5;",                       // lett kontrast
+    "  gl_FragColor = vec4(lin2srgb(col), 1.0);",
+    "}"
+  ].join("\n");
+
+  function drawingBufferSize() {
+    const v = new THREE.Vector2();
+    if (renderer && typeof renderer.getDrawingBufferSize === "function") renderer.getDrawingBufferSize(v);
+    if (!(v.x > 0 && v.y > 0)) v.set(Math.max(1, W), Math.max(1, H));
+    return v;
+  }
+
+  function buildPostPipeline() {
+    _postEnabled = false;
+    if (!renderer || !THREE) return;
+    if (!decidePostEnabled()) return;
+    try {
+      const sz = drawingBufferSize();
+      _postTarget = new THREE.WebGLRenderTarget(Math.round(sz.x), Math.round(sz.y), {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.LinearFilter,
+        depthBuffer: true,
+        stencilBuffer: false
+      });
+      _postScene = new THREE.Scene();
+      _postCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const mat = new THREE.ShaderMaterial({
+        uniforms: {
+          tDiffuse: { value: _postTarget.texture },
+          uResolution: { value: new THREE.Vector2(sz.x, sz.y) },
+          uMaxBlur: { value: 3.4 },
+          uFocusCenter: { value: 0.46 },
+          uFocusHeight: { value: 0.13 },
+          uFalloff: { value: 0.32 },
+          uVignette: { value: 0.34 },
+          uGrade: { value: 0.6 }
+        },
+        vertexShader: POST_VERT,
+        fragmentShader: POST_FRAG,
+        depthTest: false,
+        depthWrite: false,
+        toneMapped: false
+      });
+      _postQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat);
+      _postQuad.frustumCulled = false;
+      _postScene.add(_postQuad);
+      _postEnabled = true;
+    } catch (e) {
+      console.warn("[CivicationThreeMap] post-pipeline av (feil ved oppsett):", (e && e.message) || e);
+      _postEnabled = false;
+    }
+  }
+
+  function resizePost() {
+    if (!_postEnabled || !_postTarget || !_postQuad) return;
+    const sz = drawingBufferSize();
+    _postTarget.setSize(Math.round(sz.x), Math.round(sz.y));
+    _postQuad.material.uniforms.uResolution.value.set(sz.x, sz.y);
   }
 
   function loop() {
     rafId = requestAnimationFrame(loop);
     if (!active || !dirty) return;
     dirty = false;
-    renderer.render(scene, camera);
+    if (_postEnabled && _postTarget && _postQuad) {
+      renderer.setRenderTarget(_postTarget);
+      renderer.render(scene, camera);
+      renderer.setRenderTarget(null);
+      renderer.render(_postScene, _postCamera);
+    } else {
+      renderer.render(scene, camera);
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -2940,6 +3065,7 @@
     window.__civiThreeActive = true;
     active = true;
 
+    buildPostPipeline();
     ensureControls();
     bindEvents();
     resize();
@@ -3037,6 +3163,8 @@
     getGroundhopperMarkerCount: () => _stats.groundhopperMarkers || 0,
     isGroundhopperPlace,
     buildGroundhopperRing,
+    // Post-prosessering (tilt-shift/vignett/grade) – status for test/introspeksjon.
+    isPostEnabled: () => _postEnabled === true,
     // Rene introspeksjons-/testfunksjoner (uten scene/DOM) – speiler nøyaktig
     // logikken renderen bruker, så de kan dekkes av node-tester og dev-konsoll.
     resolvePlaceMiniatureType: (place) => resolvePlaceMiniatureType(normalize(place)),
