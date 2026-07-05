@@ -2,12 +2,46 @@
   'use strict';
 
   const root = typeof window !== 'undefined' ? window : globalThis;
+  const SHEET_ID = 'hgSpotmeetingSheet';
+  const STYLE_ID = 'hg-spotmeeting-ui-style';
+
   const PRESET_BY_ACTION = Object.freeze({
     quiz: 'quiz_together',
     route: 'route_one_day',
     observation: 'shared_observation',
-    match: 'compare_place_learning'
+    match: 'compare_place_learning',
+    place: 'compare_place_learning',
+    topic: 'meet_topic',
+    circle: 'meet_topic'
   });
+
+  const CONTEXT_TYPE_BY_ACTION = Object.freeze({
+    quiz: 'quiz',
+    route: 'route',
+    observation: 'observation',
+    match: 'place',
+    place: 'place',
+    topic: 'topic',
+    circle: 'circle'
+  });
+
+  const ACTION_LABELS = Object.freeze({
+    match: 'Sammenligne kunnskap',
+    quiz: 'Ta quiz sammen',
+    route: 'Gå rute en dag',
+    observation: 'Gjøre observasjon',
+    topic: 'Møtes rundt tema'
+  });
+
+  const ACTION_HELPERS = Object.freeze({
+    match: 'Foreslå et kunnskapsmøte rundt dette stedet.',
+    quiz: 'Foreslå å ta en quiz sammen senere.',
+    route: 'Foreslå å gå en historisk rute en dag.',
+    observation: 'Foreslå en felles observasjon knyttet til stedet.',
+    topic: 'Foreslå å møtes rundt et felles tema.'
+  });
+
+  let currentState = null;
 
   function isTestMode(){
     try { return root.localStorage?.getItem('HG_TEST_MODE') === '1'; } catch { return false; }
@@ -22,26 +56,84 @@
       .replace(/'/g, '&#39;');
   }
 
-  function getCurrentPlace(section){
-    const card = section?.closest?.('#placeCard') || root.document?.getElementById?.('placeCard');
-    const currentPlaceId = String(card?.dataset?.currentPlaceId || section?.getAttribute?.('data-hg-spotmeeting-place') || '').trim();
+  function injectStyles(){
+    if (!root.document || root.document.getElementById(STYLE_ID)) return;
+    const style = root.document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = `
+      #${SHEET_ID}[hidden]{ display:none !important; }
+      #${SHEET_ID}{ position:fixed; inset:0; z-index:3000; display:flex; align-items:flex-end; justify-content:center; background:rgba(0,0,0,.54); color:#fff; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+      #${SHEET_ID} .hg-spotmeeting-panel{ width:min(560px,100%); max-height:min(82vh,720px); overflow:auto; margin:0 10px 10px; border:1px solid rgba(255,255,255,.18); border-radius:24px; background:#11100d; box-shadow:0 24px 70px rgba(0,0,0,.62); }
+      #${SHEET_ID} .hg-spotmeeting-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; padding:18px 18px 12px; border-bottom:1px solid rgba(255,255,255,.10); }
+      #${SHEET_ID} h2{ margin:0; font-size:22px; line-height:1.05; }
+      #${SHEET_ID} .hg-spotmeeting-context{ margin:6px 0 0; color:rgba(255,255,255,.76); font-size:14px; }
+      #${SHEET_ID} .hg-spotmeeting-close{ width:36px; height:36px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff; font-size:20px; line-height:1; cursor:pointer; }
+      #${SHEET_ID} .hg-spotmeeting-body{ display:grid; gap:14px; padding:16px 18px 18px; }
+      #${SHEET_ID} .hg-spotmeeting-note{ margin:0; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.07); color:rgba(255,255,255,.82); font-size:14px; line-height:1.35; }
+      #${SHEET_ID} .hg-spotmeeting-actions{ display:grid; gap:8px; }
+      #${SHEET_ID} .hg-spotmeeting-action{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.07); color:#fff; text-align:left; cursor:pointer; }
+      #${SHEET_ID} .hg-spotmeeting-action strong{ display:block; font-size:15px; }
+      #${SHEET_ID} .hg-spotmeeting-action span{ display:block; margin-top:2px; color:rgba(255,255,255,.66); font-size:12px; }
+      #${SHEET_ID} .hg-spotmeeting-action[aria-pressed="true"]{ border-color:rgba(247,226,163,.68); background:rgba(247,226,163,.12); }
+      #${SHEET_ID} .hg-spotmeeting-status{ margin:0; color:rgba(255,255,255,.78); font-size:14px; line-height:1.35; }
+      #${SHEET_ID} .hg-spotmeeting-candidates{ display:grid; gap:10px; }
+      #${SHEET_ID} .hg-spotmeeting-candidate{ display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:11px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.24); }
+      #${SHEET_ID} .hg-spotmeeting-candidate strong{ display:block; }
+      #${SHEET_ID} .hg-spotmeeting-candidate p{ margin:3px 0 0; color:rgba(255,255,255,.66); font-size:13px; line-height:1.3; }
+      #${SHEET_ID} .hg-spotmeeting-candidate button, #${SHEET_ID} .hg-spotmeeting-link{ min-height:36px; padding:0 12px; border-radius:999px; border:1px solid rgba(247,226,163,.42); background:#f7e2a3; color:#241a0d; font-weight:800; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; }
+      #${SHEET_ID} button:disabled{ opacity:.55; cursor:default; }
+      .pc-people-spotmeeting-cta{ width:100%; min-height:36px; border-radius:999px; border:1px solid rgba(247,226,163,.42); background:rgba(247,226,163,.12); color:#f7e2a3; font-weight:800; cursor:pointer; }
+      .pc-people-spotmeeting-note{ margin:0; color:rgba(255,255,255,.66); font-size:12px; line-height:1.35; }
+    `;
+    root.document.head?.appendChild(style);
+  }
+
+  function getPlaceById(placeId){
+    const id = String(placeId || '').trim();
     const places = Array.isArray(root.PLACES) ? root.PLACES : [];
-    return places.find(place => String(place?.id || '').trim() === currentPlaceId) || {
+    return places.find(place => String(place?.id || '').trim() === id) || null;
+  }
+
+  function getCurrentPlace(anchor){
+    const card = anchor?.closest?.('#placeCard') || root.document?.getElementById?.('placeCard');
+    const sectionPlaceId = anchor?.closest?.('[data-hg-spotmeeting-place]')?.getAttribute?.('data-hg-spotmeeting-place');
+    const currentPlaceId = String(card?.dataset?.currentPlaceId || sectionPlaceId || '').trim();
+    return getPlaceById(currentPlaceId) || {
       id: currentPlaceId || 'sted',
       name: currentPlaceId || 'Sted'
     };
   }
 
-  function contextFor(action, place){
-    const placeId = String(place?.id || place?.name || 'sted');
-    const title = String(place?.name || place?.title || 'Sted');
-    const kind = action === 'quiz' ? 'quiz' : action === 'route' ? 'route' : action === 'observation' ? 'observation' : 'place';
+  function buildContext(placeOrOptions, options = {}){
+    const raw = placeOrOptions && typeof placeOrOptions === 'object' ? placeOrOptions : {};
+    if (raw.contextType || raw.contextId || raw.sourceSurface) {
+      const preferredAction = String(raw.preferredAction || options.preferredAction || 'match');
+      const contextType = String(raw.contextType || CONTEXT_TYPE_BY_ACTION[preferredAction] || 'place').trim();
+      const contextId = String(raw.contextId || raw.id || raw.placeId || raw.name || 'sted').trim();
+      const title = String(raw.title || raw.name || contextId || 'Sted').trim();
+      return {
+        contextType,
+        contextId,
+        title,
+        reason: String(raw.reason || options.reason || 'Kunnskapsmøte rundt dette stedet').trim(),
+        sourceSurface: String(raw.sourceSurface || options.sourceSurface || 'placeCardOnSite').trim(),
+        preferredAction
+      };
+    }
+    return buildPlaceContext(raw, options);
+  }
+
+  function buildPlaceContext(place, options = {}){
+    const preferredAction = String(options.preferredAction || 'match');
+    const placeId = String(place?.id || place?.placeId || place?.name || 'sted').trim();
+    const title = String(place?.name || place?.title || placeId || 'Sted').trim();
     return {
-      contextType: kind,
+      contextType: String(options.contextType || CONTEXT_TYPE_BY_ACTION[preferredAction] || 'place'),
       contextId: placeId,
       title,
-      reason: 'Manuelt kunnskapsmøte fra PlaceCard',
-      sourceSurface: 'placeCard'
+      reason: String(options.reason || 'Kunnskapsmøte rundt dette stedet'),
+      sourceSurface: String(options.sourceSurface || 'placeCardOnSite'),
+      preferredAction
     };
   }
 
@@ -49,21 +141,6 @@
     const presets = root.HG_Spotmeeting?.getSpotmeetingConfig?.()?.presetMessages || [];
     const match = presets.find(preset => preset?.presetMessageId === presetMessageId);
     return String(match?.label || presetMessageId);
-  }
-
-  function getPanel(section){
-    let panel = section.querySelector('.pc-spotmeeting-demo-panel');
-    if (!panel) {
-      panel = root.document.createElement('div');
-      panel.className = 'pc-spotmeeting-demo-panel';
-      section.appendChild(panel);
-    }
-    return panel;
-  }
-
-  function renderMessage(section, message){
-    const panel = getPanel(section);
-    panel.innerHTML = `<p class="pc-spotmeeting-demo-note">${escapeHTML(message)}</p>`;
   }
 
   function getDuplicateInvite(targetUserId, context, presetMessageId){
@@ -80,48 +157,78 @@
     ));
   }
 
-  function renderCandidates(section, action){
+  function ensureSheet(){
+    injectStyles();
+    let sheet = root.document?.getElementById?.(SHEET_ID);
+    if (!sheet) {
+      sheet = root.document.createElement('div');
+      sheet.id = SHEET_ID;
+      sheet.hidden = true;
+      sheet.setAttribute('role', 'dialog');
+      sheet.setAttribute('aria-modal', 'true');
+      root.document.body?.appendChild(sheet);
+    }
+    return sheet;
+  }
+
+  function actionButton(action, selectedAction){
+    return `
+      <button class="hg-spotmeeting-action" type="button" data-hg-spotmeeting-action="${escapeHTML(action)}" aria-pressed="${selectedAction === action ? 'true' : 'false'}">
+        <span><strong>${escapeHTML(ACTION_LABELS[action] || action)}</strong><span>${escapeHTML(ACTION_HELPERS[action] || '')}</span></span>
+        <span aria-hidden="true">›</span>
+      </button>
+    `;
+  }
+
+  function renderStatus(message, kind = 'status'){
+    return `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="${escapeHTML(kind)}">${escapeHTML(message)}</p>`;
+  }
+
+  function renderCandidates(context, action){
+    const sheet = ensureSheet();
+    const target = sheet.querySelector('[data-hg-spotmeeting-candidates]');
+    if (!target) return;
+
     if (!root.HG_Spotmeeting) {
-      renderMessage(section, 'Kunnskapsmøte er ikke lastet ennå.');
+      target.innerHTML = renderStatus('Kunnskapsmøte er ikke lastet ennå.', 'error');
       return;
     }
 
     if (!isTestMode()) {
-      renderMessage(section, 'Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE.');
-      root.showToast?.('Ekte spotmeeting krever backend. Demo kan testes i TEST_MODE.');
+      target.innerHTML = `
+        ${renderStatus('Ekte Spotmeeting krever trygg backend. Demo kan testes i TEST_MODE.', 'backendDisabled')}
+        <a class="hg-spotmeeting-link" href="profile.html#socialmeet">Åpne Social Meet</a>
+      `;
       return;
     }
 
-    const place = getCurrentPlace(section);
-    const context = contextFor(action, place);
-    const result = root.HG_Spotmeeting.getSpotmeetingSuggestions(context);
+    const contextForAction = Object.assign({}, context, {
+      contextType: CONTEXT_TYPE_BY_ACTION[action] || context.contextType || 'place'
+    });
+    const result = root.HG_Spotmeeting.getSpotmeetingSuggestions(contextForAction);
     const suggestions = Array.isArray(result?.suggestions) ? result.suggestions : [];
     const presetMessageId = PRESET_BY_ACTION[action] || PRESET_BY_ACTION.match;
     const label = presetLabel(presetMessageId);
-    const panel = getPanel(section);
 
     if (!result?.ok) {
-      renderMessage(section, `Kunne ikke hente forslag: ${result?.reason || 'ukjent feil'}`);
+      target.innerHTML = renderStatus(`Kunne ikke hente forslag: ${result?.reason || 'ukjent feil'}`, 'error');
       return;
     }
 
     if (!suggestions.length) {
-      renderMessage(section, 'Ingen demo-kandidater akkurat nå. Seed HG Social demo først.');
+      target.innerHTML = renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates');
       return;
     }
 
-    panel.innerHTML = `
-      <div class="pc-spotmeeting-demo-head">
-        <strong>Velg demo-kandidat</strong>
-        <span>${escapeHTML(label)}</span>
-      </div>
-      <div class="pc-spotmeeting-demo-list">
+    target.innerHTML = `
+      <p class="hg-spotmeeting-status" data-hg-spotmeeting-state="ready">${escapeHTML(label)}</p>
+      <div class="hg-spotmeeting-candidates">
         ${suggestions.slice(0, 4).map(candidate => {
-          const duplicate = getDuplicateInvite(candidate.targetUserId, context, presetMessageId);
+          const duplicate = getDuplicateInvite(candidate.targetUserId, contextForAction, presetMessageId);
           const disabled = duplicate ? ' disabled' : '';
           const status = duplicate ? 'Allerede sendt' : 'Send forslag';
           return `
-            <article class="pc-spotmeeting-demo-candidate">
+            <article class="hg-spotmeeting-candidate">
               <div>
                 <strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Demo-kandidat')}</strong>
                 <p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p>
@@ -131,33 +238,73 @@
           `;
         }).join('')}
       </div>
-      <small>TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst eller backend.</small>
+      <p class="hg-spotmeeting-status">TEST_MODE: forhåndsmelding, lokalt og privat. Ingen fritekst.</p>
     `;
   }
 
+  function render(context, selectedAction = 'match'){
+    const sheet = ensureSheet();
+    const actions = ['match', 'quiz', 'route', 'observation'];
+    sheet.innerHTML = `
+      <section class="hg-spotmeeting-panel">
+        <header class="hg-spotmeeting-head">
+          <div>
+            <h2>Kunnskapsmøte</h2>
+            <p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p>
+          </div>
+          <button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button>
+        </header>
+        <div class="hg-spotmeeting-body">
+          <p class="hg-spotmeeting-note">Basert på kunnskap, ikke posisjonsdeling.</p>
+          <div class="hg-spotmeeting-actions" aria-label="Velg forslagstype">
+            ${actions.map(action => actionButton(action, selectedAction)).join('')}
+          </div>
+          <div data-hg-spotmeeting-candidates>
+            ${renderStatus('Velg hva du vil foreslå.', 'ready')}
+          </div>
+        </div>
+      </section>
+    `;
+    renderCandidates(context, selectedAction);
+  }
+
+  function open(contextOrOptions = {}){
+    const context = buildContext(contextOrOptions);
+    const action = String(context.preferredAction || 'match');
+    currentState = { context, action };
+    const sheet = ensureSheet();
+    render(context, action);
+    sheet.hidden = false;
+    sheet.querySelector('[data-hg-spotmeeting-close]')?.focus?.();
+    return { ok: true, context, action };
+  }
+
+  function close(){
+    const sheet = root.document?.getElementById?.(SHEET_ID);
+    if (sheet) sheet.hidden = true;
+  }
+
   function sendInvite(button){
-    const section = button.closest?.('.pc-spotmeeting');
-    if (!section || !root.HG_Spotmeeting) return;
-    const actionButton = section.querySelector('[data-hg-spotmeeting-action="quiz"], [data-hg-spotmeeting-action="route"], [data-hg-spotmeeting-action="observation"], [data-hg-spotmeeting-action="match"]');
-    const fallbackAction = actionButton?.getAttribute?.('data-hg-spotmeeting-action') || 'match';
-    const presetMessageId = String(button.getAttribute('data-hg-spotmeeting-preset') || PRESET_BY_ACTION[fallbackAction] || PRESET_BY_ACTION.match);
+    if (!button || !currentState || !root.HG_Spotmeeting) return { ok: false, reason: 'missing_runtime' };
+    const presetMessageId = String(button.getAttribute('data-hg-spotmeeting-preset') || PRESET_BY_ACTION[currentState.action] || PRESET_BY_ACTION.match);
     const targetUserId = String(button.getAttribute('data-hg-spotmeeting-target') || '').trim();
-    const place = getCurrentPlace(section);
-    const action = Object.entries(PRESET_BY_ACTION).find(([, preset]) => preset === presetMessageId)?.[0] || fallbackAction;
-    const context = contextFor(action, place);
+    const context = Object.assign({}, currentState.context, {
+      contextType: CONTEXT_TYPE_BY_ACTION[currentState.action] || currentState.context.contextType || 'place'
+    });
     const duplicate = getDuplicateInvite(targetUserId, context, presetMessageId);
 
     if (duplicate) {
       root.showToast?.('Kunnskapsmøte er allerede foreslått.');
       button.textContent = 'Allerede sendt';
       button.disabled = true;
-      return;
+      return { ok: false, reason: 'duplicate', invite: duplicate };
     }
 
     const result = root.HG_Spotmeeting.createSpotmeetingInvite(targetUserId, context, presetMessageId);
     if (!result?.ok) {
-      renderMessage(section, `Kunne ikke sende: ${result?.reason || 'ukjent feil'}`);
-      return;
+      const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
+      if (target) target.innerHTML = renderStatus(`Kunne ikke sende: ${result?.reason || 'ukjent feil'}`, 'error');
+      return result;
     }
 
     button.textContent = 'Sendt';
@@ -165,37 +312,161 @@
     root.showToast?.('Kunnskapsmøte sendt i TEST_MODE.');
     root.dispatchEvent?.(new CustomEvent('hg:spotmeetingChanged', { detail: { invite: result.invite } }));
     root.dispatchEvent?.(new CustomEvent('updateProfile', { detail: { source: 'spotmeeting' } }));
+
+    const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
+    if (target) {
+      target.insertAdjacentHTML('beforeend', '<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>');
+    }
+    return result;
+  }
+
+  function renderPeopleCta(placeId){
+    return `
+      <button class="pc-people-spotmeeting-cta" type="button" data-hg-spotmeeting-open="people" data-hg-spotmeeting-place="${escapeHTML(placeId || 'sted')}">
+        Foreslå kunnskapsmøte
+      </button>
+      <p class="pc-people-spotmeeting-note">Basert på personer og relasjoner her.</p>
+    `;
+  }
+
+  function canonicalizePlaceCardSections(scope = root.document){
+    if (!scope?.querySelectorAll) return;
+    scope.querySelectorAll('.pc-spotmeeting').forEach(section => {
+      if (section.dataset.hgSpotmeetingCanonicalized === '1') return;
+      const placeId = String(section.getAttribute('data-hg-spotmeeting-place') || section.closest?.('#placeCard')?.dataset?.currentPlaceId || 'sted');
+      const wrapper = root.document.createElement('div');
+      wrapper.className = 'pc-people-spotmeeting-cta-wrap';
+      wrapper.dataset.hgSpotmeetingCanonicalized = '1';
+      wrapper.innerHTML = renderPeopleCta(placeId);
+      section.replaceWith(wrapper);
+    });
+
+    const footerButton = root.document?.getElementById?.('pcExploreTogether');
+    footerButton?.remove?.();
   }
 
   function handleClick(event){
-    const target = event.target?.closest?.('[data-hg-spotmeeting-send], [data-hg-spotmeeting-action]');
+    const target = event.target?.closest?.('[data-hg-spotmeeting-send], [data-hg-spotmeeting-action], [data-hg-spotmeeting-open], [data-knowledge-spot-match], [data-hg-spotmeeting-close], #pcExploreTogether');
     if (!target) return;
-    const section = target.closest?.('.pc-spotmeeting');
-    if (!section) return;
 
-    event.preventDefault?.();
-    event.stopPropagation?.();
+    if (target.hasAttribute('data-hg-spotmeeting-close')) {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+      close();
+      return;
+    }
+
+    if (target.id === 'pcExploreTogether') {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+      target.remove?.();
+      return;
+    }
 
     if (target.hasAttribute('data-hg-spotmeeting-send')) {
+      event.preventDefault?.();
+      event.stopPropagation?.();
       sendInvite(target);
       return;
     }
 
-    const action = String(target.getAttribute('data-hg-spotmeeting-action') || 'match');
-    renderCandidates(section, action);
+    if (target.hasAttribute('data-hg-spotmeeting-action')) {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+      const action = String(target.getAttribute('data-hg-spotmeeting-action') || 'match');
+      const sheet = target.closest?.(`#${SHEET_ID}`);
+      if (sheet && currentState) {
+        currentState.action = action;
+        render(currentState.context, action);
+        return;
+      }
+      const place = getCurrentPlace(target);
+      open(buildPlaceContext(place, {
+        preferredAction: action,
+        sourceSurface: 'placeCardPeople',
+        reason: 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
+      }));
+      return;
+    }
+
+    if (target.hasAttribute('data-knowledge-spot-match')) {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+      const place = getCurrentPlace(target);
+      open(buildPlaceContext(place, {
+        preferredAction: 'match',
+        sourceSurface: 'placeCardOnSite',
+        reason: 'Kunnskapsmøte rundt dette stedet'
+      }));
+      return;
+    }
+
+    if (target.hasAttribute('data-hg-spotmeeting-open')) {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+      const surface = String(target.getAttribute('data-hg-spotmeeting-open') || '') === 'people' ? 'placeCardPeople' : 'placeCardOnSite';
+      const place = getCurrentPlace(target);
+      open(buildPlaceContext(place, {
+        preferredAction: 'match',
+        sourceSurface: surface,
+        reason: surface === 'placeCardPeople'
+          ? 'Kunnskapsmøte knyttet til personer og relasjoner på stedet'
+          : 'Kunnskapsmøte rundt dette stedet'
+      }));
+    }
+  }
+
+  function installMutationObserver(){
+    if (!root.MutationObserver || root.__HG_SPOTMEETING_UI_OBSERVER__) return;
+    root.__HG_SPOTMEETING_UI_OBSERVER__ = new root.MutationObserver(() => canonicalizePlaceCardSections());
+    root.__HG_SPOTMEETING_UI_OBSERVER__.observe(root.document.body || root.document.documentElement, { childList: true, subtree: true });
   }
 
   function bind(){
-    if (root.__HG_SPOTMEETING_PLACECARD_DEMO_BOUND__) return;
-    root.__HG_SPOTMEETING_PLACECARD_DEMO_BOUND__ = true;
+    if (root.__HG_SPOTMEETING_UI_BOUND__) return;
+    root.__HG_SPOTMEETING_UI_BOUND__ = true;
+    injectStyles();
     root.document?.addEventListener?.('click', handleClick, true);
+    canonicalizePlaceCardSections();
+    installMutationObserver();
   }
+
+  function health(){
+    return {
+      ok: true,
+      ui: 'canonical',
+      sheetMounted: Boolean(root.document?.getElementById?.(SHEET_ID)),
+      testMode: isTestMode(),
+      hasRuntime: Boolean(root.HG_Spotmeeting)
+    };
+  }
+
+  root.HG_SpotmeetingUI = {
+    open,
+    close,
+    buildContext,
+    buildPlaceContext,
+    render,
+    renderCandidates,
+    sendInvite,
+    canonicalizePlaceCardSections,
+    health
+  };
+
+  root.openSpotMatchList = function openSpotMatchList(placeId){
+    const place = getPlaceById(placeId) || { id: placeId || 'sted', name: placeId || 'Sted' };
+    return open(buildPlaceContext(place, {
+      preferredAction: 'match',
+      sourceSurface: 'placeCardOnSite',
+      reason: 'Kunnskapsmøte rundt dette stedet'
+    }));
+  };
 
   root.HG_SpotmeetingPlaceCardDemo = {
     bind,
     isTestMode,
-    contextFor,
-    renderCandidates,
+    contextFor: (action, place) => buildPlaceContext(place, { preferredAction: action, sourceSurface: 'placeCardPeople' }),
+    renderCandidates: (_section, action) => currentState ? renderCandidates(currentState.context, action || currentState.action) : null,
     sendInvite
   };
 
