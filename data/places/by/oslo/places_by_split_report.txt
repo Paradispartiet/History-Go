@@ -1,0 +1,39 @@
+places_by split report
+
+Source: places_by (28).json
+Source sha256: e6cfd5e4ebf768c751fafb2e8d0ba5f3446463c2c33f3b5d95b535e54076e457
+Generated at: 2026-07-05T08:01:01.419910+00:00
+
+Result:
+- Place files created: 59
+- Directory: places/
+- Manifest: places_by_manifest.json
+- Lightweight index: places_by_index.json
+- Rebuilt file: places_by_rebuilt_from_split.json
+
+Validation:
+- JSON parsed: yes
+- Missing place ids: 0
+- Duplicate ids: 0
+- Round-trip rebuild equals original array: yes
+- Non-ASCII ids: ullevål_hageby, romsaås
+- Places without image/card/front image: 10
+
+Coordinate status counts:
+{
+  "semantic_anchor": 36,
+  "needs_review": 6,
+  "verified": 17
+}
+
+Recommended app structure:
+data/places/by/places_by_manifest.json
+data/places/by/places_by_index.json
+data/places/by/places/<placeId>.json
+
+Recommended loader logic:
+1. Load places_by_manifest.json.
+2. For list/map startup, use places_by_index.json or manifest metadata.
+3. When a place card opens, lazy-load places/<placeId>.json.
+4. Keep a temporary fallback that can still read the old combined places_by.json during migration.
+5. Never generate a new full place object for an id already present; patch the existing file instead.
