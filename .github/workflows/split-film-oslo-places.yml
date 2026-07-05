@@ -1,0 +1,47 @@
+name: Split Film Oslo places
+
+on:
+  push:
+    branches:
+      - data/split-film-oslo-places-20260705
+    paths:
+      - scripts/split-film-oslo-places.mjs
+      - .github/workflows/split-film-oslo-places.yml
+      - data/places/film/oslo/places_oslo_film.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  split-film-oslo-places:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: data/split-film-oslo-places-20260705
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate split files
+        run: node scripts/split-film-oslo-places.mjs
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git status --short
+          git add data/places/film/oslo/places \
+                  data/places/film/oslo/places_oslo_film_manifest.json \
+                  data/places/film/oslo/places_oslo_film_index.json \
+                  data/places/film/oslo/places_oslo_film_split_report.txt
+          if git diff --cached --quiet; then
+            echo "No generated file changes."
+          else
+            git commit -m "Generate split Film Oslo place files"
+            git push
+          fi
