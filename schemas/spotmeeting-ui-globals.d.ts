@@ -26,7 +26,6 @@ declare global {
   var HG_Spotmeeting: any;
   var HG_SpotmeetingUI: any;
   var HG_SpotmeetingPlaceCardDemo: any;
-  var renderHGSpotmeetingPlaceCardSection: ((place?: any) => string) | undefined;
 }
 
 export {};
